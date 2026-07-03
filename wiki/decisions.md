@@ -41,3 +41,9 @@ Reason: Porymap is built to edit decomp project data in a Qt desktop workflow. T
 Decision: Use a `MapRuntime` autoload as the first current-map query service for passability, bounds, collision, elevation, metatile ids, behavior, and layer type.
 
 Reason: Player movement, NPC movement, event triggers, object interaction, warps, and future terrain effects all need the same map facts. Centralizing those queries keeps generated JSON parsing out of presentation scripts and lets richer movement rules grow without coupling them to `PlayerController`.
+
+## 2026-07-04 - Use object-event placeholders before sprite import
+
+Decision: Spawn generated `object_events` as lightweight placeholder nodes and use `MapRuntime` to make visible object-event cells block movement.
+
+Reason: The first vertical slice needs map occupancy and event positions before the full overworld sprite pipeline is ready. Placeholders make source object data visible and testable without inventing final art or coupling movement to presentation nodes.

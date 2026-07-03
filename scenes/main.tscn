@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="Script" path="res://scripts/overworld/debug_map_plane.gd" id="2_debug_map"]
 [ext_resource type="PackedScene" path="res://scenes/overworld/player.tscn" id="3_player"]
+[ext_resource type="Script" path="res://scripts/overworld/object_event_spawner.gd" id="4_object_events"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
@@ -11,6 +12,9 @@ script = ExtResource("1_main")
 
 [node name="DebugMap" type="Node2D" parent="World"]
 script = ExtResource("2_debug_map")
+
+[node name="ObjectEvents" type="Node2D" parent="World"]
+script = ExtResource("4_object_events")
 
 [node name="Player" parent="World" instance=ExtResource("3_player")]
 

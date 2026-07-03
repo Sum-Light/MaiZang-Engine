@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var debug_map = $World/DebugMap
+@onready var object_events = $World/ObjectEvents
 @onready var player = $World/Player
 @onready var status_label: Label = $Hud/StatusLabel
 
@@ -23,6 +24,12 @@ func _ready() -> void:
 		debug_map.map_size = DataRegistry.get_start_map_size()
 		debug_map.tile_size = DataRegistry.TILE_SIZE
 		debug_map.queue_redraw()
+
+	if object_events.has_method("configure_from_events"):
+		object_events.configure_from_events(
+			MapRuntime.get_object_events(),
+			DataRegistry.TILE_SIZE
+		)
 
 	if player.has_signal("moved"):
 		player.moved.connect(_on_player_moved)
@@ -53,6 +60,7 @@ func _update_status() -> void:
 		DataRegistry.get_start_map_name(),
 		source_label,
 		"grid %s" % GameState.player_grid_position,
+		"objects %d" % MapRuntime.get_object_events().size(),
 	])
 	if not _movement_note.is_empty():
 		parts.append(_movement_note)

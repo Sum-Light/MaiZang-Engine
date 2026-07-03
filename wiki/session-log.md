@@ -34,3 +34,6 @@
 - Updated `Main` to configure `MapRuntime` from generated first-slice map and tileset data and to show the last blocked movement during debug play.
 - Added `tools/godot_smoke/map_runtime_smoke.gd` to validate first-slice map runtime queries.
 - Verified Godot 4.7 headless main-scene startup and the `MapRuntime` smoke script.
+- Indexed generated `object_events` in `MapRuntime` and made visible object-event cells block movement.
+- Added `ObjectEventSpawner` and placeholder object-event drawing for the 8 LittlerootTown object events.
+- Updated the `MapRuntime` smoke script to verify object-event count and occupied-cell blocking.

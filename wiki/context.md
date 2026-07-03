@@ -17,12 +17,12 @@ The port should be data-driven: preserve source data and assets where practical,
 - Godot project now has a minimal runtime scaffold.
 - `project.godot` targets Godot 4.7 features and mobile rendering.
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
-- Autoloads are configured for `GameState` and `DataRegistry`.
 - Autoloads are configured for `GameState`, `DataRegistry`, and `MapRuntime`.
 - `DataRegistry` now loads the first generated map at `res://data/generated/maps/littleroot_town.json` when present.
 - `DataRegistry` now loads the first generated tileset metadata at `res://data/generated/tilesets/littleroot_town.json` when present.
 - `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior, and layer-type lookups.
-- `scenes/main.tscn` displays a 20x20 LittlerootTown debug map from generated metatile ids and a palette-baked metatile atlas, plus a movable player placeholder that is blocked by generated map-grid collision.
+- `MapRuntime` now indexes first-slice object events and treats visible object-event cells as occupied.
+- `scenes/main.tscn` displays a 20x20 LittlerootTown debug map from generated metatile ids and a palette-baked metatile atlas, visible object-event placeholders, plus a movable player placeholder that is blocked by generated map-grid collision and object-event occupancy.
 - Player movement currently uses Godot's default `ui_up`, `ui_down`, `ui_left`, and `ui_right` actions.
 - Godot validation uses `C:\Users\YbbNa\Downloads\Godot_v4.7-stable_win64\Godot_v4.7-stable_win64_console.exe`.
 - Validated Godot version: `4.7.stable.official.5b4e0cb0f`.
@@ -49,6 +49,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Latest map export for `LittlerootTown` decoded 400 map-grid entries into 63 unique metatile ids.
 - Latest tileset export for `LittlerootTown` uses `gTileset_General` and `gTileset_Petalburg`, writes a 656-metatile RGBA atlas, reports 63 used metatile ids, records 8 fully covered source tile notes, and has 0 visible warnings.
 - `LittlerootTown` generated collision currently has 268 passable cells and 132 blocked cells.
+- `LittlerootTown` has 8 generated object events; the first runtime pass shows them as placeholders and blocks movement into their occupied cells.
 - Porymap (`https://github.com/huderlem/porymap`) is a useful source-format and editor-behavior reference, but the Godot port should still use its own runtime architecture.
 
 ## Known Source Formats

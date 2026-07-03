@@ -11,6 +11,8 @@ var _block_ids: Array = []
 var _collision_grid: Array = []
 var _elevation_grid: Array = []
 var _metatile_attributes: Dictionary = {}
+var _object_events: Array = []
+var _object_events_by_position: Dictionary = {}
 
 
 func _ready() -> void:
@@ -37,6 +39,8 @@ func configure_from_data(
 	_collision_grid = []
 	_elevation_grid = []
 	_metatile_attributes = {}
+	_object_events = []
+	_object_events_by_position = {}
 
 	if not _map_data.is_empty():
 		var layout_info = _map_data.get("layout", {})
@@ -53,6 +57,7 @@ func configure_from_data(
 			_elevation_grid = _array_or_empty(map_grid.get("elevation", []))
 
 	_index_metatile_attributes()
+	_index_object_events()
 
 
 func is_within_bounds(cell: Vector2i) -> bool:
@@ -60,7 +65,11 @@ func is_within_bounds(cell: Vector2i) -> bool:
 
 
 func can_enter_cell(cell: Vector2i) -> bool:
-	return is_within_bounds(cell) and get_collision_at(cell) == COLLISION_NONE
+	return (
+		is_within_bounds(cell)
+		and get_collision_at(cell) == COLLISION_NONE
+		and not is_cell_occupied(cell)
+	)
 
 
 func get_map_size() -> Vector2i:
@@ -99,8 +108,34 @@ func get_metatile_layer_type_at(cell: Vector2i) -> int:
 	return int(get_metatile_attribute(get_metatile_id_at(cell)).get("layer_type", -1))
 
 
+func get_object_events(include_hidden := false) -> Array:
+	var events := []
+	for object_event in _object_events:
+		if include_hidden or _is_object_event_visible(object_event):
+			events.append(object_event)
+	return events
+
+
+func get_object_events_at(cell: Vector2i, include_hidden := false) -> Array:
+	var key := _cell_key(cell)
+	var events = _object_events_by_position.get(key, [])
+	if typeof(events) != TYPE_ARRAY:
+		return []
+
+	var filtered_events := []
+	for object_event in events:
+		if include_hidden or _is_object_event_visible(object_event):
+			filtered_events.append(object_event)
+	return filtered_events
+
+
+func is_cell_occupied(cell: Vector2i) -> bool:
+	return not get_object_events_at(cell).is_empty()
+
+
 func get_cell_info(cell: Vector2i) -> Dictionary:
 	var metatile_id := get_metatile_id_at(cell)
+	var object_events_at_cell := get_object_events_at(cell)
 	return {
 		"position": cell,
 		"within_bounds": is_within_bounds(cell),
@@ -109,6 +144,8 @@ func get_cell_info(cell: Vector2i) -> Dictionary:
 		"elevation": get_elevation_at(cell),
 		"behavior": get_metatile_attribute(metatile_id).get("behavior", -1),
 		"layer_type": get_metatile_attribute(metatile_id).get("layer_type", -1),
+		"occupied": not object_events_at_cell.is_empty(),
+		"object_event_count": object_events_at_cell.size(),
 		"passable": can_enter_cell(cell),
 	}
 
@@ -132,8 +169,56 @@ func _index_metatile_attributes() -> void:
 			_metatile_attributes[metatile_id] = attribute
 
 
+func _index_object_events() -> void:
+	var events = _map_data.get("events", {})
+	if typeof(events) != TYPE_DICTIONARY:
+		return
+
+	var object_events = events.get("object_events", [])
+	if typeof(object_events) != TYPE_ARRAY:
+		return
+
+	for index in range(object_events.size()):
+		var source_event = object_events[index]
+		if typeof(source_event) != TYPE_DICTIONARY:
+			continue
+
+		var object_event = source_event.duplicate(true)
+		var cell := Vector2i(
+			int(object_event.get("x", 0)),
+			int(object_event.get("y", 0))
+		)
+		object_event["index"] = index
+		object_event["position"] = cell
+		_object_events.append(object_event)
+
+		var key := _cell_key(cell)
+		if not _object_events_by_position.has(key):
+			_object_events_by_position[key] = []
+		_object_events_by_position[key].append(object_event)
+
+
+func _is_object_event_visible(object_event: Dictionary) -> bool:
+	var flag := String(object_event.get("flag", "0"))
+	if flag.is_empty() or flag == "0":
+		return true
+
+	if not is_inside_tree():
+		return true
+
+	var game_state = get_node_or_null("/root/GameState")
+	if game_state != null and game_state.has_method("is_flag_set"):
+		return not game_state.is_flag_set(flag)
+
+	return true
+
+
 func _array_or_empty(value) -> Array:
 	return value if typeof(value) == TYPE_ARRAY else []
+
+
+func _cell_key(cell: Vector2i) -> String:
+	return "%d,%d" % [cell.x, cell.y]
 
 
 func _grid_value(grid: Array, cell: Vector2i, default_value: int) -> int:

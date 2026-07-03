@@ -13,18 +13,25 @@ func _init() -> void:
 	runtime.configure_from_data(map_data, tileset_data, map_size)
 
 	var start_cell := Vector2i(10, 10)
+	var object_cell := Vector2i(16, 10)
 	var blocked_cell := _first_blocked_cell(map_data)
 	_assert(runtime.get_map_size() == Vector2i(20, 20), "unexpected map size")
 	_assert(runtime.can_enter_cell(start_cell), "expected start cell to be passable")
 	_assert(not runtime.can_enter_cell(Vector2i(-1, start_cell.y)), "expected west out-of-bounds to be blocked")
 	_assert(blocked_cell != Vector2i(-1, -1), "expected at least one blocked source cell")
 	_assert(not runtime.can_enter_cell(blocked_cell), "expected source collision cell to be blocked")
+	_assert(runtime.get_object_events().size() == 8, "expected LittlerootTown object events")
+	_assert(runtime.get_collision_at(object_cell) == 0, "expected object test cell to be collision-passable")
+	_assert(runtime.is_cell_occupied(object_cell), "expected object test cell to be occupied")
+	_assert(not runtime.can_enter_cell(object_cell), "expected occupied object cell to be blocked")
 	_assert(runtime.get_metatile_behavior_at(start_cell) >= 0, "expected metatile behavior lookup")
 
 	print(JSON.stringify({
 		"map_runtime_smoke": "ok",
 		"map_size": _vector_to_array(runtime.get_map_size()),
+		"object_event_count": runtime.get_object_events().size(),
 		"start_cell": _cell_info_summary(runtime.get_cell_info(start_cell)),
+		"object_cell": _cell_info_summary(runtime.get_cell_info(object_cell)),
 		"blocked_cell": _cell_info_summary(runtime.get_cell_info(blocked_cell)),
 	}))
 	runtime.free()
@@ -94,6 +101,8 @@ func _cell_info_summary(cell_info: Dictionary) -> Dictionary:
 		"elevation": int(cell_info.get("elevation", -1)),
 		"behavior": int(cell_info.get("behavior", -1)),
 		"layer_type": int(cell_info.get("layer_type", -1)),
+		"occupied": bool(cell_info.get("occupied", false)),
+		"object_event_count": int(cell_info.get("object_event_count", 0)),
 		"passable": bool(cell_info.get("passable", false)),
 	}
 
