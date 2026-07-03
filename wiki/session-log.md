@@ -57,3 +57,7 @@
 - Updated `EventManager` to apply movement effects during real interaction dispatch while keeping `get_script_preview` read-only.
 - Expanded `map_runtime_smoke.gd` and `event_manager_smoke.gd` to verify movement-effect application for `LittlerootTown_EventScript_NeedPokemonTriggerLeft`.
 - Traced source coordinate-event handling in `field_control_avatar.c` and added first-pass Godot coord-event dispatch after player movement, including `VAR_LITTLEROOT_TOWN_STATE` gated LittlerootTown triggers.
+- Traced source object-event script commands in `src/scrcmd.c`, `src/event_object_movement.c`, `src/overworld.c`, and `asm/macros/event.inc`.
+- Added first-pass `ScriptVM` object effects for `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`, `addobject`, `removeobject`, `showobject`, and `hideobject` variants.
+- Extended `MapRuntime` and `EventManager` so real dispatch applies object effects to runtime object position, template position, movement type metadata, visibility, add/remove, and hide flags while previews stay read-only.
+- Expanded VM, map runtime, and event manager smoke tests to cover LittlerootTown Twin, Rival/Birch, and Mom object-effect scripts.

@@ -54,6 +54,18 @@ func _init() -> void:
 	})
 	game_state.player_grid_position = Vector2i(10, 1)
 	manager.dispatch_interaction(need_pokemon_coord)
+	var coord_lines = captured.get("lines", PackedStringArray())
+	captured.clear()
+	manager.dispatch_interaction({
+		"type": "object_event",
+		"script": "LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeMale",
+		"position": Vector2i(13, 10),
+		"event": {
+			"graphics_id": "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL",
+			"script": "LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeMale",
+		},
+	})
+	var object_effect_lines = captured.get("lines", PackedStringArray())
 
 	_assert(twin_preview.get("status", "") == "ok", "expected Twin script preview")
 	_assert(twin_preview.get("vm_status", "") == "ok", "expected Twin VM status")
@@ -79,13 +91,26 @@ func _init() -> void:
 		_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_TWIN", true)) == Vector2i(16, 10),
 		"expected dispatch to return twin to original cell"
 	)
-	_assert(empty_preview.is_empty(), "expected empty script preview for 0x0")
-	_assert(captured.has("lines"), "expected dispatch to emit dialogue lines")
-	_assert(_lines_contain(captured["lines"], "Coord event"), "expected coord event line in emitted output")
-	_assert(_lines_contain(captured["lines"], "ScriptVM: ok"), "expected VM status in emitted lines")
 	_assert(
-		_lines_contain(captured["lines"], "Movement effects: 4 applied, 0 skipped"),
+		_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_RIVAL", true)) == Vector2i(6, 10),
+		"expected object-effect dispatch to move rival"
+	)
+	_assert(
+		_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_BIRCH", true)) == Vector2i(5, 10),
+		"expected object-effect dispatch to move Birch"
+	)
+	_assert(empty_preview.is_empty(), "expected empty script preview for 0x0")
+	_assert(not coord_lines.is_empty(), "expected coord dispatch to emit dialogue lines")
+	_assert(_lines_contain(coord_lines, "Coord event"), "expected coord event line in emitted output")
+	_assert(_lines_contain(coord_lines, "ScriptVM: ok"), "expected VM status in emitted lines")
+	_assert(
+		_lines_contain(coord_lines, "Movement effects: 4 applied, 0 skipped"),
 		"expected movement effect summary in emitted lines"
+	)
+	_assert(not object_effect_lines.is_empty(), "expected object-effect dispatch to emit lines")
+	_assert(
+		_lines_contain(object_effect_lines, "Object effects: 2 applied, 0 skipped"),
+		"expected object effect summary in emitted lines"
 	)
 
 	print(JSON.stringify({
@@ -94,6 +119,7 @@ func _init() -> void:
 		"town_sign": _preview_summary(sign_preview),
 		"need_pokemon": _preview_summary(need_pokemon_preview),
 		"player_position_after_coord_dispatch": _vector_to_array(game_state.player_grid_position),
+		"rival_position_after_object_dispatch": _vector_to_array(_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_RIVAL", true))),
 	}))
 	manager.free()
 	game_state.free()

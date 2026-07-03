@@ -301,6 +301,54 @@ func apply_script_movements(movements: Array, game_state: Node = null) -> Dictio
 	return summary
 
 
+func apply_script_object_effects(object_effects: Array, game_state: Node = null) -> Dictionary:
+	var summary := {
+		"applied": [],
+		"skipped": [],
+		"object_events_changed": false,
+	}
+	var resolved_game_state := game_state
+	if resolved_game_state == null and is_inside_tree():
+		resolved_game_state = get_node_or_null("/root/GameState")
+
+	for object_effect in object_effects:
+		if typeof(object_effect) != TYPE_DICTIONARY:
+			_record_skipped_object_effect(summary, "invalid_object_effect", "", "", 0)
+			continue
+
+		var effect: Dictionary = object_effect
+		var op := String(effect.get("op", ""))
+		var target := String(effect.get("target", ""))
+		var line := int(effect.get("line", 0))
+		if not _object_effect_targets_current_map(effect):
+			_record_skipped_object_effect(summary, "different_map", target, op, line)
+			continue
+
+		match op:
+			"setobjectxy":
+				_apply_set_object_position(summary, effect)
+			"setobjectxyperm":
+				_apply_set_object_template_position(summary, effect)
+			"setobjectmovementtype":
+				_apply_set_object_movement_type(summary, effect)
+			"addobject", "addobjectat":
+				_apply_add_object(summary, effect, resolved_game_state)
+			"removeobject", "removeobjectat":
+				_apply_remove_object(summary, effect, resolved_game_state)
+			"showobject", "showobjectat":
+				_apply_set_object_runtime_hidden(summary, effect, false)
+			"hideobject", "hideobjectat":
+				_apply_set_object_runtime_hidden(summary, effect, true)
+			_:
+				_record_skipped_object_effect(summary, "unsupported_object_effect", target, op, line)
+
+	if bool(summary["object_events_changed"]):
+		_rebuild_object_event_position_index()
+		object_events_changed.emit(get_object_events())
+
+	return summary
+
+
 func _index_metatile_attributes() -> void:
 	if _tileset_data.is_empty():
 		return
@@ -341,6 +389,10 @@ func _index_object_events() -> void:
 		)
 		object_event["index"] = index
 		object_event["position"] = cell
+		object_event["template_position"] = cell
+		object_event["template_x"] = cell.x
+		object_event["template_y"] = cell.y
+		object_event["template_movement_type"] = String(object_event.get("movement_type", ""))
 		_object_events.append(object_event)
 		_index_object_event_by_local_id(object_event)
 		_add_event_at(_object_events_by_position, cell, object_event)
@@ -422,6 +474,9 @@ func _index_coord_events() -> void:
 
 
 func _is_object_event_visible(object_event: Dictionary) -> bool:
+	if bool(object_event.get("runtime_hidden", false)):
+		return false
+
 	var flag := String(object_event.get("flag", "0"))
 	if flag.is_empty() or flag == "0":
 		return true
@@ -508,11 +563,183 @@ func _apply_object_movement(
 	_record_applied_movement(summary, target, movement_label, current_position, next_position, final_facing)
 
 
+func _apply_set_object_position(summary: Dictionary, object_effect: Dictionary) -> void:
+	var target := String(object_effect.get("target", ""))
+	var op := String(object_effect.get("op", ""))
+	var line := int(object_effect.get("line", 0))
+	if target == LOCALID_PLAYER:
+		_record_skipped_object_effect(summary, "player_target_unsupported", target, op, line)
+		return
+
+	var object_event := get_object_event_by_local_id(target, true)
+	if object_event.is_empty():
+		_record_skipped_object_effect(summary, "missing_object_event", target, op, line)
+		return
+
+	var next_position := _effect_position(object_effect)
+	if not is_within_bounds(next_position):
+		_record_skipped_object_effect(summary, "out_of_bounds", target, op, line)
+		return
+
+	var current_position := _object_event_position(object_event)
+	_set_object_event_position(object_event, next_position)
+	summary["object_events_changed"] = true
+	_record_applied_object_effect(summary, object_effect, current_position, next_position)
+
+
+func _apply_set_object_template_position(summary: Dictionary, object_effect: Dictionary) -> void:
+	var target := String(object_effect.get("target", ""))
+	var op := String(object_effect.get("op", ""))
+	var line := int(object_effect.get("line", 0))
+	if target == LOCALID_PLAYER:
+		_record_skipped_object_effect(summary, "player_target_unsupported", target, op, line)
+		return
+
+	var object_event := get_object_event_by_local_id(target, true)
+	if object_event.is_empty():
+		_record_skipped_object_effect(summary, "missing_object_event", target, op, line)
+		return
+
+	var next_position := _effect_position(object_effect)
+	if not is_within_bounds(next_position):
+		_record_skipped_object_effect(summary, "out_of_bounds", target, op, line)
+		return
+
+	var previous_template_position := _object_event_template_position(object_event)
+	object_event["template_position"] = next_position
+	object_event["template_x"] = next_position.x
+	object_event["template_y"] = next_position.y
+	summary["object_events_changed"] = true
+	_record_applied_object_effect(summary, object_effect, previous_template_position, next_position)
+
+
+func _apply_set_object_movement_type(summary: Dictionary, object_effect: Dictionary) -> void:
+	var target := String(object_effect.get("target", ""))
+	var op := String(object_effect.get("op", ""))
+	var line := int(object_effect.get("line", 0))
+	if target == LOCALID_PLAYER:
+		_record_skipped_object_effect(summary, "player_target_unsupported", target, op, line)
+		return
+
+	var object_event := get_object_event_by_local_id(target, true)
+	if object_event.is_empty():
+		_record_skipped_object_effect(summary, "missing_object_event", target, op, line)
+		return
+
+	var movement_type := String(object_effect.get("movement_type", ""))
+	if movement_type.is_empty():
+		_record_skipped_object_effect(summary, "missing_movement_type", target, op, line)
+		return
+
+	var current_position := _object_event_position(object_event)
+	object_event["template_movement_type"] = movement_type
+	object_event["movement_type"] = movement_type
+	summary["object_events_changed"] = true
+	_record_applied_object_effect(summary, object_effect, current_position, current_position, {
+		"movement_type": movement_type,
+	})
+
+
+func _apply_add_object(summary: Dictionary, object_effect: Dictionary, game_state: Node) -> void:
+	var target := String(object_effect.get("target", ""))
+	var op := String(object_effect.get("op", ""))
+	var line := int(object_effect.get("line", 0))
+	if target == LOCALID_PLAYER:
+		_record_skipped_object_effect(summary, "player_target_unsupported", target, op, line)
+		return
+
+	var object_event := get_object_event_by_local_id(target, true)
+	if object_event.is_empty():
+		_record_skipped_object_effect(summary, "missing_object_event", target, op, line)
+		return
+	if _object_event_flag_is_set(object_event, game_state):
+		_record_skipped_object_effect(summary, "hidden_by_flag", target, op, line)
+		return
+
+	var current_position := _object_event_position(object_event)
+	var template_position := _object_event_template_position(object_event)
+	if not is_within_bounds(template_position):
+		_record_skipped_object_effect(summary, "out_of_bounds", target, op, line)
+		return
+
+	_set_object_event_position(object_event, template_position)
+	object_event["runtime_hidden"] = false
+	summary["object_events_changed"] = true
+	_record_applied_object_effect(summary, object_effect, current_position, template_position)
+
+
+func _apply_remove_object(summary: Dictionary, object_effect: Dictionary, game_state: Node) -> void:
+	var target := String(object_effect.get("target", ""))
+	var op := String(object_effect.get("op", ""))
+	var line := int(object_effect.get("line", 0))
+	if target == LOCALID_PLAYER:
+		_record_skipped_object_effect(summary, "player_target_unsupported", target, op, line)
+		return
+
+	var object_event := get_object_event_by_local_id(target, true)
+	if object_event.is_empty():
+		_record_skipped_object_effect(summary, "missing_object_event", target, op, line)
+		return
+
+	var current_position := _object_event_position(object_event)
+	_set_object_flag(object_event, game_state, true)
+	object_event["runtime_hidden"] = true
+	summary["object_events_changed"] = true
+	_record_applied_object_effect(summary, object_effect, current_position, current_position, {
+		"flag": String(object_event.get("flag", "0")),
+		"runtime_hidden": true,
+	})
+
+
+func _apply_set_object_runtime_hidden(summary: Dictionary, object_effect: Dictionary, hidden: bool) -> void:
+	var target := String(object_effect.get("target", ""))
+	var op := String(object_effect.get("op", ""))
+	var line := int(object_effect.get("line", 0))
+	if target == LOCALID_PLAYER:
+		_record_skipped_object_effect(summary, "player_target_unsupported", target, op, line)
+		return
+
+	var object_event := get_object_event_by_local_id(target, true)
+	if object_event.is_empty():
+		_record_skipped_object_effect(summary, "missing_object_event", target, op, line)
+		return
+
+	var current_position := _object_event_position(object_event)
+	object_event["runtime_hidden"] = hidden
+	summary["object_events_changed"] = true
+	_record_applied_object_effect(summary, object_effect, current_position, current_position, {
+		"runtime_hidden": hidden,
+	})
+
+
 func _movement_delta(movement: Dictionary) -> Vector2i:
 	var delta = movement.get("net_delta", [0, 0])
 	if typeof(delta) != TYPE_ARRAY or delta.size() < 2:
 		return Vector2i.ZERO
 	return Vector2i(int(delta[0]), int(delta[1]))
+
+
+func _object_effect_targets_current_map(object_effect: Dictionary) -> bool:
+	var target_map := String(object_effect.get("map", ""))
+	if target_map.is_empty() or target_map == "0":
+		return true
+	return target_map == _current_map_id()
+
+
+func _current_map_id() -> String:
+	var map_info = _map_data.get("map", {})
+	if typeof(map_info) == TYPE_DICTIONARY:
+		return String(map_info.get("id", ""))
+	return ""
+
+
+func _effect_position(object_effect: Dictionary) -> Vector2i:
+	var position = object_effect.get("position", [])
+	if typeof(position) == TYPE_VECTOR2I:
+		return position
+	if typeof(position) == TYPE_ARRAY and position.size() >= 2:
+		return Vector2i(int(position[0]), int(position[1]))
+	return Vector2i(-1, -1)
 
 
 func _object_event_position(object_event: Dictionary) -> Vector2i:
@@ -523,6 +750,54 @@ func _object_event_position(object_event: Dictionary) -> Vector2i:
 		int(object_event.get("x", 0)),
 		int(object_event.get("y", 0))
 	)
+
+
+func _set_object_event_position(object_event: Dictionary, position: Vector2i) -> void:
+	object_event["position"] = position
+	object_event["x"] = position.x
+	object_event["y"] = position.y
+
+
+func _object_event_template_position(object_event: Dictionary) -> Vector2i:
+	var position = object_event.get("template_position", null)
+	if typeof(position) == TYPE_VECTOR2I:
+		return position
+	return Vector2i(
+		int(object_event.get("template_x", object_event.get("x", 0))),
+		int(object_event.get("template_y", object_event.get("y", 0)))
+	)
+
+
+func _object_event_has_flag(object_event: Dictionary) -> bool:
+	var flag := String(object_event.get("flag", "0"))
+	return not flag.is_empty() and flag != "0"
+
+
+func _object_event_flag_is_set(object_event: Dictionary, game_state: Node) -> bool:
+	if not _object_event_has_flag(object_event):
+		return false
+
+	var flag := String(object_event.get("flag", "0"))
+	if game_state != null and game_state.has_method("is_flag_set"):
+		return bool(game_state.is_flag_set(flag))
+	if is_inside_tree():
+		var root_game_state = get_node_or_null("/root/GameState")
+		if root_game_state != null and root_game_state.has_method("is_flag_set"):
+			return bool(root_game_state.is_flag_set(flag))
+	return false
+
+
+func _set_object_flag(object_event: Dictionary, game_state: Node, enabled: bool) -> void:
+	if not _object_event_has_flag(object_event):
+		return
+
+	var flag := String(object_event.get("flag", "0"))
+	if game_state == null:
+		return
+	if enabled and game_state.has_method("set_flag"):
+		game_state.set_flag(flag, true)
+	elif not enabled and game_state.has_method("clear_flag"):
+		game_state.clear_flag(flag)
 
 
 func _rebuild_object_event_position_index() -> void:
@@ -571,6 +846,40 @@ func _record_skipped_movement(
 		"movement_label": movement_label,
 		"delta": delta,
 		"to": next_position,
+	})
+
+
+func _record_applied_object_effect(
+	summary: Dictionary,
+	object_effect: Dictionary,
+	from_position: Vector2i,
+	to_position: Vector2i,
+	detail: Dictionary = {}
+) -> void:
+	var entry := {
+		"op": String(object_effect.get("op", "")),
+		"line": int(object_effect.get("line", 0)),
+		"target": String(object_effect.get("target", "")),
+		"from": from_position,
+		"to": to_position,
+	}
+	for key in detail:
+		entry[key] = detail[key]
+	summary["applied"].append(entry)
+
+
+func _record_skipped_object_effect(
+	summary: Dictionary,
+	reason: String,
+	target: String,
+	op: String,
+	line: int
+) -> void:
+	summary["skipped"].append({
+		"reason": reason,
+		"op": op,
+		"line": line,
+		"target": target,
 	})
 
 

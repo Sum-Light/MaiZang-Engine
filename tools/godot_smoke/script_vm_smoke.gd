@@ -1,6 +1,7 @@
 extends SceneTree
 
 const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
+const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
 const SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
 
 
@@ -8,10 +9,16 @@ func _init() -> void:
 	var script_data := _load_json_object(SCRIPT_PATH)
 	var vm = SCRIPT_VM_SCRIPT.new()
 	vm.configure_from_script_data(script_data)
+	var game_state = GAME_STATE_SCRIPT.new()
+	vm.configure_game_state(game_state)
 
 	var twin_result := vm.run_script("LittlerootTown_EventScript_Twin")
 	var town_sign_result := vm.run_script("LittlerootTown_EventScript_TownSign")
 	var need_pokemon_result := vm.run_script("LittlerootTown_EventScript_NeedPokemonTriggerLeft")
+	game_state.set_var("VAR_LITTLEROOT_TOWN_STATE", 1)
+	var set_twin_pos_result := vm.run_script("LittlerootTown_EventScript_SetTwinPos")
+	var set_rival_birch_pos_result := vm.run_script("LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeMale")
+	var running_shoes_result := vm.run_script("LittlerootTown_EventScript_SetReceivedRunningShoes")
 	var missing_result := vm.run_script("Missing_EventScript")
 
 	_assert(twin_result.get("status", "") == "ok", "expected Twin script to execute")
@@ -46,6 +53,27 @@ func _init() -> void:
 	_assert(bool(need_pokemon_result.get("wait_movement", false)), "expected wait movement metadata")
 	_assert(_unsupported_count(need_pokemon_result) == 0, "expected no unsupported need-pokemon ops")
 
+	_assert(set_twin_pos_result.get("status", "") == "ok", "expected set-twin-pos script to execute")
+	_assert(_object_effect_count(set_twin_pos_result) == 2, "expected two set-twin-pos object effects")
+	_assert(_object_effect_op(set_twin_pos_result, 0) == "setobjectxyperm", "unexpected set-twin-pos first op")
+	_assert(_object_effect_target(set_twin_pos_result, 0) == "LOCALID_LITTLEROOT_TWIN", "unexpected set-twin-pos target")
+	_assert(_object_effect_position(set_twin_pos_result, 0) == Vector2i(10, 1), "unexpected twin template position")
+	_assert(_object_effect_op(set_twin_pos_result, 1) == "setobjectmovementtype", "unexpected set-twin-pos second op")
+	_assert(_object_effect_movement_type(set_twin_pos_result, 1) == "MOVEMENT_TYPE_FACE_UP", "unexpected twin movement type")
+	_assert(_unsupported_count(set_twin_pos_result) == 0, "expected no unsupported set-twin-pos ops")
+
+	_assert(set_rival_birch_pos_result.get("status", "") == "ok", "expected rival/birch position script to execute")
+	_assert(_object_effect_count(set_rival_birch_pos_result) == 2, "expected two rival/birch object effects")
+	_assert(_object_effect_position(set_rival_birch_pos_result, 0) == Vector2i(6, 10), "unexpected rival position")
+	_assert(_object_effect_position(set_rival_birch_pos_result, 1) == Vector2i(5, 10), "unexpected Birch position")
+	_assert(_unsupported_count(set_rival_birch_pos_result) == 0, "expected no unsupported rival/birch ops")
+
+	_assert(running_shoes_result.get("status", "") == "ok", "expected running-shoes script to execute")
+	_assert(_object_effect_count(running_shoes_result) == 1, "expected one running-shoes object effect")
+	_assert(_object_effect_op(running_shoes_result, 0) == "removeobject", "unexpected running-shoes object op")
+	_assert(_object_effect_target(running_shoes_result, 0) == "LOCALID_LITTLEROOT_MOM", "unexpected running-shoes object target")
+	_assert(_unsupported_count(running_shoes_result) == 0, "expected no unsupported running-shoes ops")
+
 	_assert(missing_result.get("status", "") == "missing_script", "expected missing script status")
 
 	print(JSON.stringify({
@@ -53,8 +81,12 @@ func _init() -> void:
 		"twin": _result_summary(twin_result),
 		"town_sign": _result_summary(town_sign_result),
 		"need_pokemon": _result_summary(need_pokemon_result),
+		"set_twin_pos": _result_summary(set_twin_pos_result),
+		"set_rival_birch_pos": _result_summary(set_rival_birch_pos_result),
+		"running_shoes": _result_summary(running_shoes_result),
 		"missing_status": String(missing_result.get("status", "")),
 	}))
+	game_state.free()
 	vm.free()
 	quit(0)
 
@@ -127,6 +159,7 @@ func _result_summary(result: Dictionary) -> Dictionary:
 		"first_text_label": _first_text_label(result),
 		"effect_count": _effect_count(result),
 		"movement_count": _movement_count(result),
+		"object_effect_count": _object_effect_count(result),
 		"wait_buttonpress": bool(result.get("wait_buttonpress", false)),
 		"wait_movement": bool(result.get("wait_movement", false)),
 		"step_count": int(result.get("step_count", 0)),
@@ -148,6 +181,11 @@ func _movement_count(result: Dictionary) -> int:
 	return movements.size() if typeof(movements) == TYPE_ARRAY else 0
 
 
+func _object_effect_count(result: Dictionary) -> int:
+	var object_effects = result.get("object_effects", [])
+	return object_effects.size() if typeof(object_effects) == TYPE_ARRAY else 0
+
+
 func _movement_at(result: Dictionary, index: int) -> Dictionary:
 	var movements = result.get("movements", [])
 	if typeof(movements) != TYPE_ARRAY or index < 0 or index >= movements.size():
@@ -156,12 +194,39 @@ func _movement_at(result: Dictionary, index: int) -> Dictionary:
 	return movement if typeof(movement) == TYPE_DICTIONARY else {}
 
 
+func _object_effect_at(result: Dictionary, index: int) -> Dictionary:
+	var object_effects = result.get("object_effects", [])
+	if typeof(object_effects) != TYPE_ARRAY or index < 0 or index >= object_effects.size():
+		return {}
+	var object_effect = object_effects[index]
+	return object_effect if typeof(object_effect) == TYPE_DICTIONARY else {}
+
+
 func _movement_label(result: Dictionary, index: int) -> String:
 	return String(_movement_at(result, index).get("movement_label", ""))
 
 
 func _movement_target(result: Dictionary, index: int) -> String:
 	return String(_movement_at(result, index).get("target", ""))
+
+
+func _object_effect_op(result: Dictionary, index: int) -> String:
+	return String(_object_effect_at(result, index).get("op", ""))
+
+
+func _object_effect_target(result: Dictionary, index: int) -> String:
+	return String(_object_effect_at(result, index).get("target", ""))
+
+
+func _object_effect_movement_type(result: Dictionary, index: int) -> String:
+	return String(_object_effect_at(result, index).get("movement_type", ""))
+
+
+func _object_effect_position(result: Dictionary, index: int) -> Vector2i:
+	var position = _object_effect_at(result, index).get("position", [0, 0])
+	if typeof(position) != TYPE_ARRAY or position.size() < 2:
+		return Vector2i.ZERO
+	return Vector2i(int(position[0]), int(position[1]))
 
 
 func _movement_step_count(result: Dictionary, index: int) -> int:

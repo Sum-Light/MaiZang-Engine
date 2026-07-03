@@ -89,3 +89,9 @@ Reason: The first script VM movement slice proved movement decoding but did not 
 Decision: Index generated coordinate events in `MapRuntime`, resolve normal `var`/`var_value` triggers by x/y/elevation against `GameState`, and dispatch matched coord events through `EventManager` after the player completes a tile move.
 
 Reason: Source `field_control_avatar.c` checks coordinate events first in the step-based script chain after a player step. The first Godot slice needs LittlerootTown's NeedPokemon trigger to fire from actual movement, not only from smoke-test injection. Keeping lookup in `MapRuntime` and execution in `EventManager` preserves the Godot-native boundary while leaving weather, immediate coord scripts, warps, wild encounters, step-count scripts, and forced-movement chaining for later traced implementations.
+
+## 2026-07-04 - Apply object script effects through MapRuntime
+
+Decision: Represent `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`, `showobject`, `hideobject`, `addobject`, and `removeobject` as `ScriptVM` object-effect results, then apply them through `MapRuntime` during real interaction dispatch while keeping script previews read-only.
+
+Reason: The traced source commands mutate object event runtime state, object templates, and object visibility flags through field-event systems rather than through dialogue dispatch itself. Applying the effects in `MapRuntime` keeps object occupancy and local-id lookup consistent in the Godot runtime, while preserving a future path for real sprite reloads, object task queues, and save persistence.

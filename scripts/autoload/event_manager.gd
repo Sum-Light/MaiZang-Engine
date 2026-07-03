@@ -207,10 +207,18 @@ func _append_script_output(lines: PackedStringArray, script: String, context: Di
 
 	lines.append("ScriptVM: %s" % vm_status)
 	var runtime_summary := _apply_runtime_result(result)
-	if not runtime_summary.is_empty():
+	var movement_summary = runtime_summary.get("movements", {})
+	if typeof(movement_summary) == TYPE_DICTIONARY and not movement_summary.is_empty():
 		lines.append("Movement effects: %d applied, %d skipped" % [
-			_movement_summary_count(runtime_summary, "applied"),
-			_movement_summary_count(runtime_summary, "skipped"),
+			_movement_summary_count(movement_summary, "applied"),
+			_movement_summary_count(movement_summary, "skipped"),
+		])
+
+	var object_effect_summary = runtime_summary.get("object_effects", {})
+	if typeof(object_effect_summary) == TYPE_DICTIONARY and not object_effect_summary.is_empty():
+		lines.append("Object effects: %d applied, %d skipped" % [
+			_movement_summary_count(object_effect_summary, "applied"),
+			_movement_summary_count(object_effect_summary, "skipped"),
 		])
 
 	var messages = result.get("messages", [])
@@ -236,14 +244,19 @@ func _append_script_output(lines: PackedStringArray, script: String, context: Di
 
 
 func _apply_runtime_result(result: Dictionary) -> Dictionary:
-	if _map_runtime == null or not _map_runtime.has_method("apply_script_movements"):
+	var summary := {}
+	if _map_runtime == null:
 		return {}
 
 	var movements = result.get("movements", [])
-	if typeof(movements) != TYPE_ARRAY or movements.is_empty():
-		return {}
+	if typeof(movements) == TYPE_ARRAY and not movements.is_empty() and _map_runtime.has_method("apply_script_movements"):
+		summary["movements"] = _map_runtime.apply_script_movements(movements, _game_state)
 
-	return _map_runtime.apply_script_movements(movements, _game_state)
+	var object_effects = result.get("object_effects", [])
+	if typeof(object_effects) == TYPE_ARRAY and not object_effects.is_empty() and _map_runtime.has_method("apply_script_object_effects"):
+		summary["object_effects"] = _map_runtime.apply_script_object_effects(object_effects, _game_state)
+
+	return summary
 
 
 func _movement_summary_count(summary: Dictionary, key: String) -> int:

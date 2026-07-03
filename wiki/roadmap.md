@@ -45,7 +45,8 @@
   - `warp`, `warpsilent`
   - `applymovement`, `waitmovement`. First pass done as `ScriptVM` movement-effect records with generated movement label lookup and fast-forward application through `MapRuntime`; real animation/task waiting remains.
   - `lock`, `lockall`, `release`, `releaseall`. First pass records execution effects; real object freezing remains.
-  - `showobject`, `hideobject`, `addobject`, `removeobject`
+  - `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`. First pass done as `ScriptVM` object-effect records with dispatch-time application through `MapRuntime`.
+  - `showobject`, `hideobject`, `addobject`, `removeobject`. First pass done for current-map runtime visibility, add/remove, and source hide-flag behavior; full object lifecycle and save persistence remain.
 
 ## Milestone 5 - Text Pipeline
 

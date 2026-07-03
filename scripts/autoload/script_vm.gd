@@ -38,6 +38,7 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"stack": [],
 		"messages": [],
 		"movements": [],
+		"object_effects": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
@@ -89,6 +90,7 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"finished": bool(state["finished"]),
 		"messages": state["messages"],
 		"movements": state["movements"],
+		"object_effects": state["object_effects"],
 		"effects": state["effects"],
 		"unsupported_ops": state["unsupported_ops"],
 		"trace": state["trace"],
@@ -173,6 +175,14 @@ func _execute_instruction(state: Dictionary, instruction: Dictionary) -> void:
 			_execute_waitmovement(state, args, line)
 		"waitmovementat":
 			_execute_waitmovement(state, args, line, true)
+		"setobjectxy":
+			_execute_setobjectxy(state, args, line, String(instruction.get("raw", "")))
+		"setobjectxyperm":
+			_execute_setobjectxyperm(state, args, line, String(instruction.get("raw", "")))
+		"setobjectmovementtype":
+			_execute_setobjectmovementtype(state, args, line, String(instruction.get("raw", "")))
+		"addobject", "addobjectat", "removeobject", "removeobjectat", "showobject", "showobjectat", "hideobject", "hideobjectat":
+			_execute_object_visibility_command(state, op, args, line, String(instruction.get("raw", "")))
 		_:
 			_record_unsupported(state, op, line, String(instruction.get("raw", "")))
 
@@ -288,6 +298,70 @@ func _execute_waitmovement(
 		detail["map_num"] = String(args[2])
 	state["wait_movement"] = true
 	_record_effect(state, "waitmovement", line, detail)
+
+
+func _execute_setobjectxy(state: Dictionary, args: Array, line: int, raw: String) -> void:
+	if args.size() < 3:
+		_record_unsupported(state, "setobjectxy", line, raw)
+		return
+
+	_record_object_effect(state, "setobjectxy", line, {
+		"target": String(args[0]),
+		"position": [_read_value(String(args[1])), _read_value(String(args[2]))],
+	})
+
+
+func _execute_setobjectxyperm(state: Dictionary, args: Array, line: int, raw: String) -> void:
+	if args.size() < 3:
+		_record_unsupported(state, "setobjectxyperm", line, raw)
+		return
+
+	_record_object_effect(state, "setobjectxyperm", line, {
+		"target": String(args[0]),
+		"position": [_read_value(String(args[1])), _read_value(String(args[2]))],
+	})
+
+
+func _execute_setobjectmovementtype(state: Dictionary, args: Array, line: int, raw: String) -> void:
+	if args.size() < 2:
+		_record_unsupported(state, "setobjectmovementtype", line, raw)
+		return
+
+	_record_object_effect(state, "setobjectmovementtype", line, {
+		"target": String(args[0]),
+		"movement_type": String(args[1]),
+	})
+
+
+func _execute_object_visibility_command(
+	state: Dictionary,
+	op: String,
+	args: Array,
+	line: int,
+	raw: String
+) -> void:
+	if args.is_empty():
+		_record_unsupported(state, op, line, raw)
+		return
+
+	var detail := {
+		"target": String(args[0]),
+	}
+	if op.ends_with("at") and args.size() >= 2:
+		detail["map"] = String(args[1])
+
+	_record_object_effect(state, op, line, detail)
+
+
+func _record_object_effect(state: Dictionary, op: String, line: int, detail: Dictionary) -> void:
+	var object_effect := {
+		"op": op,
+		"line": line,
+	}
+	for key in detail:
+		object_effect[key] = detail[key]
+	state["object_effects"].append(object_effect)
+	_record_effect(state, op, line, detail)
 
 
 func _build_movement_effect(
@@ -728,6 +802,7 @@ func _empty_result(script_label: String, status: String, finished: bool) -> Dict
 		"finished": finished,
 		"messages": [],
 		"movements": [],
+		"object_effects": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
