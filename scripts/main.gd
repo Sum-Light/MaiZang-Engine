@@ -195,7 +195,14 @@ func _create_transition_overlay() -> void:
 func _run_initial_map_scripts() -> void:
 	if EventManager.has_method("configure_from_script_data"):
 		EventManager.configure_from_script_data(DataRegistry.get_start_script_data())
-	if EventManager.has_method("run_map_script_type"):
+	var context := {
+		"trigger": "initial_load",
+		"map": GameState.current_map_id,
+		"position": [GameState.player_grid_position.x, GameState.player_grid_position.y],
+	}
+	if EventManager.has_method("run_map_load_scripts"):
+		EventManager.run_map_load_scripts(context)
+	elif EventManager.has_method("run_map_script_type"):
 		EventManager.run_map_script_type("MAP_SCRIPT_ON_LOAD", {
 			"trigger": "initial_load",
 			"map": GameState.current_map_id,

@@ -123,6 +123,9 @@ func _init() -> void:
 	var old_map_script_result := manager.run_script("LittlerootTown_EventScript_Twin")
 	var brendan_map_data: Dictionary = registry.get_map_data(BRENDANS_HOUSE_1F)
 	var brendan_object_events = brendan_map_data.get("events", {}).get("object_events", [])
+	var brendan_mom_after_transition := runtime.get_object_event_by_local_id("LOCALID_PLAYERS_HOUSE_1F_MOM", true)
+	var brendan_mom_position_after_transition := _event_position(brendan_mom_after_transition)
+	var brendan_mom_movement_after_transition := String(brendan_mom_after_transition.get("movement_type", ""))
 
 	_assert(twin_preview.get("status", "") == "ok", "expected Twin script preview")
 	_assert(twin_preview.get("vm_status", "") == "ok", "expected Twin VM status")
@@ -199,6 +202,14 @@ func _init() -> void:
 	_assert(
 		runtime.get_collision_at(Vector2i(5, 2)) == 3,
 		"expected Brendan house OnLoad closed moving-box collision"
+	)
+	_assert(
+		brendan_mom_position_after_transition == Vector2i(9, 8),
+		"expected Brendan OnTransition to place Mom by the door"
+	)
+	_assert(
+		brendan_mom_movement_after_transition == "MOVEMENT_TYPE_FACE_UP",
+		"expected Brendan OnTransition to face Mom upward"
 	)
 	_assert(not transition_lines.is_empty(), "expected transition dispatch to emit lines")
 	_assert(
@@ -279,6 +290,9 @@ func _init() -> void:
 	var door_exit_step := _first_step(door_warp_sequence, "exit_task_select")
 	var conditional_door_step := _first_step(door_warp_sequence, "conditional_exit_door_player_step")
 	var door_open_animation = door_open_step.get("animation", {})
+	var may_mom_after_door_warp := runtime.get_object_event_by_local_id("LOCALID_PLAYERS_HOUSE_1F_MOM", true)
+	var may_mom_position_after_door_warp := _event_position(may_mom_after_door_warp)
+	var may_mom_movement_after_door_warp := String(may_mom_after_door_warp.get("movement_type", ""))
 	_assert(may_house_door_warp.get("type", "") == "warp_event", "expected May house door warp")
 	_assert(game_state.current_map_id == MAYS_HOUSE_1F, "expected door warp to load May house")
 	_assert(
@@ -288,6 +302,14 @@ func _init() -> void:
 	_assert(
 		runtime.get_metatile_id_at(Vector2i(5, 2)) == 616,
 		"expected May house OnLoad to apply closed moving-box metatile"
+	)
+	_assert(
+		may_mom_position_after_door_warp == Vector2i(1, 8),
+		"expected May OnTransition to place Mom by the door"
+	)
+	_assert(
+		may_mom_movement_after_door_warp == "MOVEMENT_TYPE_FACE_UP",
+		"expected May OnTransition to face Mom upward"
 	)
 	_assert(door_warp_sequence.get("presentation", "") == "door", "expected door presentation sequence")
 	_assert(

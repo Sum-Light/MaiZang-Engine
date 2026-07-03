@@ -239,3 +239,9 @@ Reason: `{B_PC_CREATOR_NAME}` is encoded as `B_TXT_PC_CREATOR_NAME = 0x27` in th
 Decision: Centralize generated map header script lifecycle dispatch in `EventManager.run_map_script_type`, starting with automatic `MAP_SCRIPT_ON_LOAD` during initial and transition map loads.
 
 Reason: Source `InitMap` loads the layout before calling `RunOnLoadMapScript`, and `RunOnLoadMapScript` delegates to `MapHeaderRunScriptType` to run the first matching map-script table entry immediately. Keeping that lifecycle in `EventManager` lets Godot reuse the same `ScriptVM` and `MapRuntime` effect application path for startup, immediate transitions, and deferred presentation loads without coupling map rendering or transition animation code to script interpretation.
+
+## 2026-07-04 - Run OnTransition before OnLoad during map loads
+
+Decision: Add `EventManager.run_map_load_scripts` as the source-ordered map-load lifecycle wrapper: run `MAP_SCRIPT_ON_TRANSITION`, sync only the affected object-template positions into current runtime object events, then run `MAP_SCRIPT_ON_LOAD`.
+
+Reason: Source `LoadMapFromWarp` and `LoadMapFromCameraTransition` load map data and object templates, call `RunOnTransitionMapScript`, and only then call `InitMap`, which runs `RunOnLoadMapScript`. Commands such as `setobjectxyperm` should not generally teleport an active object during normal dispatch, but during map load they change templates before objects become visible. A targeted loading-time sync preserves that source-visible behavior without changing the normal script-command semantics.

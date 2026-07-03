@@ -142,3 +142,9 @@
 - Updated immediate and deferred transition paths so Brendan/May house moving-box `setmetatile` effects are applied automatically when those maps load.
 - Expanded `event_manager_smoke.gd` and `transition_presentation_smoke.gd` to verify automatic OnLoad moving-box metatiles for Brendan and May houses.
 - Verified `git diff --check`, `event_manager_smoke.gd`, `transition_presentation_smoke.gd`, `script_vm_smoke.gd`, `map_runtime_smoke.gd`, and Godot 4.7 headless main startup.
+- Traced `MAP_SCRIPT_ON_TRANSITION` through `include/constants/map_scripts.h`, `src/script.c:RunOnTransitionMapScript`, and `src/overworld.c:LoadMapFromWarp/LoadMapFromCameraTransition`, confirming generated map loads run OnTransition before `InitMap`/OnLoad after object templates are available.
+- Added `EventManager.run_map_load_scripts` so initial and transition map loads run `MAP_SCRIPT_ON_TRANSITION`, then a loading-time object-template sync, then `MAP_SCRIPT_ON_LOAD`.
+- Added `MapRuntime.sync_object_events_to_templates_for_map_load`, syncing only `setobjectxyperm` targets affected by OnTransition so normal script dispatch still leaves active object positions unchanged.
+- Automatic OnTransition now places Brendan/May house Mom from source `VAR_LITTLEROOT_INTRO_STATE` scripts before the map is shown, while automatic OnLoad still applies moving-box metatiles afterward.
+- Expanded `event_manager_smoke.gd` and `transition_presentation_smoke.gd` to verify Mom's source OnTransition positions and facing for immediate and deferred transition paths.
+- Verified `git diff --check`, `event_manager_smoke.gd`, `transition_presentation_smoke.gd`, `map_runtime_smoke.gd`, `script_vm_smoke.gd`, and Godot 4.7 headless startup.

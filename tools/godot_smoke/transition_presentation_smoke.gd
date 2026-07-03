@@ -132,6 +132,12 @@ func _run() -> void:
 	_assert(player.grid_position == Vector2i(8, 8), "expected player node at truck destination")
 	_assert(runtime.get_metatile_id_at(Vector2i(5, 4)) == 624, "expected Brendan OnLoad open moving-box metatile")
 	_assert(runtime.get_metatile_id_at(Vector2i(5, 2)) == 616, "expected Brendan OnLoad closed moving-box metatile")
+	var brendan_mom_after_transition := runtime.get_object_event_by_local_id("LOCALID_PLAYERS_HOUSE_1F_MOM", true)
+	_assert(_event_position(brendan_mom_after_transition) == Vector2i(9, 8), "expected Brendan OnTransition Mom position")
+	_assert(
+		String(brendan_mom_after_transition.get("movement_type", "")) == "MOVEMENT_TYPE_FACE_UP",
+		"expected Brendan OnTransition Mom facing"
+	)
 	_assert(player.visible, "expected player visible after non-door transition")
 	_assert(not overlay.visible, "expected overlay hidden after truck transition")
 
@@ -164,6 +170,12 @@ func _run() -> void:
 	_assert(game_state.player_grid_position == Vector2i(2, 8), "expected May house warp-id destination")
 	_assert(runtime.get_metatile_id_at(Vector2i(5, 4)) == 624, "expected May OnLoad open moving-box metatile")
 	_assert(runtime.get_metatile_id_at(Vector2i(5, 2)) == 616, "expected May OnLoad closed moving-box metatile")
+	var may_mom_after_transition := runtime.get_object_event_by_local_id("LOCALID_PLAYERS_HOUSE_1F_MOM", true)
+	_assert(_event_position(may_mom_after_transition) == Vector2i(1, 8), "expected May OnTransition Mom position")
+	_assert(
+		String(may_mom_after_transition.get("movement_type", "")) == "MOVEMENT_TYPE_FACE_UP",
+		"expected May OnTransition Mom facing"
+	)
 	_assert(
 		door_renderer.frame_indices_at(door_animation_position) == [-1, 0, 1, 2, 2, 1, 0, -1],
 		"expected source door open/close frame order to reach renderer"
@@ -201,6 +213,16 @@ func _assert(condition: bool, message: String) -> void:
 
 func _vector_to_array(value: Vector2i) -> Array:
 	return [value.x, value.y]
+
+
+func _event_position(object_event: Dictionary) -> Vector2i:
+	var position = object_event.get("position", Vector2i.ZERO)
+	if typeof(position) == TYPE_VECTOR2I:
+		return position
+	return Vector2i(
+		int(object_event.get("x", 0)),
+		int(object_event.get("y", 0))
+	)
 
 
 func _verify_debug_map_door_renderer(registry: Node) -> void:

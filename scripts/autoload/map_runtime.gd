@@ -392,6 +392,67 @@ func apply_script_object_effects(object_effects: Array, game_state: Node = null)
 	return summary
 
 
+func sync_object_events_to_templates_for_map_load(targets: Array = []) -> Dictionary:
+	var summary := {
+		"status": "ok",
+		"targets": [],
+		"applied": [],
+		"skipped": [],
+		"unchanged": [],
+		"object_events_changed": false,
+		"source_trace": [
+			"src/overworld.c:LoadMapFromWarp/LoadMapFromCameraTransition",
+			"src/script.c:RunOnTransitionMapScript",
+			"src/scrcmd.c:ScrCmd_setobjectxyperm",
+		],
+	}
+	var unique_targets := []
+	for target_value in targets:
+		var target := String(target_value)
+		if target.is_empty() or unique_targets.has(target):
+			continue
+		unique_targets.append(target)
+	summary["targets"] = unique_targets
+
+	for target in unique_targets:
+		if target == LOCALID_PLAYER:
+			_record_skipped_object_effect(summary, "player_target_unsupported", target, "map_load_template_sync", 0)
+			continue
+
+		var object_event := get_object_event_by_local_id(target, true)
+		if object_event.is_empty():
+			_record_skipped_object_effect(summary, "missing_object_event", target, "map_load_template_sync", 0)
+			continue
+
+		var template_position := _object_event_template_position(object_event)
+		if not is_within_bounds(template_position):
+			_record_skipped_object_effect(summary, "out_of_bounds", target, "map_load_template_sync", 0)
+			continue
+
+		var current_position := _object_event_position(object_event)
+		if current_position == template_position:
+			summary["unchanged"].append({
+				"target": target,
+				"position": current_position,
+			})
+			continue
+
+		_set_object_event_position(object_event, template_position)
+		summary["object_events_changed"] = true
+		summary["applied"].append({
+			"op": "map_load_template_sync",
+			"target": target,
+			"from": current_position,
+			"to": template_position,
+		})
+
+	if bool(summary["object_events_changed"]):
+		_rebuild_object_event_position_index()
+		object_events_changed.emit(get_object_events())
+
+	return summary
+
+
 func apply_script_field_effects(field_effects: Array) -> Dictionary:
 	var summary := {
 		"applied": [],

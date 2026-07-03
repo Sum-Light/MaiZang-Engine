@@ -5,15 +5,15 @@ signal transition_sequence_requested(sequence: Dictionary)
 
 const WARP_ID_NONE_VALUE := -1
 const MAP_SCRIPT_ON_LOAD := "MAP_SCRIPT_ON_LOAD"
+const MAP_SCRIPT_ON_TRANSITION := "MAP_SCRIPT_ON_TRANSITION"
 const DOOR_ANIM_FRAME_TIME := 4
 const DOOR_ANIM_FRAME_COUNT := 4
 const DOOR_ANIM_TOTAL_FRAMES := DOOR_ANIM_FRAME_TIME * DOOR_ANIM_FRAME_COUNT
 const WALK_NORMAL_TILE_FRAMES := 16
 const FADE_DELAY_DEFAULT := 0
 const MAP_SCRIPT_SOURCE_TRACE := [
-	"src/script.c:MapHeaderRunScriptType/RunOnLoadMapScript",
-	"src/fieldmap.c:InitMap/InitMapFromSavedGame",
-	"include/constants/map_scripts.h:MAP_SCRIPT_ON_LOAD",
+	"src/script.c:MapHeaderGetScriptTable/MapHeaderRunScriptType",
+	"include/constants/map_scripts.h",
 ]
 const WARP_EXIT_DOOR_BEHAVIORS := {
 	"MB_PETALBURG_GYM_DOOR": true,
@@ -265,7 +265,7 @@ func run_map_script_type(script_type: String, context: Dictionary = {}) -> Dicti
 		"status": "missing_map_script" if labels.is_empty() else "ok",
 		"scripts": [],
 		"runtime_summaries": [],
-		"source_trace": MAP_SCRIPT_SOURCE_TRACE,
+		"source_trace": _map_script_source_trace(script_type),
 	}
 	for label in labels:
 		var script_context := context.duplicate(true)
@@ -283,11 +283,35 @@ func run_map_script_type(script_type: String, context: Dictionary = {}) -> Dicti
 			"movement_count": _result_array_count(result, "movements"),
 			"object_effect_count": _result_array_count(result, "object_effects"),
 			"transition_effect_count": _result_array_count(result, "transition_effects"),
+			"template_object_targets": _template_position_targets_from_runtime_summary(runtime_summary),
 			"runtime": runtime_summary,
 		})
 		if String(result.get("status", "")) != "ok":
 			summary["status"] = String(result.get("status", "script_error"))
 	return summary
+
+
+func run_map_load_scripts(context: Dictionary = {}) -> Dictionary:
+	var map_load_context := context.duplicate(true)
+	map_load_context["map_script_lifecycle"] = "map_load"
+	var transition_summary := run_map_script_type(MAP_SCRIPT_ON_TRANSITION, map_load_context)
+	var template_sync_summary := _sync_map_load_object_templates(
+		_template_position_targets_from_map_script_summary(transition_summary)
+	)
+	var load_summary := run_map_script_type(MAP_SCRIPT_ON_LOAD, map_load_context)
+	return {
+		"status": _map_load_script_status(transition_summary, load_summary),
+		"order": [MAP_SCRIPT_ON_TRANSITION, MAP_SCRIPT_ON_LOAD],
+		"on_transition": transition_summary,
+		"object_template_sync": template_sync_summary,
+		"on_load": load_summary,
+		"source_trace": [
+			"src/overworld.c:LoadMapFromWarp/LoadMapFromCameraTransition",
+			"src/script.c:RunOnTransitionMapScript",
+			"src/fieldmap.c:InitMap/InitMapFromSavedGame",
+			"src/script.c:RunOnLoadMapScript",
+		],
+	}
 
 
 func _get_direct_script_preview(script: String) -> Dictionary:
@@ -876,7 +900,7 @@ func _apply_transition_payload(payload: Dictionary) -> Dictionary:
 
 	var script_data = payload.get("script_data", {})
 	configure_from_script_data(script_data if typeof(script_data) == TYPE_DICTIONARY else {})
-	var map_script_summary := run_map_script_type(MAP_SCRIPT_ON_LOAD, {
+	var map_script_summary := run_map_load_scripts({
 		"trigger": "transition_load",
 		"map": map_id,
 		"position": [position.x, position.y],
@@ -991,7 +1015,83 @@ func _map_script_labels_for_type(script_type: String) -> Array:
 func _map_script_source_function(script_type: String) -> String:
 	if script_type == MAP_SCRIPT_ON_LOAD:
 		return "RunOnLoadMapScript"
+	if script_type == MAP_SCRIPT_ON_TRANSITION:
+		return "RunOnTransitionMapScript"
 	return "MapHeaderRunScriptType"
+
+
+func _map_script_source_trace(script_type: String) -> Array:
+	var trace := MAP_SCRIPT_SOURCE_TRACE.duplicate()
+	if script_type == MAP_SCRIPT_ON_LOAD:
+		trace.append("src/fieldmap.c:InitMap/InitMapFromSavedGame")
+		trace.append("src/script.c:RunOnLoadMapScript")
+	elif script_type == MAP_SCRIPT_ON_TRANSITION:
+		trace.append("src/overworld.c:LoadMapFromWarp/LoadMapFromCameraTransition")
+		trace.append("src/script.c:RunOnTransitionMapScript")
+	return trace
+
+
+func _template_position_targets_from_runtime_summary(runtime_summary: Dictionary) -> Array:
+	var targets := []
+	var object_summary = runtime_summary.get("object_effects", {})
+	if typeof(object_summary) != TYPE_DICTIONARY:
+		return targets
+
+	var applied = object_summary.get("applied", [])
+	if typeof(applied) != TYPE_ARRAY:
+		return targets
+
+	for entry in applied:
+		if typeof(entry) != TYPE_DICTIONARY:
+			continue
+		if String(entry.get("op", "")) != "setobjectxyperm":
+			continue
+		var target := String(entry.get("target", ""))
+		if target.is_empty() or targets.has(target):
+			continue
+		targets.append(target)
+	return targets
+
+
+func _template_position_targets_from_map_script_summary(summary: Dictionary) -> Array:
+	var targets := []
+	var scripts = summary.get("scripts", [])
+	if typeof(scripts) != TYPE_ARRAY:
+		return targets
+
+	for script in scripts:
+		if typeof(script) != TYPE_DICTIONARY:
+			continue
+		var script_targets = script.get("template_object_targets", [])
+		if typeof(script_targets) != TYPE_ARRAY:
+			continue
+		for target_value in script_targets:
+			var target := String(target_value)
+			if target.is_empty() or targets.has(target):
+				continue
+			targets.append(target)
+	return targets
+
+
+func _sync_map_load_object_templates(targets: Array) -> Dictionary:
+	if _map_runtime == null or not _map_runtime.has_method("sync_object_events_to_templates_for_map_load"):
+		return {
+			"status": "missing_map_runtime",
+			"targets": targets.duplicate(),
+			"applied": [],
+			"skipped": [],
+			"unchanged": [],
+			"object_events_changed": false,
+		}
+	return _map_runtime.sync_object_events_to_templates_for_map_load(targets)
+
+
+func _map_load_script_status(transition_summary: Dictionary, load_summary: Dictionary) -> String:
+	for summary in [transition_summary, load_summary]:
+		var status := String(summary.get("status", "ok"))
+		if status != "ok" and status != "missing_map_script":
+			return status
+	return "ok"
 
 
 func _result_array_count(result: Dictionary, key: String) -> int:
