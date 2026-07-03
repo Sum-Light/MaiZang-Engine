@@ -17,6 +17,7 @@ var _block_ids: Array = []
 var _collision_grid: Array = []
 var _elevation_grid: Array = []
 var _metatile_attributes: Dictionary = {}
+var _door_animations_by_metatile_id: Dictionary = {}
 var _object_events: Array = []
 var _object_events_by_position: Dictionary = {}
 var _object_events_by_local_id: Dictionary = {}
@@ -52,6 +53,7 @@ func configure_from_data(
 	_collision_grid = []
 	_elevation_grid = []
 	_metatile_attributes = {}
+	_door_animations_by_metatile_id = {}
 	_object_events = []
 	_object_events_by_position = {}
 	_object_events_by_local_id = {}
@@ -77,6 +79,7 @@ func configure_from_data(
 			_elevation_grid = _array_or_empty(map_grid.get("elevation", []))
 
 	_index_metatile_attributes()
+	_index_door_animations()
 	_index_object_events()
 	_index_bg_events()
 	_index_warp_events()
@@ -135,6 +138,15 @@ func get_metatile_behavior_name_at(cell: Vector2i) -> String:
 
 func get_metatile_layer_type_at(cell: Vector2i) -> int:
 	return int(get_metatile_attribute(get_metatile_id_at(cell)).get("layer_type", -1))
+
+
+func get_door_animation_for_metatile(metatile_id: int) -> Dictionary:
+	var animation = _door_animations_by_metatile_id.get(metatile_id, {})
+	return animation.duplicate(true) if typeof(animation) == TYPE_DICTIONARY else {}
+
+
+func get_door_animation_at(cell: Vector2i) -> Dictionary:
+	return get_door_animation_for_metatile(get_metatile_id_at(cell))
 
 
 func get_object_events(include_hidden := false) -> Array:
@@ -406,6 +418,27 @@ func _index_metatile_attributes() -> void:
 		var attribute = entry.get("attribute", {})
 		if typeof(attribute) == TYPE_DICTIONARY:
 			_metatile_attributes[metatile_id] = attribute
+
+
+func _index_door_animations() -> void:
+	if _tileset_data.is_empty():
+		return
+
+	var door_animations = _tileset_data.get("door_animations", {})
+	if typeof(door_animations) != TYPE_DICTIONARY:
+		return
+
+	var animations = door_animations.get("animations", [])
+	if typeof(animations) != TYPE_ARRAY:
+		return
+
+	for animation in animations:
+		if typeof(animation) != TYPE_DICTIONARY:
+			continue
+		var metatile_id := int(animation.get("metatile_id", -1))
+		if metatile_id < 0:
+			continue
+		_door_animations_by_metatile_id[metatile_id] = animation
 
 
 func _index_object_events() -> void:

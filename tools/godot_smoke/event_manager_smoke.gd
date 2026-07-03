@@ -229,10 +229,12 @@ func _init() -> void:
 	var door_warp_sequence = captured_sequences[0] if captured_sequences.size() > 0 else {}
 	var door_open_step := _first_step(door_warp_sequence, "door_open")
 	var door_close_step := _first_step(door_warp_sequence, "door_close")
+	var door_play_se_step := _first_step(door_warp_sequence, "play_se")
 	var door_player_step := _first_step(door_warp_sequence, "player_step")
 	var door_exit_task := _exit_task(door_warp_sequence)
 	var door_exit_step := _first_step(door_warp_sequence, "exit_task_select")
 	var conditional_door_step := _first_step(door_warp_sequence, "conditional_exit_door_player_step")
+	var door_open_animation = door_open_step.get("animation", {})
 	_assert(may_house_door_warp.get("type", "") == "warp_event", "expected May house door warp")
 	_assert(game_state.current_map_id == MAYS_HOUSE_1F, "expected door warp to load May house")
 	_assert(door_warp_sequence.get("presentation", "") == "door", "expected door presentation sequence")
@@ -254,8 +256,20 @@ func _init() -> void:
 		],
 		"unexpected door transition sequence steps"
 	)
+	_assert(String(door_play_se_step.get("sound", "")) == "SE_DOOR", "expected source door sound effect")
+	_assert(String(door_play_se_step.get("sound_source", "")) == "GetDoorSoundEffect", "expected door sound source")
 	_assert(int(door_open_step.get("duration_frames", 0)) == 16, "expected source door open to last 16 frames")
 	_assert(int(door_close_step.get("duration_frames", 0)) == 16, "expected source door close to last 16 frames")
+	_assert(door_open_step.get("frame_indices", []) == [-1, 0, 1, 2], "expected source door open frame order")
+	_assert(door_close_step.get("frame_indices", []) == [2, 1, 0, -1], "expected source door close frame order")
+	_assert(
+		typeof(door_open_animation) == TYPE_DICTIONARY and int(door_open_animation.get("metatile_id", -1)) == 584,
+		"expected door open step to include Littleroot door animation"
+	)
+	_assert(
+		String(door_open_animation.get("image", "")).ends_with("littleroot_town_littleroot.png"),
+		"expected door open step to include generated door frame atlas"
+	)
 	_assert(int(door_player_step.get("duration_frames", 0)) == 16, "expected source normal walk step to last 16 frames")
 	_assert(String(door_exit_task.get("task", "")) == "Task_ExitNonDoor", "expected May house destination non-door exit task")
 	_assert(String(door_exit_task.get("behavior_name", "")) == "MB_SOUTH_ARROW_WARP", "expected May house destination behavior")

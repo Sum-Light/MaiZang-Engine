@@ -75,6 +75,17 @@ func _init() -> void:
 		runtime.get_cell_info(warp_cell).get("behavior_name", "") == "MB_ANIMATED_DOOR",
 		"expected warp door behavior name"
 	)
+	var door_animation := runtime.get_door_animation_at(mays_house_door_cell)
+	_assert(int(door_animation.get("metatile_id", -1)) == 584, "expected May house door animation metatile")
+	_assert(
+		String(door_animation.get("metatile_label", "")) == "METATILE_Petalburg_Door_Littleroot",
+		"expected Littleroot door animation label"
+	)
+	_assert(String(door_animation.get("sound_effect", "")) == "SE_DOOR", "expected Littleroot door sound")
+	_assert(
+		String(door_animation.get("image", "")).ends_with("littleroot_town_littleroot.png"),
+		"expected generated Littleroot door animation image"
+	)
 
 	var need_pokemon_result := vm.run_script("LittlerootTown_EventScript_NeedPokemonTriggerLeft")
 	var movements = need_pokemon_result.get("movements", [])

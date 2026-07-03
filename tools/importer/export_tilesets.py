@@ -4,6 +4,7 @@
 import argparse
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -35,6 +36,18 @@ METATILE_ATTR_BEHAVIOR_MASK = 0x00FF
 METATILE_ATTR_LAYER_MASK = 0xF000
 METATILE_ATTR_LAYER_SHIFT = 12
 METATILE_BEHAVIOR_HEADER = Path("include/constants/metatile_behaviors.h")
+METATILE_LABEL_HEADER = Path("include/constants/metatile_labels.h")
+DOOR_ANIM_SOURCE = Path("src/field_door.c")
+DOOR_ANIM_FRAME_TIME = 4
+DOOR_ANIM_FRAME_COUNT = 4
+DOOR_ANIM_IMAGE_FRAME_COUNT = 3
+DOOR_ANIM_OPEN_FRAME_INDICES = [-1, 0, 1, 2]
+DOOR_ANIM_CLOSE_FRAME_INDICES = [2, 1, 0, -1]
+DOOR_SOUND_EFFECTS = {
+    "DOOR_SOUND_NORMAL": "SE_DOOR",
+    "DOOR_SOUND_SLIDING": "SE_SLIDING_DOOR",
+    "DOOR_SOUND_ARENA": "SE_REPEL",
+}
 
 FLIP_LEFT_RIGHT = Image.Transpose.FLIP_LEFT_RIGHT if hasattr(Image, "Transpose") else Image.FLIP_LEFT_RIGHT
 FLIP_TOP_BOTTOM = Image.Transpose.FLIP_TOP_BOTTOM if hasattr(Image, "Transpose") else Image.FLIP_TOP_BOTTOM
@@ -116,6 +129,80 @@ def parse_metatile_behavior_names(path):
             names[current_value] = name
         current_value += 1
     return names
+
+
+def parse_metatile_labels(path):
+    labels = {}
+    pattern = re.compile(r"^\s*#define\s+(METATILE_[A-Za-z0-9_]+)\s+([0-9A-Fa-fx]+)\b")
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        match = pattern.match(raw_line)
+        if not match:
+            continue
+        try:
+            labels[match.group(1)] = int(match.group(2), 0)
+        except ValueError:
+            continue
+    return labels
+
+
+def parse_int_list(value):
+    result = []
+    for raw_part in value.split(","):
+        part = raw_part.strip()
+        if not part:
+            continue
+        result.append(int(part, 0))
+    return result
+
+
+def parse_door_animation_resources(path, metatile_labels):
+    text = path.read_text(encoding="utf-8")
+    tile_paths = {}
+    palette_numbers = {}
+    entries = []
+
+    for match in re.finditer(
+        r'static const u8 (sDoorAnimTiles_[A-Za-z0-9_]+)\[\] = INCBIN_U8\("([^"]+)\.4bpp"\);',
+        text,
+    ):
+        tile_paths[match.group(1)] = "{}.png".format(match.group(2))
+
+    for match in re.finditer(
+        r"static const u8 (sDoorAnimPalettes_[A-Za-z0-9_]+)\[\] = \{([^}]*)\};",
+        text,
+    ):
+        palette_numbers[match.group(1)] = parse_int_list(match.group(2))
+
+    entry_pattern = re.compile(
+        r"\{\s*(METATILE_[A-Za-z0-9_]+|0x[0-9A-Fa-f]+|\d+)\s*,"
+        r"\s*(?:&(gTileset_[A-Za-z0-9_]+)|NULL)\s*,"
+        r"\s*(DOOR_SOUND_[A-Z_]+)\s*,"
+        r"\s*(\d+)\s*,"
+        r"\s*(sDoorAnimTiles_[A-Za-z0-9_]+)\s*,"
+        r"\s*(sDoorAnimPalettes_[A-Za-z0-9_]+)\s*\},"
+    )
+    for match in entry_pattern.finditer(text):
+        metatile_token = match.group(1)
+        if metatile_token.startswith("METATILE_"):
+            metatile_id = metatile_labels.get(metatile_token, -1)
+        else:
+            metatile_id = int(metatile_token, 0)
+        if metatile_id < 0:
+            continue
+
+        entries.append({
+            "metatile_label": metatile_token,
+            "metatile_id": metatile_id,
+            "tileset": match.group(2) or "",
+            "sound_type": match.group(3),
+            "sound_effect": DOOR_SOUND_EFFECTS.get(match.group(3), "SE_DOOR"),
+            "size": int(match.group(4)),
+            "tiles_symbol": match.group(5),
+            "palettes_symbol": match.group(6),
+            "image_source": tile_paths.get(match.group(5), ""),
+            "palette_numbers": palette_numbers.get(match.group(6), []),
+        })
+    return entries
 
 
 def build_global_palettes(primary_palettes, secondary_palettes):
@@ -224,6 +311,68 @@ def render_tile(tile_entry, primary_image, secondary_image, global_palettes):
     return rendered, None
 
 
+def render_indexed_tile_with_palette(indexed_tile, palette):
+    rendered = Image.new("RGBA", (TILE_SIZE, TILE_SIZE), (0, 0, 0, 0))
+    pixels_in = indexed_tile.load()
+    pixels_out = rendered.load()
+    for y in range(TILE_SIZE):
+        for x in range(TILE_SIZE):
+            color_index = pixels_in[x, y]
+            pixels_out[x, y] = palette[color_index] if color_index < len(palette) else (0, 0, 0, 0)
+    return rendered
+
+
+def render_door_animation_atlas(source_image, palette_numbers, global_palettes, size):
+    if size != 1:
+        raise ValueError("unsupported door animation size {}".format(size))
+    if len(palette_numbers) < 8:
+        raise ValueError("door animation needs 8 palette numbers, got {}".format(len(palette_numbers)))
+
+    frame_width = METATILE_SIZE
+    frame_height = METATILE_SIZE * 2
+    tiles_per_frame = 8
+    tiles_wide = source_image.width // TILE_SIZE
+    frame_positions = [
+        (0, 0),
+        (TILE_SIZE, 0),
+        (0, TILE_SIZE),
+        (TILE_SIZE, TILE_SIZE),
+        (0, METATILE_SIZE),
+        (TILE_SIZE, METATILE_SIZE),
+        (0, METATILE_SIZE + TILE_SIZE),
+        (TILE_SIZE, METATILE_SIZE + TILE_SIZE),
+    ]
+    required_tiles = DOOR_ANIM_IMAGE_FRAME_COUNT * tiles_per_frame
+    if tile_count(source_image) < required_tiles:
+        raise ValueError("door animation image has {} tiles, needs {}".format(
+            tile_count(source_image),
+            required_tiles,
+        ))
+
+    atlas = Image.new(
+        "RGBA",
+        (frame_width * DOOR_ANIM_IMAGE_FRAME_COUNT, frame_height),
+        (0, 0, 0, 0),
+    )
+    for frame_index in range(DOOR_ANIM_IMAGE_FRAME_COUNT):
+        frame = Image.new("RGBA", (frame_width, frame_height), (0, 0, 0, 0))
+        for tile_index, position in enumerate(frame_positions):
+            local_tile_id = frame_index * tiles_per_frame + tile_index
+            source_x = (local_tile_id % tiles_wide) * TILE_SIZE
+            source_y = (local_tile_id // tiles_wide) * TILE_SIZE
+            indexed_tile = source_image.crop((
+                source_x,
+                source_y,
+                source_x + TILE_SIZE,
+                source_y + TILE_SIZE,
+            ))
+            palette = global_palettes[palette_numbers[tile_index]]
+            rendered_tile = render_indexed_tile_with_palette(indexed_tile, palette)
+            frame.alpha_composite(rendered_tile, position)
+        atlas.alpha_composite(frame, (frame_index * frame_width, 0))
+    return atlas, frame_width, frame_height
+
+
 def image_region_is_opaque(image, position):
     pixels = image.load()
     left, top = position
@@ -326,6 +475,136 @@ def build_tileset_record(root, kind, symbol):
     }
 
 
+def export_door_animations(
+    root,
+    map_slug,
+    output_asset_root,
+    primary_symbol,
+    secondary_symbol,
+    used_metatile_ids,
+    total_metatiles,
+    global_palettes,
+):
+    metatile_labels = parse_metatile_labels(root / METATILE_LABEL_HEADER)
+    door_resources = parse_door_animation_resources(root / DOOR_ANIM_SOURCE, metatile_labels)
+    available_tilesets = {primary_symbol, secondary_symbol}
+    used_metatile_set = set(used_metatile_ids)
+    animations = []
+    warnings = []
+
+    for resource in door_resources:
+        metatile_id = int(resource["metatile_id"])
+        if resource["tileset"] not in available_tilesets:
+            continue
+        if metatile_id not in used_metatile_set:
+            continue
+        if metatile_id < 0 or metatile_id >= total_metatiles:
+            warnings.append({
+                "type": "door_metatile_out_of_range",
+                "metatile_id": metatile_id,
+                "metatile_label": resource["metatile_label"],
+                "tileset": resource["tileset"],
+            })
+            continue
+        if resource["size"] != 1:
+            warnings.append({
+                "type": "unsupported_door_animation_size",
+                "metatile_id": metatile_id,
+                "metatile_label": resource["metatile_label"],
+                "size": resource["size"],
+            })
+            continue
+
+        image_source = resource["image_source"]
+        if not image_source:
+            warnings.append({
+                "type": "missing_door_animation_image_reference",
+                "metatile_id": metatile_id,
+                "metatile_label": resource["metatile_label"],
+                "tiles_symbol": resource["tiles_symbol"],
+            })
+            continue
+
+        image_path = root / image_source
+        if not image_path.exists():
+            warnings.append({
+                "type": "missing_door_animation_image",
+                "metatile_id": metatile_id,
+                "metatile_label": resource["metatile_label"],
+                "path": to_project_path(image_source),
+            })
+            continue
+
+        try:
+            source_image = load_indexed_tiles(image_path)
+            atlas, frame_width, frame_height = render_door_animation_atlas(
+                source_image,
+                resource["palette_numbers"],
+                global_palettes,
+                resource["size"],
+            )
+        except ValueError as error:
+            warnings.append({
+                "type": "door_animation_render_failed",
+                "metatile_id": metatile_id,
+                "metatile_label": resource["metatile_label"],
+                "path": to_project_path(image_source),
+                "reason": str(error),
+            })
+            continue
+
+        asset_slug = Path(image_source).stem
+        atlas_path = output_asset_root / "door_anims" / "{}_{}.png".format(map_slug, asset_slug)
+        atlas_path.parent.mkdir(parents=True, exist_ok=True)
+        atlas.save(atlas_path)
+
+        animations.append({
+            "metatile_id": metatile_id,
+            "metatile_label": resource["metatile_label"],
+            "tileset": resource["tileset"],
+            "source_image": to_project_path(image_source),
+            "image": "res://{}".format(to_project_path(atlas_path)),
+            "image_project_path": to_project_path(atlas_path),
+            "sound_type": resource["sound_type"],
+            "sound_effect": resource["sound_effect"],
+            "size": resource["size"],
+            "palette_numbers": resource["palette_numbers"],
+            "frame_size": {
+                "w": frame_width,
+                "h": frame_height,
+            },
+            "frames": [
+                {
+                    "index": frame_index,
+                    "duration_frames": DOOR_ANIM_FRAME_TIME,
+                    "source_offset_bytes": frame_index * 0x100,
+                    "source_rect": {
+                        "x": frame_index * frame_width,
+                        "y": 0,
+                        "w": frame_width,
+                        "h": frame_height,
+                    },
+                }
+                for frame_index in range(DOOR_ANIM_IMAGE_FRAME_COUNT)
+            ],
+            "open_frame_indices": DOOR_ANIM_OPEN_FRAME_INDICES,
+            "close_frame_indices": DOOR_ANIM_CLOSE_FRAME_INDICES,
+        })
+
+    return {
+        "source": {
+            "door_source": to_project_path(DOOR_ANIM_SOURCE),
+            "metatile_labels": to_project_path(METATILE_LABEL_HEADER),
+        },
+        "frame_basis": "60fps",
+        "frame_time": DOOR_ANIM_FRAME_TIME,
+        "frame_count": DOOR_ANIM_FRAME_COUNT,
+        "closed_frame_index": -1,
+        "animations": animations,
+        "warnings": warnings,
+    }
+
+
 def export_tilesets(root, map_folder, output_data_root, output_asset_root):
     layouts_path = root / "data/layouts/layouts.json"
     map_path = root / "data/maps" / map_folder / "map.json"
@@ -358,6 +637,17 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
     )
 
     total_metatiles = NUM_METATILES_IN_PRIMARY + len(secondary_metatiles)
+    used_metatile_ids = used_metatile_ids_from_layout(root, layout)
+    door_animations = export_door_animations(
+        root,
+        camel_to_snake(map_data.get("name") or map_folder),
+        output_asset_root,
+        primary_symbol,
+        secondary_symbol,
+        used_metatile_ids,
+        total_metatiles,
+        global_palettes,
+    )
     columns = 32
     rows = int(math.ceil(total_metatiles / float(columns)))
     atlas = Image.new("RGBA", (columns * METATILE_SIZE, rows * METATILE_SIZE), (0, 0, 0, 0))
@@ -448,7 +738,8 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
             "primary_metatile_count": NUM_METATILES_IN_PRIMARY,
             "secondary_metatile_count": len(secondary_metatiles),
         },
-        "used_metatile_ids": used_metatile_ids_from_layout(root, layout),
+        "used_metatile_ids": used_metatile_ids,
+        "door_animations": door_animations,
         "metatile_entries": metatile_entries,
         "coverage_notes": coverage_notes,
         "warnings": warnings,

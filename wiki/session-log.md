@@ -87,3 +87,9 @@
 - Added deferred transition application for presentation playback: `EventManager` can queue a pending transition, and `TransitionSequencePlayer` applies it at the source-traced `load_map` step.
 - Moved first-pass transition playback out of `Main` into `TransitionSequencePlayer`, covering black fade overlay, input lock, player hide/show, scripted player step-in/out movement, and final `Task_ExitDoor` position updates.
 - Expanded transition smoke coverage so a Brendan house exit now verifies the player finishes one tile below the Littleroot door at `(5,9)`, matching the source-visible exit movement.
+- Traced source door animation resources through `include/constants/metatile_labels.h`, `src/field_door.c`, and `graphics/door_anims/*.png`, including Littleroot/Birch Lab door graphics, palette slots, `SE_DOOR`, and the source open/close frame tables.
+- Extended `export_tilesets.py` to bake supported used door animation strips into normal RGBA atlases under `assets/generated/door_anims/` and write `door_animations` metadata into generated tileset JSON.
+- Generated first-slice door animation atlases for `METATILE_Petalburg_Door_Littleroot` and `METATILE_Petalburg_Door_BirchsLab`; the generated first-slice tileset exports still report 0 visible warnings.
+- Extended `MapRuntime`, `EventManager`, `TransitionSequencePlayer`, `DebugMapPlane`, and `Main` so door transition sequences carry source-backed door animation metadata and presentation can play the 16-frame open/close overlays in source frame order.
+- Expanded smoke coverage for door animation metadata lookup, door sequence sound/frame data, fake-renderer frame playback, and real `DebugMapPlane` door overlay API.
+- Verified `export_tilesets.py` Python compilation, `git diff --check`, `map_runtime_smoke.gd`, `event_manager_smoke.gd`, `script_vm_smoke.gd`, `transition_presentation_smoke.gd`, and Godot 4.7 headless startup.

@@ -552,7 +552,14 @@ func _build_transition_sequence(
 	var exit_task := _warp_exit_task(destination_map_data, destination_tileset_data, destination_position)
 	var steps := []
 	if presentation == "door":
-		steps = _door_warp_steps(source_position, trigger_position, destination_map_id, destination_position, exit_task)
+		steps = _door_warp_steps(
+			source_position,
+			trigger_position,
+			destination_map_id,
+			destination_position,
+			exit_task,
+			_source_door_animation(trigger_position)
+		)
 	else:
 		steps = _normal_warp_steps(destination_map_id, destination_position, exit_task)
 
@@ -591,7 +598,8 @@ func _door_warp_steps(
 	trigger_position: Vector2i,
 	destination_map_id: String,
 	destination_position: Vector2i,
-	exit_task: Dictionary
+	exit_task: Dictionary,
+	door_animation: Dictionary
 ) -> Array:
 	var door_position := trigger_position + Vector2i.UP
 	return [
@@ -599,11 +607,12 @@ func _door_warp_steps(
 		{"op": "freeze_object_events", "source": "Task_DoDoorWarp"},
 		{
 			"op": "play_se",
-			"sound": "GetDoorSoundEffect",
+			"sound": String(door_animation.get("sound_effect", "SE_DOOR")),
+			"sound_source": "GetDoorSoundEffect",
 			"position": door_position,
 			"source": "Task_DoDoorWarp",
 		},
-		_door_step("door_open", door_position, "FieldAnimateDoorOpen"),
+		_door_step("door_open", door_position, "FieldAnimateDoorOpen", door_animation),
 		{
 			"op": "player_step",
 			"movement_action": "MOVEMENT_ACTION_WALK_NORMAL_UP",
@@ -613,7 +622,7 @@ func _door_warp_steps(
 			"source": "ObjectEventSetHeldMovement",
 		},
 		{"op": "hide_player", "visible": false, "source": "SetPlayerVisibility(FALSE)"},
-		_door_step("door_close", door_position, "FieldAnimateDoorClose"),
+		_door_step("door_close", door_position, "FieldAnimateDoorClose", door_animation),
 		{"op": "fade_out", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeOutScreen"},
 		{"op": "load_map", "map": destination_map_id, "position": destination_position, "source": "WarpIntoMap"},
 		{"op": "fade_in", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeInScreen"},
@@ -657,8 +666,8 @@ func _normal_warp_steps(
 	]
 
 
-func _door_step(op: String, position: Vector2i, source: String) -> Dictionary:
-	return {
+func _door_step(op: String, position: Vector2i, source: String, door_animation: Dictionary) -> Dictionary:
+	var step := {
 		"op": op,
 		"position": position,
 		"frame_time": DOOR_ANIM_FRAME_TIME,
@@ -666,6 +675,18 @@ func _door_step(op: String, position: Vector2i, source: String) -> Dictionary:
 		"duration_frames": DOOR_ANIM_TOTAL_FRAMES,
 		"source": source,
 	}
+	step["frame_indices"] = [-1, 0, 1, 2] if op == "door_open" else [2, 1, 0, -1]
+	if not door_animation.is_empty():
+		step["animation"] = door_animation
+	return step
+
+
+func _source_door_animation(position: Vector2i) -> Dictionary:
+	if _map_runtime == null or not _map_runtime.has_method("get_door_animation_at"):
+		return {}
+
+	var animation = _map_runtime.get_door_animation_at(position)
+	return animation if typeof(animation) == TYPE_DICTIONARY else {}
 
 
 func _exit_task_step(exit_task: Dictionary) -> Dictionary:

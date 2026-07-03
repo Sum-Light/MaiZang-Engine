@@ -167,3 +167,9 @@ Reason: Source gameplay code such as `SetUpWarpExitTask` branches through named 
 Decision: Let `Main` enable deferred transition application and let `TransitionSequencePlayer` apply the pending map change at the sequence `load_map` step.
 
 Reason: Source door and warp transitions perform visible work before and after the actual map load, including player step-in, player hiding, fade order, and destination exit movement. Deferring the runtime map switch lets the Godot presentation layer preserve that order while keeping `EventManager` able to apply transitions immediately for headless/domain tests when no presenter is configured.
+
+## 2026-07-04 - Bake door animation frames into Godot textures
+
+Decision: Parse source door animation tables during tileset export, bake supported used door animation strips into normal RGBA frame atlases, and let transition presentation play those frames as map overlays.
+
+Reason: The source `field_door.c` tables define visible behavior: metatile labels, animation graphics, palette slots, frame order, frame duration, and sound category. Godot should preserve that player-facing sequence, but the GBA palette/tile-memory representation is only an import concern. Baking the already-palette-resolved frames into ordinary textures keeps the runtime Godot-native while matching the source door open/close timing and ordering.

@@ -7,6 +7,7 @@ var event_manager: Node = null
 var map_runtime: Node = null
 var game_state: Node = null
 var player: Node = null
+var map_renderer: Node = null
 var overlay: ColorRect = null
 var label: Label = null
 var playback_token := 0
@@ -19,7 +20,8 @@ func configure(
 	new_game_state: Node,
 	new_player: Node,
 	new_overlay: ColorRect,
-	new_label: Label
+	new_label: Label,
+	new_map_renderer: Node = null
 ) -> void:
 	event_manager = new_event_manager
 	map_runtime = new_map_runtime
@@ -27,12 +29,15 @@ func configure(
 	player = new_player
 	overlay = new_overlay
 	label = new_label
+	map_renderer = new_map_renderer
 
 
 func play(sequence: Dictionary) -> void:
 	playback_token += 1
 	if playback_tween != null and playback_tween.is_running():
 		playback_tween.kill()
+	if map_renderer != null and map_renderer.has_method("clear_door_animations"):
+		map_renderer.clear_door_animations()
 
 	_play_sequence(sequence, playback_token)
 
@@ -71,7 +76,7 @@ func _play_step(sequence: Dictionary, step: Dictionary, token: int) -> void:
 		"lock_controls", "freeze_object_events", "play_se":
 			return
 		"door_open", "door_close":
-			await _wait_step(step, token)
+			await _play_door_animation(step, token)
 		"player_step":
 			await _animate_player_step(step, token, false)
 		"hide_player":
@@ -120,6 +125,37 @@ func _wait_step(step: Dictionary, token: int) -> void:
 		return
 
 
+func _play_door_animation(step: Dictionary, token: int) -> void:
+	var animation = step.get("animation", {})
+	var frame_indices = step.get("frame_indices", [])
+	if (
+		map_renderer == null
+		or typeof(animation) != TYPE_DICTIONARY
+		or animation.is_empty()
+		or typeof(frame_indices) != TYPE_ARRAY
+		or frame_indices.is_empty()
+		or not map_renderer.has_method("set_door_animation_frame")
+	):
+		await _wait_step(step, token)
+		return
+
+	var position := _step_vector(step, "position", Vector2i.ZERO)
+	var frame_seconds := float(int(step.get("frame_time", 0))) / TRANSITION_FRAME_RATE
+	if frame_seconds <= 0.0:
+		frame_seconds = _step_seconds(step) / float(frame_indices.size())
+
+	for frame_index_value in frame_indices:
+		if token != playback_token:
+			return
+		var frame_index := int(frame_index_value)
+		if frame_index < 0 and map_renderer.has_method("clear_door_animation"):
+			map_renderer.clear_door_animation(position)
+		elif frame_index >= 0:
+			map_renderer.set_door_animation_frame(position, animation, frame_index)
+		if frame_seconds > 0.0:
+			await get_tree().create_timer(frame_seconds).timeout
+
+
 func _animate_player_step(step: Dictionary, token: int, update_runtime_position: bool) -> void:
 	if player == null:
 		return
@@ -162,6 +198,8 @@ func _fade_overlay(target_alpha: float, duration: float, token: int) -> void:
 
 
 func _finish() -> void:
+	if map_renderer != null and map_renderer.has_method("clear_door_animations"):
+		map_renderer.clear_door_animations()
 	if overlay != null:
 		overlay.visible = false
 	if label != null:

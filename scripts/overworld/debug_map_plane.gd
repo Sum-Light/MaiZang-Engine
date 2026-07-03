@@ -9,7 +9,11 @@ var _atlas_texture: Texture2D = null
 var _atlas_tile_size := 16
 var _atlas_columns := 0
 var _atlas_total_metatiles := 0
+var _door_animation_overlays: Dictionary = {}
+var _door_animation_texture_cache: Dictionary = {}
 
+const FALLBACK_TILE_SIZE := 16
+const FALLBACK_MAP_SIZE := Vector2i(20, 20)
 const TILE_A := Color(0.64, 0.78, 0.50, 1.0)
 const TILE_B := Color(0.56, 0.72, 0.45, 1.0)
 const GRID_LINE := Color(0.22, 0.31, 0.24, 0.55)
@@ -27,12 +31,14 @@ const BLOCK_COLORS := [
 
 
 func configure_from_map_data(map_data: Dictionary, new_tileset_data: Dictionary = {}) -> void:
-	tile_size = DataRegistry.TILE_SIZE
+	var registry := get_node_or_null("/root/DataRegistry")
+	tile_size = FALLBACK_TILE_SIZE
 	_configure_tileset_data(new_tileset_data)
 
 	if map_data.is_empty():
-		map_size = DataRegistry.get_start_map_size()
+		map_size = _registry_start_map_size(registry)
 		block_ids = []
+		clear_door_animations()
 		queue_redraw()
 		return
 
@@ -43,6 +49,7 @@ func configure_from_map_data(map_data: Dictionary, new_tileset_data: Dictionary 
 			int(layout_info.get("height", map_size.y))
 		)
 	block_ids = map_data.get("block_ids", [])
+	clear_door_animations()
 	queue_redraw()
 
 
@@ -57,7 +64,49 @@ func _draw() -> void:
 			draw_rect(rect, GRID_LINE, false, 1.0)
 
 	var border := Rect2(Vector2.ZERO, Vector2(map_size.x * tile_size, map_size.y * tile_size))
+	_draw_door_animation_overlays()
 	draw_rect(border, BORDER_LINE, false, 2.0)
+
+
+func set_door_animation_frame(position: Vector2i, animation: Dictionary, frame_index: int) -> bool:
+	if frame_index < 0:
+		clear_door_animation(position)
+		return true
+
+	var texture := _door_animation_texture(animation)
+	if texture == null:
+		return false
+
+	var frame := _door_animation_frame(animation, frame_index)
+	if frame.is_empty():
+		return false
+
+	_door_animation_overlays[_cell_key(position)] = {
+		"position": position,
+		"texture": texture,
+		"source_rect": frame["source_rect"],
+		"frame_size": frame["frame_size"],
+	}
+	queue_redraw()
+	return true
+
+
+func clear_door_animation(position: Vector2i) -> void:
+	var key := _cell_key(position)
+	if _door_animation_overlays.has(key):
+		_door_animation_overlays.erase(key)
+		queue_redraw()
+
+
+func clear_door_animations() -> void:
+	if _door_animation_overlays.is_empty():
+		return
+	_door_animation_overlays.clear()
+	queue_redraw()
+
+
+func get_door_animation_overlay_count() -> int:
+	return _door_animation_overlays.size()
 
 
 func _configure_tileset_data(new_tileset_data: Dictionary) -> void:
@@ -122,6 +171,92 @@ func _draw_atlas_tile(block_id: int, rect: Rect2) -> bool:
 	)
 	draw_texture_rect_region(_atlas_texture, rect, source_rect)
 	return true
+
+
+func _draw_door_animation_overlays() -> void:
+	for overlay in _door_animation_overlays.values():
+		if typeof(overlay) != TYPE_DICTIONARY:
+			continue
+		var texture = overlay.get("texture", null)
+		if not texture is Texture2D:
+			continue
+		var position = overlay.get("position", Vector2i.ZERO)
+		if typeof(position) != TYPE_VECTOR2I:
+			continue
+		var source_rect = overlay.get("source_rect", Rect2())
+		if typeof(source_rect) != TYPE_RECT2:
+			continue
+		var frame_size = overlay.get("frame_size", Vector2(tile_size, tile_size * 2))
+		if typeof(frame_size) != TYPE_VECTOR2:
+			continue
+		var dest_rect := Rect2(
+			position.x * tile_size,
+			position.y * tile_size,
+			frame_size.x,
+			frame_size.y
+		)
+		draw_texture_rect_region(texture, dest_rect, source_rect)
+
+
+func _door_animation_texture(animation: Dictionary) -> Texture2D:
+	var image_path := String(animation.get("image", ""))
+	if image_path.is_empty():
+		return null
+	if _door_animation_texture_cache.has(image_path):
+		var cached = _door_animation_texture_cache[image_path]
+		return cached if cached is Texture2D else null
+
+	var image := Image.new()
+	if image.load(image_path) != OK:
+		push_warning("Could not load generated door animation atlas: %s" % image_path)
+		return null
+
+	var texture := ImageTexture.create_from_image(image)
+	_door_animation_texture_cache[image_path] = texture
+	return texture
+
+
+func _door_animation_frame(animation: Dictionary, frame_index: int) -> Dictionary:
+	var frames = animation.get("frames", [])
+	if typeof(frames) != TYPE_ARRAY:
+		return {}
+
+	var frame_size_info = animation.get("frame_size", {})
+	var frame_size := Vector2(tile_size, tile_size * 2)
+	if typeof(frame_size_info) == TYPE_DICTIONARY:
+		frame_size = Vector2(
+			float(frame_size_info.get("w", frame_size.x)),
+			float(frame_size_info.get("h", frame_size.y))
+		)
+
+	for frame in frames:
+		if typeof(frame) != TYPE_DICTIONARY or int(frame.get("index", -1)) != frame_index:
+			continue
+		var rect_info = frame.get("source_rect", {})
+		if typeof(rect_info) != TYPE_DICTIONARY:
+			return {}
+		return {
+			"source_rect": Rect2(
+				float(rect_info.get("x", 0)),
+				float(rect_info.get("y", 0)),
+				float(rect_info.get("w", frame_size.x)),
+				float(rect_info.get("h", frame_size.y))
+			),
+			"frame_size": frame_size,
+		}
+	return {}
+
+
+func _cell_key(cell: Vector2i) -> String:
+	return "%d,%d" % [cell.x, cell.y]
+
+
+func _registry_start_map_size(registry: Node) -> Vector2i:
+	if registry != null and registry.has_method("get_start_map_size"):
+		var size = registry.call("get_start_map_size")
+		if typeof(size) == TYPE_VECTOR2I:
+			return size
+	return FALLBACK_MAP_SIZE
 
 
 func _get_tile_color(block_id: int, x: int, y: int) -> Color:

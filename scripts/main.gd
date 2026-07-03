@@ -25,7 +25,8 @@ func _ready() -> void:
 		GameState,
 		player,
 		_transition_overlay,
-		_transition_label
+		_transition_label,
+		debug_map
 	)
 	MapRuntime.configure_from_data(
 		DataRegistry.get_start_map_data(),

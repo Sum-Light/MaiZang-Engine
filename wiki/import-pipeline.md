@@ -24,7 +24,9 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 - `data/tilesets/**/metatile_attributes.bin`
 - `data/tilesets/**/palettes/*.pal`
 - `include/constants/metatile_behaviors.h`
-- `graphics/door_anims/*.png` for future visible runtime door-tile cases when a map needs them
+- `include/constants/metatile_labels.h`
+- `src/field_door.c`
+- `graphics/door_anims/*.png`
 
 ### Gameplay Data
 
@@ -58,6 +60,7 @@ Recommended generated output layout:
 assets/generated/
   maps/
   tilesets/
+  door_anims/
   sprites/
   ui/
 data/generated/
@@ -129,10 +132,13 @@ Current tileset export behavior:
 - Reads `tiles.png`, `metatiles.bin`, `metatile_attributes.bin`, and `palettes/*.pal` for both tilesets.
 - Uses GBA tile-entry bits from `tools/gbagfx/gfx.h`: 10-bit tile id, horizontal flip, vertical flip, and 4-bit palette number.
 - Parses `include/constants/metatile_behaviors.h` so generated metatile attributes carry source behavior names as well as numeric ids.
+- Parses `include/constants/metatile_labels.h` and `src/field_door.c` so used animated-door metatiles can resolve their source animation image, palette slots, frame order, and sound intent.
 - Builds source palette slots with primary palettes 0-5 and secondary palettes 6-12, then bakes colors into a normal RGBA PNG.
 - Flattens each 16x16 metatile by compositing bottom entries 0-3 and top entries 4-7.
+- Bakes supported source door animation tile strips into normal RGBA frame atlases under `assets/generated/door_anims/`; palette numbers are used only at import time.
 - Writes `assets/generated/tilesets/littleroot_town_metatiles.png`.
 - Writes `data/generated/tilesets/littleroot_town.json` with atlas metadata, source tile entries, metatile attributes, metatile behavior names, used metatile ids, coverage notes, and warnings.
+- Writes generated `door_animations` metadata into the tileset JSON for supported used door metatiles, including source labels, metatile ids, frame size, frame rectangles, 60fps frame timing, open/close frame indices, and source sound-effect symbol.
 - Updates `data/generated/import_manifest.json` with exported tileset metadata while preserving existing entries for other maps, tilesets, and scripts.
 
 `tools/importer/export_event_scripts.py` exports one map's `scripts.inc` into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--map`, and `--output-root`.
@@ -178,6 +184,8 @@ Latest verified first-slice tileset export for `LittlerootTown`:
 - used metatile ids: 63
 - visible warnings: 0
 - coverage notes: 8 bottom-layer out-of-range tile references in metatiles 586 and 587 are fully covered by opaque top-layer tiles in the flattened atlas
+- generated door animations: 2 supported size-1 animated-door metatiles, `METATILE_Petalburg_Door_Littleroot` and `METATILE_Petalburg_Door_BirchsLab`
+- generated door animation atlases: `assets/generated/door_anims/littleroot_town_littleroot.png` and `assets/generated/door_anims/littleroot_town_birchs_lab.png`
 
 Latest verified first-slice event script export for `LittlerootTown`:
 
@@ -191,7 +199,7 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - current generated-data preview fields: first direct `msgbox`/`message` text references for debug inspection
 - current runtime execution scope: `ScriptVM` executes the first synchronous dialogue subset and expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` from source standard script behavior
 - current movement runtime scope: `ScriptVM` resolves generated movement labels for `applymovement`/`waitmovement` and emits structured movement-effect results; real dispatch fast-forwards map/player positions through `MapRuntime`, while animation queues and object movement tasks are still future runtime work
-- current field-effect runtime scope: `ScriptVM` records `delay`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect results; door animation, sound selection, and true asynchronous timing remain future work
+- current field-effect runtime scope: `ScriptVM` records `delay`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect results; transition presentation now consumes generated door animation metadata for first-pass door warp overlays, while standalone script-driven door animation, real audio playback, and true asynchronous timing remain future work
 - current audio/transition/player-effect runtime scope: `ScriptVM` records `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, `waitstate`, and `hideplayer` as structured result data after source tracing; real sound playback, fanfare waiting, map loading/fades, and player presentation visibility remain future runtime work
 - current coordinate-event runtime scope: `MapRuntime` indexes generated coord events and resolves normal `var`/`var_value` step triggers by x/y/elevation plus `GameState`; full weather/immediate-script/wild-encounter/step-count chaining remains future work
 
