@@ -209,3 +209,9 @@ Reason: Source field messages call `StringExpandPlaceholders` before drawing tex
 Decision: Store the current player name in `GameState` and let `ScriptVM` expand source `{PLAYER}` and `{KUN}` placeholders during message execution alongside string vars.
 
 Reason: Source `StringExpandPlaceholders` maps `{PLAYER}` to `gSaveBlock2Ptr->playerName` and `{KUN}` to the gendered Kun/Chan text entries. In this Chinese source both Kun/Chan entries are empty, so Godot should preserve the empty visible result instead of inventing an honorific. The current `"玩家"` default is a temporary debug fallback until the real new-game naming flow and preset-name behavior are ported.
+
+## 2026-07-04 - Derive Emerald rival placeholder from player gender
+
+Decision: Expand `{RIVAL}` in `ScriptVM` as `小遥` for a male player and `小悠` for a female player for the current Emerald target.
+
+Reason: Source `ExpandPlaceholder_RivalName` only reads a custom `gSaveBlock1Ptr->rivalName` inside the `IS_FRLG` branch. The current source defines `IS_FRLG = 0`, so Emerald falls back to `gText_ExpandedPlaceholder_May` or `gText_ExpandedPlaceholder_Brendan` based on `gSaveBlock2Ptr->playerGender`.

@@ -9,10 +9,13 @@ const SAFE_FOLLOWER_FLAG := "FLAG_SAFE_FOLLOWER_MOVEMENT"
 const VAR_RESULT := "VAR_RESULT"
 const PLACEHOLDER_PLAYER := "PLAYER"
 const PLACEHOLDER_KUN := "KUN"
+const PLACEHOLDER_RIVAL := "RIVAL"
 const STR_VAR_1 := "STR_VAR_1"
 const STR_VAR_2 := "STR_VAR_2"
 const STR_VAR_3 := "STR_VAR_3"
 const DEFAULT_PLAYER_NAME := "玩家"
+const RIVAL_NAME_MALE_PLAYER := "小遥"
+const RIVAL_NAME_FEMALE_PLAYER := "小悠"
 const PLAYER_GENDER_MALE := "MALE"
 const PLAYER_GENDER_FEMALE := "FEMALE"
 const PLAYER_GENDER_MALE_VALUE := 0
@@ -1181,7 +1184,7 @@ func _string_var_names() -> Array:
 
 
 func _placeholder_names() -> Array:
-	return [PLACEHOLDER_PLAYER, PLACEHOLDER_KUN, STR_VAR_1, STR_VAR_2, STR_VAR_3]
+	return [PLACEHOLDER_PLAYER, PLACEHOLDER_KUN, PLACEHOLDER_RIVAL, STR_VAR_1, STR_VAR_2, STR_VAR_3]
 
 
 func _placeholder_id(placeholder_name: String) -> int:
@@ -1196,6 +1199,8 @@ func _placeholder_id(placeholder_name: String) -> int:
 			return 0x4
 		PLACEHOLDER_KUN:
 			return 0x5
+		PLACEHOLDER_RIVAL:
+			return 0x6
 	return 0
 
 
@@ -1220,6 +1225,8 @@ func _placeholder_value(state: Dictionary, placeholder_name: String) -> String:
 			return _get_player_name()
 		PLACEHOLDER_KUN:
 			return _get_kun_placeholder()
+		PLACEHOLDER_RIVAL:
+			return _get_rival_placeholder()
 	return _get_string_var(state, placeholder_name)
 
 
@@ -1297,6 +1304,10 @@ func _get_player_name() -> String:
 
 func _get_kun_placeholder() -> String:
 	return ""
+
+
+func _get_rival_placeholder() -> String:
+	return RIVAL_NAME_FEMALE_PLAYER if _get_player_gender() == PLAYER_GENDER_FEMALE else RIVAL_NAME_MALE_PLAYER
 
 
 func _gender_value(gender: String) -> int:

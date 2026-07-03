@@ -55,6 +55,12 @@ func _init() -> void:
 		"kind": "text",
 		"source": "smoke",
 	}
+	synthetic_texts["Smoke_Text_RivalPlaceholder"] = {
+		"label": "Smoke_Text_RivalPlaceholder",
+		"display_text": "对手:{RIVAL}",
+		"kind": "text",
+		"source": "smoke",
+	}
 	synthetic_scripts["Smoke_EventScript_DelayOnly"] = {
 		"instructions": [
 			{"op": "delay", "args": ["30"], "line": 1, "raw": "delay 30"},
@@ -115,6 +121,12 @@ func _init() -> void:
 			{"op": "end", "args": [], "line": 3, "raw": "end"},
 		],
 	}
+	synthetic_scripts["Smoke_EventScript_RivalPlaceholder"] = {
+		"instructions": [
+			{"op": "msgbox", "args": ["Smoke_Text_RivalPlaceholder", "MSGBOX_DEFAULT"], "line": 1, "raw": "msgbox Smoke_Text_RivalPlaceholder, MSGBOX_DEFAULT"},
+			{"op": "end", "args": [], "line": 2, "raw": "end"},
+		],
+	}
 	synthetic_script_data["scripts"] = synthetic_scripts
 	synthetic_script_data["texts"] = synthetic_texts
 	vm.configure_from_script_data(synthetic_script_data)
@@ -132,10 +144,12 @@ func _init() -> void:
 	var special_player_male_result := vm.run_script("Smoke_EventScript_PlayerBigGuyGirl")
 	var special_rival_male_result := vm.run_script("Smoke_EventScript_RivalSonDaughter")
 	var player_name_kun_result := vm.run_script("Smoke_EventScript_PlayerNameKun")
+	var rival_placeholder_male_result := vm.run_script("Smoke_EventScript_RivalPlaceholder")
 	game_state.set_player_gender("FEMALE")
 	game_state.set_player_name("小遥")
 	var special_player_female_result := vm.run_script("Smoke_EventScript_PlayerBigGuyGirl")
 	var special_rival_female_result := vm.run_script("Smoke_EventScript_RivalSonDaughter")
+	var rival_placeholder_female_result := vm.run_script("Smoke_EventScript_RivalPlaceholder")
 	vm.configure_from_script_data(script_data)
 	var missing_result := vm.run_script("Missing_EventScript")
 
@@ -384,6 +398,20 @@ func _init() -> void:
 	_assert(_first_message_placeholder_id_for_token(player_name_kun_result, "{KUN}") == 5, "unexpected KUN placeholder id")
 	_assert(_unsupported_count(player_name_kun_result) == 0, "expected no unsupported player-name placeholder ops")
 
+	_assert(rival_placeholder_male_result.get("status", "") == "ok", "expected male rival placeholder script to execute")
+	_assert(_first_message_text(rival_placeholder_male_result) == "对手:小遥", "expected male player rival placeholder to expand to May")
+	_assert(_first_message_unexpanded_text(rival_placeholder_male_result) == "对手:{RIVAL}", "expected unexpanded male rival placeholder message")
+	_assert(_first_message_placeholder_substitution_count(rival_placeholder_male_result) == 1, "expected one male rival placeholder substitution")
+	_assert(_first_message_placeholder_value_for_token(rival_placeholder_male_result, "{RIVAL}") == "小遥", "unexpected male RIVAL placeholder value")
+	_assert(_first_message_placeholder_id_for_token(rival_placeholder_male_result, "{RIVAL}") == 6, "unexpected RIVAL placeholder id")
+	_assert(_unsupported_count(rival_placeholder_male_result) == 0, "expected no unsupported male rival placeholder ops")
+
+	_assert(rival_placeholder_female_result.get("status", "") == "ok", "expected female rival placeholder script to execute")
+	_assert(_first_message_text(rival_placeholder_female_result) == "对手:小悠", "expected female player rival placeholder to expand to Brendan")
+	_assert(_first_message_placeholder_value_for_token(rival_placeholder_female_result, "{RIVAL}") == "小悠", "unexpected female RIVAL placeholder value")
+	_assert(_first_message_placeholder_id_for_token(rival_placeholder_female_result, "{RIVAL}") == 6, "unexpected female RIVAL placeholder id")
+	_assert(_unsupported_count(rival_placeholder_female_result) == 0, "expected no unsupported female rival placeholder ops")
+
 	_assert(missing_result.get("status", "") == "missing_script", "expected missing script status")
 
 	print(JSON.stringify({
@@ -410,6 +438,8 @@ func _init() -> void:
 		"special_rival_male": _result_summary(special_rival_male_result),
 		"special_rival_female": _result_summary(special_rival_female_result),
 		"player_name_kun": _result_summary(player_name_kun_result),
+		"rival_placeholder_male": _result_summary(rival_placeholder_male_result),
+		"rival_placeholder_female": _result_summary(rival_placeholder_female_result),
 		"missing_status": String(missing_result.get("status", "")),
 	}))
 	game_state.free()
