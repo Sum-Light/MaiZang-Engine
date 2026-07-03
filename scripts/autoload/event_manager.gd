@@ -4,11 +4,17 @@ signal debug_message_requested(lines: PackedStringArray)
 signal transition_sequence_requested(sequence: Dictionary)
 
 const WARP_ID_NONE_VALUE := -1
+const MAP_SCRIPT_ON_LOAD := "MAP_SCRIPT_ON_LOAD"
 const DOOR_ANIM_FRAME_TIME := 4
 const DOOR_ANIM_FRAME_COUNT := 4
 const DOOR_ANIM_TOTAL_FRAMES := DOOR_ANIM_FRAME_TIME * DOOR_ANIM_FRAME_COUNT
 const WALK_NORMAL_TILE_FRAMES := 16
 const FADE_DELAY_DEFAULT := 0
+const MAP_SCRIPT_SOURCE_TRACE := [
+	"src/script.c:MapHeaderRunScriptType/RunOnLoadMapScript",
+	"src/fieldmap.c:InitMap/InitMapFromSavedGame",
+	"include/constants/map_scripts.h:MAP_SCRIPT_ON_LOAD",
+]
 const WARP_EXIT_DOOR_BEHAVIORS := {
 	"MB_PETALBURG_GYM_DOOR": true,
 	"MB_ANIMATED_DOOR": true,
@@ -42,6 +48,7 @@ func _ready() -> void:
 	_data_registry = get_node_or_null("/root/DataRegistry")
 	if _data_registry != null and _data_registry.has_method("get_start_script_data"):
 		configure_from_script_data(_data_registry.get_start_script_data())
+	_configure_script_vm_dependencies()
 
 
 func configure_from_script_data(script_data: Dictionary) -> void:
@@ -54,6 +61,7 @@ func configure_script_vm(script_vm: Node) -> void:
 	_script_vm = script_vm
 	if _script_vm != null and _script_vm.has_method("configure_from_script_data"):
 		_script_vm.configure_from_script_data(_script_data)
+	_configure_script_vm_dependencies()
 
 
 func configure_map_runtime(map_runtime: Node) -> void:
@@ -62,10 +70,12 @@ func configure_map_runtime(map_runtime: Node) -> void:
 
 func configure_game_state(game_state: Node) -> void:
 	_game_state = game_state
+	_configure_script_vm_dependencies()
 
 
 func configure_data_registry(data_registry: Node) -> void:
 	_data_registry = data_registry
+	_configure_script_vm_dependencies()
 
 
 func configure_transition_deferred(value: bool) -> void:
@@ -246,6 +256,38 @@ func run_script(script: String, context: Dictionary = {}) -> Dictionary:
 		"wait_audio": false,
 		"step_count": 0,
 	}
+
+
+func run_map_script_type(script_type: String, context: Dictionary = {}) -> Dictionary:
+	var labels := _map_script_labels_for_type(script_type)
+	var summary := {
+		"script_type": script_type,
+		"status": "missing_map_script" if labels.is_empty() else "ok",
+		"scripts": [],
+		"runtime_summaries": [],
+		"source_trace": MAP_SCRIPT_SOURCE_TRACE,
+	}
+	for label in labels:
+		var script_context := context.duplicate(true)
+		script_context["map_script_type"] = script_type
+		script_context["source_function"] = _map_script_source_function(script_type)
+		var result := run_script(label, script_context)
+		var runtime_summary := {}
+		if not result.is_empty() and String(result.get("status", "")) != "vm_unavailable":
+			runtime_summary = _apply_runtime_result(result)
+		summary["runtime_summaries"].append(runtime_summary)
+		summary["scripts"].append({
+			"label": label,
+			"status": String(result.get("status", "")),
+			"field_effect_count": _result_array_count(result, "field_effects"),
+			"movement_count": _result_array_count(result, "movements"),
+			"object_effect_count": _result_array_count(result, "object_effects"),
+			"transition_effect_count": _result_array_count(result, "transition_effects"),
+			"runtime": runtime_summary,
+		})
+		if String(result.get("status", "")) != "ok":
+			summary["status"] = String(result.get("status", "script_error"))
+	return summary
 
 
 func _get_direct_script_preview(script: String) -> Dictionary:
@@ -834,14 +876,20 @@ func _apply_transition_payload(payload: Dictionary) -> Dictionary:
 
 	var script_data = payload.get("script_data", {})
 	configure_from_script_data(script_data if typeof(script_data) == TYPE_DICTIONARY else {})
-	return _transition_summary_from_payload(payload, position_applied, false)
+	var map_script_summary := run_map_script_type(MAP_SCRIPT_ON_LOAD, {
+		"trigger": "transition_load",
+		"map": map_id,
+		"position": [position.x, position.y],
+	})
+	return _transition_summary_from_payload(payload, position_applied, false, "ok", map_script_summary)
 
 
 func _transition_summary_from_payload(
 	payload: Dictionary,
 	position_applied: bool,
 	deferred: bool,
-	status := "ok"
+	status := "ok",
+	map_script_summary: Dictionary = {}
 ) -> Dictionary:
 	return {
 		"id": int(payload.get("id", 0)),
@@ -855,6 +903,7 @@ func _transition_summary_from_payload(
 		"presentation": String(payload.get("presentation", _default_transition_presentation({}))),
 		"deferred": deferred,
 		"sequence": payload.get("sequence", {}),
+		"map_scripts": map_script_summary,
 	}
 
 
@@ -905,6 +954,58 @@ func _get_script_record(script: String) -> Dictionary:
 		return {}
 	var record = scripts.get(script, {})
 	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func _map_script_labels_for_type(script_type: String) -> Array:
+	var labels := []
+	var scripts = _script_data.get("scripts", {})
+	if typeof(scripts) != TYPE_DICTIONARY:
+		return labels
+
+	for script_key in scripts.keys():
+		var record = scripts.get(script_key, {})
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		if String(record.get("kind", "")) != "map_script_table":
+			continue
+		var instructions = record.get("instructions", [])
+		if typeof(instructions) != TYPE_ARRAY:
+			continue
+		for instruction in instructions:
+			if typeof(instruction) != TYPE_DICTIONARY:
+				continue
+			if String(instruction.get("op", "")) != "map_script":
+				continue
+			var args = instruction.get("args", [])
+			if typeof(args) != TYPE_ARRAY or args.size() < 2:
+				continue
+			if String(args[0]) != script_type:
+				continue
+			var label := String(args[1])
+			if not label.is_empty() and label != "0x0":
+				labels.append(label)
+			return labels
+	return labels
+
+
+func _map_script_source_function(script_type: String) -> String:
+	if script_type == MAP_SCRIPT_ON_LOAD:
+		return "RunOnLoadMapScript"
+	return "MapHeaderRunScriptType"
+
+
+func _result_array_count(result: Dictionary, key: String) -> int:
+	var value = result.get(key, [])
+	return value.size() if typeof(value) == TYPE_ARRAY else 0
+
+
+func _configure_script_vm_dependencies() -> void:
+	if _script_vm == null:
+		return
+	if _game_state != null and _script_vm.has_method("configure_game_state"):
+		_script_vm.configure_game_state(_game_state)
+	if _data_registry != null and _script_vm.has_method("configure_data_registry"):
+		_script_vm.configure_data_registry(_data_registry)
 
 
 func _get_text_record(text_label: String) -> Dictionary:

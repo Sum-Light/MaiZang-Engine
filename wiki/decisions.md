@@ -233,3 +233,9 @@ Reason: Source `src/text.c` treats `EXT_CTRL_CODE_COLOR`, `EXT_CTRL_CODE_SHADOW`
 Decision: Expand `{B_PC_CREATOR_NAME}` in runtime message text with explicit `BattleStringExpandPlaceholders` provenance and a `value_key` showing the chosen source branch.
 
 Reason: `{B_PC_CREATOR_NAME}` is encoded as `B_TXT_PC_CREATOR_NAME = 0x27` in the battle-message placeholder table, not as a normal `StringExpandPlaceholders` id. Source `battle_message.c` selects Someone's, Lanette's, or Bill's PC creator text from `FLAG_SYS_PC_LANETTE` and the `IS_FRLG` branch. Recording that provenance keeps the Godot text path source-faithful while still letting the visible message text expand cleanly.
+
+## 2026-07-04 - Dispatch map header scripts through EventManager
+
+Decision: Centralize generated map header script lifecycle dispatch in `EventManager.run_map_script_type`, starting with automatic `MAP_SCRIPT_ON_LOAD` during initial and transition map loads.
+
+Reason: Source `InitMap` loads the layout before calling `RunOnLoadMapScript`, and `RunOnLoadMapScript` delegates to `MapHeaderRunScriptType` to run the first matching map-script table entry immediately. Keeping that lifecycle in `EventManager` lets Godot reuse the same `ScriptVM` and `MapRuntime` effect application path for startup, immediate transitions, and deferred presentation loads without coupling map rendering or transition animation code to script interpretation.

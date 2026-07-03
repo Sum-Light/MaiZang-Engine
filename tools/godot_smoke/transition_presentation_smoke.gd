@@ -130,6 +130,8 @@ func _run() -> void:
 	_assert(game_state.current_map_id == BRENDANS_HOUSE_1F, "expected deferred truck transition to load Brendan house")
 	_assert(game_state.player_grid_position == Vector2i(8, 8), "expected truck transition destination")
 	_assert(player.grid_position == Vector2i(8, 8), "expected player node at truck destination")
+	_assert(runtime.get_metatile_id_at(Vector2i(5, 4)) == 624, "expected Brendan OnLoad open moving-box metatile")
+	_assert(runtime.get_metatile_id_at(Vector2i(5, 2)) == 616, "expected Brendan OnLoad closed moving-box metatile")
 	_assert(player.visible, "expected player visible after non-door transition")
 	_assert(not overlay.visible, "expected overlay hidden after truck transition")
 
@@ -160,6 +162,8 @@ func _run() -> void:
 	var door_animation_position := Vector2i(14, 7)
 	_assert(game_state.current_map_id == MAYS_HOUSE_1F, "expected deferred door warp to load May house")
 	_assert(game_state.player_grid_position == Vector2i(2, 8), "expected May house warp-id destination")
+	_assert(runtime.get_metatile_id_at(Vector2i(5, 4)) == 624, "expected May OnLoad open moving-box metatile")
+	_assert(runtime.get_metatile_id_at(Vector2i(5, 2)) == 616, "expected May OnLoad closed moving-box metatile")
 	_assert(
 		door_renderer.frame_indices_at(door_animation_position) == [-1, 0, 1, 2, 2, 1, 0, -1],
 		"expected source door open/close frame order to reach renderer"

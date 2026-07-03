@@ -68,6 +68,7 @@ func _ready() -> void:
 			EventManager.configure_transition_deferred(true)
 		EventManager.transition_sequence_requested.connect(_on_transition_sequence_requested)
 
+	_run_initial_map_scripts()
 	_update_status()
 
 
@@ -189,6 +190,17 @@ func _create_transition_overlay() -> void:
 	_transition_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_transition_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_transition_overlay.add_child(_transition_label)
+
+
+func _run_initial_map_scripts() -> void:
+	if EventManager.has_method("configure_from_script_data"):
+		EventManager.configure_from_script_data(DataRegistry.get_start_script_data())
+	if EventManager.has_method("run_map_script_type"):
+		EventManager.run_map_script_type("MAP_SCRIPT_ON_LOAD", {
+			"trigger": "initial_load",
+			"map": GameState.current_map_id,
+			"position": [GameState.player_grid_position.x, GameState.player_grid_position.y],
+		})
 
 
 func _update_status() -> void:

@@ -184,6 +184,22 @@ func _init() -> void:
 		typeof(brendan_object_events) == TYPE_ARRAY and runtime.get_object_events(true).size() == brendan_object_events.size(),
 		"expected runtime object events to match Brendan house"
 	)
+	_assert(
+		runtime.get_metatile_id_at(Vector2i(5, 4)) == 624,
+		"expected Brendan house OnLoad to apply open moving-box metatile"
+	)
+	_assert(
+		runtime.get_collision_at(Vector2i(5, 4)) == 3,
+		"expected Brendan house OnLoad open moving-box collision"
+	)
+	_assert(
+		runtime.get_metatile_id_at(Vector2i(5, 2)) == 616,
+		"expected Brendan house OnLoad to apply closed moving-box metatile"
+	)
+	_assert(
+		runtime.get_collision_at(Vector2i(5, 2)) == 3,
+		"expected Brendan house OnLoad closed moving-box collision"
+	)
 	_assert(not transition_lines.is_empty(), "expected transition dispatch to emit lines")
 	_assert(
 		_lines_contain(transition_lines, "Transition effects: 1 applied, 0 skipped"),
@@ -265,6 +281,14 @@ func _init() -> void:
 	var door_open_animation = door_open_step.get("animation", {})
 	_assert(may_house_door_warp.get("type", "") == "warp_event", "expected May house door warp")
 	_assert(game_state.current_map_id == MAYS_HOUSE_1F, "expected door warp to load May house")
+	_assert(
+		runtime.get_metatile_id_at(Vector2i(5, 4)) == 624,
+		"expected May house OnLoad to apply open moving-box metatile"
+	)
+	_assert(
+		runtime.get_metatile_id_at(Vector2i(5, 2)) == 616,
+		"expected May house OnLoad to apply closed moving-box metatile"
+	)
 	_assert(door_warp_sequence.get("presentation", "") == "door", "expected door presentation sequence")
 	_assert(
 		_step_ops(door_warp_sequence) == [

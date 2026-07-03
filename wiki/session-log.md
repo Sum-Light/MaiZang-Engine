@@ -137,3 +137,8 @@
 - Added `MapRuntime.apply_script_field_effects` and `EventManager` dispatch integration so `setmetatile` mutates the current in-memory map grid, updates metatile/collision/raw data, preserves elevation, and emits `map_changed`.
 - Expanded Godot smoke coverage for Brendan house `MAP_SCRIPT_ON_LOAD` moving boxes and the running-shoes manual book metatile, plus MapRuntime application of those effects.
 - Verified `script_vm_smoke.gd`, `map_runtime_smoke.gd`, `event_manager_smoke.gd`, `transition_presentation_smoke.gd`, `data_registry_text_smoke.gd`, and `git diff --check`.
+- Traced `MAP_SCRIPT_ON_LOAD` lifecycle through `include/constants/map_scripts.h`, `src/script.c:RunOnLoadMapScript/MapHeaderRunScriptType`, and `src/fieldmap.c:InitMap/InitMapFromSavedGame`, confirming it runs after layout load and before first draw.
+- Added `EventManager.run_map_script_type` with first-pass automatic `MAP_SCRIPT_ON_LOAD` dispatch for initial map load and transition map load, reusing `ScriptVM` execution plus `MapRuntime` effect application.
+- Updated immediate and deferred transition paths so Brendan/May house moving-box `setmetatile` effects are applied automatically when those maps load.
+- Expanded `event_manager_smoke.gd` and `transition_presentation_smoke.gd` to verify automatic OnLoad moving-box metatiles for Brendan and May houses.
+- Verified `git diff --check`, `event_manager_smoke.gd`, `transition_presentation_smoke.gd`, `script_vm_smoke.gd`, `map_runtime_smoke.gd`, and Godot 4.7 headless main startup.
