@@ -161,3 +161,9 @@ Reason: Map transitions include visible timing and order from source `DoWarp`, `
 Decision: Parse `include/constants/metatile_behaviors.h` during tileset export and store both numeric behavior ids and source `MB_*` names in generated tileset JSON.
 
 Reason: Source gameplay code such as `SetUpWarpExitTask` branches through named metatile behavior helper functions, not through visually meaningful tile ids. Preserving names lets Godot runtime systems choose behavior from source-readable data while still consuming normal Godot-friendly generated maps and textures.
+
+## 2026-07-04 - Defer transition map application during presentation
+
+Decision: Let `Main` enable deferred transition application and let `TransitionSequencePlayer` apply the pending map change at the sequence `load_map` step.
+
+Reason: Source door and warp transitions perform visible work before and after the actual map load, including player step-in, player hiding, fade order, and destination exit movement. Deferring the runtime map switch lets the Godot presentation layer preserve that order while keeping `EventManager` able to apply transitions immediately for headless/domain tests when no presenter is configured.

@@ -30,6 +30,9 @@ var _script_vm: Node = null
 var _map_runtime: Node = null
 var _game_state: Node = null
 var _data_registry: Node = null
+var _defer_transition_apply := false
+var _next_transition_sequence_id := 1
+var _pending_transitions := {}
 
 
 func _ready() -> void:
@@ -63,6 +66,29 @@ func configure_game_state(game_state: Node) -> void:
 
 func configure_data_registry(data_registry: Node) -> void:
 	_data_registry = data_registry
+
+
+func configure_transition_deferred(value: bool) -> void:
+	_defer_transition_apply = value
+	if not _defer_transition_apply:
+		_pending_transitions.clear()
+
+
+func has_pending_transition(sequence_id: int) -> bool:
+	return _pending_transitions.has(sequence_id)
+
+
+func apply_deferred_transition(sequence_id: int) -> Dictionary:
+	var pending = _pending_transitions.get(sequence_id, {})
+	if typeof(pending) != TYPE_DICTIONARY or pending.is_empty():
+		return {
+			"status": "missing_pending_transition",
+			"id": sequence_id,
+			"position_applied": false,
+		}
+
+	_pending_transitions.erase(sequence_id)
+	return _apply_transition_payload(pending)
 
 
 func dispatch_interaction(interaction: Dictionary) -> void:
@@ -358,8 +384,11 @@ func _apply_transition_effects(transition_effects: Array) -> Dictionary:
 
 		var tileset_data: Dictionary = _data_registry.get_tileset_data_for_map(map_id)
 		var map_size: Vector2i = _data_registry.get_map_size(map_id)
+		var sequence_id := _next_transition_sequence_id
+		_next_transition_sequence_id += 1
 		var sequence := _build_transition_sequence(
 			effect,
+			sequence_id,
 			source_map_id,
 			source_position,
 			trigger_position,
@@ -372,29 +401,26 @@ func _apply_transition_effects(transition_effects: Array) -> Dictionary:
 		if not sequence.is_empty():
 			transition_sequence_requested.emit(sequence)
 
-		_map_runtime.configure_from_data(map_data, tileset_data, map_size)
-		if _game_state != null:
-			_game_state.current_map_id = map_id
-
-		var position_applied := false
-		if position != Vector2i(-1, -1):
-			position_applied = (
-				_map_runtime.has_method("set_player_grid_position")
-				and _map_runtime.set_player_grid_position(position, _game_state)
-			)
-
 		var script_data: Dictionary = _data_registry.get_script_data_for_map(map_id)
-		configure_from_script_data(script_data)
-		summary["applied"].append({
+		var pending_transition := {
+			"id": sequence_id,
 			"op": op,
 			"map": map_id,
+			"map_data": map_data,
+			"tileset_data": tileset_data,
+			"map_size": map_size,
+			"script_data": script_data,
 			"position": position,
-			"position_applied": position_applied,
 			"position_source": position_source,
 			"style": String(effect.get("style", "")),
 			"presentation": String(effect.get("presentation", _default_transition_presentation(effect))),
 			"sequence": sequence,
-		})
+		}
+		if _defer_transition_apply:
+			_pending_transitions[sequence_id] = pending_transition
+			summary["applied"].append(_transition_summary_from_payload(pending_transition, false, true))
+		else:
+			summary["applied"].append(_apply_transition_payload(pending_transition))
 	return summary
 
 
@@ -512,6 +538,7 @@ func _warp_id_from_value(value) -> Dictionary:
 
 func _build_transition_sequence(
 	effect: Dictionary,
+	sequence_id: int,
 	source_map_id: String,
 	source_position: Vector2i,
 	trigger_position: Vector2i,
@@ -530,6 +557,7 @@ func _build_transition_sequence(
 		steps = _normal_warp_steps(destination_map_id, destination_position, exit_task)
 
 	return {
+		"id": sequence_id,
 		"type": "map_transition",
 		"presentation": presentation,
 		"style": String(effect.get("style", "normal")),
@@ -615,6 +643,16 @@ func _normal_warp_steps(
 		{"op": "load_map", "map": destination_map_id, "position": destination_position, "source": "WarpIntoMap"},
 		{"op": "fade_in", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeInScreen"},
 		_exit_task_step(exit_task),
+		{
+			"op": "conditional_exit_door_player_step",
+			"condition": "destination_metatile_behavior_is_door",
+			"condition_result": String(exit_task.get("task", "")) == "Task_ExitDoor",
+			"movement_action": "MOVEMENT_ACTION_WALK_NORMAL_DOWN",
+			"from": destination_position,
+			"to": destination_position + Vector2i.DOWN,
+			"duration_frames": WALK_NORMAL_TILE_FRAMES,
+			"source": "Task_ExitDoor",
+		},
 		{"op": "unlock_controls", "source": "Task_ExitDoor/Task_ExitNonDoor"},
 	]
 
@@ -707,6 +745,57 @@ func _current_player_position() -> Vector2i:
 	if _game_state != null:
 		return _game_state.player_grid_position
 	return Vector2i.ZERO
+
+
+func _apply_transition_payload(payload: Dictionary) -> Dictionary:
+	var map_id := String(payload.get("map", ""))
+	var map_data = payload.get("map_data", {})
+	var tileset_data = payload.get("tileset_data", {})
+	var map_size = payload.get("map_size", Vector2i.ZERO)
+	var position = payload.get("position", Vector2i(-1, -1))
+	if typeof(map_data) != TYPE_DICTIONARY or typeof(tileset_data) != TYPE_DICTIONARY:
+		return _transition_summary_from_payload(payload, false, false, "invalid_transition_payload")
+
+	if typeof(map_size) != TYPE_VECTOR2I:
+		map_size = _map_size_from_map_data(map_data)
+	if typeof(position) != TYPE_VECTOR2I:
+		position = Vector2i(-1, -1)
+
+	_map_runtime.configure_from_data(map_data, tileset_data, map_size)
+	if _game_state != null:
+		_game_state.current_map_id = map_id
+
+	var position_applied := false
+	if position != Vector2i(-1, -1):
+		position_applied = (
+			_map_runtime.has_method("set_player_grid_position")
+			and _map_runtime.set_player_grid_position(position, _game_state)
+		)
+
+	var script_data = payload.get("script_data", {})
+	configure_from_script_data(script_data if typeof(script_data) == TYPE_DICTIONARY else {})
+	return _transition_summary_from_payload(payload, position_applied, false)
+
+
+func _transition_summary_from_payload(
+	payload: Dictionary,
+	position_applied: bool,
+	deferred: bool,
+	status := "ok"
+) -> Dictionary:
+	return {
+		"id": int(payload.get("id", 0)),
+		"status": status,
+		"op": String(payload.get("op", "")),
+		"map": String(payload.get("map", "")),
+		"position": payload.get("position", Vector2i(-1, -1)),
+		"position_applied": position_applied,
+		"position_source": String(payload.get("position_source", "")),
+		"style": String(payload.get("style", "")),
+		"presentation": String(payload.get("presentation", _default_transition_presentation({}))),
+		"deferred": deferred,
+		"sequence": payload.get("sequence", {}),
+	}
 
 
 func _record_skipped_transition(

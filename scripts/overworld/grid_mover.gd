@@ -7,6 +7,7 @@ signal moved(grid_position: Vector2i)
 
 var grid_position := Vector2i.ZERO
 var _is_moving := false
+var _move_tween: Tween = null
 
 
 func set_grid_position(value: Vector2i) -> void:
@@ -21,12 +22,30 @@ func try_move(direction: Vector2i) -> bool:
 	_is_moving = true
 	grid_position += direction
 
-	var tween := create_tween()
-	tween.tween_property(self, "position", _grid_to_world(grid_position), move_duration) \
+	_move_tween = create_tween()
+	_move_tween.tween_property(self, "position", _grid_to_world(grid_position), move_duration) \
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_OUT)
-	tween.finished.connect(_on_move_finished)
+	_move_tween.finished.connect(_on_move_finished)
 	return true
+
+
+func animate_grid_position(value: Vector2i, duration: float) -> void:
+	if _move_tween != null and _move_tween.is_running():
+		_move_tween.kill()
+
+	if duration <= 0.0:
+		set_grid_position(value)
+		return
+
+	_is_moving = true
+	grid_position = value
+	_move_tween = create_tween()
+	_move_tween.tween_property(self, "position", _grid_to_world(value), duration) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_OUT)
+	await _move_tween.finished
+	_is_moving = false
 
 
 func _on_move_finished() -> void:

@@ -98,6 +98,7 @@ func _init() -> void:
 	var truck_transition_sequence = captured_sequences[0] if captured_sequences.size() > 0 else {}
 	var truck_exit_task := _exit_task(truck_transition_sequence)
 	var truck_exit_step := _first_step(truck_transition_sequence, "exit_task_select")
+	var truck_conditional_step := _first_step(truck_transition_sequence, "conditional_exit_door_player_step")
 	var house_script_result := manager.run_script("LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor")
 	var old_map_script_result := manager.run_script("LittlerootTown_EventScript_Twin")
 	var brendan_map_data: Dictionary = registry.get_map_data(BRENDANS_HOUSE_1F)
@@ -162,7 +163,15 @@ func _init() -> void:
 	)
 	_assert(truck_transition_sequence.get("presentation", "") == "silent", "expected truck warp silent presentation")
 	_assert(
-		_step_ops(truck_transition_sequence) == ["lock_controls", "fade_out", "load_map", "fade_in", "exit_task_select", "unlock_controls"],
+		_step_ops(truck_transition_sequence) == [
+			"lock_controls",
+			"fade_out",
+			"load_map",
+			"fade_in",
+			"exit_task_select",
+			"conditional_exit_door_player_step",
+			"unlock_controls",
+		],
 		"unexpected normal transition sequence steps"
 	)
 	_assert(String(truck_exit_task.get("task", "")) == "Task_ExitNonDoor", "expected truck warp exit task")
@@ -171,6 +180,7 @@ func _init() -> void:
 		String(truck_exit_step.get("selected", "")) == String(truck_exit_task.get("task", "")),
 		"expected truck exit step to record selected task"
 	)
+	_assert(not bool(truck_conditional_step.get("condition_result", true)), "expected no truck exit-door player step")
 	_assert(house_script_result.get("status", "") == "ok", "expected transitioned script data to run Brendan house script")
 	_assert(old_map_script_result.get("status", "") == "missing_script", "expected old map script to be unavailable after transition")
 
@@ -182,6 +192,7 @@ func _init() -> void:
 	var map_warp_sequence = captured_sequences[0] if captured_sequences.size() > 0 else {}
 	var map_warp_exit_task := _exit_task(map_warp_sequence)
 	var map_warp_exit_step := _first_step(map_warp_sequence, "exit_task_select")
+	var map_warp_conditional_step := _first_step(map_warp_sequence, "conditional_exit_door_player_step")
 	var town_script_result := manager.run_script("LittlerootTown_EventScript_Twin")
 	var current_map_after_map_warp: String = game_state.current_map_id
 	_assert(brendan_exit_warp.get("type", "") == "warp_event", "expected Brendan house exit warp")
@@ -201,6 +212,7 @@ func _init() -> void:
 		String(map_warp_exit_step.get("selected", "")) == String(map_warp_exit_task.get("task", "")),
 		"expected map warp exit step to record selected task"
 	)
+	_assert(bool(map_warp_conditional_step.get("condition_result", false)), "expected town destination exit-door player step")
 	_assert(town_script_result.get("status", "") == "ok", "expected town script data after map warp")
 
 	captured.clear()

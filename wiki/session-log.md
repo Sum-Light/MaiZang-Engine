@@ -84,3 +84,6 @@
 - Extended `MapRuntime` cell queries to expose source metatile behavior names alongside numeric behavior ids.
 - Traced `SetUpWarpExitTask` through `MetatileBehavior_IsDoor`, `MetatileBehavior_IsDirectionalStairWarp`, and `MetatileBehavior_IsNonAnimDoor`, then made transition sequences record the selected destination exit task from generated behavior names.
 - Expanded Godot smoke tests to verify generated behavior names and source-derived warp exit task selection for silent, normal, and door transitions.
+- Added deferred transition application for presentation playback: `EventManager` can queue a pending transition, and `TransitionSequencePlayer` applies it at the source-traced `load_map` step.
+- Moved first-pass transition playback out of `Main` into `TransitionSequencePlayer`, covering black fade overlay, input lock, player hide/show, scripted player step-in/out movement, and final `Task_ExitDoor` position updates.
+- Expanded transition smoke coverage so a Brendan house exit now verifies the player finishes one tile below the Littleroot door at `(5,9)`, matching the source-visible exit movement.
