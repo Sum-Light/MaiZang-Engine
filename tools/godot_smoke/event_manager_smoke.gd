@@ -155,13 +155,30 @@ func _init() -> void:
 	_assert(house_script_result.get("status", "") == "ok", "expected transitioned script data to run Brendan house script")
 	_assert(old_map_script_result.get("status", "") == "missing_script", "expected old map script to be unavailable after transition")
 
+	captured.clear()
+	var brendan_exit_warp := runtime.get_warp_event_target(Vector2i(8, 8))
+	manager.dispatch_interaction(brendan_exit_warp)
+	var map_warp_lines = captured.get("lines", PackedStringArray())
+	var town_script_result := manager.run_script("LittlerootTown_EventScript_Twin")
+	_assert(brendan_exit_warp.get("type", "") == "warp_event", "expected Brendan house exit warp")
+	_assert(game_state.current_map_id == START_MAP, "expected map warp to return to LittlerootTown")
+	_assert(game_state.player_grid_position == Vector2i(5, 8), "expected map warp to use destination warp-id coordinates")
+	_assert(runtime.get_map_size() == Vector2i(20, 20), "expected runtime to reload town size")
+	_assert(not map_warp_lines.is_empty(), "expected map-warp dispatch to emit lines")
+	_assert(
+		_lines_contain(map_warp_lines, "Warp effects: 1 applied, 0 skipped"),
+		"expected map warp effect summary in emitted lines"
+	)
+	_assert(town_script_result.get("status", "") == "ok", "expected town script data after map warp")
+
 	print(JSON.stringify({
 		"event_manager_smoke": "ok",
 		"twin": _preview_summary(twin_preview),
 		"town_sign": _preview_summary(sign_preview),
 		"need_pokemon": _preview_summary(need_pokemon_preview),
 		"player_position_after_coord_dispatch": _vector_to_array(player_position_after_coord_dispatch),
-		"current_map_after_transition": game_state.current_map_id,
+		"current_map_after_transition": BRENDANS_HOUSE_1F,
+		"current_map_after_map_warp": game_state.current_map_id,
 		"rival_position_after_object_dispatch": _vector_to_array(rival_position_after_object_dispatch),
 	}))
 	manager.free()

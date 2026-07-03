@@ -2,6 +2,8 @@ extends Node
 
 signal debug_message_requested(lines: PackedStringArray)
 
+const WARP_ID_NONE_VALUE := -1
+
 var _script_data: Dictionary = {}
 var _script_vm: Node = null
 var _map_runtime: Node = null
@@ -115,14 +117,20 @@ func _emit_coord_event(interaction: Dictionary, event_data: Dictionary) -> void:
 
 
 func _emit_warp_event(interaction: Dictionary, event_data: Dictionary) -> void:
-	debug_message_requested.emit(PackedStringArray([
-		"Warp placeholder",
+	var lines := PackedStringArray([
+		"Warp event",
 		"Position: %s" % interaction.get("position", Vector2i.ZERO),
 		"Destination: %s / warp %s" % [
 			String(event_data.get("dest_map", "unknown")),
 			String(event_data.get("dest_warp_id", "?")),
 		],
-	]))
+	])
+	var transition_summary := _apply_map_warp_event(event_data)
+	lines.append("Warp effects: %d applied, %d skipped" % [
+		_movement_summary_count(transition_summary, "applied"),
+		_movement_summary_count(transition_summary, "skipped"),
+	])
+	debug_message_requested.emit(lines)
 
 
 func get_script_preview(script: String) -> Dictionary:
@@ -300,6 +308,7 @@ func _apply_transition_effects(transition_effects: Array) -> Dictionary:
 		var op := String(effect.get("op", ""))
 		var map_id := String(effect.get("map", ""))
 		var position := _transition_position(effect)
+		var position_source := "explicit" if bool(effect.get("has_explicit_position", false)) else "unset"
 		if map_id.is_empty():
 			_record_skipped_transition(summary, "missing_map", map_id, op, position)
 			continue
@@ -314,6 +323,15 @@ func _apply_transition_effects(transition_effects: Array) -> Dictionary:
 			continue
 
 		var map_data: Dictionary = _data_registry.get_map_data(map_id)
+		if not bool(effect.get("has_explicit_position", false)):
+			var warp_id_info := _warp_id_from_value(effect.get("warp_id", WARP_ID_NONE_VALUE))
+			if not bool(warp_id_info.get("valid", false)):
+				_record_skipped_transition(summary, String(warp_id_info.get("reason", "invalid_warp_id")), map_id, op, position)
+				continue
+			var destination_position := _destination_position_for_warp_id(map_data, int(warp_id_info.get("value", WARP_ID_NONE_VALUE)))
+			position = destination_position.get("position", Vector2i(-1, -1))
+			position_source = String(destination_position.get("source", "warp_id"))
+
 		var tileset_data: Dictionary = _data_registry.get_tileset_data_for_map(map_id)
 		var map_size: Vector2i = _data_registry.get_map_size(map_id)
 		_map_runtime.configure_from_data(map_data, tileset_data, map_size)
@@ -321,7 +339,7 @@ func _apply_transition_effects(transition_effects: Array) -> Dictionary:
 			_game_state.current_map_id = map_id
 
 		var position_applied := false
-		if bool(effect.get("has_explicit_position", false)):
+		if position != Vector2i(-1, -1):
 			position_applied = (
 				_map_runtime.has_method("set_player_grid_position")
 				and _map_runtime.set_player_grid_position(position, _game_state)
@@ -334,9 +352,25 @@ func _apply_transition_effects(transition_effects: Array) -> Dictionary:
 			"map": map_id,
 			"position": position,
 			"position_applied": position_applied,
+			"position_source": position_source,
 			"style": String(effect.get("style", "")),
 		})
 	return summary
+
+
+func _apply_map_warp_event(event_data: Dictionary) -> Dictionary:
+	return _apply_transition_effects([
+		{
+			"op": "map_warp",
+			"line": 0,
+			"map": String(event_data.get("dest_map", "")),
+			"warp_id": event_data.get("dest_warp_id", WARP_ID_NONE_VALUE),
+			"position": [-1, -1],
+			"has_explicit_position": false,
+			"uses_warp_id": true,
+			"style": "normal",
+		},
+	])
 
 
 func _transition_position(transition_effect: Dictionary) -> Vector2i:
@@ -346,6 +380,61 @@ func _transition_position(transition_effect: Dictionary) -> Vector2i:
 	if typeof(position) == TYPE_ARRAY and position.size() >= 2:
 		return Vector2i(int(position[0]), int(position[1]))
 	return Vector2i(-1, -1)
+
+
+func _destination_position_for_warp_id(map_data: Dictionary, warp_id: int) -> Dictionary:
+	var events = map_data.get("events", {})
+	var warp_events = events.get("warp_events", []) if typeof(events) == TYPE_DICTIONARY else []
+	if warp_id >= 0 and typeof(warp_events) == TYPE_ARRAY and warp_id < warp_events.size():
+		var warp_event = warp_events[warp_id]
+		if typeof(warp_event) == TYPE_DICTIONARY:
+			return {
+				"position": Vector2i(
+					int(warp_event.get("x", -1)),
+					int(warp_event.get("y", -1))
+				),
+				"source": "warp_id",
+			}
+
+	var map_size := _map_size_from_map_data(map_data)
+	if map_size == Vector2i.ZERO:
+		return {
+			"position": Vector2i(-1, -1),
+			"source": "unresolved",
+		}
+	return {
+		"position": Vector2i(map_size.x / 2, map_size.y / 2),
+		"source": "center_fallback",
+	}
+
+
+func _map_size_from_map_data(map_data: Dictionary) -> Vector2i:
+	var layout_info = map_data.get("layout", {})
+	if typeof(layout_info) != TYPE_DICTIONARY:
+		return Vector2i.ZERO
+	return Vector2i(
+		int(layout_info.get("width", 0)),
+		int(layout_info.get("height", 0))
+	)
+
+
+func _warp_id_from_value(value) -> Dictionary:
+	match typeof(value):
+		TYPE_INT:
+			return {"valid": true, "value": int(value)}
+		TYPE_FLOAT:
+			return {"valid": true, "value": int(value)}
+
+	var text := String(value).strip_edges()
+	if text.is_empty():
+		return {"valid": true, "value": WARP_ID_NONE_VALUE}
+	if text == "WARP_ID_NONE":
+		return {"valid": true, "value": WARP_ID_NONE_VALUE}
+	if text == "WARP_ID_DYNAMIC":
+		return {"valid": false, "reason": "unsupported_dynamic_warp_id"}
+	if text.is_valid_int():
+		return {"valid": true, "value": int(text)}
+	return {"valid": false, "reason": "invalid_warp_id"}
 
 
 func _record_skipped_transition(

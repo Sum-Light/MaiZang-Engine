@@ -131,3 +131,21 @@ Reason: Real warps need more than one generated map. A manifest-backed registry 
 Decision: Let `EventManager` consume `ScriptVM.transition_effects` only when the destination map has generated data and the script provides an explicit destination position.
 
 Reason: LittlerootTown's truck intro uses `warpsilent MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F, 8, 8` and the May equivalent, so explicit-position transitions unlock a concrete vertical slice. Warp-id-only resolution needs destination warp lookup and source transition edge cases, so it remains a later traced implementation.
+
+## 2026-07-04 - Resolve generated map warps by destination warp id
+
+Decision: Let `MapRuntime` resolve generated warp events by x/y/elevation and let `EventManager` apply map warp transitions by loading the generated destination map and placing the player at `events.warp_events[warp_id]` in that destination map.
+
+Reason: Source `field_control_avatar.c` checks coordinate events before step warps, handles front-cell door warps through the player's facing tile, and source `overworld.c` places the player from the destination map's warp event when a warp id is supplied. Applying that rule gives the Godot slice visible source-consistent house entry/exit behavior while keeping map loading, fade timing, and door presentation in Godot-native systems.
+
+## 2026-07-04 - Preserve transition presentation details
+
+Decision: Treat source-visible transition sequencing as required behavior, not polish. Map transitions should eventually reproduce door animation, player step-in movement, fade/black-screen ordering, frame waits, audio cues, and reveal timing in addition to changing the logical map and player position.
+
+Reason: The goal is to match the source game's in-game feel and interaction details. Godot does not need GBA palette or binary storage limitations, but it does need the same player-facing timing and presentation results when those details are part of the original interaction.
+
+## 2026-07-04 - Preserve visible behavior for all features
+
+Decision: Apply the same fidelity rule to every script command, gameplay feature, and code-backed system: trace source code and referenced resources, then reproduce source-visible behavior, ordering, waits, animation/audio/screen effects, UI flow, and gameplay results in Godot-native systems.
+
+Reason: The port should not become a loose logical approximation. Modern Godot architecture is for implementation clarity and better asset/runtime representation, not permission to drop the original interaction details players can see or feel.

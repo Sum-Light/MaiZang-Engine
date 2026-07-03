@@ -58,10 +58,28 @@ func _on_player_moved(grid_position: Vector2i) -> void:
 	if not coord_event.is_empty():
 		_movement_note = "coord %s" % grid_position
 		EventManager.dispatch_interaction(coord_event)
+		_update_status()
+		return
+
+	if MapRuntime.has_method("get_warp_event_target"):
+		var warp_event := MapRuntime.get_warp_event_target(grid_position)
+		if not warp_event.is_empty():
+			_movement_note = "warp %s" % grid_position
+			EventManager.dispatch_interaction(warp_event)
+			_update_status()
+			return
 	_update_status()
 
 
 func _on_player_movement_blocked(target_position: Vector2i, cell_info: Dictionary) -> void:
+	if MapRuntime.has_method("get_warp_event_target"):
+		var warp_event := MapRuntime.get_warp_event_target(target_position)
+		if not warp_event.is_empty():
+			_movement_note = "warp %s" % target_position
+			EventManager.dispatch_interaction(warp_event)
+			_update_status()
+			return
+
 	_movement_note = "blocked %s collision %d" % [
 		target_position,
 		int(cell_info.get("collision", MapRuntime.COLLISION_IMPASSABLE)),

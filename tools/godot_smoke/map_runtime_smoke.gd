@@ -26,6 +26,7 @@ func _init() -> void:
 	var twin_approach_cell := Vector2i(19, 8)
 	var bg_event_cell := Vector2i(15, 13)
 	var warp_cell := Vector2i(7, 16)
+	var mays_house_door_cell := Vector2i(14, 8)
 	var need_pokemon_coord_cell := Vector2i(10, 1)
 	var running_shoes_coord_cell := Vector2i(10, 2)
 	var blocked_cell := _first_blocked_cell(map_data)
@@ -50,6 +51,12 @@ func _init() -> void:
 	game_state.set_var("VAR_LITTLEROOT_TOWN_STATE", 0)
 	_assert(runtime.get_bg_events_at(bg_event_cell).size() == 1, "expected town sign bg event")
 	_assert(runtime.get_warp_events_at(warp_cell).size() == 1, "expected Birch lab warp event")
+	var mays_house_warp_target := runtime.get_warp_event_target(mays_house_door_cell)
+	_assert(mays_house_warp_target.get("type", "") == "warp_event", "expected May house warp target")
+	_assert(
+		mays_house_warp_target.get("event", {}).get("dest_map", "") == "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F",
+		"expected May house warp destination"
+	)
 	_assert(
 		runtime.get_interaction_target(Vector2i(15, 10), Vector2i.RIGHT).get("type", "") == "object_event",
 		"expected object interaction target"
@@ -170,6 +177,7 @@ func _init() -> void:
 		"object_cell": _cell_info_summary(runtime.get_cell_info(object_cell)),
 		"bg_event_cell": _cell_info_summary(runtime.get_cell_info(bg_event_cell)),
 		"warp_cell": _cell_info_summary(runtime.get_cell_info(warp_cell)),
+		"mays_house_warp": _target_summary(mays_house_warp_target),
 		"blocked_cell": _cell_info_summary(runtime.get_cell_info(blocked_cell)),
 	}))
 	game_state.free()

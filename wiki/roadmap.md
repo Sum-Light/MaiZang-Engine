@@ -32,7 +32,9 @@
 
 - Index object, BG/sign, warp, and coordinate events for interaction lookup. First pass done in `MapRuntime`.
 - Add an interaction dispatcher path from player facing direction to debug dialogue. First pass done with `EventManager`; real script execution remains.
-- Trigger coordinate events after player movement. First pass done for normal `var`/`var_value` coord triggers through `MapRuntime` and `EventManager`; full step-based script chain remains future work.
+- Trigger coordinate events after player movement. First pass done for normal `var`/`var_value` coord triggers through `MapRuntime` and `EventManager`; full weather, wild encounter, step-count, and forced-movement chain remains future work.
+- Trigger generated map warp events. First pass done for source-style x/y/elevation matching, step warps after coordinate checks, and blocked front-cell door warps; generated destination maps are loaded through warp-id coordinates when available.
+- Add source-visible transition presentation. Future work must trace and reproduce door animation, player step-in, fade/black-screen ordering, frame waits, audio cues, and destination reveal timing for map transitions instead of treating warps as instant logical map changes.
 - Parse `.inc` event scripts into labels and instructions. First pass done for `LittlerootTown`, including script labels, movement labels, local text labels, and direct `msgbox`/`message` references.
 - Preview simple generated dialogue from object/BG event scripts. First pass done through `EventManager.get_script_preview`; this is not a full `ScriptVM`.
 - Add a minimal `ScriptVM` execution path. First pass done for synchronous dialogue scripts, including `msgbox`, `message`, source-derived `MSGBOX_NPC/SIGN/DEFAULT` expansion, basic flow control, simple flag/var operations, and VM result reporting.
@@ -43,7 +45,7 @@
   - `checkplayergender`. First pass done by reading `GameState.player_gender` and writing `VAR_RESULT` as `MALE`/`FEMALE`.
   - `goto`, `call`, `return`, `end`. First pass done.
   - `goto_if_eq`, `call_if_eq`, `call_if_set`, `call_if_unset`. First pass done for set/unset/eq/ne variants used by the first slice.
-  - `warp`, `warpsilent`. First pass done as `ScriptVM` transition-effect records with destination, optional warp id/position, normal/silent style, and source reset semantics. Explicit-position transitions to generated maps now reconfigure runtime map/script data; warp-id lookup and fade/sound sequencing remain.
+  - `warp`, `warpsilent`. First pass done as `ScriptVM` transition-effect records with destination, optional warp id/position, normal/silent style, and source reset semantics. Explicit-position transitions and generated warp-id transitions now reconfigure runtime map/script data; dynamic warp ids, source-visible door/player/fade timing, save callbacks, and destination map scripts remain.
   - `applymovement`, `waitmovement`. First pass done as `ScriptVM` movement-effect records with generated movement label lookup and fast-forward application through `MapRuntime`; real animation/task waiting remains.
   - `lock`, `lockall`, `release`, `releaseall`. First pass records execution effects; real object freezing remains.
   - `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`. First pass done as `ScriptVM` object-effect records with dispatch-time application through `MapRuntime`.

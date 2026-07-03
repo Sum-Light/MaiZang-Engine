@@ -179,6 +179,17 @@ func get_warp_events_at(cell: Vector2i) -> Array:
 	return _events_at(_warp_events_by_position, cell)
 
 
+func get_warp_event_target(cell: Vector2i) -> Dictionary:
+	var elevation := get_elevation_at(cell)
+	for warp_event in get_warp_events_at(cell):
+		if typeof(warp_event) != TYPE_DICTIONARY:
+			continue
+		if not _warp_event_matches_elevation(warp_event, elevation):
+			continue
+		return _interaction_target("warp_event", cell, warp_event, "warp")
+	return {}
+
+
 func get_coord_events() -> Array:
 	return _coord_events.duplicate(true)
 
@@ -219,7 +230,13 @@ func get_interaction_target(origin: Vector2i, direction: Vector2i) -> Dictionary
 
 	var warp_events := get_warp_events_at(origin)
 	if not warp_events.is_empty():
-		return _interaction_target("warp_event", origin, warp_events[0], "warp")
+		var origin_warp_target := get_warp_event_target(origin)
+		if not origin_warp_target.is_empty():
+			return origin_warp_target
+
+	var target_warp_target := get_warp_event_target(target_cell)
+	if not target_warp_target.is_empty():
+		return target_warp_target
 
 	return {}
 
@@ -511,6 +528,11 @@ func _is_object_event_visible(object_event: Dictionary) -> bool:
 
 func _coord_event_matches_elevation(coord_event: Dictionary, elevation: int) -> bool:
 	var event_elevation := int(coord_event.get("elevation", ELEVATION_INVALID))
+	return event_elevation == elevation or event_elevation == ELEVATION_TRANSITION
+
+
+func _warp_event_matches_elevation(warp_event: Dictionary, elevation: int) -> bool:
+	var event_elevation := int(warp_event.get("elevation", ELEVATION_INVALID))
 	return event_elevation == elevation or event_elevation == ELEVATION_TRANSITION
 
 
