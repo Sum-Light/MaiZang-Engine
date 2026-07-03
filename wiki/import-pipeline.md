@@ -76,3 +76,30 @@ Each import run should report:
 - text decode failures
 
 Importers should prefer partial success plus a clear report over all-or-nothing failure.
+
+## Current Tooling
+
+`tools/importer/source_probe.py` is the first read-only importer utility. It accepts `--config`, `--source`, `--map`, and optional `--write-report`.
+
+Current checks:
+
+- source root exists
+- required source files exist
+- map/layout counts
+- first-slice `map.json` and `scripts.inc`
+- first-slice layout lookup
+- layout blockdata and border files
+- primary and secondary tileset files
+
+Latest verified first-slice source facts for `LittlerootTown`:
+
+- map id: `MAP_LITTLEROOT_TOWN`
+- layout id: `LAYOUT_LITTLEROOT_TOWN`
+- size: 20x20
+- primary tileset: `gTileset_General` -> `data/tilesets/primary/general`
+- secondary tileset: `gTileset_Petalburg` -> `data/tilesets/secondary/petalburg`
+- object events: 8
+- warp events: 3
+- coord events: 9
+- connections: 1
+- missing files: none

@@ -45,3 +45,12 @@ The original project should be treated as authoritative source data and behavior
 The first playable milestone should load `LittlerootTown`, render its layout, spawn the player and NPCs, support grid movement, run one simple NPC dialogue, and handle at least one warp placeholder.
 
 This proves the import pipeline, map runtime, event dispatch, and basic presentation pipeline before the project expands into battle systems.
+
+## Current Scaffold
+
+- `GameState` stores current map id, player grid position, flags, and vars.
+- `DataRegistry` stores first-slice constants for LittlerootTown until generated data exists.
+- `GridMover` provides tweened tile movement.
+- `PlayerController` reads directional input and moves one tile at a time.
+- `DebugMapPlane` draws a temporary 20x20 placeholder map for LittlerootTown.
+- `Main` connects the placeholder world, player, camera, and HUD status label.

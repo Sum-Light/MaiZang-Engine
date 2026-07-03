@@ -8,18 +8,18 @@
 
 ## Milestone 1 - Godot Foundation
 
-- Add project directory structure.
-- Add `Main.tscn`, runtime autoloads, and basic input map.
-- Add placeholder player scene with grid movement.
+- Add project directory structure. Done.
+- Add `Main.tscn`, runtime autoloads, and basic input map. Main scene and autoloads are done; movement currently uses default `ui_*` actions.
+- Add placeholder player scene with grid movement. Done.
 - Add smoke-test scene startup.
 
 ## Milestone 2 - Import Pipeline
 
-- Read source path from local config.
-- Parse `layouts.json` and `map.json`.
+- Read source path from local config. First pass done with `tools/import_config.example.json`.
+- Parse `layouts.json` and `map.json`. First probe done for `LittlerootTown`.
 - Decode layout `map.bin` into metatile IDs.
 - Build a generated manifest for maps, layouts, and tilesets.
-- Report missing or unsupported data without failing the whole import.
+- Report missing or unsupported data without failing the whole import. First probe report implemented for required files and first-slice assets.
 
 ## Milestone 3 - Map Rendering Slice
 

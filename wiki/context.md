@@ -14,9 +14,12 @@ The port should be data-driven: preserve source data and assets where practical,
 
 ## Current Godot Project State
 
-- Godot project exists and is almost empty.
+- Godot project now has a minimal runtime scaffold.
 - `project.godot` targets Godot 4.7 features and mobile rendering.
-- No gameplay scenes, scripts, resources, or README existed before this wiki was added.
+- `project.godot` sets `res://scenes/main.tscn` as the main scene.
+- Autoloads are configured for `GameState` and `DataRegistry`.
+- `scenes/main.tscn` displays a 20x20 placeholder LittlerootTown grid and a movable player placeholder.
+- Player movement currently uses Godot's default `ui_up`, `ui_down`, `ui_left`, and `ui_right` actions.
 - The project directory was not a git repository during the initial inspection.
 - The project directory is now a standalone git repository initialized on 2026-07-03.
 - Local git line-ending config was set to `core.autocrlf=false` and `core.eol=lf`, matching the existing `.gitattributes` LF policy.
@@ -29,6 +32,8 @@ The port should be data-driven: preserve source data and assets where practical,
 - Approximate file count from `rg --files`: 29,969.
 - Major directories include `data`, `graphics`, `include`, `src`, `sound`, `tools`, and `docs`.
 - The source project is inside a larger git worktree rooted at `C:\Users\YbbNa\OneDrive\Project-Azoth`; git status from the source path includes unrelated parent-tree noise.
+- `tools/importer/source_probe.py` currently verifies the source path and first-slice map inputs.
+- Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
 
 ## Known Source Formats
 
