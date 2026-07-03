@@ -125,3 +125,6 @@
 - Expanded `script_vm_smoke.gd` to verify player-name, empty `{KUN}`, and string-var expansion together.
 - Traced `{RIVAL}` through `include/constants/characters.h`, `src/string_util.c`, `src/strings.c`, and `include/constants/global.h`; Emerald (`IS_FRLG = 0`) expands it to `小遥` for male player gender and `小悠` for female player gender instead of a custom rival name.
 - Updated `ScriptVM` message expansion and smoke coverage for source placeholder id `0x6` `{RIVAL}`.
+- Traced runtime text control handling through `charmap.txt`, `include/constants/characters.h`, `include/text.h`, `src/text.c`, and `src/string_util.c`, confirming color, shadow, font, pause, and pause-until-press tokens are renderer controls rather than printable glyphs.
+- Updated `ScriptVM` message results so visible `text` removes first-pass control tokens after placeholder expansion, while `expanded_text`, `unexpanded_text`, and structured `text_controls` metadata preserve source ids, lengths, values, offsets, frame counts, and wait intent.
+- Expanded `script_vm_smoke.gd` with a synthetic text-control message covering `{COLOR BLUE}`, `{SHADOW LIGHT_BLUE}`, `{FONT_MALE}`, `{PAUSE 15}`, `{PAUSE_UNTIL_PRESS}`, and an intentionally unresolved `{B_PC_CREATOR_NAME}` token.

@@ -62,7 +62,7 @@
 - Parse `charmap.txt`. First pass done for map-script local text labels and global `data/text/*.inc` labels using a source-preprocessor-compatible charmap reader.
 - Extract text macros and labels. First pass done for local `.string` labels inside generated map scripts and global `data/text/*.inc` labels. C text macros such as `_("")` and `COMPOUND_STRING()` remain.
 - Convert text into UTF-8 Godot resources. First pass done for generated map-script labels and global text labels as UTF-8 `display_text`.
-- Preserve control codes and placeholders. First pass done as generated text encoding metadata: source bytes/hex, terminator presence, control codes, placeholders, status, and warnings.
+- Preserve control codes and placeholders. First pass done as generated text encoding metadata: source bytes/hex, terminator presence, control codes, placeholders, status, and warnings. Runtime text-control parsing is also started for visible message cleanup and `text_controls` metadata covering color, shadow, font, pause, and pause-until-press controls.
 - Expand runtime text placeholders. First pass done for source `StringExpandPlaceholders` ids `{PLAYER}` (`0x1`), `{STR_VAR_1/2/3}` (`0x2`-`0x4`), `{KUN}` (`0x5`, empty in this Chinese source), and `{RIVAL}` (`0x6`, Emerald gender-derived `小遥`/`小悠`). Version, team, legendary, region, and other placeholder ids remain.
 - Preserve source braille text. First pass done for `.braille` labels with `brailleformat` headers, source-derived braille bytes, and the `ScrCmd_braillemessage` 6-byte pointer skip.
 - Resolve text preprocessor branches. First pass done for `#if IS_FRLG/#else/#endif` in `data/text/pc_transfer.inc`, using the Emerald `IS_FRLG = false` branch traced to `include/constants/global.h`.

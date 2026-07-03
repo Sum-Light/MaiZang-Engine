@@ -215,3 +215,9 @@ Reason: Source `StringExpandPlaceholders` maps `{PLAYER}` to `gSaveBlock2Ptr->pl
 Decision: Expand `{RIVAL}` in `ScriptVM` as `小遥` for a male player and `小悠` for a female player for the current Emerald target.
 
 Reason: Source `ExpandPlaceholder_RivalName` only reads a custom `gSaveBlock1Ptr->rivalName` inside the `IS_FRLG` branch. The current source defines `IS_FRLG = 0`, so Emerald falls back to `gText_ExpandedPlaceholder_May` or `gText_ExpandedPlaceholder_Brendan` based on `gSaveBlock2Ptr->playerGender`.
+
+## 2026-07-04 - Represent runtime text controls as message metadata
+
+Decision: Parse source text control tokens in `ScriptVM` after placeholder expansion, remove the non-glyph controls from visible message `text`, and preserve them as structured `text_controls` metadata for the dialogue renderer.
+
+Reason: Source `src/text.c` treats `EXT_CTRL_CODE_COLOR`, `EXT_CTRL_CODE_SHADOW`, `EXT_CTRL_CODE_FONT`, `EXT_CTRL_CODE_PAUSE`, and `EXT_CTRL_CODE_PAUSE_UNTIL_PRESS` as renderer commands, not printable characters, while `src/string_util.c:GetExtCtrlCodeLength` defines their byte lengths for string traversal. Godot UI should display the same glyph text while keeping enough source-backed metadata to reproduce colors, font changes, pauses, and button waits later.

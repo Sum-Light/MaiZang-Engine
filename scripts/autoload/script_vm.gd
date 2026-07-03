@@ -20,6 +20,43 @@ const PLAYER_GENDER_MALE := "MALE"
 const PLAYER_GENDER_FEMALE := "FEMALE"
 const PLAYER_GENDER_MALE_VALUE := 0
 const PLAYER_GENDER_FEMALE_VALUE := 1
+const TEXT_CTRL_COLOR := "COLOR"
+const TEXT_CTRL_SHADOW := "SHADOW"
+const TEXT_CTRL_FONT := "FONT"
+const TEXT_CTRL_PAUSE := "PAUSE"
+const TEXT_CTRL_PAUSE_UNTIL_PRESS := "PAUSE_UNTIL_PRESS"
+const TEXT_CONTROL_CODE_IDS := {
+	TEXT_CTRL_COLOR: 0x01,
+	TEXT_CTRL_SHADOW: 0x03,
+	TEXT_CTRL_FONT: 0x06,
+	TEXT_CTRL_PAUSE: 0x08,
+	TEXT_CTRL_PAUSE_UNTIL_PRESS: 0x09,
+}
+const TEXT_CONTROL_SOURCE_CODES := {
+	TEXT_CTRL_COLOR: "EXT_CTRL_CODE_COLOR",
+	TEXT_CTRL_SHADOW: "EXT_CTRL_CODE_SHADOW",
+	TEXT_CTRL_FONT: "EXT_CTRL_CODE_FONT",
+	TEXT_CTRL_PAUSE: "EXT_CTRL_CODE_PAUSE",
+	TEXT_CTRL_PAUSE_UNTIL_PRESS: "EXT_CTRL_CODE_PAUSE_UNTIL_PRESS",
+}
+const TEXT_CONTROL_SOURCE_LENGTHS := {
+	TEXT_CTRL_COLOR: 2,
+	TEXT_CTRL_SHADOW: 2,
+	TEXT_CTRL_FONT: 2,
+	TEXT_CTRL_PAUSE: 2,
+	TEXT_CTRL_PAUSE_UNTIL_PRESS: 1,
+}
+const TEXT_COLOR_IDS := {
+	"DARK_GRAY": 0x02,
+	"LIGHT_GRAY": 0x03,
+	"BLUE": 0x08,
+	"LIGHT_BLUE": 0x09,
+}
+const TEXT_FONT_IDS := {
+	"FONT_NORMAL": 0x01,
+	"FONT_MALE": 0x01,
+	"FONT_FEMALE": 0x01,
+}
 const WARP_ID_NONE_VALUE := -1
 const LOCALID_PLAYER := "LOCALID_PLAYER"
 const YESNO_PENDING_VALUE := 0xFF
@@ -1016,14 +1053,20 @@ func _execute_message(
 	var unexpanded_text := String(text_record.get("display_text", ""))
 	var placeholder_substitutions := _placeholder_substitutions(state, unexpanded_text)
 	var expanded_text := _expand_message_placeholders(state, unexpanded_text)
+	var text_control_result := _parse_text_controls(expanded_text)
+	var text_controls: Array = text_control_result.get("text_controls", [])
+	if _text_controls_wait_for_buttonpress(text_controls):
+		state["wait_buttonpress"] = true
 	state["messages"].append({
 		"text_label": text_label,
 		"mode": mode,
 		"op": source_op,
 		"line": line,
-		"text": expanded_text,
+		"text": String(text_control_result.get("text", expanded_text)),
 		"unexpanded_text": unexpanded_text,
+		"expanded_text": expanded_text,
 		"placeholder_substitutions": placeholder_substitutions,
+		"text_controls": text_controls,
 		"status": status,
 		"text_source": String(text_record.get("source", "")),
 		"text_kind": String(text_record.get("kind", "text")),
@@ -1037,6 +1080,7 @@ func _execute_message(
 		"status": status,
 		"encoding_status": encoding_status,
 		"placeholder_substitution_count": placeholder_substitutions.size(),
+		"text_control_count": text_controls.size(),
 	})
 
 
@@ -1254,6 +1298,122 @@ func _expand_message_placeholders(state: Dictionary, display_text: String) -> St
 		var token := "{%s}" % String(placeholder_name)
 		expanded = expanded.replace(token, _placeholder_value(state, String(placeholder_name)))
 	return expanded
+
+
+func _parse_text_controls(display_text: String) -> Dictionary:
+	var clean_text := ""
+	var text_controls: Array = []
+	var cursor := 0
+	while cursor < display_text.length():
+		var open_index := display_text.find("{", cursor)
+		if open_index == -1:
+			clean_text += display_text.substr(cursor)
+			break
+		var close_index := display_text.find("}", open_index + 1)
+		if close_index == -1:
+			clean_text += display_text.substr(cursor)
+			break
+
+		clean_text += display_text.substr(cursor, open_index - cursor)
+		var token := display_text.substr(open_index, close_index - open_index + 1)
+		var token_body := display_text.substr(open_index + 1, close_index - open_index - 1).strip_edges()
+		var control := _text_control_record(token_body, token, open_index, clean_text.length())
+		if control.is_empty():
+			clean_text += token
+		else:
+			text_controls.append(control)
+		cursor = close_index + 1
+	return {
+		"text": clean_text,
+		"text_controls": text_controls,
+	}
+
+
+func _text_control_record(token_body: String, token: String, offset: int, text_offset: int) -> Dictionary:
+	var parts := token_body.split(" ", false)
+	if parts.is_empty():
+		return {}
+
+	var control_name := String(parts[0])
+	match control_name:
+		TEXT_CTRL_COLOR, TEXT_CTRL_SHADOW:
+			if parts.size() != 2:
+				return {}
+			var color_name := String(parts[1])
+			if not TEXT_COLOR_IDS.has(color_name):
+				return {}
+			var record := _base_text_control_record(token, control_name, offset, text_offset)
+			record["value"] = color_name
+			record["value_id"] = int(TEXT_COLOR_IDS[color_name])
+			record["source_value"] = "TEXT_COLOR_%s" % color_name
+			return record
+		TEXT_CTRL_PAUSE:
+			if parts.size() != 2:
+				return {}
+			var frame_text := String(parts[1])
+			if not frame_text.is_valid_int():
+				return {}
+			var frames := int(frame_text)
+			var record := _base_text_control_record(token, control_name, offset, text_offset)
+			record["value"] = frame_text
+			record["value_id"] = frames
+			record["frames"] = frames
+			return record
+		TEXT_CTRL_PAUSE_UNTIL_PRESS:
+			if parts.size() != 1:
+				return {}
+			var record := _base_text_control_record(token, control_name, offset, text_offset)
+			record["waits_for"] = "button_press"
+			return record
+		TEXT_CTRL_FONT:
+			if parts.size() != 2:
+				return {}
+			return _font_text_control_record(String(parts[1]), token, offset, text_offset)
+		_:
+			if parts.size() == 1 and TEXT_FONT_IDS.has(control_name):
+				return _font_text_control_record(control_name, token, offset, text_offset)
+	return {}
+
+
+func _font_text_control_record(font_name: String, token: String, offset: int, text_offset: int) -> Dictionary:
+	if not TEXT_FONT_IDS.has(font_name):
+		if not font_name.is_valid_int():
+			return {}
+		var font_id := int(font_name)
+		var numeric_record := _base_text_control_record(token, TEXT_CTRL_FONT, offset, text_offset)
+		numeric_record["value"] = font_name
+		numeric_record["value_id"] = font_id
+		numeric_record["font"] = font_name
+		numeric_record["font_id"] = font_id
+		return numeric_record
+
+	var record := _base_text_control_record(token, TEXT_CTRL_FONT, offset, text_offset)
+	record["value"] = font_name
+	record["value_id"] = int(TEXT_FONT_IDS[font_name])
+	record["font"] = font_name
+	record["font_id"] = int(TEXT_FONT_IDS[font_name])
+	return record
+
+
+func _base_text_control_record(token: String, control_name: String, offset: int, text_offset: int) -> Dictionary:
+	return {
+		"token": token,
+		"control": control_name,
+		"code": String(TEXT_CONTROL_SOURCE_CODES.get(control_name, "")),
+		"code_id": int(TEXT_CONTROL_CODE_IDS.get(control_name, 0)),
+		"source_length": int(TEXT_CONTROL_SOURCE_LENGTHS.get(control_name, 0)),
+		"offset": offset,
+		"text_offset": text_offset,
+		"source": "src/text.c",
+		"length_source": "src/string_util.c:GetExtCtrlCodeLength",
+	}
+
+
+func _text_controls_wait_for_buttonpress(text_controls: Array) -> bool:
+	for control in text_controls:
+		if typeof(control) == TYPE_DICTIONARY and String(control.get("control", "")) == TEXT_CTRL_PAUSE_UNTIL_PRESS:
+			return true
+	return false
 
 
 func _get_var(var_name: String) -> int:

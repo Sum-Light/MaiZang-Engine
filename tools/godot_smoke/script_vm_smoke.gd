@@ -61,6 +61,12 @@ func _init() -> void:
 		"kind": "text",
 		"source": "smoke",
 	}
+	synthetic_texts["Smoke_Text_TextControls"] = {
+		"label": "Smoke_Text_TextControls",
+		"display_text": "{COLOR BLUE}{SHADOW LIGHT_BLUE}{FONT_MALE}Alpha{PAUSE 15}Beta{PAUSE_UNTIL_PRESS}{B_PC_CREATOR_NAME}",
+		"kind": "text",
+		"source": "smoke",
+	}
 	synthetic_scripts["Smoke_EventScript_DelayOnly"] = {
 		"instructions": [
 			{"op": "delay", "args": ["30"], "line": 1, "raw": "delay 30"},
@@ -127,12 +133,19 @@ func _init() -> void:
 			{"op": "end", "args": [], "line": 2, "raw": "end"},
 		],
 	}
+	synthetic_scripts["Smoke_EventScript_TextControls"] = {
+		"instructions": [
+			{"op": "message", "args": ["Smoke_Text_TextControls"], "line": 1, "raw": "message Smoke_Text_TextControls"},
+			{"op": "end", "args": [], "line": 2, "raw": "end"},
+		],
+	}
 	synthetic_script_data["scripts"] = synthetic_scripts
 	synthetic_script_data["texts"] = synthetic_texts
 	vm.configure_from_script_data(synthetic_script_data)
 	var delay_result := vm.run_script("Smoke_EventScript_DelayOnly")
 	var warp_result := vm.run_script("Smoke_EventScript_WarpOnly")
 	var global_text_result := vm.run_script("Smoke_EventScript_GlobalText")
+	var text_controls_result := vm.run_script("Smoke_EventScript_TextControls")
 	var yesno_pending_result := vm.run_script("Smoke_EventScript_YesNoPending")
 	var yesno_pending_var_result := game_state.get_var("VAR_RESULT", -1)
 	var yesno_yes_result := vm.run_script("Smoke_EventScript_YesNoBranch", {"yesno_choice": "YES"})
@@ -311,6 +324,25 @@ func _init() -> void:
 	_assert(_first_message_text(global_text_result).find("\n") != -1, "expected global text display newline")
 	_assert(_unsupported_count(global_text_result) == 0, "expected no unsupported global-text ops")
 
+	_assert(text_controls_result.get("status", "") == "ok", "expected text-control script to execute")
+	_assert(_message_count(text_controls_result) == 1, "expected one text-control message")
+	_assert(_first_message_text(text_controls_result) == "AlphaBeta{B_PC_CREATOR_NAME}", "expected text controls to be removed from display text")
+	_assert(_first_message_unexpanded_text(text_controls_result) == "{COLOR BLUE}{SHADOW LIGHT_BLUE}{FONT_MALE}Alpha{PAUSE 15}Beta{PAUSE_UNTIL_PRESS}{B_PC_CREATOR_NAME}", "expected unexpanded text controls to be preserved")
+	_assert(_first_message_expanded_text(text_controls_result) == _first_message_unexpanded_text(text_controls_result), "expected expanded text to preserve control tokens before cleanup")
+	_assert(_first_message_text_control_count(text_controls_result) == 5, "expected five parsed text controls")
+	_assert(_first_message_text_control_code_id_for_token(text_controls_result, "{COLOR BLUE}") == 1, "unexpected COLOR code id")
+	_assert(_first_message_text_control_value_id_for_token(text_controls_result, "{COLOR BLUE}") == 8, "unexpected COLOR value id")
+	_assert(_first_message_text_control_code_id_for_token(text_controls_result, "{SHADOW LIGHT_BLUE}") == 3, "unexpected SHADOW code id")
+	_assert(_first_message_text_control_value_id_for_token(text_controls_result, "{SHADOW LIGHT_BLUE}") == 9, "unexpected SHADOW value id")
+	_assert(_first_message_text_control_code_id_for_token(text_controls_result, "{FONT_MALE}") == 6, "unexpected FONT code id")
+	_assert(_first_message_text_control_value_id_for_token(text_controls_result, "{FONT_MALE}") == 1, "unexpected FONT value id")
+	_assert(_first_message_text_control_code_id_for_token(text_controls_result, "{PAUSE 15}") == 8, "unexpected PAUSE code id")
+	_assert(_first_message_text_control_frames_for_token(text_controls_result, "{PAUSE 15}") == 15, "unexpected PAUSE frame count")
+	_assert(_first_message_text_control_code_id_for_token(text_controls_result, "{PAUSE_UNTIL_PRESS}") == 9, "unexpected PAUSE_UNTIL_PRESS code id")
+	_assert(_first_message_text_control_source_length_for_token(text_controls_result, "{PAUSE_UNTIL_PRESS}") == 1, "unexpected PAUSE_UNTIL_PRESS source length")
+	_assert(bool(text_controls_result.get("wait_buttonpress", false)), "expected PAUSE_UNTIL_PRESS to require button press")
+	_assert(_unsupported_count(text_controls_result) == 0, "expected no unsupported text-control ops")
+
 	_assert(yesno_pending_result.get("status", "") == "waiting_for_ui", "expected pending yes/no UI status")
 	_assert(yesno_pending_result.get("finished", false), "expected pending yes/no script to stop")
 	_assert(_message_count(yesno_pending_result) == 1, "expected one pending yes/no message")
@@ -430,6 +462,7 @@ func _init() -> void:
 		"delay": _result_summary(delay_result),
 		"warp": _result_summary(warp_result),
 		"global_text": _result_summary(global_text_result),
+		"text_controls": _result_summary(text_controls_result),
 		"yesno_pending": _result_summary(yesno_pending_result),
 		"yesno_yes": _result_summary(yesno_yes_result),
 		"yesno_no": _result_summary(yesno_no_result),
@@ -507,6 +540,10 @@ func _first_message_unexpanded_text(result: Dictionary) -> String:
 	return String(_message_at(result, 0).get("unexpanded_text", ""))
 
 
+func _first_message_expanded_text(result: Dictionary) -> String:
+	return String(_message_at(result, 0).get("expanded_text", ""))
+
+
 func _first_message_placeholder_substitution_count(result: Dictionary) -> int:
 	var substitutions = _message_at(result, 0).get("placeholder_substitutions", [])
 	return substitutions.size() if typeof(substitutions) == TYPE_ARRAY else 0
@@ -539,6 +576,41 @@ func _first_message_placeholder_for_token(result: Dictionary, token: String) -> 
 	for substitution in substitutions:
 		if typeof(substitution) == TYPE_DICTIONARY and String(substitution.get("token", "")) == token:
 			return substitution
+	return {}
+
+
+func _first_message_text_control_count(result: Dictionary) -> int:
+	var controls = _message_at(result, 0).get("text_controls", [])
+	return controls.size() if typeof(controls) == TYPE_ARRAY else 0
+
+
+func _first_message_text_control_code_id_for_token(result: Dictionary, token: String) -> int:
+	var control := _first_message_text_control_for_token(result, token)
+	return int(control.get("code_id", -1))
+
+
+func _first_message_text_control_value_id_for_token(result: Dictionary, token: String) -> int:
+	var control := _first_message_text_control_for_token(result, token)
+	return int(control.get("value_id", -1))
+
+
+func _first_message_text_control_frames_for_token(result: Dictionary, token: String) -> int:
+	var control := _first_message_text_control_for_token(result, token)
+	return int(control.get("frames", -1))
+
+
+func _first_message_text_control_source_length_for_token(result: Dictionary, token: String) -> int:
+	var control := _first_message_text_control_for_token(result, token)
+	return int(control.get("source_length", -1))
+
+
+func _first_message_text_control_for_token(result: Dictionary, token: String) -> Dictionary:
+	var controls = _message_at(result, 0).get("text_controls", [])
+	if typeof(controls) != TYPE_ARRAY:
+		return {}
+	for control in controls:
+		if typeof(control) == TYPE_DICTIONARY and String(control.get("token", "")) == token:
+			return control
 	return {}
 
 
