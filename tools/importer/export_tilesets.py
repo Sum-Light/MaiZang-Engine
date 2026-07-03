@@ -145,6 +145,16 @@ def parse_metatile_labels(path):
     return labels
 
 
+def metatile_label_records(metatile_labels):
+    return [
+        {
+            "name": name,
+            "id": metatile_labels[name],
+        }
+        for name in sorted(metatile_labels)
+    ]
+
+
 def parse_int_list(value):
     result = []
     for raw_part in value.split(","):
@@ -484,8 +494,8 @@ def export_door_animations(
     used_metatile_ids,
     total_metatiles,
     global_palettes,
+    metatile_labels,
 ):
-    metatile_labels = parse_metatile_labels(root / METATILE_LABEL_HEADER)
     door_resources = parse_door_animation_resources(root / DOOR_ANIM_SOURCE, metatile_labels)
     available_tilesets = {primary_symbol, secondary_symbol}
     used_metatile_set = set(used_metatile_ids)
@@ -638,6 +648,7 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
 
     total_metatiles = NUM_METATILES_IN_PRIMARY + len(secondary_metatiles)
     used_metatile_ids = used_metatile_ids_from_layout(root, layout)
+    metatile_labels = parse_metatile_labels(root / METATILE_LABEL_HEADER)
     door_animations = export_door_animations(
         root,
         camel_to_snake(map_data.get("name") or map_folder),
@@ -647,6 +658,7 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
         used_metatile_ids,
         total_metatiles,
         global_palettes,
+        metatile_labels,
     )
     columns = 32
     rows = int(math.ceil(total_metatiles / float(columns)))
@@ -723,6 +735,14 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
                 {"id": behavior_id, "name": behavior_names[behavior_id]}
                 for behavior_id in sorted(behavior_names)
             ],
+        },
+        "metatile_labels": {
+            "source": to_project_path(METATILE_LABEL_HEADER),
+            "entries": metatile_label_records(metatile_labels),
+            "ids": {
+                name: metatile_labels[name]
+                for name in sorted(metatile_labels)
+            },
         },
         "tilesets": {
             "primary": build_tileset_record(root, "primary", primary_symbol),

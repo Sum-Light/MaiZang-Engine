@@ -142,11 +142,12 @@ Current tileset export behavior:
 - Uses GBA tile-entry bits from `tools/gbagfx/gfx.h`: 10-bit tile id, horizontal flip, vertical flip, and 4-bit palette number.
 - Parses `include/constants/metatile_behaviors.h` so generated metatile attributes carry source behavior names as well as numeric ids.
 - Parses `include/constants/metatile_labels.h` and `src/field_door.c` so used animated-door metatiles can resolve their source animation image, palette slots, frame order, and sound intent.
+- Writes a generated `metatile_labels` table from `include/constants/metatile_labels.h` so runtime script commands such as `setmetatile` can resolve source `METATILE_*` symbols without hardcoded Godot ids.
 - Builds source palette slots with primary palettes 0-5 and secondary palettes 6-12, then bakes colors into a normal RGBA PNG.
 - Flattens each 16x16 metatile by compositing bottom entries 0-3 and top entries 4-7.
 - Bakes supported source door animation tile strips into normal RGBA frame atlases under `assets/generated/door_anims/`; palette numbers are used only at import time.
 - Writes `assets/generated/tilesets/littleroot_town_metatiles.png`.
-- Writes `data/generated/tilesets/littleroot_town.json` with atlas metadata, source tile entries, metatile attributes, metatile behavior names, used metatile ids, coverage notes, and warnings.
+- Writes `data/generated/tilesets/littleroot_town.json` with atlas metadata, source tile entries, metatile attributes, metatile behavior names, metatile label ids, used metatile ids, coverage notes, and warnings.
 - Writes generated `door_animations` metadata into the tileset JSON for supported used door metatiles, including source labels, metatile ids, frame size, frame rectangles, 60fps frame timing, open/close frame indices, and source sound-effect symbol.
 - Updates `data/generated/import_manifest.json` with exported tileset metadata while preserving existing entries for other maps, tilesets, and scripts.
 
@@ -209,6 +210,7 @@ Latest verified first-slice tileset export for `LittlerootTown`:
 - coverage notes: 8 bottom-layer out-of-range tile references in metatiles 586 and 587 are fully covered by opaque top-layer tiles in the flattened atlas
 - generated door animations: 2 supported size-1 animated-door metatiles, `METATILE_Petalburg_Door_Littleroot` and `METATILE_Petalburg_Door_BirchsLab`
 - generated door animation atlases: `assets/generated/door_anims/littleroot_town_littleroot.png` and `assets/generated/door_anims/littleroot_town_birchs_lab.png`
+- generated metatile label data: source `METATILE_*` ids from `include/constants/metatile_labels.h`
 
 Latest verified first-slice event script export for `LittlerootTown`:
 
@@ -225,7 +227,7 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - current text pipeline scope: local map-script text labels and global `data/text/*.inc` labels have UTF-8 `display_text` plus source encoding metadata; global `.braille` labels preserve source braille bytes and `brailleformat`; C text macros remain future import work
 - current runtime execution scope: `ScriptVM` executes the first synchronous dialogue subset and expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` from source standard script behavior
 - current movement runtime scope: `ScriptVM` resolves generated movement labels for `applymovement`/`waitmovement` and emits structured movement-effect results; real dispatch fast-forwards map/player positions through `MapRuntime`, while animation queues and object movement tasks are still future runtime work
-- current field-effect runtime scope: `ScriptVM` records `delay`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect results; transition presentation now consumes generated door animation metadata for first-pass door warp overlays, while standalone script-driven door animation, real audio playback, and true asynchronous timing remain future work
+- current field-effect runtime scope: `ScriptVM` records `delay`, `setmetatile`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect results; `setmetatile` resolves source `METATILE_*` labels through generated tileset metadata and `MapRuntime` applies the current-map grid mutation while preserving elevation; transition presentation now consumes generated door animation metadata for first-pass door warp overlays, while standalone script-driven door animation, real audio playback, and true asynchronous timing remain future work
 - current audio/transition/player-effect runtime scope: `ScriptVM` records `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, `waitstate`, and `hideplayer` as structured result data after source tracing; real sound playback, fanfare waiting, map loading/fades, and player presentation visibility remain future runtime work
 - current coordinate-event runtime scope: `MapRuntime` indexes generated coord events and resolves normal `var`/`var_value` step triggers by x/y/elevation plus `GameState`; full weather/immediate-script/wild-encounter/step-count chaining remains future work
 

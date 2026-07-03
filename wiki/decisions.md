@@ -162,6 +162,12 @@ Decision: Parse `include/constants/metatile_behaviors.h` during tileset export a
 
 Reason: Source gameplay code such as `SetUpWarpExitTask` branches through named metatile behavior helper functions, not through visually meaningful tile ids. Preserving names lets Godot runtime systems choose behavior from source-readable data while still consuming normal Godot-friendly generated maps and textures.
 
+## 2026-07-04 - Resolve metatile labels through generated tilesets
+
+Decision: Export source `METATILE_*` label ids into generated tileset JSON and let `ScriptVM` resolve `setmetatile` labels through that data, then apply the resulting current-map mutation through `MapRuntime`.
+
+Reason: Source `ScrCmd_setmetatile` receives script arguments, resolves metatile ids and collision bits, adds source `MAP_OFFSET` internally, and updates the current map grid while preserving elevation bits. Godot should preserve that visible current-map behavior without hardcoding numeric metatile ids in scripts or mutating reproducible generated source data.
+
 ## 2026-07-04 - Defer transition map application during presentation
 
 Decision: Let `Main` enable deferred transition application and let `TransitionSequencePlayer` apply the pending map change at the sequence `load_map` step.

@@ -9,11 +9,15 @@ const COLLISION_IMPASSABLE := 1
 const ELEVATION_INVALID := -1
 const ELEVATION_TRANSITION := 0
 const LOCALID_PLAYER := "LOCALID_PLAYER"
+const MAPGRID_METATILE_ID_MASK := 0x03FF
+const MAPGRID_COLLISION_SHIFT := 10
+const MAPGRID_ELEVATION_SHIFT := 12
 
 var _map_data: Dictionary = {}
 var _tileset_data: Dictionary = {}
 var _map_size := Vector2i.ZERO
 var _block_ids: Array = []
+var _raw_grid: Array = []
 var _collision_grid: Array = []
 var _elevation_grid: Array = []
 var _metatile_attributes: Dictionary = {}
@@ -46,10 +50,11 @@ func configure_from_data(
 	tileset_data: Dictionary,
 	fallback_map_size := Vector2i.ZERO
 ) -> void:
-	_map_data = map_data
+	_map_data = map_data.duplicate(true)
 	_tileset_data = tileset_data
 	_map_size = fallback_map_size
 	_block_ids = []
+	_raw_grid = []
 	_collision_grid = []
 	_elevation_grid = []
 	_metatile_attributes = {}
@@ -75,6 +80,7 @@ func configure_from_data(
 		_block_ids = _array_or_empty(_map_data.get("block_ids", []))
 		var map_grid = _map_data.get("map_grid", {})
 		if typeof(map_grid) == TYPE_DICTIONARY:
+			_raw_grid = _array_or_empty(map_grid.get("raw", []))
 			_collision_grid = _array_or_empty(map_grid.get("collision", []))
 			_elevation_grid = _array_or_empty(map_grid.get("elevation", []))
 
@@ -382,6 +388,30 @@ func apply_script_object_effects(object_effects: Array, game_state: Node = null)
 	if bool(summary["object_events_changed"]):
 		_rebuild_object_event_position_index()
 		object_events_changed.emit(get_object_events())
+
+	return summary
+
+
+func apply_script_field_effects(field_effects: Array) -> Dictionary:
+	var summary := {
+		"applied": [],
+		"skipped": [],
+		"map_changed": false,
+	}
+
+	for field_effect in field_effects:
+		if typeof(field_effect) != TYPE_DICTIONARY:
+			_record_skipped_field_effect(summary, "invalid_field_effect", "", 0, Vector2i(-1, -1))
+			continue
+
+		var effect: Dictionary = field_effect
+		var op := String(effect.get("op", ""))
+		if op != "setmetatile":
+			continue
+		_apply_setmetatile_effect(summary, effect)
+
+	if bool(summary["map_changed"]):
+		map_changed.emit(_map_data, _tileset_data, _map_size)
 
 	return summary
 
@@ -790,6 +820,44 @@ func _apply_set_object_runtime_hidden(summary: Dictionary, object_effect: Dictio
 	})
 
 
+func _apply_setmetatile_effect(summary: Dictionary, field_effect: Dictionary) -> void:
+	var line := int(field_effect.get("line", 0))
+	var position := _effect_position(field_effect)
+	if not is_within_bounds(position):
+		_record_skipped_field_effect(summary, "out_of_bounds", "setmetatile", line, position)
+		return
+
+	var metatile_id := int(field_effect.get("metatile_id", -1))
+	if metatile_id < 0:
+		_record_skipped_field_effect(summary, "missing_metatile_id", "setmetatile", line, position)
+		return
+	if not _metatile_attributes.has(metatile_id):
+		_record_skipped_field_effect(summary, "unknown_metatile_id", "setmetatile", line, position)
+		return
+
+	var previous_metatile_id := get_metatile_id_at(position)
+	var previous_collision := get_collision_at(position)
+	var elevation := get_elevation_at(position)
+	if elevation == ELEVATION_INVALID:
+		elevation = 0
+
+	var collision := int(field_effect.get("collision", COLLISION_NONE))
+	_set_grid_value(_block_ids, position, metatile_id)
+	_set_grid_value(_collision_grid, position, collision)
+	_set_grid_value(_elevation_grid, position, elevation)
+	_set_grid_value(_raw_grid, position, _pack_map_grid_value(metatile_id, collision, elevation))
+	_sync_map_grid_data(position, metatile_id, collision, elevation)
+
+	summary["map_changed"] = true
+	_record_applied_field_effect(summary, field_effect, position, {
+		"previous_metatile_id": previous_metatile_id,
+		"previous_collision": previous_collision,
+		"metatile_id": metatile_id,
+		"collision": collision,
+		"elevation": elevation,
+	})
+
+
 func _movement_delta(movement: Dictionary) -> Vector2i:
 	var delta = movement.get("net_delta", [0, 0])
 	if typeof(delta) != TYPE_ARRAY or delta.size() < 2:
@@ -959,6 +1027,81 @@ func _record_skipped_object_effect(
 		"line": line,
 		"target": target,
 	})
+
+
+func _record_applied_field_effect(
+	summary: Dictionary,
+	field_effect: Dictionary,
+	position: Vector2i,
+	detail: Dictionary = {}
+) -> void:
+	var entry := {
+		"op": String(field_effect.get("op", "")),
+		"line": int(field_effect.get("line", 0)),
+		"position": position,
+	}
+	for key in detail:
+		entry[key] = detail[key]
+	summary["applied"].append(entry)
+
+
+func _record_skipped_field_effect(
+	summary: Dictionary,
+	reason: String,
+	op: String,
+	line: int,
+	position: Vector2i
+) -> void:
+	summary["skipped"].append({
+		"reason": reason,
+		"op": op,
+		"line": line,
+		"position": position,
+	})
+
+
+func _pack_map_grid_value(metatile_id: int, collision: int, elevation: int) -> int:
+	return (
+		(metatile_id & MAPGRID_METATILE_ID_MASK)
+		| ((collision & 0x03) << MAPGRID_COLLISION_SHIFT)
+		| ((elevation & 0x0F) << MAPGRID_ELEVATION_SHIFT)
+	)
+
+
+func _sync_map_grid_data(position: Vector2i, metatile_id: int, collision: int, elevation: int) -> void:
+	_set_map_data_grid_value("block_ids", position, metatile_id)
+	var map_grid = _map_data.get("map_grid", {})
+	if typeof(map_grid) != TYPE_DICTIONARY:
+		map_grid = {}
+		_map_data["map_grid"] = map_grid
+	_set_nested_grid_value(map_grid, "raw", position, _pack_map_grid_value(metatile_id, collision, elevation))
+	_set_nested_grid_value(map_grid, "collision", position, collision)
+	_set_nested_grid_value(map_grid, "elevation", position, elevation)
+
+
+func _set_map_data_grid_value(key: String, position: Vector2i, value: int) -> void:
+	var grid = _map_data.get(key, [])
+	if typeof(grid) != TYPE_ARRAY:
+		return
+	_set_grid_value(grid, position, value)
+
+
+func _set_nested_grid_value(parent: Dictionary, key: String, position: Vector2i, value: int) -> void:
+	var grid = parent.get(key, [])
+	if typeof(grid) != TYPE_ARRAY:
+		return
+	_set_grid_value(grid, position, value)
+
+
+func _set_grid_value(grid: Array, position: Vector2i, value: int) -> void:
+	if position.y < 0 or position.y >= grid.size():
+		return
+	var row = grid[position.y]
+	if typeof(row) != TYPE_ARRAY:
+		return
+	if position.x < 0 or position.x >= row.size():
+		return
+	row[position.x] = value
 
 
 func _array_or_empty(value) -> Array:

@@ -4,10 +4,12 @@ const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
 const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
 const SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
+const BRENDANS_HOUSE_SCRIPT_PATH := "res://data/generated/scripts/littleroot_town_brendans_house_1_f.json"
 
 
 func _init() -> void:
 	var script_data := _load_json_object(SCRIPT_PATH)
+	var brendans_house_script_data := _load_json_object(BRENDANS_HOUSE_SCRIPT_PATH)
 	var registry = DATA_REGISTRY_SCRIPT.new()
 	registry._ready()
 	var vm = SCRIPT_VM_SCRIPT.new()
@@ -34,6 +36,18 @@ func _init() -> void:
 	var mom_return_home_result := vm.run_script("LittlerootTown_EventScript_MomReturnHomeMale2")
 	var step_off_truck_result := vm.run_script("LittlerootTown_EventScript_StepOffTruckMale")
 	var give_running_shoes_result := vm.run_script("LittlerootTown_EventScript_GiveRunningShoes")
+	game_state.current_map_id = "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F"
+	vm.configure_from_script_data(brendans_house_script_data)
+	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 0)
+	var brendans_house_onload_boxes_result := vm.run_script("LittlerootTown_BrendansHouse_1F_OnLoad")
+	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 6)
+	var brendans_house_onload_skip_boxes_result := vm.run_script("LittlerootTown_BrendansHouse_1F_OnLoad")
+	game_state.set_player_gender("MALE")
+	game_state.set_flag("FLAG_RECEIVED_RUNNING_SHOES", true)
+	var brendans_house_running_shoes_manual_result := vm.run_script("LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual")
+	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 3)
+	game_state.current_map_id = "MAP_LITTLEROOT_TOWN"
+	vm.configure_from_script_data(script_data)
 	var synthetic_script_data := script_data.duplicate(true)
 	var synthetic_scripts: Dictionary = synthetic_script_data.get("scripts", {})
 	var synthetic_texts: Dictionary = synthetic_script_data.get("texts", {})
@@ -305,6 +319,36 @@ func _init() -> void:
 	_assert(game_state.is_flag_set("FLAG_RECEIVED_RUNNING_SHOES"), "expected running shoes flag to be set")
 	_assert(_unsupported_count(give_running_shoes_result) == 0, "expected no unsupported give-running-shoes ops")
 
+	_assert(brendans_house_onload_boxes_result.get("status", "") == "ok", "expected Brendan house OnLoad to execute")
+	_assert(_effect_matched_for_op(brendans_house_onload_boxes_result, "call_if_lt"), "expected intro-state OnLoad branch to match")
+	_assert(_field_effect_count(brendans_house_onload_boxes_result) == 2, "expected two Brendan house moving-box metatile effects")
+	_assert(_field_effect_op(brendans_house_onload_boxes_result, 0) == "setmetatile", "expected first Brendan OnLoad field op")
+	_assert(_field_effect_position(brendans_house_onload_boxes_result, 0) == Vector2i(5, 4), "unexpected open moving-box position")
+	_assert(_field_effect_metatile_token(brendans_house_onload_boxes_result, 0) == "METATILE_BrendansMaysHouse_MovingBox_Open", "unexpected open moving-box token")
+	_assert(_field_effect_metatile_id(brendans_house_onload_boxes_result, 0) == 624, "unexpected open moving-box metatile id")
+	_assert(_field_effect_collision(brendans_house_onload_boxes_result, 0) == 3, "expected open moving box to be impassable")
+	_assert(_field_effect_source_function(brendans_house_onload_boxes_result, 0) == "ScrCmd_setmetatile", "unexpected setmetatile source function")
+	_assert(_field_effect_source_applies_map_offset(brendans_house_onload_boxes_result, 0), "expected source MAP_OFFSET metadata")
+	_assert(_field_effect_runtime_coordinates_are_unoffset(brendans_house_onload_boxes_result, 0), "expected unoffset runtime coordinate metadata")
+	_assert(_field_effect_position(brendans_house_onload_boxes_result, 1) == Vector2i(5, 2), "unexpected closed moving-box position")
+	_assert(_field_effect_metatile_token(brendans_house_onload_boxes_result, 1) == "METATILE_BrendansMaysHouse_MovingBox_Closed", "unexpected closed moving-box token")
+	_assert(_field_effect_metatile_id(brendans_house_onload_boxes_result, 1) == 616, "unexpected closed moving-box metatile id")
+	_assert(_field_effect_collision(brendans_house_onload_boxes_result, 1) == 3, "expected closed moving box to be impassable")
+	_assert(_unsupported_count(brendans_house_onload_boxes_result) == 0, "expected no unsupported Brendan OnLoad ops")
+
+	_assert(brendans_house_onload_skip_boxes_result.get("status", "") == "ok", "expected Brendan house OnLoad skip case to execute")
+	_assert(not _effect_matched_for_op(brendans_house_onload_skip_boxes_result, "call_if_lt"), "expected intro-state OnLoad branch not to match")
+	_assert(_field_effect_count(brendans_house_onload_skip_boxes_result) == 0, "expected no moving-box metatile effects after intro state")
+	_assert(_unsupported_count(brendans_house_onload_skip_boxes_result) == 0, "expected no unsupported Brendan OnLoad skip ops")
+
+	_assert(brendans_house_running_shoes_manual_result.get("status", "") == "ok", "expected running-shoes manual script to execute")
+	_assert(_field_effect_count(brendans_house_running_shoes_manual_result) == 1, "expected one running-shoes manual metatile effect")
+	_assert(_field_effect_position(brendans_house_running_shoes_manual_result, 0) == Vector2i(3, 7), "unexpected running-shoes manual book position")
+	_assert(_field_effect_metatile_token(brendans_house_running_shoes_manual_result, 0) == "METATILE_BrendansMaysHouse_BookOnTable", "unexpected running-shoes manual token")
+	_assert(_field_effect_metatile_id(brendans_house_running_shoes_manual_result, 0) == 659, "unexpected running-shoes manual metatile id")
+	_assert(_field_effect_collision(brendans_house_running_shoes_manual_result, 0) == 3, "expected running-shoes manual book to be impassable")
+	_assert(_unsupported_count(brendans_house_running_shoes_manual_result) == 0, "expected no unsupported running-shoes manual ops")
+
 	_assert(delay_result.get("status", "") == "ok", "expected delay-only script to execute")
 	_assert(_field_effect_count(delay_result) == 1, "expected one delay field effect")
 	_assert(_field_effect_op(delay_result, 0) == "delay", "unexpected delay field effect op")
@@ -483,6 +527,9 @@ func _init() -> void:
 		"mom_return_home": _result_summary(mom_return_home_result),
 		"step_off_truck": _result_summary(step_off_truck_result),
 		"give_running_shoes": _result_summary(give_running_shoes_result),
+		"brendans_house_onload_boxes": _result_summary(brendans_house_onload_boxes_result),
+		"brendans_house_onload_skip_boxes": _result_summary(brendans_house_onload_skip_boxes_result),
+		"brendans_house_running_shoes_manual": _result_summary(brendans_house_running_shoes_manual_result),
 		"delay": _result_summary(delay_result),
 		"warp": _result_summary(warp_result),
 		"global_text": _result_summary(global_text_result),
@@ -988,6 +1035,40 @@ func _field_effect_position(result: Dictionary, index: int) -> Vector2i:
 
 func _field_effect_frames(result: Dictionary, index: int) -> int:
 	return int(_field_effect_at(result, index).get("frames", 0))
+
+
+func _field_effect_metatile_token(result: Dictionary, index: int) -> String:
+	return String(_field_effect_at(result, index).get("metatile_token", ""))
+
+
+func _field_effect_metatile_id(result: Dictionary, index: int) -> int:
+	return int(_field_effect_at(result, index).get("metatile_id", -1))
+
+
+func _field_effect_collision(result: Dictionary, index: int) -> int:
+	return int(_field_effect_at(result, index).get("collision", -1))
+
+
+func _field_effect_source_function(result: Dictionary, index: int) -> String:
+	return String(_field_effect_at(result, index).get("source_function", ""))
+
+
+func _field_effect_source_applies_map_offset(result: Dictionary, index: int) -> bool:
+	return bool(_field_effect_at(result, index).get("map_offset_applied_in_source", false))
+
+
+func _field_effect_runtime_coordinates_are_unoffset(result: Dictionary, index: int) -> bool:
+	return bool(_field_effect_at(result, index).get("runtime_coordinates_are_unoffset", false))
+
+
+func _effect_matched_for_op(result: Dictionary, op: String) -> bool:
+	var effects = result.get("effects", [])
+	if typeof(effects) != TYPE_ARRAY:
+		return false
+	for effect in effects:
+		if typeof(effect) == TYPE_DICTIONARY and String(effect.get("op", "")) == op:
+			return bool(effect.get("matched", false))
+	return false
 
 
 func _ui_effect_script_position(result: Dictionary, index: int) -> Vector2i:

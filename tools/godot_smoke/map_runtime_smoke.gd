@@ -2,21 +2,32 @@ extends SceneTree
 
 const MAP_RUNTIME_SCRIPT := preload("res://scripts/autoload/map_runtime.gd")
 const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
+const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
 const MAP_PATH := "res://data/generated/maps/littleroot_town.json"
 const TILESET_PATH := "res://data/generated/tilesets/littleroot_town.json"
 const SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
+const BRENDANS_HOUSE_MAP_PATH := "res://data/generated/maps/littleroot_town_brendans_house_1_f.json"
+const BRENDANS_HOUSE_TILESET_PATH := "res://data/generated/tilesets/littleroot_town_brendans_house_1_f.json"
+const BRENDANS_HOUSE_SCRIPT_PATH := "res://data/generated/scripts/littleroot_town_brendans_house_1_f.json"
 
 
 func _init() -> void:
 	var map_data := _load_json_object(MAP_PATH)
 	var tileset_data := _load_json_object(TILESET_PATH)
 	var script_data := _load_json_object(SCRIPT_PATH)
+	var brendans_house_map_data := _load_json_object(BRENDANS_HOUSE_MAP_PATH)
+	var brendans_house_tileset_data := _load_json_object(BRENDANS_HOUSE_TILESET_PATH)
+	var brendans_house_script_data := _load_json_object(BRENDANS_HOUSE_SCRIPT_PATH)
 	var map_size := _map_size_from_data(map_data)
+	var brendans_house_map_size := _map_size_from_data(brendans_house_map_data)
 	var runtime = MAP_RUNTIME_SCRIPT.new()
 	runtime.configure_from_data(map_data, tileset_data, map_size)
+	var registry = DATA_REGISTRY_SCRIPT.new()
+	registry._ready()
 	var vm = SCRIPT_VM_SCRIPT.new()
 	vm.configure_from_script_data(script_data)
+	vm.configure_data_registry(registry)
 	var game_state = GAME_STATE_SCRIPT.new()
 	vm.configure_game_state(game_state)
 
@@ -174,6 +185,33 @@ func _init() -> void:
 	_assert(not runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_MOM").is_empty(), "expected added Mom to be visible")
 	_assert(runtime.is_cell_occupied(mom_cell), "expected added Mom cell to be occupied")
 
+	var brendans_runtime = MAP_RUNTIME_SCRIPT.new()
+	brendans_runtime.configure_from_data(
+		brendans_house_map_data,
+		brendans_house_tileset_data,
+		brendans_house_map_size
+	)
+	game_state.current_map_id = "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F"
+	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 0)
+	vm.configure_from_script_data(brendans_house_script_data)
+	var brendans_onload_result := vm.run_script("LittlerootTown_BrendansHouse_1F_OnLoad")
+	var brendans_onload_field_effects = brendans_onload_result.get("field_effects", [])
+	_assert(typeof(brendans_onload_field_effects) == TYPE_ARRAY and brendans_onload_field_effects.size() == 2, "expected Brendan OnLoad metatile effects")
+	var open_box_cell := Vector2i(5, 4)
+	var closed_box_cell := Vector2i(5, 2)
+	var open_box_previous_elevation := brendans_runtime.get_elevation_at(open_box_cell)
+	var closed_box_previous_elevation := brendans_runtime.get_elevation_at(closed_box_cell)
+	var brendans_field_apply := brendans_runtime.apply_script_field_effects(brendans_onload_field_effects)
+	_assert(_summary_count(brendans_field_apply, "applied") == 2, "expected Brendan OnLoad field effects to apply")
+	_assert(_summary_count(brendans_field_apply, "skipped") == 0, "expected Brendan OnLoad field effects not to skip")
+	_assert(bool(brendans_field_apply.get("map_changed", false)), "expected Brendan metatile effects to mark map changed")
+	_assert(brendans_runtime.get_metatile_id_at(open_box_cell) == 624, "expected open moving-box metatile to apply")
+	_assert(brendans_runtime.get_collision_at(open_box_cell) == 3, "expected open moving-box collision to become impassable")
+	_assert(brendans_runtime.get_elevation_at(open_box_cell) == open_box_previous_elevation, "expected open moving-box elevation to be preserved")
+	_assert(brendans_runtime.get_metatile_id_at(closed_box_cell) == 616, "expected closed moving-box metatile to apply")
+	_assert(brendans_runtime.get_collision_at(closed_box_cell) == 3, "expected closed moving-box collision to become impassable")
+	_assert(brendans_runtime.get_elevation_at(closed_box_cell) == closed_box_previous_elevation, "expected closed moving-box elevation to be preserved")
+
 	print(JSON.stringify({
 		"map_runtime_smoke": "ok",
 		"map_size": _vector_to_array(runtime.get_map_size()),
@@ -188,6 +226,7 @@ func _init() -> void:
 		"set_rival_birch_object_apply": _object_apply_summary(set_rival_birch_apply),
 		"remove_mom_object_apply": _object_apply_summary(remove_mom_apply),
 		"add_mom_object_apply": _object_apply_summary(add_mom_apply),
+		"brendans_field_apply": _field_apply_summary(brendans_field_apply),
 		"player_position_after_script": _vector_to_array(game_state.player_grid_position),
 		"start_cell": _cell_info_summary(runtime.get_cell_info(start_cell)),
 		"object_cell": _cell_info_summary(runtime.get_cell_info(object_cell)),
@@ -198,6 +237,8 @@ func _init() -> void:
 	}))
 	game_state.free()
 	vm.free()
+	registry.free()
+	brendans_runtime.free()
 	runtime.free()
 	quit(0)
 
@@ -318,6 +359,14 @@ func _object_apply_summary(summary: Dictionary) -> Dictionary:
 		"applied": _summary_count(summary, "applied"),
 		"skipped": _summary_count(summary, "skipped"),
 		"object_events_changed": bool(summary.get("object_events_changed", false)),
+	}
+
+
+func _field_apply_summary(summary: Dictionary) -> Dictionary:
+	return {
+		"applied": _summary_count(summary, "applied"),
+		"skipped": _summary_count(summary, "skipped"),
+		"map_changed": bool(summary.get("map_changed", false)),
 	}
 
 

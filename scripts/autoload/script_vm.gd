@@ -63,6 +63,9 @@ const TEXT_FONT_IDS := {
 	"FONT_MALE": 0x01,
 	"FONT_FEMALE": 0x01,
 }
+const MAPGRID_METATILE_ID_MASK := 0x03FF
+const MAPGRID_COLLISION_SHIFT := 10
+const MAPGRID_COLLISION_IMPASSABLE := 0x03
 const WARP_ID_NONE_VALUE := -1
 const LOCALID_PLAYER := "LOCALID_PLAYER"
 const YESNO_PENDING_VALUE := 0xFF
@@ -219,9 +222,9 @@ func _execute_instruction(state: Dictionary, instruction: Dictionary) -> void:
 				_jump_to_script(state, String(args[0]))
 			else:
 				_record_unsupported(state, op, line, String(instruction.get("raw", "")))
-		"call_if_set", "call_if_unset", "call_if_eq", "call_if_ne":
+		"call_if_set", "call_if_unset", "call_if_lt", "call_if_eq", "call_if_gt", "call_if_le", "call_if_ge", "call_if_ne":
 			_execute_conditional_branch(state, op, args, true, line, String(instruction.get("raw", "")))
-		"goto_if_set", "goto_if_unset", "goto_if_eq", "goto_if_ne":
+		"goto_if_set", "goto_if_unset", "goto_if_lt", "goto_if_eq", "goto_if_gt", "goto_if_le", "goto_if_ge", "goto_if_ne":
 			_execute_conditional_branch(state, op, args, false, line, String(instruction.get("raw", "")))
 		"setflag":
 			if args.size() >= 1:
@@ -257,6 +260,8 @@ func _execute_instruction(state: Dictionary, instruction: Dictionary) -> void:
 			_execute_waitstate(state, line)
 		"delay":
 			_execute_delay(state, args, line, String(instruction.get("raw", "")))
+		"setmetatile":
+			_execute_setmetatile(state, args, line, String(instruction.get("raw", "")))
 		"opendoor", "closedoor":
 			_execute_door_command(state, op, args, line, String(instruction.get("raw", "")))
 		"waitdooranim":
@@ -355,6 +360,36 @@ func _execute_delay(state: Dictionary, args: Array, line: int, raw: String) -> v
 
 	_record_field_effect(state, "delay", line, {
 		"frames": _read_value(String(args[0])),
+	})
+
+
+func _execute_setmetatile(state: Dictionary, args: Array, line: int, raw: String) -> void:
+	if args.size() < 4:
+		_record_unsupported(state, "setmetatile", line, raw)
+		return
+
+	var metatile_token := String(args[2])
+	var metatile_info := _resolve_metatile_token(metatile_token)
+	if not bool(metatile_info.get("resolved", false)):
+		_record_unsupported(state, "setmetatile:metatile_label", line, raw)
+		return
+
+	var metatile_raw_value := int(metatile_info.get("id", -1))
+	var is_impassable := _read_value(String(args[3])) != 0
+	var collision := MAPGRID_COLLISION_IMPASSABLE if is_impassable else ((metatile_raw_value >> MAPGRID_COLLISION_SHIFT) & 0x03)
+	_record_field_effect(state, "setmetatile", line, {
+		"position": [_read_value(String(args[0])), _read_value(String(args[1]))],
+		"x_arg": String(args[0]),
+		"y_arg": String(args[1]),
+		"metatile_token": metatile_token,
+		"metatile_id": metatile_raw_value & MAPGRID_METATILE_ID_MASK,
+		"metatile_raw_value": metatile_raw_value,
+		"metatile_resolve_source": String(metatile_info.get("source", "")),
+		"is_impassable": is_impassable,
+		"collision": collision,
+		"source_function": "ScrCmd_setmetatile",
+		"map_offset_applied_in_source": true,
+		"runtime_coordinates_are_unoffset": true,
 	})
 
 
@@ -1134,11 +1169,83 @@ func _condition_matches(op: String, args: Array) -> bool:
 			return _is_flag_set(String(args[0]))
 		"call_if_unset", "goto_if_unset":
 			return not _is_flag_set(String(args[0]))
+		"call_if_lt", "goto_if_lt":
+			return _read_value(String(args[0])) < _read_value(String(args[1]))
 		"call_if_eq", "goto_if_eq":
 			return _read_value(String(args[0])) == _read_value(String(args[1]))
+		"call_if_gt", "goto_if_gt":
+			return _read_value(String(args[0])) > _read_value(String(args[1]))
+		"call_if_le", "goto_if_le":
+			return _read_value(String(args[0])) <= _read_value(String(args[1]))
+		"call_if_ge", "goto_if_ge":
+			return _read_value(String(args[0])) >= _read_value(String(args[1]))
 		"call_if_ne", "goto_if_ne":
 			return _read_value(String(args[0])) != _read_value(String(args[1]))
 	return false
+
+
+func _resolve_metatile_token(token: String) -> Dictionary:
+	var value := token.strip_edges()
+	if value.begins_with("METATILE_"):
+		var label_id := _metatile_label_id(value)
+		return {
+			"resolved": label_id >= 0,
+			"id": label_id,
+			"source": "generated_tileset_metatile_labels",
+		}
+
+	return {
+		"resolved": true,
+		"id": _read_value(value),
+		"source": "script_literal",
+	}
+
+
+func _metatile_label_id(label: String) -> int:
+	var tileset_data := _current_tileset_data()
+	var label_data = tileset_data.get("metatile_labels", {})
+	if typeof(label_data) != TYPE_DICTIONARY:
+		return -1
+
+	var ids = label_data.get("ids", {})
+	if typeof(ids) == TYPE_DICTIONARY and ids.has(label):
+		return int(ids[label])
+
+	var entries = label_data.get("entries", [])
+	if typeof(entries) != TYPE_ARRAY:
+		return -1
+	for entry in entries:
+		if typeof(entry) != TYPE_DICTIONARY:
+			continue
+		if String(entry.get("name", "")) == label:
+			return int(entry.get("id", -1))
+	return -1
+
+
+func _current_tileset_data() -> Dictionary:
+	var registry := _get_data_registry()
+	if registry == null:
+		return {}
+
+	var map_id := _current_map_id()
+	if not map_id.is_empty() and registry.has_method("get_tileset_data_for_map"):
+		var tileset_data = registry.get_tileset_data_for_map(map_id)
+		if typeof(tileset_data) == TYPE_DICTIONARY and not tileset_data.is_empty():
+			return tileset_data
+
+	if registry.has_method("get_start_tileset_data"):
+		var start_tileset_data = registry.get_start_tileset_data()
+		if typeof(start_tileset_data) == TYPE_DICTIONARY:
+			return start_tileset_data
+	return {}
+
+
+func _current_map_id() -> String:
+	var game_state := _get_game_state()
+	if game_state == null:
+		return ""
+	var map_id = game_state.get("current_map_id")
+	return String(map_id) if map_id != null else ""
 
 
 func _read_value(token: String) -> int:

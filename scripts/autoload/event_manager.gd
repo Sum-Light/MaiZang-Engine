@@ -318,6 +318,13 @@ func _append_script_output(lines: PackedStringArray, script: String, context: Di
 			_movement_summary_count(object_effect_summary, "skipped"),
 		])
 
+	var field_effect_summary = runtime_summary.get("field_effects", {})
+	if typeof(field_effect_summary) == TYPE_DICTIONARY and not field_effect_summary.is_empty():
+		lines.append("Field effects: %d applied, %d skipped" % [
+			_movement_summary_count(field_effect_summary, "applied"),
+			_movement_summary_count(field_effect_summary, "skipped"),
+		])
+
 	var transition_summary = runtime_summary.get("transition_effects", {})
 	if typeof(transition_summary) == TYPE_DICTIONARY and not transition_summary.is_empty():
 		lines.append("Transition effects: %d applied, %d skipped" % [
@@ -359,6 +366,12 @@ func _apply_runtime_result(result: Dictionary) -> Dictionary:
 	var object_effects = result.get("object_effects", [])
 	if typeof(object_effects) == TYPE_ARRAY and not object_effects.is_empty() and _map_runtime.has_method("apply_script_object_effects"):
 		summary["object_effects"] = _map_runtime.apply_script_object_effects(object_effects, _game_state)
+
+	var field_effects = result.get("field_effects", [])
+	if typeof(field_effects) == TYPE_ARRAY and not field_effects.is_empty() and _map_runtime.has_method("apply_script_field_effects"):
+		var field_summary = _map_runtime.apply_script_field_effects(field_effects)
+		if _movement_summary_count(field_summary, "applied") > 0 or _movement_summary_count(field_summary, "skipped") > 0:
+			summary["field_effects"] = field_summary
 
 	var transition_effects = result.get("transition_effects", [])
 	if typeof(transition_effects) == TYPE_ARRAY and not transition_effects.is_empty():
