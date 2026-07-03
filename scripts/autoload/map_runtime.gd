@@ -13,6 +13,10 @@ var _elevation_grid: Array = []
 var _metatile_attributes: Dictionary = {}
 var _object_events: Array = []
 var _object_events_by_position: Dictionary = {}
+var _bg_events: Array = []
+var _bg_events_by_position: Dictionary = {}
+var _warp_events: Array = []
+var _warp_events_by_position: Dictionary = {}
 
 
 func _ready() -> void:
@@ -41,6 +45,10 @@ func configure_from_data(
 	_metatile_attributes = {}
 	_object_events = []
 	_object_events_by_position = {}
+	_bg_events = []
+	_bg_events_by_position = {}
+	_warp_events = []
+	_warp_events_by_position = {}
 
 	if not _map_data.is_empty():
 		var layout_info = _map_data.get("layout", {})
@@ -58,6 +66,8 @@ func configure_from_data(
 
 	_index_metatile_attributes()
 	_index_object_events()
+	_index_bg_events()
+	_index_warp_events()
 
 
 func is_within_bounds(cell: Vector2i) -> bool:
@@ -129,13 +139,64 @@ func get_object_events_at(cell: Vector2i, include_hidden := false) -> Array:
 	return filtered_events
 
 
+func get_bg_events() -> Array:
+	return _bg_events.duplicate(true)
+
+
+func get_bg_events_at(cell: Vector2i) -> Array:
+	return _events_at(_bg_events_by_position, cell)
+
+
+func get_warp_events() -> Array:
+	return _warp_events.duplicate(true)
+
+
+func get_warp_events_at(cell: Vector2i) -> Array:
+	return _events_at(_warp_events_by_position, cell)
+
+
 func is_cell_occupied(cell: Vector2i) -> bool:
 	return not get_object_events_at(cell).is_empty()
+
+
+func get_interaction_target(origin: Vector2i, direction: Vector2i) -> Dictionary:
+	var facing_direction := direction
+	if facing_direction == Vector2i.ZERO:
+		facing_direction = Vector2i.DOWN
+
+	var target_cell := origin + facing_direction
+	var object_events := get_object_events_at(target_cell)
+	if not object_events.is_empty():
+		var object_event: Dictionary = object_events[0]
+		return _interaction_target(
+			"object_event",
+			target_cell,
+			object_event,
+			String(object_event.get("script", "0x0"))
+		)
+
+	var bg_events := get_bg_events_at(target_cell)
+	if not bg_events.is_empty():
+		var bg_event: Dictionary = bg_events[0]
+		return _interaction_target(
+			"bg_event",
+			target_cell,
+			bg_event,
+			String(bg_event.get("script", "0x0"))
+		)
+
+	var warp_events := get_warp_events_at(origin)
+	if not warp_events.is_empty():
+		return _interaction_target("warp_event", origin, warp_events[0], "warp")
+
+	return {}
 
 
 func get_cell_info(cell: Vector2i) -> Dictionary:
 	var metatile_id := get_metatile_id_at(cell)
 	var object_events_at_cell := get_object_events_at(cell)
+	var bg_events_at_cell := get_bg_events_at(cell)
+	var warp_events_at_cell := get_warp_events_at(cell)
 	return {
 		"position": cell,
 		"within_bounds": is_within_bounds(cell),
@@ -146,6 +207,8 @@ func get_cell_info(cell: Vector2i) -> Dictionary:
 		"layer_type": get_metatile_attribute(metatile_id).get("layer_type", -1),
 		"occupied": not object_events_at_cell.is_empty(),
 		"object_event_count": object_events_at_cell.size(),
+		"bg_event_count": bg_events_at_cell.size(),
+		"warp_event_count": warp_events_at_cell.size(),
 		"passable": can_enter_cell(cell),
 	}
 
@@ -198,6 +261,56 @@ func _index_object_events() -> void:
 		_object_events_by_position[key].append(object_event)
 
 
+func _index_bg_events() -> void:
+	var events = _map_data.get("events", {})
+	if typeof(events) != TYPE_DICTIONARY:
+		return
+
+	var bg_events = events.get("bg_events", [])
+	if typeof(bg_events) != TYPE_ARRAY:
+		return
+
+	for index in range(bg_events.size()):
+		var source_event = bg_events[index]
+		if typeof(source_event) != TYPE_DICTIONARY:
+			continue
+
+		var bg_event = source_event.duplicate(true)
+		var cell := Vector2i(
+			int(bg_event.get("x", 0)),
+			int(bg_event.get("y", 0))
+		)
+		bg_event["index"] = index
+		bg_event["position"] = cell
+		_bg_events.append(bg_event)
+		_add_event_at(_bg_events_by_position, cell, bg_event)
+
+
+func _index_warp_events() -> void:
+	var events = _map_data.get("events", {})
+	if typeof(events) != TYPE_DICTIONARY:
+		return
+
+	var warp_events = events.get("warp_events", [])
+	if typeof(warp_events) != TYPE_ARRAY:
+		return
+
+	for index in range(warp_events.size()):
+		var source_event = warp_events[index]
+		if typeof(source_event) != TYPE_DICTIONARY:
+			continue
+
+		var warp_event = source_event.duplicate(true)
+		var cell := Vector2i(
+			int(warp_event.get("x", 0)),
+			int(warp_event.get("y", 0))
+		)
+		warp_event["index"] = index
+		warp_event["position"] = cell
+		_warp_events.append(warp_event)
+		_add_event_at(_warp_events_by_position, cell, warp_event)
+
+
 func _is_object_event_visible(object_event: Dictionary) -> bool:
 	var flag := String(object_event.get("flag", "0"))
 	if flag.is_empty() or flag == "0":
@@ -219,6 +332,32 @@ func _array_or_empty(value) -> Array:
 
 func _cell_key(cell: Vector2i) -> String:
 	return "%d,%d" % [cell.x, cell.y]
+
+
+func _events_at(index: Dictionary, cell: Vector2i) -> Array:
+	var events = index.get(_cell_key(cell), [])
+	return events.duplicate(true) if typeof(events) == TYPE_ARRAY else []
+
+
+func _add_event_at(index: Dictionary, cell: Vector2i, event: Dictionary) -> void:
+	var key := _cell_key(cell)
+	if not index.has(key):
+		index[key] = []
+	index[key].append(event)
+
+
+func _interaction_target(
+	interaction_type: String,
+	position: Vector2i,
+	event: Dictionary,
+	script: String
+) -> Dictionary:
+	return {
+		"type": interaction_type,
+		"position": position,
+		"event": event,
+		"script": script,
+	}
 
 
 func _grid_value(grid: Array, cell: Vector2i, default_value: int) -> int:

@@ -47,3 +47,9 @@ Reason: Player movement, NPC movement, event triggers, object interaction, warps
 Decision: Spawn generated `object_events` as lightweight placeholder nodes and use `MapRuntime` to make visible object-event cells block movement.
 
 Reason: The first vertical slice needs map occupancy and event positions before the full overworld sprite pipeline is ready. Placeholders make source object data visible and testable without inventing final art or coupling movement to presentation nodes.
+
+## 2026-07-04 - Add debug event dispatch before ScriptVM
+
+Decision: Route `ui_accept` interaction through player facing direction, `MapRuntime.get_interaction_target`, and `EventManager` debug dialogue before implementing full event script parsing.
+
+Reason: The vertical slice needs a testable object/sign/warp interaction path now, while real `.inc` script execution and text decoding require separate import work. A debug dispatcher keeps the boundary stable without pretending script semantics are already implemented.

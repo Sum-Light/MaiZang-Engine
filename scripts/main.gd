@@ -4,6 +4,8 @@ extends Node2D
 @onready var object_events = $World/ObjectEvents
 @onready var player = $World/Player
 @onready var status_label: Label = $Hud/StatusLabel
+@onready var dialogue_panel: PanelContainer = $Hud/DialoguePanel
+@onready var dialogue_label: Label = $Hud/DialoguePanel/DialogueLabel
 
 var _movement_note := ""
 
@@ -35,12 +37,16 @@ func _ready() -> void:
 		player.moved.connect(_on_player_moved)
 	if player.has_signal("movement_blocked"):
 		player.movement_blocked.connect(_on_player_movement_blocked)
+	if player.has_signal("interaction_requested"):
+		player.interaction_requested.connect(_on_player_interaction_requested)
+	EventManager.debug_message_requested.connect(_on_debug_message_requested)
 
 	_update_status()
 
 
 func _on_player_moved(grid_position: Vector2i) -> void:
 	_movement_note = ""
+	_hide_dialogue()
 	GameState.player_grid_position = grid_position
 	_update_status()
 
@@ -51,6 +57,33 @@ func _on_player_movement_blocked(target_position: Vector2i, cell_info: Dictionar
 		int(cell_info.get("collision", MapRuntime.COLLISION_IMPASSABLE)),
 	]
 	_update_status()
+
+
+func _on_player_interaction_requested(
+	_origin_position: Vector2i,
+	target_position: Vector2i,
+	_facing_direction: Vector2i,
+	interaction: Dictionary
+) -> void:
+	if dialogue_panel.visible:
+		_hide_dialogue()
+		_movement_note = ""
+		_update_status()
+		return
+
+	_movement_note = "interact %s" % target_position
+	EventManager.dispatch_interaction(interaction)
+	_update_status()
+
+
+func _on_debug_message_requested(lines: PackedStringArray) -> void:
+	dialogue_label.text = "\n".join(lines)
+	dialogue_panel.visible = true
+
+
+func _hide_dialogue() -> void:
+	dialogue_panel.visible = false
+	dialogue_label.text = ""
 
 
 func _update_status() -> void:

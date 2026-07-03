@@ -30,6 +30,8 @@
 
 ## Milestone 4 - Event Script Slice
 
+- Index object, BG/sign, and warp events for interaction lookup. First pass done in `MapRuntime`.
+- Add an interaction dispatcher path from player facing direction to debug dialogue. First pass done with `EventManager`; real script execution remains.
 - Parse `.inc` event scripts into labels and instructions.
 - Support a minimal ScriptVM command set:
   - `msgbox`

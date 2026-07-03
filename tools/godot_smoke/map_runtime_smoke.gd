@@ -14,6 +14,8 @@ func _init() -> void:
 
 	var start_cell := Vector2i(10, 10)
 	var object_cell := Vector2i(16, 10)
+	var bg_event_cell := Vector2i(15, 13)
+	var warp_cell := Vector2i(7, 16)
 	var blocked_cell := _first_blocked_cell(map_data)
 	_assert(runtime.get_map_size() == Vector2i(20, 20), "unexpected map size")
 	_assert(runtime.can_enter_cell(start_cell), "expected start cell to be passable")
@@ -24,14 +26,34 @@ func _init() -> void:
 	_assert(runtime.get_collision_at(object_cell) == 0, "expected object test cell to be collision-passable")
 	_assert(runtime.is_cell_occupied(object_cell), "expected object test cell to be occupied")
 	_assert(not runtime.can_enter_cell(object_cell), "expected occupied object cell to be blocked")
+	_assert(runtime.get_bg_events().size() == 4, "expected LittlerootTown bg events")
+	_assert(runtime.get_warp_events().size() == 3, "expected LittlerootTown warp events")
+	_assert(runtime.get_bg_events_at(bg_event_cell).size() == 1, "expected town sign bg event")
+	_assert(runtime.get_warp_events_at(warp_cell).size() == 1, "expected Birch lab warp event")
+	_assert(
+		runtime.get_interaction_target(Vector2i(15, 10), Vector2i.RIGHT).get("type", "") == "object_event",
+		"expected object interaction target"
+	)
+	_assert(
+		runtime.get_interaction_target(Vector2i(15, 14), Vector2i.UP).get("type", "") == "bg_event",
+		"expected bg interaction target"
+	)
+	_assert(
+		runtime.get_interaction_target(warp_cell, Vector2i.UP).get("type", "") == "warp_event",
+		"expected warp interaction target"
+	)
 	_assert(runtime.get_metatile_behavior_at(start_cell) >= 0, "expected metatile behavior lookup")
 
 	print(JSON.stringify({
 		"map_runtime_smoke": "ok",
 		"map_size": _vector_to_array(runtime.get_map_size()),
 		"object_event_count": runtime.get_object_events().size(),
+		"bg_event_count": runtime.get_bg_events().size(),
+		"warp_event_count": runtime.get_warp_events().size(),
 		"start_cell": _cell_info_summary(runtime.get_cell_info(start_cell)),
 		"object_cell": _cell_info_summary(runtime.get_cell_info(object_cell)),
+		"bg_event_cell": _cell_info_summary(runtime.get_cell_info(bg_event_cell)),
+		"warp_cell": _cell_info_summary(runtime.get_cell_info(warp_cell)),
 		"blocked_cell": _cell_info_summary(runtime.get_cell_info(blocked_cell)),
 	}))
 	runtime.free()
@@ -103,6 +125,8 @@ func _cell_info_summary(cell_info: Dictionary) -> Dictionary:
 		"layer_type": int(cell_info.get("layer_type", -1)),
 		"occupied": bool(cell_info.get("occupied", false)),
 		"object_event_count": int(cell_info.get("object_event_count", 0)),
+		"bg_event_count": int(cell_info.get("bg_event_count", 0)),
+		"warp_event_count": int(cell_info.get("warp_event_count", 0)),
 		"passable": bool(cell_info.get("passable", false)),
 	}
 

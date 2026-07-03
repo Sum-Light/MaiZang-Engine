@@ -37,3 +37,7 @@
 - Indexed generated `object_events` in `MapRuntime` and made visible object-event cells block movement.
 - Added `ObjectEventSpawner` and placeholder object-event drawing for the 8 LittlerootTown object events.
 - Updated the `MapRuntime` smoke script to verify object-event count and occupied-cell blocking.
+- Used Porymap's event model as a reference point for object, BG/sign, and warp events while keeping the Godot runtime architecture independent.
+- Extended `MapRuntime` to index generated BG/sign events and warp events, and to resolve interaction targets from player position plus facing direction.
+- Added `EventManager` as a debug event dispatcher and connected `ui_accept` interaction to a HUD dialogue panel for object/sign/warp placeholders.
+- Updated the `MapRuntime` smoke script to verify object, BG/sign, and warp interaction target lookup.

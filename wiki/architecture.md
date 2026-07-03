@@ -52,12 +52,14 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - `GameState` stores current map id, player grid position, flags, and vars.
 - `DataRegistry` stores first-slice constants for LittlerootTown and loads generated map/tileset JSON when they exist.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries.
-- `MapRuntime` indexes generated object events and treats currently visible object-event cells as occupied for first-pass movement.
+- `MapRuntime` indexes generated object events, BG/sign events, and warp events; visible object-event cells are occupied for first-pass movement.
+- `MapRuntime.get_interaction_target` resolves the player's faced object/sign target, or a warp placeholder from the current cell.
 - `GridMover` provides tweened tile movement.
-- `PlayerController` reads directional input and moves one tile at a time after checking `MapRuntime.can_enter_cell`.
+- `PlayerController` reads directional input, tracks facing direction, moves one tile at a time after checking `MapRuntime.can_enter_cell`, and emits interaction requests on `ui_accept`.
+- `EventManager` currently emits debug dialogue lines for object, BG/sign, and warp interaction placeholders. It should later call `ScriptVM` after event scripts and text are converted.
 - `DebugMapPlane` draws the first generated `block_ids` metatile grid from a palette-baked RGBA metatile atlas, with the old color blocks as fallback.
 - `ObjectEventSpawner` draws generated object events as simple placeholders until overworld sprite import is ready.
-- `Main` connects the debug world, player, camera, and HUD status label, and shows whether map data came from generated JSON or fallback constants.
+- `Main` connects the debug world, player, camera, HUD status label, and debug dialogue panel, and shows whether map data came from generated JSON or fallback constants.
 
 ## Generated Map Runtime Contract
 
@@ -68,6 +70,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - First-pass movement uses generated `map_grid.collision`: cells with collision `0` are enterable and nonzero or out-of-bounds cells are blocked.
 - `MapRuntime` also indexes generated metatile attributes so later rules can inspect behavior and layer type without reparsing tileset JSON in presentation scripts.
 - Generated `events.object_events` are preserved in map JSON and indexed by `MapRuntime`; visible events block their current grid cell before event scripts or sprite imports are implemented.
+- Generated `events.bg_events` and `events.warp_events` are preserved in map JSON and indexed by `MapRuntime` for the first interaction/warp placeholder path.
 - Generated metatile atlases use metatile id as atlas index, so map `block_ids` can render directly during the first slice.
 - Palette handling belongs to the import layer. Godot runtime should consume normal RGBA textures and metadata, not GBA palette slots.
 - Real TileMapLayer rendering should later consume the generated atlas/metadata instead of the current debug Node2D renderer.
