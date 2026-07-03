@@ -31,7 +31,7 @@ The original project should be treated as authoritative source data and behavior
 ## Core Modules
 
 - `GameState`: flags, vars, player profile, party, inventory, story state.
-- `DataRegistry`: read-only access to generated Pokemon, moves, items, maps, tilesets, trainers, and encounters.
+- `DataRegistry`: read-only access to generated Pokemon, moves, items, maps, tilesets, scripts, text, trainers, and encounters.
 - `MapRuntime`: current map query service for bounds, collision, elevation, metatile ids, metatile behavior ids/names, and layer type.
 - `MapLoader`: builds Godot map scenes from generated map data.
 - `GridMover`: shared grid movement for player and NPCs.
@@ -50,7 +50,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player gender, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, and event script JSON by map id.
+- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, event script, and global text JSON.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries, including source metatile behavior names.
 - `MapRuntime` indexes generated door animation metadata by metatile id and can return the animation for a map cell.
 - `MapRuntime` indexes generated object events, local ids, BG/sign events, warp events, and coordinate events; visible object-event cells are occupied for first-pass movement.
@@ -73,7 +73,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 
 - First-slice generated map JSON is loaded through `DataRegistry`.
 - First-slice generated tileset JSON is loaded through `DataRegistry`.
-- `data/generated/import_manifest.json` is the registry index for generated maps, tilesets, and scripts. Importers must merge entries by stable identity instead of replacing same-type manifest lists.
+- `data/generated/import_manifest.json` is the registry index for generated maps, tilesets, scripts, and text datasets. Importers must merge entries by stable identity instead of replacing same-type manifest lists.
 - `block_ids` contains unpacked 10-bit metatile ids for simple render previews.
 - `map_grid.raw`, `map_grid.collision`, and `map_grid.elevation` preserve the original 16-bit map-grid data split into runtime-friendly layers.
 - First-pass movement uses generated `map_grid.collision`: cells with collision `0` are enterable and nonzero or out-of-bounds cells are blocked.
@@ -114,6 +114,16 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Coordinate-event execution is currently dispatched after player tile movement in `Main`, followed by first-pass generated map warp-event dispatch when no coordinate event matched. Blocked front-cell door warp dispatch only fires while facing north, matching source `TryDoorWarp`. Weather, wild encounter, step-count, and forced-movement script chaining remain future work.
 - Movement dispatch does not yet run step-by-step animation, source collision checks, movement task timing, or object freeze/unfreeze behavior. Object-effect dispatch does not yet model the full source object lifecycle, object graphics reload, or save persistence beyond `GameState` flags. Audio and player effects are recorded, while transition sequences have only a placeholder overlay consumer. `EventManager.get_script_preview` must remain read-only and must not apply runtime effects.
 - Unsupported opcodes should stay visible through reports and VM results rather than being silently approximated.
+
+## Generated Global Text Contract
+
+- Global text JSON is loaded through `DataRegistry` from the manifest `texts` entry. The current generated category is `global`.
+- `DataRegistry.get_text_data(category)`, `get_text_record(label, category)`, and `get_text_display_text(label, category)` are read-only accessors for generated text records.
+- Generated global text records preserve the source label, source file, line, kind, part lines, raw text, UTF-8 `display_text`, and source encoding metadata.
+- Normal `.string` records use the same charmap-backed encoding metadata as local map-script text: status, source bytes/hex, byte count, `$` terminator presence, control codes, placeholders, and warnings.
+- `.braille` records preserve `brailleformat` values, `source_pointer_skip_bytes = 6`, source-derived braille bytes from `AsmFile::ReadBraille`, and combined source bytes containing the skipped header plus text bytes.
+- Global text import currently evaluates the `IS_FRLG` branch in `data/text/pc_transfer.inc` as false for the Emerald target, traced to `include/constants/global.h`.
+- Runtime systems should resolve global text labels through this registry instead of reparsing source files. Integrating global labels into `ScriptVM` message lookup remains future work.
 
 ## Script Porting Rule
 

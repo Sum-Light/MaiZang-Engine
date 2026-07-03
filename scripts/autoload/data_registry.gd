@@ -18,9 +18,11 @@ var _map_entries_by_id: Dictionary = {}
 var _map_entries_by_name: Dictionary = {}
 var _tileset_entries_by_map_name: Dictionary = {}
 var _script_entries_by_map_name: Dictionary = {}
+var _text_entries_by_category: Dictionary = {}
 var _map_data_by_id: Dictionary = {}
 var _tileset_data_by_map_id: Dictionary = {}
 var _script_data_by_map_id: Dictionary = {}
+var _text_data_by_category: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -147,6 +149,40 @@ func get_script_data_for_map(map_id: String) -> Dictionary:
 	return script_data
 
 
+func get_text_data(category: String = "global") -> Dictionary:
+	if _text_data_by_category.has(category):
+		var cached = _text_data_by_category[category]
+		return cached if typeof(cached) == TYPE_DICTIONARY else {}
+
+	var entry = _text_entries_by_category.get(category, {})
+	if typeof(entry) != TYPE_DICTIONARY:
+		return {}
+
+	var text_data := _load_json_object(_resource_path(String(entry.get("path", ""))), "generated text")
+	_text_data_by_category[category] = text_data
+	return text_data
+
+
+func get_text_record(text_label: String, category: String = "global") -> Dictionary:
+	var text_data := get_text_data(category)
+	if text_data.is_empty():
+		return {}
+
+	var texts = text_data.get("texts", {})
+	if typeof(texts) != TYPE_DICTIONARY:
+		return {}
+
+	var record = texts.get(text_label, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_text_display_text(text_label: String, category: String = "global") -> String:
+	var record := get_text_record(text_label, category)
+	if record.is_empty():
+		return ""
+	return String(record.get("display_text", ""))
+
+
 func get_map_name(map_id: String) -> String:
 	var entry := _map_entry_for_id(map_id)
 	if not entry.is_empty():
@@ -204,6 +240,8 @@ func _index_manifest() -> void:
 	_map_entries_by_name = {}
 	_tileset_entries_by_map_name = {}
 	_script_entries_by_map_name = {}
+	_text_entries_by_category = {}
+	_text_data_by_category = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -236,6 +274,15 @@ func _index_manifest() -> void:
 			var map_name := String(entry.get("map", ""))
 			if not map_name.is_empty():
 				_script_entries_by_map_name[map_name] = entry
+
+	var texts = _manifest_data.get("texts", [])
+	if typeof(texts) == TYPE_ARRAY:
+		for entry in texts:
+			if typeof(entry) != TYPE_DICTIONARY:
+				continue
+			var category := String(entry.get("category", ""))
+			if not category.is_empty():
+				_text_entries_by_category[category] = entry
 
 
 func _map_entry_for_id(map_id: String) -> Dictionary:

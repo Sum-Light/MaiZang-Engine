@@ -44,7 +44,12 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 - `tools/preproc/charmap.cpp`
 - `tools/preproc/string_parser.cpp`
 - `tools/preproc/c_file.cpp`
+- `tools/preproc/asm_file.cpp`
 - `data/text/*.inc`
+- `asm/macros/event.inc`
+- `src/scrcmd.c`
+- `include/constants/characters.h`
+- `include/constants/global.h`
 - text labels inside map scripts
 - C macros such as `_("")` and `COMPOUND_STRING()`
 
@@ -158,6 +163,18 @@ Current event script export behavior:
 - Records source behavior traces for supported preview behavior from `src/scrcmd.c`, `data/event_scripts.s`, and `data/scripts/std_msgbox.inc`.
 - Updates `data/generated/import_manifest.json` with exported script metadata while preserving existing entries for other maps, tilesets, and scripts.
 
+`tools/importer/export_text.py` exports global `data/text/*.inc` labels into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--output-root`, and repeatable `--file`.
+
+Current global text export behavior:
+
+- Reads all `data/text/*.inc` files as UTF-8.
+- Parses normal `.string` labels and keeps UTF-8 `display_text` plus source charmap encoding metadata: status, source bytes, source hex, byte count, `$` terminator presence, control codes, placeholders, and warnings.
+- Parses `.braille` labels and the preceding `brailleformat` header. The 6-byte header is preserved in `braille_format` and `source_bytes.format_header`, while generated braille text bytes are derived from `tools/preproc/asm_file.cpp:AsmFile::ReadBraille` and `include/constants/characters.h`.
+- Records `source_pointer_skip_bytes = 6` for braille labels because `ScrCmd_braillemessage` reads the pointer plus 6 bytes before expanding the string.
+- Handles the currently used global text preprocessor branch `#if IS_FRLG/#else/#endif` with `IS_FRLG = false`, traced to `include/constants/global.h`, so generated text matches the Emerald branch.
+- Writes `data/generated/text/global_text.json` with source metadata, per-file counts, label index, text records, reports, and stats.
+- Updates `data/generated/import_manifest.json` with a `texts` entry while preserving existing map, tileset, and script entries.
+
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 
 Latest verified first-slice source facts for `LittlerootTown`:
@@ -205,7 +222,7 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - source text bytes: 1358
 - orphan instructions: 0
 - current generated-data preview fields: first direct `msgbox`/`message` text references for debug inspection
-- current text pipeline scope: local map-script text labels have UTF-8 `display_text` plus source charmap byte/control-code metadata; global text macros and broader text resources remain future import work
+- current text pipeline scope: local map-script text labels and global `data/text/*.inc` labels have UTF-8 `display_text` plus source encoding metadata; global `.braille` labels preserve source braille bytes and `brailleformat`; C text macros remain future import work
 - current runtime execution scope: `ScriptVM` executes the first synchronous dialogue subset and expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` from source standard script behavior
 - current movement runtime scope: `ScriptVM` resolves generated movement labels for `applymovement`/`waitmovement` and emits structured movement-effect results; real dispatch fast-forwards map/player positions through `MapRuntime`, while animation queues and object movement tasks are still future runtime work
 - current field-effect runtime scope: `ScriptVM` records `delay`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect results; transition presentation now consumes generated door animation metadata for first-pass door warp overlays, while standalone script-driven door animation, real audio playback, and true asynchronous timing remain future work
@@ -216,3 +233,18 @@ Latest verified additional maps for the first transition slice:
 
 - `LittlerootTown_BrendansHouse_1F`: generated map `data/generated/maps/littleroot_town_brendans_house_1_f.json`, tileset `data/generated/tilesets/littleroot_town_brendans_house_1_f.json`, atlas `assets/generated/tilesets/littleroot_town_brendans_house_1_f_metatiles.png`, scripts `data/generated/scripts/littleroot_town_brendans_house_1_f.json`, size 11x9, 26 scripts, 11 movement labels, 29 text labels, 0 charmap warnings
 - `LittlerootTown_MaysHouse_1F`: generated map `data/generated/maps/littleroot_town_mays_house_1_f.json`, tileset `data/generated/tilesets/littleroot_town_mays_house_1_f.json`, atlas `assets/generated/tilesets/littleroot_town_mays_house_1_f_metatiles.png`, scripts `data/generated/scripts/littleroot_town_mays_house_1_f.json`, size 11x9, 31 scripts, 11 movement labels, 8 text labels, 0 charmap warnings
+
+Latest verified global text export:
+
+- generated path: `data/generated/text/global_text.json`
+- manifest category: `texts` / `global`
+- source files: 37 `data/text/*.inc`
+- labels/text records: 3454
+- standard `.string` text records: 3393
+- `.braille` text records: 61
+- source text bytes: 216404 normal text bytes and 798 braille bytes
+- charmap warnings: 0
+- braille warnings: 0
+- preprocessor decisions: 6, all from `data/text/pc_transfer.inc` `IS_FRLG` branches
+- preprocessor warnings: 0
+- unsupported directives: 0

@@ -99,3 +99,9 @@
 - Updated `export_event_scripts.py` so generated local map-script text records keep UTF-8 `display_text` plus source charmap encoding metadata, with all first-slice local texts reporting 0 charmap warnings.
 - Updated `ScriptVM` message results and `script_vm_smoke.gd` so runtime dialogue records expose text encoding status, source byte count, and terminator metadata.
 - Verified `py_compile`, `text_codec_smoke.py`, `git diff --check`, `map_runtime_smoke.gd`, `event_manager_smoke.gd`, `script_vm_smoke.gd`, and `transition_presentation_smoke.gd`.
+- Traced global text handling through `data/text/*.inc`, `tools/preproc/asm_file.cpp:AsmFile::ReadBraille`, `asm/macros/event.inc` `brailleformat`, `src/scrcmd.c:ScrCmd_braillemessage`, `include/constants/characters.h`, and `include/constants/global.h`.
+- Added `tools/importer/export_text.py` to export global `data/text/*.inc` labels into `data/generated/text/global_text.json`, including normal `.string` charmap metadata, `.braille` byte metadata, `brailleformat` headers, and Emerald `IS_FRLG = false` branch handling.
+- Generated global text data with 37 source files, 3454 text records, 3393 normal records, 61 braille records, 0 charmap warnings, 0 braille warnings, 6 preprocessor decisions, and 0 unsupported directives.
+- Updated `DataRegistry` with `get_text_data`, `get_text_record`, and `get_text_display_text`, indexed from the manifest `texts` entry.
+- Added `tools/importer/export_text_smoke.py` and `tools/godot_smoke/data_registry_text_smoke.gd` for exporter and Godot registry validation.
+- Verified `py_compile`, `export_text.py`, `export_text_smoke.py`, `text_codec_smoke.py`, `data_registry_text_smoke.gd`, `script_vm_smoke.gd`, `map_runtime_smoke.gd`, `event_manager_smoke.gd`, and `transition_presentation_smoke.gd`.

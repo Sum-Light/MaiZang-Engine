@@ -19,7 +19,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
 - Autoloads are configured for `GameState`, `DataRegistry`, `MapRuntime`, `ScriptVM`, and `EventManager`.
 - `GameState` stores current map id, player gender, player grid position, flags, and vars.
-- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, and script JSON by map id while preserving the first-slice start-map API.
+- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, script, and global text JSON while preserving the first-slice start-map API.
 - `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior id, behavior name, and layer-type lookups.
 - `MapRuntime` now indexes first-slice object events, BG/sign events, warp events, and coordinate events.
 - `MapRuntime` treats visible object-event cells as occupied and can resolve the player's current interaction target from grid position plus facing direction.
@@ -54,21 +54,25 @@ The port should be data-driven: preserve source data and assets where practical,
 - `tools/importer/export_tilesets.py` also parses `include/constants/metatile_labels.h` and `src/field_door.c` to bake supported used door animation strips from `graphics/door_anims/*.png` into normal RGBA frame atlases and generated `door_animations` metadata.
 - `tools/importer/export_event_scripts.py` exports `LittlerootTown` map script labels, instruction streams, movement labels, local text labels, first-pass `msgbox` previews, and source behavior trace notes.
 - `tools/importer/export_event_scripts.py` now validates local map-script text labels against source `charmap.txt`, preserving UTF-8 `display_text` plus source bytes, control codes, placeholders, terminator metadata, and warnings.
+- `tools/importer/export_text.py` exports global `data/text/*.inc` labels into `data/generated/text/global_text.json`, preserving normal `.string` charmap metadata, `.braille` byte metadata, `brailleformat` headers, and `IS_FRLG` preprocessor branch decisions for the Emerald target.
 - Generated map data currently exists for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated tileset metadata and palette-baked metatile atlases currently exist for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated tileset metadata now includes a `metatile_behaviors` name table plus per-metatile `attribute.behavior_name` values.
 - Generated `LittlerootTown` tileset metadata now includes door animation metadata for `METATILE_Petalburg_Door_Littleroot` and `METATILE_Petalburg_Door_BirchsLab`, with generated RGBA atlases under `assets/generated/door_anims/`.
 - Generated event script data currently exists for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
+- Generated global text data currently exists at `data/generated/text/global_text.json` and is indexed by the import manifest `texts` entry.
 - Generated import manifest lives at `data/generated/import_manifest.json`.
 - Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
 - Latest map export for `LittlerootTown` decoded 400 map-grid entries into 63 unique metatile ids.
 - Latest tileset export for `LittlerootTown` uses `gTileset_General` and `gTileset_Petalburg`, writes a 656-metatile RGBA atlas, reports 63 used metatile ids, records 8 fully covered source tile notes, exports 2 door animation atlases, and has 0 visible warnings.
 - Latest event script export for `LittlerootTown` found 130 labels, 78 scripts, 34 movement labels, 18 local text labels, 0 charmap warnings, and 0 orphan instructions.
+- Latest global text export found 37 source files, 3454 labels/text records, 3393 normal `.string` records, 61 `.braille` records, 0 charmap warnings, 0 braille warnings, 6 `IS_FRLG` preprocessor decisions, 0 preprocessor warnings, and 0 unsupported directives.
 - Generated `LittlerootTown_BrendansHouse_1F` is 11x9 and has 26 scripts, 11 movement labels, 29 text labels, 0 charmap warnings, and 0 script orphan instructions.
 - Generated `LittlerootTown_MaysHouse_1F` is 11x9 and has 31 scripts, 11 movement labels, 8 text labels, 0 charmap warnings, and 0 script orphan instructions.
 - Latest event script export records first-pass preview support for direct `msgbox`/`message` text only; full opcode behavior remains a future `ScriptVM` task grounded in source C traces and referenced resources.
 - `ScriptVM` now executes the first synchronous dialogue, movement-effect, object-effect, field-effect, audio-effect, transition-effect, and player-effect subset for generated scripts: `msgbox`, `message`, `lock`, `lockall`, `release`, `releaseall`, `faceplayer`, `waitmessage`, `waitbuttonpress`, `closemessage`, `goto`, `call`, `return`, `end`, basic `*_if_*` branches, `setflag`, `clearflag`, `setvar`, `checkplayergender`, `applymovement`, `applymovementat`, `waitmovement`, `waitmovementat`, `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`, `addobject`, `addobjectat`, `removeobject`, `removeobjectat`, `showobject`, `showobjectat`, `hideobject`, `hideobjectat`, `delay`, `opendoor`, `closedoor`, `waitdooranim`, `waitstate`, `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, and `hideplayer`.
 - `ScriptVM` expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` according to the source standard scripts. Current waits and locks are recorded as execution effects; real asynchronous UI, object freezing, and player/object facing animation remain future work.
+- `DataRegistry` can load global generated text by category and return text records or `display_text` by source label. Runtime script/dialogue integration still primarily uses local generated map-script text; global text label resolution in the VM/UI remains future work.
 - `ScriptVM` expands generated movement labels into result `movements` entries with target local id, structured steps, net tile delta, final facing, and unsupported-step reporting. Real dispatch now fast-forwards those net deltas into runtime map/player state; scene-node animation, object task queues, source collision timing, and real wait blocking remain future work.
 - `ScriptVM` records `delay`, `opendoor`, `closedoor`, and `waitdooranim` as `field_effects` after tracing `ScrCmd_delay`, `ScrCmd_opendoor`, `ScrCmd_closedoor`, `ScrCmd_waitdooranim`, and `src/field_door.c`; transition presentation now consumes generated door animation metadata for the first door-warp overlay slice, while standalone script-driven door animation, real audio playback, and asynchronous wait timing remain future presentation/runtime work.
 - `ScriptVM` records `waitstate`, `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, and `hideplayer` as structured wait, audio, transition, and player-effect results after tracing the source script command table, macros, `src/scrcmd.c`, `src/field_screen_effect.c`, and `src/overworld.c`; real sound playback, fanfare waiting, map loading/fades, and player node visibility remain future systems.
@@ -86,6 +90,7 @@ The port should be data-driven: preserve source data and assets where practical,
 
 - Map metadata: `data/maps/*/map.json`
 - Map scripts: `data/maps/*/scripts.inc`
+- Global text: `data/text/*.inc`
 - Layout metadata: `data/layouts/layouts.json`
 - Layout block data: `data/layouts/*/map.bin`
 - Layout border data: `data/layouts/*/border.bin`
@@ -103,6 +108,6 @@ The port should be data-driven: preserve source data and assets where practical,
 
 ## Important Risk
 
-Text may appear garbled when read directly in the shell because console encoding can differ from the UTF-8 source files. Do not hand-fix strings. Local map-script text labels now have a `charmap.txt`-driven validation pass, but broader text resources and C string macros still need the same treatment before they are final.
+Text may appear garbled when read directly in the shell because console encoding can differ from the UTF-8 source files. Do not hand-fix strings. Local map-script text labels and global `data/text/*.inc` labels now have source-backed validation passes, including `.braille` and the current `IS_FRLG` branch. C string macros still need the same treatment before they are final.
 
 Avoid using PowerShell for script-like file rewriting or text conversion unless necessary. If PowerShell is used, explicitly consider encoding and verify the result, especially for Chinese text.

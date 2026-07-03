@@ -179,3 +179,9 @@ Reason: The source `field_door.c` tables define visible behavior: metatile label
 Decision: Generated text records should keep Godot-facing UTF-8 `display_text` while also storing source `charmap.txt` byte metadata, control codes, placeholders, terminator state, and warnings.
 
 Reason: The source project's charmap is required to verify that script text still maps to the original byte stream, including Chinese characters and control codes. Godot does not need to render through the GBA text encoding at runtime. Splitting display text from source-byte metadata preserves source compatibility and debugging value without importing GBA text storage constraints into the runtime UI.
+
+## 2026-07-04 - Export global text for the Emerald target branch
+
+Decision: Export global `data/text/*.inc` labels for the Emerald target, evaluating the current `IS_FRLG` text branches as false, and preserve `.braille` labels with their source `brailleformat` header plus source-derived braille bytes.
+
+Reason: The local source target defines `IS_FRLG 0` for Emerald in `include/constants/global.h`; including both branches would create text that the source build would never show. Braille text is also player-visible data, but source `ScrCmd_braillemessage` intentionally skips the first 6 `brailleformat` bytes before expanding the string, so Godot needs both the skipped header and the resulting text bytes as generated metadata.

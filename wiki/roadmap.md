@@ -57,10 +57,13 @@
 
 ## Milestone 5 - Text Pipeline
 
-- Parse `charmap.txt`. First pass done for map-script local text labels using a source-preprocessor-compatible charmap reader.
-- Extract text macros and labels. First pass done for local `.string` labels inside generated first-slice map scripts; global text files and C macros remain.
-- Convert text into UTF-8 Godot resources. First pass done for generated map-script labels as UTF-8 `display_text`.
+- Parse `charmap.txt`. First pass done for map-script local text labels and global `data/text/*.inc` labels using a source-preprocessor-compatible charmap reader.
+- Extract text macros and labels. First pass done for local `.string` labels inside generated map scripts and global `data/text/*.inc` labels. C text macros such as `_("")` and `COMPOUND_STRING()` remain.
+- Convert text into UTF-8 Godot resources. First pass done for generated map-script labels and global text labels as UTF-8 `display_text`.
 - Preserve control codes and placeholders. First pass done as generated text encoding metadata: source bytes/hex, terminator presence, control codes, placeholders, status, and warnings.
+- Preserve source braille text. First pass done for `.braille` labels with `brailleformat` headers, source-derived braille bytes, and the `ScrCmd_braillemessage` 6-byte pointer skip.
+- Resolve text preprocessor branches. First pass done for `#if IS_FRLG/#else/#endif` in `data/text/pc_transfer.inc`, using the Emerald `IS_FRLG = false` branch traced to `include/constants/global.h`.
+- Add runtime access. First pass done through `DataRegistry.get_text_data`, `get_text_record`, and `get_text_display_text`; VM/UI integration for global text labels remains.
 
 ## Milestone 6 - Pokemon Data Slice
 
