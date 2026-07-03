@@ -36,6 +36,19 @@ func _init() -> void:
 	var give_running_shoes_result := vm.run_script("LittlerootTown_EventScript_GiveRunningShoes")
 	var synthetic_script_data := script_data.duplicate(true)
 	var synthetic_scripts: Dictionary = synthetic_script_data.get("scripts", {})
+	var synthetic_texts: Dictionary = synthetic_script_data.get("texts", {})
+	synthetic_texts["Smoke_Text_PlayerBigGuyGirl"] = {
+		"label": "Smoke_Text_PlayerBigGuyGirl",
+		"display_text": "称呼:{STR_VAR_1}",
+		"kind": "text",
+		"source": "smoke",
+	}
+	synthetic_texts["Smoke_Text_RivalSonDaughter"] = {
+		"label": "Smoke_Text_RivalSonDaughter",
+		"display_text": "关系:{STR_VAR_1}",
+		"kind": "text",
+		"source": "smoke",
+	}
 	synthetic_scripts["Smoke_EventScript_DelayOnly"] = {
 		"instructions": [
 			{"op": "delay", "args": ["30"], "line": 1, "raw": "delay 30"},
@@ -75,7 +88,22 @@ func _init() -> void:
 			{"op": "end", "args": [], "line": 6, "raw": "end"},
 		],
 	}
+	synthetic_scripts["Smoke_EventScript_PlayerBigGuyGirl"] = {
+		"instructions": [
+			{"op": "special", "args": ["GetPlayerBigGuyGirlString"], "line": 1, "raw": "special GetPlayerBigGuyGirlString"},
+			{"op": "msgbox", "args": ["Smoke_Text_PlayerBigGuyGirl", "MSGBOX_DEFAULT"], "line": 2, "raw": "msgbox Smoke_Text_PlayerBigGuyGirl, MSGBOX_DEFAULT"},
+			{"op": "end", "args": [], "line": 3, "raw": "end"},
+		],
+	}
+	synthetic_scripts["Smoke_EventScript_RivalSonDaughter"] = {
+		"instructions": [
+			{"op": "special", "args": ["GetRivalSonDaughterString"], "line": 1, "raw": "special GetRivalSonDaughterString"},
+			{"op": "msgbox", "args": ["Smoke_Text_RivalSonDaughter", "MSGBOX_DEFAULT"], "line": 2, "raw": "msgbox Smoke_Text_RivalSonDaughter, MSGBOX_DEFAULT"},
+			{"op": "end", "args": [], "line": 3, "raw": "end"},
+		],
+	}
 	synthetic_script_data["scripts"] = synthetic_scripts
+	synthetic_script_data["texts"] = synthetic_texts
 	vm.configure_from_script_data(synthetic_script_data)
 	var delay_result := vm.run_script("Smoke_EventScript_DelayOnly")
 	var warp_result := vm.run_script("Smoke_EventScript_WarpOnly")
@@ -86,6 +114,12 @@ func _init() -> void:
 	var yesno_yes_var_result := game_state.get_var("VAR_RESULT", -1)
 	var yesno_no_result := vm.run_script("Smoke_EventScript_YesNoBranch", {"yesno_choice": "NO"})
 	var yesno_no_var_result := game_state.get_var("VAR_RESULT", -1)
+	game_state.set_player_gender("MALE")
+	var special_player_male_result := vm.run_script("Smoke_EventScript_PlayerBigGuyGirl")
+	var special_rival_male_result := vm.run_script("Smoke_EventScript_RivalSonDaughter")
+	game_state.set_player_gender("FEMALE")
+	var special_player_female_result := vm.run_script("Smoke_EventScript_PlayerBigGuyGirl")
+	var special_rival_female_result := vm.run_script("Smoke_EventScript_RivalSonDaughter")
 	vm.configure_from_script_data(script_data)
 	var missing_result := vm.run_script("Missing_EventScript")
 
@@ -290,6 +324,39 @@ func _init() -> void:
 	_assert(yesno_no_var_result == 0, "expected injected NO VAR_RESULT")
 	_assert(_unsupported_count(yesno_no_result) == 0, "expected no unsupported injected NO ops")
 
+	_assert(special_player_male_result.get("status", "") == "ok", "expected player big-guy special to execute for male")
+	_assert(_special_effect_count(special_player_male_result) == 1, "expected one player big-guy special effect for male")
+	_assert(_special_effect_function(special_player_male_result, 0) == "GetPlayerBigGuyGirlString", "unexpected player big-guy special function")
+	_assert(_special_effect_write_value(special_player_male_result, 0, "STR_VAR_1") == "大哥哥", "unexpected male player big-guy string")
+	_assert(_string_var_value(special_player_male_result, "STR_VAR_1") == "大哥哥", "expected male player string var")
+	_assert(_first_message_text(special_player_male_result) == "称呼:大哥哥", "expected expanded male player big-guy message")
+	_assert(_first_message_unexpanded_text(special_player_male_result) == "称呼:{STR_VAR_1}", "expected unexpanded male player big-guy message")
+	_assert(_first_message_placeholder_substitution_count(special_player_male_result) == 1, "expected one male player placeholder substitution")
+	_assert(_first_message_placeholder_value(special_player_male_result, 0) == "大哥哥", "unexpected male player placeholder value")
+	_assert(_unsupported_count(special_player_male_result) == 0, "expected no unsupported male player special ops")
+
+	_assert(special_player_female_result.get("status", "") == "ok", "expected player big-guy special to execute for female")
+	_assert(_special_effect_count(special_player_female_result) == 1, "expected one player big-guy special effect for female")
+	_assert(_special_effect_write_value(special_player_female_result, 0, "STR_VAR_1") == "大姐姐", "unexpected female player big-guy string")
+	_assert(_string_var_value(special_player_female_result, "STR_VAR_1") == "大姐姐", "expected female player string var")
+	_assert(_first_message_text(special_player_female_result) == "称呼:大姐姐", "expected expanded female player big-guy message")
+	_assert(_unsupported_count(special_player_female_result) == 0, "expected no unsupported female player special ops")
+
+	_assert(special_rival_male_result.get("status", "") == "ok", "expected rival relation special to execute for male")
+	_assert(_special_effect_count(special_rival_male_result) == 1, "expected one rival relation special effect for male")
+	_assert(_special_effect_function(special_rival_male_result, 0) == "GetRivalSonDaughterString", "unexpected rival relation special function")
+	_assert(_special_effect_write_value(special_rival_male_result, 0, "STR_VAR_1") == "女儿", "unexpected male rival relation string")
+	_assert(_string_var_value(special_rival_male_result, "STR_VAR_1") == "女儿", "expected male rival relation string var")
+	_assert(_first_message_text(special_rival_male_result) == "关系:女儿", "expected expanded male rival relation message")
+	_assert(_unsupported_count(special_rival_male_result) == 0, "expected no unsupported male rival special ops")
+
+	_assert(special_rival_female_result.get("status", "") == "ok", "expected rival relation special to execute for female")
+	_assert(_special_effect_count(special_rival_female_result) == 1, "expected one rival relation special effect for female")
+	_assert(_special_effect_write_value(special_rival_female_result, 0, "STR_VAR_1") == "儿子", "unexpected female rival relation string")
+	_assert(_string_var_value(special_rival_female_result, "STR_VAR_1") == "儿子", "expected female rival relation string var")
+	_assert(_first_message_text(special_rival_female_result) == "关系:儿子", "expected expanded female rival relation message")
+	_assert(_unsupported_count(special_rival_female_result) == 0, "expected no unsupported female rival special ops")
+
 	_assert(missing_result.get("status", "") == "missing_script", "expected missing script status")
 
 	print(JSON.stringify({
@@ -311,6 +378,10 @@ func _init() -> void:
 		"yesno_pending": _result_summary(yesno_pending_result),
 		"yesno_yes": _result_summary(yesno_yes_result),
 		"yesno_no": _result_summary(yesno_no_result),
+		"special_player_male": _result_summary(special_player_male_result),
+		"special_player_female": _result_summary(special_player_female_result),
+		"special_rival_male": _result_summary(special_rival_male_result),
+		"special_rival_female": _result_summary(special_rival_female_result),
 		"missing_status": String(missing_result.get("status", "")),
 	}))
 	game_state.free()
@@ -372,6 +443,25 @@ func _first_message_text(result: Dictionary) -> String:
 	if typeof(first) != TYPE_DICTIONARY:
 		return ""
 	return String(first.get("text", ""))
+
+
+func _first_message_unexpanded_text(result: Dictionary) -> String:
+	return String(_message_at(result, 0).get("unexpanded_text", ""))
+
+
+func _first_message_placeholder_substitution_count(result: Dictionary) -> int:
+	var substitutions = _message_at(result, 0).get("placeholder_substitutions", [])
+	return substitutions.size() if typeof(substitutions) == TYPE_ARRAY else 0
+
+
+func _first_message_placeholder_value(result: Dictionary, index: int) -> String:
+	var substitutions = _message_at(result, 0).get("placeholder_substitutions", [])
+	if typeof(substitutions) != TYPE_ARRAY or index < 0 or index >= substitutions.size():
+		return ""
+	var substitution = substitutions[index]
+	if typeof(substitution) != TYPE_DICTIONARY:
+		return ""
+	return String(substitution.get("value", ""))
 
 
 func _first_message_encoding_status(result: Dictionary) -> String:
@@ -508,6 +598,7 @@ func _result_summary(result: Dictionary) -> Dictionary:
 		"object_effect_count": _object_effect_count(result),
 		"field_effect_count": _field_effect_count(result),
 		"ui_effect_count": _ui_effect_count(result),
+		"special_effect_count": _special_effect_count(result),
 		"audio_effect_count": _audio_effect_count(result),
 		"transition_effect_count": _transition_effect_count(result),
 		"player_effect_count": _player_effect_count(result),
@@ -548,6 +639,11 @@ func _field_effect_count(result: Dictionary) -> int:
 func _ui_effect_count(result: Dictionary) -> int:
 	var ui_effects = result.get("ui_effects", [])
 	return ui_effects.size() if typeof(ui_effects) == TYPE_ARRAY else 0
+
+
+func _special_effect_count(result: Dictionary) -> int:
+	var special_effects = result.get("special_effects", [])
+	return special_effects.size() if typeof(special_effects) == TYPE_ARRAY else 0
 
 
 func _audio_effect_count(result: Dictionary) -> int:
@@ -597,6 +693,14 @@ func _ui_effect_at(result: Dictionary, index: int) -> Dictionary:
 	return ui_effect if typeof(ui_effect) == TYPE_DICTIONARY else {}
 
 
+func _special_effect_at(result: Dictionary, index: int) -> Dictionary:
+	var special_effects = result.get("special_effects", [])
+	if typeof(special_effects) != TYPE_ARRAY or index < 0 or index >= special_effects.size():
+		return {}
+	var special_effect = special_effects[index]
+	return special_effect if typeof(special_effect) == TYPE_DICTIONARY else {}
+
+
 func _audio_effect_at(result: Dictionary, index: int) -> Dictionary:
 	var audio_effects = result.get("audio_effects", [])
 	if typeof(audio_effects) != TYPE_ARRAY or index < 0 or index >= audio_effects.size():
@@ -639,6 +743,27 @@ func _field_effect_op(result: Dictionary, index: int) -> String:
 
 func _ui_effect_op(result: Dictionary, index: int) -> String:
 	return String(_ui_effect_at(result, index).get("op", ""))
+
+
+func _special_effect_function(result: Dictionary, index: int) -> String:
+	return String(_special_effect_at(result, index).get("function", ""))
+
+
+func _special_effect_write_value(result: Dictionary, index: int, var_name: String) -> String:
+	var writes = _special_effect_at(result, index).get("writes", [])
+	if typeof(writes) != TYPE_ARRAY:
+		return ""
+	for write in writes:
+		if typeof(write) == TYPE_DICTIONARY and String(write.get("var", "")) == var_name:
+			return String(write.get("value", ""))
+	return ""
+
+
+func _string_var_value(result: Dictionary, var_name: String) -> String:
+	var string_vars = result.get("string_vars", {})
+	if typeof(string_vars) != TYPE_DICTIONARY:
+		return ""
+	return String(string_vars.get(var_name, ""))
 
 
 func _audio_effect_op(result: Dictionary, index: int) -> String:

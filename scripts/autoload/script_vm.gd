@@ -7,6 +7,9 @@ const MSGBOX_DEFAULT := "MSGBOX_DEFAULT"
 const MSGBOX_YESNO := "MSGBOX_YESNO"
 const SAFE_FOLLOWER_FLAG := "FLAG_SAFE_FOLLOWER_MOVEMENT"
 const VAR_RESULT := "VAR_RESULT"
+const STR_VAR_1 := "STR_VAR_1"
+const STR_VAR_2 := "STR_VAR_2"
+const STR_VAR_3 := "STR_VAR_3"
 const PLAYER_GENDER_MALE := "MALE"
 const PLAYER_GENDER_FEMALE := "FEMALE"
 const PLAYER_GENDER_MALE_VALUE := 0
@@ -61,12 +64,14 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"object_effects": [],
 		"field_effects": [],
 		"ui_effects": [],
+		"special_effects": [],
 		"audio_effects": [],
 		"transition_effects": [],
 		"player_effects": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
+		"string_vars": _initial_string_vars(),
 		"context": context,
 		"status": "ok",
 		"finished": false,
@@ -121,12 +126,14 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"object_effects": state["object_effects"],
 		"field_effects": state["field_effects"],
 		"ui_effects": state["ui_effects"],
+		"special_effects": state["special_effects"],
 		"audio_effects": state["audio_effects"],
 		"transition_effects": state["transition_effects"],
 		"player_effects": state["player_effects"],
 		"effects": state["effects"],
 		"unsupported_ops": state["unsupported_ops"],
 		"trace": state["trace"],
+		"string_vars": state["string_vars"],
 		"wait_buttonpress": bool(state["wait_buttonpress"]),
 		"wait_movement": bool(state["wait_movement"]),
 		"wait_ui": bool(state["wait_ui"]),
@@ -186,6 +193,11 @@ func _execute_instruction(state: Dictionary, instruction: Dictionary) -> void:
 					"var": String(args[0]),
 					"value": _read_value(String(args[1])),
 				})
+			else:
+				_record_unsupported(state, op, line, String(instruction.get("raw", "")))
+		"special":
+			if args.size() >= 1:
+				_execute_special(state, String(args[0]), line, String(instruction.get("raw", "")))
 			else:
 				_record_unsupported(state, op, line, String(instruction.get("raw", "")))
 		"checkplayergender":
@@ -394,6 +406,35 @@ func _execute_checkplayergender(state: Dictionary, line: int) -> void:
 	})
 
 
+func _execute_special(state: Dictionary, function_name: String, line: int, raw: String) -> void:
+	var gender := _get_player_gender()
+	match function_name:
+		"GetPlayerBigGuyGirlString":
+			var text := "大哥哥" if gender == PLAYER_GENDER_MALE else "大姐姐"
+			_set_string_var(state, STR_VAR_1, text)
+			_record_special_effect(state, line, {
+				"function": function_name,
+				"gender": gender,
+				"writes": [{"var": STR_VAR_1, "value": text}],
+				"source": "src/field_specials.c",
+				"source_context": "GetPlayerBigGuyGirlString",
+				"raw": raw,
+			})
+		"GetRivalSonDaughterString":
+			var text := "女儿" if gender == PLAYER_GENDER_MALE else "儿子"
+			_set_string_var(state, STR_VAR_1, text)
+			_record_special_effect(state, line, {
+				"function": function_name,
+				"gender": gender,
+				"writes": [{"var": STR_VAR_1, "value": text}],
+				"source": "src/field_specials.c",
+				"source_context": "GetRivalSonDaughterString",
+				"raw": raw,
+			})
+		_:
+			_record_unsupported(state, "special:%s" % function_name, line, raw)
+
+
 func _execute_applymovement(
 	state: Dictionary,
 	args: Array,
@@ -559,6 +600,17 @@ func _record_ui_effect(state: Dictionary, op: String, line: int, detail: Diction
 		ui_effect[key] = detail[key]
 	state["ui_effects"].append(ui_effect)
 	_record_effect(state, op, line, detail)
+
+
+func _record_special_effect(state: Dictionary, line: int, detail: Dictionary) -> void:
+	var special_effect := {
+		"op": "special",
+		"line": line,
+	}
+	for key in detail:
+		special_effect[key] = detail[key]
+	state["special_effects"].append(special_effect)
+	_record_effect(state, "special", line, detail)
 
 
 func _record_audio_effect(state: Dictionary, op: String, line: int, detail: Dictionary) -> void:
@@ -955,12 +1007,17 @@ func _execute_message(
 		encoding_status = String(encoding.get("status", "unknown"))
 		source_byte_count = int(encoding.get("byte_count", 0))
 		terminator_present = bool(encoding.get("terminator_present", false))
+	var unexpanded_text := String(text_record.get("display_text", ""))
+	var placeholder_substitutions := _placeholder_substitutions(state, unexpanded_text)
+	var expanded_text := _expand_message_placeholders(state, unexpanded_text)
 	state["messages"].append({
 		"text_label": text_label,
 		"mode": mode,
 		"op": source_op,
 		"line": line,
-		"text": String(text_record.get("display_text", "")),
+		"text": expanded_text,
+		"unexpanded_text": unexpanded_text,
+		"placeholder_substitutions": placeholder_substitutions,
 		"status": status,
 		"text_source": String(text_record.get("source", "")),
 		"text_kind": String(text_record.get("kind", "text")),
@@ -973,6 +1030,7 @@ func _execute_message(
 		"mode": mode,
 		"status": status,
 		"encoding_status": encoding_status,
+		"placeholder_substitution_count": placeholder_substitutions.size(),
 	})
 
 
@@ -1107,6 +1165,58 @@ func _yesno_choice_record(choice: String, value: int, has_choice: bool, source_k
 	}
 
 
+func _initial_string_vars() -> Dictionary:
+	return {
+		STR_VAR_1: "",
+		STR_VAR_2: "",
+		STR_VAR_3: "",
+	}
+
+
+func _string_var_names() -> Array:
+	return [STR_VAR_1, STR_VAR_2, STR_VAR_3]
+
+
+func _set_string_var(state: Dictionary, var_name: String, value: String) -> void:
+	var string_vars = state.get("string_vars", {})
+	if typeof(string_vars) != TYPE_DICTIONARY:
+		string_vars = _initial_string_vars()
+	string_vars[var_name] = value
+	state["string_vars"] = string_vars
+
+
+func _get_string_var(state: Dictionary, var_name: String) -> String:
+	var string_vars = state.get("string_vars", {})
+	if typeof(string_vars) != TYPE_DICTIONARY:
+		return ""
+	return String(string_vars.get(var_name, ""))
+
+
+func _placeholder_substitutions(state: Dictionary, display_text: String) -> Array:
+	var substitutions: Array = []
+	for var_name in _string_var_names():
+		var token := "{%s}" % String(var_name)
+		var cursor := display_text.find(token)
+		while cursor != -1:
+			substitutions.append({
+				"token": token,
+				"var": String(var_name),
+				"value": _get_string_var(state, String(var_name)),
+				"offset": cursor,
+				"source": "StringExpandPlaceholders",
+			})
+			cursor = display_text.find(token, cursor + token.length())
+	return substitutions
+
+
+func _expand_message_placeholders(state: Dictionary, display_text: String) -> String:
+	var expanded := display_text
+	for var_name in _string_var_names():
+		var token := "{%s}" % String(var_name)
+		expanded = expanded.replace(token, _get_string_var(state, String(var_name)))
+	return expanded
+
+
 func _get_var(var_name: String) -> int:
 	var game_state := _get_game_state()
 	if game_state != null and game_state.has_method("get_var"):
@@ -1180,12 +1290,14 @@ func _empty_result(script_label: String, status: String, finished: bool) -> Dict
 		"object_effects": [],
 		"field_effects": [],
 		"ui_effects": [],
+		"special_effects": [],
 		"audio_effects": [],
 		"transition_effects": [],
 		"player_effects": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
+		"string_vars": _initial_string_vars(),
 		"wait_buttonpress": false,
 		"wait_movement": false,
 		"wait_ui": false,

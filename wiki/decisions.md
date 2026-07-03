@@ -197,3 +197,9 @@ Reason: Source `ScrCmd_message` reads a text pointer and shows it with `ShowFiel
 Decision: Implement `MSGBOX_YESNO` and direct `yesnobox` as structured `ScriptVM.ui_effects` that can stop with `status = waiting_for_ui` unless a test/UI context explicitly supplies `YES`, `NO`, or `B`.
 
 Reason: Source `Std_MsgboxYesNo` calls `message NULL`, `waitmessage`, then `yesnobox 20, 8`; `ScrCmd_yesnobox` calls `ScriptMenu_YesNo`, which stops the script context while the menu task waits for input. `ScriptMenu_YesNo` initializes `VAR_RESULT` to `0xFF`, uses the default YES/NO menu position, defaults to `YES`, and treats `B` as `NO`. Godot should preserve that visible wait and branch behavior rather than auto-selecting an answer inside the VM.
+
+## 2026-07-04 - Expand string-var placeholders at message execution
+
+Decision: Let `ScriptVM` message results expose the source-visible expanded text while also preserving `unexpanded_text`, per-placeholder substitution metadata, and current VM string vars.
+
+Reason: Source field messages call `StringExpandPlaceholders` before drawing text, and first-slice scripts use `special` functions such as `GetPlayerBigGuyGirlString` and `GetRivalSonDaughterString` to populate `gStringVar1` immediately before showing dialogue. Godot UI should display the same expanded wording, but keeping the unexpanded source text and substitutions makes later placeholder coverage, debugging, and source-fidelity checks explicit.

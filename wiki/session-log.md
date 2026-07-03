@@ -114,3 +114,8 @@
 - Added first-pass `ScriptVM` support for `MSGBOX_YESNO` and direct `yesnobox` as structured `ui_effects`, preserving source default menu placement, default `YES`, `B = NO`, about 5 frames of input delay, `VAR_RESULT` values, and `waiting_for_ui` behavior when no UI/test choice is supplied.
 - Expanded `script_vm_smoke.gd` with synthetic YES/NO scripts that verify pending UI waits plus injected `YES` and `NO` branch behavior using global text labels.
 - Verified `script_vm_smoke.gd`, `event_manager_smoke.gd`, `data_registry_text_smoke.gd`, `map_runtime_smoke.gd`, and `transition_presentation_smoke.gd`.
+- Traced `special` and placeholder expansion through `asm/macros/event.inc`, `data/script_cmd_table.inc`, `src/scrcmd.c`, `data/specials.inc`, `src/field_specials.c`, `src/field_message_box.c`, `src/string_util.c`, and `include/constants/characters.h`.
+- Added first-pass `ScriptVM` support for the first-slice string specials `GetPlayerBigGuyGirlString` and `GetRivalSonDaughterString`, writing source-compatible `STR_VAR_1` values from `GameState.player_gender` and recording `special_effects`.
+- Updated `ScriptVM` message results to expand `{STR_VAR_1}`, `{STR_VAR_2}`, and `{STR_VAR_3}` while preserving `unexpanded_text`, substitution metadata, and runtime `string_vars`; broader `gSpecials`, `specialvar`, and other placeholders remain future work.
+- Expanded `script_vm_smoke.gd` to verify male/female outputs for both string specials and runtime `{STR_VAR_1}` message expansion.
+- Verified `script_vm_smoke.gd`, `event_manager_smoke.gd`, `data_registry_text_smoke.gd`, `map_runtime_smoke.gd`, `transition_presentation_smoke.gd`, and `git diff --check`.

@@ -41,6 +41,7 @@
 - Support a minimal ScriptVM command set:
   - `msgbox`. First pass done for `MSGBOX_NPC`, `MSGBOX_SIGN`, `MSGBOX_DEFAULT`, and `MSGBOX_YESNO`.
   - `yesnobox`. First pass done as a `ScriptVM` UI-effect record with source default YES/NO menu placement, default `YES`, `B = NO`, 5-frame input delay metadata, and `VAR_RESULT` values. Without an injected UI/test choice, execution stops with `waiting_for_ui`; real asynchronous menu presentation and resume remain future work.
+  - `special`. First pass done for the first-slice string placeholder functions `GetPlayerBigGuyGirlString` and `GetRivalSonDaughterString`, writing `STR_VAR_1` and expanding `{STR_VAR_1/2/3}` in runtime messages while preserving unexpanded text/substitution metadata. Broader `gSpecials`, `specialvar`, and non-string placeholders remain future work.
   - `setflag`, `clearflag`, `checkflag`. First pass done for `setflag` and `clearflag`.
   - `setvar`, `addvar`, `compare`. First pass done for `setvar` and simple branch-time var reads.
   - `checkplayergender`. First pass done by reading `GameState.player_gender` and writing `VAR_RESULT` as `MALE`/`FEMALE`.
