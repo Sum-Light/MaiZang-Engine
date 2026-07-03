@@ -39,6 +39,8 @@ func _ready() -> void:
 		player.movement_blocked.connect(_on_player_movement_blocked)
 	if player.has_signal("interaction_requested"):
 		player.interaction_requested.connect(_on_player_interaction_requested)
+	if MapRuntime.has_signal("map_changed"):
+		MapRuntime.map_changed.connect(_on_map_changed)
 	if MapRuntime.has_signal("object_events_changed"):
 		MapRuntime.object_events_changed.connect(_on_object_events_changed)
 	if MapRuntime.has_signal("player_position_changed"):
@@ -89,6 +91,17 @@ func _on_debug_message_requested(lines: PackedStringArray) -> void:
 	dialogue_panel.visible = true
 
 
+func _on_map_changed(map_data: Dictionary, tileset_data: Dictionary, _map_size: Vector2i) -> void:
+	if debug_map.has_method("configure_from_map_data"):
+		debug_map.configure_from_map_data(map_data, tileset_data)
+	if object_events.has_method("configure_from_events"):
+		object_events.configure_from_events(
+			MapRuntime.get_object_events(),
+			DataRegistry.TILE_SIZE
+		)
+	_update_status()
+
+
 func _on_object_events_changed(updated_object_events: Array) -> void:
 	if object_events.has_method("configure_from_events"):
 		object_events.configure_from_events(updated_object_events, DataRegistry.TILE_SIZE)
@@ -107,10 +120,11 @@ func _hide_dialogue() -> void:
 
 
 func _update_status() -> void:
-	var source_label := "generated" if not DataRegistry.get_start_map_data().is_empty() else "fallback"
+	var map_id := GameState.current_map_id
+	var source_label := "generated" if DataRegistry.has_map_data(map_id) else "fallback"
 	var parts := PackedStringArray([
-		DataRegistry.get_start_map_id(),
-		DataRegistry.get_start_map_name(),
+		map_id,
+		DataRegistry.get_map_name(map_id),
 		source_label,
 		"grid %s" % GameState.player_grid_position,
 		"objects %d" % MapRuntime.get_object_events().size(),

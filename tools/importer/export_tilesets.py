@@ -42,7 +42,11 @@ FLIP_TOP_BOTTOM = Image.Transpose.FLIP_TOP_BOTTOM if hasattr(Image, "Transpose")
 def camel_to_snake(value):
     chars = []
     for index, char in enumerate(value):
-        if char.isupper() and index > 0:
+        if char == "_":
+            if chars and chars[-1] != "_":
+                chars.append("_")
+            continue
+        if char.isupper() and index > 0 and chars and chars[-1] != "_":
             chars.append("_")
         chars.append(char.lower())
     return "".join(chars)

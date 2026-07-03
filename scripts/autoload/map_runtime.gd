@@ -1,5 +1,6 @@
 extends Node
 
+signal map_changed(map_data: Dictionary, tileset_data: Dictionary, map_size: Vector2i)
 signal object_events_changed(object_events: Array)
 signal player_position_changed(grid_position: Vector2i)
 
@@ -80,6 +81,8 @@ func configure_from_data(
 	_index_bg_events()
 	_index_warp_events()
 	_index_coord_events()
+	map_changed.emit(_map_data, _tileset_data, _map_size)
+	object_events_changed.emit(get_object_events())
 
 
 func is_within_bounds(cell: Vector2i) -> bool:
@@ -347,6 +350,21 @@ func apply_script_object_effects(object_effects: Array, game_state: Node = null)
 		object_events_changed.emit(get_object_events())
 
 	return summary
+
+
+func set_player_grid_position(grid_position: Vector2i, game_state: Node = null) -> bool:
+	if not is_within_bounds(grid_position):
+		return false
+
+	var resolved_game_state := game_state
+	if resolved_game_state == null and is_inside_tree():
+		resolved_game_state = get_node_or_null("/root/GameState")
+	if resolved_game_state == null:
+		return false
+
+	resolved_game_state.player_grid_position = grid_position
+	player_position_changed.emit(grid_position)
+	return true
 
 
 func _index_metatile_attributes() -> void:

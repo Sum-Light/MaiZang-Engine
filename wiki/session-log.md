@@ -70,3 +70,6 @@
 - Traced `waitstate`, `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, and `hideplayer` through the script command table, macros, `src/scrcmd.c`, `src/field_screen_effect.c`, and `src/overworld.c`.
 - Added first-pass `ScriptVM` support for audio effects, transition effects, player effects, `waitstate`, and audio waits, preserving source-visible intent while leaving real audio playback, fanfare tasks, map loading/fades, and player presentation visibility to future Godot systems.
 - Expanded `script_vm_smoke.gd` to cover LittlerootTown step-off-truck, running-shoes fanfare, and a synthetic normal warp script.
+- Updated importer manifest writes to merge generated maps, tilesets, and scripts by stable identity instead of replacing the whole same-type list.
+- Generated `LittlerootTown_BrendansHouse_1F` and `LittlerootTown_MaysHouse_1F` map, tileset atlas, tileset metadata, and script JSON for the first real transition slice.
+- Made `DataRegistry` manifest-backed, added runtime map-change signaling, and let `EventManager` apply explicit-position transition effects to generated destination maps; `event_manager_smoke.gd` now verifies `StepOffTruckMale` loads Brendan's house at position 8,8.

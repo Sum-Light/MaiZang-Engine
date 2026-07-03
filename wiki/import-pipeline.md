@@ -116,7 +116,7 @@ Current export behavior:
 - Decodes `data/layouts/<Layout>/map.bin` as little-endian u16 map-grid entries.
 - Uses `include/global.fieldmap.h` masks: bits 0-9 are metatile id, bits 10-11 are collision, and bits 12-15 are elevation.
 - Writes `data/generated/maps/littleroot_town.json` for the current first slice.
-- Updates `data/generated/import_manifest.json` with exported map id, name, path, layout id, and size while preserving existing tileset entries.
+- Updates `data/generated/import_manifest.json` with exported map id, name, path, layout id, and size while preserving existing entries for other maps, tilesets, and scripts.
 - Preserves source event arrays for connections, object events, warps, coordinate events, and background events.
 - Preserves existing script manifest entries when updating the shared import manifest.
 
@@ -131,7 +131,7 @@ Current tileset export behavior:
 - Flattens each 16x16 metatile by compositing bottom entries 0-3 and top entries 4-7.
 - Writes `assets/generated/tilesets/littleroot_town_metatiles.png`.
 - Writes `data/generated/tilesets/littleroot_town.json` with atlas metadata, source tile entries, metatile attributes, used metatile ids, coverage notes, and warnings.
-- Updates `data/generated/import_manifest.json` with exported tileset metadata while preserving existing map entries.
+- Updates `data/generated/import_manifest.json` with exported tileset metadata while preserving existing entries for other maps, tilesets, and scripts.
 
 `tools/importer/export_event_scripts.py` exports one map's `scripts.inc` into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--map`, and `--output-root`.
 
@@ -142,7 +142,7 @@ Current event script export behavior:
 - Records per-script raw operations, direct `msgbox`/`message` references, call/goto references, and simple runtime preview summaries.
 - Converts simple display escapes for preview only: `\n` and `\l` become newlines, `\p` becomes a blank line, and trailing `$` terminators are removed.
 - Records source behavior traces for supported preview behavior from `src/scrcmd.c`, `data/event_scripts.s`, and `data/scripts/std_msgbox.inc`.
-- Updates `data/generated/import_manifest.json` with exported script metadata while preserving existing map and tileset entries.
+- Updates `data/generated/import_manifest.json` with exported script metadata while preserving existing entries for other maps, tilesets, and scripts.
 
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 
@@ -192,3 +192,8 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - current field-effect runtime scope: `ScriptVM` records `delay`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect results; door animation, sound selection, and true asynchronous timing remain future work
 - current audio/transition/player-effect runtime scope: `ScriptVM` records `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, `waitstate`, and `hideplayer` as structured result data after source tracing; real sound playback, fanfare waiting, map loading/fades, and player presentation visibility remain future runtime work
 - current coordinate-event runtime scope: `MapRuntime` indexes generated coord events and resolves normal `var`/`var_value` step triggers by x/y/elevation plus `GameState`; full weather/immediate-script/wild-encounter/step-count chaining remains future work
+
+Latest verified additional maps for the first transition slice:
+
+- `LittlerootTown_BrendansHouse_1F`: generated map `data/generated/maps/littleroot_town_brendans_house_1_f.json`, tileset `data/generated/tilesets/littleroot_town_brendans_house_1_f.json`, atlas `assets/generated/tilesets/littleroot_town_brendans_house_1_f_metatiles.png`, scripts `data/generated/scripts/littleroot_town_brendans_house_1_f.json`, size 11x9, 26 scripts, 11 movement labels, 29 text labels
+- `LittlerootTown_MaysHouse_1F`: generated map `data/generated/maps/littleroot_town_mays_house_1_f.json`, tileset `data/generated/tilesets/littleroot_town_mays_house_1_f.json`, atlas `assets/generated/tilesets/littleroot_town_mays_house_1_f_metatiles.png`, scripts `data/generated/scripts/littleroot_town_mays_house_1_f.json`, size 11x9, 31 scripts, 11 movement labels, 8 text labels

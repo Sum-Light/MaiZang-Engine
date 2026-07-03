@@ -119,3 +119,15 @@ Reason: Source `ScrCmd_delay` sets a frame pause, while `ScrCmd_opendoor`/`ScrCm
 Decision: Add structured `ScriptVM` result channels for audio effects, transition effects, player effects, `waitstate`, and audio waits before implementing real sound playback, map loading, fades, or player presentation visibility.
 
 Reason: Source `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, `waitstate`, and `hideplayer` request engine-side effects through sound, fanfare, warp, script-context, and object visibility systems. Godot should expose the same visible intent to future audio, transition, and presentation systems without recreating GBA task/hardware structure inside the script interpreter.
+
+## 2026-07-04 - Use the generated manifest as the map registry
+
+Decision: Make `DataRegistry` load generated maps, tilesets, and scripts through `data/generated/import_manifest.json` and require importers to merge manifest entries instead of replacing each same-type list.
+
+Reason: Real warps need more than one generated map. A manifest-backed registry lets the runtime resolve destination map ids to Godot-friendly JSON and atlases without hardcoding every map path in autoload code.
+
+## 2026-07-04 - Apply explicit-position script transitions first
+
+Decision: Let `EventManager` consume `ScriptVM.transition_effects` only when the destination map has generated data and the script provides an explicit destination position.
+
+Reason: LittlerootTown's truck intro uses `warpsilent MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F, 8, 8` and the May equivalent, so explicit-position transitions unlock a concrete vertical slice. Warp-id-only resolution needs destination warp lookup and source transition edge cases, so it remains a later traced implementation.

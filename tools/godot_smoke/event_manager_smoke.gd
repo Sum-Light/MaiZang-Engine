@@ -4,15 +4,24 @@ const EVENT_MANAGER_SCRIPT := preload("res://scripts/autoload/event_manager.gd")
 const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
 const MAP_RUNTIME_SCRIPT := preload("res://scripts/autoload/map_runtime.gd")
 const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
-const SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
-const MAP_PATH := "res://data/generated/maps/littleroot_town.json"
-const TILESET_PATH := "res://data/generated/tilesets/littleroot_town.json"
+const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
+const START_MAP := "MAP_LITTLEROOT_TOWN"
+const BRENDANS_HOUSE_1F := "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F"
+const MAYS_HOUSE_1F := "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F"
 
 
 func _init() -> void:
-	var script_data := _load_json_object(SCRIPT_PATH)
-	var map_data := _load_json_object(MAP_PATH)
-	var tileset_data := _load_json_object(TILESET_PATH)
+	var registry = DATA_REGISTRY_SCRIPT.new()
+	registry._ready()
+	_assert(registry.has_map_data(START_MAP), "expected start map in registry")
+	_assert(registry.has_map_data(BRENDANS_HOUSE_1F), "expected Brendan house 1F in registry")
+	_assert(registry.has_map_data(MAYS_HOUSE_1F), "expected May house 1F in registry")
+	_assert(registry.get_map_size(BRENDANS_HOUSE_1F) == Vector2i(11, 9), "unexpected Brendan house map size")
+	_assert(registry.get_map_size(MAYS_HOUSE_1F) == Vector2i(11, 9), "unexpected May house map size")
+
+	var script_data := registry.get_start_script_data()
+	var map_data := registry.get_start_map_data()
+	var tileset_data := registry.get_start_tileset_data()
 	var vm = SCRIPT_VM_SCRIPT.new()
 	vm.configure_from_script_data(script_data)
 	var runtime = MAP_RUNTIME_SCRIPT.new()
@@ -23,6 +32,7 @@ func _init() -> void:
 	manager.configure_script_vm(vm)
 	manager.configure_map_runtime(runtime)
 	manager.configure_game_state(game_state)
+	manager.configure_data_registry(registry)
 
 	var twin_preview := manager.get_script_preview("LittlerootTown_EventScript_Twin")
 	var sign_preview := manager.get_script_preview("LittlerootTown_EventScript_TownSign")
@@ -66,6 +76,24 @@ func _init() -> void:
 		},
 	})
 	var object_effect_lines = captured.get("lines", PackedStringArray())
+	var player_position_after_coord_dispatch: Vector2i = game_state.player_grid_position
+	var twin_position_after_coord_dispatch := _event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_TWIN", true))
+	var rival_position_after_object_dispatch := _event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_RIVAL", true))
+	var birch_position_after_object_dispatch := _event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_BIRCH", true))
+	captured.clear()
+	manager.dispatch_interaction({
+		"type": "coord_event",
+		"script": "LittlerootTown_EventScript_StepOffTruckMale",
+		"position": Vector2i(0, 0),
+		"event": {
+			"script": "LittlerootTown_EventScript_StepOffTruckMale",
+		},
+	})
+	var transition_lines = captured.get("lines", PackedStringArray())
+	var house_script_result := manager.run_script("LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor")
+	var old_map_script_result := manager.run_script("LittlerootTown_EventScript_Twin")
+	var brendan_map_data: Dictionary = registry.get_map_data(BRENDANS_HOUSE_1F)
+	var brendan_object_events = brendan_map_data.get("events", {}).get("object_events", [])
 
 	_assert(twin_preview.get("status", "") == "ok", "expected Twin script preview")
 	_assert(twin_preview.get("vm_status", "") == "ok", "expected Twin VM status")
@@ -86,17 +114,17 @@ func _init() -> void:
 		need_pokemon_preview.get("text_label", "") == "LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut",
 		"unexpected need-pokemon preview text label"
 	)
-	_assert(game_state.player_grid_position == Vector2i(10, 2), "expected coord dispatch to apply player movement")
+	_assert(player_position_after_coord_dispatch == Vector2i(10, 2), "expected coord dispatch to apply player movement")
 	_assert(
-		_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_TWIN", true)) == Vector2i(16, 10),
+		twin_position_after_coord_dispatch == Vector2i(16, 10),
 		"expected dispatch to return twin to original cell"
 	)
 	_assert(
-		_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_RIVAL", true)) == Vector2i(6, 10),
+		rival_position_after_object_dispatch == Vector2i(6, 10),
 		"expected object-effect dispatch to move rival"
 	)
 	_assert(
-		_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_BIRCH", true)) == Vector2i(5, 10),
+		birch_position_after_object_dispatch == Vector2i(5, 10),
 		"expected object-effect dispatch to move Birch"
 	)
 	_assert(empty_preview.is_empty(), "expected empty script preview for 0x0")
@@ -112,19 +140,35 @@ func _init() -> void:
 		_lines_contain(object_effect_lines, "Object effects: 2 applied, 0 skipped"),
 		"expected object effect summary in emitted lines"
 	)
+	_assert(game_state.current_map_id == BRENDANS_HOUSE_1F, "expected step-off-truck transition to Brendan house")
+	_assert(game_state.player_grid_position == Vector2i(8, 8), "expected step-off-truck destination position")
+	_assert(runtime.get_map_size() == Vector2i(11, 9), "expected runtime to load Brendan house size")
+	_assert(
+		typeof(brendan_object_events) == TYPE_ARRAY and runtime.get_object_events(true).size() == brendan_object_events.size(),
+		"expected runtime object events to match Brendan house"
+	)
+	_assert(not transition_lines.is_empty(), "expected transition dispatch to emit lines")
+	_assert(
+		_lines_contain(transition_lines, "Transition effects: 1 applied, 0 skipped"),
+		"expected transition effect summary in emitted lines"
+	)
+	_assert(house_script_result.get("status", "") == "ok", "expected transitioned script data to run Brendan house script")
+	_assert(old_map_script_result.get("status", "") == "missing_script", "expected old map script to be unavailable after transition")
 
 	print(JSON.stringify({
 		"event_manager_smoke": "ok",
 		"twin": _preview_summary(twin_preview),
 		"town_sign": _preview_summary(sign_preview),
 		"need_pokemon": _preview_summary(need_pokemon_preview),
-		"player_position_after_coord_dispatch": _vector_to_array(game_state.player_grid_position),
-		"rival_position_after_object_dispatch": _vector_to_array(_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_RIVAL", true))),
+		"player_position_after_coord_dispatch": _vector_to_array(player_position_after_coord_dispatch),
+		"current_map_after_transition": game_state.current_map_id,
+		"rival_position_after_object_dispatch": _vector_to_array(rival_position_after_object_dispatch),
 	}))
 	manager.free()
 	game_state.free()
 	runtime.free()
 	vm.free()
+	registry.free()
 	quit(0)
 
 

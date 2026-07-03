@@ -18,7 +18,11 @@ MAPGRID_ELEVATION_SHIFT = 12
 def camel_to_snake(value):
     chars = []
     for index, char in enumerate(value):
-        if char.isupper() and index > 0:
+        if char == "_":
+            if chars and chars[-1] != "_":
+                chars.append("_")
+            continue
+        if char.isupper() and index > 0 and chars and chars[-1] != "_":
             chars.append("_")
         chars.append(char.lower())
     return "".join(chars)
@@ -219,6 +223,36 @@ def _manifest_generators(existing, generator):
     return generators
 
 
+def _manifest_entry_key(entry, preferred_fields):
+    if not isinstance(entry, dict):
+        return ("invalid", "")
+    for field in preferred_fields:
+        value = entry.get(field)
+        if value is not None and str(value) != "":
+            return (field, str(value))
+    return ("path", str(entry.get("path", "")))
+
+
+def _merge_manifest_entries(existing_entries, exported_entries, preferred_fields):
+    result = []
+    positions = {}
+    if isinstance(existing_entries, list):
+        for entry in existing_entries:
+            key = _manifest_entry_key(entry, preferred_fields)
+            positions[key] = len(result)
+            result.append(entry)
+
+    if isinstance(exported_entries, list):
+        for entry in exported_entries:
+            key = _manifest_entry_key(entry, preferred_fields)
+            if key in positions:
+                result[positions[key]] = entry
+            else:
+                positions[key] = len(result)
+                result.append(entry)
+    return result
+
+
 def write_manifest(
     path,
     exported_maps=None,
@@ -238,9 +272,21 @@ def write_manifest(
         "generators": _manifest_generators(existing, generator),
     }
 
-    maps = exported_maps if exported_maps is not None else existing.get("maps", [])
-    tilesets = exported_tilesets if exported_tilesets is not None else existing.get("tilesets", [])
-    scripts = exported_scripts if exported_scripts is not None else existing.get("scripts", [])
+    maps = (
+        _merge_manifest_entries(existing.get("maps", []), exported_maps, ["id", "name", "path"])
+        if exported_maps is not None
+        else existing.get("maps", [])
+    )
+    tilesets = (
+        _merge_manifest_entries(existing.get("tilesets", []), exported_tilesets, ["map", "path"])
+        if exported_tilesets is not None
+        else existing.get("tilesets", [])
+    )
+    scripts = (
+        _merge_manifest_entries(existing.get("scripts", []), exported_scripts, ["map", "path"])
+        if exported_scripts is not None
+        else existing.get("scripts", [])
+    )
     if maps:
         manifest["maps"] = maps
     if tilesets:

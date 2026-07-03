@@ -43,7 +43,7 @@
   - `checkplayergender`. First pass done by reading `GameState.player_gender` and writing `VAR_RESULT` as `MALE`/`FEMALE`.
   - `goto`, `call`, `return`, `end`. First pass done.
   - `goto_if_eq`, `call_if_eq`, `call_if_set`, `call_if_unset`. First pass done for set/unset/eq/ne variants used by the first slice.
-  - `warp`, `warpsilent`. First pass done as `ScriptVM` transition-effect records with destination, optional warp id/position, normal/silent style, and source reset semantics; real map loading and fade/sound sequencing remain.
+  - `warp`, `warpsilent`. First pass done as `ScriptVM` transition-effect records with destination, optional warp id/position, normal/silent style, and source reset semantics. Explicit-position transitions to generated maps now reconfigure runtime map/script data; warp-id lookup and fade/sound sequencing remain.
   - `applymovement`, `waitmovement`. First pass done as `ScriptVM` movement-effect records with generated movement label lookup and fast-forward application through `MapRuntime`; real animation/task waiting remains.
   - `lock`, `lockall`, `release`, `releaseall`. First pass records execution effects; real object freezing remains.
   - `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`. First pass done as `ScriptVM` object-effect records with dispatch-time application through `MapRuntime`.

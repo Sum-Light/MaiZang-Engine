@@ -6,15 +6,16 @@ var _script_data: Dictionary = {}
 var _script_vm: Node = null
 var _map_runtime: Node = null
 var _game_state: Node = null
+var _data_registry: Node = null
 
 
 func _ready() -> void:
 	_script_vm = get_node_or_null("/root/ScriptVM")
 	_map_runtime = get_node_or_null("/root/MapRuntime")
 	_game_state = get_node_or_null("/root/GameState")
-	var registry = get_node_or_null("/root/DataRegistry")
-	if registry != null and registry.has_method("get_start_script_data"):
-		configure_from_script_data(registry.get_start_script_data())
+	_data_registry = get_node_or_null("/root/DataRegistry")
+	if _data_registry != null and _data_registry.has_method("get_start_script_data"):
+		configure_from_script_data(_data_registry.get_start_script_data())
 
 
 func configure_from_script_data(script_data: Dictionary) -> void:
@@ -35,6 +36,10 @@ func configure_map_runtime(map_runtime: Node) -> void:
 
 func configure_game_state(game_state: Node) -> void:
 	_game_state = game_state
+
+
+func configure_data_registry(data_registry: Node) -> void:
+	_data_registry = data_registry
 
 
 func dispatch_interaction(interaction: Dictionary) -> void:
@@ -232,6 +237,13 @@ func _append_script_output(lines: PackedStringArray, script: String, context: Di
 			_movement_summary_count(object_effect_summary, "skipped"),
 		])
 
+	var transition_summary = runtime_summary.get("transition_effects", {})
+	if typeof(transition_summary) == TYPE_DICTIONARY and not transition_summary.is_empty():
+		lines.append("Transition effects: %d applied, %d skipped" % [
+			_movement_summary_count(transition_summary, "applied"),
+			_movement_summary_count(transition_summary, "skipped"),
+		])
+
 	var messages = result.get("messages", [])
 	if typeof(messages) == TYPE_ARRAY and not messages.is_empty():
 		for message in messages:
@@ -267,7 +279,88 @@ func _apply_runtime_result(result: Dictionary) -> Dictionary:
 	if typeof(object_effects) == TYPE_ARRAY and not object_effects.is_empty() and _map_runtime.has_method("apply_script_object_effects"):
 		summary["object_effects"] = _map_runtime.apply_script_object_effects(object_effects, _game_state)
 
+	var transition_effects = result.get("transition_effects", [])
+	if typeof(transition_effects) == TYPE_ARRAY and not transition_effects.is_empty():
+		summary["transition_effects"] = _apply_transition_effects(transition_effects)
+
 	return summary
+
+
+func _apply_transition_effects(transition_effects: Array) -> Dictionary:
+	var summary := {
+		"applied": [],
+		"skipped": [],
+	}
+	for transition_effect in transition_effects:
+		if typeof(transition_effect) != TYPE_DICTIONARY:
+			_record_skipped_transition(summary, "invalid_transition_effect", "", "", Vector2i.ZERO)
+			continue
+
+		var effect: Dictionary = transition_effect
+		var op := String(effect.get("op", ""))
+		var map_id := String(effect.get("map", ""))
+		var position := _transition_position(effect)
+		if map_id.is_empty():
+			_record_skipped_transition(summary, "missing_map", map_id, op, position)
+			continue
+		if _data_registry == null or not _data_registry.has_method("has_map_data"):
+			_record_skipped_transition(summary, "missing_data_registry", map_id, op, position)
+			continue
+		if not _data_registry.has_map_data(map_id):
+			_record_skipped_transition(summary, "missing_generated_map", map_id, op, position)
+			continue
+		if _map_runtime == null or not _map_runtime.has_method("configure_from_data"):
+			_record_skipped_transition(summary, "missing_map_runtime", map_id, op, position)
+			continue
+
+		var map_data: Dictionary = _data_registry.get_map_data(map_id)
+		var tileset_data: Dictionary = _data_registry.get_tileset_data_for_map(map_id)
+		var map_size: Vector2i = _data_registry.get_map_size(map_id)
+		_map_runtime.configure_from_data(map_data, tileset_data, map_size)
+		if _game_state != null:
+			_game_state.current_map_id = map_id
+
+		var position_applied := false
+		if bool(effect.get("has_explicit_position", false)):
+			position_applied = (
+				_map_runtime.has_method("set_player_grid_position")
+				and _map_runtime.set_player_grid_position(position, _game_state)
+			)
+
+		var script_data: Dictionary = _data_registry.get_script_data_for_map(map_id)
+		configure_from_script_data(script_data)
+		summary["applied"].append({
+			"op": op,
+			"map": map_id,
+			"position": position,
+			"position_applied": position_applied,
+			"style": String(effect.get("style", "")),
+		})
+	return summary
+
+
+func _transition_position(transition_effect: Dictionary) -> Vector2i:
+	var position = transition_effect.get("position", [])
+	if typeof(position) == TYPE_VECTOR2I:
+		return position
+	if typeof(position) == TYPE_ARRAY and position.size() >= 2:
+		return Vector2i(int(position[0]), int(position[1]))
+	return Vector2i(-1, -1)
+
+
+func _record_skipped_transition(
+	summary: Dictionary,
+	reason: String,
+	map_id: String,
+	op: String,
+	position: Vector2i
+) -> void:
+	summary["skipped"].append({
+		"reason": reason,
+		"op": op,
+		"map": map_id,
+		"position": position,
+	})
 
 
 func _movement_summary_count(summary: Dictionary, key: String) -> int:

@@ -50,7 +50,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player gender, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown and loads generated map, tileset, and event script JSON when they exist.
+- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, and event script JSON by map id.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries.
 - `MapRuntime` indexes generated object events, local ids, BG/sign events, and warp events; visible object-event cells are occupied for first-pass movement.
 - `MapRuntime` indexes generated coordinate events and resolves step-triggered coord event targets using source-style x/y/elevation plus var/flag trigger checks.
@@ -60,7 +60,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - `GridMover` provides tweened tile movement.
 - `PlayerController` reads directional input, tracks facing direction, moves one tile at a time after checking `MapRuntime.can_enter_cell`, and emits interaction requests on `ui_accept`.
 - `ScriptVM` executes the first synchronous event-script subset for generated dialogue, movement-effect, object-effect, field-effect, audio-effect, transition-effect, and player-effect scripts and returns messages, movements, object effects, field effects, audio effects, transition effects, player effects, effects, unsupported ops, trace entries, and wait metadata.
-- `EventManager` dispatches object, BG/sign, and coordinate-event interactions through `ScriptVM` when available, applies movement and object effects through `MapRuntime` for real dispatches, then emits debug dialogue lines for the HUD. Real map-load warps remain placeholders.
+- `EventManager` dispatches object, BG/sign, and coordinate-event interactions through `ScriptVM` when available, applies movement and object effects through `MapRuntime`, consumes generated explicit-position transition effects, then emits debug dialogue lines for the HUD.
 - `ScriptVM` opcode behavior must continue to be derived from the source C implementation and referenced resources before being implemented in Godot.
 - `DebugMapPlane` draws the first generated `block_ids` metatile grid from a palette-baked RGBA metatile atlas, with the old color blocks as fallback.
 - `ObjectEventSpawner` draws generated object events as simple placeholders until overworld sprite import is ready.
@@ -70,6 +70,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 
 - First-slice generated map JSON is loaded through `DataRegistry`.
 - First-slice generated tileset JSON is loaded through `DataRegistry`.
+- `data/generated/import_manifest.json` is the registry index for generated maps, tilesets, and scripts. Importers must merge entries by stable identity instead of replacing same-type manifest lists.
 - `block_ids` contains unpacked 10-bit metatile ids for simple render previews.
 - `map_grid.raw`, `map_grid.collision`, and `map_grid.elevation` preserve the original 16-bit map-grid data split into runtime-friendly layers.
 - First-pass movement uses generated `map_grid.collision`: cells with collision `0` are enterable and nonzero or out-of-bounds cells are blocked.
@@ -100,6 +101,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Object-effect execution is also a fast-forward runtime effect after real dispatch: `MapRuntime` mutates generated object-event dictionaries in memory, updates occupancy, and emits refresh signals for placeholder respawn/visibility.
 - Field-effect execution is currently recorded but not applied to presentation: `delay` stores frame counts, `opendoor`/`closedoor` store resolved script coordinates, and `waitdooranim` records the source wait point. Real timing, door metatile animation, and door sound selection remain future Godot presentation/runtime work.
 - Audio, transition, and player-effect execution is currently recorded but not applied to presentation: `playse`, `playfanfare`, and `waitfanfare` populate `audio_effects`; `warp` and `warpsilent` populate `transition_effects` with destination map, warp id, explicit position, style, and source reset semantics; `hideplayer` populates `player_effects`. Real sound playback, fanfare tasks, map loading/fades, and player node visibility remain future Godot systems.
+- Explicit-position transition effects are now applied when generated destination data exists: `EventManager` uses `DataRegistry` to load destination map/tileset/script data, reconfigures `MapRuntime`, updates `GameState.current_map_id`, and moves the player to the explicit destination coordinate. Warp-id lookup, fade/audio sequencing, save callbacks, destination map scripts, and player visibility remain future work.
 - Coordinate-event execution is currently dispatched after player tile movement in `Main`, following the source step-based ordering only for the coord-event portion; full warp, weather, wild encounter, step-count, and forced-movement script chaining remains future work.
 - Movement dispatch does not yet run step-by-step animation, source collision checks, movement task timing, or object freeze/unfreeze behavior. Object-effect dispatch does not yet model the full source object lifecycle, object graphics reload, or save persistence beyond `GameState` flags. Audio, transition, and player effects do not yet have runtime consumers. `EventManager.get_script_preview` must remain read-only and must not apply runtime effects.
 - Unsupported opcodes should stay visible through reports and VM results rather than being silently approximated.

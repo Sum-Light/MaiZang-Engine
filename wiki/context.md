@@ -19,9 +19,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
 - Autoloads are configured for `GameState`, `DataRegistry`, `MapRuntime`, `ScriptVM`, and `EventManager`.
 - `GameState` stores current map id, player gender, player grid position, flags, and vars.
-- `DataRegistry` now loads the first generated map at `res://data/generated/maps/littleroot_town.json` when present.
-- `DataRegistry` now loads the first generated tileset metadata at `res://data/generated/tilesets/littleroot_town.json` when present.
-- `DataRegistry` now loads the first generated event script data at `res://data/generated/scripts/littleroot_town.json` when present.
+- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, and script JSON by map id while preserving the first-slice start-map API.
 - `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior, and layer-type lookups.
 - `MapRuntime` now indexes first-slice object events, BG/sign events, and warp events.
 - `MapRuntime` treats visible object-event cells as occupied and can resolve the player's current interaction target from grid position plus facing direction.
@@ -29,7 +27,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `MapRuntime` can apply `ScriptVM` movement-effect results to in-memory object-event positions and `GameState.player_grid_position`, then rebuild object occupancy and notify the main scene to refresh placeholders/player position.
 - `MapRuntime` can apply first-pass `ScriptVM` object-effect results for object coordinates, template coordinates, movement type metadata, runtime visibility, add/remove, and source hide flags.
 - `scenes/main.tscn` displays a 20x20 LittlerootTown debug map from generated metatile ids and a palette-baked metatile atlas, visible object-event placeholders, plus a movable player placeholder that is blocked by generated map-grid collision and object-event occupancy.
-- `scenes/main.tscn` includes a debug dialogue panel driven by `EventManager`; object/sign interactions and first-pass coordinate triggers now execute the first generated script slice through `ScriptVM`, apply dispatch-time runtime effects, and show emitted dialogue text, while real map-load warps remain placeholders.
+- `scenes/main.tscn` includes a debug dialogue panel driven by `EventManager`; object/sign interactions and first-pass coordinate triggers now execute generated scripts through `ScriptVM`, apply dispatch-time runtime effects, show emitted dialogue text, and can switch to generated maps for explicit-position script transitions.
 - Player movement currently uses Godot's default `ui_up`, `ui_down`, `ui_left`, and `ui_right` actions.
 - Player interaction currently uses Godot's default `ui_accept` action.
 - Godot validation uses `C:\Users\YbbNa\Downloads\Godot_v4.7-stable_win64\Godot_v4.7-stable_win64_console.exe`.
@@ -50,21 +48,23 @@ The port should be data-driven: preserve source data and assets where practical,
 - `tools/importer/export_map.py` exports `LittlerootTown` into generated Godot JSON.
 - `tools/importer/export_tilesets.py` exports the `LittlerootTown` primary/secondary tileset pair into Godot-friendly metadata and an RGBA metatile atlas.
 - `tools/importer/export_event_scripts.py` exports `LittlerootTown` map script labels, instruction streams, movement labels, local text labels, first-pass `msgbox` previews, and source behavior trace notes.
-- Generated first-slice map data lives at `data/generated/maps/littleroot_town.json`.
-- Generated first-slice tileset metadata lives at `data/generated/tilesets/littleroot_town.json`.
-- Generated first-slice metatile atlas lives at `assets/generated/tilesets/littleroot_town_metatiles.png`.
-- Generated first-slice event script data lives at `data/generated/scripts/littleroot_town.json`.
+- Generated map data currently exists for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
+- Generated tileset metadata and palette-baked metatile atlases currently exist for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
+- Generated event script data currently exists for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated import manifest lives at `data/generated/import_manifest.json`.
 - Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
 - Latest map export for `LittlerootTown` decoded 400 map-grid entries into 63 unique metatile ids.
 - Latest tileset export for `LittlerootTown` uses `gTileset_General` and `gTileset_Petalburg`, writes a 656-metatile RGBA atlas, reports 63 used metatile ids, records 8 fully covered source tile notes, and has 0 visible warnings.
 - Latest event script export for `LittlerootTown` found 130 labels, 78 scripts, 34 movement labels, 18 local text labels, and 0 orphan instructions.
+- Generated `LittlerootTown_BrendansHouse_1F` is 11x9 and has 26 scripts, 11 movement labels, 29 text labels, and 0 script orphan instructions.
+- Generated `LittlerootTown_MaysHouse_1F` is 11x9 and has 31 scripts, 11 movement labels, 8 text labels, and 0 script orphan instructions.
 - Latest event script export records first-pass preview support for direct `msgbox`/`message` text only; full opcode behavior remains a future `ScriptVM` task grounded in source C traces and referenced resources.
 - `ScriptVM` now executes the first synchronous dialogue, movement-effect, object-effect, field-effect, audio-effect, transition-effect, and player-effect subset for generated scripts: `msgbox`, `message`, `lock`, `lockall`, `release`, `releaseall`, `faceplayer`, `waitmessage`, `waitbuttonpress`, `closemessage`, `goto`, `call`, `return`, `end`, basic `*_if_*` branches, `setflag`, `clearflag`, `setvar`, `checkplayergender`, `applymovement`, `applymovementat`, `waitmovement`, `waitmovementat`, `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`, `addobject`, `addobjectat`, `removeobject`, `removeobjectat`, `showobject`, `showobjectat`, `hideobject`, `hideobjectat`, `delay`, `opendoor`, `closedoor`, `waitdooranim`, `waitstate`, `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, and `hideplayer`.
 - `ScriptVM` expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` according to the source standard scripts. Current waits and locks are recorded as execution effects; real asynchronous UI, object freezing, and player/object facing animation remain future work.
 - `ScriptVM` expands generated movement labels into result `movements` entries with target local id, structured steps, net tile delta, final facing, and unsupported-step reporting. Real dispatch now fast-forwards those net deltas into runtime map/player state; scene-node animation, object task queues, source collision timing, and real wait blocking remain future work.
 - `ScriptVM` records `delay`, `opendoor`, `closedoor`, and `waitdooranim` as `field_effects` after tracing `ScrCmd_delay`, `ScrCmd_opendoor`, `ScrCmd_closedoor`, `ScrCmd_waitdooranim`, and `src/field_door.c`; real door metatile animation, door sound selection, and asynchronous wait timing remain future presentation/runtime work.
 - `ScriptVM` records `waitstate`, `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, and `hideplayer` as structured wait, audio, transition, and player-effect results after tracing the source script command table, macros, `src/scrcmd.c`, `src/field_screen_effect.c`, and `src/overworld.c`; real sound playback, fanfare waiting, map loading/fades, and player node visibility remain future systems.
+- `EventManager` now consumes explicit-position `ScriptVM.transition_effects` when the destination map has generated data: it reconfigures `MapRuntime`, updates `GameState.current_map_id` and player grid position, and swaps `ScriptVM` to the destination map script data. Warp-id-only destination resolution, fade timing, save callbacks, and chained map scripts remain future work.
 - `EventManager` applies `ScriptVM` movement and object effects only during real interaction dispatch, not during `get_script_preview`, so previews stay read-only.
 - `LittlerootTown` generated collision currently has 268 passable cells and 132 blocked cells.
 - `LittlerootTown` has 8 generated object events; the first runtime pass shows them as placeholders and blocks movement into their occupied cells.
