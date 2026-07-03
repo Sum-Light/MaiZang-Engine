@@ -71,3 +71,9 @@ Reason: Script labels, text labels, movement labels, and instruction references 
 Decision: Introduce `ScriptVM` as an autoload and route object/BG dialogue interactions through it, starting with source-derived `msgbox` expansion and synchronous dialogue-result execution.
 
 Reason: `msgbox` in the source is a macro that loads a text pointer and calls a standard script from `gStdScripts`. Implementing that path in the VM preserves the real script structure better than keeping ad hoc EventManager previews. The first implementation records wait/lock/facing effects instead of pretending object freezing, facing animation, and asynchronous UI continuation already exist.
+
+## 2026-07-04 - Treat movement commands as VM effects before animation
+
+Decision: Add first-pass `applymovement`/`waitmovement` support to `ScriptVM` as structured movement-effect results, not as immediate scene-node movement or map-state mutation.
+
+Reason: Source `applymovement` starts an object movement script through `ScriptMovement_StartObjectMovementScript`, while `waitmovement` installs a native wait for the current moving object target. Godot does not yet have the equivalent object movement task queue, animation layer, or object freeze/unfreeze integration. Recording target local ids, movement labels, decoded steps, net deltas, final facing, and resolved wait targets preserves script semantics now and gives the future animation system a stable contract to consume.

@@ -56,7 +56,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - `MapRuntime.get_interaction_target` resolves the player's faced object/sign target, or a warp placeholder from the current cell.
 - `GridMover` provides tweened tile movement.
 - `PlayerController` reads directional input, tracks facing direction, moves one tile at a time after checking `MapRuntime.can_enter_cell`, and emits interaction requests on `ui_accept`.
-- `ScriptVM` executes the first synchronous event-script subset for generated dialogue scripts and returns messages, effects, unsupported ops, trace entries, and wait metadata.
+- `ScriptVM` executes the first synchronous event-script subset for generated dialogue and movement-effect scripts and returns messages, movements, effects, unsupported ops, trace entries, and wait metadata.
 - `EventManager` dispatches object and BG/sign interactions through `ScriptVM` when available, then emits debug dialogue lines for the HUD. Warps remain placeholders.
 - `ScriptVM` opcode behavior must continue to be derived from the source C implementation and referenced resources before being implemented in Godot.
 - `DebugMapPlane` draws the first generated `block_ids` metatile grid from a palette-baked RGBA metatile atlas, with the old color blocks as fallback.
@@ -83,9 +83,12 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Generated script JSON preserves map script labels, raw instruction streams, movement labels, local text labels, and importer statistics.
 - `EventManager.get_script_preview` now delegates to `ScriptVM` when available and falls back to the older direct `msgbox`/`message` preview only when the VM is unavailable.
 - Source trace metadata in generated script JSON records the C/resources consulted for supported preview behavior, including `ScrCmd_message`, `ShowFieldMessage`, `gStdScripts`, and standard `msgbox` scripts.
-- Current `ScriptVM` support covers a synchronous first slice: `msgbox`, `message`, `lock`, `lockall`, `release`, `releaseall`, `faceplayer`, `waitmessage`, `waitbuttonpress`, `closemessage`, `goto`, `call`, `return`, `end`, basic `*_if_*` branches, `setflag`, `clearflag`, and `setvar`.
+- Current `ScriptVM` support covers a synchronous first slice: `msgbox`, `message`, `lock`, `lockall`, `release`, `releaseall`, `faceplayer`, `waitmessage`, `waitbuttonpress`, `closemessage`, `goto`, `call`, `return`, `end`, basic `*_if_*` branches, `setflag`, `clearflag`, `setvar`, `applymovement`, `applymovementat`, `waitmovement`, and `waitmovementat`.
 - `msgbox` modes `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` are expanded according to `data/scripts/std_msgbox.inc`.
 - `waitmessage`, `waitbuttonpress`, lock, release, and faceplayer currently produce execution effects and metadata for the debug dialogue path; real asynchronous blocking, UI input continuation, object freezing, and facing animation remain future runtime work.
+- `applymovement` currently looks up generated movement labels and expands movement instructions into result entries with target local id, movement label, structured steps, net tile delta, final facing, and unsupported-step reporting.
+- `waitmovement 0` follows the source command convention by waiting on the current/last moving NPC target rather than meaning "all movement"; the VM records the raw target and resolved target for later animation-task integration.
+- Movement execution is currently an effect/result contract only. It does not mutate `MapRuntime`, move scene nodes, run asynchronous movement tasks, or perform object freeze/unfreeze behavior yet.
 - Unsupported opcodes should stay visible through reports and VM results rather than being silently approximated.
 
 ## Script Porting Rule

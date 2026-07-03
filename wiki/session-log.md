@@ -50,3 +50,6 @@
 - Added `ScriptVM` as an autoload with synchronous execution for the first dialogue subset, including source-derived `MSGBOX_NPC/SIGN/DEFAULT` expansion, basic flow control, simple flag/var operations, and unsupported-op reporting.
 - Updated `EventManager` so object/BG interactions use `ScriptVM` when available and fall back to direct preview only if the VM is unavailable.
 - Added `tools/godot_smoke/script_vm_smoke.gd` and expanded `event_manager_smoke.gd` to verify VM execution for the Twin NPC and LittlerootTown town sign scripts.
+- Traced `ScrCmd_applymovement`, `ScrCmd_applymovementat`, `ScrCmd_waitmovement`, `ScrCmd_waitmovementat`, `src/script_movement.c`, and `asm/macros/movement.inc` before implementing the first movement command slice.
+- Added first-pass `ScriptVM` support for `applymovement`, `applymovementat`, `waitmovement`, and `waitmovementat` as structured movement-effect results.
+- Expanded `tools/godot_smoke/script_vm_smoke.gd` to verify `LittlerootTown_EventScript_NeedPokemonTriggerLeft`, including call/return flow, 2 dialogue messages, 4 movement effects, and 3 waitmovement effects.

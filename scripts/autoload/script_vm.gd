@@ -37,6 +37,7 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"ip": 0,
 		"stack": [],
 		"messages": [],
+		"movements": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
@@ -44,7 +45,9 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"status": "ok",
 		"finished": false,
 		"last_text_label": "",
+		"last_movement_target": "",
 		"wait_buttonpress": false,
+		"wait_movement": false,
 		"step_count": 0,
 	}
 
@@ -85,10 +88,12 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"status": String(state["status"]),
 		"finished": bool(state["finished"]),
 		"messages": state["messages"],
+		"movements": state["movements"],
 		"effects": state["effects"],
 		"unsupported_ops": state["unsupported_ops"],
 		"trace": state["trace"],
 		"wait_buttonpress": bool(state["wait_buttonpress"]),
+		"wait_movement": bool(state["wait_movement"]),
 		"step_count": int(state["step_count"]),
 	}
 
@@ -160,6 +165,14 @@ func _execute_instruction(state: Dictionary, instruction: Dictionary) -> void:
 				_execute_msgbox(state, String(args[0]), mode, line)
 			else:
 				_record_unsupported(state, op, line, String(instruction.get("raw", "")))
+		"applymovement":
+			_execute_applymovement(state, args, line, String(instruction.get("raw", "")))
+		"applymovementat":
+			_execute_applymovement(state, args, line, String(instruction.get("raw", "")), true)
+		"waitmovement":
+			_execute_waitmovement(state, args, line)
+		"waitmovementat":
+			_execute_waitmovement(state, args, line, true)
 		_:
 			_record_unsupported(state, op, line, String(instruction.get("raw", "")))
 
@@ -194,6 +207,353 @@ func _execute_basic_field_command(state: Dictionary, op: String, line: int) -> v
 	_record_effect(state, op, line)
 	if op == "waitbuttonpress":
 		state["wait_buttonpress"] = true
+
+
+func _execute_applymovement(
+	state: Dictionary,
+	args: Array,
+	line: int,
+	raw: String,
+	has_explicit_map: bool = false
+) -> void:
+	if args.size() < 2:
+		_record_unsupported(state, "applymovement", line, raw)
+		return
+
+	var target := String(args[0])
+	var movement_label := String(args[1])
+	var movement_record := _get_movement_record(movement_label)
+	if movement_record.is_empty():
+		var missing_movement := {
+			"target": target,
+			"movement_label": movement_label,
+			"line": line,
+			"status": "missing_movement",
+			"steps": [],
+			"step_count": 0,
+			"unsupported_steps": [],
+			"net_delta": [0, 0],
+			"final_facing": "",
+		}
+		if has_explicit_map and args.size() >= 4:
+			missing_movement["map_group"] = String(args[2])
+			missing_movement["map_num"] = String(args[3])
+		state["movements"].append(missing_movement)
+		state["status"] = "missing_movement"
+		state["finished"] = true
+		return
+
+	var movement := _build_movement_effect(target, movement_label, movement_record, line)
+	if has_explicit_map and args.size() >= 4:
+		movement["map_group"] = String(args[2])
+		movement["map_num"] = String(args[3])
+
+	state["movements"].append(movement)
+	state["last_movement_target"] = target
+	_record_effect(state, "applymovement", line, {
+		"target": target,
+		"movement_label": movement_label,
+		"status": String(movement.get("status", "")),
+		"step_count": int(movement.get("step_count", 0)),
+		"net_delta": movement.get("net_delta", [0, 0]),
+	})
+
+	var unsupported_steps = movement.get("unsupported_steps", [])
+	if typeof(unsupported_steps) == TYPE_ARRAY and not unsupported_steps.is_empty():
+		state["status"] = "unsupported_movement_step"
+		state["finished"] = true
+
+
+func _execute_waitmovement(
+	state: Dictionary,
+	args: Array,
+	line: int,
+	has_explicit_map: bool = false
+) -> void:
+	var target := "0"
+	if args.size() >= 1:
+		target = String(args[0])
+
+	var resolved_target := String(state["last_movement_target"])
+	if target != "0" and target != "LOCALID_NONE":
+		resolved_target = target
+		state["last_movement_target"] = target
+
+	var detail := {
+		"target": target,
+		"resolved_target": resolved_target,
+	}
+	if has_explicit_map and args.size() >= 3:
+		detail["map_group"] = String(args[1])
+		detail["map_num"] = String(args[2])
+	state["wait_movement"] = true
+	_record_effect(state, "waitmovement", line, detail)
+
+
+func _build_movement_effect(
+	target: String,
+	movement_label: String,
+	movement_record: Dictionary,
+	line: int
+) -> Dictionary:
+	var instructions = movement_record.get("instructions", [])
+	if typeof(instructions) != TYPE_ARRAY:
+		return {
+			"target": target,
+			"movement_label": movement_label,
+			"line": line,
+			"status": "invalid_movement_record",
+			"steps": [],
+			"step_count": 0,
+			"unsupported_steps": [],
+			"net_delta": [0, 0],
+			"final_facing": "",
+		}
+
+	var steps: Array = []
+	var unsupported_steps: Array = []
+	var net_delta := [0, 0]
+	var final_facing := ""
+	for instruction in instructions:
+		if typeof(instruction) != TYPE_DICTIONARY:
+			var invalid_step := {
+				"op": "invalid_movement_instruction",
+				"line": 0,
+				"raw": "",
+			}
+			unsupported_steps.append(invalid_step)
+			steps.append({
+				"kind": "unsupported",
+				"op": invalid_step["op"],
+				"line": invalid_step["line"],
+				"raw": invalid_step["raw"],
+			})
+			continue
+
+		var step := _movement_step_from_instruction(instruction)
+		if String(step.get("kind", "")) == "end":
+			break
+		steps.append(step)
+
+		var direction := String(step.get("direction", ""))
+		if not direction.is_empty() and step.get("updates_facing", true):
+			final_facing = direction
+
+		if bool(step.get("moves", false)):
+			var delta: Array = step.get("delta", [0, 0])
+			net_delta[0] = int(net_delta[0]) + int(delta[0])
+			net_delta[1] = int(net_delta[1]) + int(delta[1])
+
+		if String(step.get("kind", "")) == "unsupported":
+			unsupported_steps.append({
+				"op": String(step.get("op", "")),
+				"line": int(step.get("line", 0)),
+				"raw": String(step.get("raw", "")),
+			})
+
+	return {
+		"target": target,
+		"movement_label": movement_label,
+		"line": line,
+		"status": "partial" if not unsupported_steps.is_empty() else "ok",
+		"steps": steps,
+		"step_count": steps.size(),
+		"unsupported_steps": unsupported_steps,
+		"net_delta": net_delta,
+		"final_facing": final_facing,
+	}
+
+
+func _movement_step_from_instruction(instruction: Dictionary) -> Dictionary:
+	var op := String(instruction.get("op", ""))
+	var line := int(instruction.get("line", 0))
+	var raw := String(instruction.get("raw", ""))
+
+	if op == "step_end":
+		return {
+			"kind": "end",
+			"op": op,
+			"line": line,
+			"raw": raw,
+		}
+
+	var direction := _direction_from_movement_op(op)
+	if op.begins_with("delay_"):
+		return {
+			"kind": "delay",
+			"op": op,
+			"line": line,
+			"raw": raw,
+			"frames": int(op.trim_prefix("delay_")),
+			"moves": false,
+			"updates_facing": false,
+		}
+
+	if op.begins_with("face_"):
+		return {
+			"kind": "face",
+			"op": op,
+			"line": line,
+			"raw": raw,
+			"direction": direction,
+			"moves": false,
+			"updates_facing": not direction.is_empty(),
+		}
+
+	if op.begins_with("walk_in_place_"):
+		return {
+			"kind": "walk_in_place",
+			"op": op,
+			"line": line,
+			"raw": raw,
+			"direction": direction,
+			"speed": _speed_from_movement_op(op),
+			"moves": false,
+			"updates_facing": not direction.is_empty(),
+		}
+
+	if _is_grid_movement_op(op):
+		var delta := _direction_delta(direction)
+		return {
+			"kind": _grid_movement_kind(op),
+			"op": op,
+			"line": line,
+			"raw": raw,
+			"direction": direction,
+			"speed": _speed_from_movement_op(op),
+			"delta": delta,
+			"moves": direction != "" and (int(delta[0]) != 0 or int(delta[1]) != 0),
+			"updates_facing": not direction.is_empty(),
+		}
+
+	if op.begins_with("jump_in_place_"):
+		return {
+			"kind": "jump_in_place",
+			"op": op,
+			"line": line,
+			"raw": raw,
+			"direction": direction,
+			"moves": false,
+			"updates_facing": not direction.is_empty(),
+		}
+
+	if _is_movement_control_op(op):
+		return {
+			"kind": "control",
+			"op": op,
+			"line": line,
+			"raw": raw,
+			"moves": false,
+			"updates_facing": false,
+		}
+
+	if op.begins_with("emote_"):
+		return {
+			"kind": "emote",
+			"op": op,
+			"line": line,
+			"raw": raw,
+			"moves": false,
+			"updates_facing": false,
+		}
+
+	return {
+		"kind": "unsupported",
+		"op": op,
+		"line": line,
+		"raw": raw,
+		"moves": false,
+		"updates_facing": false,
+	}
+
+
+func _is_grid_movement_op(op: String) -> bool:
+	if op.begins_with("walk_in_place_"):
+		return false
+	return (
+		op.begins_with("walk_")
+		or op.begins_with("player_run_")
+		or op.begins_with("slide_")
+		or op.begins_with("ride_water_current_")
+		or (op.begins_with("jump_") and not op.begins_with("jump_in_place_"))
+	)
+
+
+func _grid_movement_kind(op: String) -> String:
+	if op.begins_with("jump_"):
+		return "jump"
+	if op.begins_with("slide_"):
+		return "slide"
+	if op.begins_with("ride_water_current_"):
+		return "current"
+	if op.begins_with("player_run_"):
+		return "run"
+	return "move"
+
+
+func _is_movement_control_op(op: String) -> bool:
+	return op in [
+		"lock_facing_direction",
+		"unlock_facing_direction",
+		"enable_jump_landing_ground_effect",
+		"disable_jump_landing_ground_effect",
+		"disable_anim",
+		"restore_anim",
+		"set_invisible",
+		"set_visible",
+		"reveal_trainer",
+		"rock_smash_break",
+		"cut_tree",
+		"set_fixed_priority",
+		"clear_fixed_priority",
+		"init_affine_anim",
+		"clear_affine_anim",
+		"hide_reflection",
+		"show_reflection",
+		"lock_anim",
+		"unlock_anim",
+		"levitate",
+		"stop_levitate",
+		"destroy_extra_task",
+		"figure_8",
+		"fly_up",
+		"fly_down",
+		"exit_pokeball",
+		"enter_pokeball",
+		"start_anim_in_direction",
+	]
+
+
+func _direction_from_movement_op(op: String) -> String:
+	for direction in ["down", "up", "left", "right"]:
+		if op.ends_with("_%s" % direction) or op == "face_%s" % direction:
+			return direction
+	return ""
+
+
+func _direction_delta(direction: String) -> Array:
+	match direction:
+		"down":
+			return [0, 1]
+		"up":
+			return [0, -1]
+		"left":
+			return [-1, 0]
+		"right":
+			return [1, 0]
+	return [0, 0]
+
+
+func _speed_from_movement_op(op: String) -> String:
+	if op.begins_with("player_run_"):
+		return "run"
+	if op.begins_with("walk_faster_") or op.begins_with("walk_in_place_faster_"):
+		return "faster"
+	if op.begins_with("walk_fast_") or op.begins_with("walk_in_place_fast_"):
+		return "fast"
+	if op.begins_with("walk_slow_") or op.begins_with("walk_in_place_slow_"):
+		return "slow"
+	return "normal"
 
 
 func _execute_msgbox(state: Dictionary, text_label: String, mode: String, line: int) -> void:
@@ -367,10 +727,12 @@ func _empty_result(script_label: String, status: String, finished: bool) -> Dict
 		"status": status,
 		"finished": finished,
 		"messages": [],
+		"movements": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
 		"wait_buttonpress": false,
+		"wait_movement": false,
 		"step_count": 0,
 	}
 
@@ -388,6 +750,14 @@ func _get_text_record(text_label: String) -> Dictionary:
 	if typeof(texts) != TYPE_DICTIONARY:
 		return {}
 	var record = texts.get(text_label, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func _get_movement_record(movement_label: String) -> Dictionary:
+	var movements = _script_data.get("movements", {})
+	if typeof(movements) != TYPE_DICTIONARY:
+		return {}
+	var record = movements.get(movement_label, {})
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 

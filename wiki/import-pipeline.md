@@ -188,3 +188,4 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - orphan instructions: 0
 - current generated-data preview fields: first direct `msgbox`/`message` text references for debug inspection
 - current runtime execution scope: `ScriptVM` executes the first synchronous dialogue subset and expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` from source standard script behavior
+- current movement runtime scope: `ScriptVM` resolves generated movement labels for `applymovement`/`waitmovement` and emits structured movement-effect results; animation queues, object movement tasks, and map-position mutation are still future runtime work
