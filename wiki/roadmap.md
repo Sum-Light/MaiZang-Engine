@@ -37,9 +37,10 @@
 - Add source-visible transition presentation. First structured sequence slice done: `EventManager` emits normal/silent and door transition sequences with traced source step order, 16-frame door/player timings, source-derived door sound intent, generated door animation metadata, and source-derived destination exit-task selection from metatile behavior names. `TransitionSequencePlayer` now consumes that contract for first-pass black fades, input lock, player hide/show, generated door animation overlays, scripted player step-in/out movement, deferred map-load timing, and `Task_ExitDoor` final step-down position. Future work must add real audio cues, exact fade color selection/timing, non-animated door and stair exit playback, destination map scripts, and final sprite presentation.
 - Parse `.inc` event scripts into labels and instructions. First pass done for `LittlerootTown`, including script labels, movement labels, local text labels, and direct `msgbox`/`message` references.
 - Preview simple generated dialogue from object/BG event scripts. First pass done through `EventManager.get_script_preview`; this is not a full `ScriptVM`.
-- Add a minimal `ScriptVM` execution path. First pass done for synchronous dialogue scripts, including `msgbox`, `message`, source-derived `MSGBOX_NPC/SIGN/DEFAULT` expansion, basic flow control, simple flag/var operations, and VM result reporting.
+- Add a minimal `ScriptVM` execution path. First pass done for synchronous dialogue scripts, including `msgbox`, `message`, source-derived `MSGBOX_NPC/SIGN/DEFAULT/YESNO` expansion, basic flow control, simple flag/var operations, and VM result reporting.
 - Support a minimal ScriptVM command set:
-  - `msgbox`. First pass done for `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT`.
+  - `msgbox`. First pass done for `MSGBOX_NPC`, `MSGBOX_SIGN`, `MSGBOX_DEFAULT`, and `MSGBOX_YESNO`.
+  - `yesnobox`. First pass done as a `ScriptVM` UI-effect record with source default YES/NO menu placement, default `YES`, `B = NO`, 5-frame input delay metadata, and `VAR_RESULT` values. Without an injected UI/test choice, execution stops with `waiting_for_ui`; real asynchronous menu presentation and resume remain future work.
   - `setflag`, `clearflag`, `checkflag`. First pass done for `setflag` and `clearflag`.
   - `setvar`, `addvar`, `compare`. First pass done for `setvar` and simple branch-time var reads.
   - `checkplayergender`. First pass done by reading `GameState.player_gender` and writing `VAR_RESULT` as `MALE`/`FEMALE`.

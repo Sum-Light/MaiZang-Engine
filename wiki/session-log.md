@@ -110,3 +110,7 @@
 - Updated `EventManager` previews so VM-backed and direct fallback previews expose text source/kind and encoding metadata, and the direct fallback uses the same local-then-global lookup order.
 - Expanded `script_vm_smoke.gd` with a synthetic `msgbox gText_ConfirmSave, MSGBOX_DEFAULT` script, verifying global text source `data/text/save.inc`, `text` kind, encoding status, 29 source bytes, terminator metadata, and display newline.
 - Verified `script_vm_smoke.gd`, `event_manager_smoke.gd`, `data_registry_text_smoke.gd`, `map_runtime_smoke.gd`, `transition_presentation_smoke.gd`, and `git diff --check`.
+- Traced `MSGBOX_YESNO` through `asm/macros/event.inc`, `data/event_scripts.s`, `data/scripts/std_msgbox.inc`, `data/script_cmd_table.inc`, `src/scrcmd.c`, `src/script_menu.c`, and `src/menu.c`.
+- Added first-pass `ScriptVM` support for `MSGBOX_YESNO` and direct `yesnobox` as structured `ui_effects`, preserving source default menu placement, default `YES`, `B = NO`, about 5 frames of input delay, `VAR_RESULT` values, and `waiting_for_ui` behavior when no UI/test choice is supplied.
+- Expanded `script_vm_smoke.gd` with synthetic YES/NO scripts that verify pending UI waits plus injected `YES` and `NO` branch behavior using global text labels.
+- Verified `script_vm_smoke.gd`, `event_manager_smoke.gd`, `data_registry_text_smoke.gd`, `map_runtime_smoke.gd`, and `transition_presentation_smoke.gd`.

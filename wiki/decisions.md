@@ -191,3 +191,9 @@ Reason: The local source target defines `IS_FRLG 0` for Emerald in `include/cons
 Decision: `ScriptVM` and `EventManager` should resolve message text labels from local generated map-script records first, then from global generated text records through `DataRegistry`.
 
 Reason: Source `ScrCmd_message` reads a text pointer and shows it with `ShowFieldMessage`; the pointer can reference map-local text or global labels such as `gText_ConfirmSave`. Keeping local records first preserves map override behavior, while the global fallback lets Godot scripts use the same label space without reparsing source files at runtime.
+
+## 2026-07-04 - Record yes/no UI waits instead of guessing choices
+
+Decision: Implement `MSGBOX_YESNO` and direct `yesnobox` as structured `ScriptVM.ui_effects` that can stop with `status = waiting_for_ui` unless a test/UI context explicitly supplies `YES`, `NO`, or `B`.
+
+Reason: Source `Std_MsgboxYesNo` calls `message NULL`, `waitmessage`, then `yesnobox 20, 8`; `ScrCmd_yesnobox` calls `ScriptMenu_YesNo`, which stops the script context while the menu task waits for input. `ScriptMenu_YesNo` initializes `VAR_RESULT` to `0xFF`, uses the default YES/NO menu position, defaults to `YES`, and treats `B` as `NO`. Godot should preserve that visible wait and branch behavior rather than auto-selecting an answer inside the VM.

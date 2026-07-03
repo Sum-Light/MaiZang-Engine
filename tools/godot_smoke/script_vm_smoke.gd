@@ -55,11 +55,37 @@ func _init() -> void:
 			{"op": "end", "args": [], "line": 2, "raw": "end"},
 		],
 	}
+	synthetic_scripts["Smoke_EventScript_YesNoPending"] = {
+		"instructions": [
+			{"op": "msgbox", "args": ["gText_ConfirmSave", "MSGBOX_YESNO"], "line": 1, "raw": "msgbox gText_ConfirmSave, MSGBOX_YESNO"},
+			{"op": "end", "args": [], "line": 2, "raw": "end"},
+		],
+	}
+	synthetic_scripts["Smoke_EventScript_YesNoBranch"] = {
+		"instructions": [
+			{"op": "msgbox", "args": ["gText_ConfirmSave", "MSGBOX_YESNO"], "line": 1, "raw": "msgbox gText_ConfirmSave, MSGBOX_YESNO"},
+			{"op": "goto_if_eq", "args": ["VAR_RESULT", "YES", "Smoke_EventScript_YesNoYes"], "line": 2, "raw": "goto_if_eq VAR_RESULT, YES, Smoke_EventScript_YesNoYes"},
+			{"op": "msgbox", "args": ["gText_AlreadySavedFile", "MSGBOX_DEFAULT"], "line": 3, "raw": "msgbox gText_AlreadySavedFile, MSGBOX_DEFAULT"},
+			{"op": "end", "args": [], "line": 4, "raw": "end"},
+		],
+	}
+	synthetic_scripts["Smoke_EventScript_YesNoYes"] = {
+		"instructions": [
+			{"op": "msgbox", "args": ["gText_SavingDontTurnOffPower", "MSGBOX_DEFAULT"], "line": 5, "raw": "msgbox gText_SavingDontTurnOffPower, MSGBOX_DEFAULT"},
+			{"op": "end", "args": [], "line": 6, "raw": "end"},
+		],
+	}
 	synthetic_script_data["scripts"] = synthetic_scripts
 	vm.configure_from_script_data(synthetic_script_data)
 	var delay_result := vm.run_script("Smoke_EventScript_DelayOnly")
 	var warp_result := vm.run_script("Smoke_EventScript_WarpOnly")
 	var global_text_result := vm.run_script("Smoke_EventScript_GlobalText")
+	var yesno_pending_result := vm.run_script("Smoke_EventScript_YesNoPending")
+	var yesno_pending_var_result := game_state.get_var("VAR_RESULT", -1)
+	var yesno_yes_result := vm.run_script("Smoke_EventScript_YesNoBranch", {"yesno_choice": "YES"})
+	var yesno_yes_var_result := game_state.get_var("VAR_RESULT", -1)
+	var yesno_no_result := vm.run_script("Smoke_EventScript_YesNoBranch", {"yesno_choice": "NO"})
+	var yesno_no_var_result := game_state.get_var("VAR_RESULT", -1)
 	vm.configure_from_script_data(script_data)
 	var missing_result := vm.run_script("Missing_EventScript")
 
@@ -221,6 +247,49 @@ func _init() -> void:
 	_assert(_first_message_text(global_text_result).find("\n") != -1, "expected global text display newline")
 	_assert(_unsupported_count(global_text_result) == 0, "expected no unsupported global-text ops")
 
+	_assert(yesno_pending_result.get("status", "") == "waiting_for_ui", "expected pending yes/no UI status")
+	_assert(yesno_pending_result.get("finished", false), "expected pending yes/no script to stop")
+	_assert(_message_count(yesno_pending_result) == 1, "expected one pending yes/no message")
+	_assert(_first_text_label(yesno_pending_result) == "gText_ConfirmSave", "unexpected pending yes/no text")
+	_assert(_ui_effect_count(yesno_pending_result) == 1, "expected one pending yes/no UI effect")
+	_assert(_ui_effect_op(yesno_pending_result, 0) == "yesnobox", "unexpected pending yes/no UI op")
+	_assert(_ui_effect_script_position(yesno_pending_result, 0) == Vector2i(20, 8), "unexpected yes/no script position")
+	_assert(_ui_effect_menu_position(yesno_pending_result, 0) == Vector2i(21, 9), "unexpected source yes/no menu position")
+	_assert(_ui_effect_menu_size(yesno_pending_result, 0) == Vector2i(5, 4), "unexpected source yes/no menu size")
+	_assert(_ui_effect_default_choice(yesno_pending_result, 0) == "YES", "unexpected yes/no default choice")
+	_assert(_ui_effect_b_choice(yesno_pending_result, 0) == "NO", "unexpected yes/no B choice")
+	_assert(_ui_effect_input_delay_frames(yesno_pending_result, 0) == 5, "unexpected yes/no input delay")
+	_assert(_ui_effect_selected_choice(yesno_pending_result, 0) == "PENDING", "unexpected pending yes/no choice")
+	_assert(_ui_effect_selected_value(yesno_pending_result, 0) == 255, "unexpected pending yes/no value")
+	_assert(bool(yesno_pending_result.get("wait_ui", false)), "expected pending yes/no wait_ui metadata")
+	_assert(not bool(yesno_pending_result.get("wait_buttonpress", false)), "expected yes/no std script without buttonpress wait")
+	_assert(yesno_pending_var_result == 255, "expected pending yes/no VAR_RESULT")
+	_assert(_unsupported_count(yesno_pending_result) == 0, "expected no unsupported pending yes/no ops")
+
+	_assert(yesno_yes_result.get("status", "") == "ok", "expected injected YES script to execute")
+	_assert(yesno_yes_result.get("finished", false), "expected injected YES script to finish")
+	_assert(_message_count(yesno_yes_result) == 2, "expected two injected YES messages")
+	_assert(_message_text_label(yesno_yes_result, 0) == "gText_ConfirmSave", "unexpected injected YES first text")
+	_assert(_message_text_label(yesno_yes_result, 1) == "gText_SavingDontTurnOffPower", "unexpected injected YES branch text")
+	_assert(_ui_effect_count(yesno_yes_result) == 1, "expected one injected YES UI effect")
+	_assert(_ui_effect_selected_choice(yesno_yes_result, 0) == "YES", "unexpected injected YES choice")
+	_assert(_ui_effect_selected_value(yesno_yes_result, 0) == 1, "unexpected injected YES value")
+	_assert(bool(yesno_yes_result.get("wait_ui", false)), "expected injected YES wait_ui metadata")
+	_assert(yesno_yes_var_result == 1, "expected injected YES VAR_RESULT")
+	_assert(_unsupported_count(yesno_yes_result) == 0, "expected no unsupported injected YES ops")
+
+	_assert(yesno_no_result.get("status", "") == "ok", "expected injected NO script to execute")
+	_assert(yesno_no_result.get("finished", false), "expected injected NO script to finish")
+	_assert(_message_count(yesno_no_result) == 2, "expected two injected NO messages")
+	_assert(_message_text_label(yesno_no_result, 0) == "gText_ConfirmSave", "unexpected injected NO first text")
+	_assert(_message_text_label(yesno_no_result, 1) == "gText_AlreadySavedFile", "unexpected injected NO fallback text")
+	_assert(_ui_effect_count(yesno_no_result) == 1, "expected one injected NO UI effect")
+	_assert(_ui_effect_selected_choice(yesno_no_result, 0) == "NO", "unexpected injected NO choice")
+	_assert(_ui_effect_selected_value(yesno_no_result, 0) == 0, "unexpected injected NO value")
+	_assert(bool(yesno_no_result.get("wait_ui", false)), "expected injected NO wait_ui metadata")
+	_assert(yesno_no_var_result == 0, "expected injected NO VAR_RESULT")
+	_assert(_unsupported_count(yesno_no_result) == 0, "expected no unsupported injected NO ops")
+
 	_assert(missing_result.get("status", "") == "missing_script", "expected missing script status")
 
 	print(JSON.stringify({
@@ -239,6 +308,9 @@ func _init() -> void:
 		"delay": _result_summary(delay_result),
 		"warp": _result_summary(warp_result),
 		"global_text": _result_summary(global_text_result),
+		"yesno_pending": _result_summary(yesno_pending_result),
+		"yesno_yes": _result_summary(yesno_yes_result),
+		"yesno_no": _result_summary(yesno_no_result),
 		"missing_status": String(missing_result.get("status", "")),
 	}))
 	game_state.free()
@@ -278,6 +350,18 @@ func _first_text_label(result: Dictionary) -> String:
 	if typeof(first) != TYPE_DICTIONARY:
 		return ""
 	return String(first.get("text_label", ""))
+
+
+func _message_at(result: Dictionary, index: int) -> Dictionary:
+	var messages = result.get("messages", [])
+	if typeof(messages) != TYPE_ARRAY or index < 0 or index >= messages.size():
+		return {}
+	var message = messages[index]
+	return message if typeof(message) == TYPE_DICTIONARY else {}
+
+
+func _message_text_label(result: Dictionary, index: int) -> String:
+	return String(_message_at(result, index).get("text_label", ""))
 
 
 func _first_message_text(result: Dictionary) -> String:
@@ -423,11 +507,13 @@ func _result_summary(result: Dictionary) -> Dictionary:
 		"movement_count": _movement_count(result),
 		"object_effect_count": _object_effect_count(result),
 		"field_effect_count": _field_effect_count(result),
+		"ui_effect_count": _ui_effect_count(result),
 		"audio_effect_count": _audio_effect_count(result),
 		"transition_effect_count": _transition_effect_count(result),
 		"player_effect_count": _player_effect_count(result),
 		"wait_buttonpress": bool(result.get("wait_buttonpress", false)),
 		"wait_movement": bool(result.get("wait_movement", false)),
+		"wait_ui": bool(result.get("wait_ui", false)),
 		"wait_state": bool(result.get("wait_state", false)),
 		"wait_audio": bool(result.get("wait_audio", false)),
 		"step_count": int(result.get("step_count", 0)),
@@ -457,6 +543,11 @@ func _object_effect_count(result: Dictionary) -> int:
 func _field_effect_count(result: Dictionary) -> int:
 	var field_effects = result.get("field_effects", [])
 	return field_effects.size() if typeof(field_effects) == TYPE_ARRAY else 0
+
+
+func _ui_effect_count(result: Dictionary) -> int:
+	var ui_effects = result.get("ui_effects", [])
+	return ui_effects.size() if typeof(ui_effects) == TYPE_ARRAY else 0
 
 
 func _audio_effect_count(result: Dictionary) -> int:
@@ -496,6 +587,14 @@ func _field_effect_at(result: Dictionary, index: int) -> Dictionary:
 		return {}
 	var field_effect = field_effects[index]
 	return field_effect if typeof(field_effect) == TYPE_DICTIONARY else {}
+
+
+func _ui_effect_at(result: Dictionary, index: int) -> Dictionary:
+	var ui_effects = result.get("ui_effects", [])
+	if typeof(ui_effects) != TYPE_ARRAY or index < 0 or index >= ui_effects.size():
+		return {}
+	var ui_effect = ui_effects[index]
+	return ui_effect if typeof(ui_effect) == TYPE_DICTIONARY else {}
 
 
 func _audio_effect_at(result: Dictionary, index: int) -> Dictionary:
@@ -538,6 +637,10 @@ func _field_effect_op(result: Dictionary, index: int) -> String:
 	return String(_field_effect_at(result, index).get("op", ""))
 
 
+func _ui_effect_op(result: Dictionary, index: int) -> String:
+	return String(_ui_effect_at(result, index).get("op", ""))
+
+
 func _audio_effect_op(result: Dictionary, index: int) -> String:
 	return String(_audio_effect_at(result, index).get("op", ""))
 
@@ -574,6 +677,44 @@ func _field_effect_position(result: Dictionary, index: int) -> Vector2i:
 
 func _field_effect_frames(result: Dictionary, index: int) -> int:
 	return int(_field_effect_at(result, index).get("frames", 0))
+
+
+func _ui_effect_script_position(result: Dictionary, index: int) -> Vector2i:
+	return _vector_from_array(_ui_effect_at(result, index).get("script_position", [0, 0]))
+
+
+func _ui_effect_menu_position(result: Dictionary, index: int) -> Vector2i:
+	return _vector_from_array(_ui_effect_at(result, index).get("menu_position", [0, 0]))
+
+
+func _ui_effect_menu_size(result: Dictionary, index: int) -> Vector2i:
+	return _vector_from_array(_ui_effect_at(result, index).get("menu_size", [0, 0]))
+
+
+func _ui_effect_default_choice(result: Dictionary, index: int) -> String:
+	return String(_ui_effect_at(result, index).get("default_choice", ""))
+
+
+func _ui_effect_b_choice(result: Dictionary, index: int) -> String:
+	return String(_ui_effect_at(result, index).get("b_choice", ""))
+
+
+func _ui_effect_input_delay_frames(result: Dictionary, index: int) -> int:
+	return int(_ui_effect_at(result, index).get("input_delay_frames", 0))
+
+
+func _ui_effect_selected_choice(result: Dictionary, index: int) -> String:
+	return String(_ui_effect_at(result, index).get("selected_choice", ""))
+
+
+func _ui_effect_selected_value(result: Dictionary, index: int) -> int:
+	return int(_ui_effect_at(result, index).get("selected_value", -1))
+
+
+func _vector_from_array(value) -> Vector2i:
+	if typeof(value) != TYPE_ARRAY or value.size() < 2:
+		return Vector2i.ZERO
+	return Vector2i(int(value[0]), int(value[1]))
 
 
 func _audio_effect_sound(result: Dictionary, index: int) -> String:

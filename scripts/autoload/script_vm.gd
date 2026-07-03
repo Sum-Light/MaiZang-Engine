@@ -4,6 +4,7 @@ const STEP_LIMIT := 128
 const MSGBOX_NPC := "MSGBOX_NPC"
 const MSGBOX_SIGN := "MSGBOX_SIGN"
 const MSGBOX_DEFAULT := "MSGBOX_DEFAULT"
+const MSGBOX_YESNO := "MSGBOX_YESNO"
 const SAFE_FOLLOWER_FLAG := "FLAG_SAFE_FOLLOWER_MOVEMENT"
 const VAR_RESULT := "VAR_RESULT"
 const PLAYER_GENDER_MALE := "MALE"
@@ -12,6 +13,12 @@ const PLAYER_GENDER_MALE_VALUE := 0
 const PLAYER_GENDER_FEMALE_VALUE := 1
 const WARP_ID_NONE_VALUE := -1
 const LOCALID_PLAYER := "LOCALID_PLAYER"
+const YESNO_PENDING_VALUE := 0xFF
+const YESNO_INPUT_DELAY_FRAMES := 5
+const YESNO_DEFAULT_MENU_LEFT := 21
+const YESNO_DEFAULT_MENU_TOP := 9
+const YESNO_DEFAULT_MENU_WIDTH := 5
+const YESNO_DEFAULT_MENU_HEIGHT := 4
 
 var _script_data: Dictionary = {}
 var _game_state: Node = null
@@ -53,6 +60,7 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"movements": [],
 		"object_effects": [],
 		"field_effects": [],
+		"ui_effects": [],
 		"audio_effects": [],
 		"transition_effects": [],
 		"player_effects": [],
@@ -66,6 +74,7 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"last_movement_target": "",
 		"wait_buttonpress": false,
 		"wait_movement": false,
+		"wait_ui": false,
 		"wait_state": false,
 		"wait_audio": false,
 		"step_count": 0,
@@ -111,6 +120,7 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"movements": state["movements"],
 		"object_effects": state["object_effects"],
 		"field_effects": state["field_effects"],
+		"ui_effects": state["ui_effects"],
 		"audio_effects": state["audio_effects"],
 		"transition_effects": state["transition_effects"],
 		"player_effects": state["player_effects"],
@@ -119,6 +129,7 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"trace": state["trace"],
 		"wait_buttonpress": bool(state["wait_buttonpress"]),
 		"wait_movement": bool(state["wait_movement"]),
+		"wait_ui": bool(state["wait_ui"]),
 		"wait_state": bool(state["wait_state"]),
 		"wait_audio": bool(state["wait_audio"]),
 		"step_count": int(state["step_count"]),
@@ -210,6 +221,11 @@ func _execute_instruction(state: Dictionary, instruction: Dictionary) -> void:
 				if args.size() >= 2:
 					mode = String(args[1])
 				_execute_msgbox(state, String(args[0]), mode, line)
+			else:
+				_record_unsupported(state, op, line, String(instruction.get("raw", "")))
+		"yesnobox":
+			if args.size() >= 2:
+				_execute_yesnobox(state, args, line, String(instruction.get("raw", "")))
 			else:
 				_record_unsupported(state, op, line, String(instruction.get("raw", "")))
 		"applymovement":
@@ -531,6 +547,17 @@ func _record_field_effect(state: Dictionary, op: String, line: int, detail: Dict
 	for key in detail:
 		field_effect[key] = detail[key]
 	state["field_effects"].append(field_effect)
+	_record_effect(state, op, line, detail)
+
+
+func _record_ui_effect(state: Dictionary, op: String, line: int, detail: Dictionary) -> void:
+	var ui_effect := {
+		"op": op,
+		"line": line,
+	}
+	for key in detail:
+		ui_effect[key] = detail[key]
+	state["ui_effects"].append(ui_effect)
 	_record_effect(state, op, line, detail)
 
 
@@ -856,8 +883,54 @@ func _execute_msgbox(state: Dictionary, text_label: String, mode: String, line: 
 			_execute_message(state, text_label, mode, "msgbox", line)
 			_execute_basic_field_command(state, "waitmessage", line)
 			_execute_basic_field_command(state, "waitbuttonpress", line)
+		MSGBOX_YESNO:
+			_execute_message(state, text_label, mode, "msgbox", line)
+			_execute_basic_field_command(state, "waitmessage", line)
+			_execute_yesnobox(state, ["20", "8"], line, "yesnobox 20, 8", "Std_MsgboxYesNo")
 		_:
 			_record_unsupported(state, "msgbox:%s" % mode, line, "msgbox %s, %s" % [text_label, mode])
+
+
+func _execute_yesnobox(
+	state: Dictionary,
+	args: Array,
+	line: int,
+	raw: String,
+	source_context: String = "script"
+) -> void:
+	if args.size() < 2:
+		_record_unsupported(state, "yesnobox", line, raw)
+		return
+
+	var script_left := _read_value(String(args[0]))
+	var script_top := _read_value(String(args[1]))
+	var choice := _resolve_yesno_choice(state)
+	var selected_choice := String(choice.get("choice", "PENDING"))
+	var selected_value := int(choice.get("value", YESNO_PENDING_VALUE))
+	_set_var(VAR_RESULT, selected_value)
+	state["wait_ui"] = true
+	_record_ui_effect(state, "yesnobox", line, {
+		"script_position": [script_left, script_top],
+		"menu_position": [YESNO_DEFAULT_MENU_LEFT, YESNO_DEFAULT_MENU_TOP],
+		"menu_size": [YESNO_DEFAULT_MENU_WIDTH, YESNO_DEFAULT_MENU_HEIGHT],
+		"script_position_ignored": true,
+		"default_choice": "YES",
+		"default_value": _constant_value("YES"),
+		"b_choice": "NO",
+		"b_value": _constant_value("NO"),
+		"pending_value": YESNO_PENDING_VALUE,
+		"input_delay_frames": YESNO_INPUT_DELAY_FRAMES,
+		"result_var": VAR_RESULT,
+		"selected_choice": selected_choice,
+		"selected_value": selected_value,
+		"choice_source": String(choice.get("source", "")),
+		"source": "ScriptMenu_YesNo",
+		"source_context": source_context,
+		"raw": raw,
+	})
+	if not bool(choice.get("has_choice", false)):
+		state["status"] = "waiting_for_ui"
+		state["finished"] = true
 
 
 func _execute_message(
@@ -990,6 +1063,50 @@ func _constant_value(value: String) -> int:
 	return 0
 
 
+func _resolve_yesno_choice(state: Dictionary) -> Dictionary:
+	var context = state.get("context", {})
+	if typeof(context) != TYPE_DICTIONARY:
+		return _yesno_choice_record("PENDING", YESNO_PENDING_VALUE, false, "")
+
+	for key in ["yesno_choice", "menu_choice", "choice"]:
+		if context.has(key):
+			return _parse_yesno_choice(context[key], key)
+	return _yesno_choice_record("PENDING", YESNO_PENDING_VALUE, false, "")
+
+
+func _parse_yesno_choice(value, source_key: String) -> Dictionary:
+	match typeof(value):
+		TYPE_BOOL:
+			if bool(value):
+				return _yesno_choice_record("YES", _constant_value("YES"), true, source_key)
+			return _yesno_choice_record("NO", _constant_value("NO"), true, source_key)
+		TYPE_INT, TYPE_FLOAT:
+			var int_value := int(value)
+			if int_value == _constant_value("YES"):
+				return _yesno_choice_record("YES", _constant_value("YES"), true, source_key)
+			if int_value == _constant_value("NO"):
+				return _yesno_choice_record("NO", _constant_value("NO"), true, source_key)
+
+	var text := String(value).strip_edges().to_upper()
+	match text:
+		"YES", "TRUE", "1":
+			return _yesno_choice_record("YES", _constant_value("YES"), true, source_key)
+		"NO", "FALSE", "0":
+			return _yesno_choice_record("NO", _constant_value("NO"), true, source_key)
+		"B", "MENU_B_PRESSED":
+			return _yesno_choice_record("B", _constant_value("NO"), true, source_key)
+	return _yesno_choice_record("PENDING", YESNO_PENDING_VALUE, false, source_key)
+
+
+func _yesno_choice_record(choice: String, value: int, has_choice: bool, source_key: String) -> Dictionary:
+	return {
+		"choice": choice,
+		"value": value,
+		"has_choice": has_choice,
+		"source": source_key,
+	}
+
+
 func _get_var(var_name: String) -> int:
 	var game_state := _get_game_state()
 	if game_state != null and game_state.has_method("get_var"):
@@ -1062,6 +1179,7 @@ func _empty_result(script_label: String, status: String, finished: bool) -> Dict
 		"movements": [],
 		"object_effects": [],
 		"field_effects": [],
+		"ui_effects": [],
 		"audio_effects": [],
 		"transition_effects": [],
 		"player_effects": [],
@@ -1070,6 +1188,7 @@ func _empty_result(script_label: String, status: String, finished: bool) -> Dict
 		"trace": [],
 		"wait_buttonpress": false,
 		"wait_movement": false,
+		"wait_ui": false,
 		"wait_state": false,
 		"wait_audio": false,
 		"step_count": 0,
