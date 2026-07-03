@@ -63,7 +63,7 @@ func _init() -> void:
 	}
 	synthetic_texts["Smoke_Text_TextControls"] = {
 		"label": "Smoke_Text_TextControls",
-		"display_text": "{COLOR BLUE}{SHADOW LIGHT_BLUE}{FONT_MALE}Alpha{PAUSE 15}Beta{PAUSE_UNTIL_PRESS}{B_PC_CREATOR_NAME}",
+		"display_text": "{COLOR BLUE}{SHADOW LIGHT_BLUE}{FONT_MALE}Alpha{PAUSE 15}Beta{PAUSE_UNTIL_PRESS}{UNRESOLVED_TOKEN}",
 		"kind": "text",
 		"source": "smoke",
 	}
@@ -83,6 +83,12 @@ func _init() -> void:
 	synthetic_scripts["Smoke_EventScript_GlobalText"] = {
 		"instructions": [
 			{"op": "msgbox", "args": ["gText_ConfirmSave", "MSGBOX_DEFAULT"], "line": 1, "raw": "msgbox gText_ConfirmSave, MSGBOX_DEFAULT"},
+			{"op": "end", "args": [], "line": 2, "raw": "end"},
+		],
+	}
+	synthetic_scripts["Smoke_EventScript_BattlePcCreatorName"] = {
+		"instructions": [
+			{"op": "msgbox", "args": ["gText_PkmnSentToPCAfterCatch", "MSGBOX_DEFAULT"], "line": 1, "raw": "msgbox gText_PkmnSentToPCAfterCatch, MSGBOX_DEFAULT"},
 			{"op": "end", "args": [], "line": 2, "raw": "end"},
 		],
 	}
@@ -146,6 +152,11 @@ func _init() -> void:
 	var warp_result := vm.run_script("Smoke_EventScript_WarpOnly")
 	var global_text_result := vm.run_script("Smoke_EventScript_GlobalText")
 	var text_controls_result := vm.run_script("Smoke_EventScript_TextControls")
+	game_state.clear_flag("FLAG_SYS_PC_LANETTE")
+	var battle_pc_someones_result := vm.run_script("Smoke_EventScript_BattlePcCreatorName")
+	game_state.set_flag("FLAG_SYS_PC_LANETTE", true)
+	var battle_pc_lanettes_result := vm.run_script("Smoke_EventScript_BattlePcCreatorName")
+	game_state.clear_flag("FLAG_SYS_PC_LANETTE")
 	var yesno_pending_result := vm.run_script("Smoke_EventScript_YesNoPending")
 	var yesno_pending_var_result := game_state.get_var("VAR_RESULT", -1)
 	var yesno_yes_result := vm.run_script("Smoke_EventScript_YesNoBranch", {"yesno_choice": "YES"})
@@ -326,8 +337,8 @@ func _init() -> void:
 
 	_assert(text_controls_result.get("status", "") == "ok", "expected text-control script to execute")
 	_assert(_message_count(text_controls_result) == 1, "expected one text-control message")
-	_assert(_first_message_text(text_controls_result) == "AlphaBeta{B_PC_CREATOR_NAME}", "expected text controls to be removed from display text")
-	_assert(_first_message_unexpanded_text(text_controls_result) == "{COLOR BLUE}{SHADOW LIGHT_BLUE}{FONT_MALE}Alpha{PAUSE 15}Beta{PAUSE_UNTIL_PRESS}{B_PC_CREATOR_NAME}", "expected unexpanded text controls to be preserved")
+	_assert(_first_message_text(text_controls_result) == "AlphaBeta{UNRESOLVED_TOKEN}", "expected text controls to be removed from display text")
+	_assert(_first_message_unexpanded_text(text_controls_result) == "{COLOR BLUE}{SHADOW LIGHT_BLUE}{FONT_MALE}Alpha{PAUSE 15}Beta{PAUSE_UNTIL_PRESS}{UNRESOLVED_TOKEN}", "expected unexpanded text controls to be preserved")
 	_assert(_first_message_expanded_text(text_controls_result) == _first_message_unexpanded_text(text_controls_result), "expected expanded text to preserve control tokens before cleanup")
 	_assert(_first_message_text_control_count(text_controls_result) == 5, "expected five parsed text controls")
 	_assert(_first_message_text_control_code_id_for_token(text_controls_result, "{COLOR BLUE}") == 1, "unexpected COLOR code id")
@@ -342,6 +353,19 @@ func _init() -> void:
 	_assert(_first_message_text_control_source_length_for_token(text_controls_result, "{PAUSE_UNTIL_PRESS}") == 1, "unexpected PAUSE_UNTIL_PRESS source length")
 	_assert(bool(text_controls_result.get("wait_buttonpress", false)), "expected PAUSE_UNTIL_PRESS to require button press")
 	_assert(_unsupported_count(text_controls_result) == 0, "expected no unsupported text-control ops")
+
+	_assert(battle_pc_someones_result.get("status", "") == "ok", "expected battle PC creator text to execute without Lanette flag")
+	_assert(battle_pc_lanettes_result.get("status", "") == "ok", "expected battle PC creator text to execute with Lanette flag")
+	_assert(_first_message_text(battle_pc_someones_result).find("{B_PC_CREATOR_NAME}") == -1, "expected PC creator token to expand without Lanette flag")
+	_assert(_first_message_text(battle_pc_lanettes_result).find("{B_PC_CREATOR_NAME}") == -1, "expected PC creator token to expand with Lanette flag")
+	_assert(_first_message_placeholder_substitution_count(battle_pc_someones_result) == 3, "expected STR_VAR_1/2 and PC creator substitutions")
+	_assert(_first_message_placeholder_id_for_token(battle_pc_someones_result, "{B_PC_CREATOR_NAME}") == 0x27, "unexpected PC creator placeholder id")
+	_assert(_first_message_placeholder_source_for_token(battle_pc_someones_result, "{B_PC_CREATOR_NAME}") == "BattleStringExpandPlaceholders", "unexpected PC creator placeholder source")
+	_assert(_first_message_placeholder_value_key_for_token(battle_pc_someones_result, "{B_PC_CREATOR_NAME}") == "SOMEONES", "expected default PC creator key")
+	_assert(_first_message_placeholder_value_key_for_token(battle_pc_lanettes_result, "{B_PC_CREATOR_NAME}") == "LANETTES", "expected Lanette PC creator key")
+	_assert(_first_message_placeholder_value_for_token(battle_pc_someones_result, "{B_PC_CREATOR_NAME}") != _first_message_placeholder_value_for_token(battle_pc_lanettes_result, "{B_PC_CREATOR_NAME}"), "expected PC creator values to differ by flag")
+	_assert(_unsupported_count(battle_pc_someones_result) == 0, "expected no unsupported default PC creator ops")
+	_assert(_unsupported_count(battle_pc_lanettes_result) == 0, "expected no unsupported Lanette PC creator ops")
 
 	_assert(yesno_pending_result.get("status", "") == "waiting_for_ui", "expected pending yes/no UI status")
 	_assert(yesno_pending_result.get("finished", false), "expected pending yes/no script to stop")
@@ -463,6 +487,8 @@ func _init() -> void:
 		"warp": _result_summary(warp_result),
 		"global_text": _result_summary(global_text_result),
 		"text_controls": _result_summary(text_controls_result),
+		"battle_pc_someones": _result_summary(battle_pc_someones_result),
+		"battle_pc_lanettes": _result_summary(battle_pc_lanettes_result),
 		"yesno_pending": _result_summary(yesno_pending_result),
 		"yesno_yes": _result_summary(yesno_yes_result),
 		"yesno_no": _result_summary(yesno_no_result),
@@ -567,6 +593,16 @@ func _first_message_placeholder_value_for_token(result: Dictionary, token: Strin
 func _first_message_placeholder_id_for_token(result: Dictionary, token: String) -> int:
 	var substitution := _first_message_placeholder_for_token(result, token)
 	return int(substitution.get("placeholder_id", -1))
+
+
+func _first_message_placeholder_value_key_for_token(result: Dictionary, token: String) -> String:
+	var substitution := _first_message_placeholder_for_token(result, token)
+	return String(substitution.get("value_key", ""))
+
+
+func _first_message_placeholder_source_for_token(result: Dictionary, token: String) -> String:
+	var substitution := _first_message_placeholder_for_token(result, token)
+	return String(substitution.get("source", ""))
 
 
 func _first_message_placeholder_for_token(result: Dictionary, token: String) -> Dictionary:

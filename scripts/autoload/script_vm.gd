@@ -10,12 +10,18 @@ const VAR_RESULT := "VAR_RESULT"
 const PLACEHOLDER_PLAYER := "PLAYER"
 const PLACEHOLDER_KUN := "KUN"
 const PLACEHOLDER_RIVAL := "RIVAL"
+const PLACEHOLDER_B_PC_CREATOR_NAME := "B_PC_CREATOR_NAME"
 const STR_VAR_1 := "STR_VAR_1"
 const STR_VAR_2 := "STR_VAR_2"
 const STR_VAR_3 := "STR_VAR_3"
 const DEFAULT_PLAYER_NAME := "玩家"
 const RIVAL_NAME_MALE_PLAYER := "小遥"
 const RIVAL_NAME_FEMALE_PLAYER := "小悠"
+const BATTLE_PC_CREATOR_SOMEONES := "某人的"
+const BATTLE_PC_CREATOR_LANETTES := "真由美的"
+const BATTLE_PC_CREATOR_BILLS := "正辉的"
+const FLAG_SYS_PC_LANETTE := "FLAG_SYS_PC_LANETTE"
+const SOURCE_IS_FRLG := false
 const PLAYER_GENDER_MALE := "MALE"
 const PLAYER_GENDER_FEMALE := "FEMALE"
 const PLAYER_GENDER_MALE_VALUE := 0
@@ -1228,7 +1234,15 @@ func _string_var_names() -> Array:
 
 
 func _placeholder_names() -> Array:
-	return [PLACEHOLDER_PLAYER, PLACEHOLDER_KUN, PLACEHOLDER_RIVAL, STR_VAR_1, STR_VAR_2, STR_VAR_3]
+	return [
+		PLACEHOLDER_PLAYER,
+		PLACEHOLDER_KUN,
+		PLACEHOLDER_RIVAL,
+		PLACEHOLDER_B_PC_CREATOR_NAME,
+		STR_VAR_1,
+		STR_VAR_2,
+		STR_VAR_3,
+	]
 
 
 func _placeholder_id(placeholder_name: String) -> int:
@@ -1245,6 +1259,8 @@ func _placeholder_id(placeholder_name: String) -> int:
 			return 0x5
 		PLACEHOLDER_RIVAL:
 			return 0x6
+		PLACEHOLDER_B_PC_CREATOR_NAME:
+			return 0x27
 	return 0
 
 
@@ -1271,22 +1287,40 @@ func _placeholder_value(state: Dictionary, placeholder_name: String) -> String:
 			return _get_kun_placeholder()
 		PLACEHOLDER_RIVAL:
 			return _get_rival_placeholder()
+		PLACEHOLDER_B_PC_CREATOR_NAME:
+			return _get_battle_pc_creator_placeholder()
 	return _get_string_var(state, placeholder_name)
+
+
+func _placeholder_value_key(placeholder_name: String) -> String:
+	match placeholder_name:
+		PLACEHOLDER_B_PC_CREATOR_NAME:
+			return _battle_pc_creator_key()
+	return placeholder_name
+
+
+func _placeholder_source(placeholder_name: String) -> String:
+	match placeholder_name:
+		PLACEHOLDER_B_PC_CREATOR_NAME:
+			return "BattleStringExpandPlaceholders"
+	return "StringExpandPlaceholders"
 
 
 func _placeholder_substitutions(state: Dictionary, display_text: String) -> Array:
 	var substitutions: Array = []
 	for placeholder_name in _placeholder_names():
-		var token := "{%s}" % String(placeholder_name)
+		var placeholder_name_string := String(placeholder_name)
+		var token := "{%s}" % placeholder_name_string
 		var cursor := display_text.find(token)
 		while cursor != -1:
 			substitutions.append({
 				"token": token,
-				"var": String(placeholder_name),
-				"placeholder_id": _placeholder_id(String(placeholder_name)),
-				"value": _placeholder_value(state, String(placeholder_name)),
+				"var": placeholder_name_string,
+				"placeholder_id": _placeholder_id(placeholder_name_string),
+				"value": _placeholder_value(state, placeholder_name_string),
+				"value_key": _placeholder_value_key(placeholder_name_string),
 				"offset": cursor,
-				"source": "StringExpandPlaceholders",
+				"source": _placeholder_source(placeholder_name_string),
 			})
 			cursor = display_text.find(token, cursor + token.length())
 	return substitutions
@@ -1468,6 +1502,21 @@ func _get_kun_placeholder() -> String:
 
 func _get_rival_placeholder() -> String:
 	return RIVAL_NAME_FEMALE_PLAYER if _get_player_gender() == PLAYER_GENDER_FEMALE else RIVAL_NAME_MALE_PLAYER
+
+
+func _get_battle_pc_creator_placeholder() -> String:
+	match _battle_pc_creator_key():
+		"LANETTES":
+			return BATTLE_PC_CREATOR_LANETTES
+		"BILLS":
+			return BATTLE_PC_CREATOR_BILLS
+	return BATTLE_PC_CREATOR_SOMEONES
+
+
+func _battle_pc_creator_key() -> String:
+	if _is_flag_set(FLAG_SYS_PC_LANETTE):
+		return "BILLS" if SOURCE_IS_FRLG else "LANETTES"
+	return "SOMEONES"
 
 
 func _gender_value(gender: String) -> int:

@@ -221,3 +221,9 @@ Reason: Source `ExpandPlaceholder_RivalName` only reads a custom `gSaveBlock1Ptr
 Decision: Parse source text control tokens in `ScriptVM` after placeholder expansion, remove the non-glyph controls from visible message `text`, and preserve them as structured `text_controls` metadata for the dialogue renderer.
 
 Reason: Source `src/text.c` treats `EXT_CTRL_CODE_COLOR`, `EXT_CTRL_CODE_SHADOW`, `EXT_CTRL_CODE_FONT`, `EXT_CTRL_CODE_PAUSE`, and `EXT_CTRL_CODE_PAUSE_UNTIL_PRESS` as renderer commands, not printable characters, while `src/string_util.c:GetExtCtrlCodeLength` defines their byte lengths for string traversal. Godot UI should display the same glyph text while keeping enough source-backed metadata to reproduce colors, font changes, pauses, and button waits later.
+
+## 2026-07-04 - Preserve battle-message token provenance
+
+Decision: Expand `{B_PC_CREATOR_NAME}` in runtime message text with explicit `BattleStringExpandPlaceholders` provenance and a `value_key` showing the chosen source branch.
+
+Reason: `{B_PC_CREATOR_NAME}` is encoded as `B_TXT_PC_CREATOR_NAME = 0x27` in the battle-message placeholder table, not as a normal `StringExpandPlaceholders` id. Source `battle_message.c` selects Someone's, Lanette's, or Bill's PC creator text from `FLAG_SYS_PC_LANETTE` and the `IS_FRLG` branch. Recording that provenance keeps the Godot text path source-faithful while still letting the visible message text expand cleanly.
