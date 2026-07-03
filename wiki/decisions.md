@@ -185,3 +185,9 @@ Reason: The source project's charmap is required to verify that script text stil
 Decision: Export global `data/text/*.inc` labels for the Emerald target, evaluating the current `IS_FRLG` text branches as false, and preserve `.braille` labels with their source `brailleformat` header plus source-derived braille bytes.
 
 Reason: The local source target defines `IS_FRLG 0` for Emerald in `include/constants/global.h`; including both branches would create text that the source build would never show. Braille text is also player-visible data, but source `ScrCmd_braillemessage` intentionally skips the first 6 `brailleformat` bytes before expanding the string, so Godot needs both the skipped header and the resulting text bytes as generated metadata.
+
+## 2026-07-04 - Resolve script text from local then global records
+
+Decision: `ScriptVM` and `EventManager` should resolve message text labels from local generated map-script records first, then from global generated text records through `DataRegistry`.
+
+Reason: Source `ScrCmd_message` reads a text pointer and shows it with `ShowFieldMessage`; the pointer can reference map-local text or global labels such as `gText_ConfirmSave`. Keeping local records first preserves map override behavior, while the global fallback lets Godot scripts use the same label space without reparsing source files at runtime.

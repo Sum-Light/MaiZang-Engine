@@ -105,3 +105,8 @@
 - Updated `DataRegistry` with `get_text_data`, `get_text_record`, and `get_text_display_text`, indexed from the manifest `texts` entry.
 - Added `tools/importer/export_text_smoke.py` and `tools/godot_smoke/data_registry_text_smoke.gd` for exporter and Godot registry validation.
 - Verified `py_compile`, `export_text.py`, `export_text_smoke.py`, `text_codec_smoke.py`, `data_registry_text_smoke.gd`, `script_vm_smoke.gd`, `map_runtime_smoke.gd`, `event_manager_smoke.gd`, and `transition_presentation_smoke.gd`.
+- Traced `ScrCmd_message` and `data/scripts/std_msgbox.inc` again for runtime text lookup, confirming message pointers are not limited to map-local text labels.
+- Updated `ScriptVM` so message text lookup tries generated local map-script text first, then global generated text through `DataRegistry`.
+- Updated `EventManager` previews so VM-backed and direct fallback previews expose text source/kind and encoding metadata, and the direct fallback uses the same local-then-global lookup order.
+- Expanded `script_vm_smoke.gd` with a synthetic `msgbox gText_ConfirmSave, MSGBOX_DEFAULT` script, verifying global text source `data/text/save.inc`, `text` kind, encoding status, 29 source bytes, terminator metadata, and display newline.
+- Verified `script_vm_smoke.gd`, `event_manager_smoke.gd`, `data_registry_text_smoke.gd`, `map_runtime_smoke.gd`, `transition_presentation_smoke.gd`, and `git diff --check`.

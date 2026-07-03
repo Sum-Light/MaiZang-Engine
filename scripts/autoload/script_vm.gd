@@ -15,11 +15,13 @@ const LOCALID_PLAYER := "LOCALID_PLAYER"
 
 var _script_data: Dictionary = {}
 var _game_state: Node = null
+var _data_registry: Node = null
 
 
 func _ready() -> void:
 	var registry = get_node_or_null("/root/DataRegistry")
 	if registry != null and registry.has_method("get_start_script_data"):
+		_data_registry = registry
 		configure_from_script_data(registry.get_start_script_data())
 	_game_state = get_node_or_null("/root/GameState")
 
@@ -30,6 +32,10 @@ func configure_from_script_data(script_data: Dictionary) -> void:
 
 func configure_game_state(game_state: Node) -> void:
 	_game_state = game_state
+
+
+func configure_data_registry(data_registry: Node) -> void:
+	_data_registry = data_registry
 
 
 func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
@@ -883,6 +889,8 @@ func _execute_message(
 		"line": line,
 		"text": String(text_record.get("display_text", "")),
 		"status": status,
+		"text_source": String(text_record.get("source", "")),
+		"text_kind": String(text_record.get("kind", "text")),
 		"encoding_status": encoding_status,
 		"source_byte_count": source_byte_count,
 		"terminator_present": terminator_present,
@@ -1078,10 +1086,17 @@ func _get_script_record(script_label: String) -> Dictionary:
 
 func _get_text_record(text_label: String) -> Dictionary:
 	var texts = _script_data.get("texts", {})
-	if typeof(texts) != TYPE_DICTIONARY:
-		return {}
-	var record = texts.get(text_label, {})
-	return record if typeof(record) == TYPE_DICTIONARY else {}
+	if typeof(texts) == TYPE_DICTIONARY:
+		var record = texts.get(text_label, {})
+		if typeof(record) == TYPE_DICTIONARY and not record.is_empty():
+			return record
+
+	var registry := _get_data_registry()
+	if registry != null and registry.has_method("get_text_record"):
+		var global_record = registry.get_text_record(text_label, "global")
+		if typeof(global_record) == TYPE_DICTIONARY:
+			return global_record
+	return {}
 
 
 func _get_movement_record(movement_label: String) -> Dictionary:
@@ -1097,4 +1112,12 @@ func _get_game_state() -> Node:
 		return _game_state
 	if is_inside_tree():
 		return get_node_or_null("/root/GameState")
+	return null
+
+
+func _get_data_registry() -> Node:
+	if _data_registry != null:
+		return _data_registry
+	if is_inside_tree():
+		return get_node_or_null("/root/DataRegistry")
 	return null

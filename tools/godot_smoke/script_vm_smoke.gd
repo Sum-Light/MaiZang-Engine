@@ -1,14 +1,18 @@
 extends SceneTree
 
 const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
+const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
 const SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
 
 
 func _init() -> void:
 	var script_data := _load_json_object(SCRIPT_PATH)
+	var registry = DATA_REGISTRY_SCRIPT.new()
+	registry._ready()
 	var vm = SCRIPT_VM_SCRIPT.new()
 	vm.configure_from_script_data(script_data)
+	vm.configure_data_registry(registry)
 	var game_state = GAME_STATE_SCRIPT.new()
 	vm.configure_game_state(game_state)
 
@@ -45,10 +49,17 @@ func _init() -> void:
 			{"op": "end", "args": [], "line": 3, "raw": "end"},
 		],
 	}
+	synthetic_scripts["Smoke_EventScript_GlobalText"] = {
+		"instructions": [
+			{"op": "msgbox", "args": ["gText_ConfirmSave", "MSGBOX_DEFAULT"], "line": 1, "raw": "msgbox gText_ConfirmSave, MSGBOX_DEFAULT"},
+			{"op": "end", "args": [], "line": 2, "raw": "end"},
+		],
+	}
 	synthetic_script_data["scripts"] = synthetic_scripts
 	vm.configure_from_script_data(synthetic_script_data)
 	var delay_result := vm.run_script("Smoke_EventScript_DelayOnly")
 	var warp_result := vm.run_script("Smoke_EventScript_WarpOnly")
+	var global_text_result := vm.run_script("Smoke_EventScript_GlobalText")
 	vm.configure_from_script_data(script_data)
 	var missing_result := vm.run_script("Missing_EventScript")
 
@@ -198,6 +209,18 @@ func _init() -> void:
 	_assert(_field_effect_op(warp_result, 0) == "waitstate", "unexpected warp-only field effect")
 	_assert(_unsupported_count(warp_result) == 0, "expected no unsupported warp-only ops")
 
+	_assert(global_text_result.get("status", "") == "ok", "expected global-text script to execute")
+	_assert(global_text_result.get("finished", false), "expected global-text script to finish")
+	_assert(_message_count(global_text_result) == 1, "expected one global-text message")
+	_assert(_first_text_label(global_text_result) == "gText_ConfirmSave", "unexpected global text label")
+	_assert(_first_message_encoding_status(global_text_result) == "ok", "expected global text encoding status")
+	_assert(_first_message_source_byte_count(global_text_result) == 29, "unexpected global text source byte count")
+	_assert(_first_message_has_terminator(global_text_result), "expected global text terminator metadata")
+	_assert(_first_message_text_source(global_text_result) == "data/text/save.inc", "unexpected global text source")
+	_assert(_first_message_text_kind(global_text_result) == "text", "unexpected global text kind")
+	_assert(_first_message_text(global_text_result).find("\n") != -1, "expected global text display newline")
+	_assert(_unsupported_count(global_text_result) == 0, "expected no unsupported global-text ops")
+
 	_assert(missing_result.get("status", "") == "missing_script", "expected missing script status")
 
 	print(JSON.stringify({
@@ -215,10 +238,12 @@ func _init() -> void:
 		"give_running_shoes": _result_summary(give_running_shoes_result),
 		"delay": _result_summary(delay_result),
 		"warp": _result_summary(warp_result),
+		"global_text": _result_summary(global_text_result),
 		"missing_status": String(missing_result.get("status", "")),
 	}))
 	game_state.free()
 	vm.free()
+	registry.free()
 	quit(0)
 
 
@@ -283,6 +308,36 @@ func _first_message_source_byte_count(result: Dictionary) -> int:
 	if typeof(first) != TYPE_DICTIONARY:
 		return 0
 	return int(first.get("source_byte_count", 0))
+
+
+func _first_message_has_terminator(result: Dictionary) -> bool:
+	var messages = result.get("messages", [])
+	if typeof(messages) != TYPE_ARRAY or messages.is_empty():
+		return false
+	var first = messages[0]
+	if typeof(first) != TYPE_DICTIONARY:
+		return false
+	return bool(first.get("terminator_present", false))
+
+
+func _first_message_text_source(result: Dictionary) -> String:
+	var messages = result.get("messages", [])
+	if typeof(messages) != TYPE_ARRAY or messages.is_empty():
+		return ""
+	var first = messages[0]
+	if typeof(first) != TYPE_DICTIONARY:
+		return ""
+	return String(first.get("text_source", ""))
+
+
+func _first_message_text_kind(result: Dictionary) -> String:
+	var messages = result.get("messages", [])
+	if typeof(messages) != TYPE_ARRAY or messages.is_empty():
+		return ""
+	var first = messages[0]
+	if typeof(first) != TYPE_DICTIONARY:
+		return ""
+	return String(first.get("text_kind", ""))
 
 
 func _text_record(script_data: Dictionary, text_label: String) -> Dictionary:

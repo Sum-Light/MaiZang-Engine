@@ -61,7 +61,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - `GridMover` provides tweened tile movement.
 - `PlayerController` reads directional input, tracks facing direction, moves one tile at a time after checking `MapRuntime.can_enter_cell`, emits interaction requests on `ui_accept`, and can be input-locked by transition presentation.
 - `ScriptVM` executes the first synchronous event-script subset for generated dialogue, movement-effect, object-effect, field-effect, audio-effect, transition-effect, and player-effect scripts and returns messages, movements, object effects, field effects, audio effects, transition effects, player effects, effects, unsupported ops, trace entries, and wait metadata.
-- `ScriptVM` message results include generated text encoding metadata such as charmap status, source byte count, and terminator presence when the source text record provides it.
+- `ScriptVM` message results include generated text encoding metadata such as charmap status, source byte count, terminator presence, source file, and text kind when the source text record provides it.
 - `EventManager` dispatches object, BG/sign, coordinate-event, and warp-event interactions through `ScriptVM` or generated event data when available, applies movement and object effects through `MapRuntime`, consumes generated explicit-position and warp-id transition effects, emits source-traced transition sequence data, then emits debug dialogue lines for the HUD.
 - `ScriptVM` opcode behavior must continue to be derived from the source C implementation and referenced resources before being implemented in Godot.
 - `DebugMapPlane` draws the first generated `block_ids` metatile grid from a palette-baked RGBA metatile atlas, with the old color blocks as fallback. It can also draw generated door animation frame overlays above the map grid.
@@ -96,6 +96,8 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - First-slice generated script JSON is loaded through `DataRegistry`.
 - Generated script JSON preserves map script labels, raw instruction streams, movement labels, local text labels, and importer statistics.
 - Generated local text records keep UTF-8 `display_text` for Godot runtime/UI and nested `encoding` metadata for source compatibility checks: charmap status, source bytes/hex, byte count, terminator presence, control codes, placeholders, and warnings.
+- `ScriptVM` resolves message text records from generated local map-script labels first, then from global generated text through `DataRegistry.get_text_record(label, "global")`. This follows source `ScrCmd_message`, which reads a text pointer and does not restrict it to map-local labels.
+- `EventManager.get_script_preview` follows the same text lookup order for both VM-backed previews and the direct fallback path, and includes text source, kind, encoding status, source byte count, and terminator metadata in preview records.
 - `EventManager.get_script_preview` now delegates to `ScriptVM` when available and falls back to the older direct `msgbox`/`message` preview only when the VM is unavailable.
 - Source trace metadata in generated script JSON records the C/resources consulted for supported preview behavior, including `ScrCmd_message`, `ShowFieldMessage`, `gStdScripts`, and standard `msgbox` scripts.
 - Current `ScriptVM` support covers a synchronous first slice: `msgbox`, `message`, `lock`, `lockall`, `release`, `releaseall`, `faceplayer`, `waitmessage`, `waitbuttonpress`, `closemessage`, `goto`, `call`, `return`, `end`, basic `*_if_*` branches, `setflag`, `clearflag`, `setvar`, `checkplayergender`, `applymovement`, `applymovementat`, `waitmovement`, `waitmovementat`, `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`, `addobject`, `addobjectat`, `removeobject`, `removeobjectat`, `showobject`, `showobjectat`, `hideobject`, `hideobjectat`, `delay`, `opendoor`, `closedoor`, `waitdooranim`, `waitstate`, `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, and `hideplayer`.
@@ -123,7 +125,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Normal `.string` records use the same charmap-backed encoding metadata as local map-script text: status, source bytes/hex, byte count, `$` terminator presence, control codes, placeholders, and warnings.
 - `.braille` records preserve `brailleformat` values, `source_pointer_skip_bytes = 6`, source-derived braille bytes from `AsmFile::ReadBraille`, and combined source bytes containing the skipped header plus text bytes.
 - Global text import currently evaluates the `IS_FRLG` branch in `data/text/pc_transfer.inc` as false for the Emerald target, traced to `include/constants/global.h`.
-- Runtime systems should resolve global text labels through this registry instead of reparsing source files. Integrating global labels into `ScriptVM` message lookup remains future work.
+- Runtime systems resolve global text labels through this registry instead of reparsing source files. `ScriptVM` and `EventManager` use local text first, then registry-backed global text for message labels.
 
 ## Script Porting Rule
 

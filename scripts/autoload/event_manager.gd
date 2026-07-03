@@ -197,6 +197,11 @@ func get_script_preview(script: String) -> Dictionary:
 				"line": int(message.get("line", 0)),
 				"text": String(message.get("text", "")),
 				"status": String(message.get("status", "ok")),
+				"text_source": String(message.get("text_source", "")),
+				"text_kind": String(message.get("text_kind", "text")),
+				"encoding_status": String(message.get("encoding_status", "")),
+				"source_byte_count": int(message.get("source_byte_count", 0)),
+				"terminator_present": bool(message.get("terminator_present", false)),
 				"vm_status": String(result.get("status", "")),
 			}
 
@@ -249,6 +254,14 @@ func _get_direct_script_preview(script: String) -> Dictionary:
 
 	var text_label := String(msgbox.get("text_label", ""))
 	var text_record := _get_text_record(text_label)
+	var encoding = text_record.get("encoding", {})
+	var encoding_status := ""
+	var source_byte_count := 0
+	var terminator_present := false
+	if typeof(encoding) == TYPE_DICTIONARY:
+		encoding_status = String(encoding.get("status", ""))
+		source_byte_count = int(encoding.get("byte_count", 0))
+		terminator_present = bool(encoding.get("terminator_present", false))
 	return {
 		"script_label": script,
 		"text_label": text_label,
@@ -257,6 +270,11 @@ func _get_direct_script_preview(script: String) -> Dictionary:
 		"line": int(msgbox.get("line", 0)),
 		"text": String(text_record.get("display_text", "")),
 		"status": "ok" if not text_record.is_empty() else "missing_text",
+		"text_source": String(text_record.get("source", "")),
+		"text_kind": String(text_record.get("kind", "text")),
+		"encoding_status": encoding_status,
+		"source_byte_count": source_byte_count,
+		"terminator_present": terminator_present,
 	}
 
 
@@ -870,10 +888,16 @@ func _get_script_record(script: String) -> Dictionary:
 
 func _get_text_record(text_label: String) -> Dictionary:
 	var texts = _script_data.get("texts", {})
-	if typeof(texts) != TYPE_DICTIONARY:
-		return {}
-	var record = texts.get(text_label, {})
-	return record if typeof(record) == TYPE_DICTIONARY else {}
+	if typeof(texts) == TYPE_DICTIONARY:
+		var record = texts.get(text_label, {})
+		if typeof(record) == TYPE_DICTIONARY and not record.is_empty():
+			return record
+
+	if _data_registry != null and _data_registry.has_method("get_text_record"):
+		var global_record = _data_registry.get_text_record(text_label, "global")
+		if typeof(global_record) == TYPE_DICTIONARY:
+			return global_record
+	return {}
 
 
 func _first_msgbox(script_record: Dictionary) -> Dictionary:

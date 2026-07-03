@@ -34,6 +34,26 @@ func _init() -> void:
 	manager.configure_game_state(game_state)
 	manager.configure_data_registry(registry)
 
+	var fallback_script_data := script_data.duplicate(true)
+	var fallback_scripts: Dictionary = fallback_script_data.get("scripts", {})
+	fallback_scripts["Smoke_EventScript_GlobalTextPreview"] = {
+		"kind": "script",
+		"label": "Smoke_EventScript_GlobalTextPreview",
+		"line": 1,
+		"instructions": [
+			{"op": "msgbox", "args": ["gText_ConfirmSave", "MSGBOX_DEFAULT"], "line": 1, "raw": "msgbox gText_ConfirmSave, MSGBOX_DEFAULT"},
+			{"op": "end", "args": [], "line": 2, "raw": "end"},
+		],
+		"msgboxes": [
+			{"op": "msgbox", "text_label": "gText_ConfirmSave", "mode": "MSGBOX_DEFAULT", "line": 1},
+		],
+	}
+	fallback_script_data["scripts"] = fallback_scripts
+	var fallback_manager = EVENT_MANAGER_SCRIPT.new()
+	fallback_manager.configure_from_script_data(fallback_script_data)
+	fallback_manager.configure_data_registry(registry)
+	var global_fallback_preview := fallback_manager.get_script_preview("Smoke_EventScript_GlobalTextPreview")
+
 	var twin_preview := manager.get_script_preview("LittlerootTown_EventScript_Twin")
 	var sign_preview := manager.get_script_preview("LittlerootTown_EventScript_TownSign")
 	var need_pokemon_preview := manager.get_script_preview("LittlerootTown_EventScript_NeedPokemonTriggerLeft")
@@ -123,6 +143,14 @@ func _init() -> void:
 		need_pokemon_preview.get("text_label", "") == "LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut",
 		"unexpected need-pokemon preview text label"
 	)
+	_assert(global_fallback_preview.get("status", "") == "ok", "expected global direct fallback preview")
+	_assert(global_fallback_preview.get("text_label", "") == "gText_ConfirmSave", "unexpected global fallback text label")
+	_assert(global_fallback_preview.get("text_source", "") == "data/text/save.inc", "unexpected global fallback text source")
+	_assert(global_fallback_preview.get("text_kind", "") == "text", "unexpected global fallback text kind")
+	_assert(global_fallback_preview.get("encoding_status", "") == "ok", "unexpected global fallback encoding status")
+	_assert(int(global_fallback_preview.get("source_byte_count", 0)) == 29, "unexpected global fallback byte count")
+	_assert(bool(global_fallback_preview.get("terminator_present", false)), "expected global fallback terminator")
+	_assert(String(global_fallback_preview.get("text", "")).find("\n") != -1, "expected global fallback display newline")
 	_assert(player_position_after_coord_dispatch == Vector2i(10, 2), "expected coord dispatch to apply player movement")
 	_assert(
 		twin_position_after_coord_dispatch == Vector2i(16, 10),
@@ -284,6 +312,7 @@ func _init() -> void:
 		"twin": _preview_summary(twin_preview),
 		"town_sign": _preview_summary(sign_preview),
 		"need_pokemon": _preview_summary(need_pokemon_preview),
+		"global_fallback": _preview_summary(global_fallback_preview),
 		"player_position_after_coord_dispatch": _vector_to_array(player_position_after_coord_dispatch),
 		"current_map_after_transition": BRENDANS_HOUSE_1F,
 		"current_map_after_map_warp": current_map_after_map_warp,
@@ -294,6 +323,7 @@ func _init() -> void:
 		"rival_position_after_object_dispatch": _vector_to_array(rival_position_after_object_dispatch),
 	}))
 	manager.free()
+	fallback_manager.free()
 	game_state.free()
 	runtime.free()
 	vm.free()
