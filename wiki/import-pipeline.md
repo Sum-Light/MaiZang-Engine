@@ -23,6 +23,7 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 - `data/tilesets/**/metatiles.bin`
 - `data/tilesets/**/metatile_attributes.bin`
 - `data/tilesets/**/palettes/*.pal`
+- `include/constants/metatile_behaviors.h`
 - `graphics/door_anims/*.png` for future visible runtime door-tile cases when a map needs them
 
 ### Gameplay Data
@@ -127,10 +128,11 @@ Current tileset export behavior:
 - Reads the map layout's primary and secondary tileset symbols.
 - Reads `tiles.png`, `metatiles.bin`, `metatile_attributes.bin`, and `palettes/*.pal` for both tilesets.
 - Uses GBA tile-entry bits from `tools/gbagfx/gfx.h`: 10-bit tile id, horizontal flip, vertical flip, and 4-bit palette number.
+- Parses `include/constants/metatile_behaviors.h` so generated metatile attributes carry source behavior names as well as numeric ids.
 - Builds source palette slots with primary palettes 0-5 and secondary palettes 6-12, then bakes colors into a normal RGBA PNG.
 - Flattens each 16x16 metatile by compositing bottom entries 0-3 and top entries 4-7.
 - Writes `assets/generated/tilesets/littleroot_town_metatiles.png`.
-- Writes `data/generated/tilesets/littleroot_town.json` with atlas metadata, source tile entries, metatile attributes, used metatile ids, coverage notes, and warnings.
+- Writes `data/generated/tilesets/littleroot_town.json` with atlas metadata, source tile entries, metatile attributes, metatile behavior names, used metatile ids, coverage notes, and warnings.
 - Updates `data/generated/import_manifest.json` with exported tileset metadata while preserving existing entries for other maps, tilesets, and scripts.
 
 `tools/importer/export_event_scripts.py` exports one map's `scripts.inc` into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--map`, and `--output-root`.

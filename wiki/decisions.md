@@ -155,3 +155,9 @@ Reason: The port should not become a loose logical approximation. Modern Godot a
 Decision: Have `EventManager` emit a source-traced transition sequence contract before generated map transitions are applied, and let presentation systems consume that contract incrementally.
 
 Reason: Map transitions include visible timing and order from source `DoWarp`, `DoDoorWarp`, door animation tables, normal walk timing, fades, audio cues, and exit tasks. Recording the sequence as data lets smoke tests lock those requirements before the final Godot animation, audio, and TileMap presentation systems exist.
+
+## 2026-07-04 - Preserve metatile behavior names in generated tilesets
+
+Decision: Parse `include/constants/metatile_behaviors.h` during tileset export and store both numeric behavior ids and source `MB_*` names in generated tileset JSON.
+
+Reason: Source gameplay code such as `SetUpWarpExitTask` branches through named metatile behavior helper functions, not through visually meaningful tile ids. Preserving names lets Godot runtime systems choose behavior from source-readable data while still consuming normal Godot-friendly generated maps and textures.

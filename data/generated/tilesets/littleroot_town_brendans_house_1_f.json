@@ -14,6 +14,971 @@
     "secondary_palette_slots": "6-12 from secondary tileset",
     "transparent_color_index": 0
   },
+  "metatile_behaviors": {
+    "source": "include/constants/metatile_behaviors.h",
+    "names": [
+      {
+        "id": 0,
+        "name": "MB_NORMAL"
+      },
+      {
+        "id": 1,
+        "name": "MB_SECRET_BASE_WALL"
+      },
+      {
+        "id": 2,
+        "name": "MB_TALL_GRASS"
+      },
+      {
+        "id": 3,
+        "name": "MB_LONG_GRASS"
+      },
+      {
+        "id": 4,
+        "name": "MB_UNUSED_04"
+      },
+      {
+        "id": 5,
+        "name": "MB_UNUSED_05"
+      },
+      {
+        "id": 6,
+        "name": "MB_DEEP_SAND"
+      },
+      {
+        "id": 7,
+        "name": "MB_SHORT_GRASS"
+      },
+      {
+        "id": 8,
+        "name": "MB_CAVE"
+      },
+      {
+        "id": 9,
+        "name": "MB_LONG_GRASS_SOUTH_EDGE"
+      },
+      {
+        "id": 10,
+        "name": "MB_NO_RUNNING"
+      },
+      {
+        "id": 11,
+        "name": "MB_INDOOR_ENCOUNTER"
+      },
+      {
+        "id": 12,
+        "name": "MB_MOUNTAIN_TOP"
+      },
+      {
+        "id": 13,
+        "name": "MB_BATTLE_PYRAMID_WARP"
+      },
+      {
+        "id": 14,
+        "name": "MB_MOSSDEEP_GYM_WARP"
+      },
+      {
+        "id": 15,
+        "name": "MB_MT_PYRE_HOLE"
+      },
+      {
+        "id": 16,
+        "name": "MB_POND_WATER"
+      },
+      {
+        "id": 17,
+        "name": "MB_INTERIOR_DEEP_WATER"
+      },
+      {
+        "id": 18,
+        "name": "MB_DEEP_WATER"
+      },
+      {
+        "id": 19,
+        "name": "MB_WATERFALL"
+      },
+      {
+        "id": 20,
+        "name": "MB_SOOTOPOLIS_DEEP_WATER"
+      },
+      {
+        "id": 21,
+        "name": "MB_OCEAN_WATER"
+      },
+      {
+        "id": 22,
+        "name": "MB_PUDDLE"
+      },
+      {
+        "id": 23,
+        "name": "MB_SHALLOW_WATER"
+      },
+      {
+        "id": 24,
+        "name": "MB_UNUSED_SOOTOPOLIS_DEEP_WATER"
+      },
+      {
+        "id": 25,
+        "name": "MB_NO_SURFACING"
+      },
+      {
+        "id": 26,
+        "name": "MB_UNUSED_SOOTOPOLIS_DEEP_WATER_2"
+      },
+      {
+        "id": 27,
+        "name": "MB_STAIRS_OUTSIDE_ABANDONED_SHIP"
+      },
+      {
+        "id": 28,
+        "name": "MB_SHOAL_CAVE_ENTRANCE"
+      },
+      {
+        "id": 29,
+        "name": "MB_SIGNPOST"
+      },
+      {
+        "id": 30,
+        "name": "MB_POKEMON_CENTER_SIGN"
+      },
+      {
+        "id": 31,
+        "name": "MB_POKEMART_SIGN"
+      },
+      {
+        "id": 32,
+        "name": "MB_ICE"
+      },
+      {
+        "id": 33,
+        "name": "MB_SAND"
+      },
+      {
+        "id": 34,
+        "name": "MB_SEAWEED"
+      },
+      {
+        "id": 35,
+        "name": "MB_STRENGTH_BUTTON"
+      },
+      {
+        "id": 36,
+        "name": "MB_ASHGRASS"
+      },
+      {
+        "id": 37,
+        "name": "MB_FOOTPRINTS"
+      },
+      {
+        "id": 38,
+        "name": "MB_THIN_ICE"
+      },
+      {
+        "id": 39,
+        "name": "MB_CRACKED_ICE"
+      },
+      {
+        "id": 40,
+        "name": "MB_HOT_SPRINGS"
+      },
+      {
+        "id": 41,
+        "name": "MB_LAVARIDGE_GYM_B1F_WARP"
+      },
+      {
+        "id": 42,
+        "name": "MB_SEAWEED_NO_SURFACING"
+      },
+      {
+        "id": 43,
+        "name": "MB_REFLECTION_UNDER_BRIDGE"
+      },
+      {
+        "id": 44,
+        "name": "MB_FAST_WATER"
+      },
+      {
+        "id": 45,
+        "name": "MB_CYCLING_ROAD_WATER"
+      },
+      {
+        "id": 46,
+        "name": "MB_UNUSED_2E"
+      },
+      {
+        "id": 47,
+        "name": "MB_UNUSED_2F"
+      },
+      {
+        "id": 48,
+        "name": "MB_IMPASSABLE_EAST"
+      },
+      {
+        "id": 49,
+        "name": "MB_IMPASSABLE_WEST"
+      },
+      {
+        "id": 50,
+        "name": "MB_IMPASSABLE_NORTH"
+      },
+      {
+        "id": 51,
+        "name": "MB_IMPASSABLE_SOUTH"
+      },
+      {
+        "id": 52,
+        "name": "MB_IMPASSABLE_NORTHEAST"
+      },
+      {
+        "id": 53,
+        "name": "MB_IMPASSABLE_NORTHWEST"
+      },
+      {
+        "id": 54,
+        "name": "MB_IMPASSABLE_SOUTHEAST"
+      },
+      {
+        "id": 55,
+        "name": "MB_IMPASSABLE_SOUTHWEST"
+      },
+      {
+        "id": 56,
+        "name": "MB_JUMP_EAST"
+      },
+      {
+        "id": 57,
+        "name": "MB_JUMP_WEST"
+      },
+      {
+        "id": 58,
+        "name": "MB_JUMP_NORTH"
+      },
+      {
+        "id": 59,
+        "name": "MB_JUMP_SOUTH"
+      },
+      {
+        "id": 60,
+        "name": "MB_JUMP_NORTHEAST"
+      },
+      {
+        "id": 61,
+        "name": "MB_JUMP_NORTHWEST"
+      },
+      {
+        "id": 62,
+        "name": "MB_JUMP_SOUTHEAST"
+      },
+      {
+        "id": 63,
+        "name": "MB_JUMP_SOUTHWEST"
+      },
+      {
+        "id": 64,
+        "name": "MB_WALK_EAST"
+      },
+      {
+        "id": 65,
+        "name": "MB_WALK_WEST"
+      },
+      {
+        "id": 66,
+        "name": "MB_WALK_NORTH"
+      },
+      {
+        "id": 67,
+        "name": "MB_WALK_SOUTH"
+      },
+      {
+        "id": 68,
+        "name": "MB_SLIDE_EAST"
+      },
+      {
+        "id": 69,
+        "name": "MB_SLIDE_WEST"
+      },
+      {
+        "id": 70,
+        "name": "MB_SLIDE_NORTH"
+      },
+      {
+        "id": 71,
+        "name": "MB_SLIDE_SOUTH"
+      },
+      {
+        "id": 72,
+        "name": "MB_TRICK_HOUSE_PUZZLE_8_FLOOR"
+      },
+      {
+        "id": 73,
+        "name": "MB_SIDEWAYS_STAIRS_RIGHT_SIDE"
+      },
+      {
+        "id": 74,
+        "name": "MB_SIDEWAYS_STAIRS_LEFT_SIDE"
+      },
+      {
+        "id": 75,
+        "name": "MB_SIDEWAYS_STAIRS_RIGHT_SIDE_TOP"
+      },
+      {
+        "id": 76,
+        "name": "MB_SIDEWAYS_STAIRS_LEFT_SIDE_TOP"
+      },
+      {
+        "id": 77,
+        "name": "MB_SIDEWAYS_STAIRS_RIGHT_SIDE_BOTTOM"
+      },
+      {
+        "id": 78,
+        "name": "MB_SIDEWAYS_STAIRS_LEFT_SIDE_BOTTOM"
+      },
+      {
+        "id": 79,
+        "name": "MB_ROCK_STAIRS"
+      },
+      {
+        "id": 80,
+        "name": "MB_EASTWARD_CURRENT"
+      },
+      {
+        "id": 81,
+        "name": "MB_WESTWARD_CURRENT"
+      },
+      {
+        "id": 82,
+        "name": "MB_NORTHWARD_CURRENT"
+      },
+      {
+        "id": 83,
+        "name": "MB_SOUTHWARD_CURRENT"
+      },
+      {
+        "id": 84,
+        "name": "MB_SPIN_RIGHT"
+      },
+      {
+        "id": 85,
+        "name": "MB_SPIN_LEFT"
+      },
+      {
+        "id": 86,
+        "name": "MB_SPIN_UP"
+      },
+      {
+        "id": 87,
+        "name": "MB_SPIN_DOWN"
+      },
+      {
+        "id": 88,
+        "name": "MB_STOP_SPINNING"
+      },
+      {
+        "id": 89,
+        "name": "MB_CABINET"
+      },
+      {
+        "id": 90,
+        "name": "MB_KITCHEN"
+      },
+      {
+        "id": 91,
+        "name": "MB_DRESSER"
+      },
+      {
+        "id": 92,
+        "name": "MB_SNACKS"
+      },
+      {
+        "id": 93,
+        "name": "MB_CABLE_CLUB_WIRELESS_MONITOR"
+      },
+      {
+        "id": 94,
+        "name": "MB_BATTLE_RECORDS"
+      },
+      {
+        "id": 95,
+        "name": "MB_FOOD"
+      },
+      {
+        "id": 96,
+        "name": "MB_NON_ANIMATED_DOOR"
+      },
+      {
+        "id": 97,
+        "name": "MB_LADDER"
+      },
+      {
+        "id": 98,
+        "name": "MB_EAST_ARROW_WARP"
+      },
+      {
+        "id": 99,
+        "name": "MB_WEST_ARROW_WARP"
+      },
+      {
+        "id": 100,
+        "name": "MB_NORTH_ARROW_WARP"
+      },
+      {
+        "id": 101,
+        "name": "MB_SOUTH_ARROW_WARP"
+      },
+      {
+        "id": 102,
+        "name": "MB_CRACKED_FLOOR_HOLE"
+      },
+      {
+        "id": 103,
+        "name": "MB_AQUA_HIDEOUT_WARP"
+      },
+      {
+        "id": 104,
+        "name": "MB_LAVARIDGE_GYM_1F_WARP"
+      },
+      {
+        "id": 105,
+        "name": "MB_ANIMATED_DOOR"
+      },
+      {
+        "id": 106,
+        "name": "MB_UP_ESCALATOR"
+      },
+      {
+        "id": 107,
+        "name": "MB_DOWN_ESCALATOR"
+      },
+      {
+        "id": 108,
+        "name": "MB_WATER_DOOR"
+      },
+      {
+        "id": 109,
+        "name": "MB_WATER_SOUTH_ARROW_WARP"
+      },
+      {
+        "id": 110,
+        "name": "MB_DEEP_SOUTH_WARP"
+      },
+      {
+        "id": 111,
+        "name": "MB_UNUSED_6F"
+      },
+      {
+        "id": 112,
+        "name": "MB_BRIDGE_OVER_OCEAN"
+      },
+      {
+        "id": 113,
+        "name": "MB_BRIDGE_OVER_POND_LOW"
+      },
+      {
+        "id": 114,
+        "name": "MB_BRIDGE_OVER_POND_MED"
+      },
+      {
+        "id": 115,
+        "name": "MB_BRIDGE_OVER_POND_HIGH"
+      },
+      {
+        "id": 116,
+        "name": "MB_PACIFIDLOG_VERTICAL_LOG_TOP"
+      },
+      {
+        "id": 117,
+        "name": "MB_PACIFIDLOG_VERTICAL_LOG_BOTTOM"
+      },
+      {
+        "id": 118,
+        "name": "MB_PACIFIDLOG_HORIZONTAL_LOG_LEFT"
+      },
+      {
+        "id": 119,
+        "name": "MB_PACIFIDLOG_HORIZONTAL_LOG_RIGHT"
+      },
+      {
+        "id": 120,
+        "name": "MB_FORTREE_BRIDGE"
+      },
+      {
+        "id": 121,
+        "name": "MB_UNUSED_79"
+      },
+      {
+        "id": 122,
+        "name": "MB_BRIDGE_OVER_POND_MED_EDGE_1"
+      },
+      {
+        "id": 123,
+        "name": "MB_BRIDGE_OVER_POND_MED_EDGE_2"
+      },
+      {
+        "id": 124,
+        "name": "MB_BRIDGE_OVER_POND_HIGH_EDGE_1"
+      },
+      {
+        "id": 125,
+        "name": "MB_BRIDGE_OVER_POND_HIGH_EDGE_2"
+      },
+      {
+        "id": 126,
+        "name": "MB_UNUSED_BRIDGE"
+      },
+      {
+        "id": 127,
+        "name": "MB_BIKE_BRIDGE_OVER_BARRIER"
+      },
+      {
+        "id": 128,
+        "name": "MB_COUNTER"
+      },
+      {
+        "id": 129,
+        "name": "MB_UNUSED_81"
+      },
+      {
+        "id": 130,
+        "name": "MB_UNUSED_82"
+      },
+      {
+        "id": 131,
+        "name": "MB_PC"
+      },
+      {
+        "id": 132,
+        "name": "MB_CABLE_BOX_RESULTS_1"
+      },
+      {
+        "id": 133,
+        "name": "MB_REGION_MAP"
+      },
+      {
+        "id": 134,
+        "name": "MB_TELEVISION"
+      },
+      {
+        "id": 135,
+        "name": "MB_POKEBLOCK_FEEDER"
+      },
+      {
+        "id": 136,
+        "name": "MB_UNUSED_88"
+      },
+      {
+        "id": 137,
+        "name": "MB_SLOT_MACHINE"
+      },
+      {
+        "id": 138,
+        "name": "MB_ROULETTE"
+      },
+      {
+        "id": 139,
+        "name": "MB_CLOSED_SOOTOPOLIS_DOOR"
+      },
+      {
+        "id": 140,
+        "name": "MB_TRICK_HOUSE_PUZZLE_DOOR"
+      },
+      {
+        "id": 141,
+        "name": "MB_PETALBURG_GYM_DOOR"
+      },
+      {
+        "id": 142,
+        "name": "MB_RUNNING_SHOES_INSTRUCTION"
+      },
+      {
+        "id": 143,
+        "name": "MB_QUESTIONNAIRE"
+      },
+      {
+        "id": 144,
+        "name": "MB_SECRET_BASE_SPOT_RED_CAVE"
+      },
+      {
+        "id": 145,
+        "name": "MB_SECRET_BASE_SPOT_RED_CAVE_OPEN"
+      },
+      {
+        "id": 146,
+        "name": "MB_SECRET_BASE_SPOT_BROWN_CAVE"
+      },
+      {
+        "id": 147,
+        "name": "MB_SECRET_BASE_SPOT_BROWN_CAVE_OPEN"
+      },
+      {
+        "id": 148,
+        "name": "MB_SECRET_BASE_SPOT_YELLOW_CAVE"
+      },
+      {
+        "id": 149,
+        "name": "MB_SECRET_BASE_SPOT_YELLOW_CAVE_OPEN"
+      },
+      {
+        "id": 150,
+        "name": "MB_SECRET_BASE_SPOT_TREE_LEFT"
+      },
+      {
+        "id": 151,
+        "name": "MB_SECRET_BASE_SPOT_TREE_LEFT_OPEN"
+      },
+      {
+        "id": 152,
+        "name": "MB_SECRET_BASE_SPOT_SHRUB"
+      },
+      {
+        "id": 153,
+        "name": "MB_SECRET_BASE_SPOT_SHRUB_OPEN"
+      },
+      {
+        "id": 154,
+        "name": "MB_SECRET_BASE_SPOT_BLUE_CAVE"
+      },
+      {
+        "id": 155,
+        "name": "MB_SECRET_BASE_SPOT_BLUE_CAVE_OPEN"
+      },
+      {
+        "id": 156,
+        "name": "MB_SECRET_BASE_SPOT_TREE_RIGHT"
+      },
+      {
+        "id": 157,
+        "name": "MB_SECRET_BASE_SPOT_TREE_RIGHT_OPEN"
+      },
+      {
+        "id": 158,
+        "name": "MB_UNUSED_9E"
+      },
+      {
+        "id": 159,
+        "name": "MB_UNUSED_9F"
+      },
+      {
+        "id": 160,
+        "name": "MB_BERRY_TREE_SOIL"
+      },
+      {
+        "id": 161,
+        "name": "MB_INDIGO_PLATEAU_SIGN_1"
+      },
+      {
+        "id": 162,
+        "name": "MB_INDIGO_PLATEAU_SIGN_2"
+      },
+      {
+        "id": 163,
+        "name": "MB_BLUEPRINTS"
+      },
+      {
+        "id": 164,
+        "name": "MB_PAINTING"
+      },
+      {
+        "id": 165,
+        "name": "MB_POWER_PLANT_MACHINE"
+      },
+      {
+        "id": 166,
+        "name": "MB_TELEPHONE"
+      },
+      {
+        "id": 167,
+        "name": "MB_COMPUTER"
+      },
+      {
+        "id": 168,
+        "name": "MB_ADVERTISING_POSTER"
+      },
+      {
+        "id": 169,
+        "name": "MB_FOOD_SMELLS_TASTY"
+      },
+      {
+        "id": 170,
+        "name": "MB_PORTHOLE"
+      },
+      {
+        "id": 171,
+        "name": "MB_WINDOW"
+      },
+      {
+        "id": 172,
+        "name": "MB_CUP"
+      },
+      {
+        "id": 173,
+        "name": "MB_BLINKING_LIGHTS"
+      },
+      {
+        "id": 174,
+        "name": "MB_NEATLY_LINED_UP_TOOLS"
+      },
+      {
+        "id": 175,
+        "name": "MB_IMPRESSIVE_MACHINE"
+      },
+      {
+        "id": 176,
+        "name": "MB_SECRET_BASE_PC"
+      },
+      {
+        "id": 177,
+        "name": "MB_SECRET_BASE_REGISTER_PC"
+      },
+      {
+        "id": 178,
+        "name": "MB_SECRET_BASE_SCENERY"
+      },
+      {
+        "id": 179,
+        "name": "MB_SECRET_BASE_TRAINER_SPOT"
+      },
+      {
+        "id": 180,
+        "name": "MB_SECRET_BASE_DECORATION"
+      },
+      {
+        "id": 181,
+        "name": "MB_HOLDS_SMALL_DECORATION"
+      },
+      {
+        "id": 182,
+        "name": "MB_UNUSED_B6"
+      },
+      {
+        "id": 183,
+        "name": "MB_SECRET_BASE_NORTH_WALL"
+      },
+      {
+        "id": 184,
+        "name": "MB_SECRET_BASE_BALLOON"
+      },
+      {
+        "id": 185,
+        "name": "MB_SECRET_BASE_IMPASSABLE"
+      },
+      {
+        "id": 186,
+        "name": "MB_SECRET_BASE_GLITTER_MAT"
+      },
+      {
+        "id": 187,
+        "name": "MB_SECRET_BASE_JUMP_MAT"
+      },
+      {
+        "id": 188,
+        "name": "MB_SECRET_BASE_SPIN_MAT"
+      },
+      {
+        "id": 189,
+        "name": "MB_SECRET_BASE_SOUND_MAT"
+      },
+      {
+        "id": 190,
+        "name": "MB_SECRET_BASE_BREAKABLE_DOOR"
+      },
+      {
+        "id": 191,
+        "name": "MB_SECRET_BASE_SAND_ORNAMENT"
+      },
+      {
+        "id": 192,
+        "name": "MB_IMPASSABLE_SOUTH_AND_NORTH"
+      },
+      {
+        "id": 193,
+        "name": "MB_IMPASSABLE_WEST_AND_EAST"
+      },
+      {
+        "id": 194,
+        "name": "MB_SECRET_BASE_HOLE"
+      },
+      {
+        "id": 195,
+        "name": "MB_HOLDS_LARGE_DECORATION"
+      },
+      {
+        "id": 196,
+        "name": "MB_SECRET_BASE_TV_SHIELD"
+      },
+      {
+        "id": 197,
+        "name": "MB_PLAYER_ROOM_PC_ON"
+      },
+      {
+        "id": 198,
+        "name": "MB_SECRET_BASE_DECORATION_BASE"
+      },
+      {
+        "id": 199,
+        "name": "MB_SECRET_BASE_POSTER"
+      },
+      {
+        "id": 200,
+        "name": "MB_CYCLING_ROAD_PULL_DOWN"
+      },
+      {
+        "id": 201,
+        "name": "MB_CYCLING_ROAD_PULL_DOWN_GRASS"
+      },
+      {
+        "id": 202,
+        "name": "MB_VIDEO_GAME"
+      },
+      {
+        "id": 203,
+        "name": "MB_BURGLARY"
+      },
+      {
+        "id": 204,
+        "name": "MB_TRAINER_TOWER_MONITOR"
+      },
+      {
+        "id": 205,
+        "name": "MB_UNUSED_CD"
+      },
+      {
+        "id": 206,
+        "name": "MB_UNUSED_CE"
+      },
+      {
+        "id": 207,
+        "name": "MB_UNUSED_CF"
+      },
+      {
+        "id": 208,
+        "name": "MB_MUDDY_SLOPE"
+      },
+      {
+        "id": 209,
+        "name": "MB_BUMPY_SLOPE"
+      },
+      {
+        "id": 210,
+        "name": "MB_CRACKED_FLOOR"
+      },
+      {
+        "id": 211,
+        "name": "MB_ISOLATED_VERTICAL_RAIL"
+      },
+      {
+        "id": 212,
+        "name": "MB_ISOLATED_HORIZONTAL_RAIL"
+      },
+      {
+        "id": 213,
+        "name": "MB_VERTICAL_RAIL"
+      },
+      {
+        "id": 214,
+        "name": "MB_HORIZONTAL_RAIL"
+      },
+      {
+        "id": 215,
+        "name": "MB_UNUSED_D7"
+      },
+      {
+        "id": 216,
+        "name": "MB_UNUSED_D8"
+      },
+      {
+        "id": 217,
+        "name": "MB_UNUSED_D9"
+      },
+      {
+        "id": 218,
+        "name": "MB_UNUSED_DA"
+      },
+      {
+        "id": 219,
+        "name": "MB_UNUSED_DB"
+      },
+      {
+        "id": 220,
+        "name": "MB_UNUSED_DC"
+      },
+      {
+        "id": 221,
+        "name": "MB_UNUSED_DD"
+      },
+      {
+        "id": 222,
+        "name": "MB_UNUSED_DE"
+      },
+      {
+        "id": 223,
+        "name": "MB_UNUSED_DF"
+      },
+      {
+        "id": 224,
+        "name": "MB_PICTURE_BOOK_SHELF"
+      },
+      {
+        "id": 225,
+        "name": "MB_BOOKSHELF"
+      },
+      {
+        "id": 226,
+        "name": "MB_POKEMON_CENTER_BOOKSHELF"
+      },
+      {
+        "id": 227,
+        "name": "MB_VASE"
+      },
+      {
+        "id": 228,
+        "name": "MB_TRASH_CAN"
+      },
+      {
+        "id": 229,
+        "name": "MB_SHOP_SHELF"
+      },
+      {
+        "id": 230,
+        "name": "MB_BLUEPRINT"
+      },
+      {
+        "id": 231,
+        "name": "MB_CABLE_BOX_RESULTS_2"
+      },
+      {
+        "id": 232,
+        "name": "MB_WIRELESS_BOX_RESULTS"
+      },
+      {
+        "id": 233,
+        "name": "MB_TRAINER_HILL_TIMER"
+      },
+      {
+        "id": 234,
+        "name": "MB_SKY_PILLAR_CLOSED_DOOR"
+      },
+      {
+        "id": 235,
+        "name": "MB_UP_RIGHT_STAIR_WARP"
+      },
+      {
+        "id": 236,
+        "name": "MB_UP_LEFT_STAIR_WARP"
+      },
+      {
+        "id": 237,
+        "name": "MB_DOWN_RIGHT_STAIR_WARP"
+      },
+      {
+        "id": 238,
+        "name": "MB_DOWN_LEFT_STAIR_WARP"
+      },
+      {
+        "id": 239,
+        "name": "MB_ROCK_CLIMB"
+      }
+    ]
+  },
   "tilesets": {
     "primary": {
       "symbol": "gTileset_Building",
@@ -154,6 +1119,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -228,6 +1194,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -302,6 +1269,7 @@
       "attribute": {
         "raw": 134,
         "behavior": 134,
+        "behavior_name": "MB_TELEVISION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -376,6 +1344,7 @@
       "attribute": {
         "raw": 134,
         "behavior": 134,
+        "behavior_name": "MB_TELEVISION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -450,6 +1419,7 @@
       "attribute": {
         "raw": 131,
         "behavior": 131,
+        "behavior_name": "MB_PC",
         "layer_type": 0
       },
       "tile_entries": [
@@ -524,6 +1494,7 @@
       "attribute": {
         "raw": 131,
         "behavior": 131,
+        "behavior_name": "MB_PC",
         "layer_type": 0
       },
       "tile_entries": [
@@ -598,6 +1569,7 @@
       "attribute": {
         "raw": 101,
         "behavior": 101,
+        "behavior_name": "MB_SOUTH_ARROW_WARP",
         "layer_type": 0
       },
       "tile_entries": [
@@ -672,6 +1644,7 @@
       "attribute": {
         "raw": 101,
         "behavior": 101,
+        "behavior_name": "MB_SOUTH_ARROW_WARP",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38042,6 +39015,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38116,6 +39090,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38190,6 +39165,7 @@
       "attribute": {
         "raw": 101,
         "behavior": 101,
+        "behavior_name": "MB_SOUTH_ARROW_WARP",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38264,6 +39240,7 @@
       "attribute": {
         "raw": 101,
         "behavior": 101,
+        "behavior_name": "MB_SOUTH_ARROW_WARP",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38338,6 +39315,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38412,6 +39390,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38486,6 +39465,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -38560,6 +39540,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -38634,6 +39615,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38708,6 +39690,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38782,6 +39765,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38856,6 +39840,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -38930,6 +39915,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39004,6 +39990,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39078,6 +40065,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39152,6 +40140,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -39226,6 +40215,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39300,6 +40290,7 @@
       "attribute": {
         "raw": 96,
         "behavior": 96,
+        "behavior_name": "MB_NON_ANIMATED_DOOR",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39374,6 +40365,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39448,6 +40440,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39522,6 +40515,7 @@
       "attribute": {
         "raw": 96,
         "behavior": 96,
+        "behavior_name": "MB_NON_ANIMATED_DOOR",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39596,6 +40590,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39670,6 +40665,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39744,6 +40740,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -39818,6 +40815,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -39892,6 +40890,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -39966,6 +40965,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -40040,6 +41040,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -40114,6 +41115,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -40188,6 +41190,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -40262,6 +41265,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -40336,6 +41340,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -40410,6 +41415,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -40484,6 +41490,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -40558,6 +41565,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -40632,6 +41640,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -40706,6 +41715,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -40780,6 +41790,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -40854,6 +41865,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -40928,6 +41940,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41002,6 +42015,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -41076,6 +42090,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41150,6 +42165,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41224,6 +42240,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41298,6 +42315,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41372,6 +42390,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -41446,6 +42465,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -41520,6 +42540,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41594,6 +42615,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41668,6 +42690,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41742,6 +42765,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41816,6 +42840,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41890,6 +42915,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -41964,6 +42990,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -42038,6 +43065,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -42112,6 +43140,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -42186,6 +43215,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -42260,6 +43290,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -42334,6 +43365,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -42408,6 +43440,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -42482,6 +43515,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -42556,6 +43590,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -42630,6 +43665,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -42704,6 +43740,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -42778,6 +43815,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -42852,6 +43890,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -42926,6 +43965,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -43000,6 +44040,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43074,6 +44115,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43148,6 +44190,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43222,6 +44265,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -43296,6 +44340,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43370,6 +44415,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43444,6 +44490,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43518,6 +44565,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43592,6 +44640,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43666,6 +44715,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43740,6 +44790,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -43814,6 +44865,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43888,6 +44940,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -43962,6 +45015,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -44036,6 +45090,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -44110,6 +45165,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -44184,6 +45240,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -44258,6 +45315,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -44332,6 +45390,7 @@
       "attribute": {
         "raw": 4229,
         "behavior": 133,
+        "behavior_name": "MB_REGION_MAP",
         "layer_type": 1
       },
       "tile_entries": [
@@ -44406,6 +45465,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -44480,6 +45540,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -44554,6 +45615,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -44628,6 +45690,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -44702,6 +45765,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -44776,6 +45840,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -44850,6 +45915,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -44924,6 +45990,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -44998,6 +46065,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -45072,6 +46140,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -45146,6 +46215,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -45220,6 +46290,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -45294,6 +46365,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -45368,6 +46440,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -45442,6 +46515,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -45516,6 +46590,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -45590,6 +46665,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -45664,6 +46740,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -45738,6 +46815,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -45812,6 +46890,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -45886,6 +46965,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -45960,6 +47040,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -46034,6 +47115,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -46108,6 +47190,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -46182,6 +47265,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -46256,6 +47340,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -46330,6 +47415,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -46404,6 +47490,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -46478,6 +47565,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -46552,6 +47640,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -46626,6 +47715,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -46700,6 +47790,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -46774,6 +47865,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -46848,6 +47940,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -46922,6 +48015,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -46996,6 +48090,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -47070,6 +48165,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -47144,6 +48240,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -47218,6 +48315,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -47292,6 +48390,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -47366,6 +48465,7 @@
       "attribute": {
         "raw": 4293,
         "behavior": 197,
+        "behavior_name": "MB_PLAYER_ROOM_PC_ON",
         "layer_type": 1
       },
       "tile_entries": [
@@ -47440,6 +48540,7 @@
       "attribute": {
         "raw": 4293,
         "behavior": 197,
+        "behavior_name": "MB_PLAYER_ROOM_PC_ON",
         "layer_type": 1
       },
       "tile_entries": [
@@ -47514,6 +48615,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -47588,6 +48690,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -47662,6 +48765,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -47736,6 +48840,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -47810,6 +48915,7 @@
       "attribute": {
         "raw": 192,
         "behavior": 192,
+        "behavior_name": "MB_IMPASSABLE_SOUTH_AND_NORTH",
         "layer_type": 0
       },
       "tile_entries": [
@@ -47884,6 +48990,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -47958,6 +49065,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -48032,6 +49140,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -48106,6 +49215,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -48180,6 +49290,7 @@
       "attribute": {
         "raw": 192,
         "behavior": 192,
+        "behavior_name": "MB_IMPASSABLE_SOUTH_AND_NORTH",
         "layer_type": 0
       },
       "tile_entries": [
@@ -48254,6 +49365,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -48328,6 +49440,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -48402,6 +49515,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -48476,6 +49590,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -48550,6 +49665,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -48624,6 +49740,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -48698,6 +49815,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -48772,6 +49890,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -48846,6 +49965,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -48920,6 +50040,7 @@
       "attribute": {
         "raw": 4238,
         "behavior": 142,
+        "behavior_name": "MB_RUNNING_SHOES_INSTRUCTION",
         "layer_type": 1
       },
       "tile_entries": [
@@ -48994,6 +50115,7 @@
       "attribute": {
         "raw": 4238,
         "behavior": 142,
+        "behavior_name": "MB_RUNNING_SHOES_INSTRUCTION",
         "layer_type": 1
       },
       "tile_entries": [
@@ -49068,6 +50190,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -49142,6 +50265,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -49216,6 +50340,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -49290,6 +50415,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -49364,6 +50490,7 @@
       "attribute": {
         "raw": 4277,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 1
       },
       "tile_entries": [
@@ -49438,6 +50565,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -49512,6 +50640,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -49586,6 +50715,7 @@
       "attribute": {
         "raw": 4277,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 1
       },
       "tile_entries": [
@@ -49660,6 +50790,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -49734,6 +50865,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -49808,6 +50940,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -49882,6 +51015,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -49956,6 +51090,7 @@
       "attribute": {
         "raw": 4291,
         "behavior": 195,
+        "behavior_name": "MB_HOLDS_LARGE_DECORATION",
         "layer_type": 1
       },
       "tile_entries": [
@@ -50030,6 +51165,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -50104,6 +51240,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -50178,6 +51315,7 @@
       "attribute": {
         "raw": 4291,
         "behavior": 195,
+        "behavior_name": "MB_HOLDS_LARGE_DECORATION",
         "layer_type": 1
       },
       "tile_entries": [
@@ -50252,6 +51390,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -50326,6 +51465,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -50400,6 +51540,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -50474,6 +51615,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -50548,6 +51690,7 @@
       "attribute": {
         "raw": 4277,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 1
       },
       "tile_entries": [
@@ -50622,6 +51765,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -50696,6 +51840,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -50770,6 +51915,7 @@
       "attribute": {
         "raw": 4277,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 1
       },
       "tile_entries": [
@@ -50844,6 +51990,7 @@
       "attribute": {
         "raw": 181,
         "behavior": 181,
+        "behavior_name": "MB_HOLDS_SMALL_DECORATION",
         "layer_type": 0
       },
       "tile_entries": [
@@ -50918,6 +52065,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -50992,6 +52140,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -51066,6 +52215,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -51140,6 +52290,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -51214,6 +52365,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -51288,6 +52440,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -51362,6 +52515,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -51436,6 +52590,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -51510,6 +52665,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -51584,6 +52740,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -51658,6 +52815,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -51732,6 +52890,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -51806,6 +52965,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -51880,6 +53040,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -51954,6 +53115,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -52028,6 +53190,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -52102,6 +53265,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -52176,6 +53340,7 @@
       "attribute": {
         "raw": 0,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 0
       },
       "tile_entries": [
@@ -52250,6 +53415,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -52324,6 +53490,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -52398,6 +53565,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [
@@ -52472,6 +53640,7 @@
       "attribute": {
         "raw": 4096,
         "behavior": 0,
+        "behavior_name": "MB_NORMAL",
         "layer_type": 1
       },
       "tile_entries": [

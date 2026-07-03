@@ -70,6 +70,11 @@ func _init() -> void:
 		"expected warp interaction target"
 	)
 	_assert(runtime.get_metatile_behavior_at(start_cell) >= 0, "expected metatile behavior lookup")
+	_assert(runtime.get_metatile_behavior_name_at(start_cell) == "MB_NORMAL", "expected start behavior name")
+	_assert(
+		runtime.get_cell_info(warp_cell).get("behavior_name", "") == "MB_ANIMATED_DOOR",
+		"expected warp door behavior name"
+	)
 
 	var need_pokemon_result := vm.run_script("LittlerootTown_EventScript_NeedPokemonTriggerLeft")
 	var movements = need_pokemon_result.get("movements", [])
@@ -248,6 +253,7 @@ func _cell_info_summary(cell_info: Dictionary) -> Dictionary:
 		"collision": int(cell_info.get("collision", -1)),
 		"elevation": int(cell_info.get("elevation", -1)),
 		"behavior": int(cell_info.get("behavior", -1)),
+		"behavior_name": String(cell_info.get("behavior_name", "")),
 		"layer_type": int(cell_info.get("layer_type", -1)),
 		"occupied": bool(cell_info.get("occupied", false)),
 		"object_event_count": int(cell_info.get("object_event_count", 0)),

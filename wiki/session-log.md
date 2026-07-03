@@ -80,3 +80,7 @@
 - Traced map-transition presentation through `TryDoorWarp`, `DoWarp`, `DoDoorWarp`, `Task_DoDoorWarp`, `FieldCB_DefaultWarpExit`, `SetUpWarpExitTask`, `field_door.c` door frame tables, and normal player walk timing before adding the first source-visible transition contract.
 - Added `EventManager.transition_sequence_requested` for normal/silent and door map transitions, including door sound intent, 16-frame door open/close, 16-frame player step-in, fade/load/fade, and exit-task selection steps; `Main` now consumes the sequence with a first-pass black overlay and input lock.
 - Updated blocked front-cell door warp dispatch to require north-facing movement, matching source `TryDoorWarp`, and expanded smoke coverage for silent, normal, and door transition sequence data.
+- Parsed `include/constants/metatile_behaviors.h` in `export_tilesets.py` so generated tileset JSON now includes a behavior-name table and per-metatile `attribute.behavior_name`.
+- Extended `MapRuntime` cell queries to expose source metatile behavior names alongside numeric behavior ids.
+- Traced `SetUpWarpExitTask` through `MetatileBehavior_IsDoor`, `MetatileBehavior_IsDirectionalStairWarp`, and `MetatileBehavior_IsNonAnimDoor`, then made transition sequences record the selected destination exit task from generated behavior names.
+- Expanded Godot smoke tests to verify generated behavior names and source-derived warp exit task selection for silent, normal, and door transitions.

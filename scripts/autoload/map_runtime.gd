@@ -129,6 +129,10 @@ func get_metatile_behavior_at(cell: Vector2i) -> int:
 	return int(get_metatile_attribute(get_metatile_id_at(cell)).get("behavior", -1))
 
 
+func get_metatile_behavior_name_at(cell: Vector2i) -> String:
+	return String(get_metatile_attribute(get_metatile_id_at(cell)).get("behavior_name", ""))
+
+
 func get_metatile_layer_type_at(cell: Vector2i) -> int:
 	return int(get_metatile_attribute(get_metatile_id_at(cell)).get("layer_type", -1))
 
@@ -276,6 +280,7 @@ func get_cell_info(cell: Vector2i) -> Dictionary:
 		"collision": get_collision_at(cell),
 		"elevation": get_elevation_at(cell),
 		"behavior": get_metatile_attribute(metatile_id).get("behavior", -1),
+		"behavior_name": get_metatile_attribute(metatile_id).get("behavior_name", ""),
 		"layer_type": get_metatile_attribute(metatile_id).get("layer_type", -1),
 		"occupied": not object_events_at_cell.is_empty(),
 		"object_event_count": object_events_at_cell.size(),

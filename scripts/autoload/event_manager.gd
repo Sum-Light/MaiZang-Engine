@@ -9,6 +9,21 @@ const DOOR_ANIM_FRAME_COUNT := 4
 const DOOR_ANIM_TOTAL_FRAMES := DOOR_ANIM_FRAME_TIME * DOOR_ANIM_FRAME_COUNT
 const WALK_NORMAL_TILE_FRAMES := 16
 const FADE_DELAY_DEFAULT := 0
+const WARP_EXIT_DOOR_BEHAVIORS := {
+	"MB_PETALBURG_GYM_DOOR": true,
+	"MB_ANIMATED_DOOR": true,
+}
+const WARP_EXIT_DIRECTIONAL_STAIR_BEHAVIORS := {
+	"MB_UP_RIGHT_STAIR_WARP": true,
+	"MB_UP_LEFT_STAIR_WARP": true,
+	"MB_DOWN_RIGHT_STAIR_WARP": true,
+	"MB_DOWN_LEFT_STAIR_WARP": true,
+}
+const WARP_EXIT_NON_ANIM_DOOR_BEHAVIORS := {
+	"MB_NON_ANIMATED_DOOR": true,
+	"MB_WATER_DOOR": true,
+	"MB_DEEP_SOUTH_WARP": true,
+}
 
 var _script_data: Dictionary = {}
 var _script_vm: Node = null
@@ -350,7 +365,9 @@ func _apply_transition_effects(transition_effects: Array) -> Dictionary:
 			trigger_position,
 			map_id,
 			position,
-			position_source
+			position_source,
+			map_data,
+			tileset_data
 		)
 		if not sequence.is_empty():
 			transition_sequence_requested.emit(sequence)
@@ -500,14 +517,17 @@ func _build_transition_sequence(
 	trigger_position: Vector2i,
 	destination_map_id: String,
 	destination_position: Vector2i,
-	position_source: String
+	position_source: String,
+	destination_map_data: Dictionary,
+	destination_tileset_data: Dictionary
 ) -> Dictionary:
 	var presentation := String(effect.get("presentation", _default_transition_presentation(effect)))
+	var exit_task := _warp_exit_task(destination_map_data, destination_tileset_data, destination_position)
 	var steps := []
 	if presentation == "door":
-		steps = _door_warp_steps(source_position, trigger_position, destination_map_id, destination_position)
+		steps = _door_warp_steps(source_position, trigger_position, destination_map_id, destination_position, exit_task)
 	else:
-		steps = _normal_warp_steps(destination_map_id, destination_position)
+		steps = _normal_warp_steps(destination_map_id, destination_position, exit_task)
 
 	return {
 		"type": "map_transition",
@@ -519,12 +539,14 @@ func _build_transition_sequence(
 		"destination_map": destination_map_id,
 		"destination_position": destination_position,
 		"position_source": position_source,
+		"exit_task": exit_task,
 		"frame_basis": "60fps",
 		"source_trace": [
 			"src/field_control_avatar.c:TryDoorWarp/TryStartWarpEventScript",
 			"src/field_screen_effect.c:DoWarp/DoDoorWarp/Task_DoDoorWarp/FieldCB_DefaultWarpExit",
 			"src/field_door.c:sDoorOpenAnimFrames/sDoorCloseAnimFrames",
 			"src/event_object_movement.c:MOVE_SPEED_NORMAL",
+			"src/metatile_behavior.c:MetatileBehavior_IsDoor/IsDirectionalStairWarp/IsNonAnimDoor",
 		],
 		"steps": steps,
 	}
@@ -540,7 +562,8 @@ func _door_warp_steps(
 	source_position: Vector2i,
 	trigger_position: Vector2i,
 	destination_map_id: String,
-	destination_position: Vector2i
+	destination_position: Vector2i,
+	exit_task: Dictionary
 ) -> Array:
 	var door_position := trigger_position + Vector2i.UP
 	return [
@@ -566,14 +589,11 @@ func _door_warp_steps(
 		{"op": "fade_out", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeOutScreen"},
 		{"op": "load_map", "map": destination_map_id, "position": destination_position, "source": "WarpIntoMap"},
 		{"op": "fade_in", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeInScreen"},
-		{
-			"op": "exit_task_select",
-			"source": "SetUpWarpExitTask",
-			"branches": ["Task_ExitDoor", "Task_ExitNonAnimDoor", "Task_ExitNonDoor"],
-		},
+		_exit_task_step(exit_task),
 		{
 			"op": "conditional_exit_door_player_step",
 			"condition": "destination_metatile_behavior_is_door",
+			"condition_result": String(exit_task.get("task", "")) == "Task_ExitDoor",
 			"movement_action": "MOVEMENT_ACTION_WALK_NORMAL_DOWN",
 			"from": destination_position,
 			"to": destination_position + Vector2i.DOWN,
@@ -584,17 +604,17 @@ func _door_warp_steps(
 	]
 
 
-func _normal_warp_steps(destination_map_id: String, destination_position: Vector2i) -> Array:
+func _normal_warp_steps(
+	destination_map_id: String,
+	destination_position: Vector2i,
+	exit_task: Dictionary
+) -> Array:
 	return [
 		{"op": "lock_controls", "source": "DoWarp"},
 		{"op": "fade_out", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeOutScreen"},
 		{"op": "load_map", "map": destination_map_id, "position": destination_position, "source": "WarpIntoMap"},
 		{"op": "fade_in", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeInScreen"},
-		{
-			"op": "exit_task_select",
-			"source": "SetUpWarpExitTask",
-			"branches": ["Task_ExitDoor", "Task_ExitNonAnimDoor", "Task_ExitNonDoor"],
-		},
+		_exit_task_step(exit_task),
 		{"op": "unlock_controls", "source": "Task_ExitDoor/Task_ExitNonDoor"},
 	]
 
@@ -608,6 +628,73 @@ func _door_step(op: String, position: Vector2i, source: String) -> Dictionary:
 		"duration_frames": DOOR_ANIM_TOTAL_FRAMES,
 		"source": source,
 	}
+
+
+func _exit_task_step(exit_task: Dictionary) -> Dictionary:
+	return {
+		"op": "exit_task_select",
+		"source": "SetUpWarpExitTask",
+		"branches": ["Task_ExitDoor", "Task_ExitStairs", "Task_ExitNonAnimDoor", "Task_ExitNonDoor"],
+		"selected": String(exit_task.get("task", "Task_ExitNonDoor")),
+		"behavior": int(exit_task.get("behavior", -1)),
+		"behavior_name": String(exit_task.get("behavior_name", "")),
+	}
+
+
+func _warp_exit_task(map_data: Dictionary, tileset_data: Dictionary, position: Vector2i) -> Dictionary:
+	var behavior_info := _metatile_behavior_info(map_data, tileset_data, position)
+	var behavior_name := String(behavior_info.get("behavior_name", ""))
+	var task := "Task_ExitNonDoor"
+	if WARP_EXIT_DOOR_BEHAVIORS.has(behavior_name):
+		task = "Task_ExitDoor"
+	elif WARP_EXIT_DIRECTIONAL_STAIR_BEHAVIORS.has(behavior_name):
+		task = "Task_ExitStairs"
+	elif WARP_EXIT_NON_ANIM_DOOR_BEHAVIORS.has(behavior_name):
+		task = "Task_ExitNonAnimDoor"
+
+	return {
+		"task": task,
+		"behavior": int(behavior_info.get("behavior", -1)),
+		"behavior_name": behavior_name,
+		"position": position,
+		"stairs_movement_disabled": false,
+		"source": "SetUpWarpExitTask",
+	}
+
+
+func _metatile_behavior_info(map_data: Dictionary, tileset_data: Dictionary, position: Vector2i) -> Dictionary:
+	var metatile_id := _metatile_id_from_map_data(map_data, position)
+	if metatile_id < 0:
+		return {"behavior": -1, "behavior_name": "", "metatile_id": metatile_id}
+
+	var entries = tileset_data.get("metatile_entries", [])
+	if typeof(entries) != TYPE_ARRAY:
+		return {"behavior": -1, "behavior_name": "", "metatile_id": metatile_id}
+
+	for entry in entries:
+		if typeof(entry) != TYPE_DICTIONARY or int(entry.get("id", -1)) != metatile_id:
+			continue
+		var attribute = entry.get("attribute", {})
+		if typeof(attribute) != TYPE_DICTIONARY:
+			return {"behavior": -1, "behavior_name": "", "metatile_id": metatile_id}
+		return {
+			"behavior": int(attribute.get("behavior", -1)),
+			"behavior_name": String(attribute.get("behavior_name", "")),
+			"metatile_id": metatile_id,
+		}
+
+	return {"behavior": -1, "behavior_name": "", "metatile_id": metatile_id}
+
+
+func _metatile_id_from_map_data(map_data: Dictionary, position: Vector2i) -> int:
+	var block_ids = map_data.get("block_ids", [])
+	if typeof(block_ids) != TYPE_ARRAY or position.y < 0 or position.y >= block_ids.size():
+		return -1
+
+	var row = block_ids[position.y]
+	if typeof(row) != TYPE_ARRAY or position.x < 0 or position.x >= row.size():
+		return -1
+	return int(row[position.x])
 
 
 func _current_map_id() -> String:

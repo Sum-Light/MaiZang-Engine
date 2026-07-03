@@ -96,6 +96,8 @@ func _init() -> void:
 	})
 	var transition_lines = captured.get("lines", PackedStringArray())
 	var truck_transition_sequence = captured_sequences[0] if captured_sequences.size() > 0 else {}
+	var truck_exit_task := _exit_task(truck_transition_sequence)
+	var truck_exit_step := _first_step(truck_transition_sequence, "exit_task_select")
 	var house_script_result := manager.run_script("LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor")
 	var old_map_script_result := manager.run_script("LittlerootTown_EventScript_Twin")
 	var brendan_map_data: Dictionary = registry.get_map_data(BRENDANS_HOUSE_1F)
@@ -163,6 +165,12 @@ func _init() -> void:
 		_step_ops(truck_transition_sequence) == ["lock_controls", "fade_out", "load_map", "fade_in", "exit_task_select", "unlock_controls"],
 		"unexpected normal transition sequence steps"
 	)
+	_assert(String(truck_exit_task.get("task", "")) == "Task_ExitNonDoor", "expected truck warp exit task")
+	_assert(String(truck_exit_task.get("behavior_name", "")) == "MB_SOUTH_ARROW_WARP", "expected truck destination behavior")
+	_assert(
+		String(truck_exit_step.get("selected", "")) == String(truck_exit_task.get("task", "")),
+		"expected truck exit step to record selected task"
+	)
 	_assert(house_script_result.get("status", "") == "ok", "expected transitioned script data to run Brendan house script")
 	_assert(old_map_script_result.get("status", "") == "missing_script", "expected old map script to be unavailable after transition")
 
@@ -172,6 +180,8 @@ func _init() -> void:
 	manager.dispatch_interaction(brendan_exit_warp)
 	var map_warp_lines = captured.get("lines", PackedStringArray())
 	var map_warp_sequence = captured_sequences[0] if captured_sequences.size() > 0 else {}
+	var map_warp_exit_task := _exit_task(map_warp_sequence)
+	var map_warp_exit_step := _first_step(map_warp_sequence, "exit_task_select")
 	var town_script_result := manager.run_script("LittlerootTown_EventScript_Twin")
 	var current_map_after_map_warp: String = game_state.current_map_id
 	_assert(brendan_exit_warp.get("type", "") == "warp_event", "expected Brendan house exit warp")
@@ -185,6 +195,12 @@ func _init() -> void:
 	)
 	_assert(map_warp_sequence.get("presentation", "") == "normal", "expected step map warp normal presentation")
 	_assert(_step_ops(map_warp_sequence).has("exit_task_select"), "expected normal map warp exit task step")
+	_assert(String(map_warp_exit_task.get("task", "")) == "Task_ExitDoor", "expected town destination exit door task")
+	_assert(String(map_warp_exit_task.get("behavior_name", "")) == "MB_ANIMATED_DOOR", "expected town destination door behavior")
+	_assert(
+		String(map_warp_exit_step.get("selected", "")) == String(map_warp_exit_task.get("task", "")),
+		"expected map warp exit step to record selected task"
+	)
 	_assert(town_script_result.get("status", "") == "ok", "expected town script data after map warp")
 
 	captured.clear()
@@ -202,6 +218,9 @@ func _init() -> void:
 	var door_open_step := _first_step(door_warp_sequence, "door_open")
 	var door_close_step := _first_step(door_warp_sequence, "door_close")
 	var door_player_step := _first_step(door_warp_sequence, "player_step")
+	var door_exit_task := _exit_task(door_warp_sequence)
+	var door_exit_step := _first_step(door_warp_sequence, "exit_task_select")
+	var conditional_door_step := _first_step(door_warp_sequence, "conditional_exit_door_player_step")
 	_assert(may_house_door_warp.get("type", "") == "warp_event", "expected May house door warp")
 	_assert(game_state.current_map_id == MAYS_HOUSE_1F, "expected door warp to load May house")
 	_assert(door_warp_sequence.get("presentation", "") == "door", "expected door presentation sequence")
@@ -226,6 +245,13 @@ func _init() -> void:
 	_assert(int(door_open_step.get("duration_frames", 0)) == 16, "expected source door open to last 16 frames")
 	_assert(int(door_close_step.get("duration_frames", 0)) == 16, "expected source door close to last 16 frames")
 	_assert(int(door_player_step.get("duration_frames", 0)) == 16, "expected source normal walk step to last 16 frames")
+	_assert(String(door_exit_task.get("task", "")) == "Task_ExitNonDoor", "expected May house destination non-door exit task")
+	_assert(String(door_exit_task.get("behavior_name", "")) == "MB_SOUTH_ARROW_WARP", "expected May house destination behavior")
+	_assert(
+		String(door_exit_step.get("selected", "")) == String(door_exit_task.get("task", "")),
+		"expected door warp exit step to record selected task"
+	)
+	_assert(not bool(conditional_door_step.get("condition_result", true)), "expected no exit-door step on May house south-arrow warp")
 
 	print(JSON.stringify({
 		"event_manager_smoke": "ok",
@@ -235,6 +261,9 @@ func _init() -> void:
 		"player_position_after_coord_dispatch": _vector_to_array(player_position_after_coord_dispatch),
 		"current_map_after_transition": BRENDANS_HOUSE_1F,
 		"current_map_after_map_warp": current_map_after_map_warp,
+		"truck_exit_task": truck_exit_task,
+		"map_warp_exit_task": map_warp_exit_task,
+		"door_exit_task": door_exit_task,
 		"door_sequence_ops": _step_ops(door_warp_sequence),
 		"rival_position_after_object_dispatch": _vector_to_array(rival_position_after_object_dispatch),
 	}))
@@ -305,6 +334,11 @@ func _first_step(sequence: Dictionary, op: String) -> Dictionary:
 		if typeof(step) == TYPE_DICTIONARY and String(step.get("op", "")) == op:
 			return step
 	return {}
+
+
+func _exit_task(sequence: Dictionary) -> Dictionary:
+	var exit_task = sequence.get("exit_task", {})
+	return exit_task if typeof(exit_task) == TYPE_DICTIONARY else {}
 
 
 func _map_size_from_data(map_data: Dictionary) -> Vector2i:

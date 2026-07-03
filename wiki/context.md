@@ -20,7 +20,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Autoloads are configured for `GameState`, `DataRegistry`, `MapRuntime`, `ScriptVM`, and `EventManager`.
 - `GameState` stores current map id, player gender, player grid position, flags, and vars.
 - `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, and script JSON by map id while preserving the first-slice start-map API.
-- `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior, and layer-type lookups.
+- `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior id, behavior name, and layer-type lookups.
 - `MapRuntime` now indexes first-slice object events, BG/sign events, warp events, and coordinate events.
 - `MapRuntime` treats visible object-event cells as occupied and can resolve the player's current interaction target from grid position plus facing direction.
 - `MapRuntime` now indexes first-slice coordinate events and resolves step-triggered coord event scripts by x/y/elevation plus source var/flag trigger state.
@@ -28,8 +28,8 @@ The port should be data-driven: preserve source data and assets where practical,
 - `MapRuntime` can apply first-pass `ScriptVM` object-effect results for object coordinates, template coordinates, movement type metadata, runtime visibility, add/remove, and source hide flags.
 - `scenes/main.tscn` displays a 20x20 LittlerootTown debug map from generated metatile ids and a palette-baked metatile atlas, visible object-event placeholders, plus a movable player placeholder that is blocked by generated map-grid collision and object-event occupancy.
 - `scenes/main.tscn` includes a debug dialogue panel driven by `EventManager`; object/sign interactions, first-pass coordinate triggers, and generated map warp events now execute through `ScriptVM`/`EventManager`, apply dispatch-time runtime effects, show emitted dialogue text, and can switch between generated maps.
-- `EventManager` now emits source-traced `transition_sequence_requested` data before applying generated map transitions. Normal/silent transitions record lock, fade, load, reveal, and unlock steps; door transitions also record freeze, door sound intent, 16-frame door open, 16-frame player step-in, hide-player, and 16-frame door close steps.
-- `Main` consumes transition sequences with a first-pass black overlay and player input lock. This is a placeholder presentation consumer; real door metatile animation, sound playback, exact fade color selection, destination exit-task animation, and map-script chaining remain future work.
+- `EventManager` now emits source-traced `transition_sequence_requested` data before applying generated map transitions. Normal/silent transitions record lock, fade, load, reveal, destination exit-task selection, and unlock steps; door transitions also record freeze, door sound intent, 16-frame door open, 16-frame player step-in, hide-player, 16-frame door close, and conditional destination door-exit steps.
+- `Main` consumes transition sequences with a first-pass black overlay and player input lock. This is a placeholder presentation consumer; real door metatile animation, sound playback, exact fade color selection, destination exit-task animation playback, and map-script chaining remain future work.
 - Blocked front-cell door warp dispatch now only runs when the player is facing north, matching source `TryDoorWarp` behavior.
 - Player movement currently uses Godot's default `ui_up`, `ui_down`, `ui_left`, and `ui_right` actions.
 - Player interaction currently uses Godot's default `ui_accept` action.
@@ -50,9 +50,11 @@ The port should be data-driven: preserve source data and assets where practical,
 - `tools/importer/source_probe.py` currently verifies the source path and first-slice map inputs.
 - `tools/importer/export_map.py` exports `LittlerootTown` into generated Godot JSON.
 - `tools/importer/export_tilesets.py` exports the `LittlerootTown` primary/secondary tileset pair into Godot-friendly metadata and an RGBA metatile atlas.
+- `tools/importer/export_tilesets.py` parses `include/constants/metatile_behaviors.h` and writes behavior names into generated tileset metadata so runtime rules can compare source behavior names instead of hardcoded numeric ids.
 - `tools/importer/export_event_scripts.py` exports `LittlerootTown` map script labels, instruction streams, movement labels, local text labels, first-pass `msgbox` previews, and source behavior trace notes.
 - Generated map data currently exists for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated tileset metadata and palette-baked metatile atlases currently exist for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
+- Generated tileset metadata now includes a `metatile_behaviors` name table plus per-metatile `attribute.behavior_name` values.
 - Generated event script data currently exists for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated import manifest lives at `data/generated/import_manifest.json`.
 - Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
@@ -67,7 +69,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `ScriptVM` expands generated movement labels into result `movements` entries with target local id, structured steps, net tile delta, final facing, and unsupported-step reporting. Real dispatch now fast-forwards those net deltas into runtime map/player state; scene-node animation, object task queues, source collision timing, and real wait blocking remain future work.
 - `ScriptVM` records `delay`, `opendoor`, `closedoor`, and `waitdooranim` as `field_effects` after tracing `ScrCmd_delay`, `ScrCmd_opendoor`, `ScrCmd_closedoor`, `ScrCmd_waitdooranim`, and `src/field_door.c`; real door metatile animation, door sound selection, and asynchronous wait timing remain future presentation/runtime work.
 - `ScriptVM` records `waitstate`, `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, and `hideplayer` as structured wait, audio, transition, and player-effect results after tracing the source script command table, macros, `src/scrcmd.c`, `src/field_screen_effect.c`, and `src/overworld.c`; real sound playback, fanfare waiting, map loading/fades, and player node visibility remain future systems.
-- `EventManager` now consumes `ScriptVM.transition_effects` and map warp events when the destination map has generated data: explicit-position transitions use script coordinates, while warp-id transitions look up the destination map's generated `events.warp_events[warp_id]`, then reconfigure `MapRuntime`, update `GameState.current_map_id` and player grid position, and swap `ScriptVM` to the destination map script data. Dynamic warp ids, fade timing, save callbacks, and chained destination map scripts remain future work.
+- `EventManager` now consumes `ScriptVM.transition_effects` and map warp events when the destination map has generated data: explicit-position transitions use script coordinates, while warp-id transitions look up the destination map's generated `events.warp_events[warp_id]`, then choose the destination exit task from the destination metatile behavior name, reconfigure `MapRuntime`, update `GameState.current_map_id` and player grid position, and swap `ScriptVM` to the destination map script data. Dynamic warp ids, fade timing, save callbacks, and chained destination map scripts remain future work.
 - `EventManager` applies `ScriptVM` movement and object effects only during real interaction dispatch, not during `get_script_preview`, so previews stay read-only.
 - `LittlerootTown` generated collision currently has 268 passable cells and 132 blocked cells.
 - `LittlerootTown` has 8 generated object events; the first runtime pass shows them as placeholders and blocks movement into their occupied cells.
@@ -87,6 +89,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Tileset images: `tiles.png`
 - Tileset metatiles: `metatiles.bin`
 - Tileset behavior data: `metatile_attributes.bin`
+- Metatile behavior names: `include/constants/metatile_behaviors.h`
 - Palettes: `palettes/*.pal`
 - Pokemon data: `src/data/pokemon/species_info.h`
 - Move data: `src/data/moves_info.h`

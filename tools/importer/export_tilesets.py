@@ -34,6 +34,7 @@ TILE_PALETTE_SHIFT = 12
 METATILE_ATTR_BEHAVIOR_MASK = 0x00FF
 METATILE_ATTR_LAYER_MASK = 0xF000
 METATILE_ATTR_LAYER_SHIFT = 12
+METATILE_BEHAVIOR_HEADER = Path("include/constants/metatile_behaviors.h")
 
 FLIP_LEFT_RIGHT = Image.Transpose.FLIP_LEFT_RIGHT if hasattr(Image, "Transpose") else Image.FLIP_LEFT_RIGHT
 FLIP_TOP_BOTTOM = Image.Transpose.FLIP_TOP_BOTTOM if hasattr(Image, "Transpose") else Image.FLIP_TOP_BOTTOM
@@ -85,6 +86,38 @@ def read_palettes(tileset_dir):
     return palettes
 
 
+def parse_metatile_behavior_names(path):
+    text = path.read_text(encoding="utf-8")
+    names = {}
+    current_value = 0
+    in_enum = False
+    for raw_line in text.splitlines():
+        line = raw_line.split("//", 1)[0].strip()
+        if not line:
+            continue
+        if line.startswith("enum"):
+            in_enum = True
+            continue
+        if not in_enum:
+            continue
+        if line.startswith("};"):
+            break
+
+        line = line.rstrip(",").strip()
+        if not line:
+            continue
+        if "=" in line:
+            name, value_text = [part.strip() for part in line.split("=", 1)]
+            current_value = int(value_text, 0)
+        else:
+            name = line
+
+        if name.startswith("MB_"):
+            names[current_value] = name
+        current_value += 1
+    return names
+
+
 def build_global_palettes(primary_palettes, secondary_palettes):
     palettes = []
     for index in range(16):
@@ -126,13 +159,15 @@ def read_metatiles(path):
     ]
 
 
-def read_metatile_attributes(path):
+def read_metatile_attributes(path, behavior_names):
     values = read_u16le_file(path)
     attributes = []
     for value in values:
+        behavior = value & METATILE_ATTR_BEHAVIOR_MASK
         attributes.append({
             "raw": value,
-            "behavior": value & METATILE_ATTR_BEHAVIOR_MASK,
+            "behavior": behavior,
+            "behavior_name": behavior_names.get(behavior, "MB_UNKNOWN_{:02X}".format(behavior)),
             "layer_type": (value & METATILE_ATTR_LAYER_MASK) >> METATILE_ATTR_LAYER_SHIFT,
         })
     return attributes
@@ -305,6 +340,7 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
 
     primary_image = load_indexed_tiles(primary_dir / "tiles.png")
     secondary_image = load_indexed_tiles(secondary_dir / "tiles.png")
+    behavior_names = parse_metatile_behavior_names(root / METATILE_BEHAVIOR_HEADER)
     global_palettes = build_global_palettes(
         read_palettes(primary_dir),
         read_palettes(secondary_dir),
@@ -312,8 +348,14 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
 
     primary_metatiles = read_metatiles(primary_dir / "metatiles.bin")
     secondary_metatiles = read_metatiles(secondary_dir / "metatiles.bin")
-    primary_attributes = read_metatile_attributes(primary_dir / "metatile_attributes.bin")
-    secondary_attributes = read_metatile_attributes(secondary_dir / "metatile_attributes.bin")
+    primary_attributes = read_metatile_attributes(
+        primary_dir / "metatile_attributes.bin",
+        behavior_names,
+    )
+    secondary_attributes = read_metatile_attributes(
+        secondary_dir / "metatile_attributes.bin",
+        behavior_names,
+    )
 
     total_metatiles = NUM_METATILES_IN_PRIMARY + len(secondary_metatiles)
     columns = 32
@@ -384,6 +426,13 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
             "primary_palette_slots": "0-5 from primary tileset",
             "secondary_palette_slots": "6-12 from secondary tileset",
             "transparent_color_index": 0,
+        },
+        "metatile_behaviors": {
+            "source": to_project_path(METATILE_BEHAVIOR_HEADER),
+            "names": [
+                {"id": behavior_id, "name": behavior_names[behavior_id]}
+                for behavior_id in sorted(behavior_names)
+            ],
         },
         "tilesets": {
             "primary": build_tileset_record(root, "primary", primary_symbol),
