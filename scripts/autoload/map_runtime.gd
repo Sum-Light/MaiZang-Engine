@@ -6,6 +6,7 @@ signal player_position_changed(grid_position: Vector2i)
 const COLLISION_NONE := 0
 const COLLISION_IMPASSABLE := 1
 const ELEVATION_INVALID := -1
+const ELEVATION_TRANSITION := 0
 const LOCALID_PLAYER := "LOCALID_PLAYER"
 
 var _map_data: Dictionary = {}
@@ -22,6 +23,8 @@ var _bg_events: Array = []
 var _bg_events_by_position: Dictionary = {}
 var _warp_events: Array = []
 var _warp_events_by_position: Dictionary = {}
+var _coord_events: Array = []
+var _coord_events_by_position: Dictionary = {}
 
 
 func _ready() -> void:
@@ -55,6 +58,8 @@ func configure_from_data(
 	_bg_events_by_position = {}
 	_warp_events = []
 	_warp_events_by_position = {}
+	_coord_events = []
+	_coord_events_by_position = {}
 
 	if not _map_data.is_empty():
 		var layout_info = _map_data.get("layout", {})
@@ -74,6 +79,7 @@ func configure_from_data(
 	_index_object_events()
 	_index_bg_events()
 	_index_warp_events()
+	_index_coord_events()
 
 
 func is_within_bounds(cell: Vector2i) -> bool:
@@ -170,6 +176,14 @@ func get_warp_events_at(cell: Vector2i) -> Array:
 	return _events_at(_warp_events_by_position, cell)
 
 
+func get_coord_events() -> Array:
+	return _coord_events.duplicate(true)
+
+
+func get_coord_events_at(cell: Vector2i) -> Array:
+	return _events_at(_coord_events_by_position, cell)
+
+
 func is_cell_occupied(cell: Vector2i) -> bool:
 	return not get_object_events_at(cell).is_empty()
 
@@ -207,11 +221,34 @@ func get_interaction_target(origin: Vector2i, direction: Vector2i) -> Dictionary
 	return {}
 
 
+func get_coord_event_target(cell: Vector2i, game_state: Node = null) -> Dictionary:
+	var resolved_game_state := game_state
+	if resolved_game_state == null and is_inside_tree():
+		resolved_game_state = get_node_or_null("/root/GameState")
+
+	var elevation := get_elevation_at(cell)
+	for coord_event in get_coord_events_at(cell):
+		if typeof(coord_event) != TYPE_DICTIONARY:
+			continue
+		if not _coord_event_matches_elevation(coord_event, elevation):
+			continue
+		if not _coord_event_matches_trigger(coord_event, resolved_game_state):
+			continue
+
+		var script := String(coord_event.get("script", "0x0"))
+		if script.is_empty() or script == "0x0":
+			continue
+		return _interaction_target("coord_event", cell, coord_event, script)
+
+	return {}
+
+
 func get_cell_info(cell: Vector2i) -> Dictionary:
 	var metatile_id := get_metatile_id_at(cell)
 	var object_events_at_cell := get_object_events_at(cell)
 	var bg_events_at_cell := get_bg_events_at(cell)
 	var warp_events_at_cell := get_warp_events_at(cell)
+	var coord_events_at_cell := get_coord_events_at(cell)
 	return {
 		"position": cell,
 		"within_bounds": is_within_bounds(cell),
@@ -224,6 +261,7 @@ func get_cell_info(cell: Vector2i) -> Dictionary:
 		"object_event_count": object_events_at_cell.size(),
 		"bg_event_count": bg_events_at_cell.size(),
 		"warp_event_count": warp_events_at_cell.size(),
+		"coord_event_count": coord_events_at_cell.size(),
 		"passable": can_enter_cell(cell),
 	}
 
@@ -358,6 +396,31 @@ func _index_warp_events() -> void:
 		_add_event_at(_warp_events_by_position, cell, warp_event)
 
 
+func _index_coord_events() -> void:
+	var events = _map_data.get("events", {})
+	if typeof(events) != TYPE_DICTIONARY:
+		return
+
+	var coord_events = events.get("coord_events", [])
+	if typeof(coord_events) != TYPE_ARRAY:
+		return
+
+	for index in range(coord_events.size()):
+		var source_event = coord_events[index]
+		if typeof(source_event) != TYPE_DICTIONARY:
+			continue
+
+		var coord_event = source_event.duplicate(true)
+		var cell := Vector2i(
+			int(coord_event.get("x", 0)),
+			int(coord_event.get("y", 0))
+		)
+		coord_event["index"] = index
+		coord_event["position"] = cell
+		_coord_events.append(coord_event)
+		_add_event_at(_coord_events_by_position, cell, coord_event)
+
+
 func _is_object_event_visible(object_event: Dictionary) -> bool:
 	var flag := String(object_event.get("flag", "0"))
 	if flag.is_empty() or flag == "0":
@@ -371,6 +434,29 @@ func _is_object_event_visible(object_event: Dictionary) -> bool:
 		return not game_state.is_flag_set(flag)
 
 	return true
+
+
+func _coord_event_matches_elevation(coord_event: Dictionary, elevation: int) -> bool:
+	var event_elevation := int(coord_event.get("elevation", ELEVATION_INVALID))
+	return event_elevation == elevation or event_elevation == ELEVATION_TRANSITION
+
+
+func _coord_event_matches_trigger(coord_event: Dictionary, game_state: Node) -> bool:
+	var trigger := String(coord_event.get("var", coord_event.get("trigger", "")))
+	if trigger.is_empty() or trigger == "0" or trigger == "TRIGGER_RUN_IMMEDIATELY":
+		return true
+
+	var expected_value := int(coord_event.get("var_value", coord_event.get("index", 0)))
+	if trigger.begins_with("VAR_"):
+		var actual_value := 0
+		if game_state != null and game_state.has_method("get_var"):
+			actual_value = int(game_state.get_var(trigger, 0))
+		return actual_value == expected_value
+
+	var flag_is_set := false
+	if game_state != null and game_state.has_method("is_flag_set"):
+		flag_is_set = bool(game_state.is_flag_set(trigger))
+	return flag_is_set == (expected_value != 0)
 
 
 func _apply_player_movement(

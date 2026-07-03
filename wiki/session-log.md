@@ -56,3 +56,4 @@
 - Extended `MapRuntime` to index object events by local id, apply `ScriptVM` movement-effect net deltas to runtime object/player positions, rebuild occupancy, and emit refresh signals.
 - Updated `EventManager` to apply movement effects during real interaction dispatch while keeping `get_script_preview` read-only.
 - Expanded `map_runtime_smoke.gd` and `event_manager_smoke.gd` to verify movement-effect application for `LittlerootTown_EventScript_NeedPokemonTriggerLeft`.
+- Traced source coordinate-event handling in `field_control_avatar.c` and added first-pass Godot coord-event dispatch after player movement, including `VAR_LITTLEROOT_TOWN_STATE` gated LittlerootTown triggers.

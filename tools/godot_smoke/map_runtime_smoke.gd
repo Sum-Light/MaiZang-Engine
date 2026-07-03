@@ -24,6 +24,8 @@ func _init() -> void:
 	var twin_approach_cell := Vector2i(19, 8)
 	var bg_event_cell := Vector2i(15, 13)
 	var warp_cell := Vector2i(7, 16)
+	var need_pokemon_coord_cell := Vector2i(10, 1)
+	var running_shoes_coord_cell := Vector2i(10, 2)
 	var blocked_cell := _first_blocked_cell(map_data)
 	game_state.player_grid_position = start_cell
 
@@ -33,11 +35,17 @@ func _init() -> void:
 	_assert(blocked_cell != Vector2i(-1, -1), "expected at least one blocked source cell")
 	_assert(not runtime.can_enter_cell(blocked_cell), "expected source collision cell to be blocked")
 	_assert(runtime.get_object_events().size() == 8, "expected LittlerootTown object events")
+	_assert(runtime.get_coord_events().size() == 9, "expected LittlerootTown coord events")
 	_assert(runtime.get_collision_at(object_cell) == 0, "expected object test cell to be collision-passable")
 	_assert(runtime.is_cell_occupied(object_cell), "expected object test cell to be occupied")
 	_assert(not runtime.can_enter_cell(object_cell), "expected occupied object cell to be blocked")
 	_assert(runtime.get_bg_events().size() == 4, "expected LittlerootTown bg events")
 	_assert(runtime.get_warp_events().size() == 3, "expected LittlerootTown warp events")
+	_assert(runtime.get_coord_events_at(need_pokemon_coord_cell).size() == 1, "expected need-pokemon coord event")
+	_assert(runtime.get_coord_event_target(need_pokemon_coord_cell, game_state).get("script", "") == "LittlerootTown_EventScript_NeedPokemonTriggerLeft", "expected initial coord trigger")
+	game_state.set_var("VAR_LITTLEROOT_TOWN_STATE", 3)
+	_assert(runtime.get_coord_event_target(running_shoes_coord_cell, game_state).get("script", "") == "LittlerootTown_EventScript_GiveRunningShoesTrigger0", "expected state-gated coord trigger")
+	game_state.set_var("VAR_LITTLEROOT_TOWN_STATE", 0)
 	_assert(runtime.get_bg_events_at(bg_event_cell).size() == 1, "expected town sign bg event")
 	_assert(runtime.get_warp_events_at(warp_cell).size() == 1, "expected Birch lab warp event")
 	_assert(
@@ -82,6 +90,8 @@ func _init() -> void:
 		"object_event_count": runtime.get_object_events().size(),
 		"bg_event_count": runtime.get_bg_events().size(),
 		"warp_event_count": runtime.get_warp_events().size(),
+		"coord_event_count": runtime.get_coord_events().size(),
+		"need_pokemon_coord": _target_summary(runtime.get_coord_event_target(need_pokemon_coord_cell, game_state)),
 		"first_movement_apply": _movement_apply_summary(first_apply),
 		"rest_movement_apply": _movement_apply_summary(rest_apply),
 		"player_position_after_script": _vector_to_array(game_state.player_grid_position),
@@ -164,6 +174,7 @@ func _cell_info_summary(cell_info: Dictionary) -> Dictionary:
 		"object_event_count": int(cell_info.get("object_event_count", 0)),
 		"bg_event_count": int(cell_info.get("bg_event_count", 0)),
 		"warp_event_count": int(cell_info.get("warp_event_count", 0)),
+		"coord_event_count": int(cell_info.get("coord_event_count", 0)),
 		"passable": bool(cell_info.get("passable", false)),
 	}
 
@@ -193,4 +204,12 @@ func _movement_apply_summary(summary: Dictionary) -> Dictionary:
 		"skipped": _summary_count(summary, "skipped"),
 		"object_events_changed": bool(summary.get("object_events_changed", false)),
 		"player_position_changed": bool(summary.get("player_position_changed", false)),
+	}
+
+
+func _target_summary(target: Dictionary) -> Dictionary:
+	return {
+		"type": String(target.get("type", "")),
+		"script": String(target.get("script", "")),
+		"position": _vector_to_array(target.get("position", Vector2i.ZERO)),
 	}

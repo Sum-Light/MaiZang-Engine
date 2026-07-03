@@ -24,9 +24,10 @@ The port should be data-driven: preserve source data and assets where practical,
 - `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior, and layer-type lookups.
 - `MapRuntime` now indexes first-slice object events, BG/sign events, and warp events.
 - `MapRuntime` treats visible object-event cells as occupied and can resolve the player's current interaction target from grid position plus facing direction.
+- `MapRuntime` now indexes first-slice coordinate events and resolves step-triggered coord event scripts by x/y/elevation plus source var/flag trigger state.
 - `MapRuntime` can apply `ScriptVM` movement-effect results to in-memory object-event positions and `GameState.player_grid_position`, then rebuild object occupancy and notify the main scene to refresh placeholders/player position.
 - `scenes/main.tscn` displays a 20x20 LittlerootTown debug map from generated metatile ids and a palette-baked metatile atlas, visible object-event placeholders, plus a movable player placeholder that is blocked by generated map-grid collision and object-event occupancy.
-- `scenes/main.tscn` includes a debug dialogue panel driven by `EventManager`; object/sign interactions now execute the first generated script slice through `ScriptVM` and show emitted dialogue text, while warps remain placeholders.
+- `scenes/main.tscn` includes a debug dialogue panel driven by `EventManager`; object/sign interactions and first-pass coordinate triggers now execute the first generated script slice through `ScriptVM` and show emitted dialogue text, while warps remain placeholders.
 - Player movement currently uses Godot's default `ui_up`, `ui_down`, `ui_left`, and `ui_right` actions.
 - Player interaction currently uses Godot's default `ui_accept` action.
 - Godot validation uses `C:\Users\YbbNa\Downloads\Godot_v4.7-stable_win64\Godot_v4.7-stable_win64_console.exe`.
@@ -64,6 +65,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `LittlerootTown` generated collision currently has 268 passable cells and 132 blocked cells.
 - `LittlerootTown` has 8 generated object events; the first runtime pass shows them as placeholders and blocks movement into their occupied cells.
 - `LittlerootTown` has 4 generated BG/sign events and 3 generated warp events indexed by `MapRuntime`.
+- `LittlerootTown` has 9 generated coordinate events indexed by `MapRuntime`; the first runtime pass dispatches normal trigger scripts after player tile movement, including the NeedPokemon grass-blocking trigger.
 - Porymap (`https://github.com/huderlem/porymap`) is a useful source-format and editor-behavior reference, but the Godot port should still use its own runtime architecture.
 
 ## Known Source Formats

@@ -53,12 +53,13 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - `DataRegistry` stores first-slice constants for LittlerootTown and loads generated map, tileset, and event script JSON when they exist.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries.
 - `MapRuntime` indexes generated object events, local ids, BG/sign events, and warp events; visible object-event cells are occupied for first-pass movement.
+- `MapRuntime` indexes generated coordinate events and resolves step-triggered coord event targets using source-style x/y/elevation plus var/flag trigger checks.
 - `MapRuntime` can apply `ScriptVM` movement-effect results as source-trusted logical position changes for object events and the player, then rebuild object occupancy.
 - `MapRuntime.get_interaction_target` resolves the player's faced object/sign target, or a warp placeholder from the current cell.
 - `GridMover` provides tweened tile movement.
 - `PlayerController` reads directional input, tracks facing direction, moves one tile at a time after checking `MapRuntime.can_enter_cell`, and emits interaction requests on `ui_accept`.
 - `ScriptVM` executes the first synchronous event-script subset for generated dialogue and movement-effect scripts and returns messages, movements, effects, unsupported ops, trace entries, and wait metadata.
-- `EventManager` dispatches object and BG/sign interactions through `ScriptVM` when available, applies movement effects through `MapRuntime` for real dispatches, then emits debug dialogue lines for the HUD. Warps remain placeholders.
+- `EventManager` dispatches object, BG/sign, and coordinate-event interactions through `ScriptVM` when available, applies movement effects through `MapRuntime` for real dispatches, then emits debug dialogue lines for the HUD. Warps remain placeholders.
 - `ScriptVM` opcode behavior must continue to be derived from the source C implementation and referenced resources before being implemented in Godot.
 - `DebugMapPlane` draws the first generated `block_ids` metatile grid from a palette-baked RGBA metatile atlas, with the old color blocks as fallback.
 - `ObjectEventSpawner` draws generated object events as simple placeholders until overworld sprite import is ready.
@@ -75,6 +76,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Generated `events.object_events` are preserved in map JSON and indexed by `MapRuntime`; visible events block their current grid cell before event scripts or sprite imports are implemented.
 - Runtime object-event positions may diverge from generated source positions after script movement effects are applied. `MapRuntime` updates `position`, `x`, `y`, optional `facing_direction`, and occupancy indexes in memory only.
 - Generated `events.bg_events` and `events.warp_events` are preserved in map JSON and indexed by `MapRuntime` for the first interaction/warp placeholder path.
+- Generated `events.coord_events` are preserved in map JSON and indexed by `MapRuntime`; first-pass step triggers match source x/y/elevation rules and compare generated `var`/`var_value` against `GameState`.
 - Generated metatile atlases use metatile id as atlas index, so map `block_ids` can render directly during the first slice.
 - Palette handling belongs to the import layer. Godot runtime should consume normal RGBA textures and metadata, not GBA palette slots.
 - Real TileMapLayer rendering should later consume the generated atlas/metadata instead of the current debug Node2D renderer.
@@ -91,6 +93,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - `applymovement` currently looks up generated movement labels and expands movement instructions into result entries with target local id, movement label, structured steps, net tile delta, final facing, and unsupported-step reporting.
 - `waitmovement 0` follows the source command convention by waiting on the current/last moving NPC target rather than meaning "all movement"; the VM records the raw target and resolved target for later animation-task integration.
 - Movement execution is currently a fast-forward runtime effect after real dispatch: `MapRuntime` applies net tile deltas to generated object-event local ids, `GameState.player_grid_position` for `LOCALID_PLAYER`, and emits signals so placeholders/player nodes refresh.
+- Coordinate-event execution is currently dispatched after player tile movement in `Main`, following the source step-based ordering only for the coord-event portion; full warp, weather, wild encounter, step-count, and forced-movement script chaining remains future work.
 - Movement dispatch does not yet run step-by-step animation, source collision checks, movement task timing, or object freeze/unfreeze behavior. `EventManager.get_script_preview` must remain read-only and must not apply movement effects.
 - Unsupported opcodes should stay visible through reports and VM results rather than being silently approximated.
 

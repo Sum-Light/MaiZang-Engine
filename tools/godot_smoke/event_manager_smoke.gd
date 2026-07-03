@@ -28,10 +28,16 @@ func _init() -> void:
 	var sign_preview := manager.get_script_preview("LittlerootTown_EventScript_TownSign")
 	var need_pokemon_preview := manager.get_script_preview("LittlerootTown_EventScript_NeedPokemonTriggerLeft")
 	var empty_preview := manager.get_script_preview("0x0")
+	var need_pokemon_coord := runtime.get_coord_event_target(Vector2i(10, 1), game_state)
 	_assert(game_state.player_grid_position == Vector2i(10, 10), "expected preview to leave player position unchanged")
 	_assert(
 		_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_TWIN", true)) == Vector2i(16, 10),
 		"expected preview to leave twin position unchanged"
+	)
+	_assert(need_pokemon_coord.get("type", "") == "coord_event", "expected need-pokemon coord event target")
+	_assert(
+		need_pokemon_coord.get("script", "") == "LittlerootTown_EventScript_NeedPokemonTriggerLeft",
+		"unexpected need-pokemon coord script"
 	)
 	var captured := {}
 	manager.debug_message_requested.connect(func(lines: PackedStringArray) -> void:
@@ -46,15 +52,8 @@ func _init() -> void:
 			"script": "LittlerootTown_EventScript_Twin",
 		},
 	})
-	manager.dispatch_interaction({
-		"type": "object_event",
-		"script": "LittlerootTown_EventScript_NeedPokemonTriggerLeft",
-		"position": Vector2i(16, 10),
-		"event": {
-			"graphics_id": "OBJ_EVENT_GFX_TWIN",
-			"script": "LittlerootTown_EventScript_NeedPokemonTriggerLeft",
-		},
-	})
+	game_state.player_grid_position = Vector2i(10, 1)
+	manager.dispatch_interaction(need_pokemon_coord)
 
 	_assert(twin_preview.get("status", "") == "ok", "expected Twin script preview")
 	_assert(twin_preview.get("vm_status", "") == "ok", "expected Twin VM status")
@@ -75,13 +74,14 @@ func _init() -> void:
 		need_pokemon_preview.get("text_label", "") == "LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut",
 		"unexpected need-pokemon preview text label"
 	)
-	_assert(game_state.player_grid_position == Vector2i(10, 11), "expected dispatch to apply player movement")
+	_assert(game_state.player_grid_position == Vector2i(10, 2), "expected coord dispatch to apply player movement")
 	_assert(
 		_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_TWIN", true)) == Vector2i(16, 10),
 		"expected dispatch to return twin to original cell"
 	)
 	_assert(empty_preview.is_empty(), "expected empty script preview for 0x0")
 	_assert(captured.has("lines"), "expected dispatch to emit dialogue lines")
+	_assert(_lines_contain(captured["lines"], "Coord event"), "expected coord event line in emitted output")
 	_assert(_lines_contain(captured["lines"], "ScriptVM: ok"), "expected VM status in emitted lines")
 	_assert(
 		_lines_contain(captured["lines"], "Movement effects: 4 applied, 0 skipped"),
@@ -93,7 +93,7 @@ func _init() -> void:
 		"twin": _preview_summary(twin_preview),
 		"town_sign": _preview_summary(sign_preview),
 		"need_pokemon": _preview_summary(need_pokemon_preview),
-		"player_position_after_dispatch": _vector_to_array(game_state.player_grid_position),
+		"player_position_after_coord_dispatch": _vector_to_array(game_state.player_grid_position),
 	}))
 	manager.free()
 	game_state.free()

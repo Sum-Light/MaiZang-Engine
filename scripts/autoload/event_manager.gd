@@ -56,6 +56,8 @@ func dispatch_interaction(interaction: Dictionary) -> void:
 			_emit_bg_event(interaction, event_data)
 		"warp_event":
 			_emit_warp_event(interaction, event_data)
+		"coord_event":
+			_emit_coord_event(interaction, event_data)
 		_:
 			debug_message_requested.emit(PackedStringArray([
 				"Interaction: %s" % interaction_type,
@@ -85,6 +87,23 @@ func _emit_bg_event(interaction: Dictionary, event_data: Dictionary) -> void:
 	])
 	_append_script_output(lines, script, {
 		"interaction_type": "bg_event",
+		"event": event_data,
+	})
+	debug_message_requested.emit(lines)
+
+
+func _emit_coord_event(interaction: Dictionary, event_data: Dictionary) -> void:
+	var script := String(interaction.get("script", event_data.get("script", "0x0")))
+	var lines := PackedStringArray([
+		"Coord event",
+		"Position: %s" % interaction.get("position", Vector2i.ZERO),
+		"Trigger: %s == %s" % [
+			String(event_data.get("var", event_data.get("trigger", ""))),
+			String(event_data.get("var_value", event_data.get("index", ""))),
+		],
+	])
+	_append_script_output(lines, script, {
+		"interaction_type": "coord_event",
 		"event": event_data,
 	})
 	debug_message_requested.emit(lines)

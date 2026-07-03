@@ -30,8 +30,9 @@
 
 ## Milestone 4 - Event Script Slice
 
-- Index object, BG/sign, and warp events for interaction lookup. First pass done in `MapRuntime`.
+- Index object, BG/sign, warp, and coordinate events for interaction lookup. First pass done in `MapRuntime`.
 - Add an interaction dispatcher path from player facing direction to debug dialogue. First pass done with `EventManager`; real script execution remains.
+- Trigger coordinate events after player movement. First pass done for normal `var`/`var_value` coord triggers through `MapRuntime` and `EventManager`; full step-based script chain remains future work.
 - Parse `.inc` event scripts into labels and instructions. First pass done for `LittlerootTown`, including script labels, movement labels, local text labels, and direct `msgbox`/`message` references.
 - Preview simple generated dialogue from object/BG event scripts. First pass done through `EventManager.get_script_preview`; this is not a full `ScriptVM`.
 - Add a minimal `ScriptVM` execution path. First pass done for synchronous dialogue scripts, including `msgbox`, `message`, source-derived `MSGBOX_NPC/SIGN/DEFAULT` expansion, basic flow control, simple flag/var operations, and VM result reporting.

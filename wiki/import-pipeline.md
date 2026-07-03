@@ -188,4 +188,5 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - orphan instructions: 0
 - current generated-data preview fields: first direct `msgbox`/`message` text references for debug inspection
 - current runtime execution scope: `ScriptVM` executes the first synchronous dialogue subset and expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` from source standard script behavior
-- current movement runtime scope: `ScriptVM` resolves generated movement labels for `applymovement`/`waitmovement` and emits structured movement-effect results; animation queues, object movement tasks, and map-position mutation are still future runtime work
+- current movement runtime scope: `ScriptVM` resolves generated movement labels for `applymovement`/`waitmovement` and emits structured movement-effect results; real dispatch fast-forwards map/player positions through `MapRuntime`, while animation queues and object movement tasks are still future runtime work
+- current coordinate-event runtime scope: `MapRuntime` indexes generated coord events and resolves normal `var`/`var_value` step triggers by x/y/elevation plus `GameState`; full weather/immediate-script/wild-encounter/step-count chaining remains future work

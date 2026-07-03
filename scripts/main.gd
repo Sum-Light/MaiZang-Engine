@@ -52,6 +52,10 @@ func _on_player_moved(grid_position: Vector2i) -> void:
 	_movement_note = ""
 	_hide_dialogue()
 	GameState.player_grid_position = grid_position
+	var coord_event := MapRuntime.get_coord_event_target(grid_position, GameState)
+	if not coord_event.is_empty():
+		_movement_note = "coord %s" % grid_position
+		EventManager.dispatch_interaction(coord_event)
 	_update_status()
 
 
