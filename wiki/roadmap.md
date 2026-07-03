@@ -40,6 +40,7 @@
   - `msgbox`. First pass done for `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT`.
   - `setflag`, `clearflag`, `checkflag`. First pass done for `setflag` and `clearflag`.
   - `setvar`, `addvar`, `compare`. First pass done for `setvar` and simple branch-time var reads.
+  - `checkplayergender`. First pass done by reading `GameState.player_gender` and writing `VAR_RESULT` as `MALE`/`FEMALE`.
   - `goto`, `call`, `return`, `end`. First pass done.
   - `goto_if_eq`, `call_if_eq`, `call_if_set`, `call_if_unset`. First pass done for set/unset/eq/ne variants used by the first slice.
   - `warp`, `warpsilent`

@@ -5,6 +5,11 @@ const MSGBOX_NPC := "MSGBOX_NPC"
 const MSGBOX_SIGN := "MSGBOX_SIGN"
 const MSGBOX_DEFAULT := "MSGBOX_DEFAULT"
 const SAFE_FOLLOWER_FLAG := "FLAG_SAFE_FOLLOWER_MOVEMENT"
+const VAR_RESULT := "VAR_RESULT"
+const PLAYER_GENDER_MALE := "MALE"
+const PLAYER_GENDER_FEMALE := "FEMALE"
+const PLAYER_GENDER_MALE_VALUE := 0
+const PLAYER_GENDER_FEMALE_VALUE := 1
 
 var _script_data: Dictionary = {}
 var _game_state: Node = null
@@ -152,6 +157,8 @@ func _execute_instruction(state: Dictionary, instruction: Dictionary) -> void:
 				})
 			else:
 				_record_unsupported(state, op, line, String(instruction.get("raw", "")))
+		"checkplayergender":
+			_execute_checkplayergender(state, line)
 		"lock", "lockall", "release", "releaseall", "faceplayer", "waitmessage", "waitbuttonpress", "closemessage":
 			_execute_basic_field_command(state, op, line)
 		"message":
@@ -217,6 +224,17 @@ func _execute_basic_field_command(state: Dictionary, op: String, line: int) -> v
 	_record_effect(state, op, line)
 	if op == "waitbuttonpress":
 		state["wait_buttonpress"] = true
+
+
+func _execute_checkplayergender(state: Dictionary, line: int) -> void:
+	var gender := _get_player_gender()
+	var gender_value := _gender_value(gender)
+	_set_var(VAR_RESULT, gender_value)
+	_record_effect(state, "checkplayergender", line, {
+		"gender": gender,
+		"value": gender_value,
+		"var": VAR_RESULT,
+	})
 
 
 func _execute_applymovement(
@@ -741,7 +759,33 @@ func _read_value(token: String) -> int:
 	var value := token.strip_edges()
 	if value.begins_with("VAR_"):
 		return _get_var(value)
+	if _is_known_constant(value):
+		return _constant_value(value)
 	return int(value)
+
+
+func _is_known_constant(value: String) -> bool:
+	return value in [
+		PLAYER_GENDER_MALE,
+		PLAYER_GENDER_FEMALE,
+		"TRUE",
+		"FALSE",
+		"YES",
+		"NO",
+	]
+
+
+func _constant_value(value: String) -> int:
+	match value:
+		PLAYER_GENDER_MALE:
+			return PLAYER_GENDER_MALE_VALUE
+		PLAYER_GENDER_FEMALE:
+			return PLAYER_GENDER_FEMALE_VALUE
+		"TRUE", "YES":
+			return 1
+		"FALSE", "NO":
+			return 0
+	return 0
 
 
 func _get_var(var_name: String) -> int:
@@ -772,6 +816,18 @@ func _set_flag(flag_name: String, enabled: bool) -> void:
 		game_state.set_flag(flag_name, true)
 	elif not enabled and game_state.has_method("clear_flag"):
 		game_state.clear_flag(flag_name)
+
+
+func _get_player_gender() -> String:
+	var game_state := _get_game_state()
+	if game_state != null and game_state.has_method("get_player_gender"):
+		var gender := String(game_state.get_player_gender()).strip_edges().to_upper()
+		return PLAYER_GENDER_FEMALE if gender == PLAYER_GENDER_FEMALE else PLAYER_GENDER_MALE
+	return PLAYER_GENDER_MALE
+
+
+func _gender_value(gender: String) -> int:
+	return PLAYER_GENDER_FEMALE_VALUE if gender == PLAYER_GENDER_FEMALE else PLAYER_GENDER_MALE_VALUE
 
 
 func _record_effect(state: Dictionary, op: String, line: int, detail: Dictionary = {}) -> void:

@@ -95,3 +95,9 @@ Reason: Source `field_control_avatar.c` checks coordinate events first in the st
 Decision: Represent `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`, `showobject`, `hideobject`, `addobject`, and `removeobject` as `ScriptVM` object-effect results, then apply them through `MapRuntime` during real interaction dispatch while keeping script previews read-only.
 
 Reason: The traced source commands mutate object event runtime state, object templates, and object visibility flags through field-event systems rather than through dialogue dispatch itself. Applying the effects in `MapRuntime` keeps object occupancy and local-id lookup consistent in the Godot runtime, while preserving a future path for real sprite reloads, object task queues, and save persistence.
+
+## 2026-07-04 - Store player gender in GameState
+
+Decision: Store player gender on `GameState` and implement `checkplayergender` in `ScriptVM` by copying that value into `VAR_RESULT` as source-compatible `MALE`/`FEMALE` constants.
+
+Reason: Source `ScrCmd_checkplayergender` only copies `gSaveBlock2Ptr->playerGender` into `gSpecialVar_Result`, and `MALE`/`FEMALE` are defined as 0/1 in `include/constants/global.h`. Keeping gender in `GameState` matches the source save-profile boundary and lets existing VM branch handling drive gendered scripts without coupling the opcode to presentation or object graphics.

@@ -49,7 +49,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 
 ## Current Scaffold
 
-- `GameState` stores current map id, player grid position, flags, and vars.
+- `GameState` stores current map id, player gender, player grid position, flags, and vars.
 - `DataRegistry` stores first-slice constants for LittlerootTown and loads generated map, tileset, and event script JSON when they exist.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries.
 - `MapRuntime` indexes generated object events, local ids, BG/sign events, and warp events; visible object-event cells are occupied for first-pass movement.
@@ -90,7 +90,8 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Generated script JSON preserves map script labels, raw instruction streams, movement labels, local text labels, and importer statistics.
 - `EventManager.get_script_preview` now delegates to `ScriptVM` when available and falls back to the older direct `msgbox`/`message` preview only when the VM is unavailable.
 - Source trace metadata in generated script JSON records the C/resources consulted for supported preview behavior, including `ScrCmd_message`, `ShowFieldMessage`, `gStdScripts`, and standard `msgbox` scripts.
-- Current `ScriptVM` support covers a synchronous first slice: `msgbox`, `message`, `lock`, `lockall`, `release`, `releaseall`, `faceplayer`, `waitmessage`, `waitbuttonpress`, `closemessage`, `goto`, `call`, `return`, `end`, basic `*_if_*` branches, `setflag`, `clearflag`, `setvar`, `applymovement`, `applymovementat`, `waitmovement`, `waitmovementat`, `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`, `addobject`, `addobjectat`, `removeobject`, `removeobjectat`, `showobject`, `showobjectat`, `hideobject`, and `hideobjectat`.
+- Current `ScriptVM` support covers a synchronous first slice: `msgbox`, `message`, `lock`, `lockall`, `release`, `releaseall`, `faceplayer`, `waitmessage`, `waitbuttonpress`, `closemessage`, `goto`, `call`, `return`, `end`, basic `*_if_*` branches, `setflag`, `clearflag`, `setvar`, `checkplayergender`, `applymovement`, `applymovementat`, `waitmovement`, `waitmovementat`, `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`, `addobject`, `addobjectat`, `removeobject`, `removeobjectat`, `showobject`, `showobjectat`, `hideobject`, and `hideobjectat`.
+- `checkplayergender` reads `GameState.player_gender`, writes `VAR_RESULT` as source-compatible `MALE`/`FEMALE` values, and relies on existing conditional branch support for gendered scripts.
 - `msgbox` modes `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` are expanded according to `data/scripts/std_msgbox.inc`.
 - `waitmessage`, `waitbuttonpress`, lock, release, and faceplayer currently produce execution effects and metadata for the debug dialogue path; real asynchronous blocking, UI input continuation, object freezing, and facing animation remain future runtime work.
 - `applymovement` currently looks up generated movement labels and expands movement instructions into result entries with target local id, movement label, structured steps, net tile delta, final facing, and unsupported-step reporting.

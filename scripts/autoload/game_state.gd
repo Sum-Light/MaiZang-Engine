@@ -1,6 +1,10 @@
 extends Node
 
+const PLAYER_GENDER_MALE := "MALE"
+const PLAYER_GENDER_FEMALE := "FEMALE"
+
 var current_map_id := "MAP_LITTLEROOT_TOWN"
+var player_gender := PLAYER_GENDER_MALE
 var player_grid_position := Vector2i(10, 10)
 var flags: Dictionary = {}
 var vars: Dictionary = {}
@@ -24,3 +28,12 @@ func set_var(var_name: String, value: int) -> void:
 
 func get_var(var_name: String, default_value := 0) -> int:
 	return int(vars.get(var_name, default_value))
+
+
+func set_player_gender(gender: String) -> void:
+	var normalized := gender.strip_edges().to_upper()
+	player_gender = PLAYER_GENDER_FEMALE if normalized == PLAYER_GENDER_FEMALE else PLAYER_GENDER_MALE
+
+
+func get_player_gender() -> String:
+	return player_gender

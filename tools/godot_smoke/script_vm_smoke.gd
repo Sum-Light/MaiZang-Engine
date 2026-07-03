@@ -18,6 +18,12 @@ func _init() -> void:
 	game_state.set_var("VAR_LITTLEROOT_TOWN_STATE", 1)
 	var set_twin_pos_result := vm.run_script("LittlerootTown_EventScript_SetTwinPos")
 	var set_rival_birch_pos_result := vm.run_script("LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeMale")
+	game_state.set_player_gender("MALE")
+	var dex_upgrade_male_result := vm.run_script("LittlerootTown_EventScript_SetRivalBirchPosForDexUpgrade")
+	var brendans_house_sign_male_result := vm.run_script("LittlerootTown_EventScript_BrendansHouseSign")
+	game_state.set_player_gender("FEMALE")
+	var dex_upgrade_female_result := vm.run_script("LittlerootTown_EventScript_SetRivalBirchPosForDexUpgrade")
+	var brendans_house_sign_female_result := vm.run_script("LittlerootTown_EventScript_BrendansHouseSign")
 	var running_shoes_result := vm.run_script("LittlerootTown_EventScript_SetReceivedRunningShoes")
 	var missing_result := vm.run_script("Missing_EventScript")
 
@@ -68,6 +74,24 @@ func _init() -> void:
 	_assert(_object_effect_position(set_rival_birch_pos_result, 1) == Vector2i(5, 10), "unexpected Birch position")
 	_assert(_unsupported_count(set_rival_birch_pos_result) == 0, "expected no unsupported rival/birch ops")
 
+	_assert(dex_upgrade_male_result.get("status", "") == "ok", "expected male dex-upgrade script to execute")
+	_assert(_effect_value_for_op(dex_upgrade_male_result, "checkplayergender") == 0, "expected male gender value")
+	_assert(_object_effect_count(dex_upgrade_male_result) == 4, "expected male dex-upgrade add/move object effects")
+	_assert(_object_effect_position(dex_upgrade_male_result, 2) == Vector2i(6, 10), "unexpected male rival position")
+	_assert(_object_effect_position(dex_upgrade_male_result, 3) == Vector2i(5, 10), "unexpected male Birch position")
+	_assert(_first_text_label(brendans_house_sign_male_result) == "LittlerootTown_Text_PlayersHouse", "unexpected male Brendan sign text")
+	_assert(_unsupported_count(dex_upgrade_male_result) == 0, "expected no unsupported male dex-upgrade ops")
+	_assert(_unsupported_count(brendans_house_sign_male_result) == 0, "expected no unsupported male sign ops")
+
+	_assert(dex_upgrade_female_result.get("status", "") == "ok", "expected female dex-upgrade script to execute")
+	_assert(_effect_value_for_op(dex_upgrade_female_result, "checkplayergender") == 1, "expected female gender value")
+	_assert(_object_effect_count(dex_upgrade_female_result) == 4, "expected female dex-upgrade add/move object effects")
+	_assert(_object_effect_position(dex_upgrade_female_result, 2) == Vector2i(13, 10), "unexpected female rival position")
+	_assert(_object_effect_position(dex_upgrade_female_result, 3) == Vector2i(14, 10), "unexpected female Birch position")
+	_assert(_first_text_label(brendans_house_sign_female_result) == "LittlerootTown_Text_ProfBirchsHouse", "unexpected female Brendan sign text")
+	_assert(_unsupported_count(dex_upgrade_female_result) == 0, "expected no unsupported female dex-upgrade ops")
+	_assert(_unsupported_count(brendans_house_sign_female_result) == 0, "expected no unsupported female sign ops")
+
 	_assert(running_shoes_result.get("status", "") == "ok", "expected running-shoes script to execute")
 	_assert(_object_effect_count(running_shoes_result) == 1, "expected one running-shoes object effect")
 	_assert(_object_effect_op(running_shoes_result, 0) == "removeobject", "unexpected running-shoes object op")
@@ -83,6 +107,8 @@ func _init() -> void:
 		"need_pokemon": _result_summary(need_pokemon_result),
 		"set_twin_pos": _result_summary(set_twin_pos_result),
 		"set_rival_birch_pos": _result_summary(set_rival_birch_pos_result),
+		"dex_upgrade_male": _result_summary(dex_upgrade_male_result),
+		"dex_upgrade_female": _result_summary(dex_upgrade_female_result),
 		"running_shoes": _result_summary(running_shoes_result),
 		"missing_status": String(missing_result.get("status", "")),
 	}))
@@ -143,6 +169,16 @@ func _effect_count_for_op(result: Dictionary, op: String) -> int:
 		if typeof(effect) == TYPE_DICTIONARY and String(effect.get("op", "")) == op:
 			count += 1
 	return count
+
+
+func _effect_value_for_op(result: Dictionary, op: String) -> int:
+	var effects = result.get("effects", [])
+	if typeof(effects) != TYPE_ARRAY:
+		return -1
+	for effect in effects:
+		if typeof(effect) == TYPE_DICTIONARY and String(effect.get("op", "")) == op:
+			return int(effect.get("value", -1))
+	return -1
 
 
 func _unsupported_count(result: Dictionary) -> int:

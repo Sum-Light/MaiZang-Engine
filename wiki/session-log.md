@@ -61,3 +61,5 @@
 - Added first-pass `ScriptVM` object effects for `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`, `addobject`, `removeobject`, `showobject`, and `hideobject` variants.
 - Extended `MapRuntime` and `EventManager` so real dispatch applies object effects to runtime object position, template position, movement type metadata, visibility, add/remove, and hide flags while previews stay read-only.
 - Expanded VM, map runtime, and event manager smoke tests to cover LittlerootTown Twin, Rival/Birch, and Mom object-effect scripts.
+- Traced `ScrCmd_checkplayergender` and `MALE`/`FEMALE` constants, then added `GameState.player_gender` plus VM support for writing `VAR_RESULT`.
+- Expanded `script_vm_smoke.gd` to verify LittlerootTown male/female sign text and Rival/Birch dex-upgrade object positions.
