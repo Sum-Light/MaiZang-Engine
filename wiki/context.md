@@ -17,7 +17,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Godot project now has a minimal runtime scaffold.
 - `project.godot` targets Godot 4.7 features and mobile rendering.
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
-- Autoloads are configured for `GameState`, `DataRegistry`, `MapRuntime`, and `EventManager`.
+- Autoloads are configured for `GameState`, `DataRegistry`, `MapRuntime`, `ScriptVM`, and `EventManager`.
 - `DataRegistry` now loads the first generated map at `res://data/generated/maps/littleroot_town.json` when present.
 - `DataRegistry` now loads the first generated tileset metadata at `res://data/generated/tilesets/littleroot_town.json` when present.
 - `DataRegistry` now loads the first generated event script data at `res://data/generated/scripts/littleroot_town.json` when present.
@@ -25,7 +25,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `MapRuntime` now indexes first-slice object events, BG/sign events, and warp events.
 - `MapRuntime` treats visible object-event cells as occupied and can resolve the player's current interaction target from grid position plus facing direction.
 - `scenes/main.tscn` displays a 20x20 LittlerootTown debug map from generated metatile ids and a palette-baked metatile atlas, visible object-event placeholders, plus a movable player placeholder that is blocked by generated map-grid collision and object-event occupancy.
-- `scenes/main.tscn` includes a debug dialogue panel driven by `EventManager`; object/sign interactions now preview the first generated `msgbox`/`message` text when available, while warps remain placeholders.
+- `scenes/main.tscn` includes a debug dialogue panel driven by `EventManager`; object/sign interactions now execute the first generated script slice through `ScriptVM` and show emitted dialogue text, while warps remain placeholders.
 - Player movement currently uses Godot's default `ui_up`, `ui_down`, `ui_left`, and `ui_right` actions.
 - Player interaction currently uses Godot's default `ui_accept` action.
 - Godot validation uses `C:\Users\YbbNa\Downloads\Godot_v4.7-stable_win64\Godot_v4.7-stable_win64_console.exe`.
@@ -56,6 +56,8 @@ The port should be data-driven: preserve source data and assets where practical,
 - Latest tileset export for `LittlerootTown` uses `gTileset_General` and `gTileset_Petalburg`, writes a 656-metatile RGBA atlas, reports 63 used metatile ids, records 8 fully covered source tile notes, and has 0 visible warnings.
 - Latest event script export for `LittlerootTown` found 130 labels, 78 scripts, 34 movement labels, 18 local text labels, and 0 orphan instructions.
 - Latest event script export records first-pass preview support for direct `msgbox`/`message` text only; full opcode behavior remains a future `ScriptVM` task grounded in source C traces and referenced resources.
+- `ScriptVM` now executes the first synchronous dialogue subset for generated scripts: `msgbox`, `message`, `lock`, `lockall`, `release`, `releaseall`, `faceplayer`, `waitmessage`, `waitbuttonpress`, `closemessage`, `goto`, `call`, `return`, `end`, basic `*_if_*` branches, `setflag`, `clearflag`, and `setvar`.
+- `ScriptVM` expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` according to the source standard scripts. Current waits and locks are recorded as execution effects; real asynchronous UI, object freezing, and player/object facing animation remain future work.
 - `LittlerootTown` generated collision currently has 268 passable cells and 132 blocked cells.
 - `LittlerootTown` has 8 generated object events; the first runtime pass shows them as placeholders and blocks movement into their occupied cells.
 - `LittlerootTown` has 4 generated BG/sign events and 3 generated warp events indexed by `MapRuntime`.

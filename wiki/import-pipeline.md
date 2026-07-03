@@ -186,4 +186,5 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - movement labels: 34
 - local text labels: 18
 - orphan instructions: 0
-- current runtime preview scope: first direct `msgbox`/`message` text resolution for debug dialogue only
+- current generated-data preview fields: first direct `msgbox`/`message` text references for debug inspection
+- current runtime execution scope: `ScriptVM` executes the first synchronous dialogue subset and expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` from source standard script behavior

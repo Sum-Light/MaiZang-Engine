@@ -65,3 +65,9 @@ Reason: Event scripts and gameplay systems encode behavior through engine comman
 Decision: Convert map `scripts.inc` files into generated script JSON and use it for limited debug dialogue previews before implementing the full `ScriptVM`.
 
 Reason: Script labels, text labels, movement labels, and instruction references are needed by interaction dispatch before complete opcode semantics exist. A generated data layer makes script references inspectable and testable while keeping real execution deferred until each command is traced to source C behavior and its referenced resources.
+
+## 2026-07-04 - Start ScriptVM with the traced dialogue path
+
+Decision: Introduce `ScriptVM` as an autoload and route object/BG dialogue interactions through it, starting with source-derived `msgbox` expansion and synchronous dialogue-result execution.
+
+Reason: `msgbox` in the source is a macro that loads a text pointer and calls a standard script from `gStdScripts`. Implementing that path in the VM preserves the real script structure better than keeping ad hoc EventManager previews. The first implementation records wait/lock/facing effects instead of pretending object freezing, facing animation, and asynchronous UI continuation already exist.

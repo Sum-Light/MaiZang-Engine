@@ -34,15 +34,16 @@
 - Add an interaction dispatcher path from player facing direction to debug dialogue. First pass done with `EventManager`; real script execution remains.
 - Parse `.inc` event scripts into labels and instructions. First pass done for `LittlerootTown`, including script labels, movement labels, local text labels, and direct `msgbox`/`message` references.
 - Preview simple generated dialogue from object/BG event scripts. First pass done through `EventManager.get_script_preview`; this is not a full `ScriptVM`.
+- Add a minimal `ScriptVM` execution path. First pass done for synchronous dialogue scripts, including `msgbox`, `message`, source-derived `MSGBOX_NPC/SIGN/DEFAULT` expansion, basic flow control, simple flag/var operations, and VM result reporting.
 - Support a minimal ScriptVM command set:
-  - `msgbox`
-  - `setflag`, `clearflag`, `checkflag`
-  - `setvar`, `addvar`, `compare`
-  - `goto`, `call`, `return`, `end`
-  - `goto_if_eq`, `call_if_eq`, `call_if_set`, `call_if_unset`
+  - `msgbox`. First pass done for `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT`.
+  - `setflag`, `clearflag`, `checkflag`. First pass done for `setflag` and `clearflag`.
+  - `setvar`, `addvar`, `compare`. First pass done for `setvar` and simple branch-time var reads.
+  - `goto`, `call`, `return`, `end`. First pass done.
+  - `goto_if_eq`, `call_if_eq`, `call_if_set`, `call_if_unset`. First pass done for set/unset/eq/ne variants used by the first slice.
   - `warp`, `warpsilent`
   - `applymovement`, `waitmovement`
-  - `lock`, `lockall`, `release`, `releaseall`
+  - `lock`, `lockall`, `release`, `releaseall`. First pass records execution effects; real object freezing remains.
   - `showobject`, `hideobject`, `addobject`, `removeobject`
 
 ## Milestone 5 - Text Pipeline

@@ -46,3 +46,7 @@
 - Generated `data/generated/scripts/littleroot_town.json` with 130 labels, 78 scripts, 34 movement labels, 18 text labels, and 0 orphan instructions.
 - Updated `DataRegistry` and `EventManager` so object/BG interactions can preview the first generated `msgbox`/`message` text when available.
 - Added `tools/godot_smoke/event_manager_smoke.gd` to verify generated script preview lookup for a Twin NPC script and the town sign script.
+- Traced the source `msgbox` macro, `gStdScripts`, `Std_MsgboxNPC`, `Std_MsgboxSign`, `Std_MsgboxDefault`, and relevant `src/scrcmd.c` commands before implementing the first VM slice.
+- Added `ScriptVM` as an autoload with synchronous execution for the first dialogue subset, including source-derived `MSGBOX_NPC/SIGN/DEFAULT` expansion, basic flow control, simple flag/var operations, and unsupported-op reporting.
+- Updated `EventManager` so object/BG interactions use `ScriptVM` when available and fall back to direct preview only if the VM is unavailable.
+- Added `tools/godot_smoke/script_vm_smoke.gd` and expanded `event_manager_smoke.gd` to verify VM execution for the Twin NPC and LittlerootTown town sign scripts.
