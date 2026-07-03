@@ -8,9 +8,13 @@ extends Node2D
 @onready var dialogue_label: Label = $Hud/DialoguePanel/DialogueLabel
 
 var _movement_note := ""
+var _transition_overlay: ColorRect
+var _transition_label: Label
+var _transition_tween: Tween
 
 
 func _ready() -> void:
+	_create_transition_overlay()
 	MapRuntime.configure_from_data(
 		DataRegistry.get_start_map_data(),
 		DataRegistry.get_start_tileset_data(),
@@ -46,6 +50,8 @@ func _ready() -> void:
 	if MapRuntime.has_signal("player_position_changed"):
 		MapRuntime.player_position_changed.connect(_on_script_player_position_changed)
 	EventManager.debug_message_requested.connect(_on_debug_message_requested)
+	if EventManager.has_signal("transition_sequence_requested"):
+		EventManager.transition_sequence_requested.connect(_on_transition_sequence_requested)
 
 	_update_status()
 
@@ -71,10 +77,20 @@ func _on_player_moved(grid_position: Vector2i) -> void:
 	_update_status()
 
 
-func _on_player_movement_blocked(target_position: Vector2i, cell_info: Dictionary) -> void:
-	if MapRuntime.has_method("get_warp_event_target"):
+func _on_player_movement_blocked(
+	target_position: Vector2i,
+	cell_info: Dictionary,
+	facing_direction: Vector2i
+) -> void:
+	if facing_direction == Vector2i.UP and MapRuntime.has_method("get_warp_event_target"):
 		var warp_event := MapRuntime.get_warp_event_target(target_position)
 		if not warp_event.is_empty():
+			warp_event["presentation"] = {
+				"kind": "door",
+				"entry_direction": "up",
+				"source_position": [GameState.player_grid_position.x, GameState.player_grid_position.y],
+				"trigger_position": [target_position.x, target_position.y],
+			}
 			_movement_note = "warp %s" % target_position
 			EventManager.dispatch_interaction(warp_event)
 			_update_status()
@@ -109,6 +125,21 @@ func _on_debug_message_requested(lines: PackedStringArray) -> void:
 	dialogue_panel.visible = true
 
 
+func _on_transition_sequence_requested(sequence: Dictionary) -> void:
+	if player.has_method("set_input_locked"):
+		player.set_input_locked(true)
+	if _transition_tween != null and _transition_tween.is_running():
+		_transition_tween.kill()
+
+	_transition_overlay.visible = true
+	_transition_overlay.modulate.a = 1.0
+	_transition_label.text = _transition_sequence_label(sequence)
+	_transition_tween = create_tween()
+	_transition_tween.tween_interval(_transition_sequence_seconds(sequence))
+	_transition_tween.tween_property(_transition_overlay, "modulate:a", 0.0, 0.12)
+	_transition_tween.finished.connect(_finish_transition_overlay)
+
+
 func _on_map_changed(map_data: Dictionary, tileset_data: Dictionary, _map_size: Vector2i) -> void:
 	if debug_map.has_method("configure_from_map_data"):
 		debug_map.configure_from_map_data(map_data, tileset_data)
@@ -135,6 +166,51 @@ func _on_script_player_position_changed(grid_position: Vector2i) -> void:
 func _hide_dialogue() -> void:
 	dialogue_panel.visible = false
 	dialogue_label.text = ""
+
+
+func _create_transition_overlay() -> void:
+	var hud := $Hud
+	_transition_overlay = ColorRect.new()
+	_transition_overlay.name = "TransitionOverlay"
+	_transition_overlay.visible = false
+	_transition_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_transition_overlay.color = Color(0, 0, 0, 0.86)
+	_transition_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	hud.add_child(_transition_overlay)
+
+	_transition_label = Label.new()
+	_transition_label.name = "TransitionLabel"
+	_transition_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_transition_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_transition_label.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_transition_overlay.add_child(_transition_label)
+
+
+func _finish_transition_overlay() -> void:
+	_transition_overlay.visible = false
+	_transition_label.text = ""
+	if player.has_method("set_input_locked"):
+		player.set_input_locked(false)
+
+
+func _transition_sequence_label(sequence: Dictionary) -> String:
+	return "%s -> %s | %s" % [
+		String(sequence.get("source_map", "")),
+		String(sequence.get("destination_map", "")),
+		String(sequence.get("presentation", "normal")),
+	]
+
+
+func _transition_sequence_seconds(sequence: Dictionary) -> float:
+	var frames := 0
+	var steps = sequence.get("steps", [])
+	if typeof(steps) == TYPE_ARRAY:
+		for step in steps:
+			if typeof(step) == TYPE_DICTIONARY:
+				frames += int(step.get("duration_frames", 0))
+	if frames <= 0:
+		return 0.18
+	return maxf(0.18, float(frames) / 60.0)
 
 
 func _update_status() -> void:

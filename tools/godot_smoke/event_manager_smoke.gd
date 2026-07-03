@@ -53,6 +53,10 @@ func _init() -> void:
 	manager.debug_message_requested.connect(func(lines: PackedStringArray) -> void:
 		captured["lines"] = lines
 	)
+	var captured_sequences := []
+	manager.transition_sequence_requested.connect(func(sequence: Dictionary) -> void:
+		captured_sequences.append(sequence)
+	)
 	manager.dispatch_interaction({
 		"type": "object_event",
 		"script": "LittlerootTown_EventScript_Twin",
@@ -81,6 +85,7 @@ func _init() -> void:
 	var rival_position_after_object_dispatch := _event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_RIVAL", true))
 	var birch_position_after_object_dispatch := _event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_BIRCH", true))
 	captured.clear()
+	captured_sequences.clear()
 	manager.dispatch_interaction({
 		"type": "coord_event",
 		"script": "LittlerootTown_EventScript_StepOffTruckMale",
@@ -90,6 +95,7 @@ func _init() -> void:
 		},
 	})
 	var transition_lines = captured.get("lines", PackedStringArray())
+	var truck_transition_sequence = captured_sequences[0] if captured_sequences.size() > 0 else {}
 	var house_script_result := manager.run_script("LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor")
 	var old_map_script_result := manager.run_script("LittlerootTown_EventScript_Twin")
 	var brendan_map_data: Dictionary = registry.get_map_data(BRENDANS_HOUSE_1F)
@@ -152,14 +158,22 @@ func _init() -> void:
 		_lines_contain(transition_lines, "Transition effects: 1 applied, 0 skipped"),
 		"expected transition effect summary in emitted lines"
 	)
+	_assert(truck_transition_sequence.get("presentation", "") == "silent", "expected truck warp silent presentation")
+	_assert(
+		_step_ops(truck_transition_sequence) == ["lock_controls", "fade_out", "load_map", "fade_in", "exit_task_select", "unlock_controls"],
+		"unexpected normal transition sequence steps"
+	)
 	_assert(house_script_result.get("status", "") == "ok", "expected transitioned script data to run Brendan house script")
 	_assert(old_map_script_result.get("status", "") == "missing_script", "expected old map script to be unavailable after transition")
 
 	captured.clear()
+	captured_sequences.clear()
 	var brendan_exit_warp := runtime.get_warp_event_target(Vector2i(8, 8))
 	manager.dispatch_interaction(brendan_exit_warp)
 	var map_warp_lines = captured.get("lines", PackedStringArray())
+	var map_warp_sequence = captured_sequences[0] if captured_sequences.size() > 0 else {}
 	var town_script_result := manager.run_script("LittlerootTown_EventScript_Twin")
+	var current_map_after_map_warp: String = game_state.current_map_id
 	_assert(brendan_exit_warp.get("type", "") == "warp_event", "expected Brendan house exit warp")
 	_assert(game_state.current_map_id == START_MAP, "expected map warp to return to LittlerootTown")
 	_assert(game_state.player_grid_position == Vector2i(5, 8), "expected map warp to use destination warp-id coordinates")
@@ -169,7 +183,49 @@ func _init() -> void:
 		_lines_contain(map_warp_lines, "Warp effects: 1 applied, 0 skipped"),
 		"expected map warp effect summary in emitted lines"
 	)
+	_assert(map_warp_sequence.get("presentation", "") == "normal", "expected step map warp normal presentation")
+	_assert(_step_ops(map_warp_sequence).has("exit_task_select"), "expected normal map warp exit task step")
 	_assert(town_script_result.get("status", "") == "ok", "expected town script data after map warp")
+
+	captured.clear()
+	captured_sequences.clear()
+	game_state.player_grid_position = Vector2i(14, 9)
+	var may_house_door_warp := runtime.get_warp_event_target(Vector2i(14, 8))
+	may_house_door_warp["presentation"] = {
+		"kind": "door",
+		"entry_direction": "up",
+		"source_position": [14, 9],
+		"trigger_position": [14, 8],
+	}
+	manager.dispatch_interaction(may_house_door_warp)
+	var door_warp_sequence = captured_sequences[0] if captured_sequences.size() > 0 else {}
+	var door_open_step := _first_step(door_warp_sequence, "door_open")
+	var door_close_step := _first_step(door_warp_sequence, "door_close")
+	var door_player_step := _first_step(door_warp_sequence, "player_step")
+	_assert(may_house_door_warp.get("type", "") == "warp_event", "expected May house door warp")
+	_assert(game_state.current_map_id == MAYS_HOUSE_1F, "expected door warp to load May house")
+	_assert(door_warp_sequence.get("presentation", "") == "door", "expected door presentation sequence")
+	_assert(
+		_step_ops(door_warp_sequence) == [
+			"lock_controls",
+			"freeze_object_events",
+			"play_se",
+			"door_open",
+			"player_step",
+			"hide_player",
+			"door_close",
+			"fade_out",
+			"load_map",
+			"fade_in",
+			"exit_task_select",
+			"conditional_exit_door_player_step",
+			"unlock_controls",
+		],
+		"unexpected door transition sequence steps"
+	)
+	_assert(int(door_open_step.get("duration_frames", 0)) == 16, "expected source door open to last 16 frames")
+	_assert(int(door_close_step.get("duration_frames", 0)) == 16, "expected source door close to last 16 frames")
+	_assert(int(door_player_step.get("duration_frames", 0)) == 16, "expected source normal walk step to last 16 frames")
 
 	print(JSON.stringify({
 		"event_manager_smoke": "ok",
@@ -178,7 +234,8 @@ func _init() -> void:
 		"need_pokemon": _preview_summary(need_pokemon_preview),
 		"player_position_after_coord_dispatch": _vector_to_array(player_position_after_coord_dispatch),
 		"current_map_after_transition": BRENDANS_HOUSE_1F,
-		"current_map_after_map_warp": game_state.current_map_id,
+		"current_map_after_map_warp": current_map_after_map_warp,
+		"door_sequence_ops": _step_ops(door_warp_sequence),
 		"rival_position_after_object_dispatch": _vector_to_array(rival_position_after_object_dispatch),
 	}))
 	manager.free()
@@ -227,6 +284,27 @@ func _lines_contain(lines: PackedStringArray, needle: String) -> bool:
 		if line == needle:
 			return true
 	return false
+
+
+func _step_ops(sequence: Dictionary) -> Array:
+	var ops := []
+	var steps = sequence.get("steps", [])
+	if typeof(steps) != TYPE_ARRAY:
+		return ops
+	for step in steps:
+		if typeof(step) == TYPE_DICTIONARY:
+			ops.append(String(step.get("op", "")))
+	return ops
+
+
+func _first_step(sequence: Dictionary, op: String) -> Dictionary:
+	var steps = sequence.get("steps", [])
+	if typeof(steps) != TYPE_ARRAY:
+		return {}
+	for step in steps:
+		if typeof(step) == TYPE_DICTIONARY and String(step.get("op", "")) == op:
+			return step
+	return {}
 
 
 func _map_size_from_data(map_data: Dictionary) -> Vector2i:

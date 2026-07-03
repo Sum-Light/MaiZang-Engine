@@ -1,8 +1,14 @@
 extends Node
 
 signal debug_message_requested(lines: PackedStringArray)
+signal transition_sequence_requested(sequence: Dictionary)
 
 const WARP_ID_NONE_VALUE := -1
+const DOOR_ANIM_FRAME_TIME := 4
+const DOOR_ANIM_FRAME_COUNT := 4
+const DOOR_ANIM_TOTAL_FRAMES := DOOR_ANIM_FRAME_TIME * DOOR_ANIM_FRAME_COUNT
+const WALK_NORMAL_TILE_FRAMES := 16
+const FADE_DELAY_DEFAULT := 0
 
 var _script_data: Dictionary = {}
 var _script_vm: Node = null
@@ -125,7 +131,7 @@ func _emit_warp_event(interaction: Dictionary, event_data: Dictionary) -> void:
 			String(event_data.get("dest_warp_id", "?")),
 		],
 	])
-	var transition_summary := _apply_map_warp_event(event_data)
+	var transition_summary := _apply_map_warp_event(interaction, event_data)
 	lines.append("Warp effects: %d applied, %d skipped" % [
 		_movement_summary_count(transition_summary, "applied"),
 		_movement_summary_count(transition_summary, "skipped"),
@@ -309,6 +315,9 @@ func _apply_transition_effects(transition_effects: Array) -> Dictionary:
 		var map_id := String(effect.get("map", ""))
 		var position := _transition_position(effect)
 		var position_source := "explicit" if bool(effect.get("has_explicit_position", false)) else "unset"
+		var source_map_id := _current_map_id()
+		var source_position := _transition_vector(effect, "source_position", _current_player_position())
+		var trigger_position := _transition_vector(effect, "trigger_position", source_position)
 		if map_id.is_empty():
 			_record_skipped_transition(summary, "missing_map", map_id, op, position)
 			continue
@@ -334,6 +343,18 @@ func _apply_transition_effects(transition_effects: Array) -> Dictionary:
 
 		var tileset_data: Dictionary = _data_registry.get_tileset_data_for_map(map_id)
 		var map_size: Vector2i = _data_registry.get_map_size(map_id)
+		var sequence := _build_transition_sequence(
+			effect,
+			source_map_id,
+			source_position,
+			trigger_position,
+			map_id,
+			position,
+			position_source
+		)
+		if not sequence.is_empty():
+			transition_sequence_requested.emit(sequence)
+
 		_map_runtime.configure_from_data(map_data, tileset_data, map_size)
 		if _game_state != null:
 			_game_state.current_map_id = map_id
@@ -354,11 +375,24 @@ func _apply_transition_effects(transition_effects: Array) -> Dictionary:
 			"position_applied": position_applied,
 			"position_source": position_source,
 			"style": String(effect.get("style", "")),
+			"presentation": String(effect.get("presentation", _default_transition_presentation(effect))),
+			"sequence": sequence,
 		})
 	return summary
 
 
-func _apply_map_warp_event(event_data: Dictionary) -> Dictionary:
+func _apply_map_warp_event(interaction: Dictionary, event_data: Dictionary) -> Dictionary:
+	var presentation = interaction.get("presentation", {})
+	var presentation_kind := "normal"
+	var entry_direction := ""
+	var source_position := _current_player_position()
+	var trigger_position := _interaction_position(interaction, source_position)
+	if typeof(presentation) == TYPE_DICTIONARY:
+		presentation_kind = String(presentation.get("kind", presentation_kind))
+		entry_direction = String(presentation.get("entry_direction", entry_direction))
+		source_position = _transition_vector(presentation, "source_position", source_position)
+		trigger_position = _transition_vector(presentation, "trigger_position", trigger_position)
+
 	return _apply_transition_effects([
 		{
 			"op": "map_warp",
@@ -369,6 +403,10 @@ func _apply_map_warp_event(event_data: Dictionary) -> Dictionary:
 			"has_explicit_position": false,
 			"uses_warp_id": true,
 			"style": "normal",
+			"presentation": presentation_kind,
+			"entry_direction": entry_direction,
+			"source_position": [source_position.x, source_position.y],
+			"trigger_position": [trigger_position.x, trigger_position.y],
 		},
 	])
 
@@ -380,6 +418,24 @@ func _transition_position(transition_effect: Dictionary) -> Vector2i:
 	if typeof(position) == TYPE_ARRAY and position.size() >= 2:
 		return Vector2i(int(position[0]), int(position[1]))
 	return Vector2i(-1, -1)
+
+
+func _transition_vector(source: Dictionary, key: String, default_value: Vector2i) -> Vector2i:
+	var value = source.get(key, default_value)
+	if typeof(value) == TYPE_VECTOR2I:
+		return value
+	if typeof(value) == TYPE_ARRAY and value.size() >= 2:
+		return Vector2i(int(value[0]), int(value[1]))
+	if typeof(value) == TYPE_DICTIONARY:
+		return Vector2i(int(value.get("x", default_value.x)), int(value.get("y", default_value.y)))
+	return default_value
+
+
+func _interaction_position(interaction: Dictionary, default_value: Vector2i) -> Vector2i:
+	var position = interaction.get("position", default_value)
+	if typeof(position) == TYPE_VECTOR2I:
+		return position
+	return default_value
 
 
 func _destination_position_for_warp_id(map_data: Dictionary, warp_id: int) -> Dictionary:
@@ -435,6 +491,135 @@ func _warp_id_from_value(value) -> Dictionary:
 	if text.is_valid_int():
 		return {"valid": true, "value": int(text)}
 	return {"valid": false, "reason": "invalid_warp_id"}
+
+
+func _build_transition_sequence(
+	effect: Dictionary,
+	source_map_id: String,
+	source_position: Vector2i,
+	trigger_position: Vector2i,
+	destination_map_id: String,
+	destination_position: Vector2i,
+	position_source: String
+) -> Dictionary:
+	var presentation := String(effect.get("presentation", _default_transition_presentation(effect)))
+	var steps := []
+	if presentation == "door":
+		steps = _door_warp_steps(source_position, trigger_position, destination_map_id, destination_position)
+	else:
+		steps = _normal_warp_steps(destination_map_id, destination_position)
+
+	return {
+		"type": "map_transition",
+		"presentation": presentation,
+		"style": String(effect.get("style", "normal")),
+		"source_map": source_map_id,
+		"source_position": source_position,
+		"trigger_position": trigger_position,
+		"destination_map": destination_map_id,
+		"destination_position": destination_position,
+		"position_source": position_source,
+		"frame_basis": "60fps",
+		"source_trace": [
+			"src/field_control_avatar.c:TryDoorWarp/TryStartWarpEventScript",
+			"src/field_screen_effect.c:DoWarp/DoDoorWarp/Task_DoDoorWarp/FieldCB_DefaultWarpExit",
+			"src/field_door.c:sDoorOpenAnimFrames/sDoorCloseAnimFrames",
+			"src/event_object_movement.c:MOVE_SPEED_NORMAL",
+		],
+		"steps": steps,
+	}
+
+
+func _default_transition_presentation(effect: Dictionary) -> String:
+	if String(effect.get("style", "")) == "silent":
+		return "silent"
+	return "normal"
+
+
+func _door_warp_steps(
+	source_position: Vector2i,
+	trigger_position: Vector2i,
+	destination_map_id: String,
+	destination_position: Vector2i
+) -> Array:
+	var door_position := trigger_position + Vector2i.UP
+	return [
+		{"op": "lock_controls", "source": "DoDoorWarp"},
+		{"op": "freeze_object_events", "source": "Task_DoDoorWarp"},
+		{
+			"op": "play_se",
+			"sound": "GetDoorSoundEffect",
+			"position": door_position,
+			"source": "Task_DoDoorWarp",
+		},
+		_door_step("door_open", door_position, "FieldAnimateDoorOpen"),
+		{
+			"op": "player_step",
+			"movement_action": "MOVEMENT_ACTION_WALK_NORMAL_UP",
+			"from": source_position,
+			"to": trigger_position,
+			"duration_frames": WALK_NORMAL_TILE_FRAMES,
+			"source": "ObjectEventSetHeldMovement",
+		},
+		{"op": "hide_player", "visible": false, "source": "SetPlayerVisibility(FALSE)"},
+		_door_step("door_close", door_position, "FieldAnimateDoorClose"),
+		{"op": "fade_out", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeOutScreen"},
+		{"op": "load_map", "map": destination_map_id, "position": destination_position, "source": "WarpIntoMap"},
+		{"op": "fade_in", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeInScreen"},
+		{
+			"op": "exit_task_select",
+			"source": "SetUpWarpExitTask",
+			"branches": ["Task_ExitDoor", "Task_ExitNonAnimDoor", "Task_ExitNonDoor"],
+		},
+		{
+			"op": "conditional_exit_door_player_step",
+			"condition": "destination_metatile_behavior_is_door",
+			"movement_action": "MOVEMENT_ACTION_WALK_NORMAL_DOWN",
+			"from": destination_position,
+			"to": destination_position + Vector2i.DOWN,
+			"duration_frames": WALK_NORMAL_TILE_FRAMES,
+			"source": "Task_ExitDoor",
+		},
+		{"op": "unlock_controls", "source": "Task_ExitDoor/Task_ExitNonDoor"},
+	]
+
+
+func _normal_warp_steps(destination_map_id: String, destination_position: Vector2i) -> Array:
+	return [
+		{"op": "lock_controls", "source": "DoWarp"},
+		{"op": "fade_out", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeOutScreen"},
+		{"op": "load_map", "map": destination_map_id, "position": destination_position, "source": "WarpIntoMap"},
+		{"op": "fade_in", "color": "black_or_white_by_map_pair", "delay": FADE_DELAY_DEFAULT, "source": "WarpFadeInScreen"},
+		{
+			"op": "exit_task_select",
+			"source": "SetUpWarpExitTask",
+			"branches": ["Task_ExitDoor", "Task_ExitNonAnimDoor", "Task_ExitNonDoor"],
+		},
+		{"op": "unlock_controls", "source": "Task_ExitDoor/Task_ExitNonDoor"},
+	]
+
+
+func _door_step(op: String, position: Vector2i, source: String) -> Dictionary:
+	return {
+		"op": op,
+		"position": position,
+		"frame_time": DOOR_ANIM_FRAME_TIME,
+		"frame_count": DOOR_ANIM_FRAME_COUNT,
+		"duration_frames": DOOR_ANIM_TOTAL_FRAMES,
+		"source": source,
+	}
+
+
+func _current_map_id() -> String:
+	if _game_state != null:
+		return String(_game_state.current_map_id)
+	return ""
+
+
+func _current_player_position() -> Vector2i:
+	if _game_state != null:
+		return _game_state.player_grid_position
+	return Vector2i.ZERO
 
 
 func _record_skipped_transition(

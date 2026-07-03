@@ -149,3 +149,9 @@ Reason: The goal is to match the source game's in-game feel and interaction deta
 Decision: Apply the same fidelity rule to every script command, gameplay feature, and code-backed system: trace source code and referenced resources, then reproduce source-visible behavior, ordering, waits, animation/audio/screen effects, UI flow, and gameplay results in Godot-native systems.
 
 Reason: The port should not become a loose logical approximation. Modern Godot architecture is for implementation clarity and better asset/runtime representation, not permission to drop the original interaction details players can see or feel.
+
+## 2026-07-04 - Represent transition presentation as structured sequences first
+
+Decision: Have `EventManager` emit a source-traced transition sequence contract before generated map transitions are applied, and let presentation systems consume that contract incrementally.
+
+Reason: Map transitions include visible timing and order from source `DoWarp`, `DoDoorWarp`, door animation tables, normal walk timing, fades, audio cues, and exit tasks. Recording the sequence as data lets smoke tests lock those requirements before the final Godot animation, audio, and TileMap presentation systems exist.

@@ -1,6 +1,6 @@
 extends "res://scripts/overworld/grid_mover.gd"
 
-signal movement_blocked(target_position: Vector2i, cell_info: Dictionary)
+signal movement_blocked(target_position: Vector2i, cell_info: Dictionary, facing_direction: Vector2i)
 signal interaction_requested(
 	origin_position: Vector2i,
 	target_position: Vector2i,
@@ -9,6 +9,7 @@ signal interaction_requested(
 )
 
 var facing_direction := Vector2i.DOWN
+var input_locked := false
 
 
 func _ready() -> void:
@@ -17,7 +18,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if _is_moving:
+	if input_locked or _is_moving:
 		return
 
 	if Input.is_action_just_pressed("ui_accept"):
@@ -31,7 +32,11 @@ func _physics_process(_delta: float) -> void:
 		if MapRuntime.can_enter_cell(target_position):
 			try_move(direction)
 		else:
-			movement_blocked.emit(target_position, MapRuntime.get_cell_info(target_position))
+			movement_blocked.emit(target_position, MapRuntime.get_cell_info(target_position), facing_direction)
+
+
+func set_input_locked(value: bool) -> void:
+	input_locked = value
 
 
 func _read_input_direction() -> Vector2i:
