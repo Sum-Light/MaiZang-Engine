@@ -1,0 +1,55 @@
+# Project Context
+
+## Goal
+
+Port the `pokeemerald-expansion` GBA ROM hack base into a modern Godot 4.7 stable project.
+
+The port should be data-driven: preserve source data and assets where practical, convert them into Godot-friendly formats, and rebuild the runtime systems in Godot instead of trying to compile the original GBA engine into Godot.
+
+## Local Paths
+
+- Godot target project: `C:\Users\YbbNa\OneDrive\Documents\pokeemerald-godot`
+- Source project: `C:\Users\YbbNa\OneDrive\Project-Azoth\pokeemerald-expansion-master\pokeemerald-expansion-master`
+- Project skill: `C:\Users\YbbNa\.codex\skills\pokeemerald-godot-port`
+
+## Current Godot Project State
+
+- Godot project exists and is almost empty.
+- `project.godot` targets Godot 4.7 features and mobile rendering.
+- No gameplay scenes, scripts, resources, or README existed before this wiki was added.
+- The project directory was not a git repository during the initial inspection.
+- The project directory is now a standalone git repository initialized on 2026-07-03.
+- Local git line-ending config was set to `core.autocrlf=false` and `core.eol=lf`, matching the existing `.gitattributes` LF policy.
+- The project should be maintained with focused commits after completed file changes.
+
+## Source Project Facts
+
+- Source is `pokeemerald-expansion`, built on the `pokeemerald` decompilation.
+- It is a ROM hack base, not a standalone playable game by itself.
+- Approximate file count from `rg --files`: 29,969.
+- Major directories include `data`, `graphics`, `include`, `src`, `sound`, `tools`, and `docs`.
+- The source project is inside a larger git worktree rooted at `C:\Users\YbbNa\OneDrive\Project-Azoth`; git status from the source path includes unrelated parent-tree noise.
+
+## Known Source Formats
+
+- Map metadata: `data/maps/*/map.json`
+- Map scripts: `data/maps/*/scripts.inc`
+- Layout metadata: `data/layouts/layouts.json`
+- Layout block data: `data/layouts/*/map.bin`
+- Layout border data: `data/layouts/*/border.bin`
+- Tilesets: `data/tilesets/primary|secondary/*`
+- Tileset images: `tiles.png`
+- Tileset metatiles: `metatiles.bin`
+- Tileset behavior data: `metatile_attributes.bin`
+- Palettes: `palettes/*.pal`
+- Pokemon data: `src/data/pokemon/species_info.h`
+- Move data: `src/data/moves_info.h`
+- Item data: `src/data/items.h`
+- Wild encounters: `src/data/wild_encounters.json`
+- Trainers: `src/data/trainers.party`
+
+## Important Risk
+
+Text currently appears garbled when read directly in the shell. Do not hand-fix strings. Build a `charmap.txt`-driven text extraction and decoding flow before treating text data as final.
+
+Avoid using PowerShell for script-like file rewriting or text conversion unless necessary. If PowerShell is used, explicitly consider encoding and verify the result, especially for Chinese text.
