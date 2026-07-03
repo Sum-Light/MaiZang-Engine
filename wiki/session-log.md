@@ -93,3 +93,9 @@
 - Extended `MapRuntime`, `EventManager`, `TransitionSequencePlayer`, `DebugMapPlane`, and `Main` so door transition sequences carry source-backed door animation metadata and presentation can play the 16-frame open/close overlays in source frame order.
 - Expanded smoke coverage for door animation metadata lookup, door sequence sound/frame data, fake-renderer frame playback, and real `DebugMapPlane` door overlay API.
 - Verified `export_tilesets.py` Python compilation, `git diff --check`, `map_runtime_smoke.gd`, `event_manager_smoke.gd`, `script_vm_smoke.gd`, `transition_presentation_smoke.gd`, and Godot 4.7 headless startup.
+- Confirmed the fidelity rule applies to every function, script, and code-backed system: trace source code/resources first, preserve source-visible behavior and timing, and ignore only GBA hardware/storage constraints in the Godot runtime.
+- Traced source text handling through `tools/preproc/charmap.cpp`, `tools/preproc/string_parser.cpp`, and `tools/preproc/c_file.cpp` before adding the first charmap-backed text validation slice.
+- Added `tools/importer/text_codec.py` and `tools/importer/text_codec_smoke.py` to parse `charmap.txt`, encode source event strings, preserve control codes/placeholders, and convert display escapes for Godot text.
+- Updated `export_event_scripts.py` so generated local map-script text records keep UTF-8 `display_text` plus source charmap encoding metadata, with all first-slice local texts reporting 0 charmap warnings.
+- Updated `ScriptVM` message results and `script_vm_smoke.gd` so runtime dialogue records expose text encoding status, source byte count, and terminator metadata.
+- Verified `py_compile`, `text_codec_smoke.py`, `git diff --check`, `map_runtime_smoke.gd`, `event_manager_smoke.gd`, `script_vm_smoke.gd`, and `transition_presentation_smoke.gd`.

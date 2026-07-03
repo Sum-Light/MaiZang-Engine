@@ -63,6 +63,14 @@ func _init() -> void:
 	_assert(town_sign_result.get("status", "") == "ok", "expected town sign script to execute")
 	_assert(town_sign_result.get("finished", false), "expected town sign script to finish")
 	_assert(_first_text_label(town_sign_result) == "LittlerootTown_Text_TownSign", "unexpected town sign text")
+	_assert(_text_encoding_status(script_data, "LittlerootTown_Text_TownSign") == "ok", "expected town sign charmap encoding")
+	_assert(_text_source_byte_count(script_data, "LittlerootTown_Text_TownSign") > 0, "expected town sign source bytes")
+	_assert(_text_has_control_token(script_data, "LittlerootTown_Text_TownSign", "\\n"), "expected town sign newline control")
+	_assert(_text_has_terminator(script_data, "LittlerootTown_Text_TownSign"), "expected town sign terminator")
+	_assert(_first_message_encoding_status(town_sign_result) == "ok", "expected town sign runtime encoding status")
+	_assert(_first_message_source_byte_count(town_sign_result) > 0, "expected town sign runtime source byte count")
+	_assert(not _first_message_text(town_sign_result).ends_with("$"), "expected town sign display text without terminator")
+	_assert(_first_message_text(town_sign_result).find("\n") != -1, "expected town sign display newline")
 	_assert(_has_effect(town_sign_result, "lockall"), "expected town sign lockall effect")
 	_assert(_has_effect(town_sign_result, "releaseall"), "expected town sign releaseall effect")
 	_assert(_unsupported_count(town_sign_result) == 0, "expected no unsupported town sign ops")
@@ -245,6 +253,72 @@ func _first_text_label(result: Dictionary) -> String:
 	if typeof(first) != TYPE_DICTIONARY:
 		return ""
 	return String(first.get("text_label", ""))
+
+
+func _first_message_text(result: Dictionary) -> String:
+	var messages = result.get("messages", [])
+	if typeof(messages) != TYPE_ARRAY or messages.is_empty():
+		return ""
+	var first = messages[0]
+	if typeof(first) != TYPE_DICTIONARY:
+		return ""
+	return String(first.get("text", ""))
+
+
+func _first_message_encoding_status(result: Dictionary) -> String:
+	var messages = result.get("messages", [])
+	if typeof(messages) != TYPE_ARRAY or messages.is_empty():
+		return ""
+	var first = messages[0]
+	if typeof(first) != TYPE_DICTIONARY:
+		return ""
+	return String(first.get("encoding_status", ""))
+
+
+func _first_message_source_byte_count(result: Dictionary) -> int:
+	var messages = result.get("messages", [])
+	if typeof(messages) != TYPE_ARRAY or messages.is_empty():
+		return 0
+	var first = messages[0]
+	if typeof(first) != TYPE_DICTIONARY:
+		return 0
+	return int(first.get("source_byte_count", 0))
+
+
+func _text_record(script_data: Dictionary, text_label: String) -> Dictionary:
+	var texts = script_data.get("texts", {})
+	if typeof(texts) != TYPE_DICTIONARY:
+		return {}
+	var record = texts.get(text_label, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func _text_encoding(script_data: Dictionary, text_label: String) -> Dictionary:
+	var record := _text_record(script_data, text_label)
+	var encoding = record.get("encoding", {})
+	return encoding if typeof(encoding) == TYPE_DICTIONARY else {}
+
+
+func _text_encoding_status(script_data: Dictionary, text_label: String) -> String:
+	return String(_text_encoding(script_data, text_label).get("status", ""))
+
+
+func _text_source_byte_count(script_data: Dictionary, text_label: String) -> int:
+	return int(_text_encoding(script_data, text_label).get("byte_count", 0))
+
+
+func _text_has_terminator(script_data: Dictionary, text_label: String) -> bool:
+	return bool(_text_encoding(script_data, text_label).get("terminator_present", false))
+
+
+func _text_has_control_token(script_data: Dictionary, text_label: String, token: String) -> bool:
+	var controls = _text_encoding(script_data, text_label).get("control_codes", [])
+	if typeof(controls) != TYPE_ARRAY:
+		return false
+	for control in controls:
+		if typeof(control) == TYPE_DICTIONARY and String(control.get("token", "")) == token:
+			return true
+	return false
 
 
 func _has_effect(result: Dictionary, op: String) -> bool:

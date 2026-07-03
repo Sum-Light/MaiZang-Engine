@@ -10,6 +10,7 @@ from pathlib import Path
 
 from export_map import camel_to_snake, write_json, write_manifest
 from source_probe import load_config, to_project_path
+from text_codec import display_text_from_source, encode_source_text, load_charmap
 
 
 LABEL_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)(::|:)$")
@@ -47,6 +48,15 @@ SOURCE_BEHAVIOR_TRACES = {
         ],
         "godot_status": "preview_resolves_first_msgbox_text_only",
     },
+}
+
+TEXT_ENCODING_TRACE = {
+    "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString",
+    ],
+    "godot_status": "utf8_display_text_with_source_charmap_byte_validation",
 }
 
 
@@ -144,43 +154,6 @@ def parse_string_literal(value):
     return "".join(chars)
 
 
-def display_text(raw_text):
-    output = []
-    index = 0
-    while index < len(raw_text):
-        char = raw_text[index]
-        if char != "\\":
-            output.append(char)
-            index += 1
-            continue
-
-        index += 1
-        if index >= len(raw_text):
-            output.append("\\")
-            break
-
-        escaped = raw_text[index]
-        if escaped == "n" or escaped == "l":
-            output.append("\n")
-        elif escaped == "p":
-            output.append("\n\n")
-        elif escaped == "r":
-            output.append("\r")
-        elif escaped == "t":
-            output.append("\t")
-        elif escaped == "\\":
-            output.append("\\")
-        elif escaped == '"':
-            output.append('"')
-        else:
-            output.append("\\" + escaped)
-        index += 1
-
-    if output and output[-1] == "$":
-        output.pop()
-    return "".join(output)
-
-
 def read_script_file(path):
     labels = {}
     order = []
@@ -268,10 +241,15 @@ def build_export(root, map_folder):
     script_path = root / "data/maps" / map_folder / "scripts.inc"
     if not script_path.exists():
         raise FileNotFoundError(script_path)
+    charmap_path = root / "charmap.txt"
+    charmap = load_charmap(charmap_path)
 
     labels, order, orphan_instructions = read_script_file(script_path)
     op_counts = Counter()
     unsupported_preview_ops = Counter()
+    text_encoding_status_counts = Counter()
+    text_encoding_warning_count = 0
+    text_source_byte_count = 0
     scripts = {}
     movements = {}
     texts = {}
@@ -302,11 +280,16 @@ def build_export(root, map_folder):
                 if instruction["op"] == ".string" and instruction["args"]
             ]
             raw_text = "".join(raw_parts)
+            encoding = encode_source_text(raw_text, charmap)
+            text_encoding_status_counts[encoding["status"]] += 1
+            text_encoding_warning_count += len(encoding["warnings"])
+            text_source_byte_count += encoding["byte_count"]
             texts[label] = {
                 "label": label,
                 "line": record["line"],
                 "raw_text": raw_text,
-                "display_text": display_text(raw_text),
+                "display_text": display_text_from_source(raw_text),
+                "encoding": encoding,
             }
             continue
 
@@ -329,7 +312,9 @@ def build_export(root, map_folder):
             "project": "pokeemerald-expansion",
             "map_folder": map_folder,
             "map_script": to_project_path(script_path.relative_to(root)),
+            "charmap": to_project_path(charmap_path.relative_to(root)),
             "encoding": "utf-8",
+            "text_encoding_trace": TEXT_ENCODING_TRACE,
         },
         "labels": label_index,
         "scripts": scripts,
@@ -345,6 +330,10 @@ def build_export(root, map_folder):
             "script_count": len(scripts),
             "movement_count": len(movements),
             "text_count": len(texts),
+            "encoded_text_count": sum(text_encoding_status_counts.values()),
+            "text_source_byte_count": text_source_byte_count,
+            "charmap_warning_count": text_encoding_warning_count,
+            "charmap_status_counts": dict(sorted(text_encoding_status_counts.items())),
             "orphan_instruction_count": len(orphan_instructions),
             "op_counts": dict(sorted(op_counts.items())),
         },
@@ -379,6 +368,7 @@ def main(argv):
         "script_count": exported["stats"]["script_count"],
         "movement_count": exported["stats"]["movement_count"],
         "text_count": exported["stats"]["text_count"],
+        "charmap_warning_count": exported["stats"]["charmap_warning_count"],
     }
     write_manifest(
         output_root / "import_manifest.json",

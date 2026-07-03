@@ -173,3 +173,9 @@ Reason: Source door and warp transitions perform visible work before and after t
 Decision: Parse source door animation tables during tileset export, bake supported used door animation strips into normal RGBA frame atlases, and let transition presentation play those frames as map overlays.
 
 Reason: The source `field_door.c` tables define visible behavior: metatile labels, animation graphics, palette slots, frame order, frame duration, and sound category. Godot should preserve that player-facing sequence, but the GBA palette/tile-memory representation is only an import concern. Baking the already-palette-resolved frames into ordinary textures keeps the runtime Godot-native while matching the source door open/close timing and ordering.
+
+## 2026-07-04 - Keep display text UTF-8 with charmap source metadata
+
+Decision: Generated text records should keep Godot-facing UTF-8 `display_text` while also storing source `charmap.txt` byte metadata, control codes, placeholders, terminator state, and warnings.
+
+Reason: The source project's charmap is required to verify that script text still maps to the original byte stream, including Chinese characters and control codes. Godot does not need to render through the GBA text encoding at runtime. Splitting display text from source-byte metadata preserves source compatibility and debugging value without importing GBA text storage constraints into the runtime UI.

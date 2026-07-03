@@ -53,6 +53,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `tools/importer/export_tilesets.py` parses `include/constants/metatile_behaviors.h` and writes behavior names into generated tileset metadata so runtime rules can compare source behavior names instead of hardcoded numeric ids.
 - `tools/importer/export_tilesets.py` also parses `include/constants/metatile_labels.h` and `src/field_door.c` to bake supported used door animation strips from `graphics/door_anims/*.png` into normal RGBA frame atlases and generated `door_animations` metadata.
 - `tools/importer/export_event_scripts.py` exports `LittlerootTown` map script labels, instruction streams, movement labels, local text labels, first-pass `msgbox` previews, and source behavior trace notes.
+- `tools/importer/export_event_scripts.py` now validates local map-script text labels against source `charmap.txt`, preserving UTF-8 `display_text` plus source bytes, control codes, placeholders, terminator metadata, and warnings.
 - Generated map data currently exists for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated tileset metadata and palette-baked metatile atlases currently exist for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated tileset metadata now includes a `metatile_behaviors` name table plus per-metatile `attribute.behavior_name` values.
@@ -62,9 +63,9 @@ The port should be data-driven: preserve source data and assets where practical,
 - Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
 - Latest map export for `LittlerootTown` decoded 400 map-grid entries into 63 unique metatile ids.
 - Latest tileset export for `LittlerootTown` uses `gTileset_General` and `gTileset_Petalburg`, writes a 656-metatile RGBA atlas, reports 63 used metatile ids, records 8 fully covered source tile notes, exports 2 door animation atlases, and has 0 visible warnings.
-- Latest event script export for `LittlerootTown` found 130 labels, 78 scripts, 34 movement labels, 18 local text labels, and 0 orphan instructions.
-- Generated `LittlerootTown_BrendansHouse_1F` is 11x9 and has 26 scripts, 11 movement labels, 29 text labels, and 0 script orphan instructions.
-- Generated `LittlerootTown_MaysHouse_1F` is 11x9 and has 31 scripts, 11 movement labels, 8 text labels, and 0 script orphan instructions.
+- Latest event script export for `LittlerootTown` found 130 labels, 78 scripts, 34 movement labels, 18 local text labels, 0 charmap warnings, and 0 orphan instructions.
+- Generated `LittlerootTown_BrendansHouse_1F` is 11x9 and has 26 scripts, 11 movement labels, 29 text labels, 0 charmap warnings, and 0 script orphan instructions.
+- Generated `LittlerootTown_MaysHouse_1F` is 11x9 and has 31 scripts, 11 movement labels, 8 text labels, 0 charmap warnings, and 0 script orphan instructions.
 - Latest event script export records first-pass preview support for direct `msgbox`/`message` text only; full opcode behavior remains a future `ScriptVM` task grounded in source C traces and referenced resources.
 - `ScriptVM` now executes the first synchronous dialogue, movement-effect, object-effect, field-effect, audio-effect, transition-effect, and player-effect subset for generated scripts: `msgbox`, `message`, `lock`, `lockall`, `release`, `releaseall`, `faceplayer`, `waitmessage`, `waitbuttonpress`, `closemessage`, `goto`, `call`, `return`, `end`, basic `*_if_*` branches, `setflag`, `clearflag`, `setvar`, `checkplayergender`, `applymovement`, `applymovementat`, `waitmovement`, `waitmovementat`, `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`, `addobject`, `addobjectat`, `removeobject`, `removeobjectat`, `showobject`, `showobjectat`, `hideobject`, `hideobjectat`, `delay`, `opendoor`, `closedoor`, `waitdooranim`, `waitstate`, `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, and `hideplayer`.
 - `ScriptVM` expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` according to the source standard scripts. Current waits and locks are recorded as execution effects; real asynchronous UI, object freezing, and player/object facing animation remain future work.
@@ -102,6 +103,6 @@ The port should be data-driven: preserve source data and assets where practical,
 
 ## Important Risk
 
-Text currently appears garbled when read directly in the shell. Do not hand-fix strings. Build a `charmap.txt`-driven text extraction and decoding flow before treating text data as final.
+Text may appear garbled when read directly in the shell because console encoding can differ from the UTF-8 source files. Do not hand-fix strings. Local map-script text labels now have a `charmap.txt`-driven validation pass, but broader text resources and C string macros still need the same treatment before they are final.
 
 Avoid using PowerShell for script-like file rewriting or text conversion unless necessary. If PowerShell is used, explicitly consider encoding and verify the result, especially for Chinese text.

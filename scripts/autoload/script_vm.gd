@@ -868,6 +868,14 @@ func _execute_message(
 
 	var text_record := _get_text_record(text_label)
 	var status := "ok" if not text_record.is_empty() else "missing_text"
+	var encoding = text_record.get("encoding", {})
+	var encoding_status := "unknown"
+	var source_byte_count := 0
+	var terminator_present := false
+	if typeof(encoding) == TYPE_DICTIONARY:
+		encoding_status = String(encoding.get("status", "unknown"))
+		source_byte_count = int(encoding.get("byte_count", 0))
+		terminator_present = bool(encoding.get("terminator_present", false))
 	state["messages"].append({
 		"text_label": text_label,
 		"mode": mode,
@@ -875,11 +883,15 @@ func _execute_message(
 		"line": line,
 		"text": String(text_record.get("display_text", "")),
 		"status": status,
+		"encoding_status": encoding_status,
+		"source_byte_count": source_byte_count,
+		"terminator_present": terminator_present,
 	})
 	_record_effect(state, "message", line, {
 		"text_label": text_label,
 		"mode": mode,
 		"status": status,
+		"encoding_status": encoding_status,
 	})
 
 

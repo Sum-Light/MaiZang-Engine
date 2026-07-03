@@ -41,6 +41,9 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 ### Text
 
 - `charmap.txt`
+- `tools/preproc/charmap.cpp`
+- `tools/preproc/string_parser.cpp`
+- `tools/preproc/c_file.cpp`
 - `data/text/*.inc`
 - text labels inside map scripts
 - C macros such as `_("")` and `COMPOUND_STRING()`
@@ -86,6 +89,7 @@ Each import run should report:
 - unresolved labels
 - invalid warp targets
 - text decode failures
+- charmap encoding warnings
 - script command implementations that have not yet been traced to source C behavior
 
 ## Source Behavior Rule
@@ -146,9 +150,11 @@ Current tileset export behavior:
 Current event script export behavior:
 
 - Reads `data/maps/<Map>/scripts.inc` as UTF-8 and writes generated JSON with LF endings through the shared importer JSON writer.
+- Loads `charmap.txt` and follows the source preprocessor model from `tools/preproc/charmap.cpp`, `tools/preproc/string_parser.cpp`, and `tools/preproc/c_file.cpp` for text-byte validation.
 - Parses labels, map script tables, script instruction streams, movement labels, and local `.string` text labels.
 - Records per-script raw operations, direct `msgbox`/`message` references, call/goto references, and simple runtime preview summaries.
-- Converts simple display escapes for preview only: `\n` and `\l` become newlines, `\p` becomes a blank line, and trailing `$` terminators are removed.
+- Keeps Godot display text as UTF-8 while preserving source charmap encoding metadata for each local text label: status, source bytes, source hex, byte count, `$` terminator presence, control codes, placeholders, and warnings.
+- Converts display escapes for preview/runtime text: `\n` and `\l` become newlines, `\p` becomes a blank line, and trailing `$` terminators are removed from `display_text`.
 - Records source behavior traces for supported preview behavior from `src/scrcmd.c`, `data/event_scripts.s`, and `data/scripts/std_msgbox.inc`.
 - Updates `data/generated/import_manifest.json` with exported script metadata while preserving existing entries for other maps, tilesets, and scripts.
 
@@ -195,8 +201,11 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - scripts: 78
 - movement labels: 34
 - local text labels: 18
+- charmap status: 18 ok, 0 warnings
+- source text bytes: 1358
 - orphan instructions: 0
 - current generated-data preview fields: first direct `msgbox`/`message` text references for debug inspection
+- current text pipeline scope: local map-script text labels have UTF-8 `display_text` plus source charmap byte/control-code metadata; global text macros and broader text resources remain future import work
 - current runtime execution scope: `ScriptVM` executes the first synchronous dialogue subset and expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` from source standard script behavior
 - current movement runtime scope: `ScriptVM` resolves generated movement labels for `applymovement`/`waitmovement` and emits structured movement-effect results; real dispatch fast-forwards map/player positions through `MapRuntime`, while animation queues and object movement tasks are still future runtime work
 - current field-effect runtime scope: `ScriptVM` records `delay`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect results; transition presentation now consumes generated door animation metadata for first-pass door warp overlays, while standalone script-driven door animation, real audio playback, and true asynchronous timing remain future work
@@ -205,5 +214,5 @@ Latest verified first-slice event script export for `LittlerootTown`:
 
 Latest verified additional maps for the first transition slice:
 
-- `LittlerootTown_BrendansHouse_1F`: generated map `data/generated/maps/littleroot_town_brendans_house_1_f.json`, tileset `data/generated/tilesets/littleroot_town_brendans_house_1_f.json`, atlas `assets/generated/tilesets/littleroot_town_brendans_house_1_f_metatiles.png`, scripts `data/generated/scripts/littleroot_town_brendans_house_1_f.json`, size 11x9, 26 scripts, 11 movement labels, 29 text labels
-- `LittlerootTown_MaysHouse_1F`: generated map `data/generated/maps/littleroot_town_mays_house_1_f.json`, tileset `data/generated/tilesets/littleroot_town_mays_house_1_f.json`, atlas `assets/generated/tilesets/littleroot_town_mays_house_1_f_metatiles.png`, scripts `data/generated/scripts/littleroot_town_mays_house_1_f.json`, size 11x9, 31 scripts, 11 movement labels, 8 text labels
+- `LittlerootTown_BrendansHouse_1F`: generated map `data/generated/maps/littleroot_town_brendans_house_1_f.json`, tileset `data/generated/tilesets/littleroot_town_brendans_house_1_f.json`, atlas `assets/generated/tilesets/littleroot_town_brendans_house_1_f_metatiles.png`, scripts `data/generated/scripts/littleroot_town_brendans_house_1_f.json`, size 11x9, 26 scripts, 11 movement labels, 29 text labels, 0 charmap warnings
+- `LittlerootTown_MaysHouse_1F`: generated map `data/generated/maps/littleroot_town_mays_house_1_f.json`, tileset `data/generated/tilesets/littleroot_town_mays_house_1_f.json`, atlas `assets/generated/tilesets/littleroot_town_mays_house_1_f_metatiles.png`, scripts `data/generated/scripts/littleroot_town_mays_house_1_f.json`, size 11x9, 31 scripts, 11 movement labels, 8 text labels, 0 charmap warnings

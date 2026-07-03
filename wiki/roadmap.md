@@ -57,10 +57,10 @@
 
 ## Milestone 5 - Text Pipeline
 
-- Parse `charmap.txt`.
-- Extract text macros and labels.
-- Convert text into UTF-8 Godot resources.
-- Preserve control codes and placeholders.
+- Parse `charmap.txt`. First pass done for map-script local text labels using a source-preprocessor-compatible charmap reader.
+- Extract text macros and labels. First pass done for local `.string` labels inside generated first-slice map scripts; global text files and C macros remain.
+- Convert text into UTF-8 Godot resources. First pass done for generated map-script labels as UTF-8 `display_text`.
+- Preserve control codes and placeholders. First pass done as generated text encoding metadata: source bytes/hex, terminator presence, control codes, placeholders, status, and warnings.
 
 ## Milestone 6 - Pokemon Data Slice
 
