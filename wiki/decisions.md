@@ -113,3 +113,9 @@ Reason: The port should feel like the source game, not like a GBA emulator embed
 Decision: Add `ScriptVM.field_effects` for `delay`, `opendoor`, `closedoor`, and `waitdooranim` before implementing real door animation or asynchronous frame waits.
 
 Reason: Source `ScrCmd_delay` sets a frame pause, while `ScrCmd_opendoor`/`ScrCmd_closedoor` resolve coordinates and start field door animation tasks that `ScrCmd_waitdooranim` waits on. Godot does not yet have the door TileMap animation or timing layer. Recording the resolved frame counts and door coordinates preserves script intent and lets scripts continue while leaving real presentation behavior for a later traced implementation.
+
+## 2026-07-04 - Record audio, warp, waitstate, and player visibility intent
+
+Decision: Add structured `ScriptVM` result channels for audio effects, transition effects, player effects, `waitstate`, and audio waits before implementing real sound playback, map loading, fades, or player presentation visibility.
+
+Reason: Source `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, `waitstate`, and `hideplayer` request engine-side effects through sound, fanfare, warp, script-context, and object visibility systems. Godot should expose the same visible intent to future audio, transition, and presentation systems without recreating GBA task/hardware structure inside the script interpreter.

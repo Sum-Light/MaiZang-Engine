@@ -158,9 +158,20 @@ func run_script(script: String, context: Dictionary = {}) -> Dictionary:
 		"status": "vm_unavailable",
 		"finished": true,
 		"messages": [],
+		"movements": [],
+		"object_effects": [],
+		"field_effects": [],
+		"audio_effects": [],
+		"transition_effects": [],
+		"player_effects": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
+		"wait_buttonpress": false,
+		"wait_movement": false,
+		"wait_state": false,
+		"wait_audio": false,
+		"step_count": 0,
 	}
 
 

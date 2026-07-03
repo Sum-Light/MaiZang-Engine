@@ -28,17 +28,27 @@ func _init() -> void:
 	game_state.set_var("VAR_0x8009", 5)
 	game_state.set_var("VAR_0x800A", 8)
 	var mom_return_home_result := vm.run_script("LittlerootTown_EventScript_MomReturnHomeMale2")
-	var delay_script_data := script_data.duplicate(true)
-	var delay_scripts: Dictionary = delay_script_data.get("scripts", {})
-	delay_scripts["Smoke_EventScript_DelayOnly"] = {
+	var step_off_truck_result := vm.run_script("LittlerootTown_EventScript_StepOffTruckMale")
+	var give_running_shoes_result := vm.run_script("LittlerootTown_EventScript_GiveRunningShoes")
+	var synthetic_script_data := script_data.duplicate(true)
+	var synthetic_scripts: Dictionary = synthetic_script_data.get("scripts", {})
+	synthetic_scripts["Smoke_EventScript_DelayOnly"] = {
 		"instructions": [
 			{"op": "delay", "args": ["30"], "line": 1, "raw": "delay 30"},
 			{"op": "end", "args": [], "line": 2, "raw": "end"},
 		],
 	}
-	delay_script_data["scripts"] = delay_scripts
-	vm.configure_from_script_data(delay_script_data)
+	synthetic_scripts["Smoke_EventScript_WarpOnly"] = {
+		"instructions": [
+			{"op": "warp", "args": ["MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB", "6", "5"], "line": 1, "raw": "warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 5"},
+			{"op": "waitstate", "args": [], "line": 2, "raw": "waitstate"},
+			{"op": "end", "args": [], "line": 3, "raw": "end"},
+		],
+	}
+	synthetic_script_data["scripts"] = synthetic_scripts
+	vm.configure_from_script_data(synthetic_script_data)
 	var delay_result := vm.run_script("Smoke_EventScript_DelayOnly")
+	var warp_result := vm.run_script("Smoke_EventScript_WarpOnly")
 	vm.configure_from_script_data(script_data)
 	var missing_result := vm.run_script("Missing_EventScript")
 
@@ -126,11 +136,59 @@ func _init() -> void:
 	_assert(_field_effect_op(mom_return_home_result, 3) == "waitdooranim", "unexpected second door wait effect")
 	_assert(_unsupported_count(mom_return_home_result) == 0, "expected no unsupported mom return-home ops")
 
+	_assert(step_off_truck_result.get("status", "") == "ok", "expected step-off-truck script to execute")
+	_assert(_message_count(step_off_truck_result) == 1, "expected one step-off-truck message")
+	_assert(_movement_count(step_off_truck_result) == 7, "expected seven step-off-truck movements")
+	_assert(_object_effect_count(step_off_truck_result) == 1, "expected one step-off-truck object effect")
+	_assert(_audio_effect_count(step_off_truck_result) == 1, "expected one step-off-truck audio effect")
+	_assert(_audio_effect_op(step_off_truck_result, 0) == "playse", "unexpected step-off-truck audio op")
+	_assert(_audio_effect_sound(step_off_truck_result, 0) == "SE_LEDGE", "unexpected step-off-truck sound")
+	_assert(_player_effect_count(step_off_truck_result) == 1, "expected one step-off-truck player effect")
+	_assert(_player_effect_op(step_off_truck_result, 0) == "hideplayer", "unexpected step-off-truck player op")
+	_assert(not _player_effect_visible(step_off_truck_result, 0), "expected step-off-truck hideplayer to hide player")
+	_assert(_transition_effect_count(step_off_truck_result) == 1, "expected one step-off-truck transition effect")
+	_assert(_transition_effect_op(step_off_truck_result, 0) == "warpsilent", "unexpected step-off-truck transition op")
+	_assert(
+		_transition_effect_map(step_off_truck_result, 0) == "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F",
+		"unexpected step-off-truck destination map"
+	)
+	_assert(_transition_effect_position(step_off_truck_result, 0) == Vector2i(8, 8), "unexpected step-off-truck warp position")
+	_assert(_transition_effect_style(step_off_truck_result, 0) == "silent", "unexpected step-off-truck warp style")
+	_assert(_field_effect_count(step_off_truck_result) == 11, "expected eleven step-off-truck field effects")
+	_assert(_field_effect_op(step_off_truck_result, 10) == "waitstate", "unexpected final step-off-truck field effect")
+	_assert(bool(step_off_truck_result.get("wait_state", false)), "expected step-off-truck waitstate metadata")
+	_assert(_unsupported_count(step_off_truck_result) == 0, "expected no unsupported step-off-truck ops")
+	_assert(game_state.get_var("VAR_LITTLEROOT_INTRO_STATE", 0) == 3, "expected step-off-truck intro state update")
+
+	_assert(give_running_shoes_result.get("status", "") == "ok", "expected give-running-shoes script to execute")
+	_assert(_message_count(give_running_shoes_result) == 4, "expected four give-running-shoes messages")
+	_assert(_audio_effect_count(give_running_shoes_result) == 2, "expected two give-running-shoes audio effects")
+	_assert(_audio_effect_op(give_running_shoes_result, 0) == "playfanfare", "unexpected give-running-shoes first audio op")
+	_assert(_audio_effect_fanfare(give_running_shoes_result, 0) == "MUS_OBTAIN_ITEM", "unexpected give-running-shoes fanfare")
+	_assert(_audio_effect_op(give_running_shoes_result, 1) == "waitfanfare", "unexpected give-running-shoes second audio op")
+	_assert(bool(give_running_shoes_result.get("wait_audio", false)), "expected give-running-shoes audio wait metadata")
+	_assert(_field_effect_count(give_running_shoes_result) == 1, "expected one give-running-shoes field effect")
+	_assert(_field_effect_op(give_running_shoes_result, 0) == "delay", "unexpected give-running-shoes field effect")
+	_assert(game_state.is_flag_set("FLAG_RECEIVED_RUNNING_SHOES"), "expected running shoes flag to be set")
+	_assert(_unsupported_count(give_running_shoes_result) == 0, "expected no unsupported give-running-shoes ops")
+
 	_assert(delay_result.get("status", "") == "ok", "expected delay-only script to execute")
 	_assert(_field_effect_count(delay_result) == 1, "expected one delay field effect")
 	_assert(_field_effect_op(delay_result, 0) == "delay", "unexpected delay field effect op")
 	_assert(_field_effect_frames(delay_result, 0) == 30, "unexpected delay frame count")
 	_assert(_unsupported_count(delay_result) == 0, "expected no unsupported delay ops")
+
+	_assert(warp_result.get("status", "") == "ok", "expected warp-only script to execute")
+	_assert(_transition_effect_count(warp_result) == 1, "expected one warp-only transition effect")
+	_assert(_transition_effect_op(warp_result, 0) == "warp", "unexpected warp-only transition op")
+	_assert(_transition_effect_map(warp_result, 0) == "MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB", "unexpected warp-only destination map")
+	_assert(_transition_effect_position(warp_result, 0) == Vector2i(6, 5), "unexpected warp-only position")
+	_assert(_transition_effect_style(warp_result, 0) == "normal", "unexpected warp-only style")
+	_assert(_transition_effect_sound(warp_result, 0) == "SE_EXIT", "unexpected warp-only sound effect")
+	_assert(bool(warp_result.get("wait_state", false)), "expected warp-only waitstate metadata")
+	_assert(_field_effect_count(warp_result) == 1, "expected one warp-only field effect")
+	_assert(_field_effect_op(warp_result, 0) == "waitstate", "unexpected warp-only field effect")
+	_assert(_unsupported_count(warp_result) == 0, "expected no unsupported warp-only ops")
 
 	_assert(missing_result.get("status", "") == "missing_script", "expected missing script status")
 
@@ -145,7 +203,10 @@ func _init() -> void:
 		"dex_upgrade_female": _result_summary(dex_upgrade_female_result),
 		"running_shoes": _result_summary(running_shoes_result),
 		"mom_return_home": _result_summary(mom_return_home_result),
+		"step_off_truck": _result_summary(step_off_truck_result),
+		"give_running_shoes": _result_summary(give_running_shoes_result),
 		"delay": _result_summary(delay_result),
+		"warp": _result_summary(warp_result),
 		"missing_status": String(missing_result.get("status", "")),
 	}))
 	game_state.free()
@@ -233,8 +294,13 @@ func _result_summary(result: Dictionary) -> Dictionary:
 		"movement_count": _movement_count(result),
 		"object_effect_count": _object_effect_count(result),
 		"field_effect_count": _field_effect_count(result),
+		"audio_effect_count": _audio_effect_count(result),
+		"transition_effect_count": _transition_effect_count(result),
+		"player_effect_count": _player_effect_count(result),
 		"wait_buttonpress": bool(result.get("wait_buttonpress", false)),
 		"wait_movement": bool(result.get("wait_movement", false)),
+		"wait_state": bool(result.get("wait_state", false)),
+		"wait_audio": bool(result.get("wait_audio", false)),
 		"step_count": int(result.get("step_count", 0)),
 	}
 
@@ -264,6 +330,21 @@ func _field_effect_count(result: Dictionary) -> int:
 	return field_effects.size() if typeof(field_effects) == TYPE_ARRAY else 0
 
 
+func _audio_effect_count(result: Dictionary) -> int:
+	var audio_effects = result.get("audio_effects", [])
+	return audio_effects.size() if typeof(audio_effects) == TYPE_ARRAY else 0
+
+
+func _transition_effect_count(result: Dictionary) -> int:
+	var transition_effects = result.get("transition_effects", [])
+	return transition_effects.size() if typeof(transition_effects) == TYPE_ARRAY else 0
+
+
+func _player_effect_count(result: Dictionary) -> int:
+	var player_effects = result.get("player_effects", [])
+	return player_effects.size() if typeof(player_effects) == TYPE_ARRAY else 0
+
+
 func _movement_at(result: Dictionary, index: int) -> Dictionary:
 	var movements = result.get("movements", [])
 	if typeof(movements) != TYPE_ARRAY or index < 0 or index >= movements.size():
@@ -288,6 +369,30 @@ func _field_effect_at(result: Dictionary, index: int) -> Dictionary:
 	return field_effect if typeof(field_effect) == TYPE_DICTIONARY else {}
 
 
+func _audio_effect_at(result: Dictionary, index: int) -> Dictionary:
+	var audio_effects = result.get("audio_effects", [])
+	if typeof(audio_effects) != TYPE_ARRAY or index < 0 or index >= audio_effects.size():
+		return {}
+	var audio_effect = audio_effects[index]
+	return audio_effect if typeof(audio_effect) == TYPE_DICTIONARY else {}
+
+
+func _transition_effect_at(result: Dictionary, index: int) -> Dictionary:
+	var transition_effects = result.get("transition_effects", [])
+	if typeof(transition_effects) != TYPE_ARRAY or index < 0 or index >= transition_effects.size():
+		return {}
+	var transition_effect = transition_effects[index]
+	return transition_effect if typeof(transition_effect) == TYPE_DICTIONARY else {}
+
+
+func _player_effect_at(result: Dictionary, index: int) -> Dictionary:
+	var player_effects = result.get("player_effects", [])
+	if typeof(player_effects) != TYPE_ARRAY or index < 0 or index >= player_effects.size():
+		return {}
+	var player_effect = player_effects[index]
+	return player_effect if typeof(player_effect) == TYPE_DICTIONARY else {}
+
+
 func _movement_label(result: Dictionary, index: int) -> String:
 	return String(_movement_at(result, index).get("movement_label", ""))
 
@@ -302,6 +407,18 @@ func _object_effect_op(result: Dictionary, index: int) -> String:
 
 func _field_effect_op(result: Dictionary, index: int) -> String:
 	return String(_field_effect_at(result, index).get("op", ""))
+
+
+func _audio_effect_op(result: Dictionary, index: int) -> String:
+	return String(_audio_effect_at(result, index).get("op", ""))
+
+
+func _transition_effect_op(result: Dictionary, index: int) -> String:
+	return String(_transition_effect_at(result, index).get("op", ""))
+
+
+func _player_effect_op(result: Dictionary, index: int) -> String:
+	return String(_player_effect_at(result, index).get("op", ""))
 
 
 func _object_effect_target(result: Dictionary, index: int) -> String:
@@ -328,6 +445,37 @@ func _field_effect_position(result: Dictionary, index: int) -> Vector2i:
 
 func _field_effect_frames(result: Dictionary, index: int) -> int:
 	return int(_field_effect_at(result, index).get("frames", 0))
+
+
+func _audio_effect_sound(result: Dictionary, index: int) -> String:
+	return String(_audio_effect_at(result, index).get("sound", ""))
+
+
+func _audio_effect_fanfare(result: Dictionary, index: int) -> String:
+	return String(_audio_effect_at(result, index).get("fanfare", ""))
+
+
+func _transition_effect_map(result: Dictionary, index: int) -> String:
+	return String(_transition_effect_at(result, index).get("map", ""))
+
+
+func _transition_effect_style(result: Dictionary, index: int) -> String:
+	return String(_transition_effect_at(result, index).get("style", ""))
+
+
+func _transition_effect_sound(result: Dictionary, index: int) -> String:
+	return String(_transition_effect_at(result, index).get("sound_effect", ""))
+
+
+func _transition_effect_position(result: Dictionary, index: int) -> Vector2i:
+	var position = _transition_effect_at(result, index).get("position", [0, 0])
+	if typeof(position) != TYPE_ARRAY or position.size() < 2:
+		return Vector2i.ZERO
+	return Vector2i(int(position[0]), int(position[1]))
+
+
+func _player_effect_visible(result: Dictionary, index: int) -> bool:
+	return bool(_player_effect_at(result, index).get("visible", true))
 
 
 func _movement_step_count(result: Dictionary, index: int) -> int:

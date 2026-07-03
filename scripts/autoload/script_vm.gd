@@ -10,6 +10,8 @@ const PLAYER_GENDER_MALE := "MALE"
 const PLAYER_GENDER_FEMALE := "FEMALE"
 const PLAYER_GENDER_MALE_VALUE := 0
 const PLAYER_GENDER_FEMALE_VALUE := 1
+const WARP_ID_NONE_VALUE := -1
+const LOCALID_PLAYER := "LOCALID_PLAYER"
 
 var _script_data: Dictionary = {}
 var _game_state: Node = null
@@ -45,6 +47,9 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"movements": [],
 		"object_effects": [],
 		"field_effects": [],
+		"audio_effects": [],
+		"transition_effects": [],
+		"player_effects": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
@@ -55,6 +60,8 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"last_movement_target": "",
 		"wait_buttonpress": false,
 		"wait_movement": false,
+		"wait_state": false,
+		"wait_audio": false,
 		"step_count": 0,
 	}
 
@@ -98,11 +105,16 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"movements": state["movements"],
 		"object_effects": state["object_effects"],
 		"field_effects": state["field_effects"],
+		"audio_effects": state["audio_effects"],
+		"transition_effects": state["transition_effects"],
+		"player_effects": state["player_effects"],
 		"effects": state["effects"],
 		"unsupported_ops": state["unsupported_ops"],
 		"trace": state["trace"],
 		"wait_buttonpress": bool(state["wait_buttonpress"]),
 		"wait_movement": bool(state["wait_movement"]),
+		"wait_state": bool(state["wait_state"]),
+		"wait_audio": bool(state["wait_audio"]),
 		"step_count": int(state["step_count"]),
 	}
 
@@ -163,12 +175,24 @@ func _execute_instruction(state: Dictionary, instruction: Dictionary) -> void:
 			_execute_checkplayergender(state, line)
 		"lock", "lockall", "release", "releaseall", "faceplayer", "waitmessage", "waitbuttonpress", "closemessage":
 			_execute_basic_field_command(state, op, line)
+		"waitstate":
+			_execute_waitstate(state, line)
 		"delay":
 			_execute_delay(state, args, line, String(instruction.get("raw", "")))
 		"opendoor", "closedoor":
 			_execute_door_command(state, op, args, line, String(instruction.get("raw", "")))
 		"waitdooranim":
 			_execute_waitdooranim(state, line)
+		"playse":
+			_execute_playse(state, args, line, String(instruction.get("raw", "")))
+		"playfanfare":
+			_execute_playfanfare(state, args, line, String(instruction.get("raw", "")))
+		"waitfanfare":
+			_execute_waitfanfare(state, line)
+		"warp", "warpsilent":
+			_execute_warp_command(state, op, args, line, String(instruction.get("raw", "")))
+		"hideplayer":
+			_execute_hideplayer(state, line)
 		"message":
 			if args.size() >= 1:
 				_execute_message(state, String(args[0]), "", op, line)
@@ -234,6 +258,13 @@ func _execute_basic_field_command(state: Dictionary, op: String, line: int) -> v
 		state["wait_buttonpress"] = true
 
 
+func _execute_waitstate(state: Dictionary, line: int) -> void:
+	state["wait_state"] = true
+	_record_field_effect(state, "waitstate", line, {
+		"waits_for": "script_context_enable",
+	})
+
+
 func _execute_delay(state: Dictionary, args: Array, line: int, raw: String) -> void:
 	if args.size() < 1:
 		_record_unsupported(state, "delay", line, raw)
@@ -259,6 +290,74 @@ func _execute_door_command(state: Dictionary, op: String, args: Array, line: int
 func _execute_waitdooranim(state: Dictionary, line: int) -> void:
 	_record_field_effect(state, "waitdooranim", line, {
 		"waits_for": "door_animation",
+	})
+
+
+func _execute_playse(state: Dictionary, args: Array, line: int, raw: String) -> void:
+	if args.size() < 1:
+		_record_unsupported(state, "playse", line, raw)
+		return
+
+	_record_audio_effect(state, "playse", line, {
+		"sound": String(args[0]),
+	})
+
+
+func _execute_playfanfare(state: Dictionary, args: Array, line: int, raw: String) -> void:
+	if args.size() < 1:
+		_record_unsupported(state, "playfanfare", line, raw)
+		return
+
+	_record_audio_effect(state, "playfanfare", line, {
+		"fanfare": String(args[0]),
+	})
+
+
+func _execute_waitfanfare(state: Dictionary, line: int) -> void:
+	state["wait_audio"] = true
+	_record_audio_effect(state, "waitfanfare", line, {
+		"waits_for": "fanfare",
+	})
+
+
+func _execute_warp_command(state: Dictionary, op: String, args: Array, line: int, raw: String) -> void:
+	if args.size() < 1:
+		_record_unsupported(state, op, line, raw)
+		return
+
+	var warp_id := WARP_ID_NONE_VALUE
+	var x := -1
+	var y := -1
+	if args.size() == 2:
+		warp_id = _read_value(String(args[1]))
+	elif args.size() == 3:
+		x = _read_value(String(args[1]))
+		y = _read_value(String(args[2]))
+	elif args.size() >= 4:
+		warp_id = _read_value(String(args[1]))
+		x = _read_value(String(args[2]))
+		y = _read_value(String(args[3]))
+
+	var detail := {
+		"map": String(args[0]),
+		"warp_id": warp_id,
+		"position": [x, y],
+		"has_explicit_position": x != -1 or y != -1,
+		"uses_warp_id": warp_id != WARP_ID_NONE_VALUE,
+		"style": "silent" if op == "warpsilent" else "normal",
+		"reset_initial_player_avatar_state": true,
+	}
+	if op == "warp":
+		detail["sound_effect"] = "SE_EXIT"
+
+	_record_transition_effect(state, op, line, detail)
+
+
+func _execute_hideplayer(state: Dictionary, line: int) -> void:
+	_record_player_effect(state, "hideplayer", line, {
+		"target": LOCALID_PLAYER,
+		"visible": false,
+		"source_op": "hideobjectat",
 	})
 
 
@@ -426,6 +525,39 @@ func _record_field_effect(state: Dictionary, op: String, line: int, detail: Dict
 	for key in detail:
 		field_effect[key] = detail[key]
 	state["field_effects"].append(field_effect)
+	_record_effect(state, op, line, detail)
+
+
+func _record_audio_effect(state: Dictionary, op: String, line: int, detail: Dictionary) -> void:
+	var audio_effect := {
+		"op": op,
+		"line": line,
+	}
+	for key in detail:
+		audio_effect[key] = detail[key]
+	state["audio_effects"].append(audio_effect)
+	_record_effect(state, op, line, detail)
+
+
+func _record_transition_effect(state: Dictionary, op: String, line: int, detail: Dictionary) -> void:
+	var transition_effect := {
+		"op": op,
+		"line": line,
+	}
+	for key in detail:
+		transition_effect[key] = detail[key]
+	state["transition_effects"].append(transition_effect)
+	_record_effect(state, op, line, detail)
+
+
+func _record_player_effect(state: Dictionary, op: String, line: int, detail: Dictionary) -> void:
+	var player_effect := {
+		"op": op,
+		"line": line,
+	}
+	for key in detail:
+		player_effect[key] = detail[key]
+	state["player_effects"].append(player_effect)
 	_record_effect(state, op, line, detail)
 
 
@@ -819,6 +951,7 @@ func _is_known_constant(value: String) -> bool:
 		"FALSE",
 		"YES",
 		"NO",
+		"WARP_ID_NONE",
 	]
 
 
@@ -832,6 +965,8 @@ func _constant_value(value: String) -> int:
 			return 1
 		"FALSE", "NO":
 			return 0
+		"WARP_ID_NONE":
+			return WARP_ID_NONE_VALUE
 	return 0
 
 
@@ -907,11 +1042,16 @@ func _empty_result(script_label: String, status: String, finished: bool) -> Dict
 		"movements": [],
 		"object_effects": [],
 		"field_effects": [],
+		"audio_effects": [],
+		"transition_effects": [],
+		"player_effects": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
 		"wait_buttonpress": false,
 		"wait_movement": false,
+		"wait_state": false,
+		"wait_audio": false,
 		"step_count": 0,
 	}
 

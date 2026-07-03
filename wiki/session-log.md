@@ -67,3 +67,6 @@
 - Traced `ScrCmd_delay`, `ScrCmd_opendoor`, `ScrCmd_closedoor`, `ScrCmd_waitdooranim`, `src/field_door.c`, and LittlerootTown door-script usage before implementing the next VM slice.
 - Added `ScriptVM.field_effects` and first-pass support for `delay`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect records.
 - Expanded `script_vm_smoke.gd` to verify Mom return-home door effects and a delay-only script while keeping existing map runtime and event manager smoke tests green.
+- Traced `waitstate`, `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, and `hideplayer` through the script command table, macros, `src/scrcmd.c`, `src/field_screen_effect.c`, and `src/overworld.c`.
+- Added first-pass `ScriptVM` support for audio effects, transition effects, player effects, `waitstate`, and audio waits, preserving source-visible intent while leaving real audio playback, fanfare tasks, map loading/fades, and player presentation visibility to future Godot systems.
+- Expanded `script_vm_smoke.gd` to cover LittlerootTown step-off-truck, running-shoes fanfare, and a synthetic normal warp script.

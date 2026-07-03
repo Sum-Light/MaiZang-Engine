@@ -43,12 +43,15 @@
   - `checkplayergender`. First pass done by reading `GameState.player_gender` and writing `VAR_RESULT` as `MALE`/`FEMALE`.
   - `goto`, `call`, `return`, `end`. First pass done.
   - `goto_if_eq`, `call_if_eq`, `call_if_set`, `call_if_unset`. First pass done for set/unset/eq/ne variants used by the first slice.
-  - `warp`, `warpsilent`
+  - `warp`, `warpsilent`. First pass done as `ScriptVM` transition-effect records with destination, optional warp id/position, normal/silent style, and source reset semantics; real map loading and fade/sound sequencing remain.
   - `applymovement`, `waitmovement`. First pass done as `ScriptVM` movement-effect records with generated movement label lookup and fast-forward application through `MapRuntime`; real animation/task waiting remains.
   - `lock`, `lockall`, `release`, `releaseall`. First pass records execution effects; real object freezing remains.
   - `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`. First pass done as `ScriptVM` object-effect records with dispatch-time application through `MapRuntime`.
   - `showobject`, `hideobject`, `addobject`, `removeobject`. First pass done for current-map runtime visibility, add/remove, and source hide-flag behavior; full object lifecycle and save persistence remain.
   - `delay`, `opendoor`, `closedoor`, `waitdooranim`. First pass done as `ScriptVM` field-effect records after source C tracing; real frame timing, door animation, and door sounds remain.
+  - `waitstate`. First pass done as a `ScriptVM` field-effect wait marker for source `ScriptContext_Enable`; real async continuation remains.
+  - `playse`, `playfanfare`, `waitfanfare`. First pass done as `ScriptVM` audio-effect records; real audio playback and fanfare wait tasks remain.
+  - `hideplayer`. First pass done as a `ScriptVM` player-effect record; real player presentation visibility remains.
 
 ## Milestone 5 - Text Pipeline
 
