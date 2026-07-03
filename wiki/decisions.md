@@ -53,3 +53,15 @@ Reason: The first vertical slice needs map occupancy and event positions before 
 Decision: Route `ui_accept` interaction through player facing direction, `MapRuntime.get_interaction_target`, and `EventManager` debug dialogue before implementing full event script parsing.
 
 Reason: The vertical slice needs a testable object/sign/warp interaction path now, while real `.inc` script execution and text decoding require separate import work. A debug dispatcher keeps the boundary stable without pretending script semantics are already implemented.
+
+## 2026-07-04 - Derive gameplay behavior from source C and resources
+
+Decision: Implement Godot event script and gameplay behavior only after tracing the corresponding source C implementation and referenced resources. Treat GBA hardware graphics constraints as import-time decoding concerns instead of runtime architecture requirements.
+
+Reason: Event scripts and gameplay systems encode behavior through engine commands, flags, vars, movement tables, text labels, object graphics, sounds, doors, field effects, warps, Pokemon data, item data, encounters, trainers, and battle rules. Guessing behavior from names would drift from the original project. Tracing source behavior first lets the Godot port remain modern internally while matching the source game's visible behavior and rules more closely. Palette banks, 4bpp tiles, binary metatiles, and packed map blocks exist because of GBA constraints and should be decoded into Godot-friendly assets/data rather than recreated as runtime limitations.
+
+## 2026-07-04 - Generate script data before full ScriptVM
+
+Decision: Convert map `scripts.inc` files into generated script JSON and use it for limited debug dialogue previews before implementing the full `ScriptVM`.
+
+Reason: Script labels, text labels, movement labels, and instruction references are needed by interaction dispatch before complete opcode semantics exist. A generated data layer makes script references inspectable and testable while keeping real execution deferred until each command is traced to source C behavior and its referenced resources.

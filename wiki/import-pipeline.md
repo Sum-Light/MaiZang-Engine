@@ -42,6 +42,13 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 - text labels inside map scripts
 - C macros such as `_("")` and `COMPOUND_STRING()`
 
+### Event Script Semantics
+
+- `data/maps/*/scripts.inc` for labels, command streams, movement labels, and local text labels
+- `src/scrcmd.c` for script command implementations
+- Field/event modules referenced by commands, including object movement, map transitions, field effects, doors, sounds, flags, vars, and message handling
+- Referenced resources such as movement labels, text labels, object graphics, fanfares/sound effects, map layouts, metatile behaviors, and warp destinations
+
 ## Outputs
 
 Recommended generated output layout:
@@ -75,6 +82,15 @@ Each import run should report:
 - unresolved labels
 - invalid warp targets
 - text decode failures
+- script command implementations that have not yet been traced to source C behavior
+
+## Source Behavior Rule
+
+Generated JSON is an index and interchange format, not proof that an opcode or gameplay feature has been correctly implemented.
+
+Before implementing a script instruction or gameplay feature in Godot, inspect the matching source C logic and the resources it references. Use that source behavior to design the Godot implementation, aiming for visible behavior and rules consistent with the original project while keeping the runtime Godot-native. If exact behavior is deferred, the generated data or runtime should report the approximation.
+
+GBA hardware graphics formats are an exception to runtime fidelity: palettes, 4bpp tiles, binary metatiles, and packed map blocks should be decoded during import into ordinary Godot images/data. The importer should preserve enough source metadata for debugging and special cases, but the Godot runtime should not reproduce GBA palette or tile-memory constraints just because the source format used them.
 
 Importers should prefer partial success plus a clear report over all-or-nothing failure.
 
@@ -102,6 +118,7 @@ Current export behavior:
 - Writes `data/generated/maps/littleroot_town.json` for the current first slice.
 - Updates `data/generated/import_manifest.json` with exported map id, name, path, layout id, and size while preserving existing tileset entries.
 - Preserves source event arrays for connections, object events, warps, coordinate events, and background events.
+- Preserves existing script manifest entries when updating the shared import manifest.
 
 `tools/importer/export_tilesets.py` exports one map's primary/secondary tileset pair into a palette-baked metatile atlas. It accepts `--config`, `--source`, `--map`, `--output-data-root`, and `--output-asset-root`.
 
@@ -115,6 +132,17 @@ Current tileset export behavior:
 - Writes `assets/generated/tilesets/littleroot_town_metatiles.png`.
 - Writes `data/generated/tilesets/littleroot_town.json` with atlas metadata, source tile entries, metatile attributes, used metatile ids, coverage notes, and warnings.
 - Updates `data/generated/import_manifest.json` with exported tileset metadata while preserving existing map entries.
+
+`tools/importer/export_event_scripts.py` exports one map's `scripts.inc` into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--map`, and `--output-root`.
+
+Current event script export behavior:
+
+- Reads `data/maps/<Map>/scripts.inc` as UTF-8 and writes generated JSON with LF endings through the shared importer JSON writer.
+- Parses labels, map script tables, script instruction streams, movement labels, and local `.string` text labels.
+- Records per-script raw operations, direct `msgbox`/`message` references, call/goto references, and simple runtime preview summaries.
+- Converts simple display escapes for preview only: `\n` and `\l` become newlines, `\p` becomes a blank line, and trailing `$` terminators are removed.
+- Records source behavior traces for supported preview behavior from `src/scrcmd.c`, `data/event_scripts.s`, and `data/scripts/std_msgbox.inc`.
+- Updates `data/generated/import_manifest.json` with exported script metadata while preserving existing map and tileset entries.
 
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 
@@ -148,3 +176,14 @@ Latest verified first-slice tileset export for `LittlerootTown`:
 - used metatile ids: 63
 - visible warnings: 0
 - coverage notes: 8 bottom-layer out-of-range tile references in metatiles 586 and 587 are fully covered by opaque top-layer tiles in the flattened atlas
+
+Latest verified first-slice event script export for `LittlerootTown`:
+
+- generated path: `data/generated/scripts/littleroot_town.json`
+- manifest path: `data/generated/import_manifest.json`
+- labels: 130
+- scripts: 78
+- movement labels: 34
+- local text labels: 18
+- orphan instructions: 0
+- current runtime preview scope: first direct `msgbox`/`message` text resolution for debug dialogue only

@@ -41,3 +41,8 @@
 - Extended `MapRuntime` to index generated BG/sign events and warp events, and to resolve interaction targets from player position plus facing direction.
 - Added `EventManager` as a debug event dispatcher and connected `ui_accept` interaction to a HUD dialogue panel for object/sign/warp placeholders.
 - Updated the `MapRuntime` smoke script to verify object, BG/sign, and warp interaction target lookup.
+- Added the rule that event script and gameplay behavior must be traced from source C plus referenced resources before implementation, while GBA graphics hardware constraints stay import-time concerns.
+- Added `tools/importer/export_event_scripts.py` to export `LittlerootTown` script labels, instruction streams, movement labels, local text labels, and first-pass dialogue preview data.
+- Generated `data/generated/scripts/littleroot_town.json` with 130 labels, 78 scripts, 34 movement labels, 18 text labels, and 0 orphan instructions.
+- Updated `DataRegistry` and `EventManager` so object/BG interactions can preview the first generated `msgbox`/`message` text when available.
+- Added `tools/godot_smoke/event_manager_smoke.gd` to verify generated script preview lookup for a Twin NPC script and the town sign script.

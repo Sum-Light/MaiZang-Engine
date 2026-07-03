@@ -50,13 +50,14 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown and loads generated map/tileset JSON when they exist.
+- `DataRegistry` stores first-slice constants for LittlerootTown and loads generated map, tileset, and event script JSON when they exist.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries.
 - `MapRuntime` indexes generated object events, BG/sign events, and warp events; visible object-event cells are occupied for first-pass movement.
 - `MapRuntime.get_interaction_target` resolves the player's faced object/sign target, or a warp placeholder from the current cell.
 - `GridMover` provides tweened tile movement.
 - `PlayerController` reads directional input, tracks facing direction, moves one tile at a time after checking `MapRuntime.can_enter_cell`, and emits interaction requests on `ui_accept`.
-- `EventManager` currently emits debug dialogue lines for object, BG/sign, and warp interaction placeholders. It should later call `ScriptVM` after event scripts and text are converted.
+- `EventManager` currently emits debug dialogue lines for interactions and previews the first generated `msgbox`/`message` text for object and BG/sign scripts when available. It should later call `ScriptVM` for real opcode execution.
+- `ScriptVM` opcode behavior must be derived from the source C implementation and referenced resources before being implemented in Godot.
 - `DebugMapPlane` draws the first generated `block_ids` metatile grid from a palette-baked RGBA metatile atlas, with the old color blocks as fallback.
 - `ObjectEventSpawner` draws generated object events as simple placeholders until overworld sprite import is ready.
 - `Main` connects the debug world, player, camera, HUD status label, and debug dialogue panel, and shows whether map data came from generated JSON or fallback constants.
@@ -74,3 +75,25 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Generated metatile atlases use metatile id as atlas index, so map `block_ids` can render directly during the first slice.
 - Palette handling belongs to the import layer. Godot runtime should consume normal RGBA textures and metadata, not GBA palette slots.
 - Real TileMapLayer rendering should later consume the generated atlas/metadata instead of the current debug Node2D renderer.
+
+## Generated Script Runtime Contract
+
+- First-slice generated script JSON is loaded through `DataRegistry`.
+- Generated script JSON preserves map script labels, raw instruction streams, movement labels, local text labels, and importer statistics.
+- `EventManager.get_script_preview` may use the generated data for a first visible dialogue preview, currently limited to the first direct `msgbox`/`message` text resolved from a script label.
+- Source trace metadata in generated script JSON records the C/resources consulted for supported preview behavior, including `ScrCmd_message`, `ShowFieldMessage`, `gStdScripts`, and standard `msgbox` scripts.
+- Real event execution belongs in a future `ScriptVM`; unsupported opcodes should stay visible through reports rather than being silently approximated.
+
+## Script Porting Rule
+
+Event script and gameplay-system support should preserve the source game's visible behavior and rules as closely as practical while using Godot-native architecture.
+
+For each script instruction/opcode or gameplay feature implemented in Godot:
+
+- Trace the corresponding source implementation in the original repository, usually under `src/scrcmd.c`, `src/event_object_movement.c`, `src/field_control_avatar.c`, `src/fieldmap.c`, or adjacent field/event modules.
+- Identify referenced resources and data tables before writing Godot behavior: text labels, movement labels, object graphics, flags, vars, sounds, fanfares, map layouts, metatile behaviors, door animations, warp targets, battle data, Pokemon data, item data, encounter data, and trainer data.
+- Record unsupported or approximated behavior in importer/runtime reports instead of silently inventing semantics.
+- Translate the behavior into Godot systems (`EventManager`, `ScriptVM`, `GameState`, `MapRuntime`, movement/presentation scenes) rather than copying C structure directly.
+- Verify visible behavior against the source map/script context whenever possible.
+
+GBA hardware-driven graphics constraints are import details, not runtime design goals. Palette banks, 4bpp tile memory layout, metatile binary packing, and map/block binary formats should be decoded into normal Godot textures/data and should not force a runtime GBA graphics architecture unless a feature specifically needs that behavior.

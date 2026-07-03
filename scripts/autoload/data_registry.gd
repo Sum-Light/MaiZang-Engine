@@ -9,15 +9,18 @@ const FIRST_SLICE_PRIMARY_TILESET := "gTileset_General"
 const FIRST_SLICE_SECONDARY_TILESET := "gTileset_Petalburg"
 const GENERATED_START_MAP_PATH := "res://data/generated/maps/littleroot_town.json"
 const GENERATED_START_TILESET_PATH := "res://data/generated/tilesets/littleroot_town.json"
+const GENERATED_START_SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
 
 var import_report: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
+var _start_script_data: Dictionary = {}
 
 
 func _ready() -> void:
 	_start_map_data = _load_json_object(GENERATED_START_MAP_PATH, "generated map")
 	_start_tileset_data = _load_json_object(GENERATED_START_TILESET_PATH, "generated tileset")
+	_start_script_data = _load_json_object(GENERATED_START_SCRIPT_PATH, "generated script")
 
 
 func get_start_map_id() -> String:
@@ -53,6 +56,10 @@ func get_start_map_data() -> Dictionary:
 
 func get_start_tileset_data() -> Dictionary:
 	return _start_tileset_data
+
+
+func get_start_script_data() -> Dictionary:
+	return _start_script_data
 
 
 func get_start_block_ids() -> Array:

@@ -219,7 +219,13 @@ def _manifest_generators(existing, generator):
     return generators
 
 
-def write_manifest(path, exported_maps=None, exported_tilesets=None, generator=None):
+def write_manifest(
+    path,
+    exported_maps=None,
+    exported_tilesets=None,
+    exported_scripts=None,
+    generator=None,
+):
     existing = {}
     if path.exists():
         try:
@@ -234,10 +240,13 @@ def write_manifest(path, exported_maps=None, exported_tilesets=None, generator=N
 
     maps = exported_maps if exported_maps is not None else existing.get("maps", [])
     tilesets = exported_tilesets if exported_tilesets is not None else existing.get("tilesets", [])
+    scripts = exported_scripts if exported_scripts is not None else existing.get("scripts", [])
     if maps:
         manifest["maps"] = maps
     if tilesets:
         manifest["tilesets"] = tilesets
+    if scripts:
+        manifest["scripts"] = scripts
 
     write_json(path, manifest)
 

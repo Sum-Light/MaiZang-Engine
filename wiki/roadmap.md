@@ -32,7 +32,8 @@
 
 - Index object, BG/sign, and warp events for interaction lookup. First pass done in `MapRuntime`.
 - Add an interaction dispatcher path from player facing direction to debug dialogue. First pass done with `EventManager`; real script execution remains.
-- Parse `.inc` event scripts into labels and instructions.
+- Parse `.inc` event scripts into labels and instructions. First pass done for `LittlerootTown`, including script labels, movement labels, local text labels, and direct `msgbox`/`message` references.
+- Preview simple generated dialogue from object/BG event scripts. First pass done through `EventManager.get_script_preview`; this is not a full `ScriptVM`.
 - Support a minimal ScriptVM command set:
   - `msgbox`
   - `setflag`, `clearflag`, `checkflag`

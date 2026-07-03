@@ -2,7 +2,8 @@
   "schema_version": 1,
   "generators": [
     "tools/importer/export_map.py",
-    "tools/importer/export_tilesets.py"
+    "tools/importer/export_tilesets.py",
+    "tools/importer/export_event_scripts.py"
   ],
   "maps": [
     {
@@ -22,6 +23,15 @@
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "total_metatiles": 656
+    }
+  ],
+  "scripts": [
+    {
+      "map": "LittlerootTown",
+      "path": "data/generated/scripts/littleroot_town.json",
+      "script_count": 78,
+      "movement_count": 34,
+      "text_count": 18
     }
   ]
 }
