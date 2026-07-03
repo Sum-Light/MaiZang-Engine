@@ -42,7 +42,7 @@
   - `goto`, `call`, `return`, `end`. First pass done.
   - `goto_if_eq`, `call_if_eq`, `call_if_set`, `call_if_unset`. First pass done for set/unset/eq/ne variants used by the first slice.
   - `warp`, `warpsilent`
-  - `applymovement`, `waitmovement`. First pass done as `ScriptVM` movement-effect records with generated movement label lookup; real animation/task waiting remains.
+  - `applymovement`, `waitmovement`. First pass done as `ScriptVM` movement-effect records with generated movement label lookup and fast-forward application through `MapRuntime`; real animation/task waiting remains.
   - `lock`, `lockall`, `release`, `releaseall`. First pass records execution effects; real object freezing remains.
   - `showobject`, `hideobject`, `addobject`, `removeobject`
 

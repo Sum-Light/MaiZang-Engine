@@ -1,8 +1,12 @@
 extends Node
 
+signal object_events_changed(object_events: Array)
+signal player_position_changed(grid_position: Vector2i)
+
 const COLLISION_NONE := 0
 const COLLISION_IMPASSABLE := 1
 const ELEVATION_INVALID := -1
+const LOCALID_PLAYER := "LOCALID_PLAYER"
 
 var _map_data: Dictionary = {}
 var _tileset_data: Dictionary = {}
@@ -13,6 +17,7 @@ var _elevation_grid: Array = []
 var _metatile_attributes: Dictionary = {}
 var _object_events: Array = []
 var _object_events_by_position: Dictionary = {}
+var _object_events_by_local_id: Dictionary = {}
 var _bg_events: Array = []
 var _bg_events_by_position: Dictionary = {}
 var _warp_events: Array = []
@@ -45,6 +50,7 @@ func configure_from_data(
 	_metatile_attributes = {}
 	_object_events = []
 	_object_events_by_position = {}
+	_object_events_by_local_id = {}
 	_bg_events = []
 	_bg_events_by_position = {}
 	_warp_events = []
@@ -139,6 +145,15 @@ func get_object_events_at(cell: Vector2i, include_hidden := false) -> Array:
 	return filtered_events
 
 
+func get_object_event_by_local_id(local_id: String, include_hidden := false) -> Dictionary:
+	var object_event = _object_events_by_local_id.get(local_id, {})
+	if typeof(object_event) != TYPE_DICTIONARY:
+		return {}
+	if not include_hidden and not _is_object_event_visible(object_event):
+		return {}
+	return object_event
+
+
 func get_bg_events() -> Array:
 	return _bg_events.duplicate(true)
 
@@ -213,6 +228,41 @@ func get_cell_info(cell: Vector2i) -> Dictionary:
 	}
 
 
+func apply_script_movements(movements: Array, game_state: Node = null) -> Dictionary:
+	var summary := {
+		"applied": [],
+		"skipped": [],
+		"object_events_changed": false,
+		"player_position_changed": false,
+	}
+	var resolved_game_state := game_state
+	if resolved_game_state == null and is_inside_tree():
+		resolved_game_state = get_node_or_null("/root/GameState")
+
+	for movement in movements:
+		if typeof(movement) != TYPE_DICTIONARY:
+			_record_skipped_movement(summary, "invalid_movement", "", "", Vector2i.ZERO)
+			continue
+
+		var target := String(movement.get("target", ""))
+		var movement_label := String(movement.get("movement_label", ""))
+		var delta := _movement_delta(movement)
+		var final_facing := String(movement.get("final_facing", ""))
+
+		if target == LOCALID_PLAYER:
+			_apply_player_movement(summary, resolved_game_state, movement_label, delta, final_facing)
+		else:
+			_apply_object_movement(summary, target, movement_label, delta, final_facing)
+
+	if bool(summary["object_events_changed"]):
+		_rebuild_object_event_position_index()
+		object_events_changed.emit(get_object_events())
+	if bool(summary["player_position_changed"]) and resolved_game_state != null:
+		player_position_changed.emit(resolved_game_state.player_grid_position)
+
+	return summary
+
+
 func _index_metatile_attributes() -> void:
 	if _tileset_data.is_empty():
 		return
@@ -254,11 +304,8 @@ func _index_object_events() -> void:
 		object_event["index"] = index
 		object_event["position"] = cell
 		_object_events.append(object_event)
-
-		var key := _cell_key(cell)
-		if not _object_events_by_position.has(key):
-			_object_events_by_position[key] = []
-		_object_events_by_position[key].append(object_event)
+		_index_object_event_by_local_id(object_event)
+		_add_event_at(_object_events_by_position, cell, object_event)
 
 
 func _index_bg_events() -> void:
@@ -324,6 +371,121 @@ func _is_object_event_visible(object_event: Dictionary) -> bool:
 		return not game_state.is_flag_set(flag)
 
 	return true
+
+
+func _apply_player_movement(
+	summary: Dictionary,
+	game_state: Node,
+	movement_label: String,
+	delta: Vector2i,
+	final_facing: String
+) -> void:
+	if game_state == null:
+		_record_skipped_movement(summary, "missing_game_state", LOCALID_PLAYER, movement_label, delta)
+		return
+
+	var current_position: Vector2i = game_state.player_grid_position
+	var next_position := current_position + delta
+	if not is_within_bounds(next_position):
+		_record_skipped_movement(summary, "out_of_bounds", LOCALID_PLAYER, movement_label, delta, next_position)
+		return
+
+	game_state.player_grid_position = next_position
+	summary["player_position_changed"] = delta != Vector2i.ZERO
+	_record_applied_movement(summary, LOCALID_PLAYER, movement_label, current_position, next_position, final_facing)
+
+
+func _apply_object_movement(
+	summary: Dictionary,
+	target: String,
+	movement_label: String,
+	delta: Vector2i,
+	final_facing: String
+) -> void:
+	var object_event := get_object_event_by_local_id(target, true)
+	if object_event.is_empty():
+		_record_skipped_movement(summary, "missing_object_event", target, movement_label, delta)
+		return
+
+	var current_position := _object_event_position(object_event)
+	var next_position := current_position + delta
+	if not is_within_bounds(next_position):
+		_record_skipped_movement(summary, "out_of_bounds", target, movement_label, delta, next_position)
+		return
+
+	object_event["position"] = next_position
+	object_event["x"] = next_position.x
+	object_event["y"] = next_position.y
+	if not final_facing.is_empty():
+		object_event["facing_direction"] = final_facing
+	summary["object_events_changed"] = true
+	_record_applied_movement(summary, target, movement_label, current_position, next_position, final_facing)
+
+
+func _movement_delta(movement: Dictionary) -> Vector2i:
+	var delta = movement.get("net_delta", [0, 0])
+	if typeof(delta) != TYPE_ARRAY or delta.size() < 2:
+		return Vector2i.ZERO
+	return Vector2i(int(delta[0]), int(delta[1]))
+
+
+func _object_event_position(object_event: Dictionary) -> Vector2i:
+	var position = object_event.get("position", null)
+	if typeof(position) == TYPE_VECTOR2I:
+		return position
+	return Vector2i(
+		int(object_event.get("x", 0)),
+		int(object_event.get("y", 0))
+	)
+
+
+func _rebuild_object_event_position_index() -> void:
+	_object_events_by_position = {}
+	for object_event in _object_events:
+		if typeof(object_event) != TYPE_DICTIONARY:
+			continue
+		_add_event_at(_object_events_by_position, _object_event_position(object_event), object_event)
+
+
+func _index_object_event_by_local_id(object_event: Dictionary) -> void:
+	var local_id := String(object_event.get("local_id", ""))
+	if local_id.is_empty():
+		return
+	_object_events_by_local_id[local_id] = object_event
+
+
+func _record_applied_movement(
+	summary: Dictionary,
+	target: String,
+	movement_label: String,
+	from_position: Vector2i,
+	to_position: Vector2i,
+	final_facing: String
+) -> void:
+	summary["applied"].append({
+		"target": target,
+		"movement_label": movement_label,
+		"from": from_position,
+		"to": to_position,
+		"final_facing": final_facing,
+	})
+
+
+func _record_skipped_movement(
+	summary: Dictionary,
+	reason: String,
+	target: String,
+	movement_label: String,
+	delta: Vector2i,
+	next_position := Vector2i.ZERO
+) -> void:
+	summary["skipped"].append({
+		"reason": reason,
+		"target": target,
+		"movement_label": movement_label,
+		"delta": delta,
+		"to": next_position,
+	})
 
 
 func _array_or_empty(value) -> Array:

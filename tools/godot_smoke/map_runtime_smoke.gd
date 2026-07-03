@@ -1,22 +1,32 @@
 extends SceneTree
 
 const MAP_RUNTIME_SCRIPT := preload("res://scripts/autoload/map_runtime.gd")
+const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
+const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
 const MAP_PATH := "res://data/generated/maps/littleroot_town.json"
 const TILESET_PATH := "res://data/generated/tilesets/littleroot_town.json"
+const SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
 
 
 func _init() -> void:
 	var map_data := _load_json_object(MAP_PATH)
 	var tileset_data := _load_json_object(TILESET_PATH)
+	var script_data := _load_json_object(SCRIPT_PATH)
 	var map_size := _map_size_from_data(map_data)
 	var runtime = MAP_RUNTIME_SCRIPT.new()
 	runtime.configure_from_data(map_data, tileset_data, map_size)
+	var vm = SCRIPT_VM_SCRIPT.new()
+	vm.configure_from_script_data(script_data)
+	var game_state = GAME_STATE_SCRIPT.new()
 
 	var start_cell := Vector2i(10, 10)
 	var object_cell := Vector2i(16, 10)
+	var twin_approach_cell := Vector2i(19, 8)
 	var bg_event_cell := Vector2i(15, 13)
 	var warp_cell := Vector2i(7, 16)
 	var blocked_cell := _first_blocked_cell(map_data)
+	game_state.player_grid_position = start_cell
+
 	_assert(runtime.get_map_size() == Vector2i(20, 20), "unexpected map size")
 	_assert(runtime.can_enter_cell(start_cell), "expected start cell to be passable")
 	_assert(not runtime.can_enter_cell(Vector2i(-1, start_cell.y)), "expected west out-of-bounds to be blocked")
@@ -44,18 +54,45 @@ func _init() -> void:
 	)
 	_assert(runtime.get_metatile_behavior_at(start_cell) >= 0, "expected metatile behavior lookup")
 
+	var need_pokemon_result := vm.run_script("LittlerootTown_EventScript_NeedPokemonTriggerLeft")
+	var movements = need_pokemon_result.get("movements", [])
+	_assert(typeof(movements) == TYPE_ARRAY and movements.size() == 4, "expected need-pokemon movements")
+	var first_apply := runtime.apply_script_movements([movements[0]], game_state)
+	_assert(_summary_count(first_apply, "applied") == 1, "expected first movement to apply")
+	_assert(_summary_count(first_apply, "skipped") == 0, "expected first movement not to skip")
+	_assert(not runtime.is_cell_occupied(object_cell), "expected original twin cell to be cleared")
+	_assert(runtime.is_cell_occupied(twin_approach_cell), "expected twin approach cell to be occupied")
+	_assert(
+		_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_TWIN", true)) == twin_approach_cell,
+		"expected twin to move to approach cell"
+	)
+
+	var rest_apply := runtime.apply_script_movements([movements[1], movements[2], movements[3]], game_state)
+	_assert(_summary_count(rest_apply, "applied") == 3, "expected remaining movements to apply")
+	_assert(_summary_count(rest_apply, "skipped") == 0, "expected remaining movements not to skip")
+	_assert(
+		_event_position(runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_TWIN", true)) == object_cell,
+		"expected twin to return to source cell"
+	)
+	_assert(game_state.player_grid_position == Vector2i(10, 11), "expected player movement to update game state")
+
 	print(JSON.stringify({
 		"map_runtime_smoke": "ok",
 		"map_size": _vector_to_array(runtime.get_map_size()),
 		"object_event_count": runtime.get_object_events().size(),
 		"bg_event_count": runtime.get_bg_events().size(),
 		"warp_event_count": runtime.get_warp_events().size(),
+		"first_movement_apply": _movement_apply_summary(first_apply),
+		"rest_movement_apply": _movement_apply_summary(rest_apply),
+		"player_position_after_script": _vector_to_array(game_state.player_grid_position),
 		"start_cell": _cell_info_summary(runtime.get_cell_info(start_cell)),
 		"object_cell": _cell_info_summary(runtime.get_cell_info(object_cell)),
 		"bg_event_cell": _cell_info_summary(runtime.get_cell_info(bg_event_cell)),
 		"warp_cell": _cell_info_summary(runtime.get_cell_info(warp_cell)),
 		"blocked_cell": _cell_info_summary(runtime.get_cell_info(blocked_cell)),
 	}))
+	game_state.free()
+	vm.free()
 	runtime.free()
 	quit(0)
 
@@ -133,3 +170,27 @@ func _cell_info_summary(cell_info: Dictionary) -> Dictionary:
 
 func _vector_to_array(value: Vector2i) -> Array:
 	return [value.x, value.y]
+
+
+func _event_position(object_event: Dictionary) -> Vector2i:
+	var position = object_event.get("position", Vector2i.ZERO)
+	if typeof(position) == TYPE_VECTOR2I:
+		return position
+	return Vector2i(
+		int(object_event.get("x", 0)),
+		int(object_event.get("y", 0))
+	)
+
+
+func _summary_count(summary: Dictionary, key: String) -> int:
+	var entries = summary.get(key, [])
+	return entries.size() if typeof(entries) == TYPE_ARRAY else 0
+
+
+func _movement_apply_summary(summary: Dictionary) -> Dictionary:
+	return {
+		"applied": _summary_count(summary, "applied"),
+		"skipped": _summary_count(summary, "skipped"),
+		"object_events_changed": bool(summary.get("object_events_changed", false)),
+		"player_position_changed": bool(summary.get("player_position_changed", false)),
+	}

@@ -53,3 +53,6 @@
 - Traced `ScrCmd_applymovement`, `ScrCmd_applymovementat`, `ScrCmd_waitmovement`, `ScrCmd_waitmovementat`, `src/script_movement.c`, and `asm/macros/movement.inc` before implementing the first movement command slice.
 - Added first-pass `ScriptVM` support for `applymovement`, `applymovementat`, `waitmovement`, and `waitmovementat` as structured movement-effect results.
 - Expanded `tools/godot_smoke/script_vm_smoke.gd` to verify `LittlerootTown_EventScript_NeedPokemonTriggerLeft`, including call/return flow, 2 dialogue messages, 4 movement effects, and 3 waitmovement effects.
+- Extended `MapRuntime` to index object events by local id, apply `ScriptVM` movement-effect net deltas to runtime object/player positions, rebuild occupancy, and emit refresh signals.
+- Updated `EventManager` to apply movement effects during real interaction dispatch while keeping `get_script_preview` read-only.
+- Expanded `map_runtime_smoke.gd` and `event_manager_smoke.gd` to verify movement-effect application for `LittlerootTown_EventScript_NeedPokemonTriggerLeft`.

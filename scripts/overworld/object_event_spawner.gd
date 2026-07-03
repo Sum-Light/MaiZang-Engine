@@ -18,5 +18,6 @@ func configure_from_events(object_events: Array, tile_size: int) -> void:
 
 func _clear_spawned_events() -> void:
 	for child in get_children():
+		remove_child(child)
 		child.queue_free()
 	spawned_count = 0

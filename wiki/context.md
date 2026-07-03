@@ -24,6 +24,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior, and layer-type lookups.
 - `MapRuntime` now indexes first-slice object events, BG/sign events, and warp events.
 - `MapRuntime` treats visible object-event cells as occupied and can resolve the player's current interaction target from grid position plus facing direction.
+- `MapRuntime` can apply `ScriptVM` movement-effect results to in-memory object-event positions and `GameState.player_grid_position`, then rebuild object occupancy and notify the main scene to refresh placeholders/player position.
 - `scenes/main.tscn` displays a 20x20 LittlerootTown debug map from generated metatile ids and a palette-baked metatile atlas, visible object-event placeholders, plus a movable player placeholder that is blocked by generated map-grid collision and object-event occupancy.
 - `scenes/main.tscn` includes a debug dialogue panel driven by `EventManager`; object/sign interactions now execute the first generated script slice through `ScriptVM` and show emitted dialogue text, while warps remain placeholders.
 - Player movement currently uses Godot's default `ui_up`, `ui_down`, `ui_left`, and `ui_right` actions.
@@ -58,7 +59,8 @@ The port should be data-driven: preserve source data and assets where practical,
 - Latest event script export records first-pass preview support for direct `msgbox`/`message` text only; full opcode behavior remains a future `ScriptVM` task grounded in source C traces and referenced resources.
 - `ScriptVM` now executes the first synchronous dialogue and movement-effect subset for generated scripts: `msgbox`, `message`, `lock`, `lockall`, `release`, `releaseall`, `faceplayer`, `waitmessage`, `waitbuttonpress`, `closemessage`, `goto`, `call`, `return`, `end`, basic `*_if_*` branches, `setflag`, `clearflag`, `setvar`, `applymovement`, `applymovementat`, `waitmovement`, and `waitmovementat`.
 - `ScriptVM` expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` according to the source standard scripts. Current waits and locks are recorded as execution effects; real asynchronous UI, object freezing, and player/object facing animation remain future work.
-- `ScriptVM` expands generated movement labels into result `movements` entries with target local id, structured steps, net tile delta, final facing, and unsupported-step reporting. Current movement handling is effect metadata only; scene-node animation, object task queues, map-position mutation, and real wait blocking remain future work.
+- `ScriptVM` expands generated movement labels into result `movements` entries with target local id, structured steps, net tile delta, final facing, and unsupported-step reporting. Real dispatch now fast-forwards those net deltas into runtime map/player state; scene-node animation, object task queues, source collision timing, and real wait blocking remain future work.
+- `EventManager` applies `ScriptVM` movement effects only during real interaction dispatch, not during `get_script_preview`, so previews stay read-only.
 - `LittlerootTown` generated collision currently has 268 passable cells and 132 blocked cells.
 - `LittlerootTown` has 8 generated object events; the first runtime pass shows them as placeholders and blocks movement into their occupied cells.
 - `LittlerootTown` has 4 generated BG/sign events and 3 generated warp events indexed by `MapRuntime`.

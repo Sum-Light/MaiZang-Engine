@@ -39,6 +39,10 @@ func _ready() -> void:
 		player.movement_blocked.connect(_on_player_movement_blocked)
 	if player.has_signal("interaction_requested"):
 		player.interaction_requested.connect(_on_player_interaction_requested)
+	if MapRuntime.has_signal("object_events_changed"):
+		MapRuntime.object_events_changed.connect(_on_object_events_changed)
+	if MapRuntime.has_signal("player_position_changed"):
+		MapRuntime.player_position_changed.connect(_on_script_player_position_changed)
 	EventManager.debug_message_requested.connect(_on_debug_message_requested)
 
 	_update_status()
@@ -79,6 +83,18 @@ func _on_player_interaction_requested(
 func _on_debug_message_requested(lines: PackedStringArray) -> void:
 	dialogue_label.text = "\n".join(lines)
 	dialogue_panel.visible = true
+
+
+func _on_object_events_changed(updated_object_events: Array) -> void:
+	if object_events.has_method("configure_from_events"):
+		object_events.configure_from_events(updated_object_events, DataRegistry.TILE_SIZE)
+	_update_status()
+
+
+func _on_script_player_position_changed(grid_position: Vector2i) -> void:
+	if player.has_method("set_grid_position"):
+		player.set_grid_position(grid_position)
+	_update_status()
 
 
 func _hide_dialogue() -> void:

@@ -77,3 +77,9 @@ Reason: `msgbox` in the source is a macro that loads a text pointer and calls a 
 Decision: Add first-pass `applymovement`/`waitmovement` support to `ScriptVM` as structured movement-effect results, not as immediate scene-node movement or map-state mutation.
 
 Reason: Source `applymovement` starts an object movement script through `ScriptMovement_StartObjectMovementScript`, while `waitmovement` installs a native wait for the current moving object target. Godot does not yet have the equivalent object movement task queue, animation layer, or object freeze/unfreeze integration. Recording target local ids, movement labels, decoded steps, net deltas, final facing, and resolved wait targets preserves script semantics now and gives the future animation system a stable contract to consume.
+
+## 2026-07-04 - Apply movement effects through MapRuntime
+
+Decision: Consume `ScriptVM` movement-effect results in `EventManager.dispatch_interaction` by fast-forwarding object-event and player logical positions through `MapRuntime`, while keeping preview calls read-only.
+
+Reason: The first script VM movement slice proved movement decoding but did not affect runtime state. Applying net deltas through `MapRuntime` gives the current vertical slice observable object/player position changes and keeps occupancy indexes consistent without coupling script interpretation to scene nodes. It remains a temporary runtime approximation: step timing, collision handling per movement action, object movement task queues, and freeze/unfreeze semantics still belong in a later animation/movement system.

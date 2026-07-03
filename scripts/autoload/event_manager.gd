@@ -4,10 +4,14 @@ signal debug_message_requested(lines: PackedStringArray)
 
 var _script_data: Dictionary = {}
 var _script_vm: Node = null
+var _map_runtime: Node = null
+var _game_state: Node = null
 
 
 func _ready() -> void:
 	_script_vm = get_node_or_null("/root/ScriptVM")
+	_map_runtime = get_node_or_null("/root/MapRuntime")
+	_game_state = get_node_or_null("/root/GameState")
 	var registry = get_node_or_null("/root/DataRegistry")
 	if registry != null and registry.has_method("get_start_script_data"):
 		configure_from_script_data(registry.get_start_script_data())
@@ -23,6 +27,14 @@ func configure_script_vm(script_vm: Node) -> void:
 	_script_vm = script_vm
 	if _script_vm != null and _script_vm.has_method("configure_from_script_data"):
 		_script_vm.configure_from_script_data(_script_data)
+
+
+func configure_map_runtime(map_runtime: Node) -> void:
+	_map_runtime = map_runtime
+
+
+func configure_game_state(game_state: Node) -> void:
+	_game_state = game_state
 
 
 func dispatch_interaction(interaction: Dictionary) -> void:
@@ -175,6 +187,13 @@ func _append_script_output(lines: PackedStringArray, script: String, context: Di
 		return
 
 	lines.append("ScriptVM: %s" % vm_status)
+	var runtime_summary := _apply_runtime_result(result)
+	if not runtime_summary.is_empty():
+		lines.append("Movement effects: %d applied, %d skipped" % [
+			_movement_summary_count(runtime_summary, "applied"),
+			_movement_summary_count(runtime_summary, "skipped"),
+		])
+
 	var messages = result.get("messages", [])
 	if typeof(messages) == TYPE_ARRAY and not messages.is_empty():
 		for message in messages:
@@ -195,6 +214,22 @@ func _append_script_output(lines: PackedStringArray, script: String, context: Di
 		return
 
 	lines.append("No message emitted")
+
+
+func _apply_runtime_result(result: Dictionary) -> Dictionary:
+	if _map_runtime == null or not _map_runtime.has_method("apply_script_movements"):
+		return {}
+
+	var movements = result.get("movements", [])
+	if typeof(movements) != TYPE_ARRAY or movements.is_empty():
+		return {}
+
+	return _map_runtime.apply_script_movements(movements, _game_state)
+
+
+func _movement_summary_count(summary: Dictionary, key: String) -> int:
+	var entries = summary.get(key, [])
+	return entries.size() if typeof(entries) == TYPE_ARRAY else 0
 
 
 func _append_direct_preview_output(lines: PackedStringArray, script: String) -> void:
