@@ -14,3 +14,9 @@
 - Added `tools/importer/source_probe.py` plus `tools/import_config.example.json` for read-only source probing.
 - Verified the source probe with `LittlerootTown`: no missing first-slice files; source contains 939 map JSON files and 887 map script files.
 - Could not run a Godot scene-load check because `godot`/`godot4` were not found in PATH or common install locations.
+- Located and validated Godot 4.7 at `C:\Users\YbbNa\Downloads\Godot_v4.7-stable_win64\Godot_v4.7-stable_win64_console.exe`; version is `4.7.stable.official.5b4e0cb0f`.
+- Added `tools/importer/export_map.py` to export `LittlerootTown` from source `map.json`, `layouts.json`, `map.bin`, and `border.bin`.
+- Generated `data/generated/maps/littleroot_town.json` and `data/generated/import_manifest.json`.
+- Decoded `map.bin` as little-endian u16 map-grid entries with metatile id, collision, and elevation layers.
+- Updated `DataRegistry`, `Main`, and `DebugMapPlane` so the main scene reads generated map JSON and colors the debug grid from generated metatile ids.
+- Verified Python import tools and Godot headless main-scene startup with the generated first-slice map data.

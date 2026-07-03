@@ -17,3 +17,9 @@ Reason: The port will span many sessions and many source formats. Durable projec
 Decision: Minimize PowerShell for script-like file processing and maintain the Godot project as a git repository with focused commits after completed changes.
 
 Reason: The source project and future wiki/import outputs may contain Chinese text and custom encodings. Avoiding casual shell rewrites reduces encoding damage. Frequent commits make the port easier to review, bisect, and roll forward safely.
+
+## 2026-07-03 - Preserve unpacked map-grid layers
+
+Decision: Generated map JSON keeps both the original raw u16 map-grid values and unpacked metatile id, collision, and elevation grids.
+
+Reason: The source `map.bin` does not store plain metatile ids. `include/global.fieldmap.h` defines each entry as 10 bits of metatile id, 2 bits of collision, and 4 bits of elevation. Keeping the raw and unpacked forms makes the first debug renderer simple while preserving data needed for later collision and movement behavior.

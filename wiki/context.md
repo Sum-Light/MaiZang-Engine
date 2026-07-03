@@ -18,8 +18,11 @@ The port should be data-driven: preserve source data and assets where practical,
 - `project.godot` targets Godot 4.7 features and mobile rendering.
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
 - Autoloads are configured for `GameState` and `DataRegistry`.
-- `scenes/main.tscn` displays a 20x20 placeholder LittlerootTown grid and a movable player placeholder.
+- `DataRegistry` now loads the first generated map at `res://data/generated/maps/littleroot_town.json` when present.
+- `scenes/main.tscn` displays a 20x20 LittlerootTown debug grid from generated metatile ids and a movable player placeholder.
 - Player movement currently uses Godot's default `ui_up`, `ui_down`, `ui_left`, and `ui_right` actions.
+- Godot validation uses `C:\Users\YbbNa\Downloads\Godot_v4.7-stable_win64\Godot_v4.7-stable_win64_console.exe`.
+- Validated Godot version: `4.7.stable.official.5b4e0cb0f`.
 - The project directory was not a git repository during the initial inspection.
 - The project directory is now a standalone git repository initialized on 2026-07-03.
 - Local git line-ending config was set to `core.autocrlf=false` and `core.eol=lf`, matching the existing `.gitattributes` LF policy.
@@ -33,7 +36,11 @@ The port should be data-driven: preserve source data and assets where practical,
 - Major directories include `data`, `graphics`, `include`, `src`, `sound`, `tools`, and `docs`.
 - The source project is inside a larger git worktree rooted at `C:\Users\YbbNa\OneDrive\Project-Azoth`; git status from the source path includes unrelated parent-tree noise.
 - `tools/importer/source_probe.py` currently verifies the source path and first-slice map inputs.
+- `tools/importer/export_map.py` exports `LittlerootTown` into generated Godot JSON.
+- Generated first-slice map data lives at `data/generated/maps/littleroot_town.json`.
+- Generated import manifest lives at `data/generated/import_manifest.json`.
 - Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
+- Latest map export for `LittlerootTown` decoded 400 map-grid entries into 63 unique metatile ids.
 
 ## Known Source Formats
 

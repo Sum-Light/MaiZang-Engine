@@ -49,8 +49,15 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown until generated data exists.
+- `DataRegistry` stores first-slice constants for LittlerootTown and loads generated map JSON when it exists.
 - `GridMover` provides tweened tile movement.
 - `PlayerController` reads directional input and moves one tile at a time.
-- `DebugMapPlane` draws a temporary 20x20 placeholder map for LittlerootTown.
-- `Main` connects the placeholder world, player, camera, and HUD status label.
+- `DebugMapPlane` draws the first generated `block_ids` metatile grid with a temporary color palette.
+- `Main` connects the debug world, player, camera, and HUD status label, and shows whether map data came from generated JSON or fallback constants.
+
+## Generated Map Runtime Contract
+
+- First-slice generated map JSON is loaded through `DataRegistry`.
+- `block_ids` contains unpacked 10-bit metatile ids for simple render previews.
+- `map_grid.raw`, `map_grid.collision`, and `map_grid.elevation` preserve the original 16-bit map-grid data split into runtime-friendly layers.
+- Real TileMap rendering should later consume generated tileset/metatile assets instead of the temporary debug palette.

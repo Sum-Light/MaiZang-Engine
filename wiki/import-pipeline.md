@@ -91,6 +91,17 @@ Current checks:
 - layout blockdata and border files
 - primary and secondary tileset files
 
+`tools/importer/export_map.py` exports one source map into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--map`, and `--output-root`.
+
+Current export behavior:
+
+- Reads `data/maps/<Map>/map.json`, `data/maps/<Map>/scripts.inc`, and `data/layouts/layouts.json`.
+- Decodes `data/layouts/<Layout>/map.bin` as little-endian u16 map-grid entries.
+- Uses `include/global.fieldmap.h` masks: bits 0-9 are metatile id, bits 10-11 are collision, and bits 12-15 are elevation.
+- Writes `data/generated/maps/littleroot_town.json` for the current first slice.
+- Writes `data/generated/import_manifest.json` with exported map id, name, path, layout id, and size.
+- Preserves source event arrays for connections, object events, warps, coordinate events, and background events.
+
 Latest verified first-slice source facts for `LittlerootTown`:
 
 - map id: `MAP_LITTLEROOT_TOWN`
@@ -103,3 +114,11 @@ Latest verified first-slice source facts for `LittlerootTown`:
 - coord events: 9
 - connections: 1
 - missing files: none
+
+Latest verified first-slice export for `LittlerootTown`:
+
+- generated path: `data/generated/maps/littleroot_town.json`
+- manifest path: `data/generated/import_manifest.json`
+- map-grid entries: 400
+- unique metatile ids: 63
+- metatile id range: 1 to 587

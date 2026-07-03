@@ -17,14 +17,14 @@
 
 - Read source path from local config. First pass done with `tools/import_config.example.json`.
 - Parse `layouts.json` and `map.json`. First probe done for `LittlerootTown`.
-- Decode layout `map.bin` into metatile IDs.
-- Build a generated manifest for maps, layouts, and tilesets.
+- Decode layout `map.bin` into metatile ids, collision values, elevation values, and raw u16 map-grid values. First pass done for `LittlerootTown`.
+- Build a generated manifest for maps, layouts, and tilesets. First map manifest done for `LittlerootTown`.
 - Report missing or unsupported data without failing the whole import. First probe report implemented for required files and first-slice assets.
 
 ## Milestone 3 - Map Rendering Slice
 
 - Convert one tileset pair used by `LittlerootTown`.
-- Render `LittlerootTown` in Godot.
+- Render `LittlerootTown` in Godot. Temporary debug-palette rendering from generated metatile ids is done; real TileMap/metatile rendering remains.
 - Add collision and movement permissions from metatile attributes.
 - Spawn object events from `map.json`.
 
