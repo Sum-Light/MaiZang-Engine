@@ -63,3 +63,7 @@
 - Expanded VM, map runtime, and event manager smoke tests to cover LittlerootTown Twin, Rival/Birch, and Mom object-effect scripts.
 - Traced `ScrCmd_checkplayergender` and `MALE`/`FEMALE` constants, then added `GameState.player_gender` plus VM support for writing `VAR_RESULT`.
 - Expanded `script_vm_smoke.gd` to verify LittlerootTown male/female sign text and Rival/Birch dex-upgrade object positions.
+- Recorded the durable rule that gameplay features should match source-visible behavior and rules while ignoring GBA hardware/resource constraints such as palette banks, tile memory, and binary map/metatile packing in the Godot runtime.
+- Traced `ScrCmd_delay`, `ScrCmd_opendoor`, `ScrCmd_closedoor`, `ScrCmd_waitdooranim`, `src/field_door.c`, and LittlerootTown door-script usage before implementing the next VM slice.
+- Added `ScriptVM.field_effects` and first-pass support for `delay`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect records.
+- Expanded `script_vm_smoke.gd` to verify Mom return-home door effects and a delay-only script while keeping existing map runtime and event manager smoke tests green.

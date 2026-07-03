@@ -101,3 +101,15 @@ Reason: The traced source commands mutate object event runtime state, object tem
 Decision: Store player gender on `GameState` and implement `checkplayergender` in `ScriptVM` by copying that value into `VAR_RESULT` as source-compatible `MALE`/`FEMALE` constants.
 
 Reason: Source `ScrCmd_checkplayergender` only copies `gSaveBlock2Ptr->playerGender` into `gSpecialVar_Result`, and `MALE`/`FEMALE` are defined as 0/1 in `include/constants/global.h`. Keeping gender in `GameState` matches the source save-profile boundary and lets existing VM branch handling drive gendered scripts without coupling the opcode to presentation or object graphics.
+
+## 2026-07-04 - Keep GBA constraints out of gameplay runtime
+
+Decision: Apply the import-time-only hardware constraint rule to gameplay features too: preserve source-visible behavior and rules, but do not recreate GBA palette banks, tile memory, binary map/metatile packing, or other platform storage workarounds in the Godot runtime unless a gameplay rule specifically depends on them.
+
+Reason: The port should feel like the source game, not like a GBA emulator embedded in Godot. Original C and data remain authoritative for behavior, but Godot can represent the same behavior with normal textures, structured data, resources, scenes, and animation systems.
+
+## 2026-07-04 - Record door and delay commands as field effects
+
+Decision: Add `ScriptVM.field_effects` for `delay`, `opendoor`, `closedoor`, and `waitdooranim` before implementing real door animation or asynchronous frame waits.
+
+Reason: Source `ScrCmd_delay` sets a frame pause, while `ScrCmd_opendoor`/`ScrCmd_closedoor` resolve coordinates and start field door animation tasks that `ScrCmd_waitdooranim` waits on. Godot does not yet have the door TileMap animation or timing layer. Recording the resolved frame counts and door coordinates preserves script intent and lets scripts continue while leaving real presentation behavior for a later traced implementation.

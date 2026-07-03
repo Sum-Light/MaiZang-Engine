@@ -48,6 +48,7 @@
   - `lock`, `lockall`, `release`, `releaseall`. First pass records execution effects; real object freezing remains.
   - `setobjectxy`, `setobjectxyperm`, `setobjectmovementtype`. First pass done as `ScriptVM` object-effect records with dispatch-time application through `MapRuntime`.
   - `showobject`, `hideobject`, `addobject`, `removeobject`. First pass done for current-map runtime visibility, add/remove, and source hide-flag behavior; full object lifecycle and save persistence remain.
+  - `delay`, `opendoor`, `closedoor`, `waitdooranim`. First pass done as `ScriptVM` field-effect records after source C tracing; real frame timing, door animation, and door sounds remain.
 
 ## Milestone 5 - Text Pipeline
 

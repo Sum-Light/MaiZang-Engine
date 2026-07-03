@@ -25,6 +25,21 @@ func _init() -> void:
 	var dex_upgrade_female_result := vm.run_script("LittlerootTown_EventScript_SetRivalBirchPosForDexUpgrade")
 	var brendans_house_sign_female_result := vm.run_script("LittlerootTown_EventScript_BrendansHouseSign")
 	var running_shoes_result := vm.run_script("LittlerootTown_EventScript_SetReceivedRunningShoes")
+	game_state.set_var("VAR_0x8009", 5)
+	game_state.set_var("VAR_0x800A", 8)
+	var mom_return_home_result := vm.run_script("LittlerootTown_EventScript_MomReturnHomeMale2")
+	var delay_script_data := script_data.duplicate(true)
+	var delay_scripts: Dictionary = delay_script_data.get("scripts", {})
+	delay_scripts["Smoke_EventScript_DelayOnly"] = {
+		"instructions": [
+			{"op": "delay", "args": ["30"], "line": 1, "raw": "delay 30"},
+			{"op": "end", "args": [], "line": 2, "raw": "end"},
+		],
+	}
+	delay_script_data["scripts"] = delay_scripts
+	vm.configure_from_script_data(delay_script_data)
+	var delay_result := vm.run_script("Smoke_EventScript_DelayOnly")
+	vm.configure_from_script_data(script_data)
 	var missing_result := vm.run_script("Missing_EventScript")
 
 	_assert(twin_result.get("status", "") == "ok", "expected Twin script to execute")
@@ -98,6 +113,25 @@ func _init() -> void:
 	_assert(_object_effect_target(running_shoes_result, 0) == "LOCALID_LITTLEROOT_MOM", "unexpected running-shoes object target")
 	_assert(_unsupported_count(running_shoes_result) == 0, "expected no unsupported running-shoes ops")
 
+	_assert(mom_return_home_result.get("status", "") == "ok", "expected mom return-home script to execute")
+	_assert(_movement_count(mom_return_home_result) == 2, "expected two mom return-home movements")
+	_assert(_object_effect_count(mom_return_home_result) == 1, "expected one mom return-home object effect")
+	_assert(_object_effect_op(mom_return_home_result, 0) == "hideobjectat", "unexpected mom return-home object op")
+	_assert(_field_effect_count(mom_return_home_result) == 4, "expected four mom return-home field effects")
+	_assert(_field_effect_op(mom_return_home_result, 0) == "opendoor", "unexpected first door field effect")
+	_assert(_field_effect_position(mom_return_home_result, 0) == Vector2i(5, 8), "unexpected opened door position")
+	_assert(_field_effect_op(mom_return_home_result, 1) == "waitdooranim", "unexpected first door wait effect")
+	_assert(_field_effect_op(mom_return_home_result, 2) == "closedoor", "unexpected second door field effect")
+	_assert(_field_effect_position(mom_return_home_result, 2) == Vector2i(5, 8), "unexpected closed door position")
+	_assert(_field_effect_op(mom_return_home_result, 3) == "waitdooranim", "unexpected second door wait effect")
+	_assert(_unsupported_count(mom_return_home_result) == 0, "expected no unsupported mom return-home ops")
+
+	_assert(delay_result.get("status", "") == "ok", "expected delay-only script to execute")
+	_assert(_field_effect_count(delay_result) == 1, "expected one delay field effect")
+	_assert(_field_effect_op(delay_result, 0) == "delay", "unexpected delay field effect op")
+	_assert(_field_effect_frames(delay_result, 0) == 30, "unexpected delay frame count")
+	_assert(_unsupported_count(delay_result) == 0, "expected no unsupported delay ops")
+
 	_assert(missing_result.get("status", "") == "missing_script", "expected missing script status")
 
 	print(JSON.stringify({
@@ -110,6 +144,8 @@ func _init() -> void:
 		"dex_upgrade_male": _result_summary(dex_upgrade_male_result),
 		"dex_upgrade_female": _result_summary(dex_upgrade_female_result),
 		"running_shoes": _result_summary(running_shoes_result),
+		"mom_return_home": _result_summary(mom_return_home_result),
+		"delay": _result_summary(delay_result),
 		"missing_status": String(missing_result.get("status", "")),
 	}))
 	game_state.free()
@@ -196,6 +232,7 @@ func _result_summary(result: Dictionary) -> Dictionary:
 		"effect_count": _effect_count(result),
 		"movement_count": _movement_count(result),
 		"object_effect_count": _object_effect_count(result),
+		"field_effect_count": _field_effect_count(result),
 		"wait_buttonpress": bool(result.get("wait_buttonpress", false)),
 		"wait_movement": bool(result.get("wait_movement", false)),
 		"step_count": int(result.get("step_count", 0)),
@@ -222,6 +259,11 @@ func _object_effect_count(result: Dictionary) -> int:
 	return object_effects.size() if typeof(object_effects) == TYPE_ARRAY else 0
 
 
+func _field_effect_count(result: Dictionary) -> int:
+	var field_effects = result.get("field_effects", [])
+	return field_effects.size() if typeof(field_effects) == TYPE_ARRAY else 0
+
+
 func _movement_at(result: Dictionary, index: int) -> Dictionary:
 	var movements = result.get("movements", [])
 	if typeof(movements) != TYPE_ARRAY or index < 0 or index >= movements.size():
@@ -238,6 +280,14 @@ func _object_effect_at(result: Dictionary, index: int) -> Dictionary:
 	return object_effect if typeof(object_effect) == TYPE_DICTIONARY else {}
 
 
+func _field_effect_at(result: Dictionary, index: int) -> Dictionary:
+	var field_effects = result.get("field_effects", [])
+	if typeof(field_effects) != TYPE_ARRAY or index < 0 or index >= field_effects.size():
+		return {}
+	var field_effect = field_effects[index]
+	return field_effect if typeof(field_effect) == TYPE_DICTIONARY else {}
+
+
 func _movement_label(result: Dictionary, index: int) -> String:
 	return String(_movement_at(result, index).get("movement_label", ""))
 
@@ -248,6 +298,10 @@ func _movement_target(result: Dictionary, index: int) -> String:
 
 func _object_effect_op(result: Dictionary, index: int) -> String:
 	return String(_object_effect_at(result, index).get("op", ""))
+
+
+func _field_effect_op(result: Dictionary, index: int) -> String:
+	return String(_field_effect_at(result, index).get("op", ""))
 
 
 func _object_effect_target(result: Dictionary, index: int) -> String:
@@ -263,6 +317,17 @@ func _object_effect_position(result: Dictionary, index: int) -> Vector2i:
 	if typeof(position) != TYPE_ARRAY or position.size() < 2:
 		return Vector2i.ZERO
 	return Vector2i(int(position[0]), int(position[1]))
+
+
+func _field_effect_position(result: Dictionary, index: int) -> Vector2i:
+	var position = _field_effect_at(result, index).get("position", [0, 0])
+	if typeof(position) != TYPE_ARRAY or position.size() < 2:
+		return Vector2i.ZERO
+	return Vector2i(int(position[0]), int(position[1]))
+
+
+func _field_effect_frames(result: Dictionary, index: int) -> int:
+	return int(_field_effect_at(result, index).get("frames", 0))
 
 
 func _movement_step_count(result: Dictionary, index: int) -> int:

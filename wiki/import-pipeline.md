@@ -90,7 +90,7 @@ Generated JSON is an index and interchange format, not proof that an opcode or g
 
 Before implementing a script instruction or gameplay feature in Godot, inspect the matching source C logic and the resources it references. Use that source behavior to design the Godot implementation, aiming for visible behavior and rules consistent with the original project while keeping the runtime Godot-native. If exact behavior is deferred, the generated data or runtime should report the approximation.
 
-GBA hardware graphics formats are an exception to runtime fidelity: palettes, 4bpp tiles, binary metatiles, and packed map blocks should be decoded during import into ordinary Godot images/data. The importer should preserve enough source metadata for debugging and special cases, but the Godot runtime should not reproduce GBA palette or tile-memory constraints just because the source format used them.
+GBA hardware graphics and resource formats are an exception to runtime fidelity: palettes, 4bpp tiles, binary metatiles, packed map blocks, and similar platform/storage constraints should be decoded during import into ordinary Godot images/data. The importer should preserve enough source metadata for debugging and special cases, but the Godot runtime should not reproduce GBA palette, tile-memory, or binary packing constraints just because the source format used them. Gameplay systems should follow the same principle by matching visible rules and outcomes while using Godot-native data and runtime structures.
 
 Importers should prefer partial success plus a clear report over all-or-nothing failure.
 
@@ -189,4 +189,5 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - current generated-data preview fields: first direct `msgbox`/`message` text references for debug inspection
 - current runtime execution scope: `ScriptVM` executes the first synchronous dialogue subset and expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` from source standard script behavior
 - current movement runtime scope: `ScriptVM` resolves generated movement labels for `applymovement`/`waitmovement` and emits structured movement-effect results; real dispatch fast-forwards map/player positions through `MapRuntime`, while animation queues and object movement tasks are still future runtime work
+- current field-effect runtime scope: `ScriptVM` records `delay`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect results; door animation, sound selection, and true asynchronous timing remain future work
 - current coordinate-event runtime scope: `MapRuntime` indexes generated coord events and resolves normal `var`/`var_value` step triggers by x/y/elevation plus `GameState`; full weather/immediate-script/wild-encounter/step-count chaining remains future work

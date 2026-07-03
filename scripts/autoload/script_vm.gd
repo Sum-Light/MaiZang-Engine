@@ -44,6 +44,7 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"messages": [],
 		"movements": [],
 		"object_effects": [],
+		"field_effects": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
@@ -96,6 +97,7 @@ func run_script(script_label: String, context: Dictionary = {}) -> Dictionary:
 		"messages": state["messages"],
 		"movements": state["movements"],
 		"object_effects": state["object_effects"],
+		"field_effects": state["field_effects"],
 		"effects": state["effects"],
 		"unsupported_ops": state["unsupported_ops"],
 		"trace": state["trace"],
@@ -161,6 +163,12 @@ func _execute_instruction(state: Dictionary, instruction: Dictionary) -> void:
 			_execute_checkplayergender(state, line)
 		"lock", "lockall", "release", "releaseall", "faceplayer", "waitmessage", "waitbuttonpress", "closemessage":
 			_execute_basic_field_command(state, op, line)
+		"delay":
+			_execute_delay(state, args, line, String(instruction.get("raw", "")))
+		"opendoor", "closedoor":
+			_execute_door_command(state, op, args, line, String(instruction.get("raw", "")))
+		"waitdooranim":
+			_execute_waitdooranim(state, line)
 		"message":
 			if args.size() >= 1:
 				_execute_message(state, String(args[0]), "", op, line)
@@ -224,6 +232,34 @@ func _execute_basic_field_command(state: Dictionary, op: String, line: int) -> v
 	_record_effect(state, op, line)
 	if op == "waitbuttonpress":
 		state["wait_buttonpress"] = true
+
+
+func _execute_delay(state: Dictionary, args: Array, line: int, raw: String) -> void:
+	if args.size() < 1:
+		_record_unsupported(state, "delay", line, raw)
+		return
+
+	_record_field_effect(state, "delay", line, {
+		"frames": _read_value(String(args[0])),
+	})
+
+
+func _execute_door_command(state: Dictionary, op: String, args: Array, line: int, raw: String) -> void:
+	if args.size() < 2:
+		_record_unsupported(state, op, line, raw)
+		return
+
+	_record_field_effect(state, op, line, {
+		"position": [_read_value(String(args[0])), _read_value(String(args[1]))],
+		"x_arg": String(args[0]),
+		"y_arg": String(args[1]),
+	})
+
+
+func _execute_waitdooranim(state: Dictionary, line: int) -> void:
+	_record_field_effect(state, "waitdooranim", line, {
+		"waits_for": "door_animation",
+	})
 
 
 func _execute_checkplayergender(state: Dictionary, line: int) -> void:
@@ -379,6 +415,17 @@ func _record_object_effect(state: Dictionary, op: String, line: int, detail: Dic
 	for key in detail:
 		object_effect[key] = detail[key]
 	state["object_effects"].append(object_effect)
+	_record_effect(state, op, line, detail)
+
+
+func _record_field_effect(state: Dictionary, op: String, line: int, detail: Dictionary) -> void:
+	var field_effect := {
+		"op": op,
+		"line": line,
+	}
+	for key in detail:
+		field_effect[key] = detail[key]
+	state["field_effects"].append(field_effect)
 	_record_effect(state, op, line, detail)
 
 
@@ -859,6 +906,7 @@ func _empty_result(script_label: String, status: String, finished: bool) -> Dict
 		"messages": [],
 		"movements": [],
 		"object_effects": [],
+		"field_effects": [],
 		"effects": [],
 		"unsupported_ops": [],
 		"trace": [],
