@@ -26,3 +26,11 @@
 - Generated `assets/generated/tilesets/littleroot_town_metatiles.png` and `data/generated/tilesets/littleroot_town.json`.
 - Updated `DataRegistry`, `Main`, and `DebugMapPlane` so the main scene renders `LittlerootTown` from the generated atlas with color-block fallback.
 - Verified Python import tools, tileset export with 0 visible warnings, and Godot 4.7 headless main-scene startup.
+
+## 2026-07-04
+
+- Added `MapRuntime` as a current-map query autoload for bounds, collision, elevation, metatile ids, behavior, and layer type.
+- Updated `PlayerController` so grid movement is blocked by generated map-grid collision and map bounds.
+- Updated `Main` to configure `MapRuntime` from generated first-slice map and tileset data and to show the last blocked movement during debug play.
+- Added `tools/godot_smoke/map_runtime_smoke.gd` to validate first-slice map runtime queries.
+- Verified Godot 4.7 headless main-scene startup and the `MapRuntime` smoke script.

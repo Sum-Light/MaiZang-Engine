@@ -32,6 +32,7 @@ The original project should be treated as authoritative source data and behavior
 
 - `GameState`: flags, vars, player profile, party, inventory, story state.
 - `DataRegistry`: read-only access to generated Pokemon, moves, items, maps, tilesets, trainers, and encounters.
+- `MapRuntime`: current map query service for bounds, collision, elevation, metatile ids, metatile behavior, and layer type.
 - `MapLoader`: builds Godot map scenes from generated map data.
 - `GridMover`: shared grid movement for player and NPCs.
 - `EventManager`: dispatches map events, warps, signs, object interaction, and coordinate triggers.
@@ -50,8 +51,9 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 
 - `GameState` stores current map id, player grid position, flags, and vars.
 - `DataRegistry` stores first-slice constants for LittlerootTown and loads generated map/tileset JSON when they exist.
+- `MapRuntime` configures the current generated map and exposes simple passability and metatile queries.
 - `GridMover` provides tweened tile movement.
-- `PlayerController` reads directional input and moves one tile at a time.
+- `PlayerController` reads directional input and moves one tile at a time after checking `MapRuntime.can_enter_cell`.
 - `DebugMapPlane` draws the first generated `block_ids` metatile grid from a palette-baked RGBA metatile atlas, with the old color blocks as fallback.
 - `Main` connects the debug world, player, camera, and HUD status label, and shows whether map data came from generated JSON or fallback constants.
 
@@ -61,6 +63,8 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - First-slice generated tileset JSON is loaded through `DataRegistry`.
 - `block_ids` contains unpacked 10-bit metatile ids for simple render previews.
 - `map_grid.raw`, `map_grid.collision`, and `map_grid.elevation` preserve the original 16-bit map-grid data split into runtime-friendly layers.
+- First-pass movement uses generated `map_grid.collision`: cells with collision `0` are enterable and nonzero or out-of-bounds cells are blocked.
+- `MapRuntime` also indexes generated metatile attributes so later rules can inspect behavior and layer type without reparsing tileset JSON in presentation scripts.
 - Generated metatile atlases use metatile id as atlas index, so map `block_ids` can render directly during the first slice.
 - Palette handling belongs to the import layer. Godot runtime should consume normal RGBA textures and metadata, not GBA palette slots.
 - Real TileMapLayer rendering should later consume the generated atlas/metadata instead of the current debug Node2D renderer.

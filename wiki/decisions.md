@@ -35,3 +35,9 @@ Reason: Palette slots are a GBA hardware/runtime constraint. Godot does not need
 Decision: Treat Porymap as a reference for pokeemerald map, tileset, palette, and metatile editor semantics, not as an architecture model to copy into Godot.
 
 Reason: Porymap is built to edit decomp project data in a Qt desktop workflow. The Godot port needs generated runtime assets and Godot-native systems, but Porymap's handling of source project context is useful for validating importer assumptions.
+
+## 2026-07-04 - Centralize current-map queries in MapRuntime
+
+Decision: Use a `MapRuntime` autoload as the first current-map query service for passability, bounds, collision, elevation, metatile ids, behavior, and layer type.
+
+Reason: Player movement, NPC movement, event triggers, object interaction, warps, and future terrain effects all need the same map facts. Centralizing those queries keeps generated JSON parsing out of presentation scripts and lets richer movement rules grow without coupling them to `PlayerController`.

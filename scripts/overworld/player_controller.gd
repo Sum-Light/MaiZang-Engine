@@ -1,5 +1,7 @@
 extends "res://scripts/overworld/grid_mover.gd"
 
+signal movement_blocked(target_position: Vector2i, cell_info: Dictionary)
+
 
 func _ready() -> void:
 	tile_size = DataRegistry.TILE_SIZE
@@ -12,7 +14,11 @@ func _physics_process(_delta: float) -> void:
 
 	var direction := _read_input_direction()
 	if direction != Vector2i.ZERO:
-		try_move(direction)
+		var target_position := grid_position + direction
+		if MapRuntime.can_enter_cell(target_position):
+			try_move(direction)
+		else:
+			movement_blocked.emit(target_position, MapRuntime.get_cell_info(target_position))
 
 
 func _read_input_direction() -> Vector2i:

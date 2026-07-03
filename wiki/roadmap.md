@@ -25,7 +25,7 @@
 
 - Convert one tileset pair used by `LittlerootTown`. First pass done for `gTileset_General` + `gTileset_Petalburg` as a palette-baked RGBA metatile atlas.
 - Render `LittlerootTown` in Godot. Debug rendering now uses generated map ids plus the generated metatile atlas; real TileMapLayer rendering remains.
-- Add collision and movement permissions from metatile attributes.
+- Add collision and movement permissions. First pass done with generated map-grid collision through `MapRuntime`; metatile behavior-specific movement rules remain.
 - Spawn object events from `map.json`.
 
 ## Milestone 4 - Event Script Slice
