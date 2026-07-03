@@ -20,3 +20,9 @@
 - Decoded `map.bin` as little-endian u16 map-grid entries with metatile id, collision, and elevation layers.
 - Updated `DataRegistry`, `Main`, and `DebugMapPlane` so the main scene reads generated map JSON and colors the debug grid from generated metatile ids.
 - Verified Python import tools and Godot headless main-scene startup with the generated first-slice map data.
+- Added `tools/importer/export_tilesets.py` to bake the `LittlerootTown` `gTileset_General` + `gTileset_Petalburg` pair into an RGBA metatile atlas and generated tileset JSON.
+- Decided that GBA palettes are import-time inputs only; Godot runtime should consume palette-baked images rather than a runtime palette system.
+- Used Porymap as a source-format reference for map/tileset/palette semantics while keeping the Godot runtime architecture independent.
+- Generated `assets/generated/tilesets/littleroot_town_metatiles.png` and `data/generated/tilesets/littleroot_town.json`.
+- Updated `DataRegistry`, `Main`, and `DebugMapPlane` so the main scene renders `LittlerootTown` from the generated atlas with color-block fallback.
+- Verified Python import tools, tileset export with 0 visible warnings, and Godot 4.7 headless main-scene startup.

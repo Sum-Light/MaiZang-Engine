@@ -8,13 +8,16 @@ const FIRST_SLICE_MAP_SIZE := Vector2i(20, 20)
 const FIRST_SLICE_PRIMARY_TILESET := "gTileset_General"
 const FIRST_SLICE_SECONDARY_TILESET := "gTileset_Petalburg"
 const GENERATED_START_MAP_PATH := "res://data/generated/maps/littleroot_town.json"
+const GENERATED_START_TILESET_PATH := "res://data/generated/tilesets/littleroot_town.json"
 
 var import_report: Dictionary = {}
 var _start_map_data: Dictionary = {}
+var _start_tileset_data: Dictionary = {}
 
 
 func _ready() -> void:
-	_load_start_map_data()
+	_start_map_data = _load_json_object(GENERATED_START_MAP_PATH, "generated map")
+	_start_tileset_data = _load_json_object(GENERATED_START_TILESET_PATH, "generated tileset")
 
 
 func get_start_map_id() -> String:
@@ -48,22 +51,26 @@ func get_start_map_data() -> Dictionary:
 	return _start_map_data
 
 
+func get_start_tileset_data() -> Dictionary:
+	return _start_tileset_data
+
+
 func get_start_block_ids() -> Array:
 	return _start_map_data.get("block_ids", [])
 
 
-func _load_start_map_data() -> void:
-	if not FileAccess.file_exists(GENERATED_START_MAP_PATH):
-		return
+func _load_json_object(path: String, label: String) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		return {}
 
-	var file := FileAccess.open(GENERATED_START_MAP_PATH, FileAccess.READ)
+	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
-		push_warning("Could not open generated map: %s" % GENERATED_START_MAP_PATH)
-		return
+		push_warning("Could not open %s: %s" % [label, path])
+		return {}
 
 	var parsed = JSON.parse_string(file.get_as_text())
 	if typeof(parsed) != TYPE_DICTIONARY:
-		push_warning("Generated map is not a JSON object: %s" % GENERATED_START_MAP_PATH)
-		return
+		push_warning("%s is not a JSON object: %s" % [label.capitalize(), path])
+		return {}
 
-	_start_map_data = parsed
+	return parsed

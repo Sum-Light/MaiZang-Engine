@@ -49,15 +49,18 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown and loads generated map JSON when it exists.
+- `DataRegistry` stores first-slice constants for LittlerootTown and loads generated map/tileset JSON when they exist.
 - `GridMover` provides tweened tile movement.
 - `PlayerController` reads directional input and moves one tile at a time.
-- `DebugMapPlane` draws the first generated `block_ids` metatile grid with a temporary color palette.
+- `DebugMapPlane` draws the first generated `block_ids` metatile grid from a palette-baked RGBA metatile atlas, with the old color blocks as fallback.
 - `Main` connects the debug world, player, camera, and HUD status label, and shows whether map data came from generated JSON or fallback constants.
 
 ## Generated Map Runtime Contract
 
 - First-slice generated map JSON is loaded through `DataRegistry`.
+- First-slice generated tileset JSON is loaded through `DataRegistry`.
 - `block_ids` contains unpacked 10-bit metatile ids for simple render previews.
 - `map_grid.raw`, `map_grid.collision`, and `map_grid.elevation` preserve the original 16-bit map-grid data split into runtime-friendly layers.
-- Real TileMap rendering should later consume generated tileset/metatile assets instead of the temporary debug palette.
+- Generated metatile atlases use metatile id as atlas index, so map `block_ids` can render directly during the first slice.
+- Palette handling belongs to the import layer. Godot runtime should consume normal RGBA textures and metadata, not GBA palette slots.
+- Real TileMapLayer rendering should later consume the generated atlas/metadata instead of the current debug Node2D renderer.

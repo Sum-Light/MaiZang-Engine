@@ -7,7 +7,10 @@ extends Node2D
 
 func _ready() -> void:
 	if debug_map.has_method("configure_from_map_data"):
-		debug_map.configure_from_map_data(DataRegistry.get_start_map_data())
+		debug_map.configure_from_map_data(
+			DataRegistry.get_start_map_data(),
+			DataRegistry.get_start_tileset_data()
+		)
 	else:
 		debug_map.map_size = DataRegistry.get_start_map_size()
 		debug_map.tile_size = DataRegistry.TILE_SIZE

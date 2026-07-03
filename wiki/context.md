@@ -19,7 +19,8 @@ The port should be data-driven: preserve source data and assets where practical,
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
 - Autoloads are configured for `GameState` and `DataRegistry`.
 - `DataRegistry` now loads the first generated map at `res://data/generated/maps/littleroot_town.json` when present.
-- `scenes/main.tscn` displays a 20x20 LittlerootTown debug grid from generated metatile ids and a movable player placeholder.
+- `DataRegistry` now loads the first generated tileset metadata at `res://data/generated/tilesets/littleroot_town.json` when present.
+- `scenes/main.tscn` displays a 20x20 LittlerootTown debug map from generated metatile ids and a palette-baked metatile atlas, plus a movable player placeholder.
 - Player movement currently uses Godot's default `ui_up`, `ui_down`, `ui_left`, and `ui_right` actions.
 - Godot validation uses `C:\Users\YbbNa\Downloads\Godot_v4.7-stable_win64\Godot_v4.7-stable_win64_console.exe`.
 - Validated Godot version: `4.7.stable.official.5b4e0cb0f`.
@@ -37,10 +38,15 @@ The port should be data-driven: preserve source data and assets where practical,
 - The source project is inside a larger git worktree rooted at `C:\Users\YbbNa\OneDrive\Project-Azoth`; git status from the source path includes unrelated parent-tree noise.
 - `tools/importer/source_probe.py` currently verifies the source path and first-slice map inputs.
 - `tools/importer/export_map.py` exports `LittlerootTown` into generated Godot JSON.
+- `tools/importer/export_tilesets.py` exports the `LittlerootTown` primary/secondary tileset pair into Godot-friendly metadata and an RGBA metatile atlas.
 - Generated first-slice map data lives at `data/generated/maps/littleroot_town.json`.
+- Generated first-slice tileset metadata lives at `data/generated/tilesets/littleroot_town.json`.
+- Generated first-slice metatile atlas lives at `assets/generated/tilesets/littleroot_town_metatiles.png`.
 - Generated import manifest lives at `data/generated/import_manifest.json`.
 - Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
 - Latest map export for `LittlerootTown` decoded 400 map-grid entries into 63 unique metatile ids.
+- Latest tileset export for `LittlerootTown` uses `gTileset_General` and `gTileset_Petalburg`, writes a 656-metatile RGBA atlas, reports 63 used metatile ids, records 8 fully covered source tile notes, and has 0 visible warnings.
+- Porymap (`https://github.com/huderlem/porymap`) is a useful source-format and editor-behavior reference, but the Godot port should still use its own runtime architecture.
 
 ## Known Source Formats
 

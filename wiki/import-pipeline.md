@@ -23,6 +23,7 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 - `data/tilesets/**/metatiles.bin`
 - `data/tilesets/**/metatile_attributes.bin`
 - `data/tilesets/**/palettes/*.pal`
+- `graphics/door_anims/*.png` for future visible runtime door-tile cases when a map needs them
 
 ### Gameplay Data
 
@@ -99,8 +100,23 @@ Current export behavior:
 - Decodes `data/layouts/<Layout>/map.bin` as little-endian u16 map-grid entries.
 - Uses `include/global.fieldmap.h` masks: bits 0-9 are metatile id, bits 10-11 are collision, and bits 12-15 are elevation.
 - Writes `data/generated/maps/littleroot_town.json` for the current first slice.
-- Writes `data/generated/import_manifest.json` with exported map id, name, path, layout id, and size.
+- Updates `data/generated/import_manifest.json` with exported map id, name, path, layout id, and size while preserving existing tileset entries.
 - Preserves source event arrays for connections, object events, warps, coordinate events, and background events.
+
+`tools/importer/export_tilesets.py` exports one map's primary/secondary tileset pair into a palette-baked metatile atlas. It accepts `--config`, `--source`, `--map`, `--output-data-root`, and `--output-asset-root`.
+
+Current tileset export behavior:
+
+- Reads the map layout's primary and secondary tileset symbols.
+- Reads `tiles.png`, `metatiles.bin`, `metatile_attributes.bin`, and `palettes/*.pal` for both tilesets.
+- Uses GBA tile-entry bits from `tools/gbagfx/gfx.h`: 10-bit tile id, horizontal flip, vertical flip, and 4-bit palette number.
+- Builds source palette slots with primary palettes 0-5 and secondary palettes 6-12, then bakes colors into a normal RGBA PNG.
+- Flattens each 16x16 metatile by compositing bottom entries 0-3 and top entries 4-7.
+- Writes `assets/generated/tilesets/littleroot_town_metatiles.png`.
+- Writes `data/generated/tilesets/littleroot_town.json` with atlas metadata, source tile entries, metatile attributes, used metatile ids, coverage notes, and warnings.
+- Updates `data/generated/import_manifest.json` with exported tileset metadata while preserving existing map entries.
+
+Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 
 Latest verified first-slice source facts for `LittlerootTown`:
 
@@ -122,3 +138,13 @@ Latest verified first-slice export for `LittlerootTown`:
 - map-grid entries: 400
 - unique metatile ids: 63
 - metatile id range: 1 to 587
+
+Latest verified first-slice tileset export for `LittlerootTown`:
+
+- generated metadata path: `data/generated/tilesets/littleroot_town.json`
+- generated atlas path: `assets/generated/tilesets/littleroot_town_metatiles.png`
+- atlas size: 512x336 pixels
+- metatile count: 656 total, 512 primary and 144 secondary
+- used metatile ids: 63
+- visible warnings: 0
+- coverage notes: 8 bottom-layer out-of-range tile references in metatiles 586 and 587 are fully covered by opaque top-layer tiles in the flattened atlas

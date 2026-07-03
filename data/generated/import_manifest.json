@@ -1,6 +1,9 @@
 {
   "schema_version": 1,
-  "generated_by": "tools/importer/export_map.py",
+  "generators": [
+    "tools/importer/export_map.py",
+    "tools/importer/export_tilesets.py"
+  ],
   "maps": [
     {
       "id": "MAP_LITTLEROOT_TOWN",
@@ -9,6 +12,16 @@
       "layout_id": "LAYOUT_LITTLEROOT_TOWN",
       "width": 20,
       "height": 20
+    }
+  ],
+  "tilesets": [
+    {
+      "map": "LittlerootTown",
+      "path": "data/generated/tilesets/littleroot_town.json",
+      "atlas_image": "assets/generated/tilesets/littleroot_town_metatiles.png",
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "total_metatiles": 656
     }
   ]
 }

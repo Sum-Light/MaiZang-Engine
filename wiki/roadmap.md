@@ -23,8 +23,8 @@
 
 ## Milestone 3 - Map Rendering Slice
 
-- Convert one tileset pair used by `LittlerootTown`.
-- Render `LittlerootTown` in Godot. Temporary debug-palette rendering from generated metatile ids is done; real TileMap/metatile rendering remains.
+- Convert one tileset pair used by `LittlerootTown`. First pass done for `gTileset_General` + `gTileset_Petalburg` as a palette-baked RGBA metatile atlas.
+- Render `LittlerootTown` in Godot. Debug rendering now uses generated map ids plus the generated metatile atlas; real TileMapLayer rendering remains.
 - Add collision and movement permissions from metatile attributes.
 - Spawn object events from `map.json`.
 

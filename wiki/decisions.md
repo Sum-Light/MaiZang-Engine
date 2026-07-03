@@ -23,3 +23,15 @@ Reason: The source project and future wiki/import outputs may contain Chinese te
 Decision: Generated map JSON keeps both the original raw u16 map-grid values and unpacked metatile id, collision, and elevation grids.
 
 Reason: The source `map.bin` does not store plain metatile ids. `include/global.fieldmap.h` defines each entry as 10 bits of metatile id, 2 bits of collision, and 4 bits of elevation. Keeping the raw and unpacked forms makes the first debug renderer simple while preserving data needed for later collision and movement behavior.
+
+## 2026-07-03 - Bake palettes into generated images
+
+Decision: Use GBA palette files only during import, then generate ordinary RGBA images for Godot runtime consumption.
+
+Reason: Palette slots are a GBA hardware/runtime constraint. Godot does not need a runtime palette bank model for the first map renderer, and palette-baked textures are simpler to load, preview, export, and debug. The importer should still record enough source metadata to revisit special cases such as animated doors or layer splitting.
+
+## 2026-07-03 - Use Porymap as a source-format reference
+
+Decision: Treat Porymap as a reference for pokeemerald map, tileset, palette, and metatile editor semantics, not as an architecture model to copy into Godot.
+
+Reason: Porymap is built to edit decomp project data in a Qt desktop workflow. The Godot port needs generated runtime assets and Godot-native systems, but Porymap's handling of source project context is useful for validating importer assumptions.

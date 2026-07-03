@@ -204,12 +204,41 @@ def write_json(path, data):
         handle.write(text + "\n")
 
 
-def write_manifest(path, exported_maps):
+def _manifest_generators(existing, generator):
+    generators = []
+    existing_generators = existing.get("generators", [])
+    if isinstance(existing_generators, list):
+        generators.extend(existing_generators)
+
+    old_generator = existing.get("generated_by")
+    if isinstance(old_generator, str) and old_generator not in generators:
+        generators.append(old_generator)
+
+    if generator is not None and generator not in generators:
+        generators.append(generator)
+    return generators
+
+
+def write_manifest(path, exported_maps=None, exported_tilesets=None, generator=None):
+    existing = {}
+    if path.exists():
+        try:
+            existing = load_json(path)
+        except json.JSONDecodeError:
+            existing = {}
+
     manifest = {
         "schema_version": 1,
-        "generated_by": "tools/importer/export_map.py",
-        "maps": exported_maps,
+        "generators": _manifest_generators(existing, generator),
     }
+
+    maps = exported_maps if exported_maps is not None else existing.get("maps", [])
+    tilesets = exported_tilesets if exported_tilesets is not None else existing.get("tilesets", [])
+    if maps:
+        manifest["maps"] = maps
+    if tilesets:
+        manifest["tilesets"] = tilesets
+
     write_json(path, manifest)
 
 
@@ -239,7 +268,11 @@ def main(argv):
         "width": exported["layout"]["width"],
         "height": exported["layout"]["height"],
     }
-    write_manifest(output_root / "import_manifest.json", [manifest_entry])
+    write_manifest(
+        output_root / "import_manifest.json",
+        exported_maps=[manifest_entry],
+        generator="tools/importer/export_map.py",
+    )
 
     print(json.dumps({
         "exported": manifest_entry,
