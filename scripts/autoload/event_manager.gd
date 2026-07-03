@@ -4,8 +4,13 @@ signal debug_message_requested(lines: PackedStringArray)
 signal transition_sequence_requested(sequence: Dictionary)
 
 const WARP_ID_NONE_VALUE := -1
+const LOCALID_NONE_VALUE := 0
+const LOCALID_CAMERA_VALUE := 127
+const LOCALID_FOLLOWING_POKEMON_VALUE := 254
+const LOCALID_PLAYER_VALUE := 255
 const MAP_SCRIPT_ON_LOAD := "MAP_SCRIPT_ON_LOAD"
 const MAP_SCRIPT_ON_TRANSITION := "MAP_SCRIPT_ON_TRANSITION"
+const MAP_SCRIPT_ON_FRAME_TABLE := "MAP_SCRIPT_ON_FRAME_TABLE"
 const DOOR_ANIM_FRAME_TIME := 4
 const DOOR_ANIM_FRAME_COUNT := 4
 const DOOR_ANIM_TOTAL_FRAMES := DOOR_ANIM_FRAME_TIME * DOOR_ANIM_FRAME_COUNT
@@ -259,6 +264,9 @@ func run_script(script: String, context: Dictionary = {}) -> Dictionary:
 
 
 func run_map_script_type(script_type: String, context: Dictionary = {}) -> Dictionary:
+	if script_type == MAP_SCRIPT_ON_FRAME_TABLE:
+		return try_run_on_frame_map_script(context)
+
 	var labels := _map_script_labels_for_type(script_type)
 	var summary := {
 		"script_type": script_type,
@@ -288,6 +296,117 @@ func run_map_script_type(script_type: String, context: Dictionary = {}) -> Dicti
 		})
 		if String(result.get("status", "")) != "ok":
 			summary["status"] = String(result.get("status", "script_error"))
+	return summary
+
+
+func try_run_on_frame_map_script(context: Dictionary = {}) -> Dictionary:
+	var labels := _map_script_labels_for_type(MAP_SCRIPT_ON_FRAME_TABLE)
+	var entries := []
+	var summary := {
+		"script_type": MAP_SCRIPT_ON_FRAME_TABLE,
+		"status": "missing_map_script" if labels.is_empty() else "no_matching_map_script",
+		"matched": false,
+		"table_label": "",
+		"selected_script": "",
+		"entry_count": 0,
+		"terminal_found": false,
+		"entries": entries,
+		"script": {},
+		"runtime": {},
+		"source_trace": _map_script_source_trace(MAP_SCRIPT_ON_FRAME_TABLE),
+	}
+	if labels.is_empty():
+		return summary
+
+	var table_label := String(labels[0])
+	summary["table_label"] = table_label
+	var table_record := _get_script_record(table_label)
+	if table_record.is_empty():
+		summary["status"] = "missing_table_script"
+		return summary
+	if String(table_record.get("kind", "")) != "map_script_table":
+		summary["status"] = "invalid_map_script_table"
+		return summary
+
+	var instructions = table_record.get("instructions", [])
+	if typeof(instructions) != TYPE_ARRAY:
+		summary["status"] = "invalid_map_script_table"
+		return summary
+
+	for instruction in instructions:
+		if typeof(instruction) != TYPE_DICTIONARY:
+			continue
+
+		var op := String(instruction.get("op", ""))
+		var args = instruction.get("args", [])
+		if op == ".2byte":
+			if typeof(args) == TYPE_ARRAY and args.size() >= 1 and _map_script_table_value(String(args[0])).get("value", 0) == 0:
+				summary["terminal_found"] = true
+				break
+			continue
+		if op != "map_script_2":
+			continue
+		if typeof(args) != TYPE_ARRAY or args.size() < 3:
+			entries.append({
+				"status": "invalid_map_script_2",
+				"line": int(instruction.get("line", 0)),
+				"raw": String(instruction.get("raw", "")),
+			})
+			summary["entry_count"] = entries.size()
+			continue
+
+		var var_token := String(args[0])
+		var compare_token := String(args[1])
+		var target_label := String(args[2])
+		var var_value := _map_script_table_value(var_token)
+		var compare_value := _map_script_table_value(compare_token)
+		var condition_matched := int(var_value.get("value", 0)) == int(compare_value.get("value", 0))
+		var entry := {
+			"var_token": var_token,
+			"compare_token": compare_token,
+			"var_value": int(var_value.get("value", 0)),
+			"compare_value": int(compare_value.get("value", 0)),
+			"var_source": String(var_value.get("source", "")),
+			"compare_source": String(compare_value.get("source", "")),
+			"script_label": target_label,
+			"line": int(instruction.get("line", 0)),
+			"condition_matched": condition_matched,
+			"matched": false,
+		}
+		entries.append(entry)
+		summary["entry_count"] = entries.size()
+		if not condition_matched:
+			continue
+		if _script_label_has_no_effect(target_label):
+			entry["no_effect"] = true
+			continue
+
+		entry["matched"] = true
+		summary["matched"] = true
+		summary["selected_script"] = target_label
+		var script_context := context.duplicate(true)
+		script_context["map_script_type"] = MAP_SCRIPT_ON_FRAME_TABLE
+		script_context["map_script_lifecycle"] = "on_frame"
+		script_context["map_script_table_label"] = table_label
+		script_context["source_function"] = _map_script_source_function(MAP_SCRIPT_ON_FRAME_TABLE)
+		var result := run_script(target_label, script_context)
+		var runtime_summary := {}
+		if not result.is_empty() and String(result.get("status", "")) != "vm_unavailable":
+			runtime_summary = _apply_runtime_result(result)
+		summary["runtime"] = runtime_summary
+		summary["script"] = {
+			"label": target_label,
+			"status": String(result.get("status", "")),
+			"message_count": _result_array_count(result, "messages"),
+			"field_effect_count": _result_array_count(result, "field_effects"),
+			"movement_count": _result_array_count(result, "movements"),
+			"object_effect_count": _result_array_count(result, "object_effects"),
+			"transition_effect_count": _result_array_count(result, "transition_effects"),
+			"runtime": runtime_summary,
+		}
+		summary["status"] = String(result.get("status", "script_error"))
+		return summary
+
 	return summary
 
 
@@ -1017,6 +1136,8 @@ func _map_script_source_function(script_type: String) -> String:
 		return "RunOnLoadMapScript"
 	if script_type == MAP_SCRIPT_ON_TRANSITION:
 		return "RunOnTransitionMapScript"
+	if script_type == MAP_SCRIPT_ON_FRAME_TABLE:
+		return "TryRunOnFrameMapScript"
 	return "MapHeaderRunScriptType"
 
 
@@ -1028,7 +1149,118 @@ func _map_script_source_trace(script_type: String) -> Array:
 	elif script_type == MAP_SCRIPT_ON_TRANSITION:
 		trace.append("src/overworld.c:LoadMapFromWarp/LoadMapFromCameraTransition")
 		trace.append("src/script.c:RunOnTransitionMapScript")
+	elif script_type == MAP_SCRIPT_ON_FRAME_TABLE:
+		trace.append("src/field_control_avatar.c:ProcessPlayerFieldInput")
+		trace.append("src/script.c:TryRunOnFrameMapScript/MapHeaderCheckScriptTable")
+		trace.append("src/event_data.c:VarGet")
+		trace.append("asm/macros/map.inc:map_script_2")
 	return trace
+
+
+func _map_script_table_value(token: String) -> Dictionary:
+	var value := token.strip_edges()
+	if value.begins_with("VAR_"):
+		return {
+			"resolved": true,
+			"value": _get_game_var(value),
+			"source": "src/event_data.c:VarGet/GameState",
+		}
+
+	var constant := _map_script_constant_value(value)
+	if bool(constant.get("resolved", false)):
+		return constant
+
+	if value.is_valid_int():
+		return {
+			"resolved": true,
+			"value": int(value),
+			"source": "src/event_data.c:VarGet literal passthrough",
+		}
+	return {
+		"resolved": false,
+		"value": int(value),
+		"source": "unresolved_token_int_fallback",
+	}
+
+
+func _map_script_constant_value(value: String) -> Dictionary:
+	match value:
+		"MALE":
+			return {"resolved": true, "value": 0, "source": "constant:MALE"}
+		"FEMALE":
+			return {"resolved": true, "value": 1, "source": "constant:FEMALE"}
+		"TRUE", "YES":
+			return {"resolved": true, "value": 1, "source": "constant:%s" % value}
+		"FALSE", "NO":
+			return {"resolved": true, "value": 0, "source": "constant:%s" % value}
+		"WARP_ID_NONE":
+			return {"resolved": true, "value": WARP_ID_NONE_VALUE, "source": "constant:WARP_ID_NONE"}
+		"LOCALID_NONE":
+			return {"resolved": true, "value": LOCALID_NONE_VALUE, "source": "include/constants/event_objects.h"}
+		"LOCALID_CAMERA":
+			return {"resolved": true, "value": LOCALID_CAMERA_VALUE, "source": "include/constants/event_objects.h"}
+		"LOCALID_FOLLOWING_POKEMON":
+			return {"resolved": true, "value": LOCALID_FOLLOWING_POKEMON_VALUE, "source": "include/constants/event_objects.h"}
+		"LOCALID_PLAYER":
+			return {"resolved": true, "value": LOCALID_PLAYER_VALUE, "source": "include/constants/event_objects.h"}
+
+	if value.begins_with("LOCALID_"):
+		return _map_object_local_id_value(value)
+	return {"resolved": false, "value": 0, "source": ""}
+
+
+func _map_object_local_id_value(local_id: String) -> Dictionary:
+	if _map_runtime != null and _map_runtime.has_method("get_object_event_by_local_id"):
+		var object_event = _map_runtime.get_object_event_by_local_id(local_id, true)
+		if typeof(object_event) == TYPE_DICTIONARY and not object_event.is_empty():
+			return {
+				"resolved": true,
+				"value": int(object_event.get("index", -1)) + 1,
+				"source": "tools/mapjson/mapjson.cpp local_id i+1",
+			}
+
+	var map_data := _current_map_data_for_local_ids()
+	var events = map_data.get("events", {})
+	var object_events = events.get("object_events", []) if typeof(events) == TYPE_DICTIONARY else []
+	if typeof(object_events) == TYPE_ARRAY:
+		for index in range(object_events.size()):
+			var object_event = object_events[index]
+			if typeof(object_event) == TYPE_DICTIONARY and String(object_event.get("local_id", "")) == local_id:
+				return {
+					"resolved": true,
+					"value": index + 1,
+					"source": "tools/mapjson/mapjson.cpp local_id i+1",
+				}
+	return {
+		"resolved": false,
+		"value": 0,
+		"source": "unresolved_local_id",
+	}
+
+
+func _current_map_data_for_local_ids() -> Dictionary:
+	if _data_registry == null:
+		return {}
+	var map_id := _current_map_id()
+	if not map_id.is_empty() and _data_registry.has_method("get_map_data"):
+		var map_data = _data_registry.get_map_data(map_id)
+		if typeof(map_data) == TYPE_DICTIONARY and not map_data.is_empty():
+			return map_data
+	if _data_registry.has_method("get_start_map_data"):
+		var start_map_data = _data_registry.get_start_map_data()
+		return start_map_data if typeof(start_map_data) == TYPE_DICTIONARY else {}
+	return {}
+
+
+func _get_game_var(var_name: String) -> int:
+	if _game_state != null and _game_state.has_method("get_var"):
+		return int(_game_state.get_var(var_name, 0))
+	return 0
+
+
+func _script_label_has_no_effect(label: String) -> bool:
+	var script_label := label.strip_edges()
+	return script_label.is_empty() or script_label == "0x0" or script_label == "NULL"
 
 
 func _template_position_targets_from_runtime_summary(runtime_summary: Dictionary) -> Array:

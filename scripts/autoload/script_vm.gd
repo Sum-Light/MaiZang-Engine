@@ -67,7 +67,14 @@ const MAPGRID_METATILE_ID_MASK := 0x03FF
 const MAPGRID_COLLISION_SHIFT := 10
 const MAPGRID_COLLISION_IMPASSABLE := 0x03
 const WARP_ID_NONE_VALUE := -1
+const LOCALID_NONE := "LOCALID_NONE"
 const LOCALID_PLAYER := "LOCALID_PLAYER"
+const LOCALID_CAMERA := "LOCALID_CAMERA"
+const LOCALID_FOLLOWING_POKEMON := "LOCALID_FOLLOWING_POKEMON"
+const LOCALID_NONE_VALUE := 0
+const LOCALID_CAMERA_VALUE := 127
+const LOCALID_FOLLOWING_POKEMON_VALUE := 254
+const LOCALID_PLAYER_VALUE := 255
 const YESNO_PENDING_VALUE := 0xFF
 const YESNO_INPUT_DELAY_FRAMES := 5
 const YESNO_DEFAULT_MENU_LEFT := 21
@@ -1254,6 +1261,10 @@ func _read_value(token: String) -> int:
 		return _get_var(value)
 	if _is_known_constant(value):
 		return _constant_value(value)
+	if value.begins_with("LOCALID_"):
+		var local_id_value := _local_id_value(value)
+		if bool(local_id_value.get("resolved", false)):
+			return int(local_id_value.get("value", 0))
 	return int(value)
 
 
@@ -1266,6 +1277,10 @@ func _is_known_constant(value: String) -> bool:
 		"YES",
 		"NO",
 		"WARP_ID_NONE",
+		LOCALID_NONE,
+		LOCALID_CAMERA,
+		LOCALID_FOLLOWING_POKEMON,
+		LOCALID_PLAYER,
 	]
 
 
@@ -1281,7 +1296,52 @@ func _constant_value(value: String) -> int:
 			return 0
 		"WARP_ID_NONE":
 			return WARP_ID_NONE_VALUE
+		LOCALID_NONE:
+			return LOCALID_NONE_VALUE
+		LOCALID_CAMERA:
+			return LOCALID_CAMERA_VALUE
+		LOCALID_FOLLOWING_POKEMON:
+			return LOCALID_FOLLOWING_POKEMON_VALUE
+		LOCALID_PLAYER:
+			return LOCALID_PLAYER_VALUE
 	return 0
+
+
+func _local_id_value(local_id: String) -> Dictionary:
+	var map_data := _current_map_data_for_local_ids()
+	var events = map_data.get("events", {})
+	var object_events = events.get("object_events", []) if typeof(events) == TYPE_DICTIONARY else []
+	if typeof(object_events) == TYPE_ARRAY:
+		for index in range(object_events.size()):
+			var object_event = object_events[index]
+			if typeof(object_event) == TYPE_DICTIONARY and String(object_event.get("local_id", "")) == local_id:
+				return {
+					"resolved": true,
+					"value": index + 1,
+					"source": "tools/mapjson/mapjson.cpp local_id i+1",
+				}
+	return {
+		"resolved": false,
+		"value": 0,
+		"source": "unresolved_local_id",
+	}
+
+
+func _current_map_data_for_local_ids() -> Dictionary:
+	var registry := _get_data_registry()
+	if registry == null:
+		return {}
+
+	var map_id := _current_map_id()
+	if not map_id.is_empty() and registry.has_method("get_map_data"):
+		var map_data = registry.get_map_data(map_id)
+		if typeof(map_data) == TYPE_DICTIONARY and not map_data.is_empty():
+			return map_data
+
+	if registry.has_method("get_start_map_data"):
+		var start_map_data = registry.get_start_map_data()
+		return start_map_data if typeof(start_map_data) == TYPE_DICTIONARY else {}
+	return {}
 
 
 func _resolve_yesno_choice(state: Dictionary) -> Dictionary:

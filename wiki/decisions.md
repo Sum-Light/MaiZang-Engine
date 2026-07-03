@@ -245,3 +245,9 @@ Reason: Source `InitMap` loads the layout before calling `RunOnLoadMapScript`, a
 Decision: Add `EventManager.run_map_load_scripts` as the source-ordered map-load lifecycle wrapper: run `MAP_SCRIPT_ON_TRANSITION`, sync only the affected object-template positions into current runtime object events, then run `MAP_SCRIPT_ON_LOAD`.
 
 Reason: Source `LoadMapFromWarp` and `LoadMapFromCameraTransition` load map data and object templates, call `RunOnTransitionMapScript`, and only then call `InitMap`, which runs `RunOnLoadMapScript`. Commands such as `setobjectxyperm` should not generally teleport an active object during normal dispatch, but during map load they change templates before objects become visible. A targeted loading-time sync preserves that source-visible behavior without changing the normal script-command semantics.
+
+## 2026-07-04 - Evaluate OnFrame map-script tables separately
+
+Decision: Model `MAP_SCRIPT_ON_FRAME_TABLE` as a separate `EventManager.try_run_on_frame_map_script` table evaluator instead of treating it like a direct map-header script entry.
+
+Reason: Source `MAP_SCRIPT_ON_FRAME_TABLE` points to a `map_script_2` table scanned by `MapHeaderCheckScriptTable`: each row compares two `VarGet` values and starts the first non-no-effect script through the global script context. Direct lifecycle scripts use `MapHeaderRunScriptType` and run immediately. Keeping OnFrame as a table evaluator preserves the source behavior while leaving automatic field-input-loop dispatch, async waits, resume scripts, and dive/step/warp ordering for a later traced runtime pass.

@@ -148,3 +148,8 @@
 - Automatic OnTransition now places Brendan/May house Mom from source `VAR_LITTLEROOT_INTRO_STATE` scripts before the map is shown, while automatic OnLoad still applies moving-box metatiles afterward.
 - Expanded `event_manager_smoke.gd` and `transition_presentation_smoke.gd` to verify Mom's source OnTransition positions and facing for immediate and deferred transition paths.
 - Verified `git diff --check`, `event_manager_smoke.gd`, `transition_presentation_smoke.gd`, `map_runtime_smoke.gd`, `script_vm_smoke.gd`, and Godot 4.7 headless startup.
+- Traced `MAP_SCRIPT_ON_FRAME_TABLE` through `include/constants/map_scripts.h`, `src/script.c:TryRunOnFrameMapScript/MapHeaderCheckScriptTable`, `src/event_data.c:VarGet`, `src/field_control_avatar.c:ProcessPlayerFieldInput`, `asm/macros/map.inc:map_script_2`, and `tools/mapjson/mapjson.cpp` local-id constant generation.
+- Added `EventManager.try_run_on_frame_map_script`, scanning generated `map_script_2` tables with source `VarGet` comparison semantics and running the first non-no-effect script through `ScriptVM`.
+- Updated `ScriptVM` and OnFrame table comparison helpers so numeric `LOCALID_*` operands resolve from current-map generated object-event order plus source special ids such as `LOCALID_PLAYER`.
+- Expanded `event_manager_smoke.gd` to cover Brendan/May house OnFrame intro and clock paths: intro currently reaches expected `missing_branch_target` after source `setvar` setup because shared `PlayersHouse_1F` scripts are not exported, while clock paths record message, movement, and upstairs warp effects.
+- Verified `git diff --check`, `event_manager_smoke.gd`, `script_vm_smoke.gd`, `map_runtime_smoke.gd`, `transition_presentation_smoke.gd`, and Godot 4.7 headless startup.

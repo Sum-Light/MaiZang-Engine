@@ -126,6 +126,12 @@ func _init() -> void:
 	var brendan_mom_after_transition := runtime.get_object_event_by_local_id("LOCALID_PLAYERS_HOUSE_1F_MOM", true)
 	var brendan_mom_position_after_transition := _event_position(brendan_mom_after_transition)
 	var brendan_mom_movement_after_transition := String(brendan_mom_after_transition.get("movement_type", ""))
+	var brendan_on_frame_intro := manager.try_run_on_frame_map_script({
+		"trigger": "smoke_on_frame_intro",
+		"map": game_state.current_map_id,
+	})
+	var brendan_intro_mom_local_id := game_state.get_var("VAR_0x8004", -1)
+	var brendan_intro_gender_value := game_state.get_var("VAR_0x8005", -1)
 
 	_assert(twin_preview.get("status", "") == "ok", "expected Twin script preview")
 	_assert(twin_preview.get("vm_status", "") == "ok", "expected Twin VM status")
@@ -211,6 +217,43 @@ func _init() -> void:
 		brendan_mom_movement_after_transition == "MOVEMENT_TYPE_FACE_UP",
 		"expected Brendan OnTransition to face Mom upward"
 	)
+	_assert(bool(brendan_on_frame_intro.get("matched", false)), "expected Brendan OnFrame intro table match")
+	_assert(
+		brendan_on_frame_intro.get("selected_script", "") == "LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn",
+		"unexpected Brendan OnFrame intro script"
+	)
+	_assert(
+		brendan_on_frame_intro.get("status", "") == "missing_branch_target",
+		"expected Brendan intro to stop at missing shared PlayersHouse script"
+	)
+	_assert(int(brendan_on_frame_intro.get("entry_count", 0)) == 1, "expected first OnFrame entry to match")
+	_assert(brendan_intro_mom_local_id == 1, "expected local-id constant to resolve to Mom object id")
+	_assert(brendan_intro_gender_value == 0, "expected Brendan intro gender var to be MALE")
+	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 5)
+	var brendan_on_frame_clock := manager.try_run_on_frame_map_script({
+		"trigger": "smoke_on_frame_clock",
+		"map": game_state.current_map_id,
+	})
+	var brendan_on_frame_clock_script = brendan_on_frame_clock.get("script", {})
+	_assert(bool(brendan_on_frame_clock.get("matched", false)), "expected Brendan OnFrame clock table match")
+	_assert(
+		brendan_on_frame_clock.get("selected_script", "") == "LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock",
+		"unexpected Brendan OnFrame clock script"
+	)
+	_assert(brendan_on_frame_clock.get("status", "") == "ok", "expected Brendan clock OnFrame script to run")
+	_assert(
+		typeof(brendan_on_frame_clock_script) == TYPE_DICTIONARY and int(brendan_on_frame_clock_script.get("message_count", 0)) == 1,
+		"expected Brendan clock OnFrame script to emit one message"
+	)
+	_assert(
+		typeof(brendan_on_frame_clock_script) == TYPE_DICTIONARY and int(brendan_on_frame_clock_script.get("movement_count", 0)) == 2,
+		"expected Brendan clock OnFrame script to move player and Mom"
+	)
+	_assert(
+		typeof(brendan_on_frame_clock_script) == TYPE_DICTIONARY and int(brendan_on_frame_clock_script.get("transition_effect_count", 0)) == 1,
+		"expected Brendan clock OnFrame script to record upstairs warp"
+	)
+	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 3)
 	_assert(not transition_lines.is_empty(), "expected transition dispatch to emit lines")
 	_assert(
 		_lines_contain(transition_lines, "Transition effects: 1 applied, 0 skipped"),
@@ -293,6 +336,12 @@ func _init() -> void:
 	var may_mom_after_door_warp := runtime.get_object_event_by_local_id("LOCALID_PLAYERS_HOUSE_1F_MOM", true)
 	var may_mom_position_after_door_warp := _event_position(may_mom_after_door_warp)
 	var may_mom_movement_after_door_warp := String(may_mom_after_door_warp.get("movement_type", ""))
+	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 5)
+	var may_on_frame_clock := manager.try_run_on_frame_map_script({
+		"trigger": "smoke_on_frame_clock",
+		"map": game_state.current_map_id,
+	})
+	var may_on_frame_clock_script = may_on_frame_clock.get("script", {})
 	_assert(may_house_door_warp.get("type", "") == "warp_event", "expected May house door warp")
 	_assert(game_state.current_map_id == MAYS_HOUSE_1F, "expected door warp to load May house")
 	_assert(
@@ -310,6 +359,16 @@ func _init() -> void:
 	_assert(
 		may_mom_movement_after_door_warp == "MOVEMENT_TYPE_FACE_UP",
 		"expected May OnTransition to face Mom upward"
+	)
+	_assert(bool(may_on_frame_clock.get("matched", false)), "expected May OnFrame clock table match")
+	_assert(
+		may_on_frame_clock.get("selected_script", "") == "LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock",
+		"unexpected May OnFrame clock script"
+	)
+	_assert(may_on_frame_clock.get("status", "") == "ok", "expected May clock OnFrame script to run")
+	_assert(
+		typeof(may_on_frame_clock_script) == TYPE_DICTIONARY and int(may_on_frame_clock_script.get("message_count", 0)) == 1,
+		"expected May clock OnFrame script to emit one message"
 	)
 	_assert(door_warp_sequence.get("presentation", "") == "door", "expected door presentation sequence")
 	_assert(
