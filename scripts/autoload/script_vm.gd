@@ -7,9 +7,12 @@ const MSGBOX_DEFAULT := "MSGBOX_DEFAULT"
 const MSGBOX_YESNO := "MSGBOX_YESNO"
 const SAFE_FOLLOWER_FLAG := "FLAG_SAFE_FOLLOWER_MOVEMENT"
 const VAR_RESULT := "VAR_RESULT"
+const PLACEHOLDER_PLAYER := "PLAYER"
+const PLACEHOLDER_KUN := "KUN"
 const STR_VAR_1 := "STR_VAR_1"
 const STR_VAR_2 := "STR_VAR_2"
 const STR_VAR_3 := "STR_VAR_3"
+const DEFAULT_PLAYER_NAME := "玩家"
 const PLAYER_GENDER_MALE := "MALE"
 const PLAYER_GENDER_FEMALE := "FEMALE"
 const PLAYER_GENDER_MALE_VALUE := 0
@@ -1177,6 +1180,25 @@ func _string_var_names() -> Array:
 	return [STR_VAR_1, STR_VAR_2, STR_VAR_3]
 
 
+func _placeholder_names() -> Array:
+	return [PLACEHOLDER_PLAYER, PLACEHOLDER_KUN, STR_VAR_1, STR_VAR_2, STR_VAR_3]
+
+
+func _placeholder_id(placeholder_name: String) -> int:
+	match placeholder_name:
+		PLACEHOLDER_PLAYER:
+			return 0x1
+		STR_VAR_1:
+			return 0x2
+		STR_VAR_2:
+			return 0x3
+		STR_VAR_3:
+			return 0x4
+		PLACEHOLDER_KUN:
+			return 0x5
+	return 0
+
+
 func _set_string_var(state: Dictionary, var_name: String, value: String) -> void:
 	var string_vars = state.get("string_vars", {})
 	if typeof(string_vars) != TYPE_DICTIONARY:
@@ -1192,16 +1214,26 @@ func _get_string_var(state: Dictionary, var_name: String) -> String:
 	return String(string_vars.get(var_name, ""))
 
 
+func _placeholder_value(state: Dictionary, placeholder_name: String) -> String:
+	match placeholder_name:
+		PLACEHOLDER_PLAYER:
+			return _get_player_name()
+		PLACEHOLDER_KUN:
+			return _get_kun_placeholder()
+	return _get_string_var(state, placeholder_name)
+
+
 func _placeholder_substitutions(state: Dictionary, display_text: String) -> Array:
 	var substitutions: Array = []
-	for var_name in _string_var_names():
-		var token := "{%s}" % String(var_name)
+	for placeholder_name in _placeholder_names():
+		var token := "{%s}" % String(placeholder_name)
 		var cursor := display_text.find(token)
 		while cursor != -1:
 			substitutions.append({
 				"token": token,
-				"var": String(var_name),
-				"value": _get_string_var(state, String(var_name)),
+				"var": String(placeholder_name),
+				"placeholder_id": _placeholder_id(String(placeholder_name)),
+				"value": _placeholder_value(state, String(placeholder_name)),
 				"offset": cursor,
 				"source": "StringExpandPlaceholders",
 			})
@@ -1211,9 +1243,9 @@ func _placeholder_substitutions(state: Dictionary, display_text: String) -> Arra
 
 func _expand_message_placeholders(state: Dictionary, display_text: String) -> String:
 	var expanded := display_text
-	for var_name in _string_var_names():
-		var token := "{%s}" % String(var_name)
-		expanded = expanded.replace(token, _get_string_var(state, String(var_name)))
+	for placeholder_name in _placeholder_names():
+		var token := "{%s}" % String(placeholder_name)
+		expanded = expanded.replace(token, _placeholder_value(state, String(placeholder_name)))
 	return expanded
 
 
@@ -1253,6 +1285,18 @@ func _get_player_gender() -> String:
 		var gender := String(game_state.get_player_gender()).strip_edges().to_upper()
 		return PLAYER_GENDER_FEMALE if gender == PLAYER_GENDER_FEMALE else PLAYER_GENDER_MALE
 	return PLAYER_GENDER_MALE
+
+
+func _get_player_name() -> String:
+	var game_state := _get_game_state()
+	if game_state != null and game_state.has_method("get_player_name"):
+		var player_name := String(game_state.get_player_name())
+		return DEFAULT_PLAYER_NAME if player_name.is_empty() else player_name
+	return DEFAULT_PLAYER_NAME
+
+
+func _get_kun_placeholder() -> String:
+	return ""
 
 
 func _gender_value(gender: String) -> int:

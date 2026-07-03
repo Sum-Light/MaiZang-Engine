@@ -41,7 +41,7 @@
 - Support a minimal ScriptVM command set:
   - `msgbox`. First pass done for `MSGBOX_NPC`, `MSGBOX_SIGN`, `MSGBOX_DEFAULT`, and `MSGBOX_YESNO`.
   - `yesnobox`. First pass done as a `ScriptVM` UI-effect record with source default YES/NO menu placement, default `YES`, `B = NO`, 5-frame input delay metadata, and `VAR_RESULT` values. Without an injected UI/test choice, execution stops with `waiting_for_ui`; real asynchronous menu presentation and resume remain future work.
-  - `special`. First pass done for the first-slice string placeholder functions `GetPlayerBigGuyGirlString` and `GetRivalSonDaughterString`, writing `STR_VAR_1` and expanding `{STR_VAR_1/2/3}` in runtime messages while preserving unexpanded text/substitution metadata. Broader `gSpecials`, `specialvar`, and non-string placeholders remain future work.
+  - `special`. First pass done for the first-slice string placeholder functions `GetPlayerBigGuyGirlString` and `GetRivalSonDaughterString`, writing `STR_VAR_1` and expanding `{PLAYER}`, `{KUN}`, and `{STR_VAR_1/2/3}` in runtime messages while preserving unexpanded text, source placeholder ids, substitution metadata, and runtime string vars. Broader `gSpecials`, `specialvar`, rival/version/team placeholders, and other placeholders remain future work.
   - `setflag`, `clearflag`, `checkflag`. First pass done for `setflag` and `clearflag`.
   - `setvar`, `addvar`, `compare`. First pass done for `setvar` and simple branch-time var reads.
   - `checkplayergender`. First pass done by reading `GameState.player_gender` and writing `VAR_RESULT` as `MALE`/`FEMALE`.
@@ -63,6 +63,7 @@
 - Extract text macros and labels. First pass done for local `.string` labels inside generated map scripts and global `data/text/*.inc` labels. C text macros such as `_("")` and `COMPOUND_STRING()` remain.
 - Convert text into UTF-8 Godot resources. First pass done for generated map-script labels and global text labels as UTF-8 `display_text`.
 - Preserve control codes and placeholders. First pass done as generated text encoding metadata: source bytes/hex, terminator presence, control codes, placeholders, status, and warnings.
+- Expand runtime text placeholders. First pass done for source `StringExpandPlaceholders` ids `{PLAYER}` (`0x1`), `{KUN}` (`0x5`, empty in this Chinese source), and `{STR_VAR_1/2/3}` (`0x2`-`0x4`). Rival-name, version, team, and other placeholder ids remain.
 - Preserve source braille text. First pass done for `.braille` labels with `brailleformat` headers, source-derived braille bytes, and the `ScrCmd_braillemessage` 6-byte pointer skip.
 - Resolve text preprocessor branches. First pass done for `#if IS_FRLG/#else/#endif` in `data/text/pc_transfer.inc`, using the Emerald `IS_FRLG = false` branch traced to `include/constants/global.h`.
 - Add runtime access. First pass done through `DataRegistry.get_text_data`, `get_text_record`, and `get_text_display_text`; `ScriptVM` and `EventManager` now resolve message text from local map-script labels first, then global text labels through `DataRegistry`.

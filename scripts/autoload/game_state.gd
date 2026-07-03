@@ -2,9 +2,12 @@ extends Node
 
 const PLAYER_GENDER_MALE := "MALE"
 const PLAYER_GENDER_FEMALE := "FEMALE"
+const DEFAULT_PLAYER_NAME := "玩家"
+const PLAYER_NAME_LENGTH := 7
 
 var current_map_id := "MAP_LITTLEROOT_TOWN"
 var player_gender := PLAYER_GENDER_MALE
+var player_name := DEFAULT_PLAYER_NAME
 var player_grid_position := Vector2i(10, 10)
 var flags: Dictionary = {}
 var vars: Dictionary = {}
@@ -37,3 +40,15 @@ func set_player_gender(gender: String) -> void:
 
 func get_player_gender() -> String:
 	return player_gender
+
+
+func set_player_name(name: String) -> void:
+	var normalized := name.strip_edges()
+	if normalized.is_empty():
+		player_name = DEFAULT_PLAYER_NAME
+		return
+	player_name = normalized.substr(0, PLAYER_NAME_LENGTH)
+
+
+func get_player_name() -> String:
+	return player_name

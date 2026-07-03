@@ -119,3 +119,7 @@
 - Updated `ScriptVM` message results to expand `{STR_VAR_1}`, `{STR_VAR_2}`, and `{STR_VAR_3}` while preserving `unexpanded_text`, substitution metadata, and runtime `string_vars`; broader `gSpecials`, `specialvar`, and other placeholders remain future work.
 - Expanded `script_vm_smoke.gd` to verify male/female outputs for both string specials and runtime `{STR_VAR_1}` message expansion.
 - Verified `script_vm_smoke.gd`, `event_manager_smoke.gd`, `data_registry_text_smoke.gd`, `map_runtime_smoke.gd`, `transition_presentation_smoke.gd`, and `git diff --check`.
+- Traced `{PLAYER}` and `{KUN}` through `include/constants/characters.h`, `src/string_util.c`, `src/strings.c`, `src/main_menu.c`, and `src/oak_speech.c`: `{PLAYER}` reads `gSaveBlock2Ptr->playerName`, `{KUN}` uses gendered Kun/Chan text, and the current Chinese Kun/Chan strings are empty.
+- Added `GameState.player_name` with `PLAYER_NAME_LENGTH = 7` and temporary `"玩家"` fallback until the real new-game naming/preset-name flow is ported.
+- Updated `ScriptVM` message expansion to cover `{PLAYER}`, `{KUN}`, `{STR_VAR_1}`, `{STR_VAR_2}`, and `{STR_VAR_3}`, preserving source placeholder ids and substitution metadata.
+- Expanded `script_vm_smoke.gd` to verify player-name, empty `{KUN}`, and string-var expansion together.

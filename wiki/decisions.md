@@ -203,3 +203,9 @@ Reason: Source `Std_MsgboxYesNo` calls `message NULL`, `waitmessage`, then `yesn
 Decision: Let `ScriptVM` message results expose the source-visible expanded text while also preserving `unexpanded_text`, per-placeholder substitution metadata, and current VM string vars.
 
 Reason: Source field messages call `StringExpandPlaceholders` before drawing text, and first-slice scripts use `special` functions such as `GetPlayerBigGuyGirlString` and `GetRivalSonDaughterString` to populate `gStringVar1` immediately before showing dialogue. Godot UI should display the same expanded wording, but keeping the unexpanded source text and substitutions makes later placeholder coverage, debugging, and source-fidelity checks explicit.
+
+## 2026-07-04 - Expand player placeholders from GameState
+
+Decision: Store the current player name in `GameState` and let `ScriptVM` expand source `{PLAYER}` and `{KUN}` placeholders during message execution alongside string vars.
+
+Reason: Source `StringExpandPlaceholders` maps `{PLAYER}` to `gSaveBlock2Ptr->playerName` and `{KUN}` to the gendered Kun/Chan text entries. In this Chinese source both Kun/Chan entries are empty, so Godot should preserve the empty visible result instead of inventing an honorific. The current `"玩家"` default is a temporary debug fallback until the real new-game naming flow and preset-name behavior are ported.

@@ -49,6 +49,12 @@ func _init() -> void:
 		"kind": "text",
 		"source": "smoke",
 	}
+	synthetic_texts["Smoke_Text_PlayerNameKun"] = {
+		"label": "Smoke_Text_PlayerNameKun",
+		"display_text": "你好{PLAYER}{KUN}:{STR_VAR_1}",
+		"kind": "text",
+		"source": "smoke",
+	}
 	synthetic_scripts["Smoke_EventScript_DelayOnly"] = {
 		"instructions": [
 			{"op": "delay", "args": ["30"], "line": 1, "raw": "delay 30"},
@@ -102,6 +108,13 @@ func _init() -> void:
 			{"op": "end", "args": [], "line": 3, "raw": "end"},
 		],
 	}
+	synthetic_scripts["Smoke_EventScript_PlayerNameKun"] = {
+		"instructions": [
+			{"op": "special", "args": ["GetPlayerBigGuyGirlString"], "line": 1, "raw": "special GetPlayerBigGuyGirlString"},
+			{"op": "msgbox", "args": ["Smoke_Text_PlayerNameKun", "MSGBOX_DEFAULT"], "line": 2, "raw": "msgbox Smoke_Text_PlayerNameKun, MSGBOX_DEFAULT"},
+			{"op": "end", "args": [], "line": 3, "raw": "end"},
+		],
+	}
 	synthetic_script_data["scripts"] = synthetic_scripts
 	synthetic_script_data["texts"] = synthetic_texts
 	vm.configure_from_script_data(synthetic_script_data)
@@ -115,9 +128,12 @@ func _init() -> void:
 	var yesno_no_result := vm.run_script("Smoke_EventScript_YesNoBranch", {"yesno_choice": "NO"})
 	var yesno_no_var_result := game_state.get_var("VAR_RESULT", -1)
 	game_state.set_player_gender("MALE")
+	game_state.set_player_name("小悠")
 	var special_player_male_result := vm.run_script("Smoke_EventScript_PlayerBigGuyGirl")
 	var special_rival_male_result := vm.run_script("Smoke_EventScript_RivalSonDaughter")
+	var player_name_kun_result := vm.run_script("Smoke_EventScript_PlayerNameKun")
 	game_state.set_player_gender("FEMALE")
+	game_state.set_player_name("小遥")
 	var special_player_female_result := vm.run_script("Smoke_EventScript_PlayerBigGuyGirl")
 	var special_rival_female_result := vm.run_script("Smoke_EventScript_RivalSonDaughter")
 	vm.configure_from_script_data(script_data)
@@ -357,6 +373,17 @@ func _init() -> void:
 	_assert(_first_message_text(special_rival_female_result) == "关系:儿子", "expected expanded female rival relation message")
 	_assert(_unsupported_count(special_rival_female_result) == 0, "expected no unsupported female rival special ops")
 
+	_assert(player_name_kun_result.get("status", "") == "ok", "expected player-name placeholder script to execute")
+	_assert(_first_message_text(player_name_kun_result) == "你好小悠:大哥哥", "expected expanded PLAYER/KUN/string-var message")
+	_assert(_first_message_unexpanded_text(player_name_kun_result) == "你好{PLAYER}{KUN}:{STR_VAR_1}", "expected unexpanded PLAYER/KUN message")
+	_assert(_first_message_placeholder_substitution_count(player_name_kun_result) == 3, "expected three PLAYER/KUN/string-var substitutions")
+	_assert(_first_message_placeholder_value_for_token(player_name_kun_result, "{PLAYER}") == "小悠", "unexpected PLAYER placeholder value")
+	_assert(_first_message_placeholder_value_for_token(player_name_kun_result, "{KUN}") == "", "expected empty KUN placeholder value in current source")
+	_assert(_first_message_placeholder_value_for_token(player_name_kun_result, "{STR_VAR_1}") == "大哥哥", "unexpected STR_VAR_1 placeholder value")
+	_assert(_first_message_placeholder_id_for_token(player_name_kun_result, "{PLAYER}") == 1, "unexpected PLAYER placeholder id")
+	_assert(_first_message_placeholder_id_for_token(player_name_kun_result, "{KUN}") == 5, "unexpected KUN placeholder id")
+	_assert(_unsupported_count(player_name_kun_result) == 0, "expected no unsupported player-name placeholder ops")
+
 	_assert(missing_result.get("status", "") == "missing_script", "expected missing script status")
 
 	print(JSON.stringify({
@@ -382,6 +409,7 @@ func _init() -> void:
 		"special_player_female": _result_summary(special_player_female_result),
 		"special_rival_male": _result_summary(special_rival_male_result),
 		"special_rival_female": _result_summary(special_rival_female_result),
+		"player_name_kun": _result_summary(player_name_kun_result),
 		"missing_status": String(missing_result.get("status", "")),
 	}))
 	game_state.free()
@@ -462,6 +490,26 @@ func _first_message_placeholder_value(result: Dictionary, index: int) -> String:
 	if typeof(substitution) != TYPE_DICTIONARY:
 		return ""
 	return String(substitution.get("value", ""))
+
+
+func _first_message_placeholder_value_for_token(result: Dictionary, token: String) -> String:
+	var substitution := _first_message_placeholder_for_token(result, token)
+	return String(substitution.get("value", ""))
+
+
+func _first_message_placeholder_id_for_token(result: Dictionary, token: String) -> int:
+	var substitution := _first_message_placeholder_for_token(result, token)
+	return int(substitution.get("placeholder_id", -1))
+
+
+func _first_message_placeholder_for_token(result: Dictionary, token: String) -> Dictionary:
+	var substitutions = _message_at(result, 0).get("placeholder_substitutions", [])
+	if typeof(substitutions) != TYPE_ARRAY:
+		return {}
+	for substitution in substitutions:
+		if typeof(substitution) == TYPE_DICTIONARY and String(substitution.get("token", "")) == token:
+			return substitution
+	return {}
 
 
 func _first_message_encoding_status(result: Dictionary) -> String:
