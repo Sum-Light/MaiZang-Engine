@@ -323,3 +323,15 @@ Reason: The first battle prototype previously treated non-neutral natures as uns
 Decision: Add generated Pokemon evolution data as its own `pokemon` manifest category, preserving `SpeciesInfo.evolutions` source order, method params, typed additional conditions, reverse pre-evolution lookup data, and runtime references without implementing actual evolution execution yet.
 
 Reason: Evolution behavior spans source data, `GetEvolutionTargetSpecies`, `DoesMonMeetAdditionalConditions`, item/trade/battle/overworld/script-trigger modes, split evolution creation, evolution-scene presentation, item consumption, and move learning. Godot needs stable, inspectable evolution records now, but the runtime must not infer visible behavior from data names alone before tracing and reproducing the source execution and presentation paths.
+
+## 2026-07-04 - Keep evolution rules in a domain autoload
+
+Decision: Register `EvolutionEngine` as a UI-independent Godot autoload for source-backed evolution target evaluation, additional condition checks, reverse pre-evolution lookup, and split-evolution candidate reporting before implementing evolution scene presentation or party/bag mutation.
+
+Reason: Source evolution behavior is shared by leveling, battle end, item use, trade, overworld/script triggers, party mutation, item consumption, split evolution creation, move learning, and visible evolution-scene timing. A domain-only rules service makes the source semantics testable against generated data without coupling the first implementation to UI or guessing unsupported presentation side effects.
+
+## 2026-07-04 - Try subagents for future cross-module work
+
+Decision: After the current `EvolutionEngine` slice, future work that spans distinct modules or source domains should try subagents for independent investigation or validation when available. The main agent still owns source tracing, final integration, wiki/skill updates, and focused commits.
+
+Reason: The port is broad enough that independent source-reading and validation passes can reduce blind spots, especially when one task touches scripts, runtime rules, generated data, presentation timing, and verification at the same time.
