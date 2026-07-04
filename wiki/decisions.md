@@ -275,3 +275,9 @@ Reason: Source `ScrCmd_applymovement` and `ScrCmd_waitmovement` read a halfword 
 Decision: Add a first Pokemon species importer that fully structures explicit species initializers, but preserves dense macro-generated initializers as partial records with warnings until their macro definitions and referenced resources are traced.
 
 Reason: `src/data/pokemon/species_info.h` mixes ordinary struct initializers with C macros that generate many related form records. The Godot data layer should expose all active species ids now, but it should not invent values for macro-expanded forms before the source macro semantics are understood. Partial records keep coverage visible and unblock registry access while preserving a clear next step for source-faithful macro expansion.
+
+## 2026-07-04 - Export move definitions as source-traceable data
+
+Decision: Add a first move importer that structures `src/data/moves_info.h` into generated move records while preserving source symbols for effects, arguments, additional effects, contest data, and battle animation scripts.
+
+Reason: Battle move behavior is spread across data tables, constants, battle scripts, animation resources, and C command/effect implementations. The Godot runtime needs move ids and core data now, but it should not guess effect semantics from names. Generated move JSON gives later battle, contest, UI, and animation systems a source-backed contract while keeping those systems responsible for tracing and reproducing source-visible behavior before implementation.

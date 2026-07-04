@@ -72,9 +72,9 @@
 
 ## Milestone 6 - Pokemon Data Slice
 
-- Export species, moves, abilities, items, wild encounters, and trainers. First pass done for species data from `src/data/pokemon/species_info.h`; moves, abilities, items, encounters, and trainers remain.
-- Build `DataRegistry` accessors. First pass done for generated species data by category, symbol, short symbol, and numeric species id.
-- Add validation for cross-references. First pass done for generated species stats and Bulbasaur/Egg/Unown registry lookup; broader graphics, learnset, evolution, form, move, item, and battle-data cross-reference validation remains.
+- Export species, moves, abilities, items, wild encounters, and trainers. First pass done for species data from `src/data/pokemon/species_info.h` and move data from `src/data/moves_info.h`; abilities, items, encounters, and trainers remain.
+- Build `DataRegistry` accessors. First pass done for generated species and move data by category, symbol, short symbol, and numeric id.
+- Add validation for cross-references. First pass done for generated species stats, Bulbasaur/Egg/Unown registry lookup, generated move stats, Pound/Fire Punch/Thunder move lookup, and additional-effect field coverage; broader graphics, learnset, evolution, form, move-learnset, item, ability, encounter, trainer, and battle-data cross-reference validation remains.
 
 ## Milestone 7 - Battle Prototype
 

@@ -171,3 +171,9 @@
 - Generated species data with 1573 active initializers, 1366 struct initializers, 207 macro-call partial initializers, 1329 records with complete first-pass base stats, 0 preprocessor warnings, and 207 deliberate macro-partial warnings.
 - Updated `DataRegistry` with manifest-backed Pokemon data loading plus species lookup by symbol, short symbol, or numeric species id.
 - Added `tools/godot_smoke/data_registry_species_smoke.gd` covering generated species stats, Bulbasaur core fields/source references, Unown macro partial status, and Egg species id lookup.
+- Reconfirmed the source-fidelity rule for all functions, scripts, and code-backed systems: trace source C and referenced resources first, then preserve source-visible behavior, sequencing, timing, UI/audio/animation effects, and gameplay outcomes in Godot-native systems while ignoring GBA hardware/storage limits at runtime.
+- Traced the first Pokemon move data slice through `src/data/moves_info.h`, `include/move.h`, move/battle/Pokemon/contest constants, and relevant source config headers.
+- Added `tools/importer/export_moves.py` to export active move data into `data/generated/pokemon/moves.json`, preserving core battle fields, flags, ban flags, arguments, additional effects, contest data, battle animation script symbols, source locations, and UTF-8 move text.
+- Generated move data with 935 active move initializers, 935 records with complete first-pass core battle fields, 337 moves with additional-effect records, 24 shared text records, 77 preprocessor decisions, 0 preprocessor warnings, 0 export warnings, and 0 unsupported fields.
+- Updated `DataRegistry` with manifest-backed move loading plus move lookup by symbol, short symbol, or numeric move id.
+- Added `tools/godot_smoke/data_registry_moves_smoke.gd` covering generated move stats, MOVE_NONE, Pound, Fire Punch, Thunder, move flags, additional effects, contest data, and battle animation script symbols.

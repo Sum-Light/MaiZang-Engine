@@ -29,6 +29,8 @@ var _text_data_by_category: Dictionary = {}
 var _pokemon_data_by_category: Dictionary = {}
 var _species_records_by_symbol: Dictionary = {}
 var _species_records_by_id: Dictionary = {}
+var _move_records_by_symbol: Dictionary = {}
+var _move_records_by_id: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -246,6 +248,37 @@ func get_species_record_by_id(species_id: int) -> Dictionary:
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
+func get_moves_data() -> Dictionary:
+	return get_pokemon_data("moves")
+
+
+func get_move_record(move_id_or_symbol) -> Dictionary:
+	if typeof(move_id_or_symbol) == TYPE_INT:
+		return get_move_record_by_id(int(move_id_or_symbol))
+	if typeof(move_id_or_symbol) == TYPE_FLOAT:
+		return get_move_record_by_id(int(move_id_or_symbol))
+
+	var key := String(move_id_or_symbol)
+	if key.is_valid_int():
+		return get_move_record_by_id(int(key))
+	return get_move_record_by_symbol(key)
+
+
+func get_move_record_by_symbol(move_symbol: String) -> Dictionary:
+	_ensure_move_indexes()
+	var normalized := move_symbol
+	if not normalized.begins_with("MOVE_"):
+		normalized = "MOVE_%s" % normalized.to_upper()
+	var record = _move_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_move_record_by_id(move_id: int) -> Dictionary:
+	_ensure_move_indexes()
+	var record = _move_records_by_id.get(move_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
 func get_map_name(map_id: String) -> String:
 	var entry := _map_entry_for_id(map_id)
 	if not entry.is_empty():
@@ -311,6 +344,8 @@ func _index_manifest() -> void:
 	_pokemon_data_by_category = {}
 	_species_records_by_symbol = {}
 	_species_records_by_id = {}
+	_move_records_by_symbol = {}
+	_move_records_by_id = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -421,6 +456,26 @@ func _ensure_species_indexes() -> void:
 			_species_records_by_symbol[species_symbol] = record
 		if record.has("id") and record.get("id") != null:
 			_species_records_by_id[int(record.get("id"))] = record
+
+
+func _ensure_move_indexes() -> void:
+	if not _move_records_by_symbol.is_empty() or not _move_records_by_id.is_empty():
+		return
+
+	var moves_data := get_moves_data()
+	var move_records = moves_data.get("moves", {})
+	if typeof(move_records) != TYPE_DICTIONARY:
+		return
+
+	for symbol in move_records.keys():
+		var record = move_records[symbol]
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var move_symbol := String(record.get("symbol", symbol))
+		if not move_symbol.is_empty():
+			_move_records_by_symbol[move_symbol] = record
+		if record.has("id") and record.get("id") != null:
+			_move_records_by_id[int(record.get("id"))] = record
 
 
 func _resource_path(project_path: String) -> String:

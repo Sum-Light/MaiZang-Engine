@@ -50,7 +50,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, and Pokemon species JSON.
+- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, and Pokemon move JSON.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries, including source metatile behavior names.
 - `MapRuntime` indexes generated door animation metadata by metatile id and can return the animation for a map cell.
 - `MapRuntime` indexes generated object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events; visible object-event cells are occupied for first-pass movement.
@@ -143,6 +143,14 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Struct initializers expose the first runtime-ready data slice: base stats, EV yields, catch and exp values, gender ratio, egg cycles, friendship, dimensions, display text, types, abilities, egg groups, growth rate, body color, dex number, held items, flags, and graphics/source-resource references where present.
 - Macro-generated species initializers currently remain explicit `initializer_kind = "macro_call"` records with `evaluation_status = "partial"`, raw macro calls, arguments, source locations, and warnings. They must be expanded only after tracing the source macro definitions and referenced resources, not guessed from neighboring forms.
 - Runtime systems should consume generated Godot-friendly species JSON and later generated textures/resources. Source palettes and packed graphics remain import concerns; gameplay and presentation should preserve source-visible Pokemon behavior and data outcomes without recreating GBA storage limits.
+
+## Generated Pokemon Moves Contract
+
+- Pokemon move JSON is loaded through `DataRegistry` from the manifest `pokemon` entry with category `moves`.
+- `DataRegistry.get_pokemon_data("moves")`, `get_moves_data`, `get_move_record`, `get_move_record_by_symbol`, and `get_move_record_by_id` are read-only accessors for generated move records.
+- Generated move records preserve source symbols, numeric move ids, source file/line references, raw initializer fields, source-facing move names/descriptions plus UTF-8 display text, core battle fields, flags, ban flags, arguments, additional effects, contest data, and battle animation script symbols.
+- The move importer evaluates the active source configuration and constants from `src/data/moves_info.h`, `include/move.h`, move/battle/Pokemon/contest headers, and relevant `include/config/*` headers; generated JSON is the current source branch, not a union of inactive preprocessor branches.
+- Battle move effects, additional effect semantics, animation scripts, targeting behavior, and contest behavior must still be implemented only after tracing the corresponding source C and referenced resources. The generated data records the source symbols needed for that later work; it does not by itself define Godot battle behavior.
 
 ## Generated Global Text Contract
 

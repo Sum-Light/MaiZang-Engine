@@ -201,6 +201,30 @@ Latest verified species export:
 - deliberate macro-partial warnings: 207
 - unsupported field notes: 2879
 
+`tools/importer/export_moves.py` exports the active move initializer table into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
+
+Current moves export behavior:
+
+- Reads `src/data/moves_info.h` after evaluating active source config branches from `include/config/general.h`, `include/config/battle.h`, `include/config/contest.h`, `include/config/overworld.h`, `include/config/pokemon.h`, and `include/config/item.h`.
+- Reads move, battle effect, type, damage category, target, additional move effect, Z move, contest, combo starter, weather/status, hold effect, ability, and species constants from source headers.
+- Parses explicit `struct MoveInfo` initializers from `include/move.h` fields into source-backed core battle fields, flags, ban flags, arguments, additional effects, contest fields, and battle animation script symbols.
+- Converts source move names and descriptions from `COMPOUND_STRING(...)`/`_("")`-style C string literals into UTF-8 `display_text` while preserving source-facing raw text fields and shared description symbols.
+- Writes `data/generated/pokemon/moves.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `moves`.
+- Treats generated move records as data and source-symbol provenance for later battle/runtime work. Move effect behavior, targeting, animation scripts, contest behavior, and additional-effect execution still require separate source C/resource tracing before Godot implementation.
+
+Latest verified moves export:
+
+- generated path: `data/generated/pokemon/moves.json`
+- manifest category: `pokemon` / `moves`
+- active move initializers: 935
+- moves with complete first-pass core battle fields: 935
+- moves with additional-effect records: 337
+- shared text records: 24
+- preprocessor decisions: 77
+- preprocessor warnings: 0
+- export warnings: 0
+- unsupported fields: 0
+
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 
 Latest verified first-slice source facts for `LittlerootTown`:
