@@ -1,5 +1,11 @@
 # Decisions
 
+## 2026-07-04 - Treat 1:1 source parity as the highest priority
+
+Decision: The highest-priority rule for all gameplay-facing work is to trace original `pokeemerald-expansion` C code, data, scripts, assets, timing, animation, audio, screen effects, UI flow, and referenced resources before implementing or accepting behavior. Godot systems may be modern internally, but in-game logic execution, interaction details, visual presentation, sequencing, and player-visible outcomes must reproduce the source behavior 1:1 where practical. Any untraced or unimplemented behavior must be exposed as `unsupported_reason`/`unsupported` metadata and documented rather than treated as equivalent.
+
+Reason: The goal is not a loose remake or a visually similar prototype. Guessing from names, approximating timing, or hiding missing effects would make later parity work unreliable. Explicit source traces and explicit unsupported gaps keep vertical slices useful without pretending they are complete.
+
 ## 2026-07-04 - Add a short project control panel
 
 Decision: Use `wiki/control-panel.md` as the first planning page for current focus, work lanes, definition of done, subagent policy, active backlog, and mess-control rules.
