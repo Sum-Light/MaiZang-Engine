@@ -46,7 +46,7 @@ Use these as executable checkboxes. A task is not complete until the source path
 - [x] Trace `include/global.fieldmap.h` layer constants and confirm exact layer assignment rules for normal, covered, and split metatiles.
 - [x] Trace `src/field_control_avatar.c` field-input ordering, interaction ordering, step-script ordering, door warp checks, arrow warps, and metatile-script interactions.
 - [x] Trace `src/field_player_avatar.c` player avatar state machine, collision checks, bike/surf/underwater states, forced movement, and avatar graphics transitions.
-- [ ] Trace `src/event_object_movement.c` object-event initialization, spawn/despawn, movement type callbacks, movement actions, animation timing, collision, elevation, subpriority, shadows, and reflection hooks.
+- [x] Trace `src/event_object_movement.c` object-event initialization, spawn/despawn, movement type callbacks, movement actions, animation timing, collision, elevation, subpriority, shadows, and reflection hooks.
 - [ ] Trace `src/script_movement.c` applymovement task behavior, waitmovement behavior, simultaneous movements, and target resolution.
 - [ ] Trace `src/event_object_lock.c` object freezing, selected-object locking, player/object facing, and lock release behavior.
 - [ ] Trace `src/field_door.c` door graphics tables, palette tables, frame tables, metatile mutation, sounds, task timing, and multi-door cases.
