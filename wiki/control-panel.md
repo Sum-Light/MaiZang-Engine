@@ -14,7 +14,8 @@ Current focus:
 - Split work into low-coupling module tracks; cross-module behavior should flow through explicit request/result contracts.
 - Preserve source-visible timing, sequence, audio intent, UI flow, and state changes where practical.
 - Ignore GBA hardware/storage constraints at runtime; importers should bake or normalize assets into Godot-friendly data.
-- Do not expose GBA palette systems to gameplay or presentation runtime. Source color files/slots are import-only provenance; shiny, alternate, gender/form, and multi-color-source variants must be distinct RGBA assets, while color flashes/fades/tints use Godot Shader/Material/Animation parameters.
+- Do not expose GBA palette systems to gameplay or presentation runtime. Source color files/slots are import-only provenance; shiny, alternate, gender/form, and multi-color-source variants must be distinct RGBA assets, while source-visible color changes, fades, flashes, tints, cycling, scaling, rotation, and affine effects use Godot Shader/Material/Animation/resource parameters with source timing and visible rhythm matched as closely as practical.
+- Do not implement audio playback in the current scope. Preserve source sound/music/cry/fanfare symbols, cue ordering, and wait intent as `metadata_only`/`unsupported` until the user explicitly reopens audio.
 
 Next active module:
 

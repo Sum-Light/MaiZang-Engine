@@ -2,6 +2,12 @@
 
 Goal: reproduce the source `pokeemerald-expansion` map/overworld experience in Godot with source-equivalent logic, timing, visible layering, object-event animation, map mutations, and generated assets. Any approximation must remain explicit in generated data, runtime summaries, or smoke-test metadata.
 
+## Front-Loaded Constraints
+
+- Do not recreate the GBA palette-bank/runtime graphics limit model in Godot. Source palette files, palette slots, VRAM/OAM details, binary tiles, and packed map/metatile formats are import provenance or bake inputs; runtime map, sprite, weather, transition, and screen effects should consume Godot-friendly RGBA textures/data plus Shader/Material/Animation/resource parameters.
+- Palette-changing effects, fades, flashes, tint/cycle effects, sprite scaling, rotation, and affine-like presentation must preserve the source frame timing, ordering, rhythm, and visible result as closely as practical in Godot-native systems; every approximation or deviation stays explicit in unsupported/deviation metadata.
+- Audio playback is not part of the current overworld implementation scope. Preserve source sound/music/cry/fanfare symbols, cue ordering, and wait intent in metadata, reports, and runtime summaries, but mark playback as `metadata_only`/`unsupported`.
+
 ## Current Snapshot
 
 - `DebugMapPlane` still renders a flattened generated metatile atlas. Real source BG layer ordering and player/object interleaving are not source-equivalent yet.
