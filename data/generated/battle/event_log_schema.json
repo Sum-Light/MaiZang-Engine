@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/report_battle_parity.py",
+  "purpose": "Battle parity fixtures compare ordered source-shaped events without depending on presentation nodes.",
+  "required_event_fields": [
+    "sequence_index",
+    "phase",
+    "event_type",
+    "source_symbol",
+    "battler",
+    "side",
+    "action",
+    "message_id",
+    "animation_id",
+    "hp_delta",
+    "pp_delta",
+    "wait_frames",
+    "rng_rolls",
+    "unsupported"
+  ],
+  "field_definitions": {
+    "sequence_index": "Zero-based ordered event index in the fixture log.",
+    "phase": "Source-shaped battle phase such as intro, action_select, move_select, turn_action, animation, healthbar, faint, post_battle.",
+    "event_type": "Stable event kind: prompt, input, message, stat_change, damage, heal, animation, wait, audio_metadata, state_mutation, unsupported.",
+    "source_symbol": "Source C function, ASM label, table symbol, or generated symbol responsible for the event.",
+    "battler": "Active battler id/symbol or empty when the event is side/global.",
+    "side": "player, opponent, partner, enemy, field, or none.",
+    "action": "Selected action or move/item/switch/run command metadata.",
+    "message_id": "Battle string id or text symbol, not a final localized text assertion by itself.",
+    "animation_id": "Move/general/status/special animation symbol or transition id.",
+    "hp_delta": "Signed HP change applied by the event.",
+    "pp_delta": "Signed PP change applied by the event.",
+    "wait_frames": "Source-intended wait duration when known; null when not yet traced.",
+    "rng_rolls": "Ordered RNG calls consumed by the event with source purpose labels.",
+    "unsupported": "Array of unsupported/deviation records that remain visible in parity logs."
+  },
+  "unsupported_record_fields": [
+    "code",
+    "source",
+    "detail"
+  ],
+  "status": "schema_only_first_pass"
+}

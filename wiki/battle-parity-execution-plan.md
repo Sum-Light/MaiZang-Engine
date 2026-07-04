@@ -44,34 +44,36 @@ The answer to "does this include all skills and mechanisms?" is yes at the check
 
 ## B0 - Workbench And Source Trace Index
 
-- [ ] B0.1 Create `tools/report_battle_parity.py`.
+- [x] B0.1 Create `tools/report_battle_parity.py`.
   - Source: read generated Pokemon data plus original battle source files.
   - Output: `data/generated/reports/battle_parity_report.json`.
   - Validate: JSON includes counts for species/forms, abilities, trainers, trainer party Pokemon, moves, effects, scripts, animation scripts, asset tags, interface assets, debug launchers, and unsupported records.
 
-- [ ] B0.2 Create a battle source symbol index.
+- [x] B0.2 Create a battle source symbol index.
   - Source: `src/battle_setup.c`, `src/battle_main.c`, `src/battle_controller_*.c`, `src/battle_script_commands.c`, `src/battle_anim.c`, `src/battle_interface.c`, `src/battle_bg.c`, `src/battle_message.c`, `data/battle_scripts_*.s`, `data/battle_anim_scripts.s`, `src/data/battle_anim.h`, `src/data/battle_move_effects.h`.
   - Output: `data/generated/battle/source_index.json`.
   - Validate: every symbol referenced by later generated battle data has file and line metadata.
 
-- [ ] B0.3 Add `tools/godot_smoke/battle_parity_report_smoke.gd`.
+- [x] B0.3 Add `tools/godot_smoke/battle_parity_report_smoke.gd`.
   - Source: generated report only.
   - Output: smoke verifies that coverage rows exist for every generated move.
   - Validate: fails if a generated move, ability, trainer, trainer party Pokemon, species/form, or debug launcher lacks required coverage metadata.
 
-- [ ] B0.4 Add "unsupported cannot disappear silently" checks.
+- [x] B0.4 Add "unsupported cannot disappear silently" checks.
   - Target files: coverage report and battle smokes.
   - Validate: if a behavior changes from unsupported to supported, a smoke or fixture must name the new support path.
 
-- [ ] B0.5 Define the event-log schema for parity checks.
+- [x] B0.5 Define the event-log schema for parity checks.
   - Target file: `data/generated/battle/event_log_schema.json` or wiki-documented schema.
   - Fields: state, battler, action, source symbol, message id, animation id, HP/PP delta, waits, RNG roll metadata, unsupported flags.
   - Validate: current `BattleScene` smoke can emit or compare a minimal log.
 
-- [ ] B0.6 Add Pokemon/trainer/ability coverage dimensions to the report.
+- [x] B0.6 Add Pokemon/trainer/ability coverage dimensions to the report.
   - Source: generated species, moves, abilities, items, wild encounters, trainers, trainer party Pokemon, learnsets, natures, evolutions, types, Pokemon graphics tables, trainer graphics tables.
   - Output: report sections for `pokemon_data`, `pokemon_assets`, `abilities`, `trainers`, `trainer_party_mons`, `battle_items`, and `debug_launchers`.
   - Validate: current exported totals are represented or explicitly marked out-of-scope for battle: 1573 species, 935 moves, 311 abilities, 874 items, 399 wild encounter records, 855 trainers, 1825 trainer party Pokemon, 1104 learnsets, 25 natures, and 647 evolution entries.
+
+B0 completion metrics: `battle_parity_report.json` currently has 8571 coverage rows with no missing expected coverage: 935 moves, 311 abilities, 855 trainers, 1825 trainer party Pokemon, 1573 Pokemon data rows, 874 battle item rows, 399 wild encounter rows, 1104 learnsets, 25 natures, 647 evolution entries, 21 types, and 2 debug launcher rows. `source_index.json` currently has 7782 indexed symbols and no missing fixed battle symbols.
 
 ## B1 - Generated Battle Strings And Text Printer Data
 

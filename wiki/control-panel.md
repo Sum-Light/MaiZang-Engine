@@ -173,8 +173,8 @@ Main-agent responsibilities:
 
 Near-term:
 
-- Build the battle source trace index and coverage report from `wiki/battle-parity-execution-plan.md` B0.
-- Add developer-only, map-decoupled debug battle launchers from `wiki/battle-parity-execution-plan.md` B13: quick wild battle equivalent to a grass encounter, plus trainer battle by selectable trainer id/symbol.
+- Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
+- Next executable task: add developer-only, map-decoupled debug battle launchers from `wiki/battle-parity-execution-plan.md` B13: quick wild battle equivalent to a grass encounter, plus trainer battle by selectable trainer id/symbol.
 - Import battle strings, battle scripts, move effects, and move-to-script links before expanding runtime mechanics.
 - Import the first source-backed Pokemon, trainer, battle background, and HUD assets needed by the Sawyer/Route101 single-battle fixture.
 - Replace the current placeholder `BattleScene` layout with source-backed static battle composition before broad move animation work.
