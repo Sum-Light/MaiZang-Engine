@@ -42,7 +42,7 @@ Use these as executable checkboxes. A task is not complete until the source path
 ### 1. Source Audit Baseline
 
 - [x] Trace `src/overworld.c` map load entry points: `LoadMapFromWarp`, `LoadMapFromCameraTransition`, `InitMap`, `RunOnTransitionMapScript`, `RunOnLoadMapScript`, and field callback setup.
-- [ ] Trace `src/fieldmap.c` map-grid access: backup map layout, `MAP_OFFSET`, borders, connections, `MapGridGet*`, `MapGridSetMetatileIdAt`, save/load map view, and camera movement.
+- [x] Trace `src/fieldmap.c` map-grid access: backup map layout, `MAP_OFFSET`, borders, connections, `MapGridGet*`, `MapGridSetMetatileIdAt`, save/load map view, and camera movement.
 - [ ] Trace `include/global.fieldmap.h` layer constants and confirm exact layer assignment rules for normal, covered, and split metatiles.
 - [ ] Trace `src/field_control_avatar.c` field-input ordering, interaction ordering, step-script ordering, door warp checks, arrow warps, and metatile-script interactions.
 - [ ] Trace `src/field_player_avatar.c` player avatar state machine, collision checks, bike/surf/underwater states, forced movement, and avatar graphics transitions.
