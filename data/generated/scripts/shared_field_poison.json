@@ -1,0 +1,510 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_field_poison",
+    "script_files": [
+      "data/scripts/field_poison.inc"
+    ]
+  },
+  "labels": {
+    "EventScript_FieldPoison": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/field_poison.inc",
+      "instruction_count": 7
+    },
+    "EventScript_FieldWhiteOut": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/scripts/field_poison.inc",
+      "instruction_count": 10
+    },
+    "EventScript_SetRespawnLavaridgePkmnCenter": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/scripts/field_poison.inc",
+      "instruction_count": 2
+    },
+    "EventScript_FrontierFieldWhiteOut": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/scripts/field_poison.inc",
+      "instruction_count": 16
+    }
+  },
+  "scripts": {
+    "EventScript_FieldPoison": {
+      "label": "EventScript_FieldPoison",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/field_poison.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 2,
+          "raw": "lockall",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "TryFieldPoisonWhiteOut"
+          ],
+          "line": 3,
+          "raw": "special TryFieldPoisonWhiteOut",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 4,
+          "raw": "waitstate",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FLDPSN_WHITEOUT",
+            "EventScript_FieldWhiteOut"
+          ],
+          "line": 5,
+          "raw": "goto_if_eq VAR_RESULT, FLDPSN_WHITEOUT, EventScript_FieldWhiteOut",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FLDPSN_FRONTIER_WHITEOUT",
+            "EventScript_FrontierFieldWhiteOut"
+          ],
+          "line": 6,
+          "raw": "goto_if_eq VAR_RESULT, FLDPSN_FRONTIER_WHITEOUT, EventScript_FrontierFieldWhiteOut",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 7,
+          "raw": "releaseall",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/scripts/field_poison.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_FieldWhiteOut",
+          "line": 5
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_FrontierFieldWhiteOut",
+          "line": 6
+        }
+      ]
+    },
+    "EventScript_FieldWhiteOut": {
+      "label": "EventScript_FieldWhiteOut",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/scripts/field_poison.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "gText_PlayerWhitedOut"
+          ],
+          "line": 11,
+          "raw": "message gText_PlayerWhitedOut",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 12,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 13,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "Script_FadeOutMapMusic"
+          ],
+          "line": 14,
+          "raw": "special Script_FadeOutMapMusic",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 15,
+          "raw": "waitstate",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 16,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_WHITEOUT_TO_LAVARIDGE",
+            "EventScript_SetRespawnLavaridgePkmnCenter"
+          ],
+          "line": 17,
+          "raw": "call_if_set FLAG_WHITEOUT_TO_LAVARIDGE, EventScript_SetRespawnLavaridgePkmnCenter",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SetCB2WhiteOut"
+          ],
+          "line": 18,
+          "raw": "special SetCB2WhiteOut",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 19,
+          "raw": "waitstate",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/scripts/field_poison.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_PlayerWhitedOut",
+          "mode": "",
+          "line": 11
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "EventScript_SetRespawnLavaridgePkmnCenter",
+          "line": 17
+        }
+      ]
+    },
+    "EventScript_SetRespawnLavaridgePkmnCenter": {
+      "label": "EventScript_SetRespawnLavaridgePkmnCenter",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/scripts/field_poison.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_LAVARIDGE_TOWN"
+          ],
+          "line": 23,
+          "raw": "setrespawn HEAL_LOCATION_LAVARIDGE_TOWN",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 24,
+          "raw": "return",
+          "source_file": "data/scripts/field_poison.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_FrontierFieldWhiteOut": {
+      "label": "EventScript_FrontierFieldWhiteOut",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/scripts/field_poison.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "gText_PlayerWhitedOut"
+          ],
+          "line": 27,
+          "raw": "message gText_PlayerWhitedOut",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 28,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 29,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "pike_inchallenge",
+          "args": [],
+          "line": 30,
+          "raw": "pike_inchallenge",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattlePike_EventScript_Retire"
+          ],
+          "line": 31,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, BattleFrontier_BattlePike_EventScript_Retire",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "pyramid_getlocation",
+          "args": [],
+          "line": 32,
+          "raw": "pyramid_getlocation",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PYRAMID_LOCATION_FLOOR",
+            "BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost"
+          ],
+          "line": 33,
+          "raw": "goto_if_eq VAR_RESULT, PYRAMID_LOCATION_FLOOR, BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PYRAMID_LOCATION_TOP",
+            "BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost"
+          ],
+          "line": 34,
+          "raw": "goto_if_eq VAR_RESULT, PYRAMID_LOCATION_TOP, BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "trainerhill_inchallenge",
+          "args": [],
+          "line": 35,
+          "raw": "trainerhill_inchallenge",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "TrainerHill_1F_EventScript_Lost"
+          ],
+          "line": 36,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, TrainerHill_1F_EventScript_Lost",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "Script_FadeOutMapMusic"
+          ],
+          "line": 37,
+          "raw": "special Script_FadeOutMapMusic",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 38,
+          "raw": "waitstate",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 39,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SetCB2WhiteOut"
+          ],
+          "line": 40,
+          "raw": "special SetCB2WhiteOut",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 41,
+          "raw": "waitstate",
+          "source_file": "data/scripts/field_poison.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/scripts/field_poison.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_PlayerWhitedOut",
+          "mode": "",
+          "line": 27
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePike_EventScript_Retire",
+          "line": 31
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost",
+          "line": 33
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost",
+          "line": 34
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "TrainerHill_1F_EventScript_Lost",
+          "line": 36
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_set": 1,
+      "fadescreen": 2,
+      "goto_if_eq": 6,
+      "pike_inchallenge": 1,
+      "pyramid_getlocation": 1,
+      "setrespawn": 1,
+      "special": 5,
+      "trainerhill_inchallenge": 1,
+      "waitbuttonpress": 2,
+      "waitmessage": 2,
+      "waitstate": 5
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 4,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call_if_set": 1,
+      "end": 3,
+      "fadescreen": 2,
+      "goto_if_eq": 6,
+      "lockall": 1,
+      "message": 2,
+      "pike_inchallenge": 1,
+      "pyramid_getlocation": 1,
+      "releaseall": 1,
+      "return": 1,
+      "setrespawn": 1,
+      "special": 5,
+      "trainerhill_inchallenge": 1,
+      "waitbuttonpress": 2,
+      "waitmessage": 2,
+      "waitstate": 5
+    }
+  }
+}

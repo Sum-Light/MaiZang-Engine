@@ -1,0 +1,3317 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_obtain_item",
+    "script_files": [
+      "data/scripts/obtain_item.inc"
+    ]
+  },
+  "labels": {
+    "Std_ObtainItem": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 5
+    },
+    "EventScript_ObtainItemMessage": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 6
+    },
+    "EventScript_BufferPocketNameAndTryFanfare": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 7
+    },
+    "EventScript_BufferItemsPocket": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 3
+    },
+    "EventScript_BufferKeyItemsPocket": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 3
+    },
+    "EventScript_BufferPokeballsPocket": {
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 3
+    },
+    "EventScript_BufferTMHMsPocket": {
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 3
+    },
+    "EventScript_BufferBerriesPocket": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 3
+    },
+    "EventScript_ObtainedItem": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 5
+    },
+    "EventScript_ObtainedItemMessage": {
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 1
+    },
+    "EventScript_ContinueObtainedItem": {
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 7
+    },
+    "EventScript_NoRoomForItem": {
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "EventScript_PlayFanfareObtainedItem": {
+      "kind": "script",
+      "line": 74,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "EventScript_PlayFanfareObtainedTMHM": {
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "Std_ObtainDecoration": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 4
+    },
+    "EventScript_ObtainDecorationMessage": {
+      "kind": "script",
+      "line": 88,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 4
+    },
+    "EventScript_ObtainedDecor": {
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 6
+    },
+    "EventScript_NoRoomForDecor": {
+      "kind": "script",
+      "line": 102,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "Std_FindItem": {
+      "kind": "script",
+      "line": 106,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 15
+    },
+    "EventScript_PickUpItem": {
+      "kind": "script",
+      "line": 123,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 17
+    },
+    "EventScript_PutBattlePyramidItemInBag": {
+      "kind": "script",
+      "line": 142,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 3
+    },
+    "EventScript_FoundTMHM": {
+      "kind": "script",
+      "line": 147,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 7
+    },
+    "EventScript_FoundTMHMMessage": {
+      "kind": "script",
+      "line": 155,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "EventScript_FoundItem": {
+      "kind": "script",
+      "line": 159,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 5
+    },
+    "EventScript_FoundItemMessage": {
+      "kind": "script",
+      "line": 165,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "EventScript_NoRoomToPickUpItem": {
+      "kind": "script",
+      "line": 169,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 4
+    },
+    "EventScript_HiddenItemScript": {
+      "kind": "script",
+      "line": 175,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 12
+    },
+    "EventScript_PickUpHiddenItem": {
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 6
+    },
+    "EventScript_FoundHiddenTMHM": {
+      "kind": "script",
+      "line": 197,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 4
+    },
+    "EventScript_FoundHiddenItem": {
+      "kind": "script",
+      "line": 203,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 4
+    },
+    "EventScript_FoundSingleItem": {
+      "kind": "script",
+      "line": 209,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "EventScript_FoundMultipleItems": {
+      "kind": "script",
+      "line": 213,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 3
+    },
+    "EventScript_PutHiddenItemInPocket": {
+      "kind": "script",
+      "line": 218,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 14
+    },
+    "EventScript_NoRoomForHiddenItem": {
+      "kind": "script",
+      "line": 234,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 5
+    },
+    "EventScript_RestorePrevTextColor": {
+      "kind": "script",
+      "line": 241,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "Std_PutItemAway": {
+      "kind": "script",
+      "line": 245,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 5
+    },
+    "EventScript_BufferPutAwayPocketName": {
+      "kind": "script",
+      "line": 252,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 7
+    },
+    "EventScript_BufferPutAwayPocketItems": {
+      "kind": "script",
+      "line": 261,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "EventScript_BufferPutAwayPocketKeyItems": {
+      "kind": "script",
+      "line": 265,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "EventScript_BufferPutAwayPocketPokeBalls": {
+      "kind": "script",
+      "line": 269,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "EventScript_BufferPutAwayPocketTMCase": {
+      "kind": "script",
+      "line": 273,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "EventScript_BufferPutAwayPocketBerryPouch": {
+      "kind": "script",
+      "line": 277,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 2
+    },
+    "EventScript_TryPickUpHiddenCoins": {
+      "kind": "script",
+      "line": 281,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 14
+    },
+    "EventScript_FoundCoins": {
+      "kind": "script",
+      "line": 297,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 3
+    },
+    "EventScript_HiddenCoinsButCaseIsFull": {
+      "kind": "script",
+      "line": 302,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 7
+    },
+    "EventScript_NoCaseForHiddenCoins": {
+      "kind": "script",
+      "line": 311,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instruction_count": 7
+    }
+  },
+  "scripts": {
+    "Std_ObtainItem": {
+      "label": "Std_ObtainItem",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8006",
+            "ITEMID"
+          ],
+          "line": 5,
+          "raw": "copyvar VAR_0x8006, ITEMID",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "additem",
+          "args": [
+            "ITEMID",
+            "AMOUNT"
+          ],
+          "line": 6,
+          "raw": "additem ITEMID, AMOUNT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8007",
+            "VAR_RESULT"
+          ],
+          "line": 7,
+          "raw": "copyvar VAR_0x8007, VAR_RESULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_ObtainItemMessage"
+          ],
+          "line": 8,
+          "raw": "call EventScript_ObtainItemMessage",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 9,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_ObtainItemMessage",
+          "line": 8
+        }
+      ]
+    },
+    "EventScript_ObtainItemMessage": {
+      "label": "EventScript_ObtainItemMessage",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferitemnameplural",
+          "args": [
+            "STR_VAR_2",
+            "ITEMID",
+            "AMOUNT"
+          ],
+          "line": 12,
+          "raw": "bufferitemnameplural STR_VAR_2, ITEMID, AMOUNT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "checkitemtype",
+          "args": [
+            "ITEMID"
+          ],
+          "line": 13,
+          "raw": "checkitemtype ITEMID",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_BufferPocketNameAndTryFanfare"
+          ],
+          "line": 14,
+          "raw": "call EventScript_BufferPocketNameAndTryFanfare",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "TRUE",
+            "EventScript_ObtainedItem"
+          ],
+          "line": 15,
+          "raw": "call_if_eq VAR_0x8007, TRUE, EventScript_ObtainedItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "FALSE",
+            "EventScript_NoRoomForItem"
+          ],
+          "line": 16,
+          "raw": "call_if_eq VAR_0x8007, FALSE, EventScript_NoRoomForItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 17,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_BufferPocketNameAndTryFanfare",
+          "line": 14
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_ObtainedItem",
+          "line": 15
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_NoRoomForItem",
+          "line": 16
+        }
+      ]
+    },
+    "EventScript_BufferPocketNameAndTryFanfare": {
+      "label": "EventScript_BufferPocketNameAndTryFanfare",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 20,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "POCKET_ITEMS",
+            "EventScript_BufferItemsPocket"
+          ],
+          "line": 21,
+          "raw": "case POCKET_ITEMS,      EventScript_BufferItemsPocket",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "POCKET_KEY_ITEMS",
+            "EventScript_BufferKeyItemsPocket"
+          ],
+          "line": 22,
+          "raw": "case POCKET_KEY_ITEMS,  EventScript_BufferKeyItemsPocket",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "POCKET_POKE_BALLS",
+            "EventScript_BufferPokeballsPocket"
+          ],
+          "line": 23,
+          "raw": "case POCKET_POKE_BALLS, EventScript_BufferPokeballsPocket",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "POCKET_TM_HM",
+            "EventScript_BufferTMHMsPocket"
+          ],
+          "line": 24,
+          "raw": "case POCKET_TM_HM,      EventScript_BufferTMHMsPocket",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "POCKET_BERRIES",
+            "EventScript_BufferBerriesPocket"
+          ],
+          "line": 25,
+          "raw": "case POCKET_BERRIES,    EventScript_BufferBerriesPocket",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_BufferItemsPocket": {
+      "label": "EventScript_BufferItemsPocket",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_ITEMS"
+          ],
+          "line": 29,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_ITEMS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "TRUE",
+            "EventScript_PlayFanfareObtainedItem"
+          ],
+          "line": 30,
+          "raw": "call_if_eq VAR_0x8007, TRUE, EventScript_PlayFanfareObtainedItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 31,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_PlayFanfareObtainedItem",
+          "line": 30
+        }
+      ]
+    },
+    "EventScript_BufferKeyItemsPocket": {
+      "label": "EventScript_BufferKeyItemsPocket",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_KEYITEMS"
+          ],
+          "line": 34,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_KEYITEMS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "TRUE",
+            "EventScript_PlayFanfareObtainedItem"
+          ],
+          "line": 35,
+          "raw": "call_if_eq VAR_0x8007, TRUE, EventScript_PlayFanfareObtainedItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 36,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_PlayFanfareObtainedItem",
+          "line": 35
+        }
+      ]
+    },
+    "EventScript_BufferPokeballsPocket": {
+      "label": "EventScript_BufferPokeballsPocket",
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_POKEBALLS"
+          ],
+          "line": 39,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_POKEBALLS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "TRUE",
+            "EventScript_PlayFanfareObtainedItem"
+          ],
+          "line": 40,
+          "raw": "call_if_eq VAR_0x8007, TRUE, EventScript_PlayFanfareObtainedItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 41,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_PlayFanfareObtainedItem",
+          "line": 40
+        }
+      ]
+    },
+    "EventScript_BufferTMHMsPocket": {
+      "label": "EventScript_BufferTMHMsPocket",
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_TMHMS"
+          ],
+          "line": 44,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_TMHMS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "TRUE",
+            "EventScript_PlayFanfareObtainedTMHM"
+          ],
+          "line": 45,
+          "raw": "call_if_eq VAR_0x8007, TRUE, EventScript_PlayFanfareObtainedTMHM",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 46,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_PlayFanfareObtainedTMHM",
+          "line": 45
+        }
+      ]
+    },
+    "EventScript_BufferBerriesPocket": {
+      "label": "EventScript_BufferBerriesPocket",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_BERRIES"
+          ],
+          "line": 49,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_BERRIES",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "TRUE",
+            "EventScript_PlayFanfareObtainedItem"
+          ],
+          "line": 50,
+          "raw": "call_if_eq VAR_0x8007, TRUE, EventScript_PlayFanfareObtainedItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 51,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_PlayFanfareObtainedItem",
+          "line": 50
+        }
+      ]
+    },
+    "EventScript_ObtainedItem": {
+      "label": "EventScript_ObtainedItem",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "compare",
+          "args": [
+            "VAR_0x8001",
+            "TRUE"
+          ],
+          "line": 54,
+          "raw": "compare VAR_0x8001, TRUE",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "EventScript_ObtainedItemMessage"
+          ],
+          "line": 55,
+          "raw": "goto_if_eq EventScript_ObtainedItemMessage",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "0",
+            "VAR_0x8001"
+          ],
+          "line": 56,
+          "raw": "buffernumberstring 0, VAR_0x8001",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_ObtainedTheItems"
+          ],
+          "line": 57,
+          "raw": "message gText_ObtainedTheItems",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_ContinueObtainedItem"
+          ],
+          "line": 58,
+          "raw": "goto EventScript_ContinueObtainedItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_ObtainedTheItems",
+          "mode": "",
+          "line": 57
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_ObtainedItemMessage",
+          "line": 55
+        },
+        {
+          "op": "goto",
+          "target": "EventScript_ContinueObtainedItem",
+          "line": 58
+        }
+      ]
+    },
+    "EventScript_ObtainedItemMessage": {
+      "label": "EventScript_ObtainedItemMessage",
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "gText_ObtainedTheItem"
+          ],
+          "line": 60,
+          "raw": "message gText_ObtainedTheItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_ObtainedTheItem",
+          "mode": "",
+          "line": 60
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_ContinueObtainedItem": {
+      "label": "EventScript_ContinueObtainedItem",
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "delay",
+          "args": [
+            "10"
+          ],
+          "line": 62,
+          "raw": "delay 10",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "showitemdescription",
+          "args": [],
+          "line": 63,
+          "raw": "showitemdescription",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 64,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PutItemInPocket",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 65,
+          "raw": "msgbox gText_PutItemInPocket, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "hideitemdescription",
+          "args": [],
+          "line": 66,
+          "raw": "hideitemdescription",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "TRUE"
+          ],
+          "line": 67,
+          "raw": "setvar VAR_RESULT, TRUE",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 68,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PutItemInPocket",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 65
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_NoRoomForItem": {
+      "label": "EventScript_NoRoomForItem",
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "FALSE"
+          ],
+          "line": 71,
+          "raw": "setvar VAR_RESULT, FALSE",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 72,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_PlayFanfareObtainedItem": {
+      "label": "EventScript_PlayFanfareObtainedItem",
+      "kind": "script",
+      "line": 74,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_ITEM"
+          ],
+          "line": 75,
+          "raw": "playfanfare MUS_OBTAIN_ITEM",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 76,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_PlayFanfareObtainedTMHM": {
+      "label": "EventScript_PlayFanfareObtainedTMHM",
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_TMHM"
+          ],
+          "line": 79,
+          "raw": "playfanfare MUS_OBTAIN_TMHM",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 80,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Std_ObtainDecoration": {
+      "label": "Std_ObtainDecoration",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "adddecoration",
+          "args": [
+            "ITEMID"
+          ],
+          "line": 83,
+          "raw": "adddecoration ITEMID",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8007",
+            "VAR_RESULT"
+          ],
+          "line": 84,
+          "raw": "copyvar VAR_0x8007, VAR_RESULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_ObtainDecorationMessage"
+          ],
+          "line": 85,
+          "raw": "call EventScript_ObtainDecorationMessage",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 86,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_ObtainDecorationMessage",
+          "line": 85
+        }
+      ]
+    },
+    "EventScript_ObtainDecorationMessage": {
+      "label": "EventScript_ObtainDecorationMessage",
+      "kind": "script",
+      "line": 88,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferdecorationname",
+          "args": [
+            "STR_VAR_2",
+            "ITEMID"
+          ],
+          "line": 89,
+          "raw": "bufferdecorationname STR_VAR_2, ITEMID",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "TRUE",
+            "EventScript_ObtainedDecor"
+          ],
+          "line": 90,
+          "raw": "call_if_eq VAR_0x8007, TRUE, EventScript_ObtainedDecor",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "FALSE",
+            "EventScript_NoRoomForDecor"
+          ],
+          "line": 91,
+          "raw": "call_if_eq VAR_0x8007, FALSE, EventScript_NoRoomForDecor",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 92,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_ObtainedDecor",
+          "line": 90
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_NoRoomForDecor",
+          "line": 91
+        }
+      ]
+    },
+    "EventScript_ObtainedDecor": {
+      "label": "EventScript_ObtainedDecor",
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_ITEM"
+          ],
+          "line": 95,
+          "raw": "playfanfare MUS_OBTAIN_ITEM",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_ObtainedTheDecor"
+          ],
+          "line": 96,
+          "raw": "message gText_ObtainedTheDecor",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 97,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_TheDecorWasTransferredToThePC",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 98,
+          "raw": "msgbox gText_TheDecorWasTransferredToThePC, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "TRUE"
+          ],
+          "line": 99,
+          "raw": "setvar VAR_RESULT, TRUE",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 100,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_ObtainedTheDecor",
+          "mode": "",
+          "line": 96
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_TheDecorWasTransferredToThePC",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 98
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_NoRoomForDecor": {
+      "label": "EventScript_NoRoomForDecor",
+      "kind": "script",
+      "line": 102,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "FALSE"
+          ],
+          "line": 103,
+          "raw": "setvar VAR_RESULT, FALSE",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 104,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Std_FindItem": {
+      "label": "Std_FindItem",
+      "kind": "script",
+      "line": 106,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 107,
+          "raw": "lock",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 108,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 109,
+          "raw": "waitse",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8006",
+            "ITEMID"
+          ],
+          "line": 110,
+          "raw": "copyvar VAR_0x8006, ITEMID",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8004",
+            "ITEMID"
+          ],
+          "line": 111,
+          "raw": "copyvar VAR_0x8004, ITEMID",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8005",
+            "AMOUNT"
+          ],
+          "line": 112,
+          "raw": "copyvar VAR_0x8005, AMOUNT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "checkitemspace",
+          "args": [
+            "ITEMID",
+            "AMOUNT"
+          ],
+          "line": 113,
+          "raw": "checkitemspace ITEMID, AMOUNT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8007",
+            "VAR_RESULT"
+          ],
+          "line": 114,
+          "raw": "copyvar VAR_0x8007, VAR_RESULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "bufferitemnameplural",
+          "args": [
+            "STR_VAR_2",
+            "ITEMID",
+            "AMOUNT"
+          ],
+          "line": 115,
+          "raw": "bufferitemnameplural STR_VAR_2, ITEMID, AMOUNT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "checkitemtype",
+          "args": [
+            "ITEMID"
+          ],
+          "line": 116,
+          "raw": "checkitemtype ITEMID",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_BufferPocketNameAndTryFanfare"
+          ],
+          "line": 117,
+          "raw": "call EventScript_BufferPocketNameAndTryFanfare",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "TRUE",
+            "EventScript_PickUpItem"
+          ],
+          "line": 118,
+          "raw": "call_if_eq VAR_0x8007, TRUE, EventScript_PickUpItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "FALSE",
+            "EventScript_NoRoomToPickUpItem"
+          ],
+          "line": 119,
+          "raw": "call_if_eq VAR_0x8007, FALSE, EventScript_NoRoomToPickUpItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 120,
+          "raw": "release",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 121,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_BufferPocketNameAndTryFanfare",
+          "line": 117
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_PickUpItem",
+          "line": 118
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_NoRoomToPickUpItem",
+          "line": 119
+        }
+      ]
+    },
+    "EventScript_PickUpItem": {
+      "label": "EventScript_PickUpItem",
+      "kind": "script",
+      "line": 123,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "removeobject",
+          "args": [
+            "VAR_LAST_TALKED"
+          ],
+          "line": 124,
+          "raw": "removeobject VAR_LAST_TALKED",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "additem",
+          "args": [
+            "VAR_0x8004",
+            "VAR_0x8005"
+          ],
+          "line": 125,
+          "raw": "additem VAR_0x8004, VAR_0x8005",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8006 VAR_0x8004"
+          ],
+          "line": 126,
+          "raw": "copyvar VAR_0x8006 VAR_0x8004",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "BufferTMHMMoveName"
+          ],
+          "line": 127,
+          "raw": "specialvar VAR_RESULT, BufferTMHMMoveName",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8008",
+            "VAR_RESULT"
+          ],
+          "line": 128,
+          "raw": "copyvar VAR_0x8008, VAR_RESULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8008",
+            "TRUE",
+            "EventScript_FoundTMHM"
+          ],
+          "line": 129,
+          "raw": "call_if_eq VAR_0x8008, TRUE, EventScript_FoundTMHM",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8008",
+            "FALSE",
+            "EventScript_FoundItem"
+          ],
+          "line": 130,
+          "raw": "call_if_eq VAR_0x8008, FALSE, EventScript_FoundItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "10"
+          ],
+          "line": 131,
+          "raw": "delay 10",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "showitemdescription",
+          "args": [],
+          "line": 132,
+          "raw": "showitemdescription",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 133,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 134,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "bufferitemnameplural",
+          "args": [
+            "STR_VAR_2",
+            "VAR_0x8004",
+            "VAR_0x8005"
+          ],
+          "line": 135,
+          "raw": "bufferitemnameplural STR_VAR_2, VAR_0x8004, VAR_0x8005",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "pyramid_getlocation",
+          "args": [],
+          "line": 136,
+          "raw": "pyramid_getlocation",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PYRAMID_LOCATION_FLOOR",
+            "EventScript_PutBattlePyramidItemInBag"
+          ],
+          "line": 137,
+          "raw": "goto_if_eq VAR_RESULT, PYRAMID_LOCATION_FLOOR, EventScript_PutBattlePyramidItemInBag",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PutItemInPocket",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 138,
+          "raw": "msgbox gText_PutItemInPocket, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "hideitemdescription",
+          "args": [],
+          "line": 139,
+          "raw": "hideitemdescription",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 140,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PutItemInPocket",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 138
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_FoundTMHM",
+          "line": 129
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_FoundItem",
+          "line": 130
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_PutBattlePyramidItemInBag",
+          "line": 137
+        }
+      ]
+    },
+    "EventScript_PutBattlePyramidItemInBag": {
+      "label": "EventScript_PutBattlePyramidItemInBag",
+      "kind": "script",
+      "line": 142,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PlayerPutItemInBag",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 143,
+          "raw": "msgbox gText_PlayerPutItemInBag, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "hideitemdescription",
+          "args": [],
+          "line": 144,
+          "raw": "hideitemdescription",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 145,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PlayerPutItemInBag",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 143
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_FoundTMHM": {
+      "label": "EventScript_FoundTMHM",
+      "kind": "script",
+      "line": 147,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferitemnameplural",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8004",
+            "VAR_0x8005"
+          ],
+          "line": 148,
+          "raw": "bufferitemnameplural STR_VAR_1, VAR_0x8004, VAR_0x8005",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "compare",
+          "args": [
+            "VAR_0x8005",
+            "2"
+          ],
+          "line": 149,
+          "raw": "compare VAR_0x8005, 2",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto_if_lt",
+          "args": [
+            "EventScript_FoundTMHMMessage"
+          ],
+          "line": 150,
+          "raw": "goto_if_lt EventScript_FoundTMHMMessage",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_3",
+            "VAR_0x8005"
+          ],
+          "line": 151,
+          "raw": "buffernumberstring STR_VAR_3, VAR_0x8005",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_PlayerFoundTMHMs"
+          ],
+          "line": 152,
+          "raw": "message gText_PlayerFoundTMHMs",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_BufferTMHMsPocket"
+          ],
+          "line": 153,
+          "raw": "goto EventScript_BufferTMHMsPocket",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 154,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_PlayerFoundTMHMs",
+          "mode": "",
+          "line": 152
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_lt",
+          "target": "EventScript_FoundTMHMMessage",
+          "line": 150
+        },
+        {
+          "op": "goto",
+          "target": "EventScript_BufferTMHMsPocket",
+          "line": 153
+        }
+      ]
+    },
+    "EventScript_FoundTMHMMessage": {
+      "label": "EventScript_FoundTMHMMessage",
+      "kind": "script",
+      "line": 155,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "gText_PlayerFoundOneTMHM"
+          ],
+          "line": 156,
+          "raw": "message gText_PlayerFoundOneTMHM",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 157,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_PlayerFoundOneTMHM",
+          "mode": "",
+          "line": 156
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_FoundItem": {
+      "label": "EventScript_FoundItem",
+      "kind": "script",
+      "line": 159,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "compare",
+          "args": [
+            "VAR_0x8001",
+            "TRUE"
+          ],
+          "line": 160,
+          "raw": "compare VAR_0x8001, TRUE",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "EventScript_FoundItemMessage"
+          ],
+          "line": 161,
+          "raw": "goto_if_eq EventScript_FoundItemMessage",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "0",
+            "VAR_0x8001"
+          ],
+          "line": 162,
+          "raw": "buffernumberstring 0, VAR_0x8001",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_PlayerFoundItems"
+          ],
+          "line": 163,
+          "raw": "message gText_PlayerFoundItems",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 164,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_PlayerFoundItems",
+          "mode": "",
+          "line": 163
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_FoundItemMessage",
+          "line": 161
+        }
+      ]
+    },
+    "EventScript_FoundItemMessage": {
+      "label": "EventScript_FoundItemMessage",
+      "kind": "script",
+      "line": 165,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "gText_PlayerFoundOneItem"
+          ],
+          "line": 166,
+          "raw": "message gText_PlayerFoundOneItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 167,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_PlayerFoundOneItem",
+          "mode": "",
+          "line": 166
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_NoRoomToPickUpItem": {
+      "label": "EventScript_NoRoomToPickUpItem",
+      "kind": "script",
+      "line": 169,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_ObtainedTheItem",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 170,
+          "raw": "msgbox gText_ObtainedTheItem, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_TooBadBagIsFull",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 171,
+          "raw": "msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "FALSE"
+          ],
+          "line": 172,
+          "raw": "setvar VAR_RESULT, FALSE",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 173,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_ObtainedTheItem",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 170
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_TooBadBagIsFull",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 171
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_HiddenItemScript": {
+      "label": "EventScript_HiddenItemScript",
+      "kind": "script",
+      "line": 175,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 176,
+          "raw": "lockall",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 177,
+          "raw": "waitse",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8005",
+            "0",
+            "EventScript_TryPickUpHiddenCoins"
+          ],
+          "line": 178,
+          "raw": "goto_if_eq VAR_0x8005, 0, EventScript_TryPickUpHiddenCoins",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8006",
+            "VAR_0x8005"
+          ],
+          "line": 179,
+          "raw": "copyvar VAR_0x8006, VAR_0x8005",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "additem",
+          "args": [
+            "VAR_0x8005",
+            "VAR_0x8009"
+          ],
+          "line": 180,
+          "raw": "additem VAR_0x8005, VAR_0x8009",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8007",
+            "VAR_RESULT"
+          ],
+          "line": 181,
+          "raw": "copyvar VAR_0x8007, VAR_RESULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "bufferitemnameplural",
+          "args": [
+            "STR_VAR_2",
+            "VAR_0x8005",
+            "1"
+          ],
+          "line": 182,
+          "raw": "bufferitemnameplural STR_VAR_2, VAR_0x8005, 1",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "checkitemtype",
+          "args": [
+            "VAR_0x8005"
+          ],
+          "line": 183,
+          "raw": "checkitemtype VAR_0x8005",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_BufferPocketNameAndTryFanfare"
+          ],
+          "line": 184,
+          "raw": "call EventScript_BufferPocketNameAndTryFanfare",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "TRUE",
+            "EventScript_PickUpHiddenItem"
+          ],
+          "line": 185,
+          "raw": "goto_if_eq VAR_0x8007, TRUE, EventScript_PickUpHiddenItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8007",
+            "FALSE",
+            "EventScript_NoRoomForHiddenItem"
+          ],
+          "line": 186,
+          "raw": "goto_if_eq VAR_0x8007, FALSE, EventScript_NoRoomForHiddenItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 187,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_TryPickUpHiddenCoins",
+          "line": 178
+        },
+        {
+          "op": "call",
+          "target": "EventScript_BufferPocketNameAndTryFanfare",
+          "line": 184
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_PickUpHiddenItem",
+          "line": 185
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_NoRoomForHiddenItem",
+          "line": 186
+        }
+      ]
+    },
+    "EventScript_PickUpHiddenItem": {
+      "label": "EventScript_PickUpHiddenItem",
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8008",
+            "VAR_0x8004"
+          ],
+          "line": 190,
+          "raw": "copyvar VAR_0x8008, VAR_0x8004",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8004",
+            "VAR_0x8005"
+          ],
+          "line": 191,
+          "raw": "copyvar VAR_0x8004, VAR_0x8005",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "BufferTMHMMoveName"
+          ],
+          "line": 192,
+          "raw": "specialvar VAR_RESULT, BufferTMHMMoveName",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "EventScript_FoundHiddenTMHM"
+          ],
+          "line": 193,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, EventScript_FoundHiddenTMHM",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "EventScript_FoundHiddenItem"
+          ],
+          "line": 194,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, EventScript_FoundHiddenItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 195,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_FoundHiddenTMHM",
+          "line": 193
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_FoundHiddenItem",
+          "line": 194
+        }
+      ]
+    },
+    "EventScript_FoundHiddenTMHM": {
+      "label": "EventScript_FoundHiddenTMHM",
+      "kind": "script",
+      "line": 197,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferitemnameplural",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8004",
+            "1"
+          ],
+          "line": 198,
+          "raw": "bufferitemnameplural STR_VAR_1, VAR_0x8004, 1",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_PlayerFoundOneTMHM"
+          ],
+          "line": 199,
+          "raw": "message gText_PlayerFoundOneTMHM",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_PutHiddenItemInPocket"
+          ],
+          "line": 200,
+          "raw": "goto EventScript_PutHiddenItemInPocket",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 201,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_PlayerFoundOneTMHM",
+          "mode": "",
+          "line": 199
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_PutHiddenItemInPocket",
+          "line": 200
+        }
+      ]
+    },
+    "EventScript_FoundHiddenItem": {
+      "label": "EventScript_FoundHiddenItem",
+      "kind": "script",
+      "line": 203,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8009",
+            "1",
+            "EventScript_FoundSingleItem"
+          ],
+          "line": 204,
+          "raw": "call_if_eq VAR_0x8009, 1, EventScript_FoundSingleItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call_if_ne",
+          "args": [
+            "VAR_0x8009",
+            "1",
+            "EventScript_FoundMultipleItems"
+          ],
+          "line": 205,
+          "raw": "call_if_ne VAR_0x8009, 1, EventScript_FoundMultipleItems",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_PutHiddenItemInPocket"
+          ],
+          "line": 206,
+          "raw": "goto EventScript_PutHiddenItemInPocket",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 207,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_FoundSingleItem",
+          "line": 204
+        },
+        {
+          "op": "call_if_ne",
+          "target": "EventScript_FoundMultipleItems",
+          "line": 205
+        },
+        {
+          "op": "goto",
+          "target": "EventScript_PutHiddenItemInPocket",
+          "line": 206
+        }
+      ]
+    },
+    "EventScript_FoundSingleItem": {
+      "label": "EventScript_FoundSingleItem",
+      "kind": "script",
+      "line": 209,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "gText_PlayerFoundOneItem"
+          ],
+          "line": 210,
+          "raw": "message gText_PlayerFoundOneItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 211,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_PlayerFoundOneItem",
+          "mode": "",
+          "line": 210
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_FoundMultipleItems": {
+      "label": "EventScript_FoundMultipleItems",
+      "kind": "script",
+      "line": 213,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 214,
+          "raw": "buffernumberstring STR_VAR_1, VAR_0x8009",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_FoundXItems"
+          ],
+          "line": 215,
+          "raw": "message gText_FoundXItems",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 216,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_FoundXItems",
+          "mode": "",
+          "line": 215
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_PutHiddenItemInPocket": {
+      "label": "EventScript_PutHiddenItemInPocket",
+      "kind": "script",
+      "line": 218,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "callnative",
+          "args": [
+            "Script_ClearDowsingColor"
+          ],
+          "line": 219,
+          "raw": "callnative Script_ClearDowsingColor",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "10"
+          ],
+          "line": 220,
+          "raw": "delay 10",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "showitemdescription",
+          "args": [],
+          "line": 221,
+          "raw": "showitemdescription",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 222,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 223,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "bufferitemnameplural",
+          "args": [
+            "STR_VAR_2",
+            "VAR_0x8004",
+            "1"
+          ],
+          "line": 224,
+          "raw": "bufferitemnameplural STR_VAR_2, VAR_0x8004, 1",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8004",
+            "VAR_0x8008"
+          ],
+          "line": 225,
+          "raw": "copyvar VAR_0x8004, VAR_0x8008",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PutItemInPocket",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 226,
+          "raw": "msgbox gText_PutItemInPocket, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "hideitemdescription",
+          "args": [],
+          "line": 227,
+          "raw": "hideitemdescription",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "TryPutTreasureInvestigatorsOnAir"
+          ],
+          "line": 228,
+          "raw": "special TryPutTreasureInvestigatorsOnAir",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SetHiddenItemFlag"
+          ],
+          "line": 229,
+          "raw": "special SetHiddenItemFlag",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "callnative",
+          "args": [
+            "Script_UpdateDowseState"
+          ],
+          "line": 230,
+          "raw": "callnative Script_UpdateDowseState",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 231,
+          "raw": "releaseall",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 232,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PutItemInPocket",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 226
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_NoRoomForHiddenItem": {
+      "label": "EventScript_NoRoomForHiddenItem",
+      "kind": "script",
+      "line": 234,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PlayerFoundOneItem",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 235,
+          "raw": "msgbox gText_PlayerFoundOneItem, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_TooBadBagIsFull",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 236,
+          "raw": "msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "0"
+          ],
+          "line": 237,
+          "raw": "setvar VAR_RESULT, 0",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 238,
+          "raw": "releaseall",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 239,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PlayerFoundOneItem",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 235
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_TooBadBagIsFull",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 236
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_RestorePrevTextColor": {
+      "label": "EventScript_RestorePrevTextColor",
+      "kind": "script",
+      "line": 241,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_TEXT_COLOR",
+            "VAR_PREV_TEXT_COLOR"
+          ],
+          "line": 242,
+          "raw": "copyvar VAR_TEXT_COLOR, VAR_PREV_TEXT_COLOR",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 243,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Std_PutItemAway": {
+      "label": "Std_PutItemAway",
+      "kind": "script",
+      "line": 245,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferitemnameplural",
+          "args": [
+            "STR_VAR_2",
+            "VAR_0x8000",
+            "VAR_0x8001"
+          ],
+          "line": 246,
+          "raw": "bufferitemnameplural STR_VAR_2, VAR_0x8000, VAR_0x8001",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "checkitemtype",
+          "args": [
+            "VAR_0x8000"
+          ],
+          "line": 247,
+          "raw": "checkitemtype VAR_0x8000",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_BufferPutAwayPocketName"
+          ],
+          "line": 248,
+          "raw": "call EventScript_BufferPutAwayPocketName",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PutItemInPocket"
+          ],
+          "line": 249,
+          "raw": "msgbox gText_PutItemInPocket",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 250,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PutItemInPocket",
+          "mode": "",
+          "line": 249
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_BufferPutAwayPocketName",
+          "line": 248
+        }
+      ]
+    },
+    "EventScript_BufferPutAwayPocketName": {
+      "label": "EventScript_BufferPutAwayPocketName",
+      "kind": "script",
+      "line": 252,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 253,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "POCKET_ITEMS",
+            "EventScript_BufferPutAwayPocketItems"
+          ],
+          "line": 254,
+          "raw": "case POCKET_ITEMS,       EventScript_BufferPutAwayPocketItems",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "POCKET_KEY_ITEMS",
+            "EventScript_BufferPutAwayPocketKeyItems"
+          ],
+          "line": 255,
+          "raw": "case POCKET_KEY_ITEMS,   EventScript_BufferPutAwayPocketKeyItems",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "POCKET_POKE_BALLS",
+            "EventScript_BufferPutAwayPocketPokeBalls"
+          ],
+          "line": 256,
+          "raw": "case POCKET_POKE_BALLS,  EventScript_BufferPutAwayPocketPokeBalls",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "POCKET_TM_HM",
+            "EventScript_BufferPutAwayPocketTMCase"
+          ],
+          "line": 257,
+          "raw": "case POCKET_TM_HM,     EventScript_BufferPutAwayPocketTMCase",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "POCKET_BERRIES",
+            "EventScript_BufferPutAwayPocketBerryPouch"
+          ],
+          "line": 258,
+          "raw": "case POCKET_BERRIES, EventScript_BufferPutAwayPocketBerryPouch",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 259,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_BufferPutAwayPocketItems": {
+      "label": "EventScript_BufferPutAwayPocketItems",
+      "kind": "script",
+      "line": 261,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_ITEMS"
+          ],
+          "line": 262,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_ITEMS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 263,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_BufferPutAwayPocketKeyItems": {
+      "label": "EventScript_BufferPutAwayPocketKeyItems",
+      "kind": "script",
+      "line": 265,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_KEYITEMS"
+          ],
+          "line": 266,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_KEYITEMS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 267,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_BufferPutAwayPocketPokeBalls": {
+      "label": "EventScript_BufferPutAwayPocketPokeBalls",
+      "kind": "script",
+      "line": 269,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_POKEBALLS"
+          ],
+          "line": 270,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_POKEBALLS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 271,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_BufferPutAwayPocketTMCase": {
+      "label": "EventScript_BufferPutAwayPocketTMCase",
+      "kind": "script",
+      "line": 273,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_TMHMS"
+          ],
+          "line": 274,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_TMHMS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 275,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_BufferPutAwayPocketBerryPouch": {
+      "label": "EventScript_BufferPutAwayPocketBerryPouch",
+      "kind": "script",
+      "line": 277,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_BERRIES"
+          ],
+          "line": 278,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_BERRIES",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 279,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_TryPickUpHiddenCoins": {
+      "label": "EventScript_TryPickUpHiddenCoins",
+      "kind": "script",
+      "line": 281,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_GOT_COIN_CASE",
+            "EventScript_NoCaseForHiddenCoins"
+          ],
+          "line": 282,
+          "raw": "goto_if_unset FLAG_GOT_COIN_CASE, EventScript_NoCaseForHiddenCoins",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "checkcoins",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 283,
+          "raw": "checkcoins VAR_RESULT",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "CheckAddCoins"
+          ],
+          "line": 284,
+          "raw": "specialvar VAR_RESULT, CheckAddCoins",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "EventScript_HiddenCoinsButCaseIsFull"
+          ],
+          "line": 285,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, EventScript_HiddenCoinsButCaseIsFull",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "addcoins",
+          "args": [
+            "VAR_0x8009"
+          ],
+          "line": 286,
+          "raw": "addcoins VAR_0x8009",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_2",
+            "STDSTRING_COINS"
+          ],
+          "line": 287,
+          "raw": "bufferstdstring STR_VAR_2, STDSTRING_COINS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_PlayFanfareObtainedItem"
+          ],
+          "line": 288,
+          "raw": "call EventScript_PlayFanfareObtainedItem",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_FoundCoins"
+          ],
+          "line": 289,
+          "raw": "call EventScript_FoundCoins",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 290,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 291,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PutCoinsAwayInCoinCase"
+          ],
+          "line": 292,
+          "raw": "msgbox gText_PutCoinsAwayInCoinCase",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SetHiddenItemFlag"
+          ],
+          "line": 293,
+          "raw": "special SetHiddenItemFlag",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 294,
+          "raw": "releaseall",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 295,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PutCoinsAwayInCoinCase",
+          "mode": "",
+          "line": 292
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "EventScript_NoCaseForHiddenCoins",
+          "line": 282
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_HiddenCoinsButCaseIsFull",
+          "line": 285
+        },
+        {
+          "op": "call",
+          "target": "EventScript_PlayFanfareObtainedItem",
+          "line": 288
+        },
+        {
+          "op": "call",
+          "target": "EventScript_FoundCoins",
+          "line": 289
+        }
+      ]
+    },
+    "EventScript_FoundCoins": {
+      "label": "EventScript_FoundCoins",
+      "kind": "script",
+      "line": 297,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 298,
+          "raw": "buffernumberstring STR_VAR_1, VAR_0x8009",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_FoundXCoins"
+          ],
+          "line": 299,
+          "raw": "message gText_FoundXCoins",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 300,
+          "raw": "return",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_FoundXCoins",
+          "mode": "",
+          "line": 299
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_HiddenCoinsButCaseIsFull": {
+      "label": "EventScript_HiddenCoinsButCaseIsFull",
+      "kind": "script",
+      "line": 302,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 303,
+          "raw": "buffernumberstring STR_VAR_1, VAR_0x8009",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_2",
+            "STDSTRING_COINS"
+          ],
+          "line": 304,
+          "raw": "bufferstdstring STR_VAR_2, STDSTRING_COINS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_FoundXCoins"
+          ],
+          "line": 305,
+          "raw": "msgbox gText_FoundXCoins",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_CoinCaseIsFull"
+          ],
+          "line": 306,
+          "raw": "msgbox gText_CoinCaseIsFull",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "0"
+          ],
+          "line": 307,
+          "raw": "setvar VAR_RESULT, 0",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 308,
+          "raw": "releaseall",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 309,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_FoundXCoins",
+          "mode": "",
+          "line": 305
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_CoinCaseIsFull",
+          "mode": "",
+          "line": 306
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_NoCaseForHiddenCoins": {
+      "label": "EventScript_NoCaseForHiddenCoins",
+      "kind": "script",
+      "line": 311,
+      "source_file": "data/scripts/obtain_item.inc",
+      "instructions": [
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 312,
+          "raw": "buffernumberstring STR_VAR_1, VAR_0x8009",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_2",
+            "STDSTRING_COINS"
+          ],
+          "line": 313,
+          "raw": "bufferstdstring STR_VAR_2, STDSTRING_COINS",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_FoundXCoins"
+          ],
+          "line": 314,
+          "raw": "msgbox gText_FoundXCoins",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_NothingToPutThemIn"
+          ],
+          "line": 315,
+          "raw": "msgbox gText_NothingToPutThemIn",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "0"
+          ],
+          "line": 316,
+          "raw": "setvar VAR_RESULT, 0",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 317,
+          "raw": "releaseall",
+          "source_file": "data/scripts/obtain_item.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 318,
+          "raw": "end",
+          "source_file": "data/scripts/obtain_item.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_FoundXCoins",
+          "mode": "",
+          "line": 314
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_NothingToPutThemIn",
+          "mode": "",
+          "line": 315
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addcoins": 1,
+      "adddecoration": 1,
+      "additem": 3,
+      "bufferdecorationname": 1,
+      "bufferitemnameplural": 8,
+      "buffernumberstring": 7,
+      "bufferstdstring": 13,
+      "call_if_eq": 14,
+      "call_if_ne": 1,
+      "callnative": 2,
+      "case": 10,
+      "checkcoins": 1,
+      "checkitemspace": 1,
+      "checkitemtype": 4,
+      "compare": 3,
+      "copyvar": 15,
+      "delay": 3,
+      "faceplayer": 1,
+      "goto_if_eq": 9,
+      "goto_if_lt": 1,
+      "goto_if_unset": 1,
+      "hideitemdescription": 4,
+      "playfanfare": 3,
+      "pyramid_getlocation": 1,
+      "removeobject": 1,
+      "setvar": 8,
+      "showitemdescription": 3,
+      "special": 3,
+      "specialvar": 3,
+      "switch": 2,
+      "waitfanfare": 5,
+      "waitmessage": 3,
+      "waitse": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 46,
+    "script_count": 46,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 2,
+    "op_counts": {
+      "addcoins": 1,
+      "adddecoration": 1,
+      "additem": 3,
+      "bufferdecorationname": 1,
+      "bufferitemnameplural": 8,
+      "buffernumberstring": 7,
+      "bufferstdstring": 13,
+      "call": 8,
+      "call_if_eq": 14,
+      "call_if_ne": 1,
+      "callnative": 2,
+      "case": 10,
+      "checkcoins": 1,
+      "checkitemspace": 1,
+      "checkitemtype": 4,
+      "compare": 3,
+      "copyvar": 15,
+      "delay": 3,
+      "end": 11,
+      "faceplayer": 1,
+      "goto": 4,
+      "goto_if_eq": 9,
+      "goto_if_lt": 1,
+      "goto_if_unset": 1,
+      "hideitemdescription": 4,
+      "lock": 1,
+      "lockall": 1,
+      "message": 11,
+      "msgbox": 15,
+      "playfanfare": 3,
+      "pyramid_getlocation": 1,
+      "release": 1,
+      "releaseall": 5,
+      "removeobject": 1,
+      "return": 33,
+      "setvar": 8,
+      "showitemdescription": 3,
+      "special": 3,
+      "specialvar": 3,
+      "switch": 2,
+      "waitfanfare": 5,
+      "waitmessage": 3,
+      "waitse": 2
+    }
+  }
+}

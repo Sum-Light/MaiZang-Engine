@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_check_furniture",
+    "script_files": [
+      "data/scripts/check_furniture.inc"
+    ]
+  },
+  "labels": {
+    "EventScript_PictureBookShelf": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instruction_count": 2
+    },
+    "EventScript_BookShelf": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instruction_count": 2
+    },
+    "EventScript_PokemonCenterBookShelf": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instruction_count": 2
+    },
+    "EventScript_Vase": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instruction_count": 2
+    },
+    "EventScript_EmptyTrashCan": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instruction_count": 2
+    },
+    "EventScript_ShopShelf": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instruction_count": 2
+    },
+    "EventScript_Blueprint": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "EventScript_PictureBookShelf": {
+      "label": "EventScript_PictureBookShelf",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_PictureBookShelf",
+            "MSGBOX_SIGN"
+          ],
+          "line": 2,
+          "raw": "msgbox Text_PictureBookShelf, MSGBOX_SIGN",
+          "source_file": "data/scripts/check_furniture.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 3,
+          "raw": "end",
+          "source_file": "data/scripts/check_furniture.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_PictureBookShelf",
+          "mode": "MSGBOX_SIGN",
+          "line": 2
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_BookShelf": {
+      "label": "EventScript_BookShelf",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_BookShelf",
+            "MSGBOX_SIGN"
+          ],
+          "line": 6,
+          "raw": "msgbox Text_BookShelf, MSGBOX_SIGN",
+          "source_file": "data/scripts/check_furniture.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/scripts/check_furniture.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_BookShelf",
+          "mode": "MSGBOX_SIGN",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_PokemonCenterBookShelf": {
+      "label": "EventScript_PokemonCenterBookShelf",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_PokemonCenterBookShelf",
+            "MSGBOX_SIGN"
+          ],
+          "line": 10,
+          "raw": "msgbox Text_PokemonCenterBookShelf, MSGBOX_SIGN",
+          "source_file": "data/scripts/check_furniture.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/scripts/check_furniture.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_PokemonCenterBookShelf",
+          "mode": "MSGBOX_SIGN",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_Vase": {
+      "label": "EventScript_Vase",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_Vase",
+            "MSGBOX_SIGN"
+          ],
+          "line": 14,
+          "raw": "msgbox Text_Vase, MSGBOX_SIGN",
+          "source_file": "data/scripts/check_furniture.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/scripts/check_furniture.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_Vase",
+          "mode": "MSGBOX_SIGN",
+          "line": 14
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_EmptyTrashCan": {
+      "label": "EventScript_EmptyTrashCan",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_EmptyTrashCan",
+            "MSGBOX_SIGN"
+          ],
+          "line": 18,
+          "raw": "msgbox Text_EmptyTrashCan, MSGBOX_SIGN",
+          "source_file": "data/scripts/check_furniture.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/scripts/check_furniture.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_EmptyTrashCan",
+          "mode": "MSGBOX_SIGN",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_ShopShelf": {
+      "label": "EventScript_ShopShelf",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_ShopShelf",
+            "MSGBOX_SIGN"
+          ],
+          "line": 22,
+          "raw": "msgbox Text_ShopShelf, MSGBOX_SIGN",
+          "source_file": "data/scripts/check_furniture.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/scripts/check_furniture.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_ShopShelf",
+          "mode": "MSGBOX_SIGN",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_Blueprint": {
+      "label": "EventScript_Blueprint",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/scripts/check_furniture.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_Blueprint",
+            "MSGBOX_SIGN"
+          ],
+          "line": 26,
+          "raw": "msgbox Text_Blueprint, MSGBOX_SIGN",
+          "source_file": "data/scripts/check_furniture.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/scripts/check_furniture.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_Blueprint",
+          "mode": "MSGBOX_SIGN",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 7,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 7,
+      "msgbox": 7
+    }
+  }
+}

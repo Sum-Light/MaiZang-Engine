@@ -1,0 +1,774 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_std_msgbox",
+    "script_files": [
+      "data/scripts/std_msgbox.inc"
+    ]
+  },
+  "labels": {
+    "Std_MsgboxNPC": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 7
+    },
+    "Std_MsgboxSign": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 8
+    },
+    "Std_MsgboxDefault": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 4
+    },
+    "Std_MsgboxYesNo": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 4
+    },
+    "Std_ReceivedItem": {
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 10
+    },
+    "EventScript_ReceivedItemFanfare1": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 2
+    },
+    "EventScript_ReceivedItemFanfare2": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 2
+    },
+    "EventScript_ReceivedItemWaitFanfare": {
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 2
+    },
+    "Std_MsgboxGetPoints": {
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 5
+    },
+    "Std_MsgboxPokenav": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 3
+    },
+    "EventScript_UnusedReturn": {
+      "kind": "script",
+      "line": 69,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 1
+    },
+    "Common_EventScript_SaveGame": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "Std_MsgboxNPC": {
+      "label": "Std_MsgboxNPC",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 2,
+          "raw": "lock",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 3,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "NULL"
+          ],
+          "line": 4,
+          "raw": "message NULL",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 5,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 6,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 7,
+          "raw": "release",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 8,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "NULL",
+          "mode": "",
+          "line": 4
+        }
+      ],
+      "branch_targets": []
+    },
+    "Std_MsgboxSign": {
+      "label": "Std_MsgboxSign",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SAFE_FOLLOWER_MOVEMENT"
+          ],
+          "line": 11,
+          "raw": "setflag FLAG_SAFE_FOLLOWER_MOVEMENT",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 12,
+          "raw": "lockall",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "NULL"
+          ],
+          "line": 13,
+          "raw": "message NULL",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 14,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 15,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 16,
+          "raw": "releaseall",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SAFE_FOLLOWER_MOVEMENT"
+          ],
+          "line": 17,
+          "raw": "clearflag FLAG_SAFE_FOLLOWER_MOVEMENT",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 18,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "NULL",
+          "mode": "",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    },
+    "Std_MsgboxDefault": {
+      "label": "Std_MsgboxDefault",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "NULL"
+          ],
+          "line": 21,
+          "raw": "message NULL",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 22,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 23,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 24,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "NULL",
+          "mode": "",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    },
+    "Std_MsgboxYesNo": {
+      "label": "Std_MsgboxYesNo",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "NULL"
+          ],
+          "line": 27,
+          "raw": "message NULL",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 28,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "yesnobox",
+          "args": [
+            "20",
+            "8"
+          ],
+          "line": 29,
+          "raw": "yesnobox 20, 8",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 30,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "NULL",
+          "mode": "",
+          "line": 27
+        }
+      ],
+      "branch_targets": []
+    },
+    "Std_ReceivedItem": {
+      "label": "Std_ReceivedItem",
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 33,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8002",
+            "MUS_LEVEL_UP",
+            "EventScript_ReceivedItemFanfare1"
+          ],
+          "line": 34,
+          "raw": "call_if_eq VAR_0x8002, MUS_LEVEL_UP, EventScript_ReceivedItemFanfare1",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8002",
+            "MUS_RG_OBTAIN_KEY_ITEM",
+            "EventScript_ReceivedItemFanfare2"
+          ],
+          "line": 35,
+          "raw": "call_if_eq VAR_0x8002, MUS_RG_OBTAIN_KEY_ITEM, EventScript_ReceivedItemFanfare2",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "0x0"
+          ],
+          "line": 36,
+          "raw": "message 0x0",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 37,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 38,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_0x8002",
+            "MUS_LEVEL_UP",
+            "EventScript_ReceivedItemWaitFanfare"
+          ],
+          "line": 39,
+          "raw": "call_if_eq VAR_0x8002, MUS_LEVEL_UP, EventScript_ReceivedItemWaitFanfare",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "putitemaway",
+          "args": [
+            "VAR_0x8000",
+            "VAR_0x8001"
+          ],
+          "line": 40,
+          "raw": "putitemaway VAR_0x8000, VAR_0x8001",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_RestorePrevTextColor"
+          ],
+          "line": 41,
+          "raw": "call EventScript_RestorePrevTextColor",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 42,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "0x0",
+          "mode": "",
+          "line": 36
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_ReceivedItemFanfare1",
+          "line": 34
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_ReceivedItemFanfare2",
+          "line": 35
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EventScript_ReceivedItemWaitFanfare",
+          "line": 39
+        },
+        {
+          "op": "call",
+          "target": "EventScript_RestorePrevTextColor",
+          "line": 41
+        }
+      ]
+    },
+    "EventScript_ReceivedItemFanfare1": {
+      "label": "EventScript_ReceivedItemFanfare1",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_LEVEL_UP"
+          ],
+          "line": 45,
+          "raw": "playfanfare MUS_LEVEL_UP",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 46,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_ReceivedItemFanfare2": {
+      "label": "EventScript_ReceivedItemFanfare2",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_RG_OBTAIN_KEY_ITEM"
+          ],
+          "line": 49,
+          "raw": "playfanfare MUS_RG_OBTAIN_KEY_ITEM",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 50,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_ReceivedItemWaitFanfare": {
+      "label": "EventScript_ReceivedItemWaitFanfare",
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "delay",
+          "args": [
+            "50"
+          ],
+          "line": 53,
+          "raw": "delay 50",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 54,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Std_MsgboxGetPoints": {
+      "label": "Std_MsgboxGetPoints",
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "NULL"
+          ],
+          "line": 57,
+          "raw": "message NULL",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_B_POINTS"
+          ],
+          "line": 58,
+          "raw": "playfanfare MUS_OBTAIN_B_POINTS",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 59,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 60,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 61,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "NULL",
+          "mode": "",
+          "line": 57
+        }
+      ],
+      "branch_targets": []
+    },
+    "Std_MsgboxPokenav": {
+      "label": "Std_MsgboxPokenav",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "pokenavcall",
+          "args": [
+            "NULL"
+          ],
+          "line": 65,
+          "raw": "pokenavcall NULL",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 66,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 67,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_UnusedReturn": {
+      "label": "EventScript_UnusedReturn",
+      "kind": "script",
+      "line": 69,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "return",
+          "args": [],
+          "line": 70,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Common_EventScript_SaveGame": {
+      "label": "Common_EventScript_SaveGame",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/scripts/std_msgbox.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SaveGame"
+          ],
+          "line": 73,
+          "raw": "special SaveGame",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 74,
+          "raw": "waitstate",
+          "source_file": "data/scripts/std_msgbox.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 75,
+          "raw": "return",
+          "source_file": "data/scripts/std_msgbox.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_eq": 3,
+      "clearflag": 1,
+      "delay": 1,
+      "faceplayer": 1,
+      "playfanfare": 3,
+      "pokenavcall": 1,
+      "putitemaway": 1,
+      "setflag": 1,
+      "special": 1,
+      "textcolor": 1,
+      "waitbuttonpress": 3,
+      "waitfanfare": 2,
+      "waitmessage": 7,
+      "waitstate": 1,
+      "yesnobox": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 12,
+    "script_count": 12,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "call_if_eq": 3,
+      "clearflag": 1,
+      "delay": 1,
+      "faceplayer": 1,
+      "lock": 1,
+      "lockall": 1,
+      "message": 6,
+      "playfanfare": 3,
+      "pokenavcall": 1,
+      "putitemaway": 1,
+      "release": 1,
+      "releaseall": 1,
+      "return": 12,
+      "setflag": 1,
+      "special": 1,
+      "textcolor": 1,
+      "waitbuttonpress": 3,
+      "waitfanfare": 2,
+      "waitmessage": 7,
+      "waitstate": 1,
+      "yesnobox": 1
+    }
+  }
+}

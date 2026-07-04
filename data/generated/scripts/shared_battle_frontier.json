@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_battle_frontier",
+    "script_files": [
+      "data/scripts/battle_frontier.inc"
+    ]
+  },
+  "labels": {
+    "BattleFrontier_ShowCaughtBannedSpecies": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/battle_frontier.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_ShowCaughtBannedSpeciesEnd": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/scripts/battle_frontier.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_DoYouWantToSeeTheListOfCaughtBannedSpecies": {
+      "kind": "text",
+      "line": 11,
+      "source_file": "data/scripts/battle_frontier.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "BattleFrontier_ShowCaughtBannedSpecies": {
+      "label": "BattleFrontier_ShowCaughtBannedSpecies",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/battle_frontier.inc",
+      "instructions": [
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8005",
+            "0",
+            "BattleFrontier_ShowCaughtBannedSpeciesEnd"
+          ],
+          "line": 2,
+          "raw": "goto_if_eq VAR_0x8005, 0, BattleFrontier_ShowCaughtBannedSpeciesEnd",
+          "source_file": "data/scripts/battle_frontier.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_DoYouWantToSeeTheListOfCaughtBannedSpecies",
+            "MSGBOX_YESNO"
+          ],
+          "line": 3,
+          "raw": "msgbox BattleFrontier_DoYouWantToSeeTheListOfCaughtBannedSpecies, MSGBOX_YESNO",
+          "source_file": "data/scripts/battle_frontier.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "BattleFrontier_ShowCaughtBannedSpeciesEnd"
+          ],
+          "line": 4,
+          "raw": "goto_if_eq VAR_RESULT, NO, BattleFrontier_ShowCaughtBannedSpeciesEnd",
+          "source_file": "data/scripts/battle_frontier.inc"
+        },
+        {
+          "op": "callnative",
+          "args": [
+            "ShowBattleFrontierCaughtBannedSpecies"
+          ],
+          "line": 5,
+          "raw": "callnative ShowBattleFrontierCaughtBannedSpecies",
+          "source_file": "data/scripts/battle_frontier.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 6,
+          "raw": "waitstate",
+          "source_file": "data/scripts/battle_frontier.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_DoYouWantToSeeTheListOfCaughtBannedSpecies",
+          "mode": "MSGBOX_YESNO",
+          "line": 3
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_ShowCaughtBannedSpeciesEnd",
+          "line": 2
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_ShowCaughtBannedSpeciesEnd",
+          "line": 4
+        }
+      ]
+    },
+    "BattleFrontier_ShowCaughtBannedSpeciesEnd": {
+      "label": "BattleFrontier_ShowCaughtBannedSpeciesEnd",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/scripts/battle_frontier.inc",
+      "instructions": [
+        {
+          "op": "return",
+          "args": [],
+          "line": 8,
+          "raw": "return",
+          "source_file": "data/scripts/battle_frontier.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "BattleFrontier_DoYouWantToSeeTheListOfCaughtBannedSpecies": {
+      "label": "BattleFrontier_DoYouWantToSeeTheListOfCaughtBannedSpecies",
+      "line": 11,
+      "source_file": "data/scripts/battle_frontier.inc",
+      "raw_text": "要查看无法参加的\\n宝可梦名单吗？$",
+      "display_text": "要查看无法参加的\n宝可梦名单吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          14,
+          241,
+          2,
+          13,
+          7,
+          194,
+          13,
+          164,
+          3,
+          171,
+          1,
+          233,
+          5,
+          190,
+          3,
+          11,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          9,
+          147,
+          2,
+          227,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0E F1 02 0D 07 C2 0D A4 03 AB 01 E9 05 BE 03 0B FE 01 63 07 D7 09 66 09 93 02 E3 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "callnative": 1,
+      "goto_if_eq": 2,
+      "waitstate": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 31,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "callnative": 1,
+      "goto_if_eq": 2,
+      "msgbox": 1,
+      "return": 1,
+      "waitstate": 1
+    }
+  }
+}

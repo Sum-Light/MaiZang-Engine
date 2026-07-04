@@ -1,0 +1,757 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_aide",
+    "script_files": [
+      "data/scripts/aide.inc"
+    ]
+  },
+  "labels": {
+    "Aide_EventScript_HaventCaughtEnough": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/aide.inc",
+      "instruction_count": 3
+    },
+    "Aide_EventScript_NoRoomForItem": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/scripts/aide.inc",
+      "instruction_count": 3
+    },
+    "Aide_EventScript_DeclineCheckMons": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/scripts/aide.inc",
+      "instruction_count": 3
+    },
+    "Aide_Text_HaventCaughtEnoughMonsForItem": {
+      "kind": "text",
+      "line": 16,
+      "source_file": "data/scripts/aide.inc",
+      "instruction_count": 5
+    },
+    "Aide_Text_GetEnoughMonsComeBackForItem": {
+      "kind": "text",
+      "line": 23,
+      "source_file": "data/scripts/aide.inc",
+      "instruction_count": 3
+    },
+    "Aide_Text_DontHaveAnyRoomForItem": {
+      "kind": "text",
+      "line": 28,
+      "source_file": "data/scripts/aide.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "Aide_EventScript_HaventCaughtEnough": {
+      "label": "Aide_EventScript_HaventCaughtEnough",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/aide.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Aide_Text_HaventCaughtEnoughMonsForItem"
+          ],
+          "line": 2,
+          "raw": "msgbox Aide_Text_HaventCaughtEnoughMonsForItem",
+          "source_file": "data/scripts/aide.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 3,
+          "raw": "release",
+          "source_file": "data/scripts/aide.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 4,
+          "raw": "end",
+          "source_file": "data/scripts/aide.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Aide_Text_HaventCaughtEnoughMonsForItem",
+          "mode": "",
+          "line": 2
+        }
+      ],
+      "branch_targets": []
+    },
+    "Aide_EventScript_NoRoomForItem": {
+      "label": "Aide_EventScript_NoRoomForItem",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/scripts/aide.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Aide_Text_DontHaveAnyRoomForItem"
+          ],
+          "line": 7,
+          "raw": "msgbox Aide_Text_DontHaveAnyRoomForItem",
+          "source_file": "data/scripts/aide.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 8,
+          "raw": "release",
+          "source_file": "data/scripts/aide.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/scripts/aide.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Aide_Text_DontHaveAnyRoomForItem",
+          "mode": "",
+          "line": 7
+        }
+      ],
+      "branch_targets": []
+    },
+    "Aide_EventScript_DeclineCheckMons": {
+      "label": "Aide_EventScript_DeclineCheckMons",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/scripts/aide.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Aide_Text_GetEnoughMonsComeBackForItem"
+          ],
+          "line": 12,
+          "raw": "msgbox Aide_Text_GetEnoughMonsComeBackForItem",
+          "source_file": "data/scripts/aide.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 13,
+          "raw": "release",
+          "source_file": "data/scripts/aide.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/scripts/aide.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Aide_Text_GetEnoughMonsComeBackForItem",
+          "mode": "",
+          "line": 12
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Aide_Text_HaventCaughtEnoughMonsForItem": {
+      "label": "Aide_Text_HaventCaughtEnoughMonsForItem",
+      "line": 16,
+      "source_file": "data/scripts/aide.inc",
+      "raw_text": "Let's see…\\nUh-oh! You have caught only\\l{STR_VAR_3} kinds of POKéMON!\\pYou need {STR_VAR_1} kinds\\nif you want the {STR_VAR_2}.$",
+      "display_text": "Let's see…\nUh-oh! You have caught only\n{STR_VAR_3} kinds of POKéMON!\n\nYou need {STR_VAR_1} kinds\nif you want the {STR_VAR_2}.",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 98,
+        "bytes": [
+          198,
+          217,
+          232,
+          180,
+          231,
+          0,
+          231,
+          217,
+          217,
+          176,
+          254,
+          207,
+          220,
+          174,
+          227,
+          220,
+          171,
+          0,
+          211,
+          227,
+          233,
+          0,
+          220,
+          213,
+          234,
+          217,
+          0,
+          215,
+          213,
+          233,
+          219,
+          220,
+          232,
+          0,
+          227,
+          226,
+          224,
+          237,
+          250,
+          253,
+          4,
+          0,
+          223,
+          221,
+          226,
+          216,
+          231,
+          0,
+          227,
+          218,
+          0,
+          202,
+          201,
+          197,
+          27,
+          199,
+          201,
+          200,
+          171,
+          251,
+          211,
+          227,
+          233,
+          0,
+          226,
+          217,
+          217,
+          216,
+          0,
+          253,
+          2,
+          0,
+          223,
+          221,
+          226,
+          216,
+          231,
+          254,
+          221,
+          218,
+          0,
+          237,
+          227,
+          233,
+          0,
+          235,
+          213,
+          226,
+          232,
+          0,
+          232,
+          220,
+          217,
+          0,
+          253,
+          3,
+          173,
+          255
+        ],
+        "hex": "C6 D9 E8 B4 E7 00 E7 D9 D9 B0 FE CF DC AE E3 DC AB 00 D3 E3 E9 00 DC D5 EA D9 00 D7 D5 E9 DB DC E8 00 E3 E2 E0 ED FA FD 04 00 DF DD E2 D8 E7 00 E3 DA 00 CA C9 C5 1B C7 C9 C8 AB FB D3 E3 E9 00 E2 D9 D9 D8 00 FD 02 00 DF DD E2 D8 E7 FE DD DA 00 ED E3 E9 00 EB D5 E2 E8 00 E8 DC D9 00 FD 03 AD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 39,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_3}",
+            "offset": 41,
+            "bytes": [
+              253,
+              4
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_3",
+                "bytes": [
+                  253,
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 70,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 81,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 98,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 116,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 128,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_3",
+            "offset": 41,
+            "bytes": [
+              253,
+              4
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 81,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_2",
+            "offset": 116,
+            "bytes": [
+              253,
+              3
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Aide_Text_GetEnoughMonsComeBackForItem": {
+      "label": "Aide_Text_GetEnoughMonsComeBackForItem",
+      "line": 23,
+      "source_file": "data/scripts/aide.inc",
+      "raw_text": "…Oh. I see.\\pWhen you get {STR_VAR_1} kinds of POKéMON,\\ncome back for the {STR_VAR_2}.$",
+      "display_text": "…Oh. I see.\n\nWhen you get {STR_VAR_1} kinds of POKéMON,\ncome back for the {STR_VAR_2}.",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 68,
+        "bytes": [
+          176,
+          201,
+          220,
+          173,
+          0,
+          195,
+          0,
+          231,
+          217,
+          217,
+          173,
+          251,
+          209,
+          220,
+          217,
+          226,
+          0,
+          237,
+          227,
+          233,
+          0,
+          219,
+          217,
+          232,
+          0,
+          253,
+          2,
+          0,
+          223,
+          221,
+          226,
+          216,
+          231,
+          0,
+          227,
+          218,
+          0,
+          202,
+          201,
+          197,
+          27,
+          199,
+          201,
+          200,
+          184,
+          254,
+          215,
+          227,
+          225,
+          217,
+          0,
+          214,
+          213,
+          215,
+          223,
+          0,
+          218,
+          227,
+          230,
+          0,
+          232,
+          220,
+          217,
+          0,
+          253,
+          3,
+          173,
+          255
+        ],
+        "hex": "B0 C9 DC AD 00 C3 00 E7 D9 D9 AD FB D1 DC D9 E2 00 ED E3 E9 00 DB D9 E8 00 FD 02 00 DF DD E2 D8 E7 00 E3 DA 00 CA C9 C5 1B C7 C9 C8 B8 FE D7 E3 E1 D9 00 D6 D5 D7 DF 00 DA E3 E6 00 E8 DC D9 00 FD 03 AD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 26,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 55,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 75,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 87,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 26,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_2",
+            "offset": 75,
+            "bytes": [
+              253,
+              3
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Aide_Text_DontHaveAnyRoomForItem": {
+      "label": "Aide_Text_DontHaveAnyRoomForItem",
+      "line": 28,
+      "source_file": "data/scripts/aide.inc",
+      "raw_text": "Oh! I see you don't have any\\nroom for the {STR_VAR_2}.$",
+      "display_text": "Oh! I see you don't have any\nroom for the {STR_VAR_2}.",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          201,
+          220,
+          171,
+          0,
+          195,
+          0,
+          231,
+          217,
+          217,
+          0,
+          237,
+          227,
+          233,
+          0,
+          216,
+          227,
+          226,
+          180,
+          232,
+          0,
+          220,
+          213,
+          234,
+          217,
+          0,
+          213,
+          226,
+          237,
+          254,
+          230,
+          227,
+          227,
+          225,
+          0,
+          218,
+          227,
+          230,
+          0,
+          232,
+          220,
+          217,
+          0,
+          253,
+          3,
+          173,
+          255
+        ],
+        "hex": "C9 DC AB 00 C3 00 E7 D9 D9 00 ED E3 E9 00 D8 E3 E2 B4 E8 00 DC D5 EA D9 00 D5 E2 ED FE E6 E3 E3 E1 00 DA E3 E6 00 E8 DC D9 00 FD 03 AD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 43,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 55,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_2",
+            "offset": 43,
+            "bytes": [
+              253,
+              3
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 6,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 212,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "msgbox": 3,
+      "release": 3
+    }
+  }
+}

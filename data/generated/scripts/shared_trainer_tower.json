@@ -1,0 +1,3762 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_trainer_tower",
+    "script_files": [
+      "data/scripts/trainer_tower.inc"
+    ]
+  },
+  "labels": {
+    "TrainerTower_OnResume": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_OnTransition": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 12
+    },
+    "TrainerTower_EventScript_SetObjectsSingles": {
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 7
+    },
+    "TrainerTower_EventScript_SetObjectsDoubles": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 10
+    },
+    "TrainerTower_EventScript_SetObjectsDoublesAlreadyBeaten": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 5
+    },
+    "TrainerTower_EventScript_SetObjectsKnockout": {
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 8
+    },
+    "TrainerTower_EventScript_HideOwner": {
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_OnFrame": {
+      "kind": "map_script_table",
+      "line": 74,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_EventScript_EnterFloor": {
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 5
+    },
+    "TrainerTower_EventScript_EndEnterFloor": {
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_EventScript_WarpToLobby": {
+      "kind": "script",
+      "line": 90,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_EventScript_TriggerBattle": {
+      "kind": "script",
+      "line": 97,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 5
+    },
+    "TrainerTower_EventScript_DoSingleBattle": {
+      "kind": "script",
+      "line": 104,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 12
+    },
+    "TrainerTower_EventScript_DoDoubleBattle": {
+      "kind": "script",
+      "line": 118,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 7
+    },
+    "TrainerTower_EventScript_DoSecondTrainerIntro": {
+      "kind": "script",
+      "line": 126,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 5
+    },
+    "TrainerTower_EventScript_DoKnockoutBattle": {
+      "kind": "script",
+      "line": 133,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 4
+    },
+    "TrainerTower_EventScript_DoKnockoutBattle1": {
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 8
+    },
+    "TrainerTower_EventScript_DoKnockoutBattle2": {
+      "kind": "script",
+      "line": 149,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 8
+    },
+    "TrainerTower_EventScript_DoKnockoutBattle3": {
+      "kind": "script",
+      "line": 159,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 7
+    },
+    "TrainerTower_EventScript_DoKnockoutBattleIntro": {
+      "kind": "script",
+      "line": 167,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_EventScript_DoBattle": {
+      "kind": "script",
+      "line": 171,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 6
+    },
+    "TrainerTower_EventScript_WonBattle": {
+      "kind": "script",
+      "line": 178,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 5
+    },
+    "TrainerTower_EventScript_CheckNextKnockoutBattle": {
+      "kind": "script",
+      "line": 185,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 4
+    },
+    "TrainerTower_EventScript_DoSecondKnockoutBattle": {
+      "kind": "script",
+      "line": 191,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_EventScript_DoThirdKnockoutBattle": {
+      "kind": "script",
+      "line": 195,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_EventScript_MoveDoublesTrainers": {
+      "kind": "script",
+      "line": 199,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 4
+    },
+    "TrainerTower_EventScript_MoveLastKnockoutTrainer": {
+      "kind": "script",
+      "line": 205,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 1
+    },
+    "TrainerTower_EventScript_SetFloorCleared": {
+      "kind": "script",
+      "line": 207,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_EventScript_WarpToLobbyLost": {
+      "kind": "script",
+      "line": 211,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 4
+    },
+    "TrainerTower_EventScript_SpeakToDoublesTrainer1": {
+      "kind": "script",
+      "line": 220,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 5
+    },
+    "TrainerTower_EventScript_DoublesTrainer1PostBattle": {
+      "kind": "script",
+      "line": 226,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_EventScript_KnockoutTrainer2PostBattle": {
+      "kind": "script",
+      "line": 230,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_EventScript_SpeakToSinglesTrainer": {
+      "kind": "script",
+      "line": 234,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 5
+    },
+    "TrainerTower_EventScript_SinglesTrainerPostBattle": {
+      "kind": "script",
+      "line": 240,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_EventScript_KnockoutTrainer3PostBattle": {
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_EventScript_SpeakToKnockoutTrainer": {
+      "kind": "script",
+      "line": 248,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_EventScript_SpeakToDoublesTrainer2": {
+      "kind": "script",
+      "line": 252,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 1
+    },
+    "TrainerTower_EventScript_DoPostBattleText": {
+      "kind": "script",
+      "line": 254,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 6
+    },
+    "TrainerTower_EventScript_SpeakToOwner": {
+      "kind": "script",
+      "line": 265,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 7
+    },
+    "TrainerTower_Roof_EventScript_Arrived": {
+      "kind": "script",
+      "line": 274,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 1
+    },
+    "TrainerTower_Roof_EventScript_GivePrize": {
+      "kind": "script",
+      "line": 276,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 5
+    },
+    "TrainerTower_Roof_EventScript_ReceivePrize": {
+      "kind": "script",
+      "line": 283,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 10
+    },
+    "TrainerTower_Roof_EventScript_NoRoomForPrize": {
+      "kind": "script",
+      "line": 295,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_Roof_EventScript_CheckFinalTime": {
+      "kind": "script",
+      "line": 300,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 5
+    },
+    "TrainerTower_Roof_EventScript_NewRecord": {
+      "kind": "script",
+      "line": 307,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_Roof_EventScript_NoNewRecord": {
+      "kind": "script",
+      "line": 311,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 1
+    },
+    "TrainerTower_Roof_EventScript_OwnerEnd": {
+      "kind": "script",
+      "line": 313,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_EventScript_ShowTime": {
+      "kind": "script",
+      "line": 318,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 5
+    },
+    "TrainerTower_EventScript_SingleBattleTrigger": {
+      "kind": "script",
+      "line": 328,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 1
+    },
+    "TrainerTower_EventScript_DoubleBattleTriggerTop": {
+      "kind": "script",
+      "line": 331,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 8
+    },
+    "TrainerTower_EventScript_DoubleBattleTriggerBottom": {
+      "kind": "script",
+      "line": 341,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 7
+    },
+    "TrainerTower_EventScript_TriggerDoubleBattle": {
+      "kind": "script",
+      "line": 349,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_EventScript_IneligibleForDoubleBattle": {
+      "kind": "script",
+      "line": 354,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 8
+    },
+    "TrainerTower_Movement_SingleTrainerApproach": {
+      "kind": "movement",
+      "line": 364,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 1
+    },
+    "TrainerTower_Movement_RightKnockoutTrainerApproach": {
+      "kind": "movement",
+      "line": 366,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_Movement_PushPlayerBack": {
+      "kind": "movement",
+      "line": 369,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_Movement_BottomKnockoutTrainerApproach": {
+      "kind": "movement",
+      "line": 373,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_Movement_TopKnockoutTrainerApproach": {
+      "kind": "movement",
+      "line": 378,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_Movement_DoublesTrainer2OutOfWay": {
+      "kind": "movement",
+      "line": 383,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 1
+    },
+    "TrainerTower_Movement_LastKnockoutTrainerOutOfWay": {
+      "kind": "movement",
+      "line": 385,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_Movement_DoublesTrainer1FaceDown": {
+      "kind": "movement",
+      "line": 390,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "TrainerTower_OnResume": {
+      "label": "TrainerTower_OnResume",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "0"
+          ],
+          "line": 14,
+          "raw": "setvar VAR_TEMP_2, 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_resumetimer",
+          "args": [],
+          "line": 15,
+          "raw": "ttower_resumetimer",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_OnTransition": {
+      "label": "TrainerTower_OnTransition",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_initfloor",
+          "args": [],
+          "line": 19,
+          "raw": "ttower_initfloor",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 20,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_SINGLE",
+            "TrainerTower_EventScript_SetObjectsSingles"
+          ],
+          "line": 21,
+          "raw": "case CHALLENGE_TYPE_SINGLE, TrainerTower_EventScript_SetObjectsSingles",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_DOUBLE",
+            "TrainerTower_EventScript_SetObjectsDoubles"
+          ],
+          "line": 22,
+          "raw": "case CHALLENGE_TYPE_DOUBLE, TrainerTower_EventScript_SetObjectsDoubles",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_KNOCKOUT",
+            "TrainerTower_EventScript_SetObjectsKnockout"
+          ],
+          "line": 23,
+          "raw": "case CHALLENGE_TYPE_KNOCKOUT, TrainerTower_EventScript_SetObjectsKnockout",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_TRAINER_DOUBLES1"
+          ],
+          "line": 24,
+          "raw": "setflag HIDE_TRAINER_DOUBLES1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_TRAINER_SINGLES"
+          ],
+          "line": 25,
+          "raw": "setflag HIDE_TRAINER_SINGLES",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_TRAINER_KNOCKOUT"
+          ],
+          "line": 26,
+          "raw": "setflag HIDE_TRAINER_KNOCKOUT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_TRAINER_DOUBLES2"
+          ],
+          "line": 27,
+          "raw": "setflag HIDE_TRAINER_DOUBLES2",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "DISABLE_SINGLES_TRIGGER",
+            "TRUE"
+          ],
+          "line": 28,
+          "raw": "setvar DISABLE_SINGLES_TRIGGER, TRUE",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "DISABLE_DOUBLES_TRIGGER",
+            "TRUE"
+          ],
+          "line": 29,
+          "raw": "setvar DISABLE_DOUBLES_TRIGGER, TRUE",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 30,
+          "raw": "end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_SetObjectsSingles": {
+      "label": "TrainerTower_EventScript_SetObjectsSingles",
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_TRAINER_DOUBLES1"
+          ],
+          "line": 33,
+          "raw": "setflag HIDE_TRAINER_DOUBLES1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_TRAINER_KNOCKOUT"
+          ],
+          "line": 34,
+          "raw": "setflag HIDE_TRAINER_KNOCKOUT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_TRAINER_DOUBLES2"
+          ],
+          "line": 35,
+          "raw": "setflag HIDE_TRAINER_DOUBLES2",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "DISABLE_DOUBLES_TRIGGER",
+            "TRUE"
+          ],
+          "line": 36,
+          "raw": "setvar DISABLE_DOUBLES_TRIGGER, TRUE",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "15",
+            "13"
+          ],
+          "line": 37,
+          "raw": "setobjectxyperm       LOCALID_TOWER_TRAINER_SINGLES, 15, 13",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "MOVEMENT_TYPE_FACE_LEFT"
+          ],
+          "line": 38,
+          "raw": "setobjectmovementtype LOCALID_TOWER_TRAINER_SINGLES, MOVEMENT_TYPE_FACE_LEFT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_HideOwner"
+          ],
+          "line": 39,
+          "raw": "goto TrainerTower_EventScript_HideOwner",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_HideOwner",
+          "line": 39
+        }
+      ]
+    },
+    "TrainerTower_EventScript_SetObjectsDoubles": {
+      "label": "TrainerTower_EventScript_SetObjectsDoubles",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_TRAINER_SINGLES"
+          ],
+          "line": 42,
+          "raw": "setflag HIDE_TRAINER_SINGLES",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_TRAINER_KNOCKOUT"
+          ],
+          "line": 43,
+          "raw": "setflag HIDE_TRAINER_KNOCKOUT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "DISABLE_SINGLES_TRIGGER",
+            "TRUE"
+          ],
+          "line": 44,
+          "raw": "setvar DISABLE_SINGLES_TRIGGER, TRUE",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_isfloorcleared",
+          "args": [],
+          "line": 45,
+          "raw": "ttower_isfloorcleared",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "TrainerTower_EventScript_SetObjectsDoublesAlreadyBeaten"
+          ],
+          "line": 46,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, TrainerTower_EventScript_SetObjectsDoublesAlreadyBeaten",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "10",
+            "12"
+          ],
+          "line": 47,
+          "raw": "setobjectxyperm       LOCALID_TOWER_TRAINER_DOUBLES1, 10, 12",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "MOVEMENT_TYPE_FACE_LEFT"
+          ],
+          "line": 48,
+          "raw": "setobjectmovementtype LOCALID_TOWER_TRAINER_DOUBLES1, MOVEMENT_TYPE_FACE_LEFT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES2",
+            "10",
+            "13"
+          ],
+          "line": 49,
+          "raw": "setobjectxyperm       LOCALID_TOWER_TRAINER_DOUBLES2, 10, 13",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES2",
+            "MOVEMENT_TYPE_FACE_LEFT"
+          ],
+          "line": 50,
+          "raw": "setobjectmovementtype LOCALID_TOWER_TRAINER_DOUBLES2, MOVEMENT_TYPE_FACE_LEFT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_HideOwner"
+          ],
+          "line": 51,
+          "raw": "goto TrainerTower_EventScript_HideOwner",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "TrainerTower_EventScript_SetObjectsDoublesAlreadyBeaten",
+          "line": 46
+        },
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_HideOwner",
+          "line": 51
+        }
+      ]
+    },
+    "TrainerTower_EventScript_SetObjectsDoublesAlreadyBeaten": {
+      "label": "TrainerTower_EventScript_SetObjectsDoublesAlreadyBeaten",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "10",
+            "12"
+          ],
+          "line": 54,
+          "raw": "setobjectxyperm       LOCALID_TOWER_TRAINER_DOUBLES1, 10, 12",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "MOVEMENT_TYPE_FACE_DOWN"
+          ],
+          "line": 55,
+          "raw": "setobjectmovementtype LOCALID_TOWER_TRAINER_DOUBLES1, MOVEMENT_TYPE_FACE_DOWN",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES2",
+            "11",
+            "12"
+          ],
+          "line": 56,
+          "raw": "setobjectxyperm       LOCALID_TOWER_TRAINER_DOUBLES2, 11, 12",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES2",
+            "MOVEMENT_TYPE_FACE_DOWN"
+          ],
+          "line": 57,
+          "raw": "setobjectmovementtype LOCALID_TOWER_TRAINER_DOUBLES2, MOVEMENT_TYPE_FACE_DOWN",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_HideOwner"
+          ],
+          "line": 58,
+          "raw": "goto TrainerTower_EventScript_HideOwner",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_HideOwner",
+          "line": 58
+        }
+      ]
+    },
+    "TrainerTower_EventScript_SetObjectsKnockout": {
+      "label": "TrainerTower_EventScript_SetObjectsKnockout",
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_TRAINER_DOUBLES2"
+          ],
+          "line": 62,
+          "raw": "setflag HIDE_TRAINER_DOUBLES2",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "DISABLE_DOUBLES_TRIGGER",
+            "TRUE"
+          ],
+          "line": 63,
+          "raw": "setvar DISABLE_DOUBLES_TRIGGER, TRUE",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "10",
+            "10"
+          ],
+          "line": 64,
+          "raw": "setobjectxyperm       LOCALID_TOWER_TRAINER_DOUBLES1, 10, 10",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "MOVEMENT_TYPE_FACE_DOWN"
+          ],
+          "line": 65,
+          "raw": "setobjectmovementtype LOCALID_TOWER_TRAINER_DOUBLES1, MOVEMENT_TYPE_FACE_DOWN",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "14",
+            "13"
+          ],
+          "line": 66,
+          "raw": "setobjectxyperm       LOCALID_TOWER_TRAINER_SINGLES, 14, 13",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "MOVEMENT_TYPE_FACE_LEFT"
+          ],
+          "line": 67,
+          "raw": "setobjectmovementtype LOCALID_TOWER_TRAINER_SINGLES, MOVEMENT_TYPE_FACE_LEFT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_TOWER_TRAINER_KNOCKOUT",
+            "10",
+            "16"
+          ],
+          "line": 68,
+          "raw": "setobjectxyperm       LOCALID_TOWER_TRAINER_KNOCKOUT, 10, 16",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_TOWER_TRAINER_KNOCKOUT",
+            "MOVEMENT_TYPE_FACE_UP"
+          ],
+          "line": 69,
+          "raw": "setobjectmovementtype LOCALID_TOWER_TRAINER_KNOCKOUT, MOVEMENT_TYPE_FACE_UP",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_HideOwner": {
+      "label": "TrainerTower_EventScript_HideOwner",
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "HIDE_OWNER"
+          ],
+          "line": 71,
+          "raw": "setflag HIDE_OWNER",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 72,
+          "raw": "end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_OnFrame": {
+      "label": "TrainerTower_OnFrame",
+      "kind": "map_script_table",
+      "line": 74,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_2",
+            "0",
+            "TrainerTower_EventScript_EnterFloor"
+          ],
+          "line": 75,
+          "raw": "map_script_2 VAR_TEMP_2, 0, TrainerTower_EventScript_EnterFloor",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 76,
+          "raw": ".2byte 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_EnterFloor": {
+      "label": "TrainerTower_EventScript_EnterFloor",
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "1"
+          ],
+          "line": 79,
+          "raw": "setvar VAR_TEMP_2, 1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_isfloorcleared",
+          "args": [],
+          "line": 80,
+          "raw": "ttower_isfloorcleared",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "TrainerTower_EventScript_EndEnterFloor"
+          ],
+          "line": 81,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, TrainerTower_EventScript_EndEnterFloor",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "DISABLE_SINGLES_TRIGGER",
+            "TRUE"
+          ],
+          "line": 82,
+          "raw": "setvar DISABLE_SINGLES_TRIGGER, TRUE",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "DISABLE_DOUBLES_TRIGGER",
+            "TRUE"
+          ],
+          "line": 83,
+          "raw": "setvar DISABLE_DOUBLES_TRIGGER, TRUE",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "TrainerTower_EventScript_EndEnterFloor",
+          "line": 81
+        }
+      ]
+    },
+    "TrainerTower_EventScript_EndEnterFloor": {
+      "label": "TrainerTower_EventScript_EndEnterFloor",
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_shouldexit",
+          "args": [],
+          "line": 85,
+          "raw": "ttower_shouldexit",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "TrainerTower_EventScript_WarpToLobby"
+          ],
+          "line": 86,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, TrainerTower_EventScript_WarpToLobby",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 87,
+          "raw": "end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "TrainerTower_EventScript_WarpToLobby",
+          "line": 86
+        }
+      ]
+    },
+    "TrainerTower_EventScript_WarpToLobby": {
+      "label": "TrainerTower_EventScript_WarpToLobby",
+      "kind": "script",
+      "line": 90,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "warp",
+          "args": [
+            "MAP_TRAINER_TOWER_LOBBY",
+            "9",
+            "7"
+          ],
+          "line": 91,
+          "raw": "warp MAP_TRAINER_TOWER_LOBBY, 9, 7",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 92,
+          "raw": "waitstate",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_TriggerBattle": {
+      "label": "TrainerTower_EventScript_TriggerBattle",
+      "kind": "script",
+      "line": 97,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_getchallengetype",
+          "args": [],
+          "line": 98,
+          "raw": "ttower_getchallengetype",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 99,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_SINGLE",
+            "TrainerTower_EventScript_DoSingleBattle"
+          ],
+          "line": 100,
+          "raw": "case CHALLENGE_TYPE_SINGLE, TrainerTower_EventScript_DoSingleBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_DOUBLE",
+            "TrainerTower_EventScript_DoDoubleBattle"
+          ],
+          "line": 101,
+          "raw": "case CHALLENGE_TYPE_DOUBLE, TrainerTower_EventScript_DoDoubleBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_KNOCKOUT",
+            "TrainerTower_EventScript_DoKnockoutBattle"
+          ],
+          "line": 102,
+          "raw": "case CHALLENGE_TYPE_KNOCKOUT, TrainerTower_EventScript_DoKnockoutBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_DoSingleBattle": {
+      "label": "TrainerTower_EventScript_DoSingleBattle",
+      "kind": "script",
+      "line": 104,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_encountermusic",
+          "args": [],
+          "line": 105,
+          "raw": "ttower_encountermusic",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 106,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_SINGLES, Common_Movement_ExclamationMark",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 107,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "Common_Movement_Delay48"
+          ],
+          "line": 108,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_SINGLES, Common_Movement_Delay48",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 109,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "DISABLE_SINGLES_TRIGGER",
+            "TRUE"
+          ],
+          "line": 110,
+          "raw": "setvar DISABLE_SINGLES_TRIGGER, TRUE",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "TrainerTower_Movement_SingleTrainerApproach"
+          ],
+          "line": 111,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_SINGLES, TrainerTower_Movement_SingleTrainerApproach",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 112,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_getspeech",
+          "args": [
+            "TRAINER_TOWER_TEXT_INTRO",
+            "0"
+          ],
+          "line": 113,
+          "raw": "ttower_getspeech TRAINER_TOWER_TEXT_INTRO, 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gStringVar4"
+          ],
+          "line": 114,
+          "raw": "msgbox gStringVar4",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 115,
+          "raw": "closemessage",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoBattle"
+          ],
+          "line": 116,
+          "raw": "goto TrainerTower_EventScript_DoBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gStringVar4",
+          "mode": "",
+          "line": 114
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoBattle",
+          "line": 116
+        }
+      ]
+    },
+    "TrainerTower_EventScript_DoDoubleBattle": {
+      "label": "TrainerTower_EventScript_DoDoubleBattle",
+      "kind": "script",
+      "line": 118,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_getspeech",
+          "args": [
+            "TRAINER_TOWER_TEXT_INTRO",
+            "VAR_TEMP_3"
+          ],
+          "line": 119,
+          "raw": "ttower_getspeech TRAINER_TOWER_TEXT_INTRO, VAR_TEMP_3",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gStringVar4"
+          ],
+          "line": 120,
+          "raw": "msgbox gStringVar4",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "TRAINER_TOWER_FUNC_GET_SPEECH"
+          ],
+          "line": 121,
+          "raw": "setvar VAR_0x8004, TRAINER_TOWER_FUNC_GET_SPEECH",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "TRAINER_TOWER_TEXT_INTRO"
+          ],
+          "line": 122,
+          "raw": "setvar VAR_0x8005, TRAINER_TOWER_TEXT_INTRO",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_TEMP_3",
+            "1"
+          ],
+          "line": 123,
+          "raw": "addvar VAR_TEMP_3, 1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_TEMP_3",
+            "1",
+            "TrainerTower_EventScript_DoSecondTrainerIntro"
+          ],
+          "line": 124,
+          "raw": "goto_if_eq VAR_TEMP_3, 1, TrainerTower_EventScript_DoSecondTrainerIntro",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_3",
+            "0"
+          ],
+          "line": 125,
+          "raw": "setvar VAR_TEMP_3, 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gStringVar4",
+          "mode": "",
+          "line": 120
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "TrainerTower_EventScript_DoSecondTrainerIntro",
+          "line": 124
+        }
+      ]
+    },
+    "TrainerTower_EventScript_DoSecondTrainerIntro": {
+      "label": "TrainerTower_EventScript_DoSecondTrainerIntro",
+      "kind": "script",
+      "line": 126,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8006",
+            "VAR_TEMP_3"
+          ],
+          "line": 127,
+          "raw": "copyvar VAR_0x8006, VAR_TEMP_3",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "CallTrainerTowerFunc"
+          ],
+          "line": 128,
+          "raw": "special CallTrainerTowerFunc",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gStringVar4"
+          ],
+          "line": 129,
+          "raw": "msgbox gStringVar4",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 130,
+          "raw": "closemessage",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoBattle"
+          ],
+          "line": 131,
+          "raw": "goto TrainerTower_EventScript_DoBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gStringVar4",
+          "mode": "",
+          "line": 129
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoBattle",
+          "line": 131
+        }
+      ]
+    },
+    "TrainerTower_EventScript_DoKnockoutBattle": {
+      "label": "TrainerTower_EventScript_DoKnockoutBattle",
+      "kind": "script",
+      "line": 133,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_TEMP_1"
+          ],
+          "line": 134,
+          "raw": "switch VAR_TEMP_1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TrainerTower_EventScript_DoKnockoutBattle1"
+          ],
+          "line": 135,
+          "raw": "case 0, TrainerTower_EventScript_DoKnockoutBattle1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TrainerTower_EventScript_DoKnockoutBattle2"
+          ],
+          "line": 136,
+          "raw": "case 1, TrainerTower_EventScript_DoKnockoutBattle2",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "TrainerTower_EventScript_DoKnockoutBattle3"
+          ],
+          "line": 137,
+          "raw": "case 2, TrainerTower_EventScript_DoKnockoutBattle3",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_DoKnockoutBattle1": {
+      "label": "TrainerTower_EventScript_DoKnockoutBattle1",
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_encountermusic",
+          "args": [],
+          "line": 140,
+          "raw": "ttower_encountermusic",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_KNOCKOUT",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 141,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_KNOCKOUT, Common_Movement_ExclamationMark",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 142,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_KNOCKOUT",
+            "Common_Movement_Delay48"
+          ],
+          "line": 143,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_KNOCKOUT, Common_Movement_Delay48",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 144,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_KNOCKOUT",
+            "TrainerTower_Movement_BottomKnockoutTrainerApproach"
+          ],
+          "line": 145,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_KNOCKOUT, TrainerTower_Movement_BottomKnockoutTrainerApproach",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 146,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoKnockoutBattleIntro"
+          ],
+          "line": 147,
+          "raw": "goto TrainerTower_EventScript_DoKnockoutBattleIntro",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoKnockoutBattleIntro",
+          "line": 147
+        }
+      ]
+    },
+    "TrainerTower_EventScript_DoKnockoutBattle2": {
+      "label": "TrainerTower_EventScript_DoKnockoutBattle2",
+      "kind": "script",
+      "line": 149,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_encountermusic",
+          "args": [],
+          "line": 150,
+          "raw": "ttower_encountermusic",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 151,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_DOUBLES1, Common_Movement_ExclamationMark",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 152,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "Common_Movement_Delay48"
+          ],
+          "line": 153,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_DOUBLES1, Common_Movement_Delay48",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 154,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "TrainerTower_Movement_TopKnockoutTrainerApproach"
+          ],
+          "line": 155,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_DOUBLES1, TrainerTower_Movement_TopKnockoutTrainerApproach",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 156,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoKnockoutBattleIntro"
+          ],
+          "line": 157,
+          "raw": "goto TrainerTower_EventScript_DoKnockoutBattleIntro",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoKnockoutBattleIntro",
+          "line": 157
+        }
+      ]
+    },
+    "TrainerTower_EventScript_DoKnockoutBattle3": {
+      "label": "TrainerTower_EventScript_DoKnockoutBattle3",
+      "kind": "script",
+      "line": 159,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_encountermusic",
+          "args": [],
+          "line": 160,
+          "raw": "ttower_encountermusic",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 161,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_SINGLES, Common_Movement_ExclamationMark",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 162,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "Common_Movement_Delay48"
+          ],
+          "line": 163,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_SINGLES, Common_Movement_Delay48",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 164,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "TrainerTower_Movement_RightKnockoutTrainerApproach"
+          ],
+          "line": 165,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_SINGLES, TrainerTower_Movement_RightKnockoutTrainerApproach",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 166,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_DoKnockoutBattleIntro": {
+      "label": "TrainerTower_EventScript_DoKnockoutBattleIntro",
+      "kind": "script",
+      "line": 167,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_getspeech",
+          "args": [
+            "TRAINER_TOWER_TEXT_INTRO",
+            "VAR_TEMP_1"
+          ],
+          "line": 168,
+          "raw": "ttower_getspeech TRAINER_TOWER_TEXT_INTRO, VAR_TEMP_1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gStringVar4"
+          ],
+          "line": 169,
+          "raw": "msgbox gStringVar4",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 170,
+          "raw": "closemessage",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gStringVar4",
+          "mode": "",
+          "line": 169
+        }
+      ],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_DoBattle": {
+      "label": "TrainerTower_EventScript_DoBattle",
+      "kind": "script",
+      "line": 171,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_dobattle",
+          "args": [],
+          "line": 172,
+          "raw": "ttower_dobattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 173,
+          "raw": "waitstate",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 174,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "B_OUTCOME_WON",
+            "TrainerTower_EventScript_WonBattle"
+          ],
+          "line": 175,
+          "raw": "case B_OUTCOME_WON, TrainerTower_EventScript_WonBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "B_OUTCOME_LOST",
+            "TrainerTower_EventScript_WarpToLobbyLost"
+          ],
+          "line": 176,
+          "raw": "case B_OUTCOME_LOST, TrainerTower_EventScript_WarpToLobbyLost",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "B_OUTCOME_DREW",
+            "TrainerTower_EventScript_WarpToLobbyLost"
+          ],
+          "line": 177,
+          "raw": "case B_OUTCOME_DREW, TrainerTower_EventScript_WarpToLobbyLost",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_WonBattle": {
+      "label": "TrainerTower_EventScript_WonBattle",
+      "kind": "script",
+      "line": 178,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_getchallengetype",
+          "args": [],
+          "line": 179,
+          "raw": "ttower_getchallengetype",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 180,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_SINGLE",
+            "TrainerTower_EventScript_SetFloorCleared"
+          ],
+          "line": 181,
+          "raw": "case CHALLENGE_TYPE_SINGLE, TrainerTower_EventScript_SetFloorCleared",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_DOUBLE",
+            "TrainerTower_EventScript_MoveDoublesTrainers"
+          ],
+          "line": 182,
+          "raw": "case CHALLENGE_TYPE_DOUBLE, TrainerTower_EventScript_MoveDoublesTrainers",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_KNOCKOUT",
+            "TrainerTower_EventScript_CheckNextKnockoutBattle"
+          ],
+          "line": 183,
+          "raw": "case CHALLENGE_TYPE_KNOCKOUT, TrainerTower_EventScript_CheckNextKnockoutBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_CheckNextKnockoutBattle": {
+      "label": "TrainerTower_EventScript_CheckNextKnockoutBattle",
+      "kind": "script",
+      "line": 185,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_TEMP_1"
+          ],
+          "line": 186,
+          "raw": "switch VAR_TEMP_1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TrainerTower_EventScript_DoSecondKnockoutBattle"
+          ],
+          "line": 187,
+          "raw": "case 0, TrainerTower_EventScript_DoSecondKnockoutBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TrainerTower_EventScript_DoThirdKnockoutBattle"
+          ],
+          "line": 188,
+          "raw": "case 1, TrainerTower_EventScript_DoThirdKnockoutBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "TrainerTower_EventScript_MoveLastKnockoutTrainer"
+          ],
+          "line": 189,
+          "raw": "case 2, TrainerTower_EventScript_MoveLastKnockoutTrainer",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_DoSecondKnockoutBattle": {
+      "label": "TrainerTower_EventScript_DoSecondKnockoutBattle",
+      "kind": "script",
+      "line": 191,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 192,
+          "raw": "addvar VAR_TEMP_1, 1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoKnockoutBattle"
+          ],
+          "line": 193,
+          "raw": "goto TrainerTower_EventScript_DoKnockoutBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoKnockoutBattle",
+          "line": 193
+        }
+      ]
+    },
+    "TrainerTower_EventScript_DoThirdKnockoutBattle": {
+      "label": "TrainerTower_EventScript_DoThirdKnockoutBattle",
+      "kind": "script",
+      "line": 195,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 196,
+          "raw": "addvar VAR_TEMP_1, 1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoKnockoutBattle"
+          ],
+          "line": 197,
+          "raw": "goto TrainerTower_EventScript_DoKnockoutBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoKnockoutBattle",
+          "line": 197
+        }
+      ]
+    },
+    "TrainerTower_EventScript_MoveDoublesTrainers": {
+      "label": "TrainerTower_EventScript_MoveDoublesTrainers",
+      "kind": "script",
+      "line": 199,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES2",
+            "TrainerTower_Movement_DoublesTrainer2OutOfWay"
+          ],
+          "line": 200,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_DOUBLES2, TrainerTower_Movement_DoublesTrainer2OutOfWay",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 201,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "TrainerTower_Movement_DoublesTrainer1FaceDown"
+          ],
+          "line": 202,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_DOUBLES1, TrainerTower_Movement_DoublesTrainer1FaceDown",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_SetFloorCleared"
+          ],
+          "line": 203,
+          "raw": "goto TrainerTower_EventScript_SetFloorCleared",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_SetFloorCleared",
+          "line": 203
+        }
+      ]
+    },
+    "TrainerTower_EventScript_MoveLastKnockoutTrainer": {
+      "label": "TrainerTower_EventScript_MoveLastKnockoutTrainer",
+      "kind": "script",
+      "line": 205,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_SINGLES",
+            "TrainerTower_Movement_LastKnockoutTrainerOutOfWay"
+          ],
+          "line": 206,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_SINGLES, TrainerTower_Movement_LastKnockoutTrainerOutOfWay",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_SetFloorCleared": {
+      "label": "TrainerTower_EventScript_SetFloorCleared",
+      "kind": "script",
+      "line": 207,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_clearedfloor",
+          "args": [],
+          "line": 208,
+          "raw": "ttower_clearedfloor",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 209,
+          "raw": "end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_WarpToLobbyLost": {
+      "label": "TrainerTower_EventScript_WarpToLobbyLost",
+      "kind": "script",
+      "line": 211,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 212,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_setlost",
+          "args": [],
+          "line": 213,
+          "raw": "ttower_setlost",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_TRAINER_TOWER_LOBBY",
+            "9",
+            "7"
+          ],
+          "line": 214,
+          "raw": "warp MAP_TRAINER_TOWER_LOBBY, 9, 7",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 215,
+          "raw": "waitstate",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_SpeakToDoublesTrainer1": {
+      "label": "TrainerTower_EventScript_SpeakToDoublesTrainer1",
+      "kind": "script",
+      "line": 220,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_getchallengetype",
+          "args": [],
+          "line": 221,
+          "raw": "ttower_getchallengetype",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 222,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_SINGLE",
+            "TrainerTower_EventScript_DoublesTrainer1PostBattle"
+          ],
+          "line": 223,
+          "raw": "case CHALLENGE_TYPE_SINGLE, TrainerTower_EventScript_DoublesTrainer1PostBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_DOUBLE",
+            "TrainerTower_EventScript_DoublesTrainer1PostBattle"
+          ],
+          "line": 224,
+          "raw": "case CHALLENGE_TYPE_DOUBLE, TrainerTower_EventScript_DoublesTrainer1PostBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_KNOCKOUT",
+            "TrainerTower_EventScript_KnockoutTrainer2PostBattle"
+          ],
+          "line": 225,
+          "raw": "case CHALLENGE_TYPE_KNOCKOUT, TrainerTower_EventScript_KnockoutTrainer2PostBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_DoublesTrainer1PostBattle": {
+      "label": "TrainerTower_EventScript_DoublesTrainer1PostBattle",
+      "kind": "script",
+      "line": 226,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "0"
+          ],
+          "line": 227,
+          "raw": "setvar VAR_0x8006, 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoPostBattleText"
+          ],
+          "line": 228,
+          "raw": "goto TrainerTower_EventScript_DoPostBattleText",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoPostBattleText",
+          "line": 228
+        }
+      ]
+    },
+    "TrainerTower_EventScript_KnockoutTrainer2PostBattle": {
+      "label": "TrainerTower_EventScript_KnockoutTrainer2PostBattle",
+      "kind": "script",
+      "line": 230,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "1"
+          ],
+          "line": 231,
+          "raw": "setvar VAR_0x8006, 1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoPostBattleText"
+          ],
+          "line": 232,
+          "raw": "goto TrainerTower_EventScript_DoPostBattleText",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoPostBattleText",
+          "line": 232
+        }
+      ]
+    },
+    "TrainerTower_EventScript_SpeakToSinglesTrainer": {
+      "label": "TrainerTower_EventScript_SpeakToSinglesTrainer",
+      "kind": "script",
+      "line": 234,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_getchallengetype",
+          "args": [],
+          "line": 235,
+          "raw": "ttower_getchallengetype",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 236,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_SINGLE",
+            "TrainerTower_EventScript_SinglesTrainerPostBattle"
+          ],
+          "line": 237,
+          "raw": "case CHALLENGE_TYPE_SINGLE, TrainerTower_EventScript_SinglesTrainerPostBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_DOUBLE",
+            "TrainerTower_EventScript_SinglesTrainerPostBattle"
+          ],
+          "line": 238,
+          "raw": "case CHALLENGE_TYPE_DOUBLE, TrainerTower_EventScript_SinglesTrainerPostBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "CHALLENGE_TYPE_KNOCKOUT",
+            "TrainerTower_EventScript_KnockoutTrainer3PostBattle"
+          ],
+          "line": 239,
+          "raw": "case CHALLENGE_TYPE_KNOCKOUT, TrainerTower_EventScript_KnockoutTrainer3PostBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_SinglesTrainerPostBattle": {
+      "label": "TrainerTower_EventScript_SinglesTrainerPostBattle",
+      "kind": "script",
+      "line": 240,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "0"
+          ],
+          "line": 241,
+          "raw": "setvar VAR_0x8006, 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoPostBattleText"
+          ],
+          "line": 242,
+          "raw": "goto TrainerTower_EventScript_DoPostBattleText",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoPostBattleText",
+          "line": 242
+        }
+      ]
+    },
+    "TrainerTower_EventScript_KnockoutTrainer3PostBattle": {
+      "label": "TrainerTower_EventScript_KnockoutTrainer3PostBattle",
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "2"
+          ],
+          "line": 245,
+          "raw": "setvar VAR_0x8006, 2",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoPostBattleText"
+          ],
+          "line": 246,
+          "raw": "goto TrainerTower_EventScript_DoPostBattleText",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoPostBattleText",
+          "line": 246
+        }
+      ]
+    },
+    "TrainerTower_EventScript_SpeakToKnockoutTrainer": {
+      "label": "TrainerTower_EventScript_SpeakToKnockoutTrainer",
+      "kind": "script",
+      "line": 248,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "0"
+          ],
+          "line": 249,
+          "raw": "setvar VAR_0x8006, 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_DoPostBattleText"
+          ],
+          "line": 250,
+          "raw": "goto TrainerTower_EventScript_DoPostBattleText",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_DoPostBattleText",
+          "line": 250
+        }
+      ]
+    },
+    "TrainerTower_EventScript_SpeakToDoublesTrainer2": {
+      "label": "TrainerTower_EventScript_SpeakToDoublesTrainer2",
+      "kind": "script",
+      "line": 252,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "1"
+          ],
+          "line": 253,
+          "raw": "setvar VAR_0x8006, 1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_DoPostBattleText": {
+      "label": "TrainerTower_EventScript_DoPostBattleText",
+      "kind": "script",
+      "line": 254,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_getspeech",
+          "args": [
+            "TRAINER_TOWER_TEXT_AFTER"
+          ],
+          "line": 255,
+          "raw": "ttower_getspeech TRAINER_TOWER_TEXT_AFTER",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "lock",
+          "args": [],
+          "line": 256,
+          "raw": "lock",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 257,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gStringVar4"
+          ],
+          "line": 258,
+          "raw": "msgbox gStringVar4",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 259,
+          "raw": "release",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 260,
+          "raw": "return",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gStringVar4",
+          "mode": "",
+          "line": 258
+        }
+      ],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_SpeakToOwner": {
+      "label": "TrainerTower_EventScript_SpeakToOwner",
+      "kind": "script",
+      "line": 265,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 266,
+          "raw": "lock",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 267,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_getownerstate",
+          "args": [],
+          "line": 268,
+          "raw": "ttower_getownerstate",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 269,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TrainerTower_Roof_EventScript_Arrived"
+          ],
+          "line": 270,
+          "raw": "case 0, TrainerTower_Roof_EventScript_Arrived",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TrainerTower_Roof_EventScript_GivePrize"
+          ],
+          "line": 271,
+          "raw": "case 1, TrainerTower_Roof_EventScript_GivePrize",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "TrainerTower_Roof_EventScript_OwnerEnd"
+          ],
+          "line": 272,
+          "raw": "case 2, TrainerTower_Roof_EventScript_OwnerEnd",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Roof_EventScript_Arrived": {
+      "label": "TrainerTower_Roof_EventScript_Arrived",
+      "kind": "script",
+      "line": 274,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerTower_Roof_Text_ImOwnerBattledPerfectly"
+          ],
+          "line": 275,
+          "raw": "msgbox TrainerTower_Roof_Text_ImOwnerBattledPerfectly",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerTower_Roof_Text_ImOwnerBattledPerfectly",
+          "mode": "",
+          "line": 275
+        }
+      ],
+      "branch_targets": []
+    },
+    "TrainerTower_Roof_EventScript_GivePrize": {
+      "label": "TrainerTower_Roof_EventScript_GivePrize",
+      "kind": "script",
+      "line": 276,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_giveprize",
+          "args": [],
+          "line": 277,
+          "raw": "ttower_giveprize",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 278,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TrainerTower_Roof_EventScript_ReceivePrize"
+          ],
+          "line": 279,
+          "raw": "case 0, TrainerTower_Roof_EventScript_ReceivePrize",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TrainerTower_Roof_EventScript_NoRoomForPrize"
+          ],
+          "line": 280,
+          "raw": "case 1, TrainerTower_Roof_EventScript_NoRoomForPrize",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "TrainerTower_Roof_EventScript_CheckFinalTime"
+          ],
+          "line": 281,
+          "raw": "case 2, TrainerTower_Roof_EventScript_CheckFinalTime",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Roof_EventScript_ReceivePrize": {
+      "label": "TrainerTower_Roof_EventScript_ReceivePrize",
+      "kind": "script",
+      "line": 283,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerTower_Roof_Text_ThisIsForYou"
+          ],
+          "line": 284,
+          "raw": "msgbox TrainerTower_Roof_Text_ThisIsForYou",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 285,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_LEVEL_UP"
+          ],
+          "line": 286,
+          "raw": "playfanfare MUS_LEVEL_UP",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_ObtainedTheItem"
+          ],
+          "line": 287,
+          "raw": "message gText_ObtainedTheItem",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 288,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 289,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_3",
+            "STDSTRING_ITEMS"
+          ],
+          "line": 290,
+          "raw": "bufferstdstring STR_VAR_3, STDSTRING_ITEMS",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PutItemInPocket"
+          ],
+          "line": 291,
+          "raw": "msgbox gText_PutItemInPocket",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_RestorePrevTextColor"
+          ],
+          "line": 292,
+          "raw": "call EventScript_RestorePrevTextColor",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_Roof_EventScript_CheckFinalTime"
+          ],
+          "line": 293,
+          "raw": "goto TrainerTower_Roof_EventScript_CheckFinalTime",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerTower_Roof_Text_ThisIsForYou",
+          "mode": "",
+          "line": 284
+        },
+        {
+          "op": "message",
+          "text_label": "gText_ObtainedTheItem",
+          "mode": "",
+          "line": 287
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PutItemInPocket",
+          "mode": "",
+          "line": 291
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_RestorePrevTextColor",
+          "line": 292
+        },
+        {
+          "op": "goto",
+          "target": "TrainerTower_Roof_EventScript_CheckFinalTime",
+          "line": 293
+        }
+      ]
+    },
+    "TrainerTower_Roof_EventScript_NoRoomForPrize": {
+      "label": "TrainerTower_Roof_EventScript_NoRoomForPrize",
+      "kind": "script",
+      "line": 295,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerTower_Roof_Text_ThisIsForYou"
+          ],
+          "line": 296,
+          "raw": "msgbox TrainerTower_Roof_Text_ThisIsForYou",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_TheBagIsFull"
+          ],
+          "line": 297,
+          "raw": "msgbox gText_TheBagIsFull",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_Roof_EventScript_CheckFinalTime"
+          ],
+          "line": 298,
+          "raw": "goto TrainerTower_Roof_EventScript_CheckFinalTime",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerTower_Roof_Text_ThisIsForYou",
+          "mode": "",
+          "line": 296
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_TheBagIsFull",
+          "mode": "",
+          "line": 297
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_Roof_EventScript_CheckFinalTime",
+          "line": 298
+        }
+      ]
+    },
+    "TrainerTower_Roof_EventScript_CheckFinalTime": {
+      "label": "TrainerTower_Roof_EventScript_CheckFinalTime",
+      "kind": "script",
+      "line": 300,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "ttower_checkfinaltime",
+          "args": [],
+          "line": 301,
+          "raw": "ttower_checkfinaltime",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 302,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TrainerTower_Roof_EventScript_NewRecord"
+          ],
+          "line": 303,
+          "raw": "case 0, TrainerTower_Roof_EventScript_NewRecord",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TrainerTower_Roof_EventScript_NoNewRecord"
+          ],
+          "line": 304,
+          "raw": "case 1, TrainerTower_Roof_EventScript_NoNewRecord",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "TrainerTower_Roof_EventScript_OwnerEnd"
+          ],
+          "line": 305,
+          "raw": "case 2, TrainerTower_Roof_EventScript_OwnerEnd",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Roof_EventScript_NewRecord": {
+      "label": "TrainerTower_Roof_EventScript_NewRecord",
+      "kind": "script",
+      "line": 307,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerTower_Roof_Text_DoneItInRecordTime"
+          ],
+          "line": 308,
+          "raw": "msgbox TrainerTower_Roof_Text_DoneItInRecordTime",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_Roof_EventScript_OwnerEnd"
+          ],
+          "line": 309,
+          "raw": "goto TrainerTower_Roof_EventScript_OwnerEnd",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerTower_Roof_Text_DoneItInRecordTime",
+          "mode": "",
+          "line": 308
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_Roof_EventScript_OwnerEnd",
+          "line": 309
+        }
+      ]
+    },
+    "TrainerTower_Roof_EventScript_NoNewRecord": {
+      "label": "TrainerTower_Roof_EventScript_NoNewRecord",
+      "kind": "script",
+      "line": 311,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerTower_Roof_Text_TookSweetTimeGettingHere"
+          ],
+          "line": 312,
+          "raw": "msgbox TrainerTower_Roof_Text_TookSweetTimeGettingHere",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerTower_Roof_Text_TookSweetTimeGettingHere",
+          "mode": "",
+          "line": 312
+        }
+      ],
+      "branch_targets": []
+    },
+    "TrainerTower_Roof_EventScript_OwnerEnd": {
+      "label": "TrainerTower_Roof_EventScript_OwnerEnd",
+      "kind": "script",
+      "line": 313,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerTower_Roof_Text_IdLikeToSeeBetterTime"
+          ],
+          "line": 314,
+          "raw": "msgbox TrainerTower_Roof_Text_IdLikeToSeeBetterTime",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 315,
+          "raw": "release",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 316,
+          "raw": "return",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerTower_Roof_Text_IdLikeToSeeBetterTime",
+          "mode": "",
+          "line": 314
+        }
+      ],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_ShowTime": {
+      "label": "TrainerTower_EventScript_ShowTime",
+      "kind": "script",
+      "line": 318,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 319,
+          "raw": "lockall",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_gettime",
+          "args": [],
+          "line": 320,
+          "raw": "ttower_gettime",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerTower_Text_XMinYZSec"
+          ],
+          "line": 321,
+          "raw": "msgbox TrainerTower_Text_XMinYZSec",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 322,
+          "raw": "releaseall",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 323,
+          "raw": "end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerTower_Text_XMinYZSec",
+          "mode": "",
+          "line": 321
+        }
+      ],
+      "branch_targets": []
+    },
+    "TrainerTower_EventScript_SingleBattleTrigger": {
+      "label": "TrainerTower_EventScript_SingleBattleTrigger",
+      "kind": "script",
+      "line": 328,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_TriggerBattle"
+          ],
+          "line": 329,
+          "raw": "goto TrainerTower_EventScript_TriggerBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_TriggerBattle",
+          "line": 329
+        }
+      ]
+    },
+    "TrainerTower_EventScript_DoubleBattleTriggerTop": {
+      "label": "TrainerTower_EventScript_DoubleBattleTriggerTop",
+      "kind": "script",
+      "line": 331,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_3",
+            "0"
+          ],
+          "line": 332,
+          "raw": "setvar VAR_TEMP_3, 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_checkdoubles",
+          "args": [],
+          "line": 333,
+          "raw": "ttower_checkdoubles",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "PLAYER_HAS_TWO_USABLE_MONS",
+            "TrainerTower_EventScript_IneligibleForDoubleBattle"
+          ],
+          "line": 334,
+          "raw": "goto_if_ne VAR_RESULT, PLAYER_HAS_TWO_USABLE_MONS, TrainerTower_EventScript_IneligibleForDoubleBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_encountermusic",
+          "args": [],
+          "line": 335,
+          "raw": "ttower_encountermusic",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 336,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_DOUBLES1, Common_Movement_ExclamationMark",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 337,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES1",
+            "Common_Movement_Delay48"
+          ],
+          "line": 338,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_DOUBLES1, Common_Movement_Delay48",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_TriggerDoubleBattle"
+          ],
+          "line": 339,
+          "raw": "goto TrainerTower_EventScript_TriggerDoubleBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "TrainerTower_EventScript_IneligibleForDoubleBattle",
+          "line": 334
+        },
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_TriggerDoubleBattle",
+          "line": 339
+        }
+      ]
+    },
+    "TrainerTower_EventScript_DoubleBattleTriggerBottom": {
+      "label": "TrainerTower_EventScript_DoubleBattleTriggerBottom",
+      "kind": "script",
+      "line": 341,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_3",
+            "1"
+          ],
+          "line": 342,
+          "raw": "setvar VAR_TEMP_3, 1",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_checkdoubles",
+          "args": [],
+          "line": 343,
+          "raw": "ttower_checkdoubles",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "PLAYER_HAS_TWO_USABLE_MONS",
+            "TrainerTower_EventScript_IneligibleForDoubleBattle"
+          ],
+          "line": 344,
+          "raw": "goto_if_ne VAR_RESULT, PLAYER_HAS_TWO_USABLE_MONS, TrainerTower_EventScript_IneligibleForDoubleBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "ttower_encountermusic",
+          "args": [],
+          "line": 345,
+          "raw": "ttower_encountermusic",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES2",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 346,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_DOUBLES2, Common_Movement_ExclamationMark",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 347,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_TRAINER_DOUBLES2",
+            "Common_Movement_Delay48"
+          ],
+          "line": 348,
+          "raw": "applymovement LOCALID_TOWER_TRAINER_DOUBLES2, Common_Movement_Delay48",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "TrainerTower_EventScript_IneligibleForDoubleBattle",
+          "line": 344
+        }
+      ]
+    },
+    "TrainerTower_EventScript_TriggerDoubleBattle": {
+      "label": "TrainerTower_EventScript_TriggerDoubleBattle",
+      "kind": "script",
+      "line": 349,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 350,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "DISABLE_DOUBLES_TRIGGER",
+            "TRUE"
+          ],
+          "line": 351,
+          "raw": "setvar DISABLE_DOUBLES_TRIGGER, TRUE",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_EventScript_TriggerBattle"
+          ],
+          "line": 352,
+          "raw": "goto TrainerTower_EventScript_TriggerBattle",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_EventScript_TriggerBattle",
+          "line": 352
+        }
+      ]
+    },
+    "TrainerTower_EventScript_IneligibleForDoubleBattle": {
+      "label": "TrainerTower_EventScript_IneligibleForDoubleBattle",
+      "kind": "script",
+      "line": 354,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 355,
+          "raw": "lockall",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_DING_DONG"
+          ],
+          "line": 356,
+          "raw": "playse SE_DING_DONG",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerTower_Lobby_Text_NeedTwoMonsForDouble"
+          ],
+          "line": 357,
+          "raw": "msgbox TrainerTower_Lobby_Text_NeedTwoMonsForDouble",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 358,
+          "raw": "closemessage",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "TrainerTower_Movement_PushPlayerBack"
+          ],
+          "line": 359,
+          "raw": "applymovement LOCALID_PLAYER, TrainerTower_Movement_PushPlayerBack",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 360,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 361,
+          "raw": "releaseall",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 362,
+          "raw": "end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerTower_Lobby_Text_NeedTwoMonsForDouble",
+          "mode": "",
+          "line": 357
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "TrainerTower_Movement_SingleTrainerApproach": {
+      "label": "TrainerTower_Movement_SingleTrainerApproach",
+      "kind": "movement",
+      "line": 364,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 365,
+          "raw": "walk_left",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Movement_RightKnockoutTrainerApproach": {
+      "label": "TrainerTower_Movement_RightKnockoutTrainerApproach",
+      "kind": "movement",
+      "line": 366,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 367,
+          "raw": "walk_left",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 368,
+          "raw": "walk_left",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Movement_PushPlayerBack": {
+      "label": "TrainerTower_Movement_PushPlayerBack",
+      "kind": "movement",
+      "line": 369,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 370,
+          "raw": "walk_left",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 371,
+          "raw": "step_end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Movement_BottomKnockoutTrainerApproach": {
+      "label": "TrainerTower_Movement_BottomKnockoutTrainerApproach",
+      "kind": "movement",
+      "line": 373,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 374,
+          "raw": "walk_up",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 375,
+          "raw": "walk_up",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 376,
+          "raw": "step_end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Movement_TopKnockoutTrainerApproach": {
+      "label": "TrainerTower_Movement_TopKnockoutTrainerApproach",
+      "kind": "movement",
+      "line": 378,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 379,
+          "raw": "walk_down",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 380,
+          "raw": "walk_down",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 381,
+          "raw": "step_end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Movement_DoublesTrainer2OutOfWay": {
+      "label": "TrainerTower_Movement_DoublesTrainer2OutOfWay",
+      "kind": "movement",
+      "line": 383,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 384,
+          "raw": "walk_right",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Movement_LastKnockoutTrainerOutOfWay": {
+      "label": "TrainerTower_Movement_LastKnockoutTrainerOutOfWay",
+      "kind": "movement",
+      "line": 385,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 386,
+          "raw": "walk_up",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "face_down",
+          "args": [],
+          "line": 387,
+          "raw": "face_down",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 388,
+          "raw": "step_end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Movement_DoublesTrainer1FaceDown": {
+      "label": "TrainerTower_Movement_DoublesTrainer1FaceDown",
+      "kind": "movement",
+      "line": 390,
+      "source_file": "data/scripts/trainer_tower.inc",
+      "instructions": [
+        {
+          "op": "face_down",
+          "args": [],
+          "line": 391,
+          "raw": "face_down",
+          "source_file": "data/scripts/trainer_tower.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 392,
+          "raw": "step_end",
+          "source_file": "data/scripts/trainer_tower.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addvar": 3,
+      "applymovement": 20,
+      "bufferstdstring": 1,
+      "case": 33,
+      "closemessage": 4,
+      "copyvar": 1,
+      "face_down": 2,
+      "faceplayer": 2,
+      "goto_if_eq": 4,
+      "goto_if_ne": 2,
+      "map_script_2": 1,
+      "playfanfare": 1,
+      "playse": 1,
+      "setflag": 11,
+      "setobjectmovementtype": 8,
+      "setobjectxyperm": 8,
+      "setvar": 22,
+      "special": 2,
+      "step_end": 5,
+      "switch": 11,
+      "textcolor": 1,
+      "ttower_checkdoubles": 2,
+      "ttower_checkfinaltime": 1,
+      "ttower_clearedfloor": 1,
+      "ttower_dobattle": 1,
+      "ttower_encountermusic": 6,
+      "ttower_getchallengetype": 4,
+      "ttower_getownerstate": 1,
+      "ttower_getspeech": 4,
+      "ttower_gettime": 1,
+      "ttower_giveprize": 1,
+      "ttower_initfloor": 1,
+      "ttower_isfloorcleared": 2,
+      "ttower_resumetimer": 1,
+      "ttower_setlost": 1,
+      "ttower_shouldexit": 1,
+      "waitfanfare": 1,
+      "waitmessage": 1,
+      "waitmovement": 17,
+      "waitstate": 3,
+      "walk_down": 2,
+      "walk_left": 4,
+      "walk_right": 1,
+      "walk_up": 3,
+      "warp": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 61,
+    "script_count": 53,
+    "movement_count": 8,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 7,
+    "op_counts": {
+      "addvar": 3,
+      "applymovement": 20,
+      "bufferstdstring": 1,
+      "call": 1,
+      "case": 33,
+      "closemessage": 4,
+      "copyvar": 1,
+      "end": 7,
+      "face_down": 2,
+      "faceplayer": 2,
+      "goto": 21,
+      "goto_if_eq": 4,
+      "goto_if_ne": 2,
+      "lock": 2,
+      "lockall": 2,
+      "map_script_2": 1,
+      "message": 1,
+      "msgbox": 15,
+      "playfanfare": 1,
+      "playse": 1,
+      "release": 2,
+      "releaseall": 2,
+      "return": 2,
+      "setflag": 11,
+      "setobjectmovementtype": 8,
+      "setobjectxyperm": 8,
+      "setvar": 22,
+      "special": 2,
+      "step_end": 5,
+      "switch": 11,
+      "textcolor": 1,
+      "ttower_checkdoubles": 2,
+      "ttower_checkfinaltime": 1,
+      "ttower_clearedfloor": 1,
+      "ttower_dobattle": 1,
+      "ttower_encountermusic": 6,
+      "ttower_getchallengetype": 4,
+      "ttower_getownerstate": 1,
+      "ttower_getspeech": 4,
+      "ttower_gettime": 1,
+      "ttower_giveprize": 1,
+      "ttower_initfloor": 1,
+      "ttower_isfloorcleared": 2,
+      "ttower_resumetimer": 1,
+      "ttower_setlost": 1,
+      "ttower_shouldexit": 1,
+      "waitfanfare": 1,
+      "waitmessage": 1,
+      "waitmovement": 17,
+      "waitstate": 3,
+      "walk_down": 2,
+      "walk_left": 4,
+      "walk_right": 1,
+      "walk_up": 3,
+      "warp": 2
+    }
+  }
+}

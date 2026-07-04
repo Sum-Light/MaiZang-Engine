@@ -1,0 +1,756 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_elite_four",
+    "script_files": [
+      "data/scripts/elite_four.inc"
+    ]
+  },
+  "labels": {
+    "PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/elite_four.inc",
+      "instruction_count": 17
+    },
+    "PokemonLeague_EliteFour_EventScript_WalkInCloseDoor": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/scripts/elite_four.inc",
+      "instruction_count": 11
+    },
+    "PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/scripts/elite_four.inc",
+      "instruction_count": 19
+    },
+    "PokemonLeague_EliteFour_EventScript_CloseDoor": {
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/scripts/elite_four.inc",
+      "instruction_count": 7
+    }
+  },
+  "scripts": {
+    "PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles": {
+      "label": "PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/elite_four.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_Delay32"
+          ],
+          "line": 2,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_Delay32",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_DOOR"
+          ],
+          "line": 4,
+          "raw": "playse SE_DOOR",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "1",
+            "METATILE_EliteFour_OpenDoor_Frame",
+            "FALSE"
+          ],
+          "line": 5,
+          "raw": "setmetatile 6, 1, METATILE_EliteFour_OpenDoor_Frame, FALSE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "2",
+            "METATILE_EliteFour_OpenDoor_Opening",
+            "FALSE"
+          ],
+          "line": 6,
+          "raw": "setmetatile 6, 2, METATILE_EliteFour_OpenDoor_Opening, FALSE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "0",
+            "2",
+            "METATILE_EliteFour_RightSpotlightOff",
+            "TRUE"
+          ],
+          "line": 7,
+          "raw": "setmetatile 0, 2, METATILE_EliteFour_RightSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "1",
+            "2",
+            "METATILE_EliteFour_LeftSpotlightOff",
+            "TRUE"
+          ],
+          "line": 8,
+          "raw": "setmetatile 1, 2, METATILE_EliteFour_LeftSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "2",
+            "2",
+            "METATILE_EliteFour_RightSpotlightOff",
+            "TRUE"
+          ],
+          "line": 9,
+          "raw": "setmetatile 2, 2, METATILE_EliteFour_RightSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "3",
+            "2",
+            "METATILE_EliteFour_LeftSpotlightOff",
+            "TRUE"
+          ],
+          "line": 10,
+          "raw": "setmetatile 3, 2, METATILE_EliteFour_LeftSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "4",
+            "2",
+            "METATILE_EliteFour_RightSpotlightOff",
+            "TRUE"
+          ],
+          "line": 11,
+          "raw": "setmetatile 4, 2, METATILE_EliteFour_RightSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "8",
+            "2",
+            "METATILE_EliteFour_LeftSpotlightOff",
+            "TRUE"
+          ],
+          "line": 12,
+          "raw": "setmetatile 8, 2, METATILE_EliteFour_LeftSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "9",
+            "2",
+            "METATILE_EliteFour_RightSpotlightOff",
+            "TRUE"
+          ],
+          "line": 13,
+          "raw": "setmetatile 9, 2, METATILE_EliteFour_RightSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "2",
+            "METATILE_EliteFour_LeftSpotlightOff",
+            "TRUE"
+          ],
+          "line": 14,
+          "raw": "setmetatile 10, 2, METATILE_EliteFour_LeftSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "11",
+            "2",
+            "METATILE_EliteFour_RightSpotlightOff",
+            "TRUE"
+          ],
+          "line": 15,
+          "raw": "setmetatile 11, 2, METATILE_EliteFour_RightSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "12",
+            "2",
+            "METATILE_EliteFour_LeftSpotlightOff",
+            "TRUE"
+          ],
+          "line": 16,
+          "raw": "setmetatile 12, 2, METATILE_EliteFour_LeftSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 17,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 18,
+          "raw": "return",
+          "source_file": "data/scripts/elite_four.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_EliteFour_EventScript_WalkInCloseDoor": {
+      "label": "PokemonLeague_EliteFour_EventScript_WalkInCloseDoor",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/scripts/elite_four.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkUp6"
+          ],
+          "line": 21,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkUp6",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 22,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_TRUCK_DOOR"
+          ],
+          "line": 23,
+          "raw": "playse SE_TRUCK_DOOR",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "5",
+            "12",
+            "METATILE_EliteFour_EntryDoor_ClosedTop",
+            "TRUE"
+          ],
+          "line": 24,
+          "raw": "setmetatile 5, 12, METATILE_EliteFour_EntryDoor_ClosedTop, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "12",
+            "METATILE_EliteFour_EntryDoor_ClosedTop",
+            "TRUE"
+          ],
+          "line": 25,
+          "raw": "setmetatile 6, 12, METATILE_EliteFour_EntryDoor_ClosedTop, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "12",
+            "METATILE_EliteFour_EntryDoor_ClosedTop",
+            "TRUE"
+          ],
+          "line": 26,
+          "raw": "setmetatile 7, 12, METATILE_EliteFour_EntryDoor_ClosedTop, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "5",
+            "13",
+            "METATILE_EliteFour_EntryDoor_ClosedBottom",
+            "TRUE"
+          ],
+          "line": 27,
+          "raw": "setmetatile 5, 13, METATILE_EliteFour_EntryDoor_ClosedBottom, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "13",
+            "METATILE_EliteFour_EntryDoor_ClosedBottom",
+            "TRUE"
+          ],
+          "line": 28,
+          "raw": "setmetatile 6, 13, METATILE_EliteFour_EntryDoor_ClosedBottom, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "13",
+            "METATILE_EliteFour_EntryDoor_ClosedBottom",
+            "TRUE"
+          ],
+          "line": 29,
+          "raw": "setmetatile 7, 13, METATILE_EliteFour_EntryDoor_ClosedBottom, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 30,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 31,
+          "raw": "return",
+          "source_file": "data/scripts/elite_four.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom": {
+      "label": "PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/scripts/elite_four.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "1",
+            "METATILE_EliteFour_OpenDoor_Frame",
+            "FALSE"
+          ],
+          "line": 35,
+          "raw": "setmetatile 6, 1, METATILE_EliteFour_OpenDoor_Frame, FALSE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "2",
+            "METATILE_EliteFour_OpenDoor_Opening",
+            "FALSE"
+          ],
+          "line": 36,
+          "raw": "setmetatile 6, 2, METATILE_EliteFour_OpenDoor_Opening, FALSE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "5",
+            "12",
+            "METATILE_EliteFour_EntryDoor_ClosedTop",
+            "TRUE"
+          ],
+          "line": 37,
+          "raw": "setmetatile 5, 12, METATILE_EliteFour_EntryDoor_ClosedTop, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "12",
+            "METATILE_EliteFour_EntryDoor_ClosedTop",
+            "TRUE"
+          ],
+          "line": 38,
+          "raw": "setmetatile 6, 12, METATILE_EliteFour_EntryDoor_ClosedTop, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "12",
+            "METATILE_EliteFour_EntryDoor_ClosedTop",
+            "TRUE"
+          ],
+          "line": 39,
+          "raw": "setmetatile 7, 12, METATILE_EliteFour_EntryDoor_ClosedTop, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "5",
+            "13",
+            "METATILE_EliteFour_EntryDoor_ClosedBottom",
+            "TRUE"
+          ],
+          "line": 40,
+          "raw": "setmetatile 5, 13, METATILE_EliteFour_EntryDoor_ClosedBottom, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "13",
+            "METATILE_EliteFour_EntryDoor_ClosedBottom",
+            "TRUE"
+          ],
+          "line": 41,
+          "raw": "setmetatile 6, 13, METATILE_EliteFour_EntryDoor_ClosedBottom, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "13",
+            "METATILE_EliteFour_EntryDoor_ClosedBottom",
+            "TRUE"
+          ],
+          "line": 42,
+          "raw": "setmetatile 7, 13, METATILE_EliteFour_EntryDoor_ClosedBottom, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "0",
+            "2",
+            "METATILE_EliteFour_RightSpotlightOff",
+            "TRUE"
+          ],
+          "line": 43,
+          "raw": "setmetatile 0, 2, METATILE_EliteFour_RightSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "1",
+            "2",
+            "METATILE_EliteFour_LeftSpotlightOff",
+            "TRUE"
+          ],
+          "line": 44,
+          "raw": "setmetatile 1, 2, METATILE_EliteFour_LeftSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "2",
+            "2",
+            "METATILE_EliteFour_RightSpotlightOff",
+            "TRUE"
+          ],
+          "line": 45,
+          "raw": "setmetatile 2, 2, METATILE_EliteFour_RightSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "3",
+            "2",
+            "METATILE_EliteFour_LeftSpotlightOff",
+            "TRUE"
+          ],
+          "line": 46,
+          "raw": "setmetatile 3, 2, METATILE_EliteFour_LeftSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "4",
+            "2",
+            "METATILE_EliteFour_RightSpotlightOff",
+            "TRUE"
+          ],
+          "line": 47,
+          "raw": "setmetatile 4, 2, METATILE_EliteFour_RightSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "8",
+            "2",
+            "METATILE_EliteFour_LeftSpotlightOff",
+            "TRUE"
+          ],
+          "line": 48,
+          "raw": "setmetatile 8, 2, METATILE_EliteFour_LeftSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "9",
+            "2",
+            "METATILE_EliteFour_RightSpotlightOff",
+            "TRUE"
+          ],
+          "line": 49,
+          "raw": "setmetatile 9, 2, METATILE_EliteFour_RightSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "2",
+            "METATILE_EliteFour_LeftSpotlightOff",
+            "TRUE"
+          ],
+          "line": 50,
+          "raw": "setmetatile 10, 2, METATILE_EliteFour_LeftSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "11",
+            "2",
+            "METATILE_EliteFour_RightSpotlightOff",
+            "TRUE"
+          ],
+          "line": 51,
+          "raw": "setmetatile 11, 2, METATILE_EliteFour_RightSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "12",
+            "2",
+            "METATILE_EliteFour_LeftSpotlightOff",
+            "TRUE"
+          ],
+          "line": 52,
+          "raw": "setmetatile 12, 2, METATILE_EliteFour_LeftSpotlightOff, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 53,
+          "raw": "return",
+          "source_file": "data/scripts/elite_four.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_EliteFour_EventScript_CloseDoor": {
+      "label": "PokemonLeague_EliteFour_EventScript_CloseDoor",
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/scripts/elite_four.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "5",
+            "12",
+            "METATILE_EliteFour_EntryDoor_ClosedTop",
+            "TRUE"
+          ],
+          "line": 56,
+          "raw": "setmetatile 5, 12, METATILE_EliteFour_EntryDoor_ClosedTop, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "12",
+            "METATILE_EliteFour_EntryDoor_ClosedTop",
+            "TRUE"
+          ],
+          "line": 57,
+          "raw": "setmetatile 6, 12, METATILE_EliteFour_EntryDoor_ClosedTop, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "12",
+            "METATILE_EliteFour_EntryDoor_ClosedTop",
+            "TRUE"
+          ],
+          "line": 58,
+          "raw": "setmetatile 7, 12, METATILE_EliteFour_EntryDoor_ClosedTop, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "5",
+            "13",
+            "METATILE_EliteFour_EntryDoor_ClosedBottom",
+            "TRUE"
+          ],
+          "line": 59,
+          "raw": "setmetatile 5, 13, METATILE_EliteFour_EntryDoor_ClosedBottom, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "13",
+            "METATILE_EliteFour_EntryDoor_ClosedBottom",
+            "TRUE"
+          ],
+          "line": 60,
+          "raw": "setmetatile 6, 13, METATILE_EliteFour_EntryDoor_ClosedBottom, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "13",
+            "METATILE_EliteFour_EntryDoor_ClosedBottom",
+            "TRUE"
+          ],
+          "line": 61,
+          "raw": "setmetatile 7, 13, METATILE_EliteFour_EntryDoor_ClosedBottom, TRUE",
+          "source_file": "data/scripts/elite_four.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 62,
+          "raw": "return",
+          "source_file": "data/scripts/elite_four.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 2,
+      "playse": 2,
+      "setmetatile": 42,
+      "special": 2,
+      "waitmovement": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 4,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 2,
+      "playse": 2,
+      "return": 4,
+      "setmetatile": 42,
+      "special": 2,
+      "waitmovement": 2
+    }
+  }
+}

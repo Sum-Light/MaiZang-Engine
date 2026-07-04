@@ -1,0 +1,605 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_pc_transfer",
+    "script_files": [
+      "data/scripts/pc_transfer.inc"
+    ]
+  },
+  "labels": {
+    "Common_EventScript_GetGiftMonPartySlot": {
+      "kind": "script",
+      "line": 2,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instruction_count": 4
+    },
+    "Common_EventScript_NameReceivedBoxMon": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instruction_count": 7
+    },
+    "Common_EventScript_TransferredToPC": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instruction_count": 5
+    },
+    "EventScript_TransferredSomeonesPC": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instruction_count": 4
+    },
+    "EventScript_SomeonesPCBoxFull": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instruction_count": 4
+    },
+    "EventScript_TransferredLanettesPC": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instruction_count": 4
+    },
+    "EventScript_LanettesPCBoxFull": {
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instruction_count": 4
+    },
+    "Common_EventScript_NoMoreRoomForPokemon": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "Common_EventScript_GetGiftMonPartySlot": {
+      "label": "Common_EventScript_GetGiftMonPartySlot",
+      "kind": "script",
+      "line": 2,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instructions": [
+        {
+          "op": "getpartysize",
+          "args": [],
+          "line": 3,
+          "raw": "getpartysize",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "subvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 4,
+          "raw": "subvar VAR_RESULT, 1",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8004",
+            "VAR_RESULT"
+          ],
+          "line": 5,
+          "raw": "copyvar VAR_0x8004, VAR_RESULT",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 6,
+          "raw": "return",
+          "source_file": "data/scripts/pc_transfer.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Common_EventScript_NameReceivedBoxMon": {
+      "label": "Common_EventScript_NameReceivedBoxMon",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instructions": [
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 9,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "PC_MON_CHOSEN"
+          ],
+          "line": 10,
+          "raw": "setvar VAR_0x8004, PC_MON_CHOSEN",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ChangePokemonNickname"
+          ],
+          "line": 11,
+          "raw": "special ChangePokemonNickname",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 12,
+          "raw": "waitstate",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "lock",
+          "args": [],
+          "line": 13,
+          "raw": "lock",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 14,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 15,
+          "raw": "return",
+          "source_file": "data/scripts/pc_transfer.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Common_EventScript_TransferredToPC": {
+      "label": "Common_EventScript_TransferredToPC",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instructions": [
+        {
+          "op": "bufferboxname",
+          "args": [
+            "STR_VAR_1",
+            "VAR_PC_BOX_TO_SEND_MON"
+          ],
+          "line": 18,
+          "raw": "bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_2",
+            "VAR_TEMP_TRANSFERRED_SPECIES"
+          ],
+          "line": 19,
+          "raw": "bufferspeciesname STR_VAR_2, VAR_TEMP_TRANSFERRED_SPECIES",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_SYS_PC_LANETTE",
+            "EventScript_TransferredSomeonesPC"
+          ],
+          "line": 20,
+          "raw": "call_if_unset FLAG_SYS_PC_LANETTE, EventScript_TransferredSomeonesPC",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_PC_LANETTE",
+            "EventScript_TransferredLanettesPC"
+          ],
+          "line": 21,
+          "raw": "call_if_set FLAG_SYS_PC_LANETTE, EventScript_TransferredLanettesPC",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 22,
+          "raw": "return",
+          "source_file": "data/scripts/pc_transfer.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "EventScript_TransferredSomeonesPC",
+          "line": 20
+        },
+        {
+          "op": "call_if_set",
+          "target": "EventScript_TransferredLanettesPC",
+          "line": 21
+        }
+      ]
+    },
+    "EventScript_TransferredSomeonesPC": {
+      "label": "EventScript_TransferredSomeonesPC",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldShowBoxWasFullMessage"
+          ],
+          "line": 25,
+          "raw": "specialvar VAR_RESULT, ShouldShowBoxWasFullMessage",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "EventScript_SomeonesPCBoxFull"
+          ],
+          "line": 26,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, EventScript_SomeonesPCBoxFull",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PkmnTransferredSomeonesPC",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 27,
+          "raw": "msgbox gText_PkmnTransferredSomeonesPC, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 28,
+          "raw": "return",
+          "source_file": "data/scripts/pc_transfer.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PkmnTransferredSomeonesPC",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 27
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_SomeonesPCBoxFull",
+          "line": 26
+        }
+      ]
+    },
+    "EventScript_SomeonesPCBoxFull": {
+      "label": "EventScript_SomeonesPCBoxFull",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetPCBoxToSendMon"
+          ],
+          "line": 31,
+          "raw": "specialvar VAR_RESULT, GetPCBoxToSendMon",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "bufferboxname",
+          "args": [
+            "STR_VAR_3",
+            "VAR_RESULT"
+          ],
+          "line": 32,
+          "raw": "bufferboxname STR_VAR_3, VAR_RESULT",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PkmnTransferredSomeonesPCBoxFull",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 33,
+          "raw": "msgbox gText_PkmnTransferredSomeonesPCBoxFull, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 34,
+          "raw": "return",
+          "source_file": "data/scripts/pc_transfer.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PkmnTransferredSomeonesPCBoxFull",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 33
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_TransferredLanettesPC": {
+      "label": "EventScript_TransferredLanettesPC",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldShowBoxWasFullMessage"
+          ],
+          "line": 37,
+          "raw": "specialvar VAR_RESULT, ShouldShowBoxWasFullMessage",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "EventScript_LanettesPCBoxFull"
+          ],
+          "line": 38,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, EventScript_LanettesPCBoxFull",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PkmnTransferredLanettesPC",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 39,
+          "raw": "msgbox gText_PkmnTransferredLanettesPC, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 40,
+          "raw": "return",
+          "source_file": "data/scripts/pc_transfer.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PkmnTransferredLanettesPC",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 39
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_LanettesPCBoxFull",
+          "line": 38
+        }
+      ]
+    },
+    "EventScript_LanettesPCBoxFull": {
+      "label": "EventScript_LanettesPCBoxFull",
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetPCBoxToSendMon"
+          ],
+          "line": 43,
+          "raw": "specialvar VAR_RESULT, GetPCBoxToSendMon",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "bufferboxname",
+          "args": [
+            "STR_VAR_3",
+            "VAR_RESULT"
+          ],
+          "line": 44,
+          "raw": "bufferboxname STR_VAR_3, VAR_RESULT",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PkmnTransferredLanettesPCBoxFull",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 45,
+          "raw": "msgbox gText_PkmnTransferredLanettesPCBoxFull, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 46,
+          "raw": "return",
+          "source_file": "data/scripts/pc_transfer.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PkmnTransferredLanettesPCBoxFull",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 45
+        }
+      ],
+      "branch_targets": []
+    },
+    "Common_EventScript_NoMoreRoomForPokemon": {
+      "label": "Common_EventScript_NoMoreRoomForPokemon",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/scripts/pc_transfer.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_NoMoreRoomForPokemon",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 49,
+          "raw": "msgbox gText_NoMoreRoomForPokemon, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 50,
+          "raw": "release",
+          "source_file": "data/scripts/pc_transfer.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 51,
+          "raw": "end",
+          "source_file": "data/scripts/pc_transfer.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_NoMoreRoomForPokemon",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 49
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "bufferboxname": 3,
+      "bufferspeciesname": 1,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "copyvar": 1,
+      "faceplayer": 1,
+      "fadescreen": 1,
+      "getpartysize": 1,
+      "goto_if_eq": 2,
+      "setvar": 1,
+      "special": 1,
+      "specialvar": 4,
+      "subvar": 1,
+      "waitstate": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 8,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "bufferboxname": 3,
+      "bufferspeciesname": 1,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "copyvar": 1,
+      "end": 1,
+      "faceplayer": 1,
+      "fadescreen": 1,
+      "getpartysize": 1,
+      "goto_if_eq": 2,
+      "lock": 1,
+      "msgbox": 5,
+      "release": 1,
+      "return": 7,
+      "setvar": 1,
+      "special": 1,
+      "specialvar": 4,
+      "subvar": 1,
+      "waitstate": 1
+    }
+  }
+}

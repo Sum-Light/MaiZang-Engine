@@ -1,0 +1,2900 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_mystery_event_club",
+    "script_files": [
+      "data/scripts/mystery_event_club.inc"
+    ]
+  },
+  "labels": {
+    "MysteryEventClub_EventScript_Woman": {
+      "kind": "script",
+      "line": 3,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 7
+    },
+    "EventScript_AlreadyGaveProfile": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 3
+    },
+    "EventScript_AskForProfile": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 9
+    },
+    "EventScript_ProfileInfo": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 3
+    },
+    "EventScript_AcceptGiveProfile": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 4
+    },
+    "EventScript_CancelGiveProfile": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 3
+    },
+    "EventScript_GaveProfile": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 8
+    },
+    "EventScript_DeclineGiveProfile": {
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 3
+    },
+    "EventScript_GivenProfileBefore": {
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 3
+    },
+    "EventScript_AskForNewProfile": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 8
+    },
+    "EventScript_ProfileInfo2": {
+      "kind": "script",
+      "line": 75,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 3
+    },
+    "EventScript_AcceptGiveNewProfile": {
+      "kind": "script",
+      "line": 80,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 4
+    },
+    "EventScript_DeclineGiveNewProfile": {
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 3
+    },
+    "EventScript_GaveSpecialProfile": {
+      "kind": "script",
+      "line": 91,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 8
+    },
+    "EventScript_GiveProfile": {
+      "kind": "script",
+      "line": 101,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 8
+    },
+    "Text_IdLoveToHearYourProfile": {
+      "kind": "text",
+      "line": 111,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 6
+    },
+    "Text_TellMeWhatsYourProfile": {
+      "kind": "text",
+      "line": 119,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 2
+    },
+    "Text_ExplainProfile": {
+      "kind": "text",
+      "line": 123,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 10
+    },
+    "Text_WhatsYourProfile": {
+      "kind": "text",
+      "line": 135,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 1
+    },
+    "Text_DontBeLikeThat": {
+      "kind": "text",
+      "line": 138,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 2
+    },
+    "Text_DecidedNotTo": {
+      "kind": "text",
+      "line": 142,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 2
+    },
+    "Text_HiWeMeetAgain": {
+      "kind": "text",
+      "line": 146,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 2
+    },
+    "Text_ChangeYourProfile": {
+      "kind": "text",
+      "line": 150,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 2
+    },
+    "Text_WhatAreYouLikeNow": {
+      "kind": "text",
+      "line": 154,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 2
+    },
+    "Text_LikeProfileWayItIs": {
+      "kind": "text",
+      "line": 158,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 3
+    },
+    "Text_ProfileSaysSomethingAboutYou": {
+      "kind": "text",
+      "line": 163,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 5
+    },
+    "Text_HeardThatBefore": {
+      "kind": "text",
+      "line": 170,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 3
+    },
+    "Text_TellMoreNextTime": {
+      "kind": "text",
+      "line": 175,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "MysteryEventClub_EventScript_Woman": {
+      "label": "MysteryEventClub_EventScript_Woman",
+      "kind": "script",
+      "line": 3,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 4,
+          "raw": "lock",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 5,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "GAVE_PROFILE",
+            "TRUE",
+            "EventScript_AlreadyGaveProfile"
+          ],
+          "line": 6,
+          "raw": "goto_if_eq GAVE_PROFILE, TRUE, EventScript_AlreadyGaveProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_SYS_SET_TRAINER_CARD_PROFILE",
+            "EventScript_GivenProfileBefore"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_SYS_SET_TRAINER_CARD_PROFILE, EventScript_GivenProfileBefore",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_IdLoveToHearYourProfile"
+          ],
+          "line": 8,
+          "raw": "msgbox Text_IdLoveToHearYourProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_AskForProfile"
+          ],
+          "line": 9,
+          "raw": "goto EventScript_AskForProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_IdLoveToHearYourProfile",
+          "mode": "",
+          "line": 8
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_AlreadyGaveProfile",
+          "line": 6
+        },
+        {
+          "op": "goto_if_set",
+          "target": "EventScript_GivenProfileBefore",
+          "line": 7
+        },
+        {
+          "op": "goto",
+          "target": "EventScript_AskForProfile",
+          "line": 9
+        }
+      ]
+    },
+    "EventScript_AlreadyGaveProfile": {
+      "label": "EventScript_AlreadyGaveProfile",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_TellMoreNextTime"
+          ],
+          "line": 13,
+          "raw": "msgbox Text_TellMoreNextTime",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_TellMoreNextTime",
+          "mode": "",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_AskForProfile": {
+      "label": "EventScript_AskForProfile",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "Text_TellMeWhatsYourProfile"
+          ],
+          "line": 18,
+          "raw": "message Text_TellMeWhatsYourProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 19,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "18",
+            "6",
+            "MULTI_YESNOINFO_2",
+            "FALSE"
+          ],
+          "line": 20,
+          "raw": "multichoice 18, 6, MULTI_YESNOINFO_2, FALSE",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 21,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "EventScript_AcceptGiveProfile"
+          ],
+          "line": 22,
+          "raw": "case 0, EventScript_AcceptGiveProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "EventScript_DeclineGiveProfile"
+          ],
+          "line": 23,
+          "raw": "case 1, EventScript_DeclineGiveProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "EventScript_ProfileInfo"
+          ],
+          "line": 24,
+          "raw": "case 2, EventScript_ProfileInfo",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "EventScript_DeclineGiveProfile"
+          ],
+          "line": 25,
+          "raw": "case MULTI_B_PRESSED, EventScript_DeclineGiveProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "Text_TellMeWhatsYourProfile",
+          "mode": "",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_ProfileInfo": {
+      "label": "EventScript_ProfileInfo",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_ExplainProfile"
+          ],
+          "line": 29,
+          "raw": "msgbox Text_ExplainProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_AskForProfile"
+          ],
+          "line": 30,
+          "raw": "goto EventScript_AskForProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_ExplainProfile",
+          "mode": "",
+          "line": 29
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_AskForProfile",
+          "line": 30
+        }
+      ]
+    },
+    "EventScript_AcceptGiveProfile": {
+      "label": "EventScript_AcceptGiveProfile",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_WhatsYourProfile"
+          ],
+          "line": 34,
+          "raw": "msgbox Text_WhatsYourProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 35,
+          "raw": "closemessage",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_GiveProfile"
+          ],
+          "line": 36,
+          "raw": "goto EventScript_GiveProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_WhatsYourProfile",
+          "mode": "",
+          "line": 34
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_GiveProfile",
+          "line": 36
+        }
+      ]
+    },
+    "EventScript_CancelGiveProfile": {
+      "label": "EventScript_CancelGiveProfile",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_DecidedNotTo"
+          ],
+          "line": 40,
+          "raw": "msgbox Text_DecidedNotTo",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 41,
+          "raw": "release",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_DecidedNotTo",
+          "mode": "",
+          "line": 40
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_GaveProfile": {
+      "label": "EventScript_GaveProfile",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "GAVE_PROFILE",
+            "TRUE"
+          ],
+          "line": 45,
+          "raw": "setvar GAVE_PROFILE, TRUE",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "0"
+          ],
+          "line": 46,
+          "raw": "setvar VAR_0x8004, 0",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShowEasyChatProfile"
+          ],
+          "line": 47,
+          "raw": "special ShowEasyChatProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 48,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "80"
+          ],
+          "line": 49,
+          "raw": "delay 80",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_ProfileSaysSomethingAboutYou"
+          ],
+          "line": 50,
+          "raw": "msgbox Text_ProfileSaysSomethingAboutYou",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 51,
+          "raw": "release",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 52,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_ProfileSaysSomethingAboutYou",
+          "mode": "",
+          "line": 50
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_DeclineGiveProfile": {
+      "label": "EventScript_DeclineGiveProfile",
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_DontBeLikeThat"
+          ],
+          "line": 55,
+          "raw": "msgbox Text_DontBeLikeThat",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 56,
+          "raw": "release",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 57,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_DontBeLikeThat",
+          "mode": "",
+          "line": 55
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_GivenProfileBefore": {
+      "label": "EventScript_GivenProfileBefore",
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_HiWeMeetAgain"
+          ],
+          "line": 60,
+          "raw": "msgbox Text_HiWeMeetAgain",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_AskForNewProfile"
+          ],
+          "line": 61,
+          "raw": "goto EventScript_AskForNewProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_HiWeMeetAgain",
+          "mode": "",
+          "line": 60
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_AskForNewProfile",
+          "line": 61
+        }
+      ]
+    },
+    "EventScript_AskForNewProfile": {
+      "label": "EventScript_AskForNewProfile",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "Text_ChangeYourProfile"
+          ],
+          "line": 65,
+          "raw": "message Text_ChangeYourProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 66,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "18",
+            "6",
+            "MULTI_YESNOINFO_2",
+            "FALSE"
+          ],
+          "line": 67,
+          "raw": "multichoice 18, 6, MULTI_YESNOINFO_2, FALSE",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 68,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "EventScript_AcceptGiveNewProfile"
+          ],
+          "line": 69,
+          "raw": "case 0, EventScript_AcceptGiveNewProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "EventScript_DeclineGiveNewProfile"
+          ],
+          "line": 70,
+          "raw": "case 1, EventScript_DeclineGiveNewProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "EventScript_ProfileInfo2"
+          ],
+          "line": 71,
+          "raw": "case 2, EventScript_ProfileInfo2",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 73,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "Text_ChangeYourProfile",
+          "mode": "",
+          "line": 65
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_ProfileInfo2": {
+      "label": "EventScript_ProfileInfo2",
+      "kind": "script",
+      "line": 75,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_ExplainProfile"
+          ],
+          "line": 76,
+          "raw": "msgbox Text_ExplainProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_AskForNewProfile"
+          ],
+          "line": 77,
+          "raw": "goto EventScript_AskForNewProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 78,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_ExplainProfile",
+          "mode": "",
+          "line": 76
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_AskForNewProfile",
+          "line": 77
+        }
+      ]
+    },
+    "EventScript_AcceptGiveNewProfile": {
+      "label": "EventScript_AcceptGiveNewProfile",
+      "kind": "script",
+      "line": 80,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_WhatAreYouLikeNow"
+          ],
+          "line": 81,
+          "raw": "msgbox Text_WhatAreYouLikeNow",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 82,
+          "raw": "closemessage",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_GiveProfile"
+          ],
+          "line": 83,
+          "raw": "goto EventScript_GiveProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 84,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_WhatAreYouLikeNow",
+          "mode": "",
+          "line": 81
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_GiveProfile",
+          "line": 83
+        }
+      ]
+    },
+    "EventScript_DeclineGiveNewProfile": {
+      "label": "EventScript_DeclineGiveNewProfile",
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_LikeProfileWayItIs"
+          ],
+          "line": 87,
+          "raw": "msgbox Text_LikeProfileWayItIs",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 88,
+          "raw": "release",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 89,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_LikeProfileWayItIs",
+          "mode": "",
+          "line": 87
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_GaveSpecialProfile": {
+      "label": "EventScript_GaveSpecialProfile",
+      "kind": "script",
+      "line": 91,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "GAVE_PROFILE",
+            "TRUE"
+          ],
+          "line": 92,
+          "raw": "setvar GAVE_PROFILE, TRUE",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "0"
+          ],
+          "line": 93,
+          "raw": "setvar VAR_0x8004, 0",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShowEasyChatProfile"
+          ],
+          "line": 94,
+          "raw": "special ShowEasyChatProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 95,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "80"
+          ],
+          "line": 96,
+          "raw": "delay 80",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_HeardThatBefore"
+          ],
+          "line": 97,
+          "raw": "msgbox Text_HeardThatBefore",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 98,
+          "raw": "release",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 99,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_HeardThatBefore",
+          "mode": "",
+          "line": 97
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_GiveProfile": {
+      "label": "EventScript_GiveProfile",
+      "kind": "script",
+      "line": 101,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "EASY_CHAT_TYPE_PROFILE"
+          ],
+          "line": 102,
+          "raw": "setvar VAR_0x8004, EASY_CHAT_TYPE_PROFILE",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_ShowEasyChatScreen"
+          ],
+          "line": 103,
+          "raw": "call Common_ShowEasyChatScreen",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "lock",
+          "args": [],
+          "line": 104,
+          "raw": "lock",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 105,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "0",
+            "EventScript_GaveSpecialProfile"
+          ],
+          "line": 106,
+          "raw": "goto_if_eq VAR_0x8004, 0, EventScript_GaveSpecialProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "EventScript_CancelGiveProfile"
+          ],
+          "line": 107,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, EventScript_CancelGiveProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "EventScript_GaveProfile"
+          ],
+          "line": 108,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, EventScript_GaveProfile",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 109,
+          "raw": "end",
+          "source_file": "data/scripts/mystery_event_club.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_ShowEasyChatScreen",
+          "line": 103
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_GaveSpecialProfile",
+          "line": 106
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_CancelGiveProfile",
+          "line": 107
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_GaveProfile",
+          "line": 108
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Text_IdLoveToHearYourProfile": {
+      "label": "Text_IdLoveToHearYourProfile",
+      "line": 111,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "Hi, glad to meet you!\\p…That's unfriendly of you.\\nHow about saying hi back?\\pSo, come on, tell me about\\nyourself.\\pI'd love to hear your profile!$",
+      "display_text": "Hi, glad to meet you!\n\n…That's unfriendly of you.\nHow about saying hi back?\n\nSo, come on, tell me about\nyourself.\n\nI'd love to hear your profile!",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 143,
+        "bytes": [
+          194,
+          221,
+          184,
+          0,
+          219,
+          224,
+          213,
+          216,
+          0,
+          232,
+          227,
+          0,
+          225,
+          217,
+          217,
+          232,
+          0,
+          237,
+          227,
+          233,
+          171,
+          251,
+          176,
+          206,
+          220,
+          213,
+          232,
+          180,
+          231,
+          0,
+          233,
+          226,
+          218,
+          230,
+          221,
+          217,
+          226,
+          216,
+          224,
+          237,
+          0,
+          227,
+          218,
+          0,
+          237,
+          227,
+          233,
+          173,
+          254,
+          194,
+          227,
+          235,
+          0,
+          213,
+          214,
+          227,
+          233,
+          232,
+          0,
+          231,
+          213,
+          237,
+          221,
+          226,
+          219,
+          0,
+          220,
+          221,
+          0,
+          214,
+          213,
+          215,
+          223,
+          172,
+          251,
+          205,
+          227,
+          184,
+          0,
+          215,
+          227,
+          225,
+          217,
+          0,
+          227,
+          226,
+          184,
+          0,
+          232,
+          217,
+          224,
+          224,
+          0,
+          225,
+          217,
+          0,
+          213,
+          214,
+          227,
+          233,
+          232,
+          254,
+          237,
+          227,
+          233,
+          230,
+          231,
+          217,
+          224,
+          218,
+          173,
+          251,
+          195,
+          180,
+          216,
+          0,
+          224,
+          227,
+          234,
+          217,
+          0,
+          232,
+          227,
+          0,
+          220,
+          217,
+          213,
+          230,
+          0,
+          237,
+          227,
+          233,
+          230,
+          0,
+          228,
+          230,
+          227,
+          218,
+          221,
+          224,
+          217,
+          171,
+          255
+        ],
+        "hex": "C2 DD B8 00 DB E0 D5 D8 00 E8 E3 00 E1 D9 D9 E8 00 ED E3 E9 AB FB B0 CE DC D5 E8 B4 E7 00 E9 E2 DA E6 DD D9 E2 D8 E0 ED 00 E3 DA 00 ED E3 E9 AD FE C2 E3 EB 00 D5 D6 E3 E9 E8 00 E7 D5 ED DD E2 DB 00 DC DD 00 D6 D5 D7 DF AC FB CD E3 B8 00 D7 E3 E1 D9 00 E3 E2 B8 00 E8 D9 E0 E0 00 E1 D9 00 D5 D6 E3 E9 E8 FE ED E3 E9 E6 E7 D9 E0 DA AD FB C3 B4 D8 00 E0 E3 EA D9 00 E8 E3 00 DC D9 D5 E6 00 ED E3 E9 E6 00 E4 E6 E3 DA DD E0 D9 AB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 49,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 76,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 104,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 115,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 147,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_TellMeWhatsYourProfile": {
+      "label": "Text_TellMeWhatsYourProfile",
+      "line": 119,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "Tell me something good about\\nyourself. What's your profile?$",
+      "display_text": "Tell me something good about\nyourself. What's your profile?",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 60,
+        "bytes": [
+          206,
+          217,
+          224,
+          224,
+          0,
+          225,
+          217,
+          0,
+          231,
+          227,
+          225,
+          217,
+          232,
+          220,
+          221,
+          226,
+          219,
+          0,
+          219,
+          227,
+          227,
+          216,
+          0,
+          213,
+          214,
+          227,
+          233,
+          232,
+          254,
+          237,
+          227,
+          233,
+          230,
+          231,
+          217,
+          224,
+          218,
+          173,
+          0,
+          209,
+          220,
+          213,
+          232,
+          180,
+          231,
+          0,
+          237,
+          227,
+          233,
+          230,
+          0,
+          228,
+          230,
+          227,
+          218,
+          221,
+          224,
+          217,
+          172,
+          255
+        ],
+        "hex": "CE D9 E0 E0 00 E1 D9 00 E7 E3 E1 D9 E8 DC DD E2 DB 00 DB E3 E3 D8 00 D5 D6 E3 E9 E8 FE ED E3 E9 E6 E7 D9 E0 DA AD 00 D1 DC D5 E8 B4 E7 00 ED E3 E9 E6 00 E4 E6 E3 DA DD E0 D9 AC FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 60,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_ExplainProfile": {
+      "label": "Text_ExplainProfile",
+      "line": 123,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "A profile is written using four\\nwords or phrases.\\pThere're plenty of words to choose\\nfrom for your profile.\\pThe words and phrases are placed\\nin several convenient groups.\\pFirst, choose a group, then choose\\na word or phrase.\\p…It's easier than it sounds.\\nWhy don't you try it?$",
+      "display_text": "A profile is written using four\nwords or phrases.\n\nThere're plenty of words to choose\nfrom for your profile.\n\nThe words and phrases are placed\nin several convenient groups.\n\nFirst, choose a group, then choose\na word or phrase.\n\n…It's easier than it sounds.\nWhy don't you try it?",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 275,
+        "bytes": [
+          187,
+          0,
+          228,
+          230,
+          227,
+          218,
+          221,
+          224,
+          217,
+          0,
+          221,
+          231,
+          0,
+          235,
+          230,
+          221,
+          232,
+          232,
+          217,
+          226,
+          0,
+          233,
+          231,
+          221,
+          226,
+          219,
+          0,
+          218,
+          227,
+          233,
+          230,
+          254,
+          235,
+          227,
+          230,
+          216,
+          231,
+          0,
+          227,
+          230,
+          0,
+          228,
+          220,
+          230,
+          213,
+          231,
+          217,
+          231,
+          173,
+          251,
+          206,
+          220,
+          217,
+          230,
+          217,
+          180,
+          230,
+          217,
+          0,
+          228,
+          224,
+          217,
+          226,
+          232,
+          237,
+          0,
+          227,
+          218,
+          0,
+          235,
+          227,
+          230,
+          216,
+          231,
+          0,
+          232,
+          227,
+          0,
+          215,
+          220,
+          227,
+          227,
+          231,
+          217,
+          254,
+          218,
+          230,
+          227,
+          225,
+          0,
+          218,
+          227,
+          230,
+          0,
+          237,
+          227,
+          233,
+          230,
+          0,
+          228,
+          230,
+          227,
+          218,
+          221,
+          224,
+          217,
+          173,
+          251,
+          206,
+          220,
+          217,
+          0,
+          235,
+          227,
+          230,
+          216,
+          231,
+          0,
+          213,
+          226,
+          216,
+          0,
+          228,
+          220,
+          230,
+          213,
+          231,
+          217,
+          231,
+          0,
+          213,
+          230,
+          217,
+          0,
+          228,
+          224,
+          213,
+          215,
+          217,
+          216,
+          254,
+          221,
+          226,
+          0,
+          231,
+          217,
+          234,
+          217,
+          230,
+          213,
+          224,
+          0,
+          215,
+          227,
+          226,
+          234,
+          217,
+          226,
+          221,
+          217,
+          226,
+          232,
+          0,
+          219,
+          230,
+          227,
+          233,
+          228,
+          231,
+          173,
+          251,
+          192,
+          221,
+          230,
+          231,
+          232,
+          184,
+          0,
+          215,
+          220,
+          227,
+          227,
+          231,
+          217,
+          0,
+          213,
+          0,
+          219,
+          230,
+          227,
+          233,
+          228,
+          184,
+          0,
+          232,
+          220,
+          217,
+          226,
+          0,
+          215,
+          220,
+          227,
+          227,
+          231,
+          217,
+          254,
+          213,
+          0,
+          235,
+          227,
+          230,
+          216,
+          0,
+          227,
+          230,
+          0,
+          228,
+          220,
+          230,
+          213,
+          231,
+          217,
+          173,
+          251,
+          176,
+          195,
+          232,
+          180,
+          231,
+          0,
+          217,
+          213,
+          231,
+          221,
+          217,
+          230,
+          0,
+          232,
+          220,
+          213,
+          226,
+          0,
+          221,
+          232,
+          0,
+          231,
+          227,
+          233,
+          226,
+          216,
+          231,
+          173,
+          254,
+          209,
+          220,
+          237,
+          0,
+          216,
+          227,
+          226,
+          180,
+          232,
+          0,
+          237,
+          227,
+          233,
+          0,
+          232,
+          230,
+          237,
+          0,
+          221,
+          232,
+          172,
+          255
+        ],
+        "hex": "BB 00 E4 E6 E3 DA DD E0 D9 00 DD E7 00 EB E6 DD E8 E8 D9 E2 00 E9 E7 DD E2 DB 00 DA E3 E9 E6 FE EB E3 E6 D8 E7 00 E3 E6 00 E4 DC E6 D5 E7 D9 E7 AD FB CE DC D9 E6 D9 B4 E6 D9 00 E4 E0 D9 E2 E8 ED 00 E3 DA 00 EB E3 E6 D8 E7 00 E8 E3 00 D7 DC E3 E3 E7 D9 FE DA E6 E3 E1 00 DA E3 E6 00 ED E3 E9 E6 00 E4 E6 E3 DA DD E0 D9 AD FB CE DC D9 00 EB E3 E6 D8 E7 00 D5 E2 D8 00 E4 DC E6 D5 E7 D9 E7 00 D5 E6 D9 00 E4 E0 D5 D7 D9 D8 FE DD E2 00 E7 D9 EA D9 E6 D5 E0 00 D7 E3 E2 EA D9 E2 DD D9 E2 E8 00 DB E6 E3 E9 E4 E7 AD FB C0 DD E6 E7 E8 B8 00 D7 DC E3 E3 E7 D9 00 D5 00 DB E6 E3 E9 E4 B8 00 E8 DC D9 E2 00 D7 DC E3 E3 E7 D9 FE D5 00 EB E3 E6 D8 00 E3 E6 00 E4 DC E6 D5 E7 D9 AD FB B0 C3 E8 B4 E7 00 D9 D5 E7 DD D9 E6 00 E8 DC D5 E2 00 DD E8 00 E7 E3 E9 E2 D8 E7 AD FE D1 DC ED 00 D8 E3 E2 B4 E8 00 ED E3 E9 00 E8 E6 ED 00 DD E8 AC FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 50,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 86,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 110,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 144,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 175,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 211,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 230,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 260,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 283,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_WhatsYourProfile": {
+      "label": "Text_WhatsYourProfile",
+      "line": 135,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "What's your profile?$",
+      "display_text": "What's your profile?",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          209,
+          220,
+          213,
+          232,
+          180,
+          231,
+          0,
+          237,
+          227,
+          233,
+          230,
+          0,
+          228,
+          230,
+          227,
+          218,
+          221,
+          224,
+          217,
+          172,
+          255
+        ],
+        "hex": "D1 DC D5 E8 B4 E7 00 ED E3 E9 E6 00 E4 E6 E3 DA DD E0 D9 AC FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_DontBeLikeThat": {
+      "label": "Text_DontBeLikeThat",
+      "line": 138,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "Aww… Don't be like that.\\nYou can tell me your profile.$",
+      "display_text": "Aww… Don't be like that.\nYou can tell me your profile.",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 55,
+        "bytes": [
+          187,
+          235,
+          235,
+          176,
+          0,
+          190,
+          227,
+          226,
+          180,
+          232,
+          0,
+          214,
+          217,
+          0,
+          224,
+          221,
+          223,
+          217,
+          0,
+          232,
+          220,
+          213,
+          232,
+          173,
+          254,
+          211,
+          227,
+          233,
+          0,
+          215,
+          213,
+          226,
+          0,
+          232,
+          217,
+          224,
+          224,
+          0,
+          225,
+          217,
+          0,
+          237,
+          227,
+          233,
+          230,
+          0,
+          228,
+          230,
+          227,
+          218,
+          221,
+          224,
+          217,
+          173,
+          255
+        ],
+        "hex": "BB EB EB B0 00 BE E3 E2 B4 E8 00 D6 D9 00 E0 DD DF D9 00 E8 DC D5 E8 AD FE D3 E3 E9 00 D7 D5 E2 00 E8 D9 E0 E0 00 E1 D9 00 ED E3 E9 E6 00 E4 E6 E3 DA DD E0 D9 AD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 55,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_DecidedNotTo": {
+      "label": "Text_DecidedNotTo",
+      "line": 142,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "Oh, you've decided not to?\\nYou're fickle, aren't you?$",
+      "display_text": "Oh, you've decided not to?\nYou're fickle, aren't you?",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          201,
+          220,
+          184,
+          0,
+          237,
+          227,
+          233,
+          180,
+          234,
+          217,
+          0,
+          216,
+          217,
+          215,
+          221,
+          216,
+          217,
+          216,
+          0,
+          226,
+          227,
+          232,
+          0,
+          232,
+          227,
+          172,
+          254,
+          211,
+          227,
+          233,
+          180,
+          230,
+          217,
+          0,
+          218,
+          221,
+          215,
+          223,
+          224,
+          217,
+          184,
+          0,
+          213,
+          230,
+          217,
+          226,
+          180,
+          232,
+          0,
+          237,
+          227,
+          233,
+          172,
+          255
+        ],
+        "hex": "C9 DC B8 00 ED E3 E9 B4 EA D9 00 D8 D9 D7 DD D8 D9 D8 00 E2 E3 E8 00 E8 E3 AC FE D3 E3 E9 B4 E6 D9 00 DA DD D7 DF E0 D9 B8 00 D5 E6 D9 E2 B4 E8 00 ED E3 E9 AC FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 54,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_HiWeMeetAgain": {
+      "label": "Text_HiWeMeetAgain",
+      "line": 146,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "Hi!\\nWe meet again!$",
+      "display_text": "Hi!\nWe meet again!",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          194,
+          221,
+          171,
+          254,
+          209,
+          217,
+          0,
+          225,
+          217,
+          217,
+          232,
+          0,
+          213,
+          219,
+          213,
+          221,
+          226,
+          171,
+          255
+        ],
+        "hex": "C2 DD AB FE D1 D9 00 E1 D9 D9 E8 00 D5 DB D5 DD E2 AB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_ChangeYourProfile": {
+      "label": "Text_ChangeYourProfile",
+      "line": 150,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "Would you like to change your\\nprofile?$",
+      "display_text": "Would you like to change your\nprofile?",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 39,
+        "bytes": [
+          209,
+          227,
+          233,
+          224,
+          216,
+          0,
+          237,
+          227,
+          233,
+          0,
+          224,
+          221,
+          223,
+          217,
+          0,
+          232,
+          227,
+          0,
+          215,
+          220,
+          213,
+          226,
+          219,
+          217,
+          0,
+          237,
+          227,
+          233,
+          230,
+          254,
+          228,
+          230,
+          227,
+          218,
+          221,
+          224,
+          217,
+          172,
+          255
+        ],
+        "hex": "D1 E3 E9 E0 D8 00 ED E3 E9 00 E0 DD DF D9 00 E8 E3 00 D7 DC D5 E2 DB D9 00 ED E3 E9 E6 FE E4 E6 E3 DA DD E0 D9 AC FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 39,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_WhatAreYouLikeNow": {
+      "label": "Text_WhatAreYouLikeNow",
+      "line": 154,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "What are you like now?\\nI'd really like to know.$",
+      "display_text": "What are you like now?\nI'd really like to know.",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          209,
+          220,
+          213,
+          232,
+          0,
+          213,
+          230,
+          217,
+          0,
+          237,
+          227,
+          233,
+          0,
+          224,
+          221,
+          223,
+          217,
+          0,
+          226,
+          227,
+          235,
+          172,
+          254,
+          195,
+          180,
+          216,
+          0,
+          230,
+          217,
+          213,
+          224,
+          224,
+          237,
+          0,
+          224,
+          221,
+          223,
+          217,
+          0,
+          232,
+          227,
+          0,
+          223,
+          226,
+          227,
+          235,
+          173,
+          255
+        ],
+        "hex": "D1 DC D5 E8 00 D5 E6 D9 00 ED E3 E9 00 E0 DD DF D9 00 E2 E3 EB AC FE C3 B4 D8 00 E6 D9 D5 E0 E0 ED 00 E0 DD DF D9 00 E8 E3 00 DF E2 E3 EB AD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_LikeProfileWayItIs": {
+      "label": "Text_LikeProfileWayItIs",
+      "line": 158,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "Okay, you like your profile the\\nway it is.\\pI think so, too.$",
+      "display_text": "Okay, you like your profile the\nway it is.\n\nI think so, too.",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 60,
+        "bytes": [
+          201,
+          223,
+          213,
+          237,
+          184,
+          0,
+          237,
+          227,
+          233,
+          0,
+          224,
+          221,
+          223,
+          217,
+          0,
+          237,
+          227,
+          233,
+          230,
+          0,
+          228,
+          230,
+          227,
+          218,
+          221,
+          224,
+          217,
+          0,
+          232,
+          220,
+          217,
+          254,
+          235,
+          213,
+          237,
+          0,
+          221,
+          232,
+          0,
+          221,
+          231,
+          173,
+          251,
+          195,
+          0,
+          232,
+          220,
+          221,
+          226,
+          223,
+          0,
+          231,
+          227,
+          184,
+          0,
+          232,
+          227,
+          227,
+          173,
+          255
+        ],
+        "hex": "C9 DF D5 ED B8 00 ED E3 E9 00 E0 DD DF D9 00 ED E3 E9 E6 00 E4 E6 E3 DA DD E0 D9 00 E8 DC D9 FE EB D5 ED 00 DD E8 00 DD E7 AD FB C3 00 E8 DC DD E2 DF 00 E7 E3 B8 00 E8 E3 E3 AD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 43,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 61,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_ProfileSaysSomethingAboutYou": {
+      "label": "Text_ProfileSaysSomethingAboutYou",
+      "line": 163,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "Hmhm…\\pYour profile really says something\\nabout who you are.\\pNow that I know you better, it \\nmakes us better friends than ever!$",
+      "display_text": "Hmhm…\n\nYour profile really says something\nabout who you are.\n\nNow that I know you better, it \nmakes us better friends than ever!",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 127,
+        "bytes": [
+          194,
+          225,
+          220,
+          225,
+          176,
+          251,
+          211,
+          227,
+          233,
+          230,
+          0,
+          228,
+          230,
+          227,
+          218,
+          221,
+          224,
+          217,
+          0,
+          230,
+          217,
+          213,
+          224,
+          224,
+          237,
+          0,
+          231,
+          213,
+          237,
+          231,
+          0,
+          231,
+          227,
+          225,
+          217,
+          232,
+          220,
+          221,
+          226,
+          219,
+          254,
+          213,
+          214,
+          227,
+          233,
+          232,
+          0,
+          235,
+          220,
+          227,
+          0,
+          237,
+          227,
+          233,
+          0,
+          213,
+          230,
+          217,
+          173,
+          251,
+          200,
+          227,
+          235,
+          0,
+          232,
+          220,
+          213,
+          232,
+          0,
+          195,
+          0,
+          223,
+          226,
+          227,
+          235,
+          0,
+          237,
+          227,
+          233,
+          0,
+          214,
+          217,
+          232,
+          232,
+          217,
+          230,
+          184,
+          0,
+          221,
+          232,
+          0,
+          254,
+          225,
+          213,
+          223,
+          217,
+          231,
+          0,
+          233,
+          231,
+          0,
+          214,
+          217,
+          232,
+          232,
+          217,
+          230,
+          0,
+          218,
+          230,
+          221,
+          217,
+          226,
+          216,
+          231,
+          0,
+          232,
+          220,
+          213,
+          226,
+          0,
+          217,
+          234,
+          217,
+          230,
+          171,
+          255
+        ],
+        "hex": "C2 E1 DC E1 B0 FB D3 E3 E9 E6 00 E4 E6 E3 DA DD E0 D9 00 E6 D9 D5 E0 E0 ED 00 E7 D5 ED E7 00 E7 E3 E1 D9 E8 DC DD E2 DB FE D5 D6 E3 E9 E8 00 EB DC E3 00 ED E3 E9 00 D5 E6 D9 AD FB C8 E3 EB 00 E8 DC D5 E8 00 C3 00 DF E2 E3 EB 00 ED E3 E9 00 D6 D9 E8 E8 D9 E6 B8 00 DD E8 00 FE E1 D5 DF D9 E7 00 E9 E7 00 D6 D9 E8 E8 D9 E6 00 DA E6 DD D9 E2 D8 E7 00 E8 DC D5 E2 00 D9 EA D9 E6 AB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 41,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 61,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 94,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 130,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_HeardThatBefore": {
+      "label": "Text_HeardThatBefore",
+      "line": 170,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "Oh, I've heard that before…\\pMy cousin, who lives far away,\\nalways used to say that, I think.$",
+      "display_text": "Oh, I've heard that before…\n\nMy cousin, who lives far away,\nalways used to say that, I think.",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 93,
+        "bytes": [
+          201,
+          220,
+          184,
+          0,
+          195,
+          180,
+          234,
+          217,
+          0,
+          220,
+          217,
+          213,
+          230,
+          216,
+          0,
+          232,
+          220,
+          213,
+          232,
+          0,
+          214,
+          217,
+          218,
+          227,
+          230,
+          217,
+          176,
+          251,
+          199,
+          237,
+          0,
+          215,
+          227,
+          233,
+          231,
+          221,
+          226,
+          184,
+          0,
+          235,
+          220,
+          227,
+          0,
+          224,
+          221,
+          234,
+          217,
+          231,
+          0,
+          218,
+          213,
+          230,
+          0,
+          213,
+          235,
+          213,
+          237,
+          184,
+          254,
+          213,
+          224,
+          235,
+          213,
+          237,
+          231,
+          0,
+          233,
+          231,
+          217,
+          216,
+          0,
+          232,
+          227,
+          0,
+          231,
+          213,
+          237,
+          0,
+          232,
+          220,
+          213,
+          232,
+          184,
+          0,
+          195,
+          0,
+          232,
+          220,
+          221,
+          226,
+          223,
+          173,
+          255
+        ],
+        "hex": "C9 DC B8 00 C3 B4 EA D9 00 DC D9 D5 E6 D8 00 E8 DC D5 E8 00 D6 D9 DA E3 E6 D9 B0 FB C7 ED 00 D7 E3 E9 E7 DD E2 B8 00 EB DC E3 00 E0 DD EA D9 E7 00 DA D5 E6 00 D5 EB D5 ED B8 FE D5 E0 EB D5 ED E7 00 E9 E7 D9 D8 00 E8 E3 00 E7 D5 ED 00 E8 DC D5 E8 B8 00 C3 00 E8 DC DD E2 DF AD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 27,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 59,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 94,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_TellMoreNextTime": {
+      "label": "Text_TellMoreNextTime",
+      "line": 175,
+      "source_file": "data/scripts/mystery_event_club.inc",
+      "raw_text": "Please tell me more about\\nyourself next time!$",
+      "display_text": "Please tell me more about\nyourself next time!",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          202,
+          224,
+          217,
+          213,
+          231,
+          217,
+          0,
+          232,
+          217,
+          224,
+          224,
+          0,
+          225,
+          217,
+          0,
+          225,
+          227,
+          230,
+          217,
+          0,
+          213,
+          214,
+          227,
+          233,
+          232,
+          254,
+          237,
+          227,
+          233,
+          230,
+          231,
+          217,
+          224,
+          218,
+          0,
+          226,
+          217,
+          236,
+          232,
+          0,
+          232,
+          221,
+          225,
+          217,
+          171,
+          255
+        ],
+        "hex": "CA E0 D9 D5 E7 D9 00 E8 D9 E0 E0 00 E1 D9 00 E1 E3 E6 D9 00 D5 D6 E3 E9 E8 FE ED E3 E9 E6 E7 D9 E0 DA 00 E2 D9 EC E8 00 E8 DD E1 D9 AB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 46,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "case": 7,
+      "closemessage": 2,
+      "delay": 2,
+      "faceplayer": 2,
+      "goto_if_eq": 4,
+      "goto_if_set": 1,
+      "multichoice": 2,
+      "setvar": 5,
+      "special": 2,
+      "switch": 2,
+      "waitmessage": 4
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 28,
+    "script_count": 15,
+    "movement_count": 0,
+    "text_count": 13,
+    "encoded_text_count": 13,
+    "text_source_byte_count": 1040,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 13
+    },
+    "orphan_instruction_count": 1,
+    "op_counts": {
+      "call": 1,
+      "case": 7,
+      "closemessage": 2,
+      "delay": 2,
+      "end": 15,
+      "faceplayer": 2,
+      "goto": 6,
+      "goto_if_eq": 4,
+      "goto_if_set": 1,
+      "lock": 2,
+      "message": 2,
+      "msgbox": 12,
+      "multichoice": 2,
+      "release": 6,
+      "setvar": 5,
+      "special": 2,
+      "switch": 2,
+      "waitmessage": 4
+    }
+  }
+}

@@ -1,0 +1,2930 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_new_game",
+    "script_files": [
+      "data/scripts/new_game.inc"
+    ]
+  },
+  "labels": {
+    "EventScript_ResetAllBerries": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/new_game.inc",
+      "instruction_count": 81
+    },
+    "EventScript_ResetAllMapFlags": {
+      "kind": "script",
+      "line": 115,
+      "source_file": "data/scripts/new_game.inc",
+      "instruction_count": 161
+    },
+    "EventScript_ResetAllMapFlagsFrlg": {
+      "kind": "script",
+      "line": 278,
+      "source_file": "data/scripts/new_game.inc",
+      "instruction_count": 51
+    }
+  },
+  "scripts": {
+    "EventScript_ResetAllBerries": {
+      "label": "EventScript_ResetAllBerries",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/new_game.inc",
+      "instructions": [
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_102_ORAN",
+            "ITEM_TO_BERRY(ITEM_ORAN_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 3,
+          "raw": "setberrytree BERRY_TREE_ROUTE_102_ORAN,  ITEM_TO_BERRY(ITEM_ORAN_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_102_PECHA",
+            "ITEM_TO_BERRY(ITEM_PECHA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 4,
+          "raw": "setberrytree BERRY_TREE_ROUTE_102_PECHA, ITEM_TO_BERRY(ITEM_PECHA_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_104_ORAN_2",
+            "ITEM_TO_BERRY(ITEM_ORAN_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 7,
+          "raw": "setberrytree BERRY_TREE_ROUTE_104_ORAN_2,  ITEM_TO_BERRY(ITEM_ORAN_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_104_PECHA",
+            "ITEM_TO_BERRY(ITEM_PECHA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 8,
+          "raw": "setberrytree BERRY_TREE_ROUTE_104_PECHA,   ITEM_TO_BERRY(ITEM_PECHA_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_104_ORAN_1",
+            "ITEM_TO_BERRY(ITEM_ORAN_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 9,
+          "raw": "setberrytree BERRY_TREE_ROUTE_104_ORAN_1,  ITEM_TO_BERRY(ITEM_ORAN_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_104_CHERI_2",
+            "ITEM_TO_BERRY(ITEM_CHERI_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 10,
+          "raw": "setberrytree BERRY_TREE_ROUTE_104_CHERI_2, ITEM_TO_BERRY(ITEM_CHERI_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_104_CHERI_1",
+            "ITEM_TO_BERRY(ITEM_CHERI_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 11,
+          "raw": "setberrytree BERRY_TREE_ROUTE_104_CHERI_1, ITEM_TO_BERRY(ITEM_CHERI_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_104_LEPPA",
+            "ITEM_TO_BERRY(ITEM_LEPPA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 12,
+          "raw": "setberrytree BERRY_TREE_ROUTE_104_LEPPA,   ITEM_TO_BERRY(ITEM_LEPPA_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_116_PINAP_1",
+            "ITEM_TO_BERRY(ITEM_PINAP_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 15,
+          "raw": "setberrytree BERRY_TREE_ROUTE_116_PINAP_1,  ITEM_TO_BERRY(ITEM_PINAP_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_116_CHESTO_1",
+            "ITEM_TO_BERRY(ITEM_CHESTO_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 16,
+          "raw": "setberrytree BERRY_TREE_ROUTE_116_CHESTO_1, ITEM_TO_BERRY(ITEM_CHESTO_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_116_CHESTO_2",
+            "ITEM_TO_BERRY(ITEM_CHESTO_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 17,
+          "raw": "setberrytree BERRY_TREE_ROUTE_116_CHESTO_2, ITEM_TO_BERRY(ITEM_CHESTO_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_116_PINAP_2",
+            "ITEM_TO_BERRY(ITEM_PINAP_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 18,
+          "raw": "setberrytree BERRY_TREE_ROUTE_116_PINAP_2,  ITEM_TO_BERRY(ITEM_PINAP_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_115_KELPSY_1",
+            "ITEM_TO_BERRY(ITEM_KELPSY_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 21,
+          "raw": "setberrytree BERRY_TREE_ROUTE_115_KELPSY_1, ITEM_TO_BERRY(ITEM_KELPSY_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_115_KELPSY_2",
+            "ITEM_TO_BERRY(ITEM_KELPSY_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 22,
+          "raw": "setberrytree BERRY_TREE_ROUTE_115_KELPSY_2, ITEM_TO_BERRY(ITEM_KELPSY_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_115_KELPSY_3",
+            "ITEM_TO_BERRY(ITEM_KELPSY_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 23,
+          "raw": "setberrytree BERRY_TREE_ROUTE_115_KELPSY_3, ITEM_TO_BERRY(ITEM_KELPSY_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_115_BLUK_1",
+            "ITEM_TO_BERRY(ITEM_BLUK_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 24,
+          "raw": "setberrytree BERRY_TREE_ROUTE_115_BLUK_1,   ITEM_TO_BERRY(ITEM_BLUK_BERRY),   BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_115_BLUK_2",
+            "ITEM_TO_BERRY(ITEM_BLUK_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 25,
+          "raw": "setberrytree BERRY_TREE_ROUTE_115_BLUK_2,   ITEM_TO_BERRY(ITEM_BLUK_BERRY),   BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_103_CHERI_1",
+            "ITEM_TO_BERRY(ITEM_CHERI_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 28,
+          "raw": "setberrytree BERRY_TREE_ROUTE_103_CHERI_1, ITEM_TO_BERRY(ITEM_CHERI_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_103_LEPPA",
+            "ITEM_TO_BERRY(ITEM_LEPPA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 29,
+          "raw": "setberrytree BERRY_TREE_ROUTE_103_LEPPA,   ITEM_TO_BERRY(ITEM_LEPPA_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_103_CHERI_2",
+            "ITEM_TO_BERRY(ITEM_CHERI_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 30,
+          "raw": "setberrytree BERRY_TREE_ROUTE_103_CHERI_2, ITEM_TO_BERRY(ITEM_CHERI_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_110_NANAB_1",
+            "ITEM_TO_BERRY(ITEM_NANAB_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 33,
+          "raw": "setberrytree BERRY_TREE_ROUTE_110_NANAB_1, ITEM_TO_BERRY(ITEM_NANAB_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_110_NANAB_2",
+            "ITEM_TO_BERRY(ITEM_NANAB_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 34,
+          "raw": "setberrytree BERRY_TREE_ROUTE_110_NANAB_2, ITEM_TO_BERRY(ITEM_NANAB_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_110_NANAB_3",
+            "ITEM_TO_BERRY(ITEM_NANAB_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 35,
+          "raw": "setberrytree BERRY_TREE_ROUTE_110_NANAB_3, ITEM_TO_BERRY(ITEM_NANAB_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_117_WEPEAR_3",
+            "ITEM_TO_BERRY(ITEM_WEPEAR_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 38,
+          "raw": "setberrytree BERRY_TREE_ROUTE_117_WEPEAR_3, ITEM_TO_BERRY(ITEM_WEPEAR_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_117_WEPEAR_2",
+            "ITEM_TO_BERRY(ITEM_WEPEAR_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 39,
+          "raw": "setberrytree BERRY_TREE_ROUTE_117_WEPEAR_2, ITEM_TO_BERRY(ITEM_WEPEAR_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_117_WEPEAR_1",
+            "ITEM_TO_BERRY(ITEM_WEPEAR_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 40,
+          "raw": "setberrytree BERRY_TREE_ROUTE_117_WEPEAR_1, ITEM_TO_BERRY(ITEM_WEPEAR_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_112_RAWST_2",
+            "ITEM_TO_BERRY(ITEM_RAWST_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 43,
+          "raw": "setberrytree BERRY_TREE_ROUTE_112_RAWST_2, ITEM_TO_BERRY(ITEM_RAWST_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_112_PECHA_2",
+            "ITEM_TO_BERRY(ITEM_PECHA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 44,
+          "raw": "setberrytree BERRY_TREE_ROUTE_112_PECHA_2, ITEM_TO_BERRY(ITEM_PECHA_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_112_PECHA_1",
+            "ITEM_TO_BERRY(ITEM_PECHA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 45,
+          "raw": "setberrytree BERRY_TREE_ROUTE_112_PECHA_1, ITEM_TO_BERRY(ITEM_PECHA_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_112_RAWST_1",
+            "ITEM_TO_BERRY(ITEM_RAWST_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 46,
+          "raw": "setberrytree BERRY_TREE_ROUTE_112_RAWST_1, ITEM_TO_BERRY(ITEM_RAWST_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_111_RAZZ_1",
+            "ITEM_TO_BERRY(ITEM_RAZZ_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 49,
+          "raw": "setberrytree BERRY_TREE_ROUTE_111_RAZZ_1, ITEM_TO_BERRY(ITEM_RAZZ_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_111_RAZZ_2",
+            "ITEM_TO_BERRY(ITEM_RAZZ_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 50,
+          "raw": "setberrytree BERRY_TREE_ROUTE_111_RAZZ_2, ITEM_TO_BERRY(ITEM_RAZZ_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_111_ORAN_1",
+            "ITEM_TO_BERRY(ITEM_ORAN_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 51,
+          "raw": "setberrytree BERRY_TREE_ROUTE_111_ORAN_1, ITEM_TO_BERRY(ITEM_ORAN_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_111_ORAN_2",
+            "ITEM_TO_BERRY(ITEM_ORAN_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 52,
+          "raw": "setberrytree BERRY_TREE_ROUTE_111_ORAN_2, ITEM_TO_BERRY(ITEM_ORAN_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_114_PERSIM_2",
+            "ITEM_TO_BERRY(ITEM_PERSIM_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 55,
+          "raw": "setberrytree BERRY_TREE_ROUTE_114_PERSIM_2, ITEM_TO_BERRY(ITEM_PERSIM_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_114_PERSIM_3",
+            "ITEM_TO_BERRY(ITEM_PERSIM_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 56,
+          "raw": "setberrytree BERRY_TREE_ROUTE_114_PERSIM_3, ITEM_TO_BERRY(ITEM_PERSIM_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_114_PERSIM_1",
+            "ITEM_TO_BERRY(ITEM_PERSIM_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 57,
+          "raw": "setberrytree BERRY_TREE_ROUTE_114_PERSIM_1, ITEM_TO_BERRY(ITEM_PERSIM_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_118_SITRUS_1",
+            "ITEM_TO_BERRY(ITEM_SITRUS_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 60,
+          "raw": "setberrytree BERRY_TREE_ROUTE_118_SITRUS_1, ITEM_TO_BERRY(ITEM_SITRUS_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_118_SITRUS_2",
+            "ITEM_TO_BERRY(ITEM_SITRUS_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 61,
+          "raw": "setberrytree BERRY_TREE_ROUTE_118_SITRUS_2, ITEM_TO_BERRY(ITEM_SITRUS_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_119_POMEG_1",
+            "ITEM_TO_BERRY(ITEM_POMEG_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 64,
+          "raw": "setberrytree BERRY_TREE_ROUTE_119_POMEG_1,  ITEM_TO_BERRY(ITEM_POMEG_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_119_POMEG_2",
+            "ITEM_TO_BERRY(ITEM_POMEG_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 65,
+          "raw": "setberrytree BERRY_TREE_ROUTE_119_POMEG_2,  ITEM_TO_BERRY(ITEM_POMEG_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_119_POMEG_3",
+            "ITEM_TO_BERRY(ITEM_POMEG_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 66,
+          "raw": "setberrytree BERRY_TREE_ROUTE_119_POMEG_3,  ITEM_TO_BERRY(ITEM_POMEG_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_119_HONDEW_1",
+            "ITEM_TO_BERRY(ITEM_HONDEW_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 67,
+          "raw": "setberrytree BERRY_TREE_ROUTE_119_HONDEW_1, ITEM_TO_BERRY(ITEM_HONDEW_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_119_HONDEW_2",
+            "ITEM_TO_BERRY(ITEM_HONDEW_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 68,
+          "raw": "setberrytree BERRY_TREE_ROUTE_119_HONDEW_2, ITEM_TO_BERRY(ITEM_HONDEW_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_119_SITRUS",
+            "ITEM_TO_BERRY(ITEM_SITRUS_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 69,
+          "raw": "setberrytree BERRY_TREE_ROUTE_119_SITRUS,   ITEM_TO_BERRY(ITEM_SITRUS_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_119_LEPPA",
+            "ITEM_TO_BERRY(ITEM_LEPPA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 70,
+          "raw": "setberrytree BERRY_TREE_ROUTE_119_LEPPA,    ITEM_TO_BERRY(ITEM_LEPPA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_120_ASPEAR_1",
+            "ITEM_TO_BERRY(ITEM_ASPEAR_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 73,
+          "raw": "setberrytree BERRY_TREE_ROUTE_120_ASPEAR_1, ITEM_TO_BERRY(ITEM_ASPEAR_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_120_ASPEAR_2",
+            "ITEM_TO_BERRY(ITEM_ASPEAR_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 74,
+          "raw": "setberrytree BERRY_TREE_ROUTE_120_ASPEAR_2, ITEM_TO_BERRY(ITEM_ASPEAR_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_120_ASPEAR_3",
+            "ITEM_TO_BERRY(ITEM_ASPEAR_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 75,
+          "raw": "setberrytree BERRY_TREE_ROUTE_120_ASPEAR_3, ITEM_TO_BERRY(ITEM_ASPEAR_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_120_PECHA_1",
+            "ITEM_TO_BERRY(ITEM_PECHA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 76,
+          "raw": "setberrytree BERRY_TREE_ROUTE_120_PECHA_1,  ITEM_TO_BERRY(ITEM_PECHA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_120_PECHA_2",
+            "ITEM_TO_BERRY(ITEM_PECHA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 77,
+          "raw": "setberrytree BERRY_TREE_ROUTE_120_PECHA_2,  ITEM_TO_BERRY(ITEM_PECHA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_120_PECHA_3",
+            "ITEM_TO_BERRY(ITEM_PECHA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 78,
+          "raw": "setberrytree BERRY_TREE_ROUTE_120_PECHA_3,  ITEM_TO_BERRY(ITEM_PECHA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_120_WEPEAR",
+            "ITEM_TO_BERRY(ITEM_WEPEAR_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 79,
+          "raw": "setberrytree BERRY_TREE_ROUTE_120_WEPEAR,   ITEM_TO_BERRY(ITEM_WEPEAR_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_120_PINAP",
+            "ITEM_TO_BERRY(ITEM_PINAP_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 80,
+          "raw": "setberrytree BERRY_TREE_ROUTE_120_PINAP,    ITEM_TO_BERRY(ITEM_PINAP_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_120_NANAB",
+            "ITEM_TO_BERRY(ITEM_NANAB_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 81,
+          "raw": "setberrytree BERRY_TREE_ROUTE_120_NANAB,    ITEM_TO_BERRY(ITEM_NANAB_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_120_RAZZ",
+            "ITEM_TO_BERRY(ITEM_RAZZ_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 82,
+          "raw": "setberrytree BERRY_TREE_ROUTE_120_RAZZ,     ITEM_TO_BERRY(ITEM_RAZZ_BERRY),   BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_121_PERSIM",
+            "ITEM_TO_BERRY(ITEM_PERSIM_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 85,
+          "raw": "setberrytree BERRY_TREE_ROUTE_121_PERSIM,  ITEM_TO_BERRY(ITEM_PERSIM_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_121_ASPEAR",
+            "ITEM_TO_BERRY(ITEM_ASPEAR_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 86,
+          "raw": "setberrytree BERRY_TREE_ROUTE_121_ASPEAR,  ITEM_TO_BERRY(ITEM_ASPEAR_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_121_RAWST",
+            "ITEM_TO_BERRY(ITEM_RAWST_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 87,
+          "raw": "setberrytree BERRY_TREE_ROUTE_121_RAWST,   ITEM_TO_BERRY(ITEM_RAWST_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_121_CHESTO",
+            "ITEM_TO_BERRY(ITEM_CHESTO_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 88,
+          "raw": "setberrytree BERRY_TREE_ROUTE_121_CHESTO,  ITEM_TO_BERRY(ITEM_CHESTO_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_121_NANAB_1",
+            "ITEM_TO_BERRY(ITEM_NANAB_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 89,
+          "raw": "setberrytree BERRY_TREE_ROUTE_121_NANAB_1, ITEM_TO_BERRY(ITEM_NANAB_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_121_NANAB_2",
+            "ITEM_TO_BERRY(ITEM_NANAB_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 90,
+          "raw": "setberrytree BERRY_TREE_ROUTE_121_NANAB_2, ITEM_TO_BERRY(ITEM_NANAB_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_LEPPA_1",
+            "ITEM_TO_BERRY(ITEM_LEPPA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 93,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_LEPPA_1,  ITEM_TO_BERRY(ITEM_LEPPA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_LEPPA_2",
+            "ITEM_TO_BERRY(ITEM_LEPPA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 94,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_LEPPA_2,  ITEM_TO_BERRY(ITEM_LEPPA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_POMEG_3",
+            "ITEM_TO_BERRY(ITEM_POMEG_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 95,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_POMEG_3,  ITEM_TO_BERRY(ITEM_POMEG_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_POMEG_4",
+            "ITEM_TO_BERRY(ITEM_POMEG_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 96,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_POMEG_4,  ITEM_TO_BERRY(ITEM_POMEG_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_GREPA_1",
+            "ITEM_TO_BERRY(ITEM_GREPA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 97,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_GREPA_1,  ITEM_TO_BERRY(ITEM_GREPA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_GREPA_2",
+            "ITEM_TO_BERRY(ITEM_GREPA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 98,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_GREPA_2,  ITEM_TO_BERRY(ITEM_GREPA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_QUALOT_4",
+            "ITEM_TO_BERRY(ITEM_QUALOT_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 99,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_QUALOT_4, ITEM_TO_BERRY(ITEM_QUALOT_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_QUALOT_1",
+            "ITEM_TO_BERRY(ITEM_QUALOT_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 100,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_QUALOT_1, ITEM_TO_BERRY(ITEM_QUALOT_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_POMEG_1",
+            "ITEM_TO_BERRY(ITEM_POMEG_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 101,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_POMEG_1,  ITEM_TO_BERRY(ITEM_POMEG_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_POMEG_2",
+            "ITEM_TO_BERRY(ITEM_POMEG_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 102,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_POMEG_2,  ITEM_TO_BERRY(ITEM_POMEG_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_GREPA_3",
+            "ITEM_TO_BERRY(ITEM_GREPA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 103,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_GREPA_3,  ITEM_TO_BERRY(ITEM_GREPA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_GREPA_4",
+            "ITEM_TO_BERRY(ITEM_GREPA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 104,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_GREPA_4,  ITEM_TO_BERRY(ITEM_GREPA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_QUALOT_2",
+            "ITEM_TO_BERRY(ITEM_QUALOT_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 105,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_QUALOT_2, ITEM_TO_BERRY(ITEM_QUALOT_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_QUALOT_3",
+            "ITEM_TO_BERRY(ITEM_QUALOT_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 106,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_QUALOT_3, ITEM_TO_BERRY(ITEM_QUALOT_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_PECHA",
+            "ITEM_TO_BERRY(ITEM_PECHA_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 107,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_PECHA,    ITEM_TO_BERRY(ITEM_PECHA_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_SITRUS",
+            "ITEM_TO_BERRY(ITEM_SITRUS_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 108,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_SITRUS,   ITEM_TO_BERRY(ITEM_SITRUS_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_123_RAWST",
+            "ITEM_TO_BERRY(ITEM_RAWST_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 109,
+          "raw": "setberrytree BERRY_TREE_ROUTE_123_RAWST,    ITEM_TO_BERRY(ITEM_RAWST_BERRY),  BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setberrytree",
+          "args": [
+            "BERRY_TREE_ROUTE_130_LIECHI",
+            "ITEM_TO_BERRY(ITEM_LIECHI_BERRY)",
+            "BERRY_STAGE_BERRIES"
+          ],
+          "line": 112,
+          "raw": "setberrytree BERRY_TREE_ROUTE_130_LIECHI, ITEM_TO_BERRY(ITEM_LIECHI_BERRY), BERRY_STAGE_BERRIES",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 113,
+          "raw": "return",
+          "source_file": "data/scripts/new_game.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_ResetAllMapFlags": {
+      "label": "EventScript_ResetAllMapFlags",
+      "kind": "script",
+      "line": 115,
+      "source_file": "data/scripts/new_game.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_CONTEST_POKE_BALL"
+          ],
+          "line": 116,
+          "raw": "setflag FLAG_HIDE_CONTEST_POKE_BALL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE"
+          ],
+          "line": 117,
+          "raw": "setflag FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE"
+          ],
+          "line": 118,
+          "raw": "setflag FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE"
+          ],
+          "line": 119,
+          "raw": "setflag FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH"
+          ],
+          "line": 120,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL"
+          ],
+          "line": 121,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CYNDAQUIL"
+          ],
+          "line": 122,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CYNDAQUIL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_TOTODILE"
+          ],
+          "line": 123,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_TOTODILE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA"
+          ],
+          "line": 124,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_PETALBURG_CITY_WALLY"
+          ],
+          "line": 125,
+          "raw": "setflag FLAG_HIDE_PETALBURG_CITY_WALLY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_UNKNOWN_0x363"
+          ],
+          "line": 126,
+          "raw": "setflag FLAG_UNKNOWN_0x363",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT"
+          ],
+          "line": 127,
+          "raw": "setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1"
+          ],
+          "line": 128,
+          "raw": "setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RUSTBORO_CITY_RIVAL"
+          ],
+          "line": 129,
+          "raw": "setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RUSTBORO_CITY_SCIENTIST"
+          ],
+          "line": 130,
+          "raw": "setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN"
+          ],
+          "line": 131,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY"
+          ],
+          "line": 132,
+          "raw": "setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_BRINEYS_HOUSE_PEEKO"
+          ],
+          "line": 133,
+          "raw": "setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_104_MR_BRINEY"
+          ],
+          "line": 134,
+          "raw": "setflag FLAG_HIDE_ROUTE_104_MR_BRINEY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN"
+          ],
+          "line": 135,
+          "raw": "setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_109_MR_BRINEY"
+          ],
+          "line": 136,
+          "raw": "setflag FLAG_HIDE_ROUTE_109_MR_BRINEY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN"
+          ],
+          "line": 137,
+          "raw": "setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT"
+          ],
+          "line": 138,
+          "raw": "setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_104_WHITE_HERB_FLORIST"
+          ],
+          "line": 139,
+          "raw": "setflag FLAG_HIDE_ROUTE_104_WHITE_HERB_FLORIST",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_110_BIRCH"
+          ],
+          "line": 140,
+          "raw": "setflag FLAG_HIDE_ROUTE_110_BIRCH",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_1"
+          ],
+          "line": 141,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_1",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_2"
+          ],
+          "line": 142,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_2",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1"
+          ],
+          "line": 143,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2"
+          ],
+          "line": 144,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_3"
+          ],
+          "line": 145,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_3",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4"
+          ],
+          "line": 146,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS"
+          ],
+          "line": 147,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_PETALBURG_GYM_GREETER"
+          ],
+          "line": 148,
+          "raw": "setflag FLAG_HIDE_PETALBURG_GYM_GREETER",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD"
+          ],
+          "line": 149,
+          "raw": "setflag FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_BRENDAN"
+          ],
+          "line": 150,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_BRENDAN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MAY"
+          ],
+          "line": 151,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MAY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM"
+          ],
+          "line": 152,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM"
+          ],
+          "line": 153,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_PLAYERS_HOUSE_DAD"
+          ],
+          "line": 154,
+          "raw": "setflag FLAG_HIDE_PLAYERS_HOUSE_DAD",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL"
+          ],
+          "line": 155,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_SWABLU_DOLL"
+          ],
+          "line": 156,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_SWABLU_DOLL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_FANCLUB_OLD_LADY"
+          ],
+          "line": 157,
+          "raw": "setflag FLAG_HIDE_FANCLUB_OLD_LADY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_FANCLUB_BOY"
+          ],
+          "line": 158,
+          "raw": "setflag FLAG_HIDE_FANCLUB_BOY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_FANCLUB_LITTLE_BOY"
+          ],
+          "line": 159,
+          "raw": "setflag FLAG_HIDE_FANCLUB_LITTLE_BOY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_FANCLUB_LADY"
+          ],
+          "line": 160,
+          "raw": "setflag FLAG_HIDE_FANCLUB_LADY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER"
+          ],
+          "line": 161,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1"
+          ],
+          "line": 162,
+          "raw": "setflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1"
+          ],
+          "line": 163,
+          "raw": "setflag FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2"
+          ],
+          "line": 164,
+          "raw": "setflag FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2"
+          ],
+          "line": 165,
+          "raw": "setflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2"
+          ],
+          "line": 166,
+          "raw": "setflag FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3"
+          ],
+          "line": 167,
+          "raw": "setflag FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3"
+          ],
+          "line": 168,
+          "raw": "setflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_CONTEST_REPORTER"
+          ],
+          "line": 169,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_CONTEST_REPORTER",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER"
+          ],
+          "line": 170,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY"
+          ],
+          "line": 171,
+          "raw": "setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND"
+          ],
+          "line": 172,
+          "raw": "setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE"
+          ],
+          "line": 173,
+          "raw": "setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA"
+          ],
+          "line": 174,
+          "raw": "setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_VERDANTURF_TOWN_SCOTT"
+          ],
+          "line": 175,
+          "raw": "setflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD"
+          ],
+          "line": 176,
+          "raw": "setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_PETALBURG_GYM_WALLY"
+          ],
+          "line": 177,
+          "raw": "setflag FLAG_HIDE_PETALBURG_GYM_WALLY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY"
+          ],
+          "line": 178,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE"
+          ],
+          "line": 179,
+          "raw": "setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAXIE"
+          ],
+          "line": 180,
+          "raw": "setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAXIE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS"
+          ],
+          "line": 181,
+          "raw": "setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE"
+          ],
+          "line": 182,
+          "raw": "setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON"
+          ],
+          "line": 183,
+          "raw": "setflag FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN"
+          ],
+          "line": 184,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT"
+          ],
+          "line": 185,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE"
+          ],
+          "line": 186,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL"
+          ],
+          "line": 187,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_HARBOR_SSTIDAL"
+          ],
+          "line": 188,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_HARBOR_SSTIDAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY"
+          ],
+          "line": 189,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN"
+          ],
+          "line": 190,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW"
+          ],
+          "line": 191,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_119_RIVAL"
+          ],
+          "line": 192,
+          "raw": "setflag FLAG_HIDE_ROUTE_119_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_119_SCOTT"
+          ],
+          "line": 193,
+          "raw": "setflag FLAG_HIDE_ROUTE_119_SCOTT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN"
+          ],
+          "line": 194,
+          "raw": "setflag FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE"
+          ],
+          "line": 195,
+          "raw": "setflag FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LANETTES_HOUSE_LANETTE"
+          ],
+          "line": 196,
+          "raw": "setflag FLAG_HIDE_LANETTES_HOUSE_LANETTE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_TRICK_HOUSE_ENTRANCE_MAN"
+          ],
+          "line": 197,
+          "raw": "setflag FLAG_HIDE_TRICK_HOUSE_ENTRANCE_MAN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MT_CHIMNEY_TRAINERS"
+          ],
+          "line": 198,
+          "raw": "setflag FLAG_HIDE_MT_CHIMNEY_TRAINERS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY"
+          ],
+          "line": 199,
+          "raw": "setflag FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RUSTURF_TUNNEL_BRINEY"
+          ],
+          "line": 200,
+          "raw": "setflag FLAG_HIDE_RUSTURF_TUNNEL_BRINEY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_116_MR_BRINEY"
+          ],
+          "line": 201,
+          "raw": "setflag FLAG_HIDE_ROUTE_116_MR_BRINEY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RUSTURF_TUNNEL_PEEKO"
+          ],
+          "line": 202,
+          "raw": "setflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT"
+          ],
+          "line": 203,
+          "raw": "setflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND"
+          ],
+          "line": 204,
+          "raw": "setflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RUSTURF_TUNNEL_WANDA"
+          ],
+          "line": 205,
+          "raw": "setflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_ARCHIE"
+          ],
+          "line": 206,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_ARCHIE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_1"
+          ],
+          "line": 207,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_1",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_2"
+          ],
+          "line": 208,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_2",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION"
+          ],
+          "line": 209,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_BATTLE_TOWER_OPPONENT"
+          ],
+          "line": 210,
+          "raw": "setflag FLAG_HIDE_BATTLE_TOWER_OPPONENT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE"
+          ],
+          "line": 211,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_BEDROOM_MOM"
+          ],
+          "line": 212,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_BEDROOM_MOM",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_RIVAL"
+          ],
+          "line": 213,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCH"
+          ],
+          "line": 214,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS"
+          ],
+          "line": 215,
+          "raw": "setflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380"
+          ],
+          "line": 216,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_101_BIRCH"
+          ],
+          "line": 217,
+          "raw": "setflag FLAG_HIDE_ROUTE_101_BIRCH",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_103_BIRCH"
+          ],
+          "line": 218,
+          "raw": "setflag FLAG_HIDE_ROUTE_103_BIRCH",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR"
+          ],
+          "line": 219,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_HARBOR_EVENT_TICKET_TAKER"
+          ],
+          "line": 220,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_HARBOR_EVENT_TICKET_TAKER",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SOUTHERN_ISLAND_EON_STONE"
+          ],
+          "line": 221,
+          "raw": "setflag FLAG_HIDE_SOUTHERN_ISLAND_EON_STONE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SOUTHERN_ISLAND_UNCHOSEN_EON_DUO_MON"
+          ],
+          "line": 222,
+          "raw": "setflag FLAG_HIDE_SOUTHERN_ISLAND_UNCHOSEN_EON_DUO_MON",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_UNKNOWN_0x393"
+          ],
+          "line": 223,
+          "raw": "setflag FLAG_UNKNOWN_0x393",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE"
+          ],
+          "line": 224,
+          "raw": "setflag FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MAUVILLE_CITY_WATTSON"
+          ],
+          "line": 225,
+          "raw": "setflag FLAG_HIDE_MAUVILLE_CITY_WATTSON",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MAUVILLE_CITY_SCOTT"
+          ],
+          "line": 226,
+          "raw": "setflag FLAG_HIDE_MAUVILLE_CITY_SCOTT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_CHAMPIONS_ROOM_RIVAL"
+          ],
+          "line": 227,
+          "raw": "setflag FLAG_HIDE_CHAMPIONS_ROOM_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_CHAMPIONS_ROOM_BIRCH"
+          ],
+          "line": 228,
+          "raw": "setflag FLAG_HIDE_CHAMPIONS_ROOM_BIRCH",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_110_RIVAL_ON_BIKE"
+          ],
+          "line": 229,
+          "raw": "setflag FLAG_HIDE_ROUTE_110_RIVAL_ON_BIKE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE"
+          ],
+          "line": 230,
+          "raw": "setflag FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_104_RIVAL"
+          ],
+          "line": 231,
+          "raw": "setflag FLAG_HIDE_ROUTE_104_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_MOTEL_GAME_DESIGNERS"
+          ],
+          "line": 232,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_MOTEL_GAME_DESIGNERS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LAVARIDGE_TOWN_RIVAL"
+          ],
+          "line": 233,
+          "raw": "setflag FLAG_HIDE_LAVARIDGE_TOWN_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE"
+          ],
+          "line": 234,
+          "raw": "setflag FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MOSSDEEP_CITY_HOUSE_2_WINGULL"
+          ],
+          "line": 235,
+          "raw": "setflag FLAG_HIDE_MOSSDEEP_CITY_HOUSE_2_WINGULL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_METEOR_FALLS_TEAM_AQUA"
+          ],
+          "line": 236,
+          "raw": "setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN"
+          ],
+          "line": 237,
+          "raw": "setflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO"
+          ],
+          "line": 238,
+          "raw": "setflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M"
+          ],
+          "line": 239,
+          "raw": "setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_128_STEVEN"
+          ],
+          "line": 240,
+          "raw": "setflag FLAG_HIDE_ROUTE_128_STEVEN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_128_ARCHIE"
+          ],
+          "line": 241,
+          "raw": "setflag FLAG_HIDE_ROUTE_128_ARCHIE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_128_MAXIE"
+          ],
+          "line": 242,
+          "raw": "setflag FLAG_HIDE_ROUTE_128_MAXIE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE"
+          ],
+          "line": 243,
+          "raw": "setflag FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN"
+          ],
+          "line": 244,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_SCOTT"
+          ],
+          "line": 245,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY"
+          ],
+          "line": 246,
+          "raw": "setflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY"
+          ],
+          "line": 247,
+          "raw": "setflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY"
+          ],
+          "line": 248,
+          "raw": "setflag FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN"
+          ],
+          "line": 249,
+          "raw": "setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL"
+          ],
+          "line": 250,
+          "raw": "setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY"
+          ],
+          "line": 251,
+          "raw": "setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_OLDALE_TOWN_RIVAL"
+          ],
+          "line": 252,
+          "raw": "setflag FLAG_HIDE_OLDALE_TOWN_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_101_BOY"
+          ],
+          "line": 253,
+          "raw": "setflag FLAG_HIDE_ROUTE_101_BOY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_PETALBURG_CITY_SCOTT"
+          ],
+          "line": 254,
+          "raw": "setflag FLAG_HIDE_PETALBURG_CITY_SCOTT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA"
+          ],
+          "line": 255,
+          "raw": "setflag FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE"
+          ],
+          "line": 256,
+          "raw": "setflag FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON"
+          ],
+          "line": 257,
+          "raw": "setflag FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS"
+          ],
+          "line": 258,
+          "raw": "setflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE"
+          ],
+          "line": 259,
+          "raw": "setflag FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE"
+          ],
+          "line": 260,
+          "raw": "setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_111_DESERT_FOSSIL"
+          ],
+          "line": 261,
+          "raw": "setflag FLAG_HIDE_ROUTE_111_DESERT_FOSSIL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_111_PLAYER_DESCENT"
+          ],
+          "line": 262,
+          "raw": "setflag FLAG_HIDE_ROUTE_111_PLAYER_DESCENT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_DESERT_UNDERPASS_FOSSIL"
+          ],
+          "line": 263,
+          "raw": "setflag FLAG_HIDE_DESERT_UNDERPASS_FOSSIL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA"
+          ],
+          "line": 264,
+          "raw": "setflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA"
+          ],
+          "line": 265,
+          "raw": "setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA"
+          ],
+          "line": 266,
+          "raw": "setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN"
+          ],
+          "line": 267,
+          "raw": "setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER"
+          ],
+          "line": 268,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_DEOXYS"
+          ],
+          "line": 269,
+          "raw": "setflag FLAG_HIDE_DEOXYS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION"
+          ],
+          "line": 270,
+          "raw": "setflag FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT"
+          ],
+          "line": 271,
+          "raw": "setflag FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT"
+          ],
+          "line": 272,
+          "raw": "setflag FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SKY_PILLAR_WALLACE"
+          ],
+          "line": 273,
+          "raw": "setflag FLAG_HIDE_SKY_PILLAR_WALLACE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL"
+          ],
+          "line": 274,
+          "raw": "setflag FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_ResetAllBerries"
+          ],
+          "line": 275,
+          "raw": "call EventScript_ResetAllBerries",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 276,
+          "raw": "end",
+          "source_file": "data/scripts/new_game.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_ResetAllBerries",
+          "line": 275
+        }
+      ]
+    },
+    "EventScript_ResetAllMapFlagsFrlg": {
+      "label": "EventScript_ResetAllMapFlagsFrlg",
+      "kind": "script",
+      "line": 278,
+      "source_file": "data/scripts/new_game.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_OAK_IN_HIS_LAB"
+          ],
+          "line": 279,
+          "raw": "setflag FLAG_HIDE_OAK_IN_HIS_LAB",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_OAK_IN_PALLET_TOWN"
+          ],
+          "line": 280,
+          "raw": "setflag FLAG_HIDE_OAK_IN_PALLET_TOWN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE"
+          ],
+          "line": 281,
+          "raw": "setflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY"
+          ],
+          "line": 282,
+          "raw": "setflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_POKEHOUSE_FUJI"
+          ],
+          "line": 283,
+          "raw": "setflag FLAG_HIDE_POKEHOUSE_FUJI",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LIFT_KEY"
+          ],
+          "line": 284,
+          "raw": "setflag FLAG_HIDE_LIFT_KEY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SILPH_SCOPE"
+          ],
+          "line": 285,
+          "raw": "setflag FLAG_HIDE_SILPH_SCOPE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_CERULEAN_RIVAL"
+          ],
+          "line": 286,
+          "raw": "setflag FLAG_HIDE_CERULEAN_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SS_ANNE_RIVAL"
+          ],
+          "line": 287,
+          "raw": "setflag FLAG_HIDE_SS_ANNE_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_VERMILION_CITY_OAKS_AIDE"
+          ],
+          "line": 288,
+          "raw": "setflag FLAG_HIDE_VERMILION_CITY_OAKS_AIDE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SAFFRON_CIVILIANS"
+          ],
+          "line": 289,
+          "raw": "setflag FLAG_HIDE_SAFFRON_CIVILIANS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_22_RIVAL"
+          ],
+          "line": 290,
+          "raw": "setflag FLAG_HIDE_ROUTE_22_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_OAK_IN_CHAMP_ROOM"
+          ],
+          "line": 291,
+          "raw": "setflag FLAG_HIDE_OAK_IN_CHAMP_ROOM",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_CREDITS_RIVAL"
+          ],
+          "line": 292,
+          "raw": "setflag FLAG_HIDE_CREDITS_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_CREDITS_OAK"
+          ],
+          "line": 293,
+          "raw": "setflag FLAG_HIDE_CREDITS_OAK",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_CINNABAR_BILL"
+          ],
+          "line": 294,
+          "raw": "setflag FLAG_HIDE_CINNABAR_BILL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_CINNABAR_SEAGALLOP"
+          ],
+          "line": 295,
+          "raw": "setflag FLAG_HIDE_CINNABAR_SEAGALLOP",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_CINNABAR_POKECENTER_BILL"
+          ],
+          "line": 296,
+          "raw": "setflag FLAG_HIDE_CINNABAR_POKECENTER_BILL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LORELEI_IN_HER_HOUSE"
+          ],
+          "line": 297,
+          "raw": "setflag FLAG_HIDE_LORELEI_IN_HER_HOUSE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SAFFRON_FAN_CLUB_BLACKBELT"
+          ],
+          "line": 298,
+          "raw": "setflag FLAG_HIDE_SAFFRON_FAN_CLUB_BLACKBELT",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SAFFRON_FAN_CLUB_ROCKER"
+          ],
+          "line": 299,
+          "raw": "setflag FLAG_HIDE_SAFFRON_FAN_CLUB_ROCKER",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SAFFRON_FAN_CLUB_WOMAN"
+          ],
+          "line": 300,
+          "raw": "setflag FLAG_HIDE_SAFFRON_FAN_CLUB_WOMAN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SAFFRON_FAN_CLUB_BEAUTY"
+          ],
+          "line": 301,
+          "raw": "setflag FLAG_HIDE_SAFFRON_FAN_CLUB_BEAUTY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_TWO_ISLAND_GAME_CORNER_LOSTELLE"
+          ],
+          "line": 302,
+          "raw": "setflag FLAG_HIDE_TWO_ISLAND_GAME_CORNER_LOSTELLE",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_TWO_ISLAND_GAME_CORNER_BIKER"
+          ],
+          "line": 303,
+          "raw": "setflag FLAG_HIDE_TWO_ISLAND_GAME_CORNER_BIKER",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_TWO_ISLAND_WOMAN"
+          ],
+          "line": 304,
+          "raw": "setflag FLAG_HIDE_TWO_ISLAND_WOMAN",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_TWO_ISLAND_BEAUTY"
+          ],
+          "line": 305,
+          "raw": "setflag FLAG_HIDE_TWO_ISLAND_BEAUTY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_TWO_ISLAND_SUPER_NERD"
+          ],
+          "line": 306,
+          "raw": "setflag FLAG_HIDE_TWO_ISLAND_SUPER_NERD",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LOSTELLE_IN_HER_HOME"
+          ],
+          "line": 307,
+          "raw": "setflag FLAG_HIDE_LOSTELLE_IN_HER_HOME",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_THREE_ISLAND_LONE_BIKER"
+          ],
+          "line": 308,
+          "raw": "setflag FLAG_HIDE_THREE_ISLAND_LONE_BIKER",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_FOUR_ISLAND_RIVAL"
+          ],
+          "line": 309,
+          "raw": "setflag FLAG_HIDE_FOUR_ISLAND_RIVAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_DOTTED_HOLE_SCIENTIST"
+          ],
+          "line": 310,
+          "raw": "setflag FLAG_HIDE_DOTTED_HOLE_SCIENTIST",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RESORT_GORGEOUS_SELPHY"
+          ],
+          "line": 311,
+          "raw": "setflag FLAG_HIDE_RESORT_GORGEOUS_SELPHY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RESORT_GORGEOUS_INSIDE_SELPHY"
+          ],
+          "line": 312,
+          "raw": "setflag FLAG_HIDE_RESORT_GORGEOUS_INSIDE_SELPHY",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SELPHYS_BUTLER"
+          ],
+          "line": 313,
+          "raw": "setflag FLAG_HIDE_SELPHYS_BUTLER",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_DEOXYS"
+          ],
+          "line": 314,
+          "raw": "setflag FLAG_HIDE_DEOXYS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LORELEI_HOUSE_MEOWTH_DOLL"
+          ],
+          "line": 315,
+          "raw": "setflag FLAG_HIDE_LORELEI_HOUSE_MEOWTH_DOLL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LORELEI_HOUSE_CHANSEY_DOLL"
+          ],
+          "line": 316,
+          "raw": "setflag FLAG_HIDE_LORELEI_HOUSE_CHANSEY_DOLL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LORELEIS_HOUSE_NIDORAN_F_DOLL"
+          ],
+          "line": 317,
+          "raw": "setflag FLAG_HIDE_LORELEIS_HOUSE_NIDORAN_F_DOLL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LORELEI_HOUSE_JIGGLYPUFF_DOLL"
+          ],
+          "line": 318,
+          "raw": "setflag FLAG_HIDE_LORELEI_HOUSE_JIGGLYPUFF_DOLL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LORELEIS_HOUSE_NIDORAN_M_DOLL"
+          ],
+          "line": 319,
+          "raw": "setflag FLAG_HIDE_LORELEIS_HOUSE_NIDORAN_M_DOLL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LORELEIS_HOUSE_FEAROW_DOLL"
+          ],
+          "line": 320,
+          "raw": "setflag FLAG_HIDE_LORELEIS_HOUSE_FEAROW_DOLL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LORELEIS_HOUSE_PIDGEOT_DOLL"
+          ],
+          "line": 321,
+          "raw": "setflag FLAG_HIDE_LORELEIS_HOUSE_PIDGEOT_DOLL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LORELEIS_HOUSE_LAPRAS_DOLL"
+          ],
+          "line": 322,
+          "raw": "setflag FLAG_HIDE_LORELEIS_HOUSE_LAPRAS_DOLL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_POSTGAME_GOSSIPERS"
+          ],
+          "line": 323,
+          "raw": "setflag FLAG_HIDE_POSTGAME_GOSSIPERS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_FAME_CHECKER_ERIKA_JOURNALS"
+          ],
+          "line": 324,
+          "raw": "setflag FLAG_HIDE_FAME_CHECKER_ERIKA_JOURNALS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_FAME_CHECKER_KOGA_JOURNAL"
+          ],
+          "line": 325,
+          "raw": "setflag FLAG_HIDE_FAME_CHECKER_KOGA_JOURNAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_FAME_CHECKER_LT_SURGE_JOURNAL"
+          ],
+          "line": 326,
+          "raw": "setflag FLAG_HIDE_FAME_CHECKER_LT_SURGE_JOURNAL",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS"
+          ],
+          "line": 327,
+          "raw": "setflag FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MASSAGE_COOLDOWN_STEP_COUNTER",
+            "500"
+          ],
+          "line": 328,
+          "raw": "setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 500",
+          "source_file": "data/scripts/new_game.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 329,
+          "raw": "end",
+          "source_file": "data/scripts/new_game.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "setberrytree": 80,
+      "setflag": 208,
+      "setvar": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "end": 2,
+      "return": 1,
+      "setberrytree": 80,
+      "setflag": 208,
+      "setvar": 1
+    }
+  }
+}

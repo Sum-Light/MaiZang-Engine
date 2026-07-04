@@ -1,0 +1,2450 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_battle_pike",
+    "script_files": [
+      "data/scripts/battle_pike.inc"
+    ]
+  },
+  "labels": {
+    "BattleFrontier_BattlePikeRoom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeRoom_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 12
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetDoubleBattleObjPos": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetTwoObjectRoomPos": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetOneObjectRoomPos": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetNPCRoomObjPos": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetBrainRoomObjPos": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoom_OnWarp": {
+      "kind": "map_script_table",
+      "line": 44,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_InitRoomObjects": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 11
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom": {
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_InitBrainRoomObjects": {
+      "kind": "script",
+      "line": 66,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_LeftRoomWarp": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_CenterRoomWarp": {
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_RightRoomWarp": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp": {
+      "kind": "script",
+      "line": 87,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 20
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom": {
+      "kind": "script",
+      "line": 109,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpWildMonRoom": {
+      "kind": "script",
+      "line": 117,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetEnteredRoom": {
+      "kind": "script",
+      "line": 125,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_NoTurningBack": {
+      "kind": "script",
+      "line": 130,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetEnteredRoom": {
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_NoTurningBack": {
+      "kind": "script",
+      "line": 144,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_Exit": {
+      "kind": "script",
+      "line": 153,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 14
+    },
+    "BattleFrontier_BattlePikeRoom_EventScript_DisableHealing": {
+      "kind": "script",
+      "line": 169,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeRoom_EventScript_EnableHealing": {
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom": {
+      "kind": "script",
+      "line": 177,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom": {
+      "kind": "script",
+      "line": 184,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_Exit": {
+      "kind": "script",
+      "line": 191,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 15
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetEnteredRoom": {
+      "kind": "script",
+      "line": 208,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_NoTurningBack": {
+      "kind": "script",
+      "line": 213,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattlePike_EventScript_Retire": {
+      "kind": "script",
+      "line": 222,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeRoom_OnResume": {
+      "kind": "script",
+      "line": 228,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_EndOnResume": {
+      "kind": "script",
+      "line": 234,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeRoom_EventScript_ResetSketchedMoves": {
+      "kind": "script",
+      "line": 238,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeRoom_Movement_HidePlayer": {
+      "kind": "movement",
+      "line": 242,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "BattleFrontier_BattlePikeRoom_MapScripts": {
+      "label": "BattleFrontier_BattlePikeRoom_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "BattleFrontier_BattlePikeRoom_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_BattlePikeRoom_OnTransition",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "BattleFrontier_BattlePikeRoom_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattlePikeRoom_OnWarp",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoom_OnTransition": {
+      "label": "BattleFrontier_BattlePikeRoom_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "pike_setroomobjects",
+          "args": [],
+          "line": 6,
+          "raw": "pike_setroomobjects",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_getroomtype",
+          "args": [],
+          "line": 7,
+          "raw": "pike_getroomtype",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 8,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_SINGLE_BATTLE",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_SetOneObjectRoomPos"
+          ],
+          "line": 9,
+          "raw": "case PIKE_ROOM_SINGLE_BATTLE, BattleFrontier_BattlePikeRoomNormal_EventScript_SetOneObjectRoomPos",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_HEAL_FULL",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_SetOneObjectRoomPos"
+          ],
+          "line": 10,
+          "raw": "case PIKE_ROOM_HEAL_FULL, BattleFrontier_BattlePikeRoomNormal_EventScript_SetOneObjectRoomPos",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_NPC",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_SetNPCRoomObjPos"
+          ],
+          "line": 11,
+          "raw": "case PIKE_ROOM_NPC, BattleFrontier_BattlePikeRoomNormal_EventScript_SetNPCRoomObjPos",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_STATUS",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_SetTwoObjectRoomPos"
+          ],
+          "line": 12,
+          "raw": "case PIKE_ROOM_STATUS, BattleFrontier_BattlePikeRoomNormal_EventScript_SetTwoObjectRoomPos",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_HEAL_PART",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_SetOneObjectRoomPos"
+          ],
+          "line": 13,
+          "raw": "case PIKE_ROOM_HEAL_PART, BattleFrontier_BattlePikeRoomNormal_EventScript_SetOneObjectRoomPos",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_DOUBLE_BATTLE",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_SetDoubleBattleObjPos"
+          ],
+          "line": 14,
+          "raw": "case PIKE_ROOM_DOUBLE_BATTLE, BattleFrontier_BattlePikeRoomNormal_EventScript_SetDoubleBattleObjPos",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_HARD_BATTLE",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_SetTwoObjectRoomPos"
+          ],
+          "line": 15,
+          "raw": "case PIKE_ROOM_HARD_BATTLE, BattleFrontier_BattlePikeRoomNormal_EventScript_SetTwoObjectRoomPos",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_BRAIN",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_SetBrainRoomObjPos"
+          ],
+          "line": 16,
+          "raw": "case PIKE_ROOM_BRAIN, BattleFrontier_BattlePikeRoomNormal_EventScript_SetBrainRoomObjPos",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetDoubleBattleObjPos": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_SetDoubleBattleObjPos",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_1",
+            "2",
+            "5"
+          ],
+          "line": 20,
+          "raw": "setobjectxyperm LOCALID_PIKE_ROOM_NPC_1, 2, 5",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_2",
+            "6",
+            "5"
+          ],
+          "line": 21,
+          "raw": "setobjectxyperm LOCALID_PIKE_ROOM_NPC_2, 6, 5",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetTwoObjectRoomPos": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_SetTwoObjectRoomPos",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_1",
+            "4",
+            "4"
+          ],
+          "line": 25,
+          "raw": "setobjectxyperm LOCALID_PIKE_ROOM_NPC_1, 4, 4",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_2",
+            "3",
+            "4"
+          ],
+          "line": 26,
+          "raw": "setobjectxyperm LOCALID_PIKE_ROOM_NPC_2, 3, 4",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetOneObjectRoomPos": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_SetOneObjectRoomPos",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_1",
+            "4",
+            "4"
+          ],
+          "line": 30,
+          "raw": "setobjectxyperm LOCALID_PIKE_ROOM_NPC_1, 4, 4",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_2",
+            "0",
+            "0"
+          ],
+          "line": 31,
+          "raw": "setobjectxyperm LOCALID_PIKE_ROOM_NPC_2, 0, 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetNPCRoomObjPos": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_SetNPCRoomObjPos",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_1",
+            "5",
+            "5"
+          ],
+          "line": 35,
+          "raw": "setobjectxyperm LOCALID_PIKE_ROOM_NPC_1, 5, 5",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_2",
+            "0",
+            "0"
+          ],
+          "line": 36,
+          "raw": "setobjectxyperm LOCALID_PIKE_ROOM_NPC_2, 0, 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetBrainRoomObjPos": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_SetBrainRoomObjPos",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_1",
+            "4",
+            "3"
+          ],
+          "line": 40,
+          "raw": "setobjectxyperm LOCALID_PIKE_ROOM_NPC_1, 4, 3",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_2",
+            "4",
+            "4"
+          ],
+          "line": 41,
+          "raw": "setobjectxyperm LOCALID_PIKE_ROOM_NPC_2, 4, 4",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoom_OnWarp": {
+      "label": "BattleFrontier_BattlePikeRoom_OnWarp",
+      "kind": "map_script_table",
+      "line": 44,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_4",
+            "0",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_InitRoomObjects"
+          ],
+          "line": 45,
+          "raw": "map_script_2 VAR_TEMP_4, 0, BattleFrontier_BattlePikeRoomNormal_EventScript_InitRoomObjects",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 46,
+          "raw": ".2byte 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_InitRoomObjects": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_InitRoomObjects",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_1",
+            "OBJ_EVENT_GFX_LINK_RECEPTIONIST"
+          ],
+          "line": 49,
+          "raw": "setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LINK_RECEPTIONIST",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_0",
+            "OBJ_EVENT_GFX_LINK_RECEPTIONIST"
+          ],
+          "line": 50,
+          "raw": "setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_LINK_RECEPTIONIST",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_getroomtype",
+          "args": [],
+          "line": 51,
+          "raw": "pike_getroomtype",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PIKE_ROOM_STATUS",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom"
+          ],
+          "line": 52,
+          "raw": "goto_if_eq VAR_RESULT, PIKE_ROOM_STATUS, BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PIKE_ROOM_HARD_BATTLE",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom"
+          ],
+          "line": 53,
+          "raw": "goto_if_eq VAR_RESULT, PIKE_ROOM_HARD_BATTLE, BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PIKE_ROOM_DOUBLE_BATTLE",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom"
+          ],
+          "line": 54,
+          "raw": "goto_if_eq VAR_RESULT, PIKE_ROOM_DOUBLE_BATTLE, BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PIKE_ROOM_BRAIN",
+            "BattleFrontier_BattlePikeRoomNormal_EventScript_InitBrainRoomObjects"
+          ],
+          "line": 55,
+          "raw": "goto_if_eq VAR_RESULT, PIKE_ROOM_BRAIN, BattleFrontier_BattlePikeRoomNormal_EventScript_InitBrainRoomObjects",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "hideobjectat",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_2",
+            "MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL"
+          ],
+          "line": 56,
+          "raw": "hideobjectat LOCALID_PIKE_ROOM_NPC_2, MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_4",
+            "1"
+          ],
+          "line": 57,
+          "raw": "setvar VAR_TEMP_4, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 58,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 59,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom",
+          "line": 52
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom",
+          "line": 53
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom",
+          "line": 54
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeRoomNormal_EventScript_InitBrainRoomObjects",
+          "line": 55
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom",
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_4",
+            "1"
+          ],
+          "line": 62,
+          "raw": "setvar VAR_TEMP_4, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 63,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 64,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_InitBrainRoomObjects": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_InitBrainRoomObjects",
+      "kind": "script",
+      "line": 66,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_4",
+            "1"
+          ],
+          "line": 67,
+          "raw": "setvar VAR_TEMP_4, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 68,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "hideobjectat",
+          "args": [
+            "LOCALID_PIKE_ROOM_NPC_1",
+            "MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL"
+          ],
+          "line": 69,
+          "raw": "hideobjectat LOCALID_PIKE_ROOM_NPC_1, MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 70,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_LeftRoomWarp": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_LeftRoomWarp",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8007",
+            "PIKE_ROOM_LEFT"
+          ],
+          "line": 73,
+          "raw": "setvar VAR_0x8007, PIKE_ROOM_LEFT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp"
+          ],
+          "line": 74,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 75,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp",
+          "line": 74
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_CenterRoomWarp": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_CenterRoomWarp",
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8007",
+            "PIKE_ROOM_CENTER"
+          ],
+          "line": 78,
+          "raw": "setvar VAR_0x8007, PIKE_ROOM_CENTER",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp"
+          ],
+          "line": 79,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 80,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp",
+          "line": 79
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_RightRoomWarp": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_RightRoomWarp",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8007",
+            "PIKE_ROOM_RIGHT"
+          ],
+          "line": 83,
+          "raw": "setvar VAR_0x8007, PIKE_ROOM_RIGHT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp"
+          ],
+          "line": 84,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 85,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp",
+          "line": 84
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp",
+      "kind": "script",
+      "line": 87,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SAFE_FOLLOWER_MOVEMENT"
+          ],
+          "line": 88,
+          "raw": "clearflag FLAG_SAFE_FOLLOWER_MOVEMENT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_get",
+          "args": [
+            "PIKE_DATA_WIN_STREAK"
+          ],
+          "line": 89,
+          "raw": "pike_get PIKE_DATA_WIN_STREAK",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 90,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_set",
+          "args": [
+            "PIKE_DATA_WIN_STREAK",
+            "VAR_RESULT"
+          ],
+          "line": 91,
+          "raw": "pike_set PIKE_DATA_WIN_STREAK, VAR_RESULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 92,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 93,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM",
+            "VAR_RESULT"
+          ],
+          "line": 94,
+          "raw": "frontier_set FRONTIER_DATA_BATTLE_NUM, VAR_RESULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_setnextroom",
+          "args": [],
+          "line": 95,
+          "raw": "pike_setnextroom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_getroomtype",
+          "args": [],
+          "line": 96,
+          "raw": "pike_getroomtype",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 97,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_SINGLE_BATTLE",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom"
+          ],
+          "line": 98,
+          "raw": "case PIKE_ROOM_SINGLE_BATTLE, BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_HEAL_FULL",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom"
+          ],
+          "line": 99,
+          "raw": "case PIKE_ROOM_HEAL_FULL, BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_NPC",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom"
+          ],
+          "line": 100,
+          "raw": "case PIKE_ROOM_NPC, BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_STATUS",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom"
+          ],
+          "line": 101,
+          "raw": "case PIKE_ROOM_STATUS, BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_HEAL_PART",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom"
+          ],
+          "line": 102,
+          "raw": "case PIKE_ROOM_HEAL_PART, BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_WILD_MONS",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpWildMonRoom"
+          ],
+          "line": 103,
+          "raw": "case PIKE_ROOM_WILD_MONS, BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpWildMonRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_HARD_BATTLE",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom"
+          ],
+          "line": 104,
+          "raw": "case PIKE_ROOM_HARD_BATTLE, BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_DOUBLE_BATTLE",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom"
+          ],
+          "line": 105,
+          "raw": "case PIKE_ROOM_DOUBLE_BATTLE, BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_BRAIN",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom"
+          ],
+          "line": 106,
+          "raw": "case PIKE_ROOM_BRAIN, BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 107,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpNPCRoom",
+      "kind": "script",
+      "line": 109,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattlePikeRoom_Movement_HidePlayer"
+          ],
+          "line": 110,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattlePikeRoom_Movement_HidePlayer",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 111,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattlePike_EventScript_CloseCurtain"
+          ],
+          "line": 112,
+          "raw": "call BattleFrontier_BattlePike_EventScript_CloseCurtain",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "warpsilent",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL",
+            "4",
+            "7"
+          ],
+          "line": 113,
+          "raw": "warpsilent MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL, 4, 7",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 114,
+          "raw": "waitstate",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 115,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattlePike_EventScript_CloseCurtain",
+          "line": 112
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpWildMonRoom": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpWildMonRoom",
+      "kind": "script",
+      "line": 117,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattlePikeRoom_Movement_HidePlayer"
+          ],
+          "line": 118,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattlePikeRoom_Movement_HidePlayer",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 119,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattlePike_EventScript_CloseCurtain"
+          ],
+          "line": 120,
+          "raw": "call BattleFrontier_BattlePike_EventScript_CloseCurtain",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "warpsilent",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS",
+            "4",
+            "19"
+          ],
+          "line": 121,
+          "raw": "warpsilent MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS, 4, 19",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 122,
+          "raw": "waitstate",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 123,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattlePike_EventScript_CloseCurtain",
+          "line": 120
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetEnteredRoom": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetEnteredRoom",
+      "kind": "script",
+      "line": 125,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_3",
+            "1"
+          ],
+          "line": 126,
+          "raw": "setvar VAR_TEMP_3, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "1"
+          ],
+          "line": 127,
+          "raw": "setvar VAR_TEMP_2, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 128,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_NoTurningBack": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_NoTurningBack",
+      "kind": "script",
+      "line": 130,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_3",
+            "0"
+          ],
+          "line": 131,
+          "raw": "setvar VAR_TEMP_3, 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "0"
+          ],
+          "line": 132,
+          "raw": "setvar VAR_TEMP_2, 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 133,
+          "raw": "lockall",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 134,
+          "raw": "msgbox BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 135,
+          "raw": "closemessage",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 136,
+          "raw": "releaseall",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 137,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 134
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_SetEnteredRoom": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_SetEnteredRoom",
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_3",
+            "1"
+          ],
+          "line": 140,
+          "raw": "setvar VAR_TEMP_3, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "1"
+          ],
+          "line": 141,
+          "raw": "setvar VAR_TEMP_2, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 142,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_NoTurningBack": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_NoTurningBack",
+      "kind": "script",
+      "line": 144,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_3",
+            "0"
+          ],
+          "line": 145,
+          "raw": "setvar VAR_TEMP_3, 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "0"
+          ],
+          "line": 146,
+          "raw": "setvar VAR_TEMP_2, 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 147,
+          "raw": "lockall",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 148,
+          "raw": "msgbox BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 149,
+          "raw": "closemessage",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 150,
+          "raw": "releaseall",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 151,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 148
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomNormal_EventScript_Exit": {
+      "label": "BattleFrontier_BattlePikeRoomNormal_EventScript_Exit",
+      "kind": "script",
+      "line": 153,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "pike_ispartyfullhealth",
+          "args": [],
+          "line": 154,
+          "raw": "pike_ispartyfullhealth",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattlePikeRoom_EventScript_DisableHealing"
+          ],
+          "line": 155,
+          "raw": "call_if_eq VAR_RESULT, TRUE, BattleFrontier_BattlePikeRoom_EventScript_DisableHealing",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattlePikeRoom_EventScript_EnableHealing"
+          ],
+          "line": 156,
+          "raw": "call_if_ne VAR_RESULT, TRUE, BattleFrontier_BattlePikeRoom_EventScript_EnableHealing",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_get",
+          "args": [
+            "PIKE_DATA_WIN_STREAK"
+          ],
+          "line": 157,
+          "raw": "pike_get PIKE_DATA_WIN_STREAK",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 158,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_set",
+          "args": [
+            "PIKE_DATA_WIN_STREAK",
+            "VAR_RESULT"
+          ],
+          "line": 159,
+          "raw": "pike_set PIKE_DATA_WIN_STREAK, VAR_RESULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 160,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 161,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM",
+            "VAR_RESULT"
+          ],
+          "line": 162,
+          "raw": "frontier_set FRONTIER_DATA_BATTLE_NUM, VAR_RESULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_isfinalroom",
+          "args": [],
+          "line": 163,
+          "raw": "pike_isfinalroom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom"
+          ],
+          "line": 164,
+          "raw": "call_if_eq VAR_RESULT, TRUE, BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom"
+          ],
+          "line": 165,
+          "raw": "call_if_eq VAR_RESULT, FALSE, BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 166,
+          "raw": "waitstate",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 167,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattlePikeRoom_EventScript_DisableHealing",
+          "line": 155
+        },
+        {
+          "op": "call_if_ne",
+          "target": "BattleFrontier_BattlePikeRoom_EventScript_EnableHealing",
+          "line": 156
+        },
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom",
+          "line": 164
+        },
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom",
+          "line": 165
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeRoom_EventScript_DisableHealing": {
+      "label": "BattleFrontier_BattlePikeRoom_EventScript_DisableHealing",
+      "kind": "script",
+      "line": 169,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "pike_nohealing",
+          "args": [
+            "TRUE"
+          ],
+          "line": 170,
+          "raw": "pike_nohealing TRUE",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 171,
+          "raw": "return",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoom_EventScript_EnableHealing": {
+      "label": "BattleFrontier_BattlePikeRoom_EventScript_EnableHealing",
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "pike_nohealing",
+          "args": [
+            "FALSE"
+          ],
+          "line": 174,
+          "raw": "pike_nohealing FALSE",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 175,
+          "raw": "return",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom": {
+      "label": "BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom",
+      "kind": "script",
+      "line": 177,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattlePikeRoom_Movement_HidePlayer"
+          ],
+          "line": 178,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattlePikeRoom_Movement_HidePlayer",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 179,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattlePike_EventScript_CloseCurtain"
+          ],
+          "line": 180,
+          "raw": "call BattleFrontier_BattlePike_EventScript_CloseCurtain",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "warpsilent",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_FINAL",
+            "2",
+            "7"
+          ],
+          "line": 181,
+          "raw": "warpsilent MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_FINAL, 2, 7",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 182,
+          "raw": "return",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattlePike_EventScript_CloseCurtain",
+          "line": 180
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom": {
+      "label": "BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom",
+      "kind": "script",
+      "line": 184,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattlePikeRoom_Movement_HidePlayer"
+          ],
+          "line": 185,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattlePikeRoom_Movement_HidePlayer",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 186,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattlePike_EventScript_CloseCurtain"
+          ],
+          "line": 187,
+          "raw": "call BattleFrontier_BattlePike_EventScript_CloseCurtain",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "warpsilent",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_PIKE_THREE_PATH_ROOM",
+            "6",
+            "10"
+          ],
+          "line": 188,
+          "raw": "warpsilent MAP_BATTLE_FRONTIER_BATTLE_PIKE_THREE_PATH_ROOM, 6, 10",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 189,
+          "raw": "return",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattlePike_EventScript_CloseCurtain",
+          "line": 187
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_Exit": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_EventScript_Exit",
+      "kind": "script",
+      "line": 191,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "pike_exitwildmonroom",
+          "args": [],
+          "line": 192,
+          "raw": "pike_exitwildmonroom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_ispartyfullhealth",
+          "args": [],
+          "line": 193,
+          "raw": "pike_ispartyfullhealth",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattlePikeRoom_EventScript_DisableHealing"
+          ],
+          "line": 194,
+          "raw": "call_if_eq VAR_RESULT, TRUE, BattleFrontier_BattlePikeRoom_EventScript_DisableHealing",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattlePikeRoom_EventScript_EnableHealing"
+          ],
+          "line": 195,
+          "raw": "call_if_ne VAR_RESULT, TRUE, BattleFrontier_BattlePikeRoom_EventScript_EnableHealing",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_get",
+          "args": [
+            "PIKE_DATA_WIN_STREAK"
+          ],
+          "line": 196,
+          "raw": "pike_get PIKE_DATA_WIN_STREAK",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 197,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_set",
+          "args": [
+            "PIKE_DATA_WIN_STREAK",
+            "VAR_RESULT"
+          ],
+          "line": 198,
+          "raw": "pike_set PIKE_DATA_WIN_STREAK, VAR_RESULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 199,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 200,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM",
+            "VAR_RESULT"
+          ],
+          "line": 201,
+          "raw": "frontier_set FRONTIER_DATA_BATTLE_NUM, VAR_RESULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "pike_isfinalroom",
+          "args": [],
+          "line": 202,
+          "raw": "pike_isfinalroom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom"
+          ],
+          "line": 203,
+          "raw": "call_if_eq VAR_RESULT, TRUE, BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom"
+          ],
+          "line": 204,
+          "raw": "call_if_eq VAR_RESULT, FALSE, BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 205,
+          "raw": "waitstate",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 206,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattlePikeRoom_EventScript_DisableHealing",
+          "line": 194
+        },
+        {
+          "op": "call_if_ne",
+          "target": "BattleFrontier_BattlePikeRoom_EventScript_EnableHealing",
+          "line": 195
+        },
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom",
+          "line": 203
+        },
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom",
+          "line": 204
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetEnteredRoom": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetEnteredRoom",
+      "kind": "script",
+      "line": 208,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_3",
+            "1"
+          ],
+          "line": 209,
+          "raw": "setvar VAR_TEMP_3, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "1"
+          ],
+          "line": 210,
+          "raw": "setvar VAR_TEMP_2, 1",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 211,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_NoTurningBack": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_EventScript_NoTurningBack",
+      "kind": "script",
+      "line": 213,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_3",
+            "0"
+          ],
+          "line": 214,
+          "raw": "setvar VAR_TEMP_3, 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "0"
+          ],
+          "line": 215,
+          "raw": "setvar VAR_TEMP_2, 0",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 216,
+          "raw": "lockall",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 217,
+          "raw": "msgbox BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 218,
+          "raw": "closemessage",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 219,
+          "raw": "releaseall",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 220,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 217
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePike_EventScript_Retire": {
+      "label": "BattleFrontier_BattlePike_EventScript_Retire",
+      "kind": "script",
+      "line": 222,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_LOST"
+          ],
+          "line": 223,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_LOST",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY",
+            "5",
+            "6"
+          ],
+          "line": 224,
+          "raw": "warp MAP_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY, 5, 6",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 225,
+          "raw": "waitstate",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 226,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoom_OnResume": {
+      "label": "BattleFrontier_BattlePikeRoom_OnResume",
+      "kind": "script",
+      "line": 228,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setorcopyvar",
+          "args": [
+            "VAR_0x8006",
+            "VAR_RESULT"
+          ],
+          "line": 229,
+          "raw": "setorcopyvar VAR_0x8006, VAR_RESULT",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS"
+          ],
+          "line": 230,
+          "raw": "frontier_get FRONTIER_DATA_CHALLENGE_STATUS",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "CHALLENGE_STATUS_PAUSED",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_EndOnResume"
+          ],
+          "line": 231,
+          "raw": "goto_if_eq VAR_RESULT, CHALLENGE_STATUS_PAUSED, BattleFrontier_BattlePikeThreePathRoom_EventScript_EndOnResume",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "CHALLENGE_STATUS_SAVING",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_EndOnResume"
+          ],
+          "line": 232,
+          "raw": "goto_if_eq VAR_RESULT, CHALLENGE_STATUS_SAVING, BattleFrontier_BattlePikeThreePathRoom_EventScript_EndOnResume",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattlePikeRoom_EventScript_ResetSketchedMoves"
+          ],
+          "line": 233,
+          "raw": "call BattleFrontier_BattlePikeRoom_EventScript_ResetSketchedMoves",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_EndOnResume",
+          "line": 231
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_EndOnResume",
+          "line": 232
+        },
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattlePikeRoom_EventScript_ResetSketchedMoves",
+          "line": 233
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_EndOnResume": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_EndOnResume",
+      "kind": "script",
+      "line": 234,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "setorcopyvar",
+          "args": [
+            "VAR_RESULT",
+            "VAR_0x8006"
+          ],
+          "line": 235,
+          "raw": "setorcopyvar VAR_RESULT, VAR_0x8006",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 236,
+          "raw": "end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoom_EventScript_ResetSketchedMoves": {
+      "label": "BattleFrontier_BattlePikeRoom_EventScript_ResetSketchedMoves",
+      "kind": "script",
+      "line": 238,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "frontier_resetsketch",
+          "args": [],
+          "line": 239,
+          "raw": "frontier_resetsketch",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 240,
+          "raw": "return",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "BattleFrontier_BattlePikeRoom_Movement_HidePlayer": {
+      "label": "BattleFrontier_BattlePikeRoom_Movement_HidePlayer",
+      "kind": "movement",
+      "line": 242,
+      "source_file": "data/scripts/battle_pike.inc",
+      "instructions": [
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 243,
+          "raw": "set_invisible",
+          "source_file": "data/scripts/battle_pike.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 244,
+          "raw": "step_end",
+          "source_file": "data/scripts/battle_pike.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addvar": 6,
+      "applymovement": 4,
+      "call_if_eq": 6,
+      "call_if_ne": 2,
+      "case": 17,
+      "clearflag": 1,
+      "closemessage": 3,
+      "frontier_get": 4,
+      "frontier_resetsketch": 1,
+      "frontier_set": 4,
+      "goto_if_eq": 6,
+      "hideobjectat": 2,
+      "map_script": 2,
+      "map_script_2": 1,
+      "pike_exitwildmonroom": 1,
+      "pike_get": 3,
+      "pike_getroomtype": 3,
+      "pike_isfinalroom": 2,
+      "pike_ispartyfullhealth": 2,
+      "pike_nohealing": 2,
+      "pike_set": 3,
+      "pike_setnextroom": 1,
+      "pike_setroomobjects": 1,
+      "set_invisible": 1,
+      "setobjectxyperm": 10,
+      "setorcopyvar": 2,
+      "setvar": 20,
+      "step_end": 1,
+      "switch": 2,
+      "turnobject": 3,
+      "waitmovement": 4,
+      "waitstate": 5,
+      "warp": 1,
+      "warpsilent": 4
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 34,
+    "script_count": 33,
+    "movement_count": 1,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addvar": 6,
+      "applymovement": 4,
+      "call": 5,
+      "call_if_eq": 6,
+      "call_if_ne": 2,
+      "case": 17,
+      "clearflag": 1,
+      "closemessage": 3,
+      "end": 25,
+      "frontier_get": 4,
+      "frontier_resetsketch": 1,
+      "frontier_set": 4,
+      "goto": 3,
+      "goto_if_eq": 6,
+      "hideobjectat": 2,
+      "lockall": 3,
+      "map_script": 2,
+      "map_script_2": 1,
+      "msgbox": 3,
+      "pike_exitwildmonroom": 1,
+      "pike_get": 3,
+      "pike_getroomtype": 3,
+      "pike_isfinalroom": 2,
+      "pike_ispartyfullhealth": 2,
+      "pike_nohealing": 2,
+      "pike_set": 3,
+      "pike_setnextroom": 1,
+      "pike_setroomobjects": 1,
+      "releaseall": 3,
+      "return": 5,
+      "set_invisible": 1,
+      "setobjectxyperm": 10,
+      "setorcopyvar": 2,
+      "setvar": 20,
+      "step_end": 1,
+      "switch": 2,
+      "turnobject": 3,
+      "waitmovement": 4,
+      "waitstate": 5,
+      "warp": 1,
+      "warpsilent": 4
+    }
+  }
+}

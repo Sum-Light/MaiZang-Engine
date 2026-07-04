@@ -1,0 +1,856 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_gift_trainer",
+    "script_files": [
+      "data/scripts/gift_trainer.inc"
+    ]
+  },
+  "labels": {
+    "MysteryGiftScript_VisitingTrainer": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/gift_trainer.inc",
+      "instruction_count": 10
+    },
+    "MysteryGiftScript_VisitingTrainerArrived": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/scripts/gift_trainer.inc",
+      "instruction_count": 7
+    },
+    "sText_MysteryGiftVisitingTrainerInstructions": {
+      "kind": "text",
+      "line": 22,
+      "source_file": "data/scripts/gift_trainer.inc",
+      "instruction_count": 13
+    },
+    "sText_MysteryGiftVisitingTrainerArrived": {
+      "kind": "text",
+      "line": 37,
+      "source_file": "data/scripts/gift_trainer.inc",
+      "instruction_count": 10
+    }
+  },
+  "scripts": {
+    "MysteryGiftScript_VisitingTrainer": {
+      "label": "MysteryGiftScript_VisitingTrainer",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/gift_trainer.inc",
+      "instructions": [
+        {
+          "op": "setvaddress",
+          "args": [
+            "MysteryGiftScript_VisitingTrainer"
+          ],
+          "line": 2,
+          "raw": "setvaddress MysteryGiftScript_VisitingTrainer",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ValidateEReaderTrainer"
+          ],
+          "line": 3,
+          "raw": "special ValidateEReaderTrainer",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "vgoto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "MysteryGiftScript_VisitingTrainerArrived"
+          ],
+          "line": 4,
+          "raw": "vgoto_if_eq VAR_RESULT, 0, MysteryGiftScript_VisitingTrainerArrived",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "vmessage",
+          "args": [
+            "sText_MysteryGiftVisitingTrainerInstructions"
+          ],
+          "line": 7,
+          "raw": "vmessage sText_MysteryGiftVisitingTrainerInstructions",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 8,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 9,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 10,
+          "raw": "release",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/scripts/gift_trainer.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MysteryGiftScript_VisitingTrainerArrived": {
+      "label": "MysteryGiftScript_VisitingTrainerArrived",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/scripts/gift_trainer.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 14,
+          "raw": "lock",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 15,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "vmessage",
+          "args": [
+            "sText_MysteryGiftVisitingTrainerArrived"
+          ],
+          "line": 16,
+          "raw": "vmessage sText_MysteryGiftVisitingTrainerArrived",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 17,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 18,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 19,
+          "raw": "release",
+          "source_file": "data/scripts/gift_trainer.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/scripts/gift_trainer.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "sText_MysteryGiftVisitingTrainerInstructions": {
+      "label": "sText_MysteryGiftVisitingTrainerInstructions",
+      "line": 22,
+      "source_file": "data/scripts/gift_trainer.inc",
+      "raw_text": "感谢使用\\n神秘礼物系统。\\p由于拥有神秘卡片\\n您可以进行调查\\l友好商店。\\p通过调查您可以邀请\\n训练家去琉璃市。\\p……让我给您一个\\n调查的密码吧：\\p“GIVE ME\\nAWESOME TRAINER”\\p把这个写在调查上并发送到\\n无线连接系统。$",
+      "display_text": "感谢使用\n神秘礼物系统。\n\n由于拥有神秘卡片\n您可以进行调查\n友好商店。\n\n通过调查您可以邀请\n训练家去琉璃市。\n\n……让我给您一个\n调查的密码吧：\n\n“GIVE ME\nAWESOME TRAINER”\n\n把这个写在调查上并发送到\n无线连接系统。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 194,
+        "bytes": [
+          4,
+          58,
+          14,
+          70,
+          11,
+          245,
+          15,
+          113,
+          254,
+          11,
+          207,
+          9,
+          112,
+          8,
+          102,
+          13,
+          181,
+          13,
+          217,
+          13,
+          27,
+          55,
+          251,
+          15,
+          119,
+          15,
+          136,
+          15,
+          99,
+          15,
+          126,
+          11,
+          207,
+          9,
+          112,
+          7,
+          182,
+          10,
+          103,
+          254,
+          9,
+          240,
+          7,
+          215,
+          15,
+          36,
+          7,
+          74,
+          14,
+          91,
+          3,
+          62,
+          2,
+          13,
+          250,
+          15,
+          127,
+          4,
+          233,
+          11,
+          170,
+          3,
+          49,
+          55,
+          251,
+          13,
+          16,
+          4,
+          197,
+          3,
+          62,
+          2,
+          13,
+          9,
+          240,
+          7,
+          215,
+          15,
+          36,
+          14,
+          228,
+          11,
+          13,
+          254,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          11,
+          37,
+          8,
+          195,
+          8,
+          122,
+          12,
+          21,
+          55,
+          251,
+          176,
+          176,
+          11,
+          67,
+          13,
+          152,
+          4,
+          98,
+          9,
+          240,
+          15,
+          11,
+          4,
+          96,
+          254,
+          3,
+          62,
+          2,
+          13,
+          3,
+          11,
+          9,
+          116,
+          9,
+          37,
+          1,
+          40,
+          62,
+          251,
+          177,
+          193,
+          195,
+          208,
+          191,
+          0,
+          199,
+          191,
+          254,
+          187,
+          209,
+          191,
+          205,
+          201,
+          199,
+          191,
+          0,
+          206,
+          204,
+          187,
+          195,
+          200,
+          191,
+          204,
+          178,
+          251,
+          1,
+          48,
+          16,
+          85,
+          4,
+          96,
+          14,
+          63,
+          15,
+          230,
+          3,
+          62,
+          2,
+          13,
+          11,
+          173,
+          1,
+          189,
+          3,
+          165,
+          12,
+          112,
+          3,
+          4,
+          254,
+          13,
+          164,
+          14,
+          12,
+          8,
+          127,
+          7,
+          37,
+          13,
+          217,
+          13,
+          27,
+          55,
+          255
+        ],
+        "hex": "04 3A 0E 46 0B F5 0F 71 FE 0B CF 09 70 08 66 0D B5 0D D9 0D 1B 37 FB 0F 77 0F 88 0F 63 0F 7E 0B CF 09 70 07 B6 0A 67 FE 09 F0 07 D7 0F 24 07 4A 0E 5B 03 3E 02 0D FA 0F 7F 04 E9 0B AA 03 31 37 FB 0D 10 04 C5 03 3E 02 0D 09 F0 07 D7 0F 24 0E E4 0B 0D FE 0E 9E 08 8A 05 BD 0B 25 08 C3 08 7A 0C 15 37 FB B0 B0 0B 43 0D 98 04 62 09 F0 0F 0B 04 60 FE 03 3E 02 0D 03 0B 09 74 09 25 01 28 3E FB B1 C1 C3 D0 BF 00 C7 BF FE BB D1 BF CD C9 C7 BF 00 CE CC BB C3 C8 BF CC B2 FB 01 30 10 55 04 60 0E 3F 0F E6 03 3E 02 0D 0B AD 01 BD 03 A5 0C 70 03 04 FE 0D A4 0E 0C 08 7F 07 25 0D D9 0D 1B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 23,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 32,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 50,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 60,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 70,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 79,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 89,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 107,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 121,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 130,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "sText_MysteryGiftVisitingTrainerArrived": {
+      "label": "sText_MysteryGiftVisitingTrainerArrived",
+      "line": 37,
+      "source_file": "data/scripts/gift_trainer.inc",
+      "raw_text": "感谢使用\\n神秘礼物系统。\\p一位训练家已经来到\\n琉璃市寻找您。\\p系统您可以享受\\n与训练家的对战。\\p您可以邀请其他训练家\\n通过填写密码。\\p试着找寻其他\\n有用的密码吧。$",
+      "display_text": "感谢使用\n神秘礼物系统。\n\n一位训练家已经来到\n琉璃市寻找您。\n\n系统您可以享受\n与训练家的对战。\n\n您可以邀请其他训练家\n通过填写密码。\n\n试着找寻其他\n有用的密码吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 149,
+        "bytes": [
+          4,
+          58,
+          14,
+          70,
+          11,
+          245,
+          15,
+          113,
+          254,
+          11,
+          207,
+          9,
+          112,
+          8,
+          102,
+          13,
+          181,
+          13,
+          217,
+          13,
+          27,
+          55,
+          251,
+          15,
+          11,
+          13,
+          129,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          15,
+          33,
+          7,
+          93,
+          8,
+          41,
+          3,
+          4,
+          254,
+          8,
+          195,
+          8,
+          122,
+          12,
+          21,
+          14,
+          153,
+          16,
+          69,
+          9,
+          240,
+          55,
+          251,
+          13,
+          217,
+          13,
+          27,
+          9,
+          240,
+          7,
+          215,
+          15,
+          36,
+          14,
+          26,
+          12,
+          33,
+          254,
+          15,
+          153,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          11,
+          3,
+          121,
+          16,
+          48,
+          55,
+          251,
+          9,
+          240,
+          7,
+          215,
+          15,
+          36,
+          14,
+          228,
+          11,
+          13,
+          10,
+          159,
+          12,
+          158,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          254,
+          13,
+          16,
+          4,
+          197,
+          12,
+          239,
+          14,
+          63,
+          9,
+          116,
+          9,
+          37,
+          55,
+          251,
+          12,
+          25,
+          16,
+          244,
+          16,
+          69,
+          14,
+          153,
+          10,
+          159,
+          12,
+          158,
+          254,
+          15,
+          126,
+          15,
+          113,
+          3,
+          11,
+          9,
+          116,
+          9,
+          37,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "04 3A 0E 46 0B F5 0F 71 FE 0B CF 09 70 08 66 0D B5 0D D9 0D 1B 37 FB 0F 0B 0D 81 0E 9E 08 8A 05 BD 0F 21 07 5D 08 29 03 04 FE 08 C3 08 7A 0C 15 0E 99 10 45 09 F0 37 FB 0D D9 0D 1B 09 F0 07 D7 0F 24 0E 1A 0C 21 FE 0F 99 0E 9E 08 8A 05 BD 03 0B 03 79 10 30 37 FB 09 F0 07 D7 0F 24 0E E4 0B 0D 0A 9F 0C 9E 0E 9E 08 8A 05 BD FE 0D 10 04 C5 0C EF 0E 3F 09 74 09 25 37 FB 0C 19 10 F4 10 45 0E 99 0A 9F 0C 9E FE 0F 7E 0F 71 03 0B 09 74 09 25 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 42,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 52,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 64,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 73,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 81,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 90,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 2,
+      "setvaddress": 1,
+      "special": 1,
+      "vgoto_if_eq": 1,
+      "vmessage": 2,
+      "waitbuttonpress": 2,
+      "waitmessage": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 4,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 343,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "faceplayer": 2,
+      "lock": 2,
+      "release": 2,
+      "setvaddress": 1,
+      "special": 1,
+      "vgoto_if_eq": 1,
+      "vmessage": 2,
+      "waitbuttonpress": 2,
+      "waitmessage": 2
+    }
+  }
+}

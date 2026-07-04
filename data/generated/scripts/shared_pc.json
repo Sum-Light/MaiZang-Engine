@@ -1,0 +1,882 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_pc",
+    "script_files": [
+      "data/scripts/pc.inc"
+    ]
+  },
+  "labels": {
+    "EventScript_PC": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/pc.inc",
+      "instruction_count": 7
+    },
+    "EventScript_PCMainMenu": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/scripts/pc.inc",
+      "instruction_count": 6
+    },
+    "EventScript_AccessPC": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/scripts/pc.inc",
+      "instruction_count": 7
+    },
+    "EventScript_AccessPlayersPC": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/scripts/pc.inc",
+      "instruction_count": 6
+    },
+    "EventScript_AccessPokemonStorage": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/scripts/pc.inc",
+      "instruction_count": 8
+    },
+    "EventScript_AccessSomeonesPC": {
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/scripts/pc.inc",
+      "instruction_count": 2
+    },
+    "EventScript_AccessLanettesPC": {
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/scripts/pc.inc",
+      "instruction_count": 6
+    },
+    "EventScript_TurnOffPC": {
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/scripts/pc.inc",
+      "instruction_count": 5
+    },
+    "EventScript_AccessHallOfFame": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/scripts/pc.inc",
+      "instruction_count": 6
+    },
+    "EventScript_AccessPokemonBoxLink": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/scripts/pc.inc",
+      "instruction_count": 6
+    }
+  },
+  "scripts": {
+    "EventScript_PC": {
+      "label": "EventScript_PC",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/pc.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 2,
+          "raw": "lockall",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "PC_LOCATION_OTHER"
+          ],
+          "line": 3,
+          "raw": "setvar VAR_0x8004, PC_LOCATION_OTHER",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DoPCTurnOnEffect"
+          ],
+          "line": 4,
+          "raw": "special DoPCTurnOnEffect",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PC_ON"
+          ],
+          "line": 5,
+          "raw": "playse SE_PC_ON",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_BootUpPC",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 6,
+          "raw": "msgbox Text_BootUpPC, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_PCMainMenu"
+          ],
+          "line": 7,
+          "raw": "goto EventScript_PCMainMenu",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/scripts/pc.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_BootUpPC",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 6
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_PCMainMenu",
+          "line": 7
+        }
+      ]
+    },
+    "EventScript_PCMainMenu": {
+      "label": "EventScript_PCMainMenu",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/scripts/pc.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "gText_WhichPCShouldBeAccessed"
+          ],
+          "line": 11,
+          "raw": "message gText_WhichPCShouldBeAccessed",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 12,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ScriptMenu_CreatePCMultichoice"
+          ],
+          "line": 13,
+          "raw": "special ScriptMenu_CreatePCMultichoice",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 14,
+          "raw": "waitstate",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_AccessPC"
+          ],
+          "line": 15,
+          "raw": "goto EventScript_AccessPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/scripts/pc.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_WhichPCShouldBeAccessed",
+          "mode": "",
+          "line": 11
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_AccessPC",
+          "line": 15
+        }
+      ]
+    },
+    "EventScript_AccessPC": {
+      "label": "EventScript_AccessPC",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/scripts/pc.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 19,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "EventScript_AccessPokemonStorage"
+          ],
+          "line": 20,
+          "raw": "case 0, EventScript_AccessPokemonStorage",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "EventScript_AccessPlayersPC"
+          ],
+          "line": 21,
+          "raw": "case 1, EventScript_AccessPlayersPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "EventScript_AccessHallOfFame"
+          ],
+          "line": 22,
+          "raw": "case 2, EventScript_AccessHallOfFame",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "EventScript_TurnOffPC"
+          ],
+          "line": 23,
+          "raw": "case 3, EventScript_TurnOffPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "EventScript_TurnOffPC"
+          ],
+          "line": 24,
+          "raw": "case MULTI_B_PRESSED, EventScript_TurnOffPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/scripts/pc.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_AccessPlayersPC": {
+      "label": "EventScript_AccessPlayersPC",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/scripts/pc.inc",
+      "instructions": [
+        {
+          "op": "playse",
+          "args": [
+            "SE_PC_LOGIN"
+          ],
+          "line": 28,
+          "raw": "playse SE_PC_LOGIN",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_AccessedPlayersPC",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 29,
+          "raw": "msgbox gText_AccessedPlayersPC, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "PlayerPC"
+          ],
+          "line": 30,
+          "raw": "special PlayerPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 31,
+          "raw": "waitstate",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_PCMainMenu"
+          ],
+          "line": 32,
+          "raw": "goto EventScript_PCMainMenu",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/scripts/pc.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_AccessedPlayersPC",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 29
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_PCMainMenu",
+          "line": 32
+        }
+      ]
+    },
+    "EventScript_AccessPokemonStorage": {
+      "label": "EventScript_AccessPokemonStorage",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/scripts/pc.inc",
+      "instructions": [
+        {
+          "op": "playse",
+          "args": [
+            "SE_PC_LOGIN"
+          ],
+          "line": 36,
+          "raw": "playse SE_PC_LOGIN",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_SYS_PC_LANETTE",
+            "EventScript_AccessSomeonesPC"
+          ],
+          "line": 37,
+          "raw": "call_if_unset FLAG_SYS_PC_LANETTE, EventScript_AccessSomeonesPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_PC_LANETTE",
+            "EventScript_AccessLanettesPC"
+          ],
+          "line": 38,
+          "raw": "call_if_set FLAG_SYS_PC_LANETTE, EventScript_AccessLanettesPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_StorageSystemOpened",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 39,
+          "raw": "msgbox gText_StorageSystemOpened, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShowPokemonStorageSystemPC"
+          ],
+          "line": 40,
+          "raw": "special ShowPokemonStorageSystemPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 41,
+          "raw": "waitstate",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_PCMainMenu"
+          ],
+          "line": 42,
+          "raw": "goto EventScript_PCMainMenu",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 43,
+          "raw": "end",
+          "source_file": "data/scripts/pc.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_StorageSystemOpened",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 39
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "EventScript_AccessSomeonesPC",
+          "line": 37
+        },
+        {
+          "op": "call_if_set",
+          "target": "EventScript_AccessLanettesPC",
+          "line": 38
+        },
+        {
+          "op": "goto",
+          "target": "EventScript_PCMainMenu",
+          "line": 42
+        }
+      ]
+    },
+    "EventScript_AccessSomeonesPC": {
+      "label": "EventScript_AccessSomeonesPC",
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/scripts/pc.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_AccessedSomeonesPC",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 46,
+          "raw": "msgbox gText_AccessedSomeonesPC, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 47,
+          "raw": "return",
+          "source_file": "data/scripts/pc.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_AccessedSomeonesPC",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 46
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_AccessLanettesPC": {
+      "label": "EventScript_AccessLanettesPC",
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/scripts/pc.inc",
+      "instructions": [
+        {
+          "op": "#if",
+          "args": [
+            "IS_FRLG"
+          ],
+          "line": 50,
+          "raw": "#if IS_FRLG",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_AccessedBillsPC",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 51,
+          "raw": "msgbox gText_AccessedBillsPC, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "#else",
+          "args": [],
+          "line": 52,
+          "raw": "#else",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_AccessedLanettesPC",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 53,
+          "raw": "msgbox gText_AccessedLanettesPC, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "#endif",
+          "args": [],
+          "line": 54,
+          "raw": "#endif",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 55,
+          "raw": "return",
+          "source_file": "data/scripts/pc.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_AccessedBillsPC",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 51
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_AccessedLanettesPC",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 53
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_TurnOffPC": {
+      "label": "EventScript_TurnOffPC",
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/scripts/pc.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "PC_LOCATION_OTHER"
+          ],
+          "line": 58,
+          "raw": "setvar VAR_0x8004, PC_LOCATION_OTHER",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PC_OFF"
+          ],
+          "line": 59,
+          "raw": "playse SE_PC_OFF",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DoPCTurnOffEffect"
+          ],
+          "line": 60,
+          "raw": "special DoPCTurnOffEffect",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 61,
+          "raw": "releaseall",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/scripts/pc.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_AccessHallOfFame": {
+      "label": "EventScript_AccessHallOfFame",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/scripts/pc.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_SYS_GAME_CLEAR",
+            "EventScript_TurnOffPC"
+          ],
+          "line": 65,
+          "raw": "goto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_TurnOffPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PC_LOGIN"
+          ],
+          "line": 66,
+          "raw": "playse SE_PC_LOGIN",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "AccessHallOfFamePC"
+          ],
+          "line": 67,
+          "raw": "special AccessHallOfFamePC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 68,
+          "raw": "waitstate",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_AccessPC"
+          ],
+          "line": 69,
+          "raw": "goto EventScript_AccessPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 70,
+          "raw": "end",
+          "source_file": "data/scripts/pc.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "EventScript_TurnOffPC",
+          "line": 65
+        },
+        {
+          "op": "goto",
+          "target": "EventScript_AccessPC",
+          "line": 69
+        }
+      ]
+    },
+    "EventScript_AccessPokemonBoxLink": {
+      "label": "EventScript_AccessPokemonBoxLink",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/scripts/pc.inc",
+      "instructions": [
+        {
+          "op": "playse",
+          "args": [
+            "SE_PC_LOGIN"
+          ],
+          "line": 73,
+          "raw": "playse SE_PC_LOGIN",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_StorageSystemOpened",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 74,
+          "raw": "msgbox gText_StorageSystemOpened, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShowPokemonStorageSystemPC"
+          ],
+          "line": 75,
+          "raw": "special ShowPokemonStorageSystemPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 76,
+          "raw": "waitstate",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_TurnOffPC"
+          ],
+          "line": 77,
+          "raw": "goto EventScript_TurnOffPC",
+          "source_file": "data/scripts/pc.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 78,
+          "raw": "end",
+          "source_file": "data/scripts/pc.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_StorageSystemOpened",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 74
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_TurnOffPC",
+          "line": 77
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "#else": 1,
+      "#endif": 1,
+      "#if": 1,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "case": 5,
+      "goto_if_unset": 1,
+      "playse": 6,
+      "setvar": 2,
+      "special": 7,
+      "switch": 1,
+      "waitmessage": 1,
+      "waitstate": 5
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 10,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "#else": 1,
+      "#endif": 1,
+      "#if": 1,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "case": 5,
+      "end": 8,
+      "goto": 6,
+      "goto_if_unset": 1,
+      "lockall": 1,
+      "message": 1,
+      "msgbox": 7,
+      "playse": 6,
+      "releaseall": 1,
+      "return": 2,
+      "setvar": 2,
+      "special": 7,
+      "switch": 1,
+      "waitmessage": 1,
+      "waitstate": 5
+    }
+  }
+}

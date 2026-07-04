@@ -1,0 +1,425 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_cave_hole",
+    "script_files": [
+      "data/scripts/cave_hole.inc"
+    ]
+  },
+  "labels": {
+    "CaveHole_CheckFallDownHole": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/scripts/cave_hole.inc",
+      "instruction_count": 2
+    },
+    "CaveHole_FixCrackedGround": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/scripts/cave_hole.inc",
+      "instruction_count": 6
+    },
+    "EventScript_FallDownHole": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/scripts/cave_hole.inc",
+      "instruction_count": 9
+    },
+    "EventScript_FallDownHoleMtPyre": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/cave_hole.inc",
+      "instruction_count": 9
+    },
+    "Movement_SetInvisible": {
+      "kind": "movement",
+      "line": 35,
+      "source_file": "data/scripts/cave_hole.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "CaveHole_CheckFallDownHole": {
+      "label": "CaveHole_CheckFallDownHole",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/scripts/cave_hole.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_ICE_STEP_COUNT",
+            "0",
+            "EventScript_FallDownHole"
+          ],
+          "line": 2,
+          "raw": "map_script_2 VAR_ICE_STEP_COUNT, 0, EventScript_FallDownHole",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".2byte 0",
+          "source_file": "data/scripts/cave_hole.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CaveHole_FixCrackedGround": {
+      "label": "CaveHole_FixCrackedGround",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/scripts/cave_hole.inc",
+      "instructions": [
+        {
+          "op": "#ifdef",
+          "args": [
+            "UBFIX"
+          ],
+          "line": 6,
+          "raw": "#ifdef UBFIX",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ICE_STEP_COUNT",
+            "1"
+          ],
+          "line": 7,
+          "raw": "setvar VAR_ICE_STEP_COUNT, 1",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "#else",
+          "args": [],
+          "line": 8,
+          "raw": "#else",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_ICE_STEP_COUNT",
+            "1",
+            "warn=FALSE"
+          ],
+          "line": 9,
+          "raw": "copyvar VAR_ICE_STEP_COUNT, 1, warn=FALSE",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "#endif",
+          "args": [],
+          "line": 10,
+          "raw": "#endif",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/scripts/cave_hole.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_FallDownHole": {
+      "label": "EventScript_FallDownHole",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/scripts/cave_hole.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 14,
+          "raw": "lockall",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 15,
+          "raw": "delay 20",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Movement_SetInvisible"
+          ],
+          "line": 16,
+          "raw": "applymovement LOCALID_PLAYER, Movement_SetInvisible",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 17,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_FALL"
+          ],
+          "line": 18,
+          "raw": "playse SE_FALL",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "60"
+          ],
+          "line": 19,
+          "raw": "delay 60",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "warphole",
+          "args": [
+            "MAP_UNDEFINED"
+          ],
+          "line": 20,
+          "raw": "warphole MAP_UNDEFINED",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 21,
+          "raw": "waitstate",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/scripts/cave_hole.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_FallDownHoleMtPyre": {
+      "label": "EventScript_FallDownHoleMtPyre",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/cave_hole.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 25,
+          "raw": "lockall",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 26,
+          "raw": "delay 20",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Movement_SetInvisible"
+          ],
+          "line": 27,
+          "raw": "applymovement LOCALID_PLAYER, Movement_SetInvisible",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 28,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_FALL"
+          ],
+          "line": 29,
+          "raw": "playse SE_FALL",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "60"
+          ],
+          "line": 30,
+          "raw": "delay 60",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DoFallWarp"
+          ],
+          "line": 31,
+          "raw": "special DoFallWarp",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 32,
+          "raw": "waitstate",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/scripts/cave_hole.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "Movement_SetInvisible": {
+      "label": "Movement_SetInvisible",
+      "kind": "movement",
+      "line": 35,
+      "source_file": "data/scripts/cave_hole.inc",
+      "instructions": [
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 36,
+          "raw": "set_invisible",
+          "source_file": "data/scripts/cave_hole.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 37,
+          "raw": "step_end",
+          "source_file": "data/scripts/cave_hole.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "#else": 1,
+      "#endif": 1,
+      "#ifdef": 1,
+      "applymovement": 2,
+      "copyvar": 1,
+      "delay": 4,
+      "map_script_2": 1,
+      "playse": 2,
+      "set_invisible": 1,
+      "setvar": 1,
+      "special": 1,
+      "step_end": 1,
+      "waitmovement": 2,
+      "waitstate": 2,
+      "warphole": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 4,
+    "movement_count": 1,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "#else": 1,
+      "#endif": 1,
+      "#ifdef": 1,
+      "applymovement": 2,
+      "copyvar": 1,
+      "delay": 4,
+      "end": 3,
+      "lockall": 2,
+      "map_script_2": 1,
+      "playse": 2,
+      "set_invisible": 1,
+      "setvar": 1,
+      "special": 1,
+      "step_end": 1,
+      "waitmovement": 2,
+      "waitstate": 2,
+      "warphole": 1
+    }
+  }
+}

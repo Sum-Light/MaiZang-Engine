@@ -19,13 +19,13 @@ Current focus:
 
 Next active module:
 
-- Battle 1:1 parity execution planning and the first battle workbench/report slice.
+- Map/Overworld script import parity and the next source-backed overworld runtime slice.
 
 Reason:
 
-- The user redirected the current focus to source-equivalent battle experience, including logic, assets, HUD, interaction animation, sprites, move animation sprites, all moves, all abilities, all trainers, Pokemon battle data/assets, and source battle mechanisms.
-- Current Godot battle is still explicitly first-slice and not source-equivalent: it has `BattleEngine` setup/basic damage plus a source-shaped `BattleScene` controller flow, but lacks source battle scripts, full mechanics, source-backed HUD/windows, sprites, move animations, transitions, post-battle flow, and audio playback.
-- The broad audit lives in `wiki/battle-parity-todo.md`; the executable checklist lives in `wiki/battle-parity-execution-plan.md`.
+- The user asked to continue executing `wiki/overworld-parity-todo.md` step by step and report quantified progress after each turn.
+- Current generated map/event script validation now resolves all real map event script references; remaining overworld work should move from import completeness toward the next runtime/presentation checklist items.
+- The broad audit and executable checklist live in `wiki/overworld-parity-todo.md`.
 
 ## Module Tracks
 

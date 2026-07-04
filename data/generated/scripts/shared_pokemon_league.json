@@ -1,0 +1,791 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_pokemon_league",
+    "script_files": [
+      "data/scripts/pokemon_league.inc"
+    ]
+  },
+  "labels": {
+    "PokemonLeague_EventScript_OpenDoor": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instruction_count": 7
+    },
+    "PokemonLeague_EventScript_EnterRoom": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instruction_count": 7
+    },
+    "PokemonLeague_EventScript_SetDoorOpen": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instruction_count": 3
+    },
+    "PokemonLeague_EventScript_PreventExit": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instruction_count": 8
+    },
+    "PokemonLeague_EventScript_OpenDoorLance": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instruction_count": 8
+    },
+    "PokemonLeague_EventScript_SetDoorOpenLance": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instruction_count": 3
+    },
+    "PokemonLeague_EventScript_CloseEntry": {
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instruction_count": 7
+    },
+    "PokemonLeague_Movement_ForcePlayerIn": {
+      "kind": "movement",
+      "line": 58,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_EventScript_DoLightingEffect": {
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instruction_count": 2
+    },
+    "Text_VoiceRangOutDontRunAway": {
+      "kind": "text",
+      "line": 66,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "PokemonLeague_EventScript_OpenDoor": {
+      "label": "PokemonLeague_EventScript_OpenDoor",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_Delay32"
+          ],
+          "line": 2,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_Delay32",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_DOOR"
+          ],
+          "line": 4,
+          "raw": "playse SE_DOOR",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EventScript_SetDoorOpen"
+          ],
+          "line": 5,
+          "raw": "call PokemonLeague_EventScript_SetDoorOpen",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 6,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_4"
+          ],
+          "line": 7,
+          "raw": "setflag FLAG_TEMP_4",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 8,
+          "raw": "return",
+          "source_file": "data/scripts/pokemon_league.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EventScript_SetDoorOpen",
+          "line": 5
+        }
+      ]
+    },
+    "PokemonLeague_EventScript_EnterRoom": {
+      "label": "PokemonLeague_EventScript_EnterRoom",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkUp5"
+          ],
+          "line": 11,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkUp5",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 12,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_2"
+          ],
+          "line": 13,
+          "raw": "setflag FLAG_TEMP_2",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_UNLOCK"
+          ],
+          "line": 14,
+          "raw": "playse SE_UNLOCK",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EventScript_CloseEntry"
+          ],
+          "line": 15,
+          "raw": "call PokemonLeague_EventScript_CloseEntry",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 16,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 17,
+          "raw": "return",
+          "source_file": "data/scripts/pokemon_league.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EventScript_CloseEntry",
+          "line": 15
+        }
+      ]
+    },
+    "PokemonLeague_EventScript_SetDoorOpen": {
+      "label": "PokemonLeague_EventScript_SetDoorOpen",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "1",
+            "METATILE_PokemonLeague_Door_Top_Open",
+            "1"
+          ],
+          "line": 20,
+          "raw": "setmetatile 6, 1, METATILE_PokemonLeague_Door_Top_Open, 1",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "2",
+            "METATILE_PokemonLeague_Door_Mid_Open",
+            "0"
+          ],
+          "line": 21,
+          "raw": "setmetatile 6, 2, METATILE_PokemonLeague_Door_Mid_Open, 0",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 22,
+          "raw": "return",
+          "source_file": "data/scripts/pokemon_league.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_EventScript_PreventExit": {
+      "label": "PokemonLeague_EventScript_PreventExit",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 25,
+          "raw": "lockall",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 26,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_VoiceRangOutDontRunAway"
+          ],
+          "line": 27,
+          "raw": "msgbox Text_VoiceRangOutDontRunAway",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 28,
+          "raw": "closemessage",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "PokemonLeague_Movement_ForcePlayerIn"
+          ],
+          "line": 29,
+          "raw": "applymovement LOCALID_PLAYER, PokemonLeague_Movement_ForcePlayerIn",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 30,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 31,
+          "raw": "releaseall",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/scripts/pokemon_league.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_VoiceRangOutDontRunAway",
+          "mode": "",
+          "line": 27
+        }
+      ],
+      "branch_targets": []
+    },
+    "PokemonLeague_EventScript_OpenDoorLance": {
+      "label": "PokemonLeague_EventScript_OpenDoorLance",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_Delay32"
+          ],
+          "line": 35,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_Delay32",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 36,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_DOOR"
+          ],
+          "line": 37,
+          "raw": "playse SE_DOOR",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "4",
+            "METATILE_PokemonLeague_Door_Top_Open",
+            "1"
+          ],
+          "line": 38,
+          "raw": "setmetatile 6, 4, METATILE_PokemonLeague_Door_Top_Open, 1",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "5",
+            "METATILE_PokemonLeague_Door_Mid_Open",
+            "0"
+          ],
+          "line": 39,
+          "raw": "setmetatile 6, 5, METATILE_PokemonLeague_Door_Mid_Open, 0",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 40,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_4"
+          ],
+          "line": 41,
+          "raw": "setflag FLAG_TEMP_4",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 42,
+          "raw": "return",
+          "source_file": "data/scripts/pokemon_league.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_EventScript_SetDoorOpenLance": {
+      "label": "PokemonLeague_EventScript_SetDoorOpenLance",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "4",
+            "METATILE_PokemonLeague_Door_Top_Open",
+            "1"
+          ],
+          "line": 45,
+          "raw": "setmetatile 6, 4, METATILE_PokemonLeague_Door_Top_Open, 1",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "5",
+            "METATILE_PokemonLeague_Door_Mid_Open",
+            "0"
+          ],
+          "line": 46,
+          "raw": "setmetatile 6, 5, METATILE_PokemonLeague_Door_Mid_Open, 0",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 47,
+          "raw": "return",
+          "source_file": "data/scripts/pokemon_league.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_EventScript_CloseEntry": {
+      "label": "PokemonLeague_EventScript_CloseEntry",
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "5",
+            "11",
+            "METATILE_PokemonLeague_Entry_TopLeft_Closed",
+            "1"
+          ],
+          "line": 50,
+          "raw": "setmetatile 5, 11, METATILE_PokemonLeague_Entry_TopLeft_Closed, 1",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "11",
+            "METATILE_PokemonLeague_Entry_TopMid_Closed",
+            "1"
+          ],
+          "line": 51,
+          "raw": "setmetatile 6, 11, METATILE_PokemonLeague_Entry_TopMid_Closed, 1",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "11",
+            "METATILE_PokemonLeague_Entry_TopRight_Closed",
+            "1"
+          ],
+          "line": 52,
+          "raw": "setmetatile 7, 11, METATILE_PokemonLeague_Entry_TopRight_Closed, 1",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "5",
+            "12",
+            "METATILE_PokemonLeague_Entry_BottomLeft_Closed",
+            "1"
+          ],
+          "line": 53,
+          "raw": "setmetatile 5, 12, METATILE_PokemonLeague_Entry_BottomLeft_Closed, 1",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "12",
+            "METATILE_PokemonLeague_Entry_BottomMid_Closed",
+            "1"
+          ],
+          "line": 54,
+          "raw": "setmetatile 6, 12, METATILE_PokemonLeague_Entry_BottomMid_Closed, 1",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "12",
+            "METATILE_PokemonLeague_Entry_BottomRight_Closed",
+            "1"
+          ],
+          "line": 55,
+          "raw": "setmetatile 7, 12, METATILE_PokemonLeague_Entry_BottomRight_Closed, 1",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 56,
+          "raw": "return",
+          "source_file": "data/scripts/pokemon_league.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_EventScript_DoLightingEffect": {
+      "label": "PokemonLeague_EventScript_DoLightingEffect",
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "DoPokemonLeagueLightingEffect"
+          ],
+          "line": 63,
+          "raw": "special DoPokemonLeagueLightingEffect",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 64,
+          "raw": "return",
+          "source_file": "data/scripts/pokemon_league.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "PokemonLeague_Movement_ForcePlayerIn": {
+      "label": "PokemonLeague_Movement_ForcePlayerIn",
+      "kind": "movement",
+      "line": 58,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 59,
+          "raw": "walk_up",
+          "source_file": "data/scripts/pokemon_league.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 60,
+          "raw": "step_end",
+          "source_file": "data/scripts/pokemon_league.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "Text_VoiceRangOutDontRunAway": {
+      "label": "Text_VoiceRangOutDontRunAway",
+      "line": 66,
+      "source_file": "data/scripts/pokemon_league.inc",
+      "raw_text": "Someone's voice rang out,\\n“Don't run away!”$",
+      "display_text": "Someone's voice rang out,\n“Don't run away!”",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 44,
+        "bytes": [
+          205,
+          227,
+          225,
+          217,
+          227,
+          226,
+          217,
+          180,
+          231,
+          0,
+          234,
+          227,
+          221,
+          215,
+          217,
+          0,
+          230,
+          213,
+          226,
+          219,
+          0,
+          227,
+          233,
+          232,
+          184,
+          254,
+          177,
+          190,
+          227,
+          226,
+          180,
+          232,
+          0,
+          230,
+          233,
+          226,
+          0,
+          213,
+          235,
+          213,
+          237,
+          171,
+          178,
+          255
+        ],
+        "hex": "CD E3 E1 D9 E3 E2 D9 B4 E7 00 EA E3 DD D7 D9 00 E6 D5 E2 DB 00 E3 E9 E8 B8 FE B1 BE E3 E2 B4 E8 00 E6 E9 E2 00 D5 EB D5 ED AB B2 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 4,
+      "closemessage": 1,
+      "playse": 3,
+      "setflag": 3,
+      "setmetatile": 12,
+      "special": 4,
+      "step_end": 1,
+      "textcolor": 1,
+      "waitmovement": 4,
+      "walk_up": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 8,
+    "movement_count": 1,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 44,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 4,
+      "call": 2,
+      "closemessage": 1,
+      "end": 1,
+      "lockall": 1,
+      "msgbox": 1,
+      "playse": 3,
+      "releaseall": 1,
+      "return": 7,
+      "setflag": 3,
+      "setmetatile": 12,
+      "special": 4,
+      "step_end": 1,
+      "textcolor": 1,
+      "waitmovement": 4,
+      "walk_up": 1
+    }
+  }
+}

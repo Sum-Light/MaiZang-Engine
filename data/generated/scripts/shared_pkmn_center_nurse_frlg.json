@@ -1,0 +1,1322 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_pkmn_center_nurse_frlg",
+    "script_files": [
+      "data/scripts/pkmn_center_nurse_frlg.inc"
+    ]
+  },
+  "labels": {
+    "EventScript_AfterWhiteOutHeal_Frlg": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 11
+    },
+    "EventScript_PkmnCenterNurse_Frlg": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 8
+    },
+    "EventScript_PkmnCenterNurse_HealPkmn_Frlg": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 6
+    },
+    "EventScript_PkmnCenterNurse_TakeAndHealPkmn_Frlg": {
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 8
+    },
+    "EventScript_PkmnCenterNurse_CheckTrainerTowerAndUnionRoom_Frlg": {
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 7
+    },
+    "EventScript_PkmnCenterNurse_ReturnPkmn_Frlg": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 6
+    },
+    "EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom_Frlg": {
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 9
+    },
+    "EventScript_PkmnCenterNurse_Goodbye_Frlg": {
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 2
+    },
+    "Movement_Bow": {
+      "kind": "movement",
+      "line": 74,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 3
+    },
+    "Text_WelcomeWantToHealPkmn_Frlg": {
+      "kind": "text",
+      "line": 79,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 3
+    },
+    "Text_TakeYourPkmnForFewSeconds_Frlg": {
+      "kind": "text",
+      "line": 84,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 2
+    },
+    "Text_WeHopeToSeeYouAgain_Frlg": {
+      "kind": "text",
+      "line": 88,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 1
+    },
+    "Text_RestoredPkmnToFullHealth_Frlg": {
+      "kind": "text",
+      "line": 91,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "EventScript_AfterWhiteOutHeal_Frlg": {
+      "label": "EventScript_AfterWhiteOutHeal_Frlg",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 2,
+          "raw": "lockall",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_FEMALE"
+          ],
+          "line": 3,
+          "raw": "textcolor NPC_TEXT_COLOR_FEMALE",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_FirstShouldRestoreMonsHealth"
+          ],
+          "line": 4,
+          "raw": "msgbox gText_FirstShouldRestoreMonsHealth",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_PkmnCenterNurse_TakeAndHealPkmn_Frlg"
+          ],
+          "line": 5,
+          "raw": "call EventScript_PkmnCenterNurse_TakeAndHealPkmn_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_DEFEATED_BROCK",
+            "EventScript_AfterWhiteOutHealMsgPreFirstBoss"
+          ],
+          "line": 6,
+          "raw": "call_if_unset FLAG_DEFEATED_BROCK, EventScript_AfterWhiteOutHealMsgPreFirstBoss",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_DEFEATED_BROCK",
+            "EventScript_AfterWhiteOutHealMsg"
+          ],
+          "line": 7,
+          "raw": "call_if_set FLAG_DEFEATED_BROCK, EventScript_AfterWhiteOutHealMsg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Movement_Bow"
+          ],
+          "line": 8,
+          "raw": "applymovement VAR_LAST_TALKED, Movement_Bow",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 9,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "fadedefaultbgm",
+          "args": [],
+          "line": 10,
+          "raw": "fadedefaultbgm",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 11,
+          "raw": "releaseall",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_FirstShouldRestoreMonsHealth",
+          "mode": "",
+          "line": 4
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_PkmnCenterNurse_TakeAndHealPkmn_Frlg",
+          "line": 5
+        },
+        {
+          "op": "call_if_unset",
+          "target": "EventScript_AfterWhiteOutHealMsgPreFirstBoss",
+          "line": 6
+        },
+        {
+          "op": "call_if_set",
+          "target": "EventScript_AfterWhiteOutHealMsg",
+          "line": 7
+        }
+      ]
+    },
+    "EventScript_PkmnCenterNurse_Frlg": {
+      "label": "EventScript_PkmnCenterNurse_Frlg",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "Text_WelcomeWantToHealPkmn_Frlg"
+          ],
+          "line": 15,
+          "raw": "message Text_WelcomeWantToHealPkmn_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 16,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "19",
+            "8",
+            "MULTI_YESNO",
+            "FALSE | (TRUE << 1)"
+          ],
+          "line": 17,
+          "raw": "multichoice 19, 8, MULTI_YESNO, FALSE | (TRUE << 1)",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 18,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "EventScript_PkmnCenterNurse_HealPkmn_Frlg"
+          ],
+          "line": 19,
+          "raw": "case 0, EventScript_PkmnCenterNurse_HealPkmn_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1 EventScript_PkmnCenterNurse_Goodbye_Frlg"
+          ],
+          "line": 20,
+          "raw": "case 1 EventScript_PkmnCenterNurse_Goodbye_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "EventScript_PkmnCenterNurse_Goodbye_Frlg"
+          ],
+          "line": 21,
+          "raw": "case MULTI_B_PRESSED, EventScript_PkmnCenterNurse_Goodbye_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "Text_WelcomeWantToHealPkmn_Frlg",
+          "mode": "",
+          "line": 15
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_PkmnCenterNurse_HealPkmn_Frlg": {
+      "label": "EventScript_PkmnCenterNurse_HealPkmn_Frlg",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instructions": [
+        {
+          "op": "incrementgamestat",
+          "args": [
+            "GAME_STAT_USED_POKECENTER"
+          ],
+          "line": 25,
+          "raw": "incrementgamestat GAME_STAT_USED_POKECENTER",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "Text_TakeYourPkmnForFewSeconds_Frlg"
+          ],
+          "line": 26,
+          "raw": "message Text_TakeYourPkmnForFewSeconds_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 27,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_PkmnCenterNurse_TakeAndHealPkmn_Frlg"
+          ],
+          "line": 28,
+          "raw": "call EventScript_PkmnCenterNurse_TakeAndHealPkmn_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_PkmnCenterNurse_CheckTrainerTowerAndUnionRoom_Frlg"
+          ],
+          "line": 29,
+          "raw": "goto EventScript_PkmnCenterNurse_CheckTrainerTowerAndUnionRoom_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 30,
+          "raw": "end",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "Text_TakeYourPkmnForFewSeconds_Frlg",
+          "mode": "",
+          "line": 26
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_PkmnCenterNurse_TakeAndHealPkmn_Frlg",
+          "line": 28
+        },
+        {
+          "op": "goto",
+          "target": "EventScript_PkmnCenterNurse_CheckTrainerTowerAndUnionRoom_Frlg",
+          "line": 29
+        }
+      ]
+    },
+    "EventScript_PkmnCenterNurse_TakeAndHealPkmn_Frlg": {
+      "label": "EventScript_PkmnCenterNurse_TakeAndHealPkmn_Frlg",
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 33,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 34,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "dofieldeffect",
+          "args": [
+            "FLDEFF_POKECENTER_HEAL"
+          ],
+          "line": 35,
+          "raw": "dofieldeffect FLDEFF_POKECENTER_HEAL",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "waitfieldeffect",
+          "args": [
+            "FLDEFF_POKECENTER_HEAL"
+          ],
+          "line": 36,
+          "raw": "waitfieldeffect FLDEFF_POKECENTER_HEAL",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 37,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 38,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 39,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 40,
+          "raw": "return",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_PkmnCenterNurse_CheckTrainerTowerAndUnionRoom_Frlg": {
+      "label": "EventScript_PkmnCenterNurse_CheckTrainerTowerAndUnionRoom_Frlg",
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "IsPlayerNotInTrainerTowerLobby"
+          ],
+          "line": 43,
+          "raw": "specialvar VAR_RESULT, IsPlayerNotInTrainerTowerLobby",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "EventScript_PkmnCenterNurse_ReturnPkmn_Frlg"
+          ],
+          "line": 44,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, EventScript_PkmnCenterNurse_ReturnPkmn_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "BufferUnionRoomPlayerName"
+          ],
+          "line": 45,
+          "raw": "specialvar VAR_RESULT, BufferUnionRoomPlayerName",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8008",
+            "VAR_RESULT"
+          ],
+          "line": 46,
+          "raw": "copyvar VAR_0x8008, VAR_RESULT",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8008",
+            "0",
+            "EventScript_PkmnCenterNurse_ReturnPkmn_Frlg"
+          ],
+          "line": 47,
+          "raw": "goto_if_eq VAR_0x8008, 0, EventScript_PkmnCenterNurse_ReturnPkmn_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8008",
+            "1",
+            "EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom_Frlg"
+          ],
+          "line": 48,
+          "raw": "goto_if_eq VAR_0x8008, 1, EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_PkmnCenterNurse_ReturnPkmn_Frlg",
+          "line": 44
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_PkmnCenterNurse_ReturnPkmn_Frlg",
+          "line": 47
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom_Frlg",
+          "line": 48
+        }
+      ]
+    },
+    "EventScript_PkmnCenterNurse_ReturnPkmn_Frlg": {
+      "label": "EventScript_PkmnCenterNurse_ReturnPkmn_Frlg",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "Text_RestoredPkmnToFullHealth_Frlg"
+          ],
+          "line": 52,
+          "raw": "message Text_RestoredPkmnToFullHealth_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 53,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Movement_Bow"
+          ],
+          "line": 54,
+          "raw": "applymovement VAR_LAST_TALKED, Movement_Bow",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 55,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_WeHopeToSeeYouAgain_Frlg"
+          ],
+          "line": 56,
+          "raw": "msgbox Text_WeHopeToSeeYouAgain_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 57,
+          "raw": "return",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "Text_RestoredPkmnToFullHealth_Frlg",
+          "mode": "",
+          "line": 52
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Text_WeHopeToSeeYouAgain_Frlg",
+          "mode": "",
+          "line": 56
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom_Frlg": {
+      "label": "EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom_Frlg",
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_NURSE_UNION_ROOM_REMINDER",
+            "EventScript_PkmnCenterNurse_ReturnPkmn_Frlg"
+          ],
+          "line": 60,
+          "raw": "goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER, EventScript_PkmnCenterNurse_ReturnPkmn_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_RestoredPkmnToFullHealth_Frlg"
+          ],
+          "line": 61,
+          "raw": "msgbox Text_RestoredPkmnToFullHealth_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_NURSE_UNION_ROOM_REMINDER"
+          ],
+          "line": 62,
+          "raw": "setflag FLAG_NURSE_UNION_ROOM_REMINDER",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "Text_PlayerIsPlayingRightNowGoForIt_Frlg"
+          ],
+          "line": 63,
+          "raw": "message Text_PlayerIsPlayingRightNowGoForIt_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 64,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Movement_Bow"
+          ],
+          "line": 65,
+          "raw": "applymovement VAR_LAST_TALKED, Movement_Bow",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 66,
+          "raw": "waitmovement 0",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_WeHopeToSeeYouAgain_Frlg"
+          ],
+          "line": 67,
+          "raw": "msgbox Text_WeHopeToSeeYouAgain_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 68,
+          "raw": "return",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_RestoredPkmnToFullHealth_Frlg",
+          "mode": "",
+          "line": 61
+        },
+        {
+          "op": "message",
+          "text_label": "Text_PlayerIsPlayingRightNowGoForIt_Frlg",
+          "mode": "",
+          "line": 63
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Text_WeHopeToSeeYouAgain_Frlg",
+          "mode": "",
+          "line": 67
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "EventScript_PkmnCenterNurse_ReturnPkmn_Frlg",
+          "line": 60
+        }
+      ]
+    },
+    "EventScript_PkmnCenterNurse_Goodbye_Frlg": {
+      "label": "EventScript_PkmnCenterNurse_Goodbye_Frlg",
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_WeHopeToSeeYouAgain_Frlg"
+          ],
+          "line": 71,
+          "raw": "msgbox Text_WeHopeToSeeYouAgain_Frlg",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 72,
+          "raw": "return",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_WeHopeToSeeYouAgain_Frlg",
+          "mode": "",
+          "line": 71
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "Movement_Bow": {
+      "label": "Movement_Bow",
+      "kind": "movement",
+      "line": 74,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "instructions": [
+        {
+          "op": "nurse_joy_bow",
+          "args": [],
+          "line": 75,
+          "raw": "nurse_joy_bow",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "delay_4",
+          "args": [],
+          "line": 76,
+          "raw": "delay_4",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 77,
+          "raw": "step_end",
+          "source_file": "data/scripts/pkmn_center_nurse_frlg.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "Text_WelcomeWantToHealPkmn_Frlg": {
+      "label": "Text_WelcomeWantToHealPkmn_Frlg",
+      "line": 79,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "raw_text": "Welcome to our POKéMON CENTER!\\pWould you like me to heal your\\nPOKéMON back to perfect health?$",
+      "display_text": "Welcome to our POKéMON CENTER!\n\nWould you like me to heal your\nPOKéMON back to perfect health?",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 94,
+        "bytes": [
+          209,
+          217,
+          224,
+          215,
+          227,
+          225,
+          217,
+          0,
+          232,
+          227,
+          0,
+          227,
+          233,
+          230,
+          0,
+          202,
+          201,
+          197,
+          27,
+          199,
+          201,
+          200,
+          0,
+          189,
+          191,
+          200,
+          206,
+          191,
+          204,
+          171,
+          251,
+          209,
+          227,
+          233,
+          224,
+          216,
+          0,
+          237,
+          227,
+          233,
+          0,
+          224,
+          221,
+          223,
+          217,
+          0,
+          225,
+          217,
+          0,
+          232,
+          227,
+          0,
+          220,
+          217,
+          213,
+          224,
+          0,
+          237,
+          227,
+          233,
+          230,
+          254,
+          202,
+          201,
+          197,
+          27,
+          199,
+          201,
+          200,
+          0,
+          214,
+          213,
+          215,
+          223,
+          0,
+          232,
+          227,
+          0,
+          228,
+          217,
+          230,
+          218,
+          217,
+          215,
+          232,
+          0,
+          220,
+          217,
+          213,
+          224,
+          232,
+          220,
+          172,
+          255
+        ],
+        "hex": "D1 D9 E0 D7 E3 E1 D9 00 E8 E3 00 E3 E9 E6 00 CA C9 C5 1B C7 C9 C8 00 BD BF C8 CE BF CC AB FB D1 E3 E9 E0 D8 00 ED E3 E9 00 E0 DD DF D9 00 E1 D9 00 E8 E3 00 DC D9 D5 E0 00 ED E3 E9 E6 FE CA C9 C5 1B C7 C9 C8 00 D6 D5 D7 DF 00 E8 E3 00 E4 D9 E6 DA D9 D7 E8 00 DC D9 D5 E0 E8 DC AC FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 30,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 62,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 95,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_TakeYourPkmnForFewSeconds_Frlg": {
+      "label": "Text_TakeYourPkmnForFewSeconds_Frlg",
+      "line": 84,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "raw_text": "Okay, I'll take your POKéMON for a\\nfew seconds.$",
+      "display_text": "Okay, I'll take your POKéMON for a\nfew seconds.",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          201,
+          223,
+          213,
+          237,
+          184,
+          0,
+          195,
+          180,
+          224,
+          224,
+          0,
+          232,
+          213,
+          223,
+          217,
+          0,
+          237,
+          227,
+          233,
+          230,
+          0,
+          202,
+          201,
+          197,
+          27,
+          199,
+          201,
+          200,
+          0,
+          218,
+          227,
+          230,
+          0,
+          213,
+          254,
+          218,
+          217,
+          235,
+          0,
+          231,
+          217,
+          215,
+          227,
+          226,
+          216,
+          231,
+          173,
+          255
+        ],
+        "hex": "C9 DF D5 ED B8 00 C3 B4 E0 E0 00 E8 D5 DF D9 00 ED E3 E9 E6 00 CA C9 C5 1B C7 C9 C8 00 DA E3 E6 00 D5 FE DA D9 EB 00 E7 D9 D7 E3 E2 D8 E7 AD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_WeHopeToSeeYouAgain_Frlg": {
+      "label": "Text_WeHopeToSeeYouAgain_Frlg",
+      "line": 88,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "raw_text": "We hope to see you again!$",
+      "display_text": "We hope to see you again!",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          209,
+          217,
+          0,
+          220,
+          227,
+          228,
+          217,
+          0,
+          232,
+          227,
+          0,
+          231,
+          217,
+          217,
+          0,
+          237,
+          227,
+          233,
+          0,
+          213,
+          219,
+          213,
+          221,
+          226,
+          171,
+          255
+        ],
+        "hex": "D1 D9 00 DC E3 E4 D9 00 E8 E3 00 E7 D9 D9 00 ED E3 E9 00 D5 DB D5 DD E2 AB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_RestoredPkmnToFullHealth_Frlg": {
+      "label": "Text_RestoredPkmnToFullHealth_Frlg",
+      "line": 91,
+      "source_file": "data/scripts/pkmn_center_nurse_frlg.inc",
+      "raw_text": "Thank you for waiting.\\nWe've restored your POKéMON to\\lfull health.$",
+      "display_text": "Thank you for waiting.\nWe've restored your POKéMON to\nfull health.",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 67,
+        "bytes": [
+          206,
+          220,
+          213,
+          226,
+          223,
+          0,
+          237,
+          227,
+          233,
+          0,
+          218,
+          227,
+          230,
+          0,
+          235,
+          213,
+          221,
+          232,
+          221,
+          226,
+          219,
+          173,
+          254,
+          209,
+          217,
+          180,
+          234,
+          217,
+          0,
+          230,
+          217,
+          231,
+          232,
+          227,
+          230,
+          217,
+          216,
+          0,
+          237,
+          227,
+          233,
+          230,
+          0,
+          202,
+          201,
+          197,
+          27,
+          199,
+          201,
+          200,
+          0,
+          232,
+          227,
+          250,
+          218,
+          233,
+          224,
+          224,
+          0,
+          220,
+          217,
+          213,
+          224,
+          232,
+          220,
+          173,
+          255
+        ],
+        "hex": "CE DC D5 E2 DF 00 ED E3 E9 00 DA E3 E6 00 EB D5 DD E8 DD E2 DB AD FE D1 D9 B4 EA D9 00 E6 D9 E7 E8 E3 E6 D9 D8 00 ED E3 E9 E6 00 CA C9 C5 1B C7 C9 C8 00 E8 E3 FA DA E9 E0 E0 00 DC D9 D5 E0 E8 DC AD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 54,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 68,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 5,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "case": 3,
+      "copyvar": 1,
+      "delay_4": 1,
+      "dofieldeffect": 1,
+      "fadedefaultbgm": 1,
+      "goto_if_eq": 3,
+      "goto_if_set": 1,
+      "incrementgamestat": 1,
+      "multichoice": 1,
+      "nurse_joy_bow": 1,
+      "setflag": 1,
+      "special": 1,
+      "specialvar": 2,
+      "step_end": 1,
+      "switch": 1,
+      "textcolor": 1,
+      "waitfieldeffect": 1,
+      "waitmessage": 4,
+      "waitmovement": 5
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 13,
+    "script_count": 8,
+    "movement_count": 1,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 235,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 5,
+      "call": 2,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "case": 3,
+      "copyvar": 1,
+      "delay_4": 1,
+      "dofieldeffect": 1,
+      "end": 4,
+      "fadedefaultbgm": 1,
+      "goto": 1,
+      "goto_if_eq": 3,
+      "goto_if_set": 1,
+      "incrementgamestat": 1,
+      "lockall": 1,
+      "message": 4,
+      "msgbox": 5,
+      "multichoice": 1,
+      "nurse_joy_bow": 1,
+      "releaseall": 1,
+      "return": 4,
+      "setflag": 1,
+      "special": 1,
+      "specialvar": 2,
+      "step_end": 1,
+      "switch": 1,
+      "textcolor": 1,
+      "waitfieldeffect": 1,
+      "waitmessage": 4,
+      "waitmovement": 5
+    }
+  }
+}

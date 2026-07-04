@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_static_pokemon",
+    "script_files": [
+      "data/scripts/static_pokemon.inc"
+    ]
+  },
+  "labels": {
+    "EventScript_RemoveStaticMon": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/static_pokemon.inc",
+      "instruction_count": 5
+    },
+    "EventScript_MonFlewAway": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/scripts/static_pokemon.inc",
+      "instruction_count": 7
+    },
+    "EventScript_AwakenSnorlax": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/scripts/static_pokemon.inc",
+      "instruction_count": 6
+    }
+  },
+  "scripts": {
+    "EventScript_RemoveStaticMon": {
+      "label": "EventScript_RemoveStaticMon",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/static_pokemon.inc",
+      "instructions": [
+        {
+          "op": "fadescreenswapbuffers",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 2,
+          "raw": "fadescreenswapbuffers FADE_TO_BLACK",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "VAR_LAST_TALKED"
+          ],
+          "line": 3,
+          "raw": "removeobject VAR_LAST_TALKED",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "fadescreenswapbuffers",
+          "args": [
+            "FADE_FROM_BLACK"
+          ],
+          "line": 4,
+          "raw": "fadescreenswapbuffers FADE_FROM_BLACK",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 5,
+          "raw": "release",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/scripts/static_pokemon.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_MonFlewAway": {
+      "label": "EventScript_MonFlewAway",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/scripts/static_pokemon.inc",
+      "instructions": [
+        {
+          "op": "fadescreenswapbuffers",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 9,
+          "raw": "fadescreenswapbuffers FADE_TO_BLACK",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "VAR_LAST_TALKED"
+          ],
+          "line": 10,
+          "raw": "removeobject VAR_LAST_TALKED",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "fadescreenswapbuffers",
+          "args": [
+            "FADE_FROM_BLACK"
+          ],
+          "line": 11,
+          "raw": "fadescreenswapbuffers FADE_FROM_BLACK",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8004"
+          ],
+          "line": 12,
+          "raw": "bufferspeciesname STR_VAR_1, VAR_0x8004",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_MonFlewAway"
+          ],
+          "line": 13,
+          "raw": "msgbox Text_MonFlewAway",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/scripts/static_pokemon.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_MonFlewAway",
+          "mode": "",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_AwakenSnorlax": {
+      "label": "EventScript_AwakenSnorlax",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/scripts/static_pokemon.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "Text_PlayedPokeFlute"
+          ],
+          "line": 18,
+          "raw": "message Text_PlayedPokeFlute",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 19,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_RG_POKE_FLUTE"
+          ],
+          "line": 20,
+          "raw": "playfanfare MUS_RG_POKE_FLUTE",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 21,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_SnorlaxWokeUp"
+          ],
+          "line": 22,
+          "raw": "msgbox Text_SnorlaxWokeUp",
+          "source_file": "data/scripts/static_pokemon.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 23,
+          "raw": "return",
+          "source_file": "data/scripts/static_pokemon.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "Text_PlayedPokeFlute",
+          "mode": "",
+          "line": 18
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Text_SnorlaxWokeUp",
+          "mode": "",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "bufferspeciesname": 1,
+      "fadescreenswapbuffers": 4,
+      "playfanfare": 1,
+      "removeobject": 2,
+      "waitfanfare": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "bufferspeciesname": 1,
+      "end": 2,
+      "fadescreenswapbuffers": 4,
+      "message": 1,
+      "msgbox": 2,
+      "playfanfare": 1,
+      "release": 2,
+      "removeobject": 2,
+      "return": 1,
+      "waitfanfare": 1,
+      "waitmessage": 1
+    }
+  }
+}

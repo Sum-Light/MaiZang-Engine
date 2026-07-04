@@ -1,0 +1,928 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_prof_birch",
+    "script_files": [
+      "data/scripts/prof_birch.inc"
+    ]
+  },
+  "labels": {
+    "ProfBirch_EventScript_UpdateLocation": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instruction_count": 11
+    },
+    "ProfBirch_EventScript_MoveToLab": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instruction_count": 5
+    },
+    "ProfBirch_EventScript_MoveToRoute101": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instruction_count": 5
+    },
+    "ProfBirch_EventScript_MoveToRoute103": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instruction_count": 5
+    },
+    "ProfBirch_EventScript_RatePokedexOrRegister": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instruction_count": 4
+    },
+    "ProfBirch_EventScript_AskRatePokedex": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instruction_count": 5
+    },
+    "ProfBirch_EventScript_DeclineRating": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instruction_count": 3
+    },
+    "ProfBirch_EventScript_ShowRatingMessage": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instruction_count": 5
+    },
+    "ProfBirch_EventScript_RatePokedex": {
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instruction_count": 18
+    }
+  },
+  "scripts": {
+    "ProfBirch_EventScript_UpdateLocation": {
+      "label": "ProfBirch_EventScript_UpdateLocation",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instructions": [
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_PETALBURG_GYM_STATE",
+            "0",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 2,
+          "raw": "goto_if_eq VAR_PETALBURG_GYM_STATE, 0, Common_EventScript_NopReturn",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_SYS_GAME_CLEAR",
+            "ProfBirch_EventScript_MoveToLab"
+          ],
+          "line": 3,
+          "raw": "goto_if_set FLAG_SYS_GAME_CLEAR, ProfBirch_EventScript_MoveToLab",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_BIRCH_STATE",
+            "0",
+            "ProfBirch_EventScript_MoveToLab"
+          ],
+          "line": 4,
+          "raw": "call_if_eq VAR_BIRCH_STATE, 0, ProfBirch_EventScript_MoveToLab",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_BIRCH_STATE",
+            "1",
+            "ProfBirch_EventScript_MoveToLab"
+          ],
+          "line": 5,
+          "raw": "call_if_eq VAR_BIRCH_STATE, 1, ProfBirch_EventScript_MoveToLab",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_BIRCH_STATE",
+            "2",
+            "ProfBirch_EventScript_MoveToRoute101"
+          ],
+          "line": 6,
+          "raw": "call_if_eq VAR_BIRCH_STATE, 2, ProfBirch_EventScript_MoveToRoute101",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_BIRCH_STATE",
+            "3",
+            "ProfBirch_EventScript_MoveToRoute101"
+          ],
+          "line": 7,
+          "raw": "call_if_eq VAR_BIRCH_STATE, 3, ProfBirch_EventScript_MoveToRoute101",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_BIRCH_STATE",
+            "4",
+            "ProfBirch_EventScript_MoveToRoute103"
+          ],
+          "line": 8,
+          "raw": "call_if_eq VAR_BIRCH_STATE, 4, ProfBirch_EventScript_MoveToRoute103",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_BIRCH_STATE",
+            "5",
+            "ProfBirch_EventScript_MoveToRoute103"
+          ],
+          "line": 9,
+          "raw": "call_if_eq VAR_BIRCH_STATE, 5, ProfBirch_EventScript_MoveToRoute103",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_BIRCH_STATE",
+            "6",
+            "ProfBirch_EventScript_MoveToLab"
+          ],
+          "line": 10,
+          "raw": "call_if_eq VAR_BIRCH_STATE, 6, ProfBirch_EventScript_MoveToLab",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_BIRCH_STATE",
+            "7",
+            "ProfBirch_EventScript_MoveToLab"
+          ],
+          "line": 11,
+          "raw": "call_if_eq VAR_BIRCH_STATE, 7, ProfBirch_EventScript_MoveToLab",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 12,
+          "raw": "return",
+          "source_file": "data/scripts/prof_birch.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_NopReturn",
+          "line": 2
+        },
+        {
+          "op": "goto_if_set",
+          "target": "ProfBirch_EventScript_MoveToLab",
+          "line": 3
+        },
+        {
+          "op": "call_if_eq",
+          "target": "ProfBirch_EventScript_MoveToLab",
+          "line": 4
+        },
+        {
+          "op": "call_if_eq",
+          "target": "ProfBirch_EventScript_MoveToLab",
+          "line": 5
+        },
+        {
+          "op": "call_if_eq",
+          "target": "ProfBirch_EventScript_MoveToRoute101",
+          "line": 6
+        },
+        {
+          "op": "call_if_eq",
+          "target": "ProfBirch_EventScript_MoveToRoute101",
+          "line": 7
+        },
+        {
+          "op": "call_if_eq",
+          "target": "ProfBirch_EventScript_MoveToRoute103",
+          "line": 8
+        },
+        {
+          "op": "call_if_eq",
+          "target": "ProfBirch_EventScript_MoveToRoute103",
+          "line": 9
+        },
+        {
+          "op": "call_if_eq",
+          "target": "ProfBirch_EventScript_MoveToLab",
+          "line": 10
+        },
+        {
+          "op": "call_if_eq",
+          "target": "ProfBirch_EventScript_MoveToLab",
+          "line": 11
+        }
+      ]
+    },
+    "ProfBirch_EventScript_MoveToLab": {
+      "label": "ProfBirch_EventScript_MoveToLab",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH"
+          ],
+          "line": 15,
+          "raw": "clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380"
+          ],
+          "line": 16,
+          "raw": "clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_101_BIRCH"
+          ],
+          "line": 17,
+          "raw": "setflag FLAG_HIDE_ROUTE_101_BIRCH",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_103_BIRCH"
+          ],
+          "line": 18,
+          "raw": "setflag FLAG_HIDE_ROUTE_103_BIRCH",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 19,
+          "raw": "return",
+          "source_file": "data/scripts/prof_birch.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ProfBirch_EventScript_MoveToRoute101": {
+      "label": "ProfBirch_EventScript_MoveToRoute101",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_101_BIRCH"
+          ],
+          "line": 22,
+          "raw": "clearflag FLAG_HIDE_ROUTE_101_BIRCH",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH"
+          ],
+          "line": 23,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380"
+          ],
+          "line": 24,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_103_BIRCH"
+          ],
+          "line": 25,
+          "raw": "setflag FLAG_HIDE_ROUTE_103_BIRCH",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 26,
+          "raw": "return",
+          "source_file": "data/scripts/prof_birch.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ProfBirch_EventScript_MoveToRoute103": {
+      "label": "ProfBirch_EventScript_MoveToRoute103",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_103_BIRCH"
+          ],
+          "line": 29,
+          "raw": "clearflag FLAG_HIDE_ROUTE_103_BIRCH",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_101_BIRCH"
+          ],
+          "line": 30,
+          "raw": "setflag FLAG_HIDE_ROUTE_101_BIRCH",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH"
+          ],
+          "line": 31,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380"
+          ],
+          "line": 32,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 33,
+          "raw": "return",
+          "source_file": "data/scripts/prof_birch.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ProfBirch_EventScript_RatePokedexOrRegister": {
+      "label": "ProfBirch_EventScript_RatePokedexOrRegister",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 36,
+          "raw": "lock",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 37,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_HAS_MATCH_CALL",
+            "ProfBirch_EventScript_AskRatePokedex"
+          ],
+          "line": 38,
+          "raw": "goto_if_unset FLAG_HAS_MATCH_CALL, ProfBirch_EventScript_AskRatePokedex",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_ENABLE_PROF_BIRCH_MATCH_CALL",
+            "EventScript_RegisterProfBirch"
+          ],
+          "line": 39,
+          "raw": "goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, EventScript_RegisterProfBirch",
+          "source_file": "data/scripts/prof_birch.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "ProfBirch_EventScript_AskRatePokedex",
+          "line": 38
+        },
+        {
+          "op": "goto_if_unset",
+          "target": "EventScript_RegisterProfBirch",
+          "line": 39
+        }
+      ]
+    },
+    "ProfBirch_EventScript_AskRatePokedex": {
+      "label": "ProfBirch_EventScript_AskRatePokedex",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "gBirchDexRatingText_AreYouCurious",
+            "MSGBOX_YESNO"
+          ],
+          "line": 42,
+          "raw": "msgbox gBirchDexRatingText_AreYouCurious, MSGBOX_YESNO",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "ProfBirch_EventScript_DeclineRating"
+          ],
+          "line": 43,
+          "raw": "goto_if_eq VAR_RESULT, NO, ProfBirch_EventScript_DeclineRating",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "ProfBirch_EventScript_RatePokedex"
+          ],
+          "line": 44,
+          "raw": "call ProfBirch_EventScript_RatePokedex",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 45,
+          "raw": "release",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 46,
+          "raw": "end",
+          "source_file": "data/scripts/prof_birch.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gBirchDexRatingText_AreYouCurious",
+          "mode": "MSGBOX_YESNO",
+          "line": 42
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "ProfBirch_EventScript_DeclineRating",
+          "line": 43
+        },
+        {
+          "op": "call",
+          "target": "ProfBirch_EventScript_RatePokedex",
+          "line": 44
+        }
+      ]
+    },
+    "ProfBirch_EventScript_DeclineRating": {
+      "label": "ProfBirch_EventScript_DeclineRating",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "gBirchDexRatingText_Cancel",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 49,
+          "raw": "msgbox gBirchDexRatingText_Cancel, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 50,
+          "raw": "release",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 51,
+          "raw": "end",
+          "source_file": "data/scripts/prof_birch.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gBirchDexRatingText_Cancel",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 49
+        }
+      ],
+      "branch_targets": []
+    },
+    "ProfBirch_EventScript_ShowRatingMessage": {
+      "label": "ProfBirch_EventScript_ShowRatingMessage",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instructions": [
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8004",
+            "VAR_0x8009"
+          ],
+          "line": 54,
+          "raw": "copyvar VAR_0x8004, VAR_0x8009",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShowPokedexRatingMessage"
+          ],
+          "line": 55,
+          "raw": "special ShowPokedexRatingMessage",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 56,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 57,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 58,
+          "raw": "return",
+          "source_file": "data/scripts/prof_birch.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ProfBirch_EventScript_RatePokedex": {
+      "label": "ProfBirch_EventScript_RatePokedex",
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/scripts/prof_birch.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "0"
+          ],
+          "line": 61,
+          "raw": "setvar VAR_0x8004, 0",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ScriptGetPokedexInfo"
+          ],
+          "line": 62,
+          "raw": "specialvar VAR_RESULT, ScriptGetPokedexInfo",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8008",
+            "VAR_0x8005"
+          ],
+          "line": 63,
+          "raw": "copyvar VAR_0x8008, VAR_0x8005",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8009",
+            "VAR_0x8006"
+          ],
+          "line": 64,
+          "raw": "copyvar VAR_0x8009, VAR_0x8006",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x800A",
+            "VAR_RESULT"
+          ],
+          "line": 65,
+          "raw": "copyvar VAR_0x800A, VAR_RESULT",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8008"
+          ],
+          "line": 66,
+          "raw": "buffernumberstring STR_VAR_1, VAR_0x8008",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_2",
+            "VAR_0x8009"
+          ],
+          "line": 67,
+          "raw": "buffernumberstring STR_VAR_2, VAR_0x8009",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gBirchDexRatingText_SoYouveSeenAndCaught",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 68,
+          "raw": "msgbox gBirchDexRatingText_SoYouveSeenAndCaught, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "ProfBirch_EventScript_ShowRatingMessage"
+          ],
+          "line": 69,
+          "raw": "call ProfBirch_EventScript_ShowRatingMessage",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x800A",
+            "0",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 70,
+          "raw": "goto_if_eq VAR_0x800A, 0, Common_EventScript_NopReturn",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "1"
+          ],
+          "line": 71,
+          "raw": "setvar VAR_0x8004, 1",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ScriptGetPokedexInfo"
+          ],
+          "line": 72,
+          "raw": "specialvar VAR_RESULT, ScriptGetPokedexInfo",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8008",
+            "VAR_0x8005"
+          ],
+          "line": 73,
+          "raw": "copyvar VAR_0x8008, VAR_0x8005",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8009",
+            "VAR_0x8006"
+          ],
+          "line": 74,
+          "raw": "copyvar VAR_0x8009, VAR_0x8006",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8008"
+          ],
+          "line": 75,
+          "raw": "buffernumberstring STR_VAR_1, VAR_0x8008",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_2",
+            "VAR_0x8009"
+          ],
+          "line": 76,
+          "raw": "buffernumberstring STR_VAR_2, VAR_0x8009",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gBirchDexRatingText_OnANationwideBasis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 77,
+          "raw": "msgbox gBirchDexRatingText_OnANationwideBasis, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/prof_birch.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 78,
+          "raw": "return",
+          "source_file": "data/scripts/prof_birch.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gBirchDexRatingText_SoYouveSeenAndCaught",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 68
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gBirchDexRatingText_OnANationwideBasis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 77
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "ProfBirch_EventScript_ShowRatingMessage",
+          "line": 69
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_NopReturn",
+          "line": 70
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "buffernumberstring": 4,
+      "call_if_eq": 8,
+      "clearflag": 4,
+      "copyvar": 6,
+      "faceplayer": 1,
+      "goto_if_eq": 3,
+      "goto_if_set": 1,
+      "goto_if_unset": 2,
+      "setflag": 8,
+      "setvar": 2,
+      "special": 1,
+      "specialvar": 2,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 9,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "buffernumberstring": 4,
+      "call": 2,
+      "call_if_eq": 8,
+      "clearflag": 4,
+      "copyvar": 6,
+      "end": 2,
+      "faceplayer": 1,
+      "goto_if_eq": 3,
+      "goto_if_set": 1,
+      "goto_if_unset": 2,
+      "lock": 1,
+      "msgbox": 4,
+      "release": 2,
+      "return": 6,
+      "setflag": 8,
+      "setvar": 2,
+      "special": 1,
+      "specialvar": 2,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    }
+  }
+}

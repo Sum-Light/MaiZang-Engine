@@ -61,6 +61,13 @@ TEXT_ENCODING_TRACE = {
 
 GENERATED_BY = "tools/importer/export_event_scripts.py"
 SCRIPT_BATCH_REPORT_RELATIVE_PATH = Path("overworld/script_batch_report.json")
+SHARED_SCRIPT_BATCH_REPORT_RELATIVE_PATH = Path("overworld/shared_script_batch_report.json")
+EXISTING_GROUPED_SHARED_SCRIPT_FILES = {
+    Path("data/scripts/movement.inc"),
+    Path("data/scripts/players_house.inc"),
+    Path("data/scripts/rival_graphics.inc"),
+}
+EVENT_SCRIPTS_DIRECT_IGNORED_OPS = {".include"}
 
 
 def strip_comment(line):
@@ -157,11 +164,12 @@ def parse_string_literal(value):
     return "".join(chars)
 
 
-def read_script_file(path, source_file=None):
+def read_script_file(path, source_file=None, label_filter=None, ignored_ops=None):
     labels = {}
     order = []
     current_label = None
     orphan_instructions = []
+    ignored_ops = set(ignored_ops or [])
 
     for line_number, raw_line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
         code = strip_comment(raw_line).strip()
@@ -170,7 +178,11 @@ def read_script_file(path, source_file=None):
 
         label_match = LABEL_RE.match(code)
         if label_match:
-            current_label = label_match.group(1)
+            candidate_label = label_match.group(1)
+            if label_filter is not None and not label_filter(candidate_label, line_number):
+                current_label = None
+                continue
+            current_label = candidate_label
             if current_label not in labels:
                 labels[current_label] = {
                     "label": current_label,
@@ -184,10 +196,13 @@ def read_script_file(path, source_file=None):
         instruction = parse_instruction(code, line_number)
         if instruction is None:
             continue
+        if instruction["op"] in ignored_ops:
+            continue
         if source_file is not None:
             instruction["source_file"] = source_file
         if current_label is None:
-            orphan_instructions.append(instruction)
+            if label_filter is None:
+                orphan_instructions.append(instruction)
             continue
         labels[current_label]["instructions"].append(instruction)
 
@@ -243,7 +258,7 @@ def branch_targets(instructions):
     return targets
 
 
-def build_export_from_files(root, script_paths, source):
+def build_export_from_files(root, script_paths, source, label_filter=None, ignored_ops=None):
     charmap_path = root / "charmap.txt"
     charmap = load_charmap(charmap_path)
 
@@ -254,7 +269,12 @@ def build_export_from_files(root, script_paths, source):
         if not script_path.exists():
             raise FileNotFoundError(script_path)
         source_file = to_project_path(script_path.relative_to(root))
-        file_labels, file_order, file_orphans = read_script_file(script_path, source_file)
+        file_labels, file_order, file_orphans = read_script_file(
+            script_path,
+            source_file,
+            label_filter=label_filter,
+            ignored_ops=ignored_ops,
+        )
         for label in file_order:
             if label in labels:
                 raise ValueError("Duplicate event script label: {}".format(label))
@@ -388,6 +408,44 @@ def build_shared_export(root, shared_name, include_scripts):
     return build_export_from_files(root, script_paths, source)
 
 
+def _last_map_include_line(path):
+    last_line = 0
+    for line_number, raw_line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+        if '.include "data/maps/' in raw_line:
+            last_line = line_number
+    return last_line
+
+
+def build_event_scripts_direct_export(root, shared_name="shared_event_scripts_direct"):
+    script_path = root / "data/event_scripts.s"
+    direct_start_line = _last_map_include_line(script_path) + 1
+
+    def direct_label_filter(_label, line_number):
+        return line_number >= direct_start_line
+
+    source = {
+        "scope": "shared",
+        "name": shared_name,
+        "script_files": [to_project_path(script_path.relative_to(root))],
+        "label_filter": {
+            "kind": "direct_labels_after_map_includes",
+            "start_line": direct_start_line,
+            "ignored_ops": sorted(EVENT_SCRIPTS_DIRECT_IGNORED_OPS),
+        },
+    }
+    return build_export_from_files(
+        root,
+        [script_path],
+        source,
+        label_filter=direct_label_filter,
+        ignored_ops=EVENT_SCRIPTS_DIRECT_IGNORED_OPS,
+    )
+
+
+def shared_name_for_script_path(script_path):
+    return "shared_{}".format(script_path.stem)
+
+
 def output_slug_for_script(map_folder, used_slugs):
     base_slug = camel_to_snake(map_folder)
     slug = base_slug
@@ -454,6 +512,35 @@ def _script_report_row(map_folder, exported, script_output, base_slug, output_sl
         "source": {
             "map_json": source.get("map_json"),
             "map_script": source.get("map_script"),
+        },
+        "label_count": stats.get("label_count", 0),
+        "script_count": stats.get("script_count", 0),
+        "movement_count": stats.get("movement_count", 0),
+        "text_count": stats.get("text_count", 0),
+        "encoded_text_count": stats.get("encoded_text_count", 0),
+        "text_source_byte_count": stats.get("text_source_byte_count", 0),
+        "charmap_warning_count": stats.get("charmap_warning_count", 0),
+        "orphan_instruction_count": stats.get("orphan_instruction_count", 0),
+        "runtime_preview_unsupported_op_count": sum(
+            value for value in unsupported_ops.values() if isinstance(value, int)
+        ),
+        "op_counts": stats.get("op_counts", {}),
+        "unsupported_preview_ops": unsupported_ops,
+    }
+
+
+def _shared_report_row(shared_name, exported, script_output, source_kind):
+    source = exported.get("source", {})
+    stats = exported.get("stats", {})
+    runtime_preview = exported.get("runtime_preview", {})
+    unsupported_ops = runtime_preview.get("unsupported_op_counts", {})
+    return {
+        "name": shared_name,
+        "source_kind": source_kind,
+        "path": to_project_path(script_output),
+        "source": {
+            "script_files": source.get("script_files", []),
+            "label_filter": source.get("label_filter"),
         },
         "label_count": stats.get("label_count", 0),
         "script_count": stats.get("script_count", 0),
@@ -629,6 +716,157 @@ def build_map_script_batch_export(source_root, output_root, write_outputs=False)
     }, exported_entries
 
 
+def build_shared_script_batch_export(source_root, output_root, write_outputs=False):
+    script_files = sorted((source_root / "data/scripts").glob("*.inc"))
+    skipped_existing = []
+    exported_entries = []
+    rows = []
+    failures = []
+    total_op_counts = Counter()
+    total_unsupported_preview_ops = Counter()
+    totals = Counter()
+    label_owners = {}
+    duplicate_labels = []
+
+    def add_export(shared_name, exported, script_output, source_kind):
+        if write_outputs:
+            write_json(script_output, exported)
+        exported_entries.append(manifest_entry_for_shared_script(exported, script_output, shared_name))
+        rows.append(_shared_report_row(shared_name, exported, script_output, source_kind))
+
+        stats = exported.get("stats", {})
+        totals["label_count"] += int(stats.get("label_count", 0))
+        totals["script_count"] += int(stats.get("script_count", 0))
+        totals["movement_count"] += int(stats.get("movement_count", 0))
+        totals["text_count"] += int(stats.get("text_count", 0))
+        totals["encoded_text_count"] += int(stats.get("encoded_text_count", 0))
+        totals["text_source_byte_count"] += int(stats.get("text_source_byte_count", 0))
+        totals["charmap_warning_count"] += int(stats.get("charmap_warning_count", 0))
+        totals["orphan_instruction_count"] += int(stats.get("orphan_instruction_count", 0))
+        _sum_counter_dict(total_op_counts, stats.get("op_counts", {}))
+        _sum_counter_dict(
+            total_unsupported_preview_ops,
+            exported.get("runtime_preview", {}).get("unsupported_op_counts", {}),
+        )
+
+        for label in exported.get("labels", {}):
+            previous_owner = label_owners.get(label)
+            if previous_owner is not None:
+                duplicate_labels.append({
+                    "label": label,
+                    "first_bundle": previous_owner,
+                    "duplicate_bundle": shared_name,
+                })
+            else:
+                label_owners[label] = shared_name
+
+    for script_path in script_files:
+        relative_path = script_path.relative_to(source_root)
+        if relative_path in EXISTING_GROUPED_SHARED_SCRIPT_FILES:
+            skipped_existing.append(to_project_path(relative_path))
+            continue
+        shared_name = shared_name_for_script_path(script_path)
+        script_output = output_root / "scripts" / "{}.json".format(camel_to_snake(shared_name))
+        try:
+            exported = build_shared_export(source_root, shared_name, [relative_path])
+            add_export(shared_name, exported, script_output, "data_scripts_include")
+        except Exception as error:
+            failures.append({
+                "name": shared_name,
+                "source_file": to_project_path(relative_path),
+                "error": str(error),
+            })
+
+    event_scripts_name = "shared_event_scripts_direct"
+    event_scripts_output = output_root / "scripts" / "{}.json".format(camel_to_snake(event_scripts_name))
+    try:
+        exported = build_event_scripts_direct_export(source_root, event_scripts_name)
+        add_export(event_scripts_name, exported, event_scripts_output, "event_scripts_direct")
+    except Exception as error:
+        failures.append({
+            "name": event_scripts_name,
+            "source_file": "data/event_scripts.s",
+            "error": str(error),
+        })
+
+    duplicate_output_paths = sorted(
+        path for path, count in Counter(entry["path"] for entry in exported_entries).items()
+        if count > 1
+    )
+    runtime_preview_unsupported_op_count = sum(total_unsupported_preview_ops.values())
+
+    stats = {
+        "source_shared_script_file_count": len(script_files),
+        "skipped_existing_shared_source_file_count": len(skipped_existing),
+        "exported_shared_script_bundle_count": len(exported_entries),
+        "failed_shared_script_bundle_count": len(failures),
+        "event_scripts_direct_bundle_count": sum(1 for row in rows if row["source_kind"] == "event_scripts_direct"),
+        "label_count": totals["label_count"],
+        "unique_label_count": len(label_owners),
+        "duplicate_label_count": len(duplicate_labels),
+        "script_count": totals["script_count"],
+        "movement_count": totals["movement_count"],
+        "text_count": totals["text_count"],
+        "encoded_text_count": totals["encoded_text_count"],
+        "text_source_byte_count": totals["text_source_byte_count"],
+        "charmap_warning_count": totals["charmap_warning_count"],
+        "orphan_instruction_count": totals["orphan_instruction_count"],
+        "runtime_preview_unsupported_op_count": runtime_preview_unsupported_op_count,
+        "unique_op_count": len(total_op_counts),
+        "unsupported_preview_unique_op_count": len(total_unsupported_preview_ops),
+        "duplicate_output_path_count": len(duplicate_output_paths),
+    }
+
+    return {
+        "schema_version": 1,
+        "generated_by": GENERATED_BY,
+        "source": {
+            "project": "pokeemerald-expansion",
+            "shared_scripts_root": "data/scripts",
+            "event_scripts": "data/event_scripts.s",
+            "script_macro_source": "asm/macros/event.inc",
+            "charmap": "charmap.txt",
+        },
+        "godot_policy": {
+            "runtime_gba_palette_or_vram_limits": "not_recreated",
+            "palette_affine_effects": "preserve source-visible timing/effect with Godot-native materials/animation when implemented",
+            "audio": "metadata_only",
+        },
+        "output": {
+            "script_directory": to_project_path(output_root / "scripts"),
+            "report_path": to_project_path(output_root / SHARED_SCRIPT_BATCH_REPORT_RELATIVE_PATH),
+            "manifest_path": to_project_path(output_root / "import_manifest.json"),
+            "writes_enabled": bool(write_outputs),
+        },
+        "stats": stats,
+        "op_counts": dict(sorted(total_op_counts.items())),
+        "unsupported_preview_ops": dict(sorted(total_unsupported_preview_ops.items())),
+        "duplicates": {
+            "labels": duplicate_labels,
+            "output_paths": duplicate_output_paths,
+        },
+        "skipped_existing_shared_source_files": skipped_existing,
+        "failures": failures,
+        "shared_scripts": rows,
+        "unsupported": [
+            {
+                "code": "script_runtime_semantics_partial",
+                "status": "unsupported",
+                "note": "The importer preserves parsed shared/common instructions, but runtime ScriptVM semantics are implemented incrementally after source tracing.",
+            },
+            {
+                "code": "audio_metadata_only",
+                "status": "metadata_only",
+                "note": "Script sound/music/fanfare operands are preserved as symbols; real audio playback remains out of scope.",
+            },
+        ],
+        "notes": [
+            "Grouped first-slice shared bundles remain in the manifest; their source files are skipped here to avoid duplicate labels.",
+            "data/event_scripts.s is exported as direct top-level labels after the map include block, with .include proxy lines ignored.",
+        ],
+    }, exported_entries
+
+
 def _is_preview_supported_op(op):
     return op in PREVIEW_SUPPORTED_OPS
 
@@ -639,6 +877,7 @@ def main(argv):
     parser.add_argument("--source", type=Path, help="pokeemerald-expansion source root.")
     parser.add_argument("--map", default=None, help="Map folder name to export.")
     parser.add_argument("--all-maps", action="store_true", help="Export every source data/maps/*/scripts.inc bundle.")
+    parser.add_argument("--all-shared", action="store_true", help="Export every shared data/scripts/*.inc bundle not covered by grouped shared exports.")
     parser.add_argument("--shared-name", help="Shared script bundle name to export.")
     parser.add_argument(
         "--include-script",
@@ -653,6 +892,9 @@ def main(argv):
     source_root = args.source or Path(config.get("source_root", ""))
     map_folder = args.map or config.get("first_slice_map", "LittlerootTown")
     output_root = args.output_root or Path(config.get("generated_data_root", "data/generated"))
+
+    if args.all_maps and args.all_shared:
+        parser.error("--all-maps cannot be combined with --all-shared")
 
     if args.all_maps:
         if args.shared_name or args.include_script:
@@ -690,6 +932,42 @@ def main(argv):
             "stats": report["stats"],
         }, ensure_ascii=False, indent=2))
         return 1 if report["stats"]["failed_map_script_bundle_count"] else 0
+
+    if args.all_shared:
+        if args.shared_name or args.include_script:
+            parser.error("--all-shared cannot be combined with --shared-name or --include-script")
+        report, exported_entries = build_shared_script_batch_export(
+            source_root,
+            output_root,
+            write_outputs=True,
+        )
+        report_output = output_root / SHARED_SCRIPT_BATCH_REPORT_RELATIVE_PATH
+        write_json(report_output, report)
+        write_manifest(
+            output_root / "import_manifest.json",
+            exported_scripts=exported_entries,
+            exported_overworld_reports=[
+                {
+                    "category": "overworld_shared_script_batch_report",
+                    "path": to_project_path(report_output),
+                    "source_shared_script_file_count": report["stats"]["source_shared_script_file_count"],
+                    "skipped_existing_shared_source_file_count": report["stats"]["skipped_existing_shared_source_file_count"],
+                    "exported_shared_script_bundle_count": report["stats"]["exported_shared_script_bundle_count"],
+                    "failed_shared_script_bundle_count": report["stats"]["failed_shared_script_bundle_count"],
+                    "script_count": report["stats"]["script_count"],
+                    "movement_count": report["stats"]["movement_count"],
+                    "text_count": report["stats"]["text_count"],
+                    "charmap_warning_count": report["stats"]["charmap_warning_count"],
+                    "orphan_instruction_count": report["stats"]["orphan_instruction_count"],
+                },
+            ],
+            generator=GENERATED_BY,
+        )
+        print(json.dumps({
+            "report": to_project_path(report_output),
+            "stats": report["stats"],
+        }, ensure_ascii=False, indent=2))
+        return 1 if report["stats"]["failed_shared_script_bundle_count"] else 0
 
     if args.shared_name:
         if not args.include_script:

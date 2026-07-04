@@ -48,14 +48,14 @@ def main(argv):
     _assert(generated["tileset_record_count"] == 4, "unexpected generated tileset record count")
     _assert(generated["unique_primary_tileset_count"] == 2, "unexpected generated primary tileset count")
     _assert(generated["unique_secondary_tileset_count"] == 2, "unexpected generated secondary tileset count")
-    _assert(generated["script_bundle_count"] == 889, "unexpected generated script bundle count")
+    _assert(generated["script_bundle_count"] == 971, "unexpected generated script bundle count")
     _assert(generated["map_script_bundle_count"] == 887, "unexpected generated map script bundle count")
-    _assert(generated["shared_script_bundle_count"] == 2, "unexpected generated shared script bundle count")
-    _assert(generated["script_count"] == 10351, "unexpected generated script count")
-    _assert(generated["movement_label_count"] == 1353, "unexpected movement label count")
-    _assert(generated["movement_action_count"] == 9230, "unexpected movement action count")
-    _assert(generated["movement_action_count_excluding_step_end"] == 7890, "unexpected non-terminal movement action count")
-    _assert(generated["script_runtime_preview_unsupported_op_count"] == 36368, "unexpected script preview unsupported op count")
+    _assert(generated["shared_script_bundle_count"] == 84, "unexpected generated shared script bundle count")
+    _assert(generated["script_count"] == 13000, "unexpected generated script count")
+    _assert(generated["movement_label_count"] == 1489, "unexpected movement label count")
+    _assert(generated["movement_action_count"] == 9848, "unexpected movement action count")
+    _assert(generated["movement_action_count_excluding_step_end"] == 8376, "unexpected non-terminal movement action count")
+    _assert(generated["script_runtime_preview_unsupported_op_count"] == 45218, "unexpected script preview unsupported op count")
     _assert(generated["door_animation_count"] == 2, "unexpected generated door animation count")
     _assert(generated["door_animation_frame_count"] == 6, "unexpected generated door frame count")
     _assert(generated["tileset_animation_count"] == 0, "tileset animations should remain ungenerated")
@@ -90,7 +90,7 @@ def main(argv):
         "LAYOUT_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB_WITH_TABLE" in layout_ids,
         "missing standalone layout summary",
     )
-    _assert(exported["details"]["movement_op_counts"]["step_end"] == 1340, "unexpected step_end count")
+    _assert(exported["details"]["movement_op_counts"]["step_end"] == 1472, "unexpected step_end count")
 
     print("export_overworld_import_summary_smoke: ok")
     return 0

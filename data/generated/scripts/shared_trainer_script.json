@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_trainer_script",
+    "script_files": [
+      "data/scripts/trainer_script.inc"
+    ]
+  },
+  "labels": {
+    "Std_RegisteredInMatchCall": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/trainer_script.inc",
+      "instruction_count": 10
+    },
+    "EventScript_TryGetTrainerScript": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/scripts/trainer_script.inc",
+      "instruction_count": 4
+    },
+    "EventScript_GotoTrainerScript": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/scripts/trainer_script.inc",
+      "instruction_count": 3
+    },
+    "EventScript_ObjectApproachPlayer": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/trainer_script.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "Std_RegisteredInMatchCall": {
+      "label": "Std_RegisteredInMatchCall",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/trainer_script.inc",
+      "instructions": [
+        {
+          "op": "buffertrainerclassname",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8000"
+          ],
+          "line": 2,
+          "raw": "buffertrainerclassname STR_VAR_1, VAR_0x8000",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "buffertrainername",
+          "args": [
+            "STR_VAR_2",
+            "VAR_0x8000"
+          ],
+          "line": 3,
+          "raw": "buffertrainername STR_VAR_2, VAR_0x8000",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 4,
+          "raw": "closemessage",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 5,
+          "raw": "delay 30",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_REGISTER_MATCH_CALL"
+          ],
+          "line": 6,
+          "raw": "playfanfare MUS_REGISTER_MATCH_CALL",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_RegisteredTrainerinPokeNav",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 7,
+          "raw": "msgbox gText_RegisteredTrainerinPokeNav, MSGBOX_DEFAULT",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 8,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 9,
+          "raw": "closemessage",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 10,
+          "raw": "delay 30",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 11,
+          "raw": "return",
+          "source_file": "data/scripts/trainer_script.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_RegisteredTrainerinPokeNav",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 7
+        }
+      ],
+      "branch_targets": []
+    },
+    "EventScript_TryGetTrainerScript": {
+      "label": "EventScript_TryGetTrainerScript",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/scripts/trainer_script.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "ShouldTryGetTrainerScript"
+          ],
+          "line": 14,
+          "raw": "special ShouldTryGetTrainerScript",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "EventScript_GotoTrainerScript"
+          ],
+          "line": 15,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, EventScript_GotoTrainerScript",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 16,
+          "raw": "releaseall",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/scripts/trainer_script.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_GotoTrainerScript",
+          "line": 15
+        }
+      ]
+    },
+    "EventScript_GotoTrainerScript": {
+      "label": "EventScript_GotoTrainerScript",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/scripts/trainer_script.inc",
+      "instructions": [
+        {
+          "op": "gotobeatenscript",
+          "args": [],
+          "line": 20,
+          "raw": "gotobeatenscript",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 21,
+          "raw": "releaseall",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/scripts/trainer_script.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_ObjectApproachPlayer": {
+      "label": "EventScript_ObjectApproachPlayer",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/scripts/trainer_script.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 25,
+          "raw": "lock",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DoTrainerApproach"
+          ],
+          "line": 26,
+          "raw": "special DoTrainerApproach",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 27,
+          "raw": "waitstate",
+          "source_file": "data/scripts/trainer_script.inc"
+        },
+        {
+          "op": "gotonative",
+          "args": [
+            "LoadTrainerObjectScript"
+          ],
+          "line": 28,
+          "raw": "gotonative LoadTrainerObjectScript",
+          "source_file": "data/scripts/trainer_script.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "buffertrainerclassname": 1,
+      "buffertrainername": 1,
+      "closemessage": 2,
+      "delay": 2,
+      "goto_if_eq": 1,
+      "gotobeatenscript": 1,
+      "gotonative": 1,
+      "playfanfare": 1,
+      "special": 2,
+      "waitfanfare": 1,
+      "waitstate": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 4,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "buffertrainerclassname": 1,
+      "buffertrainername": 1,
+      "closemessage": 2,
+      "delay": 2,
+      "end": 2,
+      "goto_if_eq": 1,
+      "gotobeatenscript": 1,
+      "gotonative": 1,
+      "lock": 1,
+      "msgbox": 1,
+      "playfanfare": 1,
+      "releaseall": 2,
+      "return": 1,
+      "special": 2,
+      "waitfanfare": 1,
+      "waitstate": 1
+    }
+  }
+}

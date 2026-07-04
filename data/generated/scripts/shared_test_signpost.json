@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_test_signpost",
+    "script_files": [
+      "data/scripts/test_signpost.inc"
+    ]
+  },
+  "labels": {
+    "Text_ThisIsATestSignpostMsg": {
+      "kind": "text",
+      "line": 1,
+      "source_file": "data/scripts/test_signpost.inc",
+      "instruction_count": 2
+    },
+    "EventScript_TestSignpostMsg": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/scripts/test_signpost.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "EventScript_TestSignpostMsg": {
+      "label": "EventScript_TestSignpostMsg",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/scripts/test_signpost.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Text_ThisIsATestSignpostMsg",
+            "MSGBOX_SIGN"
+          ],
+          "line": 6,
+          "raw": "msgbox Text_ThisIsATestSignpostMsg, MSGBOX_SIGN",
+          "source_file": "data/scripts/test_signpost.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/scripts/test_signpost.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Text_ThisIsATestSignpostMsg",
+          "mode": "MSGBOX_SIGN",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Text_ThisIsATestSignpostMsg": {
+      "label": "Text_ThisIsATestSignpostMsg",
+      "line": 1,
+      "source_file": "data/scripts/test_signpost.inc",
+      "raw_text": "测试用信息，\\n看板。$",
+      "display_text": "测试用信息，\n看板。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          2,
+          6,
+          12,
+          25,
+          15,
+          113,
+          14,
+          80,
+          13,
+          198,
+          59,
+          254,
+          7,
+          194,
+          1,
+          68,
+          55,
+          255
+        ],
+        "hex": "02 06 0C 19 0F 71 0E 50 0D C6 3B FE 07 C2 01 44 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 2,
+    "script_count": 1,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 18,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 1,
+      "msgbox": 1
+    }
+  }
+}

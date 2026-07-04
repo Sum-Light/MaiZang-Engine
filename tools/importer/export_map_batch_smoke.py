@@ -15,12 +15,12 @@ EXPECTED_MAP_REFERENCED_LAYOUT_COUNT = 711
 EXPECTED_STANDALONE_LAYOUT_COUNT = 74
 EXPECTED_UNEXPORTED_LAYOUT_COUNT = 0
 EXPECTED_LAYOUT_WARNING_COUNT = 20
-EXPECTED_GENERATED_SCRIPT_BUNDLE_COUNT = 889
-EXPECTED_GENERATED_SCRIPT_LABEL_COUNT = 10351
+EXPECTED_GENERATED_SCRIPT_BUNDLE_COUNT = 971
+EXPECTED_GENERATED_SCRIPT_LABEL_COUNT = 13000
 EXPECTED_SCRIPT_REFERENCE_COUNT = 5314
-EXPECTED_RESOLVED_SCRIPT_REFERENCE_COUNT = 3804
-EXPECTED_MISSING_SCRIPT_REFERENCE_COUNT = 1510
-EXPECTED_MISSING_UNIQUE_SCRIPT_LABEL_COUNT = 582
+EXPECTED_RESOLVED_SCRIPT_REFERENCE_COUNT = 5314
+EXPECTED_MISSING_SCRIPT_REFERENCE_COUNT = 0
+EXPECTED_MISSING_UNIQUE_SCRIPT_LABEL_COUNT = 0
 EXPECTED_DYNAMIC_OR_SPECIAL_WARP_COUNT = 64
 EXPECTED_DIVE_OR_EMERGE_CONNECTION_COUNT = 14
 
@@ -178,10 +178,7 @@ def main(argv):
         stats["missing_script_label_reference_count"] == EXPECTED_MISSING_SCRIPT_REFERENCE_COUNT,
         "top-level missing script reference count mismatch",
     )
-    require(
-        "Common_EventScript_FindItem" in script_validation.get("missing_labels", []),
-        "known not-yet-exported common script label should be reported missing",
-    )
+    require(script_validation.get("missing_labels", []) == [], "shared/common script labels should all resolve")
     require(
         "LittlerootTown_EventScript_Twin" not in script_validation.get("missing_labels", []),
         "generated Littleroot script label should resolve",

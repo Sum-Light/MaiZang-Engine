@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_gift_altering_cave",
+    "script_files": [
+      "data/scripts/gift_altering_cave.inc"
+    ]
+  },
+  "labels": {
+    "MysteryGiftScript_AlteringCave": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/gift_altering_cave.inc",
+      "instruction_count": 4
+    },
+    "MysteryGiftScript_AlteringCave_": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/scripts/gift_altering_cave.inc",
+      "instruction_count": 7
+    },
+    "sText_MysteryGiftAlteringCave": {
+      "kind": "text",
+      "line": 15,
+      "source_file": "data/scripts/gift_altering_cave.inc",
+      "instruction_count": 7
+    }
+  },
+  "scripts": {
+    "MysteryGiftScript_AlteringCave": {
+      "label": "MysteryGiftScript_AlteringCave",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/gift_altering_cave.inc",
+      "instructions": [
+        {
+          "op": "setvaddress",
+          "args": [
+            "MysteryGiftScript_AlteringCave"
+          ],
+          "line": 2,
+          "raw": "setvaddress MysteryGiftScript_AlteringCave",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_ALTERING_CAVE_WILD_SET",
+            "1"
+          ],
+          "line": 3,
+          "raw": "addvar VAR_ALTERING_CAVE_WILD_SET, 1",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        },
+        {
+          "op": "vgoto_if_ne",
+          "args": [
+            "VAR_ALTERING_CAVE_WILD_SET",
+            "(NUM_ALTERING_CAVE_TABLES + 1)",
+            "MysteryGiftScript_AlteringCave_"
+          ],
+          "line": 4,
+          "raw": "vgoto_if_ne VAR_ALTERING_CAVE_WILD_SET, (NUM_ALTERING_CAVE_TABLES + 1), MysteryGiftScript_AlteringCave_",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ALTERING_CAVE_WILD_SET",
+            "0"
+          ],
+          "line": 5,
+          "raw": "setvar VAR_ALTERING_CAVE_WILD_SET, 0",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MysteryGiftScript_AlteringCave_": {
+      "label": "MysteryGiftScript_AlteringCave_",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/scripts/gift_altering_cave.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 7,
+          "raw": "lock",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 8,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        },
+        {
+          "op": "vmessage",
+          "args": [
+            "sText_MysteryGiftAlteringCave"
+          ],
+          "line": 9,
+          "raw": "vmessage sText_MysteryGiftAlteringCave",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 10,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 11,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 12,
+          "raw": "release",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/scripts/gift_altering_cave.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "sText_MysteryGiftAlteringCave": {
+      "label": "sText_MysteryGiftAlteringCave",
+      "line": 15,
+      "source_file": "data/scripts/gift_altering_cave.inc",
+      "raw_text": "感谢使用\\n神秘礼物系统。\\p有传言说\\n稀有宝可梦被发现了。\\p发现者称其在\\n103号道路的变化洞窟中。\\p可能值得你去证实下这个传言。$",
+      "display_text": "感谢使用\n神秘礼物系统。\n\n有传言说\n稀有宝可梦被发现了。\n\n发现者称其在\n103号道路的变化洞窟中。\n\n可能值得你去证实下这个传言。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 116,
+        "bytes": [
+          4,
+          58,
+          14,
+          70,
+          11,
+          245,
+          15,
+          113,
+          254,
+          11,
+          207,
+          9,
+          112,
+          8,
+          102,
+          13,
+          181,
+          13,
+          217,
+          13,
+          27,
+          55,
+          251,
+          15,
+          126,
+          2,
+          139,
+          14,
+          189,
+          12,
+          88,
+          254,
+          13,
+          197,
+          15,
+          126,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          120,
+          3,
+          165,
+          14,
+          3,
+          8,
+          158,
+          55,
+          251,
+          3,
+          165,
+          14,
+          3,
+          16,
+          82,
+          2,
+          72,
+          10,
+          159,
+          15,
+          230,
+          254,
+          162,
+          161,
+          164,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          3,
+          11,
+          1,
+          161,
+          5,
+          60,
+          3,
+          89,
+          7,
+          237,
+          16,
+          161,
+          55,
+          251,
+          7,
+          215,
+          9,
+          210,
+          16,
+          134,
+          3,
+          10,
+          9,
+          217,
+          11,
+          37,
+          16,
+          117,
+          11,
+          241,
+          13,
+          230,
+          16,
+          85,
+          4,
+          96,
+          2,
+          139,
+          14,
+          189,
+          55,
+          255
+        ],
+        "hex": "04 3A 0E 46 0B F5 0F 71 FE 0B CF 09 70 08 66 0D B5 0D D9 0D 1B 37 FB 0F 7E 02 8B 0E BD 0C 58 FE 0D C5 0F 7E 01 63 07 D7 09 66 01 78 03 A5 0E 03 08 9E 37 FB 03 A5 0E 03 10 52 02 48 0A 9F 0F E6 FE A2 A1 A4 04 EB 03 07 08 E8 03 0B 01 A1 05 3C 03 59 07 ED 10 A1 37 FB 07 D7 09 D2 10 86 03 0A 09 D9 0B 25 10 75 0B F1 0D E6 10 55 04 60 02 8B 0E BD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 31,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 54,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 70,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addvar": 1,
+      "faceplayer": 1,
+      "setvaddress": 1,
+      "setvar": 1,
+      "vgoto_if_ne": 1,
+      "vmessage": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 116,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addvar": 1,
+      "end": 1,
+      "faceplayer": 1,
+      "lock": 1,
+      "release": 1,
+      "setvaddress": 1,
+      "setvar": 1,
+      "vgoto_if_ne": 1,
+      "vmessage": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    }
+  }
+}

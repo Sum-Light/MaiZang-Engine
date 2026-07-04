@@ -1,0 +1,6532 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_berry_tree",
+    "script_files": [
+      "data/scripts/berry_tree.inc"
+    ]
+  },
+  "labels": {
+    "BerryTreeScript": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 12
+    },
+    "BerryTree_EventScript_Sparkling": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 6
+    },
+    "BerryTree_EventScript_CheckSoil": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 11
+    },
+    "BerryTree_EventScript_WantToPlant": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 6
+    },
+    "BerryTree_EventScript_WantToMulch": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 6
+    },
+    "BerryTree_EventScript_WantToPlantMulch": {
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 9
+    },
+    "BerryTree_EventScript_ChooseMulchToUse": {
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 8
+    },
+    "BerryTree_EventScript_ChooseBerryToPlant": {
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 7
+    },
+    "BerryTree_EventScript_CancelPlanting": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_EventScript_CheckBerryStage1": {
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 6
+    },
+    "BerryTree_EventScript_CheckBerryStage2": {
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 6
+    },
+    "BerryTree_EventScript_CheckBerryStage3": {
+      "kind": "script",
+      "line": 102,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 6
+    },
+    "BerryTree_EventScript_CheckBerryStageTrunk": {
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 6
+    },
+    "BerryTree_EventScript_CheckBerryStageBudding": {
+      "kind": "script",
+      "line": 118,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 6
+    },
+    "BerryTree_EventScript_CheckBerryStage4": {
+      "kind": "script",
+      "line": 126,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 7
+    },
+    "BerryTree_EventScript_GetCareAdverb": {
+      "kind": "script",
+      "line": 137,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 4
+    },
+    "BerryTree_EventScript_SetAdverbGreat": {
+      "kind": "script",
+      "line": 143,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_EventScript_SetAdverbPoor": {
+      "kind": "script",
+      "line": 147,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_EventScript_CheckBerryFullyGrown": {
+      "kind": "script",
+      "line": 152,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 14
+    },
+    "BerryTree_EventScript_PickBerry": {
+      "kind": "script",
+      "line": 169,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 21
+    },
+    "BerryTree_EventScript_BerryPocketFull": {
+      "kind": "script",
+      "line": 192,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_EventScript_CancelPickingBerry": {
+      "kind": "script",
+      "line": 199,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_EventScript_ItemUsePlantBerry": {
+      "kind": "script",
+      "line": 206,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_EventScript_WantToWater": {
+      "kind": "script",
+      "line": 213,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 14
+    },
+    "BerryTree_EventScript_DontWater": {
+      "kind": "script",
+      "line": 229,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_EventScript_ItemUseWailmerPail": {
+      "kind": "script",
+      "line": 233,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_EventScript_WaterBerry": {
+      "kind": "script",
+      "line": 236,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 11
+    },
+    "BerryTree_EventScript_PlantBerry": {
+      "kind": "script",
+      "line": 249,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 8
+    },
+    "BerryTree_Text_ItsSoftLoamySoil": {
+      "kind": "text",
+      "line": 259,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 1
+    },
+    "BerryTree_Text_WantToPlant": {
+      "kind": "text",
+      "line": 262,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_Text_PlantedOneBerry": {
+      "kind": "text",
+      "line": 266,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 1
+    },
+    "BerryTree_Text_BerryGrowthStage1": {
+      "kind": "text",
+      "line": 269,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_Text_BerryGrowthStage2": {
+      "kind": "text",
+      "line": 276,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_Text_BerryGrowthStage3": {
+      "kind": "text",
+      "line": 283,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_Text_BerryGrowthStageTrunk": {
+      "kind": "text",
+      "line": 290,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 1
+    },
+    "BerryTree_Text_BerryGrowthStageBudding": {
+      "kind": "text",
+      "line": 293,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 1
+    },
+    "BerryTree_Text_BerryGrowthStage4": {
+      "kind": "text",
+      "line": 296,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_Text_CareAdverbGreat": {
+      "kind": "text",
+      "line": 303,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 1
+    },
+    "BerryTree_Text_CareAdverbPoor": {
+      "kind": "text",
+      "line": 306,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 1
+    },
+    "BerryTree_Text_CareAdverbGood": {
+      "kind": "text",
+      "line": 309,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 1
+    },
+    "BerryTree_Text_WantToPick": {
+      "kind": "text",
+      "line": 312,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 3
+    },
+    "BerryTree_Text_PickedTheBerry": {
+      "kind": "text",
+      "line": 317,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 1
+    },
+    "BerryTree_Text_PutAwayBerry": {
+      "kind": "text",
+      "line": 320,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 3
+    },
+    "BerryTree_Text_BerryPocketFull": {
+      "kind": "text",
+      "line": 325,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_Text_BerryLeftUnpicked": {
+      "kind": "text",
+      "line": 329,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_Text_WantToWater": {
+      "kind": "text",
+      "line": 333,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_Text_WateredTheBerry": {
+      "kind": "text",
+      "line": 337,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 1
+    },
+    "BerryTree_Text_PlantIsDelighted": {
+      "kind": "text",
+      "line": 340,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 1
+    },
+    "BerryTree_Text_ExclamationPoint": {
+      "kind": "text",
+      "line": 343,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_EventScript_CheckBerryFullyGrown_Mutation": {
+      "kind": "script",
+      "line": 347,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 3
+    },
+    "BerryTree_EventScript_CancelPickingBerry_Mutation": {
+      "kind": "script",
+      "line": 352,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_EventScript_BerryPocketFull_Mutation": {
+      "kind": "script",
+      "line": 359,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_EventScript_PickBerry_Mutation": {
+      "kind": "script",
+      "line": 366,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 12
+    },
+    "BerryTree_Text_WantToPick_Mutation": {
+      "kind": "text",
+      "line": 380,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 3
+    },
+    "BerryTree_Text_BerryLeftUnpicked_Mutation": {
+      "kind": "text",
+      "line": 385,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_Text_BerryPocketFull_Mutation": {
+      "kind": "text",
+      "line": 389,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 3
+    },
+    "BerryTree_Text_PickedTheBerry_Mutation": {
+      "kind": "text",
+      "line": 394,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_Text_PutAwayBerry_Mutation": {
+      "kind": "text",
+      "line": 398,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 6
+    },
+    "BerryTree_EventScript_UseMulch": {
+      "kind": "script",
+      "line": 406,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_Text_WantToMulch": {
+      "kind": "text",
+      "line": 413,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_Text_ScatteredMulch": {
+      "kind": "text",
+      "line": 417,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 4
+    },
+    "BerryTree_EventScript_CheckForWeed": {
+      "kind": "script",
+      "line": 423,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 3
+    },
+    "BerryTree_EventScript_WeedIsGrowing": {
+      "kind": "script",
+      "line": 428,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 3
+    },
+    "BerryTree_EventScript_PullOutWeed": {
+      "kind": "script",
+      "line": 433,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_Text_WeedIsGrowing": {
+      "kind": "text",
+      "line": 440,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    },
+    "BerryTree_Text_PulledOutTheWeed": {
+      "kind": "text",
+      "line": 444,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 3
+    },
+    "BerryTree_EventScript_CheckForPests": {
+      "kind": "script",
+      "line": 449,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 3
+    },
+    "BerryTree_EventScript_EncounterPests": {
+      "kind": "script",
+      "line": 454,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 5
+    },
+    "BerryTree_Text_APokemonAppeared": {
+      "kind": "text",
+      "line": 461,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "BerryTreeScript": {
+      "label": "BerryTreeScript",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryTreeData"
+          ],
+          "line": 2,
+          "raw": "special ObjectEventInteractionGetBerryTreeData",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_0x8004"
+          ],
+          "line": 3,
+          "raw": "switch VAR_0x8004",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "BERRY_STAGE_SPARKLING",
+            "BerryTree_EventScript_Sparkling"
+          ],
+          "line": 4,
+          "raw": "case BERRY_STAGE_SPARKLING, BerryTree_EventScript_Sparkling",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "BERRY_STAGE_NO_BERRY",
+            "BerryTree_EventScript_CheckSoil"
+          ],
+          "line": 5,
+          "raw": "case BERRY_STAGE_NO_BERRY, BerryTree_EventScript_CheckSoil",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "BERRY_STAGE_PLANTED",
+            "BerryTree_EventScript_CheckBerryStage1"
+          ],
+          "line": 6,
+          "raw": "case BERRY_STAGE_PLANTED, BerryTree_EventScript_CheckBerryStage1",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "BERRY_STAGE_SPROUTED",
+            "BerryTree_EventScript_CheckBerryStage2"
+          ],
+          "line": 7,
+          "raw": "case BERRY_STAGE_SPROUTED, BerryTree_EventScript_CheckBerryStage2",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "BERRY_STAGE_TALLER",
+            "BerryTree_EventScript_CheckBerryStage3"
+          ],
+          "line": 8,
+          "raw": "case BERRY_STAGE_TALLER, BerryTree_EventScript_CheckBerryStage3",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "BERRY_STAGE_TRUNK",
+            "BerryTree_EventScript_CheckBerryStageTrunk"
+          ],
+          "line": 9,
+          "raw": "case BERRY_STAGE_TRUNK, BerryTree_EventScript_CheckBerryStageTrunk",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "BERRY_STAGE_BUDDING",
+            "BerryTree_EventScript_CheckBerryStageBudding"
+          ],
+          "line": 10,
+          "raw": "case BERRY_STAGE_BUDDING, BerryTree_EventScript_CheckBerryStageBudding",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "BERRY_STAGE_FLOWERING",
+            "BerryTree_EventScript_CheckBerryStage4"
+          ],
+          "line": 11,
+          "raw": "case BERRY_STAGE_FLOWERING, BerryTree_EventScript_CheckBerryStage4",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "BERRY_STAGE_BERRIES",
+            "BerryTree_EventScript_CheckBerryFullyGrown"
+          ],
+          "line": 12,
+          "raw": "case BERRY_STAGE_BERRIES, BerryTree_EventScript_CheckBerryFullyGrown",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_Sparkling": {
+      "label": "BerryTree_EventScript_Sparkling",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 16,
+          "raw": "lockall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_ExclamationPoint"
+          ],
+          "line": 17,
+          "raw": "message BerryTree_Text_ExclamationPoint",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 18,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 19,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 20,
+          "raw": "releaseall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 21,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_ExclamationPoint",
+          "mode": "",
+          "line": 17
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_CheckSoil": {
+      "label": "BerryTree_EventScript_CheckSoil",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 24,
+          "raw": "lock",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 25,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "PlayerHasBerries"
+          ],
+          "line": 26,
+          "raw": "specialvar VAR_RESULT, PlayerHasBerries",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BerryTree_EventScript_WantToPlant"
+          ],
+          "line": 27,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, BerryTree_EventScript_WantToPlant",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "PlayerHasMulch"
+          ],
+          "line": 28,
+          "raw": "specialvar VAR_RESULT, PlayerHasMulch",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BerryTree_EventScript_WantToMulch"
+          ],
+          "line": 29,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, BerryTree_EventScript_WantToMulch",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_ItsSoftLoamySoil"
+          ],
+          "line": 30,
+          "raw": "message BerryTree_Text_ItsSoftLoamySoil",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 31,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 32,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 33,
+          "raw": "release",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_ItsSoftLoamySoil",
+          "mode": "",
+          "line": 30
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_WantToPlant",
+          "line": 27
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_WantToMulch",
+          "line": 29
+        }
+      ]
+    },
+    "BerryTree_EventScript_WantToPlant": {
+      "label": "BerryTree_EventScript_WantToPlant",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "PlayerHasMulch"
+          ],
+          "line": 37,
+          "raw": "specialvar VAR_RESULT, PlayerHasMulch",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BerryTree_EventScript_WantToPlantMulch"
+          ],
+          "line": 38,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, BerryTree_EventScript_WantToPlantMulch",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BerryTree_Text_WantToPlant",
+            "MSGBOX_YESNO"
+          ],
+          "line": 39,
+          "raw": "msgbox BerryTree_Text_WantToPlant, MSGBOX_YESNO",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "BerryTree_EventScript_ChooseBerryToPlant"
+          ],
+          "line": 40,
+          "raw": "goto_if_eq VAR_RESULT, YES, BerryTree_EventScript_ChooseBerryToPlant",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "BerryTree_EventScript_CancelPlanting"
+          ],
+          "line": 41,
+          "raw": "goto_if_eq VAR_RESULT, NO, BerryTree_EventScript_CancelPlanting",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BerryTree_Text_WantToPlant",
+          "mode": "MSGBOX_YESNO",
+          "line": 39
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_WantToPlantMulch",
+          "line": 38
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_ChooseBerryToPlant",
+          "line": 40
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_CancelPlanting",
+          "line": 41
+        }
+      ]
+    },
+    "BerryTree_EventScript_WantToMulch": {
+      "label": "BerryTree_EventScript_WantToMulch",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": ".if",
+          "args": [
+            "OW_BERRY_MULCH_USAGE == TRUE"
+          ],
+          "line": 45,
+          "raw": ".if OW_BERRY_MULCH_USAGE == TRUE",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BerryTree_Text_WantToMulch",
+            "MSGBOX_YESNO"
+          ],
+          "line": 46,
+          "raw": "msgbox BerryTree_Text_WantToMulch, MSGBOX_YESNO",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "BerryTree_EventScript_ChooseMulchToUse"
+          ],
+          "line": 47,
+          "raw": "goto_if_eq VAR_RESULT, YES, BerryTree_EventScript_ChooseMulchToUse",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "BerryTree_EventScript_CancelPlanting"
+          ],
+          "line": 48,
+          "raw": "goto_if_eq VAR_RESULT, NO, BerryTree_EventScript_CancelPlanting",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".endif",
+          "args": [],
+          "line": 49,
+          "raw": ".endif",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 50,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BerryTree_Text_WantToMulch",
+          "mode": "MSGBOX_YESNO",
+          "line": 46
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_ChooseMulchToUse",
+          "line": 47
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_CancelPlanting",
+          "line": 48
+        }
+      ]
+    },
+    "BerryTree_EventScript_WantToPlantMulch": {
+      "label": "BerryTree_EventScript_WantToPlantMulch",
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": ".if",
+          "args": [
+            "OW_BERRY_MULCH_USAGE == TRUE"
+          ],
+          "line": 53,
+          "raw": ".if OW_BERRY_MULCH_USAGE == TRUE",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_ItsSoftLoamySoil"
+          ],
+          "line": 54,
+          "raw": "message BerryTree_Text_ItsSoftLoamySoil",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 55,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "0",
+            "0",
+            "MULTI_BERRY_PLOT",
+            "FALSE"
+          ],
+          "line": 56,
+          "raw": "multichoice 0, 0, MULTI_BERRY_PLOT, FALSE",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 57,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BerryTree_EventScript_ChooseMulchToUse"
+          ],
+          "line": 58,
+          "raw": "case 0, BerryTree_EventScript_ChooseMulchToUse",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BerryTree_EventScript_ChooseBerryToPlant"
+          ],
+          "line": 59,
+          "raw": "case 1, BerryTree_EventScript_ChooseBerryToPlant",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "BerryTree_EventScript_CancelPlanting"
+          ],
+          "line": 60,
+          "raw": "case 2, BerryTree_EventScript_CancelPlanting",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BerryTree_EventScript_CancelPlanting"
+          ],
+          "line": 61,
+          "raw": "case MULTI_B_PRESSED, BerryTree_EventScript_CancelPlanting",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_ItsSoftLoamySoil",
+          "mode": "",
+          "line": 54
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_ChooseMulchToUse": {
+      "label": "BerryTree_EventScript_ChooseMulchToUse",
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 64,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 65,
+          "raw": "closemessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "Bag_ChooseMulch"
+          ],
+          "line": 66,
+          "raw": "special Bag_ChooseMulch",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 67,
+          "raw": "waitstate",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ITEM_ID",
+            "0",
+            "BerryTree_EventScript_CancelPlanting"
+          ],
+          "line": 68,
+          "raw": "goto_if_eq VAR_ITEM_ID, 0, BerryTree_EventScript_CancelPlanting",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "removeitem",
+          "args": [
+            "VAR_ITEM_ID"
+          ],
+          "line": 69,
+          "raw": "removeitem VAR_ITEM_ID",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BerryTree_EventScript_UseMulch"
+          ],
+          "line": 70,
+          "raw": "call BerryTree_EventScript_UseMulch",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".endif",
+          "args": [],
+          "line": 71,
+          "raw": ".endif",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_CancelPlanting",
+          "line": 68
+        },
+        {
+          "op": "call",
+          "target": "BerryTree_EventScript_UseMulch",
+          "line": 70
+        }
+      ]
+    },
+    "BerryTree_EventScript_ChooseBerryToPlant": {
+      "label": "BerryTree_EventScript_ChooseBerryToPlant",
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 74,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 75,
+          "raw": "closemessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "Bag_ChooseBerry"
+          ],
+          "line": 76,
+          "raw": "special Bag_ChooseBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 77,
+          "raw": "waitstate",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ITEM_ID",
+            "0",
+            "BerryTree_EventScript_CancelPlanting"
+          ],
+          "line": 78,
+          "raw": "goto_if_eq VAR_ITEM_ID, 0, BerryTree_EventScript_CancelPlanting",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "removeitem",
+          "args": [
+            "VAR_ITEM_ID"
+          ],
+          "line": 79,
+          "raw": "removeitem VAR_ITEM_ID",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BerryTree_EventScript_PlantBerry"
+          ],
+          "line": 80,
+          "raw": "call BerryTree_EventScript_PlantBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_CancelPlanting",
+          "line": 78
+        },
+        {
+          "op": "call",
+          "target": "BerryTree_EventScript_PlantBerry",
+          "line": 80
+        }
+      ]
+    },
+    "BerryTree_EventScript_CancelPlanting": {
+      "label": "BerryTree_EventScript_CancelPlanting",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "release",
+          "args": [],
+          "line": 83,
+          "raw": "release",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 84,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_CheckBerryStage1": {
+      "label": "BerryTree_EventScript_CheckBerryStage1",
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 87,
+          "raw": "lockall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryCountString"
+          ],
+          "line": 88,
+          "raw": "special ObjectEventInteractionGetBerryCountString",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_BerryGrowthStage1"
+          ],
+          "line": 89,
+          "raw": "message BerryTree_Text_BerryGrowthStage1",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 90,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 91,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BerryTree_EventScript_WantToWater"
+          ],
+          "line": 92,
+          "raw": "goto BerryTree_EventScript_WantToWater",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_BerryGrowthStage1",
+          "mode": "",
+          "line": 89
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BerryTree_EventScript_WantToWater",
+          "line": 92
+        }
+      ]
+    },
+    "BerryTree_EventScript_CheckBerryStage2": {
+      "label": "BerryTree_EventScript_CheckBerryStage2",
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 95,
+          "raw": "lockall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryName"
+          ],
+          "line": 96,
+          "raw": "special ObjectEventInteractionGetBerryName",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_BerryGrowthStage2"
+          ],
+          "line": 97,
+          "raw": "message BerryTree_Text_BerryGrowthStage2",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 98,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 99,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BerryTree_EventScript_WantToWater"
+          ],
+          "line": 100,
+          "raw": "goto BerryTree_EventScript_WantToWater",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_BerryGrowthStage2",
+          "mode": "",
+          "line": 97
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BerryTree_EventScript_WantToWater",
+          "line": 100
+        }
+      ]
+    },
+    "BerryTree_EventScript_CheckBerryStage3": {
+      "label": "BerryTree_EventScript_CheckBerryStage3",
+      "kind": "script",
+      "line": 102,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 103,
+          "raw": "lockall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryName"
+          ],
+          "line": 104,
+          "raw": "special ObjectEventInteractionGetBerryName",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_BerryGrowthStage3"
+          ],
+          "line": 105,
+          "raw": "message BerryTree_Text_BerryGrowthStage3",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 106,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 107,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BerryTree_EventScript_WantToWater"
+          ],
+          "line": 108,
+          "raw": "goto BerryTree_EventScript_WantToWater",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_BerryGrowthStage3",
+          "mode": "",
+          "line": 105
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BerryTree_EventScript_WantToWater",
+          "line": 108
+        }
+      ]
+    },
+    "BerryTree_EventScript_CheckBerryStageTrunk": {
+      "label": "BerryTree_EventScript_CheckBerryStageTrunk",
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 111,
+          "raw": "lockall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryName"
+          ],
+          "line": 112,
+          "raw": "special ObjectEventInteractionGetBerryName",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_BerryGrowthStageTrunk"
+          ],
+          "line": 113,
+          "raw": "message BerryTree_Text_BerryGrowthStageTrunk",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 114,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 115,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BerryTree_EventScript_WantToWater"
+          ],
+          "line": 116,
+          "raw": "goto BerryTree_EventScript_WantToWater",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_BerryGrowthStageTrunk",
+          "mode": "",
+          "line": 113
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BerryTree_EventScript_WantToWater",
+          "line": 116
+        }
+      ]
+    },
+    "BerryTree_EventScript_CheckBerryStageBudding": {
+      "label": "BerryTree_EventScript_CheckBerryStageBudding",
+      "kind": "script",
+      "line": 118,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 119,
+          "raw": "lockall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryName"
+          ],
+          "line": 120,
+          "raw": "special ObjectEventInteractionGetBerryName",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_BerryGrowthStageBudding"
+          ],
+          "line": 121,
+          "raw": "message BerryTree_Text_BerryGrowthStageBudding",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 122,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 123,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BerryTree_EventScript_WantToWater"
+          ],
+          "line": 124,
+          "raw": "goto BerryTree_EventScript_WantToWater",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_BerryGrowthStageBudding",
+          "mode": "",
+          "line": 121
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BerryTree_EventScript_WantToWater",
+          "line": 124
+        }
+      ]
+    },
+    "BerryTree_EventScript_CheckBerryStage4": {
+      "label": "BerryTree_EventScript_CheckBerryStage4",
+      "kind": "script",
+      "line": 126,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "BerryTree_EventScript_GetCareAdverb"
+          ],
+          "line": 127,
+          "raw": "call BerryTree_EventScript_GetCareAdverb",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 128,
+          "raw": "lockall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryName"
+          ],
+          "line": 129,
+          "raw": "special ObjectEventInteractionGetBerryName",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_BerryGrowthStage4"
+          ],
+          "line": 130,
+          "raw": "message BerryTree_Text_BerryGrowthStage4",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 131,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 132,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BerryTree_EventScript_WantToWater"
+          ],
+          "line": 133,
+          "raw": "goto BerryTree_EventScript_WantToWater",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_BerryGrowthStage4",
+          "mode": "",
+          "line": 130
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BerryTree_EventScript_GetCareAdverb",
+          "line": 127
+        },
+        {
+          "op": "goto",
+          "target": "BerryTree_EventScript_WantToWater",
+          "line": 133
+        }
+      ]
+    },
+    "BerryTree_EventScript_GetCareAdverb": {
+      "label": "BerryTree_EventScript_GetCareAdverb",
+      "kind": "script",
+      "line": 137,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8005",
+            "0",
+            "BerryTree_EventScript_SetAdverbPoor"
+          ],
+          "line": 138,
+          "raw": "goto_if_eq VAR_0x8005, 0, BerryTree_EventScript_SetAdverbPoor",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8005",
+            "4",
+            "BerryTree_EventScript_SetAdverbGreat"
+          ],
+          "line": 139,
+          "raw": "goto_if_eq VAR_0x8005, 4, BerryTree_EventScript_SetAdverbGreat",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "bufferstring",
+          "args": [
+            "STR_VAR_2",
+            "BerryTree_Text_CareAdverbGood"
+          ],
+          "line": 140,
+          "raw": "bufferstring STR_VAR_2, BerryTree_Text_CareAdverbGood",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 141,
+          "raw": "return",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_SetAdverbPoor",
+          "line": 138
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_SetAdverbGreat",
+          "line": 139
+        }
+      ]
+    },
+    "BerryTree_EventScript_SetAdverbGreat": {
+      "label": "BerryTree_EventScript_SetAdverbGreat",
+      "kind": "script",
+      "line": 143,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "bufferstring",
+          "args": [
+            "STR_VAR_2",
+            "BerryTree_Text_CareAdverbGreat"
+          ],
+          "line": 144,
+          "raw": "bufferstring STR_VAR_2, BerryTree_Text_CareAdverbGreat",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 145,
+          "raw": "return",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_SetAdverbPoor": {
+      "label": "BerryTree_EventScript_SetAdverbPoor",
+      "kind": "script",
+      "line": 147,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "bufferstring",
+          "args": [
+            "STR_VAR_2",
+            "BerryTree_Text_CareAdverbPoor"
+          ],
+          "line": 148,
+          "raw": "bufferstring STR_VAR_2, BerryTree_Text_CareAdverbPoor",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 149,
+          "raw": "return",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_CheckBerryFullyGrown": {
+      "label": "BerryTree_EventScript_CheckBerryFullyGrown",
+      "kind": "script",
+      "line": 152,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_2",
+            "VAR_0x8006"
+          ],
+          "line": 153,
+          "raw": "buffernumberstring STR_VAR_2, VAR_0x8006",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "lock",
+          "args": [],
+          "line": 154,
+          "raw": "lock",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 155,
+          "raw": "faceplayer",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryCountString"
+          ],
+          "line": 156,
+          "raw": "special ObjectEventInteractionGetBerryCountString",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".if",
+          "args": [
+            "OW_BERRY_MUTATIONS == TRUE"
+          ],
+          "line": 157,
+          "raw": ".if OW_BERRY_MUTATIONS == TRUE",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BerryTree_EventScript_CheckBerryFullyGrown_Mutation"
+          ],
+          "line": 158,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, BerryTree_EventScript_CheckBerryFullyGrown_Mutation",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".endif",
+          "args": [],
+          "line": 159,
+          "raw": ".endif",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BerryTree_Text_WantToPick",
+            "MSGBOX_YESNO"
+          ],
+          "line": 160,
+          "raw": "msgbox BerryTree_Text_WantToPick, MSGBOX_YESNO",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "BerryTree_EventScript_PickBerry"
+          ],
+          "line": 161,
+          "raw": "goto_if_eq VAR_RESULT, YES, BerryTree_EventScript_PickBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "BerryTree_EventScript_CancelPickingBerry"
+          ],
+          "line": 162,
+          "raw": "goto_if_eq VAR_RESULT, NO, BerryTree_EventScript_CancelPickingBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".set",
+          "args": [
+            "BERRY_NORMAL_BAG_FULL",
+            "0"
+          ],
+          "line": 164,
+          "raw": ".set BERRY_NORMAL_BAG_FULL, 0",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".set",
+          "args": [
+            "BERRY_NORMAL_SPACE_IN_BAG",
+            "1"
+          ],
+          "line": 165,
+          "raw": ".set BERRY_NORMAL_SPACE_IN_BAG, 1",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".set",
+          "args": [
+            "BERRY_MUTATION_BAG_FULL",
+            "2"
+          ],
+          "line": 166,
+          "raw": ".set BERRY_MUTATION_BAG_FULL, 2",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".set",
+          "args": [
+            "BERRY_MUTATION_SPACE_IN_BAG",
+            "3"
+          ],
+          "line": 167,
+          "raw": ".set BERRY_MUTATION_SPACE_IN_BAG, 3",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BerryTree_Text_WantToPick",
+          "mode": "MSGBOX_YESNO",
+          "line": 160
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_CheckBerryFullyGrown_Mutation",
+          "line": 158
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_PickBerry",
+          "line": 161
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_CancelPickingBerry",
+          "line": 162
+        }
+      ]
+    },
+    "BerryTree_EventScript_PickBerry": {
+      "label": "BerryTree_EventScript_PickBerry",
+      "kind": "script",
+      "line": 169,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionPickBerryTree"
+          ],
+          "line": 170,
+          "raw": "special ObjectEventInteractionPickBerryTree",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "BERRY_NORMAL_BAG_FULL",
+            "BerryTree_EventScript_BerryPocketFull"
+          ],
+          "line": 171,
+          "raw": "goto_if_eq VAR_0x8004, BERRY_NORMAL_BAG_FULL, BerryTree_EventScript_BerryPocketFull",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".if",
+          "args": [
+            "OW_BERRY_MUTATIONS == TRUE"
+          ],
+          "line": 172,
+          "raw": ".if OW_BERRY_MUTATIONS == TRUE",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "BERRY_MUTATION_BAG_FULL",
+            "BerryTree_EventScript_BerryPocketFull_Mutation"
+          ],
+          "line": 173,
+          "raw": "goto_if_eq VAR_0x8004, BERRY_MUTATION_BAG_FULL, BerryTree_EventScript_BerryPocketFull_Mutation",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "BERRY_MUTATION_SPACE_IN_BAG",
+            "BerryTree_EventScript_PickBerry_Mutation"
+          ],
+          "line": 174,
+          "raw": "goto_if_eq VAR_0x8004, BERRY_MUTATION_SPACE_IN_BAG, BerryTree_EventScript_PickBerry_Mutation",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".endif",
+          "args": [],
+          "line": 175,
+          "raw": ".endif",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "IncrementDailyPickedBerries"
+          ],
+          "line": 176,
+          "raw": "special IncrementDailyPickedBerries",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionRemoveBerryTree"
+          ],
+          "line": 177,
+          "raw": "special ObjectEventInteractionRemoveBerryTree",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_PickedTheBerry"
+          ],
+          "line": 178,
+          "raw": "message BerryTree_Text_PickedTheBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "10"
+          ],
+          "line": 179,
+          "raw": "delay 10",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "showberrydescription",
+          "args": [],
+          "line": 180,
+          "raw": "showberrydescription",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_BERRY"
+          ],
+          "line": 181,
+          "raw": "playfanfare MUS_OBTAIN_BERRY",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 182,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 183,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 184,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_PutAwayBerry"
+          ],
+          "line": 185,
+          "raw": "message BerryTree_Text_PutAwayBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 186,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 187,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "hideitemdescription",
+          "args": [],
+          "line": 188,
+          "raw": "hideitemdescription",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 189,
+          "raw": "release",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 190,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_PickedTheBerry",
+          "mode": "",
+          "line": 178
+        },
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_PutAwayBerry",
+          "mode": "",
+          "line": 185
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_BerryPocketFull",
+          "line": 171
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_BerryPocketFull_Mutation",
+          "line": 173
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_PickBerry_Mutation",
+          "line": 174
+        }
+      ]
+    },
+    "BerryTree_EventScript_BerryPocketFull": {
+      "label": "BerryTree_EventScript_BerryPocketFull",
+      "kind": "script",
+      "line": 192,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_BerryPocketFull"
+          ],
+          "line": 193,
+          "raw": "message BerryTree_Text_BerryPocketFull",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 194,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 195,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 196,
+          "raw": "release",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 197,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_BerryPocketFull",
+          "mode": "",
+          "line": 193
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_CancelPickingBerry": {
+      "label": "BerryTree_EventScript_CancelPickingBerry",
+      "kind": "script",
+      "line": 199,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_BerryLeftUnpicked"
+          ],
+          "line": 200,
+          "raw": "message BerryTree_Text_BerryLeftUnpicked",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 201,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 202,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 203,
+          "raw": "release",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 204,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_BerryLeftUnpicked",
+          "mode": "",
+          "line": 200
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_ItemUsePlantBerry": {
+      "label": "BerryTree_EventScript_ItemUsePlantBerry",
+      "kind": "script",
+      "line": 206,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 207,
+          "raw": "lockall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryTreeData"
+          ],
+          "line": 208,
+          "raw": "special ObjectEventInteractionGetBerryTreeData",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BerryTree_EventScript_PlantBerry"
+          ],
+          "line": 209,
+          "raw": "call BerryTree_EventScript_PlantBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 210,
+          "raw": "releaseall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 211,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BerryTree_EventScript_PlantBerry",
+          "line": 209
+        }
+      ]
+    },
+    "BerryTree_EventScript_WantToWater": {
+      "label": "BerryTree_EventScript_WantToWater",
+      "kind": "script",
+      "line": 213,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": ".if",
+          "args": [
+            "OW_BERRY_PESTS == TRUE"
+          ],
+          "line": 214,
+          "raw": ".if OW_BERRY_PESTS == TRUE",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BerryTree_EventScript_CheckForPests"
+          ],
+          "line": 215,
+          "raw": "call BerryTree_EventScript_CheckForPests",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".endif",
+          "args": [],
+          "line": 216,
+          "raw": ".endif",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".if",
+          "args": [
+            "OW_BERRY_WEEDS == TRUE"
+          ],
+          "line": 217,
+          "raw": ".if OW_BERRY_WEEDS == TRUE",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BerryTree_EventScript_CheckForWeed"
+          ],
+          "line": 218,
+          "raw": "call BerryTree_EventScript_CheckForWeed",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": ".endif",
+          "args": [],
+          "line": 219,
+          "raw": ".endif",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "checkitem",
+          "args": [
+            "ITEM_WAILMER_PAIL"
+          ],
+          "line": 220,
+          "raw": "checkitem ITEM_WAILMER_PAIL",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "BerryTree_EventScript_DontWater"
+          ],
+          "line": 221,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, BerryTree_EventScript_DontWater",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "CanWaterBerryPlot"
+          ],
+          "line": 222,
+          "raw": "specialvar VAR_RESULT, CanWaterBerryPlot",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "BerryTree_EventScript_DontWater"
+          ],
+          "line": 223,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, BerryTree_EventScript_DontWater",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryName"
+          ],
+          "line": 224,
+          "raw": "special ObjectEventInteractionGetBerryName",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BerryTree_Text_WantToWater",
+            "MSGBOX_YESNO"
+          ],
+          "line": 225,
+          "raw": "msgbox BerryTree_Text_WantToWater, MSGBOX_YESNO",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "BerryTree_EventScript_WaterBerry"
+          ],
+          "line": 226,
+          "raw": "goto_if_eq VAR_RESULT, YES, BerryTree_EventScript_WaterBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "BerryTree_EventScript_DontWater"
+          ],
+          "line": 227,
+          "raw": "goto_if_eq VAR_RESULT, NO, BerryTree_EventScript_DontWater",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BerryTree_Text_WantToWater",
+          "mode": "MSGBOX_YESNO",
+          "line": 225
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BerryTree_EventScript_CheckForPests",
+          "line": 215
+        },
+        {
+          "op": "call",
+          "target": "BerryTree_EventScript_CheckForWeed",
+          "line": 218
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_DontWater",
+          "line": 221
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_DontWater",
+          "line": 223
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_WaterBerry",
+          "line": 226
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_DontWater",
+          "line": 227
+        }
+      ]
+    },
+    "BerryTree_EventScript_DontWater": {
+      "label": "BerryTree_EventScript_DontWater",
+      "kind": "script",
+      "line": 229,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 230,
+          "raw": "releaseall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 231,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_ItemUseWailmerPail": {
+      "label": "BerryTree_EventScript_ItemUseWailmerPail",
+      "kind": "script",
+      "line": 233,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryTreeData"
+          ],
+          "line": 234,
+          "raw": "special ObjectEventInteractionGetBerryTreeData",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 235,
+          "raw": "lockall",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_WaterBerry": {
+      "label": "BerryTree_EventScript_WaterBerry",
+      "kind": "script",
+      "line": 236,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryName"
+          ],
+          "line": 237,
+          "raw": "special ObjectEventInteractionGetBerryName",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_WateredTheBerry"
+          ],
+          "line": 238,
+          "raw": "message BerryTree_Text_WateredTheBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 239,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionWaterBerryTree"
+          ],
+          "line": 240,
+          "raw": "special ObjectEventInteractionWaterBerryTree",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DoWateringBerryTreeAnim"
+          ],
+          "line": 241,
+          "raw": "special DoWateringBerryTreeAnim",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 242,
+          "raw": "waitstate",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_PlantIsDelighted"
+          ],
+          "line": 243,
+          "raw": "message BerryTree_Text_PlantIsDelighted",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 244,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 245,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 246,
+          "raw": "releaseall",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 247,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_WateredTheBerry",
+          "mode": "",
+          "line": 238
+        },
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_PlantIsDelighted",
+          "mode": "",
+          "line": 243
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_PlantBerry": {
+      "label": "BerryTree_EventScript_PlantBerry",
+      "kind": "script",
+      "line": 249,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionPlantBerryTree"
+          ],
+          "line": 250,
+          "raw": "special ObjectEventInteractionPlantBerryTree",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "incrementgamestat",
+          "args": [
+            "GAME_STAT_PLANTED_BERRIES"
+          ],
+          "line": 251,
+          "raw": "incrementgamestat GAME_STAT_PLANTED_BERRIES",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "IncrementDailyPlantedBerries"
+          ],
+          "line": 252,
+          "raw": "special IncrementDailyPlantedBerries",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionGetBerryCountString"
+          ],
+          "line": 253,
+          "raw": "special ObjectEventInteractionGetBerryCountString",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_PlantedOneBerry"
+          ],
+          "line": 254,
+          "raw": "message BerryTree_Text_PlantedOneBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 255,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 256,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 257,
+          "raw": "return",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_PlantedOneBerry",
+          "mode": "",
+          "line": 254
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_CheckBerryFullyGrown_Mutation": {
+      "label": "BerryTree_EventScript_CheckBerryFullyGrown_Mutation",
+      "kind": "script",
+      "line": 347,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BerryTree_Text_WantToPick_Mutation",
+            "MSGBOX_YESNO"
+          ],
+          "line": 348,
+          "raw": "msgbox BerryTree_Text_WantToPick_Mutation, MSGBOX_YESNO",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "BerryTree_EventScript_PickBerry"
+          ],
+          "line": 349,
+          "raw": "goto_if_eq VAR_RESULT, YES, BerryTree_EventScript_PickBerry",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "BerryTree_EventScript_CancelPickingBerry_Mutation"
+          ],
+          "line": 350,
+          "raw": "goto_if_eq VAR_RESULT, NO, BerryTree_EventScript_CancelPickingBerry_Mutation",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BerryTree_Text_WantToPick_Mutation",
+          "mode": "MSGBOX_YESNO",
+          "line": 348
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_PickBerry",
+          "line": 349
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_CancelPickingBerry_Mutation",
+          "line": 350
+        }
+      ]
+    },
+    "BerryTree_EventScript_CancelPickingBerry_Mutation": {
+      "label": "BerryTree_EventScript_CancelPickingBerry_Mutation",
+      "kind": "script",
+      "line": 352,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_BerryLeftUnpicked_Mutation"
+          ],
+          "line": 353,
+          "raw": "message BerryTree_Text_BerryLeftUnpicked_Mutation",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 354,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 355,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 356,
+          "raw": "release",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 357,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_BerryLeftUnpicked_Mutation",
+          "mode": "",
+          "line": 353
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_BerryPocketFull_Mutation": {
+      "label": "BerryTree_EventScript_BerryPocketFull_Mutation",
+      "kind": "script",
+      "line": 359,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_BerryPocketFull_Mutation"
+          ],
+          "line": 360,
+          "raw": "message BerryTree_Text_BerryPocketFull_Mutation",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 361,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 362,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 363,
+          "raw": "release",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 364,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_BerryPocketFull_Mutation",
+          "mode": "",
+          "line": 360
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_PickBerry_Mutation": {
+      "label": "BerryTree_EventScript_PickBerry_Mutation",
+      "kind": "script",
+      "line": 366,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "IncrementDailyPickedBerries"
+          ],
+          "line": 367,
+          "raw": "special IncrementDailyPickedBerries",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionRemoveBerryTree"
+          ],
+          "line": 368,
+          "raw": "special ObjectEventInteractionRemoveBerryTree",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_PickedTheBerry_Mutation"
+          ],
+          "line": 369,
+          "raw": "message BerryTree_Text_PickedTheBerry_Mutation",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_BERRY"
+          ],
+          "line": 370,
+          "raw": "playfanfare MUS_OBTAIN_BERRY",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 371,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 372,
+          "raw": "waitfanfare",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 373,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_PutAwayBerry_Mutation"
+          ],
+          "line": 374,
+          "raw": "message BerryTree_Text_PutAwayBerry_Mutation",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 375,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 376,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 377,
+          "raw": "release",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 378,
+          "raw": "end",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_PickedTheBerry_Mutation",
+          "mode": "",
+          "line": 369
+        },
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_PutAwayBerry_Mutation",
+          "mode": "",
+          "line": 374
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_UseMulch": {
+      "label": "BerryTree_EventScript_UseMulch",
+      "kind": "script",
+      "line": 406,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionApplyMulch"
+          ],
+          "line": 407,
+          "raw": "special ObjectEventInteractionApplyMulch",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_ScatteredMulch"
+          ],
+          "line": 408,
+          "raw": "message BerryTree_Text_ScatteredMulch",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 409,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 410,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 411,
+          "raw": "return",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_ScatteredMulch",
+          "mode": "",
+          "line": 408
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_CheckForWeed": {
+      "label": "BerryTree_EventScript_CheckForWeed",
+      "kind": "script",
+      "line": 423,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ObjectEventInteractionBerryHasWeed"
+          ],
+          "line": 424,
+          "raw": "specialvar VAR_RESULT, ObjectEventInteractionBerryHasWeed",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BerryTree_EventScript_WeedIsGrowing"
+          ],
+          "line": 425,
+          "raw": "call_if_eq VAR_RESULT, TRUE, BerryTree_EventScript_WeedIsGrowing",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 426,
+          "raw": "return",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "BerryTree_EventScript_WeedIsGrowing",
+          "line": 425
+        }
+      ]
+    },
+    "BerryTree_EventScript_WeedIsGrowing": {
+      "label": "BerryTree_EventScript_WeedIsGrowing",
+      "kind": "script",
+      "line": 428,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BerryTree_Text_WeedIsGrowing",
+            "MSGBOX_YESNO"
+          ],
+          "line": 429,
+          "raw": "msgbox BerryTree_Text_WeedIsGrowing, MSGBOX_YESNO",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "BerryTree_EventScript_PullOutWeed"
+          ],
+          "line": 430,
+          "raw": "goto_if_eq VAR_RESULT, YES, BerryTree_EventScript_PullOutWeed",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 431,
+          "raw": "return",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BerryTree_Text_WeedIsGrowing",
+          "mode": "MSGBOX_YESNO",
+          "line": 429
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BerryTree_EventScript_PullOutWeed",
+          "line": 430
+        }
+      ]
+    },
+    "BerryTree_EventScript_PullOutWeed": {
+      "label": "BerryTree_EventScript_PullOutWeed",
+      "kind": "script",
+      "line": 433,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "ObjectEventInteractionPullBerryWeed"
+          ],
+          "line": 434,
+          "raw": "special ObjectEventInteractionPullBerryWeed",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_PulledOutTheWeed"
+          ],
+          "line": 435,
+          "raw": "message BerryTree_Text_PulledOutTheWeed",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 436,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 437,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 438,
+          "raw": "return",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_PulledOutTheWeed",
+          "mode": "",
+          "line": 435
+        }
+      ],
+      "branch_targets": []
+    },
+    "BerryTree_EventScript_CheckForPests": {
+      "label": "BerryTree_EventScript_CheckForPests",
+      "kind": "script",
+      "line": 449,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ObjectEventInteractionBerryHasPests"
+          ],
+          "line": 450,
+          "raw": "specialvar VAR_RESULT, ObjectEventInteractionBerryHasPests",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BerryTree_EventScript_EncounterPests"
+          ],
+          "line": 451,
+          "raw": "call_if_eq VAR_RESULT, TRUE, BerryTree_EventScript_EncounterPests",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 452,
+          "raw": "return",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "BerryTree_EventScript_EncounterPests",
+          "line": 451
+        }
+      ]
+    },
+    "BerryTree_EventScript_EncounterPests": {
+      "label": "BerryTree_EventScript_EncounterPests",
+      "kind": "script",
+      "line": 454,
+      "source_file": "data/scripts/berry_tree.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BerryTree_Text_APokemonAppeared"
+          ],
+          "line": 455,
+          "raw": "message BerryTree_Text_APokemonAppeared",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 456,
+          "raw": "waitmessage",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 457,
+          "raw": "waitbuttonpress",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "dowildbattle",
+          "args": [],
+          "line": 458,
+          "raw": "dowildbattle",
+          "source_file": "data/scripts/berry_tree.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 459,
+          "raw": "return",
+          "source_file": "data/scripts/berry_tree.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BerryTree_Text_APokemonAppeared",
+          "mode": "",
+          "line": 455
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "BerryTree_Text_ItsSoftLoamySoil": {
+      "label": "BerryTree_Text_ItsSoftLoamySoil",
+      "line": 259,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "这是松软的土地。$",
+      "display_text": "这是松软的土地。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          16,
+          85,
+          12,
+          12,
+          12,
+          108,
+          11,
+          109,
+          3,
+          11,
+          13,
+          41,
+          3,
+          31,
+          55,
+          255
+        ],
+        "hex": "10 55 0C 0C 0C 6C 0B 6D 03 0B 0D 29 03 1F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_WantToPlant": {
+      "label": "BerryTree_Text_WantToPlant",
+      "line": 262,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "这是松软的土地。\\n想要种植一个树果吗？$",
+      "display_text": "这是松软的土地。\n想要种植一个树果吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          16,
+          85,
+          12,
+          12,
+          12,
+          108,
+          11,
+          109,
+          3,
+          11,
+          13,
+          41,
+          3,
+          31,
+          55,
+          254,
+          14,
+          24,
+          14,
+          241,
+          16,
+          167,
+          16,
+          131,
+          15,
+          11,
+          4,
+          96,
+          12,
+          60,
+          4,
+          195,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "10 55 0C 0C 0C 6C 0B 6D 03 0B 0D 29 03 1F 37 FE 0E 18 0E F1 10 A7 10 83 0F 0B 04 60 0C 3C 04 C3 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_PlantedOneBerry": {
+      "label": "BerryTree_Text_PlantedOneBerry",
+      "line": 266,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{PLAYER}在松软的土地上\\n种植了{STR_VAR_1}。$",
+      "display_text": "{PLAYER}在松软的土地上\n种植了{STR_VAR_1}。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          253,
+          1,
+          15,
+          230,
+          12,
+          108,
+          11,
+          109,
+          3,
+          11,
+          13,
+          41,
+          3,
+          31,
+          11,
+          173,
+          254,
+          16,
+          167,
+          16,
+          131,
+          8,
+          158,
+          253,
+          2,
+          55,
+          255
+        ],
+        "hex": "FD 01 0F E6 0C 6C 0B 6D 03 0B 0D 29 03 1F 0B AD FE 10 A7 10 83 08 9E FD 02 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 20,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 20,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_BerryGrowthStage1": {
+      "label": "BerryTree_Text_BerryGrowthStage1",
+      "line": 269,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "种有{STR_VAR_1}的地方！$种有{STR_VAR_1}的地方！$",
+      "display_text": "种有{STR_VAR_1}的地方！$种有{STR_VAR_1}的地方！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          16,
+          167,
+          15,
+          126,
+          253,
+          2,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          60,
+          255,
+          16,
+          167,
+          15,
+          126,
+          253,
+          2,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          60,
+          255
+        ],
+        "hex": "10 A7 0F 7E FD 02 03 0B 03 1F 03 C0 3C FF 10 A7 0F 7E FD 02 03 0B 03 1F 03 C0 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 2,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 20,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 35,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 2,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 20,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_BerryGrowthStage2": {
+      "label": "BerryTree_Text_BerryGrowthStage2",
+      "line": 276,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{STR_VAR_1}正在发芽中！${STR_VAR_1}已经发芽了。$",
+      "display_text": "{STR_VAR_1}正在发芽中！${STR_VAR_1}已经发芽了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          253,
+          2,
+          16,
+          112,
+          15,
+          230,
+          3,
+          165,
+          14,
+          168,
+          16,
+          161,
+          60,
+          255,
+          253,
+          2,
+          15,
+          33,
+          7,
+          93,
+          3,
+          165,
+          14,
+          168,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "FD 02 10 70 0F E6 03 A5 0E A8 10 A1 3C FF FD 02 0F 21 07 5D 03 A5 0E A8 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 0,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 18,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 35,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 0,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 18,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_BerryGrowthStage3": {
+      "label": "BerryTree_Text_BerryGrowthStage3",
+      "line": 283,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{STR_VAR_1}的幼苗长得很漂亮！${STR_VAR_1}正在变得更高。$",
+      "display_text": "{STR_VAR_1}的幼苗长得很漂亮！${STR_VAR_1}正在变得更高。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          253,
+          2,
+          3,
+          11,
+          15,
+          133,
+          9,
+          127,
+          2,
+          38,
+          3,
+          10,
+          5,
+          11,
+          10,
+          106,
+          8,
+          148,
+          60,
+          255,
+          253,
+          2,
+          16,
+          112,
+          15,
+          230,
+          1,
+          161,
+          3,
+          10,
+          4,
+          102,
+          4,
+          73,
+          55,
+          255
+        ],
+        "hex": "FD 02 03 0B 0F 85 09 7F 02 26 03 0A 05 0B 0A 6A 08 94 3C FF FD 02 10 70 0F E6 01 A1 03 0A 04 66 04 49 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 0,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 21,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 39,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 0,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 21,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_BerryGrowthStageTrunk": {
+      "label": "BerryTree_Text_BerryGrowthStageTrunk",
+      "line": 290,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{STR_VAR_1}的枝干变大了！$",
+      "display_text": "{STR_VAR_1}的枝干变大了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          253,
+          2,
+          3,
+          11,
+          16,
+          119,
+          4,
+          51,
+          1,
+          161,
+          2,
+          211,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "FD 02 03 0B 10 77 04 33 01 A1 02 D3 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 0,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 0,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_BerryGrowthStageBudding": {
+      "label": "BerryTree_Text_BerryGrowthStageBudding",
+      "line": 293,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{STR_VAR_1}发芽了！$",
+      "display_text": "{STR_VAR_1}发芽了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 10,
+        "bytes": [
+          253,
+          2,
+          3,
+          165,
+          14,
+          168,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "FD 02 03 A5 0E A8 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 0,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 0,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_BerryGrowthStage4": {
+      "label": "BerryTree_Text_BerryGrowthStage4",
+      "line": 296,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{STR_VAR_1}开花了！${STR_VAR_1}的花正在{STR_VAR_2}盛开\\n。",
+      "display_text": "{STR_VAR_1}开花了！${STR_VAR_1}的花正在{STR_VAR_2}盛开\n。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          253,
+          2,
+          7,
+          184,
+          5,
+          53,
+          8,
+          158,
+          60,
+          255,
+          253,
+          2,
+          3,
+          11,
+          5,
+          53,
+          16,
+          112,
+          15,
+          230,
+          253,
+          3,
+          11,
+          222,
+          7,
+          184,
+          254,
+          55
+        ],
+        "hex": "FD 02 07 B8 05 35 08 9E 3C FF FD 02 03 0B 05 35 10 70 0F E6 FD 03 0B DE 07 B8 FE 37",
+        "terminator_present": false,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 0,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 16,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 31,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 0,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 16,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_2",
+            "offset": 31,
+            "bytes": [
+              253,
+              3
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_CareAdverbGreat": {
+      "label": "BerryTree_Text_CareAdverbGreat",
+      "line": 303,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "非常美丽地$",
+      "display_text": "非常美丽地",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 11,
+        "bytes": [
+          3,
+          202,
+          2,
+          37,
+          9,
+          88,
+          8,
+          107,
+          3,
+          31,
+          255
+        ],
+        "hex": "03 CA 02 25 09 58 08 6B 03 1F FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 5,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_CareAdverbPoor": {
+      "label": "BerryTree_Text_CareAdverbPoor",
+      "line": 306,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "可爱地$",
+      "display_text": "可爱地",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 7,
+        "bytes": [
+          7,
+          215,
+          1,
+          13,
+          3,
+          31,
+          255
+        ],
+        "hex": "07 D7 01 0D 03 1F FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 3,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_CareAdverbGood": {
+      "label": "BerryTree_Text_CareAdverbGood",
+      "line": 309,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "漂亮地$",
+      "display_text": "漂亮地",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 7,
+        "bytes": [
+          10,
+          106,
+          8,
+          148,
+          3,
+          31,
+          255
+        ],
+        "hex": "0A 6A 08 94 03 1F FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 3,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_WantToPick": {
+      "label": "BerryTree_Text_WantToPick",
+      "line": 312,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "你找到了{STR_VAR_2}个{STR_VAR_1}！\\p要摘下\\n{STR_VAR_1}吗？$",
+      "display_text": "你找到了{STR_VAR_2}个{STR_VAR_1}！\n\n要摘下\n{STR_VAR_1}吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          9,
+          217,
+          16,
+          69,
+          3,
+          4,
+          8,
+          158,
+          253,
+          3,
+          4,
+          96,
+          253,
+          2,
+          60,
+          251,
+          14,
+          241,
+          16,
+          29,
+          13,
+          230,
+          254,
+          253,
+          2,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "09 D9 10 45 03 04 08 9E FD 03 04 60 FD 02 3C FB 0E F1 10 1D 0D E6 FE FD 02 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 4,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 16,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 35,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_2",
+            "offset": 4,
+            "bytes": [
+              253,
+              3
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 16,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 35,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_PickedTheBerry": {
+      "label": "BerryTree_Text_PickedTheBerry",
+      "line": 317,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{PLAYER}摘下了{STR_VAR_2}个{STR_VAR_1}。$",
+      "display_text": "{PLAYER}摘下了{STR_VAR_2}个{STR_VAR_1}。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          253,
+          1,
+          16,
+          29,
+          13,
+          230,
+          8,
+          158,
+          253,
+          3,
+          4,
+          96,
+          253,
+          2,
+          55,
+          255
+        ],
+        "hex": "FD 01 10 1D 0D E6 08 9E FD 03 04 60 FD 02 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 11,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 23,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 35,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_2",
+            "offset": 11,
+            "bytes": [
+              253,
+              3
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 23,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_PutAwayBerry": {
+      "label": "BerryTree_Text_PutAwayBerry",
+      "line": 320,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{PLAYER}将{STR_VAR_1}\\n放入包包的树果口袋中。\\p这里变回了松软的土地。$",
+      "display_text": "{PLAYER}将{STR_VAR_1}\n放入包包的树果口袋中。\n\n这里变回了松软的土地。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 51,
+        "bytes": [
+          253,
+          1,
+          5,
+          244,
+          253,
+          2,
+          254,
+          3,
+          200,
+          11,
+          107,
+          1,
+          91,
+          1,
+          91,
+          3,
+          11,
+          12,
+          60,
+          4,
+          195,
+          7,
+          232,
+          2,
+          220,
+          16,
+          161,
+          55,
+          251,
+          16,
+          85,
+          8,
+          100,
+          1,
+          161,
+          5,
+          101,
+          8,
+          158,
+          12,
+          108,
+          11,
+          109,
+          3,
+          11,
+          13,
+          41,
+          3,
+          31,
+          55,
+          255
+        ],
+        "hex": "FD 01 05 F4 FD 02 FE 03 C8 0B 6B 01 5B 01 5B 03 0B 0C 3C 04 C3 07 E8 02 DC 10 A1 37 FB 10 55 08 64 01 A1 05 65 08 9E 0C 6C 0B 6D 03 0B 0D 29 03 1F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 9,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 46,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 9,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_BerryPocketFull": {
+      "label": "BerryTree_Text_BerryPocketFull",
+      "line": 325,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "因为包包的树果口袋已满。\\p所以放弃了摘取{STR_VAR_1}。$",
+      "display_text": "因为包包的树果口袋已满。\n\n所以放弃了摘取{STR_VAR_1}。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 42,
+        "bytes": [
+          15,
+          66,
+          13,
+          112,
+          1,
+          91,
+          1,
+          91,
+          3,
+          11,
+          12,
+          60,
+          4,
+          195,
+          7,
+          232,
+          2,
+          220,
+          15,
+          33,
+          9,
+          52,
+          55,
+          251,
+          12,
+          156,
+          15,
+          36,
+          3,
+          200,
+          10,
+          181,
+          8,
+          158,
+          16,
+          29,
+          11,
+          33,
+          253,
+          2,
+          55,
+          255
+        ],
+        "hex": "0F 42 0D 70 01 5B 01 5B 03 0B 0C 3C 04 C3 07 E8 02 DC 0F 21 09 34 37 FB 0C 9C 0F 24 03 C8 0A B5 08 9E 10 1D 0B 21 FD 02 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 21,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 33,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 21,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_BerryLeftUnpicked": {
+      "label": "BerryTree_Text_BerryLeftUnpicked",
+      "line": 329,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{PLAYER}没有摘下\\n{STR_VAR_1}。$",
+      "display_text": "{PLAYER}没有摘下\n{STR_VAR_1}。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 15,
+        "bytes": [
+          253,
+          1,
+          9,
+          83,
+          15,
+          126,
+          16,
+          29,
+          13,
+          230,
+          254,
+          253,
+          2,
+          55,
+          255
+        ],
+        "hex": "FD 01 09 53 0F 7E 10 1D 0D E6 FE FD 02 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 14,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 14,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_WantToWater": {
+      "label": "BerryTree_Text_WantToWater",
+      "line": 333,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "要用吼吼鲸喷壶给{STR_VAR_1}\\n浇水吗？$",
+      "display_text": "要用吼吼鲸喷壶给{STR_VAR_1}\n浇水吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          14,
+          241,
+          15,
+          113,
+          5,
+          31,
+          5,
+          31,
+          7,
+          88,
+          10,
+          68,
+          5,
+          39,
+          4,
+          98,
+          253,
+          2,
+          254,
+          7,
+          15,
+          12,
+          81,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0E F1 0F 71 05 1F 05 1F 07 58 0A 44 05 27 04 62 FD 02 FE 07 0F 0C 51 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 8,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 8,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_WateredTheBerry": {
+      "label": "BerryTree_Text_WateredTheBerry",
+      "line": 337,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{PLAYER}给{STR_VAR_1}浇了水。$",
+      "display_text": "{PLAYER}给{STR_VAR_1}浇了水。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 14,
+        "bytes": [
+          253,
+          1,
+          4,
+          98,
+          253,
+          2,
+          7,
+          15,
+          8,
+          158,
+          12,
+          81,
+          55,
+          255
+        ],
+        "hex": "FD 01 04 62 FD 02 07 0F 08 9E 0C 51 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 9,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 9,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_PlantIsDelighted": {
+      "label": "BerryTree_Text_PlantIsDelighted",
+      "line": 340,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "它好像挺开心的！$",
+      "display_text": "它好像挺开心的！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          12,
+          159,
+          4,
+          233,
+          14,
+          30,
+          13,
+          14,
+          7,
+          184,
+          14,
+          79,
+          3,
+          11,
+          60,
+          255
+        ],
+        "hex": "0C 9F 04 E9 0E 1E 0D 0E 07 B8 0E 4F 03 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_ExclamationPoint": {
+      "label": "BerryTree_Text_ExclamationPoint",
+      "line": 343,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "！$",
+      "display_text": "！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 2,
+        "bytes": [
+          60,
+          255
+        ],
+        "hex": "3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 1,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_WantToPick_Mutation": {
+      "label": "BerryTree_Text_WantToPick_Mutation",
+      "line": 380,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "你找到了{STR_VAR_2}、{STR_VAR_1}\\n与一个 {STR_VAR_3}！\\p你想要摘下它们吗？？$",
+      "display_text": "你找到了{STR_VAR_2}、{STR_VAR_1}\n与一个 {STR_VAR_3}！\n\n你想要摘下它们吗？？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 44,
+        "bytes": [
+          9,
+          217,
+          16,
+          69,
+          3,
+          4,
+          8,
+          158,
+          253,
+          3,
+          58,
+          253,
+          2,
+          254,
+          15,
+          153,
+          15,
+          11,
+          4,
+          96,
+          0,
+          253,
+          4,
+          60,
+          251,
+          9,
+          217,
+          14,
+          24,
+          14,
+          241,
+          16,
+          29,
+          13,
+          230,
+          12,
+          159,
+          9,
+          95,
+          9,
+          42,
+          61,
+          61,
+          255
+        ],
+        "hex": "09 D9 10 45 03 04 08 9E FD 03 3A FD 02 FE 0F 99 0F 0B 04 60 00 FD 04 3C FB 09 D9 0E 18 0E F1 10 1D 0D E6 0C 9F 09 5F 09 2A 3D 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 4,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 16,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_3}",
+            "offset": 33,
+            "bytes": [
+              253,
+              4
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_3",
+                "bytes": [
+                  253,
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 45,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 57,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_2",
+            "offset": 4,
+            "bytes": [
+              253,
+              3
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 16,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_3",
+            "offset": 33,
+            "bytes": [
+              253,
+              4
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_BerryLeftUnpicked_Mutation": {
+      "label": "BerryTree_Text_BerryLeftUnpicked_Mutation",
+      "line": 385,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{PLAYER} 离开了 {STR_VAR_1}\\n并且 {STR_VAR_3} 没有被采摘。$",
+      "display_text": "{PLAYER} 离开了 {STR_VAR_1}\n并且 {STR_VAR_3} 没有被采摘。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 33,
+        "bytes": [
+          253,
+          1,
+          0,
+          8,
+          96,
+          7,
+          184,
+          8,
+          158,
+          0,
+          253,
+          2,
+          254,
+          1,
+          189,
+          10,
+          235,
+          0,
+          253,
+          4,
+          0,
+          9,
+          83,
+          15,
+          126,
+          1,
+          120,
+          1,
+          228,
+          16,
+          29,
+          55,
+          255
+        ],
+        "hex": "FD 01 00 08 60 07 B8 08 9E 00 FD 02 FE 01 BD 0A EB 00 FD 04 00 09 53 0F 7E 01 78 01 E4 10 1D 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 13,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_3}",
+            "offset": 29,
+            "bytes": [
+              253,
+              4
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_3",
+                "bytes": [
+                  253,
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 13,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_3",
+            "offset": 29,
+            "bytes": [
+              253,
+              4
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_BerryPocketFull_Mutation": {
+      "label": "BerryTree_Text_BerryPocketFull_Mutation",
+      "line": 389,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "包包的果实袋已满。\\p{STR_VAR_1} 和 {STR_VAR_3} 无法\\n被采摘。$",
+      "display_text": "包包的果实袋已满。\n\n{STR_VAR_1} 和 {STR_VAR_3} 无法\n被采摘。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          1,
+          91,
+          1,
+          91,
+          3,
+          11,
+          4,
+          195,
+          11,
+          241,
+          2,
+          220,
+          15,
+          33,
+          9,
+          52,
+          55,
+          251,
+          253,
+          2,
+          0,
+          4,
+          243,
+          0,
+          253,
+          4,
+          0,
+          13,
+          164,
+          3,
+          171,
+          254,
+          1,
+          120,
+          1,
+          228,
+          16,
+          29,
+          55,
+          255
+        ],
+        "hex": "01 5B 01 5B 03 0B 04 C3 0B F1 02 DC 0F 21 09 34 37 FB FD 02 00 04 F3 00 FD 04 00 0D A4 03 AB FE 01 78 01 E4 10 1D 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 11,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_3}",
+            "offset": 25,
+            "bytes": [
+              253,
+              4
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_3",
+                "bytes": [
+                  253,
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 11,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_3",
+            "offset": 25,
+            "bytes": [
+              253,
+              4
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_PickedTheBerry_Mutation": {
+      "label": "BerryTree_Text_PickedTheBerry_Mutation",
+      "line": 394,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{PLAYER} 采摘了 {STR_VAR_2} 个 {STR_VAR_1}\\n和 {STR_VAR_3}。$",
+      "display_text": "{PLAYER} 采摘了 {STR_VAR_2} 个 {STR_VAR_1}\n和 {STR_VAR_3}。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          253,
+          1,
+          0,
+          1,
+          228,
+          16,
+          29,
+          8,
+          158,
+          0,
+          253,
+          3,
+          0,
+          4,
+          96,
+          0,
+          253,
+          2,
+          254,
+          4,
+          243,
+          0,
+          253,
+          4,
+          55,
+          255
+        ],
+        "hex": "FD 01 00 01 E4 10 1D 08 9E 00 FD 03 00 04 60 00 FD 02 FE 04 F3 00 FD 04 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 13,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 27,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 38,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_3}",
+            "offset": 42,
+            "bytes": [
+              253,
+              4
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_3",
+                "bytes": [
+                  253,
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 54,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_2",
+            "offset": 13,
+            "bytes": [
+              253,
+              3
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 27,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_3",
+            "offset": 42,
+            "bytes": [
+              253,
+              4
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_PutAwayBerry_Mutation": {
+      "label": "BerryTree_Text_PutAwayBerry_Mutation",
+      "line": 398,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{PLAYER} 将 {STR_VAR_1}\\n和 {STR_VAR_3} 放入包包的\\n果实袋中。土壤恢复了其\\n柔软和肥沃的状态。$",
+      "display_text": "{PLAYER} 将 {STR_VAR_1}\n和 {STR_VAR_3} 放入包包的\n果实袋中。土壤恢复了其\n柔软和肥沃的状态。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 66,
+        "bytes": [
+          253,
+          1,
+          0,
+          5,
+          244,
+          0,
+          253,
+          2,
+          254,
+          4,
+          243,
+          0,
+          253,
+          4,
+          0,
+          3,
+          200,
+          11,
+          107,
+          1,
+          91,
+          1,
+          91,
+          3,
+          11,
+          254,
+          4,
+          195,
+          11,
+          241,
+          2,
+          220,
+          16,
+          161,
+          55,
+          13,
+          41,
+          11,
+          64,
+          5,
+          99,
+          4,
+          30,
+          8,
+          158,
+          10,
+          159,
+          254,
+          11,
+          97,
+          11,
+          109,
+          4,
+          243,
+          3,
+          205,
+          13,
+          156,
+          3,
+          11,
+          16,
+          227,
+          12,
+          173,
+          55,
+          255
+        ],
+        "hex": "FD 01 00 05 F4 00 FD 02 FE 04 F3 00 FD 04 00 03 C8 0B 6B 01 5B 01 5B 03 0B FE 04 C3 0B F1 02 DC 10 A1 37 0D 29 0B 40 05 63 04 1E 08 9E 0A 9F FE 0B 61 0B 6D 04 F3 03 CD 0D 9C 03 0B 10 E3 0C AD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 11,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_3}",
+            "offset": 26,
+            "bytes": [
+              253,
+              4
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_3",
+                "bytes": [
+                  253,
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 43,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 56,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 67,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 11,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_3",
+            "offset": 26,
+            "bytes": [
+              253,
+              4
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_WantToMulch": {
+      "label": "BerryTree_Text_WantToMulch",
+      "line": 413,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "这是松软的土壤。\\n要撒些肥料吗？$",
+      "display_text": "这是松软的土壤。\n要撒些肥料吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 30,
+        "bytes": [
+          16,
+          85,
+          12,
+          12,
+          12,
+          108,
+          11,
+          109,
+          3,
+          11,
+          13,
+          41,
+          11,
+          64,
+          55,
+          254,
+          14,
+          241,
+          11,
+          118,
+          14,
+          52,
+          3,
+          205,
+          8,
+          162,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "10 55 0C 0C 0C 6C 0B 6D 03 0B 0D 29 0B 40 37 FE 0E F1 0B 76 0E 34 03 CD 08 A2 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_ScatteredMulch": {
+      "label": "BerryTree_Text_ScatteredMulch",
+      "line": 417,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{PLAYER} 撒下了 {STR_VAR_1}的种子\\n在松软的壤土上。$",
+      "display_text": "{PLAYER} 撒下了 {STR_VAR_1}的种子\n在松软的壤土上。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          253,
+          1,
+          0,
+          11,
+          118,
+          13,
+          230,
+          8,
+          158,
+          0,
+          253,
+          2,
+          3,
+          11,
+          16,
+          167,
+          17,
+          11,
+          254,
+          15,
+          230,
+          12,
+          108,
+          11,
+          109,
+          3,
+          11,
+          11,
+          64,
+          13,
+          41,
+          11,
+          173,
+          55,
+          255
+        ],
+        "hex": "FD 01 00 0B 76 0D E6 08 9E 00 FD 02 03 0B 10 A7 11 0B FE 0F E6 0C 6C 0B 6D 03 0B 0B 40 0D 29 0B AD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 13,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 13,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_WeedIsGrowing": {
+      "label": "BerryTree_Text_WeedIsGrowing",
+      "line": 440,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "这里长了杂草。\\n要拔掉它吗？$",
+      "display_text": "这里长了杂草。\n要拔掉它吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          2,
+          38,
+          8,
+          158,
+          15,
+          223,
+          2,
+          1,
+          55,
+          254,
+          14,
+          241,
+          1,
+          45,
+          3,
+          59,
+          12,
+          159,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "10 55 08 64 02 26 08 9E 0F DF 02 01 37 FE 0E F1 01 2D 03 3B 0C 9F 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_PulledOutTheWeed": {
+      "label": "BerryTree_Text_PulledOutTheWeed",
+      "line": 444,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "{PLAYER} 拔掉了杂草！$",
+      "display_text": "{PLAYER} 拔掉了杂草！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 15,
+        "bytes": [
+          253,
+          1,
+          0,
+          1,
+          45,
+          3,
+          59,
+          8,
+          158,
+          15,
+          223,
+          2,
+          1,
+          60,
+          255
+        ],
+        "hex": "FD 01 00 01 2D 03 3B 08 9E 0F DF 02 01 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BerryTree_Text_APokemonAppeared": {
+      "label": "BerryTree_Text_APokemonAppeared",
+      "line": 461,
+      "source_file": "data/scripts/berry_tree.inc",
+      "raw_text": "一只宝可梦跳出来了！$",
+      "display_text": "一只宝可梦跳出来了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          15,
+          11,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          2,
+          2,
+          120,
+          8,
+          41,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "0F 0B 10 8C 01 63 07 D7 09 66 0D 02 02 78 08 29 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "buffernumberstring": 1,
+      "bufferstring": 3,
+      "call_if_eq": 2,
+      "case": 13,
+      "checkitem": 1,
+      "closemessage": 2,
+      "delay": 1,
+      "dowildbattle": 1,
+      "faceplayer": 2,
+      "fadescreen": 2,
+      "goto_if_eq": 24,
+      "hideitemdescription": 1,
+      "incrementgamestat": 1,
+      "multichoice": 1,
+      "playfanfare": 2,
+      "removeitem": 2,
+      "showberrydescription": 1,
+      "special": 26,
+      "specialvar": 6,
+      "switch": 2,
+      "waitbuttonpress": 21,
+      "waitfanfare": 2,
+      "waitmessage": 23,
+      "waitstate": 3
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 69,
+    "script_count": 38,
+    "movement_count": 0,
+    "text_count": 31,
+    "encoded_text_count": 31,
+    "text_source_byte_count": 797,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 31
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "buffernumberstring": 1,
+      "bufferstring": 3,
+      "call": 6,
+      "call_if_eq": 2,
+      "case": 13,
+      "checkitem": 1,
+      "closemessage": 2,
+      "delay": 1,
+      "dowildbattle": 1,
+      "end": 15,
+      "faceplayer": 2,
+      "fadescreen": 2,
+      "goto": 6,
+      "goto_if_eq": 24,
+      "hideitemdescription": 1,
+      "incrementgamestat": 1,
+      "lock": 2,
+      "lockall": 9,
+      "message": 23,
+      "msgbox": 6,
+      "multichoice": 1,
+      "playfanfare": 2,
+      "release": 8,
+      "releaseall": 4,
+      "removeitem": 2,
+      "return": 10,
+      "showberrydescription": 1,
+      "special": 26,
+      "specialvar": 6,
+      "switch": 2,
+      "waitbuttonpress": 21,
+      "waitfanfare": 2,
+      "waitmessage": 23,
+      "waitstate": 3
+    }
+  }
+}
