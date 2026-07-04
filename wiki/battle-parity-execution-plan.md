@@ -344,6 +344,9 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
 - [ ] B8.2 Implement source window layer renderer.
   - Target: `scripts/battle/battle_window_renderer.gd`.
   - Covers: BG0/BG1-style tilemap windows, font layout, borders, RGBA/text material styles, text speed/waits.
+  - Current first pass: `BattleWindowRenderer` consumes generated `data/generated/battle/interface.json`, blits the B8.1 `textbox_map.png` RGBA composite rows for `B_WIN_MSG`, action prompt/menu, four move-name windows, PP windows, and move type, exposes source window screen/composite rects, BG0 scroll offsets, semantic text material/style ids, source speed metadata, and a Godot-native `rgba_textures_and_godot_materials` runtime color policy. `BattleScene` now mounts this renderer for intro/action/move bottom windows while keeping existing buttons as transparent input hit zones.
+  - Remaining for this task: exact source glyph renderer, `BattlePutTextOnWindow` printer cadence, text speed/wait playback, generated per-window composite-row metadata instead of first-pass preview-row overrides, and screenshot comparison against source captures.
+  - Current validation: `tools/godot_smoke/battle_window_renderer_smoke.gd` verifies action/menu and move/menu 240x160 layer composition, source/composite rects, opaque RGBA pixels, and no runtime palette/source-color keys; `tools/godot_smoke/battle_scene_smoke.gd` verifies `BattleScene` uses the renderer for intro/action/move snapshots.
   - Validate: screenshot smoke for action menu and move menu at 240x160.
 
 - [ ] B8.3 Implement healthbox runtime.

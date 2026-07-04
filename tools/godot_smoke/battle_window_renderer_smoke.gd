@@ -1,0 +1,112 @@
+extends SceneTree
+
+const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
+const BATTLE_WINDOW_RENDERER_SCRIPT := preload("res://scripts/battle/battle_window_renderer.gd")
+
+var _failed := false
+
+
+func _init() -> void:
+	call_deferred("_run")
+
+
+func _run() -> void:
+	var registry = DATA_REGISTRY_SCRIPT.new()
+	registry._ready()
+
+	var renderer = BATTLE_WINDOW_RENDERER_SCRIPT.new()
+	renderer.configure_data_registry(registry)
+	get_root().add_child(renderer)
+	await create_timer(0.05).timeout
+
+	renderer.show_action_windows("Mudkip wants?", "Fight\tBag\nPokemon\tRun")
+	var action_snapshot := _dict(renderer.get_renderer_snapshot())
+	_assert(String(action_snapshot.get("status", "")) == "first_pass", "expected first-pass renderer status")
+	_assert(not _contains_forbidden_runtime_color_key(action_snapshot), "renderer snapshot must not expose runtime color/palette keys")
+	_assert(_array(action_snapshot.get("visible_windows", [])).has("B_WIN_ACTION_PROMPT"), "expected action prompt visible")
+	_assert(_array(action_snapshot.get("visible_windows", [])).has("B_WIN_ACTION_MENU"), "expected action menu visible")
+	var action_windows := _dict(action_snapshot.get("windows", {}))
+	var action_menu := _dict(action_windows.get("B_WIN_ACTION_MENU", {}))
+	_assert(_array(action_menu.get("screen_rect", [])) == [136, 120, 96, 32], "expected action menu screen rect")
+	_assert(_array(action_menu.get("tilemap_rect", [])) == [136, 216, 96, 32], "expected action menu source tilemap rect")
+	_assert(String(action_menu.get("style_id", "")) == "battle_menu_text", "expected generated action menu style id")
+	_assert(String(action_menu.get("panel_style", "")) == "menu_panel", "expected semantic action menu panel style")
+	_assert(int(action_menu.get("source_speed", -1)) == 0, "expected action menu instant source speed")
+	var action_image: Image = renderer.compose_current_window_layer_image()
+	_assert(action_image.get_width() == 240 and action_image.get_height() == 160, "expected 240x160 action layer image")
+	_assert(action_image.get_pixel(0, 0).a <= 0.01, "expected transparent pixels outside source windows")
+	var action_opaque := _rect_opaque_count(action_image, Rect2i(136, 120, 96, 32))
+	_assert(action_opaque > 100, "expected opaque action menu source pixels")
+
+	renderer.show_move_windows(["Water Gun", "Tackle", "-", "-"], "PP", "25/25", "TYPE/Water")
+	var move_snapshot := _dict(renderer.get_renderer_snapshot())
+	_assert(not _contains_forbidden_runtime_color_key(move_snapshot), "move renderer snapshot must not expose runtime color/palette keys")
+	_assert(_array(move_snapshot.get("visible_windows", [])).size() == 7, "expected seven move-select windows")
+	var move_windows := _dict(move_snapshot.get("windows", {}))
+	var move_name_1 := _dict(move_windows.get("B_WIN_MOVE_NAME_1", {}))
+	var move_type := _dict(move_windows.get("B_WIN_MOVE_TYPE", {}))
+	_assert(_array(move_name_1.get("screen_rect", [])) == [16, 120, 128, 16], "expected first move screen rect")
+	_assert(_array(move_name_1.get("tilemap_rect", [])) == [16, 56, 128, 16], "expected first move source tilemap rect")
+	_assert(_array(move_type.get("screen_rect", [])) == [168, 136, 64, 16], "expected move type screen rect")
+	_assert(String(move_type.get("text", "")) == "TYPE/Water", "expected move type renderer text")
+	var move_image: Image = renderer.compose_current_window_layer_image()
+	var move_opaque := _rect_opaque_count(move_image, Rect2i(16, 120, 128, 16))
+	var type_opaque := _rect_opaque_count(move_image, Rect2i(168, 136, 64, 16))
+	_assert(move_opaque > 80, "expected opaque move-name source pixels")
+	_assert(type_opaque > 40, "expected opaque move-type source pixels")
+
+	if _failed:
+		return
+	print(JSON.stringify({
+		"battle_window_renderer_smoke": "ok",
+		"action_windows": _array(action_snapshot.get("visible_windows", [])).size(),
+		"move_windows": _array(move_snapshot.get("visible_windows", [])).size(),
+		"action_menu_opaque_pixels": action_opaque,
+		"move_name_opaque_pixels": move_opaque,
+		"move_type_opaque_pixels": type_opaque,
+	}))
+	renderer.queue_free()
+	registry.free()
+	quit(0)
+
+
+func _assert(condition: bool, message: String) -> void:
+	if condition:
+		return
+	push_error(message)
+	_failed = true
+	quit(1)
+
+
+func _array(value) -> Array:
+	return value if typeof(value) == TYPE_ARRAY else []
+
+
+func _dict(value) -> Dictionary:
+	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _rect_opaque_count(image: Image, rect: Rect2i) -> int:
+	var count := 0
+	for y in range(rect.position.y, rect.position.y + rect.size.y):
+		for x in range(rect.position.x, rect.position.x + rect.size.x):
+			if x < 0 or y < 0 or x >= image.get_width() or y >= image.get_height():
+				continue
+			if image.get_pixel(x, y).a > 0.01:
+				count += 1
+	return count
+
+
+func _contains_forbidden_runtime_color_key(value) -> bool:
+	if typeof(value) == TYPE_DICTIONARY:
+		for key in value.keys():
+			var key_text := String(key).to_lower()
+			if key_text.contains("palette") or key_text.contains("source_color") or key_text.contains("source_palette"):
+				return true
+			if _contains_forbidden_runtime_color_key(value[key]):
+				return true
+	elif typeof(value) == TYPE_ARRAY:
+		for item in value:
+			if _contains_forbidden_runtime_color_key(item):
+				return true
+	return false

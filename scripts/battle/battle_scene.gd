@@ -3,6 +3,7 @@ extends Control
 signal battle_finished(result: Dictionary)
 
 const VIEWPORT_SIZE := Vector2(240, 160)
+const BATTLE_WINDOW_RENDERER_SCRIPT := preload("res://scripts/battle/battle_window_renderer.gd")
 const TILE_SIZE := 8
 const DISPLAY_HEIGHT := 160
 const FONT_SIZE := 8
@@ -129,6 +130,7 @@ var _pp_label: Label
 var _pp_remaining_label: Label
 var _move_type_label: Label
 var _finish_button: Button
+var _window_renderer: Control = null
 
 
 func _ready() -> void:
@@ -141,6 +143,7 @@ func configure(sequence: Dictionary, battle_engine: Node, game_state: Node = nul
 	_battle_state = _dictionary_value(_sequence.get("battle_state", {})).duplicate(true)
 	_battle_engine = battle_engine
 	_ensure_data_registry()
+	_configure_window_renderer()
 	_game_state = game_state
 	_last_result = {}
 	_message_lines = [_battle_opening_message()]
@@ -154,10 +157,12 @@ func configure(sequence: Dictionary, battle_engine: Node, game_state: Node = nul
 func configure_battle_engine(battle_engine: Node) -> void:
 	_battle_engine = battle_engine
 	_ensure_data_registry()
+	_configure_window_renderer()
 
 
 func configure_data_registry(data_registry: Node) -> void:
 	_data_registry = data_registry
+	_configure_window_renderer()
 
 
 func load_battle_state(battle_state: Dictionary) -> void:
@@ -227,14 +232,9 @@ func get_battle_result() -> Dictionary:
 
 
 func get_ui_snapshot() -> Dictionary:
-	var move_labels: Array = []
-	for button in _move_buttons:
-		if button is Button:
-			move_labels.append(button.text)
-	var action_labels := {}
-	for action_id in _action_buttons.keys():
-		var action_button: Button = _action_buttons[action_id]
-		action_labels[action_id] = action_button.text
+	var player_mon := _active_mon("player")
+	var move_labels := _move_labels_for_renderer(player_mon)
+	var action_labels := _battle_menu_labels()
 	return {
 		"player_name": _player_name_label.text if _player_name_label != null else "",
 		"opponent_name": _opponent_name_label.text if _opponent_name_label != null else "",
@@ -242,11 +242,11 @@ func get_ui_snapshot() -> Dictionary:
 		"opponent_hp": _opponent_hp_label.text if _opponent_hp_label != null else "",
 		"moves": move_labels,
 		"action_menu": action_labels,
-		"action_prompt": _action_prompt_label.text if _action_prompt_label != null else "",
-		"pp_label": _pp_label.text if _pp_label != null else "",
-		"pp_remaining": _pp_remaining_label.text if _pp_remaining_label != null else "",
-		"move_type": _move_type_label.text if _move_type_label != null else "",
-		"message": _message_label.text if _message_label != null else "",
+		"action_prompt": _window_text_or_label("B_WIN_ACTION_PROMPT", _action_prompt_label),
+		"pp_label": _window_text_or_label("B_WIN_PP", _pp_label),
+		"pp_remaining": _window_text_or_label("B_WIN_PP_REMAINING", _pp_remaining_label),
+		"move_type": _window_text_or_label("B_WIN_MOVE_TYPE", _move_type_label),
+		"message": _window_text_or_label("B_WIN_MSG", _message_label),
 		"outcome": String(_last_result.get("outcome", "")),
 		"can_return_to_field": _finish_button.visible if _finish_button != null else false,
 		"ui_mode": _ui_mode,
@@ -265,6 +265,8 @@ func get_ui_snapshot() -> Dictionary:
 		"source_window_text_info": SOURCE_WINDOW_TEXT_INFO.duplicate(true),
 		"source_type_display_status": _source_type_display_status(),
 		"source_hp_bar_pixels": HP_BAR_PIXELS,
+		"source_window_renderer_status": _source_window_renderer_status(),
+		"source_window_renderer": _source_window_renderer_snapshot(),
 		"source_bg0_y": {
 			"choose_action": BG0_Y_ACTION_CHOOSE,
 			"choose_move": BG0_Y_MOVE_CHOOSE,
@@ -291,6 +293,14 @@ func _ensure_ui() -> void:
 	_add_rect(Rect2(158, 88, 78, 30), Color(0.98, 0.98, 0.91, 1.0))
 	_add_rect(Rect2(12, 28, 48, 28), Color(0.35, 0.46, 0.40, 1.0))
 	_add_rect(Rect2(176, 66, 48, 28), Color(0.35, 0.46, 0.40, 1.0))
+
+	_window_renderer = BATTLE_WINDOW_RENDERER_SCRIPT.new()
+	_window_renderer.name = "BattleWindowRenderer"
+	_window_renderer.position = Vector2.ZERO
+	_window_renderer.size = VIEWPORT_SIZE
+	_window_renderer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_window_renderer)
+	_configure_window_renderer()
 
 	_opponent_name_label = _add_label(Rect2(50, 32, 74, 10), "")
 	_opponent_hp_label = _add_label(Rect2(50, 44, 18, 10), "HP")
@@ -443,8 +453,9 @@ func _refresh_bottom_windows(player_mon: Dictionary) -> void:
 	var action_visible := _ui_phase == PHASE_ACTION_SELECT and _last_result.is_empty()
 	var move_visible := _ui_phase == PHASE_MOVE_SELECT and _last_result.is_empty()
 	var message_visible := intro_visible or _ui_phase == PHASE_TURN_MESSAGE or _ui_phase == PHASE_FINISHED
-	_message_label.visible = message_visible
-	_action_prompt_label.visible = action_visible
+	var legacy_text_visible := _window_renderer == null
+	_message_label.visible = message_visible and legacy_text_visible
+	_action_prompt_label.visible = action_visible and legacy_text_visible
 	_action_prompt_label.text = _action_prompt_text(player_mon)
 	for action_id in _action_buttons.keys():
 		var action_button: Button = _action_buttons[action_id]
@@ -452,10 +463,11 @@ func _refresh_bottom_windows(player_mon: Dictionary) -> void:
 		action_button.disabled = action_id != ACTION_FIGHT
 	_refresh_action_button_labels()
 	_refresh_move_buttons(player_mon, move_visible)
-	_pp_label.visible = move_visible
-	_pp_remaining_label.visible = move_visible
-	_move_type_label.visible = move_visible
+	_pp_label.visible = move_visible and legacy_text_visible
+	_pp_remaining_label.visible = move_visible and legacy_text_visible
+	_move_type_label.visible = move_visible and legacy_text_visible
 	_refresh_move_selection_metadata(player_mon)
+	_refresh_window_renderer(player_mon, message_visible, action_visible, move_visible)
 
 
 func _refresh_move_buttons(player_mon: Dictionary, visible: bool) -> void:
@@ -465,15 +477,15 @@ func _refresh_move_buttons(player_mon: Dictionary, visible: bool) -> void:
 		button.visible = visible
 		if index >= moves.size():
 			button.disabled = true
-			button.text = "-"
+			button.text = "-" if _window_renderer == null else ""
 			continue
 		var move = moves[index]
 		if typeof(move) != TYPE_DICTIONARY:
 			button.disabled = true
-			button.text = "-"
+			button.text = "-" if _window_renderer == null else ""
 			continue
 		button.disabled = int(move.get("current_pp", 0)) <= 0 or not _last_result.is_empty()
-		button.text = _short_text(String(move.get("name", move.get("symbol", "Move"))), 10)
+		button.text = _short_text(String(move.get("name", move.get("symbol", "Move"))), 10) if _window_renderer == null else ""
 
 
 func _refresh_move_selection_metadata(player_mon: Dictionary) -> void:
@@ -488,6 +500,24 @@ func _refresh_move_selection_metadata(player_mon: Dictionary) -> void:
 	_pp_label.text = _source_battle_text("gText_MoveInterfacePP")
 	_pp_remaining_label.text = "%2d/%2d" % [int(move.get("current_pp", 0)), int(move.get("max_pp", 0))]
 	_move_type_label.text = _move_type_text(move)
+
+
+func _refresh_window_renderer(player_mon: Dictionary, message_visible: bool, action_visible: bool, move_visible: bool) -> void:
+	if _window_renderer == null:
+		return
+	if message_visible:
+		_window_renderer.show_message_window(_message_label.text)
+	elif action_visible:
+		_window_renderer.show_action_windows(_action_prompt_text(player_mon), _battle_menu_text_for_renderer())
+	elif move_visible:
+		_window_renderer.show_move_windows(
+			_move_labels_for_renderer(player_mon),
+			_source_battle_text("gText_MoveInterfacePP"),
+			_pp_remaining_text(player_mon),
+			_move_type_text_for_selected(player_mon)
+		)
+	else:
+		_window_renderer.clear_windows()
 
 
 func _build_result_contract(outcome: String) -> Dictionary:
@@ -699,7 +729,45 @@ func _refresh_action_button_labels() -> void:
 	for action_id in labels.keys():
 		if _action_buttons.has(action_id):
 			var button: Button = _action_buttons[action_id]
-			button.text = String(labels[action_id])
+			button.text = "" if _window_renderer != null else String(labels[action_id])
+
+
+func _battle_menu_text_for_renderer() -> String:
+	return _replace_text_control_with_tab(_source_battle_text("gText_BattleMenu"))
+
+
+func _move_labels_for_renderer(player_mon: Dictionary) -> Array:
+	var moves := _array_value(player_mon.get("moves", []))
+	var labels: Array = []
+	for index in range(4):
+		if index >= moves.size() or typeof(moves[index]) != TYPE_DICTIONARY:
+			labels.append("-")
+			continue
+		var move: Dictionary = moves[index]
+		labels.append(_short_text(String(move.get("name", move.get("symbol", "Move"))), 10))
+	return labels
+
+
+func _pp_remaining_text(player_mon: Dictionary) -> String:
+	var move := _selected_move_for_metadata(player_mon)
+	if move.is_empty():
+		return "--/--"
+	return "%2d/%2d" % [int(move.get("current_pp", 0)), int(move.get("max_pp", 0))]
+
+
+func _move_type_text_for_selected(player_mon: Dictionary) -> String:
+	var move := _selected_move_for_metadata(player_mon)
+	if move.is_empty():
+		return "%s?" % _source_battle_text("gText_MoveInterfaceType")
+	return _move_type_text(move)
+
+
+func _selected_move_for_metadata(player_mon: Dictionary) -> Dictionary:
+	var moves := _array_value(player_mon.get("moves", []))
+	if _selected_move_slot < 0 or _selected_move_slot >= moves.size():
+		return {}
+	var move = moves[_selected_move_slot]
+	return move if typeof(move) == TYPE_DICTIONARY else {}
 
 
 func _battle_menu_labels() -> Dictionary:
@@ -916,18 +984,62 @@ func _window_screen_rect(window_id: String, bg0_y: int) -> Rect2:
 
 func _source_window_snapshot() -> Dictionary:
 	var result := {}
-	for window_id in SOURCE_BATTLE_WINDOWS.keys():
-		var source: Dictionary = SOURCE_BATTLE_WINDOWS[window_id].duplicate(true)
+	var generated_windows := _generated_window_templates()
+	var source_windows := generated_windows if not generated_windows.is_empty() else SOURCE_BATTLE_WINDOWS
+	for window_id in source_windows.keys():
+		var source: Dictionary = source_windows[window_id].duplicate(true)
 		var bg0_y := 0
 		if window_id == "B_WIN_ACTION_PROMPT" or window_id == "B_WIN_ACTION_MENU":
 			bg0_y = BG0_Y_ACTION_CHOOSE
 		elif window_id.begins_with("B_WIN_MOVE") or window_id == "B_WIN_PP" or window_id == "B_WIN_PP_REMAINING":
 			bg0_y = BG0_Y_MOVE_CHOOSE
-		var rect := _window_screen_rect(window_id, bg0_y)
-		source["screen_rect"] = [int(rect.position.x), int(rect.position.y), int(rect.size.x), int(rect.size.y)]
+		source["screen_rect"] = [
+			int(source.get("tilemap_left", 0)) * TILE_SIZE,
+			int(source.get("tilemap_top", 0)) * TILE_SIZE - bg0_y,
+			int(source.get("width", 0)) * TILE_SIZE,
+			int(source.get("height", 0)) * TILE_SIZE,
+		]
 		source["bg0_y"] = bg0_y
 		result[window_id] = source
 	return result
+
+
+func _generated_window_templates() -> Dictionary:
+	_ensure_data_registry()
+	if _data_registry == null or not _data_registry.has_method("get_battle_interface_data"):
+		return {}
+	var interface_data = _data_registry.get_battle_interface_data()
+	if typeof(interface_data) != TYPE_DICTIONARY:
+		return {}
+	var templates = interface_data.get("window_templates", {})
+	return templates if typeof(templates) == TYPE_DICTIONARY else {}
+
+
+func _window_text_or_label(window_id: String, label: Label) -> String:
+	if _window_renderer != null and _window_renderer.has_method("get_window_text"):
+		var text := String(_window_renderer.get_window_text(window_id))
+		if not text.is_empty():
+			return text
+	if label != null:
+		return label.text
+	return ""
+
+
+func _source_window_renderer_status() -> String:
+	if _window_renderer == null:
+		return "unavailable"
+	if _window_renderer.has_method("get_renderer_snapshot"):
+		var snapshot = _window_renderer.get_renderer_snapshot()
+		if typeof(snapshot) == TYPE_DICTIONARY:
+			return String(snapshot.get("status", "first_pass"))
+	return "first_pass"
+
+
+func _source_window_renderer_snapshot() -> Dictionary:
+	if _window_renderer != null and _window_renderer.has_method("get_renderer_snapshot"):
+		var snapshot = _window_renderer.get_renderer_snapshot()
+		return snapshot if typeof(snapshot) == TYPE_DICTIONARY else {}
+	return {}
 
 
 func _short_text(value: String, max_length: int) -> String:
@@ -954,3 +1066,10 @@ func _ensure_data_registry() -> void:
 			return
 	if has_node("/root/DataRegistry"):
 		_data_registry = get_node("/root/DataRegistry")
+
+
+func _configure_window_renderer() -> void:
+	if _window_renderer == null or _data_registry == null:
+		return
+	if _window_renderer.has_method("configure_data_registry"):
+		_window_renderer.configure_data_registry(_data_registry)
