@@ -50,7 +50,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, and Pokemon ability JSON.
+- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, and Pokemon item JSON.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries, including source metatile behavior names.
 - `MapRuntime` indexes generated door animation metadata by metatile id and can return the animation for a map cell.
 - `MapRuntime` indexes generated object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events; visible object-event cells are occupied for first-pass movement.
@@ -159,6 +159,15 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Generated ability records preserve source symbols, numeric ability ids, source file/line references, raw initializer fields, source-facing ability names/descriptions plus UTF-8 display text, `ai_rating`, all `struct AbilityInfo` flags, raw flag expressions where present, and explicit C default markers for omitted zero/false fields.
 - The ability importer evaluates the active source configuration from `src/data/abilities.h`, `include/pokemon.h`, `include/constants/abilities.h`, `include/config/general.h`, and `include/config/battle.h`, including `B_UPDATED_ABILITY_DATA` expressions that affect flags.
 - Ability behavior is not inferred from names or data alone. Battle behavior, overworld ability effects, ability popups, summary/Pokedex UI, copying/swapping/suppressing/overwriting rules, AI use of `aiRating`, and any animation/audio/text presentation must still be implemented only after tracing the corresponding source C and referenced resources.
+
+## Generated Pokemon Items Contract
+
+- Pokemon item JSON is loaded through `DataRegistry` from the manifest `pokemon` entry with category `items`.
+- `DataRegistry.get_pokemon_data("items")`, `get_items_data`, `get_item_record`, `get_item_record_by_symbol`, and `get_item_record_by_id` are read-only accessors for generated item records.
+- Generated item records preserve source symbols, numeric item ids, source file/line references, raw `struct ItemInfo` fields, source-facing item names/descriptions plus UTF-8 display text, C-defaulted fields, sell prices from `ITEM_SELL_FACTOR`, pocket/sort/type/battle-usage/hold-effect constant records, secondary ids for Pokeballs/natures/types/mail/berries/mulch, field-use function symbols, icon symbols, and item effect references.
+- Generated item effect records preserve `src/data/pokemon/item_effects.h` byte-array symbols, source locations, lengths, explicit designated entries, evaluated values, u8 byte values, and expanded friendship helper macros such as `VITAMIN_FRIENDSHIP_CHANGE`, `FEATHER_FRIENDSHIP_CHANGE`, and `EV_BERRY_FRIENDSHIP_CHANGE`.
+- The item importer evaluates active item/source configuration from `src/data/items.h`, `src/data/pokemon/item_effects.h`, `include/item.h`, item/constants headers, `include/constants/tms_hms.h`, and relevant `include/config/*` headers. TM/HM item aliases such as `ITEM_TM_THUNDER` are resolved from the source `FOREACH_TM`/`FOREACH_HM` lists.
+- Item behavior is not inferred from names or data alone. Bag UI, shops, field-use functions, berries, mail, Pokeballs, held-item effects, battle item execution, Enigma Berry save-data special cases, icons, audio, animations, and menu timing must still be implemented only after tracing the corresponding source C and referenced resources.
 
 ## Generated Global Text Contract
 

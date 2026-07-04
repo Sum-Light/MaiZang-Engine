@@ -249,6 +249,33 @@ Latest verified abilities export:
 - export warnings: 0
 - unsupported fields: 0
 
+`tools/importer/export_items.py` exports the active item initializer table and item effect byte arrays into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
+
+Current item export behavior:
+
+- Reads `src/data/items.h` and `src/data/pokemon/item_effects.h` after evaluating active source config branches from `include/config/general.h`, `include/config/battle.h`, `include/config/overworld.h`, `include/config/item.h`, `include/config/save.h`, and `include/config/pokemon.h`.
+- Reads item, pocket, item sort, item use type, battle usage, hold effect, Pokeball, type, stat, move, nature, item effect, and TM/HM alias constants from source headers.
+- Parses explicit `struct ItemInfo` initializers from `include/item.h` fields into source-backed records with ids, text, price/sell price, pocket/sort/type/battle-usage fields, secondary ids, hold effects, field-use function symbols, item effect symbols, icon symbols, source locations, raw fields, and C default markers.
+- Converts source item names and descriptions from `_("")`, `COMPOUND_STRING(...)`, `ITEM_NAME(...)`, `ITEM_PLURAL_NAME(...)`, and shared text references into UTF-8 `display_text` while preserving source-facing raw text fields.
+- Parses `src/data/pokemon/item_effects.h` designated byte arrays, preserving source symbols, lengths, evaluated values, u8 byte values, and expanded source helper macros for friendship changes.
+- Resolves source TM/HM aliases such as `ITEM_TM_THUNDER` and `ITEM_HM_CUT` from `include/constants/tms_hms.h` so generated records keep their source numeric item ids even though the source enum uses macro expansion.
+- Writes `data/generated/pokemon/items.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `items`.
+- Treats generated item records as source-traceable data for later bag, shop, berry, held-item, Pokeball, field-use, and battle-item systems. The generated data records source symbols needed for that work; it does not by itself define Godot behavior.
+
+Latest verified items export:
+
+- generated path: `data/generated/pokemon/items.json`
+- manifest category: `pokemon` / `items`
+- active item initializers: 874
+- `ITEMS_COUNT`: 874
+- highest item id: 873
+- item records with effect references: 139
+- parsed item effect byte arrays: 72
+- preprocessor decisions: 254
+- preprocessor warnings: 0
+- export warnings: 0
+- unsupported fields: 0
+
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 
 Latest verified first-slice source facts for `LittlerootTown`:
