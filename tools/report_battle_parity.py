@@ -24,6 +24,7 @@ UNSUPPORTED_CODE_REGISTRY = {
     "pokemon_asset_import_pending": "Pokemon front/back sprites, palettes, offsets, shadows, and animations are not imported.",
     "trainer_asset_import_pending": "Trainer battle sprites, palettes, mugshots, and slide metadata are not imported.",
     "debug_launcher_pending": "Developer quick battle launchers are not implemented yet.",
+    "debug_random_wild_not_source_encounter": "F6 is a Godot-only random species/random level battle fixture, not a source grass/water/fishing encounter path.",
     "map_decoupled_debug_only": "The row describes a Godot-only developer access path, not source gameplay.",
 }
 
@@ -96,22 +97,34 @@ DEBUG_LAUNCHER_ROWS = [
         "label": "Quick wild battle",
         "requested_action": "debug_quick_wild_battle",
         "proposed_key": "F6",
-        "implementation_status": "unsupported",
+        "implementation_status": "first_pass",
         "map_decoupled": True,
         "developer_only": True,
-        "normal_contract": "EncounterEngine candidate -> BattleEngine.create_wild_battle_state",
-        "unsupported": ["debug_launcher_pending", "map_decoupled_debug_only"],
+        "normal_contract": "random generated species + random level -> BattleEngine.create_wild_battle_state -> BattleScene handoff",
+        "tests": ["tools/godot_smoke/debug_battle_launcher_smoke.gd"],
+        "unsupported": [
+            "debug_random_wild_not_source_encounter",
+            "map_decoupled_debug_only",
+            "battle_hud_pending",
+            "battle_audio_playback_pending",
+        ],
     },
     {
         "id": "debug_trainer_battle_selector",
         "label": "Trainer battle selector",
         "requested_action": "debug_trainer_battle_selector",
         "proposed_key": "F7",
-        "implementation_status": "unsupported",
+        "implementation_status": "first_pass",
         "map_decoupled": True,
         "developer_only": True,
         "normal_contract": "trainer id/symbol -> BattleEngine.create_trainer_battle_state",
-        "unsupported": ["debug_launcher_pending", "map_decoupled_debug_only"],
+        "tests": ["tools/godot_smoke/debug_battle_launcher_smoke.gd"],
+        "unsupported": [
+            "map_decoupled_debug_only",
+            "battle_hud_pending",
+            "battle_audio_playback_pending",
+            "trainer_rewards_pending",
+        ],
     },
 ]
 

@@ -2,6 +2,7 @@ extends Node2D
 
 const TRANSITION_SEQUENCE_PLAYER := preload("res://scripts/overworld/transition_sequence_player.gd")
 const BATTLE_SCENE := preload("res://scenes/battle/battle_scene.tscn")
+const BATTLE_DEBUG_LAUNCHER := preload("res://scripts/debug/battle_debug_launcher.gd")
 
 @onready var world = $World
 @onready var debug_map = $World/DebugMap
@@ -16,10 +17,15 @@ var _transition_overlay: ColorRect
 var _transition_label: Label
 var _transition_sequence_player: Node
 var _battle_scene: Control = null
+var _battle_debug_launcher
+var _debug_trainer_selector: PanelContainer
+var _debug_trainer_input: LineEdit
+var _debug_trainer_status: Label
 var _debug_grid_visible := false
 
 
 func _ready() -> void:
+	_ensure_debug_input_actions()
 	if MapRuntime.has_method("configure_data_registry"):
 		MapRuntime.configure_data_registry(DataRegistry)
 	if EventManager.has_method("configure_data_registry"):
@@ -30,6 +36,10 @@ func _ready() -> void:
 		EventManager.configure_battle_engine(BattleEngine)
 	if BattleEngine.has_method("configure_registry"):
 		BattleEngine.configure_registry(DataRegistry)
+	if PartyRuntime.has_method("configure_registry"):
+		PartyRuntime.configure_registry(DataRegistry)
+	if PartyRuntime.has_method("configure_battle_engine"):
+		PartyRuntime.configure_battle_engine(BattleEngine)
 	if DataRegistry.has_method("set_debug_map_overlays_enabled"):
 		DataRegistry.set_debug_map_overlays_enabled(true)
 	var start_map_data := DataRegistry.get_start_map_data({
@@ -38,6 +48,9 @@ func _ready() -> void:
 	var start_tileset_data := DataRegistry.get_start_tileset_data()
 
 	_create_transition_overlay()
+	_create_debug_trainer_selector()
+	_battle_debug_launcher = BATTLE_DEBUG_LAUNCHER.new()
+	_battle_debug_launcher.configure(DataRegistry, BattleEngine, PartyRuntime, GameState, EventManager)
 	_transition_sequence_player = TRANSITION_SEQUENCE_PLAYER.new()
 	add_child(_transition_sequence_player)
 	_transition_sequence_player.configure(
@@ -101,6 +114,16 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _handle_debug_trainer_selector_input(event):
+		return
+	if event is InputEventKey and event.pressed and not event.echo and _debug_key_pressed(event, "debug_quick_wild_battle", KEY_F6):
+		_launch_debug_random_wild_battle()
+		get_viewport().set_input_as_handled()
+		return
+	if event is InputEventKey and event.pressed and not event.echo and _debug_key_pressed(event, "debug_trainer_battle_selector", KEY_F7):
+		_open_debug_trainer_selector()
+		get_viewport().set_input_as_handled()
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_G:
 		_set_debug_grid_visible(not _debug_grid_visible)
 		_update_status()
@@ -176,6 +199,9 @@ func _before_player_field_input() -> bool:
 	if _battle_scene != null:
 		return true
 
+	if _debug_trainer_selector != null and _debug_trainer_selector.visible:
+		return true
+
 	if dialogue_panel.visible:
 		if Input.is_action_just_pressed("ui_accept"):
 			_hide_dialogue()
@@ -224,6 +250,7 @@ func _on_battle_start_sequence_requested(sequence: Dictionary) -> void:
 func _on_battle_scene_handoff_requested(sequence: Dictionary, _step: Dictionary) -> void:
 	if _battle_scene != null:
 		return
+	_close_debug_trainer_selector(true)
 	_hide_dialogue()
 	if player.has_method("set_input_locked"):
 		player.set_input_locked(true)
@@ -282,6 +309,89 @@ func _on_script_player_position_changed(grid_position: Vector2i) -> void:
 	_update_status()
 
 
+func _launch_debug_random_wild_battle() -> void:
+	if _battle_scene != null or _is_transition_playing():
+		return
+	_close_debug_trainer_selector(false)
+	_hide_dialogue()
+	var result = _battle_debug_launcher.launch_random_wild_battle({
+		"position": GameState.player_grid_position,
+		"map": "DEBUG_RANDOM_WILD",
+	})
+	if typeof(result) != TYPE_DICTIONARY or String(result.get("status", "")) != "sequence_requested":
+		_on_debug_message_requested(PackedStringArray([
+			"Debug random wild battle failed.",
+			String(result.get("status", "invalid_result")) if typeof(result) == TYPE_DICTIONARY else "invalid_result",
+		]))
+		_update_status()
+		return
+	var encounter = result.get("debug_encounter", {})
+	if typeof(encounter) == TYPE_DICTIONARY:
+		_movement_note = "debug wild %s Lv.%d" % [
+			String(encounter.get("species", "")),
+			int(encounter.get("level", 0)),
+		]
+	_update_status()
+
+
+func _open_debug_trainer_selector() -> void:
+	if _battle_scene != null or _is_transition_playing():
+		return
+	_hide_dialogue()
+	if _debug_trainer_selector == null:
+		_create_debug_trainer_selector()
+	var snapshot = _battle_debug_launcher.selected_trainer_snapshot()
+	_debug_trainer_input.text = String(_battle_debug_launcher.selected_trainer_ref)
+	_debug_trainer_status.text = _trainer_selector_status(snapshot)
+	_debug_trainer_selector.visible = true
+	if player.has_method("set_input_locked"):
+		player.set_input_locked(true)
+	_debug_trainer_input.grab_focus()
+	_debug_trainer_input.select_all()
+
+
+func _close_debug_trainer_selector(keep_input_locked: bool = false) -> void:
+	if _debug_trainer_selector == null:
+		return
+	_debug_trainer_selector.visible = false
+	if not keep_input_locked and player.has_method("set_input_locked") and _battle_scene == null and not _is_transition_playing():
+		player.set_input_locked(false)
+
+
+func _launch_debug_trainer_battle(trainer_ref: String) -> void:
+	if _battle_scene != null or _is_transition_playing():
+		return
+	var result = _battle_debug_launcher.launch_trainer_battle(trainer_ref, {
+		"position": GameState.player_grid_position,
+		"map": "DEBUG_TRAINER_BATTLE",
+	})
+	if typeof(result) != TYPE_DICTIONARY or String(result.get("status", "")) != "sequence_requested":
+		_debug_trainer_status.text = "Not found: %s" % trainer_ref
+		return
+	var selected = result.get("selected_trainer", {})
+	if typeof(selected) == TYPE_DICTIONARY:
+		var trainer = selected.get("trainer", {})
+		if typeof(trainer) == TYPE_DICTIONARY:
+			_movement_note = "debug trainer %s" % String(trainer.get("symbol", trainer_ref))
+	_close_debug_trainer_selector(true)
+	_update_status()
+
+
+func _handle_debug_trainer_selector_input(event: InputEvent) -> bool:
+	if _debug_trainer_selector == null or not _debug_trainer_selector.visible:
+		return false
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_ESCAPE:
+			_close_debug_trainer_selector(false)
+			get_viewport().set_input_as_handled()
+			return true
+		if event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER:
+			_launch_debug_trainer_battle(_debug_trainer_input.text)
+			get_viewport().set_input_as_handled()
+			return true
+	return false
+
+
 func _hide_dialogue() -> void:
 	dialogue_panel.visible = false
 	dialogue_label.text = ""
@@ -327,6 +437,61 @@ func _create_transition_overlay() -> void:
 	_transition_overlay.add_child(_transition_label)
 
 
+func _create_debug_trainer_selector() -> void:
+	if _debug_trainer_selector != null:
+		return
+	var hud := $Hud
+	_debug_trainer_selector = PanelContainer.new()
+	_debug_trainer_selector.name = "DebugTrainerSelector"
+	_debug_trainer_selector.visible = false
+	_debug_trainer_selector.mouse_filter = Control.MOUSE_FILTER_STOP
+	_debug_trainer_selector.offset_left = 12.0
+	_debug_trainer_selector.offset_top = 42.0
+	_debug_trainer_selector.offset_right = 228.0
+	_debug_trainer_selector.offset_bottom = 110.0
+	hud.add_child(_debug_trainer_selector)
+
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 3)
+	_debug_trainer_selector.add_child(box)
+
+	var title := Label.new()
+	title.text = "Trainer ID / symbol"
+	title.add_theme_font_size_override("font_size", 8)
+	box.add_child(title)
+
+	_debug_trainer_input = LineEdit.new()
+	_debug_trainer_input.placeholder_text = "1, TRAINER_SAWYER_1, SAWYER_1"
+	_debug_trainer_input.add_theme_font_size_override("font_size", 8)
+	_debug_trainer_input.text_submitted.connect(_on_debug_trainer_text_submitted)
+	box.add_child(_debug_trainer_input)
+
+	_debug_trainer_status = Label.new()
+	_debug_trainer_status.text = ""
+	_debug_trainer_status.add_theme_font_size_override("font_size", 8)
+	_debug_trainer_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	box.add_child(_debug_trainer_status)
+
+	var buttons := HBoxContainer.new()
+	box.add_child(buttons)
+	var launch_button := Button.new()
+	launch_button.text = "Launch"
+	launch_button.focus_mode = Control.FOCUS_NONE
+	launch_button.add_theme_font_size_override("font_size", 8)
+	launch_button.pressed.connect(func() -> void:
+		_launch_debug_trainer_battle(_debug_trainer_input.text)
+	)
+	buttons.add_child(launch_button)
+	var cancel_button := Button.new()
+	cancel_button.text = "Cancel"
+	cancel_button.focus_mode = Control.FOCUS_NONE
+	cancel_button.add_theme_font_size_override("font_size", 8)
+	cancel_button.pressed.connect(func() -> void:
+		_close_debug_trainer_selector(false)
+	)
+	buttons.add_child(cancel_button)
+
+
 func _run_initial_map_scripts() -> void:
 	if EventManager.has_method("configure_from_script_data"):
 		EventManager.configure_from_script_data(DataRegistry.get_start_script_data())
@@ -365,3 +530,47 @@ func _set_debug_grid_visible(value: bool) -> void:
 	_debug_grid_visible = value
 	if debug_map != null and debug_map.has_method("set_grid_visible"):
 		debug_map.set_grid_visible(value)
+
+
+func _on_debug_trainer_text_submitted(text: String) -> void:
+	_launch_debug_trainer_battle(text)
+
+
+func _trainer_selector_status(snapshot: Dictionary) -> String:
+	if String(snapshot.get("status", "")) != "ok":
+		return String(snapshot.get("detail", "Unknown trainer."))
+	var trainer = snapshot.get("trainer", {})
+	if typeof(trainer) != TYPE_DICTIONARY:
+		return ""
+	return "#%d %s" % [
+		int(trainer.get("id", -1)),
+		String(trainer.get("symbol", "")),
+	]
+
+
+func _ensure_debug_input_actions() -> void:
+	_ensure_debug_key_action("debug_quick_wild_battle", KEY_F6)
+	_ensure_debug_key_action("debug_trainer_battle_selector", KEY_F7)
+
+
+func _ensure_debug_key_action(action_name: String, keycode: Key) -> void:
+	if not InputMap.has_action(action_name):
+		InputMap.add_action(action_name)
+	for event in InputMap.action_get_events(action_name):
+		if event is InputEventKey and event.keycode == keycode:
+			return
+	var key_event := InputEventKey.new()
+	key_event.keycode = keycode
+	InputMap.action_add_event(action_name, key_event)
+
+
+func _debug_key_pressed(event: InputEventKey, action_name: String, fallback_keycode: Key) -> bool:
+	return event.is_action_pressed(action_name) or event.keycode == fallback_keycode
+
+
+func _is_transition_playing() -> bool:
+	return (
+		_transition_sequence_player != null
+		and _transition_sequence_player.has_method("is_playing")
+		and bool(_transition_sequence_player.is_playing())
+	)

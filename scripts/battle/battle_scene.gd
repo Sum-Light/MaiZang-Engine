@@ -512,7 +512,7 @@ func _build_result_contract(outcome: String) -> Dictionary:
 	post_battle["field_resume"] = {
 		"source_map": String(_sequence.get("source_map", "")),
 		"source_position": _sequence.get("source_position", Vector2i.ZERO),
-		"callback": "CB2_EndTrainerBattle",
+		"callback": _field_resume_callback(),
 	}
 	post_battle["pending_game_state_party_write"] = not bool(debug_player_party.get("temporary", false))
 	post_battle["debug_player_party_temporary"] = bool(debug_player_party.get("temporary", false))
@@ -529,6 +529,10 @@ func _build_result_contract(outcome: String) -> Dictionary:
 	return result
 
 
+func _field_resume_callback() -> String:
+	return "CB2_EndWildBattle" if String(_sequence.get("battle_kind", _battle_state.get("battle_kind", ""))) == "wild" else "CB2_EndTrainerBattle"
+
+
 func _battle_scene_source_trace() -> Array:
 	return [
 		"src/battle_main.c:CB2_InitBattle",
@@ -543,7 +547,7 @@ func _battle_scene_source_trace() -> Array:
 		"src/data/types_info.h:gTypesInfo",
 		"src/battle_message.c",
 		"src/battle_message.c:sTextOnWindowsInfo_Normal",
-		"src/battle_setup.c:CB2_EndTrainerBattle",
+		"src/battle_setup.c:%s" % _field_resume_callback(),
 	]
 
 

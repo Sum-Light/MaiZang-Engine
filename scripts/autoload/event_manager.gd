@@ -367,6 +367,8 @@ func request_trainer_battle_start(request: Dictionary) -> Dictionary:
 		"player_active": _current_player_active_battle_index(player_party),
 		"debug_player_party": player_party_result,
 	}
+	if request.has("map_transition_type"):
+		battle_options["map_transition_type"] = String(request.get("map_transition_type", "normal"))
 	var battle_state = _battle_engine.create_trainer_battle_state(trainer_id, player_party, battle_options)
 	if typeof(battle_state) != TYPE_DICTIONARY:
 		return {
@@ -426,6 +428,98 @@ func request_trainer_battle_start(request: Dictionary) -> Dictionary:
 		"battle_setup": battle_setup,
 		"statistics": statistics,
 		"source": "src/battle_setup.c:DoTrainerBattle -> CreateBattleStartTask",
+	}
+
+
+func request_debug_wild_battle_start(request: Dictionary) -> Dictionary:
+	if _battle_engine == null or not _battle_engine.has_method("create_wild_battle_state"):
+		return {
+			"status": "missing_battle_engine",
+			"source": "Godot debug random wild battle fixture",
+		}
+	var encounter = request.get("encounter", {})
+	if typeof(encounter) != TYPE_DICTIONARY or encounter.is_empty():
+		return {
+			"status": "missing_encounter",
+			"source": "Godot debug random wild battle fixture",
+		}
+	var player_party = request.get("player_battle_party", [])
+	if typeof(player_party) != TYPE_ARRAY or player_party.is_empty():
+		player_party = _current_player_battle_party()
+	if player_party.is_empty():
+		return {
+			"status": "missing_player_party",
+			"source": "Godot debug random wild battle fixture",
+		}
+	var map_id := String(request.get("map", "DEBUG_RANDOM_WILD"))
+	var battle_options := {
+		"battle_origin": String(request.get("battle_origin", "debug_random_wild_battle")),
+		"map": map_id,
+		"map_transition_type": String(request.get("map_transition_type", "normal")),
+		"metatile_behavior": String(request.get("metatile_behavior", "")),
+		"player_active": _current_player_active_battle_index(player_party),
+		"debug_player_party": request.get("debug_player_party", {}),
+	}
+	var battle_state = _battle_engine.create_wild_battle_state(encounter, player_party, battle_options)
+	if typeof(battle_state) != TYPE_DICTIONARY:
+		return {
+			"status": "invalid_battle_state",
+			"source": "Godot debug random wild battle fixture",
+		}
+	var battle_status := String(battle_state.get("status", ""))
+	if battle_status != "ok":
+		return {
+			"status": battle_status,
+			"battle_state": battle_state,
+			"source": "Godot debug random wild battle fixture",
+		}
+	battle_state["debug_fixture"] = bool(request.get("debug_fixture", true))
+	battle_state["debug_player_party"] = request.get("debug_player_party", {})
+	var unsupported = battle_state.get("unsupported", [])
+	if typeof(unsupported) != TYPE_ARRAY:
+		unsupported = []
+	unsupported.append({
+		"code": "debug_random_wild_not_source_encounter",
+		"source": "Godot-only debug battle launcher",
+		"detail": "This battle uses a random generated species and random level instead of source map encounter tables, encounter-rate checks, Repel/Lure, slot probabilities, or grass/water/fishing behavior.",
+	})
+	battle_state["unsupported"] = unsupported
+
+	var sequence_id := _next_transition_sequence_id
+	_next_transition_sequence_id += 1
+	var battle_setup := {
+		"status": "state_created",
+		"battle_state": battle_state,
+		"player_party_count": player_party.size(),
+		"opponent_party_count": _result_array_count(battle_state, "opponent_party"),
+		"debug_player_party": request.get("debug_player_party", {}),
+		"source": "BattleEngine.create_wild_battle_state",
+	}
+	var summary := {
+		"map": map_id,
+		"position": request.get("position", _current_player_position()),
+		"species": String(encounter.get("species", "")),
+		"level": int(encounter.get("level", 1)),
+		"encounter_result": encounter,
+		"current_metatile_behavior": String(request.get("metatile_behavior", "")),
+		"enable_battle_scene_handoff": bool(request.get("enable_battle_scene_handoff", true)),
+	}
+	var statistics := _debug_wild_battle_stats()
+	var sequence := _build_debug_wild_battle_start_sequence(
+		sequence_id,
+		summary,
+		battle_setup,
+		battle_state,
+		statistics
+	)
+	battle_start_sequence_requested.emit(sequence)
+	return {
+		"status": "sequence_requested",
+		"id": sequence_id,
+		"sequence": sequence,
+		"battle_setup": battle_setup,
+		"statistics": statistics,
+		"source": "Godot debug random wild battle fixture -> BattleEngine.create_wild_battle_state",
 	}
 
 
@@ -2091,6 +2185,128 @@ func _request_standard_wild_battle_start(summary: Dictionary, battle_setup: Dict
 	}
 
 
+func _build_debug_wild_battle_start_sequence(
+	sequence_id: int,
+	summary: Dictionary,
+	battle_setup: Dictionary,
+	battle_state: Dictionary,
+	statistics: Dictionary
+) -> Dictionary:
+	var setup = battle_state.get("battle_setup", {})
+	setup = setup if typeof(setup) == TYPE_DICTIONARY else {}
+	var transition = setup.get("battle_transition", {})
+	transition = transition if typeof(transition) == TYPE_DICTIONARY else {}
+	var battle_type_flags = battle_state.get("battle_type_flags", [])
+	battle_type_flags = battle_type_flags if typeof(battle_type_flags) == TYPE_ARRAY else []
+	return {
+		"id": sequence_id,
+		"type": "battle_start",
+		"battle_kind": "wild",
+		"presentation": "debug_random_wild_battle_start",
+		"enable_battle_scene_handoff": bool(summary.get("enable_battle_scene_handoff", true)),
+		"source_map": String(summary.get("map", "")),
+		"source_position": summary.get("position", Vector2i.ZERO),
+		"species": String(summary.get("species", "")),
+		"level": int(summary.get("level", 0)),
+		"battle_state": battle_state,
+		"debug_fixture": true,
+		"debug_player_party": battle_setup.get("debug_player_party", {}),
+		"battle_setup_status": String(battle_setup.get("status", "")),
+		"battle_transition": transition,
+		"battle_type_flags": battle_type_flags.duplicate(true),
+		"statistics": statistics,
+		"frame_basis": "60fps",
+		"source_order": [
+			"Godot debug fixture selects a random generated species and random level",
+			"BattleEngine.create_wild_battle_state creates a gEnemyParty[0]-equivalent battle state",
+			"CreateBattleStartTask-equivalent transition stub",
+			"Task_BattleStart: wait until !FldEffPoison_IsActive()",
+			"BattleTransition_StartOnField",
+			"ClearMirageTowerPulseBlendEffect",
+			"Task_BattleStart: wait until IsBattleTransitionDone()",
+			"PrepareForFollowerNPCBattle",
+			"CleanupOverworldWindowsAndTilemaps",
+			"SetMainCallback2(CB2_InitBattle)",
+			"RestartWildEncounterImmunitySteps",
+			"ClearPoisonStepCounter",
+		],
+		"source_trace": [
+			"src/battle_setup.c:DoStandardWildBattle_Debug",
+			"src/battle_setup.c:CreateBattleStartTask_Debug",
+			"src/battle_setup.c:Task_BattleStart",
+			"src/battle_transition.c:BattleTransition_StartOnField",
+			"src/battle_main.c:CB2_InitBattle",
+		],
+		"steps": _debug_wild_battle_start_steps(transition, battle_type_flags),
+		"unsupported": _debug_wild_battle_start_unsupported(),
+	}
+
+
+func _debug_wild_battle_start_steps(transition: Dictionary, battle_type_flags: Array) -> Array:
+	return [
+		{
+			"op": "lock_controls",
+			"source": "src/battle_setup.c:DoStandardWildBattle_Debug -> src/script.c:LockPlayerFieldControls",
+		},
+		{
+			"op": "freeze_object_events",
+			"source": "src/battle_setup.c:DoStandardWildBattle_Debug -> src/event_object_movement.c:FreezeObjectEvents",
+			"status": "metadata_only",
+		},
+		{
+			"op": "stop_player_avatar",
+			"source": "src/battle_setup.c:DoStandardWildBattle_Debug -> src/field_player_avatar.c:StopPlayerAvatar",
+			"status": "metadata_only",
+		},
+		{"op": "set_saved_callback", "callback": "CB2_EndWildBattle", "source": "src/battle_setup.c:DoStandardWildBattle_Debug"},
+		{"op": "set_battle_type_flags", "flags": battle_type_flags.duplicate(true), "source": "src/battle_setup.c:DoStandardWildBattle_Debug"},
+		{
+			"op": "create_battle_start_task",
+			"task": "Task_BattleStart",
+			"priority": 1,
+			"transition": String(transition.get("selected", "")),
+			"transition_type": String(transition.get("transition_type", "")),
+			"transition_comparison": String(transition.get("comparison", "")),
+			"source": "src/battle_setup.c:CreateBattleStartTask_Debug",
+			"status": "debug_bridge_first_slice",
+		},
+		{
+			"op": "play_bgm",
+			"function": "PlayMapChosenOrBattleBGM",
+			"song_meaning": "choose map wild battle BGM",
+			"source": "src/battle_setup.c:CreateBattleStartTask_Debug",
+			"status": "metadata_only",
+		},
+		{"op": "wait_poison_clear", "condition": "!FldEffPoison_IsActive()", "source": "src/battle_setup.c:Task_BattleStart"},
+		{
+			"op": "battle_transition_start",
+			"transition": String(transition.get("selected", "")),
+			"transition_type": String(transition.get("transition_type", "")),
+			"comparison": String(transition.get("comparison", "")),
+			"duration_frames": BATTLE_TRANSITION_STUB_FRAMES,
+			"presentation_stub": true,
+			"source": "src/battle_setup.c:Task_BattleStart -> BattleTransition_StartOnField",
+		},
+		{
+			"op": "clear_mirage_tower_pulse_blend",
+			"source": "src/battle_setup.c:Task_BattleStart -> ClearMirageTowerPulseBlendEffect",
+			"status": "metadata_only",
+		},
+		{"op": "wait_battle_transition_done", "condition": "IsBattleTransitionDone()", "source": "src/battle_setup.c:Task_BattleStart"},
+		{"op": "prepare_follower_npc_battle", "source": "src/battle_setup.c:Task_BattleStart", "status": "metadata_only"},
+		{"op": "cleanup_overworld_windows_tilemaps", "source": "src/battle_setup.c:Task_BattleStart", "status": "metadata_only"},
+		{
+			"op": "set_main_callback",
+			"callback": "CB2_InitBattle",
+			"source": "src/battle_setup.c:Task_BattleStart",
+			"status": "battle_scene_first_slice_not_source_equivalent",
+			"unsupported_reason": "battle_scene_not_source_equivalent",
+		},
+		{"op": "restart_wild_encounter_immunity_steps", "source": "src/battle_setup.c:Task_BattleStart"},
+		{"op": "clear_poison_step_counter", "var": "VAR_POISON_STEP_COUNTER", "source": "src/battle_setup.c:Task_BattleStart"},
+	]
+
+
 func _build_standard_wild_battle_start_sequence(
 	sequence_id: int,
 	summary: Dictionary,
@@ -2479,6 +2695,15 @@ func _increment_standard_wild_battle_stats() -> Dictionary:
 	}
 
 
+func _debug_wild_battle_stats() -> Dictionary:
+	return {
+		"status": "debug_not_incremented",
+		"increments": [],
+		"source": "src/battle_setup.c:DoStandardWildBattle_Debug",
+		"detail": "The Godot F6 fixture follows the source debug-battle convention of not mutating normal wild battle counters.",
+	}
+
+
 func _standard_wild_battle_start_unsupported() -> Array:
 	return [{
 		"code": "battle_transition_visual_stub",
@@ -2492,6 +2717,22 @@ func _standard_wild_battle_start_unsupported() -> Array:
 		"code": "field_freeze_audio_cleanup_metadata_only",
 		"source": "src/battle_setup.c:DoStandardWildBattle/Task_BattleStart",
 		"detail": "Object-event freeze, StopPlayerAvatar, BGM playback, follower preparation, window/tilemap cleanup, and poison-step reset are recorded as source-ordered metadata until those presentation/runtime systems exist.",
+	}]
+
+
+func _debug_wild_battle_start_unsupported() -> Array:
+	return [{
+		"code": "debug_random_wild_not_source_encounter",
+		"source": "Godot-only debug battle launcher",
+		"detail": "F6 intentionally skips source encounter tables and chooses a random generated species plus random level for fast battle testing.",
+	}, {
+		"code": "battle_transition_visual_stub",
+		"source": "src/battle_transition.c:BattleTransition_StartOnField",
+		"detail": "The debug sequence records the selected transition and plays only the generic first-pass overlay. Exact transition graphics, task timing, palette effects, screen effects, and BGM playback remain future work.",
+	}, {
+		"code": "battle_scene_not_source_equivalent",
+		"source": "src/battle_main.c:CB2_InitBattle",
+		"detail": "The handoff opens the current debug BattleScene. Source tilemaps, windows, text printer timing, battler/healthbox sprites, audio, controller queues, and full turn flow remain future work.",
 	}]
 
 

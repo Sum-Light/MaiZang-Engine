@@ -15,6 +15,10 @@ func _run() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 
+	_assert(InputMap.has_action("debug_quick_wild_battle"), "expected F6 debug wild battle action")
+	_assert(InputMap.has_action("debug_trainer_battle_selector"), "expected F7 debug trainer selector action")
+	_assert(main.get_node_or_null("Hud/DebugTrainerSelector") != null, "expected debug trainer selector UI")
+
 	GameState.clear_player_party()
 	GameState.current_map_id = "MAP_LITTLEROOT_TOWN"
 	GameState.player_grid_position = Vector2i(10, 13)

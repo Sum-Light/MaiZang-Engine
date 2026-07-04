@@ -440,36 +440,38 @@ B0 completion metrics: `battle_parity_report.json` currently has 8571 coverage r
 
 ## B13 - Debug Battle Launchers
 
-- [ ] B13.1 Add debug input map actions.
+- [x] B13.1 Add debug input map actions.
   - Proposed defaults: `debug_quick_wild_battle` on F6, `debug_trainer_battle_selector` on F7, and optional trainer id increment/decrement/search controls inside the selector.
-  - Target files: `project.godot`, `scripts/main.gd`, and optionally `scripts/debug/battle_debug_launcher.gd`.
-  - Validate: actions are disabled or hidden outside developer/debug builds and do not conflict with existing field input or the `G` grid toggle.
+  - Implemented: `scripts/main.gd` registers runtime `InputMap` actions for F6/F7 and preserves the existing `G` grid toggle.
+  - Remaining polish: explicit debug-build gating can be added when the project has a release/dev build split.
 
-- [ ] B13.2 Implement quick wild battle launch.
-  - Source: grass encounter path concepts from `CheckStandardWildEncounter`, `TryGenerateWildMon`, `CreateWildMon`, `BattleSetup_StartWildBattle`, plus current generated wild encounter data.
-  - Behavior: use a plain debug setup context, default to a source land/tall-grass encounter fixture such as Route101, run the same wild candidate generation and `BattleEngine.create_wild_battle_state` path as grass encounters, and carry source battle-start metadata.
-  - Boundary: do not query `MapRuntime`, do not require player standing in grass, and do not mutate field-step counters except deliberate debug metadata.
-  - Validate: smoke proves the launched wild battle candidate matches the same generated encounter/party/battle-state path as a normal grass encounter fixture.
+- [x] B13.2 Implement quick wild battle launch.
+  - Implemented behavior: F6 is a Godot-only developer fixture that selects a random generated species and random level, then launches through `BattleEngine.create_wild_battle_state` and the existing battle-scene handoff.
+  - Boundary: this is intentionally not grass/water/fishing encounter parity and does not use encounter rates, slots, Repel/Lure, map metatile behavior, or `MapRuntime`.
+  - Metadata: results carry `debug_random_wild_not_source_encounter`; normal battle stats are not incremented, matching the source debug-battle convention more closely than normal wild battle counters.
+  - Validate: `tools/godot_smoke/debug_battle_launcher_smoke.gd` proves deterministic species/level selection, temporary player-party fallback, battle state creation, handoff sequence, and no wild battle stat mutation.
 
-- [ ] B13.3 Implement trainer battle selector launch.
+- [x] B13.3 Implement trainer battle selector launch.
   - Source: generated trainer records, `BattleSetup_StartTrainerBattle`, `DoTrainerBattle`, `CreateNPCTrainerPartyFromTrainer`, trainer transition selection, and current `BattleEngine.create_trainer_battle_state`.
-  - Behavior: allow selecting a trainer by numeric id, full `TRAINER_*` symbol, or short symbol; show invalid ids as validation errors; launch only through the normal trainer battle state contract.
-  - Boundary: do not require map object events or trainer sightlines; pass any needed map-derived transition hints as explicit debug context.
-  - Validate: smoke launches Sawyer by id/symbol, launches one double-battle trainer as unsupported until double presentation exists, rejects invalid ids, and confirms temporary debug party fallback is not persisted.
+  - Implemented behavior: F7 selector accepts numeric id, full `TRAINER_*` symbol, or short symbol; invalid ids stay in the selector as validation errors; launch uses `EventManager.request_trainer_battle_start` and `BattleEngine.create_trainer_battle_state`.
+  - Boundary: no map object events or trainer sightlines are required; transition hints are passed as explicit debug context.
+  - Validate: `tools/godot_smoke/debug_battle_launcher_smoke.gd` resolves Sawyer by full symbol, short symbol, and numeric id; rejects invalid ids; and confirms temporary debug party fallback is not persisted.
 
 - [ ] B13.4 Add debug launcher UI/presentation handoff.
   - Target: `scripts/main.gd` or a small debug overlay scene that can open above the current runtime.
   - Covers: input lock while selecting, current selected trainer id display, search/filter by trainer symbol/name/class, cancel behavior, clear unsupported messages, and transition into `BattleScene`.
+  - Current first pass: `scripts/main.gd` creates a compact F7 overlay with a `LineEdit`, Launch/Cancel buttons, input lock, Enter/Escape handling, and BattleScene handoff. Search/filter and screenshot validation remain pending.
   - Validate: screenshot or scene smoke proves the selector is usable at 240x160 without overlapping text.
 
 - [ ] B13.5 Add debug launcher smoke tests.
   - Target files: `tools/godot_smoke/debug_battle_launcher_smoke.gd`, possibly a scene smoke for the selector.
+  - Current first pass: `tools/godot_smoke/debug_battle_launcher_smoke.gd` covers launcher contracts without configuring `MapRuntime`; scene-level F6/F7 action smoke still needs a runner that loads project autoloads under headless `--script`.
   - Validate: F6/F7 actions exist, quick wild and selected trainer paths produce battle state contracts, no `MapRuntime` lookup is required, invalid trainer ids are safe, and developer-only metadata is attached to results.
 
 ## Suggested Task Order
 
 1. B0.1, B0.2, B0.3 - build the report so all later work is measurable.
-2. B13.1 to B13.3 - add developer-only wild/trainer launchers so battle fixtures can be reached without map dependencies.
+2. B13.1 to B13.3 - add developer-only random wild/trainer launchers so battle fixtures can be reached without map dependencies.
 3. B1.1 to B1.4 - battle strings and text ids.
 4. B2.1 to B2.5 - battle scripts, move effects, and move links.
 5. B7.1, B7.2, B7.3, B7.6, B7.7, B8.1 - Pokemon/trainer/background/HUD asset imports and coverage reports.
