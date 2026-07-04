@@ -8,6 +8,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+from export_event_scripts import EVENT_SCRIPTS_DIRECT_IGNORED_OPS, _last_map_include_line, read_script_file
 from export_map import write_json, write_manifest
 from source_probe import load_config, to_project_path
 
@@ -25,6 +26,13 @@ TEXT_REFERENCE_DYNAMIC_TARGETS = {
     "gStringVar3",
     "gStringVar4",
 }
+DIRECTIVE_PREFIXES = (".", "#")
+SUPPORTED_TEXT_DIRECTIVES = {".string"}
+MACRO_DEFINITION_RE = re.compile(r"^\s*\.macro\s+([A-Za-z_][A-Za-z0-9_]*)", re.MULTILINE)
+MOVEMENT_ACTION_MACRO_RE = re.compile(
+    r"^\s*create_movement_action\s+([A-Za-z_][A-Za-z0-9_]*)\s*,",
+    re.MULTILINE,
+)
 
 
 def read_json(path):
@@ -44,6 +52,29 @@ def load_generated_json(project_root, path_text):
     if not path.exists():
         return None
     return read_json(path)
+
+
+def read_text(path):
+    with path.open("r", encoding="utf-8") as handle:
+        return handle.read()
+
+
+def load_source_macro_names(source_root):
+    macro_root = source_root / "asm/macros"
+    names = set()
+    sources = {}
+    if not macro_root.exists():
+        return names, sources
+    for path in sorted(macro_root.rglob("*.inc")):
+        text = read_text(path)
+        source_file = to_project_path(path.relative_to(source_root))
+        for name in MACRO_DEFINITION_RE.findall(text):
+            names.add(name)
+            sources.setdefault(name, source_file)
+        for name in MOVEMENT_ACTION_MACRO_RE.findall(text):
+            names.add(name)
+            sources.setdefault(name, source_file)
+    return names, sources
 
 
 def add_label(label_index, label, kind, owner):
@@ -73,6 +104,226 @@ def owner_name(owner):
 def runtime_unsupported_op_count(bundle_data):
     unsupported = bundle_data.get("runtime_preview", {}).get("unsupported_op_counts", {})
     return sum(value for value in unsupported.values() if isinstance(value, int))
+
+
+def bundle_source_files(bundle_data):
+    source = bundle_data.get("source", {})
+    if source.get("map_script"):
+        return [source.get("map_script")]
+    return list(source.get("script_files", []))
+
+
+def iter_bundle_records(bundle_data):
+    for collection_name, count_key in [
+        ("scripts", "script_count"),
+        ("movements", "movement_count"),
+        ("texts", "text_count"),
+    ]:
+        records = bundle_data.get(collection_name, {})
+        if not isinstance(records, dict):
+            continue
+        for label, record in records.items():
+            yield collection_name, count_key, label, record
+
+
+def iter_bundle_instructions(bundle_data):
+    for collection_name, _count_key, label, record in iter_bundle_records(bundle_data):
+        instructions = record.get("instructions", [])
+        if not isinstance(instructions, list):
+            continue
+        for instruction in instructions:
+            if isinstance(instruction, dict):
+                yield collection_name, label, record, instruction
+
+
+def local_macro_name(instruction):
+    if instruction.get("op") != ".macro":
+        return ""
+    args = instruction.get("args", [])
+    if args:
+        candidate = str(args[0]).strip().split()[0]
+    else:
+        candidate = str(instruction.get("raw", "")).replace(".macro", "", 1).strip().split()[0]
+    return candidate if SYMBOL_RE.match(candidate) else ""
+
+
+def collect_local_macros_by_file(bundle_data):
+    result = {}
+    for _collection_name, _label, record, instruction in iter_bundle_instructions(bundle_data):
+        name = local_macro_name(instruction)
+        if not name:
+            continue
+        source_file = instruction.get("source_file") or record.get("source_file") or ""
+        if not source_file:
+            continue
+        result.setdefault(source_file, set()).add(name)
+    return result
+
+
+def empty_file_diagnostic(source_file):
+    return {
+        "source_file": source_file,
+        "bundle_count": 0,
+        "bundles": [],
+        "script_count": 0,
+        "movement_count": 0,
+        "text_count": 0,
+        "orphan_instruction_count": 0,
+        "unknown_macro_count": 0,
+        "unsupported_directive_count": 0,
+        "unresolved_label_count": 0,
+        "missing_script_reference_count": 0,
+        "missing_movement_reference_count": 0,
+        "missing_text_label_count": 0,
+        "unknown_macros": {},
+        "unsupported_directives": {},
+        "unknown_macro_details": [],
+        "orphan_instructions": [],
+        "missing_references": [],
+    }
+
+
+def ensure_file_diagnostic(diagnostics, source_file):
+    if not source_file:
+        source_file = "<unknown>"
+    if source_file not in diagnostics:
+        diagnostics[source_file] = empty_file_diagnostic(source_file)
+    return diagnostics[source_file]
+
+
+def diagnostic_owner(owner):
+    return {
+        "name": owner_name(owner),
+        "scope": owner.get("scope"),
+        "map": owner.get("map"),
+        "map_id": owner.get("map_id"),
+        "path": owner.get("path"),
+    }
+
+
+def add_diagnostic_owner(row, owner):
+    owner_record = diagnostic_owner(owner)
+    if owner_record not in row["bundles"]:
+        row["bundles"].append(owner_record)
+        row["bundle_count"] = len(row["bundles"])
+
+
+def increment_counter_dict(row, key, value):
+    counts = row.setdefault(key, {})
+    counts[value] = int(counts.get(value, 0)) + 1
+
+
+def instruction_detail(instruction, owner=None, script_label=None):
+    detail = {
+        "op": instruction.get("op"),
+        "line": instruction.get("line"),
+        "raw": instruction.get("raw"),
+        "source_file": instruction.get("source_file"),
+    }
+    if script_label is not None:
+        detail["script_label"] = script_label
+    if owner is not None:
+        detail["bundle"] = owner_name(owner)
+        detail["bundle_path"] = owner.get("path")
+    return detail
+
+
+def add_bundle_file_baseline(diagnostics, owner, bundle_data):
+    for source_file in bundle_source_files(bundle_data):
+        if source_file:
+            add_diagnostic_owner(ensure_file_diagnostic(diagnostics, source_file), owner)
+    for _collection_name, count_key, _label, record in iter_bundle_records(bundle_data):
+        source_file = record.get("source_file")
+        row = ensure_file_diagnostic(diagnostics, source_file)
+        add_diagnostic_owner(row, owner)
+        row[count_key] += 1
+
+
+def add_instruction_diagnostics(diagnostics, owner, bundle_data, known_macro_names, local_macros_by_file):
+    for _collection_name, label, record, instruction in iter_bundle_instructions(bundle_data):
+        source_file = instruction.get("source_file") or record.get("source_file")
+        row = ensure_file_diagnostic(diagnostics, source_file)
+        add_diagnostic_owner(row, owner)
+        op = instruction.get("op", "")
+        if not op:
+            continue
+        if op.startswith(DIRECTIVE_PREFIXES):
+            if op not in SUPPORTED_TEXT_DIRECTIVES:
+                row["unsupported_directive_count"] += 1
+                increment_counter_dict(row, "unsupported_directives", op)
+            continue
+        if op in known_macro_names or op in local_macros_by_file.get(source_file, set()):
+            continue
+        row["unknown_macro_count"] += 1
+        increment_counter_dict(row, "unknown_macros", op)
+        row["unknown_macro_details"].append(instruction_detail(instruction, owner=owner, script_label=label))
+
+
+def add_orphan_instruction_diagnostics(source_root, diagnostics, owner, bundle_data):
+    source = bundle_data.get("source", {})
+    script_files = bundle_source_files(bundle_data)
+    label_filter = None
+    ignored_ops = None
+    label_filter_record = source.get("label_filter", {})
+    if label_filter_record.get("kind") == "direct_labels_after_map_includes":
+        start_line = int(label_filter_record.get("start_line", 0))
+        if start_line <= 0 and script_files:
+            start_line = _last_map_include_line(source_root / script_files[0]) + 1
+
+        def direct_label_filter(_label, line_number):
+            return line_number >= start_line
+
+        label_filter = direct_label_filter
+        ignored_ops = set(label_filter_record.get("ignored_ops") or EVENT_SCRIPTS_DIRECT_IGNORED_OPS)
+
+    for source_file in script_files:
+        path = source_root / source_file
+        if not path.exists():
+            continue
+        _labels, _order, orphan_instructions = read_script_file(
+            path,
+            source_file,
+            label_filter=label_filter,
+            ignored_ops=ignored_ops,
+        )
+        if not orphan_instructions:
+            continue
+        row = ensure_file_diagnostic(diagnostics, source_file)
+        add_diagnostic_owner(row, owner)
+        row["orphan_instruction_count"] += len(orphan_instructions)
+        row["orphan_instructions"].extend(
+            instruction_detail(instruction, owner=owner)
+            for instruction in orphan_instructions
+        )
+
+
+def add_missing_reference_diagnostics(diagnostics, references):
+    for reference in references:
+        row = ensure_file_diagnostic(diagnostics, reference.get("source_file"))
+        row["missing_references"].append(reference)
+        if reference["kind"] == "text":
+            row["missing_text_label_count"] += 1
+        elif reference["kind"] == "script":
+            row["unresolved_label_count"] += 1
+            row["missing_script_reference_count"] += 1
+        elif reference["kind"] == "movement":
+            row["unresolved_label_count"] += 1
+            row["missing_movement_reference_count"] += 1
+
+
+def sorted_file_diagnostics(diagnostics):
+    rows = []
+    for row in diagnostics.values():
+        row = dict(row)
+        row["unknown_macros"] = dict(sorted(row["unknown_macros"].items()))
+        row["unsupported_directives"] = dict(sorted(row["unsupported_directives"].items()))
+        row["bundles"] = sorted(row["bundles"], key=lambda item: (item.get("path") or "", item.get("name") or ""))
+        rows.append(row)
+    return sorted(rows, key=lambda item: item["source_file"])
+
+
+def count_rows_with(rows, key):
+    return sum(1 for row in rows if int(row.get(key, 0)) > 0)
 
 
 def script_reference_target(instruction):
@@ -170,13 +421,16 @@ def duplicate_label_details(label_index, limit=50):
 
 
 def build_export(source_root, output_root):
+    source_root = source_root.resolve()
     output_root = output_root.resolve()
     project_root = output_root.parent.parent
     manifest_path = output_root / "import_manifest.json"
     manifest = read_json(manifest_path)
 
+    known_macro_names, known_macro_sources = load_source_macro_names(source_root)
     script_entries = manifest.get("scripts", [])
     text_entries = manifest.get("texts", [])
+    script_bundle_cache = {}
     script_labels = {}
     movement_labels = {}
     script_text_labels = {}
@@ -185,6 +439,8 @@ def build_export(source_root, output_root):
     map_rows = []
     failures = []
     references = []
+    file_diagnostics = {}
+    local_macros_by_file = {}
 
     for text_entry in text_entries:
         if text_entry.get("category") != "global":
@@ -211,6 +467,10 @@ def build_export(source_root, output_root):
                 "bundle": owner,
             })
             continue
+        script_bundle_cache[path_text] = bundle_data
+        add_bundle_file_baseline(file_diagnostics, owner, bundle_data)
+        for source_file, names in collect_local_macros_by_file(bundle_data).items():
+            local_macros_by_file.setdefault(source_file, set()).update(names)
         for label in bundle_data.get("scripts", {}):
             add_label(script_labels, label, "script", owner)
         for label in bundle_data.get("movements", {}):
@@ -230,9 +490,17 @@ def build_export(source_root, output_root):
     for entry in script_entries:
         owner = owner_from_entry(entry)
         path_text = entry.get("path", "")
-        bundle_data = load_generated_json(project_root, path_text)
+        bundle_data = script_bundle_cache.get(path_text)
         if not isinstance(bundle_data, dict):
             continue
+        add_instruction_diagnostics(
+            file_diagnostics,
+            owner,
+            bundle_data,
+            known_macro_names,
+            local_macros_by_file,
+        )
+        add_orphan_instruction_diagnostics(source_root, file_diagnostics, owner, bundle_data)
 
         bundle_references = list(iter_references(owner, bundle_data))
         references.extend(bundle_references)
@@ -244,6 +512,7 @@ def build_export(source_root, output_root):
                 continue
             if reference["target"] not in label_indexes[reference["kind"]]:
                 bundle_missing.append(reference)
+        add_missing_reference_diagnostics(file_diagnostics, bundle_missing)
 
         row = {
             "name": owner_name(owner),
@@ -275,6 +544,12 @@ def build_export(source_root, output_root):
     reference_counts = count_references(checked_references)
     missing_counts = count_references(missing_references)
     excluded_counts = count_references(excluded_references)
+    file_diagnostic_rows = sorted_file_diagnostics(file_diagnostics)
+    unknown_macro_counts = Counter()
+    unsupported_directive_counts = Counter()
+    for row in file_diagnostic_rows:
+        unknown_macro_counts.update(row.get("unknown_macros", {}))
+        unsupported_directive_counts.update(row.get("unsupported_directives", {}))
 
     stats = {
         "script_bundle_count": len(script_entries),
@@ -303,6 +578,18 @@ def build_export(source_root, output_root):
         "failed_bundle_count": len(failures),
         "map_rows_with_missing_references": sum(1 for row in map_rows if row["missing_reference_count"] > 0),
         "bundle_rows_with_missing_references": sum(1 for row in bundle_rows if row["missing_reference_count"] > 0),
+        "script_file_diagnostic_count": len(file_diagnostic_rows),
+        "script_file_orphan_instruction_count": sum(row["orphan_instruction_count"] for row in file_diagnostic_rows),
+        "script_files_with_orphan_instructions": count_rows_with(file_diagnostic_rows, "orphan_instruction_count"),
+        "unknown_macro_count": sum(unknown_macro_counts.values()),
+        "unknown_macro_unique_count": len(unknown_macro_counts),
+        "script_files_with_unknown_macros": count_rows_with(file_diagnostic_rows, "unknown_macro_count"),
+        "unsupported_directive_count": sum(unsupported_directive_counts.values()),
+        "unsupported_directive_unique_count": len(unsupported_directive_counts),
+        "script_files_with_unsupported_directives": count_rows_with(file_diagnostic_rows, "unsupported_directive_count"),
+        "unresolved_label_count": sum(row["unresolved_label_count"] for row in file_diagnostic_rows),
+        "script_files_with_unresolved_labels": count_rows_with(file_diagnostic_rows, "unresolved_label_count"),
+        "script_files_with_missing_text_labels": count_rows_with(file_diagnostic_rows, "missing_text_label_count"),
     }
 
     return {
@@ -318,11 +605,23 @@ def build_export(source_root, output_root):
                 "src/script_movement.c:ScriptMovement_StartObjectMovementScript",
             ],
             "text_reference_dynamic_targets": sorted(TEXT_REFERENCE_DYNAMIC_TARGETS),
+            "macro_sources": {
+                "macro_root": "asm/macros",
+                "source_macro_count": len(known_macro_names),
+                "local_source_macro_count": sum(len(names) for names in local_macros_by_file.values()),
+                "movement_action_macro_pattern": "asm/macros/movement.inc:create_movement_action",
+                "sample_macro_sources": {
+                    name: known_macro_sources[name]
+                    for name in sorted(known_macro_sources)[:20]
+                },
+            },
         },
         "stats": stats,
         "reference_counts": reference_counts,
         "missing_reference_counts": missing_counts,
         "excluded_reference_counts": excluded_counts,
+        "unknown_macro_counts": dict(sorted(unknown_macro_counts.items())),
+        "unsupported_directive_counts": dict(sorted(unsupported_directive_counts.items())),
         "missing_references": missing_references,
         "excluded_references": excluded_references,
         "duplicates": {
@@ -332,11 +631,14 @@ def build_export(source_root, output_root):
             "global_text_labels": duplicate_label_details(global_text_labels),
         },
         "failures": failures,
+        "script_file_diagnostics": file_diagnostic_rows,
         "maps": map_rows,
         "bundles": bundle_rows,
         "notes": [
             "movement references are the second operand of applymovement/applymovementat, matching source event macros and ScrCmd handlers.",
             "gStringVar* and NULL text operands are dynamic/null references and are counted as excluded rather than missing text labels.",
+            "unknown_macro_count excludes source macros from asm/macros/**/*.inc, create_movement_action-generated movement macros, and local .macro definitions found in source script files.",
+            "unsupported_directive_count reports preserved assembler/preprocessor directives such as .byte/.2byte/#ifdef that are not semantic script commands.",
             "Audio remains metadata_only/unsupported; this report validates labels and generated references only.",
         ],
     }
@@ -367,6 +669,10 @@ def manifest_entry_for(exported, output_path):
         "missing_reference_count": stats["missing_reference_count"],
         "missing_movement_reference_count": stats["missing_movement_reference_count"],
         "excluded_reference_count": stats["excluded_reference_count"],
+        "script_file_diagnostic_count": stats["script_file_diagnostic_count"],
+        "script_file_orphan_instruction_count": stats["script_file_orphan_instruction_count"],
+        "unknown_macro_count": stats["unknown_macro_count"],
+        "unsupported_directive_count": stats["unsupported_directive_count"],
     }
 
 
