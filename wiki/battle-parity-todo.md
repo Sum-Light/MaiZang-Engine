@@ -2,6 +2,8 @@
 
 This page records the first broad audit for a source-equivalent battle experience that is decoupled from map runtime. The target is not a loose battle prototype: battle logic, UI flow, sprites, HUD, effects, move animation scripts, interaction timing, and generated assets must trace the source before being treated as equivalent.
 
+For the executable work breakdown with task ids, target files, source inputs, validation, and all-move/all-mechanic coverage gates, use `battle-parity-execution-plan.md`.
+
 ## Audit Snapshot
 
 Godot battle state today:
@@ -136,4 +138,3 @@ Battle must remain map-decoupled.
 5. Add the first animation interpreter slice for those moves and healthbox HP updates.
 6. Extend battle input to full action and move selection before broad move-effect coverage.
 7. Add rewards/post-battle flow only after a full single-battle loop can finish source-equivalently.
-

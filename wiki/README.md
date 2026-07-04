@@ -8,11 +8,12 @@ This wiki is the durable project memory for porting `pokeemerald-expansion` to G
 2. `context.md` - current project facts, source paths, known constraints.
 3. `architecture.md` - target architecture and module boundaries.
 4. `overworld-parity-todo.md` - source audit and checklist for 1:1 overworld experience.
-5. `roadmap.md` - staged implementation plan.
-6. `import-pipeline.md` - source formats and conversion strategy.
-7. `battle-parity-todo.md` - source audit and checklist for 1:1 battle experience.
-8. `decisions.md` - accepted technical decisions.
-9. `session-log.md` - chronological Q&A and work log.
+5. `battle-parity-todo.md` - source audit and checklist for 1:1 battle experience.
+6. `battle-parity-execution-plan.md` - executable task list for 1:1 battle logic, assets, HUD, animations, moves, and mechanisms.
+7. `roadmap.md` - staged implementation plan.
+8. `import-pipeline.md` - source formats and conversion strategy.
+9. `decisions.md` - accepted technical decisions.
+10. `session-log.md` - chronological Q&A and work log.
 
 ## Update Rule
 
