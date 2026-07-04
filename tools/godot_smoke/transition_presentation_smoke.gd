@@ -118,6 +118,21 @@ func _run() -> void:
 		sequence_player.play(sequence)
 	)
 
+	sequence_player.play({
+		"type": "battle_start",
+		"presentation": "wild_battle_start",
+		"species": "SPECIES_WURMPLE",
+		"level": 2,
+		"steps": [
+			{"op": "lock_controls"},
+			{"op": "battle_transition_start", "duration_frames": 1, "transition": "B_TRANSITION_SLICE"},
+			{"op": "set_main_callback", "callback": "CB2_InitBattle"},
+		],
+	})
+	await create_timer(0.12).timeout
+	_assert(not overlay.visible, "expected battle-start stub overlay to finish")
+	_assert(String(label.text) == "", "expected battle-start stub label to clear")
+
 	manager.dispatch_interaction({
 		"type": "coord_event",
 		"script": "LittlerootTown_EventScript_StepOffTruckMale",

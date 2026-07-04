@@ -2,6 +2,7 @@ extends Node
 
 signal debug_message_requested(lines: PackedStringArray)
 signal transition_sequence_requested(sequence: Dictionary)
+signal battle_start_sequence_requested(sequence: Dictionary)
 
 const WARP_ID_NONE_VALUE := -1
 const LOCALID_NONE_VALUE := 0
@@ -65,6 +66,7 @@ const PLAYER_STEP_SOURCE_ORDER := [
 	"CheckStandardWildEncounter",
 ]
 const WILD_ENCOUNTER_IMMUNITY_STEPS := 4
+const BATTLE_TRANSITION_STUB_FRAMES := 24
 const REPEL_LURE_MASK := 1 << 15
 const NO_ENCOUNTER_FLAGS := {
 	"OW_FLAG_NO_ENCOUNTER": true,
@@ -465,7 +467,10 @@ func _check_standard_wild_encounter(cell: Vector2i, options: Dictionary = {}) ->
 	summary["level"] = int(result.get("level", 0))
 	summary["area"] = String(result.get("area", ""))
 	summary["record_label"] = String(result.get("record_label", ""))
-	summary["battle_setup"] = _create_standard_wild_battle_state(summary)
+	var battle_setup := _create_standard_wild_battle_state(summary)
+	summary["battle_setup"] = battle_setup
+	if String(battle_setup.get("status", "")) == "state_created":
+		summary["battle_start_sequence"] = _request_standard_wild_battle_start(summary, battle_setup)
 	summary["immunity_steps_after"] = _wild_encounter_immunity_steps
 	return summary
 
@@ -506,6 +511,9 @@ func _emit_standard_wild_encounter(summary: Dictionary) -> void:
 						String(opponent.get("species", "")),
 						int(opponent.get("level", 0)),
 					])
+		var battle_start = summary.get("battle_start_sequence", {})
+		if typeof(battle_start) == TYPE_DICTIONARY and not battle_start.is_empty():
+			lines.append("Battle start: %s" % String(battle_start.get("status", "")))
 	else:
 		lines.append("Battle setup: missing")
 	debug_message_requested.emit(lines)
@@ -1520,6 +1528,10 @@ func _evaluate_dexnav_step() -> Dictionary:
 
 
 func _increment_game_stat(stat_name: String) -> Dictionary:
+	return _increment_game_stat_from(stat_name, "src/field_control_avatar.c:ProcessPlayerFieldInput")
+
+
+func _increment_game_stat_from(stat_name: String, source: String) -> Dictionary:
 	var before := 0
 	if _game_state != null and _game_state.has_method("get_game_stat"):
 		before = int(_game_state.get_game_stat(stat_name, 0))
@@ -1530,14 +1542,14 @@ func _increment_game_stat(stat_name: String) -> Dictionary:
 			"stat": stat_name,
 			"before": before,
 			"after": after,
-			"source": "src/field_control_avatar.c:ProcessPlayerFieldInput",
+			"source": source,
 		}
 	return {
 		"status": "missing_game_state",
 		"stat": stat_name,
 		"before": before,
 		"after": before,
-		"source": "src/field_control_avatar.c:ProcessPlayerFieldInput",
+		"source": source,
 	}
 
 
@@ -1739,6 +1751,205 @@ func _create_standard_wild_battle_state(summary: Dictionary) -> Dictionary:
 	}
 
 
+func _request_standard_wild_battle_start(summary: Dictionary, battle_setup: Dictionary) -> Dictionary:
+	var battle_state = battle_setup.get("battle_state", {})
+	if typeof(battle_state) != TYPE_DICTIONARY or battle_state.is_empty():
+		return {
+			"status": "missing_battle_state",
+			"source": "src/battle_setup.c:DoStandardWildBattle",
+		}
+
+	var sequence_id := _next_transition_sequence_id
+	_next_transition_sequence_id += 1
+	var statistics := _increment_standard_wild_battle_stats()
+	var sequence := _build_standard_wild_battle_start_sequence(
+		sequence_id,
+		summary,
+		battle_setup,
+		battle_state,
+		statistics
+	)
+	battle_start_sequence_requested.emit(sequence)
+	return {
+		"status": "sequence_requested",
+		"id": sequence_id,
+		"sequence": sequence,
+		"statistics": statistics,
+		"source": "src/battle_setup.c:DoStandardWildBattle -> CreateBattleStartTask",
+	}
+
+
+func _build_standard_wild_battle_start_sequence(
+	sequence_id: int,
+	summary: Dictionary,
+	battle_setup: Dictionary,
+	battle_state: Dictionary,
+	statistics: Dictionary
+) -> Dictionary:
+	var setup = battle_state.get("battle_setup", {})
+	setup = setup if typeof(setup) == TYPE_DICTIONARY else {}
+	var transition = setup.get("battle_transition", {})
+	transition = transition if typeof(transition) == TYPE_DICTIONARY else {}
+	var battle_type_flags = battle_state.get("battle_type_flags", [])
+	battle_type_flags = battle_type_flags if typeof(battle_type_flags) == TYPE_ARRAY else []
+	return {
+		"id": sequence_id,
+		"type": "battle_start",
+		"battle_kind": "wild",
+		"presentation": "wild_battle_start",
+		"source_map": String(summary.get("map", "")),
+		"source_position": summary.get("position", Vector2i.ZERO),
+		"species": String(summary.get("species", "")),
+		"level": int(summary.get("level", 0)),
+		"battle_state": battle_state,
+		"battle_setup_status": String(battle_setup.get("status", "")),
+		"battle_transition": transition,
+		"battle_type_flags": battle_type_flags.duplicate(true),
+		"statistics": statistics,
+		"frame_basis": "60fps",
+		"source_order": [
+			"LockPlayerFieldControls",
+			"FreezeObjectEvents",
+			"StopPlayerAvatar",
+			"gMain.savedCallback = CB2_EndWildBattle",
+			"gBattleTypeFlags = 0",
+			"CreateBattleStartTask(GetWildBattleTransition(), 0)",
+			"IncrementGameStat(GAME_STAT_TOTAL_BATTLES)",
+			"IncrementGameStat(GAME_STAT_WILD_BATTLES)",
+			"IncrementDailyWildBattles",
+			"TryUpdateGymLeaderRematchFromWild",
+			"Task_BattleStart: wait until !FldEffPoison_IsActive()",
+			"BattleTransition_StartOnField",
+			"ClearMirageTowerPulseBlendEffect",
+			"Task_BattleStart: wait until IsBattleTransitionDone()",
+			"PrepareForFollowerNPCBattle",
+			"CleanupOverworldWindowsAndTilemaps",
+			"SetMainCallback2(CB2_InitBattle)",
+			"RestartWildEncounterImmunitySteps",
+			"ClearPoisonStepCounter",
+		],
+		"source_trace": [
+			"src/wild_encounter.c:StandardWildEncounter",
+			"src/battle_setup.c:BattleSetup_StartWildBattle",
+			"src/battle_setup.c:DoStandardWildBattle",
+			"src/battle_setup.c:CreateBattleStartTask",
+			"src/battle_setup.c:Task_BattleStart",
+			"src/battle_transition.c:BattleTransition_StartOnField",
+			"src/battle_main.c:CB2_InitBattle",
+		],
+		"steps": _standard_wild_battle_start_steps(transition, battle_type_flags),
+		"unsupported": _standard_wild_battle_start_unsupported(),
+	}
+
+
+func _standard_wild_battle_start_steps(transition: Dictionary, battle_type_flags: Array) -> Array:
+	return [
+		{
+			"op": "lock_controls",
+			"source": "src/battle_setup.c:DoStandardWildBattle -> src/script.c:LockPlayerFieldControls",
+			"side_effects": ["lock input", "end DexNav search"],
+		},
+		{
+			"op": "freeze_object_events",
+			"source": "src/battle_setup.c:DoStandardWildBattle -> src/event_object_movement.c:FreezeObjectEvents",
+			"scope": "active object events except player",
+			"side_effects": ["pause sprite animations", "pause affine animations"],
+			"status": "metadata_only",
+		},
+		{
+			"op": "stop_player_avatar",
+			"source": "src/battle_setup.c:DoStandardWildBattle -> src/field_player_avatar.c:StopPlayerAvatar",
+			"side_effects": ["stop held movement", "snap facing", "reset bike speed"],
+			"status": "metadata_only",
+		},
+		{"op": "set_saved_callback", "callback": "CB2_EndWildBattle", "source": "src/battle_setup.c:DoStandardWildBattle"},
+		{"op": "set_battle_type_flags", "flags": battle_type_flags.duplicate(true), "source": "src/battle_setup.c:DoStandardWildBattle"},
+		{
+			"op": "create_battle_start_task",
+			"task": "Task_BattleStart",
+			"priority": 1,
+			"transition": String(transition.get("selected", "")),
+			"transition_comparison": String(transition.get("comparison", "")),
+			"source": "src/battle_setup.c:CreateBattleStartTask",
+		},
+		{
+			"op": "play_bgm",
+			"function": "PlayMapChosenOrBattleBGM",
+			"song": 0,
+			"song_meaning": "choose map wild battle BGM",
+			"wild_bgm_candidates": ["MUS_VS_WILD", "MUS_RG_VS_WILD"],
+			"source": "src/battle_setup.c:CreateBattleStartTask",
+			"status": "metadata_only",
+		},
+		{"op": "wait_poison_clear", "condition": "!FldEffPoison_IsActive()", "source": "src/battle_setup.c:Task_BattleStart"},
+		{
+			"op": "battle_transition_start",
+			"transition": String(transition.get("selected", "")),
+			"comparison": String(transition.get("comparison", "")),
+			"duration_frames": BATTLE_TRANSITION_STUB_FRAMES,
+			"presentation_stub": true,
+			"source": "src/battle_setup.c:Task_BattleStart -> BattleTransition_StartOnField",
+		},
+		{
+			"op": "clear_mirage_tower_pulse_blend",
+			"source": "src/battle_setup.c:Task_BattleStart -> ClearMirageTowerPulseBlendEffect",
+			"status": "metadata_only",
+		},
+		{"op": "wait_battle_transition_done", "condition": "IsBattleTransitionDone()", "source": "src/battle_setup.c:Task_BattleStart"},
+		{"op": "prepare_follower_npc_battle", "source": "src/battle_setup.c:Task_BattleStart", "status": "metadata_only"},
+		{"op": "cleanup_overworld_windows_tilemaps", "source": "src/battle_setup.c:Task_BattleStart", "status": "metadata_only"},
+		{
+			"op": "set_main_callback",
+			"callback": "CB2_InitBattle",
+			"source": "src/battle_setup.c:Task_BattleStart",
+			"status": "battle_scene_pending",
+		},
+		{"op": "restart_wild_encounter_immunity_steps", "source": "src/battle_setup.c:Task_BattleStart"},
+		{"op": "clear_poison_step_counter", "var": "VAR_POISON_STEP_COUNTER", "source": "src/battle_setup.c:Task_BattleStart"},
+	]
+
+
+func _increment_standard_wild_battle_stats() -> Dictionary:
+	var increments := [
+		_increment_game_stat_from("GAME_STAT_TOTAL_BATTLES", "src/battle_setup.c:DoStandardWildBattle"),
+		_increment_game_stat_from("GAME_STAT_WILD_BATTLES", "src/battle_setup.c:DoStandardWildBattle"),
+	]
+	var all_incremented := true
+	for entry in increments:
+		if String(entry.get("status", "")) != "incremented":
+			all_incremented = false
+			break
+	return {
+		"status": "incremented" if all_incremented else "partial",
+		"increments": increments,
+		"daily_wild_battles": {
+			"status": "future",
+			"source": "src/battle_setup.c:IncrementDailyWildBattles",
+		},
+		"gym_leader_rematch": {
+			"status": "future",
+			"source": "src/battle_setup.c:TryUpdateGymLeaderRematchFromWild",
+			"trigger_rule": "GAME_STAT_WILD_BATTLES % 60 == 0",
+		},
+	}
+
+
+func _standard_wild_battle_start_unsupported() -> Array:
+	return [{
+		"code": "battle_transition_visual_stub",
+		"source": "src/battle_transition.c:BattleTransition_StartOnField",
+		"detail": "The sequence records the selected transition and plays only a generic first-pass overlay stub; exact transition graphics, task timing, Mirage Tower blend cleanup, and palette/screen effects remain future presentation work.",
+	}, {
+		"code": "battle_scene_handoff_pending",
+		"source": "src/battle_setup.c:Task_BattleStart -> CB2_InitBattle",
+		"detail": "The sequence records the SetMainCallback2(CB2_InitBattle) handoff but does not switch to a real battle scene yet.",
+	}, {
+		"code": "field_freeze_audio_cleanup_metadata_only",
+		"source": "src/battle_setup.c:DoStandardWildBattle/Task_BattleStart",
+		"detail": "Object-event freeze, StopPlayerAvatar, BGM playback, follower preparation, window/tilemap cleanup, and poison-step reset are recorded as source-ordered metadata until those presentation/runtime systems exist.",
+	}]
+
+
 func _encounter_result_reason(result: Dictionary) -> String:
 	var reason := String(result.get("reason", ""))
 	if not reason.is_empty():
@@ -1770,7 +1981,7 @@ func _standard_wild_dispatch_unsupported() -> Array:
 	}, {
 		"code": "wild_battle_presentation_not_started",
 		"source": "src/wild_encounter.c:StandardWildEncounter -> src/battle_setup.c",
-		"detail": "This dispatch now creates a first-pass source-backed wild battle state when BattleEngine is available, but field locking, object freezing, battle transition playback, audio, and battle scene presentation remain future traced work.",
+		"detail": "This dispatch now creates a first-pass source-backed wild battle state and battle-start sequence request when BattleEngine is available, but exact object freezing, transition graphics/timing, audio, and battle scene presentation remain future traced work.",
 	}]
 
 

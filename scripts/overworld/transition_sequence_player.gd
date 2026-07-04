@@ -72,9 +72,13 @@ func _play_step(sequence: Dictionary, step: Dictionary, token: int) -> void:
 	if label != null:
 		label.text = _step_label(sequence, step)
 
-	match String(step.get("op", "")):
-		"lock_controls", "freeze_object_events", "play_se":
-			return
+	var op := String(step.get("op", ""))
+	if _is_metadata_only_step(op):
+		return
+
+	match op:
+		"battle_transition_start":
+			await _play_battle_transition_stub(step, token)
 		"door_open", "door_close":
 			await _play_door_animation(step, token)
 		"player_step":
@@ -103,6 +107,29 @@ func _play_step(sequence: Dictionary, step: Dictionary, token: int) -> void:
 				await _animate_player_step(step, token, true)
 		"unlock_controls":
 			return
+		_:
+			await _wait_step(step, token)
+
+
+func _is_metadata_only_step(op: String) -> bool:
+	return op in [
+		"lock_controls",
+		"freeze_object_events",
+		"play_se",
+		"stop_player_avatar",
+		"set_saved_callback",
+		"set_battle_type_flags",
+		"create_battle_start_task",
+		"play_bgm",
+		"wait_poison_clear",
+		"wait_battle_transition_done",
+		"prepare_follower_npc_battle",
+		"cleanup_overworld_windows_tilemaps",
+		"clear_mirage_tower_pulse_blend",
+		"set_main_callback",
+		"restart_wild_encounter_immunity_steps",
+		"clear_poison_step_counter",
+	]
 
 
 func _apply_deferred_transition(sequence: Dictionary) -> void:
@@ -154,6 +181,13 @@ func _play_door_animation(step: Dictionary, token: int) -> void:
 			map_renderer.set_door_animation_frame(position, animation, frame_index)
 		if frame_seconds > 0.0:
 			await get_tree().create_timer(frame_seconds).timeout
+
+
+func _play_battle_transition_stub(step: Dictionary, token: int) -> void:
+	if overlay != null:
+		overlay.visible = true
+		overlay.modulate.a = 0.86
+	await _wait_step(step, token)
 
 
 func _animate_player_step(step: Dictionary, token: int, update_runtime_position: bool) -> void:
@@ -233,6 +267,12 @@ func _step_vector(step: Dictionary, key: String, default_value: Vector2i) -> Vec
 
 
 func _sequence_label(sequence: Dictionary) -> String:
+	if String(sequence.get("type", "")) == "battle_start":
+		return "Wild battle | %s Lv.%d | %s" % [
+			String(sequence.get("species", "")),
+			int(sequence.get("level", 0)),
+			String(sequence.get("presentation", "battle_start")),
+		]
 	return "%s -> %s | %s" % [
 		String(sequence.get("source_map", "")),
 		String(sequence.get("destination_map", "")),

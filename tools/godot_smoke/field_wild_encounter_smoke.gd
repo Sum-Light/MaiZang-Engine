@@ -65,6 +65,9 @@ func _init() -> void:
 	manager.debug_message_requested.connect(func(lines: PackedStringArray) -> void:
 		captured["lines"] = lines
 	)
+	manager.battle_start_sequence_requested.connect(func(sequence: Dictionary) -> void:
+		captured["battle_start_sequence"] = sequence
+	)
 
 	var cell := Vector2i(1, 1)
 	var first_step := manager.try_dispatch_standard_wild_encounter(cell, {
@@ -93,6 +96,8 @@ func _init() -> void:
 		"level_roll": 0,
 	})
 	var hit_lines = captured.get("lines", PackedStringArray())
+	var hit_battle_start := _dict_field(hit, "battle_start_sequence")
+	var hit_battle_sequence := _dict_field(hit_battle_start, "sequence")
 	var after_hit_state := manager.get_wild_encounter_dispatch_state()
 
 	_assert(String(first_step.get("reason", "")) == "immunity_steps", "expected first step immunity")
@@ -106,6 +111,7 @@ func _init() -> void:
 	_assert(int(after_hit_state.get("immunity_steps", -1)) == 0, "expected hit to reset immunity")
 	_assert(_lines_contain(hit_lines, "Wild encounter"), "expected wild encounter debug output")
 	_assert(_lines_contain(hit_lines, "Battle setup: state_created"), "expected battle setup debug output")
+	_assert(_lines_contain(hit_lines, "Battle start: sequence_requested"), "expected battle start debug output")
 	var hit_battle_setup := _dict_field(hit, "battle_setup")
 	var hit_battle_state := _dict_field(hit_battle_setup, "battle_state")
 	var hit_opponent := _array_dict(_array_field(hit_battle_state, "opponent_party"), 0)
@@ -113,6 +119,17 @@ func _init() -> void:
 	_assert(String(hit_battle_state.get("battle_kind", "")) == "wild", "expected wild battle kind")
 	_assert(String(hit_opponent.get("species", "")) == "SPECIES_WURMPLE", "expected battle opponent Wurmple")
 	_assert(int(hit_battle_setup.get("player_party_count", 0)) == 1, "expected one player party mon in battle setup")
+	_assert(String(hit_battle_start.get("status", "")) == "sequence_requested", "expected battle start sequence request")
+	_assert(String(hit_battle_sequence.get("type", "")) == "battle_start", "expected battle-start sequence type")
+	_assert(String(hit_battle_sequence.get("species", "")) == "SPECIES_WURMPLE", "expected battle-start Wurmple species")
+	_assert(_first_step_op(hit_battle_sequence) == "lock_controls", "expected battle-start to lock controls first")
+	_assert(_has_step_op(hit_battle_sequence, "battle_transition_start"), "expected battle transition start step")
+	_assert(_has_step_op(hit_battle_sequence, "clear_mirage_tower_pulse_blend"), "expected Mirage Tower blend cleanup metadata")
+	_assert(_has_step_op(hit_battle_sequence, "set_main_callback"), "expected CB2_InitBattle handoff step")
+	_assert(_dict_field(hit_battle_sequence, "battle_transition").get("comparison", "") == "enemy_lower", "expected lower-level wild transition comparison")
+	_assert(game_state.get_game_stat("GAME_STAT_TOTAL_BATTLES", 0) == 1, "expected total battle stat increment")
+	_assert(game_state.get_game_stat("GAME_STAT_WILD_BATTLES", 0) == 1, "expected wild battle stat increment")
+	_assert(_dict_field(captured, "battle_start_sequence").get("id", -1) == hit_battle_start.get("id", -2), "expected signal sequence id to match summary")
 
 	manager.reset_wild_encounter_immunity_steps()
 	game_state.game_stats = {}
@@ -135,10 +152,14 @@ func _init() -> void:
 		"level_roll": 0,
 	})
 	var player_step_wild := _dict_field(player_step_hit, "wild_encounter")
+	var player_step_battle_start := _dict_field(player_step_wild, "battle_start_sequence")
 	_assert(String(_dict_field(player_step_first, "wild_encounter").get("reason", "")) == "immunity_steps", "expected player-step immunity")
 	_assert(game_state.get_game_stat("GAME_STAT_STEPS", 0) == 5, "expected player-step stat increments")
+	_assert(game_state.get_game_stat("GAME_STAT_TOTAL_BATTLES", 0) == 1, "expected player-step total battle stat increment")
+	_assert(game_state.get_game_stat("GAME_STAT_WILD_BATTLES", 0) == 1, "expected player-step wild battle stat increment")
 	_assert(String(player_step_hit.get("consumed_by", "")) == "standard_wild_encounter", "expected player-step wild consumption")
 	_assert(String(player_step_wild.get("species", "")) == "SPECIES_WURMPLE", "expected player-step Route101 Wurmple")
+	_assert(String(player_step_battle_start.get("status", "")) == "sequence_requested", "expected player-step battle-start sequence")
 
 	manager.reset_wild_encounter_immunity_steps()
 	runtime.coord_target = {
@@ -217,6 +238,7 @@ func _init() -> void:
 		"field_wild_encounter_smoke": "ok",
 		"route101_species": String(hit.get("species", "")),
 		"route119_water_species": String(water_hit.get("species", "")),
+		"battle_start_type": String(hit_battle_sequence.get("type", "")),
 		"immunity_after_hit": int(after_hit_state.get("immunity_steps", -1)),
 	}))
 	manager.free()
@@ -259,3 +281,21 @@ func _array_dict(records: Array, index: int) -> Dictionary:
 		return {}
 	var value = records[index]
 	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _first_step_op(sequence: Dictionary) -> String:
+	var steps = sequence.get("steps", [])
+	if typeof(steps) != TYPE_ARRAY or steps.is_empty():
+		return ""
+	var first = steps[0]
+	return String(first.get("op", "")) if typeof(first) == TYPE_DICTIONARY else ""
+
+
+func _has_step_op(sequence: Dictionary, op: String) -> bool:
+	var steps = sequence.get("steps", [])
+	if typeof(steps) != TYPE_ARRAY:
+		return false
+	for step in steps:
+		if typeof(step) == TYPE_DICTIONARY and String(step.get("op", "")) == op:
+			return true
+	return false

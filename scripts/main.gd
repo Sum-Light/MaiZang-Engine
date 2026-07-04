@@ -69,6 +69,8 @@ func _ready() -> void:
 		if EventManager.has_method("configure_transition_deferred"):
 			EventManager.configure_transition_deferred(true)
 		EventManager.transition_sequence_requested.connect(_on_transition_sequence_requested)
+	if EventManager.has_signal("battle_start_sequence_requested"):
+		EventManager.battle_start_sequence_requested.connect(_on_battle_start_sequence_requested)
 
 	_run_initial_map_scripts()
 	_update_status()
@@ -169,6 +171,11 @@ func _on_debug_message_requested(lines: PackedStringArray) -> void:
 
 
 func _on_transition_sequence_requested(sequence: Dictionary) -> void:
+	if _transition_sequence_player != null and _transition_sequence_player.has_method("play"):
+		_transition_sequence_player.play(sequence)
+
+
+func _on_battle_start_sequence_requested(sequence: Dictionary) -> void:
 	if _transition_sequence_player != null and _transition_sequence_player.has_method("play"):
 		_transition_sequence_player.play(sequence)
 
