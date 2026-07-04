@@ -1,0 +1,1585 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route102",
+    "map_script": "data/maps/Route102/scripts.inc",
+    "map_json": "data/maps/Route102/map.json",
+    "map_id": "MAP_ROUTE102",
+    "map_name": "Route102"
+  },
+  "labels": {
+    "Route102_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route102_EventScript_LittleBoy": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route102_EventScript_RouteSignOldale": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route102_EventScript_RouteSignPetalburg": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route102_EventScript_Boy": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route102_EventScript_Calvin": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 9
+    },
+    "Route102_EventScript_CalvinRegisterMatchCallAfterBattle": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 5
+    },
+    "Route102_EventScript_CalvinRegisterMatchCall": {
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route102_EventScript_CalvinTryRegister": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route102_EventScript_CalvinRegister": {
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route102_EventScript_CalvinRematch": {
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route102_EventScript_Rick": {
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route102_EventScript_Tiana": {
+      "kind": "script",
+      "line": 66,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route102_EventScript_Allen": {
+      "kind": "script",
+      "line": 71,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route102_Text_WatchMeCatchPokemon": {
+      "kind": "text",
+      "line": 76,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route102_Text_WallyIDidIt": {
+      "kind": "text",
+      "line": 79,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route102_Text_LetsGoBack": {
+      "kind": "text",
+      "line": 82,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route102_Text_ImNotVeryTall": {
+      "kind": "text",
+      "line": 85,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route102_Text_CatchWholeBunchOfPokemon": {
+      "kind": "text",
+      "line": 88,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route102_Text_RouteSignOldale": {
+      "kind": "text",
+      "line": 91,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route102_Text_RouteSignPetalburg": {
+      "kind": "text",
+      "line": 94,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "Route102_MapScripts": {
+      "label": "Route102_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route102_EventScript_LittleBoy": {
+      "label": "Route102_EventScript_LittleBoy",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_ImNotVeryTall",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox Route102_Text_ImNotVeryTall, MSGBOX_NPC",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_ImNotVeryTall",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route102_EventScript_RouteSignOldale": {
+      "label": "Route102_EventScript_RouteSignOldale",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_RouteSignOldale",
+            "MSGBOX_SIGN"
+          ],
+          "line": 9,
+          "raw": "msgbox Route102_Text_RouteSignOldale, MSGBOX_SIGN",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_RouteSignOldale",
+          "mode": "MSGBOX_SIGN",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route102_EventScript_RouteSignPetalburg": {
+      "label": "Route102_EventScript_RouteSignPetalburg",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_RouteSignPetalburg",
+            "MSGBOX_SIGN"
+          ],
+          "line": 13,
+          "raw": "msgbox Route102_Text_RouteSignPetalburg, MSGBOX_SIGN",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_RouteSignPetalburg",
+          "mode": "MSGBOX_SIGN",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route102_EventScript_Boy": {
+      "label": "Route102_EventScript_Boy",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_CatchWholeBunchOfPokemon",
+            "MSGBOX_NPC"
+          ],
+          "line": 17,
+          "raw": "msgbox Route102_Text_CatchWholeBunchOfPokemon, MSGBOX_NPC",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_CatchWholeBunchOfPokemon",
+          "mode": "MSGBOX_NPC",
+          "line": 17
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route102_EventScript_Calvin": {
+      "label": "Route102_EventScript_Calvin",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_CALVIN_1",
+            "Route102_Text_CalvinIntro",
+            "Route102_Text_CalvinDefeated",
+            "Route102_EventScript_CalvinRegisterMatchCallAfterBattle"
+          ],
+          "line": 21,
+          "raw": "trainerbattle_single TRAINER_CALVIN_1, Route102_Text_CalvinIntro, Route102_Text_CalvinDefeated, Route102_EventScript_CalvinRegisterMatchCallAfterBattle",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 22,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route102_EventScript_CalvinRematch"
+          ],
+          "line": 23,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route102_EventScript_CalvinRematch",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "TRAINER_CALVIN_1"
+          ],
+          "line": 24,
+          "raw": "setvar VAR_0x8004, TRAINER_CALVIN_1",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "IsTrainerRegistered"
+          ],
+          "line": 25,
+          "raw": "specialvar VAR_RESULT, IsTrainerRegistered",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Route102_EventScript_CalvinTryRegister"
+          ],
+          "line": 26,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Route102_EventScript_CalvinTryRegister",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_CalvinPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 27,
+          "raw": "msgbox Route102_Text_CalvinPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 28,
+          "raw": "release",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_CalvinPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 27
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route102_EventScript_CalvinRematch",
+          "line": 23
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route102_EventScript_CalvinTryRegister",
+          "line": 26
+        }
+      ]
+    },
+    "Route102_EventScript_CalvinRegisterMatchCallAfterBattle": {
+      "label": "Route102_EventScript_CalvinRegisterMatchCallAfterBattle",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "PlayerFaceTrainerAfterBattle"
+          ],
+          "line": 32,
+          "raw": "special PlayerFaceTrainerAfterBattle",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 33,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_HAS_MATCH_CALL",
+            "Route102_EventScript_CalvinRegisterMatchCall"
+          ],
+          "line": 34,
+          "raw": "goto_if_set FLAG_HAS_MATCH_CALL, Route102_EventScript_CalvinRegisterMatchCall",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 35,
+          "raw": "release",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 36,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route102_EventScript_CalvinRegisterMatchCall",
+          "line": 34
+        }
+      ]
+    },
+    "Route102_EventScript_CalvinRegisterMatchCall": {
+      "label": "Route102_EventScript_CalvinRegisterMatchCall",
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_CalvinRegisterShort",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 39,
+          "raw": "msgbox Route102_Text_CalvinRegisterShort, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_CALVIN_1"
+          ],
+          "line": 40,
+          "raw": "register_matchcall TRAINER_CALVIN_1",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 41,
+          "raw": "release",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_CalvinRegisterShort",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 39
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route102_EventScript_CalvinTryRegister": {
+      "label": "Route102_EventScript_CalvinTryRegister",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_HAS_MATCH_CALL",
+            "Route102_EventScript_CalvinRegister"
+          ],
+          "line": 45,
+          "raw": "goto_if_set FLAG_HAS_MATCH_CALL, Route102_EventScript_CalvinRegister",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_CalvinPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 46,
+          "raw": "msgbox Route102_Text_CalvinPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 47,
+          "raw": "release",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 48,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_CalvinPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 46
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route102_EventScript_CalvinRegister",
+          "line": 45
+        }
+      ]
+    },
+    "Route102_EventScript_CalvinRegister": {
+      "label": "Route102_EventScript_CalvinRegister",
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_CalvinRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 51,
+          "raw": "msgbox Route102_Text_CalvinRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_CALVIN_1"
+          ],
+          "line": 52,
+          "raw": "register_matchcall TRAINER_CALVIN_1",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 53,
+          "raw": "release",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 54,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_CalvinRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 51
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route102_EventScript_CalvinRematch": {
+      "label": "Route102_EventScript_CalvinRematch",
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch",
+          "args": [
+            "TRAINER_CALVIN_1",
+            "Route102_Text_CalvinRematchIntro",
+            "Route102_Text_CalvinRematchDefeated"
+          ],
+          "line": 57,
+          "raw": "trainerbattle_rematch TRAINER_CALVIN_1, Route102_Text_CalvinRematchIntro, Route102_Text_CalvinRematchDefeated",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_CalvinRematchPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 58,
+          "raw": "msgbox Route102_Text_CalvinRematchPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 59,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_CalvinRematchPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 58
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route102_EventScript_Rick": {
+      "label": "Route102_EventScript_Rick",
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_RICK",
+            "Route102_Text_RickIntro",
+            "Route102_Text_RickDefeated"
+          ],
+          "line": 62,
+          "raw": "trainerbattle_single TRAINER_RICK, Route102_Text_RickIntro, Route102_Text_RickDefeated",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_RickPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 63,
+          "raw": "msgbox Route102_Text_RickPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 64,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_RickPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 63
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route102_EventScript_Tiana": {
+      "label": "Route102_EventScript_Tiana",
+      "kind": "script",
+      "line": 66,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_TIANA",
+            "Route102_Text_TianaIntro",
+            "Route102_Text_TianaDefeated"
+          ],
+          "line": 67,
+          "raw": "trainerbattle_single TRAINER_TIANA, Route102_Text_TianaIntro, Route102_Text_TianaDefeated",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_TianaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 68,
+          "raw": "msgbox Route102_Text_TianaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 69,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_TianaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 68
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route102_EventScript_Allen": {
+      "label": "Route102_EventScript_Allen",
+      "kind": "script",
+      "line": 71,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_ALLEN",
+            "Route102_Text_AllenIntro",
+            "Route102_Text_AllenDefeated"
+          ],
+          "line": 72,
+          "raw": "trainerbattle_single TRAINER_ALLEN, Route102_Text_AllenIntro, Route102_Text_AllenDefeated",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route102_Text_AllenPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 73,
+          "raw": "msgbox Route102_Text_AllenPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route102/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 74,
+          "raw": "end",
+          "source_file": "data/maps/Route102/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route102_Text_AllenPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 73
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route102_Text_WatchMeCatchPokemon": {
+      "label": "Route102_Text_WatchMeCatchPokemon",
+      "line": 76,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "raw_text": "满充：{PLAYER}……\\n草丛里会藏着宝可梦，对吧？\\p请你看看我捕捉宝可梦的\\n方法对不对。\\p……哇！$",
+      "display_text": "满充：{PLAYER}……\n草丛里会藏着宝可梦，对吧？\n\n请你看看我捕捉宝可梦的\n方法对不对。\n\n……哇！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          9,
+          52,
+          2,
+          102,
+          62,
+          253,
+          1,
+          176,
+          176,
+          254,
+          2,
+          1,
+          2,
+          180,
+          8,
+          100,
+          5,
+          110,
+          1,
+          243,
+          16,
+          244,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          3,
+          121,
+          1,
+          40,
+          61,
+          251,
+          11,
+          13,
+          9,
+          217,
+          7,
+          194,
+          7,
+          194,
+          13,
+          152,
+          1,
+          209,
+          16,
+          236,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          254,
+          3,
+          192,
+          3,
+          171,
+          3,
+          121,
+          1,
+          214,
+          3,
+          121,
+          55,
+          251,
+          176,
+          176,
+          13,
+          67,
+          60,
+          255
+        ],
+        "hex": "09 34 02 66 3E FD 01 B0 B0 FE 02 01 02 B4 08 64 05 6E 01 F3 10 F4 01 63 07 D7 09 66 3B 03 79 01 28 3D FB 0B 0D 09 D9 07 C2 07 C2 0D 98 01 D1 10 EC 01 63 07 D7 09 66 03 0B FE 03 C0 03 AB 03 79 01 D6 03 79 37 FB B0 B0 0D 43 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 41,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 49,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 55,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Route102_Text_WallyIDidIt": {
+      "label": "Route102_Text_WallyIDidIt",
+      "line": 79,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "raw_text": "满充：成功了……这是我的……\\n我的宝可梦！$",
+      "display_text": "满充：成功了……这是我的……\n我的宝可梦！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          9,
+          52,
+          2,
+          102,
+          62,
+          2,
+          75,
+          4,
+          110,
+          8,
+          158,
+          176,
+          176,
+          16,
+          85,
+          12,
+          12,
+          13,
+          152,
+          3,
+          11,
+          176,
+          176,
+          254,
+          13,
+          152,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          60,
+          255
+        ],
+        "hex": "09 34 02 66 3E 02 4B 04 6E 08 9E B0 B0 10 55 0C 0C 0D 98 03 0B B0 B0 FE 0D 98 03 0B 01 63 07 D7 09 66 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route102_Text_LetsGoBack": {
+      "label": "Route102_Text_LetsGoBack",
+      "line": 82,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "raw_text": "{PLAYER}，谢谢你！\\n我们回道馆吧！$",
+      "display_text": "{PLAYER}，谢谢你！\n我们回道馆吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 25,
+        "bytes": [
+          253,
+          1,
+          59,
+          14,
+          70,
+          14,
+          70,
+          9,
+          217,
+          60,
+          254,
+          13,
+          152,
+          9,
+          95,
+          5,
+          101,
+          3,
+          7,
+          4,
+          165,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "FD 01 3B 0E 46 0E 46 09 D9 3C FE 0D 98 09 5F 05 65 03 07 04 A5 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Route102_Text_ImNotVeryTall": {
+      "label": "Route102_Text_ImNotVeryTall",
+      "line": 85,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "raw_text": "我……不是很高，所以在草丛里\\n走的时候我就被草遮起来了。\\p草总是戳到我的鼻子里，然后就……\\n阿——阿—阿——阿……\\p阿嚏！$",
+      "display_text": "我……不是很高，所以在草丛里\n走的时候我就被草遮起来了。\n\n草总是戳到我的鼻子里，然后就……\n阿——阿—阿——阿……\n\n阿嚏！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 104,
+        "bytes": [
+          13,
+          152,
+          176,
+          176,
+          1,
+          214,
+          12,
+          12,
+          5,
+          11,
+          4,
+          73,
+          59,
+          12,
+          156,
+          15,
+          36,
+          15,
+          230,
+          2,
+          1,
+          2,
+          180,
+          8,
+          100,
+          254,
+          17,
+          23,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          13,
+          152,
+          7,
+          125,
+          1,
+          120,
+          2,
+          1,
+          16,
+          77,
+          10,
+          171,
+          8,
+          41,
+          8,
+          158,
+          55,
+          251,
+          2,
+          1,
+          17,
+          20,
+          12,
+          12,
+          2,
+          161,
+          3,
+          4,
+          13,
+          152,
+          3,
+          11,
+          1,
+          132,
+          17,
+          11,
+          8,
+          100,
+          59,
+          11,
+          59,
+          5,
+          34,
+          7,
+          125,
+          176,
+          176,
+          254,
+          1,
+          1,
+          63,
+          63,
+          1,
+          1,
+          63,
+          1,
+          1,
+          63,
+          63,
+          1,
+          1,
+          176,
+          176,
+          251,
+          1,
+          1,
+          12,
+          232,
+          60,
+          255
+        ],
+        "hex": "0D 98 B0 B0 01 D6 0C 0C 05 0B 04 49 3B 0C 9C 0F 24 0F E6 02 01 02 B4 08 64 FE 11 17 03 0B 0B ED 05 21 0D 98 07 7D 01 78 02 01 10 4D 0A AB 08 29 08 9E 37 FB 02 01 11 14 0C 0C 02 A1 03 04 0D 98 03 0B 01 84 11 0B 08 64 3B 0B 3B 05 22 07 7D B0 B0 FE 01 01 3F 3F 01 01 3F 01 01 3F 3F 01 01 B0 B0 FB 01 01 0C E8 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 47,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 60,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 65,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route102_Text_CatchWholeBunchOfPokemon": {
+      "label": "Route102_Text_CatchWholeBunchOfPokemon",
+      "line": 88,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "raw_text": "我要捉一大堆\\n宝可梦！$",
+      "display_text": "我要捉一大堆\n宝可梦！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          13,
+          152,
+          14,
+          241,
+          16,
+          236,
+          15,
+          11,
+          2,
+          211,
+          3,
+          118,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          60,
+          255
+        ],
+        "hex": "0D 98 0E F1 10 EC 0F 0B 02 D3 03 76 FE 01 63 07 D7 09 66 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route102_Text_RouteSignOldale": {
+      "label": "Route102_Text_RouteSignOldale",
+      "line": 91,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "raw_text": "102号道路\\n{RIGHT_ARROW}古玫镇$",
+      "display_text": "102号道路\n{RIGHT_ARROW}古玫镇",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          162,
+          161,
+          163,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          254,
+          124,
+          4,
+          141,
+          9,
+          77,
+          16,
+          101,
+          255
+        ],
+        "hex": "A2 A1 A3 04 EB 03 07 08 E8 FE 7C 04 8D 09 4D 10 65 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{RIGHT_ARROW}",
+            "offset": 8,
+            "bytes": [
+              124
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "RIGHT_ARROW",
+                "bytes": [
+                  124
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route102_Text_RouteSignPetalburg": {
+      "label": "Route102_Text_RouteSignPetalburg",
+      "line": 94,
+      "source_file": "data/maps/Route102/scripts.inc",
+      "raw_text": "102号道路\\n{LEFT_ARROW}橙华市$",
+      "display_text": "102号道路\n{LEFT_ARROW}橙华市",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          162,
+          161,
+          163,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          254,
+          123,
+          2,
+          74,
+          5,
+          55,
+          12,
+          21,
+          255
+        ],
+        "hex": "A2 A1 A3 04 EB 03 07 08 E8 FE 7B 02 4A 05 37 0C 15 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{LEFT_ARROW}",
+            "offset": 8,
+            "bytes": [
+              123
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "LEFT_ARROW",
+                "bytes": [
+                  123
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "goto_if_eq": 2,
+      "goto_if_set": 2,
+      "register_matchcall": 2,
+      "setvar": 1,
+      "special": 1,
+      "specialvar": 2,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 4,
+      "waitmovement": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 21,
+    "script_count": 14,
+    "movement_count": 0,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 298,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 13,
+      "goto_if_eq": 2,
+      "goto_if_set": 2,
+      "msgbox": 12,
+      "register_matchcall": 2,
+      "release": 5,
+      "setvar": 1,
+      "special": 1,
+      "specialvar": 2,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 4,
+      "waitmovement": 1
+    }
+  }
+}

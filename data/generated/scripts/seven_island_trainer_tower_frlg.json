@@ -1,0 +1,835 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SevenIsland_TrainerTower_Frlg",
+    "map_script": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+    "map_json": "data/maps/SevenIsland_TrainerTower_Frlg/map.json",
+    "map_id": "MAP_SEVEN_ISLAND_TRAINER_TOWER",
+    "map_name": "SevenIsland_TrainerTower_Frlg"
+  },
+  "labels": {
+    "SevenIsland_TrainerTower_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_TrainerTower_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_TrainerTower_EventScript_TrainerTowerSign": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_TrainerTower_EventScript_TrainerTowerAheadSign": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_TrainerTower_Text_DarioIntro": {
+      "kind": "text",
+      "line": 17,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SevenIsland_TrainerTower_Text_DarioDefeat": {
+      "kind": "text",
+      "line": 20,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SevenIsland_TrainerTower_Text_DarioPostBattle": {
+      "kind": "text",
+      "line": 23,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "SevenIsland_TrainerTower_Text_RodetteIntro": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_TrainerTower_Text_RodetteDefeat": {
+      "kind": "text",
+      "line": 33,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SevenIsland_TrainerTower_Text_RodettePostBattle": {
+      "kind": "text",
+      "line": 36,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_TrainerTower_Text_TrainerTowerSign": {
+      "kind": "text",
+      "line": 40,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_TrainerTower_Text_TrainerTowerAhead": {
+      "kind": "text",
+      "line": 44,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SevenIsland_TrainerTower_Frlg_MapScripts": {
+      "label": "SevenIsland_TrainerTower_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SevenIsland_TrainerTower_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_TrainerTower_OnTransition",
+          "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SevenIsland_TrainerTower_OnTransition": {
+      "label": "SevenIsland_TrainerTower_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_TRAINER_TOWER",
+            "0"
+          ],
+          "line": 6,
+          "raw": "setvar VAR_MAP_SCENE_TRAINER_TOWER, 0",
+          "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SevenIsland_TrainerTower_EventScript_TrainerTowerSign": {
+      "label": "SevenIsland_TrainerTower_EventScript_TrainerTowerSign",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SevenIsland_TrainerTower_Text_TrainerTowerSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 10,
+          "raw": "msgbox SevenIsland_TrainerTower_Text_TrainerTowerSign, MSGBOX_SIGN",
+          "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SevenIsland_TrainerTower_Text_TrainerTowerSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    },
+    "SevenIsland_TrainerTower_EventScript_TrainerTowerAheadSign": {
+      "label": "SevenIsland_TrainerTower_EventScript_TrainerTowerAheadSign",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SevenIsland_TrainerTower_Text_TrainerTowerAhead",
+            "MSGBOX_SIGN"
+          ],
+          "line": 14,
+          "raw": "msgbox SevenIsland_TrainerTower_Text_TrainerTowerAhead, MSGBOX_SIGN",
+          "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SevenIsland_TrainerTower_Text_TrainerTowerAhead",
+          "mode": "MSGBOX_SIGN",
+          "line": 14
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SevenIsland_TrainerTower_Text_DarioIntro": {
+      "label": "SevenIsland_TrainerTower_Text_DarioIntro",
+      "line": 17,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "raw_text": "我感觉到了你在靠近。$",
+      "display_text": "我感觉到了你在靠近。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          13,
+          152,
+          4,
+          58,
+          7,
+          165,
+          3,
+          4,
+          8,
+          158,
+          9,
+          217,
+          15,
+          230,
+          7,
+          205,
+          7,
+          78,
+          55,
+          255
+        ],
+        "hex": "0D 98 04 3A 07 A5 03 04 08 9E 09 D9 0F E6 07 CD 07 4E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_TrainerTower_Text_DarioDefeat": {
+      "label": "SevenIsland_TrainerTower_Text_DarioDefeat",
+      "line": 20,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "raw_text": "放弃了……$",
+      "display_text": "放弃了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 9,
+        "bytes": [
+          3,
+          200,
+          10,
+          181,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "03 C8 0A B5 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 5,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_TrainerTower_Text_DarioPostBattle": {
+      "label": "SevenIsland_TrainerTower_Text_DarioPostBattle",
+      "line": 23,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "raw_text": "我感觉到在你的未来，\\n你将会遇到许多人。\\p你们会被一股奇异的力量\\n互相联系在一起。$",
+      "display_text": "我感觉到在你的未来，\n你将会遇到许多人。\n\n你们会被一股奇异的力量\n互相联系在一起。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 77,
+        "bytes": [
+          13,
+          152,
+          4,
+          58,
+          7,
+          165,
+          3,
+          4,
+          15,
+          230,
+          9,
+          217,
+          3,
+          11,
+          13,
+          122,
+          8,
+          41,
+          59,
+          254,
+          9,
+          217,
+          5,
+          244,
+          5,
+          110,
+          15,
+          164,
+          3,
+          4,
+          14,
+          120,
+          3,
+          133,
+          11,
+          75,
+          55,
+          251,
+          9,
+          217,
+          9,
+          95,
+          5,
+          110,
+          1,
+          120,
+          15,
+          11,
+          4,
+          145,
+          10,
+          161,
+          15,
+          60,
+          3,
+          11,
+          8,
+          121,
+          8,
+          146,
+          254,
+          5,
+          50,
+          14,
+          13,
+          8,
+          125,
+          13,
+          217,
+          15,
+          230,
+          15,
+          11,
+          10,
+          171,
+          55,
+          255
+        ],
+        "hex": "0D 98 04 3A 07 A5 03 04 0F E6 09 D9 03 0B 0D 7A 08 29 3B FE 09 D9 05 F4 05 6E 0F A4 03 04 0E 78 03 85 0B 4B 37 FB 09 D9 09 5F 05 6E 01 78 0F 0B 04 91 0A A1 0F 3C 03 0B 08 79 08 92 FE 05 32 0E 0D 08 7D 0D D9 0F E6 0F 0B 0A AB 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_TrainerTower_Text_RodetteIntro": {
+      "label": "SevenIsland_TrainerTower_Text_RodetteIntro",
+      "line": 29,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "raw_text": "在这座岛上某个地方，\\n有特别的宝可梦正在沉睡。$",
+      "display_text": "在这座岛上某个地方，\n有特别的宝可梦正在沉睡。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 44,
+        "bytes": [
+          15,
+          230,
+          16,
+          85,
+          17,
+          49,
+          3,
+          1,
+          11,
+          173,
+          9,
+          169,
+          4,
+          96,
+          3,
+          31,
+          3,
+          192,
+          59,
+          254,
+          15,
+          126,
+          12,
+          217,
+          1,
+          173,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          112,
+          15,
+          230,
+          2,
+          67,
+          12,
+          82,
+          55,
+          255
+        ],
+        "hex": "0F E6 10 55 11 31 03 01 0B AD 09 A9 04 60 03 1F 03 C0 3B FE 0F 7E 0C D9 01 AD 03 0B 01 63 07 D7 09 66 10 70 0F E6 02 43 0C 52 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_TrainerTower_Text_RodetteDefeat": {
+      "label": "SevenIsland_TrainerTower_Text_RodetteDefeat",
+      "line": 33,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "raw_text": "真是一个令人惊异的训练家！$",
+      "display_text": "真是一个令人惊异的训练家！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          16,
+          89,
+          12,
+          12,
+          15,
+          11,
+          4,
+          96,
+          8,
+          193,
+          11,
+          75,
+          7,
+          90,
+          15,
+          60,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          60,
+          255
+        ],
+        "hex": "10 59 0C 0C 0F 0B 04 60 08 C1 0B 4B 07 5A 0F 3C 03 0B 0E 9E 08 8A 05 BD 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_TrainerTower_Text_RodettePostBattle": {
+      "label": "SevenIsland_TrainerTower_Text_RodettePostBattle",
+      "line": 36,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "raw_text": "在这座岛上某个地方，\\n有特别的宝可梦正在沉睡。p难道它们在等你？$",
+      "display_text": "在这座岛上某个地方，\n有特别的宝可梦正在沉睡。p难道它们在等你？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 60,
+        "bytes": [
+          15,
+          230,
+          16,
+          85,
+          17,
+          49,
+          3,
+          1,
+          11,
+          173,
+          9,
+          169,
+          4,
+          96,
+          3,
+          31,
+          3,
+          192,
+          59,
+          254,
+          15,
+          126,
+          12,
+          217,
+          1,
+          173,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          112,
+          15,
+          230,
+          2,
+          67,
+          12,
+          82,
+          55,
+          228,
+          9,
+          199,
+          3,
+          7,
+          12,
+          159,
+          9,
+          95,
+          15,
+          230,
+          3,
+          15,
+          9,
+          217,
+          61,
+          255
+        ],
+        "hex": "0F E6 10 55 11 31 03 01 0B AD 09 A9 04 60 03 1F 03 C0 3B FE 0F 7E 0C D9 01 AD 03 0B 01 63 07 D7 09 66 10 70 0F E6 02 43 0C 52 37 E4 09 C7 03 07 0C 9F 09 5F 0F E6 03 0F 09 D9 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 33,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_TrainerTower_Text_TrainerTowerSign": {
+      "label": "SevenIsland_TrainerTower_Text_TrainerTowerSign",
+      "line": 40,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "raw_text": "训练家之塔入口\\n上去挑战，训练家！$",
+      "display_text": "训练家之塔入口\n上去挑战，训练家！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          16,
+          127,
+          12,
+          161,
+          11,
+          107,
+          7,
+          232,
+          254,
+          11,
+          173,
+          11,
+          37,
+          12,
+          245,
+          16,
+          48,
+          59,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          60,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 10 7F 0C A1 0B 6B 07 E8 FE 0B AD 0B 25 0C F5 10 30 3B 0E 9E 08 8A 05 BD 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_TrainerTower_Text_TrainerTowerAhead": {
+      "label": "SevenIsland_TrainerTower_Text_TrainerTowerAhead",
+      "line": 44,
+      "source_file": "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc",
+      "raw_text": "前方是训练家之塔$",
+      "display_text": "前方是训练家之塔",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 17,
+        "bytes": [
+          10,
+          201,
+          3,
+          192,
+          12,
+          12,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          16,
+          127,
+          12,
+          161,
+          255
+        ],
+        "hex": "0A C9 03 C0 0C 0C 0E 9E 08 8A 05 BD 10 7F 0C A1 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 1,
+      "setvar": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 12,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 8,
+    "encoded_text_count": 8,
+    "text_source_byte_count": 285,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 8
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "map_script": 1,
+      "msgbox": 2,
+      "setvar": 1
+    }
+  }
+}

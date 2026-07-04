@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SafariZone_Center_RestHouse_Frlg",
+    "map_script": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+    "map_json": "data/maps/SafariZone_Center_RestHouse_Frlg/map.json",
+    "map_id": "MAP_SAFARI_ZONE_CENTER_REST_HOUSE",
+    "map_name": "SafariZone_Center_RestHouse_Frlg"
+  },
+  "labels": {
+    "SafariZone_Center_RestHouse_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SafariZone_Center_RestHouse_EventScript_Sara": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_Center_RestHouse_EventScript_Scientist": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_Center_Text_WhereDidErikGo": {
+      "kind": "text",
+      "line": 12,
+      "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_Center_Text_CatchingMonsAsGifts": {
+      "kind": "text",
+      "line": 16,
+      "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "SafariZone_Center_RestHouse_Frlg_MapScripts": {
+      "label": "SafariZone_Center_RestHouse_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SafariZone_Center_RestHouse_EventScript_Sara": {
+      "label": "SafariZone_Center_RestHouse_EventScript_Sara",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_Center_Text_WhereDidErikGo",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox SafariZone_Center_Text_WhereDidErikGo, MSGBOX_NPC",
+          "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_Center_Text_WhereDidErikGo",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_Center_RestHouse_EventScript_Scientist": {
+      "label": "SafariZone_Center_RestHouse_EventScript_Scientist",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_Center_Text_CatchingMonsAsGifts",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox SafariZone_Center_Text_CatchingMonsAsGifts, MSGBOX_NPC",
+          "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_Center_Text_CatchingMonsAsGifts",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SafariZone_Center_Text_WhereDidErikGo": {
+      "label": "SafariZone_Center_Text_WhereDidErikGo",
+      "line": 12,
+      "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+      "raw_text": "敦子：我的男朋友阿初到\\n哪儿去了？$",
+      "display_text": "敦子：我的男朋友阿初到\n哪儿去了？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          3,
+          125,
+          17,
+          11,
+          62,
+          13,
+          152,
+          3,
+          11,
+          9,
+          198,
+          10,
+          80,
+          15,
+          127,
+          1,
+          1,
+          2,
+          119,
+          3,
+          4,
+          254,
+          9,
+          186,
+          3,
+          158,
+          11,
+          37,
+          8,
+          158,
+          61,
+          255
+        ],
+        "hex": "03 7D 11 0B 3E 0D 98 03 0B 09 C6 0A 50 0F 7F 01 01 02 77 03 04 FE 09 BA 03 9E 0B 25 08 9E 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_Center_Text_CatchingMonsAsGifts": {
+      "label": "SafariZone_Center_Text_CatchingMonsAsGifts",
+      "line": 16,
+      "source_file": "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc",
+      "raw_text": "我正在抓宝可梦回家\\n作为礼物。$",
+      "display_text": "我正在抓宝可梦回家\n作为礼物。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          13,
+          152,
+          16,
+          112,
+          15,
+          230,
+          16,
+          212,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          101,
+          5,
+          189,
+          254,
+          17,
+          47,
+          13,
+          112,
+          8,
+          102,
+          13,
+          181,
+          55,
+          255
+        ],
+        "hex": "0D 98 10 70 0F E6 10 D4 01 63 07 D7 09 66 05 65 05 BD FE 11 2F 0D 70 08 66 0D B5 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 61,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2
+    }
+  }
+}

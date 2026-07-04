@@ -1,0 +1,859 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "TrainerTower_Elevator_Frlg",
+    "map_script": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+    "map_json": "data/maps/TrainerTower_Elevator_Frlg/map.json",
+    "map_id": "MAP_TRAINER_TOWER_ELEVATOR",
+    "map_name": "TrainerTower_Elevator_Frlg"
+  },
+  "labels": {
+    "TrainerTower_Elevator_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_Elevator_EventScript_FloorSelect": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instruction_count": 13
+    },
+    "TrainerTower_Elevator_EventScript_FloorSelectFromRoof": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_Elevator_EventScript_FloorSelectFromLobby": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_Elevator_EventScript_ChooseFloor": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "TrainerTower_Elevator_EventScript_SelectLobby": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instruction_count": 13
+    },
+    "TrainerTower_Elevator_EventScript_SelectRoof": {
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_Elevator_EventScript_CloseFloorSelect": {
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerTower_Elevator_EventScript_MoveElevator": {
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "TrainerTower_Elevator_Movement_ExitElevator": {
+      "kind": "movement",
+      "line": 72,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    }
+  },
+  "scripts": {
+    "TrainerTower_Elevator_Frlg_MapScripts": {
+      "label": "TrainerTower_Elevator_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "TrainerTower_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, TrainerTower_OnResume",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "TrainerTower_OnFrame"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, TrainerTower_OnFrame",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Elevator_EventScript_FloorSelect": {
+      "label": "TrainerTower_Elevator_EventScript_FloorSelect",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 7,
+          "raw": "lockall",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "6"
+          ],
+          "line": 8,
+          "raw": "setvar VAR_0x8004, 6",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_TEMP_2",
+            "EventScript_GetElevatorFloor"
+          ],
+          "line": 9,
+          "raw": "call_if_unset FLAG_TEMP_2, EventScript_GetElevatorFloor",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8005",
+            "VAR_ELEVATOR_FLOOR"
+          ],
+          "line": 10,
+          "raw": "copyvar VAR_0x8005, VAR_ELEVATOR_FLOOR",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawElevatorCurrentFloorWindow"
+          ],
+          "line": 11,
+          "raw": "special DrawElevatorCurrentFloorWindow",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_WantWhichFloor"
+          ],
+          "line": 12,
+          "raw": "message gText_WantWhichFloor",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 13,
+          "raw": "waitmessage",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "6"
+          ],
+          "line": 14,
+          "raw": "setvar VAR_0x8004, 6",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "InitElevatorFloorSelectMenuPos"
+          ],
+          "line": 15,
+          "raw": "specialvar VAR_RESULT, InitElevatorFloorSelectMenuPos",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 16,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TrainerTower_Elevator_EventScript_FloorSelectFromRoof"
+          ],
+          "line": 17,
+          "raw": "case 0, TrainerTower_Elevator_EventScript_FloorSelectFromRoof",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TrainerTower_Elevator_EventScript_FloorSelectFromLobby"
+          ],
+          "line": 18,
+          "raw": "case 1, TrainerTower_Elevator_EventScript_FloorSelectFromLobby",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_WantWhichFloor",
+          "mode": "",
+          "line": 12
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "EventScript_GetElevatorFloor",
+          "line": 9
+        }
+      ]
+    },
+    "TrainerTower_Elevator_EventScript_FloorSelectFromRoof": {
+      "label": "TrainerTower_Elevator_EventScript_FloorSelectFromRoof",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_ROOFTOP_B1F",
+            "0",
+            "FALSE"
+          ],
+          "line": 22,
+          "raw": "multichoicedefault 0, 0, MULTI_ROOFTOP_B1F, 0, FALSE",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_Elevator_EventScript_ChooseFloor"
+          ],
+          "line": 23,
+          "raw": "goto TrainerTower_Elevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_Elevator_EventScript_ChooseFloor",
+          "line": 23
+        }
+      ]
+    },
+    "TrainerTower_Elevator_EventScript_FloorSelectFromLobby": {
+      "label": "TrainerTower_Elevator_EventScript_FloorSelectFromLobby",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_ROOFTOP_B1F",
+            "1",
+            "FALSE"
+          ],
+          "line": 27,
+          "raw": "multichoicedefault 0, 0, MULTI_ROOFTOP_B1F, 1, FALSE",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_Elevator_EventScript_ChooseFloor"
+          ],
+          "line": 28,
+          "raw": "goto TrainerTower_Elevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_Elevator_EventScript_ChooseFloor",
+          "line": 28
+        }
+      ]
+    },
+    "TrainerTower_Elevator_EventScript_ChooseFloor": {
+      "label": "TrainerTower_Elevator_EventScript_ChooseFloor",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 32,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TrainerTower_Elevator_EventScript_SelectRoof"
+          ],
+          "line": 33,
+          "raw": "case 0, TrainerTower_Elevator_EventScript_SelectRoof",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TrainerTower_Elevator_EventScript_SelectLobby"
+          ],
+          "line": 34,
+          "raw": "case 1, TrainerTower_Elevator_EventScript_SelectLobby",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "TrainerTower_Elevator_EventScript_CloseFloorSelect"
+          ],
+          "line": 35,
+          "raw": "case 2, TrainerTower_Elevator_EventScript_CloseFloorSelect",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "TrainerTower_Elevator_EventScript_CloseFloorSelect"
+          ],
+          "line": 36,
+          "raw": "case MULTI_B_PRESSED, TrainerTower_Elevator_EventScript_CloseFloorSelect",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Elevator_EventScript_SelectLobby": {
+      "label": "TrainerTower_Elevator_EventScript_SelectLobby",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "3"
+          ],
+          "line": 40,
+          "raw": "setvar VAR_0x8006, 3",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_TRAINER_TOWER_LOBBY",
+            "17",
+            "8"
+          ],
+          "line": 41,
+          "raw": "setdynamicwarp MAP_TRAINER_TOWER_LOBBY, 17, 8",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "3",
+            "TrainerTower_Elevator_EventScript_CloseFloorSelect"
+          ],
+          "line": 42,
+          "raw": "goto_if_eq VAR_ELEVATOR_FLOOR, 3, TrainerTower_Elevator_EventScript_CloseFloorSelect",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "TrainerTower_Elevator_EventScript_MoveElevator"
+          ],
+          "line": 43,
+          "raw": "call TrainerTower_Elevator_EventScript_MoveElevator",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "3"
+          ],
+          "line": 44,
+          "raw": "setvar VAR_ELEVATOR_FLOOR, 3",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "CloseElevatorCurrentFloorWindow"
+          ],
+          "line": 45,
+          "raw": "special CloseElevatorCurrentFloorWindow",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "25"
+          ],
+          "line": 46,
+          "raw": "delay 25",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "TrainerTower_Elevator_Movement_ExitElevator"
+          ],
+          "line": 47,
+          "raw": "applymovement LOCALID_PLAYER, TrainerTower_Elevator_Movement_ExitElevator",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 48,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_TRAINER_TOWER_LOBBY",
+            "17",
+            "8"
+          ],
+          "line": 49,
+          "raw": "warp MAP_TRAINER_TOWER_LOBBY, 17, 8",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 50,
+          "raw": "waitstate",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 51,
+          "raw": "releaseall",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 52,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "TrainerTower_Elevator_EventScript_CloseFloorSelect",
+          "line": 42
+        },
+        {
+          "op": "call",
+          "target": "TrainerTower_Elevator_EventScript_MoveElevator",
+          "line": 43
+        }
+      ]
+    },
+    "TrainerTower_Elevator_EventScript_SelectRoof": {
+      "label": "TrainerTower_Elevator_EventScript_SelectRoof",
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto",
+          "args": [
+            "TrainerTower_Elevator_EventScript_CloseFloorSelect"
+          ],
+          "line": 55,
+          "raw": "goto TrainerTower_Elevator_EventScript_CloseFloorSelect",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 56,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerTower_Elevator_EventScript_CloseFloorSelect",
+          "line": 55
+        }
+      ]
+    },
+    "TrainerTower_Elevator_EventScript_CloseFloorSelect": {
+      "label": "TrainerTower_Elevator_EventScript_CloseFloorSelect",
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "CloseElevatorCurrentFloorWindow"
+          ],
+          "line": 59,
+          "raw": "special CloseElevatorCurrentFloorWindow",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 60,
+          "raw": "releaseall",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 61,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_Elevator_EventScript_MoveElevator": {
+      "label": "TrainerTower_Elevator_EventScript_MoveElevator",
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "CloseElevatorCurrentFloorWindow"
+          ],
+          "line": 64,
+          "raw": "special CloseElevatorCurrentFloorWindow",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 65,
+          "raw": "closemessage",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 66,
+          "raw": "waitse",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "AnimateElevator"
+          ],
+          "line": 67,
+          "raw": "special AnimateElevator",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 68,
+          "raw": "waitstate",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_2"
+          ],
+          "line": 69,
+          "raw": "setflag FLAG_TEMP_2",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 70,
+          "raw": "return",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "TrainerTower_Elevator_Movement_ExitElevator": {
+      "label": "TrainerTower_Elevator_Movement_ExitElevator",
+      "kind": "movement",
+      "line": 72,
+      "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_in_place_faster_down",
+          "args": [],
+          "line": 73,
+          "raw": "walk_in_place_faster_down",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 74,
+          "raw": "delay_16",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 75,
+          "raw": "walk_down",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 76,
+          "raw": "walk_right",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 77,
+          "raw": "walk_right",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 78,
+          "raw": "walk_down",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 79,
+          "raw": "step_end",
+          "source_file": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 1,
+      "call_if_unset": 1,
+      "case": 6,
+      "closemessage": 1,
+      "copyvar": 1,
+      "delay": 1,
+      "delay_16": 1,
+      "goto_if_eq": 1,
+      "map_script": 2,
+      "multichoicedefault": 2,
+      "setdynamicwarp": 1,
+      "setflag": 1,
+      "setvar": 4,
+      "special": 5,
+      "specialvar": 1,
+      "step_end": 1,
+      "switch": 2,
+      "waitmessage": 1,
+      "waitmovement": 1,
+      "waitse": 1,
+      "waitstate": 2,
+      "walk_down": 2,
+      "walk_in_place_faster_down": 1,
+      "walk_right": 2,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 9,
+    "movement_count": 1,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 1,
+      "call": 1,
+      "call_if_unset": 1,
+      "case": 6,
+      "closemessage": 1,
+      "copyvar": 1,
+      "delay": 1,
+      "delay_16": 1,
+      "end": 7,
+      "goto": 3,
+      "goto_if_eq": 1,
+      "lockall": 1,
+      "map_script": 2,
+      "message": 1,
+      "multichoicedefault": 2,
+      "releaseall": 2,
+      "return": 1,
+      "setdynamicwarp": 1,
+      "setflag": 1,
+      "setvar": 4,
+      "special": 5,
+      "specialvar": 1,
+      "step_end": 1,
+      "switch": 2,
+      "waitmessage": 1,
+      "waitmovement": 1,
+      "waitse": 1,
+      "waitstate": 2,
+      "walk_down": 2,
+      "walk_in_place_faster_down": 1,
+      "walk_right": 2,
+      "warp": 1
+    }
+  }
+}

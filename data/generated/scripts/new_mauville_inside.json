@@ -1,0 +1,3011 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "NewMauville_Inside",
+    "map_script": "data/maps/NewMauville_Inside/scripts.inc",
+    "map_json": "data/maps/NewMauville_Inside/map.json",
+    "map_id": "MAP_NEW_MAUVILLE_INSIDE",
+    "map_name": "NewMauville_Inside"
+  },
+  "labels": {
+    "NewMauville_Inside_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 4
+    },
+    "NewMauville_Inside_OnResume": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 4
+    },
+    "NewMauville_Inside_EventScript_TryRemoveVoltorb": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 4
+    },
+    "NewMauville_Inside_OnTransition": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 6
+    },
+    "NewMauville_Inside_EventScript_ShowVoltorb1": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 2
+    },
+    "NewMauville_Inside_EventScript_ShowVoltorb2": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 2
+    },
+    "NewMauville_Inside_EventScript_ShowVoltorb3": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 2
+    },
+    "NewMauville_Inside_OnLoad": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 2
+    },
+    "NewMauville_Inside_EventScript_BlueButton": {
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 8
+    },
+    "NewMauville_Inside_EventScript_GreenButton": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 8
+    },
+    "NewMauville_Inside_EventScript_SetBarrierStateBlueButton": {
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 38
+    },
+    "NewMauville_Inside_EventScript_SetBarrierStateGreenButton": {
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 38
+    },
+    "NewMauville_Inside_EventScript_RedButton": {
+      "kind": "script",
+      "line": 143,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 6
+    },
+    "NewMauville_Inside_EventScript_SetGeneratorOffMetatiles": {
+      "kind": "script",
+      "line": 151,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 11
+    },
+    "NewMauville_Inside_EventScript_Generator": {
+      "kind": "script",
+      "line": 164,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 5
+    },
+    "NewMauville_Inside_EventScript_GeneratorOff": {
+      "kind": "script",
+      "line": 171,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 3
+    },
+    "NewMauville_Inside_EventScript_Voltorb1": {
+      "kind": "script",
+      "line": 176,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 17
+    },
+    "NewMauville_Inside_EventScript_DefeatedVoltorb1": {
+      "kind": "script",
+      "line": 195,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 3
+    },
+    "NewMauville_Inside_EventScript_Voltorb2": {
+      "kind": "script",
+      "line": 200,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 17
+    },
+    "NewMauville_Inside_EventScript_DefeatedVoltorb2": {
+      "kind": "script",
+      "line": 219,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 3
+    },
+    "NewMauville_Inside_EventScript_Voltorb3": {
+      "kind": "script",
+      "line": 224,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 17
+    },
+    "NewMauville_Inside_EventScript_DefeatedVoltorb3": {
+      "kind": "script",
+      "line": 243,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 3
+    },
+    "NewMauville_Inside_Text_GeneratorRadiatingHeat": {
+      "kind": "text",
+      "line": 248,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 1
+    },
+    "NewMauville_Inside_Text_GeneratorQuietedDown": {
+      "kind": "text",
+      "line": 251,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 1
+    },
+    "NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped": {
+      "kind": "text",
+      "line": 254,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "NewMauville_Inside_MapScripts": {
+      "label": "NewMauville_Inside_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "NewMauville_Inside_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, NewMauville_Inside_OnResume",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "NewMauville_Inside_OnTransition"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, NewMauville_Inside_OnTransition",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "NewMauville_Inside_OnLoad"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, NewMauville_Inside_OnLoad",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NewMauville_Inside_OnResume": {
+      "label": "NewMauville_Inside_OnResume",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_TEMP_1",
+            "1",
+            "NewMauville_Inside_EventScript_SetBarrierStateBlueButton"
+          ],
+          "line": 8,
+          "raw": "call_if_eq VAR_TEMP_1, 1, NewMauville_Inside_EventScript_SetBarrierStateBlueButton",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_TEMP_2",
+            "1",
+            "NewMauville_Inside_EventScript_SetBarrierStateGreenButton"
+          ],
+          "line": 9,
+          "raw": "call_if_eq VAR_TEMP_2, 1, NewMauville_Inside_EventScript_SetBarrierStateGreenButton",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE",
+            "NewMauville_Inside_EventScript_TryRemoveVoltorb"
+          ],
+          "line": 10,
+          "raw": "call_if_set FLAG_SYS_CTRL_OBJ_DELETE, NewMauville_Inside_EventScript_TryRemoveVoltorb",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "NewMauville_Inside_EventScript_SetBarrierStateBlueButton",
+          "line": 8
+        },
+        {
+          "op": "call_if_eq",
+          "target": "NewMauville_Inside_EventScript_SetBarrierStateGreenButton",
+          "line": 9
+        },
+        {
+          "op": "call_if_set",
+          "target": "NewMauville_Inside_EventScript_TryRemoveVoltorb",
+          "line": 10
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_TryRemoveVoltorb": {
+      "label": "NewMauville_Inside_EventScript_TryRemoveVoltorb",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 14,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_CAUGHT",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 15,
+          "raw": "goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "VAR_LAST_TALKED"
+          ],
+          "line": 16,
+          "raw": "removeobject VAR_LAST_TALKED",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 17,
+          "raw": "return",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "Common_EventScript_NopReturn",
+          "line": 15
+        }
+      ]
+    },
+    "NewMauville_Inside_OnTransition": {
+      "label": "NewMauville_Inside_OnTransition",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "0"
+          ],
+          "line": 20,
+          "raw": "setvar VAR_TEMP_1, 0",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "0"
+          ],
+          "line": 21,
+          "raw": "setvar VAR_TEMP_2, 0",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE",
+            "NewMauville_Inside_EventScript_ShowVoltorb1"
+          ],
+          "line": 22,
+          "raw": "call_if_unset FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb1",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE",
+            "NewMauville_Inside_EventScript_ShowVoltorb2"
+          ],
+          "line": 23,
+          "raw": "call_if_unset FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb2",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE",
+            "NewMauville_Inside_EventScript_ShowVoltorb3"
+          ],
+          "line": 24,
+          "raw": "call_if_unset FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb3",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "NewMauville_Inside_EventScript_ShowVoltorb1",
+          "line": 22
+        },
+        {
+          "op": "call_if_unset",
+          "target": "NewMauville_Inside_EventScript_ShowVoltorb2",
+          "line": 23
+        },
+        {
+          "op": "call_if_unset",
+          "target": "NewMauville_Inside_EventScript_ShowVoltorb3",
+          "line": 24
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_ShowVoltorb1": {
+      "label": "NewMauville_Inside_EventScript_ShowVoltorb1",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_NEW_MAUVILLE_VOLTORB_1"
+          ],
+          "line": 28,
+          "raw": "clearflag FLAG_HIDE_NEW_MAUVILLE_VOLTORB_1",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 29,
+          "raw": "return",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NewMauville_Inside_EventScript_ShowVoltorb2": {
+      "label": "NewMauville_Inside_EventScript_ShowVoltorb2",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_NEW_MAUVILLE_VOLTORB_2"
+          ],
+          "line": 32,
+          "raw": "clearflag FLAG_HIDE_NEW_MAUVILLE_VOLTORB_2",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 33,
+          "raw": "return",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NewMauville_Inside_EventScript_ShowVoltorb3": {
+      "label": "NewMauville_Inside_EventScript_ShowVoltorb3",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_NEW_MAUVILLE_VOLTORB_3"
+          ],
+          "line": 36,
+          "raw": "clearflag FLAG_HIDE_NEW_MAUVILLE_VOLTORB_3",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 37,
+          "raw": "return",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NewMauville_Inside_OnLoad": {
+      "label": "NewMauville_Inside_OnLoad",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_NEW_MAUVILLE_STATE",
+            "2",
+            "NewMauville_Inside_EventScript_SetGeneratorOffMetatiles"
+          ],
+          "line": 40,
+          "raw": "call_if_eq VAR_NEW_MAUVILLE_STATE, 2, NewMauville_Inside_EventScript_SetGeneratorOffMetatiles",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 41,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "NewMauville_Inside_EventScript_SetGeneratorOffMetatiles",
+          "line": 40
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_BlueButton": {
+      "label": "NewMauville_Inside_EventScript_BlueButton",
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 44,
+          "raw": "lockall",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 45,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "0"
+          ],
+          "line": 46,
+          "raw": "setvar VAR_TEMP_2, 0",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 47,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "NewMauville_Inside_EventScript_SetBarrierStateBlueButton"
+          ],
+          "line": 48,
+          "raw": "call NewMauville_Inside_EventScript_SetBarrierStateBlueButton",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 49,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 50,
+          "raw": "releaseall",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 51,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "NewMauville_Inside_EventScript_SetBarrierStateBlueButton",
+          "line": 48
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_GreenButton": {
+      "label": "NewMauville_Inside_EventScript_GreenButton",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 54,
+          "raw": "lockall",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "0"
+          ],
+          "line": 55,
+          "raw": "setvar VAR_TEMP_1, 0",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_2",
+            "1"
+          ],
+          "line": 56,
+          "raw": "setvar VAR_TEMP_2, 1",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 57,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "NewMauville_Inside_EventScript_SetBarrierStateGreenButton"
+          ],
+          "line": 58,
+          "raw": "call NewMauville_Inside_EventScript_SetBarrierStateGreenButton",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 59,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 60,
+          "raw": "releaseall",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 61,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "NewMauville_Inside_EventScript_SetBarrierStateGreenButton",
+          "line": 58
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_SetBarrierStateBlueButton": {
+      "label": "NewMauville_Inside_EventScript_SetBarrierStateBlueButton",
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "23",
+            "34",
+            "METATILE_BikeShop_Barrier_Hidden_Top",
+            "TRUE"
+          ],
+          "line": 64,
+          "raw": "setmetatile 23, 34, METATILE_BikeShop_Barrier_Hidden_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "23",
+            "35",
+            "METATILE_BikeShop_Barrier_Hidden_Bottom",
+            "TRUE"
+          ],
+          "line": 65,
+          "raw": "setmetatile 23, 35, METATILE_BikeShop_Barrier_Hidden_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "23",
+            "36",
+            "METATILE_BikeShop_Floor_Shadow_Top",
+            "FALSE"
+          ],
+          "line": 66,
+          "raw": "setmetatile 23, 36, METATILE_BikeShop_Floor_Shadow_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "23",
+            "37",
+            "METATILE_BikeShop_Wall_Edge_Top",
+            "FALSE"
+          ],
+          "line": 67,
+          "raw": "setmetatile 23, 37, METATILE_BikeShop_Wall_Edge_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "16",
+            "METATILE_BikeShop_Barrier_Hidden_Top",
+            "TRUE"
+          ],
+          "line": 68,
+          "raw": "setmetatile 10, 16, METATILE_BikeShop_Barrier_Hidden_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "17",
+            "METATILE_BikeShop_Barrier_Hidden_Bottom",
+            "TRUE"
+          ],
+          "line": 69,
+          "raw": "setmetatile 10, 17, METATILE_BikeShop_Barrier_Hidden_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "18",
+            "METATILE_BikeShop_Floor_Shadow_Top",
+            "FALSE"
+          ],
+          "line": 70,
+          "raw": "setmetatile 10, 18, METATILE_BikeShop_Floor_Shadow_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "19",
+            "METATILE_BikeShop_Wall_Edge_Top",
+            "FALSE"
+          ],
+          "line": 71,
+          "raw": "setmetatile 10, 19, METATILE_BikeShop_Wall_Edge_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "0",
+            "METATILE_BikeShop_Barrier_Hidden_Top",
+            "TRUE"
+          ],
+          "line": 72,
+          "raw": "setmetatile 10, 0, METATILE_BikeShop_Barrier_Hidden_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "1",
+            "METATILE_BikeShop_Barrier_Hidden_Bottom",
+            "TRUE"
+          ],
+          "line": 73,
+          "raw": "setmetatile 10, 1, METATILE_BikeShop_Barrier_Hidden_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "2",
+            "METATILE_BikeShop_Floor_Shadow_Top",
+            "FALSE"
+          ],
+          "line": 74,
+          "raw": "setmetatile 10, 2, METATILE_BikeShop_Floor_Shadow_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "3",
+            "METATILE_BikeShop_Wall_Edge_Top",
+            "FALSE"
+          ],
+          "line": 75,
+          "raw": "setmetatile 10, 3, METATILE_BikeShop_Wall_Edge_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "37",
+            "33",
+            "METATILE_BikeShop_Barrier_Green_Top",
+            "TRUE"
+          ],
+          "line": 76,
+          "raw": "setmetatile 37, 33, METATILE_BikeShop_Barrier_Green_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "37",
+            "34",
+            "METATILE_BikeShop_Barrier_Green_TopMid",
+            "TRUE"
+          ],
+          "line": 77,
+          "raw": "setmetatile 37, 34, METATILE_BikeShop_Barrier_Green_TopMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "37",
+            "35",
+            "METATILE_BikeShop_Barrier_Green_BottomMid",
+            "TRUE"
+          ],
+          "line": 78,
+          "raw": "setmetatile 37, 35, METATILE_BikeShop_Barrier_Green_BottomMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "37",
+            "36",
+            "METATILE_BikeShop_Barrier_Green_Bottom",
+            "TRUE"
+          ],
+          "line": 79,
+          "raw": "setmetatile 37, 36, METATILE_BikeShop_Barrier_Green_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "28",
+            "22",
+            "METATILE_BikeShop_Barrier_Green_Top",
+            "TRUE"
+          ],
+          "line": 80,
+          "raw": "setmetatile 28, 22, METATILE_BikeShop_Barrier_Green_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "28",
+            "23",
+            "METATILE_BikeShop_Barrier_Green_TopMid",
+            "TRUE"
+          ],
+          "line": 81,
+          "raw": "setmetatile 28, 23, METATILE_BikeShop_Barrier_Green_TopMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "28",
+            "24",
+            "METATILE_BikeShop_Barrier_Green_BottomMid",
+            "TRUE"
+          ],
+          "line": 82,
+          "raw": "setmetatile 28, 24, METATILE_BikeShop_Barrier_Green_BottomMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "28",
+            "25",
+            "METATILE_BikeShop_Barrier_Green_Bottom",
+            "TRUE"
+          ],
+          "line": 83,
+          "raw": "setmetatile 28, 25, METATILE_BikeShop_Barrier_Green_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "24",
+            "METATILE_BikeShop_Barrier_Green_Top",
+            "TRUE"
+          ],
+          "line": 84,
+          "raw": "setmetatile 10, 24, METATILE_BikeShop_Barrier_Green_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "25",
+            "METATILE_BikeShop_Barrier_Green_TopMid",
+            "TRUE"
+          ],
+          "line": 85,
+          "raw": "setmetatile 10, 25, METATILE_BikeShop_Barrier_Green_TopMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "26",
+            "METATILE_BikeShop_Barrier_Green_BottomMid",
+            "TRUE"
+          ],
+          "line": 86,
+          "raw": "setmetatile 10, 26, METATILE_BikeShop_Barrier_Green_BottomMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "27",
+            "METATILE_BikeShop_Barrier_Green_Bottom",
+            "TRUE"
+          ],
+          "line": 87,
+          "raw": "setmetatile 10, 27, METATILE_BikeShop_Barrier_Green_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "21",
+            "2",
+            "METATILE_BikeShop_Barrier_Green_Top",
+            "TRUE"
+          ],
+          "line": 88,
+          "raw": "setmetatile 21, 2, METATILE_BikeShop_Barrier_Green_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "21",
+            "3",
+            "METATILE_BikeShop_Barrier_Green_TopMid",
+            "TRUE"
+          ],
+          "line": 89,
+          "raw": "setmetatile 21, 3, METATILE_BikeShop_Barrier_Green_TopMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "21",
+            "4",
+            "METATILE_BikeShop_Barrier_Green_BottomMid",
+            "TRUE"
+          ],
+          "line": 90,
+          "raw": "setmetatile 21, 4, METATILE_BikeShop_Barrier_Green_BottomMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "21",
+            "5",
+            "METATILE_BikeShop_Barrier_Green_Bottom",
+            "TRUE"
+          ],
+          "line": 91,
+          "raw": "setmetatile 21, 5, METATILE_BikeShop_Barrier_Green_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "11",
+            "METATILE_BikeShop_Button_Pressed",
+            "FALSE"
+          ],
+          "line": 92,
+          "raw": "setmetatile 6, 11, METATILE_BikeShop_Button_Pressed, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "13",
+            "10",
+            "METATILE_BikeShop_Button_Pressed",
+            "FALSE"
+          ],
+          "line": 93,
+          "raw": "setmetatile 13, 10, METATILE_BikeShop_Button_Pressed, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "16",
+            "22",
+            "METATILE_BikeShop_Button_Pressed",
+            "FALSE"
+          ],
+          "line": 94,
+          "raw": "setmetatile 16, 22, METATILE_BikeShop_Button_Pressed, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "4",
+            "26",
+            "METATILE_BikeShop_Button_Pressed",
+            "FALSE"
+          ],
+          "line": 95,
+          "raw": "setmetatile 4, 26, METATILE_BikeShop_Button_Pressed, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "30",
+            "38",
+            "METATILE_BikeShop_Button_Pressed",
+            "FALSE"
+          ],
+          "line": 96,
+          "raw": "setmetatile 30, 38, METATILE_BikeShop_Button_Pressed, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "2",
+            "11",
+            "METATILE_BikeShop_Button_Green",
+            "FALSE"
+          ],
+          "line": 97,
+          "raw": "setmetatile 2, 11, METATILE_BikeShop_Button_Green, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "17",
+            "10",
+            "METATILE_BikeShop_Button_Green",
+            "FALSE"
+          ],
+          "line": 98,
+          "raw": "setmetatile 17, 10, METATILE_BikeShop_Button_Green, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "25",
+            "18",
+            "METATILE_BikeShop_Button_Green",
+            "FALSE"
+          ],
+          "line": 99,
+          "raw": "setmetatile 25, 18, METATILE_BikeShop_Button_Green, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "18",
+            "36",
+            "METATILE_BikeShop_Button_Green",
+            "FALSE"
+          ],
+          "line": 100,
+          "raw": "setmetatile 18, 36, METATILE_BikeShop_Button_Green, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 101,
+          "raw": "return",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NewMauville_Inside_EventScript_SetBarrierStateGreenButton": {
+      "label": "NewMauville_Inside_EventScript_SetBarrierStateGreenButton",
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "23",
+            "34",
+            "METATILE_BikeShop_Barrier_Blue_Top",
+            "TRUE"
+          ],
+          "line": 104,
+          "raw": "setmetatile 23, 34, METATILE_BikeShop_Barrier_Blue_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "23",
+            "35",
+            "METATILE_BikeShop_Barrier_Blue_TopMid",
+            "TRUE"
+          ],
+          "line": 105,
+          "raw": "setmetatile 23, 35, METATILE_BikeShop_Barrier_Blue_TopMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "23",
+            "36",
+            "METATILE_BikeShop_Barrier_Blue_BottomMid",
+            "TRUE"
+          ],
+          "line": 106,
+          "raw": "setmetatile 23, 36, METATILE_BikeShop_Barrier_Blue_BottomMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "23",
+            "37",
+            "METATILE_BikeShop_Barrier_Blue_Bottom",
+            "TRUE"
+          ],
+          "line": 107,
+          "raw": "setmetatile 23, 37, METATILE_BikeShop_Barrier_Blue_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "16",
+            "METATILE_BikeShop_Barrier_Blue_Top",
+            "TRUE"
+          ],
+          "line": 108,
+          "raw": "setmetatile 10, 16, METATILE_BikeShop_Barrier_Blue_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "17",
+            "METATILE_BikeShop_Barrier_Blue_TopMid",
+            "TRUE"
+          ],
+          "line": 109,
+          "raw": "setmetatile 10, 17, METATILE_BikeShop_Barrier_Blue_TopMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "18",
+            "METATILE_BikeShop_Barrier_Blue_BottomMid",
+            "TRUE"
+          ],
+          "line": 110,
+          "raw": "setmetatile 10, 18, METATILE_BikeShop_Barrier_Blue_BottomMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "19",
+            "METATILE_BikeShop_Barrier_Blue_Bottom",
+            "TRUE"
+          ],
+          "line": 111,
+          "raw": "setmetatile 10, 19, METATILE_BikeShop_Barrier_Blue_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "0",
+            "METATILE_BikeShop_Barrier_Blue_Top",
+            "TRUE"
+          ],
+          "line": 112,
+          "raw": "setmetatile 10, 0, METATILE_BikeShop_Barrier_Blue_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "1",
+            "METATILE_BikeShop_Barrier_Blue_TopMid",
+            "TRUE"
+          ],
+          "line": 113,
+          "raw": "setmetatile 10, 1, METATILE_BikeShop_Barrier_Blue_TopMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "2",
+            "METATILE_BikeShop_Barrier_Blue_BottomMid",
+            "TRUE"
+          ],
+          "line": 114,
+          "raw": "setmetatile 10, 2, METATILE_BikeShop_Barrier_Blue_BottomMid, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "3",
+            "METATILE_BikeShop_Barrier_Blue_Bottom",
+            "TRUE"
+          ],
+          "line": 115,
+          "raw": "setmetatile 10, 3, METATILE_BikeShop_Barrier_Blue_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "37",
+            "33",
+            "METATILE_BikeShop_Barrier_Hidden_Top",
+            "TRUE"
+          ],
+          "line": 116,
+          "raw": "setmetatile 37, 33, METATILE_BikeShop_Barrier_Hidden_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "37",
+            "34",
+            "METATILE_BikeShop_Barrier_Hidden_Bottom",
+            "TRUE"
+          ],
+          "line": 117,
+          "raw": "setmetatile 37, 34, METATILE_BikeShop_Barrier_Hidden_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "37",
+            "35",
+            "METATILE_BikeShop_Floor_Shadow_Top",
+            "FALSE"
+          ],
+          "line": 118,
+          "raw": "setmetatile 37, 35, METATILE_BikeShop_Floor_Shadow_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "37",
+            "36",
+            "METATILE_BikeShop_Wall_Edge_Top",
+            "FALSE"
+          ],
+          "line": 119,
+          "raw": "setmetatile 37, 36, METATILE_BikeShop_Wall_Edge_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "28",
+            "22",
+            "METATILE_BikeShop_Barrier_Hidden_Top",
+            "TRUE"
+          ],
+          "line": 120,
+          "raw": "setmetatile 28, 22, METATILE_BikeShop_Barrier_Hidden_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "28",
+            "23",
+            "METATILE_BikeShop_Barrier_Hidden_Bottom",
+            "TRUE"
+          ],
+          "line": 121,
+          "raw": "setmetatile 28, 23, METATILE_BikeShop_Barrier_Hidden_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "28",
+            "24",
+            "METATILE_BikeShop_Floor_Shadow_Top",
+            "FALSE"
+          ],
+          "line": 122,
+          "raw": "setmetatile 28, 24, METATILE_BikeShop_Floor_Shadow_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "28",
+            "25",
+            "METATILE_BikeShop_Wall_Edge_Top",
+            "FALSE"
+          ],
+          "line": 123,
+          "raw": "setmetatile 28, 25, METATILE_BikeShop_Wall_Edge_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "24",
+            "METATILE_BikeShop_Barrier_Hidden_Top",
+            "TRUE"
+          ],
+          "line": 124,
+          "raw": "setmetatile 10, 24, METATILE_BikeShop_Barrier_Hidden_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "25",
+            "METATILE_BikeShop_Barrier_Hidden_Bottom",
+            "TRUE"
+          ],
+          "line": 125,
+          "raw": "setmetatile 10, 25, METATILE_BikeShop_Barrier_Hidden_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "26",
+            "METATILE_BikeShop_Floor_Shadow_Top",
+            "FALSE"
+          ],
+          "line": 126,
+          "raw": "setmetatile 10, 26, METATILE_BikeShop_Floor_Shadow_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "10",
+            "27",
+            "METATILE_BikeShop_Wall_Edge_Top",
+            "FALSE"
+          ],
+          "line": 127,
+          "raw": "setmetatile 10, 27, METATILE_BikeShop_Wall_Edge_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "21",
+            "2",
+            "METATILE_BikeShop_Barrier_Hidden_Top",
+            "TRUE"
+          ],
+          "line": 128,
+          "raw": "setmetatile 21, 2, METATILE_BikeShop_Barrier_Hidden_Top, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "21",
+            "3",
+            "METATILE_BikeShop_Barrier_Hidden_Bottom",
+            "TRUE"
+          ],
+          "line": 129,
+          "raw": "setmetatile 21, 3, METATILE_BikeShop_Barrier_Hidden_Bottom, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "21",
+            "4",
+            "METATILE_BikeShop_Floor_Shadow_Top",
+            "FALSE"
+          ],
+          "line": 130,
+          "raw": "setmetatile 21, 4, METATILE_BikeShop_Floor_Shadow_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "21",
+            "5",
+            "METATILE_BikeShop_Wall_Edge_Top",
+            "FALSE"
+          ],
+          "line": 131,
+          "raw": "setmetatile 21, 5, METATILE_BikeShop_Wall_Edge_Top, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "2",
+            "11",
+            "METATILE_BikeShop_Button_Pressed",
+            "FALSE"
+          ],
+          "line": 132,
+          "raw": "setmetatile 2, 11, METATILE_BikeShop_Button_Pressed, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "17",
+            "10",
+            "METATILE_BikeShop_Button_Pressed",
+            "FALSE"
+          ],
+          "line": 133,
+          "raw": "setmetatile 17, 10, METATILE_BikeShop_Button_Pressed, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "25",
+            "18",
+            "METATILE_BikeShop_Button_Pressed",
+            "FALSE"
+          ],
+          "line": 134,
+          "raw": "setmetatile 25, 18, METATILE_BikeShop_Button_Pressed, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "18",
+            "36",
+            "METATILE_BikeShop_Button_Pressed",
+            "FALSE"
+          ],
+          "line": 135,
+          "raw": "setmetatile 18, 36, METATILE_BikeShop_Button_Pressed, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "11",
+            "METATILE_BikeShop_Button_Blue",
+            "FALSE"
+          ],
+          "line": 136,
+          "raw": "setmetatile 6, 11, METATILE_BikeShop_Button_Blue, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "13",
+            "10",
+            "METATILE_BikeShop_Button_Blue",
+            "FALSE"
+          ],
+          "line": 137,
+          "raw": "setmetatile 13, 10, METATILE_BikeShop_Button_Blue, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "16",
+            "22",
+            "METATILE_BikeShop_Button_Blue",
+            "FALSE"
+          ],
+          "line": 138,
+          "raw": "setmetatile 16, 22, METATILE_BikeShop_Button_Blue, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "4",
+            "26",
+            "METATILE_BikeShop_Button_Blue",
+            "FALSE"
+          ],
+          "line": 139,
+          "raw": "setmetatile 4, 26, METATILE_BikeShop_Button_Blue, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "30",
+            "38",
+            "METATILE_BikeShop_Button_Blue",
+            "FALSE"
+          ],
+          "line": 140,
+          "raw": "setmetatile 30, 38, METATILE_BikeShop_Button_Blue, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 141,
+          "raw": "return",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NewMauville_Inside_EventScript_RedButton": {
+      "label": "NewMauville_Inside_EventScript_RedButton",
+      "kind": "script",
+      "line": 143,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 144,
+          "raw": "lockall",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 145,
+          "raw": "msgbox NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped, MSGBOX_DEFAULT",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "NewMauville_Inside_EventScript_SetGeneratorOffMetatiles"
+          ],
+          "line": 146,
+          "raw": "call NewMauville_Inside_EventScript_SetGeneratorOffMetatiles",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_NEW_MAUVILLE_STATE",
+            "2"
+          ],
+          "line": 147,
+          "raw": "setvar VAR_NEW_MAUVILLE_STATE, 2",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 148,
+          "raw": "releaseall",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 149,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 145
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "NewMauville_Inside_EventScript_SetGeneratorOffMetatiles",
+          "line": 146
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_SetGeneratorOffMetatiles": {
+      "label": "NewMauville_Inside_EventScript_SetGeneratorOffMetatiles",
+      "kind": "script",
+      "line": 151,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "33",
+            "6",
+            "METATILE_BikeShop_Button_Pressed",
+            "FALSE"
+          ],
+          "line": 152,
+          "raw": "setmetatile 33, 6, METATILE_BikeShop_Button_Pressed, FALSE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "32",
+            "2",
+            "METATILE_BikeShop_Generator_Off_Tile0",
+            "TRUE"
+          ],
+          "line": 153,
+          "raw": "setmetatile 32, 2, METATILE_BikeShop_Generator_Off_Tile0, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "33",
+            "2",
+            "METATILE_BikeShop_Generator_Off_Tile1",
+            "TRUE"
+          ],
+          "line": 154,
+          "raw": "setmetatile 33, 2, METATILE_BikeShop_Generator_Off_Tile1, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "34",
+            "2",
+            "METATILE_BikeShop_Generator_Off_Tile2",
+            "TRUE"
+          ],
+          "line": 155,
+          "raw": "setmetatile 34, 2, METATILE_BikeShop_Generator_Off_Tile2, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "35",
+            "2",
+            "METATILE_BikeShop_Generator_Off_Tile3",
+            "TRUE"
+          ],
+          "line": 156,
+          "raw": "setmetatile 35, 2, METATILE_BikeShop_Generator_Off_Tile3, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "32",
+            "3",
+            "METATILE_BikeShop_Generator_Off_Tile4",
+            "TRUE"
+          ],
+          "line": 157,
+          "raw": "setmetatile 32, 3, METATILE_BikeShop_Generator_Off_Tile4, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "33",
+            "3",
+            "METATILE_BikeShop_Generator_Off_Tile5",
+            "TRUE"
+          ],
+          "line": 158,
+          "raw": "setmetatile 33, 3, METATILE_BikeShop_Generator_Off_Tile5, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "34",
+            "3",
+            "METATILE_BikeShop_Generator_Off_Tile6",
+            "TRUE"
+          ],
+          "line": 159,
+          "raw": "setmetatile 34, 3, METATILE_BikeShop_Generator_Off_Tile6, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "35",
+            "3",
+            "METATILE_BikeShop_Generator_Off_Tile7",
+            "TRUE"
+          ],
+          "line": 160,
+          "raw": "setmetatile 35, 3, METATILE_BikeShop_Generator_Off_Tile7, TRUE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 161,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 162,
+          "raw": "return",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NewMauville_Inside_EventScript_Generator": {
+      "label": "NewMauville_Inside_EventScript_Generator",
+      "kind": "script",
+      "line": 164,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 165,
+          "raw": "lockall",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_NEW_MAUVILLE_STATE",
+            "2",
+            "NewMauville_Inside_EventScript_GeneratorOff"
+          ],
+          "line": 166,
+          "raw": "goto_if_eq VAR_NEW_MAUVILLE_STATE, 2, NewMauville_Inside_EventScript_GeneratorOff",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "NewMauville_Inside_Text_GeneratorRadiatingHeat",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 167,
+          "raw": "msgbox NewMauville_Inside_Text_GeneratorRadiatingHeat, MSGBOX_DEFAULT",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 168,
+          "raw": "releaseall",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 169,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "NewMauville_Inside_Text_GeneratorRadiatingHeat",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 167
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "NewMauville_Inside_EventScript_GeneratorOff",
+          "line": 166
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_GeneratorOff": {
+      "label": "NewMauville_Inside_EventScript_GeneratorOff",
+      "kind": "script",
+      "line": 171,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "NewMauville_Inside_Text_GeneratorQuietedDown",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 172,
+          "raw": "msgbox NewMauville_Inside_Text_GeneratorQuietedDown, MSGBOX_DEFAULT",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 173,
+          "raw": "releaseall",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 174,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "NewMauville_Inside_Text_GeneratorQuietedDown",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 172
+        }
+      ],
+      "branch_targets": []
+    },
+    "NewMauville_Inside_EventScript_Voltorb1": {
+      "label": "NewMauville_Inside_EventScript_Voltorb1",
+      "kind": "script",
+      "line": 176,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 177,
+          "raw": "lock",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 178,
+          "raw": "faceplayer",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setwildbattle",
+          "args": [
+            "SPECIES_VOLTORB",
+            "25"
+          ],
+          "line": 179,
+          "raw": "setwildbattle SPECIES_VOLTORB, 25",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 180,
+          "raw": "waitse",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_VOLTORB",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 181,
+          "raw": "playmoncry SPECIES_VOLTORB, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 182,
+          "raw": "delay 40",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 183,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 184,
+          "raw": "setflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "dowildbattle",
+          "args": [],
+          "line": 185,
+          "raw": "dowildbattle",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 186,
+          "raw": "clearflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 187,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_WON",
+            "NewMauville_Inside_EventScript_DefeatedVoltorb1"
+          ],
+          "line": 188,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_WON, NewMauville_Inside_EventScript_DefeatedVoltorb1",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_RAN",
+            "NewMauville_Inside_EventScript_DefeatedVoltorb1"
+          ],
+          "line": 189,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_RAN, NewMauville_Inside_EventScript_DefeatedVoltorb1",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_PLAYER_TELEPORTED",
+            "NewMauville_Inside_EventScript_DefeatedVoltorb1"
+          ],
+          "line": 190,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, NewMauville_Inside_EventScript_DefeatedVoltorb1",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE"
+          ],
+          "line": 191,
+          "raw": "setflag FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 192,
+          "raw": "release",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 193,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "NewMauville_Inside_EventScript_DefeatedVoltorb1",
+          "line": 188
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "NewMauville_Inside_EventScript_DefeatedVoltorb1",
+          "line": 189
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "NewMauville_Inside_EventScript_DefeatedVoltorb1",
+          "line": 190
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_DefeatedVoltorb1": {
+      "label": "NewMauville_Inside_EventScript_DefeatedVoltorb1",
+      "kind": "script",
+      "line": 195,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE"
+          ],
+          "line": 196,
+          "raw": "setflag FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_RemoveStaticPokemon"
+          ],
+          "line": 197,
+          "raw": "goto Common_EventScript_RemoveStaticPokemon",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 198,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_RemoveStaticPokemon",
+          "line": 197
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_Voltorb2": {
+      "label": "NewMauville_Inside_EventScript_Voltorb2",
+      "kind": "script",
+      "line": 200,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 201,
+          "raw": "lock",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 202,
+          "raw": "faceplayer",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setwildbattle",
+          "args": [
+            "SPECIES_VOLTORB",
+            "25"
+          ],
+          "line": 203,
+          "raw": "setwildbattle SPECIES_VOLTORB, 25",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 204,
+          "raw": "waitse",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_VOLTORB",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 205,
+          "raw": "playmoncry SPECIES_VOLTORB, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 206,
+          "raw": "delay 40",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 207,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 208,
+          "raw": "setflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "dowildbattle",
+          "args": [],
+          "line": 209,
+          "raw": "dowildbattle",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 210,
+          "raw": "clearflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 211,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_WON",
+            "NewMauville_Inside_EventScript_DefeatedVoltorb2"
+          ],
+          "line": 212,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_WON, NewMauville_Inside_EventScript_DefeatedVoltorb2",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_RAN",
+            "NewMauville_Inside_EventScript_DefeatedVoltorb2"
+          ],
+          "line": 213,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_RAN, NewMauville_Inside_EventScript_DefeatedVoltorb2",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_PLAYER_TELEPORTED",
+            "NewMauville_Inside_EventScript_DefeatedVoltorb2"
+          ],
+          "line": 214,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, NewMauville_Inside_EventScript_DefeatedVoltorb2",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE"
+          ],
+          "line": 215,
+          "raw": "setflag FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 216,
+          "raw": "release",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 217,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "NewMauville_Inside_EventScript_DefeatedVoltorb2",
+          "line": 212
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "NewMauville_Inside_EventScript_DefeatedVoltorb2",
+          "line": 213
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "NewMauville_Inside_EventScript_DefeatedVoltorb2",
+          "line": 214
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_DefeatedVoltorb2": {
+      "label": "NewMauville_Inside_EventScript_DefeatedVoltorb2",
+      "kind": "script",
+      "line": 219,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE"
+          ],
+          "line": 220,
+          "raw": "setflag FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_RemoveStaticPokemon"
+          ],
+          "line": 221,
+          "raw": "goto Common_EventScript_RemoveStaticPokemon",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 222,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_RemoveStaticPokemon",
+          "line": 221
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_Voltorb3": {
+      "label": "NewMauville_Inside_EventScript_Voltorb3",
+      "kind": "script",
+      "line": 224,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 225,
+          "raw": "lock",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 226,
+          "raw": "faceplayer",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setwildbattle",
+          "args": [
+            "SPECIES_VOLTORB",
+            "25"
+          ],
+          "line": 227,
+          "raw": "setwildbattle SPECIES_VOLTORB, 25",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 228,
+          "raw": "waitse",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_VOLTORB",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 229,
+          "raw": "playmoncry SPECIES_VOLTORB, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 230,
+          "raw": "delay 40",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 231,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 232,
+          "raw": "setflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "dowildbattle",
+          "args": [],
+          "line": 233,
+          "raw": "dowildbattle",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 234,
+          "raw": "clearflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 235,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_WON",
+            "NewMauville_Inside_EventScript_DefeatedVoltorb3"
+          ],
+          "line": 236,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_WON, NewMauville_Inside_EventScript_DefeatedVoltorb3",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_RAN",
+            "NewMauville_Inside_EventScript_DefeatedVoltorb3"
+          ],
+          "line": 237,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_RAN, NewMauville_Inside_EventScript_DefeatedVoltorb3",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_PLAYER_TELEPORTED",
+            "NewMauville_Inside_EventScript_DefeatedVoltorb3"
+          ],
+          "line": 238,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, NewMauville_Inside_EventScript_DefeatedVoltorb3",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE"
+          ],
+          "line": 239,
+          "raw": "setflag FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 240,
+          "raw": "release",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 241,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "NewMauville_Inside_EventScript_DefeatedVoltorb3",
+          "line": 236
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "NewMauville_Inside_EventScript_DefeatedVoltorb3",
+          "line": 237
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "NewMauville_Inside_EventScript_DefeatedVoltorb3",
+          "line": 238
+        }
+      ]
+    },
+    "NewMauville_Inside_EventScript_DefeatedVoltorb3": {
+      "label": "NewMauville_Inside_EventScript_DefeatedVoltorb3",
+      "kind": "script",
+      "line": 243,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE"
+          ],
+          "line": 244,
+          "raw": "setflag FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_RemoveStaticPokemon"
+          ],
+          "line": 245,
+          "raw": "goto Common_EventScript_RemoveStaticPokemon",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 246,
+          "raw": "end",
+          "source_file": "data/maps/NewMauville_Inside/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_RemoveStaticPokemon",
+          "line": 245
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {
+    "NewMauville_Inside_Text_GeneratorRadiatingHeat": {
+      "label": "NewMauville_Inside_Text_GeneratorRadiatingHeat",
+      "line": 248,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "raw_text": "在很远的地方就能感觉到\\n发电机散发出的热量。\\p看来必须赶紧\\n关掉它。$",
+      "display_text": "在很远的地方就能感觉到\n发电机散发出的热量。\n\n看来必须赶紧\n关掉它。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 64,
+        "bytes": [
+          15,
+          230,
+          5,
+          11,
+          15,
+          194,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          7,
+          125,
+          9,
+          210,
+          4,
+          58,
+          7,
+          165,
+          3,
+          4,
+          254,
+          3,
+          165,
+          3,
+          46,
+          5,
+          135,
+          11,
+          128,
+          3,
+          165,
+          2,
+          120,
+          3,
+          11,
+          11,
+          72,
+          8,
+          146,
+          55,
+          251,
+          7,
+          194,
+          8,
+          41,
+          1,
+          149,
+          14,
+          118,
+          4,
+          57,
+          7,
+          70,
+          254,
+          4,
+          160,
+          3,
+          59,
+          12,
+          159,
+          55,
+          255
+        ],
+        "hex": "0F E6 05 0B 0F C2 03 0B 03 1F 03 C0 07 7D 09 D2 04 3A 07 A5 03 04 FE 03 A5 03 2E 05 87 0B 80 03 A5 02 78 03 0B 0B 48 08 92 37 FB 07 C2 08 29 01 95 0E 76 04 39 07 46 FE 04 A0 03 3B 0C 9F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "NewMauville_Inside_Text_GeneratorQuietedDown": {
+      "label": "NewMauville_Inside_Text_GeneratorQuietedDown",
+      "line": 251,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "raw_text": "发电机停止了。$",
+      "display_text": "发电机停止了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 14,
+        "bytes": [
+          3,
+          165,
+          3,
+          46,
+          5,
+          135,
+          13,
+          11,
+          16,
+          138,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "03 A5 03 2E 05 87 0D 0B 10 8A 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 7,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped": {
+      "label": "NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped",
+      "line": 254,
+      "source_file": "data/maps/NewMauville_Inside/scripts.inc",
+      "raw_text": "{PLAYER}踏上了开关。\\p嘀……\\p…… …… …… ……\\n…… …… …… ……\\p发电机似乎\\n停止了……$",
+      "display_text": "{PLAYER}踏上了开关。\n\n嘀……\n\n…… …… …… ……\n…… …… …… ……\n\n发电机似乎\n停止了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 63,
+        "bytes": [
+          253,
+          1,
+          12,
+          165,
+          11,
+          173,
+          8,
+          158,
+          7,
+          184,
+          4,
+          160,
+          55,
+          251,
+          20,
+          114,
+          176,
+          176,
+          251,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          254,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          251,
+          3,
+          165,
+          3,
+          46,
+          5,
+          135,
+          12,
+          105,
+          5,
+          36,
+          254,
+          13,
+          11,
+          16,
+          138,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "FD 01 0C A5 0B AD 08 9E 07 B8 04 A0 37 FB 14 72 B0 B0 FB B0 B0 00 B0 B0 00 B0 B0 00 B0 B0 FE B0 B0 00 B0 B0 00 B0 B0 00 B0 B0 FB 03 A5 03 2E 05 87 0C 69 05 24 FE 0D 0B 10 8A 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 45,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 52,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 59,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_eq": 3,
+      "call_if_set": 1,
+      "call_if_unset": 3,
+      "clearflag": 6,
+      "delay": 3,
+      "dowildbattle": 3,
+      "faceplayer": 3,
+      "goto_if_eq": 10,
+      "goto_if_ne": 1,
+      "map_script": 3,
+      "playmoncry": 3,
+      "playse": 2,
+      "removeobject": 1,
+      "setflag": 9,
+      "setmetatile": 83,
+      "setvar": 7,
+      "setwildbattle": 3,
+      "special": 3,
+      "specialvar": 4,
+      "waitmoncry": 3,
+      "waitse": 3
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 25,
+    "script_count": 22,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 141,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 3,
+      "call_if_eq": 3,
+      "call_if_set": 1,
+      "call_if_unset": 3,
+      "clearflag": 6,
+      "delay": 3,
+      "dowildbattle": 3,
+      "end": 14,
+      "faceplayer": 3,
+      "goto": 3,
+      "goto_if_eq": 10,
+      "goto_if_ne": 1,
+      "lock": 3,
+      "lockall": 4,
+      "map_script": 3,
+      "msgbox": 3,
+      "playmoncry": 3,
+      "playse": 2,
+      "release": 3,
+      "releaseall": 5,
+      "removeobject": 1,
+      "return": 7,
+      "setflag": 9,
+      "setmetatile": 83,
+      "setvar": 7,
+      "setwildbattle": 3,
+      "special": 3,
+      "specialvar": 4,
+      "waitmoncry": 3,
+      "waitse": 3
+    }
+  }
+}

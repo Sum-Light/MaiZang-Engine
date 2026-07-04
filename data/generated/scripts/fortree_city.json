@@ -1,0 +1,2463 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FortreeCity",
+    "map_script": "data/maps/FortreeCity/scripts.inc",
+    "map_json": "data/maps/FortreeCity/map.json",
+    "map_id": "MAP_FORTREE_CITY",
+    "map_name": "FortreeCity"
+  },
+  "labels": {
+    "FortreeCity_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 3
+    },
+    "FortreeCity_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "FortreeCity_OnResume": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "FortreeCity_EventScript_Man": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "FortreeCity_EventScript_Woman": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 6
+    },
+    "FortreeCity_EventScript_WomanGymAccessible": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 3
+    },
+    "FortreeCity_EventScript_Girl": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "FortreeCity_EventScript_OldMan": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "FortreeCity_EventScript_Boy": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "FortreeCity_EventScript_GameboyKid": {
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "FortreeCity_EventScript_CitySign": {
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "FortreeCity_EventScript_GymSign": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "FortreeCity_EventScript_Kecleon": {
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 7
+    },
+    "FortreeCity_EventScript_AskUseDevonScope": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 4
+    },
+    "FortreeCity_EventScript_UseDevonScope": {
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 14
+    },
+    "FortreeCity_Movement_KecleonFlee": {
+      "kind": "movement",
+      "line": 86,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "FortreeCity_Text_SawGiganticPokemonInSky": {
+      "kind": "text",
+      "line": 90,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_SomethingBlockingGym": {
+      "kind": "text",
+      "line": 93,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_ThisTimeIllBeatWinona": {
+      "kind": "text",
+      "line": 96,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_TreesGrowByDrinkingRainwater": {
+      "kind": "text",
+      "line": 99,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_EveryoneHealthyAndLively": {
+      "kind": "text",
+      "line": 102,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_BugPokemonComeThroughWindow": {
+      "kind": "text",
+      "line": 105,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_PokemonThatEvolveWhenTraded": {
+      "kind": "text",
+      "line": 108,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_SomethingUnseeable": {
+      "kind": "text",
+      "line": 111,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_UnseeableUseDevonScope": {
+      "kind": "text",
+      "line": 114,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_UsedDevonScopePokemonFled": {
+      "kind": "text",
+      "line": 117,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_CitySign": {
+      "kind": "text",
+      "line": 120,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "FortreeCity_Text_GymSign": {
+      "kind": "text",
+      "line": 123,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "FortreeCity_MapScripts": {
+      "label": "FortreeCity_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "FortreeCity_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_OnTransition",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "FortreeCity_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, FortreeCity_OnResume",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FortreeCity_OnTransition": {
+      "label": "FortreeCity_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_VISITED_FORTREE_CITY"
+          ],
+          "line": 7,
+          "raw": "setflag FLAG_VISITED_FORTREE_CITY",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FortreeCity_OnResume": {
+      "label": "FortreeCity_OnResume",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "setstepcallback",
+          "args": [
+            "STEP_CB_FORTREE_BRIDGE"
+          ],
+          "line": 11,
+          "raw": "setstepcallback STEP_CB_FORTREE_BRIDGE",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FortreeCity_EventScript_Man": {
+      "label": "FortreeCity_EventScript_Man",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_SawGiganticPokemonInSky",
+            "MSGBOX_NPC"
+          ],
+          "line": 15,
+          "raw": "msgbox FortreeCity_Text_SawGiganticPokemonInSky, MSGBOX_NPC",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_SawGiganticPokemonInSky",
+          "mode": "MSGBOX_NPC",
+          "line": 15
+        }
+      ],
+      "branch_targets": []
+    },
+    "FortreeCity_EventScript_Woman": {
+      "label": "FortreeCity_EventScript_Woman",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 19,
+          "raw": "lock",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 20,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_KECLEON_FLED_FORTREE",
+            "FortreeCity_EventScript_WomanGymAccessible"
+          ],
+          "line": 21,
+          "raw": "goto_if_set FLAG_KECLEON_FLED_FORTREE, FortreeCity_EventScript_WomanGymAccessible",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_SomethingBlockingGym",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 22,
+          "raw": "msgbox FortreeCity_Text_SomethingBlockingGym, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 23,
+          "raw": "release",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_SomethingBlockingGym",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 22
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "FortreeCity_EventScript_WomanGymAccessible",
+          "line": 21
+        }
+      ]
+    },
+    "FortreeCity_EventScript_WomanGymAccessible": {
+      "label": "FortreeCity_EventScript_WomanGymAccessible",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_ThisTimeIllBeatWinona",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 27,
+          "raw": "msgbox FortreeCity_Text_ThisTimeIllBeatWinona, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 28,
+          "raw": "release",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_ThisTimeIllBeatWinona",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 27
+        }
+      ],
+      "branch_targets": []
+    },
+    "FortreeCity_EventScript_Girl": {
+      "label": "FortreeCity_EventScript_Girl",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_TreesGrowByDrinkingRainwater",
+            "MSGBOX_NPC"
+          ],
+          "line": 32,
+          "raw": "msgbox FortreeCity_Text_TreesGrowByDrinkingRainwater, MSGBOX_NPC",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_TreesGrowByDrinkingRainwater",
+          "mode": "MSGBOX_NPC",
+          "line": 32
+        }
+      ],
+      "branch_targets": []
+    },
+    "FortreeCity_EventScript_OldMan": {
+      "label": "FortreeCity_EventScript_OldMan",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_EveryoneHealthyAndLively",
+            "MSGBOX_NPC"
+          ],
+          "line": 36,
+          "raw": "msgbox FortreeCity_Text_EveryoneHealthyAndLively, MSGBOX_NPC",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_EveryoneHealthyAndLively",
+          "mode": "MSGBOX_NPC",
+          "line": 36
+        }
+      ],
+      "branch_targets": []
+    },
+    "FortreeCity_EventScript_Boy": {
+      "label": "FortreeCity_EventScript_Boy",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_BugPokemonComeThroughWindow",
+            "MSGBOX_NPC"
+          ],
+          "line": 40,
+          "raw": "msgbox FortreeCity_Text_BugPokemonComeThroughWindow, MSGBOX_NPC",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 41,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_BugPokemonComeThroughWindow",
+          "mode": "MSGBOX_NPC",
+          "line": 40
+        }
+      ],
+      "branch_targets": []
+    },
+    "FortreeCity_EventScript_GameboyKid": {
+      "label": "FortreeCity_EventScript_GameboyKid",
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_PokemonThatEvolveWhenTraded",
+            "MSGBOX_NPC"
+          ],
+          "line": 44,
+          "raw": "msgbox FortreeCity_Text_PokemonThatEvolveWhenTraded, MSGBOX_NPC",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 45,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_PokemonThatEvolveWhenTraded",
+          "mode": "MSGBOX_NPC",
+          "line": 44
+        }
+      ],
+      "branch_targets": []
+    },
+    "FortreeCity_EventScript_CitySign": {
+      "label": "FortreeCity_EventScript_CitySign",
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_CitySign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 48,
+          "raw": "msgbox FortreeCity_Text_CitySign, MSGBOX_SIGN",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_CitySign",
+          "mode": "MSGBOX_SIGN",
+          "line": 48
+        }
+      ],
+      "branch_targets": []
+    },
+    "FortreeCity_EventScript_GymSign": {
+      "label": "FortreeCity_EventScript_GymSign",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_GymSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 52,
+          "raw": "msgbox FortreeCity_Text_GymSign, MSGBOX_SIGN",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 53,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_GymSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 52
+        }
+      ],
+      "branch_targets": []
+    },
+    "FortreeCity_EventScript_Kecleon": {
+      "label": "FortreeCity_EventScript_Kecleon",
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 56,
+          "raw": "lock",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 57,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "checkitem",
+          "args": [
+            "ITEM_DEVON_SCOPE"
+          ],
+          "line": 58,
+          "raw": "checkitem ITEM_DEVON_SCOPE",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "FortreeCity_EventScript_AskUseDevonScope"
+          ],
+          "line": 59,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, FortreeCity_EventScript_AskUseDevonScope",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_SomethingUnseeable",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 60,
+          "raw": "msgbox FortreeCity_Text_SomethingUnseeable, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 61,
+          "raw": "release",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_SomethingUnseeable",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 60
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "FortreeCity_EventScript_AskUseDevonScope",
+          "line": 59
+        }
+      ]
+    },
+    "FortreeCity_EventScript_AskUseDevonScope": {
+      "label": "FortreeCity_EventScript_AskUseDevonScope",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_UnseeableUseDevonScope",
+            "MSGBOX_YESNO"
+          ],
+          "line": 65,
+          "raw": "msgbox FortreeCity_Text_UnseeableUseDevonScope, MSGBOX_YESNO",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "FortreeCity_EventScript_UseDevonScope"
+          ],
+          "line": 66,
+          "raw": "goto_if_eq VAR_RESULT, YES, FortreeCity_EventScript_UseDevonScope",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 67,
+          "raw": "release",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 68,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_UnseeableUseDevonScope",
+          "mode": "MSGBOX_YESNO",
+          "line": 65
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "FortreeCity_EventScript_UseDevonScope",
+          "line": 66
+        }
+      ]
+    },
+    "FortreeCity_EventScript_UseDevonScope": {
+      "label": "FortreeCity_EventScript_UseDevonScope",
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FortreeCity_Text_UsedDevonScopePokemonFled",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 71,
+          "raw": "msgbox FortreeCity_Text_UsedDevonScopePokemonFled, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 72,
+          "raw": "closemessage",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Movement_KecleonAppears"
+          ],
+          "line": 73,
+          "raw": "applymovement VAR_LAST_TALKED, Movement_KecleonAppears",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 74,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 75,
+          "raw": "waitse",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_KECLEON",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 76,
+          "raw": "playmoncry SPECIES_KECLEON, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 77,
+          "raw": "delay 40",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 78,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "FortreeCity_Movement_KecleonFlee"
+          ],
+          "line": 79,
+          "raw": "applymovement VAR_LAST_TALKED, FortreeCity_Movement_KecleonFlee",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 80,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "VAR_LAST_TALKED"
+          ],
+          "line": 81,
+          "raw": "removeobject VAR_LAST_TALKED",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_KECLEON_FLED_FORTREE"
+          ],
+          "line": 82,
+          "raw": "setflag FLAG_KECLEON_FLED_FORTREE",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 83,
+          "raw": "release",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 84,
+          "raw": "end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FortreeCity_Text_UsedDevonScopePokemonFled",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 71
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "FortreeCity_Movement_KecleonFlee": {
+      "label": "FortreeCity_Movement_KecleonFlee",
+      "kind": "movement",
+      "line": 86,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 87,
+          "raw": "walk_right",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 88,
+          "raw": "step_end",
+          "source_file": "data/maps/FortreeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "FortreeCity_Text_SawGiganticPokemonInSky": {
+      "label": "FortreeCity_Text_SawGiganticPokemonInSky",
+      "line": 90,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "没人肯相信我，但我确实在天空中\\n看到了巨大的宝可梦。\\p它好像在辗转着\\n飞向131号水路。\\p话说……\\n唔唔……你身上，呃……好像有焦味。\\p你刚从火山或什么地方来吗？$",
+      "display_text": "没人肯相信我，但我确实在天空中\n看到了巨大的宝可梦。\n\n它好像在辗转着\n飞向131号水路。\n\n话说……\n唔唔……你身上，呃……好像有焦味。\n\n你刚从火山或什么地方来吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 142,
+        "bytes": [
+          9,
+          83,
+          11,
+          75,
+          7,
+          221,
+          14,
+          13,
+          14,
+          80,
+          13,
+          152,
+          59,
+          2,
+          233,
+          13,
+          152,
+          11,
+          55,
+          11,
+          241,
+          15,
+          230,
+          12,
+          237,
+          7,
+          227,
+          16,
+          161,
+          254,
+          7,
+          194,
+          3,
+          4,
+          8,
+          158,
+          7,
+          142,
+          2,
+          211,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          12,
+          159,
+          4,
+          233,
+          14,
+          30,
+          15,
+          230,
+          16,
+          42,
+          16,
+          217,
+          16,
+          244,
+          254,
+          3,
+          204,
+          14,
+          31,
+          162,
+          164,
+          162,
+          4,
+          235,
+          12,
+          81,
+          8,
+          232,
+          55,
+          251,
+          5,
+          61,
+          12,
+          88,
+          176,
+          176,
+          254,
+          20,
+          43,
+          20,
+          43,
+          176,
+          176,
+          9,
+          217,
+          11,
+          203,
+          11,
+          173,
+          59,
+          19,
+          245,
+          176,
+          176,
+          4,
+          233,
+          14,
+          30,
+          15,
+          126,
+          7,
+          11,
+          13,
+          124,
+          55,
+          251,
+          9,
+          217,
+          4,
+          63,
+          2,
+          179,
+          5,
+          125,
+          11,
+          155,
+          5,
+          127,
+          11,
+          238,
+          9,
+          76,
+          3,
+          31,
+          3,
+          192,
+          8,
+          41,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "09 53 0B 4B 07 DD 0E 0D 0E 50 0D 98 3B 02 E9 0D 98 0B 37 0B F1 0F E6 0C ED 07 E3 10 A1 FE 07 C2 03 04 08 9E 07 8E 02 D3 03 0B 01 63 07 D7 09 66 37 FB 0C 9F 04 E9 0E 1E 0F E6 10 2A 10 D9 10 F4 FE 03 CC 0E 1F A2 A4 A2 04 EB 0C 51 08 E8 37 FB 05 3D 0C 58 B0 B0 FE 14 2B 14 2B B0 B0 09 D9 0B CB 0B AD 3B 13 F5 B0 B0 04 E9 0E 1E 0F 7E 07 0B 0D 7C 37 FB 09 D9 04 3F 02 B3 05 7D 0B 9B 05 7F 0B EE 09 4C 03 1F 03 C0 08 29 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 27,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 47,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 53,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 72,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 87,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_SomethingBlockingGym": {
+      "label": "FortreeCity_Text_SomethingBlockingGym",
+      "line": 93,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "我想去宝可梦道馆，\\n但有东西堵了路。\\p在120号道路训练了\\n那么久，现在却……$",
+      "display_text": "我想去宝可梦道馆，\n但有东西堵了路。\n\n在120号道路训练了\n那么久，现在却……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 68,
+        "bytes": [
+          13,
+          152,
+          14,
+          24,
+          11,
+          37,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          7,
+          4,
+          165,
+          59,
+          254,
+          2,
+          233,
+          15,
+          126,
+          3,
+          80,
+          13,
+          189,
+          3,
+          103,
+          8,
+          158,
+          8,
+          232,
+          55,
+          251,
+          15,
+          230,
+          162,
+          163,
+          161,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          14,
+          158,
+          8,
+          138,
+          8,
+          158,
+          254,
+          9,
+          189,
+          9,
+          76,
+          7,
+          115,
+          59,
+          14,
+          3,
+          15,
+          230,
+          11,
+          52,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 98 0E 18 0B 25 01 63 07 D7 09 66 03 07 04 A5 3B FE 02 E9 0F 7E 03 50 0D BD 03 67 08 9E 08 E8 37 FB 0F E6 A2 A3 A1 04 EB 03 07 08 E8 0E 9E 08 8A 08 9E FE 09 BD 09 4C 07 73 3B 0E 03 0F E6 0B 34 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_ThisTimeIllBeatWinona": {
+      "label": "FortreeCity_Text_ThisTimeIllBeatWinona",
+      "line": 96,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "我带着我漂亮又可爱的\\n宝可梦一起来了。\\l这一次，我一定要打败娜琪。$",
+      "display_text": "我带着我漂亮又可爱的\n宝可梦一起来了。\n这一次，我一定要打败娜琪。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 62,
+        "bytes": [
+          13,
+          152,
+          2,
+          216,
+          16,
+          244,
+          13,
+          152,
+          10,
+          106,
+          8,
+          148,
+          15,
+          132,
+          7,
+          215,
+          1,
+          13,
+          3,
+          11,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          11,
+          10,
+          171,
+          8,
+          41,
+          8,
+          158,
+          55,
+          250,
+          16,
+          85,
+          15,
+          11,
+          2,
+          174,
+          59,
+          13,
+          152,
+          15,
+          11,
+          3,
+          77,
+          14,
+          241,
+          2,
+          210,
+          1,
+          59,
+          9,
+          190,
+          23,
+          64,
+          55,
+          255
+        ],
+        "hex": "0D 98 02 D8 10 F4 0D 98 0A 6A 08 94 0F 84 07 D7 01 0D 03 0B FE 01 63 07 D7 09 66 0F 0B 0A AB 08 29 08 9E 37 FA 10 55 0F 0B 02 AE 3B 0D 98 0F 0B 03 4D 0E F1 02 D2 01 3B 09 BE 17 40 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 20,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 35,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_TreesGrowByDrinkingRainwater": {
+      "label": "FortreeCity_Text_TreesGrowByDrinkingRainwater",
+      "line": 99,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "树木吸收了渗进地面的雨水，\\n慢慢长大……\\p我们茵郁市就是在\\n水和土地上建造起来的。$",
+      "display_text": "树木吸收了渗进地面的雨水，\n慢慢长大……\n\n我们茵郁市就是在\n水和土地上建造起来的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          12,
+          60,
+          9,
+          180,
+          13,
+          194,
+          12,
+          26,
+          8,
+          158,
+          11,
+          214,
+          7,
+          74,
+          3,
+          31,
+          9,
+          126,
+          3,
+          11,
+          15,
+          152,
+          12,
+          81,
+          59,
+          254,
+          9,
+          55,
+          9,
+          55,
+          2,
+          38,
+          2,
+          211,
+          176,
+          176,
+          251,
+          13,
+          152,
+          9,
+          95,
+          15,
+          64,
+          15,
+          162,
+          12,
+          21,
+          7,
+          125,
+          12,
+          12,
+          15,
+          230,
+          254,
+          12,
+          81,
+          4,
+          243,
+          13,
+          41,
+          3,
+          31,
+          11,
+          173,
+          5,
+          241,
+          16,
+          1,
+          10,
+          171,
+          8,
+          41,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "0C 3C 09 B4 0D C2 0C 1A 08 9E 0B D6 07 4A 03 1F 09 7E 03 0B 0F 98 0C 51 3B FE 09 37 09 37 02 26 02 D3 B0 B0 FB 0D 98 09 5F 0F 40 0F A2 0C 15 07 7D 0C 0C 0F E6 FE 0C 51 04 F3 0D 29 03 1F 0B AD 05 F1 10 01 0A AB 08 29 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_EveryoneHealthyAndLively": {
+      "label": "FortreeCity_Text_EveryoneHealthyAndLively",
+      "line": 102,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "城市中的房子\\n都建在树上。\\p也许正因这种生活方式，\\n大家都很健康，充满活力。\\p哈，我也一样——我感觉\\n好像年轻了30岁。$",
+      "display_text": "城市中的房子\n都建在树上。\n\n也许正因这种生活方式，\n大家都很健康，充满活力。\n\n哈，我也一样——我感觉\n好像年轻了30岁。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 106,
+        "bytes": [
+          2,
+          73,
+          12,
+          21,
+          16,
+          161,
+          3,
+          11,
+          3,
+          194,
+          17,
+          11,
+          254,
+          3,
+          97,
+          5,
+          241,
+          15,
+          230,
+          12,
+          60,
+          11,
+          173,
+          55,
+          251,
+          15,
+          2,
+          14,
+          120,
+          16,
+          112,
+          15,
+          66,
+          16,
+          85,
+          16,
+          167,
+          11,
+          216,
+          5,
+          123,
+          3,
+          192,
+          12,
+          2,
+          59,
+          254,
+          2,
+          211,
+          5,
+          189,
+          3,
+          97,
+          5,
+          11,
+          5,
+          234,
+          7,
+          195,
+          59,
+          2,
+          102,
+          9,
+          52,
+          5,
+          123,
+          8,
+          121,
+          55,
+          251,
+          4,
+          198,
+          59,
+          13,
+          152,
+          15,
+          2,
+          15,
+          11,
+          14,
+          226,
+          63,
+          63,
+          13,
+          152,
+          4,
+          58,
+          7,
+          165,
+          254,
+          4,
+          233,
+          14,
+          30,
+          9,
+          224,
+          11,
+          3,
+          8,
+          158,
+          164,
+          161,
+          12,
+          141,
+          55,
+          255
+        ],
+        "hex": "02 49 0C 15 10 A1 03 0B 03 C2 11 0B FE 03 61 05 F1 0F E6 0C 3C 0B AD 37 FB 0F 02 0E 78 10 70 0F 42 10 55 10 A7 0B D8 05 7B 03 C0 0C 02 3B FE 02 D3 05 BD 03 61 05 0B 05 EA 07 C3 3B 02 66 09 34 05 7B 08 79 37 FB 04 C6 3B 0D 98 0F 02 0F 0B 0E E2 3F 3F 0D 98 04 3A 07 A5 FE 04 E9 0E 1E 09 E0 0B 03 08 9E A4 A1 0C 8D 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 41,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 54,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 65,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_BugPokemonComeThroughWindow": {
+      "label": "FortreeCity_Text_BugPokemonComeThroughWindow",
+      "line": 105,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "住在树顶上\\n没什么问题，\\p但有时虫属性宝可梦会\\n从窗户爬进来，\\l经常吓人一跳。$",
+      "display_text": "住在树顶上\n没什么问题，\n\n但有时虫属性宝可梦会\n从窗户爬进来，\n经常吓人一跳。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 72,
+        "bytes": [
+          16,
+          208,
+          15,
+          230,
+          12,
+          60,
+          3,
+          74,
+          11,
+          173,
+          254,
+          9,
+          83,
+          11,
+          238,
+          9,
+          76,
+          13,
+          144,
+          12,
+          227,
+          59,
+          251,
+          2,
+          233,
+          15,
+          126,
+          11,
+          237,
+          2,
+          104,
+          12,
+          57,
+          14,
+          95,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          110,
+          254,
+          2,
+          179,
+          2,
+          144,
+          5,
+          52,
+          10,
+          29,
+          7,
+          74,
+          8,
+          41,
+          59,
+          250,
+          7,
+          93,
+          2,
+          37,
+          13,
+          233,
+          11,
+          75,
+          15,
+          11,
+          13,
+          2,
+          55,
+          255
+        ],
+        "hex": "10 D0 0F E6 0C 3C 03 4A 0B AD FE 09 53 0B EE 09 4C 0D 90 0C E3 3B FB 02 E9 0F 7E 0B ED 02 68 0C 39 0E 5F 01 63 07 D7 09 66 05 6E FE 02 B3 02 90 05 34 0A 1D 07 4A 08 29 3B FA 07 5D 02 25 0D E9 0B 4B 0F 0B 0D 02 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 34,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 43,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_PokemonThatEvolveWhenTraded": {
+      "label": "FortreeCity_Text_PokemonThatEvolveWhenTraded",
+      "line": 108,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "我听说，有些宝可梦\\n会在交换中进化！$",
+      "display_text": "我听说，有些宝可梦\n会在交换中进化！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          59,
+          15,
+          126,
+          14,
+          52,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          5,
+          110,
+          15,
+          230,
+          7,
+          13,
+          5,
+          72,
+          16,
+          161,
+          7,
+          74,
+          5,
+          60,
+          60,
+          255
+        ],
+        "hex": "0D 98 0D 07 0C 58 3B 0F 7E 0E 34 01 63 07 D7 09 66 FE 05 6E 0F E6 07 0D 05 48 10 A1 07 4A 05 3C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_SomethingUnseeable": {
+      "label": "FortreeCity_Text_SomethingUnseeable",
+      "line": 111,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "有什么看不见的东西挡在路上。$",
+      "display_text": "有什么看不见的东西挡在路上。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          15,
+          126,
+          11,
+          238,
+          9,
+          76,
+          7,
+          194,
+          1,
+          214,
+          5,
+          230,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          2,
+          240,
+          15,
+          230,
+          8,
+          232,
+          11,
+          173,
+          55,
+          255
+        ],
+        "hex": "0F 7E 0B EE 09 4C 07 C2 01 D6 05 E6 03 0B 03 50 0D BD 02 F0 0F E6 08 E8 0B AD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_UnseeableUseDevonScope": {
+      "label": "FortreeCity_Text_UnseeableUseDevonScope",
+      "line": 114,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "有什么看不见的东西挡在路上。\\p要使用得文侦测镜吗？$",
+      "display_text": "有什么看不见的东西挡在路上。\n\n要使用得文侦测镜吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          15,
+          126,
+          11,
+          238,
+          9,
+          76,
+          7,
+          194,
+          1,
+          214,
+          5,
+          230,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          2,
+          240,
+          15,
+          230,
+          8,
+          232,
+          11,
+          173,
+          55,
+          251,
+          14,
+          241,
+          11,
+          245,
+          15,
+          113,
+          3,
+          10,
+          13,
+          138,
+          16,
+          95,
+          2,
+          6,
+          7,
+          101,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0F 7E 0B EE 09 4C 07 C2 01 D6 05 E6 03 0B 03 50 0D BD 02 F0 0F E6 08 E8 0B AD 37 FB 0E F1 0B F5 0F 71 03 0A 0D 8A 10 5F 02 06 07 65 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_UsedDevonScopePokemonFled": {
+      "label": "FortreeCity_Text_UsedDevonScopePokemonFled",
+      "line": 117,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "{PLAYER}使用得文侦测镜。\\p看不见的宝可梦\\n现出了原形！\\p受惊的宝可梦溜掉了！$",
+      "display_text": "{PLAYER}使用得文侦测镜。\n\n看不见的宝可梦\n现出了原形！\n\n受惊的宝可梦溜掉了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 65,
+        "bytes": [
+          253,
+          1,
+          11,
+          245,
+          15,
+          113,
+          3,
+          10,
+          13,
+          138,
+          16,
+          95,
+          2,
+          6,
+          7,
+          101,
+          55,
+          251,
+          7,
+          194,
+          1,
+          214,
+          5,
+          230,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          14,
+          3,
+          2,
+          120,
+          8,
+          158,
+          15,
+          185,
+          14,
+          89,
+          60,
+          251,
+          12,
+          33,
+          7,
+          90,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          194,
+          3,
+          59,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "FD 01 0B F5 0F 71 03 0A 0D 8A 10 5F 02 06 07 65 37 FB 07 C2 01 D6 05 E6 03 0B 01 63 07 D7 09 66 FE 0E 03 02 78 08 9E 0F B9 0E 59 3C FB 0C 21 07 5A 03 0B 01 63 07 D7 09 66 08 C2 03 3B 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_CitySign": {
+      "label": "FortreeCity_Text_CitySign",
+      "line": 120,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "这里是茵郁市。\\n“与自然嬉戏的树上城市。”$",
+      "display_text": "这里是茵郁市。\n“与自然嬉戏的树上城市。”",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          12,
+          12,
+          15,
+          64,
+          15,
+          162,
+          12,
+          21,
+          55,
+          254,
+          177,
+          15,
+          153,
+          17,
+          12,
+          11,
+          59,
+          22,
+          180,
+          13,
+          219,
+          3,
+          11,
+          12,
+          60,
+          11,
+          173,
+          2,
+          73,
+          12,
+          21,
+          55,
+          178,
+          255
+        ],
+        "hex": "10 55 08 64 0C 0C 0F 40 0F A2 0C 15 37 FE B1 0F 99 11 0C 0B 3B 16 B4 0D DB 03 0B 0C 3C 0B AD 02 49 0C 15 37 B2 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FortreeCity_Text_GymSign": {
+      "label": "FortreeCity_Text_GymSign",
+      "line": 123,
+      "source_file": "data/maps/FortreeCity/scripts.inc",
+      "raw_text": "茵郁市宝可梦道馆\\n馆主：娜琪\\p“翱翔在世界的\\n鸟宝可梦训练家！”$",
+      "display_text": "茵郁市宝可梦道馆\n馆主：娜琪\n\n“翱翔在世界的\n鸟宝可梦训练家！”",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 58,
+        "bytes": [
+          15,
+          64,
+          15,
+          162,
+          12,
+          21,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          7,
+          4,
+          165,
+          254,
+          4,
+          165,
+          16,
+          200,
+          62,
+          9,
+          190,
+          23,
+          64,
+          251,
+          177,
+          1,
+          30,
+          14,
+          21,
+          15,
+          230,
+          12,
+          5,
+          7,
+          57,
+          3,
+          11,
+          254,
+          9,
+          231,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          60,
+          178,
+          255
+        ],
+        "hex": "0F 40 0F A2 0C 15 01 63 07 D7 09 66 03 07 04 A5 FE 04 A5 10 C8 3E 09 BE 17 40 FB B1 01 1E 0E 15 0F E6 0C 05 07 39 03 0B FE 09 E7 01 63 07 D7 09 66 0E 9E 08 8A 05 BD 3C B2 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 35,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 2,
+      "checkitem": 1,
+      "closemessage": 1,
+      "delay": 1,
+      "faceplayer": 2,
+      "goto_if_eq": 2,
+      "goto_if_set": 1,
+      "map_script": 2,
+      "playmoncry": 1,
+      "removeobject": 1,
+      "setflag": 2,
+      "setstepcallback": 1,
+      "step_end": 1,
+      "waitmoncry": 1,
+      "waitmovement": 2,
+      "waitse": 1,
+      "walk_right": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 28,
+    "script_count": 15,
+    "movement_count": 1,
+    "text_count": 12,
+    "encoded_text_count": 12,
+    "text_source_byte_count": 797,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 12
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 2,
+      "checkitem": 1,
+      "closemessage": 1,
+      "delay": 1,
+      "end": 14,
+      "faceplayer": 2,
+      "goto_if_eq": 2,
+      "goto_if_set": 1,
+      "lock": 2,
+      "map_script": 2,
+      "msgbox": 12,
+      "playmoncry": 1,
+      "release": 5,
+      "removeobject": 1,
+      "setflag": 2,
+      "setstepcallback": 1,
+      "step_end": 1,
+      "waitmoncry": 1,
+      "waitmovement": 2,
+      "waitse": 1,
+      "walk_right": 1
+    }
+  }
+}

@@ -1,0 +1,1853 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route112",
+    "map_script": "data/maps/Route112/scripts.inc",
+    "map_json": "data/maps/Route112/map.json",
+    "map_id": "MAP_ROUTE112",
+    "map_name": "Route112"
+  },
+  "labels": {
+    "Route112_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route112_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route112_EventScript_MagmaGrunts": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 35
+    },
+    "Route112_EventScript_MtChimneyCableCarSign": {
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route112_EventScript_MtChimneySign": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route112_EventScript_RouteSignLavaridge": {
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route112_EventScript_Hiker": {
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route112_EventScript_Brice": {
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route112_EventScript_Trent": {
+      "kind": "script",
+      "line": 68,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route112_EventScript_RegisterTrent": {
+      "kind": "script",
+      "line": 76,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route112_EventScript_RematchTrent": {
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route112_EventScript_Larry": {
+      "kind": "script",
+      "line": 89,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route112_EventScript_Carol": {
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route112_EventScript_Bryant": {
+      "kind": "script",
+      "line": 99,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route112_EventScript_Shayla": {
+      "kind": "script",
+      "line": 104,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route112_Text_LeaderGoingToAwakenThing": {
+      "kind": "text",
+      "line": 109,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route112_Text_YeahWeNeedMeteorite": {
+      "kind": "text",
+      "line": 112,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route112_Text_OhThatsWhyCrewWentToFallarbor": {
+      "kind": "text",
+      "line": 115,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route112_Text_CantLetAnyonePassUntilTheyreBack": {
+      "kind": "text",
+      "line": 118,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route112_Text_NotEasyToGetBackToLavaridge": {
+      "kind": "text",
+      "line": 121,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route112_Text_MtChimneyCableCarSign": {
+      "kind": "text",
+      "line": 124,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route112_Text_MtChimneySign": {
+      "kind": "text",
+      "line": 127,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route112_Text_RouteSignLavaridge": {
+      "kind": "text",
+      "line": 130,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "Route112_MapScripts": {
+      "label": "Route112_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "Route112_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, Route112_OnTransition",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route112_OnTransition": {
+      "label": "Route112_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_FORCE_MIRAGE_TOWER_VISIBLE"
+          ],
+          "line": 6,
+          "raw": "clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_JAGGED_PASS_ASH_WEATHER",
+            "0"
+          ],
+          "line": 7,
+          "raw": "setvar VAR_JAGGED_PASS_ASH_WEATHER, 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route112_EventScript_MagmaGrunts": {
+      "label": "Route112_EventScript_MagmaGrunts",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 11,
+          "raw": "lockall",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 12,
+          "raw": "delay 40",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE112_GRUNT_1",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 13,
+          "raw": "applymovement LOCALID_ROUTE112_GRUNT_1, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 14,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 15,
+          "raw": "delay 20",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_LeaderGoingToAwakenThing",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 16,
+          "raw": "msgbox Route112_Text_LeaderGoingToAwakenThing, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 17,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE112_GRUNT_1",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 18,
+          "raw": "applymovement LOCALID_ROUTE112_GRUNT_1, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 19,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 20,
+          "raw": "delay 40",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE112_GRUNT_2",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 21,
+          "raw": "applymovement LOCALID_ROUTE112_GRUNT_2, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 22,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 23,
+          "raw": "delay 20",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_YeahWeNeedMeteorite",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 24,
+          "raw": "msgbox Route112_Text_YeahWeNeedMeteorite, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 25,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE112_GRUNT_2",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 26,
+          "raw": "applymovement LOCALID_ROUTE112_GRUNT_2, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 27,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 28,
+          "raw": "delay 40",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE112_GRUNT_1",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 29,
+          "raw": "applymovement LOCALID_ROUTE112_GRUNT_1, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 30,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 31,
+          "raw": "delay 20",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_OhThatsWhyCrewWentToFallarbor",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 32,
+          "raw": "msgbox Route112_Text_OhThatsWhyCrewWentToFallarbor, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 33,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE112_GRUNT_1",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 34,
+          "raw": "applymovement LOCALID_ROUTE112_GRUNT_1, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 35,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 36,
+          "raw": "delay 40",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE112_GRUNT_2",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 37,
+          "raw": "applymovement LOCALID_ROUTE112_GRUNT_2, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 38,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 39,
+          "raw": "delay 20",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_CantLetAnyonePassUntilTheyreBack",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 40,
+          "raw": "msgbox Route112_Text_CantLetAnyonePassUntilTheyreBack, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 41,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE112_GRUNT_2",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 42,
+          "raw": "applymovement LOCALID_ROUTE112_GRUNT_2, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 43,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 44,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 45,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_LeaderGoingToAwakenThing",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 16
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_YeahWeNeedMeteorite",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 24
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_OhThatsWhyCrewWentToFallarbor",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 32
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_CantLetAnyonePassUntilTheyreBack",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 40
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_MtChimneyCableCarSign": {
+      "label": "Route112_EventScript_MtChimneyCableCarSign",
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_MtChimneyCableCarSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 48,
+          "raw": "msgbox Route112_Text_MtChimneyCableCarSign, MSGBOX_SIGN",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_MtChimneyCableCarSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 48
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_MtChimneySign": {
+      "label": "Route112_EventScript_MtChimneySign",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_MtChimneySign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 52,
+          "raw": "msgbox Route112_Text_MtChimneySign, MSGBOX_SIGN",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 53,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_MtChimneySign",
+          "mode": "MSGBOX_SIGN",
+          "line": 52
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_RouteSignLavaridge": {
+      "label": "Route112_EventScript_RouteSignLavaridge",
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_RouteSignLavaridge",
+            "MSGBOX_SIGN"
+          ],
+          "line": 56,
+          "raw": "msgbox Route112_Text_RouteSignLavaridge, MSGBOX_SIGN",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 57,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_RouteSignLavaridge",
+          "mode": "MSGBOX_SIGN",
+          "line": 56
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_Hiker": {
+      "label": "Route112_EventScript_Hiker",
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_NotEasyToGetBackToLavaridge",
+            "MSGBOX_NPC"
+          ],
+          "line": 60,
+          "raw": "msgbox Route112_Text_NotEasyToGetBackToLavaridge, MSGBOX_NPC",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 61,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_NotEasyToGetBackToLavaridge",
+          "mode": "MSGBOX_NPC",
+          "line": 60
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_Brice": {
+      "label": "Route112_EventScript_Brice",
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_BRICE",
+            "Route112_Text_BriceIntro",
+            "Route112_Text_BriceDefeat"
+          ],
+          "line": 64,
+          "raw": "trainerbattle_single TRAINER_BRICE, Route112_Text_BriceIntro, Route112_Text_BriceDefeat",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_BricePostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 65,
+          "raw": "msgbox Route112_Text_BricePostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 66,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_BricePostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 65
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_Trent": {
+      "label": "Route112_EventScript_Trent",
+      "kind": "script",
+      "line": 68,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_TRENT_1",
+            "Route112_Text_TrentIntro",
+            "Route112_Text_TrentDefeat",
+            "Route112_EventScript_RegisterTrent"
+          ],
+          "line": 69,
+          "raw": "trainerbattle_single TRAINER_TRENT_1, Route112_Text_TrentIntro, Route112_Text_TrentDefeat, Route112_EventScript_RegisterTrent",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 70,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route112_EventScript_RematchTrent"
+          ],
+          "line": 71,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route112_EventScript_RematchTrent",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_TrentPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 72,
+          "raw": "msgbox Route112_Text_TrentPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 73,
+          "raw": "release",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 74,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_TrentPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 72
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route112_EventScript_RematchTrent",
+          "line": 71
+        }
+      ]
+    },
+    "Route112_EventScript_RegisterTrent": {
+      "label": "Route112_EventScript_RegisterTrent",
+      "kind": "script",
+      "line": 76,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "PlayerFaceTrainerAfterBattle"
+          ],
+          "line": 77,
+          "raw": "special PlayerFaceTrainerAfterBattle",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 78,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_TrentRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 79,
+          "raw": "msgbox Route112_Text_TrentRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_TRENT_1"
+          ],
+          "line": 80,
+          "raw": "register_matchcall TRAINER_TRENT_1",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 81,
+          "raw": "release",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 82,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_TrentRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 79
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_RematchTrent": {
+      "label": "Route112_EventScript_RematchTrent",
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch",
+          "args": [
+            "TRAINER_TRENT_1",
+            "Route112_Text_TrentRematchIntro",
+            "Route112_Text_TrentRematchDefeat"
+          ],
+          "line": 85,
+          "raw": "trainerbattle_rematch TRAINER_TRENT_1, Route112_Text_TrentRematchIntro, Route112_Text_TrentRematchDefeat",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_TrentRematchPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 86,
+          "raw": "msgbox Route112_Text_TrentRematchPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 87,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_TrentRematchPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 86
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_Larry": {
+      "label": "Route112_EventScript_Larry",
+      "kind": "script",
+      "line": 89,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_LARRY",
+            "Route112_Text_LarryIntro",
+            "Route112_Text_LarryDefeat"
+          ],
+          "line": 90,
+          "raw": "trainerbattle_single TRAINER_LARRY, Route112_Text_LarryIntro, Route112_Text_LarryDefeat",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_LarryPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 91,
+          "raw": "msgbox Route112_Text_LarryPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 92,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_LarryPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 91
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_Carol": {
+      "label": "Route112_EventScript_Carol",
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_CAROL",
+            "Route112_Text_CarolIntro",
+            "Route112_Text_CarolDefeat"
+          ],
+          "line": 95,
+          "raw": "trainerbattle_single TRAINER_CAROL, Route112_Text_CarolIntro, Route112_Text_CarolDefeat",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_CarolPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 96,
+          "raw": "msgbox Route112_Text_CarolPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 97,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_CarolPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 96
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_Bryant": {
+      "label": "Route112_EventScript_Bryant",
+      "kind": "script",
+      "line": 99,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_BRYANT",
+            "Route112_Text_BryantIntro",
+            "Route112_Text_BryantDefeat"
+          ],
+          "line": 100,
+          "raw": "trainerbattle_single TRAINER_BRYANT, Route112_Text_BryantIntro, Route112_Text_BryantDefeat",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_BryantPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 101,
+          "raw": "msgbox Route112_Text_BryantPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 102,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_BryantPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 101
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route112_EventScript_Shayla": {
+      "label": "Route112_EventScript_Shayla",
+      "kind": "script",
+      "line": 104,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_SHAYLA",
+            "Route112_Text_ShaylaIntro",
+            "Route112_Text_ShaylaDefeat"
+          ],
+          "line": 105,
+          "raw": "trainerbattle_single TRAINER_SHAYLA, Route112_Text_ShaylaIntro, Route112_Text_ShaylaDefeat",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route112_Text_ShaylaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 106,
+          "raw": "msgbox Route112_Text_ShaylaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route112/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 107,
+          "raw": "end",
+          "source_file": "data/maps/Route112/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route112_Text_ShaylaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 106
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route112_Text_LeaderGoingToAwakenThing": {
+      "label": "Route112_Text_LeaderGoingToAwakenThing",
+      "line": 109,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "raw_text": "喂，我们老大真的\\n打算唤醒那东西？$",
+      "display_text": "喂，我们老大真的\n打算唤醒那东西？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          13,
+          127,
+          59,
+          13,
+          152,
+          9,
+          95,
+          8,
+          68,
+          2,
+          211,
+          16,
+          89,
+          3,
+          11,
+          254,
+          2,
+          210,
+          12,
+          134,
+          5,
+          74,
+          14,
+          92,
+          9,
+          189,
+          3,
+          80,
+          13,
+          189,
+          61,
+          255
+        ],
+        "hex": "0D 7F 3B 0D 98 09 5F 08 44 02 D3 10 59 03 0B FE 02 D2 0C 86 05 4A 0E 5C 09 BD 03 50 0D BD 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route112_Text_YeahWeNeedMeteorite": {
+      "label": "Route112_Text_YeahWeNeedMeteorite",
+      "line": 112,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "raw_text": "嗯，听上去是这样，\\n但据说我们还需要一块陨石。$",
+      "display_text": "嗯，听上去是这样，\n但据说我们还需要一块陨石。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          20,
+          97,
+          59,
+          13,
+          7,
+          11,
+          173,
+          11,
+          37,
+          12,
+          12,
+          16,
+          85,
+          14,
+          226,
+          59,
+          254,
+          2,
+          233,
+          7,
+          141,
+          12,
+          88,
+          13,
+          152,
+          9,
+          95,
+          5,
+          70,
+          14,
+          115,
+          14,
+          241,
+          15,
+          11,
+          8,
+          0,
+          15,
+          213,
+          11,
+          235,
+          55,
+          255
+        ],
+        "hex": "14 61 3B 0D 07 0B AD 0B 25 0C 0C 10 55 0E E2 3B FE 02 E9 07 8D 0C 58 0D 98 09 5F 05 46 0E 73 0E F1 0F 0B 08 00 0F D5 0B EB 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route112_Text_OhThatsWhyCrewWentToFallarbor": {
+      "label": "Route112_Text_OhThatsWhyCrewWentToFallarbor",
+      "line": 115,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "raw_text": "哦，我明白了，\\n所以大家才会去秋叶镇。$",
+      "display_text": "哦，我明白了，\n所以大家才会去秋叶镇。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          10,
+          19,
+          59,
+          13,
+          152,
+          9,
+          143,
+          1,
+          54,
+          8,
+          158,
+          59,
+          254,
+          12,
+          156,
+          15,
+          36,
+          2,
+          211,
+          5,
+          189,
+          1,
+          224,
+          5,
+          110,
+          11,
+          37,
+          11,
+          17,
+          15,
+          6,
+          16,
+          101,
+          55,
+          255
+        ],
+        "hex": "0A 13 3B 0D 98 09 8F 01 36 08 9E 3B FE 0C 9C 0F 24 02 D3 05 BD 01 E0 05 6E 0B 25 0B 11 0F 06 10 65 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route112_Text_CantLetAnyonePassUntilTheyreBack": {
+      "label": "Route112_Text_CantLetAnyonePassUntilTheyreBack",
+      "line": 118,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "raw_text": "说得没错。而且在他们回来前，\\n我们不能让任何人通过这里。$",
+      "display_text": "说得没错。而且在他们回来前，\n我们不能让任何人通过这里。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 53,
+        "bytes": [
+          12,
+          88,
+          3,
+          10,
+          9,
+          83,
+          2,
+          205,
+          55,
+          3,
+          157,
+          10,
+          235,
+          15,
+          230,
+          12,
+          158,
+          9,
+          95,
+          5,
+          101,
+          8,
+          41,
+          10,
+          201,
+          59,
+          254,
+          13,
+          152,
+          9,
+          95,
+          1,
+          214,
+          9,
+          210,
+          11,
+          67,
+          11,
+          78,
+          4,
+          244,
+          11,
+          75,
+          13,
+          16,
+          4,
+          197,
+          16,
+          85,
+          8,
+          100,
+          55,
+          255
+        ],
+        "hex": "0C 58 03 0A 09 53 02 CD 37 03 9D 0A EB 0F E6 0C 9E 09 5F 05 65 08 29 0A C9 3B FE 0D 98 09 5F 01 D6 09 D2 0B 43 0B 4E 04 F4 0B 4B 0D 10 04 C5 10 55 08 64 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route112_Text_NotEasyToGetBackToLavaridge": {
+      "label": "Route112_Text_NotEasyToGetBackToLavaridge",
+      "line": 121,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "raw_text": "呃，我想去紫堇市，\\n但如果我从这些岩脊上走下去，\\l再回到釜炎镇就没那么容易了。$",
+      "display_text": "呃，我想去紫堇市，\n但如果我从这些岩脊上走下去，\n再回到釜炎镇就没那么容易了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 73,
+        "bytes": [
+          19,
+          245,
+          59,
+          13,
+          152,
+          14,
+          24,
+          11,
+          37,
+          17,
+          7,
+          19,
+          57,
+          12,
+          21,
+          59,
+          254,
+          2,
+          233,
+          11,
+          103,
+          4,
+          195,
+          13,
+          152,
+          2,
+          179,
+          16,
+          85,
+          14,
+          52,
+          14,
+          187,
+          5,
+          164,
+          11,
+          173,
+          17,
+          23,
+          13,
+          230,
+          11,
+          37,
+          59,
+          250,
+          15,
+          229,
+          5,
+          101,
+          3,
+          4,
+          4,
+          20,
+          14,
+          192,
+          16,
+          101,
+          7,
+          125,
+          9,
+          83,
+          9,
+          189,
+          9,
+          76,
+          11,
+          93,
+          15,
+          39,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "13 F5 3B 0D 98 0E 18 0B 25 11 07 13 39 0C 15 3B FE 02 E9 0B 67 04 C3 0D 98 02 B3 10 55 0E 34 0E BB 05 A4 0B AD 11 17 0D E6 0B 25 3B FA 0F E5 05 65 03 04 04 14 0E C0 10 65 07 7D 09 53 09 BD 09 4C 0B 5D 0F 27 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 25,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 41,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route112_Text_MtChimneyCableCarSign": {
+      "label": "Route112_Text_MtChimneyCableCarSign",
+      "line": 124,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "raw_text": "烟囱山缆车\\n“登山的捷径！”$",
+      "display_text": "烟囱山缆车\n“登山的捷径！”",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 25,
+        "bytes": [
+          14,
+          181,
+          2,
+          177,
+          11,
+          155,
+          8,
+          55,
+          2,
+          55,
+          254,
+          177,
+          3,
+          14,
+          11,
+          155,
+          3,
+          11,
+          7,
+          47,
+          7,
+          102,
+          60,
+          178,
+          255
+        ],
+        "hex": "0E B5 02 B1 0B 9B 08 37 02 37 FE B1 03 0E 0B 9B 03 0B 07 2F 07 66 3C B2 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route112_Text_MtChimneySign": {
+      "label": "Route112_Text_MtChimneySign",
+      "line": 127,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "raw_text": "烟囱山\\p“去釜炎镇或山顶，\\n请乘坐缆车。”$",
+      "display_text": "烟囱山\n\n“去釜炎镇或山顶，\n请乘坐缆车。”",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 37,
+        "bytes": [
+          14,
+          181,
+          2,
+          177,
+          11,
+          155,
+          251,
+          177,
+          11,
+          37,
+          4,
+          20,
+          14,
+          192,
+          16,
+          101,
+          5,
+          127,
+          11,
+          155,
+          3,
+          74,
+          59,
+          254,
+          11,
+          13,
+          2,
+          77,
+          17,
+          48,
+          8,
+          55,
+          2,
+          55,
+          55,
+          178,
+          255
+        ],
+        "hex": "0E B5 02 B1 0B 9B FB B1 0B 25 04 14 0E C0 10 65 05 7F 0B 9B 03 4A 3B FE 0B 0D 02 4D 11 30 08 37 02 37 37 B2 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 3,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route112_Text_RouteSignLavaridge": {
+      "label": "Route112_Text_RouteSignLavaridge",
+      "line": 130,
+      "source_file": "data/maps/Route112/scripts.inc",
+      "raw_text": "112号道路\\n{LEFT_ARROW}釜炎镇$",
+      "display_text": "112号道路\n{LEFT_ARROW}釜炎镇",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          162,
+          162,
+          163,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          254,
+          123,
+          4,
+          20,
+          14,
+          192,
+          16,
+          101,
+          255
+        ],
+        "hex": "A2 A2 A3 04 EB 03 07 08 E8 FE 7B 04 14 0E C0 10 65 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{LEFT_ARROW}",
+            "offset": 8,
+            "bytes": [
+              123
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "LEFT_ARROW",
+                "bytes": [
+                  123
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 8,
+      "clearflag": 1,
+      "closemessage": 4,
+      "delay": 8,
+      "goto_if_eq": 1,
+      "map_script": 1,
+      "register_matchcall": 1,
+      "setvar": 1,
+      "special": 1,
+      "specialvar": 1,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 6,
+      "waitmovement": 9
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 23,
+    "script_count": 15,
+    "movement_count": 0,
+    "text_count": 8,
+    "encoded_text_count": 8,
+    "text_source_byte_count": 316,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 8
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 8,
+      "clearflag": 1,
+      "closemessage": 4,
+      "delay": 8,
+      "end": 14,
+      "goto_if_eq": 1,
+      "lockall": 1,
+      "map_script": 1,
+      "msgbox": 16,
+      "register_matchcall": 1,
+      "release": 2,
+      "releaseall": 1,
+      "setvar": 1,
+      "special": 1,
+      "specialvar": 1,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 6,
+      "waitmovement": 9
+    }
+  }
+}

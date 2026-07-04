@@ -1,0 +1,789 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CeruleanCity_House2_Frlg",
+    "map_script": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+    "map_json": "data/maps/CeruleanCity_House2_Frlg/map.json",
+    "map_id": "MAP_CERULEAN_CITY_HOUSE2",
+    "map_name": "CeruleanCity_House2_Frlg"
+  },
+  "labels": {
+    "CeruleanCity_House2_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeruleanCity_House2_EventScript_Hiker": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "CeruleanCity_House2_EventScript_HikerGotTM28": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCity_House2_EventScript_Lass": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeruleanCity_House2_EventScript_WallHole": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeruleanCity_House2_Text_RocketsStoleTMForDig": {
+      "kind": "text",
+      "line": 25,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CeruleanCity_House2_Text_TeachDiglettDigWithoutTM": {
+      "kind": "text",
+      "line": 34,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCity_House2_Text_TeamRocketTryingToDigIntoNoGood": {
+      "kind": "text",
+      "line": 39,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeruleanCity_House2_Text_TeamRocketLeftWayOut": {
+      "kind": "text",
+      "line": 43,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "CeruleanCity_House2_Frlg_MapScripts": {
+      "label": "CeruleanCity_House2_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeruleanCity_House2_EventScript_Hiker": {
+      "label": "CeruleanCity_House2_EventScript_Hiker",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_GOT_TM28_FROM_ROCKET",
+            "CeruleanCity_House2_EventScript_HikerGotTM28"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_GOT_TM28_FROM_ROCKET, CeruleanCity_House2_EventScript_HikerGotTM28",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_House2_Text_RocketsStoleTMForDig"
+          ],
+          "line": 8,
+          "raw": "msgbox CeruleanCity_House2_Text_RocketsStoleTMForDig",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 9,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_House2_Text_RocketsStoleTMForDig",
+          "mode": "",
+          "line": 8
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "CeruleanCity_House2_EventScript_HikerGotTM28",
+          "line": 7
+        }
+      ]
+    },
+    "CeruleanCity_House2_EventScript_HikerGotTM28": {
+      "label": "CeruleanCity_House2_EventScript_HikerGotTM28",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_House2_Text_TeachDiglettDigWithoutTM"
+          ],
+          "line": 13,
+          "raw": "msgbox CeruleanCity_House2_Text_TeachDiglettDigWithoutTM",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_House2_Text_TeachDiglettDigWithoutTM",
+          "mode": "",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeruleanCity_House2_EventScript_Lass": {
+      "label": "CeruleanCity_House2_EventScript_Lass",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_House2_Text_TeamRocketTryingToDigIntoNoGood",
+            "MSGBOX_NPC"
+          ],
+          "line": 18,
+          "raw": "msgbox CeruleanCity_House2_Text_TeamRocketTryingToDigIntoNoGood, MSGBOX_NPC",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_House2_Text_TeamRocketTryingToDigIntoNoGood",
+          "mode": "MSGBOX_NPC",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeruleanCity_House2_EventScript_WallHole": {
+      "label": "CeruleanCity_House2_EventScript_WallHole",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_House2_Text_TeamRocketLeftWayOut",
+            "MSGBOX_SIGN"
+          ],
+          "line": 22,
+          "raw": "msgbox CeruleanCity_House2_Text_TeamRocketLeftWayOut, MSGBOX_SIGN",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_House2_Text_TeamRocketLeftWayOut",
+          "mode": "MSGBOX_SIGN",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "CeruleanCity_House2_Text_RocketsStoleTMForDig": {
+      "label": "CeruleanCity_House2_Text_RocketsStoleTMForDig",
+      "line": 25,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "raw_text": "那些卑鄙的火箭队！\\p看看他们在我家里都干了些什么！\\p他们偷了一个技能去教\\n宝可梦如何挖地洞洞！\\p我是打算把它用在\\n猴怪或者穿山鼠上的……\\p它花了我好多钱呢！$",
+      "display_text": "那些卑鄙的火箭队！\n\n看看他们在我家里都干了些什么！\n\n他们偷了一个技能去教\n宝可梦如何挖地洞洞！\n\n我是打算把它用在\n猴怪或者穿山鼠上的……\n\n它花了我好多钱呢！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 145,
+        "bytes": [
+          9,
+          189,
+          14,
+          52,
+          1,
+          109,
+          1,
+          134,
+          3,
+          11,
+          5,
+          125,
+          5,
+          232,
+          3,
+          120,
+          60,
+          251,
+          7,
+          194,
+          7,
+          194,
+          12,
+          158,
+          9,
+          95,
+          15,
+          230,
+          13,
+          152,
+          5,
+          189,
+          8,
+          100,
+          3,
+          97,
+          4,
+          51,
+          8,
+          158,
+          14,
+          52,
+          11,
+          238,
+          9,
+          76,
+          60,
+          251,
+          12,
+          158,
+          9,
+          95,
+          13,
+          29,
+          8,
+          158,
+          15,
+          11,
+          4,
+          96,
+          5,
+          167,
+          9,
+          210,
+          11,
+          37,
+          7,
+          30,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          103,
+          4,
+          244,
+          13,
+          66,
+          3,
+          31,
+          3,
+          89,
+          3,
+          89,
+          60,
+          251,
+          13,
+          152,
+          12,
+          12,
+          2,
+          210,
+          12,
+          134,
+          1,
+          48,
+          12,
+          159,
+          15,
+          113,
+          15,
+          230,
+          254,
+          5,
+          30,
+          4,
+          158,
+          5,
+          127,
+          16,
+          82,
+          2,
+          137,
+          11,
+          155,
+          12,
+          56,
+          11,
+          173,
+          3,
+          11,
+          176,
+          176,
+          251,
+          12,
+          159,
+          5,
+          53,
+          8,
+          158,
+          13,
+          152,
+          4,
+          233,
+          3,
+          133,
+          10,
+          199,
+          9,
+          206,
+          60,
+          255
+        ],
+        "hex": "09 BD 0E 34 01 6D 01 86 03 0B 05 7D 05 E8 03 78 3C FB 07 C2 07 C2 0C 9E 09 5F 0F E6 0D 98 05 BD 08 64 03 61 04 33 08 9E 0E 34 0B EE 09 4C 3C FB 0C 9E 09 5F 0D 1D 08 9E 0F 0B 04 60 05 A7 09 D2 0B 25 07 1E FE 01 63 07 D7 09 66 0B 67 04 F4 0D 42 03 1F 03 59 03 59 3C FB 0D 98 0C 0C 02 D2 0C 86 01 30 0C 9F 0F 71 0F E6 FE 05 1E 04 9E 05 7F 10 52 02 89 0B 9B 0C 38 0B AD 03 0B B0 B0 FB 0C 9F 05 35 08 9E 0D 98 04 E9 03 85 0A C7 09 CE 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 26,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 38,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 50,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 60,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 73,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 84,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_House2_Text_TeachDiglettDigWithoutTM": {
+      "label": "CeruleanCity_House2_Text_TeachDiglettDigWithoutTM",
+      "line": 34,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "raw_text": "我想丢的东西就丢了吧。\\p我打算让地鼠不通过技能\\n学会挖地洞。$",
+      "display_text": "我想丢的东西就丢了吧。\n\n我打算让地鼠不通过技能\n学会挖地洞。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 57,
+        "bytes": [
+          13,
+          152,
+          14,
+          24,
+          3,
+          79,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          7,
+          125,
+          3,
+          79,
+          8,
+          158,
+          1,
+          40,
+          55,
+          251,
+          13,
+          152,
+          2,
+          210,
+          12,
+          134,
+          11,
+          67,
+          3,
+          31,
+          12,
+          56,
+          1,
+          214,
+          13,
+          16,
+          4,
+          197,
+          5,
+          167,
+          9,
+          210,
+          254,
+          14,
+          144,
+          5,
+          110,
+          13,
+          66,
+          3,
+          31,
+          3,
+          89,
+          55,
+          255
+        ],
+        "hex": "0D 98 0E 18 03 4F 03 0B 03 50 0D BD 07 7D 03 4F 08 9E 01 28 37 FB 0D 98 02 D2 0C 86 0B 43 03 1F 0C 38 01 D6 0D 10 04 C5 05 A7 09 D2 FE 0E 90 05 6E 0D 42 03 1F 03 59 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_House2_Text_TeamRocketTryingToDigIntoNoGood": {
+      "label": "CeruleanCity_House2_Text_TeamRocketTryingToDigIntoNoGood",
+      "line": 39,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "raw_text": "火箭队一定想挖地洞\\n来做见不得人的事。$",
+      "display_text": "火箭队一定想挖地洞\n来做见不得人的事。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 37,
+        "bytes": [
+          5,
+          125,
+          5,
+          232,
+          3,
+          120,
+          15,
+          11,
+          3,
+          77,
+          14,
+          24,
+          13,
+          66,
+          3,
+          31,
+          3,
+          89,
+          254,
+          8,
+          41,
+          17,
+          46,
+          5,
+          230,
+          1,
+          214,
+          3,
+          10,
+          11,
+          75,
+          3,
+          11,
+          12,
+          7,
+          55,
+          255
+        ],
+        "hex": "05 7D 05 E8 03 78 0F 0B 03 4D 0E 18 0D 42 03 1F 03 59 FE 08 29 11 2E 05 E6 01 D6 03 0A 0B 4B 03 0B 0C 07 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_House2_Text_TeamRocketLeftWayOut": {
+      "label": "CeruleanCity_House2_Text_TeamRocketLeftWayOut",
+      "line": 43,
+      "source_file": "data/maps/CeruleanCity_House2_Frlg/scripts.inc",
+      "raw_text": "火箭队逃跑时留下了个洞！$",
+      "display_text": "火箭队逃跑时留下了个洞！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 24,
+        "bytes": [
+          5,
+          125,
+          5,
+          232,
+          3,
+          120,
+          12,
+          212,
+          10,
+          57,
+          11,
+          237,
+          8,
+          199,
+          13,
+          230,
+          8,
+          158,
+          4,
+          96,
+          3,
+          89,
+          60,
+          255
+        ],
+        "hex": "05 7D 05 E8 03 78 0C D4 0A 39 0B ED 08 C7 0D E6 08 9E 04 60 03 59 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "goto_if_set": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 263,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 4,
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 4,
+      "release": 2
+    }
+  }
+}

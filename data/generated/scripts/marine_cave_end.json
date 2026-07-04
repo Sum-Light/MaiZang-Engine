@@ -1,0 +1,787 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "MarineCave_End",
+    "map_script": "data/maps/MarineCave_End/scripts.inc",
+    "map_json": "data/maps/MarineCave_End/map.json",
+    "map_id": "MAP_MARINE_CAVE_END",
+    "map_name": "MarineCave_End"
+  },
+  "labels": {
+    "MarineCave_End_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instruction_count": 3
+    },
+    "MarineCave_End_OnResume": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instruction_count": 2
+    },
+    "MarineCave_End_EventScript_TryRemoveKyogre": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instruction_count": 4
+    },
+    "MarineCave_End_OnTransition": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instruction_count": 2
+    },
+    "MarineCave_End_EventScript_ShowKyogre": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instruction_count": 3
+    },
+    "MarineCave_End_EventScript_Kyogre": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instruction_count": 24
+    },
+    "MarineCave_End_EventScript_DefeatedKyogre": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instruction_count": 4
+    },
+    "MarineCave_End_EventScript_RanFromKyogre": {
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instruction_count": 3
+    },
+    "MarineCave_End_Movement_KyogreApproach": {
+      "kind": "movement",
+      "line": 62,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instruction_count": 9
+    }
+  },
+  "scripts": {
+    "MarineCave_End_MapScripts": {
+      "label": "MarineCave_End_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "MarineCave_End_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, MarineCave_End_OnResume",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "MarineCave_End_OnTransition"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, MarineCave_End_OnTransition",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MarineCave_End_OnResume": {
+      "label": "MarineCave_End_OnResume",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE",
+            "MarineCave_End_EventScript_TryRemoveKyogre"
+          ],
+          "line": 7,
+          "raw": "call_if_set FLAG_SYS_CTRL_OBJ_DELETE, MarineCave_End_EventScript_TryRemoveKyogre",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "MarineCave_End_EventScript_TryRemoveKyogre",
+          "line": 7
+        }
+      ]
+    },
+    "MarineCave_End_EventScript_TryRemoveKyogre": {
+      "label": "MarineCave_End_EventScript_TryRemoveKyogre",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 11,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_CAUGHT",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 12,
+          "raw": "goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_MARINE_CAVE_KYOGRE"
+          ],
+          "line": 13,
+          "raw": "removeobject LOCALID_MARINE_CAVE_KYOGRE",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 14,
+          "raw": "return",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "Common_EventScript_NopReturn",
+          "line": 12
+        }
+      ]
+    },
+    "MarineCave_End_OnTransition": {
+      "label": "MarineCave_End_OnTransition",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_DEFEATED_KYOGRE",
+            "MarineCave_End_EventScript_ShowKyogre"
+          ],
+          "line": 17,
+          "raw": "call_if_unset FLAG_DEFEATED_KYOGRE, MarineCave_End_EventScript_ShowKyogre",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "MarineCave_End_EventScript_ShowKyogre",
+          "line": 17
+        }
+      ]
+    },
+    "MarineCave_End_EventScript_ShowKyogre": {
+      "label": "MarineCave_End_EventScript_ShowKyogre",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_MARINE_CAVE_KYOGRE"
+          ],
+          "line": 21,
+          "raw": "clearflag FLAG_HIDE_MARINE_CAVE_KYOGRE",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 22,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 23,
+          "raw": "return",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MarineCave_End_EventScript_Kyogre": {
+      "label": "MarineCave_End_EventScript_Kyogre",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 26,
+          "raw": "lockall",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_FaceUp"
+          ],
+          "line": 27,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_FaceUp",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 28,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MARINE_CAVE_KYOGRE",
+            "MarineCave_End_Movement_KyogreApproach"
+          ],
+          "line": 29,
+          "raw": "applymovement LOCALID_MARINE_CAVE_KYOGRE, MarineCave_End_Movement_KyogreApproach",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 30,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 31,
+          "raw": "waitse",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_KYOGRE",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 32,
+          "raw": "playmoncry SPECIES_KYOGRE, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 33,
+          "raw": "delay 40",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 34,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_LAST_TALKED",
+            "LOCALID_MARINE_CAVE_KYOGRE"
+          ],
+          "line": 35,
+          "raw": "setvar VAR_LAST_TALKED, LOCALID_MARINE_CAVE_KYOGRE",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "setwildbattle",
+          "args": [
+            "SPECIES_KYOGRE",
+            "70"
+          ],
+          "line": 36,
+          "raw": "setwildbattle SPECIES_KYOGRE, 70",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 37,
+          "raw": "setflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "BattleSetup_StartLegendaryBattle"
+          ],
+          "line": 38,
+          "raw": "special BattleSetup_StartLegendaryBattle",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 39,
+          "raw": "waitstate",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 40,
+          "raw": "clearflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "0"
+          ],
+          "line": 41,
+          "raw": "setvar VAR_TEMP_1, 0",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 42,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_WON",
+            "MarineCave_End_EventScript_DefeatedKyogre"
+          ],
+          "line": 43,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_WON, MarineCave_End_EventScript_DefeatedKyogre",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_RAN",
+            "MarineCave_End_EventScript_RanFromKyogre"
+          ],
+          "line": 44,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_RAN, MarineCave_End_EventScript_RanFromKyogre",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_PLAYER_TELEPORTED",
+            "MarineCave_End_EventScript_RanFromKyogre"
+          ],
+          "line": 45,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MarineCave_End_EventScript_RanFromKyogre",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_SHOULD_END_ABNORMAL_WEATHER",
+            "1"
+          ],
+          "line": 46,
+          "raw": "setvar VAR_SHOULD_END_ABNORMAL_WEATHER, 1",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_KYOGRE"
+          ],
+          "line": 47,
+          "raw": "setflag FLAG_DEFEATED_KYOGRE",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 48,
+          "raw": "releaseall",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "MarineCave_End_EventScript_DefeatedKyogre",
+          "line": 43
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "MarineCave_End_EventScript_RanFromKyogre",
+          "line": 44
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "MarineCave_End_EventScript_RanFromKyogre",
+          "line": 45
+        }
+      ]
+    },
+    "MarineCave_End_EventScript_DefeatedKyogre": {
+      "label": "MarineCave_End_EventScript_DefeatedKyogre",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_SHOULD_END_ABNORMAL_WEATHER",
+            "1"
+          ],
+          "line": 52,
+          "raw": "setvar VAR_SHOULD_END_ABNORMAL_WEATHER, 1",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_KYOGRE"
+          ],
+          "line": 53,
+          "raw": "setflag FLAG_DEFEATED_KYOGRE",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_RemoveStaticPokemon"
+          ],
+          "line": 54,
+          "raw": "goto Common_EventScript_RemoveStaticPokemon",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 55,
+          "raw": "end",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_RemoveStaticPokemon",
+          "line": 54
+        }
+      ]
+    },
+    "MarineCave_End_EventScript_RanFromKyogre": {
+      "label": "MarineCave_End_EventScript_RanFromKyogre",
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_KYOGRE"
+          ],
+          "line": 58,
+          "raw": "setvar VAR_0x8004, SPECIES_KYOGRE",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_LegendaryFlewAway"
+          ],
+          "line": 59,
+          "raw": "goto Common_EventScript_LegendaryFlewAway",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 60,
+          "raw": "end",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_LegendaryFlewAway",
+          "line": 59
+        }
+      ]
+    }
+  },
+  "movements": {
+    "MarineCave_End_Movement_KyogreApproach": {
+      "label": "MarineCave_End_Movement_KyogreApproach",
+      "kind": "movement",
+      "line": 62,
+      "source_file": "data/maps/MarineCave_End/scripts.inc",
+      "instructions": [
+        {
+          "op": "init_affine_anim",
+          "args": [],
+          "line": 63,
+          "raw": "init_affine_anim",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "walk_down_start_affine",
+          "args": [],
+          "line": 64,
+          "raw": "walk_down_start_affine",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 65,
+          "raw": "delay_16",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 66,
+          "raw": "delay_16",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "walk_down_affine",
+          "args": [],
+          "line": 67,
+          "raw": "walk_down_affine",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 68,
+          "raw": "delay_16",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 69,
+          "raw": "delay_16",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "walk_down_affine",
+          "args": [],
+          "line": 70,
+          "raw": "walk_down_affine",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 71,
+          "raw": "step_end",
+          "source_file": "data/maps/MarineCave_End/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 2,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "clearflag": 2,
+      "delay": 1,
+      "delay_16": 4,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "init_affine_anim": 1,
+      "map_script": 2,
+      "playmoncry": 1,
+      "removeobject": 1,
+      "setflag": 3,
+      "setvar": 6,
+      "setwildbattle": 1,
+      "special": 1,
+      "specialvar": 2,
+      "step_end": 1,
+      "waitmoncry": 1,
+      "waitmovement": 2,
+      "waitse": 1,
+      "waitstate": 1,
+      "walk_down_affine": 2,
+      "walk_down_start_affine": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 8,
+    "movement_count": 1,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 2,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "clearflag": 2,
+      "delay": 1,
+      "delay_16": 4,
+      "end": 5,
+      "goto": 2,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "init_affine_anim": 1,
+      "lockall": 1,
+      "map_script": 2,
+      "playmoncry": 1,
+      "releaseall": 1,
+      "removeobject": 1,
+      "return": 2,
+      "setflag": 3,
+      "setvar": 6,
+      "setwildbattle": 1,
+      "special": 1,
+      "specialvar": 2,
+      "step_end": 1,
+      "waitmoncry": 1,
+      "waitmovement": 2,
+      "waitse": 1,
+      "waitstate": 1,
+      "walk_down_affine": 2,
+      "walk_down_start_affine": 1
+    }
+  }
+}

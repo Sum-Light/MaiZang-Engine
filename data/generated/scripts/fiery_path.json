@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FieryPath",
+    "map_script": "data/maps/FieryPath/scripts.inc",
+    "map_json": "data/maps/FieryPath/map.json",
+    "map_id": "MAP_FIERY_PATH",
+    "map_name": "FieryPath"
+  },
+  "labels": {
+    "FieryPath_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FieryPath/scripts.inc",
+      "instruction_count": 2
+    },
+    "FieryPath_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/FieryPath/scripts.inc",
+      "instruction_count": 3
+    },
+    "FieryPath_EventScript_MoveScottToFallarbor": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/FieryPath/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "FieryPath_MapScripts": {
+      "label": "FieryPath_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FieryPath/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "FieryPath_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, FieryPath_OnTransition",
+          "source_file": "data/maps/FieryPath/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FieryPath/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FieryPath_OnTransition": {
+      "label": "FieryPath_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/FieryPath/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_LANDMARK_FIERY_PATH",
+            "FieryPath_EventScript_MoveScottToFallarbor"
+          ],
+          "line": 6,
+          "raw": "call_if_unset FLAG_LANDMARK_FIERY_PATH, FieryPath_EventScript_MoveScottToFallarbor",
+          "source_file": "data/maps/FieryPath/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_LANDMARK_FIERY_PATH"
+          ],
+          "line": 7,
+          "raw": "setflag FLAG_LANDMARK_FIERY_PATH",
+          "source_file": "data/maps/FieryPath/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/FieryPath/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "FieryPath_EventScript_MoveScottToFallarbor",
+          "line": 6
+        }
+      ]
+    },
+    "FieryPath_EventScript_MoveScottToFallarbor": {
+      "label": "FieryPath_EventScript_MoveScottToFallarbor",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/FieryPath/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_VERDANTURF_TOWN_SCOTT"
+          ],
+          "line": 11,
+          "raw": "setflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT",
+          "source_file": "data/maps/FieryPath/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT"
+          ],
+          "line": 12,
+          "raw": "clearflag FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT",
+          "source_file": "data/maps/FieryPath/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 13,
+          "raw": "return",
+          "source_file": "data/maps/FieryPath/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_unset": 1,
+      "clearflag": 1,
+      "map_script": 1,
+      "setflag": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call_if_unset": 1,
+      "clearflag": 1,
+      "end": 1,
+      "map_script": 1,
+      "return": 1,
+      "setflag": 2
+    }
+  }
+}

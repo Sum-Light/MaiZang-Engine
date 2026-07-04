@@ -1,0 +1,1567 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FallarborTown_PokemonCenter_1F",
+    "map_script": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+    "map_json": "data/maps/FallarborTown_PokemonCenter_1F/map.json",
+    "map_id": "MAP_FALLARBOR_TOWN_POKEMON_CENTER_1F",
+    "map_name": "FallarborTown_PokemonCenter_1F"
+  },
+  "labels": {
+    "FallarborTown_PokemonCenter_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 6
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_Girl": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_ExpertM": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_Lanette": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 8
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_LanetteExitNorth": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 4
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_LanetteExitWest": {
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 4
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_LanetteExited": {
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 5
+    },
+    "FallarborTown_PokemonCenter_1F_Movement_LanetteExitNorth": {
+      "kind": "movement",
+      "line": 56,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 13
+    },
+    "FallarborTown_PokemonCenter_1F_Movement_LanetteExitWest": {
+      "kind": "movement",
+      "line": 71,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 11
+    },
+    "FallarborTown_PokemonCenter_1F_Text_LanetteGreeting": {
+      "kind": "text",
+      "line": 84,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown": {
+      "kind": "text",
+      "line": 87,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees": {
+      "kind": "text",
+      "line": 90,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "FallarborTown_PokemonCenter_1F_MapScripts": {
+      "label": "FallarborTown_PokemonCenter_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "FallarborTown_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_PokemonCenter_1F_OnTransition": {
+      "label": "FallarborTown_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_FALLARBOR_TOWN"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_FALLARBOR_TOWN",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_UpdateBrineyLocation"
+          ],
+          "line": 8,
+          "raw": "call Common_EventScript_UpdateBrineyLocation",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_UpdateBrineyLocation",
+          "line": 8
+        }
+      ]
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "FallarborTown_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x800B",
+            "LOCALID_FALLARBOR_NURSE"
+          ],
+          "line": 12,
+          "raw": "setvar VAR_0x800B, LOCALID_FALLARBOR_NURSE",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_PkmnCenterNurse"
+          ],
+          "line": 13,
+          "raw": "call Common_EventScript_PkmnCenterNurse",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 14,
+          "raw": "waitmessage",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 15,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 16,
+          "raw": "release",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_PkmnCenterNurse",
+          "line": 13
+        }
+      ]
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_Girl": {
+      "label": "FallarborTown_PokemonCenter_1F_EventScript_Girl",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown",
+            "MSGBOX_NPC"
+          ],
+          "line": 20,
+          "raw": "msgbox FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown, MSGBOX_NPC",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 21,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown",
+          "mode": "MSGBOX_NPC",
+          "line": 20
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_ExpertM": {
+      "label": "FallarborTown_PokemonCenter_1F_EventScript_ExpertM",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees",
+            "MSGBOX_NPC"
+          ],
+          "line": 24,
+          "raw": "msgbox FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees, MSGBOX_NPC",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees",
+          "mode": "MSGBOX_NPC",
+          "line": 24
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_Lanette": {
+      "label": "FallarborTown_PokemonCenter_1F_EventScript_Lanette",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 28,
+          "raw": "lock",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 29,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_PokemonCenter_1F_Text_LanetteGreeting",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 30,
+          "raw": "msgbox FallarborTown_PokemonCenter_1F_Text_LanetteGreeting, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 31,
+          "raw": "closemessage",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_FACING"
+          ],
+          "line": 32,
+          "raw": "switch VAR_FACING",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DIR_NORTH",
+            "FallarborTown_PokemonCenter_1F_EventScript_LanetteExitNorth"
+          ],
+          "line": 33,
+          "raw": "case DIR_NORTH, FallarborTown_PokemonCenter_1F_EventScript_LanetteExitNorth",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DIR_WEST",
+            "FallarborTown_PokemonCenter_1F_EventScript_LanetteExitWest"
+          ],
+          "line": 34,
+          "raw": "case DIR_WEST, FallarborTown_PokemonCenter_1F_EventScript_LanetteExitWest",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_PokemonCenter_1F_Text_LanetteGreeting",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 30
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_LanetteExitNorth": {
+      "label": "FallarborTown_PokemonCenter_1F_EventScript_LanetteExitNorth",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FALLARBOR_LANETTE",
+            "FallarborTown_PokemonCenter_1F_Movement_LanetteExitNorth"
+          ],
+          "line": 38,
+          "raw": "applymovement LOCALID_FALLARBOR_LANETTE, FallarborTown_PokemonCenter_1F_Movement_LanetteExitNorth",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 39,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_PokemonCenter_1F_EventScript_LanetteExited"
+          ],
+          "line": 40,
+          "raw": "goto FallarborTown_PokemonCenter_1F_EventScript_LanetteExited",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 41,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_PokemonCenter_1F_EventScript_LanetteExited",
+          "line": 40
+        }
+      ]
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_LanetteExitWest": {
+      "label": "FallarborTown_PokemonCenter_1F_EventScript_LanetteExitWest",
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FALLARBOR_LANETTE",
+            "FallarborTown_PokemonCenter_1F_Movement_LanetteExitWest"
+          ],
+          "line": 44,
+          "raw": "applymovement LOCALID_FALLARBOR_LANETTE, FallarborTown_PokemonCenter_1F_Movement_LanetteExitWest",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 45,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_PokemonCenter_1F_EventScript_LanetteExited"
+          ],
+          "line": 46,
+          "raw": "goto FallarborTown_PokemonCenter_1F_EventScript_LanetteExited",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 47,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_PokemonCenter_1F_EventScript_LanetteExited",
+          "line": 46
+        }
+      ]
+    },
+    "FallarborTown_PokemonCenter_1F_EventScript_LanetteExited": {
+      "label": "FallarborTown_PokemonCenter_1F_EventScript_LanetteExited",
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "playse",
+          "args": [
+            "SE_SLIDING_DOOR"
+          ],
+          "line": 50,
+          "raw": "playse SE_SLIDING_DOOR",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_FALLARBOR_LANETTE"
+          ],
+          "line": 51,
+          "raw": "removeobject LOCALID_FALLARBOR_LANETTE",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_LANETTES_HOUSE_LANETTE"
+          ],
+          "line": 52,
+          "raw": "clearflag FLAG_HIDE_LANETTES_HOUSE_LANETTE",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 53,
+          "raw": "release",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 54,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "FallarborTown_PokemonCenter_1F_Movement_LanetteExitNorth": {
+      "label": "FallarborTown_PokemonCenter_1F_Movement_LanetteExitNorth",
+      "kind": "movement",
+      "line": 56,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 57,
+          "raw": "walk_right",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 58,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 59,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 60,
+          "raw": "walk_left",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 61,
+          "raw": "walk_left",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 62,
+          "raw": "walk_left",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 63,
+          "raw": "walk_left",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 64,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 65,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 66,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 67,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 68,
+          "raw": "delay_8",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 69,
+          "raw": "step_end",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_PokemonCenter_1F_Movement_LanetteExitWest": {
+      "label": "FallarborTown_PokemonCenter_1F_Movement_LanetteExitWest",
+      "kind": "movement",
+      "line": 71,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 72,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 73,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 74,
+          "raw": "walk_left",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 75,
+          "raw": "walk_left",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 76,
+          "raw": "walk_left",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 77,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 78,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 79,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 80,
+          "raw": "walk_down",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 81,
+          "raw": "delay_8",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 82,
+          "raw": "step_end",
+          "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "FallarborTown_PokemonCenter_1F_Text_LanetteGreeting": {
+      "label": "FallarborTown_PokemonCenter_1F_Text_LanetteGreeting",
+      "line": 84,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "啊，你好，\\n请问你是？\\p好的，{PLAYER}{KUN}，\\n看来你是个训练家，\\p那么你一定在使用我开发的\\n宝可梦寄放系统。\\p只要简单推理一下\\n就能猜出来了，\\p你想使用这台电脑，\\n所以才会跟我谈话。\\p呀，抱歉，我叫真由美。\\p很高兴见到你——也很高兴\\n看到你在使用寄放系统。\\p如果可以的话，欢迎你来我家做客。\\n我家就在114号道路上。$",
+      "display_text": "啊，你好，\n请问你是？\n\n好的，{PLAYER}{KUN}，\n看来你是个训练家，\n\n那么你一定在使用我开发的\n宝可梦寄放系统。\n\n只要简单推理一下\n就能猜出来了，\n\n你想使用这台电脑，\n所以才会跟我谈话。\n\n呀，抱歉，我叫真由美。\n\n很高兴见到你——也很高兴\n看到你在使用寄放系统。\n\n如果可以的话，欢迎你来我家做客。\n我家就在114号道路上。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 273,
+        "bytes": [
+          1,
+          0,
+          59,
+          9,
+          217,
+          4,
+          233,
+          59,
+          254,
+          11,
+          13,
+          13,
+          144,
+          9,
+          217,
+          12,
+          12,
+          61,
+          251,
+          4,
+          233,
+          3,
+          11,
+          59,
+          253,
+          1,
+          253,
+          5,
+          59,
+          254,
+          7,
+          194,
+          8,
+          41,
+          9,
+          217,
+          12,
+          12,
+          4,
+          96,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          59,
+          251,
+          9,
+          189,
+          9,
+          76,
+          9,
+          217,
+          15,
+          11,
+          3,
+          77,
+          15,
+          230,
+          11,
+          245,
+          15,
+          113,
+          13,
+          152,
+          7,
+          184,
+          3,
+          165,
+          3,
+          11,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          175,
+          3,
+          200,
+          13,
+          217,
+          13,
+          27,
+          55,
+          251,
+          16,
+          140,
+          14,
+          241,
+          5,
+          221,
+          2,
+          227,
+          13,
+          46,
+          8,
+          98,
+          15,
+          11,
+          13,
+          230,
+          254,
+          7,
+          125,
+          9,
+          210,
+          1,
+          221,
+          2,
+          120,
+          8,
+          41,
+          8,
+          158,
+          59,
+          251,
+          9,
+          217,
+          14,
+          24,
+          11,
+          245,
+          15,
+          113,
+          16,
+          85,
+          12,
+          169,
+          3,
+          46,
+          9,
+          202,
+          59,
+          254,
+          12,
+          156,
+          15,
+          36,
+          1,
+          224,
+          5,
+          110,
+          4,
+          100,
+          13,
+          152,
+          12,
+          185,
+          5,
+          61,
+          55,
+          251,
+          14,
+          166,
+          59,
+          1,
+          100,
+          10,
+          209,
+          59,
+          13,
+          152,
+          7,
+          34,
+          16,
+          89,
+          15,
+          119,
+          9,
+          88,
+          55,
+          251,
+          5,
+          11,
+          4,
+          73,
+          14,
+          86,
+          5,
+          230,
+          3,
+          4,
+          9,
+          217,
+          63,
+          63,
+          15,
+          2,
+          5,
+          11,
+          4,
+          73,
+          14,
+          86,
+          254,
+          7,
+          194,
+          3,
+          4,
+          9,
+          217,
+          15,
+          230,
+          11,
+          245,
+          15,
+          113,
+          5,
+          175,
+          3,
+          200,
+          13,
+          217,
+          13,
+          27,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          7,
+          215,
+          15,
+          36,
+          3,
+          11,
+          5,
+          61,
+          59,
+          5,
+          67,
+          15,
+          91,
+          9,
+          217,
+          8,
+          41,
+          13,
+          152,
+          5,
+          189,
+          17,
+          46,
+          7,
+          219,
+          55,
+          254,
+          13,
+          152,
+          5,
+          189,
+          7,
+          125,
+          15,
+          230,
+          162,
+          162,
+          165,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          11,
+          173,
+          55,
+          255
+        ],
+        "hex": "01 00 3B 09 D9 04 E9 3B FE 0B 0D 0D 90 09 D9 0C 0C 3D FB 04 E9 03 0B 3B FD 01 FD 05 3B FE 07 C2 08 29 09 D9 0C 0C 04 60 0E 9E 08 8A 05 BD 3B FB 09 BD 09 4C 09 D9 0F 0B 03 4D 0F E6 0B F5 0F 71 0D 98 07 B8 03 A5 03 0B FE 01 63 07 D7 09 66 05 AF 03 C8 0D D9 0D 1B 37 FB 10 8C 0E F1 05 DD 02 E3 0D 2E 08 62 0F 0B 0D E6 FE 07 7D 09 D2 01 DD 02 78 08 29 08 9E 3B FB 09 D9 0E 18 0B F5 0F 71 10 55 0C A9 03 2E 09 CA 3B FE 0C 9C 0F 24 01 E0 05 6E 04 64 0D 98 0C B9 05 3D 37 FB 0E A6 3B 01 64 0A D1 3B 0D 98 07 22 10 59 0F 77 09 58 37 FB 05 0B 04 49 0E 56 05 E6 03 04 09 D9 3F 3F 0F 02 05 0B 04 49 0E 56 FE 07 C2 03 04 09 D9 0F E6 0B F5 0F 71 05 AF 03 C8 0D D9 0D 1B 37 FB 0B 67 04 C3 07 D7 0F 24 03 0B 05 3D 3B 05 43 0F 5B 09 D9 08 29 0D 98 05 BD 11 2E 07 DB 37 FE 0D 98 05 BD 07 7D 0F E6 A2 A2 A5 04 EB 03 07 08 E8 0B AD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 17,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 25,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 42,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 56,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 66,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 76,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 85,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 96,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 107,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 120,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 134,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 147,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 165,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 179,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 17,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 25,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown": {
+      "label": "FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown",
+      "line": 87,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "我想知道很久很久以前\\n宝可梦是什么样子的？\\p也许住在镇子边上的\\n化石迷知道答案。$",
+      "display_text": "我想知道很久很久以前\n宝可梦是什么样子的？\n\n也许住在镇子边上的\n化石迷知道答案。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          13,
+          152,
+          14,
+          24,
+          16,
+          123,
+          3,
+          7,
+          5,
+          11,
+          7,
+          115,
+          5,
+          11,
+          7,
+          115,
+          15,
+          36,
+          10,
+          201,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          12,
+          11,
+          238,
+          9,
+          76,
+          14,
+          226,
+          17,
+          11,
+          3,
+          11,
+          61,
+          251,
+          15,
+          2,
+          14,
+          120,
+          16,
+          208,
+          15,
+          230,
+          16,
+          101,
+          17,
+          11,
+          1,
+          156,
+          11,
+          173,
+          3,
+          11,
+          254,
+          5,
+          60,
+          11,
+          235,
+          9,
+          108,
+          16,
+          123,
+          3,
+          7,
+          2,
+          208,
+          1,
+          23,
+          55,
+          255
+        ],
+        "hex": "0D 98 0E 18 10 7B 03 07 05 0B 07 73 05 0B 07 73 0F 24 0A C9 FE 01 63 07 D7 09 66 0C 0C 0B EE 09 4C 0E E2 11 0B 03 0B 3D FB 0F 02 0E 78 10 D0 0F E6 10 65 11 0B 01 9C 0B AD 03 0B FE 05 3C 0B EB 09 6C 10 7B 03 07 02 D0 01 17 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 43,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees": {
+      "label": "FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees",
+      "line": 90,
+      "source_file": "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "我们在秋叶镇的土地里\\n种下了在火山灰中也能长得\\l欣欣向荣的大树的幼苗。$",
+      "display_text": "我们在秋叶镇的土地里\n种下了在火山灰中也能长得\n欣欣向荣的大树的幼苗。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 68,
+        "bytes": [
+          13,
+          152,
+          9,
+          95,
+          15,
+          230,
+          11,
+          17,
+          15,
+          6,
+          16,
+          101,
+          3,
+          11,
+          13,
+          41,
+          3,
+          31,
+          8,
+          100,
+          254,
+          16,
+          167,
+          13,
+          230,
+          8,
+          158,
+          15,
+          230,
+          5,
+          125,
+          11,
+          155,
+          5,
+          95,
+          16,
+          161,
+          15,
+          2,
+          9,
+          210,
+          2,
+          38,
+          3,
+          10,
+          250,
+          14,
+          75,
+          14,
+          75,
+          14,
+          31,
+          11,
+          89,
+          3,
+          11,
+          2,
+          211,
+          12,
+          60,
+          3,
+          11,
+          15,
+          133,
+          9,
+          127,
+          55,
+          255
+        ],
+        "hex": "0D 98 09 5F 0F E6 0B 11 0F 06 10 65 03 0B 0D 29 03 1F 08 64 FE 10 A7 0D E6 08 9E 0F E6 05 7D 0B 9B 05 5F 10 A1 0F 02 09 D2 02 26 03 0A FA 0E 4B 0E 4B 0E 1F 0B 59 03 0B 02 D3 0C 3C 03 0B 0F 85 09 7F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 24,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 2,
+      "case": 2,
+      "clearflag": 1,
+      "closemessage": 1,
+      "delay_8": 2,
+      "faceplayer": 1,
+      "map_script": 2,
+      "playse": 1,
+      "removeobject": 1,
+      "setrespawn": 1,
+      "setvar": 1,
+      "step_end": 2,
+      "switch": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1,
+      "waitmovement": 2,
+      "walk_down": 12,
+      "walk_left": 7,
+      "walk_right": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 14,
+    "script_count": 9,
+    "movement_count": 2,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 417,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 2,
+      "call": 2,
+      "case": 2,
+      "clearflag": 1,
+      "closemessage": 1,
+      "delay_8": 2,
+      "end": 8,
+      "faceplayer": 1,
+      "goto": 2,
+      "lock": 1,
+      "map_script": 2,
+      "msgbox": 3,
+      "playse": 1,
+      "release": 2,
+      "removeobject": 1,
+      "setrespawn": 1,
+      "setvar": 1,
+      "step_end": 2,
+      "switch": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1,
+      "waitmovement": 2,
+      "walk_down": 12,
+      "walk_left": 7,
+      "walk_right": 1
+    }
+  }
+}

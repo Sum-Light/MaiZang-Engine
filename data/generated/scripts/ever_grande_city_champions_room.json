@@ -1,0 +1,5315 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "EverGrandeCity_ChampionsRoom",
+    "map_script": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+    "map_json": "data/maps/EverGrandeCity_ChampionsRoom/map.json",
+    "map_id": "MAP_EVER_GRANDE_CITY_CHAMPIONS_ROOM",
+    "map_name": "EverGrandeCity_ChampionsRoom"
+  },
+  "labels": {
+    "EverGrandeCity_ChampionsRoom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "EverGrandeCity_ChampionsRoom_OnTransition": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_ChampionsRoom_OnWarp": {
+      "kind": "map_script_table",
+      "line": 11,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_PlayerTurnNorth": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_ChampionsRoom_OnFrame": {
+      "kind": "map_script_table",
+      "line": 19,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_EnterRoom": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 10
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace": {
+      "kind": "movement",
+      "line": 35,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_Wallace": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_Defeated": {
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 16
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic": {
+      "kind": "script",
+      "line": 65,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic": {
+      "kind": "script",
+      "line": 69,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_MayAdvice": {
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 11
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice": {
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 11
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF": {
+      "kind": "script",
+      "line": 99,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 38
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations": {
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations": {
+      "kind": "script",
+      "line": 143,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer": {
+      "kind": "script",
+      "line": 147,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth": {
+      "kind": "script",
+      "line": 154,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_PlayerExitStart": {
+      "kind": "movement",
+      "line": 159,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_PlayerExit": {
+      "kind": "movement",
+      "line": 164,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_RivalApproachPlayer": {
+      "kind": "movement",
+      "line": 172,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 9
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_RivalLookBackAndForth": {
+      "kind": "movement",
+      "line": 183,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 9
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_RivalFollows": {
+      "kind": "movement",
+      "line": 194,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_WallaceExitStart": {
+      "kind": "movement",
+      "line": 199,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_WallaceExit": {
+      "kind": "movement",
+      "line": 205,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_BirchArrives": {
+      "kind": "movement",
+      "line": 211,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 9
+    },
+    "EverGrandeCity_ChampionsRoom_Text_IntroSpeech": {
+      "kind": "text",
+      "line": 222,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_Defeat": {
+      "kind": "text",
+      "line": 225,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech": {
+      "kind": "text",
+      "line": 228,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_MayAdvice": {
+      "kind": "text",
+      "line": 231,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver": {
+      "kind": "text",
+      "line": 234,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_BrendanAdvice": {
+      "kind": "text",
+      "line": 237,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_BrendanYouveWon": {
+      "kind": "text",
+      "line": 240,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex": {
+      "kind": "text",
+      "line": 243,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_BirchCongratulations": {
+      "kind": "text",
+      "line": 246,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_WallaceComeWithMe": {
+      "kind": "text",
+      "line": 249,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside": {
+      "kind": "text",
+      "line": 252,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_MayCongratulations": {
+      "kind": "text",
+      "line": 255,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations": {
+      "kind": "text",
+      "line": 258,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "EverGrandeCity_ChampionsRoom_MapScripts": {
+      "label": "EverGrandeCity_ChampionsRoom_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "EverGrandeCity_ChampionsRoom_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_ChampionsRoom_OnTransition",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "EverGrandeCity_ChampionsRoom_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, EverGrandeCity_ChampionsRoom_OnWarp",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "EverGrandeCity_ChampionsRoom_OnFrame"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_ChampionsRoom_OnFrame",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_OnTransition": {
+      "label": "EverGrandeCity_ChampionsRoom_OnTransition",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_SetupRivalGfxId"
+          ],
+          "line": 8,
+          "raw": "call Common_EventScript_SetupRivalGfxId",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_SetupRivalGfxId",
+          "line": 8
+        }
+      ]
+    },
+    "EverGrandeCity_ChampionsRoom_OnWarp": {
+      "label": "EverGrandeCity_ChampionsRoom_OnWarp",
+      "kind": "map_script_table",
+      "line": 11,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "EverGrandeCity_ChampionsRoom_EventScript_PlayerTurnNorth"
+          ],
+          "line": 12,
+          "raw": "map_script_2 VAR_TEMP_1, 0, EverGrandeCity_ChampionsRoom_EventScript_PlayerTurnNorth",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 13,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_PlayerTurnNorth": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_PlayerTurnNorth",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 16,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_OnFrame": {
+      "label": "EverGrandeCity_ChampionsRoom_OnFrame",
+      "kind": "map_script_table",
+      "line": 19,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "EverGrandeCity_ChampionsRoom_EventScript_EnterRoom"
+          ],
+          "line": 20,
+          "raw": "map_script_2 VAR_TEMP_1, 0, EverGrandeCity_ChampionsRoom_EventScript_EnterRoom",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 21,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_EnterRoom": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_EnterRoom",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 24,
+          "raw": "lockall",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkUp4"
+          ],
+          "line": 25,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkUp4",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 26,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 27,
+          "raw": "delay 40",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace"
+          ],
+          "line": 28,
+          "raw": "applymovement LOCALID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 29,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 30,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_EventScript_Wallace"
+          ],
+          "line": 31,
+          "raw": "goto EverGrandeCity_ChampionsRoom_EventScript_Wallace",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 32,
+          "raw": "releaseall",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_Wallace",
+          "line": 31
+        }
+      ]
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_Wallace": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_Wallace",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_ENCOUNTER_CHAMPION",
+            "FALSE"
+          ],
+          "line": 41,
+          "raw": "playbgm MUS_ENCOUNTER_CHAMPION, FALSE",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_IntroSpeech",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 42,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_IntroSpeech, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "trainerbattle_no_intro",
+          "args": [
+            "TRAINER_WALLACE",
+            "EverGrandeCity_ChampionsRoom_Text_Defeat"
+          ],
+          "line": 43,
+          "raw": "trainerbattle_no_intro TRAINER_WALLACE, EverGrandeCity_ChampionsRoom_Text_Defeat",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_EventScript_Defeated"
+          ],
+          "line": 44,
+          "raw": "goto EverGrandeCity_ChampionsRoom_EventScript_Defeated",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 45,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_IntroSpeech",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 42
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_Defeated",
+          "line": 44
+        }
+      ]
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_Defeated": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_Defeated",
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "playse",
+          "args": [
+            "SE_DOOR"
+          ],
+          "line": 48,
+          "raw": "playse SE_DOOR",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "1",
+            "METATILE_EliteFour_OpenDoorChampion_Frame",
+            "FALSE"
+          ],
+          "line": 49,
+          "raw": "setmetatile 6, 1, METATILE_EliteFour_OpenDoorChampion_Frame, FALSE",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "2",
+            "METATILE_EliteFour_OpenDoorChampion_Opening",
+            "FALSE"
+          ],
+          "line": 50,
+          "raw": "setmetatile 6, 2, METATILE_EliteFour_OpenDoorChampion_Opening, FALSE",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 51,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 52,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 53,
+          "raw": "closemessage",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_DOOR"
+          ],
+          "line": 54,
+          "raw": "playse SE_DOOR",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 55,
+          "raw": "checkplayergender",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic"
+          ],
+          "line": 56,
+          "raw": "call_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic"
+          ],
+          "line": 57,
+          "raw": "call_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "addobject",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_RIVAL"
+          ],
+          "line": 58,
+          "raw": "addobject LOCALID_CHAMPIONS_ROOM_RIVAL",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer"
+          ],
+          "line": 59,
+          "raw": "call EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 60,
+          "raw": "checkplayergender",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "EverGrandeCity_ChampionsRoom_EventScript_MayAdvice"
+          ],
+          "line": 61,
+          "raw": "goto_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_MayAdvice",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice"
+          ],
+          "line": 62,
+          "raw": "goto_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 63,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 52
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic",
+          "line": 56
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic",
+          "line": 57
+        },
+        {
+          "op": "call",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer",
+          "line": 59
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_MayAdvice",
+          "line": 61
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice",
+          "line": 62
+        }
+      ]
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic",
+      "kind": "script",
+      "line": 65,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_ENCOUNTER_MAY",
+            "FALSE"
+          ],
+          "line": 66,
+          "raw": "playbgm MUS_ENCOUNTER_MAY, FALSE",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 67,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic",
+      "kind": "script",
+      "line": 69,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_ENCOUNTER_BRENDAN",
+            "FALSE"
+          ],
+          "line": 70,
+          "raw": "playbgm MUS_ENCOUNTER_BRENDAN, FALSE",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 71,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_MayAdvice": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_MayAdvice",
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_MayAdvice",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 74,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_MayAdvice, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 75,
+          "raw": "delay 40",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 76,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_RIVAL",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 77,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_RIVAL, Common_Movement_ExclamationMark",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 78,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_RIVAL",
+            "Common_Movement_Delay48"
+          ],
+          "line": 79,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_RIVAL, Common_Movement_Delay48",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 80,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth"
+          ],
+          "line": 81,
+          "raw": "call EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 82,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF"
+          ],
+          "line": 83,
+          "raw": "goto EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 84,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_MayAdvice",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 74
+        },
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 82
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth",
+          "line": 81
+        },
+        {
+          "op": "goto",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF",
+          "line": 83
+        }
+      ]
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice",
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_BrendanAdvice",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 87,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_BrendanAdvice, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 88,
+          "raw": "delay 40",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 89,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_RIVAL",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 90,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_RIVAL, Common_Movement_ExclamationMark",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 91,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_RIVAL",
+            "Common_Movement_Delay48"
+          ],
+          "line": 92,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_RIVAL, Common_Movement_Delay48",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 93,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth"
+          ],
+          "line": 94,
+          "raw": "call EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_BrendanYouveWon",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 95,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_BrendanYouveWon, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF"
+          ],
+          "line": 96,
+          "raw": "goto EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 97,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_BrendanAdvice",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 87
+        },
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_BrendanYouveWon",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 95
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth",
+          "line": 94
+        },
+        {
+          "op": "goto",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF",
+          "line": 96
+        }
+      ]
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF",
+      "kind": "script",
+      "line": 99,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 100,
+          "raw": "closemessage",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "addobject",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_BIRCH"
+          ],
+          "line": 101,
+          "raw": "addobject LOCALID_CHAMPIONS_ROOM_BIRCH",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_BIRCH",
+            "EverGrandeCity_ChampionsRoom_Movement_BirchArrives"
+          ],
+          "line": 102,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_BIRCH, EverGrandeCity_ChampionsRoom_Movement_BirchArrives",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 103,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 104,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 105,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 106,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "ProfBirch_EventScript_RatePokedex"
+          ],
+          "line": 107,
+          "raw": "call ProfBirch_EventScript_RatePokedex",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_BirchCongratulations",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 108,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_BirchCongratulations, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_WALLACE",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 109,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 110,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 111,
+          "raw": "delay 20",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_WALLACE",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 112,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 113,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_WallaceComeWithMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 114,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_WallaceComeWithMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 115,
+          "raw": "closemessage",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 116,
+          "raw": "delay 30",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_WALLACE",
+            "EverGrandeCity_ChampionsRoom_Movement_WallaceExitStart"
+          ],
+          "line": 117,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, EverGrandeCity_ChampionsRoom_Movement_WallaceExitStart",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "EverGrandeCity_ChampionsRoom_Movement_PlayerExitStart"
+          ],
+          "line": 118,
+          "raw": "applymovement LOCALID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerExitStart",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_BIRCH",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 119,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_BIRCH, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_RIVAL",
+            "EverGrandeCity_ChampionsRoom_Movement_RivalFollows"
+          ],
+          "line": 120,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_RIVAL, EverGrandeCity_ChampionsRoom_Movement_RivalFollows",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 121,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 122,
+          "raw": "delay 20",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 123,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 124,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 125,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 126,
+          "raw": "checkplayergender",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations"
+          ],
+          "line": 127,
+          "raw": "call_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations"
+          ],
+          "line": 128,
+          "raw": "call_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 129,
+          "raw": "closemessage",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_WALLACE",
+            "EverGrandeCity_ChampionsRoom_Movement_WallaceExit"
+          ],
+          "line": 130,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, EverGrandeCity_ChampionsRoom_Movement_WallaceExit",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "EverGrandeCity_ChampionsRoom_Movement_PlayerExit"
+          ],
+          "line": 131,
+          "raw": "applymovement LOCALID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerExit",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 132,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_PETALBURG_GYM_GREETER"
+          ],
+          "line": 133,
+          "raw": "setflag FLAG_HIDE_PETALBURG_GYM_GREETER",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_EVER_GRANDE_CITY_HALL_OF_FAME",
+            "7",
+            "16"
+          ],
+          "line": 134,
+          "raw": "warp MAP_EVER_GRANDE_CITY_HALL_OF_FAME, 7, 16",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 135,
+          "raw": "waitstate",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 136,
+          "raw": "releaseall",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 137,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 106
+        },
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_BirchCongratulations",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 108
+        },
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_WallaceComeWithMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 114
+        },
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 125
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "ProfBirch_EventScript_RatePokedex",
+          "line": 107
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations",
+          "line": 127
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations",
+          "line": 128
+        }
+      ]
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations",
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_MayCongratulations",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 140,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_MayCongratulations, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 141,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_MayCongratulations",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 140
+        }
+      ],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations",
+      "kind": "script",
+      "line": 143,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 144,
+          "raw": "msgbox EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 145,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 144
+        }
+      ],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer",
+      "kind": "script",
+      "line": 147,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_RIVAL",
+            "EverGrandeCity_ChampionsRoom_Movement_RivalApproachPlayer"
+          ],
+          "line": 148,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_RIVAL, EverGrandeCity_ChampionsRoom_Movement_RivalApproachPlayer",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 149,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 150,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 151,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 152,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth": {
+      "label": "EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth",
+      "kind": "script",
+      "line": 154,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CHAMPIONS_ROOM_RIVAL",
+            "EverGrandeCity_ChampionsRoom_Movement_RivalLookBackAndForth"
+          ],
+          "line": 155,
+          "raw": "applymovement LOCALID_CHAMPIONS_ROOM_RIVAL, EverGrandeCity_ChampionsRoom_Movement_RivalLookBackAndForth",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 156,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 157,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace": {
+      "label": "EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace",
+      "kind": "movement",
+      "line": 35,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 36,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 37,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 38,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_PlayerExitStart": {
+      "label": "EverGrandeCity_ChampionsRoom_Movement_PlayerExitStart",
+      "kind": "movement",
+      "line": 159,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 160,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 161,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 162,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_PlayerExit": {
+      "label": "EverGrandeCity_ChampionsRoom_Movement_PlayerExit",
+      "kind": "movement",
+      "line": 164,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 165,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 166,
+          "raw": "delay_16",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 167,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 168,
+          "raw": "delay_8",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 169,
+          "raw": "set_invisible",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 170,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_RivalApproachPlayer": {
+      "label": "EverGrandeCity_ChampionsRoom_Movement_RivalApproachPlayer",
+      "kind": "movement",
+      "line": 172,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 173,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 174,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 175,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 176,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 177,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 178,
+          "raw": "walk_left",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 179,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 180,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 181,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_RivalLookBackAndForth": {
+      "label": "EverGrandeCity_ChampionsRoom_Movement_RivalLookBackAndForth",
+      "kind": "movement",
+      "line": 183,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 184,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 185,
+          "raw": "delay_16",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 186,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 187,
+          "raw": "delay_16",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 188,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 189,
+          "raw": "delay_8",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 190,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 191,
+          "raw": "delay_16",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 192,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_RivalFollows": {
+      "label": "EverGrandeCity_ChampionsRoom_Movement_RivalFollows",
+      "kind": "movement",
+      "line": 194,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 195,
+          "raw": "walk_right",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 196,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 197,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_WallaceExitStart": {
+      "label": "EverGrandeCity_ChampionsRoom_Movement_WallaceExitStart",
+      "kind": "movement",
+      "line": 199,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 200,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 201,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_down",
+          "args": [],
+          "line": 202,
+          "raw": "walk_in_place_faster_down",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 203,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_WallaceExit": {
+      "label": "EverGrandeCity_ChampionsRoom_Movement_WallaceExit",
+      "kind": "movement",
+      "line": 205,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 206,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 207,
+          "raw": "delay_8",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 208,
+          "raw": "set_invisible",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 209,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_ChampionsRoom_Movement_BirchArrives": {
+      "label": "EverGrandeCity_ChampionsRoom_Movement_BirchArrives",
+      "kind": "movement",
+      "line": 211,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 212,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 213,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 214,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 215,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 216,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 217,
+          "raw": "walk_right",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 218,
+          "raw": "walk_up",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 219,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 220,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "EverGrandeCity_ChampionsRoom_Text_IntroSpeech": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_IntroSpeech",
+      "line": 222,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "米可利：欢迎你，{PLAYER}{KUN}。\\n关于琉璃市的那件事……\\l你做得真是太华丽了，\\l凭一己之力就扭转了危机。\\p哦！\\p说是一己之力解决了\\n那件事不太妥当，\\p应该说你和你的宝可梦\\n齐心协力排除万难才是。\\p我们训练家通过给予宝可梦道具\\n并教授它们对战的新技巧来培育它们，\\p但我们自己也从宝可梦\\n那里获益良多。\\p而这里就是检验像你这样的\\n训练家修行成果的地方。\\p现在！\\p谁是全丰缘最能与自己的宝可梦\\n华丽共舞之人？\\p此时此处，展示给我看吧！$",
+      "display_text": "米可利：欢迎你，{PLAYER}{KUN}。\n关于琉璃市的那件事……\n你做得真是太华丽了，\n凭一己之力就扭转了危机。\n\n哦！\n\n说是一己之力解决了\n那件事不太妥当，\n\n应该说你和你的宝可梦\n齐心协力排除万难才是。\n\n我们训练家通过给予宝可梦道具\n并教授它们对战的新技巧来培育它们，\n\n但我们自己也从宝可梦\n那里获益良多。\n\n而这里就是检验像你这样的\n训练家修行成果的地方。\n\n现在！\n\n谁是全丰缘最能与自己的宝可梦\n华丽共舞之人？\n\n此时此处，展示给我看吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 384,
+        "bytes": [
+          9,
+          111,
+          7,
+          215,
+          8,
+          112,
+          62,
+          5,
+          67,
+          15,
+          91,
+          9,
+          217,
+          59,
+          253,
+          1,
+          253,
+          5,
+          55,
+          254,
+          4,
+          160,
+          15,
+          136,
+          8,
+          195,
+          8,
+          122,
+          12,
+          21,
+          3,
+          11,
+          9,
+          189,
+          5,
+          233,
+          12,
+          7,
+          176,
+          176,
+          250,
+          9,
+          217,
+          17,
+          46,
+          3,
+          10,
+          16,
+          89,
+          12,
+          12,
+          12,
+          172,
+          5,
+          55,
+          8,
+          107,
+          8,
+          158,
+          59,
+          250,
+          10,
+          121,
+          15,
+          11,
+          5,
+          165,
+          16,
+          127,
+          8,
+          121,
+          7,
+          125,
+          10,
+          1,
+          16,
+          217,
+          8,
+          158,
+          13,
+          105,
+          5,
+          135,
+          55,
+          251,
+          10,
+          19,
+          60,
+          251,
+          12,
+          88,
+          12,
+          12,
+          15,
+          11,
+          5,
+          165,
+          16,
+          127,
+          8,
+          121,
+          7,
+          52,
+          7,
+          166,
+          8,
+          158,
+          254,
+          9,
+          189,
+          5,
+          233,
+          12,
+          7,
+          1,
+          214,
+          12,
+          172,
+          13,
+          63,
+          2,
+          239,
+          59,
+          251,
+          15,
+          84,
+          4,
+          45,
+          12,
+          88,
+          9,
+          217,
+          4,
+          243,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          10,
+          166,
+          14,
+          79,
+          14,
+          56,
+          8,
+          121,
+          10,
+          34,
+          2,
+          127,
+          13,
+          90,
+          9,
+          199,
+          1,
+          224,
+          12,
+          12,
+          55,
+          251,
+          13,
+          152,
+          9,
+          95,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          13,
+          16,
+          4,
+          197,
+          4,
+          98,
+          15,
+          150,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          7,
+          7,
+          143,
+          254,
+          1,
+          189,
+          7,
+          30,
+          12,
+          31,
+          12,
+          159,
+          9,
+          95,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          14,
+          77,
+          5,
+          167,
+          10,
+          226,
+          8,
+          41,
+          10,
+          61,
+          15,
+          171,
+          12,
+          159,
+          9,
+          95,
+          59,
+          251,
+          2,
+          233,
+          13,
+          152,
+          9,
+          95,
+          17,
+          12,
+          5,
+          165,
+          15,
+          2,
+          2,
+          179,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          9,
+          189,
+          8,
+          100,
+          5,
+          126,
+          15,
+          54,
+          8,
+          143,
+          3,
+          133,
+          55,
+          251,
+          3,
+          157,
+          16,
+          85,
+          8,
+          100,
+          7,
+          125,
+          12,
+          12,
+          5,
+          215,
+          14,
+          210,
+          14,
+          30,
+          9,
+          217,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          254,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          14,
+          105,
+          14,
+          91,
+          2,
+          75,
+          4,
+          195,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          55,
+          251,
+          14,
+          3,
+          15,
+          230,
+          60,
+          251,
+          12,
+          80,
+          12,
+          12,
+          11,
+          43,
+          3,
+          228,
+          15,
+          193,
+          17,
+          38,
+          9,
+          210,
+          15,
+          153,
+          17,
+          12,
+          5,
+          165,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          5,
+          55,
+          8,
+          107,
+          4,
+          122,
+          13,
+          174,
+          16,
+          127,
+          11,
+          75,
+          61,
+          251,
+          2,
+          171,
+          11,
+          237,
+          2,
+          171,
+          2,
+          134,
+          59,
+          16,
+          44,
+          12,
+          3,
+          4,
+          98,
+          13,
+          152,
+          7,
+          194,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "09 6F 07 D7 08 70 3E 05 43 0F 5B 09 D9 3B FD 01 FD 05 37 FE 04 A0 0F 88 08 C3 08 7A 0C 15 03 0B 09 BD 05 E9 0C 07 B0 B0 FA 09 D9 11 2E 03 0A 10 59 0C 0C 0C AC 05 37 08 6B 08 9E 3B FA 0A 79 0F 0B 05 A5 10 7F 08 79 07 7D 0A 01 10 D9 08 9E 0D 69 05 87 37 FB 0A 13 3C FB 0C 58 0C 0C 0F 0B 05 A5 10 7F 08 79 07 34 07 A6 08 9E FE 09 BD 05 E9 0C 07 01 D6 0C AC 0D 3F 02 EF 3B FB 0F 54 04 2D 0C 58 09 D9 04 F3 09 D9 03 0B 01 63 07 D7 09 66 FE 0A A6 0E 4F 0E 38 08 79 0A 22 02 7F 0D 5A 09 C7 01 E0 0C 0C 37 FB 0D 98 09 5F 0E 9E 08 8A 05 BD 0D 10 04 C5 04 62 0F 96 01 63 07 D7 09 66 03 07 07 8F FE 01 BD 07 1E 0C 1F 0C 9F 09 5F 03 79 10 30 03 0B 0E 4D 05 A7 0A E2 08 29 0A 3D 0F AB 0C 9F 09 5F 3B FB 02 E9 0D 98 09 5F 11 0C 05 A5 0F 02 02 B3 01 63 07 D7 09 66 FE 09 BD 08 64 05 7E 0F 36 08 8F 03 85 37 FB 03 9D 10 55 08 64 07 7D 0C 0C 05 D7 0E D2 0E 1E 09 D9 10 55 0E E2 03 0B FE 0E 9E 08 8A 05 BD 0E 69 0E 5B 02 4B 04 C3 03 0B 03 1F 03 C0 37 FB 0E 03 0F E6 3C FB 0C 50 0C 0C 0B 2B 03 E4 0F C1 11 26 09 D2 0F 99 11 0C 05 A5 03 0B 01 63 07 D7 09 66 FE 05 37 08 6B 04 7A 0D AE 10 7F 0B 4B 3D FB 02 AB 0B ED 02 AB 02 86 3B 10 2C 0C 03 04 62 0D 98 07 C2 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 8,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 16,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 35,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 47,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 61,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 65,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 76,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 86,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 98,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 111,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 127,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 146,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 158,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 167,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 181,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 194,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 199,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 215,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 224,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 238,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 8,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 16,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_Defeat": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_Defeat",
+      "line": 225,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "我，冠军，输了……\\p美妙得令人赞叹！\\n优雅得令人眼红！\\l这实在是太～辉煌耀眼了！！\\p光荣属于你，{PLAYER}{KUN}！\\p你是一名真正高贵的\\n宝可梦训练家！$",
+      "display_text": "我，冠军，输了……\n\n美妙得令人赞叹！\n优雅得令人眼红！\n这实在是太～辉煌耀眼了！！\n\n光荣属于你，{PLAYER}{KUN}！\n\n你是一名真正高贵的\n宝可梦训练家！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 121,
+        "bytes": [
+          13,
+          152,
+          59,
+          4,
+          162,
+          7,
+          172,
+          59,
+          12,
+          41,
+          8,
+          158,
+          176,
+          176,
+          251,
+          9,
+          88,
+          9,
+          134,
+          3,
+          10,
+          8,
+          193,
+          11,
+          75,
+          15,
+          234,
+          12,
+          191,
+          60,
+          254,
+          15,
+          115,
+          14,
+          174,
+          3,
+          10,
+          8,
+          193,
+          11,
+          75,
+          14,
+          196,
+          5,
+          27,
+          60,
+          250,
+          16,
+          85,
+          11,
+          241,
+          15,
+          230,
+          12,
+          12,
+          12,
+          172,
+          57,
+          5,
+          97,
+          5,
+          90,
+          14,
+          242,
+          14,
+          196,
+          8,
+          158,
+          60,
+          60,
+          251,
+          4,
+          170,
+          11,
+          89,
+          12,
+          57,
+          15,
+          136,
+          9,
+          217,
+          59,
+          253,
+          1,
+          253,
+          5,
+          60,
+          251,
+          9,
+          217,
+          12,
+          12,
+          15,
+          11,
+          9,
+          147,
+          16,
+          89,
+          16,
+          112,
+          4,
+          73,
+          4,
+          187,
+          3,
+          11,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          60,
+          255
+        ],
+        "hex": "0D 98 3B 04 A2 07 AC 3B 0C 29 08 9E B0 B0 FB 09 58 09 86 03 0A 08 C1 0B 4B 0F EA 0C BF 3C FE 0F 73 0E AE 03 0A 08 C1 0B 4B 0E C4 05 1B 3C FA 10 55 0B F1 0F E6 0C 0C 0C AC 39 05 61 05 5A 0E F2 0E C4 08 9E 3C 3C FB 04 AA 0B 59 0C 39 0F 88 09 D9 3B FD 01 FD 05 3C FB 09 D9 0C 0C 0F 0B 09 93 10 59 10 70 04 49 04 BB 03 0B FE 01 63 07 D7 09 66 0E 9E 08 8A 05 BD 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 29,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 44,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 52,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 60,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 66,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 77,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 86,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 52,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 60,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech",
+      "line": 228,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "米可利：你的宝可梦\\n在对战中……\\p时而轻柔如风，\\n时而又迅猛如雷。\\p还带着一丝，\\n无疑是从你那里耳濡目染所得的，\\l轻盈而坚定的优雅。\\p甚至连我都为你\\n出色的表现而深深地着迷！\\p此刻你已站上宝可梦联盟\\n光荣的顶峰，\\p我宣布你已成为\\n丰缘地区的新……$",
+      "display_text": "米可利：你的宝可梦\n在对战中……\n\n时而轻柔如风，\n时而又迅猛如雷。\n\n还带着一丝，\n无疑是从你那里耳濡目染所得的，\n轻盈而坚定的优雅。\n\n甚至连我都为你\n出色的表现而深深地着迷！\n\n此刻你已站上宝可梦联盟\n光荣的顶峰，\n\n我宣布你已成为\n丰缘地区的新……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 223,
+        "bytes": [
+          9,
+          111,
+          7,
+          215,
+          8,
+          112,
+          62,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          15,
+          230,
+          3,
+          121,
+          16,
+          48,
+          16,
+          161,
+          176,
+          176,
+          251,
+          11,
+          237,
+          3,
+          157,
+          11,
+          3,
+          11,
+          97,
+          11,
+          103,
+          3,
+          234,
+          59,
+          254,
+          11,
+          237,
+          3,
+          157,
+          15,
+          132,
+          14,
+          161,
+          9,
+          101,
+          11,
+          103,
+          8,
+          76,
+          55,
+          251,
+          5,
+          70,
+          2,
+          216,
+          16,
+          244,
+          15,
+          11,
+          12,
+          98,
+          59,
+          254,
+          13,
+          164,
+          15,
+          25,
+          12,
+          12,
+          2,
+          179,
+          9,
+          217,
+          9,
+          189,
+          8,
+          100,
+          3,
+          159,
+          22,
+          42,
+          9,
+          181,
+          11,
+          62,
+          12,
+          156,
+          3,
+          10,
+          3,
+          11,
+          59,
+          250,
+          11,
+          3,
+          15,
+          93,
+          3,
+          157,
+          5,
+          204,
+          3,
+          77,
+          3,
+          11,
+          15,
+          115,
+          14,
+          174,
+          55,
+          251,
+          11,
+          211,
+          16,
+          146,
+          8,
+          127,
+          13,
+          152,
+          3,
+          97,
+          13,
+          112,
+          9,
+          217,
+          254,
+          2,
+          120,
+          11,
+          137,
+          3,
+          11,
+          1,
+          170,
+          14,
+          3,
+          3,
+          157,
+          11,
+          204,
+          11,
+          204,
+          3,
+          31,
+          16,
+          244,
+          9,
+          108,
+          60,
+          251,
+          2,
+          171,
+          7,
+          218,
+          9,
+          217,
+          15,
+          33,
+          16,
+          49,
+          11,
+          173,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          125,
+          9,
+          99,
+          254,
+          4,
+          170,
+          11,
+          89,
+          3,
+          11,
+          3,
+          74,
+          3,
+          232,
+          59,
+          251,
+          13,
+          152,
+          14,
+          134,
+          1,
+          215,
+          9,
+          217,
+          15,
+          33,
+          2,
+          75,
+          13,
+          112,
+          254,
+          3,
+          228,
+          15,
+          193,
+          3,
+          31,
+          11,
+          26,
+          3,
+          11,
+          14,
+          77,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 6F 07 D7 08 70 3E 09 D9 03 0B 01 63 07 D7 09 66 FE 0F E6 03 79 10 30 10 A1 B0 B0 FB 0B ED 03 9D 0B 03 0B 61 0B 67 03 EA 3B FE 0B ED 03 9D 0F 84 0E A1 09 65 0B 67 08 4C 37 FB 05 46 02 D8 10 F4 0F 0B 0C 62 3B FE 0D A4 0F 19 0C 0C 02 B3 09 D9 09 BD 08 64 03 9F 16 2A 09 B5 0B 3E 0C 9C 03 0A 03 0B 3B FA 0B 03 0F 5D 03 9D 05 CC 03 4D 03 0B 0F 73 0E AE 37 FB 0B D3 10 92 08 7F 0D 98 03 61 0D 70 09 D9 FE 02 78 0B 89 03 0B 01 AA 0E 03 03 9D 0B CC 0B CC 03 1F 10 F4 09 6C 3C FB 02 AB 07 DA 09 D9 0F 21 10 31 0B AD 01 63 07 D7 09 66 08 7D 09 63 FE 04 AA 0B 59 03 0B 03 4A 03 E8 3B FB 0D 98 0E 86 01 D7 09 D9 0F 21 02 4B 0D 70 FE 03 E4 0F C1 03 1F 0B 1A 03 0B 0E 4D B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 36,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 61,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 72,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 81,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 95,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 108,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 116,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 125,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 135,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_MayAdvice": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_MayAdvice",
+      "line": 231,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "小遥：{PLAYER}{KUN}！\\p挑战冠军前\\n给你几个建议……$",
+      "display_text": "小遥：{PLAYER}{KUN}！\n\n挑战冠军前\n给你几个建议……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 37,
+        "bytes": [
+          14,
+          44,
+          14,
+          234,
+          62,
+          253,
+          1,
+          253,
+          5,
+          60,
+          251,
+          12,
+          245,
+          16,
+          48,
+          4,
+          162,
+          7,
+          172,
+          10,
+          201,
+          254,
+          4,
+          98,
+          9,
+          217,
+          5,
+          163,
+          4,
+          96,
+          5,
+          241,
+          15,
+          57,
+          176,
+          176,
+          255
+        ],
+        "hex": "0E 2C 0E EA 3E FD 01 FD 05 3C FB 0C F5 10 30 04 A2 07 AC 0A C9 FE 04 62 09 D9 05 A3 04 60 05 F1 0F 39 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 11,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 34,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 11,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver",
+      "line": 234,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "小遥：咦？\\n什么？\\p{PLAYER}{KUN}……\\n难道说……\\l已经结束了？$",
+      "display_text": "小遥：咦？\n什么？\n\n{PLAYER}{KUN}……\n难道说……\n已经结束了？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          14,
+          44,
+          14,
+          234,
+          62,
+          20,
+          21,
+          61,
+          254,
+          11,
+          238,
+          9,
+          76,
+          61,
+          251,
+          253,
+          1,
+          253,
+          5,
+          176,
+          176,
+          254,
+          9,
+          199,
+          3,
+          7,
+          12,
+          88,
+          176,
+          176,
+          250,
+          15,
+          33,
+          7,
+          93,
+          7,
+          51,
+          12,
+          61,
+          8,
+          158,
+          61,
+          255
+        ],
+        "hex": "0E 2C 0E EA 3E 14 15 3D FE 0B EE 09 4C 3D FB FD 01 FD 05 B0 B0 FE 09 C7 03 07 0C 58 B0 B0 FA 0F 21 07 5D 07 33 0C 3D 08 9E 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 12,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 20,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 34,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 12,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 20,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_BrendanAdvice": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_BrendanAdvice",
+      "line": 237,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "小悠：{PLAYER}！\\p挑战冠军前\\n需要建议吗……？$",
+      "display_text": "小悠：{PLAYER}！\n\n挑战冠军前\n需要建议吗……？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          14,
+          44,
+          15,
+          116,
+          62,
+          253,
+          1,
+          60,
+          251,
+          12,
+          245,
+          16,
+          48,
+          4,
+          162,
+          7,
+          172,
+          10,
+          201,
+          254,
+          14,
+          115,
+          14,
+          241,
+          5,
+          241,
+          15,
+          57,
+          9,
+          42,
+          176,
+          176,
+          61,
+          255
+        ],
+        "hex": "0E 2C 0F 74 3E FD 01 3C FB 0C F5 10 30 04 A2 07 AC 0A C9 FE 0E 73 0E F1 05 F1 0F 39 09 2A B0 B0 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_BrendanYouveWon": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_BrendanYouveWon",
+      "line": 240,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "小悠：{PLAYER}……\\p你该不会……\\n已经打败冠军了？$",
+      "display_text": "小悠：{PLAYER}……\n\n你该不会……\n已经打败冠军了？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 37,
+        "bytes": [
+          14,
+          44,
+          15,
+          116,
+          62,
+          253,
+          1,
+          176,
+          176,
+          251,
+          9,
+          217,
+          4,
+          45,
+          1,
+          214,
+          5,
+          110,
+          176,
+          176,
+          254,
+          15,
+          33,
+          7,
+          93,
+          2,
+          210,
+          1,
+          59,
+          4,
+          162,
+          7,
+          172,
+          8,
+          158,
+          61,
+          255
+        ],
+        "hex": "0E 2C 0F 74 3E FD 01 B0 B0 FB 09 D9 04 2D 01 D6 05 6E B0 B0 FE 0F 21 07 5D 02 D2 01 3B 04 A2 07 AC 08 9E 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 31,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex",
+      "line": 243,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "小田卷博士：看吧？\\n我说什么来着，{RIVAL}？\\p早就告诉你{PLAYER}{KUN}\\n不用我们担心！\\p…… …… …… ……\\n{PLAYER}{KUN}，你终于做到了。\\p当我听说你在橙华道馆\\n打败了你的父亲，\\l我就预感你可能有机会……\\p但是没想到你现在\\n真的成为了冠军！\\p啊，对了！\\p你的图鉴完成得如何了？\\n来，让我看一下。$",
+      "display_text": "小田卷博士：看吧？\n我说什么来着，{RIVAL}？\n\n早就告诉你{PLAYER}{KUN}\n不用我们担心！\n\n…… …… …… ……\n{PLAYER}{KUN}，你终于做到了。\n\n当我听说你在橙华道馆\n打败了你的父亲，\n我就预感你可能有机会……\n\n但是没想到你现在\n真的成为了冠军！\n\n啊，对了！\n\n你的图鉴完成得如何了？\n来，让我看一下。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 233,
+        "bytes": [
+          14,
+          44,
+          12,
+          240,
+          7,
+          157,
+          1,
+          196,
+          12,
+          4,
+          62,
+          7,
+          194,
+          1,
+          40,
+          61,
+          254,
+          13,
+          152,
+          12,
+          88,
+          11,
+          238,
+          9,
+          76,
+          8,
+          41,
+          16,
+          244,
+          59,
+          253,
+          6,
+          61,
+          251,
+          15,
+          243,
+          7,
+          125,
+          4,
+          80,
+          12,
+          130,
+          9,
+          217,
+          253,
+          1,
+          253,
+          5,
+          254,
+          1,
+          214,
+          15,
+          113,
+          13,
+          152,
+          9,
+          95,
+          2,
+          225,
+          14,
+          79,
+          60,
+          251,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          254,
+          253,
+          1,
+          253,
+          5,
+          59,
+          9,
+          217,
+          16,
+          166,
+          15,
+          136,
+          17,
+          46,
+          3,
+          4,
+          8,
+          158,
+          55,
+          251,
+          2,
+          239,
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          9,
+          217,
+          15,
+          230,
+          2,
+          74,
+          5,
+          55,
+          3,
+          7,
+          4,
+          165,
+          254,
+          2,
+          210,
+          1,
+          59,
+          8,
+          158,
+          9,
+          217,
+          3,
+          11,
+          4,
+          34,
+          10,
+          240,
+          59,
+          250,
+          13,
+          152,
+          7,
+          125,
+          15,
+          176,
+          4,
+          58,
+          9,
+          217,
+          7,
+          215,
+          9,
+          210,
+          15,
+          126,
+          5,
+          135,
+          5,
+          110,
+          176,
+          176,
+          251,
+          2,
+          233,
+          12,
+          12,
+          9,
+          83,
+          14,
+          24,
+          3,
+          4,
+          9,
+          217,
+          14,
+          3,
+          15,
+          230,
+          254,
+          16,
+          89,
+          3,
+          11,
+          2,
+          75,
+          13,
+          112,
+          8,
+          158,
+          4,
+          162,
+          7,
+          172,
+          60,
+          251,
+          1,
+          0,
+          59,
+          3,
+          121,
+          8,
+          158,
+          60,
+          251,
+          9,
+          217,
+          3,
+          11,
+          13,
+          36,
+          5,
+          227,
+          13,
+          82,
+          2,
+          75,
+          3,
+          10,
+          11,
+          103,
+          4,
+          244,
+          8,
+          158,
+          61,
+          254,
+          8,
+          41,
+          59,
+          11,
+          67,
+          13,
+          152,
+          7,
+          194,
+          15,
+          11,
+          13,
+          230,
+          55,
+          255
+        ],
+        "hex": "0E 2C 0C F0 07 9D 01 C4 0C 04 3E 07 C2 01 28 3D FE 0D 98 0C 58 0B EE 09 4C 08 29 10 F4 3B FD 06 3D FB 0F F3 07 7D 04 50 0C 82 09 D9 FD 01 FD 05 FE 01 D6 0F 71 0D 98 09 5F 02 E1 0E 4F 3C FB B0 B0 00 B0 B0 00 B0 B0 00 B0 B0 FE FD 01 FD 05 3B 09 D9 10 A6 0F 88 11 2E 03 04 08 9E 37 FB 02 EF 0D 98 0D 07 0C 58 09 D9 0F E6 02 4A 05 37 03 07 04 A5 FE 02 D2 01 3B 08 9E 09 D9 03 0B 04 22 0A F0 3B FA 0D 98 07 7D 0F B0 04 3A 09 D9 07 D7 09 D2 0F 7E 05 87 05 6E B0 B0 FB 02 E9 0C 0C 09 53 0E 18 03 04 09 D9 0E 03 0F E6 FE 10 59 03 0B 02 4B 0D 70 08 9E 04 A2 07 AC 3C FB 01 00 3B 03 79 08 9E 3C FB 09 D9 03 0B 0D 24 05 E3 0D 52 02 4B 03 0A 0B 67 04 F4 08 9E 3D FE 08 29 3B 0B 43 0D 98 07 C2 0F 0B 0D E6 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{RIVAL}",
+            "offset": 18,
+            "bytes": [
+              253,
+              6
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "RIVAL",
+                "bytes": [
+                  253,
+                  6
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 26,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 33,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 41,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 46,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 55,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 68,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 70,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 78,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 91,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 103,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 113,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 127,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 137,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 147,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 154,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 167,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 177,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "RIVAL",
+            "offset": 18,
+            "bytes": [
+              253,
+              6
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 33,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 41,
+            "bytes": [
+              253,
+              5
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 70,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 78,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_BirchCongratulations": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_BirchCongratulations",
+      "line": 246,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "小田卷博士：总之恭喜你！\\p现在，昂首挺胸地走进\\n最后的房间吧！$",
+      "display_text": "小田卷博士：总之恭喜你！\n\n现在，昂首挺胸地走进\n最后的房间吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 57,
+        "bytes": [
+          14,
+          44,
+          12,
+          240,
+          7,
+          157,
+          1,
+          196,
+          12,
+          4,
+          62,
+          17,
+          20,
+          16,
+          127,
+          4,
+          111,
+          13,
+          214,
+          9,
+          217,
+          60,
+          251,
+          14,
+          3,
+          15,
+          230,
+          59,
+          1,
+          25,
+          12,
+          28,
+          13,
+          14,
+          14,
+          99,
+          3,
+          31,
+          17,
+          23,
+          7,
+          74,
+          254,
+          17,
+          38,
+          5,
+          34,
+          3,
+          11,
+          3,
+          194,
+          5,
+          207,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0E 2C 0C F0 07 9D 01 C4 0C 04 3E 11 14 10 7F 04 6F 0D D6 09 D9 3C FB 0E 03 0F E6 3B 01 19 0C 1C 0D 0E 0E 63 03 1F 11 17 07 4A FE 11 26 05 22 03 0B 03 C2 05 CF 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 33,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_WallaceComeWithMe": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_WallaceComeWithMe",
+      "line": 249,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "米可利：{PLAYER}{KUN}……\\p不，请容我改口。\\p新任冠军！\\p跟我来。$",
+      "display_text": "米可利：{PLAYER}{KUN}……\n\n不，请容我改口。\n\n新任冠军！\n\n跟我来。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 47,
+        "bytes": [
+          9,
+          111,
+          7,
+          215,
+          8,
+          112,
+          62,
+          253,
+          1,
+          253,
+          5,
+          176,
+          176,
+          251,
+          1,
+          214,
+          59,
+          11,
+          13,
+          11,
+          93,
+          13,
+          152,
+          4,
+          46,
+          7,
+          232,
+          55,
+          251,
+          14,
+          77,
+          11,
+          78,
+          4,
+          162,
+          7,
+          172,
+          60,
+          251,
+          4,
+          100,
+          13,
+          152,
+          8,
+          41,
+          55,
+          255
+        ],
+        "hex": "09 6F 07 D7 08 70 3E FD 01 FD 05 B0 B0 FB 01 D6 3B 0B 0D 0B 5D 0D 98 04 2E 07 E8 37 FB 0E 4D 0B 4E 04 A2 07 AC 3C FB 04 64 0D 98 08 29 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 4,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 12,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 36,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 4,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 12,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside",
+      "line": 252,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "米可利：我很抱歉，不过……\\p从这里开始，只有成为冠军的\\n训练家才能进入。\\p请你和小田卷博士一起\\n在外面等候吧。$",
+      "display_text": "米可利：我很抱歉，不过……\n\n从这里开始，只有成为冠军的\n训练家才能进入。\n\n请你和小田卷博士一起\n在外面等候吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 100,
+        "bytes": [
+          9,
+          111,
+          7,
+          215,
+          8,
+          112,
+          62,
+          13,
+          152,
+          5,
+          11,
+          1,
+          100,
+          10,
+          209,
+          59,
+          1,
+          214,
+          4,
+          197,
+          176,
+          176,
+          251,
+          2,
+          179,
+          16,
+          85,
+          8,
+          100,
+          7,
+          184,
+          12,
+          1,
+          59,
+          16,
+          140,
+          15,
+          126,
+          2,
+          75,
+          13,
+          112,
+          4,
+          162,
+          7,
+          172,
+          3,
+          11,
+          254,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          1,
+          224,
+          9,
+          210,
+          7,
+          74,
+          11,
+          107,
+          55,
+          251,
+          11,
+          13,
+          9,
+          217,
+          4,
+          243,
+          14,
+          44,
+          12,
+          240,
+          7,
+          157,
+          1,
+          196,
+          12,
+          4,
+          15,
+          11,
+          10,
+          171,
+          254,
+          15,
+          230,
+          13,
+          74,
+          9,
+          126,
+          3,
+          15,
+          5,
+          33,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "09 6F 07 D7 08 70 3E 0D 98 05 0B 01 64 0A D1 3B 01 D6 04 C5 B0 B0 FB 02 B3 10 55 08 64 07 B8 0C 01 3B 10 8C 0F 7E 02 4B 0D 70 04 A2 07 AC 03 0B FE 0E 9E 08 8A 05 BD 01 E0 09 D2 07 4A 0B 6B 37 FB 0B 0D 09 D9 04 F3 0E 2C 0C F0 07 9D 01 C4 0C 04 0F 0B 0A AB FE 0F E6 0D 4A 09 7E 03 0F 05 21 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 50,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 59,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_MayCongratulations": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_MayCongratulations",
+      "line": 255,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "小遥：哎……\\p…… …… …… ……\\n…… …… …… ……\\p我开玩笑啦！没关系！\\n毕竟是规定嘛！\\p{PLAYER}{KUN}！\\n真的恭喜你！$",
+      "display_text": "小遥：哎……\n\n…… …… …… ……\n…… …… …… ……\n\n我开玩笑啦！没关系！\n毕竟是规定嘛！\n\n{PLAYER}{KUN}！\n真的恭喜你！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 85,
+        "bytes": [
+          14,
+          44,
+          14,
+          234,
+          62,
+          1,
+          4,
+          176,
+          176,
+          251,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          254,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          251,
+          13,
+          152,
+          7,
+          184,
+          13,
+          78,
+          14,
+          49,
+          8,
+          39,
+          60,
+          9,
+          83,
+          4,
+          160,
+          13,
+          217,
+          60,
+          254,
+          1,
+          140,
+          7,
+          105,
+          12,
+          12,
+          4,
+          174,
+          3,
+          77,
+          9,
+          41,
+          60,
+          251,
+          253,
+          1,
+          253,
+          5,
+          60,
+          254,
+          16,
+          89,
+          3,
+          11,
+          4,
+          111,
+          13,
+          214,
+          9,
+          217,
+          60,
+          255
+        ],
+        "hex": "0E 2C 0E EA 3E 01 04 B0 B0 FB B0 B0 00 B0 B0 00 B0 B0 00 B0 B0 FE B0 B0 00 B0 B0 00 B0 B0 00 B0 B0 FB 0D 98 07 B8 0D 4E 0E 31 08 27 3C 09 53 04 A0 0D D9 3C FE 01 8C 07 69 0C 0C 04 AE 03 4D 09 29 3C FB FD 01 FD 05 3C FE 10 59 03 0B 04 6F 0D D6 09 D9 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 6,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 53,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 55,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 63,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 69,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 77,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 55,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 63,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations": {
+      "label": "EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations",
+      "line": 258,
+      "source_file": "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc",
+      "raw_text": "小悠：什么？！…… …… ……\\n…… …… …… ……\\p既然是规定，那也没办法。\\p{PLAYER}，去吧！\\n恭喜你！$",
+      "display_text": "小悠：什么？！…… …… ……\n…… …… …… ……\n\n既然是规定，那也没办法。\n\n{PLAYER}，去吧！\n恭喜你！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 72,
+        "bytes": [
+          14,
+          44,
+          15,
+          116,
+          62,
+          11,
+          238,
+          9,
+          76,
+          61,
+          60,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          254,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          251,
+          5,
+          179,
+          11,
+          59,
+          12,
+          12,
+          4,
+          174,
+          3,
+          77,
+          59,
+          9,
+          189,
+          15,
+          2,
+          9,
+          83,
+          1,
+          75,
+          3,
+          171,
+          55,
+          251,
+          253,
+          1,
+          59,
+          11,
+          37,
+          1,
+          40,
+          60,
+          254,
+          4,
+          111,
+          13,
+          214,
+          9,
+          217,
+          60,
+          255
+        ],
+        "hex": "0E 2C 0F 74 3E 0B EE 09 4C 3D 3C B0 B0 00 B0 B0 00 B0 B0 FE B0 B0 00 B0 B0 00 B0 B0 00 B0 B0 FB 05 B3 0B 3B 0C 0C 04 AE 03 4D 3B 09 BD 0F 02 09 53 01 4B 03 AB 37 FB FD 01 3B 0B 25 01 28 3C FE 04 6F 0D D6 09 D9 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 42,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 44,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 56,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 62,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 44,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addobject": 2,
+      "applymovement": 20,
+      "call_if_eq": 4,
+      "checkplayergender": 3,
+      "closemessage": 4,
+      "delay": 6,
+      "delay_16": 4,
+      "delay_8": 3,
+      "goto_if_eq": 2,
+      "map_script": 3,
+      "map_script_2": 2,
+      "playbgm": 3,
+      "playse": 4,
+      "set_invisible": 2,
+      "setflag": 1,
+      "setmetatile": 2,
+      "setvar": 1,
+      "special": 1,
+      "step_end": 9,
+      "trainerbattle_no_intro": 1,
+      "turnobject": 1,
+      "waitmovement": 16,
+      "waitstate": 1,
+      "walk_in_place_faster_down": 1,
+      "walk_in_place_faster_left": 1,
+      "walk_in_place_faster_right": 3,
+      "walk_in_place_faster_up": 2,
+      "walk_left": 1,
+      "walk_right": 2,
+      "walk_up": 22,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 39,
+    "script_count": 17,
+    "movement_count": 9,
+    "text_count": 13,
+    "encoded_text_count": 13,
+    "text_source_byte_count": 1473,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 13
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addobject": 2,
+      "applymovement": 20,
+      "call": 5,
+      "call_if_eq": 4,
+      "checkplayergender": 3,
+      "closemessage": 4,
+      "delay": 6,
+      "delay_16": 4,
+      "delay_8": 3,
+      "end": 8,
+      "goto": 4,
+      "goto_if_eq": 2,
+      "lockall": 1,
+      "map_script": 3,
+      "map_script_2": 2,
+      "msgbox": 12,
+      "playbgm": 3,
+      "playse": 4,
+      "releaseall": 2,
+      "return": 6,
+      "set_invisible": 2,
+      "setflag": 1,
+      "setmetatile": 2,
+      "setvar": 1,
+      "special": 1,
+      "step_end": 9,
+      "trainerbattle_no_intro": 1,
+      "turnobject": 1,
+      "waitmovement": 16,
+      "waitstate": 1,
+      "walk_in_place_faster_down": 1,
+      "walk_in_place_faster_left": 1,
+      "walk_in_place_faster_right": 3,
+      "walk_in_place_faster_up": 2,
+      "walk_left": 1,
+      "walk_right": 2,
+      "walk_up": 22,
+      "warp": 1
+    }
+  }
+}

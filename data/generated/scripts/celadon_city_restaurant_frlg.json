@@ -1,0 +1,1171 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CeladonCity_Restaurant_Frlg",
+    "map_script": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+    "map_json": "data/maps/CeladonCity_Restaurant_Frlg/map.json",
+    "map_id": "MAP_CELADON_CITY_RESTAURANT",
+    "map_name": "CeladonCity_Restaurant_Frlg"
+  },
+  "labels": {
+    "CeladonCity_Restaurant_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeladonCity_Restaurant_EventScript_Chef": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Restaurant_EventScript_Woman": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Restaurant_EventScript_CoinCaseMan": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "CeladonCity_Restaurant_EventScript_NoRoomForCoinCase": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_Restaurant_EventScript_AlreadyGotCoinCase": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_Restaurant_EventScript_WorkerM": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Restaurant_EventScript_FatMan": {
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Restaurant_Text_TakingBreakRightNow": {
+      "kind": "text",
+      "line": 42,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Restaurant_Text_OftenGoToDrugstore": {
+      "kind": "text",
+      "line": 46,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Restaurant_Text_PsstBasementUnderGameCorner": {
+      "kind": "text",
+      "line": 50,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Restaurant_Text_ManLostItAllAtSlots": {
+      "kind": "text",
+      "line": 54,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_Restaurant_Text_TakeThisImBusted": {
+      "kind": "text",
+      "line": 59,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "CeladonCity_Restaurant_Text_ReceivedCoinCaseFromMan": {
+      "kind": "text",
+      "line": 67,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeladonCity_Restaurant_Text_MakeRoomForThis": {
+      "kind": "text",
+      "line": 70,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeladonCity_Restaurant_Text_ThoughtIdWinItBack": {
+      "kind": "text",
+      "line": 73,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "CeladonCity_Restaurant_Frlg_MapScripts": {
+      "label": "CeladonCity_Restaurant_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeladonCity_Restaurant_EventScript_Chef": {
+      "label": "CeladonCity_Restaurant_EventScript_Chef",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Restaurant_Text_TakingBreakRightNow",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox CeladonCity_Restaurant_Text_TakingBreakRightNow, MSGBOX_NPC",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Restaurant_Text_TakingBreakRightNow",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_Restaurant_EventScript_Woman": {
+      "label": "CeladonCity_Restaurant_EventScript_Woman",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Restaurant_Text_OftenGoToDrugstore",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox CeladonCity_Restaurant_Text_OftenGoToDrugstore, MSGBOX_NPC",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Restaurant_Text_OftenGoToDrugstore",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_Restaurant_EventScript_CoinCaseMan": {
+      "label": "CeladonCity_Restaurant_EventScript_CoinCaseMan",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 13,
+          "raw": "lock",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 14,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_GOT_COIN_CASE",
+            "CeladonCity_Restaurant_EventScript_AlreadyGotCoinCase"
+          ],
+          "line": 15,
+          "raw": "goto_if_set FLAG_GOT_COIN_CASE, CeladonCity_Restaurant_EventScript_AlreadyGotCoinCase",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Restaurant_Text_TakeThisImBusted"
+          ],
+          "line": 16,
+          "raw": "msgbox CeladonCity_Restaurant_Text_TakeThisImBusted",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "checkitemspace",
+          "args": [
+            "ITEM_COIN_CASE"
+          ],
+          "line": 17,
+          "raw": "checkitemspace ITEM_COIN_CASE",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "CeladonCity_Restaurant_EventScript_NoRoomForCoinCase"
+          ],
+          "line": 18,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, CeladonCity_Restaurant_EventScript_NoRoomForCoinCase",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "giveitem_msg",
+          "args": [
+            "CeladonCity_Restaurant_Text_ReceivedCoinCaseFromMan",
+            "ITEM_COIN_CASE"
+          ],
+          "line": 19,
+          "raw": "giveitem_msg CeladonCity_Restaurant_Text_ReceivedCoinCaseFromMan, ITEM_COIN_CASE",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_GOT_COIN_CASE"
+          ],
+          "line": 20,
+          "raw": "setflag FLAG_GOT_COIN_CASE",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 21,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Restaurant_Text_TakeThisImBusted",
+          "mode": "",
+          "line": 16
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "CeladonCity_Restaurant_EventScript_AlreadyGotCoinCase",
+          "line": 15
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CeladonCity_Restaurant_EventScript_NoRoomForCoinCase",
+          "line": 18
+        }
+      ]
+    },
+    "CeladonCity_Restaurant_EventScript_NoRoomForCoinCase": {
+      "label": "CeladonCity_Restaurant_EventScript_NoRoomForCoinCase",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Restaurant_Text_MakeRoomForThis"
+          ],
+          "line": 25,
+          "raw": "msgbox CeladonCity_Restaurant_Text_MakeRoomForThis",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 26,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Restaurant_Text_MakeRoomForThis",
+          "mode": "",
+          "line": 25
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_Restaurant_EventScript_AlreadyGotCoinCase": {
+      "label": "CeladonCity_Restaurant_EventScript_AlreadyGotCoinCase",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Restaurant_Text_ThoughtIdWinItBack"
+          ],
+          "line": 30,
+          "raw": "msgbox CeladonCity_Restaurant_Text_ThoughtIdWinItBack",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 31,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Restaurant_Text_ThoughtIdWinItBack",
+          "mode": "",
+          "line": 30
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_Restaurant_EventScript_WorkerM": {
+      "label": "CeladonCity_Restaurant_EventScript_WorkerM",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Restaurant_Text_PsstBasementUnderGameCorner",
+            "MSGBOX_NPC"
+          ],
+          "line": 35,
+          "raw": "msgbox CeladonCity_Restaurant_Text_PsstBasementUnderGameCorner, MSGBOX_NPC",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 36,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Restaurant_Text_PsstBasementUnderGameCorner",
+          "mode": "MSGBOX_NPC",
+          "line": 35
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_Restaurant_EventScript_FatMan": {
+      "label": "CeladonCity_Restaurant_EventScript_FatMan",
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Restaurant_Text_ManLostItAllAtSlots",
+            "MSGBOX_NPC"
+          ],
+          "line": 39,
+          "raw": "msgbox CeladonCity_Restaurant_Text_ManLostItAllAtSlots, MSGBOX_NPC",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 40,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Restaurant_Text_ManLostItAllAtSlots",
+          "mode": "MSGBOX_NPC",
+          "line": 39
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "CeladonCity_Restaurant_Text_TakingBreakRightNow": {
+      "label": "CeladonCity_Restaurant_Text_TakingBreakRightNow",
+      "line": 42,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "raw_text": "嗨！\\p抱歉，我们正在休息呢。$",
+      "display_text": "嗨！\n\n抱歉，我们正在休息呢。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 25,
+        "bytes": [
+          20,
+          103,
+          60,
+          251,
+          1,
+          100,
+          10,
+          209,
+          59,
+          13,
+          152,
+          9,
+          95,
+          16,
+          112,
+          15,
+          230,
+          14,
+          104,
+          13,
+          198,
+          9,
+          206,
+          55,
+          255
+        ],
+        "hex": "14 67 3C FB 01 64 0A D1 3B 0D 98 09 5F 10 70 0F E6 0E 68 0D C6 09 CE 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 2,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Restaurant_Text_OftenGoToDrugstore": {
+      "label": "CeladonCity_Restaurant_Text_OftenGoToDrugstore",
+      "line": 46,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "raw_text": "我的宝可梦比较弱，\\n所以我常去药店。$",
+      "display_text": "我的宝可梦比较弱，\n所以我常去药店。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          133,
+          7,
+          33,
+          11,
+          117,
+          59,
+          254,
+          12,
+          156,
+          15,
+          36,
+          13,
+          152,
+          2,
+          37,
+          11,
+          37,
+          14,
+          240,
+          3,
+          49,
+          55,
+          255
+        ],
+        "hex": "0D 98 03 0B 01 63 07 D7 09 66 01 85 07 21 0B 75 3B FE 0C 9C 0F 24 0D 98 02 25 0B 25 0E F0 03 31 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Restaurant_Text_PsstBasementUnderGameCorner": {
+      "label": "CeladonCity_Restaurant_Text_PsstBasementUnderGameCorner",
+      "line": 50,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "raw_text": "嘿！我听说这个\\n游戏厅下面有个地下室。$",
+      "display_text": "嘿！我听说这个\n游戏厅下面有个地下室。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          5,
+          8,
+          60,
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          16,
+          85,
+          4,
+          96,
+          254,
+          15,
+          124,
+          13,
+          219,
+          13,
+          6,
+          13,
+          230,
+          9,
+          126,
+          15,
+          126,
+          4,
+          96,
+          3,
+          31,
+          13,
+          230,
+          12,
+          23,
+          55,
+          255
+        ],
+        "hex": "05 08 3C 0D 98 0D 07 0C 58 10 55 04 60 FE 0F 7C 0D DB 0D 06 0D E6 09 7E 0F 7E 04 60 03 1F 0D E6 0C 17 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Restaurant_Text_ManLostItAllAtSlots": {
+      "label": "CeladonCity_Restaurant_Text_ManLostItAllAtSlots",
+      "line": 54,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "raw_text": "吧唧吧唧……\\p那边桌子上那个人，\\n把家当全输在老虎机上了。$",
+      "display_text": "吧唧吧唧……\n\n那边桌子上那个人，\n把家当全输在老虎机上了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 53,
+        "bytes": [
+          1,
+          40,
+          20,
+          49,
+          1,
+          40,
+          20,
+          49,
+          176,
+          176,
+          251,
+          9,
+          189,
+          1,
+          156,
+          16,
+          239,
+          17,
+          11,
+          11,
+          173,
+          9,
+          189,
+          4,
+          96,
+          11,
+          75,
+          59,
+          254,
+          1,
+          48,
+          5,
+          189,
+          2,
+          239,
+          11,
+          43,
+          12,
+          41,
+          15,
+          230,
+          8,
+          68,
+          5,
+          47,
+          5,
+          135,
+          11,
+          173,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "01 28 14 31 01 28 14 31 B0 B0 FB 09 BD 01 9C 10 EF 11 0B 0B AD 09 BD 04 60 0B 4B 3B FE 01 30 05 BD 02 EF 0B 2B 0C 29 0F E6 08 44 05 2F 05 87 0B AD 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 6,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 17,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 31,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Restaurant_Text_TakeThisImBusted": {
+      "label": "CeladonCity_Restaurant_Text_TakeThisImBusted",
+      "line": 59,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "raw_text": "去吧！哈哈！\\n我破产了！\\p没法再玩老虎机了！\\n我要走了！\\p给你！\\n我再也用不着它了！$",
+      "display_text": "去吧！哈哈！\n我破产了！\n\n没法再玩老虎机了！\n我要走了！\n\n给你！\n我再也用不着它了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 73,
+        "bytes": [
+          11,
+          37,
+          1,
+          40,
+          60,
+          4,
+          198,
+          4,
+          198,
+          60,
+          254,
+          13,
+          152,
+          10,
+          129,
+          2,
+          30,
+          8,
+          158,
+          60,
+          251,
+          9,
+          83,
+          3,
+          171,
+          15,
+          229,
+          13,
+          78,
+          8,
+          68,
+          5,
+          47,
+          5,
+          135,
+          8,
+          158,
+          60,
+          254,
+          13,
+          152,
+          14,
+          241,
+          17,
+          23,
+          8,
+          158,
+          60,
+          251,
+          4,
+          98,
+          9,
+          217,
+          60,
+          254,
+          13,
+          152,
+          15,
+          229,
+          15,
+          2,
+          15,
+          113,
+          1,
+          214,
+          16,
+          244,
+          12,
+          159,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "0B 25 01 28 3C 04 C6 04 C6 3C FE 0D 98 0A 81 02 1E 08 9E 3C FB 09 53 03 AB 0F E5 0D 4E 08 44 05 2F 05 87 08 9E 3C FE 0D 98 0E F1 11 17 08 9E 3C FB 04 62 09 D9 3C FE 0D 98 0F E5 0F 02 0F 71 01 D6 10 F4 0C 9F 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 31,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Restaurant_Text_ReceivedCoinCaseFromMan": {
+      "label": "CeladonCity_Restaurant_Text_ReceivedCoinCaseFromMan",
+      "line": 67,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}获得了一个代币盒。$",
+      "display_text": "{PLAYER}获得了一个代币盒。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          253,
+          1,
+          5,
+          126,
+          3,
+          10,
+          8,
+          158,
+          15,
+          11,
+          4,
+          96,
+          2,
+          218,
+          1,
+          143,
+          4,
+          246,
+          55,
+          255
+        ],
+        "hex": "FD 01 05 7E 03 0A 08 9E 0F 0B 04 60 02 DA 01 8F 04 F6 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Restaurant_Text_MakeRoomForThis": {
+      "label": "CeladonCity_Restaurant_Text_MakeRoomForThis",
+      "line": 70,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "raw_text": "把包包腾出点地方来！$",
+      "display_text": "把包包腾出点地方来！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          1,
+          48,
+          1,
+          91,
+          1,
+          91,
+          12,
+          219,
+          2,
+          120,
+          3,
+          42,
+          3,
+          31,
+          3,
+          192,
+          8,
+          41,
+          60,
+          255
+        ],
+        "hex": "01 30 01 5B 01 5B 0C DB 02 78 03 2A 03 1F 03 C0 08 29 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Restaurant_Text_ThoughtIdWinItBack": {
+      "label": "CeladonCity_Restaurant_Text_ThoughtIdWinItBack",
+      "line": 73,
+      "source_file": "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc",
+      "raw_text": "我总想着\\n要把输的都赢回来……$",
+      "display_text": "我总想着\n要把输的都赢回来……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          13,
+          152,
+          17,
+          20,
+          14,
+          24,
+          16,
+          244,
+          254,
+          14,
+          241,
+          1,
+          48,
+          12,
+          41,
+          3,
+          11,
+          3,
+          97,
+          15,
+          92,
+          5,
+          101,
+          8,
+          41,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 98 11 14 0E 18 10 F4 FE 0E F1 01 30 0C 29 03 0B 03 61 0F 5C 05 65 08 29 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "checkitemspace": 1,
+      "faceplayer": 1,
+      "giveitem_msg": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "setflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 16,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 8,
+    "encoded_text_count": 8,
+    "text_source_byte_count": 289,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 8
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "checkitemspace": 1,
+      "end": 7,
+      "faceplayer": 1,
+      "giveitem_msg": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 7,
+      "release": 3,
+      "setflag": 1
+    }
+  }
+}

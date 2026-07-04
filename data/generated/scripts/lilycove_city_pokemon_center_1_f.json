@@ -1,0 +1,886 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "LilycoveCity_PokemonCenter_1F",
+    "map_script": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+    "map_json": "data/maps/LilycoveCity_PokemonCenter_1F/map.json",
+    "map_id": "MAP_LILYCOVE_CITY_POKEMON_CENTER_1F",
+    "map_name": "LilycoveCity_PokemonCenter_1F"
+  },
+  "labels": {
+    "LilycoveCity_PokemonCenter_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "LilycoveCity_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_SetLilycoveLadyGfx": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 4
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_HideContestLadyMon": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_ShowContestLadyMon": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 6
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_Boy": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_Maniac": {
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 6
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_ManiacBadTeamGone": {
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon": {
+      "kind": "text",
+      "line": 51,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_PokemonCenter_1F_Text_HeardAboutRottenScoundrels": {
+      "kind": "text",
+      "line": 54,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_PokemonCenter_1F_Text_HaventSeenRottenScoundrels": {
+      "kind": "text",
+      "line": 57,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "LilycoveCity_PokemonCenter_1F_MapScripts": {
+      "label": "LilycoveCity_PokemonCenter_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "LilycoveCity_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_PokemonCenter_1F_OnTransition": {
+      "label": "LilycoveCity_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_LILYCOVE_CITY"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_LILYCOVE_CITY",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_PokemonCenter_1F_EventScript_SetLilycoveLadyGfx"
+          ],
+          "line": 8,
+          "raw": "goto LilycoveCity_PokemonCenter_1F_EventScript_SetLilycoveLadyGfx",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "LilycoveCity_PokemonCenter_1F_EventScript_SetLilycoveLadyGfx",
+          "line": 8
+        }
+      ]
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_SetLilycoveLadyGfx": {
+      "label": "LilycoveCity_PokemonCenter_1F_EventScript_SetLilycoveLadyGfx",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SetLilycoveLadyGfx"
+          ],
+          "line": 13,
+          "raw": "special SetLilycoveLadyGfx",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "LilycoveCity_PokemonCenter_1F_EventScript_HideContestLadyMon"
+          ],
+          "line": 14,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, LilycoveCity_PokemonCenter_1F_EventScript_HideContestLadyMon",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "LilycoveCity_PokemonCenter_1F_EventScript_ShowContestLadyMon"
+          ],
+          "line": 15,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, LilycoveCity_PokemonCenter_1F_EventScript_ShowContestLadyMon",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "LilycoveCity_PokemonCenter_1F_EventScript_HideContestLadyMon",
+          "line": 14
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "LilycoveCity_PokemonCenter_1F_EventScript_ShowContestLadyMon",
+          "line": 15
+        }
+      ]
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_HideContestLadyMon": {
+      "label": "LilycoveCity_PokemonCenter_1F_EventScript_HideContestLadyMon",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_POKEMON_CENTER_CONTEST_LADY_MON"
+          ],
+          "line": 19,
+          "raw": "setflag FLAG_HIDE_LILYCOVE_POKEMON_CENTER_CONTEST_LADY_MON",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_ShowContestLadyMon": {
+      "label": "LilycoveCity_PokemonCenter_1F_EventScript_ShowContestLadyMon",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_LILYCOVE_POKEMON_CENTER_CONTEST_LADY_MON"
+          ],
+          "line": 23,
+          "raw": "clearflag FLAG_HIDE_LILYCOVE_POKEMON_CENTER_CONTEST_LADY_MON",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "LilycoveCity_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x800B",
+            "LOCALID_LILYCOVE_NURSE"
+          ],
+          "line": 27,
+          "raw": "setvar VAR_0x800B, LOCALID_LILYCOVE_NURSE",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_PkmnCenterNurse"
+          ],
+          "line": 28,
+          "raw": "call Common_EventScript_PkmnCenterNurse",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 29,
+          "raw": "waitmessage",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 30,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 31,
+          "raw": "release",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_PkmnCenterNurse",
+          "line": 28
+        }
+      ]
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_Boy": {
+      "label": "LilycoveCity_PokemonCenter_1F_EventScript_Boy",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon",
+            "MSGBOX_NPC"
+          ],
+          "line": 35,
+          "raw": "msgbox LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon, MSGBOX_NPC",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 36,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon",
+          "mode": "MSGBOX_NPC",
+          "line": 35
+        }
+      ],
+      "branch_targets": []
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_Maniac": {
+      "label": "LilycoveCity_PokemonCenter_1F_EventScript_Maniac",
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 39,
+          "raw": "lock",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 40,
+          "raw": "faceplayer",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_BADGE07_GET",
+            "LilycoveCity_PokemonCenter_1F_EventScript_ManiacBadTeamGone"
+          ],
+          "line": 41,
+          "raw": "goto_if_set FLAG_BADGE07_GET, LilycoveCity_PokemonCenter_1F_EventScript_ManiacBadTeamGone",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_PokemonCenter_1F_Text_HeardAboutRottenScoundrels",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 42,
+          "raw": "msgbox LilycoveCity_PokemonCenter_1F_Text_HeardAboutRottenScoundrels, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 43,
+          "raw": "release",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_PokemonCenter_1F_Text_HeardAboutRottenScoundrels",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 42
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "LilycoveCity_PokemonCenter_1F_EventScript_ManiacBadTeamGone",
+          "line": 41
+        }
+      ]
+    },
+    "LilycoveCity_PokemonCenter_1F_EventScript_ManiacBadTeamGone": {
+      "label": "LilycoveCity_PokemonCenter_1F_EventScript_ManiacBadTeamGone",
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_PokemonCenter_1F_Text_HaventSeenRottenScoundrels",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 47,
+          "raw": "msgbox LilycoveCity_PokemonCenter_1F_Text_HaventSeenRottenScoundrels, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 48,
+          "raw": "release",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_PokemonCenter_1F_Text_HaventSeenRottenScoundrels",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 47
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon": {
+      "label": "LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon",
+      "line": 51,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "我想知道世界上\\n有多少种宝可梦。\\p穿越海洋和远方的人\\n交换宝可梦一定不错。$",
+      "display_text": "我想知道世界上\n有多少种宝可梦。\n\n穿越海洋和远方的人\n交换宝可梦一定不错。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 70,
+        "bytes": [
+          13,
+          152,
+          14,
+          24,
+          16,
+          123,
+          3,
+          7,
+          12,
+          5,
+          7,
+          57,
+          11,
+          173,
+          254,
+          15,
+          126,
+          3,
+          133,
+          11,
+          183,
+          16,
+          167,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          2,
+          137,
+          15,
+          201,
+          4,
+          201,
+          14,
+          220,
+          4,
+          243,
+          15,
+          194,
+          3,
+          192,
+          3,
+          11,
+          11,
+          75,
+          254,
+          7,
+          13,
+          5,
+          72,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          11,
+          3,
+          77,
+          1,
+          214,
+          2,
+          205,
+          55,
+          255
+        ],
+        "hex": "0D 98 0E 18 10 7B 03 07 0C 05 07 39 0B AD FE 0F 7E 03 85 0B B7 10 A7 01 63 07 D7 09 66 37 FB 02 89 0F C9 04 C9 0E DC 04 F3 0F C2 03 C0 03 0B 0B 4B FE 07 0D 05 48 01 63 07 D7 09 66 0F 0B 03 4D 01 D6 02 CD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 40,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LilycoveCity_PokemonCenter_1F_Text_HeardAboutRottenScoundrels": {
+      "label": "LilycoveCity_PokemonCenter_1F_Text_HeardAboutRottenScoundrels",
+      "line": 54,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "我听说过那些\\n偷宝可梦抢陨石的\\l恶徒的事情。$",
+      "display_text": "我听说过那些\n偷宝可梦抢陨石的\n恶徒的事情。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 42,
+        "bytes": [
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          4,
+          197,
+          9,
+          189,
+          14,
+          52,
+          254,
+          13,
+          29,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          10,
+          217,
+          15,
+          213,
+          11,
+          235,
+          3,
+          11,
+          250,
+          3,
+          150,
+          13,
+          37,
+          3,
+          11,
+          12,
+          7,
+          11,
+          11,
+          55,
+          255
+        ],
+        "hex": "0D 98 0D 07 0C 58 04 C5 09 BD 0E 34 FE 0D 1D 01 63 07 D7 09 66 0A D9 0F D5 0B EB 03 0B FA 03 96 0D 25 03 0B 0C 07 0B 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 16,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LilycoveCity_PokemonCenter_1F_Text_HaventSeenRottenScoundrels": {
+      "label": "LilycoveCity_PokemonCenter_1F_Text_HaventSeenRottenScoundrels",
+      "line": 57,
+      "source_file": "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "那些偷宝可梦\\n抢陨石的恶徒……\\p最近在这附近没看到他们。$",
+      "display_text": "那些偷宝可梦\n抢陨石的恶徒……\n\n最近在这附近没看到他们。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 52,
+        "bytes": [
+          9,
+          189,
+          14,
+          52,
+          13,
+          29,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          10,
+          217,
+          15,
+          213,
+          11,
+          235,
+          3,
+          11,
+          3,
+          150,
+          13,
+          37,
+          176,
+          176,
+          251,
+          17,
+          38,
+          7,
+          78,
+          15,
+          230,
+          16,
+          85,
+          4,
+          39,
+          7,
+          78,
+          9,
+          83,
+          7,
+          194,
+          3,
+          4,
+          12,
+          158,
+          9,
+          95,
+          55,
+          255
+        ],
+        "hex": "09 BD 0E 34 0D 1D 01 63 07 D7 09 66 FE 0A D9 0F D5 0B EB 03 0B 03 96 0D 25 B0 B0 FB 11 26 07 4E 0F E6 10 55 04 27 07 4E 09 53 07 C2 03 04 0C 9E 09 5F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "clearflag": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 2,
+      "goto_if_set": 1,
+      "map_script": 2,
+      "setflag": 1,
+      "setrespawn": 1,
+      "setvar": 1,
+      "special": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 12,
+    "script_count": 9,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 164,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "clearflag": 1,
+      "end": 8,
+      "faceplayer": 1,
+      "goto": 1,
+      "goto_if_eq": 2,
+      "goto_if_set": 1,
+      "lock": 1,
+      "map_script": 2,
+      "msgbox": 3,
+      "release": 3,
+      "setflag": 1,
+      "setrespawn": 1,
+      "setvar": 1,
+      "special": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    }
+  }
+}

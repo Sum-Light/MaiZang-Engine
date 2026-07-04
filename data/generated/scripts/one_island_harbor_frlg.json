@@ -1,0 +1,480 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "OneIsland_Harbor_Frlg",
+    "map_script": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+    "map_json": "data/maps/OneIsland_Harbor_Frlg/map.json",
+    "map_id": "MAP_ONE_ISLAND_HARBOR",
+    "map_name": "OneIsland_Harbor_Frlg"
+  },
+  "labels": {
+    "OneIsland_Harbor_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "OneIsland_Harbor_OnWarp": {
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "OneIsland_Harbor_EventScript_TurnPlayerNorth": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "OneIsland_Harbor_OnFrame": {
+      "kind": "map_script_table",
+      "line": 14,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "OneIsland_Harbor_EventScript_PlayerEnterHarborFirstTime": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "OneIsland_Harbor_Movement_PlayerExitHarbor": {
+      "kind": "movement",
+      "line": 29,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "OneIsland_Harbor_EventScript_Sailor": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instruction_count": 7
+    }
+  },
+  "scripts": {
+    "OneIsland_Harbor_Frlg_MapScripts": {
+      "label": "OneIsland_Harbor_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "OneIsland_Harbor_OnWarp"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, OneIsland_Harbor_OnWarp",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "OneIsland_Harbor_OnFrame"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, OneIsland_Harbor_OnFrame",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "OneIsland_Harbor_OnWarp": {
+      "label": "OneIsland_Harbor_OnWarp",
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_MAP_SCENE_ONE_ISLAND_HARBOR",
+            "1",
+            "OneIsland_Harbor_EventScript_TurnPlayerNorth"
+          ],
+          "line": 7,
+          "raw": "map_script_2 VAR_MAP_SCENE_ONE_ISLAND_HARBOR, 1, OneIsland_Harbor_EventScript_TurnPlayerNorth",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 8,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "OneIsland_Harbor_EventScript_TurnPlayerNorth": {
+      "label": "OneIsland_Harbor_EventScript_TurnPlayerNorth",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 11,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "OneIsland_Harbor_OnFrame": {
+      "label": "OneIsland_Harbor_OnFrame",
+      "kind": "map_script_table",
+      "line": 14,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_MAP_SCENE_ONE_ISLAND_HARBOR",
+            "1",
+            "OneIsland_Harbor_EventScript_PlayerEnterHarborFirstTime"
+          ],
+          "line": 15,
+          "raw": "map_script_2 VAR_MAP_SCENE_ONE_ISLAND_HARBOR, 1, OneIsland_Harbor_EventScript_PlayerEnterHarborFirstTime",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 16,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "OneIsland_Harbor_EventScript_PlayerEnterHarborFirstTime": {
+      "label": "OneIsland_Harbor_EventScript_PlayerEnterHarborFirstTime",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 19,
+          "raw": "lockall",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 20,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "OneIsland_Harbor_Movement_PlayerExitHarbor"
+          ],
+          "line": 21,
+          "raw": "applymovement LOCALID_PLAYER, OneIsland_Harbor_Movement_PlayerExitHarbor",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 22,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_ONE_ISLAND_HARBOR",
+            "2"
+          ],
+          "line": 23,
+          "raw": "setvar VAR_MAP_SCENE_ONE_ISLAND_HARBOR, 2",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_ONE_ISLAND",
+            "12",
+            "18"
+          ],
+          "line": 24,
+          "raw": "warp MAP_ONE_ISLAND, 12, 18",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 25,
+          "raw": "waitstate",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 26,
+          "raw": "releaseall",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "OneIsland_Harbor_EventScript_Sailor": {
+      "label": "OneIsland_Harbor_EventScript_Sailor",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 36,
+          "raw": "lock",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 37,
+          "raw": "faceplayer",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "Text_WhereDoYouWantToSail"
+          ],
+          "line": 38,
+          "raw": "message Text_WhereDoYouWantToSail",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 39,
+          "raw": "waitmessage",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SEAGALLOP_ONE_ISLAND"
+          ],
+          "line": 40,
+          "raw": "setvar VAR_0x8004, SEAGALLOP_ONE_ISLAND",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_ChooseDestFromOneIsland"
+          ],
+          "line": 41,
+          "raw": "goto EventScript_ChooseDestFromOneIsland",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "Text_WhereDoYouWantToSail",
+          "mode": "",
+          "line": 38
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_ChooseDestFromOneIsland",
+          "line": 41
+        }
+      ]
+    }
+  },
+  "movements": {
+    "OneIsland_Harbor_Movement_PlayerExitHarbor": {
+      "label": "OneIsland_Harbor_Movement_PlayerExitHarbor",
+      "kind": "movement",
+      "line": 29,
+      "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 30,
+          "raw": "walk_up",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 31,
+          "raw": "walk_up",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 32,
+          "raw": "walk_up",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 33,
+          "raw": "step_end",
+          "source_file": "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 1,
+      "faceplayer": 1,
+      "map_script": 2,
+      "map_script_2": 2,
+      "setvar": 2,
+      "step_end": 1,
+      "textcolor": 1,
+      "turnobject": 1,
+      "waitmessage": 1,
+      "waitmovement": 1,
+      "waitstate": 1,
+      "walk_up": 3,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 6,
+    "movement_count": 1,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 1,
+      "end": 3,
+      "faceplayer": 1,
+      "goto": 1,
+      "lock": 1,
+      "lockall": 1,
+      "map_script": 2,
+      "map_script_2": 2,
+      "message": 1,
+      "releaseall": 1,
+      "setvar": 2,
+      "step_end": 1,
+      "textcolor": 1,
+      "turnobject": 1,
+      "waitmessage": 1,
+      "waitmovement": 1,
+      "waitstate": 1,
+      "walk_up": 3,
+      "warp": 1
+    }
+  }
+}

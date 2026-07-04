@@ -1,0 +1,957 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route125",
+    "map_script": "data/maps/Route125/scripts.inc",
+    "map_json": "data/maps/Route125/map.json",
+    "map_id": "MAP_ROUTE125",
+    "map_name": "Route125"
+  },
+  "labels": {
+    "Route125_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route125_OnTransition": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 5
+    },
+    "Route125_OnLoad": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route125_OnFrame": {
+      "kind": "map_script_table",
+      "line": 19,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route125_EventScript_Nolen": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route125_EventScript_Stan": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route125_EventScript_Tanya": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route125_EventScript_Sharon": {
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route125_EventScript_Ernest": {
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route125_EventScript_RegisterErnest": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route125_EventScript_RematchErnest": {
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route125_EventScript_Kim": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route125_EventScript_Iris": {
+      "kind": "script",
+      "line": 69,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route125_EventScript_Presley": {
+      "kind": "script",
+      "line": 74,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route125_EventScript_Auron": {
+      "kind": "script",
+      "line": 79,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "Route125_MapScripts": {
+      "label": "Route125_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "Route125_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, Route125_OnTransition",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "Route125_OnLoad"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, Route125_OnLoad",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "Route125_OnFrame"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, Route125_OnFrame",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route125_OnTransition": {
+      "label": "Route125_OnTransition",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_WEATHER_CTRL",
+            "Common_EventScript_SetAbnormalWeather"
+          ],
+          "line": 8,
+          "raw": "call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_SHOULD_END_ABNORMAL_WEATHER",
+            "1",
+            "AbnormalWeather_EventScript_HideMapNamePopup"
+          ],
+          "line": 9,
+          "raw": "call_if_eq VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_HideMapNamePopup",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_ABNORMAL_WEATHER_LOCATION",
+            "ABNORMAL_WEATHER_ROUTE_125_WEST",
+            "AbnormalWeather_StartKyogreWeather"
+          ],
+          "line": 10,
+          "raw": "call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_125_WEST, AbnormalWeather_StartKyogreWeather",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_ABNORMAL_WEATHER_LOCATION",
+            "ABNORMAL_WEATHER_ROUTE_125_EAST",
+            "AbnormalWeather_StartKyogreWeather"
+          ],
+          "line": 11,
+          "raw": "call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_125_EAST, AbnormalWeather_StartKyogreWeather",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "Common_EventScript_SetAbnormalWeather",
+          "line": 8
+        },
+        {
+          "op": "call_if_eq",
+          "target": "AbnormalWeather_EventScript_HideMapNamePopup",
+          "line": 9
+        },
+        {
+          "op": "call_if_eq",
+          "target": "AbnormalWeather_StartKyogreWeather",
+          "line": 10
+        },
+        {
+          "op": "call_if_eq",
+          "target": "AbnormalWeather_StartKyogreWeather",
+          "line": 11
+        }
+      ]
+    },
+    "Route125_OnLoad": {
+      "label": "Route125_OnLoad",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_ABNORMAL_WEATHER_LOCATION",
+            "ABNORMAL_WEATHER_ROUTE_125_WEST",
+            "AbnormalWeather_EventScript_PlaceTilesRoute125West"
+          ],
+          "line": 15,
+          "raw": "call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_125_WEST, AbnormalWeather_EventScript_PlaceTilesRoute125West",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_ABNORMAL_WEATHER_LOCATION",
+            "ABNORMAL_WEATHER_ROUTE_125_EAST",
+            "AbnormalWeather_EventScript_PlaceTilesRoute125East"
+          ],
+          "line": 16,
+          "raw": "call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_125_EAST, AbnormalWeather_EventScript_PlaceTilesRoute125East",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "AbnormalWeather_EventScript_PlaceTilesRoute125West",
+          "line": 15
+        },
+        {
+          "op": "call_if_eq",
+          "target": "AbnormalWeather_EventScript_PlaceTilesRoute125East",
+          "line": 16
+        }
+      ]
+    },
+    "Route125_OnFrame": {
+      "label": "Route125_OnFrame",
+      "kind": "map_script_table",
+      "line": 19,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_SHOULD_END_ABNORMAL_WEATHER",
+            "1",
+            "AbnormalWeather_EventScript_EndEventAndCleanup_1"
+          ],
+          "line": 20,
+          "raw": "map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 21,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route125_EventScript_Nolen": {
+      "label": "Route125_EventScript_Nolen",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_NOLEN",
+            "Route125_Text_NolenIntro",
+            "Route125_Text_NolenDefeat"
+          ],
+          "line": 24,
+          "raw": "trainerbattle_single TRAINER_NOLEN, Route125_Text_NolenIntro, Route125_Text_NolenDefeat",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_NolenPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 25,
+          "raw": "msgbox Route125_Text_NolenPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_NolenPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 25
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route125_EventScript_Stan": {
+      "label": "Route125_EventScript_Stan",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_STAN",
+            "Route125_Text_StanIntro",
+            "Route125_Text_StanDefeat"
+          ],
+          "line": 29,
+          "raw": "trainerbattle_single TRAINER_STAN, Route125_Text_StanIntro, Route125_Text_StanDefeat",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_StanPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 30,
+          "raw": "msgbox Route125_Text_StanPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_StanPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 30
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route125_EventScript_Tanya": {
+      "label": "Route125_EventScript_Tanya",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_TANYA",
+            "Route125_Text_TanyaIntro",
+            "Route125_Text_TanyaDefeat"
+          ],
+          "line": 34,
+          "raw": "trainerbattle_single TRAINER_TANYA, Route125_Text_TanyaIntro, Route125_Text_TanyaDefeat",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_TanyaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 35,
+          "raw": "msgbox Route125_Text_TanyaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 36,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_TanyaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 35
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route125_EventScript_Sharon": {
+      "label": "Route125_EventScript_Sharon",
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_SHARON",
+            "Route125_Text_SharonIntro",
+            "Route125_Text_SharonDefeat"
+          ],
+          "line": 39,
+          "raw": "trainerbattle_single TRAINER_SHARON, Route125_Text_SharonIntro, Route125_Text_SharonDefeat",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_SharonPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 40,
+          "raw": "msgbox Route125_Text_SharonPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 41,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_SharonPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 40
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route125_EventScript_Ernest": {
+      "label": "Route125_EventScript_Ernest",
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_ERNEST_1",
+            "Route125_Text_ErnestIntro",
+            "Route125_Text_ErnestDefeat",
+            "Route125_EventScript_RegisterErnest"
+          ],
+          "line": 44,
+          "raw": "trainerbattle_single TRAINER_ERNEST_1, Route125_Text_ErnestIntro, Route125_Text_ErnestDefeat, Route125_EventScript_RegisterErnest",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 45,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route125_EventScript_RematchErnest"
+          ],
+          "line": 46,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route125_EventScript_RematchErnest",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_ErnestPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 47,
+          "raw": "msgbox Route125_Text_ErnestPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 48,
+          "raw": "release",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_ErnestPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 47
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route125_EventScript_RematchErnest",
+          "line": 46
+        }
+      ]
+    },
+    "Route125_EventScript_RegisterErnest": {
+      "label": "Route125_EventScript_RegisterErnest",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "PlayerFaceTrainerAfterBattle"
+          ],
+          "line": 52,
+          "raw": "special PlayerFaceTrainerAfterBattle",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 53,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_ErnestRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 54,
+          "raw": "msgbox Route125_Text_ErnestRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_ERNEST_1"
+          ],
+          "line": 55,
+          "raw": "register_matchcall TRAINER_ERNEST_1",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 56,
+          "raw": "release",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 57,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_ErnestRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 54
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route125_EventScript_RematchErnest": {
+      "label": "Route125_EventScript_RematchErnest",
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch",
+          "args": [
+            "TRAINER_ERNEST_1",
+            "Route125_Text_ErnestRematchIntro",
+            "Route125_Text_ErnestRematchDefeat"
+          ],
+          "line": 60,
+          "raw": "trainerbattle_rematch TRAINER_ERNEST_1, Route125_Text_ErnestRematchIntro, Route125_Text_ErnestRematchDefeat",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_ErnestRematchPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 61,
+          "raw": "msgbox Route125_Text_ErnestRematchPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_ErnestRematchPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 61
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route125_EventScript_Kim": {
+      "label": "Route125_EventScript_Kim",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_double",
+          "args": [
+            "TRAINER_KIM_AND_IRIS",
+            "Route125_Text_KimIntro",
+            "Route125_Text_KimDefeat",
+            "Route125_Text_KimNotEnoughMons"
+          ],
+          "line": 65,
+          "raw": "trainerbattle_double TRAINER_KIM_AND_IRIS, Route125_Text_KimIntro, Route125_Text_KimDefeat, Route125_Text_KimNotEnoughMons",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_KimPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 66,
+          "raw": "msgbox Route125_Text_KimPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 67,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_KimPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 66
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route125_EventScript_Iris": {
+      "label": "Route125_EventScript_Iris",
+      "kind": "script",
+      "line": 69,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_double",
+          "args": [
+            "TRAINER_KIM_AND_IRIS",
+            "Route125_Text_IrisIntro",
+            "Route125_Text_IrisDefeat",
+            "Route125_Text_IrisNotEnoughMons"
+          ],
+          "line": 70,
+          "raw": "trainerbattle_double TRAINER_KIM_AND_IRIS, Route125_Text_IrisIntro, Route125_Text_IrisDefeat, Route125_Text_IrisNotEnoughMons",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_IrisPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 71,
+          "raw": "msgbox Route125_Text_IrisPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 72,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_IrisPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 71
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route125_EventScript_Presley": {
+      "label": "Route125_EventScript_Presley",
+      "kind": "script",
+      "line": 74,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_PRESLEY",
+            "Route125_Text_PresleyIntro",
+            "Route125_Text_PresleyDefeat"
+          ],
+          "line": 75,
+          "raw": "trainerbattle_single TRAINER_PRESLEY, Route125_Text_PresleyIntro, Route125_Text_PresleyDefeat",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_PresleyPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 76,
+          "raw": "msgbox Route125_Text_PresleyPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 77,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_PresleyPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 76
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route125_EventScript_Auron": {
+      "label": "Route125_EventScript_Auron",
+      "kind": "script",
+      "line": 79,
+      "source_file": "data/maps/Route125/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_AURON",
+            "Route125_Text_AuronIntro",
+            "Route125_Text_AuronDefeat"
+          ],
+          "line": 80,
+          "raw": "trainerbattle_single TRAINER_AURON, Route125_Text_AuronIntro, Route125_Text_AuronDefeat",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route125_Text_AuronPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 81,
+          "raw": "msgbox Route125_Text_AuronPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route125/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 82,
+          "raw": "end",
+          "source_file": "data/maps/Route125/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route125_Text_AuronPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 81
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_eq": 5,
+      "call_if_set": 1,
+      "goto_if_eq": 1,
+      "map_script": 3,
+      "map_script_2": 1,
+      "register_matchcall": 1,
+      "special": 1,
+      "specialvar": 1,
+      "trainerbattle_double": 2,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 7,
+      "waitmovement": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 15,
+    "script_count": 15,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call_if_eq": 5,
+      "call_if_set": 1,
+      "end": 13,
+      "goto_if_eq": 1,
+      "map_script": 3,
+      "map_script_2": 1,
+      "msgbox": 11,
+      "register_matchcall": 1,
+      "release": 2,
+      "special": 1,
+      "specialvar": 1,
+      "trainerbattle_double": 2,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 7,
+      "waitmovement": 1
+    }
+  }
+}

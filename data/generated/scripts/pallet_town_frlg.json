@@ -1,0 +1,6115 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PalletTown_Frlg",
+    "map_script": "data/maps/PalletTown_Frlg/scripts.inc",
+    "map_json": "data/maps/PalletTown_Frlg/map.json",
+    "map_id": "MAP_PALLET_TOWN",
+    "map_name": "PalletTown_Frlg"
+  },
+  "labels": {
+    "PalletTown_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 3,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_OnTransition": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_EventScript_TryReadySignLady": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_EventScript_SetSignLadyDone": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_EventScript_SetSignLadyPos": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_EventScript_MoveSignLadyToRouteEntrance": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_OnFrame": {
+      "kind": "map_script_table",
+      "line": 37,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_EventScript_OakRatingScene": {
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 36
+    },
+    "PalletTown_EventScript_EndOakRatingScene": {
+      "kind": "script",
+      "line": 80,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "PalletTown_EventScript_NotEnoughMonsForNationalDex": {
+      "kind": "script",
+      "line": 89,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_EventScript_NotBeenToOneIslandYet": {
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_Movement_OakWalkToPlayersDoor": {
+      "kind": "movement",
+      "line": 99,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 15
+    },
+    "PalletTown_Movement_OakExit": {
+      "kind": "movement",
+      "line": 116,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 14
+    },
+    "PalletTown_Movement_OakWalkToLabFromHouse": {
+      "kind": "movement",
+      "line": 132,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 17
+    },
+    "PalletTown_Movement_PlayerWalkToLabFromHouse": {
+      "kind": "movement",
+      "line": 151,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "PalletTown_EventScript_OakTriggerLeft": {
+      "kind": "script",
+      "line": 169,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_EventScript_OakTriggerRight": {
+      "kind": "script",
+      "line": 175,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_EventScript_OakTrigger": {
+      "kind": "script",
+      "line": 181,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 39
+    },
+    "PalletTown_EventScript_OakEnterLeft": {
+      "kind": "script",
+      "line": 222,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_EventScript_OakEnterRight": {
+      "kind": "script",
+      "line": 227,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_EventScript_OakLeadPlayerToLabLeft": {
+      "kind": "script",
+      "line": 232,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_EventScript_OakLeadPlayerToLabRight": {
+      "kind": "script",
+      "line": 238,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_Movement_OakEnterLeft": {
+      "kind": "movement",
+      "line": 244,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "PalletTown_Movement_OakEnterRight": {
+      "kind": "movement",
+      "line": 255,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 28
+    },
+    "PalletTown_Movement_OakWalkToLabLeft": {
+      "kind": "movement",
+      "line": 286,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_Movement_OakWalkToLabRight": {
+      "kind": "movement",
+      "line": 293,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "PalletTown_Movement_OakEnterLab": {
+      "kind": "movement",
+      "line": 301,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_Movement_PlayerWalkToLabLeft": {
+      "kind": "movement",
+      "line": 306,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_Movement_PlayerWalkToLabRight": {
+      "kind": "movement",
+      "line": 312,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_Movement_PlayerEnterLab": {
+      "kind": "movement",
+      "line": 319,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_EventScript_SignLady": {
+      "kind": "script",
+      "line": 325,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 21
+    },
+    "PalletTown_EventScript_SignLadyMoveOutOfWayRight": {
+      "kind": "script",
+      "line": 348,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_EventScript_SignLadyMoveOutOfWayLeft": {
+      "kind": "script",
+      "line": 353,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_EventScript_SignLadyDone": {
+      "kind": "script",
+      "line": 358,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_EventScript_SignLadyGoReadSign": {
+      "kind": "script",
+      "line": 365,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_EventScript_SignLadyJustShowedSign": {
+      "kind": "script",
+      "line": 372,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_Movement_SignLadyMoveOutOfWayRight": {
+      "kind": "movement",
+      "line": 379,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_Movement_SignLadyMoveOutOfWayLeft": {
+      "kind": "movement",
+      "line": 384,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_EventScript_FatMan": {
+      "kind": "script",
+      "line": 389,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_EventScript_OaksLabSign": {
+      "kind": "script",
+      "line": 393,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_EventScript_PlayersHouseSign": {
+      "kind": "script",
+      "line": 400,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_EventScript_RivalsHouseSign": {
+      "kind": "script",
+      "line": 404,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_EventScript_TownSign": {
+      "kind": "script",
+      "line": 408,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_EventScript_TrainerTips": {
+      "kind": "script",
+      "line": 412,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_EventScript_SignLadyTrigger": {
+      "kind": "script",
+      "line": 419,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "PalletTown_EventScript_SignLadyShowSign": {
+      "kind": "script",
+      "line": 428,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 14
+    },
+    "PalletTown_EventScript_SignLadyStartShowSign": {
+      "kind": "script",
+      "line": 444,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_Text_OakDontGoOut": {
+      "kind": "text",
+      "line": 451,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_Text_OakGrassUnsafeNeedMon": {
+      "kind": "text",
+      "line": 455,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "PalletTown_Text_RaisingMonsToo": {
+      "kind": "text",
+      "line": 463,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_Text_CanStoreItemsAndMonsInPC": {
+      "kind": "text",
+      "line": 468,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_Text_OakPokemonResearchLab": {
+      "kind": "text",
+      "line": 473,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PalletTown_Text_PlayersHouse": {
+      "kind": "text",
+      "line": 476,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PalletTown_Text_RivalsHouse": {
+      "kind": "text",
+      "line": 479,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PalletTown_Text_TownSign": {
+      "kind": "text",
+      "line": 482,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_Text_OakLetMeSeePokedex": {
+      "kind": "text",
+      "line": 486,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_Text_CaughtXPuttingInHonestEffort": {
+      "kind": "text",
+      "line": 493,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_Text_CaughtXImpressiveFollowMe": {
+      "kind": "text",
+      "line": 500,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_Text_OakYouEnjoyingTraveling": {
+      "kind": "text",
+      "line": 506,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "PalletTown_Text_HmmIsThatRight": {
+      "kind": "text",
+      "line": 516,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_Text_OhLookLook": {
+      "kind": "text",
+      "line": 520,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_Text_ReadItReadIt": {
+      "kind": "text",
+      "line": 524,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PalletTown_Text_PressStartToOpenMenu": {
+      "kind": "text",
+      "line": 528,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_Text_SignsAreUsefulArentThey": {
+      "kind": "text",
+      "line": 532,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PalletTown_Text_LookCopiedTrainerTipsSign": {
+      "kind": "text",
+      "line": 535,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_Text_PressStartToOpenMenuCopy": {
+      "kind": "text",
+      "line": 541,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "PalletTown_Frlg_MapScripts": {
+      "label": "PalletTown_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 3,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "PalletTown_OnTransition"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, PalletTown_OnTransition",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "PalletTown_OnFrame"
+          ],
+          "line": 5,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, PalletTown_OnFrame",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 6,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_OnTransition": {
+      "label": "PalletTown_OnTransition",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setworldmapflag",
+          "args": [
+            "FLAG_WORLD_MAP_PALLET_TOWN"
+          ],
+          "line": 9,
+          "raw": "setworldmapflag FLAG_WORLD_MAP_PALLET_TOWN",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_PALLET_LADY_NOT_BLOCKING_SIGN",
+            "PalletTown_EventScript_TryReadySignLady"
+          ],
+          "line": 10,
+          "raw": "call_if_set FLAG_PALLET_LADY_NOT_BLOCKING_SIGN, PalletTown_EventScript_TryReadySignLady",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY",
+            "0",
+            "PalletTown_EventScript_SetSignLadyPos"
+          ],
+          "line": 11,
+          "raw": "call_if_eq VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 0, PalletTown_EventScript_SetSignLadyPos",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY",
+            "1",
+            "PalletTown_EventScript_SetSignLadyDone"
+          ],
+          "line": 12,
+          "raw": "call_if_eq VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1, PalletTown_EventScript_SetSignLadyDone",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "PalletTown_EventScript_TryReadySignLady",
+          "line": 10
+        },
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_EventScript_SetSignLadyPos",
+          "line": 11
+        },
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_EventScript_SetSignLadyDone",
+          "line": 12
+        }
+      ]
+    },
+    "PalletTown_EventScript_TryReadySignLady": {
+      "label": "PalletTown_EventScript_TryReadySignLady",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_OPENED_START_MENU",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 16,
+          "raw": "goto_if_unset FLAG_OPENED_START_MENU, Common_EventScript_NopReturn",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY",
+            "1",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 17,
+          "raw": "goto_if_ge VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1, Common_EventScript_NopReturn",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY",
+            "1"
+          ],
+          "line": 18,
+          "raw": "setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 19,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "Common_EventScript_NopReturn",
+          "line": 16
+        },
+        {
+          "op": "goto_if_ge",
+          "target": "Common_EventScript_NopReturn",
+          "line": 17
+        }
+      ]
+    },
+    "PalletTown_EventScript_SetSignLadyDone": {
+      "label": "PalletTown_EventScript_SetSignLadyDone",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY",
+            "2"
+          ],
+          "line": 22,
+          "raw": "setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 2",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 23,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_SetSignLadyPos": {
+      "label": "PalletTown_EventScript_SetSignLadyPos",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_PALLET_LADY_NOT_BLOCKING_SIGN",
+            "PalletTown_EventScript_MoveSignLadyToRouteEntrance"
+          ],
+          "line": 26,
+          "raw": "goto_if_set FLAG_PALLET_LADY_NOT_BLOCKING_SIGN, PalletTown_EventScript_MoveSignLadyToRouteEntrance",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "5",
+            "15"
+          ],
+          "line": 27,
+          "raw": "setobjectxyperm LOCALID_PALLET_SIGN_LADY, 5, 15",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "MOVEMENT_TYPE_FACE_UP"
+          ],
+          "line": 28,
+          "raw": "setobjectmovementtype LOCALID_PALLET_SIGN_LADY, MOVEMENT_TYPE_FACE_UP",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 29,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "PalletTown_EventScript_MoveSignLadyToRouteEntrance",
+          "line": 26
+        }
+      ]
+    },
+    "PalletTown_EventScript_MoveSignLadyToRouteEntrance": {
+      "label": "PalletTown_EventScript_MoveSignLadyToRouteEntrance",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "12",
+            "2"
+          ],
+          "line": 32,
+          "raw": "setobjectxyperm LOCALID_PALLET_SIGN_LADY, 12, 2",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "MOVEMENT_TYPE_FACE_DOWN"
+          ],
+          "line": 33,
+          "raw": "setobjectmovementtype LOCALID_PALLET_SIGN_LADY, MOVEMENT_TYPE_FACE_DOWN",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "SIGN_LADY_READY",
+            "TRUE"
+          ],
+          "line": 34,
+          "raw": "setvar SIGN_LADY_READY, TRUE",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 35,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_OnFrame": {
+      "label": "PalletTown_OnFrame",
+      "kind": "map_script_table",
+      "line": 37,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_OAK",
+            "2",
+            "PalletTown_EventScript_OakRatingScene"
+          ],
+          "line": 38,
+          "raw": "map_script_2 VAR_MAP_SCENE_PALLET_TOWN_OAK, 2, PalletTown_EventScript_OakRatingScene",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 39,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_OakRatingScene": {
+      "label": "PalletTown_EventScript_OakRatingScene",
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 43,
+          "raw": "lockall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 44,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "14",
+            "14"
+          ],
+          "line": 45,
+          "raw": "setobjectxyperm LOCALID_PALLET_PROF_OAK, 14, 14",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "MOVEMENT_TYPE_FACE_LEFT"
+          ],
+          "line": 46,
+          "raw": "setobjectmovementtype LOCALID_PALLET_PROF_OAK, MOVEMENT_TYPE_FACE_LEFT",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "addobject",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK"
+          ],
+          "line": 47,
+          "raw": "addobject LOCALID_PALLET_PROF_OAK",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "PalletTown_Movement_OakWalkToPlayersDoor"
+          ],
+          "line": 48,
+          "raw": "applymovement LOCALID_PALLET_PROF_OAK, PalletTown_Movement_OakWalkToPlayersDoor",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 49,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_WORLD_MAP_ONE_ISLAND",
+            "PalletTown_EventScript_NotBeenToOneIslandYet"
+          ],
+          "line": 50,
+          "raw": "goto_if_unset FLAG_WORLD_MAP_ONE_ISLAND, PalletTown_EventScript_NotBeenToOneIslandYet",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_OakLetMeSeePokedex"
+          ],
+          "line": 51,
+          "raw": "msgbox PalletTown_Text_OakLetMeSeePokedex",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "0"
+          ],
+          "line": 52,
+          "raw": "setvar VAR_0x8004, 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetFrlgPokedexCount"
+          ],
+          "line": 53,
+          "raw": "specialvar VAR_RESULT, GetFrlgPokedexCount",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8008",
+            "VAR_0x8005"
+          ],
+          "line": 54,
+          "raw": "copyvar VAR_0x8008, VAR_0x8005",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8009",
+            "VAR_0x8006"
+          ],
+          "line": 55,
+          "raw": "copyvar VAR_0x8009, VAR_0x8006",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8008"
+          ],
+          "line": 56,
+          "raw": "buffernumberstring STR_VAR_1, VAR_0x8008",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_2",
+            "VAR_0x8009"
+          ],
+          "line": 57,
+          "raw": "buffernumberstring STR_VAR_2, VAR_0x8009",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_lt",
+          "args": [
+            "VAR_0x8009",
+            "60",
+            "PalletTown_EventScript_NotEnoughMonsForNationalDex"
+          ],
+          "line": 58,
+          "raw": "goto_if_lt VAR_0x8009, 60, PalletTown_EventScript_NotEnoughMonsForNationalDex",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_CaughtXImpressiveFollowMe"
+          ],
+          "line": 59,
+          "raw": "msgbox PalletTown_Text_CaughtXImpressiveFollowMe",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 60,
+          "raw": "closemessage",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_FOLLOW_ME",
+            "0"
+          ],
+          "line": 61,
+          "raw": "playbgm MUS_FOLLOW_ME, 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "PalletTown_Movement_PlayerWalkToLabFromHouse"
+          ],
+          "line": 62,
+          "raw": "applymovement LOCALID_PLAYER, PalletTown_Movement_PlayerWalkToLabFromHouse",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "PalletTown_Movement_OakWalkToLabFromHouse"
+          ],
+          "line": 63,
+          "raw": "applymovement LOCALID_PALLET_PROF_OAK, PalletTown_Movement_OakWalkToLabFromHouse",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 64,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "opendoor",
+          "args": [
+            "16",
+            "13"
+          ],
+          "line": 65,
+          "raw": "opendoor 16, 13",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 66,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "PalletTown_Movement_OakEnterLab"
+          ],
+          "line": 67,
+          "raw": "applymovement LOCALID_PALLET_PROF_OAK, PalletTown_Movement_OakEnterLab",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "PalletTown_Movement_PlayerEnterLab"
+          ],
+          "line": 68,
+          "raw": "applymovement LOCALID_PLAYER, PalletTown_Movement_PlayerEnterLab",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 69,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "closedoor",
+          "args": [
+            "16",
+            "13"
+          ],
+          "line": 70,
+          "raw": "closedoor 16, 13",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 71,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB",
+            "7"
+          ],
+          "line": 72,
+          "raw": "setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 7",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_OAK",
+            "3"
+          ],
+          "line": 73,
+          "raw": "setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 3",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_OAK_IN_PALLET_TOWN"
+          ],
+          "line": 74,
+          "raw": "setflag FLAG_HIDE_OAK_IN_PALLET_TOWN",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB",
+            "6",
+            "12"
+          ],
+          "line": 75,
+          "raw": "warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 76,
+          "raw": "waitstate",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 77,
+          "raw": "releaseall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 78,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_OakLetMeSeePokedex",
+          "mode": "",
+          "line": 51
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_CaughtXImpressiveFollowMe",
+          "mode": "",
+          "line": 59
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "PalletTown_EventScript_NotBeenToOneIslandYet",
+          "line": 50
+        },
+        {
+          "op": "goto_if_lt",
+          "target": "PalletTown_EventScript_NotEnoughMonsForNationalDex",
+          "line": 58
+        }
+      ]
+    },
+    "PalletTown_EventScript_EndOakRatingScene": {
+      "label": "PalletTown_EventScript_EndOakRatingScene",
+      "kind": "script",
+      "line": 80,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 81,
+          "raw": "closemessage",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "PalletTown_Movement_OakExit"
+          ],
+          "line": 82,
+          "raw": "applymovement LOCALID_PALLET_PROF_OAK, PalletTown_Movement_OakExit",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 83,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK"
+          ],
+          "line": 84,
+          "raw": "removeobject LOCALID_PALLET_PROF_OAK",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_OAK",
+            "3"
+          ],
+          "line": 85,
+          "raw": "setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 3",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 86,
+          "raw": "releaseall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 87,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_NotEnoughMonsForNationalDex": {
+      "label": "PalletTown_EventScript_NotEnoughMonsForNationalDex",
+      "kind": "script",
+      "line": 89,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_CaughtXPuttingInHonestEffort"
+          ],
+          "line": 90,
+          "raw": "msgbox PalletTown_Text_CaughtXPuttingInHonestEffort",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "PalletTown_EventScript_EndOakRatingScene"
+          ],
+          "line": 91,
+          "raw": "goto PalletTown_EventScript_EndOakRatingScene",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 92,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_CaughtXPuttingInHonestEffort",
+          "mode": "",
+          "line": 90
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "PalletTown_EventScript_EndOakRatingScene",
+          "line": 91
+        }
+      ]
+    },
+    "PalletTown_EventScript_NotBeenToOneIslandYet": {
+      "label": "PalletTown_EventScript_NotBeenToOneIslandYet",
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_OakYouEnjoyingTraveling"
+          ],
+          "line": 95,
+          "raw": "msgbox PalletTown_Text_OakYouEnjoyingTraveling",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "PalletTown_EventScript_EndOakRatingScene"
+          ],
+          "line": 96,
+          "raw": "goto PalletTown_EventScript_EndOakRatingScene",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 97,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_OakYouEnjoyingTraveling",
+          "mode": "",
+          "line": 95
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "PalletTown_EventScript_EndOakRatingScene",
+          "line": 96
+        }
+      ]
+    },
+    "PalletTown_EventScript_OakTriggerLeft": {
+      "label": "PalletTown_EventScript_OakTriggerLeft",
+      "kind": "script",
+      "line": 169,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 170,
+          "raw": "lockall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "0"
+          ],
+          "line": 171,
+          "raw": "setvar VAR_TEMP_1, 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "PalletTown_EventScript_OakTrigger"
+          ],
+          "line": 172,
+          "raw": "goto PalletTown_EventScript_OakTrigger",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 173,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "PalletTown_EventScript_OakTrigger",
+          "line": 172
+        }
+      ]
+    },
+    "PalletTown_EventScript_OakTriggerRight": {
+      "label": "PalletTown_EventScript_OakTriggerRight",
+      "kind": "script",
+      "line": 175,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 176,
+          "raw": "lockall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 177,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "PalletTown_EventScript_OakTrigger"
+          ],
+          "line": 178,
+          "raw": "goto PalletTown_EventScript_OakTrigger",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 179,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "PalletTown_EventScript_OakTrigger",
+          "line": 178
+        }
+      ]
+    },
+    "PalletTown_EventScript_OakTrigger": {
+      "label": "PalletTown_EventScript_OakTrigger",
+      "kind": "script",
+      "line": 181,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_OAK",
+            "FCPICKSTATE_COLORED",
+            "UpdatePickStateFromSpecialVar8005"
+          ],
+          "line": 182,
+          "raw": "famechecker FAMECHECKER_OAK, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 183,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 184,
+          "raw": "delay 30",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_RG_OAK",
+            "0"
+          ],
+          "line": 185,
+          "raw": "playbgm MUS_RG_OAK, 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "PalletTown_Text_OakDontGoOut"
+          ],
+          "line": 186,
+          "raw": "message PalletTown_Text_OakDontGoOut",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 187,
+          "raw": "waitmessage",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "85"
+          ],
+          "line": 188,
+          "raw": "delay 85",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 189,
+          "raw": "closemessage",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 190,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 191,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 192,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 193,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_ExclamationMark",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 194,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 195,
+          "raw": "delay 30",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "addobject",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK"
+          ],
+          "line": 196,
+          "raw": "addobject LOCALID_PALLET_PROF_OAK",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "PalletTown_EventScript_OakEnterLeft"
+          ],
+          "line": 197,
+          "raw": "call_if_eq VAR_TEMP_1, 0, PalletTown_EventScript_OakEnterLeft",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_TEMP_1",
+            "1",
+            "PalletTown_EventScript_OakEnterRight"
+          ],
+          "line": 198,
+          "raw": "call_if_eq VAR_TEMP_1, 1, PalletTown_EventScript_OakEnterRight",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 199,
+          "raw": "delay 30",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_OakGrassUnsafeNeedMon"
+          ],
+          "line": 200,
+          "raw": "msgbox PalletTown_Text_OakGrassUnsafeNeedMon",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 201,
+          "raw": "closemessage",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 202,
+          "raw": "delay 30",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "PalletTown_EventScript_OakLeadPlayerToLabLeft"
+          ],
+          "line": 203,
+          "raw": "call_if_eq VAR_TEMP_1, 0, PalletTown_EventScript_OakLeadPlayerToLabLeft",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_TEMP_1",
+            "1",
+            "PalletTown_EventScript_OakLeadPlayerToLabRight"
+          ],
+          "line": 204,
+          "raw": "call_if_eq VAR_TEMP_1, 1, PalletTown_EventScript_OakLeadPlayerToLabRight",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "opendoor",
+          "args": [
+            "16",
+            "13"
+          ],
+          "line": 205,
+          "raw": "opendoor 16, 13",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 206,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "PalletTown_Movement_OakEnterLab"
+          ],
+          "line": 207,
+          "raw": "applymovement LOCALID_PALLET_PROF_OAK, PalletTown_Movement_OakEnterLab",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "PalletTown_Movement_PlayerEnterLab"
+          ],
+          "line": 208,
+          "raw": "applymovement LOCALID_PLAYER, PalletTown_Movement_PlayerEnterLab",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 209,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "closedoor",
+          "args": [
+            "16",
+            "13"
+          ],
+          "line": 210,
+          "raw": "closedoor 16, 13",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 211,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB",
+            "1"
+          ],
+          "line": 212,
+          "raw": "setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_OAK_IN_HIS_LAB"
+          ],
+          "line": 213,
+          "raw": "clearflag FLAG_HIDE_OAK_IN_HIS_LAB",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_OAK",
+            "1"
+          ],
+          "line": 214,
+          "raw": "setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 1",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_OAK_IN_PALLET_TOWN"
+          ],
+          "line": 215,
+          "raw": "setflag FLAG_HIDE_OAK_IN_PALLET_TOWN",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DONT_TRANSITION_MUSIC"
+          ],
+          "line": 216,
+          "raw": "setflag FLAG_DONT_TRANSITION_MUSIC",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB",
+            "6",
+            "12"
+          ],
+          "line": 217,
+          "raw": "warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 218,
+          "raw": "waitstate",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 219,
+          "raw": "releaseall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 220,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "PalletTown_Text_OakDontGoOut",
+          "mode": "",
+          "line": 186
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_OakGrassUnsafeNeedMon",
+          "mode": "",
+          "line": 200
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_EventScript_OakEnterLeft",
+          "line": 197
+        },
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_EventScript_OakEnterRight",
+          "line": 198
+        },
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_EventScript_OakLeadPlayerToLabLeft",
+          "line": 203
+        },
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_EventScript_OakLeadPlayerToLabRight",
+          "line": 204
+        }
+      ]
+    },
+    "PalletTown_EventScript_OakEnterLeft": {
+      "label": "PalletTown_EventScript_OakEnterLeft",
+      "kind": "script",
+      "line": 222,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "PalletTown_Movement_OakEnterLeft"
+          ],
+          "line": 223,
+          "raw": "applymovement LOCALID_PALLET_PROF_OAK, PalletTown_Movement_OakEnterLeft",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 224,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 225,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_OakEnterRight": {
+      "label": "PalletTown_EventScript_OakEnterRight",
+      "kind": "script",
+      "line": 227,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "PalletTown_Movement_OakEnterRight"
+          ],
+          "line": 228,
+          "raw": "applymovement LOCALID_PALLET_PROF_OAK, PalletTown_Movement_OakEnterRight",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 229,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 230,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_OakLeadPlayerToLabLeft": {
+      "label": "PalletTown_EventScript_OakLeadPlayerToLabLeft",
+      "kind": "script",
+      "line": 232,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "PalletTown_Movement_OakWalkToLabLeft"
+          ],
+          "line": 233,
+          "raw": "applymovement LOCALID_PALLET_PROF_OAK, PalletTown_Movement_OakWalkToLabLeft",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "PalletTown_Movement_PlayerWalkToLabLeft"
+          ],
+          "line": 234,
+          "raw": "applymovement LOCALID_PLAYER, PalletTown_Movement_PlayerWalkToLabLeft",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 235,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 236,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_OakLeadPlayerToLabRight": {
+      "label": "PalletTown_EventScript_OakLeadPlayerToLabRight",
+      "kind": "script",
+      "line": 238,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_PROF_OAK",
+            "PalletTown_Movement_OakWalkToLabRight"
+          ],
+          "line": 239,
+          "raw": "applymovement LOCALID_PALLET_PROF_OAK, PalletTown_Movement_OakWalkToLabRight",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "PalletTown_Movement_PlayerWalkToLabRight"
+          ],
+          "line": 240,
+          "raw": "applymovement LOCALID_PLAYER, PalletTown_Movement_PlayerWalkToLabRight",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 241,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 242,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_SignLady": {
+      "label": "PalletTown_EventScript_SignLady",
+      "kind": "script",
+      "line": 325,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 326,
+          "raw": "lock",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY",
+            "2",
+            "PalletTown_EventScript_SignLadyDone"
+          ],
+          "line": 327,
+          "raw": "goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 2, PalletTown_EventScript_SignLadyDone",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY",
+            "1",
+            "PalletTown_EventScript_SignLadyJustShowedSign"
+          ],
+          "line": 328,
+          "raw": "goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1, PalletTown_EventScript_SignLadyJustShowedSign",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "SIGN_LADY_READY",
+            "TRUE",
+            "PalletTown_EventScript_SignLadyStartShowSign"
+          ],
+          "line": 329,
+          "raw": "goto_if_eq SIGN_LADY_READY, TRUE, PalletTown_EventScript_SignLadyStartShowSign",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_TEMP_2",
+            "PalletTown_EventScript_SignLadyGoReadSign"
+          ],
+          "line": 330,
+          "raw": "goto_if_set FLAG_TEMP_2, PalletTown_EventScript_SignLadyGoReadSign",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_HmmIsThatRight"
+          ],
+          "line": 331,
+          "raw": "msgbox PalletTown_Text_HmmIsThatRight",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 332,
+          "raw": "applymovement LOCALID_PALLET_SIGN_LADY, Common_Movement_FacePlayer",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 333,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 334,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 335,
+          "raw": "applymovement LOCALID_PALLET_SIGN_LADY, Common_Movement_ExclamationMark",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 336,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "Common_Movement_Delay48"
+          ],
+          "line": 337,
+          "raw": "applymovement LOCALID_PALLET_SIGN_LADY, Common_Movement_Delay48",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 338,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_OhLookLook"
+          ],
+          "line": 339,
+          "raw": "msgbox PalletTown_Text_OhLookLook",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 340,
+          "raw": "closemessage",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_EAST",
+            "PalletTown_EventScript_SignLadyMoveOutOfWayRight"
+          ],
+          "line": 341,
+          "raw": "call_if_eq VAR_FACING, DIR_EAST, PalletTown_EventScript_SignLadyMoveOutOfWayRight",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_ne",
+          "args": [
+            "VAR_FACING",
+            "DIR_EAST",
+            "PalletTown_EventScript_SignLadyMoveOutOfWayLeft"
+          ],
+          "line": 342,
+          "raw": "call_if_ne VAR_FACING, DIR_EAST, PalletTown_EventScript_SignLadyMoveOutOfWayLeft",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyobjectxytoperm",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY"
+          ],
+          "line": 343,
+          "raw": "copyobjectxytoperm LOCALID_PALLET_SIGN_LADY",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_2"
+          ],
+          "line": 344,
+          "raw": "setflag FLAG_TEMP_2",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 345,
+          "raw": "release",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 346,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_HmmIsThatRight",
+          "mode": "",
+          "line": 331
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_OhLookLook",
+          "mode": "",
+          "line": 339
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "PalletTown_EventScript_SignLadyDone",
+          "line": 327
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "PalletTown_EventScript_SignLadyJustShowedSign",
+          "line": 328
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "PalletTown_EventScript_SignLadyStartShowSign",
+          "line": 329
+        },
+        {
+          "op": "goto_if_set",
+          "target": "PalletTown_EventScript_SignLadyGoReadSign",
+          "line": 330
+        },
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_EventScript_SignLadyMoveOutOfWayRight",
+          "line": 341
+        },
+        {
+          "op": "call_if_ne",
+          "target": "PalletTown_EventScript_SignLadyMoveOutOfWayLeft",
+          "line": 342
+        }
+      ]
+    },
+    "PalletTown_EventScript_SignLadyMoveOutOfWayRight": {
+      "label": "PalletTown_EventScript_SignLadyMoveOutOfWayRight",
+      "kind": "script",
+      "line": 348,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "PalletTown_Movement_SignLadyMoveOutOfWayRight"
+          ],
+          "line": 349,
+          "raw": "applymovement LOCALID_PALLET_SIGN_LADY, PalletTown_Movement_SignLadyMoveOutOfWayRight",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 350,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 351,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_SignLadyMoveOutOfWayLeft": {
+      "label": "PalletTown_EventScript_SignLadyMoveOutOfWayLeft",
+      "kind": "script",
+      "line": 353,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "PalletTown_Movement_SignLadyMoveOutOfWayLeft"
+          ],
+          "line": 354,
+          "raw": "applymovement LOCALID_PALLET_SIGN_LADY, PalletTown_Movement_SignLadyMoveOutOfWayLeft",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 355,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 356,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_SignLadyDone": {
+      "label": "PalletTown_EventScript_SignLadyDone",
+      "kind": "script",
+      "line": 358,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 359,
+          "raw": "applymovement LOCALID_PALLET_SIGN_LADY, Common_Movement_FacePlayer",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 360,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_RaisingMonsToo"
+          ],
+          "line": 361,
+          "raw": "msgbox PalletTown_Text_RaisingMonsToo",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 362,
+          "raw": "release",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 363,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_RaisingMonsToo",
+          "mode": "",
+          "line": 361
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_SignLadyGoReadSign": {
+      "label": "PalletTown_EventScript_SignLadyGoReadSign",
+      "kind": "script",
+      "line": 365,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 366,
+          "raw": "applymovement LOCALID_PALLET_SIGN_LADY, Common_Movement_FacePlayer",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 367,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_ReadItReadIt"
+          ],
+          "line": 368,
+          "raw": "msgbox PalletTown_Text_ReadItReadIt",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 369,
+          "raw": "release",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 370,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_ReadItReadIt",
+          "mode": "",
+          "line": 368
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_SignLadyJustShowedSign": {
+      "label": "PalletTown_EventScript_SignLadyJustShowedSign",
+      "kind": "script",
+      "line": 372,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 373,
+          "raw": "applymovement LOCALID_PALLET_SIGN_LADY, Common_Movement_FacePlayer",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 374,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_SignsAreUsefulArentThey"
+          ],
+          "line": 375,
+          "raw": "msgbox PalletTown_Text_SignsAreUsefulArentThey",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 376,
+          "raw": "release",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 377,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_SignsAreUsefulArentThey",
+          "mode": "",
+          "line": 375
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_FatMan": {
+      "label": "PalletTown_EventScript_FatMan",
+      "kind": "script",
+      "line": 389,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_CanStoreItemsAndMonsInPC",
+            "MSGBOX_NPC"
+          ],
+          "line": 390,
+          "raw": "msgbox PalletTown_Text_CanStoreItemsAndMonsInPC, MSGBOX_NPC",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 391,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_CanStoreItemsAndMonsInPC",
+          "mode": "MSGBOX_NPC",
+          "line": 390
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_OaksLabSign": {
+      "label": "PalletTown_EventScript_OaksLabSign",
+      "kind": "script",
+      "line": 393,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 394,
+          "raw": "lockall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_OAK",
+            "0"
+          ],
+          "line": 395,
+          "raw": "famechecker FAMECHECKER_OAK, 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_OakPokemonResearchLab"
+          ],
+          "line": 396,
+          "raw": "msgbox PalletTown_Text_OakPokemonResearchLab",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 397,
+          "raw": "releaseall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 398,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_OakPokemonResearchLab",
+          "mode": "",
+          "line": 396
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_PlayersHouseSign": {
+      "label": "PalletTown_EventScript_PlayersHouseSign",
+      "kind": "script",
+      "line": 400,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_PlayersHouse",
+            "MSGBOX_SIGN"
+          ],
+          "line": 401,
+          "raw": "msgbox PalletTown_Text_PlayersHouse, MSGBOX_SIGN",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 402,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_PlayersHouse",
+          "mode": "MSGBOX_SIGN",
+          "line": 401
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_RivalsHouseSign": {
+      "label": "PalletTown_EventScript_RivalsHouseSign",
+      "kind": "script",
+      "line": 404,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_RivalsHouse",
+            "MSGBOX_SIGN"
+          ],
+          "line": 405,
+          "raw": "msgbox PalletTown_Text_RivalsHouse, MSGBOX_SIGN",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 406,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_RivalsHouse",
+          "mode": "MSGBOX_SIGN",
+          "line": 405
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_TownSign": {
+      "label": "PalletTown_EventScript_TownSign",
+      "kind": "script",
+      "line": 408,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_TownSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 409,
+          "raw": "msgbox PalletTown_Text_TownSign, MSGBOX_SIGN",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 410,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_TownSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 409
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_TrainerTips": {
+      "label": "PalletTown_EventScript_TrainerTips",
+      "kind": "script",
+      "line": 412,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 413,
+          "raw": "lockall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_PressStartToOpenMenu"
+          ],
+          "line": 414,
+          "raw": "msgbox PalletTown_Text_PressStartToOpenMenu",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY",
+            "1"
+          ],
+          "line": 415,
+          "raw": "setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 416,
+          "raw": "releaseall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 417,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_PressStartToOpenMenu",
+          "mode": "",
+          "line": 414
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_SignLadyTrigger": {
+      "label": "PalletTown_EventScript_SignLadyTrigger",
+      "kind": "script",
+      "line": 419,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 420,
+          "raw": "lockall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 421,
+          "raw": "applymovement LOCALID_PALLET_SIGN_LADY, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 422,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 423,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PalletTown_EventScript_SignLadyShowSign"
+          ],
+          "line": 424,
+          "raw": "call PalletTown_EventScript_SignLadyShowSign",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 425,
+          "raw": "releaseall",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 426,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PalletTown_EventScript_SignLadyShowSign",
+          "line": 424
+        }
+      ]
+    },
+    "PalletTown_EventScript_SignLadyShowSign": {
+      "label": "PalletTown_EventScript_SignLadyShowSign",
+      "kind": "script",
+      "line": 428,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_FEMALE"
+          ],
+          "line": 429,
+          "raw": "textcolor NPC_TEXT_COLOR_FEMALE",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_LookCopiedTrainerTipsSign"
+          ],
+          "line": 430,
+          "raw": "msgbox PalletTown_Text_LookCopiedTrainerTipsSign",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 431,
+          "raw": "closemessage",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 432,
+          "raw": "delay 20",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 433,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_OPENED_START_MENU"
+          ],
+          "line": 434,
+          "raw": "setflag FLAG_OPENED_START_MENU",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY",
+            "1"
+          ],
+          "line": 435,
+          "raw": "setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "SIGN_LADY_READY",
+            "FALSE"
+          ],
+          "line": 436,
+          "raw": "setvar SIGN_LADY_READY, FALSE",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SetWalkingIntoSignVars"
+          ],
+          "line": 437,
+          "raw": "special SetWalkingIntoSignVars",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DisableMsgBoxWalkaway"
+          ],
+          "line": 438,
+          "raw": "special DisableMsgBoxWalkaway",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "signmsg",
+          "args": [],
+          "line": 439,
+          "raw": "signmsg",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_Text_PressStartToOpenMenuCopy"
+          ],
+          "line": 440,
+          "raw": "msgbox PalletTown_Text_PressStartToOpenMenuCopy",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "normalmsg",
+          "args": [],
+          "line": 441,
+          "raw": "normalmsg",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 442,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_LookCopiedTrainerTipsSign",
+          "mode": "",
+          "line": 430
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_Text_PressStartToOpenMenuCopy",
+          "mode": "",
+          "line": 440
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_EventScript_SignLadyStartShowSign": {
+      "label": "PalletTown_EventScript_SignLadyStartShowSign",
+      "kind": "script",
+      "line": 444,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PALLET_SIGN_LADY",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 445,
+          "raw": "applymovement LOCALID_PALLET_SIGN_LADY, Common_Movement_FacePlayer",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 446,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PalletTown_EventScript_SignLadyShowSign"
+          ],
+          "line": 447,
+          "raw": "call PalletTown_EventScript_SignLadyShowSign",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 448,
+          "raw": "release",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 449,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PalletTown_EventScript_SignLadyShowSign",
+          "line": 447
+        }
+      ]
+    }
+  },
+  "movements": {
+    "PalletTown_Movement_OakWalkToPlayersDoor": {
+      "label": "PalletTown_Movement_OakWalkToPlayersDoor",
+      "kind": "movement",
+      "line": 99,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 100,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 101,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 102,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 103,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 104,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 105,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 106,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 107,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 108,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 109,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 110,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 111,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 112,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 113,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 114,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_OakExit": {
+      "label": "PalletTown_Movement_OakExit",
+      "kind": "movement",
+      "line": 116,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 117,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 118,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 119,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 120,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 121,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 122,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 123,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 124,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 125,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 126,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 127,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 128,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 129,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 130,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_OakWalkToLabFromHouse": {
+      "label": "PalletTown_Movement_OakWalkToLabFromHouse",
+      "kind": "movement",
+      "line": 132,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 133,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 134,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 135,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 136,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 137,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 138,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 139,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 140,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 141,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 142,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 143,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 144,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 145,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 146,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 147,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 148,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 149,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_PlayerWalkToLabFromHouse": {
+      "label": "PalletTown_Movement_PlayerWalkToLabFromHouse",
+      "kind": "movement",
+      "line": 151,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 152,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 153,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 154,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 155,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 156,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 157,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 158,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 159,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 160,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 161,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 162,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 163,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 164,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 165,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 166,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 167,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_OakEnterLeft": {
+      "label": "PalletTown_Movement_OakEnterLeft",
+      "kind": "movement",
+      "line": 244,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 245,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 246,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 247,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 248,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 249,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 250,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 251,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 252,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 253,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_OakEnterRight": {
+      "label": "PalletTown_Movement_OakEnterRight",
+      "kind": "movement",
+      "line": 255,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 256,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 257,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 258,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 259,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 260,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 261,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 262,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 263,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 264,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 265,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": ".macro",
+          "args": [
+            "walk_to_lab"
+          ],
+          "line": 267,
+          "raw": ".macro walk_to_lab",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 268,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 269,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 270,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 271,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 272,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 273,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 274,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 275,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 276,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 277,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 278,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 279,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 280,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 281,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 282,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 283,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": ".endm",
+          "args": [],
+          "line": 284,
+          "raw": ".endm",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_OakWalkToLabLeft": {
+      "label": "PalletTown_Movement_OakWalkToLabLeft",
+      "kind": "movement",
+      "line": 286,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 287,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_to_lab",
+          "args": [],
+          "line": 288,
+          "raw": "walk_to_lab",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 289,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 290,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 291,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_OakWalkToLabRight": {
+      "label": "PalletTown_Movement_OakWalkToLabRight",
+      "kind": "movement",
+      "line": 293,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 294,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 295,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_to_lab",
+          "args": [],
+          "line": 296,
+          "raw": "walk_to_lab",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 297,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 298,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 299,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_OakEnterLab": {
+      "label": "PalletTown_Movement_OakEnterLab",
+      "kind": "movement",
+      "line": 301,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 302,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 303,
+          "raw": "set_invisible",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 304,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_PlayerWalkToLabLeft": {
+      "label": "PalletTown_Movement_PlayerWalkToLabLeft",
+      "kind": "movement",
+      "line": 306,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 307,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 308,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_to_lab",
+          "args": [],
+          "line": 309,
+          "raw": "walk_to_lab",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 310,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_PlayerWalkToLabRight": {
+      "label": "PalletTown_Movement_PlayerWalkToLabRight",
+      "kind": "movement",
+      "line": 312,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 313,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 314,
+          "raw": "walk_down",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 315,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_to_lab",
+          "args": [],
+          "line": 316,
+          "raw": "walk_to_lab",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 317,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_PlayerEnterLab": {
+      "label": "PalletTown_Movement_PlayerEnterLab",
+      "kind": "movement",
+      "line": 319,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 320,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 321,
+          "raw": "walk_up",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 322,
+          "raw": "set_invisible",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 323,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_SignLadyMoveOutOfWayRight": {
+      "label": "PalletTown_Movement_SignLadyMoveOutOfWayRight",
+      "kind": "movement",
+      "line": 379,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 380,
+          "raw": "walk_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 381,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 382,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_Movement_SignLadyMoveOutOfWayLeft": {
+      "label": "PalletTown_Movement_SignLadyMoveOutOfWayLeft",
+      "kind": "movement",
+      "line": 384,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 385,
+          "raw": "walk_left",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 386,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 387,
+          "raw": "step_end",
+          "source_file": "data/maps/PalletTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "PalletTown_Text_OakDontGoOut": {
+      "label": "PalletTown_Text_OakDontGoOut",
+      "line": 451,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "大木：嘿，等等！\\n别急着出去！$",
+      "display_text": "大木：嘿，等等！\n别急着出去！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          2,
+          211,
+          9,
+          180,
+          62,
+          5,
+          8,
+          59,
+          3,
+          15,
+          3,
+          15,
+          60,
+          254,
+          1,
+          173,
+          5,
+          156,
+          16,
+          244,
+          2,
+          120,
+          11,
+          37,
+          60,
+          255
+        ],
+        "hex": "02 D3 09 B4 3E 05 08 3B 03 0F 03 0F 3C FE 01 AD 05 9C 10 F4 02 78 0B 25 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_OakGrassUnsafeNeedMon": {
+      "label": "PalletTown_Text_OakGrassUnsafeNeedMon",
+      "line": 455,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "大木：太危险了！\\n有野生的宝可梦生活在草丛里！\\p你需要拥有自己的宝可梦\\n来保护你自己。\\p我知道了！\\n这边走，跟我来一下吧！$",
+      "display_text": "大木：太危险了！\n有野生的宝可梦生活在草丛里！\n\n你需要拥有自己的宝可梦\n来保护你自己。\n\n我知道了！\n这边走，跟我来一下吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 111,
+        "bytes": [
+          2,
+          211,
+          9,
+          180,
+          62,
+          12,
+          172,
+          13,
+          105,
+          14,
+          2,
+          8,
+          158,
+          60,
+          254,
+          15,
+          126,
+          15,
+          0,
+          11,
+          216,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          216,
+          5,
+          123,
+          15,
+          230,
+          2,
+          1,
+          2,
+          180,
+          8,
+          100,
+          60,
+          251,
+          9,
+          217,
+          14,
+          115,
+          14,
+          241,
+          15,
+          99,
+          15,
+          126,
+          17,
+          12,
+          5,
+          165,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          8,
+          41,
+          1,
+          96,
+          5,
+          49,
+          9,
+          217,
+          17,
+          12,
+          5,
+          165,
+          55,
+          251,
+          13,
+          152,
+          16,
+          123,
+          3,
+          7,
+          8,
+          158,
+          60,
+          254,
+          16,
+          85,
+          1,
+          156,
+          17,
+          23,
+          59,
+          4,
+          100,
+          13,
+          152,
+          8,
+          41,
+          15,
+          11,
+          13,
+          230,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "02 D3 09 B4 3E 0C AC 0D 69 0E 02 08 9E 3C FE 0F 7E 0F 00 0B D8 03 0B 01 63 07 D7 09 66 0B D8 05 7B 0F E6 02 01 02 B4 08 64 3C FB 09 D9 0E 73 0E F1 0F 63 0F 7E 11 0C 05 A5 03 0B 01 63 07 D7 09 66 FE 08 29 01 60 05 31 09 D9 11 0C 05 A5 37 FB 0D 98 10 7B 03 07 08 9E 3C FE 10 55 01 9C 11 17 3B 04 64 0D 98 08 29 0F 0B 0D E6 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 37,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 46,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 53,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 66,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_RaisingMonsToo": {
+      "label": "PalletTown_Text_RaisingMonsToo",
+      "line": 463,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "我也在培育宝可梦。\\p等当它们变得强大了，\\n它们就能保护我了。$",
+      "display_text": "我也在培育宝可梦。\n\n等当它们变得强大了，\n它们就能保护我了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 56,
+        "bytes": [
+          13,
+          152,
+          15,
+          2,
+          15,
+          230,
+          10,
+          61,
+          15,
+          171,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          3,
+          15,
+          2,
+          239,
+          12,
+          159,
+          9,
+          95,
+          1,
+          161,
+          3,
+          10,
+          10,
+          216,
+          2,
+          211,
+          8,
+          158,
+          59,
+          254,
+          12,
+          159,
+          9,
+          95,
+          7,
+          125,
+          9,
+          210,
+          1,
+          96,
+          5,
+          49,
+          13,
+          152,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0D 98 0F 02 0F E6 0A 3D 0F AB 01 63 07 D7 09 66 37 FB 03 0F 02 EF 0C 9F 09 5F 01 A1 03 0A 0A D8 02 D3 08 9E 3B FE 0C 9F 09 5F 07 7D 09 D2 01 60 05 31 0D 98 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_CanStoreItemsAndMonsInPC": {
+      "label": "PalletTown_Text_CanStoreItemsAndMonsInPC",
+      "line": 468,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "科学力量真是神奇！\\p通过电脑你可以像管理数据一样\\n存取物品和宝可梦。$",
+      "display_text": "科学力量真是神奇！\n\n通过电脑你可以像管理数据一样\n存取物品和宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 65,
+        "bytes": [
+          7,
+          212,
+          14,
+          144,
+          8,
+          121,
+          8,
+          146,
+          16,
+          89,
+          12,
+          12,
+          11,
+          207,
+          10,
+          161,
+          60,
+          251,
+          13,
+          16,
+          4,
+          197,
+          3,
+          46,
+          9,
+          202,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          14,
+          30,
+          4,
+          164,
+          8,
+          98,
+          12,
+          66,
+          7,
+          141,
+          15,
+          11,
+          14,
+          226,
+          254,
+          2,
+          198,
+          11,
+          33,
+          13,
+          181,
+          10,
+          114,
+          4,
+          243,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "07 D4 0E 90 08 79 08 92 10 59 0C 0C 0B CF 0A A1 3C FB 0D 10 04 C5 03 2E 09 CA 09 D9 07 D7 0F 24 0E 1E 04 A4 08 62 0C 42 07 8D 0F 0B 0E E2 FE 02 C6 0B 21 0D B5 0A 72 04 F3 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 36,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_OakPokemonResearchLab": {
+      "label": "PalletTown_Text_OakPokemonResearchLab",
+      "line": 473,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "大木宝可梦研究所$",
+      "display_text": "大木宝可梦研究所",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 17,
+        "bytes": [
+          2,
+          211,
+          9,
+          180,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          185,
+          7,
+          111,
+          12,
+          156,
+          255
+        ],
+        "hex": "02 D3 09 B4 01 63 07 D7 09 66 0E B9 07 6F 0C 9C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_PlayersHouse": {
+      "label": "PalletTown_Text_PlayersHouse",
+      "line": 476,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}的家$",
+      "display_text": "{PLAYER}的家",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 7,
+        "bytes": [
+          253,
+          1,
+          3,
+          11,
+          5,
+          189,
+          255
+        ],
+        "hex": "FD 01 03 0B 05 BD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_RivalsHouse": {
+      "label": "PalletTown_Text_RivalsHouse",
+      "line": 479,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "{RIVAL}的家$",
+      "display_text": "{RIVAL}的家",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 7,
+        "bytes": [
+          253,
+          6,
+          3,
+          11,
+          5,
+          189,
+          255
+        ],
+        "hex": "FD 06 03 0B 05 BD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{RIVAL}",
+            "offset": 0,
+            "bytes": [
+              253,
+              6
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "RIVAL",
+                "bytes": [
+                  253,
+                  6
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "RIVAL",
+            "offset": 0,
+            "bytes": [
+              253,
+              6
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_TownSign": {
+      "label": "PalletTown_Text_TownSign",
+      "line": 482,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "真新镇\\n在此揭开你的旅程！$",
+      "display_text": "真新镇\n在此揭开你的旅程！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 25,
+        "bytes": [
+          16,
+          89,
+          14,
+          77,
+          16,
+          101,
+          254,
+          15,
+          230,
+          2,
+          171,
+          7,
+          36,
+          7,
+          184,
+          9,
+          217,
+          3,
+          11,
+          8,
+          244,
+          2,
+          78,
+          60,
+          255
+        ],
+        "hex": "10 59 0E 4D 10 65 FE 0F E6 02 AB 07 24 07 B8 09 D9 03 0B 08 F4 02 4E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_OakLetMeSeePokedex": {
+      "label": "PalletTown_Text_OakLetMeSeePokedex",
+      "line": 486,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "大木：啊，{PLAYER}！\\n你回来啦？\\p宝可梦图鉴完成得怎么样了？\\p能让我看看吗？\\p那我瞧瞧……$",
+      "display_text": "大木：啊，{PLAYER}！\n你回来啦？\n\n宝可梦图鉴完成得怎么样了？\n\n能让我看看吗？\n\n那我瞧瞧……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 73,
+        "bytes": [
+          2,
+          211,
+          9,
+          180,
+          62,
+          1,
+          0,
+          59,
+          253,
+          1,
+          60,
+          254,
+          9,
+          217,
+          5,
+          101,
+          8,
+          41,
+          8,
+          39,
+          61,
+          251,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          36,
+          5,
+          227,
+          13,
+          82,
+          2,
+          75,
+          3,
+          10,
+          16,
+          10,
+          9,
+          76,
+          14,
+          226,
+          8,
+          158,
+          61,
+          251,
+          9,
+          210,
+          11,
+          67,
+          13,
+          152,
+          7,
+          194,
+          7,
+          194,
+          9,
+          42,
+          61,
+          251,
+          9,
+          189,
+          13,
+          152,
+          10,
+          223,
+          10,
+          223,
+          176,
+          176,
+          255
+        ],
+        "hex": "02 D3 09 B4 3E 01 00 3B FD 01 3C FE 09 D9 05 65 08 29 08 27 3D FB 01 63 07 D7 09 66 0D 24 05 E3 0D 52 02 4B 03 0A 10 0A 09 4C 0E E2 08 9E 3D FB 09 D2 0B 43 0D 98 07 C2 07 C2 09 2A 3D FB 09 BD 0D 98 0A DF 0A DF B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 5,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 36,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 45,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 53,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 5,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_CaughtXPuttingInHonestEffort": {
+      "label": "PalletTown_Text_CaughtXPuttingInHonestEffort",
+      "line": 493,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "你已经抓到了{STR_VAR_2}种……\\p嗯，看得出来，\\n你的确付出了你的努力。\\p等你完成得多一些的时候，\\n再拿来给我看看吧。$",
+      "display_text": "你已经抓到了{STR_VAR_2}种……\n\n嗯，看得出来，\n你的确付出了你的努力。\n\n等你完成得多一些的时候，\n再拿来给我看看吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 96,
+        "bytes": [
+          9,
+          217,
+          15,
+          33,
+          7,
+          93,
+          16,
+          212,
+          3,
+          4,
+          8,
+          158,
+          253,
+          3,
+          16,
+          167,
+          176,
+          176,
+          251,
+          20,
+          97,
+          59,
+          7,
+          194,
+          3,
+          10,
+          2,
+          120,
+          8,
+          41,
+          59,
+          254,
+          9,
+          217,
+          3,
+          11,
+          11,
+          55,
+          4,
+          32,
+          2,
+          120,
+          8,
+          158,
+          9,
+          217,
+          3,
+          11,
+          10,
+          9,
+          8,
+          121,
+          55,
+          251,
+          3,
+          15,
+          9,
+          217,
+          13,
+          82,
+          2,
+          75,
+          3,
+          10,
+          3,
+          133,
+          15,
+          11,
+          14,
+          52,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          59,
+          254,
+          15,
+          229,
+          9,
+          185,
+          8,
+          41,
+          4,
+          98,
+          13,
+          152,
+          7,
+          194,
+          7,
+          194,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "09 D9 0F 21 07 5D 10 D4 03 04 08 9E FD 03 10 A7 B0 B0 FB 14 61 3B 07 C2 03 0A 02 78 08 29 3B FE 09 D9 03 0B 0B 37 04 20 02 78 08 9E 09 D9 03 0B 0A 09 08 79 37 FB 03 0F 09 D9 0D 52 02 4B 03 0A 03 85 0F 0B 0E 34 03 0B 0B ED 05 21 3B FE 0F E5 09 B9 08 29 04 62 0D 98 07 C2 07 C2 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 6,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 42,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 56,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 67,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_2",
+            "offset": 6,
+            "bytes": [
+              253,
+              3
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_CaughtXImpressiveFollowMe": {
+      "label": "PalletTown_Text_CaughtXImpressiveFollowMe",
+      "line": 500,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "你抓到了……{STR_VAR_2}种！？\\n真是难以置信！\\p我有个请求，{PLAYER}。\\p跟我来。$",
+      "display_text": "你抓到了……{STR_VAR_2}种！？\n真是难以置信！\n\n我有个请求，{PLAYER}。\n\n跟我来。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          9,
+          217,
+          16,
+          212,
+          3,
+          4,
+          8,
+          158,
+          176,
+          176,
+          253,
+          3,
+          16,
+          167,
+          60,
+          61,
+          254,
+          16,
+          89,
+          12,
+          12,
+          9,
+          199,
+          15,
+          36,
+          16,
+          148,
+          14,
+          80,
+          60,
+          251,
+          13,
+          152,
+          15,
+          126,
+          4,
+          96,
+          11,
+          13,
+          11,
+          21,
+          59,
+          253,
+          1,
+          55,
+          251,
+          4,
+          100,
+          13,
+          152,
+          8,
+          41,
+          55,
+          255
+        ],
+        "hex": "09 D9 10 D4 03 04 08 9E B0 B0 FD 03 10 A7 3C 3D FE 10 59 0C 0C 09 C7 0F 24 10 94 0E 50 3C FB 0D 98 0F 7E 04 60 0B 0D 0B 15 3B FD 01 37 FB 04 64 0D 98 08 29 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 6,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 37,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 46,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 52,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_2",
+            "offset": 6,
+            "bytes": [
+              253,
+              3
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 37,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_OakYouEnjoyingTraveling": {
+      "label": "PalletTown_Text_OakYouEnjoyingTraveling",
+      "line": 506,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "大木：啊，{PLAYER}！\\n你好像很喜欢旅行啊。\\p{PLAYER}，\\n我猜想你一定会到\\l更奇异地地方去冒险。\\p好极了，好极了。\\n呵呵呵。$",
+      "display_text": "大木：啊，{PLAYER}！\n你好像很喜欢旅行啊。\n\n{PLAYER}，\n我猜想你一定会到\n更奇异地地方去冒险。\n\n好极了，好极了。\n呵呵呵。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 96,
+        "bytes": [
+          2,
+          211,
+          9,
+          180,
+          62,
+          1,
+          0,
+          59,
+          253,
+          1,
+          60,
+          254,
+          9,
+          217,
+          4,
+          233,
+          14,
+          30,
+          5,
+          11,
+          13,
+          214,
+          5,
+          67,
+          8,
+          244,
+          14,
+          91,
+          1,
+          0,
+          55,
+          251,
+          253,
+          1,
+          59,
+          254,
+          13,
+          152,
+          1,
+          221,
+          14,
+          24,
+          9,
+          217,
+          15,
+          11,
+          3,
+          77,
+          5,
+          110,
+          3,
+          4,
+          250,
+          4,
+          102,
+          10,
+          161,
+          15,
+          60,
+          3,
+          31,
+          3,
+          31,
+          3,
+          192,
+          11,
+          37,
+          9,
+          72,
+          14,
+          2,
+          55,
+          251,
+          4,
+          233,
+          5,
+          150,
+          8,
+          158,
+          59,
+          4,
+          233,
+          5,
+          150,
+          8,
+          158,
+          55,
+          254,
+          4,
+          237,
+          4,
+          237,
+          4,
+          237,
+          55,
+          255
+        ],
+        "hex": "02 D3 09 B4 3E 01 00 3B FD 01 3C FE 09 D9 04 E9 0E 1E 05 0B 0D D6 05 43 08 F4 0E 5B 01 00 37 FB FD 01 3B FE 0D 98 01 DD 0E 18 09 D9 0F 0B 03 4D 05 6E 03 04 FA 04 66 0A A1 0F 3C 03 1F 03 1F 03 C0 0B 25 09 48 0E 02 37 FB 04 E9 05 96 08 9E 3B 04 E9 05 96 08 9E 37 FE 04 ED 04 ED 04 ED 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 5,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 26,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 28,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 37,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 47,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 59,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 69,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 75,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 5,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 28,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_HmmIsThatRight": {
+      "label": "PalletTown_Text_HmmIsThatRight",
+      "line": 516,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "Hmm…\\nIs that right…$",
+      "display_text": "Hmm…\nIs that right…",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          194,
+          225,
+          225,
+          176,
+          254,
+          195,
+          231,
+          0,
+          232,
+          220,
+          213,
+          232,
+          0,
+          230,
+          221,
+          219,
+          220,
+          232,
+          176,
+          255
+        ],
+        "hex": "C2 E1 E1 B0 FE C3 E7 00 E8 DC D5 E8 00 E6 DD DB DC E8 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_OhLookLook": {
+      "label": "PalletTown_Text_OhLookLook",
+      "line": 520,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "Oh!\\nLook, look!$",
+      "display_text": "Oh!\nLook, look!",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          201,
+          220,
+          171,
+          254,
+          198,
+          227,
+          227,
+          223,
+          184,
+          0,
+          224,
+          227,
+          227,
+          223,
+          171,
+          255
+        ],
+        "hex": "C9 DC AB FE C6 E3 E3 DF B8 00 E0 E3 E3 DF AB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_ReadItReadIt": {
+      "label": "PalletTown_Text_ReadItReadIt",
+      "line": 524,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "Read it, read it!$",
+      "display_text": "Read it, read it!",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          204,
+          217,
+          213,
+          216,
+          0,
+          221,
+          232,
+          184,
+          0,
+          230,
+          217,
+          213,
+          216,
+          0,
+          221,
+          232,
+          171,
+          255
+        ],
+        "hex": "CC D9 D5 D8 00 DD E8 B8 00 E6 D9 D5 D8 00 DD E8 AB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_PressStartToOpenMenu": {
+      "label": "PalletTown_Text_PressStartToOpenMenu",
+      "line": 528,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "TRAINER TIPS\\pPress START to open the MENU!$",
+      "display_text": "TRAINER TIPS\n\nPress START to open the MENU!",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          206,
+          204,
+          187,
+          195,
+          200,
+          191,
+          204,
+          0,
+          206,
+          195,
+          202,
+          205,
+          251,
+          202,
+          230,
+          217,
+          231,
+          231,
+          0,
+          205,
+          206,
+          187,
+          204,
+          206,
+          0,
+          232,
+          227,
+          0,
+          227,
+          228,
+          217,
+          226,
+          0,
+          232,
+          220,
+          217,
+          0,
+          199,
+          191,
+          200,
+          207,
+          171,
+          255
+        ],
+        "hex": "CE CC BB C3 C8 BF CC 00 CE C3 CA CD FB CA E6 D9 E7 E7 00 CD CE BB CC CE 00 E8 E3 00 E3 E4 D9 E2 00 E8 DC D9 00 C7 BF C8 CF AB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 43,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_SignsAreUsefulArentThey": {
+      "label": "PalletTown_Text_SignsAreUsefulArentThey",
+      "line": 532,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "Signs are useful, aren't they?$",
+      "display_text": "Signs are useful, aren't they?",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          205,
+          221,
+          219,
+          226,
+          231,
+          0,
+          213,
+          230,
+          217,
+          0,
+          233,
+          231,
+          217,
+          218,
+          233,
+          224,
+          184,
+          0,
+          213,
+          230,
+          217,
+          226,
+          180,
+          232,
+          0,
+          232,
+          220,
+          217,
+          237,
+          172,
+          255
+        ],
+        "hex": "CD DD DB E2 E7 00 D5 E6 D9 00 E9 E7 D9 DA E9 E0 B8 00 D5 E6 D9 E2 B4 E8 00 E8 DC D9 ED AC FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_LookCopiedTrainerTipsSign": {
+      "label": "PalletTown_Text_LookCopiedTrainerTipsSign",
+      "line": 535,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "Look, look!\\pI copied what it said on one of\\nthose TRAINER TIPS signs!$",
+      "display_text": "Look, look!\n\nI copied what it said on one of\nthose TRAINER TIPS signs!",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 70,
+        "bytes": [
+          198,
+          227,
+          227,
+          223,
+          184,
+          0,
+          224,
+          227,
+          227,
+          223,
+          171,
+          251,
+          195,
+          0,
+          215,
+          227,
+          228,
+          221,
+          217,
+          216,
+          0,
+          235,
+          220,
+          213,
+          232,
+          0,
+          221,
+          232,
+          0,
+          231,
+          213,
+          221,
+          216,
+          0,
+          227,
+          226,
+          0,
+          227,
+          226,
+          217,
+          0,
+          227,
+          218,
+          254,
+          232,
+          220,
+          227,
+          231,
+          217,
+          0,
+          206,
+          204,
+          187,
+          195,
+          200,
+          191,
+          204,
+          0,
+          206,
+          195,
+          202,
+          205,
+          0,
+          231,
+          221,
+          219,
+          226,
+          231,
+          171,
+          255
+        ],
+        "hex": "C6 E3 E3 DF B8 00 E0 E3 E3 DF AB FB C3 00 D7 E3 E4 DD D9 D8 00 EB DC D5 E8 00 DD E8 00 E7 D5 DD D8 00 E3 E2 00 E3 E2 D9 00 E3 DA FE E8 DC E3 E7 D9 00 CE CC BB C3 C8 BF CC 00 CE C3 CA CD 00 E7 DD DB E2 E7 AB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 71,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_Text_PressStartToOpenMenuCopy": {
+      "label": "PalletTown_Text_PressStartToOpenMenuCopy",
+      "line": 541,
+      "source_file": "data/maps/PalletTown_Frlg/scripts.inc",
+      "raw_text": "TRAINER TIPS!\\pPress START to open the MENU!$",
+      "display_text": "TRAINER TIPS!\n\nPress START to open the MENU!",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 44,
+        "bytes": [
+          206,
+          204,
+          187,
+          195,
+          200,
+          191,
+          204,
+          0,
+          206,
+          195,
+          202,
+          205,
+          171,
+          251,
+          202,
+          230,
+          217,
+          231,
+          231,
+          0,
+          205,
+          206,
+          187,
+          204,
+          206,
+          0,
+          232,
+          227,
+          0,
+          227,
+          228,
+          217,
+          226,
+          0,
+          232,
+          220,
+          217,
+          0,
+          199,
+          191,
+          200,
+          207,
+          171,
+          255
+        ],
+        "hex": "CE CC BB C3 C8 BF CC 00 CE C3 CA CD AB FB CA E6 D9 E7 E7 00 CD CE BB CC CE 00 E8 E3 00 E3 E4 D9 E2 00 E8 DC D9 00 C7 BF C8 CF AB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addobject": 2,
+      "applymovement": 27,
+      "buffernumberstring": 2,
+      "call_if_eq": 7,
+      "call_if_ne": 1,
+      "call_if_set": 1,
+      "clearflag": 1,
+      "closedoor": 2,
+      "closemessage": 6,
+      "copyobjectxytoperm": 1,
+      "copyvar": 2,
+      "delay": 6,
+      "famechecker": 2,
+      "goto_if_eq": 3,
+      "goto_if_ge": 1,
+      "goto_if_lt": 1,
+      "goto_if_set": 2,
+      "goto_if_unset": 2,
+      "map_script": 2,
+      "map_script_2": 1,
+      "normalmsg": 1,
+      "opendoor": 2,
+      "playbgm": 2,
+      "playse": 2,
+      "removeobject": 1,
+      "set_invisible": 2,
+      "setflag": 5,
+      "setobjectmovementtype": 3,
+      "setobjectxyperm": 3,
+      "setvar": 14,
+      "setworldmapflag": 1,
+      "signmsg": 1,
+      "special": 2,
+      "specialvar": 1,
+      "step_end": 14,
+      "textcolor": 4,
+      "waitdooranim": 4,
+      "waitmessage": 1,
+      "waitmovement": 21,
+      "waitstate": 2,
+      "walk_down": 33,
+      "walk_in_place_faster_left": 1,
+      "walk_in_place_faster_right": 1,
+      "walk_in_place_faster_up": 4,
+      "walk_left": 12,
+      "walk_right": 40,
+      "walk_to_lab": 4,
+      "walk_up": 19,
+      "warp": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 66,
+    "script_count": 33,
+    "movement_count": 14,
+    "text_count": 19,
+    "encoded_text_count": 19,
+    "text_source_byte_count": 875,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 19
+    },
+    "orphan_instruction_count": 1,
+    "op_counts": {
+      "addobject": 2,
+      "applymovement": 27,
+      "buffernumberstring": 2,
+      "call": 2,
+      "call_if_eq": 7,
+      "call_if_ne": 1,
+      "call_if_set": 1,
+      "clearflag": 1,
+      "closedoor": 2,
+      "closemessage": 6,
+      "copyobjectxytoperm": 1,
+      "copyvar": 2,
+      "delay": 6,
+      "end": 20,
+      "famechecker": 2,
+      "goto": 4,
+      "goto_if_eq": 3,
+      "goto_if_ge": 1,
+      "goto_if_lt": 1,
+      "goto_if_set": 2,
+      "goto_if_unset": 2,
+      "lock": 1,
+      "lockall": 6,
+      "map_script": 2,
+      "map_script_2": 1,
+      "message": 1,
+      "msgbox": 18,
+      "normalmsg": 1,
+      "opendoor": 2,
+      "playbgm": 2,
+      "playse": 2,
+      "release": 5,
+      "releaseall": 6,
+      "removeobject": 1,
+      "return": 11,
+      "set_invisible": 2,
+      "setflag": 5,
+      "setobjectmovementtype": 3,
+      "setobjectxyperm": 3,
+      "setvar": 14,
+      "setworldmapflag": 1,
+      "signmsg": 1,
+      "special": 2,
+      "specialvar": 1,
+      "step_end": 14,
+      "textcolor": 4,
+      "waitdooranim": 4,
+      "waitmessage": 1,
+      "waitmovement": 21,
+      "waitstate": 2,
+      "walk_down": 33,
+      "walk_in_place_faster_left": 1,
+      "walk_in_place_faster_right": 1,
+      "walk_in_place_faster_up": 4,
+      "walk_left": 12,
+      "walk_right": 40,
+      "walk_to_lab": 4,
+      "walk_up": 19,
+      "warp": 2
+    }
+  }
+}

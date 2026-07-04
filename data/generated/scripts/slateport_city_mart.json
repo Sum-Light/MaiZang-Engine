@@ -1,0 +1,656 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SlateportCity_Mart",
+    "map_script": "data/maps/SlateportCity_Mart/scripts.inc",
+    "map_json": "data/maps/SlateportCity_Mart/map.json",
+    "map_id": "MAP_SLATEPORT_CITY_MART",
+    "map_name": "SlateportCity_Mart"
+  },
+  "labels": {
+    "SlateportCity_Mart_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_Mart_EventScript_Clerk": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instruction_count": 9
+    },
+    "SlateportCity_Mart_Pokemart": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instruction_count": 10
+    },
+    "SlateportCity_Mart_EventScript_BlackBelt": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_Mart_EventScript_Man": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_Mart_Text_SomeItemsOnlyAtMart": {
+      "kind": "text",
+      "line": 35,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_Mart_Text_GreatBallIsBetter": {
+      "kind": "text",
+      "line": 38,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SlateportCity_Mart_MapScripts": {
+      "label": "SlateportCity_Mart_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_Mart_EventScript_Clerk": {
+      "label": "SlateportCity_Mart_EventScript_Clerk",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_HowMayIServeYou"
+          ],
+          "line": 7,
+          "raw": "message gText_HowMayIServeYou",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 8,
+          "raw": "waitmessage",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": "pokemart",
+          "args": [
+            "SlateportCity_Mart_Pokemart"
+          ],
+          "line": 9,
+          "raw": "pokemart SlateportCity_Mart_Pokemart",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 10,
+          "raw": "msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 11,
+          "raw": "release",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 14,
+          "raw": ".align 2",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_HowMayIServeYou",
+          "mode": "",
+          "line": 7
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    },
+    "SlateportCity_Mart_Pokemart": {
+      "label": "SlateportCity_Mart_Pokemart",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POKE_BALL"
+          ],
+          "line": 16,
+          "raw": ".2byte ITEM_POKE_BALL",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_GREAT_BALL"
+          ],
+          "line": 17,
+          "raw": ".2byte ITEM_GREAT_BALL",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POTION"
+          ],
+          "line": 18,
+          "raw": ".2byte ITEM_POTION",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_SUPER_POTION"
+          ],
+          "line": 19,
+          "raw": ".2byte ITEM_SUPER_POTION",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ANTIDOTE"
+          ],
+          "line": 20,
+          "raw": ".2byte ITEM_ANTIDOTE",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_PARALYZE_HEAL"
+          ],
+          "line": 21,
+          "raw": ".2byte ITEM_PARALYZE_HEAL",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ESCAPE_ROPE"
+          ],
+          "line": 22,
+          "raw": ".2byte ITEM_ESCAPE_ROPE",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_REPEL"
+          ],
+          "line": 23,
+          "raw": ".2byte ITEM_REPEL",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_HARBOR_MAIL"
+          ],
+          "line": 24,
+          "raw": ".2byte ITEM_HARBOR_MAIL",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": "pokemartlistend",
+          "args": [],
+          "line": 25,
+          "raw": "pokemartlistend",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_Mart_EventScript_BlackBelt": {
+      "label": "SlateportCity_Mart_EventScript_BlackBelt",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_Mart_Text_SomeItemsOnlyAtMart",
+            "MSGBOX_NPC"
+          ],
+          "line": 28,
+          "raw": "msgbox SlateportCity_Mart_Text_SomeItemsOnlyAtMart, MSGBOX_NPC",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_Mart_Text_SomeItemsOnlyAtMart",
+          "mode": "MSGBOX_NPC",
+          "line": 28
+        }
+      ],
+      "branch_targets": []
+    },
+    "SlateportCity_Mart_EventScript_Man": {
+      "label": "SlateportCity_Mart_EventScript_Man",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_Mart_Text_GreatBallIsBetter",
+            "MSGBOX_NPC"
+          ],
+          "line": 32,
+          "raw": "msgbox SlateportCity_Mart_Text_GreatBallIsBetter, MSGBOX_NPC",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_Mart_Text_GreatBallIsBetter",
+          "mode": "MSGBOX_NPC",
+          "line": 32
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SlateportCity_Mart_Text_SomeItemsOnlyAtMart": {
+      "label": "SlateportCity_Mart_Text_SomeItemsOnlyAtMart",
+      "line": 35,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "raw_text": "市场里有些很有趣的\\n商品，\\p但有些东西只有\\n在友好商店才能买到。$",
+      "display_text": "市场里有些很有趣的\n商品，\n\n但有些东西只有\n在友好商店才能买到。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 60,
+        "bytes": [
+          12,
+          21,
+          2,
+          35,
+          8,
+          100,
+          15,
+          126,
+          14,
+          52,
+          5,
+          11,
+          15,
+          126,
+          11,
+          36,
+          3,
+          11,
+          254,
+          11,
+          170,
+          10,
+          114,
+          59,
+          251,
+          2,
+          233,
+          15,
+          126,
+          14,
+          52,
+          3,
+          80,
+          13,
+          189,
+          16,
+          140,
+          15,
+          126,
+          254,
+          15,
+          230,
+          15,
+          127,
+          4,
+          233,
+          11,
+          170,
+          3,
+          49,
+          1,
+          224,
+          9,
+          210,
+          9,
+          44,
+          3,
+          4,
+          55,
+          255
+        ],
+        "hex": "0C 15 02 23 08 64 0F 7E 0E 34 05 0B 0F 7E 0B 24 03 0B FE 0B AA 0A 72 3B FB 02 E9 0F 7E 0E 34 03 50 0D BD 10 8C 0F 7E FE 0F E6 0F 7F 04 E9 0B AA 03 31 01 E0 09 D2 09 2C 03 04 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 23,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 35,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SlateportCity_Mart_Text_GreatBallIsBetter": {
+      "label": "SlateportCity_Mart_Text_GreatBallIsBetter",
+      "line": 38,
+      "source_file": "data/maps/SlateportCity_Mart/scripts.inc",
+      "raw_text": "用超级球比精灵球\\n更容易捕捉宝可梦。\\p我可以用它捕捉那些\\n比较难捕捉的宝可梦……$",
+      "display_text": "用超级球比精灵球\n更容易捕捉宝可梦。\n\n我可以用它捕捉那些\n比较难捕捉的宝可梦……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 75,
+        "bytes": [
+          15,
+          113,
+          2,
+          46,
+          5,
+          161,
+          11,
+          20,
+          1,
+          133,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          254,
+          4,
+          102,
+          11,
+          93,
+          15,
+          39,
+          1,
+          209,
+          16,
+          236,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          13,
+          152,
+          7,
+          215,
+          15,
+          36,
+          15,
+          113,
+          12,
+          159,
+          1,
+          209,
+          16,
+          236,
+          9,
+          189,
+          14,
+          52,
+          254,
+          1,
+          133,
+          7,
+          33,
+          9,
+          199,
+          1,
+          209,
+          16,
+          236,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          176,
+          176,
+          255
+        ],
+        "hex": "0F 71 02 2E 05 A1 0B 14 01 85 07 5B 08 BC 0B 14 FE 04 66 0B 5D 0F 27 01 D1 10 EC 01 63 07 D7 09 66 37 FB 0D 98 07 D7 0F 24 0F 71 0C 9F 01 D1 10 EC 09 BD 0E 34 FE 01 85 07 21 09 C7 01 D1 10 EC 03 0B 01 63 07 D7 09 66 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 43,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "pokemart": 1,
+      "pokemartlistend": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 135,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "faceplayer": 1,
+      "lock": 1,
+      "message": 1,
+      "msgbox": 3,
+      "pokemart": 1,
+      "pokemartlistend": 1,
+      "release": 1,
+      "waitmessage": 1
+    }
+  }
+}

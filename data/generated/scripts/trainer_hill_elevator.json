@@ -1,0 +1,839 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "TrainerHill_Elevator",
+    "map_script": "data/maps/TrainerHill_Elevator/scripts.inc",
+    "map_json": "data/maps/TrainerHill_Elevator/map.json",
+    "map_id": "MAP_TRAINER_HILL_ELEVATOR",
+    "map_name": "TrainerHill_Elevator"
+  },
+  "labels": {
+    "TrainerHill_Elevator_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 2
+    },
+    "TrainerHill_Elevator_OnFrame": {
+      "kind": "map_script_table",
+      "line": 5,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 2
+    },
+    "TrainerHill_Elevator_EventScript_Attendant": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 1
+    },
+    "TrainerHill_Elevator_EventScript_ExitToRoof": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 6
+    },
+    "TrainerHill_Elevator_EventScript_EnterElevator": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 19
+    },
+    "TrainerHill_Elevator_EventScript_ExitFloorSelect": {
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 2
+    },
+    "TrainerHill_Elevator_EventScript_CloseFloorSelect": {
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerHill_Elevator_EventScript_MoveElevator": {
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 4
+    },
+    "TrainerHill_Elevator_Movement_PlayerMoveToCenterOfElevator": {
+      "kind": "movement",
+      "line": 58,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 5
+    },
+    "TrainerHill_Elevator_Movement_PlayerApproachAttendant": {
+      "kind": "movement",
+      "line": 65,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerHill_Elevator_Movement_PlayerExitElevator": {
+      "kind": "movement",
+      "line": 70,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 4
+    },
+    "TrainerHill_Elevator_Movement_PlayerExitElevatorToRoof": {
+      "kind": "movement",
+      "line": 76,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerHill_Elevator_Movement_AttendantFacePlayer": {
+      "kind": "movement",
+      "line": 81,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 2
+    },
+    "TrainerHill_Elevator_Movement_AttendantFaceDown": {
+      "kind": "movement",
+      "line": 85,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "TrainerHill_Elevator_MapScripts": {
+      "label": "TrainerHill_Elevator_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "TrainerHill_Elevator_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, TrainerHill_Elevator_OnFrame",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Elevator_OnFrame": {
+      "label": "TrainerHill_Elevator_OnFrame",
+      "kind": "map_script_table",
+      "line": 5,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_4",
+            "0",
+            "TrainerHill_Elevator_EventScript_EnterElevator"
+          ],
+          "line": 6,
+          "raw": "map_script_2 VAR_TEMP_4, 0, TrainerHill_Elevator_EventScript_EnterElevator",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 7,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Elevator_EventScript_Attendant": {
+      "label": "TrainerHill_Elevator_EventScript_Attendant",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Elevator_EventScript_ExitToRoof": {
+      "label": "TrainerHill_Elevator_EventScript_ExitToRoof",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "TrainerHill_Elevator_Movement_PlayerExitElevatorToRoof"
+          ],
+          "line": 13,
+          "raw": "applymovement LOCALID_PLAYER, TrainerHill_Elevator_Movement_PlayerExitElevatorToRoof",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 14,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 15,
+          "raw": "releaseall",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_TRAINER_HILL_ROOF",
+            "15",
+            "5"
+          ],
+          "line": 16,
+          "raw": "warp MAP_TRAINER_HILL_ROOF, 15, 5",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 17,
+          "raw": "waitstate",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Elevator_EventScript_EnterElevator": {
+      "label": "TrainerHill_Elevator_EventScript_EnterElevator",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "TrainerHill_Elevator_Movement_PlayerApproachAttendant"
+          ],
+          "line": 21,
+          "raw": "applymovement LOCALID_PLAYER, TrainerHill_Elevator_Movement_PlayerApproachAttendant",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 22,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TRAINER_HILL_ELEVATOR_ATTENDANT",
+            "TrainerHill_Elevator_Movement_AttendantFacePlayer"
+          ],
+          "line": 23,
+          "raw": "applymovement LOCALID_TRAINER_HILL_ELEVATOR_ATTENDANT, TrainerHill_Elevator_Movement_AttendantFacePlayer",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 24,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 25,
+          "raw": "lockall",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerHill_Elevator_Text_ReturnToReception",
+            "MSGBOX_YESNO"
+          ],
+          "line": 26,
+          "raw": "msgbox TrainerHill_Elevator_Text_ReturnToReception, MSGBOX_YESNO",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "TrainerHill_Elevator_EventScript_ExitToRoof"
+          ],
+          "line": 27,
+          "raw": "goto_if_eq VAR_RESULT, NO, TrainerHill_Elevator_EventScript_ExitToRoof",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 28,
+          "raw": "releaseall",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TRAINER_HILL_ELEVATOR_ATTENDANT",
+            "TrainerHill_Elevator_Movement_AttendantFaceDown"
+          ],
+          "line": 29,
+          "raw": "applymovement LOCALID_TRAINER_HILL_ELEVATOR_ATTENDANT, TrainerHill_Elevator_Movement_AttendantFaceDown",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 30,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "TrainerHill_Elevator_Movement_PlayerMoveToCenterOfElevator"
+          ],
+          "line": 31,
+          "raw": "applymovement LOCALID_PLAYER, TrainerHill_Elevator_Movement_PlayerMoveToCenterOfElevator",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 32,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "TrainerHill_Elevator_EventScript_MoveElevator"
+          ],
+          "line": 33,
+          "raw": "call TrainerHill_Elevator_EventScript_MoveElevator",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "25"
+          ],
+          "line": 34,
+          "raw": "delay 25",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "TrainerHill_Elevator_Movement_PlayerExitElevator"
+          ],
+          "line": 35,
+          "raw": "applymovement LOCALID_PLAYER, TrainerHill_Elevator_Movement_PlayerExitElevator",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 36,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_TRAINER_HILL_ENTRANCE",
+            "17",
+            "8"
+          ],
+          "line": 37,
+          "raw": "warp MAP_TRAINER_HILL_ENTRANCE, 17, 8",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 38,
+          "raw": "waitstate",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 39,
+          "raw": "end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerHill_Elevator_Text_ReturnToReception",
+          "mode": "MSGBOX_YESNO",
+          "line": 26
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "TrainerHill_Elevator_EventScript_ExitToRoof",
+          "line": 27
+        },
+        {
+          "op": "call",
+          "target": "TrainerHill_Elevator_EventScript_MoveElevator",
+          "line": 33
+        }
+      ]
+    },
+    "TrainerHill_Elevator_EventScript_ExitFloorSelect": {
+      "label": "TrainerHill_Elevator_EventScript_ExitFloorSelect",
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto",
+          "args": [
+            "TrainerHill_Elevator_EventScript_CloseFloorSelect"
+          ],
+          "line": 43,
+          "raw": "goto TrainerHill_Elevator_EventScript_CloseFloorSelect",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerHill_Elevator_EventScript_CloseFloorSelect",
+          "line": 43
+        }
+      ]
+    },
+    "TrainerHill_Elevator_EventScript_CloseFloorSelect": {
+      "label": "TrainerHill_Elevator_EventScript_CloseFloorSelect",
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "CloseDeptStoreElevatorWindow"
+          ],
+          "line": 48,
+          "raw": "special CloseDeptStoreElevatorWindow",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 49,
+          "raw": "releaseall",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 50,
+          "raw": "end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Elevator_EventScript_MoveElevator": {
+      "label": "TrainerHill_Elevator_EventScript_MoveElevator",
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 53,
+          "raw": "waitse",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "MoveElevator"
+          ],
+          "line": 54,
+          "raw": "special MoveElevator",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 55,
+          "raw": "waitstate",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 56,
+          "raw": "return",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "TrainerHill_Elevator_Movement_PlayerMoveToCenterOfElevator": {
+      "label": "TrainerHill_Elevator_Movement_PlayerMoveToCenterOfElevator",
+      "kind": "movement",
+      "line": 58,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 59,
+          "raw": "walk_up",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 60,
+          "raw": "walk_up",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 61,
+          "raw": "walk_right",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "face_down",
+          "args": [],
+          "line": 62,
+          "raw": "face_down",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 63,
+          "raw": "step_end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Elevator_Movement_PlayerApproachAttendant": {
+      "label": "TrainerHill_Elevator_Movement_PlayerApproachAttendant",
+      "kind": "movement",
+      "line": 65,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 66,
+          "raw": "delay_16",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 67,
+          "raw": "walk_left",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 68,
+          "raw": "step_end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Elevator_Movement_PlayerExitElevator": {
+      "label": "TrainerHill_Elevator_Movement_PlayerExitElevator",
+      "kind": "movement",
+      "line": 70,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 71,
+          "raw": "delay_16",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 72,
+          "raw": "walk_down",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 73,
+          "raw": "walk_down",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 74,
+          "raw": "step_end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Elevator_Movement_PlayerExitElevatorToRoof": {
+      "label": "TrainerHill_Elevator_Movement_PlayerExitElevatorToRoof",
+      "kind": "movement",
+      "line": 76,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "face_down",
+          "args": [],
+          "line": 77,
+          "raw": "face_down",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 78,
+          "raw": "delay_16",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 79,
+          "raw": "step_end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Elevator_Movement_AttendantFacePlayer": {
+      "label": "TrainerHill_Elevator_Movement_AttendantFacePlayer",
+      "kind": "movement",
+      "line": 81,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "face_right",
+          "args": [],
+          "line": 82,
+          "raw": "face_right",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 83,
+          "raw": "step_end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Elevator_Movement_AttendantFaceDown": {
+      "label": "TrainerHill_Elevator_Movement_AttendantFaceDown",
+      "kind": "movement",
+      "line": 85,
+      "source_file": "data/maps/TrainerHill_Elevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "face_down",
+          "args": [],
+          "line": 86,
+          "raw": "face_down",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 87,
+          "raw": "step_end",
+          "source_file": "data/maps/TrainerHill_Elevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 6,
+      "delay": 1,
+      "delay_16": 3,
+      "face_down": 3,
+      "face_right": 1,
+      "goto_if_eq": 1,
+      "map_script": 1,
+      "map_script_2": 1,
+      "special": 2,
+      "step_end": 6,
+      "waitmovement": 6,
+      "waitse": 1,
+      "waitstate": 3,
+      "walk_down": 2,
+      "walk_left": 1,
+      "walk_right": 1,
+      "walk_up": 2,
+      "warp": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 14,
+    "script_count": 8,
+    "movement_count": 6,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 6,
+      "call": 1,
+      "delay": 1,
+      "delay_16": 3,
+      "end": 5,
+      "face_down": 3,
+      "face_right": 1,
+      "goto": 1,
+      "goto_if_eq": 1,
+      "lockall": 1,
+      "map_script": 1,
+      "map_script_2": 1,
+      "msgbox": 1,
+      "releaseall": 3,
+      "return": 1,
+      "special": 2,
+      "step_end": 6,
+      "waitmovement": 6,
+      "waitse": 1,
+      "waitstate": 3,
+      "walk_down": 2,
+      "walk_left": 1,
+      "walk_right": 1,
+      "walk_up": 2,
+      "warp": 2
+    }
+  }
+}

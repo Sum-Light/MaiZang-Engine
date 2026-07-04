@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FourIsland_IcefallCave_1F_Frlg",
+    "map_script": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+    "map_json": "data/maps/FourIsland_IcefallCave_1F_Frlg/map.json",
+    "map_id": "MAP_FOUR_ISLAND_ICEFALL_CAVE_1F",
+    "map_name": "FourIsland_IcefallCave_1F_Frlg"
+  },
+  "labels": {
+    "FourIsland_IcefallCave_1F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FourIsland_IcefallCave_1F_OnResume": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_IcefallCave_1F_OnLoad": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_IcefallCave_1F_OnFrame": {
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_IcefallCave_1F_EventScript_FallDownHole": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "FourIsland_IcefallCave_1F_Movement_SetInvisible": {
+      "kind": "movement",
+      "line": 31,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "FourIsland_IcefallCave_1F_Frlg_MapScripts": {
+      "label": "FourIsland_IcefallCave_1F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "FourIsland_IcefallCave_1F_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, FourIsland_IcefallCave_1F_OnResume",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "FourIsland_IcefallCave_1F_OnLoad"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, FourIsland_IcefallCave_1F_OnLoad",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "FourIsland_IcefallCave_1F_OnFrame"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, FourIsland_IcefallCave_1F_OnFrame",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_IcefallCave_1F_OnResume": {
+      "label": "FourIsland_IcefallCave_1F_OnResume",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setstepcallback",
+          "args": [
+            "STEP_CB_ICEFALL_CAVE"
+          ],
+          "line": 8,
+          "raw": "setstepcallback STEP_CB_ICEFALL_CAVE",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_IcefallCave_1F_OnLoad": {
+      "label": "FourIsland_IcefallCave_1F_OnLoad",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SetIcefallCaveCrackedIceMetatiles"
+          ],
+          "line": 12,
+          "raw": "special SetIcefallCaveCrackedIceMetatiles",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_IcefallCave_1F_OnFrame": {
+      "label": "FourIsland_IcefallCave_1F_OnFrame",
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "1",
+            "FourIsland_IcefallCave_1F_EventScript_FallDownHole"
+          ],
+          "line": 16,
+          "raw": "map_script_2 VAR_TEMP_1, 1, FourIsland_IcefallCave_1F_EventScript_FallDownHole",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 17,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_IcefallCave_1F_EventScript_FallDownHole": {
+      "label": "FourIsland_IcefallCave_1F_EventScript_FallDownHole",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 20,
+          "raw": "lockall",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 21,
+          "raw": "delay 20",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "FourIsland_IcefallCave_1F_Movement_SetInvisible"
+          ],
+          "line": 22,
+          "raw": "applymovement LOCALID_PLAYER, FourIsland_IcefallCave_1F_Movement_SetInvisible",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 23,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_FALL"
+          ],
+          "line": 24,
+          "raw": "playse SE_FALL",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "60"
+          ],
+          "line": 25,
+          "raw": "delay 60",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "warphole",
+          "args": [
+            "MAP_FOUR_ISLAND_ICEFALL_CAVE_B1F"
+          ],
+          "line": 26,
+          "raw": "warphole MAP_FOUR_ISLAND_ICEFALL_CAVE_B1F",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 27,
+          "raw": "waitstate",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 28,
+          "raw": "releaseall",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "FourIsland_IcefallCave_1F_Movement_SetInvisible": {
+      "label": "FourIsland_IcefallCave_1F_Movement_SetInvisible",
+      "kind": "movement",
+      "line": 31,
+      "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 32,
+          "raw": "set_invisible",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 33,
+          "raw": "step_end",
+          "source_file": "data/maps/FourIsland_IcefallCave_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 1,
+      "delay": 2,
+      "map_script": 3,
+      "map_script_2": 1,
+      "playse": 1,
+      "set_invisible": 1,
+      "setstepcallback": 1,
+      "special": 1,
+      "step_end": 1,
+      "waitmovement": 1,
+      "waitstate": 1,
+      "warphole": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 6,
+    "script_count": 5,
+    "movement_count": 1,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 1,
+      "delay": 2,
+      "end": 3,
+      "lockall": 1,
+      "map_script": 3,
+      "map_script_2": 1,
+      "playse": 1,
+      "releaseall": 1,
+      "set_invisible": 1,
+      "setstepcallback": 1,
+      "special": 1,
+      "step_end": 1,
+      "waitmovement": 1,
+      "waitstate": 1,
+      "warphole": 1
+    }
+  }
+}

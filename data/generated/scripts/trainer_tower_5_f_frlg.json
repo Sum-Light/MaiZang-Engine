@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "TrainerTower_5F_Frlg",
+    "map_script": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+    "map_json": "data/maps/TrainerTower_5F_Frlg/map.json",
+    "map_id": "MAP_TRAINER_TOWER_5F",
+    "map_name": "TrainerTower_5F_Frlg"
+  },
+  "labels": {
+    "TrainerTower_5F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "TrainerTower_5F_EventScript_DoublesTrainer1": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_5F_EventScript_SinglesTrainer": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_5F_EventScript_KnockoutTrainer": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_5F_EventScript_DoublesTrainer2": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TrainerTower_5F_EventScript_Owner": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "TrainerTower_5F_Frlg_MapScripts": {
+      "label": "TrainerTower_5F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "TrainerTower_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, TrainerTower_OnResume",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "TrainerTower_OnTransition"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, TrainerTower_OnTransition",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "TrainerTower_OnFrame"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, TrainerTower_OnFrame",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerTower_5F_EventScript_DoublesTrainer1": {
+      "label": "TrainerTower_5F_EventScript_DoublesTrainer1",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "TrainerTower_EventScript_SpeakToDoublesTrainer1"
+          ],
+          "line": 10,
+          "raw": "call TrainerTower_EventScript_SpeakToDoublesTrainer1",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "TrainerTower_EventScript_SpeakToDoublesTrainer1",
+          "line": 10
+        }
+      ]
+    },
+    "TrainerTower_5F_EventScript_SinglesTrainer": {
+      "label": "TrainerTower_5F_EventScript_SinglesTrainer",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "TrainerTower_EventScript_SpeakToSinglesTrainer"
+          ],
+          "line": 14,
+          "raw": "call TrainerTower_EventScript_SpeakToSinglesTrainer",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "TrainerTower_EventScript_SpeakToSinglesTrainer",
+          "line": 14
+        }
+      ]
+    },
+    "TrainerTower_5F_EventScript_KnockoutTrainer": {
+      "label": "TrainerTower_5F_EventScript_KnockoutTrainer",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "TrainerTower_EventScript_SpeakToKnockoutTrainer"
+          ],
+          "line": 18,
+          "raw": "call TrainerTower_EventScript_SpeakToKnockoutTrainer",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "TrainerTower_EventScript_SpeakToKnockoutTrainer",
+          "line": 18
+        }
+      ]
+    },
+    "TrainerTower_5F_EventScript_DoublesTrainer2": {
+      "label": "TrainerTower_5F_EventScript_DoublesTrainer2",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "TrainerTower_EventScript_SpeakToDoublesTrainer2"
+          ],
+          "line": 22,
+          "raw": "call TrainerTower_EventScript_SpeakToDoublesTrainer2",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "TrainerTower_EventScript_SpeakToDoublesTrainer2",
+          "line": 22
+        }
+      ]
+    },
+    "TrainerTower_5F_EventScript_Owner": {
+      "label": "TrainerTower_5F_EventScript_Owner",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "TrainerTower_EventScript_SpeakToOwner"
+          ],
+          "line": 26,
+          "raw": "call TrainerTower_EventScript_SpeakToOwner",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/TrainerTower_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "TrainerTower_EventScript_SpeakToOwner",
+          "line": 26
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 3
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 6,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 5,
+      "end": 5,
+      "map_script": 3
+    }
+  }
+}

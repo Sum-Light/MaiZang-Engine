@@ -1,0 +1,458 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "ThreeIsland_House5_Frlg",
+    "map_script": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+    "map_json": "data/maps/ThreeIsland_House5_Frlg/map.json",
+    "map_id": "MAP_THREE_ISLAND_HOUSE5",
+    "map_name": "ThreeIsland_House5_Frlg"
+  },
+  "labels": {
+    "ThreeIsland_House5_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "ThreeIsland_House5_EventScript_LittleGirl": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "ThreeIsland_House5_EventScript_LittleGirlLostelleFound": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ThreeIsland_House5_Text_ImNotLostelle": {
+      "kind": "text",
+      "line": 17,
+      "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "ThreeIsland_House5_Text_IllGoPlayWithLostelle": {
+      "kind": "text",
+      "line": 25,
+      "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "ThreeIsland_House5_Frlg_MapScripts": {
+      "label": "ThreeIsland_House5_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ThreeIsland_House5_EventScript_LittleGirl": {
+      "label": "ThreeIsland_House5_EventScript_LittleGirl",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RESCUED_LOSTELLE",
+            "ThreeIsland_House5_EventScript_LittleGirlLostelleFound"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_RESCUED_LOSTELLE, ThreeIsland_House5_EventScript_LittleGirlLostelleFound",
+          "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ThreeIsland_House5_Text_ImNotLostelle"
+          ],
+          "line": 8,
+          "raw": "msgbox ThreeIsland_House5_Text_ImNotLostelle",
+          "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 9,
+          "raw": "release",
+          "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ThreeIsland_House5_Text_ImNotLostelle",
+          "mode": "",
+          "line": 8
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "ThreeIsland_House5_EventScript_LittleGirlLostelleFound",
+          "line": 7
+        }
+      ]
+    },
+    "ThreeIsland_House5_EventScript_LittleGirlLostelleFound": {
+      "label": "ThreeIsland_House5_EventScript_LittleGirlLostelleFound",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ThreeIsland_House5_Text_IllGoPlayWithLostelle"
+          ],
+          "line": 13,
+          "raw": "msgbox ThreeIsland_House5_Text_IllGoPlayWithLostelle",
+          "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ThreeIsland_House5_Text_IllGoPlayWithLostelle",
+          "mode": "",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "ThreeIsland_House5_Text_ImNotLostelle": {
+      "label": "ThreeIsland_House5_Text_ImNotLostelle",
+      "line": 17,
+      "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+      "raw_text": "我吗？\\n我不是小迷。\\p我想她极有可能\\n去了树果森林。\\p为了烹饪午饭\\n她经常去那采树果。$",
+      "display_text": "我吗？\n我不是小迷。\n\n我想她极有可能\n去了树果森林。\n\n为了烹饪午饭\n她经常去那采树果。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 78,
+        "bytes": [
+          13,
+          152,
+          9,
+          42,
+          61,
+          254,
+          13,
+          152,
+          1,
+          214,
+          12,
+          12,
+          14,
+          44,
+          9,
+          108,
+          55,
+          251,
+          13,
+          152,
+          14,
+          24,
+          12,
+          160,
+          5,
+          150,
+          15,
+          126,
+          7,
+          215,
+          9,
+          210,
+          254,
+          11,
+          37,
+          8,
+          158,
+          12,
+          60,
+          4,
+          195,
+          11,
+          139,
+          8,
+          169,
+          55,
+          251,
+          13,
+          112,
+          8,
+          158,
+          10,
+          72,
+          21,
+          32,
+          13,
+          173,
+          3,
+          188,
+          254,
+          12,
+          160,
+          7,
+          93,
+          2,
+          37,
+          11,
+          37,
+          9,
+          189,
+          1,
+          228,
+          12,
+          60,
+          4,
+          195,
+          55,
+          255
+        ],
+        "hex": "0D 98 09 2A 3D FE 0D 98 01 D6 0C 0C 0E 2C 09 6C 37 FB 0D 98 0E 18 0C A0 05 96 0F 7E 07 D7 09 D2 FE 0B 25 08 9E 0C 3C 04 C3 0B 8B 08 A9 37 FB 0D 70 08 9E 0A 48 15 20 0D AD 03 BC FE 0C A0 07 5D 02 25 0B 25 09 BD 01 E4 0C 3C 04 C3 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 37,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ThreeIsland_House5_Text_IllGoPlayWithLostelle": {
+      "label": "ThreeIsland_House5_Text_IllGoPlayWithLostelle",
+      "line": 25,
+      "source_file": "data/maps/ThreeIsland_House5_Frlg/scripts.inc",
+      "raw_text": "我今天会和小迷\\n一起出去玩。$",
+      "display_text": "我今天会和小迷\n一起出去玩。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          13,
+          152,
+          7,
+          67,
+          12,
+          237,
+          5,
+          110,
+          4,
+          243,
+          14,
+          44,
+          9,
+          108,
+          254,
+          15,
+          11,
+          10,
+          171,
+          2,
+          120,
+          11,
+          37,
+          13,
+          78,
+          55,
+          255
+        ],
+        "hex": "0D 98 07 43 0C ED 05 6E 04 F3 0E 2C 09 6C FE 0F 0B 0A AB 02 78 0B 25 0D 4E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "goto_if_set": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 105,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 2,
+      "release": 2
+    }
+  }
+}

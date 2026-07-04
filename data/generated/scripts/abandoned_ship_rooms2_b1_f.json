@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "AbandonedShip_Rooms2_B1F",
+    "map_script": "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc",
+    "map_json": "data/maps/AbandonedShip_Rooms2_B1F/map.json",
+    "map_id": "MAP_ABANDONED_SHIP_ROOMS2_B1F",
+    "map_name": "AbandonedShip_Rooms2_B1F"
+  },
+  "labels": {
+    "AbandonedShip_Rooms2_B1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Rooms2_B1F_EventScript_Camper": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "AbandonedShip_Rooms2_B1F_Text_PerfectPlaceToGoExploring": {
+      "kind": "text",
+      "line": 8,
+      "source_file": "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "AbandonedShip_Rooms2_B1F_MapScripts": {
+      "label": "AbandonedShip_Rooms2_B1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "AbandonedShip_Rooms2_B1F_EventScript_Camper": {
+      "label": "AbandonedShip_Rooms2_B1F_EventScript_Camper",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "AbandonedShip_Rooms2_B1F_Text_PerfectPlaceToGoExploring",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox AbandonedShip_Rooms2_B1F_Text_PerfectPlaceToGoExploring, MSGBOX_NPC",
+          "source_file": "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "AbandonedShip_Rooms2_B1F_Text_PerfectPlaceToGoExploring",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "AbandonedShip_Rooms2_B1F_Text_PerfectPlaceToGoExploring": {
+      "label": "AbandonedShip_Rooms2_B1F_Text_PerfectPlaceToGoExploring",
+      "line": 8,
+      "source_file": "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc",
+      "raw_text": "这里绝对是最棒的探险地！\\n太有意思了！\\p我敢打赌船上\\n有宝藏。$",
+      "display_text": "这里绝对是最棒的探险地！\n太有意思了！\n\n我敢打赌船上\n有宝藏。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 57,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          7,
+          168,
+          3,
+          121,
+          12,
+          12,
+          17,
+          38,
+          1,
+          83,
+          3,
+          11,
+          12,
+          190,
+          14,
+          2,
+          3,
+          31,
+          60,
+          254,
+          12,
+          172,
+          15,
+          126,
+          15,
+          50,
+          12,
+          95,
+          8,
+          158,
+          60,
+          251,
+          13,
+          152,
+          4,
+          60,
+          2,
+          210,
+          3,
+          105,
+          2,
+          140,
+          11,
+          173,
+          254,
+          15,
+          126,
+          1,
+          99,
+          1,
+          243,
+          55,
+          255
+        ],
+        "hex": "10 55 08 64 07 A8 03 79 0C 0C 11 26 01 53 03 0B 0C BE 0E 02 03 1F 3C FE 0C AC 0F 7E 0F 32 0C 5F 08 9E 3C FB 0D 98 04 3C 02 D2 03 69 02 8C 0B AD FE 0F 7E 01 63 01 F3 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 34,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 57,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 1,
+      "msgbox": 1
+    }
+  }
+}

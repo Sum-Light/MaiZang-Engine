@@ -1,0 +1,2821 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CeruleanCity_Gym_Frlg",
+    "map_script": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+    "map_json": "data/maps/CeruleanCity_Gym_Frlg/map.json",
+    "map_id": "MAP_CERULEAN_CITY_GYM",
+    "map_name": "CeruleanCity_Gym_Frlg"
+  },
+  "labels": {
+    "CeruleanCity_Gym_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeruleanCity_Gym_EventScript_Misty": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "CeruleanCity_Gym_EventScript_MistyDefeated": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CeruleanCity_Gym_EventScript_GiveTM03": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "CeruleanCity_Gym_EventScript_NoRoomForTM03": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCity_Gym_EventScript_Diana": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCity_Gym_EventScript_Luis": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CeruleanCity_Gym_EventScript_GymGuy": {
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "CeruleanCity_Gym_EventScript_GymGuyPostVictory": {
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCity_Gym_EventScript_GymStatue": {
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "CeruleanCity_Gym_EventScript_GymStatuePostVictory": {
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCity_Gym_Text_MistyIntro": {
+      "kind": "text",
+      "line": 72,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CeruleanCity_Gym_Text_ExplainTM03": {
+      "kind": "text",
+      "line": 81,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeruleanCity_Gym_Text_ExplainCascadeBadge": {
+      "kind": "text",
+      "line": 85,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "CeruleanCity_Gym_Text_ReceivedTM03FromMisty": {
+      "kind": "text",
+      "line": 95,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeruleanCity_Gym_Text_BetterMakeRoomForThis": {
+      "kind": "text",
+      "line": 98,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeruleanCity_Gym_Text_MistyDefeat": {
+      "kind": "text",
+      "line": 101,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "CeruleanCity_Gym_Text_DianaIntro": {
+      "kind": "text",
+      "line": 108,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCity_Gym_Text_DianaDefeat": {
+      "kind": "text",
+      "line": 113,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeruleanCity_Gym_Text_DianaPostBattle": {
+      "kind": "text",
+      "line": 116,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeruleanCity_Gym_Text_LuisIntro": {
+      "kind": "text",
+      "line": 120,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCity_Gym_Text_LuisDefeat": {
+      "kind": "text",
+      "line": 125,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeruleanCity_Gym_Text_LuisPostBattle": {
+      "kind": "text",
+      "line": 128,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeruleanCity_Gym_Text_GymGuyAdvice": {
+      "kind": "text",
+      "line": 132,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CeruleanCity_Gym_Text_WeMakePrettyGoodTeam": {
+      "kind": "text",
+      "line": 143,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CeruleanCity_Gym_Text_GymStatue": {
+      "kind": "text",
+      "line": 149,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CeruleanCity_Gym_Text_GymStatuePlayerWon": {
+      "kind": "text",
+      "line": 155,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "CeruleanCity_Gym_Frlg_MapScripts": {
+      "label": "CeruleanCity_Gym_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeruleanCity_Gym_EventScript_Misty": {
+      "label": "CeruleanCity_Gym_EventScript_Misty",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_MISTY",
+            "FCPICKSTATE_COLORED",
+            "UpdatePickStateFromSpecialVar8005"
+          ],
+          "line": 5,
+          "raw": "famechecker FAMECHECKER_MISTY, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_LEADER_MISTY",
+            "CeruleanCity_Gym_Text_MistyIntro",
+            "CeruleanCity_Gym_Text_MistyDefeat",
+            "CeruleanCity_Gym_EventScript_MistyDefeated",
+            "NO_MUSIC"
+          ],
+          "line": 6,
+          "raw": "trainerbattle_single TRAINER_LEADER_MISTY, CeruleanCity_Gym_Text_MistyIntro, CeruleanCity_Gym_Text_MistyDefeat, CeruleanCity_Gym_EventScript_MistyDefeated, NO_MUSIC",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_GOT_TM03_FROM_MISTY",
+            "CeruleanCity_Gym_EventScript_GiveTM03"
+          ],
+          "line": 7,
+          "raw": "goto_if_unset FLAG_GOT_TM03_FROM_MISTY, CeruleanCity_Gym_EventScript_GiveTM03",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_Gym_Text_ExplainTM03"
+          ],
+          "line": 8,
+          "raw": "msgbox CeruleanCity_Gym_Text_ExplainTM03",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 9,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_Gym_Text_ExplainTM03",
+          "mode": "",
+          "line": 8
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "CeruleanCity_Gym_EventScript_GiveTM03",
+          "line": 7
+        }
+      ]
+    },
+    "CeruleanCity_Gym_EventScript_MistyDefeated": {
+      "label": "CeruleanCity_Gym_EventScript_MistyDefeated",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_MISTY",
+            "1"
+          ],
+          "line": 13,
+          "raw": "famechecker FAMECHECKER_MISTY, 1",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_MISTY"
+          ],
+          "line": 14,
+          "raw": "setflag FLAG_DEFEATED_MISTY",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_BADGE02_GET"
+          ],
+          "line": 15,
+          "raw": "setflag FLAG_BADGE02_GET",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_CERULEAN_CITY"
+          ],
+          "line": 16,
+          "raw": "setrespawn HEAL_LOCATION_CERULEAN_CITY",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "set_gym_trainers_frlg",
+          "args": [
+            "2"
+          ],
+          "line": 17,
+          "raw": "set_gym_trainers_frlg 2",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeruleanCity_Gym_EventScript_GiveTM03"
+          ],
+          "line": 18,
+          "raw": "goto CeruleanCity_Gym_EventScript_GiveTM03",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "CeruleanCity_Gym_EventScript_GiveTM03",
+          "line": 18
+        }
+      ]
+    },
+    "CeruleanCity_Gym_EventScript_GiveTM03": {
+      "label": "CeruleanCity_Gym_EventScript_GiveTM03",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_Gym_Text_ExplainCascadeBadge"
+          ],
+          "line": 22,
+          "raw": "msgbox CeruleanCity_Gym_Text_ExplainCascadeBadge",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "checkitemspace",
+          "args": [
+            "ITEM_TM03"
+          ],
+          "line": 23,
+          "raw": "checkitemspace ITEM_TM03",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "CeruleanCity_Gym_EventScript_NoRoomForTM03"
+          ],
+          "line": 24,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, CeruleanCity_Gym_EventScript_NoRoomForTM03",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "giveitem_msg",
+          "args": [
+            "CeruleanCity_Gym_Text_ReceivedTM03FromMisty",
+            "ITEM_TM03"
+          ],
+          "line": 25,
+          "raw": "giveitem_msg CeruleanCity_Gym_Text_ReceivedTM03FromMisty, ITEM_TM03",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_GOT_TM03_FROM_MISTY"
+          ],
+          "line": 26,
+          "raw": "setflag FLAG_GOT_TM03_FROM_MISTY",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_Gym_Text_ExplainTM03"
+          ],
+          "line": 27,
+          "raw": "msgbox CeruleanCity_Gym_Text_ExplainTM03",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 28,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_Gym_Text_ExplainCascadeBadge",
+          "mode": "",
+          "line": 22
+        },
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_Gym_Text_ExplainTM03",
+          "mode": "",
+          "line": 27
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CeruleanCity_Gym_EventScript_NoRoomForTM03",
+          "line": 24
+        }
+      ]
+    },
+    "CeruleanCity_Gym_EventScript_NoRoomForTM03": {
+      "label": "CeruleanCity_Gym_EventScript_NoRoomForTM03",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_Gym_Text_BetterMakeRoomForThis"
+          ],
+          "line": 32,
+          "raw": "msgbox CeruleanCity_Gym_Text_BetterMakeRoomForThis",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 33,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_Gym_Text_BetterMakeRoomForThis",
+          "mode": "",
+          "line": 32
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeruleanCity_Gym_EventScript_Diana": {
+      "label": "CeruleanCity_Gym_EventScript_Diana",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_PICNICKER_DIANA",
+            "CeruleanCity_Gym_Text_DianaIntro",
+            "CeruleanCity_Gym_Text_DianaDefeat"
+          ],
+          "line": 37,
+          "raw": "trainerbattle_single TRAINER_PICNICKER_DIANA, CeruleanCity_Gym_Text_DianaIntro, CeruleanCity_Gym_Text_DianaDefeat",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_Gym_Text_DianaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 38,
+          "raw": "msgbox CeruleanCity_Gym_Text_DianaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 39,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_Gym_Text_DianaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 38
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeruleanCity_Gym_EventScript_Luis": {
+      "label": "CeruleanCity_Gym_EventScript_Luis",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_SWIMMER_MALE_LUIS",
+            "CeruleanCity_Gym_Text_LuisIntro",
+            "CeruleanCity_Gym_Text_LuisDefeat"
+          ],
+          "line": 42,
+          "raw": "trainerbattle_single TRAINER_SWIMMER_MALE_LUIS, CeruleanCity_Gym_Text_LuisIntro, CeruleanCity_Gym_Text_LuisDefeat",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_MISTY",
+            "2"
+          ],
+          "line": 43,
+          "raw": "famechecker FAMECHECKER_MISTY, 2",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_Gym_Text_LuisPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 44,
+          "raw": "msgbox CeruleanCity_Gym_Text_LuisPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 45,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_Gym_Text_LuisPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 44
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeruleanCity_Gym_EventScript_GymGuy": {
+      "label": "CeruleanCity_Gym_EventScript_GymGuy",
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 48,
+          "raw": "lock",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 49,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DEFEATED_MISTY",
+            "CeruleanCity_Gym_EventScript_GymGuyPostVictory"
+          ],
+          "line": 50,
+          "raw": "goto_if_set FLAG_DEFEATED_MISTY, CeruleanCity_Gym_EventScript_GymGuyPostVictory",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_Gym_Text_GymGuyAdvice"
+          ],
+          "line": 51,
+          "raw": "msgbox CeruleanCity_Gym_Text_GymGuyAdvice",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 52,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 53,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_Gym_Text_GymGuyAdvice",
+          "mode": "",
+          "line": 51
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "CeruleanCity_Gym_EventScript_GymGuyPostVictory",
+          "line": 50
+        }
+      ]
+    },
+    "CeruleanCity_Gym_EventScript_GymGuyPostVictory": {
+      "label": "CeruleanCity_Gym_EventScript_GymGuyPostVictory",
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_Gym_Text_WeMakePrettyGoodTeam"
+          ],
+          "line": 56,
+          "raw": "msgbox CeruleanCity_Gym_Text_WeMakePrettyGoodTeam",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 57,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 58,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_Gym_Text_WeMakePrettyGoodTeam",
+          "mode": "",
+          "line": 56
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeruleanCity_Gym_EventScript_GymStatue": {
+      "label": "CeruleanCity_Gym_EventScript_GymStatue",
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 61,
+          "raw": "lockall",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_BADGE02_GET",
+            "CeruleanCity_Gym_EventScript_GymStatuePostVictory"
+          ],
+          "line": 62,
+          "raw": "goto_if_set FLAG_BADGE02_GET, CeruleanCity_Gym_EventScript_GymStatuePostVictory",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_Gym_Text_GymStatue"
+          ],
+          "line": 63,
+          "raw": "msgbox CeruleanCity_Gym_Text_GymStatue",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 64,
+          "raw": "releaseall",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 65,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_Gym_Text_GymStatue",
+          "mode": "",
+          "line": 63
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "CeruleanCity_Gym_EventScript_GymStatuePostVictory",
+          "line": 62
+        }
+      ]
+    },
+    "CeruleanCity_Gym_EventScript_GymStatuePostVictory": {
+      "label": "CeruleanCity_Gym_EventScript_GymStatuePostVictory",
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_Gym_Text_GymStatuePlayerWon"
+          ],
+          "line": 68,
+          "raw": "msgbox CeruleanCity_Gym_Text_GymStatuePlayerWon",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 69,
+          "raw": "releaseall",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 70,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_Gym_Text_GymStatuePlayerWon",
+          "mode": "",
+          "line": 68
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "CeruleanCity_Gym_Text_MistyIntro": {
+      "label": "CeruleanCity_Gym_Text_MistyIntro",
+      "line": 72,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "嗨，你是个新人啊！\\p只有那些懂战术的训练家\\n能在这儿出现。\\p你收服和训练宝可梦时\\n会讲究战术吗？\\p我的战术就是用\\n我的水属性宝可梦全力地猛攻！{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$",
+      "display_text": "嗨，你是个新人啊！\n\n只有那些懂战术的训练家\n能在这儿出现。\n\n你收服和训练宝可梦时\n会讲究战术吗？\n\n我的战术就是用\n我的水属性宝可梦全力地猛攻！{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 136,
+        "bytes": [
+          20,
+          103,
+          59,
+          9,
+          217,
+          12,
+          12,
+          4,
+          96,
+          14,
+          77,
+          11,
+          75,
+          1,
+          0,
+          60,
+          251,
+          16,
+          140,
+          15,
+          126,
+          9,
+          189,
+          14,
+          52,
+          3,
+          83,
+          16,
+          48,
+          12,
+          58,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          254,
+          9,
+          210,
+          15,
+          230,
+          16,
+          85,
+          3,
+          158,
+          2,
+          120,
+          14,
+          3,
+          55,
+          251,
+          9,
+          217,
+          12,
+          26,
+          4,
+          10,
+          4,
+          243,
+          14,
+          158,
+          8,
+          138,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          237,
+          254,
+          5,
+          110,
+          7,
+          4,
+          7,
+          111,
+          16,
+          48,
+          12,
+          58,
+          9,
+          42,
+          61,
+          251,
+          13,
+          152,
+          3,
+          11,
+          16,
+          48,
+          12,
+          58,
+          7,
+          125,
+          12,
+          12,
+          15,
+          113,
+          254,
+          13,
+          152,
+          3,
+          11,
+          12,
+          81,
+          12,
+          57,
+          14,
+          95,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          43,
+          8,
+          121,
+          3,
+          31,
+          9,
+          101,
+          4,
+          109,
+          60,
+          252,
+          11,
+          42,
+          2,
+          255
+        ],
+        "hex": "14 67 3B 09 D9 0C 0C 04 60 0E 4D 0B 4B 01 00 3C FB 10 8C 0F 7E 09 BD 0E 34 03 53 10 30 0C 3A 03 0B 0E 9E 08 8A 05 BD FE 09 D2 0F E6 10 55 03 9E 02 78 0E 03 37 FB 09 D9 0C 1A 04 0A 04 F3 0E 9E 08 8A 01 63 07 D7 09 66 0B ED FE 05 6E 07 04 07 6F 10 30 0C 3A 09 2A 3D FB 0D 98 03 0B 10 30 0C 3A 07 7D 0C 0C 0F 71 FE 0D 98 03 0B 0C 51 0C 39 0E 5F 01 63 07 D7 09 66 0B 2B 08 79 03 1F 09 65 04 6D 3C FC 0B 2A 02 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 31,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 43,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 52,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 61,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAY_BGM}",
+            "offset": 77,
+            "bytes": [
+              252,
+              11
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAY_BGM",
+                "bytes": [
+                  252,
+                  11
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{MUS_RG_ENCOUNTER_GYM_LEADER}",
+            "offset": 87,
+            "bytes": [
+              42,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "MUS_RG_ENCOUNTER_GYM_LEADER",
+                "bytes": [
+                  42,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 116,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_ExplainTM03": {
+      "label": "CeruleanCity_Gym_Text_ExplainTM03",
+      "line": 81,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "TM03是水波动。\\p把它用在一只水属性宝可梦身上吧！$",
+      "display_text": "TM03是水波动。\n\n把它用在一只水属性宝可梦身上吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          206,
+          199,
+          161,
+          164,
+          12,
+          12,
+          12,
+          81,
+          1,
+          195,
+          3,
+          84,
+          55,
+          251,
+          1,
+          48,
+          12,
+          159,
+          15,
+          113,
+          15,
+          230,
+          15,
+          11,
+          16,
+          140,
+          12,
+          81,
+          12,
+          57,
+          14,
+          95,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          203,
+          11,
+          173,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "CE C7 A1 A4 0C 0C 0C 51 01 C3 03 54 37 FB 01 30 0C 9F 0F 71 0F E6 0F 0B 10 8C 0C 51 0C 39 0E 5F 01 63 07 D7 09 66 0B CB 0B AD 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_ExplainCascadeBadge": {
+      "label": "CeruleanCity_Gym_Text_ExplainCascadeBadge",
+      "line": 85,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "蓝色徽章能让所有的\\n30级以下的宝可梦听你的话。\\p包括那些从别人那儿交换得到的。\\p而且你可以随时使用居合斩。\\n甚至是没在战斗的时候。\\p你可以居合斩一些小树\\n去开辟新的道路。\\p你也能得到我最喜欢的技能。$",
+      "display_text": "蓝色徽章能让所有的\n30级以下的宝可梦听你的话。\n\n包括那些从别人那儿交换得到的。\n\n而且你可以随时使用居合斩。\n甚至是没在战斗的时候。\n\n你可以居合斩一些小树\n去开辟新的道路。\n\n你也能得到我最喜欢的技能。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 186,
+        "bytes": [
+          8,
+          43,
+          11,
+          137,
+          5,
+          98,
+          16,
+          53,
+          9,
+          210,
+          11,
+          67,
+          12,
+          156,
+          15,
+          126,
+          3,
+          11,
+          254,
+          164,
+          161,
+          5,
+          161,
+          15,
+          36,
+          13,
+          230,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          7,
+          9,
+          217,
+          3,
+          11,
+          5,
+          61,
+          55,
+          251,
+          1,
+          91,
+          8,
+          29,
+          9,
+          189,
+          14,
+          52,
+          2,
+          179,
+          1,
+          173,
+          11,
+          75,
+          9,
+          189,
+          3,
+          158,
+          7,
+          13,
+          5,
+          72,
+          3,
+          10,
+          3,
+          4,
+          3,
+          11,
+          55,
+          251,
+          3,
+          157,
+          10,
+          235,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          12,
+          137,
+          11,
+          237,
+          11,
+          245,
+          15,
+          113,
+          7,
+          131,
+          4,
+          245,
+          16,
+          41,
+          55,
+          254,
+          11,
+          211,
+          16,
+          146,
+          12,
+          12,
+          9,
+          83,
+          15,
+          230,
+          16,
+          48,
+          3,
+          92,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          55,
+          251,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          7,
+          131,
+          4,
+          245,
+          16,
+          41,
+          15,
+          11,
+          14,
+          52,
+          14,
+          44,
+          12,
+          60,
+          254,
+          11,
+          37,
+          7,
+          184,
+          1,
+          150,
+          14,
+          77,
+          3,
+          11,
+          3,
+          7,
+          8,
+          232,
+          55,
+          251,
+          9,
+          217,
+          15,
+          2,
+          9,
+          210,
+          3,
+          10,
+          3,
+          4,
+          13,
+          152,
+          17,
+          38,
+          13,
+          214,
+          5,
+          67,
+          3,
+          11,
+          5,
+          167,
+          9,
+          210,
+          55,
+          255
+        ],
+        "hex": "08 2B 0B 89 05 62 10 35 09 D2 0B 43 0C 9C 0F 7E 03 0B FE A4 A1 05 A1 0F 24 0D E6 03 0B 01 63 07 D7 09 66 0D 07 09 D9 03 0B 05 3D 37 FB 01 5B 08 1D 09 BD 0E 34 02 B3 01 AD 0B 4B 09 BD 03 9E 07 0D 05 48 03 0A 03 04 03 0B 37 FB 03 9D 0A EB 09 D9 07 D7 0F 24 0C 89 0B ED 0B F5 0F 71 07 83 04 F5 10 29 37 FE 0B D3 10 92 0C 0C 09 53 0F E6 10 30 03 5C 03 0B 0B ED 05 21 37 FB 09 D9 07 D7 0F 24 07 83 04 F5 10 29 0F 0B 0E 34 0E 2C 0C 3C FE 0B 25 07 B8 01 96 0E 4D 03 0B 03 07 08 E8 37 FB 09 D9 0F 02 09 D2 03 0A 03 04 0D 98 11 26 0D D6 05 43 03 0B 05 A7 09 D2 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 25,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 42,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 57,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 70,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 82,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 92,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 107,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_ReceivedTM03FromMisty": {
+      "label": "CeruleanCity_Gym_Text_ReceivedTM03FromMisty",
+      "line": 95,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}从小霞那儿得到了TM03。$",
+      "display_text": "{PLAYER}从小霞那儿得到了TM03。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 24,
+        "bytes": [
+          253,
+          1,
+          2,
+          179,
+          14,
+          44,
+          13,
+          224,
+          9,
+          189,
+          3,
+          158,
+          3,
+          10,
+          3,
+          4,
+          8,
+          158,
+          206,
+          199,
+          161,
+          164,
+          55,
+          255
+        ],
+        "hex": "FD 01 02 B3 0E 2C 0D E0 09 BD 03 9E 03 0A 03 04 08 9E CE C7 A1 A4 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_BetterMakeRoomForThis": {
+      "label": "CeruleanCity_Gym_Text_BetterMakeRoomForThis",
+      "line": 98,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "你最好为这个准备一些空间！$",
+      "display_text": "你最好为这个准备一些空间！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          9,
+          217,
+          17,
+          38,
+          4,
+          233,
+          13,
+          112,
+          16,
+          85,
+          4,
+          96,
+          16,
+          235,
+          1,
+          117,
+          15,
+          11,
+          14,
+          52,
+          7,
+          227,
+          5,
+          207,
+          60,
+          255
+        ],
+        "hex": "09 D9 11 26 04 E9 0D 70 10 55 04 60 10 EB 01 75 0F 0B 0E 34 07 E3 05 CF 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_MistyDefeat": {
+      "label": "CeruleanCity_Gym_Text_MistyDefeat",
+      "line": 101,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "哇！\\n你很厉害！\\p很好！\\p这个蓝色徽章你拿着，\\n来证明你打败过我的证明。$",
+      "display_text": "哇！\n你很厉害！\n\n很好！\n\n这个蓝色徽章你拿着，\n来证明你打败过我的证明。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 64,
+        "bytes": [
+          13,
+          67,
+          60,
+          254,
+          9,
+          217,
+          5,
+          11,
+          8,
+          108,
+          4,
+          204,
+          60,
+          251,
+          5,
+          11,
+          4,
+          233,
+          60,
+          251,
+          16,
+          85,
+          4,
+          96,
+          8,
+          43,
+          11,
+          137,
+          5,
+          98,
+          16,
+          53,
+          9,
+          217,
+          9,
+          185,
+          16,
+          244,
+          59,
+          254,
+          8,
+          41,
+          16,
+          117,
+          9,
+          143,
+          9,
+          217,
+          2,
+          210,
+          1,
+          59,
+          4,
+          197,
+          13,
+          152,
+          3,
+          11,
+          16,
+          117,
+          9,
+          143,
+          55,
+          255
+        ],
+        "hex": "0D 43 3C FE 09 D9 05 0B 08 6C 04 CC 3C FB 05 0B 04 E9 3C FB 10 55 04 60 08 2B 0B 89 05 62 10 35 09 D9 09 B9 10 F4 3B FE 08 29 10 75 09 8F 09 D9 02 D2 01 3B 04 C5 0D 98 03 0B 10 75 09 8F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 40,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_DianaIntro": {
+      "label": "CeruleanCity_Gym_Text_DianaIntro",
+      "line": 108,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "什么？你？\\n我比你强多了！\\p不能随便去打扰小霞。$",
+      "display_text": "什么？你？\n我比你强多了！\n\n不能随便去打扰小霞。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          11,
+          238,
+          9,
+          76,
+          61,
+          9,
+          217,
+          61,
+          254,
+          13,
+          152,
+          1,
+          133,
+          9,
+          217,
+          10,
+          216,
+          3,
+          133,
+          8,
+          158,
+          60,
+          251,
+          1,
+          214,
+          9,
+          210,
+          12,
+          137,
+          1,
+          160,
+          11,
+          37,
+          2,
+          210,
+          11,
+          69,
+          14,
+          44,
+          13,
+          224,
+          55,
+          255
+        ],
+        "hex": "0B EE 09 4C 3D 09 D9 3D FE 0D 98 01 85 09 D9 0A D8 03 85 08 9E 3C FB 01 D6 09 D2 0C 89 01 A0 0B 25 02 D2 0B 45 0E 2C 0D E0 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_DianaDefeat": {
+      "label": "CeruleanCity_Gym_Text_DianaDefeat",
+      "line": 113,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "你打败了我！$",
+      "display_text": "你打败了我！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 12,
+        "bytes": [
+          9,
+          217,
+          2,
+          210,
+          1,
+          59,
+          8,
+          158,
+          13,
+          152,
+          60,
+          255
+        ],
+        "hex": "09 D9 02 D2 01 3B 08 9E 0D 98 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 6,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_DianaPostBattle": {
+      "label": "CeruleanCity_Gym_Text_DianaPostBattle",
+      "line": 116,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "你必须面对其他的训练家，\\n看看你到底有多强大。$",
+      "display_text": "你必须面对其他的训练家，\n看看你到底有多强大。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 44,
+        "bytes": [
+          9,
+          217,
+          1,
+          149,
+          14,
+          118,
+          9,
+          126,
+          3,
+          121,
+          10,
+          159,
+          12,
+          158,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          59,
+          254,
+          7,
+          194,
+          7,
+          194,
+          9,
+          217,
+          3,
+          4,
+          3,
+          30,
+          15,
+          126,
+          3,
+          133,
+          10,
+          216,
+          2,
+          211,
+          55,
+          255
+        ],
+        "hex": "09 D9 01 95 0E 76 09 7E 03 79 0A 9F 0C 9E 03 0B 0E 9E 08 8A 05 BD 3B FE 07 C2 07 C2 09 D9 03 04 03 1E 0F 7E 03 85 0A D8 02 D3 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_LuisIntro": {
+      "label": "CeruleanCity_Gym_Text_LuisIntro",
+      "line": 120,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "哈！\\p我是第一个！\\n我们开始吧！$",
+      "display_text": "哈！\n\n我是第一个！\n我们开始吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          4,
+          198,
+          60,
+          251,
+          13,
+          152,
+          12,
+          12,
+          3,
+          33,
+          15,
+          11,
+          4,
+          96,
+          60,
+          254,
+          13,
+          152,
+          9,
+          95,
+          7,
+          184,
+          12,
+          1,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "04 C6 3C FB 0D 98 0C 0C 03 21 0F 0B 04 60 3C FE 0D 98 09 5F 07 B8 0C 01 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 2,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_LuisDefeat": {
+      "label": "CeruleanCity_Gym_Text_LuisDefeat",
+      "line": 125,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "不可能！$",
+      "display_text": "不可能！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 8,
+        "bytes": [
+          1,
+          214,
+          7,
+          215,
+          9,
+          210,
+          60,
+          255
+        ],
+        "hex": "01 D6 07 D7 09 D2 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 4,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_LuisPostBattle": {
+      "label": "CeruleanCity_Gym_Text_LuisPostBattle",
+      "line": 128,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "小霞总是不断地提升着自己。\\p她是不会输给像你这样的人的。$",
+      "display_text": "小霞总是不断地提升着自己。\n\n她是不会输给像你这样的人的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          14,
+          44,
+          13,
+          224,
+          17,
+          20,
+          12,
+          12,
+          1,
+          214,
+          3,
+          116,
+          3,
+          31,
+          12,
+          226,
+          11,
+          219,
+          16,
+          244,
+          17,
+          12,
+          5,
+          165,
+          55,
+          251,
+          12,
+          160,
+          12,
+          12,
+          1,
+          214,
+          5,
+          110,
+          12,
+          41,
+          4,
+          98,
+          14,
+          30,
+          9,
+          217,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          11,
+          75,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "0E 2C 0D E0 11 14 0C 0C 01 D6 03 74 03 1F 0C E2 0B DB 10 F4 11 0C 05 A5 37 FB 0C A0 0C 0C 01 D6 05 6E 0C 29 04 62 0E 1E 09 D9 10 55 0E E2 03 0B 0B 4B 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_GymGuyAdvice": {
+      "label": "CeruleanCity_Gym_Text_GymGuyAdvice",
+      "line": 132,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "哟！\\n未来的冠军！\\p给你一些建议吧！\\p这个馆主小霞，\\n使用的是水属性宝可梦。\\p你可以用草属性宝可梦\\n吸收它们的水份。\\p或者你也可以用电属性\\n宝可梦电击它们！$",
+      "display_text": "哟！\n未来的冠军！\n\n给你一些建议吧！\n\n这个馆主小霞，\n使用的是水属性宝可梦。\n\n你可以用草属性宝可梦\n吸收它们的水份。\n\n或者你也可以用电属性\n宝可梦电击它们！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 142,
+        "bytes": [
+          15,
+          98,
+          60,
+          254,
+          13,
+          122,
+          8,
+          41,
+          3,
+          11,
+          4,
+          162,
+          7,
+          172,
+          60,
+          251,
+          4,
+          98,
+          9,
+          217,
+          15,
+          11,
+          14,
+          52,
+          5,
+          241,
+          15,
+          57,
+          1,
+          40,
+          60,
+          251,
+          16,
+          85,
+          4,
+          96,
+          4,
+          165,
+          16,
+          200,
+          14,
+          44,
+          13,
+          224,
+          59,
+          254,
+          11,
+          245,
+          15,
+          113,
+          3,
+          11,
+          12,
+          12,
+          12,
+          81,
+          12,
+          57,
+          14,
+          95,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          15,
+          113,
+          2,
+          1,
+          12,
+          57,
+          14,
+          95,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          13,
+          194,
+          12,
+          26,
+          12,
+          159,
+          9,
+          95,
+          3,
+          11,
+          12,
+          81,
+          3,
+          224,
+          55,
+          251,
+          5,
+          127,
+          16,
+          82,
+          9,
+          217,
+          15,
+          2,
+          7,
+          215,
+          15,
+          36,
+          15,
+          113,
+          3,
+          46,
+          12,
+          57,
+          14,
+          95,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          46,
+          5,
+          132,
+          12,
+          159,
+          9,
+          95,
+          60,
+          255
+        ],
+        "hex": "0F 62 3C FE 0D 7A 08 29 03 0B 04 A2 07 AC 3C FB 04 62 09 D9 0F 0B 0E 34 05 F1 0F 39 01 28 3C FB 10 55 04 60 04 A5 10 C8 0E 2C 0D E0 3B FE 0B F5 0F 71 03 0B 0C 0C 0C 51 0C 39 0E 5F 01 63 07 D7 09 66 37 FB 09 D9 07 D7 0F 24 0F 71 02 01 0C 39 0E 5F 01 63 07 D7 09 66 FE 0D C2 0C 1A 0C 9F 09 5F 03 0B 0C 51 03 E0 37 FB 05 7F 10 52 09 D9 0F 02 07 D7 0F 24 0F 71 03 2E 0C 39 0E 5F FE 01 63 07 D7 09 66 03 2E 05 84 0C 9F 09 5F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 42,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 54,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 64,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 76,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 86,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_WeMakePrettyGoodTeam": {
+      "label": "CeruleanCity_Gym_Text_WeMakePrettyGoodTeam",
+      "line": 143,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "你战胜了小霞！\\n看吧，我说什么来着？\\p你和我，小子，\\n我们组成了一个强大之极的队伍！$",
+      "display_text": "你战胜了小霞！\n看吧，我说什么来着？\n\n你和我，小子，\n我们组成了一个强大之极的队伍！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          9,
+          217,
+          16,
+          48,
+          11,
+          224,
+          8,
+          158,
+          14,
+          44,
+          13,
+          224,
+          60,
+          254,
+          7,
+          194,
+          1,
+          40,
+          59,
+          13,
+          152,
+          12,
+          88,
+          11,
+          238,
+          9,
+          76,
+          8,
+          41,
+          16,
+          244,
+          61,
+          251,
+          9,
+          217,
+          4,
+          243,
+          13,
+          152,
+          59,
+          14,
+          44,
+          17,
+          11,
+          59,
+          254,
+          13,
+          152,
+          9,
+          95,
+          17,
+          33,
+          2,
+          75,
+          8,
+          158,
+          15,
+          11,
+          4,
+          96,
+          10,
+          216,
+          2,
+          211,
+          16,
+          127,
+          5,
+          150,
+          3,
+          11,
+          3,
+          120,
+          13,
+          175,
+          60,
+          255
+        ],
+        "hex": "09 D9 10 30 0B E0 08 9E 0E 2C 0D E0 3C FE 07 C2 01 28 3B 0D 98 0C 58 0B EE 09 4C 08 29 10 F4 3D FB 09 D9 04 F3 0D 98 3B 0E 2C 11 0B 3B FE 0D 98 09 5F 11 21 02 4B 08 9E 0F 0B 04 60 0A D8 02 D3 10 7F 05 96 03 0B 03 78 0D AF 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_GymStatue": {
+      "label": "CeruleanCity_Gym_Text_GymStatue",
+      "line": 149,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "华蓝宝可梦道馆\\n馆主：小霞\\p优胜训练家：\\n{RIVAL}$",
+      "display_text": "华蓝宝可梦道馆\n馆主：小霞\n\n优胜训练家：\n{RIVAL}",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          5,
+          55,
+          8,
+          43,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          7,
+          4,
+          165,
+          254,
+          4,
+          165,
+          16,
+          200,
+          62,
+          14,
+          44,
+          13,
+          224,
+          251,
+          15,
+          115,
+          11,
+          224,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          62,
+          254,
+          253,
+          6,
+          255
+        ],
+        "hex": "05 37 08 2B 01 63 07 D7 09 66 03 07 04 A5 FE 04 A5 10 C8 3E 0E 2C 0D E0 FB 0F 73 0B E0 0E 9E 08 8A 05 BD 3E FE FD 06 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{RIVAL}",
+            "offset": 24,
+            "bytes": [
+              253,
+              6
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "RIVAL",
+                "bytes": [
+                  253,
+                  6
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 31,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "RIVAL",
+            "offset": 24,
+            "bytes": [
+              253,
+              6
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "CeruleanCity_Gym_Text_GymStatuePlayerWon": {
+      "label": "CeruleanCity_Gym_Text_GymStatuePlayerWon",
+      "line": 155,
+      "source_file": "data/maps/CeruleanCity_Gym_Frlg/scripts.inc",
+      "raw_text": "华蓝宝可梦道馆\\n馆主：小霞\\p优胜训练家：\\n{RIVAL} {PLAYER}$",
+      "display_text": "华蓝宝可梦道馆\n馆主：小霞\n\n优胜训练家：\n{RIVAL} {PLAYER}",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          5,
+          55,
+          8,
+          43,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          7,
+          4,
+          165,
+          254,
+          4,
+          165,
+          16,
+          200,
+          62,
+          14,
+          44,
+          13,
+          224,
+          251,
+          15,
+          115,
+          11,
+          224,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          62,
+          254,
+          253,
+          6,
+          0,
+          253,
+          1,
+          255
+        ],
+        "hex": "05 37 08 2B 01 63 07 D7 09 66 03 07 04 A5 FE 04 A5 10 C8 3E 0E 2C 0D E0 FB 0F 73 0B E0 0E 9E 08 8A 05 BD 3E FE FD 06 00 FD 01 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{RIVAL}",
+            "offset": 24,
+            "bytes": [
+              253,
+              6
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "RIVAL",
+                "bytes": [
+                  253,
+                  6
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 32,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 40,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "RIVAL",
+            "offset": 24,
+            "bytes": [
+              253,
+              6
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 32,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "checkitemspace": 1,
+      "faceplayer": 1,
+      "famechecker": 3,
+      "giveitem_msg": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 2,
+      "goto_if_unset": 1,
+      "set_gym_trainers_frlg": 1,
+      "setflag": 3,
+      "setrespawn": 1,
+      "trainerbattle_single": 3
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 27,
+    "script_count": 11,
+    "movement_count": 0,
+    "text_count": 16,
+    "encoded_text_count": 16,
+    "text_source_byte_count": 972,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 16
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "checkitemspace": 1,
+      "end": 10,
+      "faceplayer": 1,
+      "famechecker": 3,
+      "giveitem_msg": 1,
+      "goto": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 2,
+      "goto_if_unset": 1,
+      "lock": 1,
+      "lockall": 1,
+      "msgbox": 10,
+      "release": 5,
+      "releaseall": 2,
+      "set_gym_trainers_frlg": 1,
+      "setflag": 3,
+      "setrespawn": 1,
+      "trainerbattle_single": 3
+    }
+  }
+}

@@ -1,0 +1,875 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "BattleFrontier_Lounge8",
+    "map_script": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+    "map_json": "data/maps/BattleFrontier_Lounge8/map.json",
+    "map_id": "MAP_BATTLE_FRONTIER_LOUNGE8",
+    "map_name": "BattleFrontier_Lounge8"
+  },
+  "labels": {
+    "BattleFrontier_Lounge8_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_Lounge8_EventScript_Man": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_Lounge8_EventScript_Woman": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_Lounge8_EventScript_NinjaBoy": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_Lounge8_Text_WhatATrainerNeeds": {
+      "kind": "text",
+      "line": 16,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_Lounge8_Text_KnowAboutFrontierBrains": {
+      "kind": "text",
+      "line": 19,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_Lounge8_Text_ToldMeIHaveTalentForBattling": {
+      "kind": "text",
+      "line": 22,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "BattleFrontier_Lounge8_MapScripts": {
+      "label": "BattleFrontier_Lounge8_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_Lounge8_EventScript_Man": {
+      "label": "BattleFrontier_Lounge8_EventScript_Man",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_Lounge8_Text_WhatATrainerNeeds",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox BattleFrontier_Lounge8_Text_WhatATrainerNeeds, MSGBOX_NPC",
+          "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_Lounge8_Text_WhatATrainerNeeds",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_Lounge8_EventScript_Woman": {
+      "label": "BattleFrontier_Lounge8_EventScript_Woman",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_Lounge8_Text_KnowAboutFrontierBrains",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox BattleFrontier_Lounge8_Text_KnowAboutFrontierBrains, MSGBOX_NPC",
+          "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_Lounge8_Text_KnowAboutFrontierBrains",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_Lounge8_EventScript_NinjaBoy": {
+      "label": "BattleFrontier_Lounge8_EventScript_NinjaBoy",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_Lounge8_Text_ToldMeIHaveTalentForBattling",
+            "MSGBOX_NPC"
+          ],
+          "line": 13,
+          "raw": "msgbox BattleFrontier_Lounge8_Text_ToldMeIHaveTalentForBattling, MSGBOX_NPC",
+          "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_Lounge8_Text_ToldMeIHaveTalentForBattling",
+          "mode": "MSGBOX_NPC",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "BattleFrontier_Lounge8_Text_WhatATrainerNeeds": {
+      "label": "BattleFrontier_Lounge8_Text_WhatATrainerNeeds",
+      "line": 16,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "raw_text": "训练家所需要的一切……\\p知识……\\n战术……\\l运气……\\l毅力……\\l精神……\\l英勇……\\l还有能力……\\p我可是拥有这一切！\\n在这里我必定是战无不胜的！\\p嗯？宝可梦？\\n那是什么？$",
+      "display_text": "训练家所需要的一切……\n\n知识……\n战术……\n运气……\n毅力……\n精神……\n英勇……\n还有能力……\n\n我可是拥有这一切！\n在这里我必定是战无不胜的！\n\n嗯？宝可梦？\n那是什么？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 139,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          12,
+          156,
+          14,
+          115,
+          14,
+          241,
+          3,
+          11,
+          15,
+          11,
+          10,
+          233,
+          176,
+          176,
+          251,
+          16,
+          123,
+          11,
+          242,
+          176,
+          176,
+          254,
+          16,
+          48,
+          12,
+          58,
+          176,
+          176,
+          250,
+          15,
+          215,
+          10,
+          179,
+          176,
+          176,
+          250,
+          15,
+          51,
+          8,
+          121,
+          176,
+          176,
+          250,
+          7,
+          91,
+          11,
+          207,
+          176,
+          176,
+          250,
+          15,
+          80,
+          15,
+          112,
+          176,
+          176,
+          250,
+          5,
+          70,
+          15,
+          126,
+          9,
+          210,
+          8,
+          121,
+          176,
+          176,
+          251,
+          13,
+          152,
+          7,
+          215,
+          12,
+          12,
+          15,
+          99,
+          15,
+          126,
+          16,
+          85,
+          15,
+          11,
+          10,
+          233,
+          60,
+          254,
+          15,
+          230,
+          16,
+          85,
+          8,
+          100,
+          13,
+          152,
+          1,
+          149,
+          3,
+          77,
+          12,
+          12,
+          16,
+          48,
+          13,
+          164,
+          1,
+          214,
+          11,
+          224,
+          3,
+          11,
+          60,
+          251,
+          20,
+          97,
+          61,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          61,
+          254,
+          9,
+          189,
+          12,
+          12,
+          11,
+          238,
+          9,
+          76,
+          61,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 0C 9C 0E 73 0E F1 03 0B 0F 0B 0A E9 B0 B0 FB 10 7B 0B F2 B0 B0 FE 10 30 0C 3A B0 B0 FA 0F D7 0A B3 B0 B0 FA 0F 33 08 79 B0 B0 FA 07 5B 0B CF B0 B0 FA 0F 50 0F 70 B0 B0 FA 05 46 0F 7E 09 D2 08 79 B0 B0 FB 0D 98 07 D7 0C 0C 0F 63 0F 7E 10 55 0F 0B 0A E9 3C FE 0F E6 10 55 08 64 0D 98 01 95 03 4D 0C 0C 10 30 0D A4 01 D6 0B E0 03 0B 3C FB 14 61 3D 01 63 07 D7 09 66 3D FE 09 BD 0C 0C 0B EE 09 4C 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 17,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 23,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 29,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 35,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 41,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 47,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 55,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 66,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 81,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 89,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 96,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_Lounge8_Text_KnowAboutFrontierBrains": {
+      "label": "BattleFrontier_Lounge8_Text_KnowAboutFrontierBrains",
+      "line": 19,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "raw_text": "你知道\\n开拓之脑吗？\\p亚希达是这么称呼\\n管理对战开拓区七大设施的\\l那七位特别的训练家的。$",
+      "display_text": "你知道\n开拓之脑吗？\n\n亚希达是这么称呼\n管理对战开拓区七大设施的\n那七位特别的训练家的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 83,
+        "bytes": [
+          9,
+          217,
+          16,
+          123,
+          3,
+          7,
+          254,
+          7,
+          184,
+          13,
+          64,
+          16,
+          127,
+          9,
+          202,
+          9,
+          42,
+          61,
+          251,
+          14,
+          176,
+          13,
+          199,
+          2,
+          207,
+          12,
+          12,
+          16,
+          85,
+          9,
+          76,
+          2,
+          72,
+          5,
+          35,
+          254,
+          4,
+          164,
+          8,
+          98,
+          3,
+          121,
+          16,
+          48,
+          7,
+          184,
+          13,
+          64,
+          11,
+          26,
+          10,
+          154,
+          2,
+          211,
+          11,
+          198,
+          11,
+          229,
+          3,
+          11,
+          250,
+          9,
+          189,
+          10,
+          154,
+          13,
+          129,
+          12,
+          217,
+          1,
+          173,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "09 D9 10 7B 03 07 FE 07 B8 0D 40 10 7F 09 CA 09 2A 3D FB 0E B0 0D C7 02 CF 0C 0C 10 55 09 4C 02 48 05 23 FE 04 A4 08 62 03 79 10 30 07 B8 0D 40 0B 1A 0A 9A 02 D3 0B C6 0B E5 03 0B FA 09 BD 0A 9A 0D 81 0C D9 01 AD 03 0B 0E 9E 08 8A 05 BD 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 35,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_Lounge8_Text_ToldMeIHaveTalentForBattling": {
+      "label": "BattleFrontier_Lounge8_Text_ToldMeIHaveTalentForBattling",
+      "line": 22,
+      "source_file": "data/maps/BattleFrontier_Lounge8/scripts.inc",
+      "raw_text": "对战塔里有一位大姐姐\\n告诉我我在对战方面的才能\\l非常出色！\\p不过我更喜欢宝可梦华丽大赛！\\p但我在华丽大赛上完全不行！\\p我想也许喜欢和天赋\\n是两码事吧。$",
+      "display_text": "对战塔里有一位大姐姐\n告诉我我在对战方面的才能\n非常出色！\n\n不过我更喜欢宝可梦华丽大赛！\n\n但我在华丽大赛上完全不行！\n\n我想也许喜欢和天赋\n是两码事吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 141,
+        "bytes": [
+          3,
+          121,
+          16,
+          48,
+          12,
+          161,
+          8,
+          100,
+          15,
+          126,
+          15,
+          11,
+          13,
+          129,
+          2,
+          211,
+          7,
+          53,
+          7,
+          53,
+          254,
+          4,
+          80,
+          12,
+          130,
+          13,
+          152,
+          13,
+          152,
+          15,
+          230,
+          3,
+          121,
+          16,
+          48,
+          3,
+          192,
+          9,
+          126,
+          3,
+          11,
+          1,
+          224,
+          9,
+          210,
+          250,
+          3,
+          202,
+          2,
+          37,
+          2,
+          120,
+          11,
+          137,
+          60,
+          251,
+          1,
+          214,
+          4,
+          197,
+          13,
+          152,
+          4,
+          102,
+          13,
+          214,
+          5,
+          67,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          55,
+          8,
+          107,
+          2,
+          211,
+          11,
+          124,
+          60,
+          251,
+          2,
+          233,
+          13,
+          152,
+          15,
+          230,
+          5,
+          55,
+          8,
+          107,
+          2,
+          211,
+          11,
+          124,
+          11,
+          173,
+          13,
+          82,
+          11,
+          43,
+          1,
+          214,
+          14,
+          91,
+          60,
+          251,
+          13,
+          152,
+          14,
+          24,
+          15,
+          2,
+          14,
+          120,
+          13,
+          214,
+          5,
+          67,
+          4,
+          243,
+          12,
+          237,
+          4,
+          29,
+          254,
+          12,
+          12,
+          8,
+          144,
+          9,
+          37,
+          12,
+          7,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "03 79 10 30 0C A1 08 64 0F 7E 0F 0B 0D 81 02 D3 07 35 07 35 FE 04 50 0C 82 0D 98 0D 98 0F E6 03 79 10 30 03 C0 09 7E 03 0B 01 E0 09 D2 FA 03 CA 02 25 02 78 0B 89 3C FB 01 D6 04 C5 0D 98 04 66 0D D6 05 43 01 63 07 D7 09 66 05 37 08 6B 02 D3 0B 7C 3C FB 02 E9 0D 98 0F E6 05 37 08 6B 02 D3 0B 7C 0B AD 0D 52 0B 2B 01 D6 0E 5B 3C FB 0D 98 0E 18 0F 02 0E 78 0D D6 05 43 04 F3 0C ED 04 1D FE 0C 0C 08 90 09 25 0C 07 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 24,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 31,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 47,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 62,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 73,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 81,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 363,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "msgbox": 3
+    }
+  }
+}

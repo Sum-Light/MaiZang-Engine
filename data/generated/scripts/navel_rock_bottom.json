@@ -1,0 +1,850 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "NavelRock_Bottom",
+    "map_script": "data/maps/NavelRock_Bottom/scripts.inc",
+    "map_json": "data/maps/NavelRock_Bottom/map.json",
+    "map_id": "MAP_NAVEL_ROCK_BOTTOM",
+    "map_name": "NavelRock_Bottom"
+  },
+  "labels": {
+    "NavelRock_Bottom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instruction_count": 3
+    },
+    "NavelRock_Bottom_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instruction_count": 3
+    },
+    "NavelRock_Bottom_EventScript_HideLugia": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instruction_count": 2
+    },
+    "NavelRock_Bottom_EventScript_TryShowLugia": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instruction_count": 3
+    },
+    "NavelRock_Bottom_OnResume": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instruction_count": 2
+    },
+    "NavelRock_Bottom_EventScript_TryRemoveLugia": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instruction_count": 4
+    },
+    "NavelRock_Bottom_EventScript_Lugia": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instruction_count": 35
+    },
+    "NavelRock_Bottom_EventScript_DefeatedLugia": {
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instruction_count": 4
+    },
+    "NavelRock_Bottom_EventScript_RanFromLugia": {
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "NavelRock_Bottom_MapScripts": {
+      "label": "NavelRock_Bottom_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "NavelRock_Bottom_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, NavelRock_Bottom_OnTransition",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "NavelRock_Bottom_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, NavelRock_Bottom_OnResume",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NavelRock_Bottom_OnTransition": {
+      "label": "NavelRock_Bottom_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_CAUGHT_LUGIA",
+            "NavelRock_Bottom_EventScript_HideLugia"
+          ],
+          "line": 7,
+          "raw": "call_if_set FLAG_CAUGHT_LUGIA, NavelRock_Bottom_EventScript_HideLugia",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_CAUGHT_LUGIA",
+            "NavelRock_Bottom_EventScript_TryShowLugia"
+          ],
+          "line": 8,
+          "raw": "call_if_unset FLAG_CAUGHT_LUGIA, NavelRock_Bottom_EventScript_TryShowLugia",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "NavelRock_Bottom_EventScript_HideLugia",
+          "line": 7
+        },
+        {
+          "op": "call_if_unset",
+          "target": "NavelRock_Bottom_EventScript_TryShowLugia",
+          "line": 8
+        }
+      ]
+    },
+    "NavelRock_Bottom_EventScript_HideLugia": {
+      "label": "NavelRock_Bottom_EventScript_HideLugia",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LUGIA"
+          ],
+          "line": 12,
+          "raw": "setflag FLAG_HIDE_LUGIA",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 13,
+          "raw": "return",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NavelRock_Bottom_EventScript_TryShowLugia": {
+      "label": "NavelRock_Bottom_EventScript_TryShowLugia",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DEFEATED_LUGIA",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 16,
+          "raw": "goto_if_set FLAG_DEFEATED_LUGIA, Common_EventScript_NopReturn",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_LUGIA"
+          ],
+          "line": 17,
+          "raw": "clearflag FLAG_HIDE_LUGIA",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 18,
+          "raw": "return",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Common_EventScript_NopReturn",
+          "line": 16
+        }
+      ]
+    },
+    "NavelRock_Bottom_OnResume": {
+      "label": "NavelRock_Bottom_OnResume",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE",
+            "NavelRock_Bottom_EventScript_TryRemoveLugia"
+          ],
+          "line": 21,
+          "raw": "call_if_set FLAG_SYS_CTRL_OBJ_DELETE, NavelRock_Bottom_EventScript_TryRemoveLugia",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "NavelRock_Bottom_EventScript_TryRemoveLugia",
+          "line": 21
+        }
+      ]
+    },
+    "NavelRock_Bottom_EventScript_TryRemoveLugia": {
+      "label": "NavelRock_Bottom_EventScript_TryRemoveLugia",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 25,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_CAUGHT",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 26,
+          "raw": "goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_NAVEL_ROCK_LUGIA"
+          ],
+          "line": 27,
+          "raw": "removeobject LOCALID_NAVEL_ROCK_LUGIA",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 28,
+          "raw": "return",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "Common_EventScript_NopReturn",
+          "line": 26
+        }
+      ]
+    },
+    "NavelRock_Bottom_EventScript_Lugia": {
+      "label": "NavelRock_Bottom_EventScript_Lugia",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 31,
+          "raw": "lock",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 32,
+          "raw": "faceplayer",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 33,
+          "raw": "waitse",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 34,
+          "raw": "delay 20",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_THUNDERSTORM_STOP"
+          ],
+          "line": 35,
+          "raw": "playse SE_THUNDERSTORM_STOP",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "0"
+          ],
+          "line": 36,
+          "raw": "setvar VAR_0x8004, 0",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "3"
+          ],
+          "line": 37,
+          "raw": "setvar VAR_0x8005, 3",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "4"
+          ],
+          "line": 38,
+          "raw": "setvar VAR_0x8006, 4",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8007",
+            "2"
+          ],
+          "line": 39,
+          "raw": "setvar VAR_0x8007, 2",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShakeCamera"
+          ],
+          "line": 40,
+          "raw": "special ShakeCamera",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 41,
+          "raw": "delay 30",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_THUNDERSTORM_STOP"
+          ],
+          "line": 42,
+          "raw": "playse SE_THUNDERSTORM_STOP",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "0"
+          ],
+          "line": 43,
+          "raw": "setvar VAR_0x8004, 0",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "3"
+          ],
+          "line": 44,
+          "raw": "setvar VAR_0x8005, 3",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "4"
+          ],
+          "line": 45,
+          "raw": "setvar VAR_0x8006, 4",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8007",
+            "2"
+          ],
+          "line": 46,
+          "raw": "setvar VAR_0x8007, 2",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShakeCamera"
+          ],
+          "line": 47,
+          "raw": "special ShakeCamera",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 48,
+          "raw": "delay 30",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "50"
+          ],
+          "line": 49,
+          "raw": "delay 50",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 50,
+          "raw": "waitse",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_LUGIA",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 51,
+          "raw": "playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 52,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 53,
+          "raw": "delay 20",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "seteventmon",
+          "args": [
+            "SPECIES_LUGIA",
+            "70"
+          ],
+          "line": 54,
+          "raw": "seteventmon SPECIES_LUGIA, 70",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 55,
+          "raw": "setflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "BattleSetup_StartLegendaryBattle"
+          ],
+          "line": 56,
+          "raw": "special BattleSetup_StartLegendaryBattle",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 57,
+          "raw": "waitstate",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 58,
+          "raw": "clearflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 59,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_WON",
+            "NavelRock_Bottom_EventScript_DefeatedLugia"
+          ],
+          "line": 60,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_WON, NavelRock_Bottom_EventScript_DefeatedLugia",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_RAN",
+            "NavelRock_Bottom_EventScript_RanFromLugia"
+          ],
+          "line": 61,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_RAN, NavelRock_Bottom_EventScript_RanFromLugia",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_PLAYER_TELEPORTED",
+            "NavelRock_Bottom_EventScript_RanFromLugia"
+          ],
+          "line": 62,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, NavelRock_Bottom_EventScript_RanFromLugia",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_CAUGHT_LUGIA"
+          ],
+          "line": 63,
+          "raw": "setflag FLAG_CAUGHT_LUGIA",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 64,
+          "raw": "release",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 65,
+          "raw": "end",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "NavelRock_Bottom_EventScript_DefeatedLugia",
+          "line": 60
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "NavelRock_Bottom_EventScript_RanFromLugia",
+          "line": 61
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "NavelRock_Bottom_EventScript_RanFromLugia",
+          "line": 62
+        }
+      ]
+    },
+    "NavelRock_Bottom_EventScript_DefeatedLugia": {
+      "label": "NavelRock_Bottom_EventScript_DefeatedLugia",
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_LUGIA"
+          ],
+          "line": 68,
+          "raw": "setflag FLAG_DEFEATED_LUGIA",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_LUGIA"
+          ],
+          "line": 69,
+          "raw": "setvar VAR_0x8004, SPECIES_LUGIA",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_LegendaryFlewAway"
+          ],
+          "line": 70,
+          "raw": "goto Common_EventScript_LegendaryFlewAway",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 71,
+          "raw": "end",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_LegendaryFlewAway",
+          "line": 70
+        }
+      ]
+    },
+    "NavelRock_Bottom_EventScript_RanFromLugia": {
+      "label": "NavelRock_Bottom_EventScript_RanFromLugia",
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/NavelRock_Bottom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_LUGIA"
+          ],
+          "line": 74,
+          "raw": "setvar VAR_0x8004, SPECIES_LUGIA",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_LegendaryFlewAway"
+          ],
+          "line": 75,
+          "raw": "goto Common_EventScript_LegendaryFlewAway",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 76,
+          "raw": "end",
+          "source_file": "data/maps/NavelRock_Bottom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_LegendaryFlewAway",
+          "line": 75
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_set": 2,
+      "call_if_unset": 1,
+      "clearflag": 2,
+      "delay": 5,
+      "faceplayer": 1,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "map_script": 2,
+      "playmoncry": 1,
+      "playse": 2,
+      "removeobject": 1,
+      "seteventmon": 1,
+      "setflag": 4,
+      "setvar": 10,
+      "special": 3,
+      "specialvar": 2,
+      "waitmoncry": 1,
+      "waitse": 2,
+      "waitstate": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 9,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call_if_set": 2,
+      "call_if_unset": 1,
+      "clearflag": 2,
+      "delay": 5,
+      "end": 5,
+      "faceplayer": 1,
+      "goto": 2,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "map_script": 2,
+      "playmoncry": 1,
+      "playse": 2,
+      "release": 1,
+      "removeobject": 1,
+      "return": 3,
+      "seteventmon": 1,
+      "setflag": 4,
+      "setvar": 10,
+      "special": 3,
+      "specialvar": 2,
+      "waitmoncry": 1,
+      "waitse": 2,
+      "waitstate": 1
+    }
+  }
+}

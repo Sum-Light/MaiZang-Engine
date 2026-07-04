@@ -162,18 +162,18 @@ Current tileset export behavior:
 - Writes generated `door_animations` metadata into the tileset JSON for supported used door metatiles, including source labels, metatile ids, frame size, frame rectangles, 60fps frame timing, open/close frame indices, and source sound-effect symbol.
 - Updates `data/generated/import_manifest.json` with exported tileset metadata while preserving existing entries for other maps, tilesets, and scripts.
 
-`tools/importer/export_event_scripts.py` exports one map's `scripts.inc`, or a named shared script bundle, into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--map`, `--output-root`, `--shared-name`, and repeatable `--include-script`.
+`tools/importer/export_event_scripts.py` exports one map's `scripts.inc`, every source map `scripts.inc`, or a named shared script bundle into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--map`, `--all-maps`, `--output-root`, `--shared-name`, and repeatable `--include-script`.
 
 Current event script export behavior:
 
-- Reads `data/maps/<Map>/scripts.inc` or the requested shared include files as UTF-8 and writes generated JSON with LF endings through the shared importer JSON writer.
+- Reads `data/maps/<Map>/scripts.inc`, all map script files when `--all-maps` is used, or the requested shared include files as UTF-8 and writes generated JSON with LF endings through the shared importer JSON writer.
 - Loads `charmap.txt` and follows the source preprocessor model from `tools/preproc/charmap.cpp`, `tools/preproc/string_parser.cpp`, and `tools/preproc/c_file.cpp` for text-byte validation.
 - Parses labels, map script tables, script instruction streams, movement labels, and local `.string` text labels. Shared bundles preserve each label/instruction `source_file` so runtime/debug output can trace records back to the include that defined them.
 - Records per-script raw operations, direct `msgbox`/`message` references, call/goto references, and simple runtime preview summaries.
 - Keeps Godot display text as UTF-8 while preserving source charmap encoding metadata for each local text label: status, source bytes, source hex, byte count, `$` terminator presence, control codes, placeholders, and warnings.
 - Converts display escapes for preview/runtime text: `\n` and `\l` become newlines, `\p` becomes a blank line, and trailing `$` terminators are removed from `display_text`.
 - Records source behavior traces for supported preview behavior from `src/scrcmd.c`, `data/event_scripts.s`, and `data/scripts/std_msgbox.inc`.
-- Updates `data/generated/import_manifest.json` with exported map-script or shared-script metadata while preserving existing entries for other maps, tilesets, scripts, and text datasets. Shared bundle manifest entries use `scope = "shared"` and store their included source files.
+- Updates `data/generated/import_manifest.json` with exported map-script or shared-script metadata while preserving existing entries for other maps, tilesets, scripts, and text datasets. Shared bundle manifest entries use `scope = "shared"` and store their included source files. `--all-maps` writes `data/generated/overworld/script_batch_report.json`, currently covering 887/887 map script files, 52 maps without `scripts.inc`, 18,984 labels, 10,293 scripts, 1,280 movement labels, 7,411 local text labels, 0 charmap warnings, and 44 orphan instructions.
 
 `tools/importer/export_text.py` exports global `data/text/*.inc` labels into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--output-root`, and repeatable `--file`.
 

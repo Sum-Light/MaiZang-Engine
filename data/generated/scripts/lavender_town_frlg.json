@@ -1,0 +1,1484 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "LavenderTown_Frlg",
+    "map_script": "data/maps/LavenderTown_Frlg/scripts.inc",
+    "map_json": "data/maps/LavenderTown_Frlg/map.json",
+    "map_id": "MAP_LAVENDER_TOWN",
+    "map_name": "LavenderTown_Frlg"
+  },
+  "labels": {
+    "LavenderTown_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavenderTown_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "LavenderTown_EventScript_LittleGirl": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "LavenderTown_EventScript_LittleGirlBelieve": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "LavenderTown_EventScript_WorkerM": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavenderTown_EventScript_Boy": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavenderTown_EventScript_TownSign": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavenderTown_EventScript_SilphScopeNotice": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavenderTown_EventScript_VolunteerHouseSign": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavenderTown_EventScript_PokemonTowerSign": {
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavenderTown_Text_DoYouBelieveInGhosts": {
+      "kind": "text",
+      "line": 49,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "LavenderTown_Text_SoThereAreBelievers": {
+      "kind": "text",
+      "line": 52,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavenderTown_Text_JustImaginingWhiteHand": {
+      "kind": "text",
+      "line": 56,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "LavenderTown_Text_TownKnownAsMonGraveSite": {
+      "kind": "text",
+      "line": 65,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "LavenderTown_Text_GhostsAppearedInTower": {
+      "kind": "text",
+      "line": 71,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "LavenderTown_Text_TownSign": {
+      "kind": "text",
+      "line": 76,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavenderTown_Text_SilphScopeNotice": {
+      "kind": "text",
+      "line": 80,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "LavenderTown_Text_VolunteerPokemonHouse": {
+      "kind": "text",
+      "line": 85,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavenderTown_Text_PokemonTowerSign": {
+      "kind": "text",
+      "line": 89,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "LavenderTown_Frlg_MapScripts": {
+      "label": "LavenderTown_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "LavenderTown_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, LavenderTown_OnTransition",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LavenderTown_OnTransition": {
+      "label": "LavenderTown_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setworldmapflag",
+          "args": [
+            "FLAG_WORLD_MAP_LAVENDER_TOWN"
+          ],
+          "line": 6,
+          "raw": "setworldmapflag FLAG_WORLD_MAP_LAVENDER_TOWN",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_S_S_ANNE_2F_CORRIDOR",
+            "1"
+          ],
+          "line": 7,
+          "raw": "setvar VAR_MAP_SCENE_S_S_ANNE_2F_CORRIDOR, 1",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SS_ANNE_RIVAL"
+          ],
+          "line": 8,
+          "raw": "setflag FLAG_HIDE_SS_ANNE_RIVAL",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LavenderTown_EventScript_LittleGirl": {
+      "label": "LavenderTown_EventScript_LittleGirl",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 12,
+          "raw": "lock",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 13,
+          "raw": "faceplayer",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "LavenderTown_Text_DoYouBelieveInGhosts",
+            "MSGBOX_YESNO"
+          ],
+          "line": 14,
+          "raw": "msgbox LavenderTown_Text_DoYouBelieveInGhosts, MSGBOX_YESNO",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "LavenderTown_EventScript_LittleGirlBelieve"
+          ],
+          "line": 15,
+          "raw": "goto_if_eq VAR_RESULT, YES, LavenderTown_EventScript_LittleGirlBelieve",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "LavenderTown_Text_JustImaginingWhiteHand"
+          ],
+          "line": 16,
+          "raw": "msgbox LavenderTown_Text_JustImaginingWhiteHand",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 17,
+          "raw": "release",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LavenderTown_Text_DoYouBelieveInGhosts",
+          "mode": "MSGBOX_YESNO",
+          "line": 14
+        },
+        {
+          "op": "msgbox",
+          "text_label": "LavenderTown_Text_JustImaginingWhiteHand",
+          "mode": "",
+          "line": 16
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "LavenderTown_EventScript_LittleGirlBelieve",
+          "line": 15
+        }
+      ]
+    },
+    "LavenderTown_EventScript_LittleGirlBelieve": {
+      "label": "LavenderTown_EventScript_LittleGirlBelieve",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LavenderTown_Text_SoThereAreBelievers"
+          ],
+          "line": 21,
+          "raw": "msgbox LavenderTown_Text_SoThereAreBelievers",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 22,
+          "raw": "release",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LavenderTown_Text_SoThereAreBelievers",
+          "mode": "",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    },
+    "LavenderTown_EventScript_WorkerM": {
+      "label": "LavenderTown_EventScript_WorkerM",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LavenderTown_Text_TownKnownAsMonGraveSite",
+            "MSGBOX_NPC"
+          ],
+          "line": 26,
+          "raw": "msgbox LavenderTown_Text_TownKnownAsMonGraveSite, MSGBOX_NPC",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LavenderTown_Text_TownKnownAsMonGraveSite",
+          "mode": "MSGBOX_NPC",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    },
+    "LavenderTown_EventScript_Boy": {
+      "label": "LavenderTown_EventScript_Boy",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LavenderTown_Text_GhostsAppearedInTower",
+            "MSGBOX_NPC"
+          ],
+          "line": 30,
+          "raw": "msgbox LavenderTown_Text_GhostsAppearedInTower, MSGBOX_NPC",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LavenderTown_Text_GhostsAppearedInTower",
+          "mode": "MSGBOX_NPC",
+          "line": 30
+        }
+      ],
+      "branch_targets": []
+    },
+    "LavenderTown_EventScript_TownSign": {
+      "label": "LavenderTown_EventScript_TownSign",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LavenderTown_Text_TownSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 34,
+          "raw": "msgbox LavenderTown_Text_TownSign, MSGBOX_SIGN",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LavenderTown_Text_TownSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 34
+        }
+      ],
+      "branch_targets": []
+    },
+    "LavenderTown_EventScript_SilphScopeNotice": {
+      "label": "LavenderTown_EventScript_SilphScopeNotice",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LavenderTown_Text_SilphScopeNotice",
+            "MSGBOX_SIGN"
+          ],
+          "line": 38,
+          "raw": "msgbox LavenderTown_Text_SilphScopeNotice, MSGBOX_SIGN",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 39,
+          "raw": "end",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LavenderTown_Text_SilphScopeNotice",
+          "mode": "MSGBOX_SIGN",
+          "line": 38
+        }
+      ],
+      "branch_targets": []
+    },
+    "LavenderTown_EventScript_VolunteerHouseSign": {
+      "label": "LavenderTown_EventScript_VolunteerHouseSign",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LavenderTown_Text_VolunteerPokemonHouse",
+            "MSGBOX_SIGN"
+          ],
+          "line": 42,
+          "raw": "msgbox LavenderTown_Text_VolunteerPokemonHouse, MSGBOX_SIGN",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 43,
+          "raw": "end",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LavenderTown_Text_VolunteerPokemonHouse",
+          "mode": "MSGBOX_SIGN",
+          "line": 42
+        }
+      ],
+      "branch_targets": []
+    },
+    "LavenderTown_EventScript_PokemonTowerSign": {
+      "label": "LavenderTown_EventScript_PokemonTowerSign",
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LavenderTown_Text_PokemonTowerSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 46,
+          "raw": "msgbox LavenderTown_Text_PokemonTowerSign, MSGBOX_SIGN",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 47,
+          "raw": "end",
+          "source_file": "data/maps/LavenderTown_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LavenderTown_Text_PokemonTowerSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 46
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "LavenderTown_Text_DoYouBelieveInGhosts": {
+      "label": "LavenderTown_Text_DoYouBelieveInGhosts",
+      "line": 49,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "raw_text": "你相信世界上有幽灵吗？$",
+      "display_text": "你相信世界上有幽灵吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          9,
+          217,
+          14,
+          13,
+          14,
+          80,
+          12,
+          5,
+          7,
+          57,
+          11,
+          173,
+          15,
+          126,
+          15,
+          114,
+          8,
+          188,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "09 D9 0E 0D 0E 50 0C 05 07 39 0B AD 0F 7E 0F 72 08 BC 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LavenderTown_Text_SoThereAreBelievers": {
+      "label": "LavenderTown_Text_SoThereAreBelievers",
+      "line": 52,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "raw_text": "真的？\\n真有相信的啊……$",
+      "display_text": "真的？\n真有相信的啊……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          16,
+          89,
+          3,
+          11,
+          61,
+          254,
+          16,
+          89,
+          15,
+          126,
+          14,
+          13,
+          14,
+          80,
+          3,
+          11,
+          1,
+          0,
+          176,
+          176,
+          255
+        ],
+        "hex": "10 59 03 0B 3D FE 10 59 0F 7E 0E 0D 0E 50 03 0B 01 00 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LavenderTown_Text_JustImaginingWhiteHand": {
+      "label": "LavenderTown_Text_JustImaginingWhiteHand",
+      "line": 56,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "raw_text": "哈哈哈，我可不这么认为喔。\\p看你肩膀上那只白色的鬼手……\\n……这只是我的想象而已。$这个小镇因有着\\n宝可梦们的坟墓而闻名。\\p悼念它们的活动就在\\n宝可梦塔里举办。$",
+      "display_text": "哈哈哈，我可不这么认为喔。\n\n看你肩膀上那只白色的鬼手……\n……这只是我的想象而已。$这个小镇因有着\n宝可梦们的坟墓而闻名。\n\n悼念它们的活动就在\n宝可梦塔里举办。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 146,
+        "bytes": [
+          4,
+          198,
+          4,
+          198,
+          4,
+          198,
+          59,
+          13,
+          152,
+          7,
+          215,
+          1,
+          214,
+          16,
+          85,
+          9,
+          76,
+          11,
+          79,
+          13,
+          112,
+          20,
+          84,
+          55,
+          251,
+          7,
+          194,
+          9,
+          217,
+          5,
+          210,
+          1,
+          81,
+          11,
+          173,
+          9,
+          189,
+          16,
+          140,
+          1,
+          54,
+          11,
+          137,
+          3,
+          11,
+          4,
+          181,
+          12,
+          27,
+          176,
+          176,
+          254,
+          176,
+          176,
+          16,
+          85,
+          16,
+          140,
+          12,
+          12,
+          13,
+          152,
+          3,
+          11,
+          14,
+          24,
+          14,
+          32,
+          3,
+          157,
+          15,
+          33,
+          55,
+          255,
+          16,
+          85,
+          4,
+          96,
+          14,
+          44,
+          16,
+          101,
+          15,
+          66,
+          15,
+          126,
+          16,
+          244,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          9,
+          95,
+          3,
+          11,
+          3,
+          219,
+          9,
+          175,
+          3,
+          157,
+          13,
+          139,
+          9,
+          147,
+          55,
+          251,
+          3,
+          6,
+          9,
+          228,
+          12,
+          159,
+          9,
+          95,
+          3,
+          11,
+          5,
+          123,
+          3,
+          84,
+          7,
+          125,
+          15,
+          230,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          161,
+          8,
+          100,
+          7,
+          137,
+          1,
+          75,
+          55,
+          255
+        ],
+        "hex": "04 C6 04 C6 04 C6 3B 0D 98 07 D7 01 D6 10 55 09 4C 0B 4F 0D 70 14 54 37 FB 07 C2 09 D9 05 D2 01 51 0B AD 09 BD 10 8C 01 36 0B 89 03 0B 04 B5 0C 1B B0 B0 FE B0 B0 10 55 10 8C 0C 0C 0D 98 03 0B 0E 18 0E 20 03 9D 0F 21 37 FF 10 55 04 60 0E 2C 10 65 0F 42 0F 7E 10 F4 FE 01 63 07 D7 09 66 09 5F 03 0B 03 DB 09 AF 03 9D 0D 8B 09 93 37 FB 03 06 09 E4 0C 9F 09 5F 03 0B 05 7B 03 54 07 7D 0F E6 FE 01 63 07 D7 09 66 0C A1 08 64 07 89 01 4B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 43,
+            "bytes": [
+              255
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 51,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 64,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 75,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 85,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LavenderTown_Text_TownKnownAsMonGraveSite": {
+      "label": "LavenderTown_Text_TownKnownAsMonGraveSite",
+      "line": 65,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "raw_text": "This town is known as the grave\\nsite of POKéMON.\\pMemorial services are held in\\nPOKéMON TOWER.$",
+      "display_text": "This town is known as the grave\nsite of POKéMON.\n\nMemorial services are held in\nPOKéMON TOWER.",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 94,
+        "bytes": [
+          206,
+          220,
+          221,
+          231,
+          0,
+          232,
+          227,
+          235,
+          226,
+          0,
+          221,
+          231,
+          0,
+          223,
+          226,
+          227,
+          235,
+          226,
+          0,
+          213,
+          231,
+          0,
+          232,
+          220,
+          217,
+          0,
+          219,
+          230,
+          213,
+          234,
+          217,
+          254,
+          231,
+          221,
+          232,
+          217,
+          0,
+          227,
+          218,
+          0,
+          202,
+          201,
+          197,
+          27,
+          199,
+          201,
+          200,
+          173,
+          251,
+          199,
+          217,
+          225,
+          227,
+          230,
+          221,
+          213,
+          224,
+          0,
+          231,
+          217,
+          230,
+          234,
+          221,
+          215,
+          217,
+          231,
+          0,
+          213,
+          230,
+          217,
+          0,
+          220,
+          217,
+          224,
+          216,
+          0,
+          221,
+          226,
+          254,
+          202,
+          201,
+          197,
+          27,
+          199,
+          201,
+          200,
+          0,
+          206,
+          201,
+          209,
+          191,
+          204,
+          173,
+          255
+        ],
+        "hex": "CE DC DD E7 00 E8 E3 EB E2 00 DD E7 00 DF E2 E3 EB E2 00 D5 E7 00 E8 DC D9 00 DB E6 D5 EA D9 FE E7 DD E8 D9 00 E3 DA 00 CA C9 C5 1B C7 C9 C8 AD FB C7 D9 E1 E3 E6 DD D5 E0 00 E7 D9 E6 EA DD D7 D9 E7 00 D5 E6 D9 00 DC D9 E0 D8 00 DD E2 FE CA C9 C5 1B C7 C9 C8 00 CE C9 D1 BF CC AD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 49,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 80,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 96,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LavenderTown_Text_GhostsAppearedInTower": {
+      "label": "LavenderTown_Text_GhostsAppearedInTower",
+      "line": 71,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "raw_text": "幽灵在宝可梦塔里出没。\\p我想那应该是被火箭队杀掉的 \\n宝可梦的灵魂吧。$",
+      "display_text": "幽灵在宝可梦塔里出没。\n\n我想那应该是被火箭队杀掉的 \n宝可梦的灵魂吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 66,
+        "bytes": [
+          15,
+          114,
+          8,
+          188,
+          15,
+          230,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          161,
+          8,
+          100,
+          2,
+          120,
+          9,
+          83,
+          55,
+          251,
+          13,
+          152,
+          14,
+          24,
+          9,
+          189,
+          15,
+          84,
+          4,
+          45,
+          12,
+          12,
+          1,
+          120,
+          5,
+          125,
+          5,
+          232,
+          3,
+          120,
+          11,
+          143,
+          3,
+          59,
+          3,
+          11,
+          0,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          8,
+          188,
+          5,
+          119,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "0F 72 08 BC 0F E6 01 63 07 D7 09 66 0C A1 08 64 02 78 09 53 37 FB 0D 98 0E 18 09 BD 0F 54 04 2D 0C 0C 01 78 05 7D 05 E8 03 78 0B 8F 03 3B 03 0B 00 FE 01 63 07 D7 09 66 03 0B 08 BC 05 77 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LavenderTown_Text_TownSign": {
+      "label": "LavenderTown_Text_TownSign",
+      "line": 76,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "raw_text": "紫苑镇\\n高贵的紫色小镇$",
+      "display_text": "紫苑镇\n高贵的紫色小镇",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          17,
+          7,
+          15,
+          195,
+          16,
+          101,
+          254,
+          4,
+          73,
+          4,
+          187,
+          3,
+          11,
+          17,
+          7,
+          11,
+          137,
+          14,
+          44,
+          16,
+          101,
+          255
+        ],
+        "hex": "11 07 0F C3 10 65 FE 04 49 04 BB 03 0B 11 07 0B 89 0E 2C 10 65 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LavenderTown_Text_SilphScopeNotice": {
+      "label": "LavenderTown_Text_SilphScopeNotice",
+      "line": 80,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "raw_text": "新的西尔佛观测镜！\\n让无形的东西变得有形！\\p西尔佛公司$",
+      "display_text": "新的西尔佛观测镜！\n让无形的东西变得有形！\n\n西尔佛公司",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 51,
+        "bytes": [
+          14,
+          77,
+          3,
+          11,
+          13,
+          189,
+          3,
+          160,
+          3,
+          243,
+          4,
+          163,
+          2,
+          6,
+          7,
+          101,
+          60,
+          254,
+          11,
+          67,
+          13,
+          164,
+          14,
+          89,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          1,
+          161,
+          3,
+          10,
+          15,
+          126,
+          14,
+          89,
+          60,
+          251,
+          13,
+          189,
+          3,
+          160,
+          3,
+          243,
+          4,
+          115,
+          12,
+          97,
+          255
+        ],
+        "hex": "0E 4D 03 0B 0D BD 03 A0 03 F3 04 A3 02 06 07 65 3C FE 0B 43 0D A4 0E 59 03 0B 03 50 0D BD 01 A1 03 0A 0F 7E 0E 59 3C FB 0D BD 03 A0 03 F3 04 73 0C 61 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LavenderTown_Text_VolunteerPokemonHouse": {
+      "label": "LavenderTown_Text_VolunteerPokemonHouse",
+      "line": 85,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "raw_text": "紫苑宝可梦\\n宝可梦之家$",
+      "display_text": "紫苑宝可梦\n宝可梦之家",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          17,
+          7,
+          15,
+          195,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          127,
+          5,
+          189,
+          255
+        ],
+        "hex": "11 07 0F C3 01 63 07 D7 09 66 FE 01 63 07 D7 09 66 10 7F 05 BD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LavenderTown_Text_PokemonTowerSign": {
+      "label": "LavenderTown_Text_PokemonTowerSign",
+      "line": 89,
+      "source_file": "data/maps/LavenderTown_Frlg/scripts.inc",
+      "raw_text": "宝可梦塔\\n宝可梦的灵魂在这里安息$",
+      "display_text": "宝可梦塔\n宝可梦的灵魂在这里安息",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          161,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          8,
+          188,
+          5,
+          119,
+          15,
+          230,
+          16,
+          85,
+          8,
+          100,
+          1,
+          17,
+          13,
+          198,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 0C A1 FE 01 63 07 D7 09 66 03 0B 08 BC 05 77 0F E6 10 55 08 64 01 11 0D C6 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "map_script": 1,
+      "setflag": 1,
+      "setvar": 1,
+      "setworldmapflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 19,
+    "script_count": 10,
+    "movement_count": 0,
+    "text_count": 9,
+    "encoded_text_count": 9,
+    "text_source_byte_count": 476,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 9
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 9,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "lock": 1,
+      "map_script": 1,
+      "msgbox": 9,
+      "release": 2,
+      "setflag": 1,
+      "setvar": 1,
+      "setworldmapflag": 1
+    }
+  }
+}

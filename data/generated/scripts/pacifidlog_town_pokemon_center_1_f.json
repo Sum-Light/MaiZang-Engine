@@ -1,0 +1,733 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PacifidlogTown_PokemonCenter_1F",
+    "map_script": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+    "map_json": "data/maps/PacifidlogTown_PokemonCenter_1F/map.json",
+    "map_id": "MAP_PACIFIDLOG_TOWN_POKEMON_CENTER_1F",
+    "map_name": "PacifidlogTown_PokemonCenter_1F"
+  },
+  "labels": {
+    "PacifidlogTown_PokemonCenter_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "PacifidlogTown_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "PacifidlogTown_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 6
+    },
+    "PacifidlogTown_PokemonCenter_1F_EventScript_Girl": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "PacifidlogTown_PokemonCenter_1F_EventScript_Woman": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "PacifidlogTown_PokemonCenter_1F_EventScript_OldMan": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "PacifidlogTown_PokemonCenter_1F_Text_WhatColorTrainerCard": {
+      "kind": "text",
+      "line": 30,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "PacifidlogTown_PokemonCenter_1F_Text_OnColonyOfCorsola": {
+      "kind": "text",
+      "line": 33,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "PacifidlogTown_PokemonCenter_1F_Text_AncestorsLivedOnBoats": {
+      "kind": "text",
+      "line": 36,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "PacifidlogTown_PokemonCenter_1F_MapScripts": {
+      "label": "PacifidlogTown_PokemonCenter_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "PacifidlogTown_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, PacifidlogTown_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PacifidlogTown_PokemonCenter_1F_OnTransition": {
+      "label": "PacifidlogTown_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_PACIFIDLOG_TOWN"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_PACIFIDLOG_TOWN",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PacifidlogTown_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "PacifidlogTown_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x800B",
+            "LOCALID_PACIFIDLOG_NURSE"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_0x800B, LOCALID_PACIFIDLOG_NURSE",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_PkmnCenterNurse"
+          ],
+          "line": 12,
+          "raw": "call Common_EventScript_PkmnCenterNurse",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 13,
+          "raw": "waitmessage",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 14,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 15,
+          "raw": "release",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_PkmnCenterNurse",
+          "line": 12
+        }
+      ]
+    },
+    "PacifidlogTown_PokemonCenter_1F_EventScript_Girl": {
+      "label": "PacifidlogTown_PokemonCenter_1F_EventScript_Girl",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PacifidlogTown_PokemonCenter_1F_Text_WhatColorTrainerCard",
+            "MSGBOX_NPC"
+          ],
+          "line": 19,
+          "raw": "msgbox PacifidlogTown_PokemonCenter_1F_Text_WhatColorTrainerCard, MSGBOX_NPC",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PacifidlogTown_PokemonCenter_1F_Text_WhatColorTrainerCard",
+          "mode": "MSGBOX_NPC",
+          "line": 19
+        }
+      ],
+      "branch_targets": []
+    },
+    "PacifidlogTown_PokemonCenter_1F_EventScript_Woman": {
+      "label": "PacifidlogTown_PokemonCenter_1F_EventScript_Woman",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PacifidlogTown_PokemonCenter_1F_Text_OnColonyOfCorsola",
+            "MSGBOX_NPC"
+          ],
+          "line": 23,
+          "raw": "msgbox PacifidlogTown_PokemonCenter_1F_Text_OnColonyOfCorsola, MSGBOX_NPC",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PacifidlogTown_PokemonCenter_1F_Text_OnColonyOfCorsola",
+          "mode": "MSGBOX_NPC",
+          "line": 23
+        }
+      ],
+      "branch_targets": []
+    },
+    "PacifidlogTown_PokemonCenter_1F_EventScript_OldMan": {
+      "label": "PacifidlogTown_PokemonCenter_1F_EventScript_OldMan",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PacifidlogTown_PokemonCenter_1F_Text_AncestorsLivedOnBoats",
+            "MSGBOX_NPC"
+          ],
+          "line": 27,
+          "raw": "msgbox PacifidlogTown_PokemonCenter_1F_Text_AncestorsLivedOnBoats, MSGBOX_NPC",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 28,
+          "raw": "end",
+          "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PacifidlogTown_PokemonCenter_1F_Text_AncestorsLivedOnBoats",
+          "mode": "MSGBOX_NPC",
+          "line": 27
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "PacifidlogTown_PokemonCenter_1F_Text_WhatColorTrainerCard": {
+      "label": "PacifidlogTown_PokemonCenter_1F_Text_WhatColorTrainerCard",
+      "line": 30,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "你的训练家卡是什么颜色？\\n我的是紫铜的！$",
+      "display_text": "你的训练家卡是什么颜色？\n我的是紫铜的！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          9,
+          217,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          7,
+          182,
+          12,
+          12,
+          11,
+          238,
+          9,
+          76,
+          14,
+          190,
+          11,
+          137,
+          61,
+          254,
+          13,
+          152,
+          3,
+          11,
+          12,
+          12,
+          17,
+          7,
+          13,
+          21,
+          3,
+          11,
+          60,
+          255
+        ],
+        "hex": "09 D9 03 0B 0E 9E 08 8A 05 BD 07 B6 0C 0C 0B EE 09 4C 0E BE 0B 89 3D FE 0D 98 03 0B 0C 0C 11 07 0D 15 03 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PacifidlogTown_PokemonCenter_1F_Text_OnColonyOfCorsola": {
+      "label": "PacifidlogTown_PokemonCenter_1F_Text_OnColonyOfCorsola",
+      "line": 33,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "暮水镇浮在\\n大群太阳珊瑚上。\\p我这么说的话，\\n你会相信吗？$",
+      "display_text": "暮水镇浮在\n大群太阳珊瑚上。\n\n我这么说的话，\n你会相信吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 53,
+        "bytes": [
+          9,
+          176,
+          12,
+          81,
+          16,
+          101,
+          4,
+          11,
+          15,
+          230,
+          254,
+          2,
+          211,
+          11,
+          58,
+          12,
+          172,
+          14,
+          221,
+          11,
+          152,
+          5,
+          38,
+          11,
+          173,
+          55,
+          251,
+          13,
+          152,
+          16,
+          85,
+          9,
+          76,
+          12,
+          88,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          9,
+          217,
+          5,
+          110,
+          14,
+          13,
+          14,
+          80,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "09 B0 0C 51 10 65 04 0B 0F E6 FE 02 D3 0B 3A 0C AC 0E DD 0B 98 05 26 0B AD 37 FB 0D 98 10 55 09 4C 0C 58 03 0B 05 3D 3B FE 09 D9 05 6E 0E 0D 0E 50 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PacifidlogTown_PokemonCenter_1F_Text_AncestorsLivedOnBoats": {
+      "label": "PacifidlogTown_PokemonCenter_1F_Text_AncestorsLivedOnBoats",
+      "line": 36,
+      "source_file": "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "据说暮水镇人的祖先\\n一生都与船只相伴——\\l在船上生活，在船上终老。\\p我想他们选择这样的生活，\\n是为了追寻什么重要的东西吧。$",
+      "display_text": "据说暮水镇人的祖先\n一生都与船只相伴——\n在船上生活，在船上终老。\n\n我想他们选择这样的生活，\n是为了追寻什么重要的东西吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 113,
+        "bytes": [
+          7,
+          141,
+          12,
+          88,
+          9,
+          176,
+          12,
+          81,
+          16,
+          101,
+          11,
+          75,
+          3,
+          11,
+          17,
+          30,
+          13,
+          236,
+          254,
+          15,
+          11,
+          11,
+          216,
+          3,
+          97,
+          15,
+          153,
+          2,
+          140,
+          16,
+          140,
+          14,
+          13,
+          1,
+          72,
+          63,
+          63,
+          250,
+          15,
+          230,
+          2,
+          140,
+          11,
+          173,
+          11,
+          216,
+          5,
+          123,
+          59,
+          15,
+          230,
+          2,
+          140,
+          11,
+          173,
+          16,
+          166,
+          8,
+          68,
+          55,
+          251,
+          13,
+          152,
+          14,
+          24,
+          12,
+          158,
+          9,
+          95,
+          14,
+          138,
+          16,
+          6,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          11,
+          216,
+          5,
+          123,
+          59,
+          254,
+          12,
+          12,
+          13,
+          112,
+          8,
+          158,
+          16,
+          230,
+          14,
+          153,
+          11,
+          238,
+          9,
+          76,
+          16,
+          169,
+          14,
+          241,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "07 8D 0C 58 09 B0 0C 51 10 65 0B 4B 03 0B 11 1E 0D EC FE 0F 0B 0B D8 03 61 0F 99 02 8C 10 8C 0E 0D 01 48 3F 3F FA 0F E6 02 8C 0B AD 0B D8 05 7B 3B 0F E6 02 8C 0B AD 10 A6 08 44 37 FB 0D 98 0E 18 0C 9E 09 5F 0E 8A 10 06 10 55 0E E2 03 0B 0B D8 05 7B 3B FE 0C 0C 0D 70 08 9E 10 E6 0E 99 0B EE 09 4C 10 A9 0E F1 03 0B 03 50 0D BD 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 21,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 35,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 49,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 65,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 2,
+      "setrespawn": 1,
+      "setvar": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 204,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "end": 5,
+      "map_script": 2,
+      "msgbox": 3,
+      "release": 1,
+      "setrespawn": 1,
+      "setvar": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    }
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PetalburgCity_PokemonCenter_2F",
+    "map_script": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc",
+    "map_json": "data/maps/PetalburgCity_PokemonCenter_2F/map.json",
+    "map_id": "MAP_PETALBURG_CITY_POKEMON_CENTER_2F",
+    "map_name": "PetalburgCity_PokemonCenter_2F"
+  },
+  "labels": {
+    "PetalburgCity_PokemonCenter_2F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc",
+      "instruction_count": 5
+    },
+    "PetalburgCity_PokemonCenter_2F_EventScript_Colosseum": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgCity_PokemonCenter_2F_EventScript_TradeCenter": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgCity_PokemonCenter_2F_EventScript_RecordCorner": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "PetalburgCity_PokemonCenter_2F_MapScripts": {
+      "label": "PetalburgCity_PokemonCenter_2F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "CableClub_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, CableClub_OnFrame",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "CableClub_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, CableClub_OnWarp",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "CableClub_OnLoad"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, CableClub_OnLoad",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "CableClub_OnTransition"
+          ],
+          "line": 5,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, CableClub_OnTransition",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 6,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgCity_PokemonCenter_2F_EventScript_Colosseum": {
+      "label": "PetalburgCity_PokemonCenter_2F_EventScript_Colosseum",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "CableClub_EventScript_Colosseum"
+          ],
+          "line": 10,
+          "raw": "call CableClub_EventScript_Colosseum",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "CableClub_EventScript_Colosseum",
+          "line": 10
+        }
+      ]
+    },
+    "PetalburgCity_PokemonCenter_2F_EventScript_TradeCenter": {
+      "label": "PetalburgCity_PokemonCenter_2F_EventScript_TradeCenter",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "CableClub_EventScript_TradeCenter"
+          ],
+          "line": 14,
+          "raw": "call CableClub_EventScript_TradeCenter",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "CableClub_EventScript_TradeCenter",
+          "line": 14
+        }
+      ]
+    },
+    "PetalburgCity_PokemonCenter_2F_EventScript_RecordCorner": {
+      "label": "PetalburgCity_PokemonCenter_2F_EventScript_RecordCorner",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "CableClub_EventScript_RecordCorner"
+          ],
+          "line": 18,
+          "raw": "call CableClub_EventScript_RecordCorner",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "CableClub_EventScript_RecordCorner",
+          "line": 18
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 4
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 4,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 3,
+      "end": 3,
+      "map_script": 4
+    }
+  }
+}

@@ -1,0 +1,656 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "LavaridgeTown_Mart",
+    "map_script": "data/maps/LavaridgeTown_Mart/scripts.inc",
+    "map_json": "data/maps/LavaridgeTown_Mart/map.json",
+    "map_id": "MAP_LAVARIDGE_TOWN_MART",
+    "map_name": "LavaridgeTown_Mart"
+  },
+  "labels": {
+    "LavaridgeTown_Mart_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instruction_count": 1
+    },
+    "LavaridgeTown_Mart_EventScript_Clerk": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instruction_count": 9
+    },
+    "LavaridgeTown_Mart_Pokemart": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instruction_count": 10
+    },
+    "LavaridgeTown_Mart_EventScript_ExpertM": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavaridgeTown_Mart_EventScript_OldWoman": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instruction_count": 2
+    },
+    "LavaridgeTown_Mart_Text_XSpeedFirstStrike": {
+      "kind": "text",
+      "line": 35,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instruction_count": 1
+    },
+    "LavaridgeTown_Mart_Text_LocalSpecialtyOnMtChimney": {
+      "kind": "text",
+      "line": 38,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "LavaridgeTown_Mart_MapScripts": {
+      "label": "LavaridgeTown_Mart_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LavaridgeTown_Mart_EventScript_Clerk": {
+      "label": "LavaridgeTown_Mart_EventScript_Clerk",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_HowMayIServeYou"
+          ],
+          "line": 7,
+          "raw": "message gText_HowMayIServeYou",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 8,
+          "raw": "waitmessage",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": "pokemart",
+          "args": [
+            "LavaridgeTown_Mart_Pokemart"
+          ],
+          "line": 9,
+          "raw": "pokemart LavaridgeTown_Mart_Pokemart",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 10,
+          "raw": "msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 11,
+          "raw": "release",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 14,
+          "raw": ".align 2",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_HowMayIServeYou",
+          "mode": "",
+          "line": 7
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    },
+    "LavaridgeTown_Mart_Pokemart": {
+      "label": "LavaridgeTown_Mart_Pokemart",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_GREAT_BALL"
+          ],
+          "line": 16,
+          "raw": ".2byte ITEM_GREAT_BALL",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_SUPER_POTION"
+          ],
+          "line": 17,
+          "raw": ".2byte ITEM_SUPER_POTION",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ANTIDOTE"
+          ],
+          "line": 18,
+          "raw": ".2byte ITEM_ANTIDOTE",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_PARALYZE_HEAL"
+          ],
+          "line": 19,
+          "raw": ".2byte ITEM_PARALYZE_HEAL",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_AWAKENING"
+          ],
+          "line": 20,
+          "raw": ".2byte ITEM_AWAKENING",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_BURN_HEAL"
+          ],
+          "line": 21,
+          "raw": ".2byte ITEM_BURN_HEAL",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_REVIVE"
+          ],
+          "line": 22,
+          "raw": ".2byte ITEM_REVIVE",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_SUPER_REPEL"
+          ],
+          "line": 23,
+          "raw": ".2byte ITEM_SUPER_REPEL",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_SPEED"
+          ],
+          "line": 24,
+          "raw": ".2byte ITEM_X_SPEED",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": "pokemartlistend",
+          "args": [],
+          "line": 25,
+          "raw": "pokemartlistend",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LavaridgeTown_Mart_EventScript_ExpertM": {
+      "label": "LavaridgeTown_Mart_EventScript_ExpertM",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LavaridgeTown_Mart_Text_XSpeedFirstStrike",
+            "MSGBOX_NPC"
+          ],
+          "line": 28,
+          "raw": "msgbox LavaridgeTown_Mart_Text_XSpeedFirstStrike, MSGBOX_NPC",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LavaridgeTown_Mart_Text_XSpeedFirstStrike",
+          "mode": "MSGBOX_NPC",
+          "line": 28
+        }
+      ],
+      "branch_targets": []
+    },
+    "LavaridgeTown_Mart_EventScript_OldWoman": {
+      "label": "LavaridgeTown_Mart_EventScript_OldWoman",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LavaridgeTown_Mart_Text_LocalSpecialtyOnMtChimney",
+            "MSGBOX_NPC"
+          ],
+          "line": 32,
+          "raw": "msgbox LavaridgeTown_Mart_Text_LocalSpecialtyOnMtChimney, MSGBOX_NPC",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LavaridgeTown_Mart_Text_LocalSpecialtyOnMtChimney",
+          "mode": "MSGBOX_NPC",
+          "line": 32
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "LavaridgeTown_Mart_Text_XSpeedFirstStrike": {
+      "label": "LavaridgeTown_Mart_Text_XSpeedFirstStrike",
+      "line": 35,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "raw_text": "用速度强化给对战中的宝可梦\\n提升速度，\\p那样它就有可能抢先攻击——\\n明显会成为优势！$",
+      "display_text": "用速度强化给对战中的宝可梦\n提升速度，\n\n那样它就有可能抢先攻击——\n明显会成为优势！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 78,
+        "bytes": [
+          15,
+          113,
+          12,
+          124,
+          3,
+          109,
+          10,
+          216,
+          5,
+          60,
+          4,
+          98,
+          3,
+          121,
+          16,
+          48,
+          16,
+          161,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          12,
+          226,
+          11,
+          219,
+          12,
+          124,
+          3,
+          109,
+          59,
+          251,
+          9,
+          189,
+          14,
+          226,
+          12,
+          159,
+          7,
+          125,
+          15,
+          126,
+          7,
+          215,
+          9,
+          210,
+          10,
+          217,
+          13,
+          236,
+          4,
+          109,
+          5,
+          132,
+          63,
+          63,
+          254,
+          9,
+          143,
+          14,
+          1,
+          5,
+          110,
+          2,
+          75,
+          13,
+          112,
+          15,
+          115,
+          12,
+          11,
+          60,
+          255
+        ],
+        "hex": "0F 71 0C 7C 03 6D 0A D8 05 3C 04 62 03 79 10 30 10 A1 03 0B 01 63 07 D7 09 66 FE 0C E2 0B DB 0C 7C 03 6D 3B FB 09 BD 0E E2 0C 9F 07 7D 0F 7E 07 D7 09 D2 0A D9 0D EC 04 6D 05 84 3F 3F FE 09 8F 0E 01 05 6E 02 4B 0D 70 0F 73 0C 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LavaridgeTown_Mart_Text_LocalSpecialtyOnMtChimney": {
+      "label": "LavaridgeTown_Mart_Text_LocalSpecialtyOnMtChimney",
+      "line": 38,
+      "source_file": "data/maps/LavaridgeTown_Mart/scripts.inc",
+      "raw_text": "只有在烟囱山山顶\\n才能买到当地的特产。\\p给宝可梦吃的话，它会很高兴的。$",
+      "display_text": "只有在烟囱山山顶\n才能买到当地的特产。\n\n给宝可梦吃的话，它会很高兴的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 66,
+        "bytes": [
+          16,
+          140,
+          15,
+          126,
+          15,
+          230,
+          14,
+          181,
+          2,
+          177,
+          11,
+          155,
+          11,
+          155,
+          3,
+          74,
+          254,
+          1,
+          224,
+          9,
+          210,
+          9,
+          44,
+          3,
+          4,
+          2,
+          239,
+          3,
+          31,
+          3,
+          11,
+          12,
+          217,
+          2,
+          30,
+          55,
+          251,
+          4,
+          98,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          2,
+          86,
+          3,
+          11,
+          5,
+          61,
+          59,
+          12,
+          159,
+          5,
+          110,
+          5,
+          11,
+          4,
+          73,
+          14,
+          86,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "10 8C 0F 7E 0F E6 0E B5 02 B1 0B 9B 0B 9B 03 4A FE 01 E0 09 D2 09 2C 03 04 02 EF 03 1F 03 0B 0C D9 02 1E 37 FB 04 62 01 63 07 D7 09 66 02 56 03 0B 05 3D 3B 0C 9F 05 6E 05 0B 04 49 0E 56 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "pokemart": 1,
+      "pokemartlistend": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 144,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "faceplayer": 1,
+      "lock": 1,
+      "message": 1,
+      "msgbox": 3,
+      "pokemart": 1,
+      "pokemartlistend": 1,
+      "release": 1,
+      "waitmessage": 1
+    }
+  }
+}

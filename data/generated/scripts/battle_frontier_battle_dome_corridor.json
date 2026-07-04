@@ -1,0 +1,1282 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "BattleFrontier_BattleDomeCorridor",
+    "map_script": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+    "map_json": "data/maps/BattleFrontier_BattleDomeCorridor/map.json",
+    "map_id": "MAP_BATTLE_FRONTIER_BATTLE_DOME_CORRIDOR",
+    "map_name": "BattleFrontier_BattleDomeCorridor"
+  },
+  "labels": {
+    "BattleFrontier_BattleDomeCorridor_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomeCorridor_OnFrame": {
+      "kind": "map_script_table",
+      "line": 5,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomeCorridor_EventScript_EnterCorridor": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 15
+    },
+    "BattleFrontier_BattleDomeCorridor_EventScript_WalkToBattleRoomLvOpen": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 10
+    },
+    "BattleFrontier_BattleDomeCorridor_EventScript_WarpToPreBattleRoom": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_PlayerWalkToDoorLv50": {
+      "kind": "movement",
+      "line": 44,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 13
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_PlayerEnterDoorLv50": {
+      "kind": "movement",
+      "line": 59,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_AttendantWalkToDoorLv50": {
+      "kind": "movement",
+      "line": 65,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 12
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_AttendantEnterDoorLv50": {
+      "kind": "movement",
+      "line": 79,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_PlayerWalkToDoorLvOpen": {
+      "kind": "movement",
+      "line": 84,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 17
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_PlayerEnterDoorLvOpen": {
+      "kind": "movement",
+      "line": 103,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_AttendantWalkToDoorLvOpen": {
+      "kind": "movement",
+      "line": 109,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 16
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_AttendantEnterDoorLvOpen": {
+      "kind": "movement",
+      "line": 127,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_WalkToBattleRoomMidRight": {
+      "kind": "movement",
+      "line": 133,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instruction_count": 16
+    }
+  },
+  "scripts": {
+    "BattleFrontier_BattleDomeCorridor_MapScripts": {
+      "label": "BattleFrontier_BattleDomeCorridor_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "BattleFrontier_BattleDomeCorridor_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattleDomeCorridor_OnFrame",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_OnFrame": {
+      "label": "BattleFrontier_BattleDomeCorridor_OnFrame",
+      "kind": "map_script_table",
+      "line": 5,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_0",
+            "0",
+            "BattleFrontier_BattleDomeCorridor_EventScript_EnterCorridor"
+          ],
+          "line": 6,
+          "raw": "map_script_2 VAR_TEMP_0, 0, BattleFrontier_BattleDomeCorridor_EventScript_EnterCorridor",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 7,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_EventScript_EnterCorridor": {
+      "label": "BattleFrontier_BattleDomeCorridor_EventScript_EnterCorridor",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay",
+          "args": [
+            "16"
+          ],
+          "line": 10,
+          "raw": "delay 16",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_0",
+            "1"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_TEMP_0, 1",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_LVL_MODE"
+          ],
+          "line": 12,
+          "raw": "frontier_get FRONTIER_DATA_LVL_MODE",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FRONTIER_LVL_OPEN",
+            "BattleFrontier_BattleDomeCorridor_EventScript_WalkToBattleRoomLvOpen"
+          ],
+          "line": 13,
+          "raw": "goto_if_eq VAR_RESULT, FRONTIER_LVL_OPEN, BattleFrontier_BattleDomeCorridor_EventScript_WalkToBattleRoomLvOpen",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOME_CORRIDOR_ATTENDANT",
+            "BattleFrontier_BattleDomeCorridor_Movement_AttendantWalkToDoorLv50"
+          ],
+          "line": 14,
+          "raw": "applymovement LOCALID_DOME_CORRIDOR_ATTENDANT, BattleFrontier_BattleDomeCorridor_Movement_AttendantWalkToDoorLv50",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattleDomeCorridor_Movement_PlayerWalkToDoorLv50"
+          ],
+          "line": 15,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattleDomeCorridor_Movement_PlayerWalkToDoorLv50",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 16,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "opendoor",
+          "args": [
+            "13",
+            "3"
+          ],
+          "line": 17,
+          "raw": "opendoor 13, 3",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 18,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOME_CORRIDOR_ATTENDANT",
+            "BattleFrontier_BattleDomeCorridor_Movement_AttendantEnterDoorLv50"
+          ],
+          "line": 19,
+          "raw": "applymovement LOCALID_DOME_CORRIDOR_ATTENDANT, BattleFrontier_BattleDomeCorridor_Movement_AttendantEnterDoorLv50",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattleDomeCorridor_Movement_PlayerEnterDoorLv50"
+          ],
+          "line": 20,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattleDomeCorridor_Movement_PlayerEnterDoorLv50",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 21,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "closedoor",
+          "args": [
+            "13",
+            "3"
+          ],
+          "line": 22,
+          "raw": "closedoor 13, 3",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 23,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleDomeCorridor_EventScript_WarpToPreBattleRoom"
+          ],
+          "line": 24,
+          "raw": "goto BattleFrontier_BattleDomeCorridor_EventScript_WarpToPreBattleRoom",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleDomeCorridor_EventScript_WalkToBattleRoomLvOpen",
+          "line": 13
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleDomeCorridor_EventScript_WarpToPreBattleRoom",
+          "line": 24
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomeCorridor_EventScript_WalkToBattleRoomLvOpen": {
+      "label": "BattleFrontier_BattleDomeCorridor_EventScript_WalkToBattleRoomLvOpen",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOME_CORRIDOR_ATTENDANT",
+            "BattleFrontier_BattleDomeCorridor_Movement_AttendantWalkToDoorLvOpen"
+          ],
+          "line": 27,
+          "raw": "applymovement LOCALID_DOME_CORRIDOR_ATTENDANT, BattleFrontier_BattleDomeCorridor_Movement_AttendantWalkToDoorLvOpen",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattleDomeCorridor_Movement_PlayerWalkToDoorLvOpen"
+          ],
+          "line": 28,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattleDomeCorridor_Movement_PlayerWalkToDoorLvOpen",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 29,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "opendoor",
+          "args": [
+            "37",
+            "3"
+          ],
+          "line": 30,
+          "raw": "opendoor 37, 3",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 31,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOME_CORRIDOR_ATTENDANT",
+            "BattleFrontier_BattleDomeCorridor_Movement_AttendantEnterDoorLvOpen"
+          ],
+          "line": 32,
+          "raw": "applymovement LOCALID_DOME_CORRIDOR_ATTENDANT, BattleFrontier_BattleDomeCorridor_Movement_AttendantEnterDoorLvOpen",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattleDomeCorridor_Movement_PlayerEnterDoorLvOpen"
+          ],
+          "line": 33,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattleDomeCorridor_Movement_PlayerEnterDoorLvOpen",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 34,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "closedoor",
+          "args": [
+            "37",
+            "3"
+          ],
+          "line": 35,
+          "raw": "closedoor 37, 3",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 36,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_EventScript_WarpToPreBattleRoom": {
+      "label": "BattleFrontier_BattleDomeCorridor_EventScript_WarpToPreBattleRoom",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 38,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "0"
+          ],
+          "line": 39,
+          "raw": "setvar VAR_0x8006, 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_DOME_PRE_BATTLE_ROOM",
+            "5",
+            "7"
+          ],
+          "line": 40,
+          "raw": "warp MAP_BATTLE_FRONTIER_BATTLE_DOME_PRE_BATTLE_ROOM, 5, 7",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 41,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "BattleFrontier_BattleDomeCorridor_Movement_PlayerWalkToDoorLv50": {
+      "label": "BattleFrontier_BattleDomeCorridor_Movement_PlayerWalkToDoorLv50",
+      "kind": "movement",
+      "line": 44,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 45,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 46,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 47,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 48,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 49,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 50,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 51,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 52,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 53,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 54,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 55,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 56,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 57,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_PlayerEnterDoorLv50": {
+      "label": "BattleFrontier_BattleDomeCorridor_Movement_PlayerEnterDoorLv50",
+      "kind": "movement",
+      "line": 59,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 60,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 61,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 62,
+          "raw": "set_invisible",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 63,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_AttendantWalkToDoorLv50": {
+      "label": "BattleFrontier_BattleDomeCorridor_Movement_AttendantWalkToDoorLv50",
+      "kind": "movement",
+      "line": 65,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 66,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 67,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 68,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 69,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 70,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 71,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 72,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 73,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 74,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 75,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 76,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 77,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_AttendantEnterDoorLv50": {
+      "label": "BattleFrontier_BattleDomeCorridor_Movement_AttendantEnterDoorLv50",
+      "kind": "movement",
+      "line": 79,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 80,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 81,
+          "raw": "set_invisible",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 82,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_PlayerWalkToDoorLvOpen": {
+      "label": "BattleFrontier_BattleDomeCorridor_Movement_PlayerWalkToDoorLvOpen",
+      "kind": "movement",
+      "line": 84,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 85,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 86,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 87,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 88,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 89,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 90,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 91,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 92,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 93,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 94,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 95,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 96,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 97,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 98,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 99,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 100,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 101,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_PlayerEnterDoorLvOpen": {
+      "label": "BattleFrontier_BattleDomeCorridor_Movement_PlayerEnterDoorLvOpen",
+      "kind": "movement",
+      "line": 103,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 104,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 105,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 106,
+          "raw": "set_invisible",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 107,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_AttendantWalkToDoorLvOpen": {
+      "label": "BattleFrontier_BattleDomeCorridor_Movement_AttendantWalkToDoorLvOpen",
+      "kind": "movement",
+      "line": 109,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 110,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 111,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 112,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 113,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 114,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 115,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 116,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 117,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 118,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 119,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 120,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 121,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 122,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 123,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 124,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 125,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_AttendantEnterDoorLvOpen": {
+      "label": "BattleFrontier_BattleDomeCorridor_Movement_AttendantEnterDoorLvOpen",
+      "kind": "movement",
+      "line": 127,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 128,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 129,
+          "raw": "set_invisible",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 130,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomeCorridor_Movement_WalkToBattleRoomMidRight": {
+      "label": "BattleFrontier_BattleDomeCorridor_Movement_WalkToBattleRoomMidRight",
+      "kind": "movement",
+      "line": 133,
+      "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 134,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 135,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 136,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 137,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 138,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 139,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 140,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 141,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 142,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 143,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 144,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 145,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 146,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 147,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 148,
+          "raw": "set_invisible",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 149,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 8,
+      "closedoor": 2,
+      "delay": 1,
+      "frontier_get": 1,
+      "goto_if_eq": 1,
+      "map_script": 1,
+      "map_script_2": 1,
+      "opendoor": 2,
+      "set_invisible": 5,
+      "setvar": 2,
+      "step_end": 9,
+      "waitdooranim": 4,
+      "waitmovement": 5,
+      "waitstate": 1,
+      "walk_in_place_faster_up": 2,
+      "walk_left": 20,
+      "walk_right": 39,
+      "walk_up": 13,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 14,
+    "script_count": 5,
+    "movement_count": 9,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 8,
+      "closedoor": 2,
+      "delay": 1,
+      "end": 1,
+      "frontier_get": 1,
+      "goto": 1,
+      "goto_if_eq": 1,
+      "map_script": 1,
+      "map_script_2": 1,
+      "opendoor": 2,
+      "set_invisible": 5,
+      "setvar": 2,
+      "step_end": 9,
+      "waitdooranim": 4,
+      "waitmovement": 5,
+      "waitstate": 1,
+      "walk_in_place_faster_up": 2,
+      "walk_left": 20,
+      "walk_right": 39,
+      "walk_up": 13,
+      "warp": 1
+    }
+  }
+}

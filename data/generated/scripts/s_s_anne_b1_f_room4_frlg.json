@@ -1,0 +1,624 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SSAnne_B1F_Room4_Frlg",
+    "map_script": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+    "map_json": "data/maps/SSAnne_B1F_Room4_Frlg/map.json",
+    "map_id": "MAP_SSANNE_B1F_ROOM4",
+    "map_name": "SSAnne_B1F_Room4_Frlg"
+  },
+  "labels": {
+    "SSAnne_B1F_Room4_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_B1F_Room4_EventScript_Leonard": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSAnne_B1F_Room4_EventScript_Duncan": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSAnne_B1F_Room4_Text_LeonardIntro": {
+      "kind": "text",
+      "line": 14,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_B1F_Room4_Text_LeonardDefeat": {
+      "kind": "text",
+      "line": 18,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_B1F_Room4_Text_LeonardPostBattle": {
+      "kind": "text",
+      "line": 22,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_B1F_Room4_Text_DuncanIntro": {
+      "kind": "text",
+      "line": 26,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_B1F_Room4_Text_DuncanDefeat": {
+      "kind": "text",
+      "line": 30,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_B1F_Room4_Text_DuncanPostBattle": {
+      "kind": "text",
+      "line": 33,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "SSAnne_B1F_Room4_Frlg_MapScripts": {
+      "label": "SSAnne_B1F_Room4_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_B1F_Room4_EventScript_Leonard": {
+      "label": "SSAnne_B1F_Room4_EventScript_Leonard",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_SAILOR_LEONARD",
+            "SSAnne_B1F_Room4_Text_LeonardIntro",
+            "SSAnne_B1F_Room4_Text_LeonardDefeat"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_SAILOR_LEONARD, SSAnne_B1F_Room4_Text_LeonardIntro, SSAnne_B1F_Room4_Text_LeonardDefeat",
+          "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_B1F_Room4_Text_LeonardPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox SSAnne_B1F_Room4_Text_LeonardPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_B1F_Room4_Text_LeonardPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "SSAnne_B1F_Room4_EventScript_Duncan": {
+      "label": "SSAnne_B1F_Room4_EventScript_Duncan",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_SAILOR_DUNCAN",
+            "SSAnne_B1F_Room4_Text_DuncanIntro",
+            "SSAnne_B1F_Room4_Text_DuncanDefeat"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_SAILOR_DUNCAN, SSAnne_B1F_Room4_Text_DuncanIntro, SSAnne_B1F_Room4_Text_DuncanDefeat",
+          "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_B1F_Room4_Text_DuncanPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox SSAnne_B1F_Room4_Text_DuncanPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_B1F_Room4_Text_DuncanPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SSAnne_B1F_Room4_Text_LeonardIntro": {
+      "label": "SSAnne_B1F_Room4_Text_LeonardIntro",
+      "line": 14,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "raw_text": "你知道他们是怎样\\n评价水手的战斗的！$",
+      "display_text": "你知道他们是怎样\n评价水手的战斗的！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          9,
+          217,
+          16,
+          123,
+          3,
+          7,
+          12,
+          158,
+          9,
+          95,
+          12,
+          12,
+          16,
+          10,
+          14,
+          226,
+          254,
+          10,
+          123,
+          5,
+          198,
+          12,
+          81,
+          12,
+          27,
+          3,
+          11,
+          16,
+          48,
+          3,
+          92,
+          3,
+          11,
+          60,
+          255
+        ],
+        "hex": "09 D9 10 7B 03 07 0C 9E 09 5F 0C 0C 10 0A 0E E2 FE 0A 7B 05 C6 0C 51 0C 1B 03 0B 10 30 03 5C 03 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room4_Text_LeonardDefeat": {
+      "label": "SSAnne_B1F_Room4_Text_LeonardDefeat",
+      "line": 18,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "raw_text": "很好！\\n精彩的战斗，伙计！$",
+      "display_text": "很好！\n精彩的战斗，伙计！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          5,
+          11,
+          4,
+          233,
+          60,
+          254,
+          7,
+          91,
+          1,
+          229,
+          3,
+          11,
+          16,
+          48,
+          3,
+          92,
+          59,
+          5,
+          124,
+          5,
+          177,
+          60,
+          255
+        ],
+        "hex": "05 0B 04 E9 3C FE 07 5B 01 E5 03 0B 10 30 03 5C 3B 05 7C 05 B1 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room4_Text_LeonardPostBattle": {
+      "label": "SSAnne_B1F_Room4_Text_LeonardPostBattle",
+      "line": 22,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "raw_text": "哈哈哈！\\n你想成为一名水手吗，伙计？$",
+      "display_text": "哈哈哈！\n你想成为一名水手吗，伙计？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 33,
+        "bytes": [
+          4,
+          198,
+          4,
+          198,
+          4,
+          198,
+          60,
+          254,
+          9,
+          217,
+          14,
+          24,
+          2,
+          75,
+          13,
+          112,
+          15,
+          11,
+          9,
+          147,
+          12,
+          81,
+          12,
+          27,
+          9,
+          42,
+          59,
+          5,
+          124,
+          5,
+          177,
+          61,
+          255
+        ],
+        "hex": "04 C6 04 C6 04 C6 3C FE 09 D9 0E 18 02 4B 0D 70 0F 0B 09 93 0C 51 0C 1B 09 2A 3B 05 7C 05 B1 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room4_Text_DuncanIntro": {
+      "label": "SSAnne_B1F_Room4_Text_DuncanIntro",
+      "line": 26,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "raw_text": "那就来吧！\\n赌上我身为水手的尊严！$",
+      "display_text": "那就来吧！\n赌上我身为水手的尊严！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          9,
+          189,
+          7,
+          125,
+          8,
+          41,
+          1,
+          40,
+          60,
+          254,
+          3,
+          105,
+          11,
+          173,
+          13,
+          152,
+          11,
+          203,
+          13,
+          112,
+          12,
+          81,
+          12,
+          27,
+          3,
+          11,
+          17,
+          40,
+          14,
+          184,
+          60,
+          255
+        ],
+        "hex": "09 BD 07 7D 08 29 01 28 3C FE 03 69 0B AD 0D 98 0B CB 0D 70 0C 51 0C 1B 03 0B 11 28 0E B8 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room4_Text_DuncanDefeat": {
+      "label": "SSAnne_B1F_Room4_Text_DuncanDefeat",
+      "line": 30,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "raw_text": "你的精神让我沉没了！$",
+      "display_text": "你的精神让我沉没了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          9,
+          217,
+          3,
+          11,
+          7,
+          91,
+          11,
+          207,
+          11,
+          67,
+          13,
+          152,
+          2,
+          67,
+          9,
+          83,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "09 D9 03 0B 07 5B 0B CF 0B 43 0D 98 02 43 09 53 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room4_Text_DuncanPostBattle": {
+      "label": "SSAnne_B1F_Room4_Text_DuncanPostBattle",
+      "line": 33,
+      "source_file": "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc",
+      "raw_text": "你见过枯叶市的\\n钓鱼大师了吗？$",
+      "display_text": "你见过枯叶市的\n钓鱼大师了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          9,
+          217,
+          5,
+          230,
+          4,
+          197,
+          7,
+          235,
+          15,
+          6,
+          12,
+          21,
+          3,
+          11,
+          254,
+          3,
+          61,
+          15,
+          145,
+          2,
+          211,
+          11,
+          226,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "09 D9 05 E6 04 C5 07 EB 0F 06 0C 15 03 0B FE 03 3D 0F 91 02 D3 0B E2 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 6,
+    "encoded_text_count": 6,
+    "text_source_byte_count": 172,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 6
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2,
+      "trainerbattle_single": 2
+    }
+  }
+}

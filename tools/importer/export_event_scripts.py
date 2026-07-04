@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export one map's event scripts into generated Godot-friendly JSON."""
+"""Export map event scripts into generated Godot-friendly JSON."""
 
 import argparse
 import json
@@ -8,7 +8,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-from export_map import camel_to_snake, write_json, write_manifest
+from export_map import camel_to_snake, discover_map_folders, load_json, write_json, write_manifest
 from source_probe import load_config, to_project_path
 from text_codec import display_text_from_source, encode_source_text, load_charmap
 
@@ -58,6 +58,9 @@ TEXT_ENCODING_TRACE = {
     ],
     "godot_status": "utf8_display_text_with_source_charmap_byte_validation",
 }
+
+GENERATED_BY = "tools/importer/export_event_scripts.py"
+SCRIPT_BATCH_REPORT_RELATIVE_PATH = Path("overworld/script_batch_report.json")
 
 
 def strip_comment(line):
@@ -359,10 +362,16 @@ def build_export_from_files(root, script_paths, source):
 
 def build_export(root, map_folder):
     script_path = root / "data/maps" / map_folder / "scripts.inc"
+    map_path = root / "data/maps" / map_folder / "map.json"
     source = {
         "map_folder": map_folder,
         "map_script": to_project_path(script_path.relative_to(root)),
     }
+    if map_path.exists():
+        map_data = load_json(map_path)
+        source["map_json"] = to_project_path(map_path.relative_to(root))
+        source["map_id"] = map_data.get("id")
+        source["map_name"] = map_data.get("name")
     return build_export_from_files(root, [script_path], source)
 
 
@@ -379,6 +388,247 @@ def build_shared_export(root, shared_name, include_scripts):
     return build_export_from_files(root, script_paths, source)
 
 
+def output_slug_for_script(map_folder, used_slugs):
+    base_slug = camel_to_snake(map_folder)
+    slug = base_slug
+    if slug in used_slugs:
+        suffix = 2
+        while "{}_{}".format(base_slug, suffix) in used_slugs:
+            suffix += 1
+        slug = "{}_{}".format(base_slug, suffix)
+    used_slugs[slug] = used_slugs.get(slug, 0) + 1
+    return base_slug, slug
+
+
+def manifest_entry_for_map_script(exported, script_output):
+    source = exported.get("source", {})
+    stats = exported.get("stats", {})
+    return {
+        "map": source.get("map_folder"),
+        "map_id": source.get("map_id"),
+        "map_name": source.get("map_name"),
+        "path": to_project_path(script_output),
+        "source_file": source.get("map_script"),
+        "label_count": stats.get("label_count"),
+        "script_count": stats.get("script_count"),
+        "movement_count": stats.get("movement_count"),
+        "text_count": stats.get("text_count"),
+        "charmap_warning_count": stats.get("charmap_warning_count"),
+        "orphan_instruction_count": stats.get("orphan_instruction_count"),
+    }
+
+
+def manifest_entry_for_shared_script(exported, script_output, shared_name):
+    stats = exported.get("stats", {})
+    return {
+        "scope": "shared",
+        "name": shared_name,
+        "path": to_project_path(script_output),
+        "source_files": exported.get("source", {}).get("script_files", []),
+        "label_count": stats.get("label_count"),
+        "script_count": stats.get("script_count"),
+        "movement_count": stats.get("movement_count"),
+        "text_count": stats.get("text_count"),
+        "charmap_warning_count": stats.get("charmap_warning_count"),
+        "orphan_instruction_count": stats.get("orphan_instruction_count"),
+    }
+
+
+def _sum_counter_dict(total, values):
+    for key, value in values.items():
+        total[key] += value
+
+
+def _script_report_row(map_folder, exported, script_output, base_slug, output_slug):
+    source = exported.get("source", {})
+    stats = exported.get("stats", {})
+    runtime_preview = exported.get("runtime_preview", {})
+    unsupported_ops = runtime_preview.get("unsupported_op_counts", {})
+    return {
+        "map_folder": map_folder,
+        "map_id": source.get("map_id"),
+        "map_name": source.get("map_name"),
+        "path": to_project_path(script_output),
+        "output_slug": output_slug,
+        "base_slug": base_slug,
+        "source": {
+            "map_json": source.get("map_json"),
+            "map_script": source.get("map_script"),
+        },
+        "label_count": stats.get("label_count", 0),
+        "script_count": stats.get("script_count", 0),
+        "movement_count": stats.get("movement_count", 0),
+        "text_count": stats.get("text_count", 0),
+        "encoded_text_count": stats.get("encoded_text_count", 0),
+        "text_source_byte_count": stats.get("text_source_byte_count", 0),
+        "charmap_warning_count": stats.get("charmap_warning_count", 0),
+        "orphan_instruction_count": stats.get("orphan_instruction_count", 0),
+        "runtime_preview_unsupported_op_count": sum(
+            value for value in unsupported_ops.values() if isinstance(value, int)
+        ),
+        "op_counts": stats.get("op_counts", {}),
+        "unsupported_preview_ops": unsupported_ops,
+    }
+
+
+def build_map_script_batch_export(source_root, output_root, write_outputs=False):
+    map_folders = discover_map_folders(source_root)
+    script_folders = [
+        map_folder for map_folder in map_folders
+        if (source_root / "data/maps" / map_folder / "scripts.inc").exists()
+    ]
+    script_folder_set = set(script_folders)
+    used_slugs = {}
+    exported_entries = []
+    rows = []
+    failures = []
+    missing_source_scripts = []
+    total_op_counts = Counter()
+    total_unsupported_preview_ops = Counter()
+
+    totals = Counter()
+    label_owners = {}
+    duplicate_labels = []
+
+    for map_folder in map_folders:
+        if map_folder not in script_folder_set:
+            map_path = source_root / "data/maps" / map_folder / "map.json"
+            map_data = load_json(map_path) if map_path.exists() else {}
+            missing_source_scripts.append({
+                "map_folder": map_folder,
+                "map_id": map_data.get("id"),
+                "map_name": map_data.get("name"),
+                "map_json": to_project_path(map_path.relative_to(source_root)) if map_path.exists() else None,
+                "missing_source_file": to_project_path(Path("data/maps") / map_folder / "scripts.inc"),
+            })
+            continue
+
+        try:
+            exported = build_export(source_root, map_folder)
+            base_slug, output_slug = output_slug_for_script(map_folder, used_slugs)
+            script_output = output_root / "scripts" / "{}.json".format(output_slug)
+            if write_outputs:
+                write_json(script_output, exported)
+            exported_entries.append(manifest_entry_for_map_script(exported, script_output))
+            rows.append(_script_report_row(map_folder, exported, script_output, base_slug, output_slug))
+
+            stats = exported.get("stats", {})
+            totals["label_count"] += int(stats.get("label_count", 0))
+            totals["script_count"] += int(stats.get("script_count", 0))
+            totals["movement_count"] += int(stats.get("movement_count", 0))
+            totals["text_count"] += int(stats.get("text_count", 0))
+            totals["encoded_text_count"] += int(stats.get("encoded_text_count", 0))
+            totals["text_source_byte_count"] += int(stats.get("text_source_byte_count", 0))
+            totals["charmap_warning_count"] += int(stats.get("charmap_warning_count", 0))
+            totals["orphan_instruction_count"] += int(stats.get("orphan_instruction_count", 0))
+            _sum_counter_dict(total_op_counts, stats.get("op_counts", {}))
+            _sum_counter_dict(
+                total_unsupported_preview_ops,
+                exported.get("runtime_preview", {}).get("unsupported_op_counts", {}),
+            )
+
+            for label in exported.get("labels", {}):
+                previous_owner = label_owners.get(label)
+                if previous_owner is not None:
+                    duplicate_labels.append({
+                        "label": label,
+                        "first_map": previous_owner,
+                        "duplicate_map": map_folder,
+                    })
+                else:
+                    label_owners[label] = map_folder
+        except Exception as error:
+            failures.append({
+                "map_folder": map_folder,
+                "error": str(error),
+            })
+
+    duplicate_base_slugs = sorted(
+        slug for slug, count in Counter(row["base_slug"] for row in rows).items()
+        if count > 1
+    )
+    duplicate_output_paths = sorted(
+        path for path, count in Counter(entry["path"] for entry in exported_entries).items()
+        if count > 1
+    )
+    runtime_preview_unsupported_op_count = sum(total_unsupported_preview_ops.values())
+
+    stats = {
+        "source_map_count": len(map_folders),
+        "source_map_script_file_count": len(script_folders),
+        "missing_source_script_file_count": len(missing_source_scripts),
+        "exported_map_script_bundle_count": len(exported_entries),
+        "failed_map_script_bundle_count": len(failures),
+        "label_count": totals["label_count"],
+        "unique_label_count": len(label_owners),
+        "duplicate_label_count": len(duplicate_labels),
+        "script_count": totals["script_count"],
+        "movement_count": totals["movement_count"],
+        "text_count": totals["text_count"],
+        "encoded_text_count": totals["encoded_text_count"],
+        "text_source_byte_count": totals["text_source_byte_count"],
+        "charmap_warning_count": totals["charmap_warning_count"],
+        "orphan_instruction_count": totals["orphan_instruction_count"],
+        "runtime_preview_unsupported_op_count": runtime_preview_unsupported_op_count,
+        "unique_op_count": len(total_op_counts),
+        "unsupported_preview_unique_op_count": len(total_unsupported_preview_ops),
+        "duplicate_base_slug_count": len(duplicate_base_slugs),
+        "duplicate_output_path_count": len(duplicate_output_paths),
+    }
+
+    return {
+        "schema_version": 1,
+        "generated_by": GENERATED_BY,
+        "source": {
+            "project": "pokeemerald-expansion",
+            "maps_root": "data/maps",
+            "source_map_count": len(map_folders),
+            "source_map_script_file_count": len(script_folders),
+            "script_macro_source": "asm/macros/event.inc",
+            "map_script_macro_source": "asm/macros/map.inc",
+            "charmap": "charmap.txt",
+        },
+        "godot_policy": {
+            "runtime_gba_palette_or_vram_limits": "not_recreated",
+            "palette_affine_effects": "preserve source-visible timing/effect with Godot-native materials/animation when implemented",
+            "audio": "metadata_only",
+        },
+        "output": {
+            "script_directory": to_project_path(output_root / "scripts"),
+            "report_path": to_project_path(output_root / SCRIPT_BATCH_REPORT_RELATIVE_PATH),
+            "manifest_path": to_project_path(output_root / "import_manifest.json"),
+            "writes_enabled": bool(write_outputs),
+        },
+        "stats": stats,
+        "op_counts": dict(sorted(total_op_counts.items())),
+        "unsupported_preview_ops": dict(sorted(total_unsupported_preview_ops.items())),
+        "duplicates": {
+            "labels": duplicate_labels,
+            "base_slugs": duplicate_base_slugs,
+            "output_paths": duplicate_output_paths,
+        },
+        "missing_source_scripts": missing_source_scripts,
+        "failures": failures,
+        "maps": rows,
+        "unsupported": [
+            {
+                "code": "script_runtime_semantics_partial",
+                "status": "unsupported",
+                "note": "The importer preserves all parsed instructions, but runtime ScriptVM semantics are implemented incrementally after source tracing.",
+            },
+            {
+                "code": "audio_metadata_only",
+                "status": "metadata_only",
+                "note": "Script sound/music/fanfare operands are preserved as symbols; real audio playback remains out of scope.",
+            },
+        ],
+        "notes": [
+            "Maps without scripts.inc are reported separately and do not block batch export.",
+            "Shared data/scripts/*.inc bundles remain explicit shared exports until include ownership is expanded.",
+        ],
+    }, exported_entries
+
+
 def _is_preview_supported_op(op):
     return op in PREVIEW_SUPPORTED_OPS
 
@@ -388,6 +638,7 @@ def main(argv):
     parser.add_argument("--config", type=Path, help="JSON config with source and output roots.")
     parser.add_argument("--source", type=Path, help="pokeemerald-expansion source root.")
     parser.add_argument("--map", default=None, help="Map folder name to export.")
+    parser.add_argument("--all-maps", action="store_true", help="Export every source data/maps/*/scripts.inc bundle.")
     parser.add_argument("--shared-name", help="Shared script bundle name to export.")
     parser.add_argument(
         "--include-script",
@@ -403,40 +654,61 @@ def main(argv):
     map_folder = args.map or config.get("first_slice_map", "LittlerootTown")
     output_root = args.output_root or Path(config.get("generated_data_root", "data/generated"))
 
+    if args.all_maps:
+        if args.shared_name or args.include_script:
+            parser.error("--all-maps cannot be combined with --shared-name or --include-script")
+        report, exported_entries = build_map_script_batch_export(
+            source_root,
+            output_root,
+            write_outputs=True,
+        )
+        report_output = output_root / SCRIPT_BATCH_REPORT_RELATIVE_PATH
+        write_json(report_output, report)
+        write_manifest(
+            output_root / "import_manifest.json",
+            exported_scripts=exported_entries,
+            exported_overworld_reports=[
+                {
+                    "category": "overworld_script_batch_report",
+                    "path": to_project_path(report_output),
+                    "source_map_count": report["stats"]["source_map_count"],
+                    "source_map_script_file_count": report["stats"]["source_map_script_file_count"],
+                    "missing_source_script_file_count": report["stats"]["missing_source_script_file_count"],
+                    "exported_map_script_bundle_count": report["stats"]["exported_map_script_bundle_count"],
+                    "failed_map_script_bundle_count": report["stats"]["failed_map_script_bundle_count"],
+                    "script_count": report["stats"]["script_count"],
+                    "movement_count": report["stats"]["movement_count"],
+                    "text_count": report["stats"]["text_count"],
+                    "charmap_warning_count": report["stats"]["charmap_warning_count"],
+                    "orphan_instruction_count": report["stats"]["orphan_instruction_count"],
+                },
+            ],
+            generator=GENERATED_BY,
+        )
+        print(json.dumps({
+            "report": to_project_path(report_output),
+            "stats": report["stats"],
+        }, ensure_ascii=False, indent=2))
+        return 1 if report["stats"]["failed_map_script_bundle_count"] else 0
+
     if args.shared_name:
         if not args.include_script:
             parser.error("--shared-name requires at least one --include-script")
         exported = build_shared_export(source_root, args.shared_name, [Path(path) for path in args.include_script])
         script_slug = camel_to_snake(args.shared_name)
         script_output = output_root / "scripts" / "{}.json".format(script_slug)
-        manifest_entry = {
-            "scope": "shared",
-            "name": args.shared_name,
-            "path": to_project_path(script_output),
-            "source_files": exported["source"]["script_files"],
-            "script_count": exported["stats"]["script_count"],
-            "movement_count": exported["stats"]["movement_count"],
-            "text_count": exported["stats"]["text_count"],
-            "charmap_warning_count": exported["stats"]["charmap_warning_count"],
-        }
+        manifest_entry = manifest_entry_for_shared_script(exported, script_output, args.shared_name)
     else:
         exported = build_export(source_root, map_folder)
         script_slug = camel_to_snake(map_folder)
         script_output = output_root / "scripts" / "{}.json".format(script_slug)
-        manifest_entry = {
-            "map": map_folder,
-            "path": to_project_path(script_output),
-            "script_count": exported["stats"]["script_count"],
-            "movement_count": exported["stats"]["movement_count"],
-            "text_count": exported["stats"]["text_count"],
-            "charmap_warning_count": exported["stats"]["charmap_warning_count"],
-        }
+        manifest_entry = manifest_entry_for_map_script(exported, script_output)
     write_json(script_output, exported)
 
     write_manifest(
         output_root / "import_manifest.json",
         exported_scripts=[manifest_entry],
-        generator="tools/importer/export_event_scripts.py",
+        generator=GENERATED_BY,
     )
 
     print(json.dumps({

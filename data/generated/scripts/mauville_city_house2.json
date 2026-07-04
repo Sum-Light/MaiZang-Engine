@@ -1,0 +1,1017 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "MauvilleCity_House2",
+    "map_script": "data/maps/MauvilleCity_House2/scripts.inc",
+    "map_json": "data/maps/MauvilleCity_House2/map.json",
+    "map_id": "MAP_MAUVILLE_CITY_HOUSE2",
+    "map_name": "MauvilleCity_House2"
+  },
+  "labels": {
+    "MauvilleCity_House2_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "MauvilleCity_House2_EventScript_Woman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 8
+    },
+    "MauvilleCity_House2_EventScript_AskToTradeForHarborMail": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 9
+    },
+    "MauvilleCity_House2_EventScript_AcceptTrade": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 7
+    },
+    "MauvilleCity_House2_EventScript_ReceivedCoinCase": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 3
+    },
+    "MauvilleCity_House2_EventScript_DeclineTrade": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 3
+    },
+    "MauvilleCity_House2_Text_BuyHarborMailAtSlateport": {
+      "kind": "text",
+      "line": 44,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "MauvilleCity_House2_Text_TradeHarborMailForCoinCase": {
+      "kind": "text",
+      "line": 47,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "MauvilleCity_House2_Text_IllTradeYouCoinCase": {
+      "kind": "text",
+      "line": 50,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "MauvilleCity_House2_Text_UseCoinCaseAtGameCorner": {
+      "kind": "text",
+      "line": 53,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "MauvilleCity_House2_Text_ThatsDisappointing": {
+      "kind": "text",
+      "line": 56,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "MauvilleCity_House2_MapScripts": {
+      "label": "MauvilleCity_House2_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MauvilleCity_House2_EventScript_Woman": {
+      "label": "MauvilleCity_House2_EventScript_Woman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_COIN_CASE",
+            "MauvilleCity_House2_EventScript_ReceivedCoinCase"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_RECEIVED_COIN_CASE, MauvilleCity_House2_EventScript_ReceivedCoinCase",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "MauvilleCity_House2_Text_BuyHarborMailAtSlateport",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 8,
+          "raw": "msgbox MauvilleCity_House2_Text_BuyHarborMailAtSlateport, MSGBOX_DEFAULT",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "checkitem",
+          "args": [
+            "ITEM_HARBOR_MAIL"
+          ],
+          "line": 9,
+          "raw": "checkitem ITEM_HARBOR_MAIL",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "MauvilleCity_House2_EventScript_AskToTradeForHarborMail"
+          ],
+          "line": 10,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, MauvilleCity_House2_EventScript_AskToTradeForHarborMail",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 11,
+          "raw": "release",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MauvilleCity_House2_Text_BuyHarborMailAtSlateport",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 8
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "MauvilleCity_House2_EventScript_ReceivedCoinCase",
+          "line": 7
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "MauvilleCity_House2_EventScript_AskToTradeForHarborMail",
+          "line": 10
+        }
+      ]
+    },
+    "MauvilleCity_House2_EventScript_AskToTradeForHarborMail": {
+      "label": "MauvilleCity_House2_EventScript_AskToTradeForHarborMail",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 15,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 16,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_ExclamationMark",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 17,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_Delay48"
+          ],
+          "line": 18,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_Delay48",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 19,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "MauvilleCity_House2_Text_TradeHarborMailForCoinCase",
+            "MSGBOX_YESNO"
+          ],
+          "line": 20,
+          "raw": "msgbox MauvilleCity_House2_Text_TradeHarborMailForCoinCase, MSGBOX_YESNO",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "MauvilleCity_House2_EventScript_AcceptTrade"
+          ],
+          "line": 21,
+          "raw": "goto_if_eq VAR_RESULT, YES, MauvilleCity_House2_EventScript_AcceptTrade",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "MauvilleCity_House2_EventScript_DeclineTrade"
+          ],
+          "line": 22,
+          "raw": "goto_if_eq VAR_RESULT, NO, MauvilleCity_House2_EventScript_DeclineTrade",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MauvilleCity_House2_Text_TradeHarborMailForCoinCase",
+          "mode": "MSGBOX_YESNO",
+          "line": 20
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "MauvilleCity_House2_EventScript_AcceptTrade",
+          "line": 21
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "MauvilleCity_House2_EventScript_DeclineTrade",
+          "line": 22
+        }
+      ]
+    },
+    "MauvilleCity_House2_EventScript_AcceptTrade": {
+      "label": "MauvilleCity_House2_EventScript_AcceptTrade",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "MauvilleCity_House2_Text_IllTradeYouCoinCase",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 26,
+          "raw": "msgbox MauvilleCity_House2_Text_IllTradeYouCoinCase, MSGBOX_DEFAULT",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_COIN_CASE"
+          ],
+          "line": 27,
+          "raw": "giveitem ITEM_COIN_CASE",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 28,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "removeitem",
+          "args": [
+            "ITEM_HARBOR_MAIL"
+          ],
+          "line": 29,
+          "raw": "removeitem ITEM_HARBOR_MAIL",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_COIN_CASE"
+          ],
+          "line": 30,
+          "raw": "setflag FLAG_RECEIVED_COIN_CASE",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "MauvilleCity_House2_EventScript_ReceivedCoinCase"
+          ],
+          "line": 31,
+          "raw": "goto MauvilleCity_House2_EventScript_ReceivedCoinCase",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MauvilleCity_House2_Text_IllTradeYouCoinCase",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 26
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 28
+        },
+        {
+          "op": "goto",
+          "target": "MauvilleCity_House2_EventScript_ReceivedCoinCase",
+          "line": 31
+        }
+      ]
+    },
+    "MauvilleCity_House2_EventScript_ReceivedCoinCase": {
+      "label": "MauvilleCity_House2_EventScript_ReceivedCoinCase",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "MauvilleCity_House2_Text_UseCoinCaseAtGameCorner",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 35,
+          "raw": "msgbox MauvilleCity_House2_Text_UseCoinCaseAtGameCorner, MSGBOX_DEFAULT",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 36,
+          "raw": "release",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MauvilleCity_House2_Text_UseCoinCaseAtGameCorner",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 35
+        }
+      ],
+      "branch_targets": []
+    },
+    "MauvilleCity_House2_EventScript_DeclineTrade": {
+      "label": "MauvilleCity_House2_EventScript_DeclineTrade",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "MauvilleCity_House2_Text_ThatsDisappointing",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 40,
+          "raw": "msgbox MauvilleCity_House2_Text_ThatsDisappointing, MSGBOX_DEFAULT",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 41,
+          "raw": "release",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/MauvilleCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MauvilleCity_House2_Text_ThatsDisappointing",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 40
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "MauvilleCity_House2_Text_BuyHarborMailAtSlateport": {
+      "label": "MauvilleCity_House2_Text_BuyHarborMailAtSlateport",
+      "line": 44,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "raw_text": "要是我也有自行车，\\n骑车去凯那市买东西就更方便了。\\p这样我就能去凯那市的\\n友好商店买港口邮件……$",
+      "display_text": "要是我也有自行车，\n骑车去凯那市买东西就更方便了。\n\n这样我就能去凯那市的\n友好商店买港口邮件……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 90,
+        "bytes": [
+          14,
+          241,
+          12,
+          12,
+          13,
+          152,
+          15,
+          2,
+          15,
+          126,
+          17,
+          12,
+          14,
+          91,
+          2,
+          55,
+          59,
+          254,
+          10,
+          170,
+          2,
+          55,
+          11,
+          37,
+          7,
+          187,
+          9,
+          189,
+          12,
+          21,
+          9,
+          44,
+          3,
+          80,
+          13,
+          189,
+          7,
+          125,
+          4,
+          102,
+          3,
+          192,
+          1,
+          160,
+          8,
+          158,
+          55,
+          251,
+          16,
+          85,
+          14,
+          226,
+          13,
+          152,
+          7,
+          125,
+          9,
+          210,
+          11,
+          37,
+          7,
+          187,
+          9,
+          189,
+          12,
+          21,
+          3,
+          11,
+          254,
+          15,
+          127,
+          4,
+          233,
+          11,
+          170,
+          3,
+          49,
+          9,
+          44,
+          4,
+          69,
+          7,
+          232,
+          15,
+          120,
+          5,
+          233,
+          176,
+          176,
+          255
+        ],
+        "hex": "0E F1 0C 0C 0D 98 0F 02 0F 7E 11 0C 0E 5B 02 37 3B FE 0A AA 02 37 0B 25 07 BB 09 BD 0C 15 09 2C 03 50 0D BD 07 7D 04 66 03 C0 01 A0 08 9E 37 FB 10 55 0E E2 0D 98 07 7D 09 D2 0B 25 07 BB 09 BD 0C 15 03 0B FE 0F 7F 04 E9 0B AA 03 31 09 2C 04 45 07 E8 0F 78 05 E9 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 26,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 38,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 51,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MauvilleCity_House2_Text_TradeHarborMailForCoinCase": {
+      "label": "MauvilleCity_House2_Text_TradeHarborMailForCoinCase",
+      "line": 47,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "raw_text": "呀！你有港口邮件？\\n愿意用它换个代币盒吗？$",
+      "display_text": "呀！你有港口邮件？\n愿意用它换个代币盒吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 39,
+        "bytes": [
+          14,
+          166,
+          60,
+          9,
+          217,
+          15,
+          126,
+          4,
+          69,
+          7,
+          232,
+          15,
+          120,
+          5,
+          233,
+          61,
+          254,
+          15,
+          196,
+          15,
+          50,
+          15,
+          113,
+          12,
+          159,
+          5,
+          72,
+          4,
+          96,
+          2,
+          218,
+          1,
+          143,
+          4,
+          246,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0E A6 3C 09 D9 0F 7E 04 45 07 E8 0F 78 05 E9 3D FE 0F C4 0F 32 0F 71 0C 9F 05 48 04 60 02 DA 01 8F 04 F6 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MauvilleCity_House2_Text_IllTradeYouCoinCase": {
+      "label": "MauvilleCity_House2_Text_IllTradeYouCoinCase",
+      "line": 50,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "raw_text": "哈哈，太高兴了！\\n好，我用代币盒跟你交换！$",
+      "display_text": "哈哈，太高兴了！\n好，我用代币盒跟你交换！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          4,
+          198,
+          4,
+          198,
+          59,
+          12,
+          172,
+          4,
+          73,
+          14,
+          86,
+          8,
+          158,
+          60,
+          254,
+          4,
+          233,
+          59,
+          13,
+          152,
+          15,
+          113,
+          2,
+          218,
+          1,
+          143,
+          4,
+          246,
+          4,
+          100,
+          9,
+          217,
+          7,
+          13,
+          5,
+          72,
+          60,
+          255
+        ],
+        "hex": "04 C6 04 C6 3B 0C AC 04 49 0E 56 08 9E 3C FE 04 E9 3B 0D 98 0F 71 02 DA 01 8F 04 F6 04 64 09 D9 07 0D 05 48 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MauvilleCity_House2_Text_UseCoinCaseAtGameCorner": {
+      "label": "MauvilleCity_House2_Text_UseCoinCaseAtGameCorner",
+      "line": 53,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "raw_text": "你可以在游戏城里\\n使用代币盒。$",
+      "display_text": "你可以在游戏城里\n使用代币盒。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          15,
+          230,
+          15,
+          124,
+          13,
+          219,
+          2,
+          73,
+          8,
+          100,
+          254,
+          11,
+          245,
+          15,
+          113,
+          2,
+          218,
+          1,
+          143,
+          4,
+          246,
+          55,
+          255
+        ],
+        "hex": "09 D9 07 D7 0F 24 0F E6 0F 7C 0D DB 02 49 08 64 FE 0B F5 0F 71 02 DA 01 8F 04 F6 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MauvilleCity_House2_Text_ThatsDisappointing": {
+      "label": "MauvilleCity_House2_Text_ThatsDisappointing",
+      "line": 56,
+      "source_file": "data/maps/MauvilleCity_House2/scripts.inc",
+      "raw_text": "哎，真失望。\\p要在游戏城玩游戏\\n必须有代币盒。$",
+      "display_text": "哎，真失望。\n\n要在游戏城玩游戏\n必须有代币盒。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 42,
+        "bytes": [
+          1,
+          4,
+          59,
+          16,
+          89,
+          11,
+          227,
+          13,
+          99,
+          55,
+          251,
+          14,
+          241,
+          15,
+          230,
+          15,
+          124,
+          13,
+          219,
+          2,
+          73,
+          13,
+          78,
+          15,
+          124,
+          13,
+          219,
+          254,
+          1,
+          149,
+          14,
+          118,
+          15,
+          126,
+          2,
+          218,
+          1,
+          143,
+          4,
+          246,
+          55,
+          255
+        ],
+        "hex": "01 04 3B 10 59 0B E3 0D 63 37 FB 0E F1 0F E6 0F 7C 0D DB 02 49 0D 4E 0F 7C 0D DB FE 01 95 0E 76 0F 7E 02 DA 01 8F 04 F6 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 6,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 16,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 2,
+      "checkitem": 1,
+      "faceplayer": 1,
+      "giveitem": 1,
+      "goto_if_eq": 4,
+      "goto_if_set": 1,
+      "playse": 1,
+      "removeitem": 1,
+      "setflag": 1,
+      "waitmovement": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 5,
+    "encoded_text_count": 5,
+    "text_source_byte_count": 238,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 5
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 2,
+      "checkitem": 1,
+      "end": 5,
+      "faceplayer": 1,
+      "giveitem": 1,
+      "goto": 1,
+      "goto_if_eq": 4,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 5,
+      "playse": 1,
+      "release": 3,
+      "removeitem": 1,
+      "setflag": 1,
+      "waitmovement": 2
+    }
+  }
+}

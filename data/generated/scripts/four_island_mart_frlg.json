@@ -1,0 +1,787 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FourIsland_Mart_Frlg",
+    "map_script": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+    "map_json": "data/maps/FourIsland_Mart_Frlg/map.json",
+    "map_id": "MAP_FOUR_ISLAND_MART",
+    "map_name": "FourIsland_Mart_Frlg"
+  },
+  "labels": {
+    "FourIsland_Mart_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "FourIsland_Mart_EventScript_Clerk": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "FourIsland_Mart_Items": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 11
+    },
+    "FourIsland_Mart_EventScript_Camper": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_Mart_Text_LoreleiGrewUpOnThisIsland": {
+      "kind": "text",
+      "line": 32,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "FourIsland_Mart_Text_IcefallCaveIsFrigid": {
+      "kind": "text",
+      "line": 41,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 7
+    }
+  },
+  "scripts": {
+    "FourIsland_Mart_Frlg_MapScripts": {
+      "label": "FourIsland_Mart_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_Mart_EventScript_Clerk": {
+      "label": "FourIsland_Mart_EventScript_Clerk",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_HowMayIServeYou"
+          ],
+          "line": 7,
+          "raw": "message gText_HowMayIServeYou",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 8,
+          "raw": "waitmessage",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "pokemart",
+          "args": [
+            "FourIsland_Mart_Items"
+          ],
+          "line": 9,
+          "raw": "pokemart FourIsland_Mart_Items",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain"
+          ],
+          "line": 10,
+          "raw": "msgbox gText_PleaseComeAgain",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 11,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 14,
+          "raw": ".align 2",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_HowMayIServeYou",
+          "mode": "",
+          "line": 7
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_Mart_Items": {
+      "label": "FourIsland_Mart_Items",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ULTRA_BALL"
+          ],
+          "line": 16,
+          "raw": ".2byte ITEM_ULTRA_BALL",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_FULL_RESTORE"
+          ],
+          "line": 17,
+          "raw": ".2byte ITEM_FULL_RESTORE",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_MAX_POTION"
+          ],
+          "line": 18,
+          "raw": ".2byte ITEM_MAX_POTION",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_REVIVE"
+          ],
+          "line": 19,
+          "raw": ".2byte ITEM_REVIVE",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ICE_HEAL"
+          ],
+          "line": 20,
+          "raw": ".2byte ITEM_ICE_HEAL",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_FULL_HEAL"
+          ],
+          "line": 21,
+          "raw": ".2byte ITEM_FULL_HEAL",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ESCAPE_ROPE"
+          ],
+          "line": 22,
+          "raw": ".2byte ITEM_ESCAPE_ROPE",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_MAX_REPEL"
+          ],
+          "line": 23,
+          "raw": ".2byte ITEM_MAX_REPEL",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_NONE"
+          ],
+          "line": 24,
+          "raw": ".2byte ITEM_NONE",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 25,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_Mart_EventScript_Camper": {
+      "label": "FourIsland_Mart_EventScript_Camper",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_Mart_Text_IcefallCaveIsFrigid",
+            "MSGBOX_NPC"
+          ],
+          "line": 29,
+          "raw": "msgbox FourIsland_Mart_Text_IcefallCaveIsFrigid, MSGBOX_NPC",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 30,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_Mart_Text_IcefallCaveIsFrigid",
+          "mode": "MSGBOX_NPC",
+          "line": 29
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "FourIsland_Mart_Text_LoreleiGrewUpOnThisIsland": {
+      "label": "FourIsland_Mart_Text_LoreleiGrewUpOnThisIsland",
+      "line": 32,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "raw_text": "在这座岛上\\n有一个伟大的训练家在这里长大。\\p我猜你已经知道她是谁了。\\n没错，\\n她就是四天王的科拿！\\p当科拿还是一个小孩子的时候，\\n我教过她宝可梦的战斗。$",
+      "display_text": "在这座岛上\n有一个伟大的训练家在这里长大。\n\n我猜你已经知道她是谁了。\n没错，\n她就是四天王的科拿！\n\n当科拿还是一个小孩子的时候，\n我教过她宝可梦的战斗。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 141,
+        "bytes": [
+          15,
+          230,
+          16,
+          85,
+          17,
+          49,
+          3,
+          1,
+          11,
+          173,
+          254,
+          15,
+          126,
+          15,
+          11,
+          4,
+          96,
+          13,
+          118,
+          2,
+          211,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          15,
+          230,
+          16,
+          85,
+          8,
+          100,
+          2,
+          38,
+          2,
+          211,
+          55,
+          251,
+          13,
+          152,
+          1,
+          221,
+          9,
+          217,
+          15,
+          33,
+          7,
+          93,
+          16,
+          123,
+          3,
+          7,
+          12,
+          160,
+          12,
+          12,
+          12,
+          80,
+          8,
+          158,
+          55,
+          254,
+          9,
+          83,
+          2,
+          205,
+          59,
+          254,
+          12,
+          160,
+          7,
+          125,
+          12,
+          12,
+          12,
+          103,
+          12,
+          237,
+          13,
+          93,
+          3,
+          11,
+          7,
+          212,
+          9,
+          185,
+          60,
+          251,
+          2,
+          239,
+          7,
+          212,
+          9,
+          185,
+          5,
+          70,
+          12,
+          12,
+          15,
+          11,
+          4,
+          96,
+          14,
+          44,
+          4,
+          200,
+          17,
+          11,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          59,
+          254,
+          13,
+          152,
+          7,
+          30,
+          4,
+          197,
+          12,
+          160,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          16,
+          48,
+          3,
+          92,
+          55,
+          255
+        ],
+        "hex": "0F E6 10 55 11 31 03 01 0B AD FE 0F 7E 0F 0B 04 60 0D 76 02 D3 03 0B 0E 9E 08 8A 05 BD 0F E6 10 55 08 64 02 26 02 D3 37 FB 0D 98 01 DD 09 D9 0F 21 07 5D 10 7B 03 07 0C A0 0C 0C 0C 50 08 9E 37 FE 09 53 02 CD 3B FE 0C A0 07 7D 0C 0C 0C 67 0C ED 0D 5D 03 0B 07 D4 09 B9 3C FB 02 EF 07 D4 09 B9 05 46 0C 0C 0F 0B 04 60 0E 2C 04 C8 11 0B 03 0B 0B ED 05 21 3B FE 0D 98 07 1E 04 C5 0C A0 01 63 07 D7 09 66 03 0B 10 30 03 5C 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 41,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 53,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 69,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 82,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_Mart_Text_IcefallCaveIsFrigid": {
+      "label": "FourIsland_Mart_Text_IcefallCaveIsFrigid",
+      "line": 41,
+      "source_file": "data/maps/FourIsland_Mart_Frlg/scripts.inc",
+      "raw_text": "七岛大部分位于\\n温带地区。\\p但是\\n还有一个例外。\\p就是冻瀑洞窟\\p由于那里栖息着的宝可梦的关系，\\n那里的气候十分冰冷。$",
+      "display_text": "七岛大部分位于\n温带地区。\n\n但是\n还有一个例外。\n\n就是冻瀑洞窟\n\n由于那里栖息着的宝可梦的关系，\n那里的气候十分冰冷。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 107,
+        "bytes": [
+          10,
+          154,
+          3,
+          1,
+          2,
+          211,
+          1,
+          218,
+          3,
+          217,
+          13,
+          129,
+          15,
+          136,
+          254,
+          13,
+          136,
+          2,
+          216,
+          3,
+          31,
+          11,
+          26,
+          55,
+          251,
+          2,
+          233,
+          12,
+          12,
+          254,
+          5,
+          70,
+          15,
+          126,
+          15,
+          11,
+          4,
+          96,
+          8,
+          114,
+          13,
+          74,
+          55,
+          251,
+          7,
+          125,
+          12,
+          12,
+          3,
+          88,
+          10,
+          148,
+          3,
+          89,
+          7,
+          237,
+          251,
+          15,
+          119,
+          15,
+          136,
+          9,
+          189,
+          8,
+          100,
+          10,
+          151,
+          13,
+          198,
+          16,
+          244,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          4,
+          160,
+          13,
+          217,
+          59,
+          254,
+          9,
+          189,
+          8,
+          100,
+          3,
+          11,
+          10,
+          179,
+          5,
+          33,
+          11,
+          234,
+          3,
+          217,
+          1,
+          182,
+          8,
+          89,
+          55,
+          255
+        ],
+        "hex": "0A 9A 03 01 02 D3 01 DA 03 D9 0D 81 0F 88 FE 0D 88 02 D8 03 1F 0B 1A 37 FB 02 E9 0C 0C FE 05 46 0F 7E 0F 0B 04 60 08 72 0D 4A 37 FB 07 7D 0C 0C 03 58 0A 94 03 59 07 ED FB 0F 77 0F 88 09 BD 08 64 0A 97 0D C6 10 F4 03 0B 01 63 07 D7 09 66 03 0B 04 A0 0D D9 3B FE 09 BD 08 64 03 0B 0A B3 05 21 0B EA 03 D9 01 B6 08 59 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 27,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 35,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 52,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 64,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "pokemart": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 6,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 248,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "faceplayer": 1,
+      "lock": 1,
+      "message": 1,
+      "msgbox": 2,
+      "pokemart": 1,
+      "release": 2,
+      "waitmessage": 1
+    }
+  }
+}

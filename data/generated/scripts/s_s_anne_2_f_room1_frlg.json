@@ -1,0 +1,379 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SSAnne_2F_Room1_Frlg",
+    "map_script": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc",
+    "map_json": "data/maps/SSAnne_2F_Room1_Frlg/map.json",
+    "map_id": "MAP_SSANNE_2F_ROOM1",
+    "map_name": "SSAnne_2F_Room1_Frlg"
+  },
+  "labels": {
+    "SSAnne_2F_Room1_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_2F_Room1_EventScript_Gentleman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc",
+      "instruction_count": 11
+    },
+    "SSAnne_2F_Room1_Text_SleepingMonLookedLikeThis": {
+      "kind": "text",
+      "line": 17,
+      "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "SSAnne_2F_Room1_Frlg_MapScripts": {
+      "label": "SSAnne_2F_Room1_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_2F_Room1_EventScript_Gentleman": {
+      "label": "SSAnne_2F_Room1_EventScript_Gentleman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "SSAnne_2F_Room1_Text_SleepingMonLookedLikeThis"
+          ],
+          "line": 7,
+          "raw": "message SSAnne_2F_Room1_Text_SleepingMonLookedLikeThis",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 8,
+          "raw": "waitmessage",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_SNORLAX"
+          ],
+          "line": 9,
+          "raw": "setvar VAR_0x8004, SPECIES_SNORLAX",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SetSeenMon"
+          ],
+          "line": 10,
+          "raw": "special SetSeenMon",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "showmonpic",
+          "args": [
+            "SPECIES_SNORLAX",
+            "10",
+            "3"
+          ],
+          "line": 11,
+          "raw": "showmonpic SPECIES_SNORLAX, 10, 3",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 12,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "hidemonpic",
+          "args": [],
+          "line": 13,
+          "raw": "hidemonpic",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "SSAnne_2F_Room1_Text_SleepingMonLookedLikeThis",
+          "mode": "",
+          "line": 7
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SSAnne_2F_Room1_Text_SleepingMonLookedLikeThis": {
+      "label": "SSAnne_2F_Room1_Text_SleepingMonLookedLikeThis",
+      "line": 17,
+      "source_file": "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc",
+      "raw_text": "我到处旅行，但是\\n在我所有的旅行中我从未见过\\l任何宝可梦睡觉的样子像它！\\p它是这样个样子的！$",
+      "display_text": "我到处旅行，但是\n在我所有的旅行中我从未见过\n任何宝可梦睡觉的样子像它！\n\n它是这样个样子的！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 87,
+        "bytes": [
+          13,
+          152,
+          3,
+          4,
+          2,
+          134,
+          8,
+          244,
+          14,
+          91,
+          59,
+          2,
+          233,
+          12,
+          12,
+          254,
+          15,
+          230,
+          13,
+          152,
+          12,
+          156,
+          15,
+          126,
+          3,
+          11,
+          8,
+          244,
+          14,
+          91,
+          16,
+          161,
+          13,
+          152,
+          2,
+          179,
+          13,
+          122,
+          5,
+          230,
+          4,
+          197,
+          250,
+          11,
+          78,
+          4,
+          244,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          82,
+          7,
+          165,
+          3,
+          11,
+          14,
+          226,
+          17,
+          11,
+          14,
+          30,
+          12,
+          159,
+          60,
+          251,
+          12,
+          159,
+          12,
+          12,
+          16,
+          85,
+          14,
+          226,
+          4,
+          96,
+          14,
+          226,
+          17,
+          11,
+          3,
+          11,
+          60,
+          255
+        ],
+        "hex": "0D 98 03 04 02 86 08 F4 0E 5B 3B 02 E9 0C 0C FE 0F E6 0D 98 0C 9C 0F 7E 03 0B 08 F4 0E 5B 10 A1 0D 98 02 B3 0D 7A 05 E6 04 C5 FA 0B 4E 04 F4 01 63 07 D7 09 66 0C 52 07 A5 03 0B 0E E2 11 0B 0E 1E 0C 9F 3C FB 0C 9F 0C 0C 10 55 0E E2 04 60 0E E2 11 0B 03 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 23,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 49,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "hidemonpic": 1,
+      "setvar": 1,
+      "showmonpic": 1,
+      "special": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 87,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 1,
+      "faceplayer": 1,
+      "hidemonpic": 1,
+      "lock": 1,
+      "message": 1,
+      "release": 1,
+      "setvar": 1,
+      "showmonpic": 1,
+      "special": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    }
+  }
+}

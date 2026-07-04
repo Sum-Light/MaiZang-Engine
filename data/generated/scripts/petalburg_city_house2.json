@@ -1,0 +1,448 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PetalburgCity_House2",
+    "map_script": "data/maps/PetalburgCity_House2/scripts.inc",
+    "map_json": "data/maps/PetalburgCity_House2/map.json",
+    "map_id": "MAP_PETALBURG_CITY_HOUSE2",
+    "map_name": "PetalburgCity_House2"
+  },
+  "labels": {
+    "PetalburgCity_House2_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PetalburgCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_House2_EventScript_Woman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PetalburgCity_House2/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgCity_House2_EventScript_SchoolKid": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PetalburgCity_House2/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgCity_House2_Text_NormanBecameGymLeader": {
+      "kind": "text",
+      "line": 12,
+      "source_file": "data/maps/PetalburgCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_House2_Text_BattledNormanOnce": {
+      "kind": "text",
+      "line": 15,
+      "source_file": "data/maps/PetalburgCity_House2/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "PetalburgCity_House2_MapScripts": {
+      "label": "PetalburgCity_House2_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PetalburgCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PetalburgCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgCity_House2_EventScript_Woman": {
+      "label": "PetalburgCity_House2_EventScript_Woman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PetalburgCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_House2_Text_NormanBecameGymLeader",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox PetalburgCity_House2_Text_NormanBecameGymLeader, MSGBOX_NPC",
+          "source_file": "data/maps/PetalburgCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_House2_Text_NormanBecameGymLeader",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgCity_House2_EventScript_SchoolKid": {
+      "label": "PetalburgCity_House2_EventScript_SchoolKid",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PetalburgCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_House2_Text_BattledNormanOnce",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox PetalburgCity_House2_Text_BattledNormanOnce, MSGBOX_NPC",
+          "source_file": "data/maps/PetalburgCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_House2_Text_BattledNormanOnce",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "PetalburgCity_House2_Text_NormanBecameGymLeader": {
+      "label": "PetalburgCity_House2_Text_NormanBecameGymLeader",
+      "line": 12,
+      "source_file": "data/maps/PetalburgCity_House2/scripts.inc",
+      "raw_text": "千里是城镇里新来的\\n道馆馆主，\\p他带着全家从很远的\\n地方搬过来了。$",
+      "display_text": "千里是城镇里新来的\n道馆馆主，\n\n他带着全家从很远的\n地方搬过来了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 62,
+        "bytes": [
+          10,
+          192,
+          8,
+          100,
+          12,
+          12,
+          2,
+          73,
+          16,
+          101,
+          8,
+          100,
+          14,
+          77,
+          8,
+          41,
+          3,
+          11,
+          254,
+          3,
+          7,
+          4,
+          165,
+          4,
+          165,
+          16,
+          200,
+          59,
+          251,
+          12,
+          158,
+          2,
+          216,
+          16,
+          244,
+          11,
+          43,
+          5,
+          189,
+          2,
+          179,
+          5,
+          11,
+          15,
+          194,
+          3,
+          11,
+          254,
+          3,
+          31,
+          3,
+          192,
+          1,
+          64,
+          4,
+          197,
+          8,
+          41,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0A C0 08 64 0C 0C 02 49 10 65 08 64 0E 4D 08 29 03 0B FE 03 07 04 A5 04 A5 10 C8 3B FB 0C 9E 02 D8 10 F4 0B 2B 05 BD 02 B3 05 0B 0F C2 03 0B FE 03 1F 03 C0 01 40 04 C5 08 29 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 36,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgCity_House2_Text_BattledNormanOnce": {
+      "label": "PetalburgCity_House2_Text_BattledNormanOnce",
+      "line": 15,
+      "source_file": "data/maps/PetalburgCity_House2/scripts.inc",
+      "raw_text": "我曾经挑战过千里，\\n但是，唉，他太强了。\\p怎么说呢？\\p我感觉他是\\n为宝可梦而生的。$",
+      "display_text": "我曾经挑战过千里，\n但是，唉，他太强了。\n\n怎么说呢？\n\n我感觉他是\n为宝可梦而生的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 73,
+        "bytes": [
+          13,
+          152,
+          16,
+          13,
+          7,
+          93,
+          12,
+          245,
+          16,
+          48,
+          4,
+          197,
+          10,
+          192,
+          8,
+          100,
+          59,
+          254,
+          2,
+          233,
+          12,
+          12,
+          59,
+          1,
+          5,
+          59,
+          12,
+          158,
+          12,
+          172,
+          10,
+          216,
+          8,
+          158,
+          55,
+          251,
+          16,
+          10,
+          9,
+          76,
+          12,
+          88,
+          9,
+          206,
+          61,
+          251,
+          13,
+          152,
+          4,
+          58,
+          7,
+          165,
+          12,
+          158,
+          12,
+          12,
+          254,
+          13,
+          112,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          157,
+          11,
+          216,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "0D 98 10 0D 07 5D 0C F5 10 30 04 C5 0A C0 08 64 3B FE 02 E9 0C 0C 3B 01 05 3B 0C 9E 0C AC 0A D8 08 9E 37 FB 10 0A 09 4C 0C 58 09 CE 3D FB 0D 98 04 3A 07 A5 0C 9E 0C 0C FE 0D 70 01 63 07 D7 09 66 03 9D 0B D8 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 135,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2
+    }
+  }
+}

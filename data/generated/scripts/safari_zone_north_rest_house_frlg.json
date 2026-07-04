@@ -1,0 +1,605 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SafariZone_North_RestHouse_Frlg",
+    "map_script": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+    "map_json": "data/maps/SafariZone_North_RestHouse_Frlg/map.json",
+    "map_id": "MAP_SAFARI_ZONE_NORTH_REST_HOUSE",
+    "map_name": "SafariZone_North_RestHouse_Frlg"
+  },
+  "labels": {
+    "SafariZone_North_RestHouse_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SafariZone_North_RestHouse_EventScript_Fisher": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_North_RestHouse_EventScript_Scientist": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_North_RestHouse_EventScript_Gentleman": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_East_Text_KeepAnyItemFoundOnSafari": {
+      "kind": "text",
+      "line": 16,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "SafariZone_East_Text_PrizeInDeepestPartOfSafariZone": {
+      "kind": "text",
+      "line": 23,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_East_Text_MyEeveeEvolvedIntoFlareon": {
+      "kind": "text",
+      "line": 27,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "SafariZone_North_RestHouse_Frlg_MapScripts": {
+      "label": "SafariZone_North_RestHouse_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SafariZone_North_RestHouse_EventScript_Fisher": {
+      "label": "SafariZone_North_RestHouse_EventScript_Fisher",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_East_Text_PrizeInDeepestPartOfSafariZone",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox SafariZone_East_Text_PrizeInDeepestPartOfSafariZone, MSGBOX_NPC",
+          "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_East_Text_PrizeInDeepestPartOfSafariZone",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_North_RestHouse_EventScript_Scientist": {
+      "label": "SafariZone_North_RestHouse_EventScript_Scientist",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_East_Text_KeepAnyItemFoundOnSafari",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox SafariZone_East_Text_KeepAnyItemFoundOnSafari, MSGBOX_NPC",
+          "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_East_Text_KeepAnyItemFoundOnSafari",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_North_RestHouse_EventScript_Gentleman": {
+      "label": "SafariZone_North_RestHouse_EventScript_Gentleman",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_East_Text_MyEeveeEvolvedIntoFlareon",
+            "MSGBOX_NPC"
+          ],
+          "line": 13,
+          "raw": "msgbox SafariZone_East_Text_MyEeveeEvolvedIntoFlareon, MSGBOX_NPC",
+          "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_East_Text_MyEeveeEvolvedIntoFlareon",
+          "mode": "MSGBOX_NPC",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SafariZone_East_Text_KeepAnyItemFoundOnSafari": {
+      "label": "SafariZone_East_Text_KeepAnyItemFoundOnSafari",
+      "line": 16,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "raw_text": "你能拿走任何你在野生原野区\\n找到的东西。\\p但是如果你想要一次把\\n所有东西都拿走的话，\\p你的时间会耗尽的。$",
+      "display_text": "你能拿走任何你在野生原野区\n找到的东西。\n\n但是如果你想要一次把\n所有东西都拿走的话，\n\n你的时间会耗尽的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 98,
+        "bytes": [
+          9,
+          217,
+          9,
+          210,
+          9,
+          185,
+          17,
+          23,
+          11,
+          78,
+          4,
+          244,
+          9,
+          217,
+          15,
+          230,
+          15,
+          0,
+          11,
+          216,
+          15,
+          185,
+          15,
+          0,
+          11,
+          26,
+          254,
+          16,
+          69,
+          3,
+          4,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          55,
+          251,
+          2,
+          233,
+          12,
+          12,
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          14,
+          24,
+          14,
+          241,
+          15,
+          11,
+          2,
+          174,
+          1,
+          48,
+          254,
+          12,
+          156,
+          15,
+          126,
+          3,
+          80,
+          13,
+          189,
+          3,
+          97,
+          9,
+          185,
+          17,
+          23,
+          3,
+          11,
+          5,
+          61,
+          59,
+          251,
+          9,
+          217,
+          3,
+          11,
+          11,
+          237,
+          5,
+          207,
+          5,
+          110,
+          4,
+          234,
+          7,
+          81,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "09 D9 09 D2 09 B9 11 17 0B 4E 04 F4 09 D9 0F E6 0F 00 0B D8 0F B9 0F 00 0B 1A FE 10 45 03 04 03 0B 03 50 0D BD 37 FB 02 E9 0C 0C 0B 67 04 C3 09 D9 0E 18 0E F1 0F 0B 02 AE 01 30 FE 0C 9C 0F 7E 03 50 0D BD 03 61 09 B9 11 17 03 0B 05 3D 3B FB 09 D9 03 0B 0B ED 05 CF 05 6E 04 EA 07 51 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 45,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 56,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_East_Text_PrizeInDeepestPartOfSafariZone": {
+      "label": "SafariZone_East_Text_PrizeInDeepestPartOfSafariZone",
+      "line": 23,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "raw_text": "走到野生原野区的最深处。\\n你就会赢得奖品！$",
+      "display_text": "走到野生原野区的最深处。\n你就会赢得奖品！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          17,
+          23,
+          3,
+          4,
+          15,
+          0,
+          11,
+          216,
+          15,
+          185,
+          15,
+          0,
+          11,
+          26,
+          3,
+          11,
+          17,
+          38,
+          11,
+          204,
+          2,
+          134,
+          55,
+          254,
+          9,
+          217,
+          7,
+          125,
+          5,
+          110,
+          15,
+          92,
+          3,
+          10,
+          7,
+          3,
+          10,
+          114,
+          60,
+          255
+        ],
+        "hex": "11 17 03 04 0F 00 0B D8 0F B9 0F 00 0B 1A 03 0B 11 26 0B CC 02 86 37 FE 09 D9 07 7D 05 6E 0F 5C 03 0A 07 03 0A 72 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_East_Text_MyEeveeEvolvedIntoFlareon": {
+      "label": "SafariZone_East_Text_MyEeveeEvolvedIntoFlareon",
+      "line": 27,
+      "source_file": "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc",
+      "raw_text": "我的伊布进化成了火精灵。\\p但是，我一个朋友的伊布进化成了\\n水精灵。我不知道这是为什么？$",
+      "display_text": "我的伊布进化成了火精灵。\n\n但是，我一个朋友的伊布进化成了\n水精灵。我不知道这是为什么？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 81,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          15,
+          17,
+          1,
+          215,
+          7,
+          74,
+          5,
+          60,
+          2,
+          75,
+          8,
+          158,
+          5,
+          125,
+          7,
+          91,
+          8,
+          188,
+          55,
+          251,
+          2,
+          233,
+          12,
+          12,
+          59,
+          13,
+          152,
+          15,
+          11,
+          4,
+          96,
+          10,
+          80,
+          15,
+          127,
+          3,
+          11,
+          15,
+          17,
+          1,
+          215,
+          7,
+          74,
+          5,
+          60,
+          2,
+          75,
+          8,
+          158,
+          254,
+          12,
+          81,
+          7,
+          91,
+          8,
+          188,
+          55,
+          13,
+          152,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          16,
+          85,
+          12,
+          12,
+          13,
+          112,
+          11,
+          238,
+          9,
+          76,
+          61,
+          255
+        ],
+        "hex": "0D 98 03 0B 0F 11 01 D7 07 4A 05 3C 02 4B 08 9E 05 7D 07 5B 08 BC 37 FB 02 E9 0C 0C 3B 0D 98 0F 0B 04 60 0A 50 0F 7F 03 0B 0F 11 01 D7 07 4A 05 3C 02 4B 08 9E FE 0C 51 07 5B 08 BC 37 0D 98 01 D6 10 7B 03 07 10 55 0C 0C 0D 70 0B EE 09 4C 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 219,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "msgbox": 3
+    }
+  }
+}

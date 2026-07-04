@@ -1,0 +1,686 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SafariZone_North_Frlg",
+    "map_script": "data/maps/SafariZone_North_Frlg/scripts.inc",
+    "map_json": "data/maps/SafariZone_North_Frlg/map.json",
+    "map_id": "MAP_SAFARI_ZONE_NORTH_FRLG",
+    "map_name": "SafariZone_North_Frlg"
+  },
+  "labels": {
+    "SafariZone_North_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SafariZone_North_EventScript_RestHouseSign": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_North_EventScript_TrainerTips1": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_North_EventScript_AreaSign": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_North_EventScript_TrainerTips2": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_North_EventScript_TrainerTips3": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_North_Text_RestHouse": {
+      "kind": "text",
+      "line": 24,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SafariZone_North_Text_SecretHouseStillAhead": {
+      "kind": "text",
+      "line": 27,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_North_Text_Area2": {
+      "kind": "text",
+      "line": 31,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SafariZone_North_Text_ZigzagThroughTallGrass": {
+      "kind": "text",
+      "line": 34,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "SafariZone_North_Text_WinFreeHMFindSecretHouse": {
+      "kind": "text",
+      "line": 40,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "SafariZone_North_Frlg_MapScripts": {
+      "label": "SafariZone_North_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SafariZone_North_EventScript_RestHouseSign": {
+      "label": "SafariZone_North_EventScript_RestHouseSign",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_North_Text_RestHouse",
+            "MSGBOX_SIGN"
+          ],
+          "line": 5,
+          "raw": "msgbox SafariZone_North_Text_RestHouse, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_North_Text_RestHouse",
+          "mode": "MSGBOX_SIGN",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_North_EventScript_TrainerTips1": {
+      "label": "SafariZone_North_EventScript_TrainerTips1",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_North_Text_SecretHouseStillAhead",
+            "MSGBOX_SIGN"
+          ],
+          "line": 9,
+          "raw": "msgbox SafariZone_North_Text_SecretHouseStillAhead, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_North_Text_SecretHouseStillAhead",
+          "mode": "MSGBOX_SIGN",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_North_EventScript_AreaSign": {
+      "label": "SafariZone_North_EventScript_AreaSign",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_North_Text_Area2",
+            "MSGBOX_SIGN"
+          ],
+          "line": 13,
+          "raw": "msgbox SafariZone_North_Text_Area2, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_North_Text_Area2",
+          "mode": "MSGBOX_SIGN",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_North_EventScript_TrainerTips2": {
+      "label": "SafariZone_North_EventScript_TrainerTips2",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_North_Text_ZigzagThroughTallGrass",
+            "MSGBOX_SIGN"
+          ],
+          "line": 17,
+          "raw": "msgbox SafariZone_North_Text_ZigzagThroughTallGrass, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_North_Text_ZigzagThroughTallGrass",
+          "mode": "MSGBOX_SIGN",
+          "line": 17
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_North_EventScript_TrainerTips3": {
+      "label": "SafariZone_North_EventScript_TrainerTips3",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_North_Text_WinFreeHMFindSecretHouse",
+            "MSGBOX_SIGN"
+          ],
+          "line": 21,
+          "raw": "msgbox SafariZone_North_Text_WinFreeHMFindSecretHouse, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_North_Text_WinFreeHMFindSecretHouse",
+          "mode": "MSGBOX_SIGN",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SafariZone_North_Text_RestHouse": {
+      "label": "SafariZone_North_Text_RestHouse",
+      "line": 24,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "raw_text": "休息屋$",
+      "display_text": "休息屋",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 7,
+        "bytes": [
+          14,
+          104,
+          13,
+          198,
+          13,
+          163,
+          255
+        ],
+        "hex": "0E 68 0D C6 0D A3 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 3,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_North_Text_SecretHouseStillAhead": {
+      "label": "SafariZone_North_Text_SecretHouseStillAhead",
+      "line": 27,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "raw_text": "训练家贴士\\p神秘小屋仍在前方。$",
+      "display_text": "训练家贴士\n\n神秘小屋仍在前方。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          13,
+          3,
+          12,
+          4,
+          251,
+          11,
+          207,
+          9,
+          112,
+          14,
+          44,
+          13,
+          163,
+          11,
+          84,
+          15,
+          230,
+          10,
+          201,
+          3,
+          192,
+          55,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 0D 03 0C 04 FB 0B CF 09 70 0E 2C 0D A3 0B 54 0F E6 0A C9 03 C0 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_North_Text_Area2": {
+      "label": "SafariZone_North_Text_Area2",
+      "line": 31,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "raw_text": "栖息地2$",
+      "display_text": "栖息地2",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 8,
+        "bytes": [
+          10,
+          151,
+          13,
+          198,
+          3,
+          31,
+          163,
+          255
+        ],
+        "hex": "0A 97 0D C6 03 1F A3 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 4,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_North_Text_ZigzagThroughTallGrass": {
+      "label": "SafariZone_North_Text_ZigzagThroughTallGrass",
+      "line": 34,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "raw_text": "训练家贴士\\p宝可梦隐藏在高高的草丛中。\\p在草丛中区折前行，\\n就能把他们找出来。$",
+      "display_text": "训练家贴士\n\n宝可梦隐藏在高高的草丛中。\n\n在草丛中区折前行，\n就能把他们找出来。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 73,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          13,
+          3,
+          12,
+          4,
+          251,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          78,
+          1,
+          243,
+          15,
+          230,
+          4,
+          73,
+          4,
+          73,
+          3,
+          11,
+          2,
+          1,
+          2,
+          180,
+          16,
+          161,
+          55,
+          251,
+          15,
+          230,
+          2,
+          1,
+          2,
+          180,
+          16,
+          161,
+          11,
+          26,
+          16,
+          78,
+          10,
+          201,
+          14,
+          91,
+          59,
+          254,
+          7,
+          125,
+          9,
+          210,
+          1,
+          48,
+          12,
+          158,
+          9,
+          95,
+          16,
+          69,
+          2,
+          120,
+          8,
+          41,
+          55,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 0D 03 0C 04 FB 01 63 07 D7 09 66 0F 4E 01 F3 0F E6 04 49 04 49 03 0B 02 01 02 B4 10 A1 37 FB 0F E6 02 01 02 B4 10 A1 0B 1A 10 4E 0A C9 0E 5B 3B FE 07 7D 09 D2 01 30 0C 9E 09 5F 10 45 02 78 08 29 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_North_Text_WinFreeHMFindSecretHouse": {
+      "label": "SafariZone_North_Text_WinFreeHMFindSecretHouse",
+      "line": 40,
+      "source_file": "data/maps/SafariZone_North_Frlg/scripts.inc",
+      "raw_text": "训练家贴士\\p找到神秘小屋就\\n能获得免费的秘传机。$",
+      "display_text": "训练家贴士\n\n找到神秘小屋就\n能获得免费的秘传机。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          13,
+          3,
+          12,
+          4,
+          251,
+          16,
+          69,
+          3,
+          4,
+          11,
+          207,
+          9,
+          112,
+          14,
+          44,
+          13,
+          163,
+          7,
+          125,
+          254,
+          9,
+          210,
+          5,
+          126,
+          3,
+          10,
+          9,
+          122,
+          3,
+          212,
+          3,
+          11,
+          9,
+          112,
+          2,
+          139,
+          5,
+          135,
+          55,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 0D 03 0C 04 FB 10 45 03 04 0B CF 09 70 0E 2C 0D A3 07 7D FE 09 D2 05 7E 03 0A 09 7A 03 D4 03 0B 09 70 02 8B 05 87 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 5,
+    "encoded_text_count": 5,
+    "text_source_byte_count": 163,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 5
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 5,
+      "msgbox": 5
+    }
+  }
+}

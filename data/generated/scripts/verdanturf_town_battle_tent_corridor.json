@@ -1,0 +1,1069 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "VerdanturfTown_BattleTentCorridor",
+    "map_script": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+    "map_json": "data/maps/VerdanturfTown_BattleTentCorridor/map.json",
+    "map_id": "MAP_VERDANTURF_TOWN_BATTLE_TENT_CORRIDOR",
+    "map_name": "VerdanturfTown_BattleTentCorridor"
+  },
+  "labels": {
+    "VerdanturfTown_BattleTentCorridor_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentCorridor_OnFrame": {
+      "kind": "map_script_table",
+      "line": 5,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentCorridor_EventScript_EnterCorridor": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instruction_count": 17
+    },
+    "VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor": {
+      "kind": "movement",
+      "line": 28,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instruction_count": 5
+    },
+    "VerdanturfTown_BattleTentCorridor_Movement_PlayerEnterDoor": {
+      "kind": "movement",
+      "line": 35,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_BattleTentCorridor_Movement_AttendantEnterDoor": {
+      "kind": "movement",
+      "line": 37,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_ContestHall_Text_WhichContestYouEntering": {
+      "kind": "text",
+      "line": 45,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_ContestHall_Text_RaisedMonToBeCute": {
+      "kind": "text",
+      "line": 49,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_ContestHall_Text_MyMonRules": {
+      "kind": "text",
+      "line": 53,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_ContestHall_Text_NormalRankStage": {
+      "kind": "text",
+      "line": 57,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "VerdanturfTown_BattleTentCorridor_MapScripts": {
+      "label": "VerdanturfTown_BattleTentCorridor_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "VerdanturfTown_BattleTentCorridor_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, VerdanturfTown_BattleTentCorridor_OnFrame",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentCorridor_OnFrame": {
+      "label": "VerdanturfTown_BattleTentCorridor_OnFrame",
+      "kind": "map_script_table",
+      "line": 5,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_0",
+            "0",
+            "VerdanturfTown_BattleTentCorridor_EventScript_EnterCorridor"
+          ],
+          "line": 6,
+          "raw": "map_script_2 VAR_TEMP_0, 0, VerdanturfTown_BattleTentCorridor_EventScript_EnterCorridor",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 7,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentCorridor_EventScript_EnterCorridor": {
+      "label": "VerdanturfTown_BattleTentCorridor_EventScript_EnterCorridor",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 10,
+          "raw": "lockall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_0",
+            "1"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_TEMP_0, 1",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_VERDANTURF_TENT_CORRIDOR_ATTENDANT",
+            "VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor"
+          ],
+          "line": 12,
+          "raw": "applymovement LOCALID_VERDANTURF_TENT_CORRIDOR_ATTENDANT, VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor"
+          ],
+          "line": 13,
+          "raw": "applymovement LOCALID_PLAYER, VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 14,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "opendoor",
+          "args": [
+            "2",
+            "1"
+          ],
+          "line": 15,
+          "raw": "opendoor 2, 1",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 16,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_VERDANTURF_TENT_CORRIDOR_ATTENDANT",
+            "VerdanturfTown_BattleTentCorridor_Movement_AttendantEnterDoor"
+          ],
+          "line": 17,
+          "raw": "applymovement LOCALID_VERDANTURF_TENT_CORRIDOR_ATTENDANT, VerdanturfTown_BattleTentCorridor_Movement_AttendantEnterDoor",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "VerdanturfTown_BattleTentCorridor_Movement_PlayerEnterDoor"
+          ],
+          "line": 18,
+          "raw": "applymovement LOCALID_PLAYER, VerdanturfTown_BattleTentCorridor_Movement_PlayerEnterDoor",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 19,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "closedoor",
+          "args": [
+            "2",
+            "1"
+          ],
+          "line": 20,
+          "raw": "closedoor 2, 1",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 21,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "0"
+          ],
+          "line": 22,
+          "raw": "setvar VAR_0x8006, 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_VERDANTURF_TOWN_BATTLE_TENT_BATTLE_ROOM",
+            "6",
+            "5"
+          ],
+          "line": 23,
+          "raw": "warp MAP_VERDANTURF_TOWN_BATTLE_TENT_BATTLE_ROOM, 6, 5",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 24,
+          "raw": "waitstate",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 25,
+          "raw": "releaseall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor": {
+      "label": "VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor",
+      "kind": "movement",
+      "line": 28,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 29,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 30,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 31,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 32,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 33,
+          "raw": "step_end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentCorridor_Movement_PlayerEnterDoor": {
+      "label": "VerdanturfTown_BattleTentCorridor_Movement_PlayerEnterDoor",
+      "kind": "movement",
+      "line": 35,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 36,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentCorridor_Movement_AttendantEnterDoor": {
+      "label": "VerdanturfTown_BattleTentCorridor_Movement_AttendantEnterDoor",
+      "kind": "movement",
+      "line": 37,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 38,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 39,
+          "raw": "set_invisible",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 40,
+          "raw": "step_end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "VerdanturfTown_ContestHall_Text_WhichContestYouEntering": {
+      "label": "VerdanturfTown_ContestHall_Text_WhichContestYouEntering",
+      "line": 45,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "raw_text": "你想要参加哪个部门？\\n需要建议吗？\\p在任一部门中，例如可爱部门\\n我认为裁判不仅仅\\l在第一回合中判定。\\p你应该努力制定出更多方法\\n来更好的培育你的宝可梦。$",
+      "display_text": "你想要参加哪个部门？\n需要建议吗？\n\n在任一部门中，例如可爱部门\n我认为裁判不仅仅\n在第一回合中判定。\n\n你应该努力制定出更多方法\n来更好的培育你的宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 142,
+        "bytes": [
+          9,
+          217,
+          14,
+          24,
+          14,
+          241,
+          1,
+          233,
+          5,
+          190,
+          9,
+          186,
+          4,
+          96,
+          1,
+          218,
+          9,
+          93,
+          61,
+          254,
+          14,
+          115,
+          14,
+          241,
+          5,
+          241,
+          15,
+          57,
+          9,
+          42,
+          61,
+          251,
+          15,
+          230,
+          11,
+          78,
+          15,
+          11,
+          1,
+          218,
+          9,
+          93,
+          16,
+          161,
+          59,
+          8,
+          114,
+          11,
+          103,
+          7,
+          215,
+          1,
+          13,
+          1,
+          218,
+          9,
+          93,
+          254,
+          13,
+          152,
+          11,
+          79,
+          13,
+          112,
+          1,
+          222,
+          10,
+          45,
+          1,
+          214,
+          7,
+          72,
+          7,
+          72,
+          250,
+          15,
+          230,
+          3,
+          33,
+          15,
+          11,
+          5,
+          101,
+          4,
+          245,
+          16,
+          161,
+          10,
+          45,
+          3,
+          77,
+          55,
+          251,
+          9,
+          217,
+          15,
+          84,
+          4,
+          45,
+          10,
+          9,
+          8,
+          121,
+          16,
+          151,
+          3,
+          77,
+          2,
+          120,
+          4,
+          102,
+          3,
+          133,
+          3,
+          192,
+          3,
+          171,
+          254,
+          8,
+          41,
+          4,
+          102,
+          4,
+          233,
+          3,
+          11,
+          10,
+          61,
+          15,
+          171,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "09 D9 0E 18 0E F1 01 E9 05 BE 09 BA 04 60 01 DA 09 5D 3D FE 0E 73 0E F1 05 F1 0F 39 09 2A 3D FB 0F E6 0B 4E 0F 0B 01 DA 09 5D 10 A1 3B 08 72 0B 67 07 D7 01 0D 01 DA 09 5D FE 0D 98 0B 4F 0D 70 01 DE 0A 2D 01 D6 07 48 07 48 FA 0F E6 03 21 0F 0B 05 65 04 F5 10 A1 0A 2D 03 4D 37 FB 09 D9 0F 54 04 2D 0A 09 08 79 10 97 03 4D 02 78 04 66 03 85 03 C0 03 AB FE 08 29 04 66 04 E9 03 0B 0A 3D 0F AB 09 D9 03 0B 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 43,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 54,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 68,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 82,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_ContestHall_Text_RaisedMonToBeCute": {
+      "label": "VerdanturfTown_ContestHall_Text_RaisedMonToBeCute",
+      "line": 49,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "raw_text": "我培育宝可梦让它变得可爱。\\p我发现你可以让宝可梦参加\\n可爱部门！\\p我很高兴我是用爱心来培育\\n我的宝可梦。$",
+      "display_text": "我培育宝可梦让它变得可爱。\n\n我发现你可以让宝可梦参加\n可爱部门！\n\n我很高兴我是用爱心来培育\n我的宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 98,
+        "bytes": [
+          13,
+          152,
+          10,
+          61,
+          15,
+          171,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          67,
+          12,
+          159,
+          1,
+          161,
+          3,
+          10,
+          7,
+          215,
+          1,
+          13,
+          55,
+          251,
+          13,
+          152,
+          3,
+          165,
+          14,
+          3,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          11,
+          67,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          233,
+          5,
+          190,
+          254,
+          7,
+          215,
+          1,
+          13,
+          1,
+          218,
+          9,
+          93,
+          60,
+          251,
+          13,
+          152,
+          5,
+          11,
+          4,
+          73,
+          14,
+          86,
+          13,
+          152,
+          12,
+          12,
+          15,
+          113,
+          1,
+          13,
+          14,
+          79,
+          8,
+          41,
+          10,
+          61,
+          15,
+          171,
+          254,
+          13,
+          152,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "0D 98 0A 3D 0F AB 01 63 07 D7 09 66 0B 43 0C 9F 01 A1 03 0A 07 D7 01 0D 37 FB 0D 98 03 A5 0E 03 09 D9 07 D7 0F 24 0B 43 01 63 07 D7 09 66 01 E9 05 BE FE 07 D7 01 0D 01 DA 09 5D 3C FB 0D 98 05 0B 04 49 0E 56 0D 98 0C 0C 0F 71 01 0D 0E 4F 08 29 0A 3D 0F AB FE 0D 98 03 0B 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 34,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 48,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 56,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_ContestHall_Text_MyMonRules": {
+      "label": "VerdanturfTown_ContestHall_Text_MyMonRules",
+      "line": 53,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "raw_text": "我的宝可梦法则！\\p它帅气、强壮、漂亮、可爱\\n并且聪明。完美！\\p我不妨赢得各项\\n华丽大赛。$",
+      "display_text": "我的宝可梦法则！\n\n它帅气、强壮、漂亮、可爱\n并且聪明。完美！\n\n我不妨赢得各项\n华丽大赛。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 78,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          171,
+          16,
+          7,
+          60,
+          251,
+          12,
+          159,
+          12,
+          74,
+          10,
+          179,
+          58,
+          10,
+          216,
+          16,
+          226,
+          58,
+          10,
+          106,
+          8,
+          148,
+          58,
+          7,
+          215,
+          1,
+          13,
+          254,
+          1,
+          189,
+          10,
+          235,
+          2,
+          175,
+          9,
+          143,
+          55,
+          13,
+          82,
+          9,
+          88,
+          60,
+          251,
+          13,
+          152,
+          1,
+          214,
+          3,
+          196,
+          15,
+          92,
+          3,
+          10,
+          4,
+          97,
+          14,
+          27,
+          254,
+          5,
+          55,
+          8,
+          107,
+          2,
+          211,
+          11,
+          124,
+          55,
+          255
+        ],
+        "hex": "0D 98 03 0B 01 63 07 D7 09 66 03 AB 10 07 3C FB 0C 9F 0C 4A 0A B3 3A 0A D8 10 E2 3A 0A 6A 08 94 3A 07 D7 01 0D FE 01 BD 0A EB 02 AF 09 8F 37 0D 52 09 58 3C FB 0D 98 01 D6 03 C4 0F 5C 03 0A 04 61 0E 1B FE 05 37 08 6B 02 D3 0B 7C 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 41,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_ContestHall_Text_NormalRankStage": {
+      "label": "VerdanturfTown_ContestHall_Text_NormalRankStage",
+      "line": 57,
+      "source_file": "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc",
+      "raw_text": "宝可梦华丽大赛\\n一般级会场！$",
+      "display_text": "宝可梦华丽大赛\n一般级会场！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          55,
+          8,
+          107,
+          2,
+          211,
+          11,
+          124,
+          254,
+          15,
+          11,
+          1,
+          66,
+          5,
+          161,
+          5,
+          110,
+          2,
+          35,
+          60,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 05 37 08 6B 02 D3 0B 7C FE 0F 0B 01 42 05 A1 05 6E 02 23 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 4,
+      "closedoor": 1,
+      "map_script": 1,
+      "map_script_2": 1,
+      "opendoor": 1,
+      "set_invisible": 1,
+      "setvar": 2,
+      "step_end": 2,
+      "waitdooranim": 2,
+      "waitmovement": 2,
+      "waitstate": 1,
+      "walk_up": 6,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 3,
+    "movement_count": 3,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 345,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 4,
+      "closedoor": 1,
+      "end": 1,
+      "lockall": 1,
+      "map_script": 1,
+      "map_script_2": 1,
+      "opendoor": 1,
+      "releaseall": 1,
+      "set_invisible": 1,
+      "setvar": 2,
+      "step_end": 2,
+      "waitdooranim": 2,
+      "waitmovement": 2,
+      "waitstate": 1,
+      "walk_up": 6,
+      "warp": 1
+    }
+  }
+}

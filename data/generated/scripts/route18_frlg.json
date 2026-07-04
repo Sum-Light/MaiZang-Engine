@@ -1,0 +1,1048 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route18_Frlg",
+    "map_script": "data/maps/Route18_Frlg/scripts.inc",
+    "map_json": "data/maps/Route18_Frlg/map.json",
+    "map_id": "MAP_ROUTE18",
+    "map_name": "Route18_Frlg"
+  },
+  "labels": {
+    "Route18_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route18_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_OnTransitionCyclingRoad": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_OnWarp": {
+      "kind": "map_script_table",
+      "line": 14,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_OnWarpCyclingRoad": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_EventScript_RouteSign": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_EventScript_CyclingRoadSign": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_Text_WiltonIntro": {
+      "kind": "text",
+      "line": 30,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_Text_WiltonDefeat": {
+      "kind": "text",
+      "line": 34,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route18_Text_WiltonPostBattle": {
+      "kind": "text",
+      "line": 37,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route18_Text_RamiroIntro": {
+      "kind": "text",
+      "line": 40,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_Text_RamiroDefeat": {
+      "kind": "text",
+      "line": 44,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route18_Text_RamiroPostBattle": {
+      "kind": "text",
+      "line": 47,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_Text_JacobIntro": {
+      "kind": "text",
+      "line": 51,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_Text_JacobDefeat": {
+      "kind": "text",
+      "line": 55,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route18_Text_JacobPostBattle": {
+      "kind": "text",
+      "line": 58,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_Text_RouteSign": {
+      "kind": "text",
+      "line": 62,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_Text_CyclingRoadSign": {
+      "kind": "text",
+      "line": 66,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "Route18_Frlg_MapScripts": {
+      "label": "Route18_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "Route18_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, Route18_OnTransition",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "Route18_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, Route18_OnWarp",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route18_OnTransition": {
+      "label": "Route18_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_ROUTE16",
+            "1",
+            "Route18_OnTransitionCyclingRoad"
+          ],
+          "line": 7,
+          "raw": "call_if_eq VAR_MAP_SCENE_ROUTE16, 1, Route18_OnTransitionCyclingRoad",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "Route18_OnTransitionCyclingRoad",
+          "line": 7
+        }
+      ]
+    },
+    "Route18_OnTransitionCyclingRoad": {
+      "label": "Route18_OnTransitionCyclingRoad",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_ON_CYCLING_ROAD"
+          ],
+          "line": 11,
+          "raw": "setflag FLAG_SYS_ON_CYCLING_ROAD",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 12,
+          "raw": "return",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route18_OnWarp": {
+      "label": "Route18_OnWarp",
+      "kind": "map_script_table",
+      "line": 14,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_MAP_SCENE_ROUTE16",
+            "1",
+            "Route18_OnWarpCyclingRoad"
+          ],
+          "line": 15,
+          "raw": "map_script_2 VAR_MAP_SCENE_ROUTE16, 1, Route18_OnWarpCyclingRoad",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 16,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route18_OnWarpCyclingRoad": {
+      "label": "Route18_OnWarpCyclingRoad",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "ForcePlayerOntoBike"
+          ],
+          "line": 19,
+          "raw": "special ForcePlayerOntoBike",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route18_EventScript_RouteSign": {
+      "label": "Route18_EventScript_RouteSign",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route18_Text_RouteSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 23,
+          "raw": "msgbox Route18_Text_RouteSign, MSGBOX_SIGN",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route18_Text_RouteSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 23
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route18_EventScript_CyclingRoadSign": {
+      "label": "Route18_EventScript_CyclingRoadSign",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route18_Text_CyclingRoadSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 27,
+          "raw": "msgbox Route18_Text_CyclingRoadSign, MSGBOX_SIGN",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 28,
+          "raw": "end",
+          "source_file": "data/maps/Route18_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route18_Text_CyclingRoadSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 27
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route18_Text_WiltonIntro": {
+      "label": "Route18_Text_WiltonIntro",
+      "line": 30,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "我总是踏遍每一个草丛\\n来寻找新的宝可梦。$",
+      "display_text": "我总是踏遍每一个草丛\n来寻找新的宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 39,
+        "bytes": [
+          13,
+          152,
+          17,
+          20,
+          12,
+          12,
+          12,
+          165,
+          1,
+          166,
+          9,
+          87,
+          15,
+          11,
+          4,
+          96,
+          2,
+          1,
+          2,
+          180,
+          254,
+          8,
+          41,
+          14,
+          153,
+          16,
+          69,
+          14,
+          77,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "0D 98 11 14 0C 0C 0C A5 01 A6 09 57 0F 0B 04 60 02 01 02 B4 FE 08 29 0E 99 10 45 0E 4D 03 0B 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_Text_WiltonDefeat": {
+      "label": "Route18_Text_WiltonDefeat",
+      "line": 34,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "呃！$",
+      "display_text": "呃！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 4,
+        "bytes": [
+          19,
+          245,
+          60,
+          255
+        ],
+        "hex": "13 F5 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 2,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_Text_WiltonPostBattle": {
+      "label": "Route18_Text_WiltonPostBattle",
+      "line": 37,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "我希望有一辆自行车！$",
+      "display_text": "我希望有一辆自行车！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          13,
+          152,
+          13,
+          199,
+          13,
+          99,
+          15,
+          126,
+          15,
+          11,
+          8,
+          145,
+          17,
+          12,
+          14,
+          91,
+          2,
+          55,
+          60,
+          255
+        ],
+        "hex": "0D 98 0D C7 0D 63 0F 7E 0F 0B 08 91 11 0C 0E 5B 02 37 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_Text_RamiroIntro": {
+      "label": "Route18_Text_RamiroIntro",
+      "line": 40,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "咕咕！\\n你喜欢我学的鸟叫声吗？$",
+      "display_text": "咕咕！\n你喜欢我学的鸟叫声吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          4,
+          134,
+          4,
+          134,
+          60,
+          254,
+          9,
+          217,
+          13,
+          214,
+          5,
+          67,
+          13,
+          152,
+          14,
+          144,
+          3,
+          11,
+          9,
+          231,
+          7,
+          34,
+          11,
+          215,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "04 86 04 86 3C FE 09 D9 0D D6 05 43 0D 98 0E 90 03 0B 09 E7 07 22 0B D7 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_Text_RamiroDefeat": {
+      "label": "Route18_Text_RamiroDefeat",
+      "line": 44,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "我不得不打扰你！$",
+      "display_text": "我不得不打扰你！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          13,
+          152,
+          1,
+          214,
+          3,
+          10,
+          1,
+          214,
+          2,
+          210,
+          11,
+          69,
+          9,
+          217,
+          60,
+          255
+        ],
+        "hex": "0D 98 01 D6 03 0A 01 D6 02 D2 0B 45 09 D9 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_Text_RamiroPostBattle": {
+      "label": "Route18_Text_RamiroPostBattle",
+      "line": 47,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "我在周末喜欢收集海洋的宝可梦，\\n因为大海离我太近了。$",
+      "display_text": "我在周末喜欢收集海洋的宝可梦，\n因为大海离我太近了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 50,
+        "bytes": [
+          13,
+          152,
+          15,
+          230,
+          16,
+          173,
+          9,
+          159,
+          13,
+          214,
+          5,
+          67,
+          12,
+          26,
+          5,
+          154,
+          4,
+          201,
+          14,
+          220,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          254,
+          15,
+          66,
+          13,
+          112,
+          2,
+          211,
+          4,
+          201,
+          8,
+          96,
+          13,
+          152,
+          12,
+          172,
+          7,
+          78,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0D 98 0F E6 10 AD 09 9F 0D D6 05 43 0C 1A 05 9A 04 C9 0E DC 03 0B 01 63 07 D7 09 66 3B FE 0F 42 0D 70 02 D3 04 C9 08 60 0D 98 0C AC 07 4E 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_Text_JacobIntro": {
+      "label": "Route18_Text_JacobIntro",
+      "line": 51,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "这是我的草地！\\n快出去！$",
+      "display_text": "这是我的草地！\n快出去！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          16,
+          85,
+          12,
+          12,
+          13,
+          152,
+          3,
+          11,
+          2,
+          1,
+          3,
+          31,
+          60,
+          254,
+          8,
+          3,
+          2,
+          120,
+          11,
+          37,
+          60,
+          255
+        ],
+        "hex": "10 55 0C 0C 0D 98 03 0B 02 01 03 1F 3C FE 08 03 02 78 0B 25 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_Text_JacobDefeat": {
+      "label": "Route18_Text_JacobDefeat",
+      "line": 55,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "见鬼！$",
+      "display_text": "见鬼！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 6,
+        "bytes": [
+          5,
+          230,
+          4,
+          181,
+          60,
+          255
+        ],
+        "hex": "05 E6 04 B5 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 3,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_Text_JacobPostBattle": {
+      "label": "Route18_Text_JacobPostBattle",
+      "line": 58,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "这是我最喜欢收服\\n宝可梦的地方。$",
+      "display_text": "这是我最喜欢收服\n宝可梦的地方。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          16,
+          85,
+          12,
+          12,
+          13,
+          152,
+          17,
+          38,
+          13,
+          214,
+          5,
+          67,
+          12,
+          26,
+          4,
+          10,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          55,
+          255
+        ],
+        "hex": "10 55 0C 0C 0D 98 11 26 0D D6 05 43 0C 1A 04 0A FE 01 63 07 D7 09 66 03 0B 03 1F 03 C0 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_Text_RouteSign": {
+      "label": "Route18_Text_RouteSign",
+      "line": 62,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "18号道路\\n玉虹市-浅红市$",
+      "display_text": "18号道路\n玉虹市-浅红市",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          162,
+          169,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          254,
+          15,
+          159,
+          5,
+          22,
+          12,
+          21,
+          174,
+          10,
+          204,
+          5,
+          27,
+          12,
+          21,
+          255
+        ],
+        "hex": "A2 A9 04 EB 03 07 08 E8 FE 0F 9F 05 16 0C 15 AE 0A CC 05 1B 0C 15 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_Text_CyclingRoadSign": {
+      "label": "Route18_Text_CyclingRoadSign",
+      "line": 66,
+      "source_file": "data/maps/Route18_Frlg/scripts.inc",
+      "raw_text": "单车路\\n不允许步行的人进入！$",
+      "display_text": "单车路\n不允许步行的人进入！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          2,
+          227,
+          2,
+          55,
+          8,
+          232,
+          254,
+          1,
+          214,
+          15,
+          214,
+          14,
+          120,
+          1,
+          216,
+          14,
+          91,
+          3,
+          11,
+          11,
+          75,
+          7,
+          74,
+          11,
+          107,
+          60,
+          255
+        ],
+        "hex": "02 E3 02 37 08 E8 FE 01 D6 0F D6 0E 78 01 D8 0E 5B 03 0B 0B 4B 07 4A 0B 6B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_eq": 1,
+      "map_script": 2,
+      "map_script_2": 1,
+      "setflag": 1,
+      "special": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 18,
+    "script_count": 7,
+    "movement_count": 0,
+    "text_count": 11,
+    "encoded_text_count": 11,
+    "text_source_byte_count": 266,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 11
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call_if_eq": 1,
+      "end": 4,
+      "map_script": 2,
+      "map_script_2": 1,
+      "msgbox": 2,
+      "return": 1,
+      "setflag": 1,
+      "special": 1
+    }
+  }
+}

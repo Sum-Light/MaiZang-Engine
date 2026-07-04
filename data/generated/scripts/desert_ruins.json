@@ -1,0 +1,931 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "DesertRuins",
+    "map_script": "data/maps/DesertRuins/scripts.inc",
+    "map_json": "data/maps/DesertRuins/map.json",
+    "map_id": "MAP_DESERT_RUINS",
+    "map_name": "DesertRuins"
+  },
+  "labels": {
+    "DesertRuins_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 4
+    },
+    "DesertRuins_OnResume": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 2
+    },
+    "DesertRuins_EventScript_TryRemoveRegirock": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 4
+    },
+    "DesertRuins_OnLoad": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 2
+    },
+    "DesertRuins_EventScript_HideRegiEntrance": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 7
+    },
+    "DesertRuins_OnTransition": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 3
+    },
+    "DesertRuins_EventScript_ShowRegirock": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 2
+    },
+    "DesertRuins_EventScript_CaveEntranceMiddle": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 5
+    },
+    "DesertRuins_EventScript_BigHoleInWall": {
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 3
+    },
+    "DesertRuins_EventScript_CaveEntranceSide": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 4
+    },
+    "DesertRuins_EventScript_Regirock": {
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 18
+    },
+    "DesertRuins_EventScript_DefeatedRegirock": {
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 3
+    },
+    "DesertRuins_EventScript_RanFromRegirock": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "DesertRuins_MapScripts": {
+      "label": "DesertRuins_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "DesertRuins_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, DesertRuins_OnResume",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "DesertRuins_OnLoad"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, DesertRuins_OnLoad",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "DesertRuins_OnTransition"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, DesertRuins_OnTransition",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "DesertRuins_OnResume": {
+      "label": "DesertRuins_OnResume",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE",
+            "DesertRuins_EventScript_TryRemoveRegirock"
+          ],
+          "line": 8,
+          "raw": "call_if_set FLAG_SYS_CTRL_OBJ_DELETE, DesertRuins_EventScript_TryRemoveRegirock",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "DesertRuins_EventScript_TryRemoveRegirock",
+          "line": 8
+        }
+      ]
+    },
+    "DesertRuins_EventScript_TryRemoveRegirock": {
+      "label": "DesertRuins_EventScript_TryRemoveRegirock",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 12,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_CAUGHT",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 13,
+          "raw": "goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "VAR_LAST_TALKED"
+          ],
+          "line": 14,
+          "raw": "removeobject VAR_LAST_TALKED",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 15,
+          "raw": "return",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "Common_EventScript_NopReturn",
+          "line": 13
+        }
+      ]
+    },
+    "DesertRuins_OnLoad": {
+      "label": "DesertRuins_OnLoad",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_SYS_REGIROCK_PUZZLE_COMPLETED",
+            "DesertRuins_EventScript_HideRegiEntrance"
+          ],
+          "line": 18,
+          "raw": "call_if_unset FLAG_SYS_REGIROCK_PUZZLE_COMPLETED, DesertRuins_EventScript_HideRegiEntrance",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "DesertRuins_EventScript_HideRegiEntrance",
+          "line": 18
+        }
+      ]
+    },
+    "DesertRuins_EventScript_HideRegiEntrance": {
+      "label": "DesertRuins_EventScript_HideRegiEntrance",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "19",
+            "METATILE_Cave_EntranceCover",
+            "TRUE"
+          ],
+          "line": 22,
+          "raw": "setmetatile 7, 19, METATILE_Cave_EntranceCover, TRUE",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "8",
+            "19",
+            "METATILE_Cave_EntranceCover",
+            "TRUE"
+          ],
+          "line": 23,
+          "raw": "setmetatile 8, 19, METATILE_Cave_EntranceCover, TRUE",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "9",
+            "19",
+            "METATILE_Cave_EntranceCover",
+            "TRUE"
+          ],
+          "line": 24,
+          "raw": "setmetatile 9, 19, METATILE_Cave_EntranceCover, TRUE",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "20",
+            "METATILE_Cave_SealedChamberBraille_Mid",
+            "TRUE"
+          ],
+          "line": 25,
+          "raw": "setmetatile 7, 20, METATILE_Cave_SealedChamberBraille_Mid, TRUE",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "8",
+            "20",
+            "METATILE_Cave_SealedChamberBraille_Mid",
+            "TRUE"
+          ],
+          "line": 26,
+          "raw": "setmetatile 8, 20, METATILE_Cave_SealedChamberBraille_Mid, TRUE",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "9",
+            "20",
+            "METATILE_Cave_SealedChamberBraille_Mid",
+            "TRUE"
+          ],
+          "line": 27,
+          "raw": "setmetatile 9, 20, METATILE_Cave_SealedChamberBraille_Mid, TRUE",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 28,
+          "raw": "return",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "DesertRuins_OnTransition": {
+      "label": "DesertRuins_OnTransition",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_LANDMARK_DESERT_RUINS"
+          ],
+          "line": 31,
+          "raw": "setflag FLAG_LANDMARK_DESERT_RUINS",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_DEFEATED_REGIROCK",
+            "DesertRuins_EventScript_ShowRegirock"
+          ],
+          "line": 32,
+          "raw": "call_if_unset FLAG_DEFEATED_REGIROCK, DesertRuins_EventScript_ShowRegirock",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "DesertRuins_EventScript_ShowRegirock",
+          "line": 32
+        }
+      ]
+    },
+    "DesertRuins_EventScript_ShowRegirock": {
+      "label": "DesertRuins_EventScript_ShowRegirock",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_REGIROCK"
+          ],
+          "line": 36,
+          "raw": "clearflag FLAG_HIDE_REGIROCK",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 37,
+          "raw": "return",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "DesertRuins_EventScript_CaveEntranceMiddle": {
+      "label": "DesertRuins_EventScript_CaveEntranceMiddle",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 40,
+          "raw": "lockall",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_SYS_REGIROCK_PUZZLE_COMPLETED",
+            "DesertRuins_EventScript_BigHoleInWall"
+          ],
+          "line": 41,
+          "raw": "goto_if_set FLAG_SYS_REGIROCK_PUZZLE_COMPLETED, DesertRuins_EventScript_BigHoleInWall",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "DesertRuins_Braille_UseRockSmash"
+          ],
+          "line": 42,
+          "raw": "braillemsgbox DesertRuins_Braille_UseRockSmash",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 43,
+          "raw": "releaseall",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "DesertRuins_EventScript_BigHoleInWall",
+          "line": 41
+        }
+      ]
+    },
+    "DesertRuins_EventScript_BigHoleInWall": {
+      "label": "DesertRuins_EventScript_BigHoleInWall",
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_BigHoleInTheWall",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 47,
+          "raw": "msgbox gText_BigHoleInTheWall, MSGBOX_DEFAULT",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 48,
+          "raw": "releaseall",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_BigHoleInTheWall",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 47
+        }
+      ],
+      "branch_targets": []
+    },
+    "DesertRuins_EventScript_CaveEntranceSide": {
+      "label": "DesertRuins_EventScript_CaveEntranceSide",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 52,
+          "raw": "lockall",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "DesertRuins_Braille_UseRockSmash"
+          ],
+          "line": 53,
+          "raw": "braillemsgbox DesertRuins_Braille_UseRockSmash",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 54,
+          "raw": "releaseall",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 55,
+          "raw": "end",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "DesertRuins_EventScript_Regirock": {
+      "label": "DesertRuins_EventScript_Regirock",
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 58,
+          "raw": "lock",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 59,
+          "raw": "faceplayer",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 60,
+          "raw": "waitse",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_REGIROCK",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 61,
+          "raw": "playmoncry SPECIES_REGIROCK, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 62,
+          "raw": "delay 40",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 63,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "setwildbattle",
+          "args": [
+            "SPECIES_REGIROCK",
+            "40"
+          ],
+          "line": 64,
+          "raw": "setwildbattle SPECIES_REGIROCK, 40",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 65,
+          "raw": "setflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "StartRegiBattle"
+          ],
+          "line": 66,
+          "raw": "special StartRegiBattle",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 67,
+          "raw": "waitstate",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 68,
+          "raw": "clearflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 69,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_WON",
+            "DesertRuins_EventScript_DefeatedRegirock"
+          ],
+          "line": 70,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_WON, DesertRuins_EventScript_DefeatedRegirock",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_RAN",
+            "DesertRuins_EventScript_RanFromRegirock"
+          ],
+          "line": 71,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_RAN, DesertRuins_EventScript_RanFromRegirock",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_PLAYER_TELEPORTED",
+            "DesertRuins_EventScript_RanFromRegirock"
+          ],
+          "line": 72,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, DesertRuins_EventScript_RanFromRegirock",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_REGIROCK"
+          ],
+          "line": 73,
+          "raw": "setflag FLAG_DEFEATED_REGIROCK",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 74,
+          "raw": "release",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 75,
+          "raw": "end",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "DesertRuins_EventScript_DefeatedRegirock",
+          "line": 70
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "DesertRuins_EventScript_RanFromRegirock",
+          "line": 71
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "DesertRuins_EventScript_RanFromRegirock",
+          "line": 72
+        }
+      ]
+    },
+    "DesertRuins_EventScript_DefeatedRegirock": {
+      "label": "DesertRuins_EventScript_DefeatedRegirock",
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_REGIROCK"
+          ],
+          "line": 78,
+          "raw": "setflag FLAG_DEFEATED_REGIROCK",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_RemoveStaticPokemon"
+          ],
+          "line": 79,
+          "raw": "goto Common_EventScript_RemoveStaticPokemon",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 80,
+          "raw": "end",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_RemoveStaticPokemon",
+          "line": 79
+        }
+      ]
+    },
+    "DesertRuins_EventScript_RanFromRegirock": {
+      "label": "DesertRuins_EventScript_RanFromRegirock",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/DesertRuins/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_REGIROCK"
+          ],
+          "line": 83,
+          "raw": "setvar VAR_0x8004, SPECIES_REGIROCK",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_LegendaryFlewAway"
+          ],
+          "line": 84,
+          "raw": "goto Common_EventScript_LegendaryFlewAway",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 85,
+          "raw": "end",
+          "source_file": "data/maps/DesertRuins/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_LegendaryFlewAway",
+          "line": 84
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "braillemsgbox": 2,
+      "call_if_set": 1,
+      "call_if_unset": 2,
+      "clearflag": 2,
+      "delay": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "map_script": 3,
+      "playmoncry": 1,
+      "removeobject": 1,
+      "setflag": 4,
+      "setmetatile": 6,
+      "setvar": 1,
+      "setwildbattle": 1,
+      "special": 1,
+      "specialvar": 2,
+      "waitmoncry": 1,
+      "waitse": 1,
+      "waitstate": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 13,
+    "script_count": 13,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "braillemsgbox": 2,
+      "call_if_set": 1,
+      "call_if_unset": 2,
+      "clearflag": 2,
+      "delay": 1,
+      "end": 9,
+      "faceplayer": 1,
+      "goto": 2,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "lockall": 2,
+      "map_script": 3,
+      "msgbox": 1,
+      "playmoncry": 1,
+      "release": 1,
+      "releaseall": 3,
+      "removeobject": 1,
+      "return": 3,
+      "setflag": 4,
+      "setmetatile": 6,
+      "setvar": 1,
+      "setwildbattle": 1,
+      "special": 1,
+      "specialvar": 2,
+      "waitmoncry": 1,
+      "waitse": 1,
+      "waitstate": 1
+    }
+  }
+}

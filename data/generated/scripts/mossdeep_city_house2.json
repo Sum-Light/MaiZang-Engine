@@ -1,0 +1,895 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "MossdeepCity_House2",
+    "map_script": "data/maps/MossdeepCity_House2/scripts.inc",
+    "map_json": "data/maps/MossdeepCity_House2/map.json",
+    "map_id": "MAP_MOSSDEEP_CITY_HOUSE2",
+    "map_name": "MossdeepCity_House2"
+  },
+  "labels": {
+    "MossdeepCity_House2_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_House2_EventScript_Man": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_House2_EventScript_Twin": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_House2_EventScript_Wingull": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 14
+    },
+    "MossdeepCity_House2_EventScript_WingullExitNorth": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 3
+    },
+    "MossdeepCity_House2_EventScript_WingullExitWest": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 3
+    },
+    "MossdeepCity_House2_Movement_WingullExitNorth": {
+      "kind": "movement",
+      "line": 38,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 7
+    },
+    "MossdeepCity_House2_Movement_WingullExitEast": {
+      "kind": "movement",
+      "line": 47,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 5
+    },
+    "MossdeepCity_House2_Text_SisterMailsBoyfriendInFortree": {
+      "kind": "text",
+      "line": 54,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_House2_Text_PokemonCarriesMailBackAndForth": {
+      "kind": "text",
+      "line": 57,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_House2_Text_Wingull": {
+      "kind": "text",
+      "line": 60,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "MossdeepCity_House2_MapScripts": {
+      "label": "MossdeepCity_House2_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_House2_EventScript_Man": {
+      "label": "MossdeepCity_House2_EventScript_Man",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_House2_Text_SisterMailsBoyfriendInFortree",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox MossdeepCity_House2_Text_SisterMailsBoyfriendInFortree, MSGBOX_NPC",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_House2_Text_SisterMailsBoyfriendInFortree",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "MossdeepCity_House2_EventScript_Twin": {
+      "label": "MossdeepCity_House2_EventScript_Twin",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_House2_Text_PokemonCarriesMailBackAndForth",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox MossdeepCity_House2_Text_PokemonCarriesMailBackAndForth, MSGBOX_NPC",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_House2_Text_PokemonCarriesMailBackAndForth",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "MossdeepCity_House2_EventScript_Wingull": {
+      "label": "MossdeepCity_House2_EventScript_Wingull",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 13,
+          "raw": "lock",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 14,
+          "raw": "faceplayer",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 15,
+          "raw": "waitse",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_WINGULL",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 16,
+          "raw": "playmoncry SPECIES_WINGULL, CRY_MODE_NORMAL",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_House2_Text_Wingull",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 17,
+          "raw": "msgbox MossdeepCity_House2_Text_Wingull, MSGBOX_DEFAULT",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 18,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 19,
+          "raw": "closemessage",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_WINGULL_DELIVERED_MAIL"
+          ],
+          "line": 20,
+          "raw": "setflag FLAG_WINGULL_DELIVERED_MAIL",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_FORTREE_CITY_HOUSE_4_WINGULL"
+          ],
+          "line": 21,
+          "raw": "clearflag FLAG_HIDE_FORTREE_CITY_HOUSE_4_WINGULL",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_NORTH",
+            "MossdeepCity_House2_EventScript_WingullExitNorth"
+          ],
+          "line": 22,
+          "raw": "call_if_eq VAR_FACING, DIR_NORTH, MossdeepCity_House2_EventScript_WingullExitNorth",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_WEST",
+            "MossdeepCity_House2_EventScript_WingullExitWest"
+          ],
+          "line": 23,
+          "raw": "call_if_eq VAR_FACING, DIR_WEST, MossdeepCity_House2_EventScript_WingullExitWest",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_MOSSDEEP_HOUSE_WINGULL"
+          ],
+          "line": 24,
+          "raw": "removeobject LOCALID_MOSSDEEP_HOUSE_WINGULL",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 25,
+          "raw": "release",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_House2_Text_Wingull",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 17
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "MossdeepCity_House2_EventScript_WingullExitNorth",
+          "line": 22
+        },
+        {
+          "op": "call_if_eq",
+          "target": "MossdeepCity_House2_EventScript_WingullExitWest",
+          "line": 23
+        }
+      ]
+    },
+    "MossdeepCity_House2_EventScript_WingullExitNorth": {
+      "label": "MossdeepCity_House2_EventScript_WingullExitNorth",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOSSDEEP_HOUSE_WINGULL",
+            "MossdeepCity_House2_Movement_WingullExitNorth"
+          ],
+          "line": 29,
+          "raw": "applymovement LOCALID_MOSSDEEP_HOUSE_WINGULL, MossdeepCity_House2_Movement_WingullExitNorth",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 30,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 31,
+          "raw": "return",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_House2_EventScript_WingullExitWest": {
+      "label": "MossdeepCity_House2_EventScript_WingullExitWest",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOSSDEEP_HOUSE_WINGULL",
+            "MossdeepCity_House2_Movement_WingullExitEast"
+          ],
+          "line": 34,
+          "raw": "applymovement LOCALID_MOSSDEEP_HOUSE_WINGULL, MossdeepCity_House2_Movement_WingullExitEast",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 35,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 36,
+          "raw": "return",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "MossdeepCity_House2_Movement_WingullExitNorth": {
+      "label": "MossdeepCity_House2_Movement_WingullExitNorth",
+      "kind": "movement",
+      "line": 38,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 39,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 40,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 41,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 42,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 43,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 44,
+          "raw": "delay_8",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 45,
+          "raw": "step_end",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_House2_Movement_WingullExitEast": {
+      "label": "MossdeepCity_House2_Movement_WingullExitEast",
+      "kind": "movement",
+      "line": 47,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 48,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 49,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 50,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 51,
+          "raw": "delay_8",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 52,
+          "raw": "step_end",
+          "source_file": "data/maps/MossdeepCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "MossdeepCity_House2_Text_SisterMailsBoyfriendInFortree": {
+      "label": "MossdeepCity_House2_Text_SisterMailsBoyfriendInFortree",
+      "line": 54,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "raw_text": "我妹妹和她在茵郁市的男朋友\\n互相写信，\\p但我一点也不嫉妒她。$",
+      "display_text": "我妹妹和她在茵郁市的男朋友\n互相写信，\n\n但我一点也不嫉妒她。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 57,
+        "bytes": [
+          13,
+          152,
+          9,
+          91,
+          9,
+          91,
+          4,
+          243,
+          12,
+          160,
+          15,
+          230,
+          15,
+          64,
+          15,
+          162,
+          12,
+          21,
+          3,
+          11,
+          9,
+          198,
+          10,
+          80,
+          15,
+          127,
+          254,
+          5,
+          50,
+          14,
+          13,
+          14,
+          63,
+          14,
+          80,
+          59,
+          251,
+          2,
+          233,
+          13,
+          152,
+          15,
+          11,
+          3,
+          42,
+          15,
+          2,
+          1,
+          214,
+          5,
+          160,
+          3,
+          111,
+          12,
+          160,
+          55,
+          255
+        ],
+        "hex": "0D 98 09 5B 09 5B 04 F3 0C A0 0F E6 0F 40 0F A2 0C 15 03 0B 09 C6 0A 50 0F 7F FE 05 32 0E 0D 0E 3F 0E 50 3B FB 02 E9 0D 98 0F 0B 03 2A 0F 02 01 D6 05 A0 03 6F 0C A0 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_House2_Text_PokemonCarriesMailBackAndForth": {
+      "label": "MossdeepCity_House2_Text_PokemonCarriesMailBackAndForth",
+      "line": 57,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "raw_text": "尽管我见不到住在茵郁市的朋友，\\n我的宝可梦可以为我们\\l来回充当信使。\\p即使我们两地相隔，\\n我也并不孤单。$",
+      "display_text": "尽管我见不到住在茵郁市的朋友，\n我的宝可梦可以为我们\n来回充当信使。\n\n即使我们两地相隔，\n我也并不孤单。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 97,
+        "bytes": [
+          7,
+          81,
+          4,
+          164,
+          13,
+          152,
+          5,
+          230,
+          1,
+          214,
+          3,
+          4,
+          16,
+          208,
+          15,
+          230,
+          15,
+          64,
+          15,
+          162,
+          12,
+          21,
+          3,
+          11,
+          10,
+          80,
+          15,
+          127,
+          59,
+          254,
+          13,
+          152,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          7,
+          215,
+          15,
+          36,
+          13,
+          112,
+          13,
+          152,
+          9,
+          95,
+          250,
+          8,
+          41,
+          5,
+          101,
+          2,
+          102,
+          2,
+          239,
+          14,
+          80,
+          11,
+          245,
+          55,
+          251,
+          5,
+          159,
+          11,
+          245,
+          13,
+          152,
+          9,
+          95,
+          8,
+          144,
+          3,
+          31,
+          14,
+          13,
+          4,
+          94,
+          59,
+          254,
+          13,
+          152,
+          15,
+          2,
+          1,
+          189,
+          1,
+          214,
+          4,
+          138,
+          2,
+          227,
+          55,
+          255
+        ],
+        "hex": "07 51 04 A4 0D 98 05 E6 01 D6 03 04 10 D0 0F E6 0F 40 0F A2 0C 15 03 0B 0A 50 0F 7F 3B FE 0D 98 03 0B 01 63 07 D7 09 66 07 D7 0F 24 0D 70 0D 98 09 5F FA 08 29 05 65 02 66 02 EF 0E 50 0B F5 37 FB 05 9F 0B F5 0D 98 09 5F 08 90 03 1F 0E 0D 04 5E 3B FE 0D 98 0F 02 01 BD 01 D6 04 8A 02 E3 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 27,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 36,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 47,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 56,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_House2_Text_Wingull": {
+      "label": "MossdeepCity_House2_Text_Wingull",
+      "line": 60,
+      "source_file": "data/maps/MossdeepCity_House2/scripts.inc",
+      "raw_text": "长翅鸥：欧雷欧！$",
+      "display_text": "长翅鸥：欧雷欧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 15,
+        "bytes": [
+          2,
+          38,
+          2,
+          99,
+          10,
+          21,
+          62,
+          10,
+          20,
+          8,
+          76,
+          10,
+          20,
+          60,
+          255
+        ],
+        "hex": "02 26 02 63 0A 15 3E 0A 14 08 4C 0A 14 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 2,
+      "call_if_eq": 2,
+      "clearflag": 1,
+      "closemessage": 1,
+      "delay_8": 2,
+      "faceplayer": 1,
+      "playmoncry": 1,
+      "removeobject": 1,
+      "setflag": 1,
+      "step_end": 2,
+      "waitmoncry": 1,
+      "waitmovement": 2,
+      "waitse": 1,
+      "walk_fast_down": 6,
+      "walk_fast_left": 1,
+      "walk_fast_right": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 6,
+    "movement_count": 2,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 169,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 2,
+      "call_if_eq": 2,
+      "clearflag": 1,
+      "closemessage": 1,
+      "delay_8": 2,
+      "end": 3,
+      "faceplayer": 1,
+      "lock": 1,
+      "msgbox": 3,
+      "playmoncry": 1,
+      "release": 1,
+      "removeobject": 1,
+      "return": 2,
+      "setflag": 1,
+      "step_end": 2,
+      "waitmoncry": 1,
+      "waitmovement": 2,
+      "waitse": 1,
+      "walk_fast_down": 6,
+      "walk_fast_left": 1,
+      "walk_fast_right": 1
+    }
+  }
+}

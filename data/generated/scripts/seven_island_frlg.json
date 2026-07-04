@@ -1,0 +1,1060 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SevenIsland_Frlg",
+    "map_script": "data/maps/SevenIsland_Frlg/scripts.inc",
+    "map_json": "data/maps/SevenIsland_Frlg/map.json",
+    "map_id": "MAP_SEVEN_ISLAND",
+    "map_name": "SevenIsland_Frlg"
+  },
+  "labels": {
+    "SevenIsland_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_EventScript_IslandSign": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_EventScript_OldWoman": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_EventScript_Scientist": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Text_SwordsDanceTeach": {
+      "kind": "text",
+      "line": 21,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Text_SwordsDanceDeclined": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Text_SwordsDanceWhichMon": {
+      "kind": "text",
+      "line": 32,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Text_SwordsDanceTaught": {
+      "kind": "text",
+      "line": 36,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SevenIsland_Text_IslandSign": {
+      "kind": "text",
+      "line": 39,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_Text_IslandsMadeInSevenDays": {
+      "kind": "text",
+      "line": 43,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "SevenIsland_Text_IslandVirtuallyUntouched": {
+      "kind": "text",
+      "line": 51,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "SevenIsland_Frlg_MapScripts": {
+      "label": "SevenIsland_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SevenIsland_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_OnTransition",
+          "source_file": "data/maps/SevenIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SevenIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SevenIsland_OnTransition": {
+      "label": "SevenIsland_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setworldmapflag",
+          "args": [
+            "FLAG_WORLD_MAP_SEVEN_ISLAND"
+          ],
+          "line": 6,
+          "raw": "setworldmapflag FLAG_WORLD_MAP_SEVEN_ISLAND",
+          "source_file": "data/maps/SevenIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SevenIsland_EventScript_IslandSign": {
+      "label": "SevenIsland_EventScript_IslandSign",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SevenIsland_Text_IslandSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 10,
+          "raw": "msgbox SevenIsland_Text_IslandSign, MSGBOX_SIGN",
+          "source_file": "data/maps/SevenIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SevenIsland_Text_IslandSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    },
+    "SevenIsland_EventScript_OldWoman": {
+      "label": "SevenIsland_EventScript_OldWoman",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SevenIsland_Text_IslandsMadeInSevenDays",
+            "MSGBOX_NPC"
+          ],
+          "line": 14,
+          "raw": "msgbox SevenIsland_Text_IslandsMadeInSevenDays, MSGBOX_NPC",
+          "source_file": "data/maps/SevenIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SevenIsland_Text_IslandsMadeInSevenDays",
+          "mode": "MSGBOX_NPC",
+          "line": 14
+        }
+      ],
+      "branch_targets": []
+    },
+    "SevenIsland_EventScript_Scientist": {
+      "label": "SevenIsland_EventScript_Scientist",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SevenIsland_Text_IslandVirtuallyUntouched",
+            "MSGBOX_NPC"
+          ],
+          "line": 18,
+          "raw": "msgbox SevenIsland_Text_IslandVirtuallyUntouched, MSGBOX_NPC",
+          "source_file": "data/maps/SevenIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SevenIsland_Text_IslandVirtuallyUntouched",
+          "mode": "MSGBOX_NPC",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Text_SwordsDanceTeach": {
+      "label": "Text_SwordsDanceTeach",
+      "line": 21,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "raw_text": "没多少人会来这里。\\p如果我在这里特训，\\n我一定能变得越来越强。\\p嗯，越来越强……\\p你想不想学一下这个技能？\\n剑舞。$",
+      "display_text": "没多少人会来这里。\n\n如果我在这里特训，\n我一定能变得越来越强。\n\n嗯，越来越强……\n\n你想不想学一下这个技能？\n剑舞。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 102,
+        "bytes": [
+          9,
+          83,
+          3,
+          133,
+          11,
+          183,
+          11,
+          75,
+          5,
+          110,
+          8,
+          41,
+          16,
+          85,
+          8,
+          100,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          13,
+          152,
+          15,
+          230,
+          16,
+          85,
+          8,
+          100,
+          12,
+          217,
+          14,
+          158,
+          59,
+          254,
+          13,
+          152,
+          15,
+          11,
+          3,
+          77,
+          9,
+          210,
+          1,
+          161,
+          3,
+          10,
+          15,
+          201,
+          8,
+          41,
+          15,
+          201,
+          10,
+          216,
+          55,
+          251,
+          20,
+          97,
+          59,
+          15,
+          201,
+          8,
+          41,
+          15,
+          201,
+          10,
+          216,
+          176,
+          176,
+          251,
+          9,
+          217,
+          14,
+          24,
+          1,
+          214,
+          14,
+          24,
+          14,
+          144,
+          15,
+          11,
+          13,
+          230,
+          16,
+          85,
+          4,
+          96,
+          5,
+          167,
+          9,
+          210,
+          61,
+          254,
+          5,
+          236,
+          13,
+          174,
+          55,
+          255
+        ],
+        "hex": "09 53 03 85 0B B7 0B 4B 05 6E 08 29 10 55 08 64 37 FB 0B 67 04 C3 0D 98 0F E6 10 55 08 64 0C D9 0E 9E 3B FE 0D 98 0F 0B 03 4D 09 D2 01 A1 03 0A 0F C9 08 29 0F C9 0A D8 37 FB 14 61 3B 0F C9 08 29 0F C9 0A D8 B0 B0 FB 09 D9 0E 18 01 D6 0E 18 0E 90 0F 0B 0D E6 10 55 04 60 05 A7 09 D2 3D FE 05 EC 0D AE 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 43,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 57,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 62,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_SwordsDanceDeclined": {
+      "label": "Text_SwordsDanceDeclined",
+      "line": 29,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "raw_text": "好吧，没兴趣也没关系。$",
+      "display_text": "好吧，没兴趣也没关系。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          4,
+          233,
+          1,
+          40,
+          59,
+          9,
+          83,
+          14,
+          86,
+          11,
+          36,
+          15,
+          2,
+          9,
+          83,
+          4,
+          160,
+          13,
+          217,
+          55,
+          255
+        ],
+        "hex": "04 E9 01 28 3B 09 53 0E 56 0B 24 0F 02 09 53 04 A0 0D D9 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_SwordsDanceWhichMon": {
+      "label": "Text_SwordsDanceWhichMon",
+      "line": 32,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "raw_text": "哪只宝可梦想学会这个技能？\\n我来教它。$",
+      "display_text": "哪只宝可梦想学会这个技能？\n我来教它。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          9,
+          186,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          24,
+          14,
+          144,
+          5,
+          110,
+          16,
+          85,
+          4,
+          96,
+          5,
+          167,
+          9,
+          210,
+          61,
+          254,
+          13,
+          152,
+          8,
+          41,
+          7,
+          30,
+          12,
+          159,
+          55,
+          255
+        ],
+        "hex": "09 BA 10 8C 01 63 07 D7 09 66 0E 18 0E 90 05 6E 10 55 04 60 05 A7 09 D2 3D FE 0D 98 08 29 07 1E 0C 9F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_SwordsDanceTaught": {
+      "label": "Text_SwordsDanceTaught",
+      "line": 36,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "raw_text": "要是我们能不断变强该多好，对吧？$",
+      "display_text": "要是我们能不断变强该多好，对吧？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          14,
+          241,
+          12,
+          12,
+          13,
+          152,
+          9,
+          95,
+          9,
+          210,
+          1,
+          214,
+          3,
+          116,
+          1,
+          161,
+          10,
+          216,
+          4,
+          45,
+          3,
+          133,
+          4,
+          233,
+          59,
+          3,
+          121,
+          1,
+          40,
+          61,
+          255
+        ],
+        "hex": "0E F1 0C 0C 0D 98 09 5F 09 D2 01 D6 03 74 01 A1 0A D8 04 2D 03 85 04 E9 3B 03 79 01 28 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_Text_IslandSign": {
+      "label": "SevenIsland_Text_IslandSign",
+      "line": 39,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "raw_text": "七之岛\\n无尽探索之岛$",
+      "display_text": "七之岛\n无尽探索之岛",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          10,
+          154,
+          16,
+          127,
+          3,
+          1,
+          254,
+          13,
+          164,
+          7,
+          81,
+          12,
+          190,
+          12,
+          154,
+          16,
+          127,
+          3,
+          1,
+          255
+        ],
+        "hex": "0A 9A 10 7F 03 01 FE 0D A4 07 51 0C BE 0C 9A 10 7F 03 01 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_Text_IslandsMadeInSevenDays": {
+      "label": "SevenIsland_Text_IslandsMadeInSevenDays",
+      "line": 43,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "raw_text": "因为一共有七个小岛，\\n所以它们被统称为七岛。\\p……年轻人都是这么认为的。\\p事实上，\\n这些岛之所以被这么命名，\\l据说因为它们是在七天内造成的。$",
+      "display_text": "因为一共有七个小岛，\n所以它们被统称为七岛。\n\n……年轻人都是这么认为的。\n\n事实上，\n这些岛之所以被这么命名，\n据说因为它们是在七天内造成的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 128,
+        "bytes": [
+          15,
+          66,
+          13,
+          112,
+          15,
+          11,
+          4,
+          122,
+          15,
+          126,
+          10,
+          154,
+          4,
+          96,
+          14,
+          44,
+          3,
+          1,
+          59,
+          254,
+          12,
+          156,
+          15,
+          36,
+          12,
+          159,
+          9,
+          95,
+          1,
+          120,
+          13,
+          27,
+          2,
+          72,
+          13,
+          112,
+          10,
+          154,
+          3,
+          1,
+          55,
+          251,
+          176,
+          176,
+          9,
+          224,
+          11,
+          3,
+          11,
+          75,
+          3,
+          97,
+          12,
+          12,
+          16,
+          85,
+          9,
+          76,
+          11,
+          79,
+          13,
+          112,
+          3,
+          11,
+          55,
+          251,
+          12,
+          7,
+          11,
+          241,
+          11,
+          173,
+          59,
+          254,
+          16,
+          85,
+          14,
+          52,
+          3,
+          1,
+          16,
+          127,
+          12,
+          156,
+          15,
+          36,
+          1,
+          120,
+          16,
+          85,
+          9,
+          76,
+          9,
+          148,
+          9,
+          147,
+          59,
+          250,
+          7,
+          141,
+          12,
+          88,
+          15,
+          66,
+          13,
+          112,
+          12,
+          159,
+          9,
+          95,
+          12,
+          12,
+          15,
+          230,
+          10,
+          154,
+          12,
+          237,
+          9,
+          208,
+          16,
+          1,
+          2,
+          75,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "0F 42 0D 70 0F 0B 04 7A 0F 7E 0A 9A 04 60 0E 2C 03 01 3B FE 0C 9C 0F 24 0C 9F 09 5F 01 78 0D 1B 02 48 0D 70 0A 9A 03 01 37 FB B0 B0 09 E0 0B 03 0B 4B 03 61 0C 0C 10 55 09 4C 0B 4F 0D 70 03 0B 37 FB 0C 07 0B F1 0B AD 3B FE 10 55 0E 34 03 01 10 7F 0C 9C 0F 24 01 78 10 55 09 4C 09 94 09 93 3B FA 07 8D 0C 58 0F 42 0D 70 0C 9F 09 5F 0C 0C 0F E6 0A 9A 0C ED 09 D0 10 01 02 4B 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 58,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 75,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_Text_IslandVirtuallyUntouched": {
+      "label": "SevenIsland_Text_IslandVirtuallyUntouched",
+      "line": 51,
+      "source_file": "data/maps/SevenIsland_Frlg/scripts.inc",
+      "raw_text": "这个岛几乎没有被开发过，\\n还保持着它的自然风貌。\\p所以如果想到处转转的话\\n会稍微有点困难。$",
+      "display_text": "这个岛几乎没有被开发过，\n还保持着它的自然风貌。\n\n所以如果想到处转转的话\n会稍微有点困难。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 85,
+        "bytes": [
+          16,
+          85,
+          4,
+          96,
+          3,
+          1,
+          5,
+          163,
+          5,
+          36,
+          9,
+          83,
+          15,
+          126,
+          1,
+          120,
+          7,
+          184,
+          3,
+          165,
+          4,
+          197,
+          59,
+          254,
+          5,
+          70,
+          1,
+          96,
+          2,
+          88,
+          16,
+          244,
+          12,
+          159,
+          3,
+          11,
+          17,
+          12,
+          11,
+          59,
+          3,
+          234,
+          9,
+          74,
+          55,
+          251,
+          12,
+          156,
+          15,
+          36,
+          11,
+          103,
+          4,
+          195,
+          14,
+          24,
+          3,
+          4,
+          2,
+          134,
+          16,
+          217,
+          16,
+          217,
+          3,
+          11,
+          5,
+          61,
+          254,
+          5,
+          110,
+          11,
+          178,
+          13,
+          104,
+          15,
+          126,
+          3,
+          42,
+          8,
+          28,
+          9,
+          199,
+          55,
+          255
+        ],
+        "hex": "10 55 04 60 03 01 05 A3 05 24 09 53 0F 7E 01 78 07 B8 03 A5 04 C5 3B FE 05 46 01 60 02 58 10 F4 0C 9F 03 0B 11 0C 0B 3B 03 EA 09 4A 37 FB 0C 9C 0F 24 0B 67 04 C3 0E 18 03 04 02 86 10 D9 10 D9 03 0B 05 3D FE 05 6E 0B B2 0D 68 0F 7E 03 2A 08 1C 09 C7 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 25,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 38,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 1,
+      "setworldmapflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 12,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 423,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 4,
+      "map_script": 1,
+      "msgbox": 3,
+      "setworldmapflag": 1
+    }
+  }
+}

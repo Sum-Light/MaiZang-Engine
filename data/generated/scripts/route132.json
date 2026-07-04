@@ -1,0 +1,512 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route132",
+    "map_script": "data/maps/Route132/scripts.inc",
+    "map_json": "data/maps/Route132/map.json",
+    "map_id": "MAP_ROUTE132",
+    "map_name": "Route132"
+  },
+  "labels": {
+    "Route132_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route132_EventScript_Gilbert": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route132_EventScript_Dana": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route132_EventScript_Ronald": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route132_EventScript_Kiyo": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route132_EventScript_Paxton": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route132_EventScript_Darcy": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route132_EventScript_Jonathan": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route132_EventScript_Makayla": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "Route132_MapScripts": {
+      "label": "Route132_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route132/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route132_EventScript_Gilbert": {
+      "label": "Route132_EventScript_Gilbert",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_GILBERT",
+            "Route132_Text_GilbertIntro",
+            "Route132_Text_GilbertDefeat"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_GILBERT, Route132_Text_GilbertIntro, Route132_Text_GilbertDefeat",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route132_Text_GilbertPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox Route132_Text_GilbertPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/Route132/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route132_Text_GilbertPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route132_EventScript_Dana": {
+      "label": "Route132_EventScript_Dana",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_DANA",
+            "Route132_Text_DanaIntro",
+            "Route132_Text_DanaDefeat"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_DANA, Route132_Text_DanaIntro, Route132_Text_DanaDefeat",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route132_Text_DanaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox Route132_Text_DanaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/Route132/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route132_Text_DanaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route132_EventScript_Ronald": {
+      "label": "Route132_EventScript_Ronald",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_RONALD",
+            "Route132_Text_RonaldIntro",
+            "Route132_Text_RonaldDefeat"
+          ],
+          "line": 15,
+          "raw": "trainerbattle_single TRAINER_RONALD, Route132_Text_RonaldIntro, Route132_Text_RonaldDefeat",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route132_Text_RonaldPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 16,
+          "raw": "msgbox Route132_Text_RonaldPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/Route132/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route132_Text_RonaldPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 16
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route132_EventScript_Kiyo": {
+      "label": "Route132_EventScript_Kiyo",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_KIYO",
+            "Route132_Text_KiyoIntro",
+            "Route132_Text_KiyoDefeat"
+          ],
+          "line": 20,
+          "raw": "trainerbattle_single TRAINER_KIYO, Route132_Text_KiyoIntro, Route132_Text_KiyoDefeat",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route132_Text_KiyoPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 21,
+          "raw": "msgbox Route132_Text_KiyoPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/Route132/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route132_Text_KiyoPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route132_EventScript_Paxton": {
+      "label": "Route132_EventScript_Paxton",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_PAXTON",
+            "Route132_Text_PaxtonIntro",
+            "Route132_Text_PaxtonDefeat"
+          ],
+          "line": 25,
+          "raw": "trainerbattle_single TRAINER_PAXTON, Route132_Text_PaxtonIntro, Route132_Text_PaxtonDefeat",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route132_Text_PaxtonPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 26,
+          "raw": "msgbox Route132_Text_PaxtonPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/Route132/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route132_Text_PaxtonPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route132_EventScript_Darcy": {
+      "label": "Route132_EventScript_Darcy",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_DARCY",
+            "Route132_Text_DarcyIntro",
+            "Route132_Text_DarcyDefeat"
+          ],
+          "line": 30,
+          "raw": "trainerbattle_single TRAINER_DARCY, Route132_Text_DarcyIntro, Route132_Text_DarcyDefeat",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route132_Text_DarcyPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 31,
+          "raw": "msgbox Route132_Text_DarcyPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/Route132/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route132_Text_DarcyPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 31
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route132_EventScript_Jonathan": {
+      "label": "Route132_EventScript_Jonathan",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_JONATHAN",
+            "Route132_Text_JonathanIntro",
+            "Route132_Text_JonathanDefeat"
+          ],
+          "line": 35,
+          "raw": "trainerbattle_single TRAINER_JONATHAN, Route132_Text_JonathanIntro, Route132_Text_JonathanDefeat",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route132_Text_JonathanPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 36,
+          "raw": "msgbox Route132_Text_JonathanPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/Route132/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route132_Text_JonathanPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 36
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route132_EventScript_Makayla": {
+      "label": "Route132_EventScript_Makayla",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/Route132/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_MAKAYLA",
+            "Route132_Text_MakaylaIntro",
+            "Route132_Text_MakaylaDefeat"
+          ],
+          "line": 40,
+          "raw": "trainerbattle_single TRAINER_MAKAYLA, Route132_Text_MakaylaIntro, Route132_Text_MakaylaDefeat",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route132_Text_MakaylaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 41,
+          "raw": "msgbox Route132_Text_MakaylaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route132/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/Route132/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route132_Text_MakaylaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 41
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 8
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 9,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 8,
+      "msgbox": 8,
+      "trainerbattle_single": 8
+    }
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "AbandonedShip_Rooms_B1F",
+    "map_script": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc",
+    "map_json": "data/maps/AbandonedShip_Rooms_B1F/map.json",
+    "map_id": "MAP_ABANDONED_SHIP_ROOMS_B1F",
+    "map_name": "AbandonedShip_Rooms_B1F"
+  },
+  "labels": {
+    "AbandonedShip_Rooms_B1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "AbandonedShip_Rooms_B1F_OnResume": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "AbandonedShip_Rooms_B1F_EventScript_FatMan": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "AbandonedShip_Rooms_B1F_Text_GettingQueasy": {
+      "kind": "text",
+      "line": 13,
+      "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "AbandonedShip_Rooms_B1F_MapScripts": {
+      "label": "AbandonedShip_Rooms_B1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "AbandonedShip_Rooms_B1F_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, AbandonedShip_Rooms_B1F_OnResume",
+          "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "AbandonedShip_Rooms_B1F_OnResume": {
+      "label": "AbandonedShip_Rooms_B1F_OnResume",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setdivewarp",
+          "args": [
+            "MAP_ABANDONED_SHIP_UNDERWATER2",
+            "17",
+            "4"
+          ],
+          "line": 6,
+          "raw": "setdivewarp MAP_ABANDONED_SHIP_UNDERWATER2, 17, 4",
+          "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "AbandonedShip_Rooms_B1F_EventScript_FatMan": {
+      "label": "AbandonedShip_Rooms_B1F_EventScript_FatMan",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "AbandonedShip_Rooms_B1F_Text_GettingQueasy",
+            "MSGBOX_NPC"
+          ],
+          "line": 10,
+          "raw": "msgbox AbandonedShip_Rooms_B1F_Text_GettingQueasy, MSGBOX_NPC",
+          "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "AbandonedShip_Rooms_B1F_Text_GettingQueasy",
+          "mode": "MSGBOX_NPC",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "AbandonedShip_Rooms_B1F_Text_GettingQueasy": {
+      "label": "AbandonedShip_Rooms_B1F_Text_GettingQueasy",
+      "line": 13,
+      "source_file": "data/maps/AbandonedShip_Rooms_B1F/scripts.inc",
+      "raw_text": "啊啊……\\p我一上这船就想吐……\\p虽然船还没开……$",
+      "display_text": "啊啊……\n\n我一上这船就想吐……\n\n虽然船还没开……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 41,
+        "bytes": [
+          1,
+          0,
+          1,
+          0,
+          176,
+          176,
+          251,
+          13,
+          152,
+          15,
+          11,
+          11,
+          173,
+          16,
+          85,
+          2,
+          140,
+          7,
+          125,
+          14,
+          24,
+          13,
+          42,
+          176,
+          176,
+          251,
+          12,
+          135,
+          11,
+          59,
+          2,
+          140,
+          5,
+          70,
+          9,
+          83,
+          7,
+          184,
+          176,
+          176,
+          255
+        ],
+        "hex": "01 00 01 00 B0 B0 FB 0D 98 0F 0B 0B AD 10 55 02 8C 07 7D 0E 18 0D 2A B0 B0 FB 0C 87 0B 3B 02 8C 05 46 09 53 07 B8 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 4,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 1,
+      "setdivewarp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 4,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 41,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "map_script": 1,
+      "msgbox": 1,
+      "setdivewarp": 1
+    }
+  }
+}

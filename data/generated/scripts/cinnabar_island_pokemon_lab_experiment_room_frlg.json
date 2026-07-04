@@ -1,0 +1,4863 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg",
+    "map_script": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+    "map_json": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/map.json",
+    "map_id": "MAP_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM",
+    "map_name": "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg"
+  },
+  "labels": {
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 5,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_Garett": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineTrade": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NotRequestedMon": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_AlreadyTraded": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist": {
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddHelixFossilToList": {
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddDomeFossilToList": {
+      "kind": "script",
+      "line": 66,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse": {
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelix": {
+      "kind": "script",
+      "line": 87,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDome": {
+      "kind": "script",
+      "line": 99,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilAmber": {
+      "kind": "script",
+      "line": 111,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelixAmber": {
+      "kind": "script",
+      "line": 121,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDomeAmber": {
+      "kind": "script",
+      "line": 130,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowHelixFossil": {
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 12
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowDomeFossil": {
+      "kind": "script",
+      "line": 153,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 12
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowOldAmber": {
+      "kind": "script",
+      "line": 167,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 12
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil": {
+      "kind": "script",
+      "line": 181,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilStillReviving": {
+      "kind": "script",
+      "line": 186,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveRevivedMon": {
+      "kind": "script",
+      "line": 191,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte": {
+      "kind": "script",
+      "line": 197,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveKabuto": {
+      "kind": "script",
+      "line": 208,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAerodactyl": {
+      "kind": "script",
+      "line": 219,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty": {
+      "kind": "script",
+      "line": 230,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 12
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC": {
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 11
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC": {
+      "kind": "script",
+      "line": 257,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon": {
+      "kind": "script",
+      "line": 262,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_RevivedAllFossils": {
+      "kind": "script",
+      "line": 266,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedMtMoonFossil": {
+      "kind": "script",
+      "line": 271,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedHelix": {
+      "kind": "script",
+      "line": 277,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedDome": {
+      "kind": "script",
+      "line": 282,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Text_MetronomeTeach": {
+      "kind": "text",
+      "line": 287,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Text_MetronomeDeclined": {
+      "kind": "text",
+      "line": 295,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Text_MetronomeWhichMon": {
+      "kind": "text",
+      "line": 298,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Text_MetronomeTaught": {
+      "kind": "text",
+      "line": 302,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe": {
+      "kind": "text",
+      "line": 308,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoIsTooBad": {
+      "kind": "text",
+      "line": 317,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalkJP": {
+      "kind": "text",
+      "line": 322,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife": {
+      "kind": "text",
+      "line": 327,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor": {
+      "kind": "text",
+      "line": 333,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoRoomForPokemon": {
+      "kind": "text",
+      "line": 338,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain": {
+      "kind": "text",
+      "line": 341,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor": {
+      "kind": "text",
+      "line": 350,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk": {
+      "kind": "text",
+      "line": 356,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain": {
+      "kind": "text",
+      "line": 360,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg_MapScripts": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 5,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 6,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_Garett": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_Garett",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 9,
+          "raw": "lock",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 10,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8008",
+            "INGAME_TRADE_SEEL"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_0x8008, INGAME_TRADE_SEEL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpeciesInfo"
+          ],
+          "line": 12,
+          "raw": "call EventScript_GetInGameTradeSpeciesInfo",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DID_SEELOR_TRADE",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_AlreadyTraded"
+          ],
+          "line": 13,
+          "raw": "goto_if_set FLAG_DID_SEELOR_TRADE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_AlreadyTraded",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_LookingForMonWannaTradeForMon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 14,
+          "raw": "msgbox Trade_Text_LookingForMonWannaTradeForMon, MSGBOX_YESNO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineTrade"
+          ],
+          "line": 15,
+          "raw": "goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineTrade",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_ChooseMonForInGameTrade"
+          ],
+          "line": 16,
+          "raw": "call EventScript_ChooseMonForInGameTrade",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_0x8004",
+            "PARTY_SIZE",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineTrade"
+          ],
+          "line": 17,
+          "raw": "goto_if_ge VAR_0x8004, PARTY_SIZE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineTrade",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpecies"
+          ],
+          "line": 18,
+          "raw": "call EventScript_GetInGameTradeSpecies",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "VAR_0x8009",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NotRequestedMon"
+          ],
+          "line": 19,
+          "raw": "goto_if_ne VAR_RESULT, VAR_0x8009, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NotRequestedMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_DoInGameTrade"
+          ],
+          "line": 20,
+          "raw": "call EventScript_DoInGameTrade",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_HeyThanks"
+          ],
+          "line": 21,
+          "raw": "msgbox Trade_Text_HeyThanks",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DID_SEELOR_TRADE"
+          ],
+          "line": 22,
+          "raw": "setflag FLAG_DID_SEELOR_TRADE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 23,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_LookingForMonWannaTradeForMon",
+          "mode": "MSGBOX_YESNO",
+          "line": 14
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_HeyThanks",
+          "mode": "",
+          "line": 21
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpeciesInfo",
+          "line": 12
+        },
+        {
+          "op": "goto_if_set",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_AlreadyTraded",
+          "line": 13
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineTrade",
+          "line": 15
+        },
+        {
+          "op": "call",
+          "target": "EventScript_ChooseMonForInGameTrade",
+          "line": 16
+        },
+        {
+          "op": "goto_if_ge",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineTrade",
+          "line": 17
+        },
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpecies",
+          "line": 18
+        },
+        {
+          "op": "goto_if_ne",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NotRequestedMon",
+          "line": 19
+        },
+        {
+          "op": "call",
+          "target": "EventScript_DoInGameTrade",
+          "line": 20
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineTrade": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineTrade",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_AwwOhWell"
+          ],
+          "line": 27,
+          "raw": "msgbox Trade_Text_AwwOhWell",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 28,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_AwwOhWell",
+          "mode": "",
+          "line": 27
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NotRequestedMon": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NotRequestedMon",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 32,
+          "raw": "bufferspeciesname STR_VAR_1, VAR_0x8009",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_WhatThatsNoMon"
+          ],
+          "line": 33,
+          "raw": "msgbox Trade_Text_WhatThatsNoMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 34,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_WhatThatsNoMon",
+          "mode": "",
+          "line": 33
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_AlreadyTraded": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_AlreadyTraded",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_IsntMyOldMonGreat"
+          ],
+          "line": 38,
+          "raw": "msgbox Trade_Text_IsntMyOldMonGreat",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 39,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 40,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_IsntMyOldMonGreat",
+          "mode": "",
+          "line": 38
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist",
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 43,
+          "raw": "lock",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 44,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "FALSE"
+          ],
+          "line": 45,
+          "raw": "setvar VAR_RESULT, FALSE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_REVIVED_AMBER",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedMtMoonFossil"
+          ],
+          "line": 46,
+          "raw": "call_if_set FLAG_REVIVED_AMBER, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedMtMoonFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_RevivedAllFossils"
+          ],
+          "line": 47,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_RevivedAllFossils",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE",
+            "2",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveRevivedMon"
+          ],
+          "line": 48,
+          "raw": "goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 2, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveRevivedMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE",
+            "1",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilStillReviving"
+          ],
+          "line": 49,
+          "raw": "goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilStillReviving",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddHelixFossilToList"
+          ],
+          "line": 50,
+          "raw": "call CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddHelixFossilToList",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelix"
+          ],
+          "line": 51,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelix",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddDomeFossilToList"
+          ],
+          "line": 52,
+          "raw": "call CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddDomeFossilToList",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDome"
+          ],
+          "line": 53,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDome",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList"
+          ],
+          "line": 54,
+          "raw": "call CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilAmber"
+          ],
+          "line": 55,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilAmber",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe"
+          ],
+          "line": 56,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 57,
+          "raw": "goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 58,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+          "mode": "",
+          "line": 56
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedMtMoonFossil",
+          "line": 46
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_RevivedAllFossils",
+          "line": 47
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveRevivedMon",
+          "line": 48
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilStillReviving",
+          "line": 49
+        },
+        {
+          "op": "call",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddHelixFossilToList",
+          "line": 50
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelix",
+          "line": 51
+        },
+        {
+          "op": "call",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddDomeFossilToList",
+          "line": 52
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDome",
+          "line": 53
+        },
+        {
+          "op": "call",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList",
+          "line": 54
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilAmber",
+          "line": 55
+        },
+        {
+          "op": "goto",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "line": 57
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddHelixFossilToList": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddHelixFossilToList",
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_GOT_HELIX_FOSSIL",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse"
+          ],
+          "line": 61,
+          "raw": "goto_if_unset FLAG_GOT_HELIX_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_REVIVED_HELIX",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse"
+          ],
+          "line": 62,
+          "raw": "goto_if_set FLAG_REVIVED_HELIX, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "TRUE"
+          ],
+          "line": 63,
+          "raw": "setvar VAR_RESULT, TRUE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 64,
+          "raw": "return",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "line": 61
+        },
+        {
+          "op": "goto_if_set",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "line": 62
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddDomeFossilToList": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddDomeFossilToList",
+      "kind": "script",
+      "line": 66,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_GOT_DOME_FOSSIL",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse"
+          ],
+          "line": 67,
+          "raw": "goto_if_unset FLAG_GOT_DOME_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_REVIVED_DOME",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse"
+          ],
+          "line": 68,
+          "raw": "goto_if_set FLAG_REVIVED_DOME, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "TRUE"
+          ],
+          "line": 69,
+          "raw": "setvar VAR_RESULT, TRUE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 70,
+          "raw": "return",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "line": 67
+        },
+        {
+          "op": "goto_if_set",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "line": 68
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_GOT_OLD_AMBER",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse"
+          ],
+          "line": 73,
+          "raw": "goto_if_unset FLAG_GOT_OLD_AMBER, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_REVIVED_AMBER",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse"
+          ],
+          "line": 74,
+          "raw": "goto_if_set FLAG_REVIVED_AMBER, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "TRUE"
+          ],
+          "line": 75,
+          "raw": "setvar VAR_RESULT, TRUE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 76,
+          "raw": "return",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "line": 73
+        },
+        {
+          "op": "goto_if_set",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "line": 74
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "FALSE"
+          ],
+          "line": 79,
+          "raw": "setvar VAR_RESULT, FALSE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 80,
+          "raw": "return",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoIsTooBad"
+          ],
+          "line": 83,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoIsTooBad",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 84,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 85,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoIsTooBad",
+          "mode": "",
+          "line": 83
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelix": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelix",
+      "kind": "script",
+      "line": 87,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe"
+          ],
+          "line": 88,
+          "raw": "message CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 89,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList"
+          ],
+          "line": 90,
+          "raw": "call CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelixAmber"
+          ],
+          "line": 91,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelixAmber",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "0",
+            "0",
+            "MULTI_HELIX",
+            "FALSE"
+          ],
+          "line": 92,
+          "raw": "multichoice 0, 0, MULTI_HELIX, FALSE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 93,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowHelixFossil"
+          ],
+          "line": 94,
+          "raw": "case 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowHelixFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 95,
+          "raw": "case 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "127",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 96,
+          "raw": "case 127, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 97,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+          "mode": "",
+          "line": 88
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList",
+          "line": 90
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelixAmber",
+          "line": 91
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDome": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDome",
+      "kind": "script",
+      "line": 99,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe"
+          ],
+          "line": 100,
+          "raw": "message CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 101,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList"
+          ],
+          "line": 102,
+          "raw": "call CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDomeAmber"
+          ],
+          "line": 103,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDomeAmber",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "0",
+            "0",
+            "MULTI_DOME",
+            "FALSE"
+          ],
+          "line": 104,
+          "raw": "multichoice 0, 0, MULTI_DOME, FALSE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 105,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowDomeFossil"
+          ],
+          "line": 106,
+          "raw": "case 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowDomeFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 107,
+          "raw": "case 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "127",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 108,
+          "raw": "case 127, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 109,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+          "mode": "",
+          "line": 100
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList",
+          "line": 102
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDomeAmber",
+          "line": 103
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilAmber": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilAmber",
+      "kind": "script",
+      "line": 111,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe"
+          ],
+          "line": 112,
+          "raw": "message CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 113,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "0",
+            "0",
+            "MULTI_AMBER",
+            "FALSE"
+          ],
+          "line": 114,
+          "raw": "multichoice 0, 0, MULTI_AMBER, FALSE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 115,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowOldAmber"
+          ],
+          "line": 116,
+          "raw": "case 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowOldAmber",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 117,
+          "raw": "case 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "127",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 118,
+          "raw": "case 127, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 119,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+          "mode": "",
+          "line": 112
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelixAmber": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelixAmber",
+      "kind": "script",
+      "line": 121,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoice",
+          "args": [
+            "0",
+            "0",
+            "MULTI_HELIX_AMBER",
+            "FALSE"
+          ],
+          "line": 122,
+          "raw": "multichoice 0, 0, MULTI_HELIX_AMBER, FALSE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 123,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowHelixFossil"
+          ],
+          "line": 124,
+          "raw": "case 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowHelixFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowOldAmber"
+          ],
+          "line": 125,
+          "raw": "case 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowOldAmber",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 126,
+          "raw": "case 2, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "127",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 127,
+          "raw": "case 127, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 128,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDomeAmber": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDomeAmber",
+      "kind": "script",
+      "line": 130,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoice",
+          "args": [
+            "0",
+            "0",
+            "MULTI_DOME_AMBER",
+            "FALSE"
+          ],
+          "line": 131,
+          "raw": "multichoice 0, 0, MULTI_DOME_AMBER, FALSE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 132,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowDomeFossil"
+          ],
+          "line": 133,
+          "raw": "case 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowDomeFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowOldAmber"
+          ],
+          "line": 134,
+          "raw": "case 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowOldAmber",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 135,
+          "raw": "case 2, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "127",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil"
+          ],
+          "line": 136,
+          "raw": "case 127, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 137,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowHelixFossil": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowHelixFossil",
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "SPECIES_OMANYTE"
+          ],
+          "line": 140,
+          "raw": "bufferspeciesname STR_VAR_1, SPECIES_OMANYTE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferitemname",
+          "args": [
+            "STR_VAR_2",
+            "ITEM_HELIX_FOSSIL"
+          ],
+          "line": 141,
+          "raw": "bufferitemname STR_VAR_2, ITEM_HELIX_FOSSIL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain",
+            "MSGBOX_YESNO"
+          ],
+          "line": 142,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain, MSGBOX_YESNO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil"
+          ],
+          "line": 143,
+          "raw": "goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor"
+          ],
+          "line": 144,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 145,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "removeitem",
+          "args": [
+            "ITEM_HELIX_FOSSIL"
+          ],
+          "line": 146,
+          "raw": "removeitem ITEM_HELIX_FOSSIL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk"
+          ],
+          "line": 147,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE",
+            "1"
+          ],
+          "line": 148,
+          "raw": "setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 1",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL",
+            "HELIX_FOSSIL"
+          ],
+          "line": 149,
+          "raw": "setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, HELIX_FOSSIL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 150,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 151,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain",
+          "mode": "MSGBOX_YESNO",
+          "line": 142
+        },
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor",
+          "mode": "",
+          "line": 144
+        },
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+          "mode": "",
+          "line": 147
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil",
+          "line": 143
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowDomeFossil": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowDomeFossil",
+      "kind": "script",
+      "line": 153,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "SPECIES_KABUTO"
+          ],
+          "line": 154,
+          "raw": "bufferspeciesname STR_VAR_1, SPECIES_KABUTO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferitemname",
+          "args": [
+            "STR_VAR_2",
+            "ITEM_DOME_FOSSIL"
+          ],
+          "line": 155,
+          "raw": "bufferitemname STR_VAR_2, ITEM_DOME_FOSSIL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain",
+            "MSGBOX_YESNO"
+          ],
+          "line": 156,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain, MSGBOX_YESNO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil"
+          ],
+          "line": 157,
+          "raw": "goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor"
+          ],
+          "line": 158,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 159,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "removeitem",
+          "args": [
+            "ITEM_DOME_FOSSIL"
+          ],
+          "line": 160,
+          "raw": "removeitem ITEM_DOME_FOSSIL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk"
+          ],
+          "line": 161,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE",
+            "1"
+          ],
+          "line": 162,
+          "raw": "setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 1",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL",
+            "DOME_FOSSIL"
+          ],
+          "line": 163,
+          "raw": "setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, DOME_FOSSIL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 164,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 165,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain",
+          "mode": "MSGBOX_YESNO",
+          "line": 156
+        },
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor",
+          "mode": "",
+          "line": 158
+        },
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+          "mode": "",
+          "line": 161
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil",
+          "line": 157
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowOldAmber": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ShowOldAmber",
+      "kind": "script",
+      "line": 167,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "SPECIES_AERODACTYL"
+          ],
+          "line": 168,
+          "raw": "bufferspeciesname STR_VAR_1, SPECIES_AERODACTYL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferitemname",
+          "args": [
+            "STR_VAR_2",
+            "ITEM_OLD_AMBER"
+          ],
+          "line": 169,
+          "raw": "bufferitemname STR_VAR_2, ITEM_OLD_AMBER",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain",
+            "MSGBOX_YESNO"
+          ],
+          "line": 170,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain, MSGBOX_YESNO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil"
+          ],
+          "line": 171,
+          "raw": "goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor"
+          ],
+          "line": 172,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 173,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "removeitem",
+          "args": [
+            "ITEM_OLD_AMBER"
+          ],
+          "line": 174,
+          "raw": "removeitem ITEM_OLD_AMBER",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk"
+          ],
+          "line": 175,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE",
+            "1"
+          ],
+          "line": 176,
+          "raw": "setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 1",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL",
+            "OLD_AMBER"
+          ],
+          "line": 177,
+          "raw": "setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, OLD_AMBER",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 178,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 179,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain",
+          "mode": "MSGBOX_YESNO",
+          "line": 170
+        },
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor",
+          "mode": "",
+          "line": 172
+        },
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+          "mode": "",
+          "line": 175
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil",
+          "line": 171
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DeclineReviveFossil",
+      "kind": "script",
+      "line": 181,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain"
+          ],
+          "line": 182,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 183,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 184,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain",
+          "mode": "",
+          "line": 182
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilStillReviving": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilStillReviving",
+      "kind": "script",
+      "line": 186,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk"
+          ],
+          "line": 187,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 188,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 189,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+          "mode": "",
+          "line": 187
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveRevivedMon": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveRevivedMon",
+      "kind": "script",
+      "line": 191,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL",
+            "HELIX_FOSSIL",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte"
+          ],
+          "line": 192,
+          "raw": "goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, HELIX_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL",
+            "DOME_FOSSIL",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveKabuto"
+          ],
+          "line": 193,
+          "raw": "goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, DOME_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveKabuto",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL",
+            "OLD_AMBER",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAerodactyl"
+          ],
+          "line": 194,
+          "raw": "goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, OLD_AMBER, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAerodactyl",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 195,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte",
+          "line": 192
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveKabuto",
+          "line": 193
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAerodactyl",
+          "line": 194
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte",
+      "kind": "script",
+      "line": 197,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "SPECIES_OMANYTE"
+          ],
+          "line": 198,
+          "raw": "setvar VAR_TEMP_1, SPECIES_OMANYTE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "SPECIES_OMANYTE"
+          ],
+          "line": 199,
+          "raw": "bufferspeciesname STR_VAR_1, SPECIES_OMANYTE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife"
+          ],
+          "line": 200,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "givemon",
+          "args": [
+            "SPECIES_OMANYTE",
+            "5"
+          ],
+          "line": 201,
+          "raw": "givemon SPECIES_OMANYTE, 5",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "2",
+            "Common_EventScript_NoMoreRoomForPokemon"
+          ],
+          "line": 202,
+          "raw": "goto_if_eq VAR_RESULT, 2, Common_EventScript_NoMoreRoomForPokemon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_REVIVED_HELIX"
+          ],
+          "line": 203,
+          "raw": "setflag FLAG_REVIVED_HELIX",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty"
+          ],
+          "line": 204,
+          "raw": "goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "1",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC"
+          ],
+          "line": 205,
+          "raw": "goto_if_eq VAR_RESULT, 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 206,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife",
+          "mode": "",
+          "line": 200
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_NoMoreRoomForPokemon",
+          "line": 202
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty",
+          "line": 204
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC",
+          "line": 205
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveKabuto": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveKabuto",
+      "kind": "script",
+      "line": 208,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "SPECIES_KABUTO"
+          ],
+          "line": 209,
+          "raw": "setvar VAR_TEMP_1, SPECIES_KABUTO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "SPECIES_KABUTO"
+          ],
+          "line": 210,
+          "raw": "bufferspeciesname STR_VAR_1, SPECIES_KABUTO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife"
+          ],
+          "line": 211,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "givemon",
+          "args": [
+            "SPECIES_KABUTO",
+            "5"
+          ],
+          "line": 212,
+          "raw": "givemon SPECIES_KABUTO, 5",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "2",
+            "Common_EventScript_NoMoreRoomForPokemon"
+          ],
+          "line": 213,
+          "raw": "goto_if_eq VAR_RESULT, 2, Common_EventScript_NoMoreRoomForPokemon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_REVIVED_DOME"
+          ],
+          "line": 214,
+          "raw": "setflag FLAG_REVIVED_DOME",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty"
+          ],
+          "line": 215,
+          "raw": "goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "1",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC"
+          ],
+          "line": 216,
+          "raw": "goto_if_eq VAR_RESULT, 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 217,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife",
+          "mode": "",
+          "line": 211
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_NoMoreRoomForPokemon",
+          "line": 213
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty",
+          "line": 215
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC",
+          "line": 216
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAerodactyl": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAerodactyl",
+      "kind": "script",
+      "line": 219,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "SPECIES_AERODACTYL"
+          ],
+          "line": 220,
+          "raw": "setvar VAR_TEMP_1, SPECIES_AERODACTYL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "SPECIES_AERODACTYL"
+          ],
+          "line": 221,
+          "raw": "bufferspeciesname STR_VAR_1, SPECIES_AERODACTYL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife"
+          ],
+          "line": 222,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "givemon",
+          "args": [
+            "SPECIES_AERODACTYL",
+            "5"
+          ],
+          "line": 223,
+          "raw": "givemon SPECIES_AERODACTYL, 5",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "2",
+            "Common_EventScript_NoMoreRoomForPokemon"
+          ],
+          "line": 224,
+          "raw": "goto_if_eq VAR_RESULT, 2, Common_EventScript_NoMoreRoomForPokemon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_REVIVED_AMBER"
+          ],
+          "line": 225,
+          "raw": "setflag FLAG_REVIVED_AMBER",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty"
+          ],
+          "line": 226,
+          "raw": "goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "1",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC"
+          ],
+          "line": 227,
+          "raw": "goto_if_eq VAR_RESULT, 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 228,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife",
+          "mode": "",
+          "line": 222
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_NoMoreRoomForPokemon",
+          "line": 224
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty",
+          "line": 226
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC",
+          "line": 227
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty",
+      "kind": "script",
+      "line": 230,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 231,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_LEVEL_UP"
+          ],
+          "line": 232,
+          "raw": "playfanfare MUS_LEVEL_UP",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor"
+          ],
+          "line": 233,
+          "raw": "message CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 234,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 235,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE",
+            "0"
+          ],
+          "line": 236,
+          "raw": "setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 0",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_NicknameThisPokemon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 237,
+          "raw": "msgbox gText_NicknameThisPokemon, MSGBOX_YESNO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon"
+          ],
+          "line": 238,
+          "raw": "goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_GetGiftMonPartySlot"
+          ],
+          "line": 239,
+          "raw": "call Common_EventScript_GetGiftMonPartySlot",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_NameReceivedPartyMon"
+          ],
+          "line": 240,
+          "raw": "call Common_EventScript_NameReceivedPartyMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon"
+          ],
+          "line": 241,
+          "raw": "goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 242,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor",
+          "mode": "",
+          "line": 233
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_NicknameThisPokemon",
+          "mode": "MSGBOX_YESNO",
+          "line": 237
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon",
+          "line": 238
+        },
+        {
+          "op": "call",
+          "target": "Common_EventScript_GetGiftMonPartySlot",
+          "line": 239
+        },
+        {
+          "op": "call",
+          "target": "Common_EventScript_NameReceivedPartyMon",
+          "line": 240
+        },
+        {
+          "op": "goto",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon",
+          "line": 241
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC",
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 245,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_LEVEL_UP"
+          ],
+          "line": 246,
+          "raw": "playfanfare MUS_LEVEL_UP",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor"
+          ],
+          "line": 247,
+          "raw": "message CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 248,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 249,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE",
+            "0"
+          ],
+          "line": 250,
+          "raw": "setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 0",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_NicknameThisPokemon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 251,
+          "raw": "msgbox gText_NicknameThisPokemon, MSGBOX_YESNO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC"
+          ],
+          "line": 252,
+          "raw": "goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_NameReceivedBoxMon"
+          ],
+          "line": 253,
+          "raw": "call Common_EventScript_NameReceivedBoxMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC"
+          ],
+          "line": 254,
+          "raw": "goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 255,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor",
+          "mode": "",
+          "line": 247
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_NicknameThisPokemon",
+          "mode": "MSGBOX_YESNO",
+          "line": 251
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC",
+          "line": 252
+        },
+        {
+          "op": "call",
+          "target": "Common_EventScript_NameReceivedBoxMon",
+          "line": 253
+        },
+        {
+          "op": "goto",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC",
+          "line": 254
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC",
+      "kind": "script",
+      "line": 257,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_TransferredToPC"
+          ],
+          "line": 258,
+          "raw": "call Common_EventScript_TransferredToPC",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon"
+          ],
+          "line": 259,
+          "raw": "goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 260,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_TransferredToPC",
+          "line": 258
+        },
+        {
+          "op": "goto",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon",
+          "line": 259
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon",
+      "kind": "script",
+      "line": 262,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "release",
+          "args": [],
+          "line": 263,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 264,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_RevivedAllFossils": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_RevivedAllFossils",
+      "kind": "script",
+      "line": 266,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain"
+          ],
+          "line": 267,
+          "raw": "msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 268,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 269,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain",
+          "mode": "",
+          "line": 267
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedMtMoonFossil": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedMtMoonFossil",
+      "kind": "script",
+      "line": 271,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_GOT_HELIX_FOSSIL",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedHelix"
+          ],
+          "line": 272,
+          "raw": "goto_if_set FLAG_GOT_HELIX_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedHelix",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_GOT_DOME_FOSSIL",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedDome"
+          ],
+          "line": 273,
+          "raw": "goto_if_set FLAG_GOT_DOME_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedDome",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse"
+          ],
+          "line": 274,
+          "raw": "goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 275,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedHelix",
+          "line": 272
+        },
+        {
+          "op": "goto_if_set",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedDome",
+          "line": 273
+        },
+        {
+          "op": "goto",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "line": 274
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedHelix": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedHelix",
+      "kind": "script",
+      "line": 277,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_REVIVED_HELIX",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse"
+          ],
+          "line": 278,
+          "raw": "goto_if_unset FLAG_REVIVED_HELIX, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "TRUE"
+          ],
+          "line": 279,
+          "raw": "setvar VAR_RESULT, TRUE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 280,
+          "raw": "return",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "line": 278
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedDome": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedDome",
+      "kind": "script",
+      "line": 282,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_REVIVED_DOME",
+            "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse"
+          ],
+          "line": 283,
+          "raw": "goto_if_unset FLAG_REVIVED_DOME, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "TRUE"
+          ],
+          "line": 284,
+          "raw": "setvar VAR_RESULT, TRUE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 285,
+          "raw": "return",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse",
+          "line": 283
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Text_MetronomeTeach": {
+      "label": "Text_MetronomeTeach",
+      "line": 287,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "喔嚯嚯嚯！\\n我想要教你一个有趣的技能！\\p把它教给宝可梦，\\n然后开心地看着它用出来的那一刻！\\p这个技能的大名叫做挥指。\\n你心动了吗？$",
+      "display_text": "喔嚯嚯嚯！\n我想要教你一个有趣的技能！\n\n把它教给宝可梦，\n然后开心地看着它用出来的那一刻！\n\n这个技能的大名叫做挥指。\n你心动了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 120,
+        "bytes": [
+          20,
+          84,
+          20,
+          135,
+          20,
+          135,
+          20,
+          135,
+          60,
+          254,
+          13,
+          152,
+          14,
+          24,
+          14,
+          241,
+          7,
+          30,
+          9,
+          217,
+          15,
+          11,
+          4,
+          96,
+          15,
+          126,
+          11,
+          36,
+          3,
+          11,
+          5,
+          167,
+          9,
+          210,
+          60,
+          251,
+          1,
+          48,
+          12,
+          159,
+          7,
+          30,
+          4,
+          98,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          254,
+          11,
+          59,
+          5,
+          34,
+          7,
+          184,
+          14,
+          79,
+          3,
+          31,
+          7,
+          194,
+          16,
+          244,
+          12,
+          159,
+          15,
+          113,
+          2,
+          120,
+          8,
+          41,
+          3,
+          11,
+          9,
+          189,
+          15,
+          11,
+          7,
+          218,
+          60,
+          251,
+          16,
+          85,
+          4,
+          96,
+          5,
+          167,
+          9,
+          210,
+          3,
+          11,
+          2,
+          211,
+          9,
+          147,
+          7,
+          34,
+          17,
+          46,
+          5,
+          96,
+          16,
+          137,
+          55,
+          254,
+          9,
+          217,
+          14,
+          79,
+          3,
+          84,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "14 54 14 87 14 87 14 87 3C FE 0D 98 0E 18 0E F1 07 1E 09 D9 0F 0B 04 60 0F 7E 0B 24 03 0B 05 A7 09 D2 3C FB 01 30 0C 9F 07 1E 04 62 01 63 07 D7 09 66 3B FE 0B 3B 05 22 07 B8 0E 4F 03 1F 07 C2 10 F4 0C 9F 0F 71 02 78 08 29 03 0B 09 BD 0F 0B 07 DA 3C FB 10 55 04 60 05 A7 09 D2 03 0B 02 D3 09 93 07 22 11 2E 05 60 10 89 37 FE 09 D9 0E 4F 03 54 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 48,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 62,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 70,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_MetronomeDeclined": {
+      "label": "Text_MetronomeDeclined",
+      "line": 295,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "我告诉你，真的很有趣！$",
+      "display_text": "我告诉你，真的很有趣！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          13,
+          152,
+          4,
+          80,
+          12,
+          130,
+          9,
+          217,
+          59,
+          16,
+          89,
+          3,
+          11,
+          5,
+          11,
+          15,
+          126,
+          11,
+          36,
+          60,
+          255
+        ],
+        "hex": "0D 98 04 50 0C 82 09 D9 3B 10 59 03 0B 05 0B 0F 7E 0B 24 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_MetronomeWhichMon": {
+      "label": "Text_MetronomeWhichMon",
+      "line": 298,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "很好！\\n哪只宝可梦想要学会这个技能？$",
+      "display_text": "很好！\n哪只宝可梦想要学会这个技能？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          5,
+          11,
+          4,
+          233,
+          60,
+          254,
+          9,
+          186,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          24,
+          14,
+          241,
+          14,
+          144,
+          5,
+          110,
+          16,
+          85,
+          4,
+          96,
+          5,
+          167,
+          9,
+          210,
+          61,
+          255
+        ],
+        "hex": "05 0B 04 E9 3C FE 09 BA 10 8C 01 63 07 D7 09 66 0E 18 0E F1 0E 90 05 6E 10 55 04 60 05 A7 09 D2 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_MetronomeTaught": {
+      "label": "Text_MetronomeTaught",
+      "line": 302,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "喔嚯嚯嚯！\\n我来告诉你挥指的原理吧！\\p它能刺激宝可梦的大脑\\n来用出它并不会的技能！$",
+      "display_text": "喔嚯嚯嚯！\n我来告诉你挥指的原理吧！\n\n它能刺激宝可梦的大脑\n来用出它并不会的技能！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 77,
+        "bytes": [
+          20,
+          84,
+          20,
+          135,
+          20,
+          135,
+          20,
+          135,
+          60,
+          254,
+          13,
+          152,
+          8,
+          41,
+          4,
+          80,
+          12,
+          130,
+          9,
+          217,
+          5,
+          96,
+          16,
+          137,
+          3,
+          11,
+          15,
+          185,
+          8,
+          98,
+          1,
+          40,
+          60,
+          251,
+          12,
+          159,
+          9,
+          210,
+          2,
+          172,
+          5,
+          143,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          2,
+          211,
+          9,
+          202,
+          254,
+          8,
+          41,
+          15,
+          113,
+          2,
+          120,
+          12,
+          159,
+          1,
+          189,
+          1,
+          214,
+          5,
+          110,
+          3,
+          11,
+          5,
+          167,
+          9,
+          210,
+          60,
+          255
+        ],
+        "hex": "14 54 14 87 14 87 14 87 3C FE 0D 98 08 29 04 50 0C 82 09 D9 05 60 10 89 03 0B 0F B9 08 62 01 28 3C FB 0C 9F 09 D2 02 AC 05 8F 01 63 07 D7 09 66 03 0B 02 D3 09 CA FE 08 29 0F 71 02 78 0C 9F 01 BD 01 D6 05 6E 03 0B 05 A7 09 D2 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+      "line": 308,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "嘿！\\p我是一个十二分重要的研究员。\\n没错，十二分的重要。\\p看，我在研究宝可梦的化石。\\n每时每刻，我都在进行研究。\\p你！\\n有化石带给我吗？$",
+      "display_text": "嘿！\n\n我是一个十二分重要的研究员。\n没错，十二分的重要。\n\n看，我在研究宝可梦的化石。\n每时每刻，我都在进行研究。\n\n你！\n有化石带给我吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 121,
+        "bytes": [
+          5,
+          8,
+          60,
+          251,
+          13,
+          152,
+          12,
+          12,
+          15,
+          11,
+          4,
+          96,
+          11,
+          234,
+          3,
+          163,
+          3,
+          217,
+          16,
+          169,
+          14,
+          241,
+          3,
+          11,
+          14,
+          185,
+          7,
+          111,
+          15,
+          189,
+          55,
+          254,
+          9,
+          83,
+          2,
+          205,
+          59,
+          11,
+          234,
+          3,
+          163,
+          3,
+          217,
+          3,
+          11,
+          16,
+          169,
+          14,
+          241,
+          55,
+          251,
+          7,
+          194,
+          59,
+          13,
+          152,
+          15,
+          230,
+          14,
+          185,
+          7,
+          111,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          60,
+          11,
+          235,
+          55,
+          254,
+          9,
+          87,
+          11,
+          237,
+          9,
+          87,
+          7,
+          218,
+          59,
+          13,
+          152,
+          3,
+          97,
+          15,
+          230,
+          7,
+          74,
+          14,
+          91,
+          14,
+          185,
+          7,
+          111,
+          55,
+          251,
+          9,
+          217,
+          60,
+          254,
+          15,
+          126,
+          5,
+          60,
+          11,
+          235,
+          2,
+          216,
+          4,
+          98,
+          13,
+          152,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "05 08 3C FB 0D 98 0C 0C 0F 0B 04 60 0B EA 03 A3 03 D9 10 A9 0E F1 03 0B 0E B9 07 6F 0F BD 37 FE 09 53 02 CD 3B 0B EA 03 A3 03 D9 03 0B 10 A9 0E F1 37 FB 07 C2 3B 0D 98 0F E6 0E B9 07 6F 01 63 07 D7 09 66 03 0B 05 3C 0B EB 37 FE 09 57 0B ED 09 57 07 DA 3B 0D 98 03 61 0F E6 07 4A 0E 5B 0E B9 07 6F 37 FB 09 D9 3C FE 0F 7E 05 3C 0B EB 02 D8 04 62 0D 98 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 2,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 30,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 45,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 60,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 64,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 74,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoIsTooBad": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoIsTooBad",
+      "line": 317,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "噢！\\n太不好了！$",
+      "display_text": "噢！\n太不好了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 14,
+        "bytes": [
+          20,
+          122,
+          60,
+          254,
+          12,
+          172,
+          1,
+          214,
+          4,
+          233,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "14 7A 3C FE 0C AC 01 D6 04 E9 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalkJP": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalkJP",
+      "line": 322,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "ちょっと　じかん　かかるよ！\\pそこらへんを　すこし\\nブラブラ　してくると　よろしー！$",
+      "display_text": "ちょっと　じかん　かかるよ！\n\nそこらへんを　すこし\nブラブラ　してくると　よろしー！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          17,
+          54,
+          80,
+          20,
+          0,
+          61,
+          6,
+          46,
+          0,
+          6,
+          6,
+          41,
+          38,
+          60,
+          251,
+          15,
+          10,
+          39,
+          29,
+          46,
+          45,
+          0,
+          13,
+          10,
+          12,
+          254,
+          152,
+          119,
+          152,
+          119,
+          0,
+          12,
+          19,
+          8,
+          41,
+          20,
+          0,
+          38,
+          43,
+          12,
+          174,
+          60,
+          255
+        ],
+        "hex": "11 36 50 14 00 3D 06 2E 00 06 06 29 26 3C FB 0F 0A 27 1D 2E 2D 00 0D 0A 0C FE 98 77 98 77 00 0C 13 08 29 14 00 26 2B 0C AE 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife",
+      "line": 327,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "你来晚了。\\n你跑哪儿去了？\\p你的化石复活了！\\n正如我所预料的那样，是一只{STR_VAR_1}！$",
+      "display_text": "你来晚了。\n你跑哪儿去了？\n\n你的化石复活了！\n正如我所预料的那样，是一只{STR_VAR_1}！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 69,
+        "bytes": [
+          9,
+          217,
+          8,
+          41,
+          13,
+          85,
+          8,
+          158,
+          55,
+          254,
+          9,
+          217,
+          10,
+          57,
+          9,
+          186,
+          3,
+          158,
+          11,
+          37,
+          8,
+          158,
+          61,
+          251,
+          9,
+          217,
+          3,
+          11,
+          5,
+          60,
+          11,
+          235,
+          4,
+          30,
+          5,
+          123,
+          8,
+          158,
+          60,
+          254,
+          16,
+          112,
+          11,
+          103,
+          13,
+          152,
+          12,
+          156,
+          15,
+          176,
+          8,
+          162,
+          3,
+          11,
+          9,
+          189,
+          14,
+          226,
+          59,
+          12,
+          12,
+          15,
+          11,
+          16,
+          140,
+          253,
+          2,
+          60,
+          255
+        ],
+        "hex": "09 D9 08 29 0D 55 08 9E 37 FE 09 D9 0A 39 09 BA 03 9E 0B 25 08 9E 3D FB 09 D9 03 0B 05 3C 0B EB 04 1E 05 7B 08 9E 3C FE 10 70 0B 67 0D 98 0C 9C 0F B0 08 A2 03 0B 09 BD 0E E2 3B 0C 0C 0F 0B 10 8C FD 02 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 39,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 51,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 39,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor",
+      "line": 333,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}从研究员的手中\\n得到了{STR_VAR_1}。$",
+      "display_text": "{PLAYER}从研究员的手中\n得到了{STR_VAR_1}。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          253,
+          1,
+          2,
+          179,
+          14,
+          185,
+          7,
+          111,
+          15,
+          189,
+          3,
+          11,
+          12,
+          27,
+          16,
+          161,
+          254,
+          3,
+          10,
+          3,
+          4,
+          8,
+          158,
+          253,
+          2,
+          55,
+          255
+        ],
+        "hex": "FD 01 02 B3 0E B9 07 6F 0F BD 03 0B 0C 1B 10 A1 FE 03 0A 03 04 08 9E FD 02 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 20,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 20,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoRoomForPokemon": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoRoomForPokemon",
+      "line": 338,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "ポケモン　いっぱいで　もてないね！$",
+      "display_text": "ポケモン　いっぱいで　もてないね！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          159,
+          89,
+          115,
+          126,
+          0,
+          2,
+          80,
+          75,
+          2,
+          68,
+          0,
+          35,
+          19,
+          21,
+          2,
+          24,
+          60,
+          255
+        ],
+        "hex": "9F 59 73 7E 00 02 50 4B 02 44 00 23 13 15 02 18 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain",
+      "line": 341,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "喔！\\n那正是{STR_VAR_2}，我没看错！\\p那是{STR_VAR_1}的化石，\\n一种被认为灭绝了的宝可梦！\\p我研制的复活机器\\n能让那只宝可梦回到这个世界！$",
+      "display_text": "喔！\n那正是{STR_VAR_2}，我没看错！\n\n那是{STR_VAR_1}的化石，\n一种被认为灭绝了的宝可梦！\n\n我研制的复活机器\n能让那只宝可梦回到这个世界！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 108,
+        "bytes": [
+          20,
+          84,
+          60,
+          254,
+          9,
+          189,
+          16,
+          112,
+          12,
+          12,
+          253,
+          3,
+          59,
+          13,
+          152,
+          9,
+          83,
+          7,
+          194,
+          2,
+          205,
+          60,
+          251,
+          9,
+          189,
+          12,
+          12,
+          253,
+          2,
+          3,
+          11,
+          5,
+          60,
+          11,
+          235,
+          59,
+          254,
+          15,
+          11,
+          16,
+          167,
+          1,
+          120,
+          11,
+          79,
+          13,
+          112,
+          9,
+          136,
+          7,
+          168,
+          8,
+          158,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          60,
+          251,
+          13,
+          152,
+          14,
+          185,
+          16,
+          151,
+          3,
+          11,
+          4,
+          30,
+          5,
+          123,
+          5,
+          135,
+          10,
+          178,
+          254,
+          9,
+          210,
+          11,
+          67,
+          9,
+          189,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          101,
+          3,
+          4,
+          16,
+          85,
+          4,
+          96,
+          12,
+          5,
+          7,
+          57,
+          60,
+          255
+        ],
+        "hex": "14 54 3C FE 09 BD 10 70 0C 0C FD 03 3B 0D 98 09 53 07 C2 02 CD 3C FB 09 BD 0C 0C FD 02 03 0B 05 3C 0B EB 3B FE 0F 0B 10 A7 01 78 0B 4F 0D 70 09 88 07 A8 08 9E 03 0B 01 63 07 D7 09 66 3C FB 0D 98 0E B9 10 97 03 0B 04 1E 05 7B 05 87 0A B2 FE 09 D2 0B 43 09 BD 10 8C 01 63 07 D7 09 66 05 65 03 04 10 55 04 60 0C 05 07 39 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 7,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 28,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 43,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 58,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 68,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 84,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_2",
+            "offset": 7,
+            "bytes": [
+              253,
+              3
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 28,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor",
+      "line": 350,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "所以呢！\\n你得快点把它交给我！\\p{FONT_NORMAL}{PLAYER}把\\n{STR_VAR_2}交给了这个奇怪的研究员$",
+      "display_text": "所以呢！\n你得快点把它交给我！\n\n{FONT_NORMAL}{PLAYER}把\n{STR_VAR_2}交给了这个奇怪的研究员",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 61,
+        "bytes": [
+          12,
+          156,
+          15,
+          36,
+          9,
+          206,
+          60,
+          254,
+          9,
+          217,
+          3,
+          10,
+          8,
+          3,
+          3,
+          42,
+          1,
+          48,
+          12,
+          159,
+          7,
+          13,
+          4,
+          98,
+          13,
+          152,
+          60,
+          251,
+          252,
+          6,
+          1,
+          253,
+          1,
+          1,
+          48,
+          254,
+          253,
+          3,
+          7,
+          13,
+          4,
+          98,
+          8,
+          158,
+          16,
+          85,
+          4,
+          96,
+          10,
+          161,
+          4,
+          158,
+          3,
+          11,
+          14,
+          185,
+          7,
+          111,
+          15,
+          189,
+          255
+        ],
+        "hex": "0C 9C 0F 24 09 CE 3C FE 09 D9 03 0A 08 03 03 2A 01 30 0C 9F 07 0D 04 62 0D 98 3C FB FC 06 01 FD 01 01 30 FE FD 03 07 0D 04 62 08 9E 10 55 04 60 0A A1 04 9E 03 0B 0E B9 07 6F 0F BD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{FONT_NORMAL}",
+            "offset": 18,
+            "bytes": [
+              252,
+              6,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "FONT_NORMAL",
+                "bytes": [
+                  252,
+                  6,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 31,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 40,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 42,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 64,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 31,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_2",
+            "offset": 42,
+            "bytes": [
+              253,
+              3
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+      "line": 356,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "我只需要一点点时间！\\n现在你可以出去走走！$",
+      "display_text": "我只需要一点点时间！\n现在你可以出去走走！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          13,
+          152,
+          16,
+          140,
+          14,
+          115,
+          14,
+          241,
+          15,
+          11,
+          3,
+          42,
+          3,
+          42,
+          11,
+          237,
+          5,
+          207,
+          60,
+          254,
+          14,
+          3,
+          15,
+          230,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          2,
+          120,
+          11,
+          37,
+          17,
+          23,
+          17,
+          23,
+          60,
+          255
+        ],
+        "hex": "0D 98 10 8C 0E 73 0E F1 0F 0B 03 2A 03 2A 0B ED 05 CF 3C FE 0E 03 0F E6 09 D9 07 D7 0F 24 02 78 0B 25 11 17 11 17 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain": {
+      "label": "CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain",
+      "line": 360,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc",
+      "raw_text": "哎哎！\\n你又来了！$",
+      "display_text": "哎哎！\n你又来了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          1,
+          4,
+          1,
+          4,
+          60,
+          254,
+          9,
+          217,
+          15,
+          132,
+          8,
+          41,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "01 04 01 04 3C FE 09 D9 0F 84 08 29 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "bufferitemname": 3,
+      "bufferspeciesname": 7,
+      "call_if_set": 1,
+      "case": 17,
+      "faceplayer": 2,
+      "givemon": 3,
+      "goto_if_eq": 26,
+      "goto_if_ge": 1,
+      "goto_if_ne": 1,
+      "goto_if_set": 6,
+      "goto_if_unset": 5,
+      "multichoice": 5,
+      "playfanfare": 2,
+      "removeitem": 3,
+      "setflag": 4,
+      "setvar": 19,
+      "switch": 5,
+      "textcolor": 5,
+      "waitfanfare": 2,
+      "waitmessage": 5
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 47,
+    "script_count": 33,
+    "movement_count": 0,
+    "text_count": 14,
+    "encoded_text_count": 14,
+    "text_source_byte_count": 769,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 14
+    },
+    "orphan_instruction_count": 3,
+    "op_counts": {
+      "bufferitemname": 3,
+      "bufferspeciesname": 7,
+      "call": 13,
+      "call_if_set": 1,
+      "case": 17,
+      "end": 26,
+      "faceplayer": 2,
+      "givemon": 3,
+      "goto": 5,
+      "goto_if_eq": 26,
+      "goto_if_ge": 1,
+      "goto_if_ne": 1,
+      "goto_if_set": 6,
+      "goto_if_unset": 5,
+      "lock": 2,
+      "message": 5,
+      "msgbox": 24,
+      "multichoice": 5,
+      "playfanfare": 2,
+      "release": 12,
+      "removeitem": 3,
+      "return": 6,
+      "setflag": 4,
+      "setvar": 19,
+      "switch": 5,
+      "textcolor": 5,
+      "waitfanfare": 2,
+      "waitmessage": 5
+    }
+  }
+}

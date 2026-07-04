@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "RustboroCity_Flat2_1F",
+    "map_script": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+    "map_json": "data/maps/RustboroCity_Flat2_1F/map.json",
+    "map_id": "MAP_RUSTBORO_CITY_FLAT2_1F",
+    "map_name": "RustboroCity_Flat2_1F"
+  },
+  "labels": {
+    "RustboroCity_Flat2_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_Flat2_1F_EventScript_OldWoman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_Flat2_1F_EventScript_Skitty": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+      "instruction_count": 8
+    },
+    "RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere": {
+      "kind": "text",
+      "line": 18,
+      "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_Flat2_1F_Text_Skitty": {
+      "kind": "text",
+      "line": 21,
+      "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "RustboroCity_Flat2_1F_MapScripts": {
+      "label": "RustboroCity_Flat2_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_Flat2_1F_EventScript_OldWoman": {
+      "label": "RustboroCity_Flat2_1F_EventScript_OldWoman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_Flat2_1F_EventScript_Skitty": {
+      "label": "RustboroCity_Flat2_1F_EventScript_Skitty",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 9,
+          "raw": "lock",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 10,
+          "raw": "faceplayer",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 11,
+          "raw": "waitse",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_SKITTY",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 12,
+          "raw": "playmoncry SPECIES_SKITTY, CRY_MODE_NORMAL",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_Flat2_1F_Text_Skitty",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 13,
+          "raw": "msgbox RustboroCity_Flat2_1F_Text_Skitty, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 14,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 15,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_Flat2_1F_Text_Skitty",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere": {
+      "label": "RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere",
+      "line": 18,
+      "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+      "raw_text": "这里是得文公司员工的\\n宿舍楼。$",
+      "display_text": "这里是得文公司员工的\n宿舍楼。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          12,
+          12,
+          3,
+          10,
+          13,
+          138,
+          4,
+          115,
+          12,
+          97,
+          15,
+          189,
+          4,
+          108,
+          3,
+          11,
+          254,
+          12,
+          129,
+          11,
+          191,
+          8,
+          214,
+          55,
+          255
+        ],
+        "hex": "10 55 08 64 0C 0C 03 0A 0D 8A 04 73 0C 61 0F BD 04 6C 03 0B FE 0C 81 0B BF 08 D6 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_Flat2_1F_Text_Skitty": {
+      "label": "RustboroCity_Flat2_1F_Text_Skitty",
+      "line": 21,
+      "source_file": "data/maps/RustboroCity_Flat2_1F/scripts.inc",
+      "raw_text": "向尾喵：喵呀呀！$",
+      "display_text": "向尾喵：喵呀呀！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 15,
+        "bytes": [
+          14,
+          31,
+          13,
+          120,
+          20,
+          53,
+          62,
+          20,
+          53,
+          14,
+          166,
+          14,
+          166,
+          60,
+          255
+        ],
+        "hex": "0E 1F 0D 78 14 35 3E 14 35 0E A6 0E A6 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "playmoncry": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 44,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "faceplayer": 1,
+      "lock": 1,
+      "msgbox": 2,
+      "playmoncry": 1,
+      "release": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    }
+  }
+}

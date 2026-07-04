@@ -1,0 +1,461 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route133",
+    "map_script": "data/maps/Route133/scripts.inc",
+    "map_json": "data/maps/Route133/map.json",
+    "map_id": "MAP_ROUTE133",
+    "map_name": "Route133"
+  },
+  "labels": {
+    "Route133_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route133_EventScript_Franklin": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route133_EventScript_Debra": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route133_EventScript_Linda": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route133_EventScript_Warren": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route133_EventScript_Beck": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route133_EventScript_Mollie": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route133_EventScript_Conor": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "Route133_MapScripts": {
+      "label": "Route133_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route133/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route133_EventScript_Franklin": {
+      "label": "Route133_EventScript_Franklin",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_FRANKLIN",
+            "Route133_Text_FranklinIntro",
+            "Route133_Text_FranklinDefeat"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_FRANKLIN, Route133_Text_FranklinIntro, Route133_Text_FranklinDefeat",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route133_Text_FranklinPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox Route133_Text_FranklinPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/Route133/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route133_Text_FranklinPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route133_EventScript_Debra": {
+      "label": "Route133_EventScript_Debra",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_DEBRA",
+            "Route133_Text_DebraIntro",
+            "Route133_Text_DebraDefeat"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_DEBRA, Route133_Text_DebraIntro, Route133_Text_DebraDefeat",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route133_Text_DebraPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox Route133_Text_DebraPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/Route133/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route133_Text_DebraPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route133_EventScript_Linda": {
+      "label": "Route133_EventScript_Linda",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_LINDA",
+            "Route133_Text_LindaIntro",
+            "Route133_Text_LindaDefeat"
+          ],
+          "line": 15,
+          "raw": "trainerbattle_single TRAINER_LINDA, Route133_Text_LindaIntro, Route133_Text_LindaDefeat",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route133_Text_LindaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 16,
+          "raw": "msgbox Route133_Text_LindaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/Route133/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route133_Text_LindaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 16
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route133_EventScript_Warren": {
+      "label": "Route133_EventScript_Warren",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_WARREN",
+            "Route133_Text_WarrenIntro",
+            "Route133_Text_WarrenDefeat"
+          ],
+          "line": 20,
+          "raw": "trainerbattle_single TRAINER_WARREN, Route133_Text_WarrenIntro, Route133_Text_WarrenDefeat",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route133_Text_WarrenPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 21,
+          "raw": "msgbox Route133_Text_WarrenPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/Route133/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route133_Text_WarrenPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route133_EventScript_Beck": {
+      "label": "Route133_EventScript_Beck",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_BECK",
+            "Route133_Text_BeckIntro",
+            "Route133_Text_BeckDefeat"
+          ],
+          "line": 25,
+          "raw": "trainerbattle_single TRAINER_BECK, Route133_Text_BeckIntro, Route133_Text_BeckDefeat",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route133_Text_BeckPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 26,
+          "raw": "msgbox Route133_Text_BeckPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/Route133/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route133_Text_BeckPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route133_EventScript_Mollie": {
+      "label": "Route133_EventScript_Mollie",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_MOLLIE",
+            "Route133_Text_MollieIntro",
+            "Route133_Text_MollieDefeat"
+          ],
+          "line": 30,
+          "raw": "trainerbattle_single TRAINER_MOLLIE, Route133_Text_MollieIntro, Route133_Text_MollieDefeat",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route133_Text_MolliePostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 31,
+          "raw": "msgbox Route133_Text_MolliePostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/Route133/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route133_Text_MolliePostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 31
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route133_EventScript_Conor": {
+      "label": "Route133_EventScript_Conor",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/Route133/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_CONOR",
+            "Route133_Text_ConorIntro",
+            "Route133_Text_ConorDefeat"
+          ],
+          "line": 35,
+          "raw": "trainerbattle_single TRAINER_CONOR, Route133_Text_ConorIntro, Route133_Text_ConorDefeat",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route133_Text_ConorPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 36,
+          "raw": "msgbox Route133_Text_ConorPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route133/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/Route133/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route133_Text_ConorPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 36
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 7
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 8,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 7,
+      "msgbox": 7,
+      "trainerbattle_single": 7
+    }
+  }
+}

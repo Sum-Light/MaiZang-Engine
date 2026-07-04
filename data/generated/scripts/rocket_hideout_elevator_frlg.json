@@ -1,0 +1,1065 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "RocketHideout_Elevator_Frlg",
+    "map_script": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+    "map_json": "data/maps/RocketHideout_Elevator_Frlg/map.json",
+    "map_id": "MAP_ROCKET_HIDEOUT_ELEVATOR",
+    "map_name": "RocketHideout_Elevator_Frlg"
+  },
+  "labels": {
+    "RocketHideout_Elevator_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "RocketHideout_Elevator_EventScript_FloorSelect": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 15
+    },
+    "RocketHideout_Elevator_EventScript_FloorSelectFromB1F": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "RocketHideout_Elevator_EventScript_FloorSelectFromB2F": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "RocketHideout_Elevator_EventScript_FloorSelectFromB4F": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "RocketHideout_Elevator_EventScript_ChooseFloor": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "RocketHideout_Elevator_EventScript_ToB1F": {
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "RocketHideout_Elevator_EventScript_ToB2F": {
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "RocketHideout_Elevator_EventScript_ToB4F": {
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "RocketHideout_Elevator_EventScript_ExitFloorSelect": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "RocketHideout_Elevator_EventScript_MoveElevator": {
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "RocketHideout_Elevator_EventScript_NeedKey": {
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "RocketHideout_Elevator_Text_AppearsToNeedAKey": {
+      "kind": "text",
+      "line": 91,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "RocketHideout_Elevator_Frlg_MapScripts": {
+      "label": "RocketHideout_Elevator_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RocketHideout_Elevator_EventScript_FloorSelect": {
+      "label": "RocketHideout_Elevator_EventScript_FloorSelect",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 5,
+          "raw": "lockall",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_CAN_USE_ROCKET_HIDEOUT_LIFT",
+            "RocketHideout_Elevator_EventScript_NeedKey"
+          ],
+          "line": 6,
+          "raw": "goto_if_unset FLAG_CAN_USE_ROCKET_HIDEOUT_LIFT, RocketHideout_Elevator_EventScript_NeedKey",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "2"
+          ],
+          "line": 7,
+          "raw": "setvar VAR_0x8004, 2",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_TEMP_2",
+            "EventScript_GetElevatorFloor"
+          ],
+          "line": 8,
+          "raw": "call_if_unset FLAG_TEMP_2, EventScript_GetElevatorFloor",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8005",
+            "VAR_ELEVATOR_FLOOR"
+          ],
+          "line": 9,
+          "raw": "copyvar VAR_0x8005, VAR_ELEVATOR_FLOOR",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawElevatorCurrentFloorWindow"
+          ],
+          "line": 10,
+          "raw": "special DrawElevatorCurrentFloorWindow",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_WantWhichFloor"
+          ],
+          "line": 11,
+          "raw": "message gText_WantWhichFloor",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 12,
+          "raw": "waitmessage",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "2"
+          ],
+          "line": 13,
+          "raw": "setvar VAR_0x8004, 2",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "InitElevatorFloorSelectMenuPos"
+          ],
+          "line": 14,
+          "raw": "specialvar VAR_RESULT, InitElevatorFloorSelectMenuPos",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 15,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "RocketHideout_Elevator_EventScript_FloorSelectFromB1F"
+          ],
+          "line": 16,
+          "raw": "case 0, RocketHideout_Elevator_EventScript_FloorSelectFromB1F",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "RocketHideout_Elevator_EventScript_FloorSelectFromB2F"
+          ],
+          "line": 17,
+          "raw": "case 1, RocketHideout_Elevator_EventScript_FloorSelectFromB2F",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "RocketHideout_Elevator_EventScript_FloorSelectFromB4F"
+          ],
+          "line": 18,
+          "raw": "case 2, RocketHideout_Elevator_EventScript_FloorSelectFromB4F",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_WantWhichFloor",
+          "mode": "",
+          "line": 11
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "RocketHideout_Elevator_EventScript_NeedKey",
+          "line": 6
+        },
+        {
+          "op": "call_if_unset",
+          "target": "EventScript_GetElevatorFloor",
+          "line": 8
+        }
+      ]
+    },
+    "RocketHideout_Elevator_EventScript_FloorSelectFromB1F": {
+      "label": "RocketHideout_Elevator_EventScript_FloorSelectFromB1F",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_ROCKET_HIDEOUT_ELEVATOR",
+            "0",
+            "FALSE"
+          ],
+          "line": 22,
+          "raw": "multichoicedefault 0, 0, MULTI_ROCKET_HIDEOUT_ELEVATOR, 0, FALSE",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RocketHideout_Elevator_EventScript_ChooseFloor"
+          ],
+          "line": 23,
+          "raw": "goto RocketHideout_Elevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RocketHideout_Elevator_EventScript_ChooseFloor",
+          "line": 23
+        }
+      ]
+    },
+    "RocketHideout_Elevator_EventScript_FloorSelectFromB2F": {
+      "label": "RocketHideout_Elevator_EventScript_FloorSelectFromB2F",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_ROCKET_HIDEOUT_ELEVATOR",
+            "1",
+            "FALSE"
+          ],
+          "line": 27,
+          "raw": "multichoicedefault 0, 0, MULTI_ROCKET_HIDEOUT_ELEVATOR, 1, FALSE",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RocketHideout_Elevator_EventScript_ChooseFloor"
+          ],
+          "line": 28,
+          "raw": "goto RocketHideout_Elevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RocketHideout_Elevator_EventScript_ChooseFloor",
+          "line": 28
+        }
+      ]
+    },
+    "RocketHideout_Elevator_EventScript_FloorSelectFromB4F": {
+      "label": "RocketHideout_Elevator_EventScript_FloorSelectFromB4F",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_ROCKET_HIDEOUT_ELEVATOR",
+            "2",
+            "FALSE"
+          ],
+          "line": 32,
+          "raw": "multichoicedefault 0, 0, MULTI_ROCKET_HIDEOUT_ELEVATOR, 2, FALSE",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RocketHideout_Elevator_EventScript_ChooseFloor"
+          ],
+          "line": 33,
+          "raw": "goto RocketHideout_Elevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RocketHideout_Elevator_EventScript_ChooseFloor",
+          "line": 33
+        }
+      ]
+    },
+    "RocketHideout_Elevator_EventScript_ChooseFloor": {
+      "label": "RocketHideout_Elevator_EventScript_ChooseFloor",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 37,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "RocketHideout_Elevator_EventScript_ToB1F"
+          ],
+          "line": 38,
+          "raw": "case 0, RocketHideout_Elevator_EventScript_ToB1F",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "RocketHideout_Elevator_EventScript_ToB2F"
+          ],
+          "line": 39,
+          "raw": "case 1, RocketHideout_Elevator_EventScript_ToB2F",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "RocketHideout_Elevator_EventScript_ToB4F"
+          ],
+          "line": 40,
+          "raw": "case 2, RocketHideout_Elevator_EventScript_ToB4F",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "RocketHideout_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 41,
+          "raw": "case 3, RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "127",
+            "RocketHideout_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 42,
+          "raw": "case 127, RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 43,
+          "raw": "end",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RocketHideout_Elevator_EventScript_ToB1F": {
+      "label": "RocketHideout_Elevator_EventScript_ToB1F",
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "3"
+          ],
+          "line": 46,
+          "raw": "setvar VAR_0x8006, 3",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_ROCKET_HIDEOUT_B1F",
+            "255",
+            "24",
+            "25"
+          ],
+          "line": 47,
+          "raw": "setdynamicwarp MAP_ROCKET_HIDEOUT_B1F, 255, 24, 25",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "3",
+            "RocketHideout_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 48,
+          "raw": "goto_if_eq VAR_ELEVATOR_FLOOR, 3, RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "RocketHideout_Elevator_EventScript_MoveElevator"
+          ],
+          "line": 49,
+          "raw": "call RocketHideout_Elevator_EventScript_MoveElevator",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "3"
+          ],
+          "line": 50,
+          "raw": "setvar VAR_ELEVATOR_FLOOR, 3",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RocketHideout_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 51,
+          "raw": "goto RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 52,
+          "raw": "end",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "line": 48
+        },
+        {
+          "op": "call",
+          "target": "RocketHideout_Elevator_EventScript_MoveElevator",
+          "line": 49
+        },
+        {
+          "op": "goto",
+          "target": "RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "line": 51
+        }
+      ]
+    },
+    "RocketHideout_Elevator_EventScript_ToB2F": {
+      "label": "RocketHideout_Elevator_EventScript_ToB2F",
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "2"
+          ],
+          "line": 55,
+          "raw": "setvar VAR_0x8006, 2",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_ROCKET_HIDEOUT_B2F",
+            "255",
+            "28",
+            "16"
+          ],
+          "line": 56,
+          "raw": "setdynamicwarp MAP_ROCKET_HIDEOUT_B2F, 255, 28, 16",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "2",
+            "RocketHideout_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 57,
+          "raw": "goto_if_eq VAR_ELEVATOR_FLOOR, 2, RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "RocketHideout_Elevator_EventScript_MoveElevator"
+          ],
+          "line": 58,
+          "raw": "call RocketHideout_Elevator_EventScript_MoveElevator",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "2"
+          ],
+          "line": 59,
+          "raw": "setvar VAR_ELEVATOR_FLOOR, 2",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RocketHideout_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 60,
+          "raw": "goto RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 61,
+          "raw": "end",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "line": 57
+        },
+        {
+          "op": "call",
+          "target": "RocketHideout_Elevator_EventScript_MoveElevator",
+          "line": 58
+        },
+        {
+          "op": "goto",
+          "target": "RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "line": 60
+        }
+      ]
+    },
+    "RocketHideout_Elevator_EventScript_ToB4F": {
+      "label": "RocketHideout_Elevator_EventScript_ToB4F",
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "0"
+          ],
+          "line": 64,
+          "raw": "setvar VAR_0x8006, 0",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_ROCKET_HIDEOUT_B4F",
+            "255",
+            "20",
+            "23"
+          ],
+          "line": 65,
+          "raw": "setdynamicwarp MAP_ROCKET_HIDEOUT_B4F, 255, 20, 23",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "0",
+            "RocketHideout_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 66,
+          "raw": "goto_if_eq VAR_ELEVATOR_FLOOR, 0, RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "RocketHideout_Elevator_EventScript_MoveElevator"
+          ],
+          "line": 67,
+          "raw": "call RocketHideout_Elevator_EventScript_MoveElevator",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "0"
+          ],
+          "line": 68,
+          "raw": "setvar VAR_ELEVATOR_FLOOR, 0",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RocketHideout_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 69,
+          "raw": "goto RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 70,
+          "raw": "end",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "line": 66
+        },
+        {
+          "op": "call",
+          "target": "RocketHideout_Elevator_EventScript_MoveElevator",
+          "line": 67
+        },
+        {
+          "op": "goto",
+          "target": "RocketHideout_Elevator_EventScript_ExitFloorSelect",
+          "line": 69
+        }
+      ]
+    },
+    "RocketHideout_Elevator_EventScript_ExitFloorSelect": {
+      "label": "RocketHideout_Elevator_EventScript_ExitFloorSelect",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "CloseElevatorCurrentFloorWindow"
+          ],
+          "line": 73,
+          "raw": "special CloseElevatorCurrentFloorWindow",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 74,
+          "raw": "releaseall",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 75,
+          "raw": "end",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RocketHideout_Elevator_EventScript_MoveElevator": {
+      "label": "RocketHideout_Elevator_EventScript_MoveElevator",
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "CloseElevatorCurrentFloorWindow"
+          ],
+          "line": 78,
+          "raw": "special CloseElevatorCurrentFloorWindow",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 79,
+          "raw": "closemessage",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 80,
+          "raw": "waitse",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "AnimateElevator"
+          ],
+          "line": 81,
+          "raw": "special AnimateElevator",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 82,
+          "raw": "waitstate",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_2"
+          ],
+          "line": 83,
+          "raw": "setflag FLAG_TEMP_2",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 84,
+          "raw": "return",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RocketHideout_Elevator_EventScript_NeedKey": {
+      "label": "RocketHideout_Elevator_EventScript_NeedKey",
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RocketHideout_Elevator_Text_AppearsToNeedAKey"
+          ],
+          "line": 87,
+          "raw": "msgbox RocketHideout_Elevator_Text_AppearsToNeedAKey",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 88,
+          "raw": "releaseall",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 89,
+          "raw": "end",
+          "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RocketHideout_Elevator_Text_AppearsToNeedAKey",
+          "mode": "",
+          "line": 87
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "RocketHideout_Elevator_Text_AppearsToNeedAKey": {
+      "label": "RocketHideout_Elevator_Text_AppearsToNeedAKey",
+      "line": 91,
+      "source_file": "data/maps/RocketHideout_Elevator_Frlg/scripts.inc",
+      "raw_text": "看来需要一把钥匙来打开它。$",
+      "display_text": "看来需要一把钥匙来打开它。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          7,
+          194,
+          8,
+          41,
+          14,
+          115,
+          14,
+          241,
+          15,
+          11,
+          1,
+          48,
+          15,
+          203,
+          2,
+          89,
+          8,
+          41,
+          2,
+          210,
+          7,
+          184,
+          12,
+          159,
+          55,
+          255
+        ],
+        "hex": "07 C2 08 29 0E 73 0E F1 0F 0B 01 30 0F CB 02 59 08 29 02 D2 07 B8 0C 9F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_unset": 1,
+      "case": 8,
+      "closemessage": 1,
+      "copyvar": 1,
+      "goto_if_eq": 3,
+      "goto_if_unset": 1,
+      "multichoicedefault": 3,
+      "setdynamicwarp": 3,
+      "setflag": 1,
+      "setvar": 8,
+      "special": 4,
+      "specialvar": 1,
+      "switch": 2,
+      "waitmessage": 1,
+      "waitse": 1,
+      "waitstate": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 13,
+    "script_count": 12,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 26,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 3,
+      "call_if_unset": 1,
+      "case": 8,
+      "closemessage": 1,
+      "copyvar": 1,
+      "end": 10,
+      "goto": 6,
+      "goto_if_eq": 3,
+      "goto_if_unset": 1,
+      "lockall": 1,
+      "message": 1,
+      "msgbox": 1,
+      "multichoicedefault": 3,
+      "releaseall": 2,
+      "return": 1,
+      "setdynamicwarp": 3,
+      "setflag": 1,
+      "setvar": 8,
+      "special": 4,
+      "specialvar": 1,
+      "switch": 2,
+      "waitmessage": 1,
+      "waitse": 1,
+      "waitstate": 1
+    }
+  }
+}

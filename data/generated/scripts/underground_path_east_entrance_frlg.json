@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "UndergroundPath_EastEntrance_Frlg",
+    "map_script": "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc",
+    "map_json": "data/maps/UndergroundPath_EastEntrance_Frlg/map.json",
+    "map_id": "MAP_UNDERGROUND_PATH_EAST_ENTRANCE",
+    "map_name": "UndergroundPath_EastEntrance_Frlg"
+  },
+  "labels": {
+    "UndergroundPath_EastEntrance_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "UndergroundPath_EastEntrance_EventScript_Woman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "UndergroundPath_EastEntrance_Text_DoYouGoToCeladonDeptStore": {
+      "kind": "text",
+      "line": 8,
+      "source_file": "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "UndergroundPath_EastEntrance_Frlg_MapScripts": {
+      "label": "UndergroundPath_EastEntrance_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "UndergroundPath_EastEntrance_EventScript_Woman": {
+      "label": "UndergroundPath_EastEntrance_EventScript_Woman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "UndergroundPath_EastEntrance_Text_DoYouGoToCeladonDeptStore",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox UndergroundPath_EastEntrance_Text_DoYouGoToCeladonDeptStore, MSGBOX_NPC",
+          "source_file": "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "UndergroundPath_EastEntrance_Text_DoYouGoToCeladonDeptStore",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "UndergroundPath_EastEntrance_Text_DoYouGoToCeladonDeptStore": {
+      "label": "UndergroundPath_EastEntrance_Text_DoYouGoToCeladonDeptStore",
+      "line": 8,
+      "source_file": "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc",
+      "raw_text": "玉虹的百货大楼\\n那里有很多很棒的商品。\\p你经常去那里吗？$",
+      "display_text": "玉虹的百货大楼\n那里有很多很棒的商品。\n\n你经常去那里吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 53,
+        "bytes": [
+          15,
+          159,
+          5,
+          22,
+          3,
+          11,
+          1,
+          56,
+          5,
+          130,
+          2,
+          211,
+          8,
+          214,
+          254,
+          9,
+          189,
+          8,
+          100,
+          15,
+          126,
+          5,
+          11,
+          3,
+          133,
+          5,
+          11,
+          1,
+          83,
+          3,
+          11,
+          11,
+          170,
+          10,
+          114,
+          55,
+          251,
+          9,
+          217,
+          7,
+          93,
+          2,
+          37,
+          11,
+          37,
+          9,
+          189,
+          8,
+          100,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0F 9F 05 16 03 0B 01 38 05 82 02 D3 08 D6 FE 09 BD 08 64 0F 7E 05 0B 03 85 05 0B 01 53 03 0B 0B AA 0A 72 37 FB 09 D9 07 5D 02 25 0B 25 09 BD 08 64 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 53,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 1,
+      "msgbox": 1
+    }
+  }
+}

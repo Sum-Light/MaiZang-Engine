@@ -1,0 +1,1167 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SeafloorCavern_Room3",
+    "map_script": "data/maps/SeafloorCavern_Room3/scripts.inc",
+    "map_json": "data/maps/SeafloorCavern_Room3/map.json",
+    "map_id": "MAP_SEAFLOOR_CAVERN_ROOM3",
+    "map_name": "SeafloorCavern_Room3"
+  },
+  "labels": {
+    "SeafloorCavern_Room3_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room3_EventScript_Shelly": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instruction_count": 3
+    },
+    "SeafloorCavern_Room3_EventScript_Grunt5": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instruction_count": 3
+    },
+    "SeafloorCavern_Room3_Text_ShellyIntro": {
+      "kind": "text",
+      "line": 14,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room3_Text_ShellyDefeat": {
+      "kind": "text",
+      "line": 17,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room3_Text_ShellyPostBattle": {
+      "kind": "text",
+      "line": 20,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room3_Text_Grunt5Intro": {
+      "kind": "text",
+      "line": 23,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room3_Text_Grunt5Defeat": {
+      "kind": "text",
+      "line": 26,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room3_Text_Grunt5PostBattle": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SeafloorCavern_Room3_MapScripts": {
+      "label": "SeafloorCavern_Room3_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SeafloorCavern_Room3_EventScript_Shelly": {
+      "label": "SeafloorCavern_Room3_EventScript_Shelly",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_SHELLY_SEAFLOOR_CAVERN",
+            "SeafloorCavern_Room3_Text_ShellyIntro",
+            "SeafloorCavern_Room3_Text_ShellyDefeat"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_SHELLY_SEAFLOOR_CAVERN, SeafloorCavern_Room3_Text_ShellyIntro, SeafloorCavern_Room3_Text_ShellyDefeat",
+          "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SeafloorCavern_Room3_Text_ShellyPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox SeafloorCavern_Room3_Text_ShellyPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SeafloorCavern_Room3_Text_ShellyPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "SeafloorCavern_Room3_EventScript_Grunt5": {
+      "label": "SeafloorCavern_Room3_EventScript_Grunt5",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_GRUNT_SEAFLOOR_CAVERN_5",
+            "SeafloorCavern_Room3_Text_Grunt5Intro",
+            "SeafloorCavern_Room3_Text_Grunt5Defeat"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_5, SeafloorCavern_Room3_Text_Grunt5Intro, SeafloorCavern_Room3_Text_Grunt5Defeat",
+          "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SeafloorCavern_Room3_Text_Grunt5PostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox SeafloorCavern_Room3_Text_Grunt5PostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SeafloorCavern_Room3_Text_Grunt5PostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SeafloorCavern_Room3_Text_ShellyIntro": {
+      "label": "SeafloorCavern_Room3_Text_ShellyIntro",
+      "line": 14,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "raw_text": "啊哈哈哈！\\p没有潜水艇你是\\n怎么追到这儿的？\\l真是了不起的小家伙！\\p不过……\\n我可不会让你继续捣乱了，\\p而且，天气研究所的账\\n也该好好算算了……\\p让你尝尝苦头吧！\\n觉悟吧！$",
+      "display_text": "啊哈哈哈！\n\n没有潜水艇你是\n怎么追到这儿的？\n真是了不起的小家伙！\n\n不过……\n我可不会让你继续捣乱了，\n\n而且，天气研究所的账\n也该好好算算了……\n\n让你尝尝苦头吧！\n觉悟吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 153,
+        "bytes": [
+          1,
+          0,
+          4,
+          198,
+          4,
+          198,
+          4,
+          198,
+          60,
+          251,
+          9,
+          83,
+          15,
+          126,
+          10,
+          202,
+          12,
+          81,
+          13,
+          15,
+          9,
+          217,
+          12,
+          12,
+          254,
+          16,
+          10,
+          9,
+          76,
+          16,
+          230,
+          3,
+          4,
+          16,
+          85,
+          3,
+          158,
+          3,
+          11,
+          61,
+          250,
+          16,
+          89,
+          12,
+          12,
+          8,
+          158,
+          1,
+          214,
+          10,
+          171,
+          3,
+          11,
+          14,
+          44,
+          5,
+          189,
+          5,
+          124,
+          60,
+          251,
+          1,
+          214,
+          4,
+          197,
+          176,
+          176,
+          254,
+          13,
+          152,
+          7,
+          215,
+          1,
+          214,
+          5,
+          110,
+          11,
+          67,
+          9,
+          217,
+          5,
+          183,
+          14,
+          131,
+          2,
+          245,
+          9,
+          12,
+          8,
+          158,
+          59,
+          251,
+          3,
+          157,
+          10,
+          235,
+          59,
+          12,
+          237,
+          10,
+          179,
+          14,
+          185,
+          7,
+          111,
+          12,
+          156,
+          3,
+          11,
+          16,
+          62,
+          254,
+          15,
+          2,
+          4,
+          45,
+          4,
+          233,
+          4,
+          233,
+          12,
+          134,
+          12,
+          134,
+          8,
+          158,
+          176,
+          176,
+          251,
+          11,
+          67,
+          9,
+          217,
+          2,
+          36,
+          2,
+          36,
+          7,
+          238,
+          13,
+          31,
+          1,
+          40,
+          60,
+          254,
+          7,
+          165,
+          13,
+          184,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "01 00 04 C6 04 C6 04 C6 3C FB 09 53 0F 7E 0A CA 0C 51 0D 0F 09 D9 0C 0C FE 10 0A 09 4C 10 E6 03 04 10 55 03 9E 03 0B 3D FA 10 59 0C 0C 08 9E 01 D6 0A AB 03 0B 0E 2C 05 BD 05 7C 3C FB 01 D6 04 C5 B0 B0 FE 0D 98 07 D7 01 D6 05 6E 0B 43 09 D9 05 B7 0E 83 02 F5 09 0C 08 9E 3B FB 03 9D 0A EB 3B 0C ED 0A B3 0E B9 07 6F 0C 9C 03 0B 10 3E FE 0F 02 04 2D 04 E9 04 E9 0C 86 0C 86 08 9E B0 B0 FB 0B 43 09 D9 02 24 02 24 07 EE 0D 1F 01 28 3C FE 07 A5 0D B8 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 24,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 36,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 42,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 56,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 68,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 79,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 89,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 95,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Room3_Text_ShellyDefeat": {
+      "label": "SeafloorCavern_Room3_Text_ShellyDefeat",
+      "line": 17,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "raw_text": "啊哈哈哈！\\p好痛！$",
+      "display_text": "啊哈哈哈！\n\n好痛！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          1,
+          0,
+          4,
+          198,
+          4,
+          198,
+          4,
+          198,
+          60,
+          251,
+          4,
+          233,
+          13,
+          28,
+          60,
+          255
+        ],
+        "hex": "01 00 04 C6 04 C6 04 C6 3C FB 04 E9 0D 1C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Room3_Text_ShellyPostBattle": {
+      "label": "SeafloorCavern_Room3_Text_ShellyPostBattle",
+      "line": 20,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "raw_text": "啊哈哈哈！\\n强得离谱啊你。\\p你不是海洋队的一员\\n实在太遗憾了。\\p本来你也能一起见证老大向我们承诺的\\n那个美妙新世界的……$",
+      "display_text": "啊哈哈哈！\n强得离谱啊你。\n\n你不是海洋队的一员\n实在太遗憾了。\n\n本来你也能一起见证老大向我们承诺的\n那个美妙新世界的……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 111,
+        "bytes": [
+          1,
+          0,
+          4,
+          198,
+          4,
+          198,
+          4,
+          198,
+          60,
+          254,
+          10,
+          216,
+          3,
+          10,
+          8,
+          96,
+          10,
+          146,
+          1,
+          0,
+          9,
+          217,
+          55,
+          251,
+          9,
+          217,
+          1,
+          214,
+          12,
+          12,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          3,
+          11,
+          15,
+          11,
+          15,
+          189,
+          254,
+          11,
+          241,
+          15,
+          230,
+          12,
+          172,
+          15,
+          21,
+          4,
+          220,
+          8,
+          158,
+          55,
+          251,
+          1,
+          123,
+          8,
+          41,
+          9,
+          217,
+          15,
+          2,
+          9,
+          210,
+          15,
+          11,
+          10,
+          171,
+          5,
+          230,
+          16,
+          117,
+          8,
+          68,
+          2,
+          211,
+          14,
+          31,
+          13,
+          152,
+          9,
+          95,
+          2,
+          82,
+          10,
+          18,
+          3,
+          11,
+          254,
+          9,
+          189,
+          4,
+          96,
+          9,
+          88,
+          9,
+          134,
+          14,
+          77,
+          12,
+          5,
+          7,
+          57,
+          3,
+          11,
+          176,
+          176,
+          255
+        ],
+        "hex": "01 00 04 C6 04 C6 04 C6 3C FE 0A D8 03 0A 08 60 0A 92 01 00 09 D9 37 FB 09 D9 01 D6 0C 0C 04 C9 0E DC 03 78 03 0B 0F 0B 0F BD FE 0B F1 0F E6 0C AC 0F 15 04 DC 08 9E 37 FB 01 7B 08 29 09 D9 0F 02 09 D2 0F 0B 0A AB 05 E6 10 75 08 44 02 D3 0E 1F 0D 98 09 5F 02 52 0A 12 03 0B FE 09 BD 04 60 09 58 09 86 0E 4D 0C 05 07 39 03 0B B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 34,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 53,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 65,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Room3_Text_Grunt5Intro": {
+      "label": "SeafloorCavern_Room3_Text_Grunt5Intro",
+      "line": 23,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "raw_text": "为了实现我们的梦想，\\n我们需要宝可梦的力量。\\p但是那些像你一样爱管闲事的人\\n却总是用宝可梦的力量来碍事，\\l甚至都追到了这里来！\\p人生总是不能\\n如我们所愿！$",
+      "display_text": "为了实现我们的梦想，\n我们需要宝可梦的力量。\n\n但是那些像你一样爱管闲事的人\n却总是用宝可梦的力量来碍事，\n甚至都追到了这里来！\n\n人生总是不能\n如我们所愿！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 144,
+        "bytes": [
+          13,
+          112,
+          8,
+          158,
+          11,
+          241,
+          14,
+          3,
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          9,
+          102,
+          14,
+          24,
+          59,
+          254,
+          13,
+          152,
+          9,
+          95,
+          14,
+          115,
+          14,
+          241,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          8,
+          121,
+          8,
+          146,
+          55,
+          251,
+          2,
+          233,
+          12,
+          12,
+          9,
+          189,
+          14,
+          52,
+          14,
+          30,
+          9,
+          217,
+          15,
+          11,
+          14,
+          226,
+          1,
+          13,
+          4,
+          164,
+          13,
+          244,
+          12,
+          7,
+          3,
+          11,
+          11,
+          75,
+          254,
+          11,
+          52,
+          17,
+          20,
+          12,
+          12,
+          15,
+          113,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          8,
+          121,
+          8,
+          146,
+          8,
+          41,
+          1,
+          12,
+          12,
+          7,
+          59,
+          250,
+          11,
+          211,
+          16,
+          146,
+          3,
+          97,
+          16,
+          230,
+          3,
+          4,
+          8,
+          158,
+          16,
+          85,
+          8,
+          100,
+          8,
+          41,
+          60,
+          251,
+          11,
+          75,
+          11,
+          216,
+          17,
+          20,
+          12,
+          12,
+          1,
+          214,
+          9,
+          210,
+          254,
+          11,
+          103,
+          13,
+          152,
+          9,
+          95,
+          12,
+          156,
+          15,
+          196,
+          60,
+          255
+        ],
+        "hex": "0D 70 08 9E 0B F1 0E 03 0D 98 09 5F 03 0B 09 66 0E 18 3B FE 0D 98 09 5F 0E 73 0E F1 01 63 07 D7 09 66 03 0B 08 79 08 92 37 FB 02 E9 0C 0C 09 BD 0E 34 0E 1E 09 D9 0F 0B 0E E2 01 0D 04 A4 0D F4 0C 07 03 0B 0B 4B FE 0B 34 11 14 0C 0C 0F 71 01 63 07 D7 09 66 03 0B 08 79 08 92 08 29 01 0C 0C 07 3B FA 0B D3 10 92 03 61 10 E6 03 04 08 9E 10 55 08 64 08 29 3C FB 0B 4B 0B D8 11 14 0C 0C 01 D6 09 D2 FE 0B 67 0D 98 09 5F 0C 9C 0F C4 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 55,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 67,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 75,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 83,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Room3_Text_Grunt5Defeat": {
+      "label": "SeafloorCavern_Room3_Text_Grunt5Defeat",
+      "line": 26,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "raw_text": "咕哇！$",
+      "display_text": "咕哇！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 6,
+        "bytes": [
+          4,
+          134,
+          13,
+          67,
+          60,
+          255
+        ],
+        "hex": "04 86 0D 43 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 3,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Room3_Text_Grunt5PostBattle": {
+      "label": "SeafloorCavern_Room3_Text_Grunt5PostBattle",
+      "line": 29,
+      "source_file": "data/maps/SeafloorCavern_Room3/scripts.inc",
+      "raw_text": "听着，我们从来不敢质疑\\n老大想干的事。\\p可你，一个小鬼头，\\n竟然要对抗我们的老大。\\p也许……\\n你真是个人物。$",
+      "display_text": "听着，我们从来不敢质疑\n老大想干的事。\n\n可你，一个小鬼头，\n竟然要对抗我们的老大。\n\n也许……\n你真是个人物。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 96,
+        "bytes": [
+          13,
+          7,
+          16,
+          244,
+          59,
+          13,
+          152,
+          9,
+          95,
+          2,
+          179,
+          8,
+          41,
+          1,
+          214,
+          4,
+          60,
+          16,
+          155,
+          15,
+          25,
+          254,
+          8,
+          68,
+          2,
+          211,
+          14,
+          24,
+          4,
+          51,
+          3,
+          11,
+          12,
+          7,
+          55,
+          251,
+          7,
+          215,
+          9,
+          217,
+          59,
+          15,
+          11,
+          4,
+          96,
+          14,
+          44,
+          4,
+          181,
+          13,
+          31,
+          59,
+          254,
+          7,
+          105,
+          11,
+          59,
+          14,
+          241,
+          3,
+          121,
+          7,
+          199,
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          8,
+          68,
+          2,
+          211,
+          55,
+          251,
+          15,
+          2,
+          14,
+          120,
+          176,
+          176,
+          254,
+          9,
+          217,
+          16,
+          89,
+          12,
+          12,
+          4,
+          96,
+          11,
+          75,
+          13,
+          181,
+          55,
+          255
+        ],
+        "hex": "0D 07 10 F4 3B 0D 98 09 5F 02 B3 08 29 01 D6 04 3C 10 9B 0F 19 FE 08 44 02 D3 0E 18 04 33 03 0B 0C 07 37 FB 07 D7 09 D9 3B 0F 0B 04 60 0E 2C 04 B5 0D 1F 3B FE 07 69 0B 3B 0E F1 03 79 07 C7 0D 98 09 5F 03 0B 08 44 02 D3 37 FB 0F 02 0E 78 B0 B0 FE 09 D9 10 59 0C 0C 04 60 0B 4B 0D B5 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 44,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 50,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 59,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 6,
+    "encoded_text_count": 6,
+    "text_source_byte_count": 526,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 6
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2,
+      "trainerbattle_single": 2
+    }
+  }
+}

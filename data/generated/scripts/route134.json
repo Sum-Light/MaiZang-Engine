@@ -1,0 +1,611 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route134",
+    "map_script": "data/maps/Route134/scripts.inc",
+    "map_json": "data/maps/Route134/map.json",
+    "map_id": "MAP_ROUTE134",
+    "map_name": "Route134"
+  },
+  "labels": {
+    "Route134_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route134_OnResume": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route134_EventScript_Jack": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route134_EventScript_Laurel": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route134_EventScript_Alex": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route134_EventScript_Aaron": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route134_EventScript_Hitoshi": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route134_EventScript_Hudson": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route134_EventScript_Reyna": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route134_EventScript_Marley": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route134_EventScript_Kelvin": {
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "Route134_MapScripts": {
+      "label": "Route134_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "Route134_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, Route134_OnResume",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route134_OnResume": {
+      "label": "Route134_OnResume",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "setdivewarp",
+          "args": [
+            "MAP_UNDERWATER_ROUTE134",
+            "8",
+            "6"
+          ],
+          "line": 6,
+          "raw": "setdivewarp MAP_UNDERWATER_ROUTE134, 8, 6",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route134_EventScript_Jack": {
+      "label": "Route134_EventScript_Jack",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_JACK",
+            "Route134_Text_JackIntro",
+            "Route134_Text_JackDefeat"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_JACK, Route134_Text_JackIntro, Route134_Text_JackDefeat",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route134_Text_JackPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox Route134_Text_JackPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route134_Text_JackPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route134_EventScript_Laurel": {
+      "label": "Route134_EventScript_Laurel",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_LAUREL",
+            "Route134_Text_LaurelIntro",
+            "Route134_Text_LaurelDefeat"
+          ],
+          "line": 15,
+          "raw": "trainerbattle_single TRAINER_LAUREL, Route134_Text_LaurelIntro, Route134_Text_LaurelDefeat",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route134_Text_LaurelPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 16,
+          "raw": "msgbox Route134_Text_LaurelPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route134_Text_LaurelPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 16
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route134_EventScript_Alex": {
+      "label": "Route134_EventScript_Alex",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_ALEX",
+            "Route134_Text_AlexIntro",
+            "Route134_Text_AlexDefeat"
+          ],
+          "line": 20,
+          "raw": "trainerbattle_single TRAINER_ALEX, Route134_Text_AlexIntro, Route134_Text_AlexDefeat",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route134_Text_AlexPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 21,
+          "raw": "msgbox Route134_Text_AlexPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route134_Text_AlexPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route134_EventScript_Aaron": {
+      "label": "Route134_EventScript_Aaron",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_AARON",
+            "Route134_Text_AaronIntro",
+            "Route134_Text_AaronDefeat"
+          ],
+          "line": 25,
+          "raw": "trainerbattle_single TRAINER_AARON, Route134_Text_AaronIntro, Route134_Text_AaronDefeat",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route134_Text_AaronPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 26,
+          "raw": "msgbox Route134_Text_AaronPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route134_Text_AaronPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route134_EventScript_Hitoshi": {
+      "label": "Route134_EventScript_Hitoshi",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_HITOSHI",
+            "Route134_Text_HitoshiIntro",
+            "Route134_Text_HitoshiDefeat"
+          ],
+          "line": 30,
+          "raw": "trainerbattle_single TRAINER_HITOSHI, Route134_Text_HitoshiIntro, Route134_Text_HitoshiDefeat",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route134_Text_HitoshiPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 31,
+          "raw": "msgbox Route134_Text_HitoshiPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route134_Text_HitoshiPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 31
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route134_EventScript_Hudson": {
+      "label": "Route134_EventScript_Hudson",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_HUDSON",
+            "Route134_Text_HudsonIntro",
+            "Route134_Text_HudsonDefeat"
+          ],
+          "line": 35,
+          "raw": "trainerbattle_single TRAINER_HUDSON, Route134_Text_HudsonIntro, Route134_Text_HudsonDefeat",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route134_Text_HudsonPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 36,
+          "raw": "msgbox Route134_Text_HudsonPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route134_Text_HudsonPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 36
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route134_EventScript_Reyna": {
+      "label": "Route134_EventScript_Reyna",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_REYNA",
+            "Route134_Text_ReynaIntro",
+            "Route134_Text_ReynaDefeat"
+          ],
+          "line": 40,
+          "raw": "trainerbattle_single TRAINER_REYNA, Route134_Text_ReynaIntro, Route134_Text_ReynaDefeat",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route134_Text_ReynaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 41,
+          "raw": "msgbox Route134_Text_ReynaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route134_Text_ReynaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 41
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route134_EventScript_Marley": {
+      "label": "Route134_EventScript_Marley",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_MARLEY",
+            "Route134_Text_MarleyIntro",
+            "Route134_Text_MarleyDefeat"
+          ],
+          "line": 45,
+          "raw": "trainerbattle_single TRAINER_MARLEY, Route134_Text_MarleyIntro, Route134_Text_MarleyDefeat",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route134_Text_MarleyPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 46,
+          "raw": "msgbox Route134_Text_MarleyPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 47,
+          "raw": "end",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route134_Text_MarleyPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 46
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route134_EventScript_Kelvin": {
+      "label": "Route134_EventScript_Kelvin",
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/Route134/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_KELVIN",
+            "Route134_Text_KelvinIntro",
+            "Route134_Text_KelvinDefeat"
+          ],
+          "line": 50,
+          "raw": "trainerbattle_single TRAINER_KELVIN, Route134_Text_KelvinIntro, Route134_Text_KelvinDefeat",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route134_Text_KelvinPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 51,
+          "raw": "msgbox Route134_Text_KelvinPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route134/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 52,
+          "raw": "end",
+          "source_file": "data/maps/Route134/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route134_Text_KelvinPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 51
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 1,
+      "setdivewarp": 1,
+      "trainerbattle_single": 9
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 11,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 10,
+      "map_script": 1,
+      "msgbox": 9,
+      "setdivewarp": 1,
+      "trainerbattle_single": 9
+    }
+  }
+}

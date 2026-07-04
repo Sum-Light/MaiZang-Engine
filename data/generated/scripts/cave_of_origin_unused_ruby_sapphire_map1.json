@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CaveOfOrigin_UnusedRubySapphireMap1",
+    "map_script": "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc",
+    "map_json": "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/map.json",
+    "map_id": "MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1",
+    "map_name": "CaveOfOrigin_UnusedRubySapphireMap1"
+  },
+  "labels": {
+    "CaveOfOrigin_UnusedRubySapphireMap1_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc",
+      "instruction_count": 2
+    },
+    "CaveOfOrigin_UnusedRubySapphireMap1_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "CaveOfOrigin_UnusedRubySapphireMap1_MapScripts": {
+      "label": "CaveOfOrigin_UnusedRubySapphireMap1_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "CaveOfOrigin_UnusedRubySapphireMap1_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, CaveOfOrigin_UnusedRubySapphireMap1_OnTransition",
+          "source_file": "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CaveOfOrigin_UnusedRubySapphireMap1_OnTransition": {
+      "label": "CaveOfOrigin_UnusedRubySapphireMap1_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_UNUSED_RS_LEGENDARY_BATTLE_DONE",
+            "CaveOfOrigin_EventScript_DisableTriggers"
+          ],
+          "line": 6,
+          "raw": "call_if_set FLAG_UNUSED_RS_LEGENDARY_BATTLE_DONE, CaveOfOrigin_EventScript_DisableTriggers",
+          "source_file": "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "CaveOfOrigin_EventScript_DisableTriggers",
+          "line": 6
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_set": 1,
+      "map_script": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 2,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call_if_set": 1,
+      "end": 1,
+      "map_script": 1
+    }
+  }
+}

@@ -1,0 +1,2081 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PokemonLeague_AgathasRoom_Frlg",
+    "map_script": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+    "map_json": "data/maps/PokemonLeague_AgathasRoom_Frlg/map.json",
+    "map_id": "MAP_POKEMON_LEAGUE_AGATHAS_ROOM",
+    "map_name": "PokemonLeague_AgathasRoom_Frlg"
+  },
+  "labels": {
+    "PokemonLeague_AgathasRoom_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PokemonLeague_AgathasRoom_OnResume": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PokemonLeague_AgathasRoom_OnLoad": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PokemonLeague_AgathasRoom_EventScript_CloseEntry": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_AgathasRoom_EventScript_SetDoorOpen": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_AgathasRoom_OnWarp": {
+      "kind": "map_script_table",
+      "line": 26,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_AgathasRoom_EventScript_TurnPlayerNorth": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_AgathasRoom_OnFrame": {
+      "kind": "map_script_table",
+      "line": 34,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_AgathasRoom_EventScript_EnterRoom": {
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PokemonLeague_AgathasRoom_EventScript_Agatha": {
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "PokemonLeague_AgathasRoom_EventScript_Intro": {
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_AgathasRoom_EventScript_RematchIntro": {
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_AgathasRoom_EventScript_Battle": {
+      "kind": "script",
+      "line": 71,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_AgathasRoom_EventScript_Rematch": {
+      "kind": "script",
+      "line": 75,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_AgathasRoom_EventScript_PostBattle": {
+      "kind": "script",
+      "line": 79,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PokemonLeague_AgathasRoom_EventScript_DefeatedAgatha": {
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PokemonLeague_AgathasRoom_Text_Intro": {
+      "kind": "text",
+      "line": 91,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 13
+    },
+    "PokemonLeague_AgathasRoom_Text_RematchIntro": {
+      "kind": "text",
+      "line": 106,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 13
+    },
+    "PokemonLeague_AgathasRoom_Text_Defeat": {
+      "kind": "text",
+      "line": 121,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_AgathasRoom_Text_PostBattle": {
+      "kind": "text",
+      "line": 125,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instruction_count": 5
+    }
+  },
+  "scripts": {
+    "PokemonLeague_AgathasRoom_Frlg_MapScripts": {
+      "label": "PokemonLeague_AgathasRoom_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "PokemonLeague_AgathasRoom_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, PokemonLeague_AgathasRoom_OnResume",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "PokemonLeague_AgathasRoom_OnLoad"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_AgathasRoom_OnLoad",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "PokemonLeague_AgathasRoom_OnWarp"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_AgathasRoom_OnWarp",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "PokemonLeague_AgathasRoom_OnFrame"
+          ],
+          "line": 5,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_AgathasRoom_OnFrame",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 6,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_AgathasRoom_OnResume": {
+      "label": "PokemonLeague_AgathasRoom_OnResume",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "2"
+          ],
+          "line": 9,
+          "raw": "setvar VAR_0x8004, 2",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EventScript_DoLightingEffect"
+          ],
+          "line": 10,
+          "raw": "call PokemonLeague_EventScript_DoLightingEffect",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EventScript_DoLightingEffect",
+          "line": 10
+        }
+      ]
+    },
+    "PokemonLeague_AgathasRoom_OnLoad": {
+      "label": "PokemonLeague_AgathasRoom_OnLoad",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_DEFEATED_AGATHA",
+            "PokemonLeague_AgathasRoom_EventScript_SetDoorOpen"
+          ],
+          "line": 14,
+          "raw": "call_if_set FLAG_DEFEATED_AGATHA, PokemonLeague_AgathasRoom_EventScript_SetDoorOpen",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_POKEMON_LEAGUE",
+            "3",
+            "PokemonLeague_AgathasRoom_EventScript_CloseEntry"
+          ],
+          "line": 15,
+          "raw": "call_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 3, PokemonLeague_AgathasRoom_EventScript_CloseEntry",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "PokemonLeague_AgathasRoom_EventScript_SetDoorOpen",
+          "line": 14
+        },
+        {
+          "op": "call_if_eq",
+          "target": "PokemonLeague_AgathasRoom_EventScript_CloseEntry",
+          "line": 15
+        }
+      ]
+    },
+    "PokemonLeague_AgathasRoom_EventScript_CloseEntry": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_CloseEntry",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EventScript_CloseEntry"
+          ],
+          "line": 19,
+          "raw": "call PokemonLeague_EventScript_CloseEntry",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 20,
+          "raw": "return",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EventScript_CloseEntry",
+          "line": 19
+        }
+      ]
+    },
+    "PokemonLeague_AgathasRoom_EventScript_SetDoorOpen": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_SetDoorOpen",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EventScript_SetDoorOpen"
+          ],
+          "line": 23,
+          "raw": "call PokemonLeague_EventScript_SetDoorOpen",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 24,
+          "raw": "return",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EventScript_SetDoorOpen",
+          "line": 23
+        }
+      ]
+    },
+    "PokemonLeague_AgathasRoom_OnWarp": {
+      "label": "PokemonLeague_AgathasRoom_OnWarp",
+      "kind": "map_script_table",
+      "line": 26,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "PokemonLeague_AgathasRoom_EventScript_TurnPlayerNorth"
+          ],
+          "line": 27,
+          "raw": "map_script_2 VAR_TEMP_1, 0, PokemonLeague_AgathasRoom_EventScript_TurnPlayerNorth",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 28,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_AgathasRoom_EventScript_TurnPlayerNorth": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_TurnPlayerNorth",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 31,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_AgathasRoom_OnFrame": {
+      "label": "PokemonLeague_AgathasRoom_OnFrame",
+      "kind": "map_script_table",
+      "line": 34,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_MAP_SCENE_POKEMON_LEAGUE",
+            "2",
+            "PokemonLeague_AgathasRoom_EventScript_EnterRoom"
+          ],
+          "line": 35,
+          "raw": "map_script_2 VAR_MAP_SCENE_POKEMON_LEAGUE, 2, PokemonLeague_AgathasRoom_EventScript_EnterRoom",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 36,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_AgathasRoom_EventScript_EnterRoom": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_EnterRoom",
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 39,
+          "raw": "lockall",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EventScript_EnterRoom"
+          ],
+          "line": 40,
+          "raw": "call PokemonLeague_EventScript_EnterRoom",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_POKEMON_LEAGUE",
+            "3"
+          ],
+          "line": 41,
+          "raw": "setvar VAR_MAP_SCENE_POKEMON_LEAGUE, 3",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 42,
+          "raw": "releaseall",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 43,
+          "raw": "end",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EventScript_EnterRoom",
+          "line": 40
+        }
+      ]
+    },
+    "PokemonLeague_AgathasRoom_EventScript_Agatha": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_Agatha",
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 46,
+          "raw": "lock",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 47,
+          "raw": "faceplayer",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_AGATHA",
+            "FCPICKSTATE_COLORED",
+            "UpdatePickStateFromSpecialVar8005"
+          ],
+          "line": 48,
+          "raw": "famechecker FAMECHECKER_AGATHA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DEFEATED_AGATHA",
+            "PokemonLeague_AgathasRoom_EventScript_PostBattle"
+          ],
+          "line": 49,
+          "raw": "goto_if_set FLAG_DEFEATED_AGATHA, PokemonLeague_AgathasRoom_EventScript_PostBattle",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_AGATHA",
+            "0"
+          ],
+          "line": 50,
+          "raw": "famechecker FAMECHECKER_AGATHA, 0",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_AGATHA",
+            "4"
+          ],
+          "line": 51,
+          "raw": "famechecker FAMECHECKER_AGATHA, 4",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_OAK",
+            "4"
+          ],
+          "line": 52,
+          "raw": "famechecker FAMECHECKER_OAK, 4",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_SYS_GAME_CLEAR",
+            "PokemonLeague_AgathasRoom_EventScript_Intro"
+          ],
+          "line": 53,
+          "raw": "call_if_unset FLAG_SYS_GAME_CLEAR, PokemonLeague_AgathasRoom_EventScript_Intro",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_GAME_CLEAR",
+            "PokemonLeague_AgathasRoom_EventScript_RematchIntro"
+          ],
+          "line": 54,
+          "raw": "call_if_set FLAG_SYS_GAME_CLEAR, PokemonLeague_AgathasRoom_EventScript_RematchIntro",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_3"
+          ],
+          "line": 55,
+          "raw": "setflag FLAG_TEMP_3",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_5"
+          ],
+          "line": 56,
+          "raw": "setflag FLAG_TEMP_5",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_IS_CHAMPION",
+            "PokemonLeague_AgathasRoom_EventScript_Battle"
+          ],
+          "line": 57,
+          "raw": "call_if_unset FLAG_IS_CHAMPION, PokemonLeague_AgathasRoom_EventScript_Battle",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_IS_CHAMPION",
+            "PokemonLeague_AgathasRoom_EventScript_Rematch"
+          ],
+          "line": 58,
+          "raw": "call_if_set FLAG_IS_CHAMPION, PokemonLeague_AgathasRoom_EventScript_Rematch",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_TEMP_5"
+          ],
+          "line": 59,
+          "raw": "clearflag FLAG_TEMP_5",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "PokemonLeague_AgathasRoom_EventScript_DefeatedAgatha"
+          ],
+          "line": 60,
+          "raw": "goto PokemonLeague_AgathasRoom_EventScript_DefeatedAgatha",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 61,
+          "raw": "end",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "PokemonLeague_AgathasRoom_EventScript_PostBattle",
+          "line": 49
+        },
+        {
+          "op": "call_if_unset",
+          "target": "PokemonLeague_AgathasRoom_EventScript_Intro",
+          "line": 53
+        },
+        {
+          "op": "call_if_set",
+          "target": "PokemonLeague_AgathasRoom_EventScript_RematchIntro",
+          "line": 54
+        },
+        {
+          "op": "call_if_unset",
+          "target": "PokemonLeague_AgathasRoom_EventScript_Battle",
+          "line": 57
+        },
+        {
+          "op": "call_if_set",
+          "target": "PokemonLeague_AgathasRoom_EventScript_Rematch",
+          "line": 58
+        },
+        {
+          "op": "goto",
+          "target": "PokemonLeague_AgathasRoom_EventScript_DefeatedAgatha",
+          "line": 60
+        }
+      ]
+    },
+    "PokemonLeague_AgathasRoom_EventScript_Intro": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_Intro",
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PokemonLeague_AgathasRoom_Text_Intro"
+          ],
+          "line": 64,
+          "raw": "msgbox PokemonLeague_AgathasRoom_Text_Intro",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 65,
+          "raw": "return",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PokemonLeague_AgathasRoom_Text_Intro",
+          "mode": "",
+          "line": 64
+        }
+      ],
+      "branch_targets": []
+    },
+    "PokemonLeague_AgathasRoom_EventScript_RematchIntro": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_RematchIntro",
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PokemonLeague_AgathasRoom_Text_RematchIntro"
+          ],
+          "line": 68,
+          "raw": "msgbox PokemonLeague_AgathasRoom_Text_RematchIntro",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 69,
+          "raw": "return",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PokemonLeague_AgathasRoom_Text_RematchIntro",
+          "mode": "",
+          "line": 68
+        }
+      ],
+      "branch_targets": []
+    },
+    "PokemonLeague_AgathasRoom_EventScript_Battle": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_Battle",
+      "kind": "script",
+      "line": 71,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_no_intro",
+          "args": [
+            "TRAINER_ELITE_FOUR_AGATHA",
+            "PokemonLeague_AgathasRoom_Text_Defeat"
+          ],
+          "line": 72,
+          "raw": "trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA, PokemonLeague_AgathasRoom_Text_Defeat",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 73,
+          "raw": "return",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_AgathasRoom_EventScript_Rematch": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_Rematch",
+      "kind": "script",
+      "line": 75,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_no_intro",
+          "args": [
+            "TRAINER_ELITE_FOUR_AGATHA_2",
+            "PokemonLeague_AgathasRoom_Text_Defeat"
+          ],
+          "line": 76,
+          "raw": "trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA_2, PokemonLeague_AgathasRoom_Text_Defeat",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 77,
+          "raw": "return",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_AgathasRoom_EventScript_PostBattle": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_PostBattle",
+      "kind": "script",
+      "line": 79,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PokemonLeague_AgathasRoom_Text_PostBattle"
+          ],
+          "line": 80,
+          "raw": "msgbox PokemonLeague_AgathasRoom_Text_PostBattle",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 81,
+          "raw": "release",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 82,
+          "raw": "end",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PokemonLeague_AgathasRoom_Text_PostBattle",
+          "mode": "",
+          "line": 80
+        }
+      ],
+      "branch_targets": []
+    },
+    "PokemonLeague_AgathasRoom_EventScript_DefeatedAgatha": {
+      "label": "PokemonLeague_AgathasRoom_EventScript_DefeatedAgatha",
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_AGATHA"
+          ],
+          "line": 85,
+          "raw": "setflag FLAG_DEFEATED_AGATHA",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EventScript_OpenDoor"
+          ],
+          "line": 86,
+          "raw": "call PokemonLeague_EventScript_OpenDoor",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PokemonLeague_AgathasRoom_Text_PostBattle"
+          ],
+          "line": 87,
+          "raw": "msgbox PokemonLeague_AgathasRoom_Text_PostBattle",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 88,
+          "raw": "release",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 89,
+          "raw": "end",
+          "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PokemonLeague_AgathasRoom_Text_PostBattle",
+          "mode": "",
+          "line": 87
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EventScript_OpenDoor",
+          "line": 86
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {
+    "PokemonLeague_AgathasRoom_Text_Intro": {
+      "label": "PokemonLeague_AgathasRoom_Text_Intro",
+      "line": 91,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "raw_text": "我是四天王之一菊子。\\p孩子我听说大木\\n相当疼爱你。\\p那个老傻瓜\\n曾经又猛又迷人！\\p但是，这只是几十年前的事了。\\n现在的他活在他以前的影子里。\\p成天玩弄他的破\\n宝可梦图鉴。\\p他错了。\\n宝可梦是用来战斗的！\\p{PLAYER}！让我来教你真正的\\n训练家是怎样战斗的！{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$",
+      "display_text": "我是四天王之一菊子。\n\n孩子我听说大木\n相当疼爱你。\n\n那个老傻瓜\n曾经又猛又迷人！\n\n但是，这只是几十年前的事了。\n现在的他活在他以前的影子里。\n\n成天玩弄他的破\n宝可梦图鉴。\n\n他错了。\n宝可梦是用来战斗的！\n\n{PLAYER}！让我来教你真正的\n训练家是怎样战斗的！{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 228,
+        "bytes": [
+          13,
+          152,
+          12,
+          12,
+          12,
+          103,
+          12,
+          237,
+          13,
+          93,
+          16,
+          127,
+          15,
+          11,
+          7,
+          133,
+          17,
+          11,
+          55,
+          251,
+          4,
+          200,
+          17,
+          11,
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          2,
+          211,
+          9,
+          180,
+          254,
+          14,
+          13,
+          2,
+          239,
+          12,
+          220,
+          1,
+          13,
+          9,
+          217,
+          55,
+          251,
+          9,
+          189,
+          4,
+          96,
+          8,
+          68,
+          11,
+          147,
+          4,
+          151,
+          254,
+          16,
+          13,
+          7,
+          93,
+          15,
+          132,
+          9,
+          101,
+          15,
+          132,
+          9,
+          108,
+          11,
+          75,
+          60,
+          251,
+          2,
+          233,
+          12,
+          12,
+          59,
+          16,
+          85,
+          16,
+          140,
+          12,
+          12,
+          5,
+          163,
+          11,
+          234,
+          9,
+          224,
+          10,
+          201,
+          3,
+          11,
+          12,
+          7,
+          8,
+          158,
+          55,
+          254,
+          14,
+          3,
+          15,
+          230,
+          3,
+          11,
+          12,
+          158,
+          5,
+          123,
+          15,
+          230,
+          12,
+          158,
+          15,
+          36,
+          10,
+          201,
+          3,
+          11,
+          15,
+          94,
+          17,
+          11,
+          8,
+          100,
+          55,
+          251,
+          2,
+          75,
+          12,
+          237,
+          13,
+          78,
+          10,
+          7,
+          12,
+          158,
+          3,
+          11,
+          10,
+          129,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          36,
+          5,
+          227,
+          55,
+          251,
+          12,
+          158,
+          2,
+          205,
+          8,
+          158,
+          55,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          12,
+          15,
+          113,
+          8,
+          41,
+          16,
+          48,
+          3,
+          92,
+          3,
+          11,
+          60,
+          251,
+          253,
+          1,
+          60,
+          11,
+          67,
+          13,
+          152,
+          8,
+          41,
+          7,
+          30,
+          9,
+          217,
+          16,
+          89,
+          16,
+          112,
+          3,
+          11,
+          254,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          12,
+          12,
+          16,
+          10,
+          14,
+          226,
+          16,
+          48,
+          3,
+          92,
+          3,
+          11,
+          60,
+          252,
+          11,
+          42,
+          2,
+          255
+        ],
+        "hex": "0D 98 0C 0C 0C 67 0C ED 0D 5D 10 7F 0F 0B 07 85 11 0B 37 FB 04 C8 11 0B 0D 98 0D 07 0C 58 02 D3 09 B4 FE 0E 0D 02 EF 0C DC 01 0D 09 D9 37 FB 09 BD 04 60 08 44 0B 93 04 97 FE 10 0D 07 5D 0F 84 09 65 0F 84 09 6C 0B 4B 3C FB 02 E9 0C 0C 3B 10 55 10 8C 0C 0C 05 A3 0B EA 09 E0 0A C9 03 0B 0C 07 08 9E 37 FE 0E 03 0F E6 03 0B 0C 9E 05 7B 0F E6 0C 9E 0F 24 0A C9 03 0B 0F 5E 11 0B 08 64 37 FB 02 4B 0C ED 0D 4E 0A 07 0C 9E 03 0B 0A 81 FE 01 63 07 D7 09 66 0D 24 05 E3 37 FB 0C 9E 02 CD 08 9E 37 FE 01 63 07 D7 09 66 0C 0C 0F 71 08 29 10 30 03 5C 03 0B 3C FB FD 01 3C 0B 43 0D 98 08 29 07 1E 09 D9 10 59 10 70 03 0B FE 0E 9E 08 8A 05 BD 0C 0C 10 0A 0E E2 10 30 03 5C 03 0B 3C FC 0B 2A 02 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 27,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 44,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 60,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 76,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 85,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 93,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 99,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 111,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 113,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 130,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAY_BGM}",
+            "offset": 142,
+            "bytes": [
+              252,
+              11
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAY_BGM",
+                "bytes": [
+                  252,
+                  11
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{MUS_RG_ENCOUNTER_GYM_LEADER}",
+            "offset": 152,
+            "bytes": [
+              42,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "MUS_RG_ENCOUNTER_GYM_LEADER",
+                "bytes": [
+                  42,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 181,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 113,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PokemonLeague_AgathasRoom_Text_RematchIntro": {
+      "label": "PokemonLeague_AgathasRoom_Text_RematchIntro",
+      "line": 106,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "raw_text": "我是四天王之一菊子。\\p我听说大木\\n相当疼你。\\p那个老傻瓜\\n曾经又猛又迷人！\\p但那是几十年前的事了。\\n现在的他活在他过去的影子里。\\p成天摆弄他的破\\n宝可梦图鉴。\\p他错了。\\n宝可梦是用来战斗的！\\p{PLAYER}！让我来教你真正的\\n训练家是怎样战斗的！{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$",
+      "display_text": "我是四天王之一菊子。\n\n我听说大木\n相当疼你。\n\n那个老傻瓜\n曾经又猛又迷人！\n\n但那是几十年前的事了。\n现在的他活在他过去的影子里。\n\n成天摆弄他的破\n宝可梦图鉴。\n\n他错了。\n宝可梦是用来战斗的！\n\n{PLAYER}！让我来教你真正的\n训练家是怎样战斗的！{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 217,
+        "bytes": [
+          13,
+          152,
+          12,
+          12,
+          12,
+          103,
+          12,
+          237,
+          13,
+          93,
+          16,
+          127,
+          15,
+          11,
+          7,
+          133,
+          17,
+          11,
+          55,
+          251,
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          2,
+          211,
+          9,
+          180,
+          254,
+          14,
+          13,
+          2,
+          239,
+          12,
+          220,
+          9,
+          217,
+          55,
+          251,
+          9,
+          189,
+          4,
+          96,
+          8,
+          68,
+          11,
+          147,
+          4,
+          151,
+          254,
+          16,
+          13,
+          7,
+          93,
+          15,
+          132,
+          9,
+          101,
+          15,
+          132,
+          9,
+          108,
+          11,
+          75,
+          60,
+          251,
+          2,
+          233,
+          9,
+          189,
+          12,
+          12,
+          5,
+          163,
+          11,
+          234,
+          9,
+          224,
+          10,
+          201,
+          3,
+          11,
+          12,
+          7,
+          8,
+          158,
+          55,
+          254,
+          14,
+          3,
+          15,
+          230,
+          3,
+          11,
+          12,
+          158,
+          5,
+          123,
+          15,
+          230,
+          12,
+          158,
+          4,
+          197,
+          11,
+          37,
+          3,
+          11,
+          15,
+          94,
+          17,
+          11,
+          8,
+          100,
+          55,
+          251,
+          2,
+          75,
+          12,
+          237,
+          1,
+          57,
+          10,
+          7,
+          12,
+          158,
+          3,
+          11,
+          10,
+          129,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          36,
+          5,
+          227,
+          55,
+          251,
+          12,
+          158,
+          2,
+          205,
+          8,
+          158,
+          55,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          12,
+          15,
+          113,
+          8,
+          41,
+          16,
+          48,
+          3,
+          92,
+          3,
+          11,
+          60,
+          251,
+          253,
+          1,
+          60,
+          11,
+          67,
+          13,
+          152,
+          8,
+          41,
+          7,
+          30,
+          9,
+          217,
+          16,
+          89,
+          16,
+          112,
+          3,
+          11,
+          254,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          12,
+          12,
+          16,
+          10,
+          14,
+          226,
+          16,
+          48,
+          3,
+          92,
+          3,
+          11,
+          60,
+          252,
+          11,
+          42,
+          2,
+          255
+        ],
+        "hex": "0D 98 0C 0C 0C 67 0C ED 0D 5D 10 7F 0F 0B 07 85 11 0B 37 FB 0D 98 0D 07 0C 58 02 D3 09 B4 FE 0E 0D 02 EF 0C DC 09 D9 37 FB 09 BD 04 60 08 44 0B 93 04 97 FE 10 0D 07 5D 0F 84 09 65 0F 84 09 6C 0B 4B 3C FB 02 E9 09 BD 0C 0C 05 A3 0B EA 09 E0 0A C9 03 0B 0C 07 08 9E 37 FE 0E 03 0F E6 03 0B 0C 9E 05 7B 0F E6 0C 9E 04 C5 0B 25 03 0B 0F 5E 11 0B 08 64 37 FB 02 4B 0C ED 01 39 0A 07 0C 9E 03 0B 0A 81 FE 01 63 07 D7 09 66 0D 24 05 E3 37 FB 0C 9E 02 CD 08 9E 37 FE 01 63 07 D7 09 66 0C 0C 0F 71 08 29 10 30 03 5C 03 0B 3C FB FD 01 3C 0B 43 0D 98 08 29 07 1E 09 D9 10 59 10 70 03 0B FE 0E 9E 08 8A 05 BD 0C 0C 10 0A 0E E2 10 30 03 5C 03 0B 3C FC 0B 2A 02 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 17,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 41,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 54,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 70,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 79,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 87,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 93,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 105,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 107,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 124,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAY_BGM}",
+            "offset": 136,
+            "bytes": [
+              252,
+              11
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAY_BGM",
+                "bytes": [
+                  252,
+                  11
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{MUS_RG_ENCOUNTER_GYM_LEADER}",
+            "offset": 146,
+            "bytes": [
+              42,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "MUS_RG_ENCOUNTER_GYM_LEADER",
+                "bytes": [
+                  42,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 175,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 107,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PokemonLeague_AgathasRoom_Text_Defeat": {
+      "label": "PokemonLeague_AgathasRoom_Text_Defeat",
+      "line": 121,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "raw_text": "啊，真是了不得啊！\\n你确实有些特别，孩子！$",
+      "display_text": "啊，真是了不得啊！\n你确实有些特别，孩子！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          1,
+          0,
+          59,
+          16,
+          89,
+          12,
+          12,
+          8,
+          158,
+          1,
+          214,
+          3,
+          10,
+          1,
+          0,
+          60,
+          254,
+          9,
+          217,
+          11,
+          55,
+          11,
+          241,
+          15,
+          126,
+          14,
+          52,
+          12,
+          217,
+          1,
+          173,
+          59,
+          4,
+          200,
+          17,
+          11,
+          60,
+          255
+        ],
+        "hex": "01 00 3B 10 59 0C 0C 08 9E 01 D6 03 0A 01 00 3C FE 09 D9 0B 37 0B F1 0F 7E 0E 34 0C D9 01 AD 3B 04 C8 11 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PokemonLeague_AgathasRoom_Text_PostBattle": {
+      "label": "PokemonLeague_AgathasRoom_Text_PostBattle",
+      "line": 125,
+      "source_file": "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc",
+      "raw_text": "是你赢了我！\\p我想我明白那糟老头在你身上\\n看到了什么了。\\p我没有别的话可说了。\\n到下个房间去吧，孩子！$",
+      "display_text": "是你赢了我！\n\n我想我明白那糟老头在你身上\n看到了什么了。\n\n我没有别的话可说了。\n到下个房间去吧，孩子！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 94,
+        "bytes": [
+          12,
+          12,
+          9,
+          217,
+          15,
+          92,
+          8,
+          158,
+          13,
+          152,
+          60,
+          251,
+          13,
+          152,
+          14,
+          24,
+          13,
+          152,
+          9,
+          143,
+          1,
+          54,
+          9,
+          189,
+          15,
+          239,
+          8,
+          68,
+          13,
+          31,
+          15,
+          230,
+          9,
+          217,
+          11,
+          203,
+          11,
+          173,
+          254,
+          7,
+          194,
+          3,
+          4,
+          8,
+          158,
+          11,
+          238,
+          9,
+          76,
+          8,
+          158,
+          55,
+          251,
+          13,
+          152,
+          9,
+          83,
+          15,
+          126,
+          1,
+          173,
+          3,
+          11,
+          5,
+          61,
+          7,
+          215,
+          12,
+          88,
+          8,
+          158,
+          55,
+          254,
+          3,
+          4,
+          13,
+          230,
+          4,
+          96,
+          3,
+          194,
+          5,
+          207,
+          11,
+          37,
+          1,
+          40,
+          59,
+          4,
+          200,
+          17,
+          11,
+          60,
+          255
+        ],
+        "hex": "0C 0C 09 D9 0F 5C 08 9E 0D 98 3C FB 0D 98 0E 18 0D 98 09 8F 01 36 09 BD 0F EF 08 44 0D 1F 0F E6 09 D9 0B CB 0B AD FE 07 C2 03 04 08 9E 0B EE 09 4C 08 9E 37 FB 0D 98 09 53 0F 7E 01 AD 03 0B 05 3D 07 D7 0C 58 08 9E 37 FE 03 04 0D E6 04 60 03 C2 05 CF 0B 25 01 28 3B 04 C8 11 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 6,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 30,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 42,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 55,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_eq": 1,
+      "call_if_set": 3,
+      "call_if_unset": 2,
+      "clearflag": 1,
+      "faceplayer": 1,
+      "famechecker": 4,
+      "goto_if_set": 1,
+      "map_script": 4,
+      "map_script_2": 2,
+      "setflag": 3,
+      "setvar": 2,
+      "trainerbattle_no_intro": 2,
+      "turnobject": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 20,
+    "script_count": 16,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 577,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 5,
+      "call_if_eq": 1,
+      "call_if_set": 3,
+      "call_if_unset": 2,
+      "clearflag": 1,
+      "end": 7,
+      "faceplayer": 1,
+      "famechecker": 4,
+      "goto": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "lockall": 1,
+      "map_script": 4,
+      "map_script_2": 2,
+      "msgbox": 4,
+      "release": 2,
+      "releaseall": 1,
+      "return": 6,
+      "setflag": 3,
+      "setvar": 2,
+      "trainerbattle_no_intro": 2,
+      "turnobject": 1
+    }
+  }
+}

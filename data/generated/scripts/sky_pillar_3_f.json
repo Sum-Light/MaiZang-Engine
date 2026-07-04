@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SkyPillar_3F",
+    "map_script": "data/maps/SkyPillar_3F/scripts.inc",
+    "map_json": "data/maps/SkyPillar_3F/map.json",
+    "map_id": "MAP_SKY_PILLAR_3F",
+    "map_name": "SkyPillar_3F"
+  },
+  "labels": {
+    "SkyPillar_3F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SkyPillar_3F/scripts.inc",
+      "instruction_count": 2
+    },
+    "SkyPillar_3F_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SkyPillar_3F/scripts.inc",
+      "instruction_count": 2
+    },
+    "SkyPillar_3F_EventScript_CleanFloor": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SkyPillar_3F/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "SkyPillar_3F_MapScripts": {
+      "label": "SkyPillar_3F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SkyPillar_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SkyPillar_3F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SkyPillar_3F_OnTransition",
+          "source_file": "data/maps/SkyPillar_3F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SkyPillar_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SkyPillar_3F_OnTransition": {
+      "label": "SkyPillar_3F_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SkyPillar_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_lt",
+          "args": [
+            "VAR_SKY_PILLAR_STATE",
+            "2",
+            "SkyPillar_3F_EventScript_CleanFloor"
+          ],
+          "line": 6,
+          "raw": "call_if_lt VAR_SKY_PILLAR_STATE, 2, SkyPillar_3F_EventScript_CleanFloor",
+          "source_file": "data/maps/SkyPillar_3F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SkyPillar_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_lt",
+          "target": "SkyPillar_3F_EventScript_CleanFloor",
+          "line": 6
+        }
+      ]
+    },
+    "SkyPillar_3F_EventScript_CleanFloor": {
+      "label": "SkyPillar_3F_EventScript_CleanFloor",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SkyPillar_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmaplayoutindex",
+          "args": [
+            "LAYOUT_SKY_PILLAR_3F_CLEAN"
+          ],
+          "line": 10,
+          "raw": "setmaplayoutindex LAYOUT_SKY_PILLAR_3F_CLEAN",
+          "source_file": "data/maps/SkyPillar_3F/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 11,
+          "raw": "return",
+          "source_file": "data/maps/SkyPillar_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_lt": 1,
+      "map_script": 1,
+      "setmaplayoutindex": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call_if_lt": 1,
+      "end": 1,
+      "map_script": 1,
+      "return": 1,
+      "setmaplayoutindex": 1
+    }
+  }
+}

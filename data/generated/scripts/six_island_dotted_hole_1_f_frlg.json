@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SixIsland_DottedHole_1F_Frlg",
+    "map_script": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+    "map_json": "data/maps/SixIsland_DottedHole_1F_Frlg/map.json",
+    "map_id": "MAP_SIX_ISLAND_DOTTED_HOLE_1F",
+    "map_name": "SixIsland_DottedHole_1F_Frlg"
+  },
+  "labels": {
+    "SixIsland_DottedHole_1F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_DottedHole_1F_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_DottedHole_B1F_EventScript_BrailleUp": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "SixIsland_DottedHole_B4F_EventScript_BrailleDown": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "SixIsland_DottedHole_B3F_EventScript_BrailleRight": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "SixIsland_DottedHole_B2F_EventScript_BrailleLeft": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "SixIsland_DottedHole_1F_Frlg_MapScripts": {
+      "label": "SixIsland_DottedHole_1F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SixIsland_DottedHole_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SixIsland_DottedHole_1F_OnTransition",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SixIsland_DottedHole_1F_OnTransition": {
+      "label": "SixIsland_DottedHole_1F_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setworldmapflag",
+          "args": [
+            "FLAG_WORLD_MAP_SIX_ISLAND_DOTTED_HOLE_1F"
+          ],
+          "line": 6,
+          "raw": "setworldmapflag FLAG_WORLD_MAP_SIX_ISLAND_DOTTED_HOLE_1F",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SixIsland_DottedHole_B1F_EventScript_BrailleUp": {
+      "label": "SixIsland_DottedHole_B1F_EventScript_BrailleUp",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 10,
+          "raw": "lockall",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_Up"
+          ],
+          "line": 11,
+          "raw": "braillemsgbox Braille_Text_Up",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 12,
+          "raw": "releaseall",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SixIsland_DottedHole_B4F_EventScript_BrailleDown": {
+      "label": "SixIsland_DottedHole_B4F_EventScript_BrailleDown",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 16,
+          "raw": "lockall",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_Down"
+          ],
+          "line": 17,
+          "raw": "braillemsgbox Braille_Text_Down",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 18,
+          "raw": "releaseall",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SixIsland_DottedHole_B3F_EventScript_BrailleRight": {
+      "label": "SixIsland_DottedHole_B3F_EventScript_BrailleRight",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 22,
+          "raw": "lockall",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_Right"
+          ],
+          "line": 23,
+          "raw": "braillemsgbox Braille_Text_Right",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 24,
+          "raw": "releaseall",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SixIsland_DottedHole_B2F_EventScript_BrailleLeft": {
+      "label": "SixIsland_DottedHole_B2F_EventScript_BrailleLeft",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 28,
+          "raw": "lockall",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_Left"
+          ],
+          "line": 29,
+          "raw": "braillemsgbox Braille_Text_Left",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 30,
+          "raw": "releaseall",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/SixIsland_DottedHole_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "braillemsgbox": 4,
+      "map_script": 1,
+      "setworldmapflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 6,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "braillemsgbox": 4,
+      "end": 5,
+      "lockall": 4,
+      "map_script": 1,
+      "releaseall": 4,
+      "setworldmapflag": 1
+    }
+  }
+}

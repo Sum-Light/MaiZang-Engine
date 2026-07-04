@@ -1,0 +1,814 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CeladonCity_DepartmentStore_4F_Frlg",
+    "map_script": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+    "map_json": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/map.json",
+    "map_id": "MAP_CELADON_CITY_DEPARTMENT_STORE_4F",
+    "map_name": "CeladonCity_DepartmentStore_4F_Frlg"
+  },
+  "labels": {
+    "CeladonCity_DepartmentStore_4F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeladonCity_DepartmentStore_4F_EventScript_Man": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_DepartmentStore_4F_EventScript_Youngster": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_DepartmentStore_4F_EventScript_FloorSign": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_DepartmentStore_4F_EventScript_Clerk": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CeladonCity_DepartmentStore_4F_Items": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CeladonCity_DepartmentStore_4F_Text_GettingPokeDollAsPresent": {
+      "kind": "text",
+      "line": 38,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_DepartmentStore_4F_Text_CanRunAwayWithPokeDoll": {
+      "kind": "text",
+      "line": 43,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CeladonCity_DepartmentStore_4F_Text_FloorSign": {
+      "kind": "text",
+      "line": 49,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "CeladonCity_DepartmentStore_4F_Frlg_MapScripts": {
+      "label": "CeladonCity_DepartmentStore_4F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_4F_EventScript_Man": {
+      "label": "CeladonCity_DepartmentStore_4F_EventScript_Man",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_DepartmentStore_4F_Text_GettingPokeDollAsPresent",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox CeladonCity_DepartmentStore_4F_Text_GettingPokeDollAsPresent, MSGBOX_NPC",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_DepartmentStore_4F_Text_GettingPokeDollAsPresent",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_4F_EventScript_Youngster": {
+      "label": "CeladonCity_DepartmentStore_4F_EventScript_Youngster",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_DepartmentStore_4F_Text_CanRunAwayWithPokeDoll",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox CeladonCity_DepartmentStore_4F_Text_CanRunAwayWithPokeDoll, MSGBOX_NPC",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_DepartmentStore_4F_Text_CanRunAwayWithPokeDoll",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_4F_EventScript_FloorSign": {
+      "label": "CeladonCity_DepartmentStore_4F_EventScript_FloorSign",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_DepartmentStore_4F_Text_FloorSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 13,
+          "raw": "msgbox CeladonCity_DepartmentStore_4F_Text_FloorSign, MSGBOX_SIGN",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_DepartmentStore_4F_Text_FloorSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_4F_EventScript_Clerk": {
+      "label": "CeladonCity_DepartmentStore_4F_EventScript_Clerk",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 17,
+          "raw": "lock",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 18,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_HowMayIServeYou"
+          ],
+          "line": 19,
+          "raw": "message gText_HowMayIServeYou",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 20,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "pokemart",
+          "args": [
+            "CeladonCity_DepartmentStore_4F_Items"
+          ],
+          "line": 21,
+          "raw": "pokemart CeladonCity_DepartmentStore_4F_Items",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain"
+          ],
+          "line": 22,
+          "raw": "msgbox gText_PleaseComeAgain",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 23,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 26,
+          "raw": ".align 2",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_HowMayIServeYou",
+          "mode": "",
+          "line": 19
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_4F_Items": {
+      "label": "CeladonCity_DepartmentStore_4F_Items",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POKE_DOLL"
+          ],
+          "line": 28,
+          "raw": ".2byte ITEM_POKE_DOLL",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_RETRO_MAIL"
+          ],
+          "line": 29,
+          "raw": ".2byte ITEM_RETRO_MAIL",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_FIRE_STONE"
+          ],
+          "line": 30,
+          "raw": ".2byte ITEM_FIRE_STONE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_THUNDER_STONE"
+          ],
+          "line": 31,
+          "raw": ".2byte ITEM_THUNDER_STONE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_WATER_STONE"
+          ],
+          "line": 32,
+          "raw": ".2byte ITEM_WATER_STONE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_LEAF_STONE"
+          ],
+          "line": 33,
+          "raw": ".2byte ITEM_LEAF_STONE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_NONE"
+          ],
+          "line": 34,
+          "raw": ".2byte ITEM_NONE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 35,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 36,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "CeladonCity_DepartmentStore_4F_Text_GettingPokeDollAsPresent": {
+      "label": "CeladonCity_DepartmentStore_4F_Text_GettingPokeDollAsPresent",
+      "line": 38,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "raw_text": "我在为我女朋友挑礼物。\\p我觉得皮皮玩偶不错。\\n这东西很流行。$",
+      "display_text": "我在为我女朋友挑礼物。\n\n我觉得皮皮玩偶不错。\n这东西很流行。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 56,
+        "bytes": [
+          13,
+          152,
+          15,
+          230,
+          13,
+          112,
+          13,
+          152,
+          10,
+          11,
+          10,
+          80,
+          15,
+          127,
+          12,
+          245,
+          8,
+          102,
+          13,
+          181,
+          55,
+          251,
+          13,
+          152,
+          7,
+          165,
+          3,
+          10,
+          10,
+          95,
+          10,
+          95,
+          13,
+          78,
+          10,
+          25,
+          1,
+          214,
+          2,
+          205,
+          55,
+          254,
+          16,
+          85,
+          3,
+          80,
+          13,
+          189,
+          5,
+          11,
+          8,
+          202,
+          14,
+          91,
+          55,
+          255
+        ],
+        "hex": "0D 98 0F E6 0D 70 0D 98 0A 0B 0A 50 0F 7F 0C F5 08 66 0D B5 37 FB 0D 98 07 A5 03 0A 0A 5F 0A 5F 0D 4E 0A 19 01 D6 02 CD 37 FE 10 55 03 50 0D BD 05 0B 08 CA 0E 5B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 23,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_DepartmentStore_4F_Text_CanRunAwayWithPokeDoll": {
+      "label": "CeladonCity_DepartmentStore_4F_Text_CanRunAwayWithPokeDoll",
+      "line": 43,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "raw_text": "告诉你个有用的信息。\\p如果野生的宝可梦出现，你能\\n用皮皮玩偶转移它的注意力。\\p你就能趁机逃离和它的战斗了。$",
+      "display_text": "告诉你个有用的信息。\n\n如果野生的宝可梦出现，你能\n用皮皮玩偶转移它的注意力。\n\n你就能趁机逃离和它的战斗了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 100,
+        "bytes": [
+          4,
+          80,
+          12,
+          130,
+          9,
+          217,
+          4,
+          96,
+          15,
+          126,
+          15,
+          113,
+          3,
+          11,
+          14,
+          80,
+          13,
+          198,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          15,
+          0,
+          11,
+          216,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          2,
+          120,
+          14,
+          3,
+          59,
+          9,
+          217,
+          9,
+          210,
+          254,
+          15,
+          113,
+          10,
+          95,
+          10,
+          95,
+          13,
+          78,
+          10,
+          25,
+          16,
+          217,
+          15,
+          22,
+          12,
+          159,
+          3,
+          11,
+          16,
+          209,
+          15,
+          50,
+          8,
+          121,
+          55,
+          251,
+          9,
+          217,
+          7,
+          125,
+          9,
+          210,
+          2,
+          69,
+          5,
+          135,
+          12,
+          212,
+          8,
+          96,
+          4,
+          243,
+          12,
+          159,
+          3,
+          11,
+          16,
+          48,
+          3,
+          92,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "04 50 0C 82 09 D9 04 60 0F 7E 0F 71 03 0B 0E 50 0D C6 37 FB 0B 67 04 C3 0F 00 0B D8 03 0B 01 63 07 D7 09 66 02 78 0E 03 3B 09 D9 09 D2 FE 0F 71 0A 5F 0A 5F 0D 4E 0A 19 10 D9 0F 16 0C 9F 03 0B 10 D1 0F 32 08 79 37 FB 09 D9 07 7D 09 D2 02 45 05 87 0C D4 08 60 04 F3 0C 9F 03 0B 10 30 03 5C 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 40,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 56,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_DepartmentStore_4F_Text_FloorSign": {
+      "label": "CeladonCity_DepartmentStore_4F_Text_FloorSign",
+      "line": 49,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_4F_Frlg/scripts.inc",
+      "raw_text": "请尽情挑选礼物！\\n四楼：神秘的礼物\\p进化专场！\\n进化石特价热卖中！$",
+      "display_text": "请尽情挑选礼物！\n四楼：神秘的礼物\n\n进化专场！\n进化石特价热卖中！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 60,
+        "bytes": [
+          11,
+          13,
+          7,
+          81,
+          11,
+          11,
+          12,
+          245,
+          14,
+          138,
+          8,
+          102,
+          13,
+          181,
+          60,
+          254,
+          12,
+          103,
+          8,
+          214,
+          62,
+          11,
+          207,
+          9,
+          112,
+          3,
+          11,
+          8,
+          102,
+          13,
+          181,
+          251,
+          7,
+          74,
+          5,
+          60,
+          16,
+          215,
+          2,
+          35,
+          60,
+          254,
+          7,
+          74,
+          5,
+          60,
+          11,
+          235,
+          12,
+          217,
+          5,
+          198,
+          11,
+          72,
+          9,
+          46,
+          16,
+          161,
+          60,
+          255
+        ],
+        "hex": "0B 0D 07 51 0B 0B 0C F5 0E 8A 08 66 0D B5 3C FE 0C 67 08 D6 3E 0B CF 09 70 03 0B 08 66 0D B5 FB 07 4A 05 3C 10 D7 02 23 3C FE 07 4A 05 3C 0B EB 0C D9 05 C6 0B 48 09 2E 10 A1 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 36,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "pokemart": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 216,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 5,
+      "faceplayer": 1,
+      "lock": 1,
+      "message": 1,
+      "msgbox": 4,
+      "pokemart": 1,
+      "release": 2,
+      "waitmessage": 1
+    }
+  }
+}

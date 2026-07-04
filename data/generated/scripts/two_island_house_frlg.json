@@ -1,0 +1,2323 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "TwoIsland_House_Frlg",
+    "map_script": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+    "map_json": "data/maps/TwoIsland_House_Frlg/map.json",
+    "map_id": "MAP_TWO_ISLAND_HOUSE",
+    "map_name": "TwoIsland_House_Frlg"
+  },
+  "labels": {
+    "TwoIsland_House_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "TwoIsland_House_EventScript_MoveManiac": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "TwoIsland_House_EventScript_CheckPlayerHasMushrooms": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "TwoIsland_House_EventScript_CheckAlsoHasTinyMushrooms": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "TwoIsland_House_EventScript_CheckAlsoHasBigMushroom": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "TwoIsland_House_EventScript_AskTutorMon": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "TwoIsland_House_EventScript_ChooseMonToTutor": {
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "TwoIsland_House_EventScript_ChooseMoveToTeach": {
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "TwoIsland_House_EventScript_GiveBigMushroom": {
+      "kind": "script",
+      "line": 68,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "TwoIsland_House_EventScript_GiveTinyMushrooms": {
+      "kind": "script",
+      "line": 76,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "TwoIsland_House_EventScript_ChooseMushroom": {
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "TwoIsland_House_EventScript_NoMoveToTutorMon": {
+      "kind": "script",
+      "line": 93,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "TwoIsland_House_EventScript_CantTutorEgg": {
+      "kind": "script",
+      "line": 98,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "TwoIsland_House_EventScript_EndTutorMove": {
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "TwoIsland_House_EventScript_SetHasBigMushroom": {
+      "kind": "script",
+      "line": 108,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TwoIsland_House_EventScript_SetHasTinyMushrooms": {
+      "kind": "script",
+      "line": 112,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TwoIsland_House_EventScript_SetHasBothMushrooms": {
+      "kind": "script",
+      "line": 116,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TwoIsland_House_Text_TeachMonMoveForMushroom": {
+      "kind": "text",
+      "line": 120,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "TwoIsland_House_Text_WantMeToTeachMove": {
+      "kind": "text",
+      "line": 130,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "TwoIsland_House_Text_TutorWhichMon": {
+      "kind": "text",
+      "line": 136,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "TwoIsland_House_Text_TeachWhichMove": {
+      "kind": "text",
+      "line": 139,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "TwoIsland_House_Text_NoMoveICanTeachThatMon": {
+      "kind": "text",
+      "line": 142,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "TwoIsland_House_Text_IllNeedMushroomOrTwo": {
+      "kind": "text",
+      "line": 147,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TwoIsland_House_Text_HandedOverTwoTinyMushrooms": {
+      "kind": "text",
+      "line": 151,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TwoIsland_House_Text_HandedOverOneBigMushroom": {
+      "kind": "text",
+      "line": 155,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TwoIsland_House_Text_NeedMushroomOrTwoToLearnMove": {
+      "kind": "text",
+      "line": 159,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "TwoIsland_House_Text_CantTeachAnEgg": {
+      "kind": "text",
+      "line": 163,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "TwoIsland_House_Frlg_MapScripts": {
+      "label": "TwoIsland_House_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 7,
+          "raw": ".byte 0",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TwoIsland_House_EventScript_MoveManiac": {
+      "label": "TwoIsland_House_EventScript_MoveManiac",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 10,
+          "raw": "lock",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 11,
+          "raw": "faceplayer",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "HAS_BIG_MUSHROOM"
+          ],
+          "line": 12,
+          "raw": "clearflag HAS_BIG_MUSHROOM",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "HAS_TINY_MUSHROOMS"
+          ],
+          "line": 13,
+          "raw": "clearflag HAS_TINY_MUSHROOMS",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "HAS_BOTH_MUSHROOMS"
+          ],
+          "line": 14,
+          "raw": "clearflag HAS_BOTH_MUSHROOMS",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "CHECKED_MUSHROOMS",
+            "TwoIsland_House_EventScript_CheckPlayerHasMushrooms"
+          ],
+          "line": 15,
+          "raw": "goto_if_set CHECKED_MUSHROOMS, TwoIsland_House_EventScript_CheckPlayerHasMushrooms",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "TwoIsland_House_Text_TeachMonMoveForMushroom"
+          ],
+          "line": 16,
+          "raw": "msgbox TwoIsland_House_Text_TeachMonMoveForMushroom",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "CHECKED_MUSHROOMS"
+          ],
+          "line": 17,
+          "raw": "setflag CHECKED_MUSHROOMS",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TwoIsland_House_EventScript_CheckPlayerHasMushrooms"
+          ],
+          "line": 18,
+          "raw": "goto TwoIsland_House_EventScript_CheckPlayerHasMushrooms",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TwoIsland_House_Text_TeachMonMoveForMushroom",
+          "mode": "",
+          "line": 16
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "TwoIsland_House_EventScript_CheckPlayerHasMushrooms",
+          "line": 15
+        },
+        {
+          "op": "goto",
+          "target": "TwoIsland_House_EventScript_CheckPlayerHasMushrooms",
+          "line": 18
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_CheckPlayerHasMushrooms": {
+      "label": "TwoIsland_House_EventScript_CheckPlayerHasMushrooms",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "checkitem",
+          "args": [
+            "ITEM_BIG_MUSHROOM"
+          ],
+          "line": 22,
+          "raw": "checkitem ITEM_BIG_MUSHROOM",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "TwoIsland_House_EventScript_SetHasBigMushroom"
+          ],
+          "line": 23,
+          "raw": "call_if_eq VAR_RESULT, TRUE, TwoIsland_House_EventScript_SetHasBigMushroom",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "checkitem",
+          "args": [
+            "ITEM_TINY_MUSHROOM",
+            "2"
+          ],
+          "line": 24,
+          "raw": "checkitem ITEM_TINY_MUSHROOM, 2",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "TwoIsland_House_EventScript_SetHasTinyMushrooms"
+          ],
+          "line": 25,
+          "raw": "call_if_eq VAR_RESULT, TRUE, TwoIsland_House_EventScript_SetHasTinyMushrooms",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "HAS_BIG_MUSHROOM",
+            "TwoIsland_House_EventScript_CheckAlsoHasTinyMushrooms"
+          ],
+          "line": 26,
+          "raw": "goto_if_set HAS_BIG_MUSHROOM, TwoIsland_House_EventScript_CheckAlsoHasTinyMushrooms",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "HAS_TINY_MUSHROOMS",
+            "TwoIsland_House_EventScript_CheckAlsoHasBigMushroom"
+          ],
+          "line": 27,
+          "raw": "goto_if_set HAS_TINY_MUSHROOMS, TwoIsland_House_EventScript_CheckAlsoHasBigMushroom",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TwoIsland_House_EventScript_EndTutorMove"
+          ],
+          "line": 28,
+          "raw": "goto TwoIsland_House_EventScript_EndTutorMove",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "TwoIsland_House_EventScript_SetHasBigMushroom",
+          "line": 23
+        },
+        {
+          "op": "call_if_eq",
+          "target": "TwoIsland_House_EventScript_SetHasTinyMushrooms",
+          "line": 25
+        },
+        {
+          "op": "goto_if_set",
+          "target": "TwoIsland_House_EventScript_CheckAlsoHasTinyMushrooms",
+          "line": 26
+        },
+        {
+          "op": "goto_if_set",
+          "target": "TwoIsland_House_EventScript_CheckAlsoHasBigMushroom",
+          "line": 27
+        },
+        {
+          "op": "goto",
+          "target": "TwoIsland_House_EventScript_EndTutorMove",
+          "line": 28
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_CheckAlsoHasTinyMushrooms": {
+      "label": "TwoIsland_House_EventScript_CheckAlsoHasTinyMushrooms",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "HAS_TINY_MUSHROOMS",
+            "TwoIsland_House_EventScript_SetHasBothMushrooms"
+          ],
+          "line": 32,
+          "raw": "call_if_set HAS_TINY_MUSHROOMS, TwoIsland_House_EventScript_SetHasBothMushrooms",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TwoIsland_House_EventScript_AskTutorMon"
+          ],
+          "line": 33,
+          "raw": "goto TwoIsland_House_EventScript_AskTutorMon",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "TwoIsland_House_EventScript_SetHasBothMushrooms",
+          "line": 32
+        },
+        {
+          "op": "goto",
+          "target": "TwoIsland_House_EventScript_AskTutorMon",
+          "line": 33
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_CheckAlsoHasBigMushroom": {
+      "label": "TwoIsland_House_EventScript_CheckAlsoHasBigMushroom",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "HAS_BIG_MUSHROOM",
+            "TwoIsland_House_EventScript_SetHasBothMushrooms"
+          ],
+          "line": 37,
+          "raw": "call_if_set HAS_BIG_MUSHROOM, TwoIsland_House_EventScript_SetHasBothMushrooms",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TwoIsland_House_EventScript_AskTutorMon"
+          ],
+          "line": 38,
+          "raw": "goto TwoIsland_House_EventScript_AskTutorMon",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 39,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "TwoIsland_House_EventScript_SetHasBothMushrooms",
+          "line": 37
+        },
+        {
+          "op": "goto",
+          "target": "TwoIsland_House_EventScript_AskTutorMon",
+          "line": 38
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_AskTutorMon": {
+      "label": "TwoIsland_House_EventScript_AskTutorMon",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TwoIsland_House_Text_WantMeToTeachMove",
+            "MSGBOX_YESNO"
+          ],
+          "line": 42,
+          "raw": "msgbox TwoIsland_House_Text_WantMeToTeachMove, MSGBOX_YESNO",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "TwoIsland_House_EventScript_EndTutorMove"
+          ],
+          "line": 43,
+          "raw": "goto_if_eq VAR_RESULT, NO, TwoIsland_House_EventScript_EndTutorMove",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TwoIsland_House_EventScript_ChooseMonToTutor"
+          ],
+          "line": 44,
+          "raw": "goto TwoIsland_House_EventScript_ChooseMonToTutor",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 45,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TwoIsland_House_Text_WantMeToTeachMove",
+          "mode": "MSGBOX_YESNO",
+          "line": 42
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "TwoIsland_House_EventScript_EndTutorMove",
+          "line": 43
+        },
+        {
+          "op": "goto",
+          "target": "TwoIsland_House_EventScript_ChooseMonToTutor",
+          "line": 44
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_ChooseMonToTutor": {
+      "label": "TwoIsland_House_EventScript_ChooseMonToTutor",
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TwoIsland_House_Text_TutorWhichMon"
+          ],
+          "line": 48,
+          "raw": "msgbox TwoIsland_House_Text_TutorWhichMon",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ChooseMonForMoveRelearner"
+          ],
+          "line": 49,
+          "raw": "special ChooseMonForMoveRelearner",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 50,
+          "raw": "waitstate",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_0x8004",
+            "PARTY_SIZE",
+            "TwoIsland_House_EventScript_EndTutorMove"
+          ],
+          "line": 51,
+          "raw": "goto_if_ge VAR_0x8004, PARTY_SIZE, TwoIsland_House_EventScript_EndTutorMove",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "IsSelectedMonEgg"
+          ],
+          "line": 52,
+          "raw": "special IsSelectedMonEgg",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "TwoIsland_House_EventScript_CantTutorEgg"
+          ],
+          "line": 53,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, TwoIsland_House_EventScript_CantTutorEgg",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8005",
+            "0",
+            "TwoIsland_House_EventScript_NoMoveToTutorMon"
+          ],
+          "line": 54,
+          "raw": "goto_if_eq VAR_0x8005, 0, TwoIsland_House_EventScript_NoMoveToTutorMon",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TwoIsland_House_EventScript_ChooseMoveToTeach"
+          ],
+          "line": 55,
+          "raw": "goto TwoIsland_House_EventScript_ChooseMoveToTeach",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 56,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TwoIsland_House_Text_TutorWhichMon",
+          "mode": "",
+          "line": 48
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ge",
+          "target": "TwoIsland_House_EventScript_EndTutorMove",
+          "line": 51
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "TwoIsland_House_EventScript_CantTutorEgg",
+          "line": 53
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "TwoIsland_House_EventScript_NoMoveToTutorMon",
+          "line": 54
+        },
+        {
+          "op": "goto",
+          "target": "TwoIsland_House_EventScript_ChooseMoveToTeach",
+          "line": 55
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_ChooseMoveToTeach": {
+      "label": "TwoIsland_House_EventScript_ChooseMoveToTeach",
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TwoIsland_House_Text_TeachWhichMove"
+          ],
+          "line": 59,
+          "raw": "msgbox TwoIsland_House_Text_TeachWhichMove",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "TeachMoveRelearnerMove"
+          ],
+          "line": 60,
+          "raw": "special TeachMoveRelearnerMove",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 61,
+          "raw": "waitstate",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "0",
+            "TwoIsland_House_EventScript_ChooseMonToTutor"
+          ],
+          "line": 62,
+          "raw": "goto_if_eq VAR_0x8004, 0, TwoIsland_House_EventScript_ChooseMonToTutor",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "HAS_BOTH_MUSHROOMS",
+            "TwoIsland_House_EventScript_ChooseMushroom"
+          ],
+          "line": 63,
+          "raw": "goto_if_set HAS_BOTH_MUSHROOMS, TwoIsland_House_EventScript_ChooseMushroom",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "HAS_BIG_MUSHROOM",
+            "TwoIsland_House_EventScript_GiveBigMushroom"
+          ],
+          "line": 64,
+          "raw": "goto_if_set HAS_BIG_MUSHROOM, TwoIsland_House_EventScript_GiveBigMushroom",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "HAS_TINY_MUSHROOMS",
+            "TwoIsland_House_EventScript_GiveTinyMushrooms"
+          ],
+          "line": 65,
+          "raw": "goto_if_set HAS_TINY_MUSHROOMS, TwoIsland_House_EventScript_GiveTinyMushrooms",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 66,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TwoIsland_House_Text_TeachWhichMove",
+          "mode": "",
+          "line": 59
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "TwoIsland_House_EventScript_ChooseMonToTutor",
+          "line": 62
+        },
+        {
+          "op": "goto_if_set",
+          "target": "TwoIsland_House_EventScript_ChooseMushroom",
+          "line": 63
+        },
+        {
+          "op": "goto_if_set",
+          "target": "TwoIsland_House_EventScript_GiveBigMushroom",
+          "line": 64
+        },
+        {
+          "op": "goto_if_set",
+          "target": "TwoIsland_House_EventScript_GiveTinyMushrooms",
+          "line": 65
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_GiveBigMushroom": {
+      "label": "TwoIsland_House_EventScript_GiveBigMushroom",
+      "kind": "script",
+      "line": 68,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "removeitem",
+          "args": [
+            "ITEM_BIG_MUSHROOM"
+          ],
+          "line": 69,
+          "raw": "removeitem ITEM_BIG_MUSHROOM",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 70,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "TwoIsland_House_Text_HandedOverOneBigMushroom"
+          ],
+          "line": 71,
+          "raw": "msgbox TwoIsland_House_Text_HandedOverOneBigMushroom",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_RestorePrevTextColor"
+          ],
+          "line": 72,
+          "raw": "call EventScript_RestorePrevTextColor",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TwoIsland_House_EventScript_EndTutorMove"
+          ],
+          "line": 73,
+          "raw": "goto TwoIsland_House_EventScript_EndTutorMove",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 74,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TwoIsland_House_Text_HandedOverOneBigMushroom",
+          "mode": "",
+          "line": 71
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_RestorePrevTextColor",
+          "line": 72
+        },
+        {
+          "op": "goto",
+          "target": "TwoIsland_House_EventScript_EndTutorMove",
+          "line": 73
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_GiveTinyMushrooms": {
+      "label": "TwoIsland_House_EventScript_GiveTinyMushrooms",
+      "kind": "script",
+      "line": 76,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "removeitem",
+          "args": [
+            "ITEM_TINY_MUSHROOM",
+            "2"
+          ],
+          "line": 77,
+          "raw": "removeitem ITEM_TINY_MUSHROOM, 2",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 78,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "TwoIsland_House_Text_HandedOverTwoTinyMushrooms"
+          ],
+          "line": 79,
+          "raw": "msgbox TwoIsland_House_Text_HandedOverTwoTinyMushrooms",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_RestorePrevTextColor"
+          ],
+          "line": 80,
+          "raw": "call EventScript_RestorePrevTextColor",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TwoIsland_House_EventScript_EndTutorMove"
+          ],
+          "line": 81,
+          "raw": "goto TwoIsland_House_EventScript_EndTutorMove",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 82,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TwoIsland_House_Text_HandedOverTwoTinyMushrooms",
+          "mode": "",
+          "line": 79
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_RestorePrevTextColor",
+          "line": 80
+        },
+        {
+          "op": "goto",
+          "target": "TwoIsland_House_EventScript_EndTutorMove",
+          "line": 81
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_ChooseMushroom": {
+      "label": "TwoIsland_House_EventScript_ChooseMushroom",
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "TwoIsland_House_Text_IllNeedMushroomOrTwo"
+          ],
+          "line": 85,
+          "raw": "message TwoIsland_House_Text_IllNeedMushroomOrTwo",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 86,
+          "raw": "waitmessage",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "0",
+            "0",
+            "MULTI_MUSHROOMS",
+            "TRUE"
+          ],
+          "line": 87,
+          "raw": "multichoice 0, 0, MULTI_MUSHROOMS, TRUE",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 88,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TwoIsland_House_EventScript_GiveTinyMushrooms"
+          ],
+          "line": 89,
+          "raw": "case 0, TwoIsland_House_EventScript_GiveTinyMushrooms",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TwoIsland_House_EventScript_GiveBigMushroom"
+          ],
+          "line": 90,
+          "raw": "case 1, TwoIsland_House_EventScript_GiveBigMushroom",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 91,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "TwoIsland_House_Text_IllNeedMushroomOrTwo",
+          "mode": "",
+          "line": 85
+        }
+      ],
+      "branch_targets": []
+    },
+    "TwoIsland_House_EventScript_NoMoveToTutorMon": {
+      "label": "TwoIsland_House_EventScript_NoMoveToTutorMon",
+      "kind": "script",
+      "line": 93,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TwoIsland_House_Text_NoMoveICanTeachThatMon"
+          ],
+          "line": 94,
+          "raw": "msgbox TwoIsland_House_Text_NoMoveICanTeachThatMon",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TwoIsland_House_EventScript_ChooseMonToTutor"
+          ],
+          "line": 95,
+          "raw": "goto TwoIsland_House_EventScript_ChooseMonToTutor",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 96,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TwoIsland_House_Text_NoMoveICanTeachThatMon",
+          "mode": "",
+          "line": 94
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TwoIsland_House_EventScript_ChooseMonToTutor",
+          "line": 95
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_CantTutorEgg": {
+      "label": "TwoIsland_House_EventScript_CantTutorEgg",
+      "kind": "script",
+      "line": 98,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TwoIsland_House_Text_CantTeachAnEgg"
+          ],
+          "line": 99,
+          "raw": "msgbox TwoIsland_House_Text_CantTeachAnEgg",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TwoIsland_House_EventScript_ChooseMonToTutor"
+          ],
+          "line": 100,
+          "raw": "goto TwoIsland_House_EventScript_ChooseMonToTutor",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 101,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TwoIsland_House_Text_CantTeachAnEgg",
+          "mode": "",
+          "line": 99
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TwoIsland_House_EventScript_ChooseMonToTutor",
+          "line": 100
+        }
+      ]
+    },
+    "TwoIsland_House_EventScript_EndTutorMove": {
+      "label": "TwoIsland_House_EventScript_EndTutorMove",
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TwoIsland_House_Text_NeedMushroomOrTwoToLearnMove"
+          ],
+          "line": 104,
+          "raw": "msgbox TwoIsland_House_Text_NeedMushroomOrTwoToLearnMove",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 105,
+          "raw": "release",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 106,
+          "raw": "end",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TwoIsland_House_Text_NeedMushroomOrTwoToLearnMove",
+          "mode": "",
+          "line": 104
+        }
+      ],
+      "branch_targets": []
+    },
+    "TwoIsland_House_EventScript_SetHasBigMushroom": {
+      "label": "TwoIsland_House_EventScript_SetHasBigMushroom",
+      "kind": "script",
+      "line": 108,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "HAS_BIG_MUSHROOM"
+          ],
+          "line": 109,
+          "raw": "setflag HAS_BIG_MUSHROOM",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 110,
+          "raw": "return",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TwoIsland_House_EventScript_SetHasTinyMushrooms": {
+      "label": "TwoIsland_House_EventScript_SetHasTinyMushrooms",
+      "kind": "script",
+      "line": 112,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "HAS_TINY_MUSHROOMS"
+          ],
+          "line": 113,
+          "raw": "setflag HAS_TINY_MUSHROOMS",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 114,
+          "raw": "return",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TwoIsland_House_EventScript_SetHasBothMushrooms": {
+      "label": "TwoIsland_House_EventScript_SetHasBothMushrooms",
+      "kind": "script",
+      "line": 116,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "HAS_BOTH_MUSHROOMS"
+          ],
+          "line": 117,
+          "raw": "setflag HAS_BOTH_MUSHROOMS",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 118,
+          "raw": "return",
+          "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "TwoIsland_House_Text_TeachMonMoveForMushroom": {
+      "label": "TwoIsland_House_Text_TeachMonMoveForMushroom",
+      "line": 120,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "raw_text": "我是宝可梦技能研究狂。\\p我知道宝可梦成长\\n所学的每个基本技能。\\p同时，我还在收集蘑菇。\\p给我小蘑菇。\\n或者一个大蘑菇。\\p如果你有的话，\\n我就教给一只宝可梦一个技能。$",
+      "display_text": "我是宝可梦技能研究狂。\n\n我知道宝可梦成长\n所学的每个基本技能。\n\n同时，我还在收集蘑菇。\n\n给我小蘑菇。\n或者一个大蘑菇。\n\n如果你有的话，\n我就教给一只宝可梦一个技能。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 150,
+        "bytes": [
+          13,
+          152,
+          12,
+          12,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          167,
+          9,
+          210,
+          14,
+          185,
+          7,
+          111,
+          8,
+          8,
+          55,
+          251,
+          13,
+          152,
+          16,
+          123,
+          3,
+          7,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          2,
+          75,
+          2,
+          38,
+          254,
+          12,
+          156,
+          14,
+          144,
+          3,
+          11,
+          9,
+          87,
+          4,
+          96,
+          5,
+          134,
+          1,
+          123,
+          5,
+          167,
+          9,
+          210,
+          55,
+          251,
+          13,
+          20,
+          11,
+          237,
+          59,
+          13,
+          152,
+          5,
+          70,
+          15,
+          230,
+          12,
+          26,
+          5,
+          154,
+          9,
+          152,
+          4,
+          133,
+          55,
+          251,
+          4,
+          98,
+          13,
+          152,
+          14,
+          44,
+          9,
+          152,
+          4,
+          133,
+          55,
+          254,
+          5,
+          127,
+          16,
+          82,
+          15,
+          11,
+          4,
+          96,
+          2,
+          211,
+          9,
+          152,
+          4,
+          133,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          15,
+          126,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          13,
+          152,
+          7,
+          125,
+          7,
+          30,
+          4,
+          98,
+          15,
+          11,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          11,
+          4,
+          96,
+          5,
+          167,
+          9,
+          210,
+          55,
+          255
+        ],
+        "hex": "0D 98 0C 0C 01 63 07 D7 09 66 05 A7 09 D2 0E B9 07 6F 08 08 37 FB 0D 98 10 7B 03 07 01 63 07 D7 09 66 02 4B 02 26 FE 0C 9C 0E 90 03 0B 09 57 04 60 05 86 01 7B 05 A7 09 D2 37 FB 0D 14 0B ED 3B 0D 98 05 46 0F E6 0C 1A 05 9A 09 98 04 85 37 FB 04 62 0D 98 0E 2C 09 98 04 85 37 FE 05 7F 10 52 0F 0B 04 60 02 D3 09 98 04 85 37 FB 0B 67 04 C3 09 D9 0F 7E 03 0B 05 3D 3B FE 0D 98 07 7D 07 1E 04 62 0F 0B 10 8C 01 63 07 D7 09 66 0F 0B 04 60 05 A7 09 D2 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 46,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 54,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 64,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 73,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 89,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "TwoIsland_House_Text_WantMeToTeachMove": {
+      "label": "TwoIsland_House_Text_WantMeToTeachMove",
+      "line": 130,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "raw_text": "嗯……嗯……\\n没错！你的身上有蘑菇的香味！\\p你想让我教给你宝可梦\\n一个技能吗？$",
+      "display_text": "嗯……嗯……\n没错！你的身上有蘑菇的香味！\n\n你想让我教给你宝可梦\n一个技能吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 69,
+        "bytes": [
+          20,
+          97,
+          176,
+          176,
+          20,
+          97,
+          176,
+          176,
+          254,
+          9,
+          83,
+          2,
+          205,
+          60,
+          9,
+          217,
+          3,
+          11,
+          11,
+          203,
+          11,
+          173,
+          15,
+          126,
+          9,
+          152,
+          4,
+          133,
+          3,
+          11,
+          14,
+          16,
+          13,
+          124,
+          60,
+          251,
+          9,
+          217,
+          14,
+          24,
+          11,
+          67,
+          13,
+          152,
+          7,
+          30,
+          4,
+          98,
+          9,
+          217,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          15,
+          11,
+          4,
+          96,
+          5,
+          167,
+          9,
+          210,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "14 61 B0 B0 14 61 B0 B0 FE 09 53 02 CD 3C 09 D9 03 0B 0B CB 0B AD 0F 7E 09 98 04 85 03 0B 0E 10 0D 7C 3C FB 09 D9 0E 18 0B 43 0D 98 07 1E 04 62 09 D9 01 63 07 D7 09 66 FE 0F 0B 04 60 05 A7 09 D2 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "TwoIsland_House_Text_TutorWhichMon": {
+      "label": "TwoIsland_House_Text_TutorWhichMon",
+      "line": 136,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "raw_text": "那教给那只宝可梦好呢？$",
+      "display_text": "那教给那只宝可梦好呢？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          9,
+          189,
+          7,
+          30,
+          4,
+          98,
+          9,
+          189,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          4,
+          233,
+          9,
+          206,
+          61,
+          255
+        ],
+        "hex": "09 BD 07 1E 04 62 09 BD 10 8C 01 63 07 D7 09 66 04 E9 09 CE 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "TwoIsland_House_Text_TeachWhichMove": {
+      "label": "TwoIsland_House_Text_TeachWhichMove",
+      "line": 139,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "raw_text": "教给它哪个技能好呢？$",
+      "display_text": "教给它哪个技能好呢？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          7,
+          30,
+          4,
+          98,
+          12,
+          159,
+          9,
+          186,
+          4,
+          96,
+          5,
+          167,
+          9,
+          210,
+          4,
+          233,
+          9,
+          206,
+          61,
+          255
+        ],
+        "hex": "07 1E 04 62 0C 9F 09 BA 04 60 05 A7 09 D2 04 E9 09 CE 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "TwoIsland_House_Text_NoMoveICanTeachThatMon": {
+      "label": "TwoIsland_House_Text_NoMoveICanTeachThatMon",
+      "line": 142,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "raw_text": "抱歉……\\p我不能把这个技能\\n教给这只宝可梦。$",
+      "display_text": "抱歉……\n\n我不能把这个技能\n教给这只宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          1,
+          100,
+          10,
+          209,
+          176,
+          176,
+          251,
+          13,
+          152,
+          1,
+          214,
+          9,
+          210,
+          1,
+          48,
+          16,
+          85,
+          4,
+          96,
+          5,
+          167,
+          9,
+          210,
+          254,
+          7,
+          30,
+          4,
+          98,
+          16,
+          85,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "01 64 0A D1 B0 B0 FB 0D 98 01 D6 09 D2 01 30 10 55 04 60 05 A7 09 D2 FE 07 1E 04 62 10 55 10 8C 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 4,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "TwoIsland_House_Text_IllNeedMushroomOrTwo": {
+      "label": "TwoIsland_House_Text_IllNeedMushroomOrTwo",
+      "line": 147,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "raw_text": "那么，我需要一个或两个的蘑菇。\\n你打算给我哪个？$",
+      "display_text": "那么，我需要一个或两个的蘑菇。\n你打算给我哪个？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 45,
+        "bytes": [
+          9,
+          189,
+          9,
+          76,
+          59,
+          13,
+          152,
+          14,
+          115,
+          14,
+          241,
+          15,
+          11,
+          4,
+          96,
+          5,
+          127,
+          8,
+          144,
+          4,
+          96,
+          3,
+          11,
+          9,
+          152,
+          4,
+          133,
+          55,
+          254,
+          9,
+          217,
+          2,
+          210,
+          12,
+          134,
+          4,
+          98,
+          13,
+          152,
+          9,
+          186,
+          4,
+          96,
+          61,
+          255
+        ],
+        "hex": "09 BD 09 4C 3B 0D 98 0E 73 0E F1 0F 0B 04 60 05 7F 08 90 04 60 03 0B 09 98 04 85 37 FE 09 D9 02 D2 0C 86 04 62 0D 98 09 BA 04 60 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "TwoIsland_House_Text_HandedOverTwoTinyMushrooms": {
+      "label": "TwoIsland_House_Text_HandedOverTwoTinyMushrooms",
+      "line": 151,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}给了\\n两个小蘑菇。$",
+      "display_text": "{PLAYER}给了\n两个小蘑菇。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          253,
+          1,
+          4,
+          98,
+          8,
+          158,
+          254,
+          8,
+          144,
+          4,
+          96,
+          14,
+          44,
+          9,
+          152,
+          4,
+          133,
+          55,
+          255
+        ],
+        "hex": "FD 01 04 62 08 9E FE 08 90 04 60 0E 2C 09 98 04 85 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "TwoIsland_House_Text_HandedOverOneBigMushroom": {
+      "label": "TwoIsland_House_Text_HandedOverOneBigMushroom",
+      "line": 155,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}给了\\n一个大蘑菇。$",
+      "display_text": "{PLAYER}给了\n一个大蘑菇。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          253,
+          1,
+          4,
+          98,
+          8,
+          158,
+          254,
+          15,
+          11,
+          4,
+          96,
+          2,
+          211,
+          9,
+          152,
+          4,
+          133,
+          55,
+          255
+        ],
+        "hex": "FD 01 04 62 08 9E FE 0F 0B 04 60 02 D3 09 98 04 85 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "TwoIsland_House_Text_NeedMushroomOrTwoToLearnMove": {
+      "label": "TwoIsland_House_Text_NeedMushroomOrTwoToLearnMove",
+      "line": 159,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "raw_text": "如果你想让你的宝可梦学习\\n一个技能，就给我一个或两个蘑菇。$",
+      "display_text": "如果你想让你的宝可梦学习\n一个技能，就给我一个或两个蘑菇。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 56,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          14,
+          24,
+          11,
+          67,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          144,
+          13,
+          212,
+          254,
+          15,
+          11,
+          4,
+          96,
+          5,
+          167,
+          9,
+          210,
+          59,
+          7,
+          125,
+          4,
+          98,
+          13,
+          152,
+          15,
+          11,
+          4,
+          96,
+          5,
+          127,
+          8,
+          144,
+          4,
+          96,
+          9,
+          152,
+          4,
+          133,
+          55,
+          255
+        ],
+        "hex": "0B 67 04 C3 09 D9 0E 18 0B 43 09 D9 03 0B 01 63 07 D7 09 66 0E 90 0D D4 FE 0F 0B 04 60 05 A7 09 D2 3B 07 7D 04 62 0D 98 0F 0B 04 60 05 7F 08 90 04 60 09 98 04 85 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "TwoIsland_House_Text_CantTeachAnEgg": {
+      "label": "TwoIsland_House_Text_CantTeachAnEgg",
+      "line": 163,
+      "source_file": "data/maps/TwoIsland_House_Frlg/scripts.inc",
+      "raw_text": "哼？\\n我不能教给一颗蛋什么技能。$",
+      "display_text": "哼？\n我不能教给一颗蛋什么技能。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 30,
+        "bytes": [
+          5,
+          14,
+          61,
+          254,
+          13,
+          152,
+          1,
+          214,
+          9,
+          210,
+          7,
+          30,
+          4,
+          98,
+          15,
+          11,
+          7,
+          211,
+          2,
+          238,
+          11,
+          238,
+          9,
+          76,
+          5,
+          167,
+          9,
+          210,
+          55,
+          255
+        ],
+        "hex": "05 0E 3D FE 0D 98 01 D6 09 D2 07 1E 04 62 0F 0B 07 D3 02 EE 0B EE 09 4C 05 A7 09 D2 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_eq": 2,
+      "call_if_set": 2,
+      "case": 2,
+      "checkitem": 2,
+      "clearflag": 3,
+      "faceplayer": 1,
+      "goto_if_eq": 4,
+      "goto_if_ge": 1,
+      "goto_if_set": 6,
+      "multichoice": 1,
+      "removeitem": 2,
+      "setflag": 4,
+      "special": 3,
+      "switch": 1,
+      "textcolor": 2,
+      "waitmessage": 1,
+      "waitstate": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 27,
+    "script_count": 17,
+    "movement_count": 0,
+    "text_count": 10,
+    "encoded_text_count": 10,
+    "text_source_byte_count": 470,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 10
+    },
+    "orphan_instruction_count": 4,
+    "op_counts": {
+      "call": 2,
+      "call_if_eq": 2,
+      "call_if_set": 2,
+      "case": 2,
+      "checkitem": 2,
+      "clearflag": 3,
+      "end": 13,
+      "faceplayer": 1,
+      "goto": 10,
+      "goto_if_eq": 4,
+      "goto_if_ge": 1,
+      "goto_if_set": 6,
+      "lock": 1,
+      "message": 1,
+      "msgbox": 9,
+      "multichoice": 1,
+      "release": 1,
+      "removeitem": 2,
+      "return": 3,
+      "setflag": 4,
+      "special": 3,
+      "switch": 1,
+      "textcolor": 2,
+      "waitmessage": 1,
+      "waitstate": 2
+    }
+  }
+}

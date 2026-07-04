@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "OneIsland_House2_Frlg",
+    "map_script": "data/maps/OneIsland_House2_Frlg/scripts.inc",
+    "map_json": "data/maps/OneIsland_House2_Frlg/map.json",
+    "map_id": "MAP_ONE_ISLAND_HOUSE2",
+    "map_name": "OneIsland_House2_Frlg"
+  },
+  "labels": {
+    "OneIsland_House2_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/OneIsland_House2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "OneIsland_House2_EventScript_Lass": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/OneIsland_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "OneIsland_House2_Text_IWantToStayHereForever": {
+      "kind": "text",
+      "line": 8,
+      "source_file": "data/maps/OneIsland_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "OneIsland_House2_Frlg_MapScripts": {
+      "label": "OneIsland_House2_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/OneIsland_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/OneIsland_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "OneIsland_House2_EventScript_Lass": {
+      "label": "OneIsland_House2_EventScript_Lass",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/OneIsland_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "OneIsland_House2_Text_IWantToStayHereForever",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox OneIsland_House2_Text_IWantToStayHereForever, MSGBOX_NPC",
+          "source_file": "data/maps/OneIsland_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/OneIsland_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "OneIsland_House2_Text_IWantToStayHereForever",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "OneIsland_House2_Text_IWantToStayHereForever": {
+      "label": "OneIsland_House2_Text_IWantToStayHereForever",
+      "line": 8,
+      "source_file": "data/maps/OneIsland_House2_Frlg/scripts.inc",
+      "raw_text": "年轻人都想着去大城市。\\p不过我想在这里待一辈子！$",
+      "display_text": "年轻人都想着去大城市。\n\n不过我想在这里待一辈子！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          9,
+          224,
+          11,
+          3,
+          11,
+          75,
+          3,
+          97,
+          14,
+          24,
+          16,
+          244,
+          11,
+          37,
+          2,
+          211,
+          2,
+          73,
+          12,
+          21,
+          55,
+          251,
+          1,
+          214,
+          4,
+          197,
+          13,
+          152,
+          14,
+          24,
+          15,
+          230,
+          16,
+          85,
+          8,
+          100,
+          2,
+          221,
+          15,
+          11,
+          1,
+          111,
+          17,
+          11,
+          60,
+          255
+        ],
+        "hex": "09 E0 0B 03 0B 4B 03 61 0E 18 10 F4 0B 25 02 D3 02 49 0C 15 37 FB 01 D6 04 C5 0D 98 0E 18 0F E6 10 55 08 64 02 DD 0F 0B 01 6F 11 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 46,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 1,
+      "msgbox": 1
+    }
+  }
+}

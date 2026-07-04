@@ -1,0 +1,4989 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "ViridianCity_Frlg",
+    "map_script": "data/maps/ViridianCity_Frlg/scripts.inc",
+    "map_json": "data/maps/ViridianCity_Frlg/map.json",
+    "map_id": "MAP_VIRIDIAN_CITY",
+    "map_name": "ViridianCity_Frlg"
+  },
+  "labels": {
+    "ViridianCity_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "ViridianCity_EventScript_SetOldManNormal": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_EventScript_SetOldManStandingByRoad": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "ViridianCity_EventScript_SetOldManBlockingRoad": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "ViridianCity_EventScript_TryUnlockGym": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "ViridianCity_EventScript_GymDoorLocked": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 11
+    },
+    "ViridianCity_Movement_JumpDownLedge": {
+      "kind": "movement",
+      "line": 52,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_EventScript_CitySign": {
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_EventScript_TrainerTips1": {
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_EventScript_TrainerTips2": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_EventScript_GymSign": {
+      "kind": "script",
+      "line": 68,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_EventScript_GymDoor": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_EventScript_Boy": {
+      "kind": "script",
+      "line": 76,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_EventScript_OldMan": {
+      "kind": "script",
+      "line": 81,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "ViridianCity_EventScript_OldManGymLeaderReturned": {
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_EventScript_TutorialOldMan": {
+      "kind": "script",
+      "line": 97,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "ViridianCity_EventScript_AskIfTeachyTVHelpful": {
+      "kind": "script",
+      "line": 106,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "ViridianCity_EventScript_TeachyTVNotHelpful": {
+      "kind": "script",
+      "line": 113,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_EventScript_TutorialCompleted": {
+      "kind": "script",
+      "line": 118,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_EventScript_TutorialStart": {
+      "kind": "script",
+      "line": 123,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_EventScript_WatchToLearnBasics": {
+      "kind": "script",
+      "line": 129,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_EventScript_TutorialUnused": {
+      "kind": "script",
+      "line": 135,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "ViridianCity_EventScript_TutorialNotReady": {
+      "kind": "script",
+      "line": 142,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "ViridianCity_EventScript_Youngster": {
+      "kind": "script",
+      "line": 148,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "ViridianCity_EventScript_YoungsterExplainCaterpillars": {
+      "kind": "script",
+      "line": 156,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_EventScript_YoungsterDeclineExplanation": {
+      "kind": "script",
+      "line": 161,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_EventScript_Woman": {
+      "kind": "script",
+      "line": 166,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "ViridianCity_EventScript_WomanRoadBlocked": {
+      "kind": "script",
+      "line": 174,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "ViridianCity_EventScript_DreamEaterTutor": {
+      "kind": "script",
+      "line": 182,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_EventScript_RoadBlocked": {
+      "kind": "script",
+      "line": 186,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "ViridianCity_Movement_WalkDown": {
+      "kind": "movement",
+      "line": 196,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_EventScript_TutorialTriggerLeft": {
+      "kind": "script",
+      "line": 200,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "ViridianCity_EventScript_TutorialTriggerRight": {
+      "kind": "script",
+      "line": 211,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "ViridianCity_EventScript_DoTutorialBattle": {
+      "kind": "script",
+      "line": 222,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 11
+    },
+    "ViridianCity_Text_CanCarryMonsAnywhere": {
+      "kind": "text",
+      "line": 235,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "ViridianCity_Text_GymClosedWonderWhoLeaderIs": {
+      "kind": "text",
+      "line": 241,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Text_ViridiansGymLeaderReturned": {
+      "kind": "text",
+      "line": 245,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "ViridianCity_Text_WantToKnowAboutCaterpillarMons": {
+      "kind": "text",
+      "line": 248,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Text_OhOkayThen": {
+      "kind": "text",
+      "line": 252,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "ViridianCity_Text_ExplainCaterpieWeedle": {
+      "kind": "text",
+      "line": 255,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "ViridianCity_Text_GrandpaHasntHadCoffeeYet": {
+      "kind": "text",
+      "line": 261,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "ViridianCity_Text_GoShoppingInPewterOccasionally": {
+      "kind": "text",
+      "line": 267,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_Text_ThisIsPrivateProperty": {
+      "kind": "text",
+      "line": 272,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Text_ShowYouHowToCatchMons": {
+      "kind": "text",
+      "line": 276,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 11
+    },
+    "ViridianCity_Text_ThatWasEducationalTakeThis": {
+      "kind": "text",
+      "line": 289,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_Text_WatchThatToLearnBasics": {
+      "kind": "text",
+      "line": 294,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "ViridianCity_Text_WeakenMonsFirstToCatch": {
+      "kind": "text",
+      "line": 300,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "ViridianCity_Text_HowsTeachyTVHelping": {
+      "kind": "text",
+      "line": 310,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "ViridianCity_Text_MyGrandsonOnTheShow": {
+      "kind": "text",
+      "line": 318,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "ViridianCity_Text_TooBusyForTeachyTV": {
+      "kind": "text",
+      "line": 324,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "ViridianCity_Text_CitySign": {
+      "kind": "text",
+      "line": 330,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Text_CatchMonsForEasierBattles": {
+      "kind": "text",
+      "line": 334,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "ViridianCity_Text_MovesLimitedByPP": {
+      "kind": "text",
+      "line": 341,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "ViridianCity_Text_GymSign": {
+      "kind": "text",
+      "line": 348,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "ViridianCity_Text_GymDoorsAreLocked": {
+      "kind": "text",
+      "line": 351,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "ViridianCity_Frlg_MapScripts": {
+      "label": "ViridianCity_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "ViridianCity_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, ViridianCity_OnTransition",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ViridianCity_OnTransition": {
+      "label": "ViridianCity_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setworldmapflag",
+          "args": [
+            "FLAG_WORLD_MAP_VIRIDIAN_CITY"
+          ],
+          "line": 6,
+          "raw": "setworldmapflag FLAG_WORLD_MAP_VIRIDIAN_CITY",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN",
+            "0",
+            "ViridianCity_EventScript_SetOldManBlockingRoad"
+          ],
+          "line": 7,
+          "raw": "call_if_eq VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 0, ViridianCity_EventScript_SetOldManBlockingRoad",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN",
+            "1",
+            "ViridianCity_EventScript_SetOldManStandingByRoad"
+          ],
+          "line": 8,
+          "raw": "call_if_eq VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 1, ViridianCity_EventScript_SetOldManStandingByRoad",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_ge",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN",
+            "2",
+            "ViridianCity_EventScript_SetOldManNormal"
+          ],
+          "line": 9,
+          "raw": "call_if_ge VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 2, ViridianCity_EventScript_SetOldManNormal",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_GYM_DOOR",
+            "0",
+            "ViridianCity_EventScript_TryUnlockGym"
+          ],
+          "line": 10,
+          "raw": "call_if_eq VAR_MAP_SCENE_VIRIDIAN_CITY_GYM_DOOR, 0, ViridianCity_EventScript_TryUnlockGym",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "ViridianCity_EventScript_SetOldManBlockingRoad",
+          "line": 7
+        },
+        {
+          "op": "call_if_eq",
+          "target": "ViridianCity_EventScript_SetOldManStandingByRoad",
+          "line": 8
+        },
+        {
+          "op": "call_if_ge",
+          "target": "ViridianCity_EventScript_SetOldManNormal",
+          "line": 9
+        },
+        {
+          "op": "call_if_eq",
+          "target": "ViridianCity_EventScript_TryUnlockGym",
+          "line": 10
+        }
+      ]
+    },
+    "ViridianCity_EventScript_SetOldManNormal": {
+      "label": "ViridianCity_EventScript_SetOldManNormal",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_0",
+            "OBJ_EVENT_GFX_OLD_MAN_1"
+          ],
+          "line": 14,
+          "raw": "setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_1",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 15,
+          "raw": "return",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_SetOldManStandingByRoad": {
+      "label": "ViridianCity_EventScript_SetOldManStandingByRoad",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_0",
+            "OBJ_EVENT_GFX_OLD_MAN_1"
+          ],
+          "line": 18,
+          "raw": "setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_1",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_TUTORIAL_MAN",
+            "21",
+            "8"
+          ],
+          "line": 19,
+          "raw": "setobjectxyperm LOCALID_TUTORIAL_MAN, 21, 8",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_TUTORIAL_MAN",
+            "MOVEMENT_TYPE_LOOK_AROUND"
+          ],
+          "line": 20,
+          "raw": "setobjectmovementtype LOCALID_TUTORIAL_MAN, MOVEMENT_TYPE_LOOK_AROUND",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 21,
+          "raw": "return",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_SetOldManBlockingRoad": {
+      "label": "ViridianCity_EventScript_SetOldManBlockingRoad",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_0",
+            "OBJ_EVENT_GFX_OLD_MAN_LYING_DOWN"
+          ],
+          "line": 24,
+          "raw": "setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_LYING_DOWN",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_TUTORIAL_MAN",
+            "21",
+            "11"
+          ],
+          "line": 25,
+          "raw": "setobjectxyperm LOCALID_TUTORIAL_MAN, 21, 11",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_TUTORIAL_MAN",
+            "MOVEMENT_TYPE_FACE_DOWN"
+          ],
+          "line": 26,
+          "raw": "setobjectmovementtype LOCALID_TUTORIAL_MAN, MOVEMENT_TYPE_FACE_DOWN",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 27,
+          "raw": "return",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_TryUnlockGym": {
+      "label": "ViridianCity_EventScript_TryUnlockGym",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_BADGE02_GET",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 30,
+          "raw": "goto_if_unset FLAG_BADGE02_GET, Common_EventScript_NopReturn",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_BADGE03_GET",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 31,
+          "raw": "goto_if_unset FLAG_BADGE03_GET, Common_EventScript_NopReturn",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_BADGE04_GET",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 32,
+          "raw": "goto_if_unset FLAG_BADGE04_GET, Common_EventScript_NopReturn",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_BADGE05_GET",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 33,
+          "raw": "goto_if_unset FLAG_BADGE05_GET, Common_EventScript_NopReturn",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_BADGE06_GET",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 34,
+          "raw": "goto_if_unset FLAG_BADGE06_GET, Common_EventScript_NopReturn",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_BADGE07_GET",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 35,
+          "raw": "goto_if_unset FLAG_BADGE07_GET, Common_EventScript_NopReturn",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_GYM_DOOR",
+            "1"
+          ],
+          "line": 36,
+          "raw": "setvar VAR_MAP_SCENE_VIRIDIAN_CITY_GYM_DOOR, 1",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 37,
+          "raw": "return",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "Common_EventScript_NopReturn",
+          "line": 30
+        },
+        {
+          "op": "goto_if_unset",
+          "target": "Common_EventScript_NopReturn",
+          "line": 31
+        },
+        {
+          "op": "goto_if_unset",
+          "target": "Common_EventScript_NopReturn",
+          "line": 32
+        },
+        {
+          "op": "goto_if_unset",
+          "target": "Common_EventScript_NopReturn",
+          "line": 33
+        },
+        {
+          "op": "goto_if_unset",
+          "target": "Common_EventScript_NopReturn",
+          "line": 34
+        },
+        {
+          "op": "goto_if_unset",
+          "target": "Common_EventScript_NopReturn",
+          "line": 35
+        }
+      ]
+    },
+    "ViridianCity_EventScript_GymDoorLocked": {
+      "label": "ViridianCity_EventScript_GymDoorLocked",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 40,
+          "raw": "lockall",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 41,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 42,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 43,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 44,
+          "raw": "delay 20",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_GymDoorsAreLocked"
+          ],
+          "line": 45,
+          "raw": "msgbox ViridianCity_Text_GymDoorsAreLocked",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 46,
+          "raw": "closemessage",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "ViridianCity_Movement_JumpDownLedge"
+          ],
+          "line": 47,
+          "raw": "applymovement LOCALID_PLAYER, ViridianCity_Movement_JumpDownLedge",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 48,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 49,
+          "raw": "releaseall",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 50,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_GymDoorsAreLocked",
+          "mode": "",
+          "line": 45
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_CitySign": {
+      "label": "ViridianCity_EventScript_CitySign",
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_CitySign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 57,
+          "raw": "msgbox ViridianCity_Text_CitySign, MSGBOX_SIGN",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 58,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_CitySign",
+          "mode": "MSGBOX_SIGN",
+          "line": 57
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_TrainerTips1": {
+      "label": "ViridianCity_EventScript_TrainerTips1",
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_CatchMonsForEasierBattles",
+            "MSGBOX_SIGN"
+          ],
+          "line": 61,
+          "raw": "msgbox ViridianCity_Text_CatchMonsForEasierBattles, MSGBOX_SIGN",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_CatchMonsForEasierBattles",
+          "mode": "MSGBOX_SIGN",
+          "line": 61
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_TrainerTips2": {
+      "label": "ViridianCity_EventScript_TrainerTips2",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_MovesLimitedByPP",
+            "MSGBOX_SIGN"
+          ],
+          "line": 65,
+          "raw": "msgbox ViridianCity_Text_MovesLimitedByPP, MSGBOX_SIGN",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 66,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_MovesLimitedByPP",
+          "mode": "MSGBOX_SIGN",
+          "line": 65
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_GymSign": {
+      "label": "ViridianCity_EventScript_GymSign",
+      "kind": "script",
+      "line": 68,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_GymSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 69,
+          "raw": "msgbox ViridianCity_Text_GymSign, MSGBOX_SIGN",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 70,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_GymSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 69
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_GymDoor": {
+      "label": "ViridianCity_EventScript_GymDoor",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_GymDoorsAreLocked",
+            "MSGBOX_SIGN"
+          ],
+          "line": 73,
+          "raw": "msgbox ViridianCity_Text_GymDoorsAreLocked, MSGBOX_SIGN",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 74,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_GymDoorsAreLocked",
+          "mode": "MSGBOX_SIGN",
+          "line": 73
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_Boy": {
+      "label": "ViridianCity_EventScript_Boy",
+      "kind": "script",
+      "line": 76,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_CanCarryMonsAnywhere",
+            "MSGBOX_NPC"
+          ],
+          "line": 77,
+          "raw": "msgbox ViridianCity_Text_CanCarryMonsAnywhere, MSGBOX_NPC",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 78,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_CanCarryMonsAnywhere",
+          "mode": "MSGBOX_NPC",
+          "line": 77
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_OldMan": {
+      "label": "ViridianCity_EventScript_OldMan",
+      "kind": "script",
+      "line": 81,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 82,
+          "raw": "lock",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 83,
+          "raw": "faceplayer",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_GYM_DOOR",
+            "1",
+            "ViridianCity_EventScript_OldManGymLeaderReturned"
+          ],
+          "line": 84,
+          "raw": "goto_if_eq VAR_MAP_SCENE_VIRIDIAN_CITY_GYM_DOOR, 1, ViridianCity_EventScript_OldManGymLeaderReturned",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_GymClosedWonderWhoLeaderIs"
+          ],
+          "line": 85,
+          "raw": "msgbox ViridianCity_Text_GymClosedWonderWhoLeaderIs",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 86,
+          "raw": "closemessage",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_VIRIDIAN_OLD_MAN",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 87,
+          "raw": "applymovement LOCALID_VIRIDIAN_OLD_MAN, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 88,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 89,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 90,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_GymClosedWonderWhoLeaderIs",
+          "mode": "",
+          "line": 85
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "ViridianCity_EventScript_OldManGymLeaderReturned",
+          "line": 84
+        }
+      ]
+    },
+    "ViridianCity_EventScript_OldManGymLeaderReturned": {
+      "label": "ViridianCity_EventScript_OldManGymLeaderReturned",
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_ViridiansGymLeaderReturned"
+          ],
+          "line": 93,
+          "raw": "msgbox ViridianCity_Text_ViridiansGymLeaderReturned",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 94,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 95,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_ViridiansGymLeaderReturned",
+          "mode": "",
+          "line": 93
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_TutorialOldMan": {
+      "label": "ViridianCity_EventScript_TutorialOldMan",
+      "kind": "script",
+      "line": 97,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 98,
+          "raw": "lock",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 99,
+          "raw": "faceplayer",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_BADGE01_GET",
+            "ViridianCity_EventScript_AskIfTeachyTVHelpful"
+          ],
+          "line": 100,
+          "raw": "goto_if_set FLAG_BADGE01_GET, ViridianCity_EventScript_AskIfTeachyTVHelpful",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN",
+            "2",
+            "ViridianCity_EventScript_TutorialCompleted"
+          ],
+          "line": 101,
+          "raw": "goto_if_ge VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 2, ViridianCity_EventScript_TutorialCompleted",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN",
+            "1",
+            "ViridianCity_EventScript_TutorialStart"
+          ],
+          "line": 102,
+          "raw": "goto_if_eq VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 1, ViridianCity_EventScript_TutorialStart",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN",
+            "0",
+            "ViridianCity_EventScript_TutorialNotReady"
+          ],
+          "line": 103,
+          "raw": "goto_if_eq VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 0, ViridianCity_EventScript_TutorialNotReady",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 104,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "ViridianCity_EventScript_AskIfTeachyTVHelpful",
+          "line": 100
+        },
+        {
+          "op": "goto_if_ge",
+          "target": "ViridianCity_EventScript_TutorialCompleted",
+          "line": 101
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "ViridianCity_EventScript_TutorialStart",
+          "line": 102
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "ViridianCity_EventScript_TutorialNotReady",
+          "line": 103
+        }
+      ]
+    },
+    "ViridianCity_EventScript_AskIfTeachyTVHelpful": {
+      "label": "ViridianCity_EventScript_AskIfTeachyTVHelpful",
+      "kind": "script",
+      "line": 106,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_HowsTeachyTVHelping",
+            "MSGBOX_YESNO"
+          ],
+          "line": 107,
+          "raw": "msgbox ViridianCity_Text_HowsTeachyTVHelping, MSGBOX_YESNO",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "ViridianCity_EventScript_TeachyTVNotHelpful"
+          ],
+          "line": 108,
+          "raw": "goto_if_eq VAR_RESULT, NO, ViridianCity_EventScript_TeachyTVNotHelpful",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_MyGrandsonOnTheShow"
+          ],
+          "line": 109,
+          "raw": "msgbox ViridianCity_Text_MyGrandsonOnTheShow",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 110,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 111,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_HowsTeachyTVHelping",
+          "mode": "MSGBOX_YESNO",
+          "line": 107
+        },
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_MyGrandsonOnTheShow",
+          "mode": "",
+          "line": 109
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "ViridianCity_EventScript_TeachyTVNotHelpful",
+          "line": 108
+        }
+      ]
+    },
+    "ViridianCity_EventScript_TeachyTVNotHelpful": {
+      "label": "ViridianCity_EventScript_TeachyTVNotHelpful",
+      "kind": "script",
+      "line": 113,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_TooBusyForTeachyTV"
+          ],
+          "line": 114,
+          "raw": "msgbox ViridianCity_Text_TooBusyForTeachyTV",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 115,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 116,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_TooBusyForTeachyTV",
+          "mode": "",
+          "line": 114
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_TutorialCompleted": {
+      "label": "ViridianCity_EventScript_TutorialCompleted",
+      "kind": "script",
+      "line": 118,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_WeakenMonsFirstToCatch"
+          ],
+          "line": 119,
+          "raw": "msgbox ViridianCity_Text_WeakenMonsFirstToCatch",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 120,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 121,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_WeakenMonsFirstToCatch",
+          "mode": "",
+          "line": 119
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_TutorialStart": {
+      "label": "ViridianCity_EventScript_TutorialStart",
+      "kind": "script",
+      "line": 123,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "ViridianCity_EventScript_DoTutorialBattle"
+          ],
+          "line": 124,
+          "raw": "call ViridianCity_EventScript_DoTutorialBattle",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 125,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 126,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "ViridianCity_EventScript_DoTutorialBattle",
+          "line": 124
+        }
+      ]
+    },
+    "ViridianCity_EventScript_WatchToLearnBasics": {
+      "label": "ViridianCity_EventScript_WatchToLearnBasics",
+      "kind": "script",
+      "line": 129,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_WatchThatToLearnBasics"
+          ],
+          "line": 130,
+          "raw": "msgbox ViridianCity_Text_WatchThatToLearnBasics",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 131,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 132,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_WatchThatToLearnBasics",
+          "mode": "",
+          "line": 130
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_TutorialUnused": {
+      "label": "ViridianCity_EventScript_TutorialUnused",
+      "kind": "script",
+      "line": 135,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_ThatWasEducationalTakeThis"
+          ],
+          "line": 136,
+          "raw": "msgbox ViridianCity_Text_ThatWasEducationalTakeThis",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "StartOldManTutorialBattle"
+          ],
+          "line": 137,
+          "raw": "special StartOldManTutorialBattle",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 138,
+          "raw": "waitstate",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 139,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 140,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_ThatWasEducationalTakeThis",
+          "mode": "",
+          "line": 136
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_TutorialNotReady": {
+      "label": "ViridianCity_EventScript_TutorialNotReady",
+      "kind": "script",
+      "line": 142,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_ThisIsPrivateProperty"
+          ],
+          "line": 143,
+          "raw": "msgbox ViridianCity_Text_ThisIsPrivateProperty",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 144,
+          "raw": "closemessage",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 145,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 146,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_ThisIsPrivateProperty",
+          "mode": "",
+          "line": 143
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_Youngster": {
+      "label": "ViridianCity_EventScript_Youngster",
+      "kind": "script",
+      "line": 148,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 149,
+          "raw": "lock",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 150,
+          "raw": "faceplayer",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_WantToKnowAboutCaterpillarMons",
+            "MSGBOX_YESNO"
+          ],
+          "line": 151,
+          "raw": "msgbox ViridianCity_Text_WantToKnowAboutCaterpillarMons, MSGBOX_YESNO",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "ViridianCity_EventScript_YoungsterExplainCaterpillars"
+          ],
+          "line": 152,
+          "raw": "goto_if_eq VAR_RESULT, YES, ViridianCity_EventScript_YoungsterExplainCaterpillars",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "ViridianCity_EventScript_YoungsterDeclineExplanation"
+          ],
+          "line": 153,
+          "raw": "goto_if_eq VAR_RESULT, NO, ViridianCity_EventScript_YoungsterDeclineExplanation",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 154,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_WantToKnowAboutCaterpillarMons",
+          "mode": "MSGBOX_YESNO",
+          "line": 151
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "ViridianCity_EventScript_YoungsterExplainCaterpillars",
+          "line": 152
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "ViridianCity_EventScript_YoungsterDeclineExplanation",
+          "line": 153
+        }
+      ]
+    },
+    "ViridianCity_EventScript_YoungsterExplainCaterpillars": {
+      "label": "ViridianCity_EventScript_YoungsterExplainCaterpillars",
+      "kind": "script",
+      "line": 156,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_ExplainCaterpieWeedle"
+          ],
+          "line": 157,
+          "raw": "msgbox ViridianCity_Text_ExplainCaterpieWeedle",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 158,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 159,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_ExplainCaterpieWeedle",
+          "mode": "",
+          "line": 157
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_YoungsterDeclineExplanation": {
+      "label": "ViridianCity_EventScript_YoungsterDeclineExplanation",
+      "kind": "script",
+      "line": 161,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_OhOkayThen"
+          ],
+          "line": 162,
+          "raw": "msgbox ViridianCity_Text_OhOkayThen",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 163,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 164,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_OhOkayThen",
+          "mode": "",
+          "line": 162
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_Woman": {
+      "label": "ViridianCity_EventScript_Woman",
+      "kind": "script",
+      "line": 166,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 167,
+          "raw": "lock",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 168,
+          "raw": "faceplayer",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN",
+            "0",
+            "ViridianCity_EventScript_WomanRoadBlocked"
+          ],
+          "line": 169,
+          "raw": "goto_if_eq VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 0, ViridianCity_EventScript_WomanRoadBlocked",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_GoShoppingInPewterOccasionally"
+          ],
+          "line": 170,
+          "raw": "msgbox ViridianCity_Text_GoShoppingInPewterOccasionally",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 171,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 172,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_GoShoppingInPewterOccasionally",
+          "mode": "",
+          "line": 170
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "ViridianCity_EventScript_WomanRoadBlocked",
+          "line": 169
+        }
+      ]
+    },
+    "ViridianCity_EventScript_WomanRoadBlocked": {
+      "label": "ViridianCity_EventScript_WomanRoadBlocked",
+      "kind": "script",
+      "line": 174,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_GrandpaHasntHadCoffeeYet"
+          ],
+          "line": 175,
+          "raw": "msgbox ViridianCity_Text_GrandpaHasntHadCoffeeYet",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 176,
+          "raw": "closemessage",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_VIRIDIAN_WOMAN",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 177,
+          "raw": "applymovement LOCALID_VIRIDIAN_WOMAN, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 178,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 179,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 180,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_GrandpaHasntHadCoffeeYet",
+          "mode": "",
+          "line": 175
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_DreamEaterTutor": {
+      "label": "ViridianCity_EventScript_DreamEaterTutor",
+      "kind": "script",
+      "line": 182,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_DreamEaterTutor"
+          ],
+          "line": 183,
+          "raw": "goto EventScript_DreamEaterTutor",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 184,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_DreamEaterTutor",
+          "line": 183
+        }
+      ]
+    },
+    "ViridianCity_EventScript_RoadBlocked": {
+      "label": "ViridianCity_EventScript_RoadBlocked",
+      "kind": "script",
+      "line": 186,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 187,
+          "raw": "lockall",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 188,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_ThisIsPrivateProperty"
+          ],
+          "line": 189,
+          "raw": "msgbox ViridianCity_Text_ThisIsPrivateProperty",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 190,
+          "raw": "closemessage",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "ViridianCity_Movement_WalkDown"
+          ],
+          "line": 191,
+          "raw": "applymovement LOCALID_PLAYER, ViridianCity_Movement_WalkDown",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 192,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 193,
+          "raw": "releaseall",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 194,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_ThisIsPrivateProperty",
+          "mode": "",
+          "line": 189
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_EventScript_TutorialTriggerLeft": {
+      "label": "ViridianCity_EventScript_TutorialTriggerLeft",
+      "kind": "script",
+      "line": 200,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 201,
+          "raw": "lockall",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 202,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TUTORIAL_MAN",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 203,
+          "raw": "applymovement LOCALID_TUTORIAL_MAN, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 204,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 205,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 206,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "ViridianCity_EventScript_DoTutorialBattle"
+          ],
+          "line": 207,
+          "raw": "call ViridianCity_EventScript_DoTutorialBattle",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 208,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 209,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "ViridianCity_EventScript_DoTutorialBattle",
+          "line": 207
+        }
+      ]
+    },
+    "ViridianCity_EventScript_TutorialTriggerRight": {
+      "label": "ViridianCity_EventScript_TutorialTriggerRight",
+      "kind": "script",
+      "line": 211,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 212,
+          "raw": "lockall",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 213,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TUTORIAL_MAN",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 214,
+          "raw": "applymovement LOCALID_TUTORIAL_MAN, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 215,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 216,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 217,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "ViridianCity_EventScript_DoTutorialBattle"
+          ],
+          "line": 218,
+          "raw": "call ViridianCity_EventScript_DoTutorialBattle",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 219,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 220,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "ViridianCity_EventScript_DoTutorialBattle",
+          "line": 218
+        }
+      ]
+    },
+    "ViridianCity_EventScript_DoTutorialBattle": {
+      "label": "ViridianCity_EventScript_DoTutorialBattle",
+      "kind": "script",
+      "line": 222,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_ShowYouHowToCatchMons"
+          ],
+          "line": 223,
+          "raw": "msgbox ViridianCity_Text_ShowYouHowToCatchMons",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 224,
+          "raw": "closemessage",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "StartOldManTutorialBattle"
+          ],
+          "line": 225,
+          "raw": "special StartOldManTutorialBattle",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 226,
+          "raw": "waitstate",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "lock",
+          "args": [],
+          "line": 227,
+          "raw": "lock",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 228,
+          "raw": "faceplayer",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_ThatWasEducationalTakeThis"
+          ],
+          "line": 229,
+          "raw": "msgbox ViridianCity_Text_ThatWasEducationalTakeThis",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN",
+            "2"
+          ],
+          "line": 230,
+          "raw": "setvar VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 2",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_TEACHY_TV"
+          ],
+          "line": 231,
+          "raw": "giveitem ITEM_TEACHY_TV",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Text_WatchThatToLearnBasics"
+          ],
+          "line": 232,
+          "raw": "msgbox ViridianCity_Text_WatchThatToLearnBasics",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 233,
+          "raw": "return",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_ShowYouHowToCatchMons",
+          "mode": "",
+          "line": 223
+        },
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_ThatWasEducationalTakeThis",
+          "mode": "",
+          "line": 229
+        },
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Text_WatchThatToLearnBasics",
+          "mode": "",
+          "line": 232
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "ViridianCity_Movement_JumpDownLedge": {
+      "label": "ViridianCity_Movement_JumpDownLedge",
+      "kind": "movement",
+      "line": 52,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "jump_2_down",
+          "args": [],
+          "line": 53,
+          "raw": "jump_2_down",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 54,
+          "raw": "step_end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ViridianCity_Movement_WalkDown": {
+      "label": "ViridianCity_Movement_WalkDown",
+      "kind": "movement",
+      "line": 196,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 197,
+          "raw": "walk_down",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 198,
+          "raw": "step_end",
+          "source_file": "data/maps/ViridianCity_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "ViridianCity_Text_CanCarryMonsAnywhere": {
+      "label": "ViridianCity_Text_CanCarryMonsAnywhere",
+      "line": 235,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "你腰上挂着的这些精灵球！\\n你有宝可梦，是吧？\\p太棒了！无论何时何地，\\n你都能携带并使用宝可梦。$",
+      "display_text": "你腰上挂着的这些精灵球！\n你有宝可梦，是吧？\n\n太棒了！无论何时何地，\n你都能携带并使用宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 86,
+        "bytes": [
+          9,
+          217,
+          14,
+          229,
+          11,
+          173,
+          4,
+          154,
+          16,
+          244,
+          3,
+          11,
+          16,
+          85,
+          14,
+          52,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          60,
+          254,
+          9,
+          217,
+          15,
+          126,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          12,
+          12,
+          1,
+          40,
+          61,
+          251,
+          12,
+          172,
+          1,
+          83,
+          8,
+          158,
+          60,
+          13,
+          164,
+          9,
+          21,
+          4,
+          244,
+          11,
+          237,
+          4,
+          244,
+          3,
+          31,
+          59,
+          254,
+          9,
+          217,
+          3,
+          97,
+          9,
+          210,
+          14,
+          58,
+          2,
+          216,
+          1,
+          189,
+          11,
+          245,
+          15,
+          113,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "09 D9 0E E5 0B AD 04 9A 10 F4 03 0B 10 55 0E 34 07 5B 08 BC 0B 14 3C FE 09 D9 0F 7E 01 63 07 D7 09 66 3B 0C 0C 01 28 3D FB 0C AC 01 53 08 9E 3C 0D A4 09 15 04 F4 0B ED 04 F4 03 1F 3B FE 09 D9 03 61 09 D2 0E 3A 02 D8 01 BD 0B F5 0F 71 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 50,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_GymClosedWonderWhoLeaderIs": {
+      "label": "ViridianCity_Text_GymClosedWonderWhoLeaderIs",
+      "line": 241,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "这个宝可梦道馆总是关闭着。\\p我很想到底知道谁是馆主？$",
+      "display_text": "这个宝可梦道馆总是关闭着。\n\n我很想到底知道谁是馆主？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 50,
+        "bytes": [
+          16,
+          85,
+          4,
+          96,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          7,
+          4,
+          165,
+          17,
+          20,
+          12,
+          12,
+          4,
+          160,
+          1,
+          146,
+          16,
+          244,
+          55,
+          251,
+          13,
+          152,
+          5,
+          11,
+          14,
+          24,
+          3,
+          4,
+          3,
+          30,
+          16,
+          123,
+          3,
+          7,
+          12,
+          80,
+          12,
+          12,
+          4,
+          165,
+          16,
+          200,
+          61,
+          255
+        ],
+        "hex": "10 55 04 60 01 63 07 D7 09 66 03 07 04 A5 11 14 0C 0C 04 A0 01 92 10 F4 37 FB 0D 98 05 0B 0E 18 03 04 03 1E 10 7B 03 07 0C 50 0C 0C 04 A5 10 C8 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_ViridiansGymLeaderReturned": {
+      "label": "ViridianCity_Text_ViridiansGymLeaderReturned",
+      "line": 245,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "常青道馆的馆主回来了！$",
+      "display_text": "常青道馆的馆主回来了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          2,
+          37,
+          11,
+          2,
+          3,
+          7,
+          4,
+          165,
+          3,
+          11,
+          4,
+          165,
+          16,
+          200,
+          5,
+          101,
+          8,
+          41,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "02 25 0B 02 03 07 04 A5 03 0B 04 A5 10 C8 05 65 08 29 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_WantToKnowAboutCaterpillarMons": {
+      "label": "ViridianCity_Text_WantToKnowAboutCaterpillarMons",
+      "line": 248,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "你想知道两种\\n虫属性宝可梦的区别吗？$",
+      "display_text": "你想知道两种\n虫属性宝可梦的区别吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          9,
+          217,
+          14,
+          24,
+          16,
+          123,
+          3,
+          7,
+          8,
+          144,
+          16,
+          167,
+          254,
+          2,
+          104,
+          12,
+          57,
+          14,
+          95,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          11,
+          26,
+          1,
+          173,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "09 D9 0E 18 10 7B 03 07 08 90 10 A7 FE 02 68 0C 39 0E 5F 01 63 07 D7 09 66 03 0B 0B 1A 01 AD 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_OhOkayThen": {
+      "label": "ViridianCity_Text_OhOkayThen",
+      "line": 252,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "噢，好吧！$",
+      "display_text": "噢，好吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 9,
+        "bytes": [
+          20,
+          122,
+          59,
+          4,
+          233,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "14 7A 3B 04 E9 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 5,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_ExplainCaterpieWeedle": {
+      "label": "ViridianCity_Text_ExplainCaterpieWeedle",
+      "line": 255,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "绿毛虫没有毒，\\n但是独角虫有毒。\\p当心你的宝可梦别被独角虫的\\n毒针给刺中了。$",
+      "display_text": "绿毛虫没有毒，\n但是独角虫有毒。\n\n当心你的宝可梦别被独角虫的\n毒针给刺中了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 71,
+        "bytes": [
+          9,
+          6,
+          9,
+          67,
+          2,
+          104,
+          9,
+          83,
+          15,
+          126,
+          3,
+          99,
+          59,
+          254,
+          2,
+          233,
+          12,
+          12,
+          3,
+          101,
+          7,
+          25,
+          2,
+          104,
+          15,
+          126,
+          3,
+          99,
+          55,
+          251,
+          2,
+          239,
+          14,
+          79,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          173,
+          1,
+          120,
+          3,
+          101,
+          7,
+          25,
+          2,
+          104,
+          3,
+          11,
+          254,
+          3,
+          99,
+          16,
+          94,
+          4,
+          98,
+          2,
+          172,
+          16,
+          161,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "09 06 09 43 02 68 09 53 0F 7E 03 63 3B FE 02 E9 0C 0C 03 65 07 19 02 68 0F 7E 03 63 37 FB 02 EF 0E 4F 09 D9 03 0B 01 63 07 D7 09 66 01 AD 01 78 03 65 07 19 02 68 03 0B FE 03 63 10 5E 04 62 02 AC 10 A1 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 41,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_GrandpaHasntHadCoffeeYet": {
+      "label": "ViridianCity_Text_GrandpaHasntHadCoffeeYet",
+      "line": 261,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "噢，爷爷！\\n别这么任性啊！\\p真的很抱歉。\\n他还没喝咖啡。$",
+      "display_text": "噢，爷爷！\n别这么任性啊！\n\n真的很抱歉。\n他还没喝咖啡。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 49,
+        "bytes": [
+          20,
+          122,
+          59,
+          14,
+          246,
+          14,
+          246,
+          60,
+          254,
+          1,
+          173,
+          16,
+          85,
+          9,
+          76,
+          11,
+          78,
+          14,
+          95,
+          1,
+          0,
+          60,
+          251,
+          16,
+          89,
+          3,
+          11,
+          5,
+          11,
+          1,
+          100,
+          10,
+          209,
+          55,
+          254,
+          12,
+          158,
+          5,
+          70,
+          9,
+          83,
+          4,
+          238,
+          7,
+          181,
+          3,
+          203,
+          55,
+          255
+        ],
+        "hex": "14 7A 3B 0E F6 0E F6 3C FE 01 AD 10 55 09 4C 0B 4E 0E 5F 01 00 3C FB 10 59 03 0B 05 0B 01 64 0A D1 37 FE 0C 9E 05 46 09 53 04 EE 07 B5 03 CB 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 31,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_GoShoppingInPewterOccasionally": {
+      "label": "ViridianCity_Text_GoShoppingInPewterOccasionally",
+      "line": 267,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "我有时候会去深灰市买东西。\\p我每次去的时候，都必须\\n在常青森林中走一段蜿蜒的小路。$",
+      "display_text": "我有时候会去深灰市买东西。\n\n我每次去的时候，都必须\n在常青森林中走一段蜿蜒的小路。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 78,
+        "bytes": [
+          13,
+          152,
+          15,
+          126,
+          11,
+          237,
+          5,
+          33,
+          5,
+          110,
+          11,
+          37,
+          11,
+          204,
+          5,
+          95,
+          12,
+          21,
+          9,
+          44,
+          3,
+          80,
+          13,
+          189,
+          55,
+          251,
+          13,
+          152,
+          9,
+          87,
+          2,
+          174,
+          11,
+          37,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          59,
+          3,
+          97,
+          1,
+          149,
+          14,
+          118,
+          254,
+          15,
+          230,
+          2,
+          37,
+          11,
+          2,
+          11,
+          139,
+          8,
+          169,
+          16,
+          161,
+          17,
+          23,
+          15,
+          11,
+          3,
+          115,
+          28,
+          97,
+          14,
+          186,
+          3,
+          11,
+          14,
+          44,
+          8,
+          232,
+          55,
+          255
+        ],
+        "hex": "0D 98 0F 7E 0B ED 05 21 05 6E 0B 25 0B CC 05 5F 0C 15 09 2C 03 50 0D BD 37 FB 0D 98 09 57 02 AE 0B 25 03 0B 0B ED 05 21 3B 03 61 01 95 0E 76 FE 0F E6 02 25 0B 02 0B 8B 08 A9 10 A1 11 17 0F 0B 03 73 1C 61 0E BA 03 0B 0E 2C 08 E8 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 43,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_ThisIsPrivateProperty": {
+      "label": "ViridianCity_Text_ThisIsPrivateProperty",
+      "line": 272,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "我绝不允许你通过这里！\\p这里是私人领地！$",
+      "display_text": "我绝不允许你通过这里！\n\n这里是私人领地！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          13,
+          152,
+          7,
+          168,
+          1,
+          214,
+          15,
+          214,
+          14,
+          120,
+          9,
+          217,
+          13,
+          16,
+          4,
+          197,
+          16,
+          85,
+          8,
+          100,
+          60,
+          251,
+          16,
+          85,
+          8,
+          100,
+          12,
+          12,
+          12,
+          96,
+          11,
+          75,
+          8,
+          191,
+          3,
+          31,
+          60,
+          255
+        ],
+        "hex": "0D 98 07 A8 01 D6 0F D6 0E 78 09 D9 0D 10 04 C5 10 55 08 64 3C FB 10 55 08 64 0C 0C 0C 60 0B 4B 08 BF 03 1F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_ShowYouHowToCatchMons": {
+      "label": "ViridianCity_Text_ShowYouHowToCatchMons",
+      "line": 276,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "刚刚我喝过咖啡了。\\n喝咖啡可是我每天的必修课！\\p嗯？\\n你手上拿着的那个红色盒子是什么？\\p噢，你在完成你的宝可梦图鉴啊。\\p那么让我给你一些建议吧。\\p宝可梦图鉴会在\\n你收服到宝可梦时\\l自动更新数据。\\p……你不知道该怎么收服宝可梦？\\p那我想我应该教你怎么做！$",
+      "display_text": "刚刚我喝过咖啡了。\n喝咖啡可是我每天的必修课！\n\n嗯？\n你手上拿着的那个红色盒子是什么？\n\n噢，你在完成你的宝可梦图鉴啊。\n\n那么让我给你一些建议吧。\n\n宝可梦图鉴会在\n你收服到宝可梦时\n自动更新数据。\n\n……你不知道该怎么收服宝可梦？\n\n那我想我应该教你怎么做！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 231,
+        "bytes": [
+          4,
+          63,
+          4,
+          63,
+          13,
+          152,
+          4,
+          238,
+          4,
+          197,
+          7,
+          181,
+          3,
+          203,
+          8,
+          158,
+          55,
+          254,
+          4,
+          238,
+          7,
+          181,
+          3,
+          203,
+          7,
+          215,
+          12,
+          12,
+          13,
+          152,
+          9,
+          87,
+          12,
+          237,
+          3,
+          11,
+          1,
+          149,
+          14,
+          105,
+          7,
+          220,
+          60,
+          251,
+          20,
+          97,
+          61,
+          254,
+          9,
+          217,
+          12,
+          27,
+          11,
+          173,
+          9,
+          185,
+          16,
+          244,
+          3,
+          11,
+          9,
+          189,
+          4,
+          96,
+          5,
+          27,
+          11,
+          137,
+          4,
+          246,
+          17,
+          11,
+          12,
+          12,
+          11,
+          238,
+          9,
+          76,
+          61,
+          251,
+          20,
+          122,
+          59,
+          9,
+          217,
+          15,
+          230,
+          13,
+          82,
+          2,
+          75,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          36,
+          5,
+          227,
+          1,
+          0,
+          55,
+          251,
+          9,
+          189,
+          9,
+          76,
+          11,
+          67,
+          13,
+          152,
+          4,
+          98,
+          9,
+          217,
+          15,
+          11,
+          14,
+          52,
+          5,
+          241,
+          15,
+          57,
+          1,
+          40,
+          55,
+          251,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          36,
+          5,
+          227,
+          5,
+          110,
+          15,
+          230,
+          254,
+          9,
+          217,
+          12,
+          26,
+          4,
+          10,
+          3,
+          4,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          237,
+          250,
+          17,
+          12,
+          3,
+          84,
+          4,
+          102,
+          14,
+          77,
+          12,
+          66,
+          7,
+          141,
+          55,
+          251,
+          176,
+          176,
+          9,
+          217,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          4,
+          45,
+          16,
+          10,
+          9,
+          76,
+          12,
+          26,
+          4,
+          10,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          61,
+          251,
+          9,
+          189,
+          13,
+          152,
+          14,
+          24,
+          13,
+          152,
+          15,
+          84,
+          4,
+          45,
+          7,
+          30,
+          9,
+          217,
+          16,
+          10,
+          9,
+          76,
+          17,
+          46,
+          60,
+          255
+        ],
+        "hex": "04 3F 04 3F 0D 98 04 EE 04 C5 07 B5 03 CB 08 9E 37 FE 04 EE 07 B5 03 CB 07 D7 0C 0C 0D 98 09 57 0C ED 03 0B 01 95 0E 69 07 DC 3C FB 14 61 3D FE 09 D9 0C 1B 0B AD 09 B9 10 F4 03 0B 09 BD 04 60 05 1B 0B 89 04 F6 11 0B 0C 0C 0B EE 09 4C 3D FB 14 7A 3B 09 D9 0F E6 0D 52 02 4B 09 D9 03 0B 01 63 07 D7 09 66 0D 24 05 E3 01 00 37 FB 09 BD 09 4C 0B 43 0D 98 04 62 09 D9 0F 0B 0E 34 05 F1 0F 39 01 28 37 FB 01 63 07 D7 09 66 0D 24 05 E3 05 6E 0F E6 FE 09 D9 0C 1A 04 0A 03 04 01 63 07 D7 09 66 0B ED FA 11 0C 03 54 04 66 0E 4D 0C 42 07 8D 37 FB B0 B0 09 D9 01 D6 10 7B 03 07 04 2D 10 0A 09 4C 0C 1A 04 0A 01 63 07 D7 09 66 3D FB 09 BD 0D 98 0E 18 0D 98 0F 54 04 2D 07 1E 09 D9 10 0A 09 4C 11 2E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 46,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 63,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 77,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 86,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 96,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 105,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 122,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 136,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_ThatWasEducationalTakeThis": {
+      "label": "ViridianCity_Text_ThatWasEducationalTakeThis",
+      "line": 289,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "怎么样？\\n是不是受益匪浅啊？\\p把这个也带上吧。$",
+      "display_text": "怎么样？\n是不是受益匪浅啊？\n\n把这个也带上吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 42,
+        "bytes": [
+          16,
+          10,
+          9,
+          76,
+          14,
+          226,
+          61,
+          254,
+          12,
+          12,
+          1,
+          214,
+          12,
+          12,
+          12,
+          33,
+          15,
+          54,
+          3,
+          206,
+          10,
+          204,
+          1,
+          0,
+          61,
+          251,
+          1,
+          48,
+          16,
+          85,
+          4,
+          96,
+          15,
+          2,
+          2,
+          216,
+          11,
+          173,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "10 0A 09 4C 0E E2 3D FE 0C 0C 01 D6 0C 0C 0C 21 0F 36 03 CE 0A CC 01 00 3D FB 01 30 10 55 04 60 0F 02 02 D8 0B AD 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_WatchThatToLearnBasics": {
+      "label": "ViridianCity_Text_WatchThatToLearnBasics",
+      "line": 294,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "如果有什么你不懂的，\\n一定要仔细看它。\\p它将教会你如何成为\\n一名合格的宝可梦训练家。$",
+      "display_text": "如果有什么你不懂的，\n一定要仔细看它。\n\n它将教会你如何成为\n一名合格的宝可梦训练家。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 79,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          15,
+          126,
+          11,
+          238,
+          9,
+          76,
+          9,
+          217,
+          1,
+          214,
+          3,
+          83,
+          3,
+          11,
+          59,
+          254,
+          15,
+          11,
+          3,
+          77,
+          14,
+          241,
+          17,
+          8,
+          13,
+          220,
+          7,
+          194,
+          12,
+          159,
+          55,
+          251,
+          12,
+          159,
+          5,
+          244,
+          7,
+          30,
+          5,
+          110,
+          9,
+          217,
+          11,
+          103,
+          4,
+          244,
+          2,
+          75,
+          13,
+          112,
+          254,
+          15,
+          11,
+          9,
+          147,
+          4,
+          245,
+          4,
+          91,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          55,
+          255
+        ],
+        "hex": "0B 67 04 C3 0F 7E 0B EE 09 4C 09 D9 01 D6 03 53 03 0B 3B FE 0F 0B 03 4D 0E F1 11 08 0D DC 07 C2 0C 9F 37 FB 0C 9F 05 F4 07 1E 05 6E 09 D9 0B 67 04 F4 02 4B 0D 70 FE 0F 0B 09 93 04 F5 04 5B 03 0B 01 63 07 D7 09 66 0E 9E 08 8A 05 BD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_WeakenMonsFirstToCatch": {
+      "label": "ViridianCity_Text_WeakenMonsFirstToCatch",
+      "line": 300,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "我已经喝过咖啡了。\\n喝咖啡可是我每天的必修课！\\p但是我泡得太浓了。\\n现在我头有点痛……\\p顺便说一下，\\n你完成了你的宝可梦图鉴吗？\\p首先，要使宝可梦变弱，\\n然后才能试图抓住它。$",
+      "display_text": "我已经喝过咖啡了。\n喝咖啡可是我每天的必修课！\n\n但是我泡得太浓了。\n现在我头有点痛……\n\n顺便说一下，\n你完成了你的宝可梦图鉴吗？\n\n首先，要使宝可梦变弱，\n然后才能试图抓住它。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 158,
+        "bytes": [
+          13,
+          152,
+          15,
+          33,
+          7,
+          93,
+          4,
+          238,
+          4,
+          197,
+          7,
+          181,
+          3,
+          203,
+          8,
+          158,
+          55,
+          254,
+          4,
+          238,
+          7,
+          181,
+          3,
+          203,
+          7,
+          215,
+          12,
+          12,
+          13,
+          152,
+          9,
+          87,
+          12,
+          237,
+          3,
+          11,
+          1,
+          149,
+          14,
+          105,
+          7,
+          220,
+          60,
+          251,
+          2,
+          233,
+          12,
+          12,
+          13,
+          152,
+          10,
+          58,
+          3,
+          10,
+          12,
+          172,
+          10,
+          5,
+          8,
+          158,
+          55,
+          254,
+          14,
+          3,
+          15,
+          230,
+          13,
+          152,
+          13,
+          31,
+          15,
+          126,
+          3,
+          42,
+          13,
+          28,
+          176,
+          176,
+          251,
+          12,
+          86,
+          1,
+          160,
+          12,
+          88,
+          15,
+          11,
+          13,
+          230,
+          59,
+          254,
+          9,
+          217,
+          13,
+          82,
+          2,
+          75,
+          8,
+          158,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          36,
+          5,
+          227,
+          9,
+          42,
+          61,
+          251,
+          12,
+          28,
+          13,
+          236,
+          59,
+          14,
+          241,
+          11,
+          245,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          161,
+          11,
+          117,
+          59,
+          254,
+          11,
+          59,
+          5,
+          34,
+          1,
+          224,
+          9,
+          210,
+          12,
+          25,
+          13,
+          36,
+          16,
+          212,
+          16,
+          208,
+          12,
+          159,
+          55,
+          255
+        ],
+        "hex": "0D 98 0F 21 07 5D 04 EE 04 C5 07 B5 03 CB 08 9E 37 FE 04 EE 07 B5 03 CB 07 D7 0C 0C 0D 98 09 57 0C ED 03 0B 01 95 0E 69 07 DC 3C FB 02 E9 0C 0C 0D 98 0A 3A 03 0A 0C AC 0A 05 08 9E 37 FE 0E 03 0F E6 0D 98 0D 1F 0F 7E 03 2A 0D 1C B0 B0 FB 0C 56 01 A0 0C 58 0F 0B 0D E6 3B FE 09 D9 0D 52 02 4B 08 9E 09 D9 03 0B 01 63 07 D7 09 66 0D 24 05 E3 09 2A 3D FB 0C 1C 0D EC 3B 0E F1 0B F5 01 63 07 D7 09 66 01 A1 0B 75 3B FE 0B 3B 05 22 01 E0 09 D2 0C 19 0D 24 10 D4 10 D0 0C 9F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 46,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 54,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 69,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 82,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 94,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_HowsTeachyTVHelping": {
+      "label": "ViridianCity_Text_HowsTeachyTVHelping",
+      "line": 310,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "我刚刚喝过咖啡了。\\n喝咖啡可是我每天的必修课！\\p但是我泡得太浓了，\\n喝得我头都痛了……\\p顺便，我那台旧的教学电视机\\n帮到你了吗？$",
+      "display_text": "我刚刚喝过咖啡了。\n喝咖啡可是我每天的必修课！\n\n但是我泡得太浓了，\n喝得我头都痛了……\n\n顺便，我那台旧的教学电视机\n帮到你了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 117,
+        "bytes": [
+          13,
+          152,
+          4,
+          63,
+          4,
+          63,
+          4,
+          238,
+          4,
+          197,
+          7,
+          181,
+          3,
+          203,
+          8,
+          158,
+          55,
+          254,
+          4,
+          238,
+          7,
+          181,
+          3,
+          203,
+          7,
+          215,
+          12,
+          12,
+          13,
+          152,
+          9,
+          87,
+          12,
+          237,
+          3,
+          11,
+          1,
+          149,
+          14,
+          105,
+          7,
+          220,
+          60,
+          251,
+          2,
+          233,
+          12,
+          12,
+          13,
+          152,
+          10,
+          58,
+          3,
+          10,
+          12,
+          172,
+          10,
+          5,
+          8,
+          158,
+          59,
+          254,
+          4,
+          238,
+          3,
+          10,
+          13,
+          152,
+          13,
+          31,
+          3,
+          97,
+          13,
+          28,
+          8,
+          158,
+          176,
+          176,
+          251,
+          12,
+          86,
+          1,
+          160,
+          59,
+          13,
+          152,
+          9,
+          189,
+          12,
+          169,
+          7,
+          121,
+          3,
+          11,
+          7,
+          30,
+          14,
+          144,
+          3,
+          46,
+          12,
+          24,
+          5,
+          135,
+          254,
+          1,
+          78,
+          3,
+          4,
+          9,
+          217,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0D 98 04 3F 04 3F 04 EE 04 C5 07 B5 03 CB 08 9E 37 FE 04 EE 07 B5 03 CB 07 D7 0C 0C 0D 98 09 57 0C ED 03 0B 01 95 0E 69 07 DC 3C FB 02 E9 0C 0C 0D 98 0A 3A 03 0A 0C AC 0A 05 08 9E 3B FE 04 EE 03 0A 0D 98 0D 1F 03 61 0D 1C 08 9E B0 B0 FB 0C 56 01 A0 3B 0D 98 09 BD 0C A9 07 79 03 0B 07 1E 0E 90 03 2E 0C 18 05 87 FE 01 4E 03 04 09 D9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 46,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 61,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 69,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_MyGrandsonOnTheShow": {
+      "label": "ViridianCity_Text_MyGrandsonOnTheShow",
+      "line": 318,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "哇哈哈！\\n电视上的是我孙子！\\p既然是他在教的话\\n你就得好好学。$",
+      "display_text": "哇哈哈！\n电视上的是我孙子！\n\n既然是他在教的话\n你就得好好学。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 57,
+        "bytes": [
+          13,
+          67,
+          4,
+          198,
+          4,
+          198,
+          60,
+          254,
+          3,
+          46,
+          12,
+          24,
+          11,
+          173,
+          3,
+          11,
+          12,
+          12,
+          13,
+          152,
+          12,
+          146,
+          17,
+          11,
+          60,
+          251,
+          5,
+          179,
+          11,
+          59,
+          12,
+          12,
+          12,
+          158,
+          15,
+          230,
+          7,
+          30,
+          3,
+          11,
+          5,
+          61,
+          254,
+          9,
+          217,
+          7,
+          125,
+          3,
+          10,
+          4,
+          233,
+          4,
+          233,
+          14,
+          144,
+          55,
+          255
+        ],
+        "hex": "0D 43 04 C6 04 C6 3C FE 03 2E 0C 18 0B AD 03 0B 0C 0C 0D 98 0C 92 11 0B 3C FB 05 B3 0B 3B 0C 0C 0C 9E 0F E6 07 1E 03 0B 05 3D FE 09 D9 07 7D 03 0A 04 E9 04 E9 0E 90 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 34,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_TooBusyForTeachyTV": {
+      "label": "ViridianCity_Text_TooBusyForTeachyTV",
+      "line": 324,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "嗯……你忙得甚至抽不出\\n时间来看教学电视机了……\\p时间就是金钱，这两者\\n都不应当被虚耗……$",
+      "display_text": "嗯……你忙得甚至抽不出\n时间来看教学电视机了……\n\n时间就是金钱，这两者\n都不应当被虚耗……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 81,
+        "bytes": [
+          20,
+          97,
+          176,
+          176,
+          9,
+          217,
+          9,
+          62,
+          3,
+          10,
+          11,
+          211,
+          16,
+          146,
+          2,
+          107,
+          1,
+          214,
+          2,
+          120,
+          254,
+          11,
+          237,
+          5,
+          207,
+          8,
+          41,
+          7,
+          194,
+          7,
+          30,
+          14,
+          144,
+          3,
+          46,
+          12,
+          24,
+          5,
+          135,
+          8,
+          158,
+          176,
+          176,
+          251,
+          11,
+          237,
+          5,
+          207,
+          7,
+          125,
+          12,
+          12,
+          7,
+          66,
+          10,
+          199,
+          59,
+          16,
+          85,
+          8,
+          144,
+          16,
+          82,
+          254,
+          3,
+          97,
+          1,
+          214,
+          15,
+          84,
+          2,
+          239,
+          1,
+          120,
+          14,
+          116,
+          4,
+          234,
+          176,
+          176,
+          255
+        ],
+        "hex": "14 61 B0 B0 09 D9 09 3E 03 0A 0B D3 10 92 02 6B 01 D6 02 78 FE 0B ED 05 CF 08 29 07 C2 07 1E 0E 90 03 2E 0C 18 05 87 08 9E B0 B0 FB 0B ED 05 CF 07 7D 0C 0C 07 42 0A C7 3B 10 55 08 90 10 52 FE 03 61 01 D6 0F 54 02 EF 01 78 0E 74 04 EA B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 25,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 37,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_CitySign": {
+      "label": "ViridianCity_Text_CitySign",
+      "line": 330,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "常青市\\n永远的绿色天堂$",
+      "display_text": "常青市\n永远的绿色天堂",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          2,
+          37,
+          11,
+          2,
+          12,
+          21,
+          254,
+          15,
+          110,
+          15,
+          194,
+          3,
+          11,
+          9,
+          6,
+          11,
+          137,
+          12,
+          237,
+          12,
+          196,
+          255
+        ],
+        "hex": "02 25 0B 02 0C 15 FE 0F 6E 0F C2 03 0B 09 06 0B 89 0C ED 0C C4 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_CatchMonsForEasierBattles": {
+      "label": "ViridianCity_Text_CatchMonsForEasierBattles",
+      "line": 334,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "训练家贴士\\p收服宝可梦\\n增加你的收集数。\\p你拥有得越多，\\n战斗就越轻松。$",
+      "display_text": "训练家贴士\n\n收服宝可梦\n增加你的收集数。\n\n你拥有得越多，\n战斗就越轻松。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 66,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          13,
+          3,
+          12,
+          4,
+          251,
+          12,
+          26,
+          4,
+          10,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          16,
+          11,
+          5,
+          190,
+          9,
+          217,
+          3,
+          11,
+          12,
+          26,
+          5,
+          154,
+          12,
+          66,
+          55,
+          251,
+          9,
+          217,
+          15,
+          99,
+          15,
+          126,
+          3,
+          10,
+          15,
+          201,
+          3,
+          133,
+          59,
+          254,
+          16,
+          48,
+          3,
+          92,
+          7,
+          125,
+          15,
+          201,
+          11,
+          3,
+          12,
+          108,
+          55,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 0D 03 0C 04 FB 0C 1A 04 0A 01 63 07 D7 09 66 FE 10 0B 05 BE 09 D9 03 0B 0C 1A 05 9A 0C 42 37 FB 09 D9 0F 63 0F 7E 03 0A 0F C9 03 85 3B FE 10 30 03 5C 07 7D 0F C9 0B 03 0C 6C 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 40,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_MovesLimitedByPP": {
+      "label": "ViridianCity_Text_MovesLimitedByPP",
+      "line": 341,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "训练家贴士\\p宝可梦的技能受到它们的\\n技能点 也就是PP值的限制。\\p想要回复PP的话将你疲惫的\\n宝可梦放到宝可梦中心休息吧。$",
+      "display_text": "训练家贴士\n\n宝可梦的技能受到它们的\n技能点 也就是PP值的限制。\n\n想要回复PP的话将你疲惫的\n宝可梦放到宝可梦中心休息吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 112,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          13,
+          3,
+          12,
+          4,
+          251,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          167,
+          9,
+          210,
+          12,
+          33,
+          3,
+          4,
+          12,
+          159,
+          9,
+          95,
+          3,
+          11,
+          254,
+          5,
+          167,
+          9,
+          210,
+          3,
+          42,
+          0,
+          15,
+          2,
+          7,
+          125,
+          12,
+          12,
+          202,
+          202,
+          16,
+          134,
+          3,
+          11,
+          14,
+          11,
+          16,
+          151,
+          55,
+          251,
+          14,
+          24,
+          14,
+          241,
+          5,
+          101,
+          4,
+          30,
+          202,
+          202,
+          3,
+          11,
+          5,
+          61,
+          5,
+          244,
+          9,
+          217,
+          10,
+          94,
+          1,
+          118,
+          3,
+          11,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          200,
+          3,
+          4,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          161,
+          14,
+          79,
+          14,
+          104,
+          13,
+          198,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 0D 03 0C 04 FB 01 63 07 D7 09 66 03 0B 05 A7 09 D2 0C 21 03 04 0C 9F 09 5F 03 0B FE 05 A7 09 D2 03 2A 00 0F 02 07 7D 0C 0C CA CA 10 86 03 0B 0E 0B 10 97 37 FB 0E 18 0E F1 05 65 04 1E CA CA 03 0B 05 3D 05 F4 09 D9 0A 5E 01 76 03 0B FE 01 63 07 D7 09 66 03 C8 03 04 01 63 07 D7 09 66 10 A1 0E 4F 0E 68 0D C6 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 34,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 49,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 65,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_GymSign": {
+      "label": "ViridianCity_Text_GymSign",
+      "line": 348,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "常青市宝可梦道馆$",
+      "display_text": "常青市宝可梦道馆",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 17,
+        "bytes": [
+          2,
+          37,
+          11,
+          2,
+          12,
+          21,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          7,
+          4,
+          165,
+          255
+        ],
+        "hex": "02 25 0B 02 0C 15 01 63 07 D7 09 66 03 07 04 A5 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Text_GymDoorsAreLocked": {
+      "label": "ViridianCity_Text_GymDoorsAreLocked",
+      "line": 351,
+      "source_file": "data/maps/ViridianCity_Frlg/scripts.inc",
+      "raw_text": "常青道馆的门锁上了……$",
+      "display_text": "常青道馆的门锁上了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          2,
+          37,
+          11,
+          2,
+          3,
+          7,
+          4,
+          165,
+          3,
+          11,
+          9,
+          93,
+          12,
+          155,
+          11,
+          173,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "02 25 0B 02 03 07 04 A5 03 0B 09 5D 0C 9B 0B AD 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 9,
+      "call_if_eq": 3,
+      "call_if_ge": 1,
+      "closemessage": 6,
+      "delay": 1,
+      "faceplayer": 5,
+      "giveitem": 1,
+      "goto_if_eq": 7,
+      "goto_if_ge": 1,
+      "goto_if_set": 1,
+      "goto_if_unset": 6,
+      "jump_2_down": 1,
+      "map_script": 1,
+      "setobjectmovementtype": 2,
+      "setobjectxyperm": 2,
+      "setvar": 5,
+      "setworldmapflag": 1,
+      "special": 2,
+      "step_end": 2,
+      "textcolor": 4,
+      "waitmovement": 9,
+      "waitstate": 2,
+      "walk_down": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 56,
+    "script_count": 33,
+    "movement_count": 2,
+    "text_count": 21,
+    "encoded_text_count": 21,
+    "text_source_byte_count": 1441,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 21
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 9,
+      "call": 3,
+      "call_if_eq": 3,
+      "call_if_ge": 1,
+      "closemessage": 6,
+      "delay": 1,
+      "end": 27,
+      "faceplayer": 5,
+      "giveitem": 1,
+      "goto": 1,
+      "goto_if_eq": 7,
+      "goto_if_ge": 1,
+      "goto_if_set": 1,
+      "goto_if_unset": 6,
+      "jump_2_down": 1,
+      "lock": 5,
+      "lockall": 4,
+      "map_script": 1,
+      "msgbox": 25,
+      "release": 15,
+      "releaseall": 2,
+      "return": 5,
+      "setobjectmovementtype": 2,
+      "setobjectxyperm": 2,
+      "setvar": 5,
+      "setworldmapflag": 1,
+      "special": 2,
+      "step_end": 2,
+      "textcolor": 4,
+      "waitmovement": 9,
+      "waitstate": 2,
+      "walk_down": 1
+    }
+  }
+}

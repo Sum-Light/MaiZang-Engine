@@ -1,0 +1,1100 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route104_PrettyPetalFlowerShop",
+    "map_script": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+    "map_json": "data/maps/Route104_PrettyPetalFlowerShop/map.json",
+    "map_id": "MAP_ROUTE104_PRETTY_PETAL_FLOWER_SHOP",
+    "map_name": "Route104_PrettyPetalFlowerShop"
+  },
+  "labels": {
+    "Route104_PrettyPetalFlowerShop_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route104_PrettyPetalFlowerShop_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 5
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_ShopOwner": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 11
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 5
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_SellDecorations": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route104_PrettyPetalFlowerShop_Pokemart_Plants": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_WailmerPailGirl": {
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail": {
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_RandomBerryGirl": {
+      "kind": "script",
+      "line": 79,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 13
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry": {
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "Route104_PrettyPetalFlowerShop_MapScripts": {
+      "label": "Route104_PrettyPetalFlowerShop_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "Route104_PrettyPetalFlowerShop_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, Route104_PrettyPetalFlowerShop_OnTransition",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route104_PrettyPetalFlowerShop_OnTransition": {
+      "label": "Route104_PrettyPetalFlowerShop_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_LANDMARK_FLOWER_SHOP"
+          ],
+          "line": 6,
+          "raw": "setflag FLAG_LANDMARK_FLOWER_SHOP",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_MET_PRETTY_PETAL_SHOP_OWNER",
+            "Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner"
+          ],
+          "line": 7,
+          "raw": "goto_if_unset FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_BADGE03_GET",
+            "Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner"
+          ],
+          "line": 8,
+          "raw": "goto_if_unset FLAG_BADGE03_GET, Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_1"
+          ],
+          "line": 9,
+          "raw": "setflag FLAG_TEMP_1",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner",
+          "line": 7
+        },
+        {
+          "op": "goto_if_unset",
+          "target": "Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner",
+          "line": 8
+        }
+      ]
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner": {
+      "label": "Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_FLOWER_SHOP_OWNER",
+            "4",
+            "6"
+          ],
+          "line": 13,
+          "raw": "setobjectxyperm LOCALID_FLOWER_SHOP_OWNER, 4, 6",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_ShopOwner": {
+      "label": "Route104_PrettyPetalFlowerShop_EventScript_ShopOwner",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 17,
+          "raw": "lock",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 18,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_TEMP_1",
+            "Route104_PrettyPetalFlowerShop_EventScript_SellDecorations"
+          ],
+          "line": 19,
+          "raw": "goto_if_set FLAG_TEMP_1, Route104_PrettyPetalFlowerShop_EventScript_SellDecorations",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_ThisIsPrettyPetalFlowerShop",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 20,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_ThisIsPrettyPetalFlowerShop, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_MET_PRETTY_PETAL_SHOP_OWNER",
+            "Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet"
+          ],
+          "line": 21,
+          "raw": "goto_if_set FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_MET_PRETTY_PETAL_SHOP_OWNER"
+          ],
+          "line": 22,
+          "raw": "setflag FLAG_MET_PRETTY_PETAL_SHOP_OWNER",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries",
+            "MSGBOX_YESNO"
+          ],
+          "line": 23,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries, MSGBOX_YESNO",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries"
+          ],
+          "line": 24,
+          "raw": "call_if_eq VAR_RESULT, YES, Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries"
+          ],
+          "line": 25,
+          "raw": "call_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 26,
+          "raw": "release",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_ThisIsPrettyPetalFlowerShop",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 20
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries",
+          "mode": "MSGBOX_YESNO",
+          "line": 23
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route104_PrettyPetalFlowerShop_EventScript_SellDecorations",
+          "line": 19
+        },
+        {
+          "op": "goto_if_set",
+          "target": "Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet",
+          "line": 21
+        },
+        {
+          "op": "call_if_eq",
+          "target": "Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries",
+          "line": 24
+        },
+        {
+          "op": "call_if_eq",
+          "target": "Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries",
+          "line": 25
+        }
+      ]
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet": {
+      "label": "Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_LearnAboutBerries",
+            "MSGBOX_YESNO"
+          ],
+          "line": 30,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_LearnAboutBerries, MSGBOX_YESNO",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries"
+          ],
+          "line": 31,
+          "raw": "call_if_eq VAR_RESULT, YES, Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries"
+          ],
+          "line": 32,
+          "raw": "call_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 33,
+          "raw": "release",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_LearnAboutBerries",
+          "mode": "MSGBOX_YESNO",
+          "line": 30
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries",
+          "line": 31
+        },
+        {
+          "op": "call_if_eq",
+          "target": "Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries",
+          "line": 32
+        }
+      ]
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries": {
+      "label": "Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_BerriesExplanation",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 37,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_BerriesExplanation, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 38,
+          "raw": "return",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_BerriesExplanation",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 37
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries": {
+      "label": "Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_FlowersBringHappiness",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 41,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_FlowersBringHappiness, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 42,
+          "raw": "return",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_FlowersBringHappiness",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 41
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_SellDecorations": {
+      "label": "Route104_PrettyPetalFlowerShop_EventScript_SellDecorations",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "gText_PlayerWhatCanIDoForYou"
+          ],
+          "line": 45,
+          "raw": "message gText_PlayerWhatCanIDoForYou",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 46,
+          "raw": "waitmessage",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "pokemartdecoration2",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Pokemart_Plants"
+          ],
+          "line": 47,
+          "raw": "pokemartdecoration2 Route104_PrettyPetalFlowerShop_Pokemart_Plants",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 48,
+          "raw": "msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 49,
+          "raw": "release",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 50,
+          "raw": "end",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 52,
+          "raw": ".align 2",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_PlayerWhatCanIDoForYou",
+          "mode": "",
+          "line": 45
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 48
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route104_PrettyPetalFlowerShop_Pokemart_Plants": {
+      "label": "Route104_PrettyPetalFlowerShop_Pokemart_Plants",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "DECOR_RED_PLANT"
+          ],
+          "line": 54,
+          "raw": ".2byte DECOR_RED_PLANT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "DECOR_TROPICAL_PLANT"
+          ],
+          "line": 55,
+          "raw": ".2byte DECOR_TROPICAL_PLANT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "DECOR_PRETTY_FLOWERS"
+          ],
+          "line": 56,
+          "raw": ".2byte DECOR_PRETTY_FLOWERS",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "DECOR_COLORFUL_PLANT"
+          ],
+          "line": 57,
+          "raw": ".2byte DECOR_COLORFUL_PLANT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "DECOR_BIG_PLANT"
+          ],
+          "line": 58,
+          "raw": ".2byte DECOR_BIG_PLANT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "DECOR_GORGEOUS_PLANT"
+          ],
+          "line": 59,
+          "raw": ".2byte DECOR_GORGEOUS_PLANT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "pokemartlistend",
+          "args": [],
+          "line": 60,
+          "raw": "pokemartlistend",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_WailmerPailGirl": {
+      "label": "Route104_PrettyPetalFlowerShop_EventScript_WailmerPailGirl",
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 63,
+          "raw": "lock",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 64,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_RECEIVED_WAILMER_PAIL",
+            "Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail"
+          ],
+          "line": 65,
+          "raw": "goto_if_unset FLAG_RECEIVED_WAILMER_PAIL, Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 66,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 67,
+          "raw": "release",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 68,
+          "raw": "end",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 66
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail",
+          "line": 65
+        }
+      ]
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail": {
+      "label": "Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail",
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_YouCanHaveThis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 71,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_YouCanHaveThis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_WAILMER_PAIL"
+          ],
+          "line": 72,
+          "raw": "giveitem ITEM_WAILMER_PAIL",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 73,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 74,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_WAILMER_PAIL"
+          ],
+          "line": 75,
+          "raw": "setflag FLAG_RECEIVED_WAILMER_PAIL",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 76,
+          "raw": "release",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 77,
+          "raw": "end",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_YouCanHaveThis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 71
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 74
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 73
+        }
+      ]
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_RandomBerryGirl": {
+      "label": "Route104_PrettyPetalFlowerShop_EventScript_RandomBerryGirl",
+      "kind": "script",
+      "line": 79,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 80,
+          "raw": "lock",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 81,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "dotimebasedevents",
+          "args": [],
+          "line": 82,
+          "raw": "dotimebasedevents",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY",
+            "Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry"
+          ],
+          "line": 83,
+          "raw": "goto_if_set FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY, Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_ImGrowingFlowers",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 84,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_ImGrowingFlowers, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "random",
+          "args": [
+            "8"
+          ],
+          "line": 85,
+          "raw": "random 8",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "FIRST_BERRY_INDEX"
+          ],
+          "line": 86,
+          "raw": "addvar VAR_RESULT, FIRST_BERRY_INDEX",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 87,
+          "raw": "giveitem VAR_RESULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 88,
+          "raw": "goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY"
+          ],
+          "line": 89,
+          "raw": "setflag FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 90,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 91,
+          "raw": "release",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 92,
+          "raw": "end",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_ImGrowingFlowers",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 84
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 90
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry",
+          "line": 83
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 88
+        }
+      ]
+    },
+    "Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry": {
+      "label": "Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry",
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 95,
+          "raw": "msgbox Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 96,
+          "raw": "release",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 97,
+          "raw": "end",
+          "source_file": "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 95
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addvar": 1,
+      "call_if_eq": 4,
+      "dotimebasedevents": 1,
+      "faceplayer": 3,
+      "giveitem": 2,
+      "goto_if_eq": 2,
+      "goto_if_set": 3,
+      "goto_if_unset": 3,
+      "map_script": 1,
+      "pokemartdecoration2": 1,
+      "pokemartlistend": 1,
+      "random": 1,
+      "setflag": 5,
+      "setobjectxyperm": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 13,
+    "script_count": 13,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addvar": 1,
+      "call_if_eq": 4,
+      "dotimebasedevents": 1,
+      "end": 9,
+      "faceplayer": 3,
+      "giveitem": 2,
+      "goto_if_eq": 2,
+      "goto_if_set": 3,
+      "goto_if_unset": 3,
+      "lock": 3,
+      "map_script": 1,
+      "message": 1,
+      "msgbox": 12,
+      "pokemartdecoration2": 1,
+      "pokemartlistend": 1,
+      "random": 1,
+      "release": 7,
+      "return": 2,
+      "setflag": 5,
+      "setobjectxyperm": 1,
+      "waitmessage": 1
+    }
+  }
+}

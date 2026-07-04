@@ -1,0 +1,1110 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FourIsland_LoreleisHouse_Frlg",
+    "map_script": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+    "map_json": "data/maps/FourIsland_LoreleisHouse_Frlg/map.json",
+    "map_id": "MAP_FOUR_ISLAND_LORELEIS_HOUSE",
+    "map_name": "FourIsland_LoreleisHouse_Frlg"
+  },
+  "labels": {
+    "FourIsland_LoreleisHouse_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_LoreleisHouse_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_LoreleisHouse_EventScript_Lorelei": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "FourIsland_LoreleisHouse_EventScript_Lorelei2": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FourIsland_LoreleisHouse_EventScript_Lorelei3": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FourIsland_LoreleisHouse_EventScript_Doll": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FourIsland_LoreleisHouse_Text_IfAnythingWereToHappenToIsland": {
+      "kind": "text",
+      "line": 35,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "FourIsland_LoreleisHouse_Text_IllReturnToLeagueInShortWhile": {
+      "kind": "text",
+      "line": 46,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "FourIsland_LoreleisHouse_Text_WillDoWhatICanHereAndNow": {
+      "kind": "text",
+      "line": 56,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FourIsland_LoreleisHouse_Text_StuffedMonDollsGalore": {
+      "kind": "text",
+      "line": 62,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "FourIsland_LoreleisHouse_Frlg_MapScripts": {
+      "label": "FourIsland_LoreleisHouse_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "FourIsland_LoreleisHouse_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, FourIsland_LoreleisHouse_OnTransition",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_LoreleisHouse_OnTransition": {
+      "label": "FourIsland_LoreleisHouse_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "UpdateLoreleiDollCollection"
+          ],
+          "line": 6,
+          "raw": "special UpdateLoreleiDollCollection",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_LoreleisHouse_EventScript_Lorelei": {
+      "label": "FourIsland_LoreleisHouse_EventScript_Lorelei",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 10,
+          "raw": "lock",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 11,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_TALKED_TO_LORELEI_AFTER_WAREHOUSE",
+            "FourIsland_LoreleisHouse_EventScript_Lorelei3"
+          ],
+          "line": 12,
+          "raw": "goto_if_set FLAG_TALKED_TO_LORELEI_AFTER_WAREHOUSE, FourIsland_LoreleisHouse_EventScript_Lorelei3",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DEFEATED_ROCKETS_IN_WAREHOUSE",
+            "FourIsland_LoreleisHouse_EventScript_Lorelei2"
+          ],
+          "line": 13,
+          "raw": "goto_if_set FLAG_DEFEATED_ROCKETS_IN_WAREHOUSE, FourIsland_LoreleisHouse_EventScript_Lorelei2",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_LoreleisHouse_Text_IfAnythingWereToHappenToIsland"
+          ],
+          "line": 14,
+          "raw": "msgbox FourIsland_LoreleisHouse_Text_IfAnythingWereToHappenToIsland",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 15,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_LoreleisHouse_Text_IfAnythingWereToHappenToIsland",
+          "mode": "",
+          "line": 14
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "FourIsland_LoreleisHouse_EventScript_Lorelei3",
+          "line": 12
+        },
+        {
+          "op": "goto_if_set",
+          "target": "FourIsland_LoreleisHouse_EventScript_Lorelei2",
+          "line": 13
+        }
+      ]
+    },
+    "FourIsland_LoreleisHouse_EventScript_Lorelei2": {
+      "label": "FourIsland_LoreleisHouse_EventScript_Lorelei2",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TALKED_TO_LORELEI_AFTER_WAREHOUSE"
+          ],
+          "line": 19,
+          "raw": "setflag FLAG_TALKED_TO_LORELEI_AFTER_WAREHOUSE",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_LoreleisHouse_Text_IllReturnToLeagueInShortWhile"
+          ],
+          "line": 20,
+          "raw": "msgbox FourIsland_LoreleisHouse_Text_IllReturnToLeagueInShortWhile",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 21,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_LoreleisHouse_Text_IllReturnToLeagueInShortWhile",
+          "mode": "",
+          "line": 20
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_LoreleisHouse_EventScript_Lorelei3": {
+      "label": "FourIsland_LoreleisHouse_EventScript_Lorelei3",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_LoreleisHouse_Text_WillDoWhatICanHereAndNow"
+          ],
+          "line": 25,
+          "raw": "msgbox FourIsland_LoreleisHouse_Text_WillDoWhatICanHereAndNow",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 26,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_LoreleisHouse_Text_WillDoWhatICanHereAndNow",
+          "mode": "",
+          "line": 25
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_LoreleisHouse_EventScript_Doll": {
+      "label": "FourIsland_LoreleisHouse_EventScript_Doll",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 30,
+          "raw": "lock",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_LoreleisHouse_Text_StuffedMonDollsGalore"
+          ],
+          "line": 31,
+          "raw": "msgbox FourIsland_LoreleisHouse_Text_StuffedMonDollsGalore",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 32,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_LoreleisHouse_Text_StuffedMonDollsGalore",
+          "mode": "",
+          "line": 31
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "FourIsland_LoreleisHouse_Text_IfAnythingWereToHappenToIsland": {
+      "label": "FourIsland_LoreleisHouse_Text_IfAnythingWereToHappenToIsland",
+      "line": 35,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "raw_text": "科拿：在我的脑海里，有件事\\n一直令我放不下心。\\p如果在我所出生的岛上\\n发生了什么事情……\\p而在宝可梦联盟的我\\n是全然不知的。\\p我想知道……\\n我会不会为了这样的原因\\n不负责任地跑回家……$",
+      "display_text": "科拿：在我的脑海里，有件事\n一直令我放不下心。\n\n如果在我所出生的岛上\n发生了什么事情……\n\n而在宝可梦联盟的我\n是全然不知的。\n\n我想知道……\n我会不会为了这样的原因\n不负责任地跑回家……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 167,
+        "bytes": [
+          7,
+          212,
+          9,
+          185,
+          62,
+          15,
+          230,
+          13,
+          152,
+          3,
+          11,
+          9,
+          202,
+          4,
+          201,
+          8,
+          100,
+          59,
+          15,
+          126,
+          5,
+          233,
+          12,
+          7,
+          254,
+          15,
+          11,
+          16,
+          130,
+          8,
+          193,
+          13,
+          152,
+          3,
+          200,
+          1,
+          214,
+          13,
+          230,
+          14,
+          79,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          15,
+          230,
+          13,
+          152,
+          12,
+          156,
+          2,
+          120,
+          11,
+          216,
+          3,
+          11,
+          3,
+          1,
+          11,
+          173,
+          254,
+          3,
+          165,
+          11,
+          216,
+          8,
+          158,
+          11,
+          238,
+          9,
+          76,
+          12,
+          7,
+          11,
+          11,
+          176,
+          176,
+          251,
+          3,
+          157,
+          15,
+          230,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          125,
+          9,
+          99,
+          3,
+          11,
+          13,
+          152,
+          254,
+          12,
+          12,
+          11,
+          43,
+          11,
+          59,
+          1,
+          214,
+          16,
+          123,
+          3,
+          11,
+          55,
+          251,
+          13,
+          152,
+          14,
+          24,
+          16,
+          123,
+          3,
+          7,
+          176,
+          176,
+          254,
+          13,
+          152,
+          5,
+          110,
+          1,
+          214,
+          5,
+          110,
+          13,
+          112,
+          8,
+          158,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          15,
+          185,
+          15,
+          66,
+          254,
+          1,
+          214,
+          4,
+          36,
+          16,
+          5,
+          11,
+          78,
+          3,
+          31,
+          10,
+          57,
+          5,
+          101,
+          5,
+          189,
+          176,
+          176,
+          255
+        ],
+        "hex": "07 D4 09 B9 3E 0F E6 0D 98 03 0B 09 CA 04 C9 08 64 3B 0F 7E 05 E9 0C 07 FE 0F 0B 10 82 08 C1 0D 98 03 C8 01 D6 0D E6 0E 4F 37 FB 0B 67 04 C3 0F E6 0D 98 0C 9C 02 78 0B D8 03 0B 03 01 0B AD FE 03 A5 0B D8 08 9E 0B EE 09 4C 0C 07 0B 0B B0 B0 FB 03 9D 0F E6 01 63 07 D7 09 66 08 7D 09 63 03 0B 0D 98 FE 0C 0C 0B 2B 0B 3B 01 D6 10 7B 03 0B 37 FB 0D 98 0E 18 10 7B 03 07 B0 B0 FE 0D 98 05 6E 01 D6 05 6E 0D 70 08 9E 10 55 0E E2 03 0B 0F B9 0F 42 FE 01 D6 04 24 10 05 0B 4E 03 1F 0A 39 05 65 05 BD B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 47,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 58,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 67,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 75,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 88,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 100,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_LoreleisHouse_Text_IllReturnToLeagueInShortWhile": {
+      "label": "FourIsland_LoreleisHouse_Text_IllReturnToLeagueInShortWhile",
+      "line": 46,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "raw_text": "科拿：那么，你会在这儿\\n设法解决掉所有的问题？\\p那真是太好了。\\p那也就是说我已经没有理由\\n一直呆在这儿了。\\p真是谢谢你……\\p我过一会儿就回\\n宝可梦联盟。$",
+      "display_text": "科拿：那么，你会在这儿\n设法解决掉所有的问题？\n\n那真是太好了。\n\n那也就是说我已经没有理由\n一直呆在这儿了。\n\n真是谢谢你……\n\n我过一会儿就回\n宝可梦联盟。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 138,
+        "bytes": [
+          7,
+          212,
+          9,
+          185,
+          62,
+          9,
+          189,
+          9,
+          76,
+          59,
+          9,
+          217,
+          5,
+          110,
+          15,
+          230,
+          16,
+          85,
+          3,
+          158,
+          254,
+          11,
+          198,
+          3,
+          171,
+          7,
+          52,
+          7,
+          166,
+          3,
+          59,
+          12,
+          156,
+          15,
+          126,
+          3,
+          11,
+          13,
+          144,
+          12,
+          227,
+          61,
+          251,
+          9,
+          189,
+          16,
+          89,
+          12,
+          12,
+          12,
+          172,
+          4,
+          233,
+          8,
+          158,
+          55,
+          251,
+          9,
+          189,
+          15,
+          2,
+          7,
+          125,
+          12,
+          12,
+          12,
+          88,
+          13,
+          152,
+          15,
+          33,
+          7,
+          93,
+          9,
+          83,
+          15,
+          126,
+          8,
+          98,
+          15,
+          119,
+          254,
+          15,
+          11,
+          16,
+          130,
+          2,
+          212,
+          15,
+          230,
+          16,
+          85,
+          3,
+          158,
+          8,
+          158,
+          55,
+          251,
+          16,
+          89,
+          12,
+          12,
+          14,
+          70,
+          14,
+          70,
+          9,
+          217,
+          176,
+          176,
+          251,
+          13,
+          152,
+          4,
+          197,
+          15,
+          11,
+          5,
+          110,
+          3,
+          158,
+          7,
+          125,
+          5,
+          101,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          125,
+          9,
+          99,
+          55,
+          255
+        ],
+        "hex": "07 D4 09 B9 3E 09 BD 09 4C 3B 09 D9 05 6E 0F E6 10 55 03 9E FE 0B C6 03 AB 07 34 07 A6 03 3B 0C 9C 0F 7E 03 0B 0D 90 0C E3 3D FB 09 BD 10 59 0C 0C 0C AC 04 E9 08 9E 37 FB 09 BD 0F 02 07 7D 0C 0C 0C 58 0D 98 0F 21 07 5D 09 53 0F 7E 08 62 0F 77 FE 0F 0B 10 82 02 D4 0F E6 10 55 03 9E 08 9E 37 FB 10 59 0C 0C 0E 46 0E 46 09 D9 B0 B0 FB 0D 98 04 C5 0F 0B 05 6E 03 9E 07 7D 05 65 FE 01 63 07 D7 09 66 08 7D 09 63 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 47,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 57,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 66,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 75,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 83,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_LoreleisHouse_Text_WillDoWhatICanHereAndNow": {
+      "label": "FourIsland_LoreleisHouse_Text_WillDoWhatICanHereAndNow",
+      "line": 56,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "raw_text": "我不知道\\n未来会怎样……\\p但是，我会尽全力做我所能做的。\\n那也是我唯一能做的了。$",
+      "display_text": "我不知道\n未来会怎样……\n\n但是，我会尽全力做我所能做的。\n那也是我唯一能做的了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 73,
+        "bytes": [
+          13,
+          152,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          254,
+          13,
+          122,
+          8,
+          41,
+          5,
+          110,
+          16,
+          10,
+          14,
+          226,
+          176,
+          176,
+          251,
+          2,
+          233,
+          12,
+          12,
+          59,
+          13,
+          152,
+          5,
+          110,
+          7,
+          81,
+          11,
+          43,
+          8,
+          121,
+          17,
+          46,
+          13,
+          152,
+          12,
+          156,
+          9,
+          210,
+          17,
+          46,
+          3,
+          11,
+          55,
+          254,
+          9,
+          189,
+          15,
+          2,
+          12,
+          12,
+          13,
+          152,
+          13,
+          110,
+          15,
+          11,
+          9,
+          210,
+          17,
+          46,
+          3,
+          11,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0D 98 01 D6 10 7B 03 07 FE 0D 7A 08 29 05 6E 10 0A 0E E2 B0 B0 FB 02 E9 0C 0C 3B 0D 98 05 6E 07 51 0B 2B 08 79 11 2E 0D 98 0C 9C 09 D2 11 2E 03 0B 37 FE 09 BD 0F 02 0C 0C 0D 98 0D 6E 0F 0B 09 D2 11 2E 03 0B 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 43,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_LoreleisHouse_Text_StuffedMonDollsGalore": {
+      "label": "FourIsland_LoreleisHouse_Text_StuffedMonDollsGalore",
+      "line": 62,
+      "source_file": "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc",
+      "raw_text": "胖嘟嘟的宝可梦娃娃被打扮得很漂亮！$",
+      "display_text": "胖嘟嘟的宝可梦娃娃被打扮得很漂亮！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          10,
+          51,
+          20,
+          89,
+          20,
+          89,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          70,
+          13,
+          70,
+          1,
+          120,
+          2,
+          210,
+          1,
+          70,
+          3,
+          10,
+          5,
+          11,
+          10,
+          106,
+          8,
+          148,
+          60,
+          255
+        ],
+        "hex": "0A 33 14 59 14 59 03 0B 01 63 07 D7 09 66 0D 46 0D 46 01 78 02 D2 01 46 03 0A 05 0B 0A 6A 08 94 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "goto_if_set": 2,
+      "map_script": 1,
+      "setflag": 1,
+      "special": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 412,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 5,
+      "faceplayer": 1,
+      "goto_if_set": 2,
+      "lock": 2,
+      "map_script": 1,
+      "msgbox": 4,
+      "release": 4,
+      "setflag": 1,
+      "special": 1
+    }
+  }
+}

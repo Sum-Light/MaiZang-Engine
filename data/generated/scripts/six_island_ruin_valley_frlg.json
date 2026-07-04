@@ -1,0 +1,2181 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SixIsland_RuinValley_Frlg",
+    "map_script": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+    "map_json": "data/maps/SixIsland_RuinValley_Frlg/map.json",
+    "map_id": "MAP_SIX_ISLAND_RUIN_VALLEY",
+    "map_name": "SixIsland_RuinValley_Frlg"
+  },
+  "labels": {
+    "SixIsland_RuinValley_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_OnLoad": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_EventScript_OpenDottedHoleDoor": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_EventScript_Scientist": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "SixIsland_RuinValley_EventScript_DottedHoleDoor": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "SixIsland_RuinValley_EventScript_DottedHoleDoorOpen": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SixIsland_RuinValley_EventScript_IgnoreDottedHoleDoor": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SixIsland_RuinValley_Text_CantFigureOutHowToGetInside": {
+      "kind": "text",
+      "line": 44,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_Text_IFoundThisPlace": {
+      "kind": "text",
+      "line": 48,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_Text_CheckDoorMoreThoroughly": {
+      "kind": "text",
+      "line": 52,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_Text_LeftDoorAlone": {
+      "kind": "text",
+      "line": 56,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SixIsland_RuinValley_Text_SeveralDotsOnTheDoor": {
+      "kind": "text",
+      "line": 59,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_Text_DoorIsOpen": {
+      "kind": "text",
+      "line": 63,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SixIsland_RuinValley_Text_StanlyIntro": {
+      "kind": "text",
+      "line": 66,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_Text_StanlyDefeat": {
+      "kind": "text",
+      "line": 70,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SixIsland_RuinValley_Text_StanlyPostBattle": {
+      "kind": "text",
+      "line": 73,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SixIsland_RuinValley_Text_FosterIntro": {
+      "kind": "text",
+      "line": 78,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_Text_FosterDefeat": {
+      "kind": "text",
+      "line": 82,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_Text_FosterPostBattle": {
+      "kind": "text",
+      "line": 86,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SixIsland_RuinValley_Text_LarryIntro": {
+      "kind": "text",
+      "line": 91,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "SixIsland_RuinValley_Text_LarryDefeat": {
+      "kind": "text",
+      "line": 97,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SixIsland_RuinValley_Text_LarryPostBattle": {
+      "kind": "text",
+      "line": 100,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SixIsland_RuinValley_Text_DarylIntro": {
+      "kind": "text",
+      "line": 105,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SixIsland_RuinValley_Text_DarylDefeat": {
+      "kind": "text",
+      "line": 108,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_Text_DarylPostBattle": {
+      "kind": "text",
+      "line": 112,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SixIsland_RuinValley_Text_HectorIntro": {
+      "kind": "text",
+      "line": 115,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_Text_HectorDefeat": {
+      "kind": "text",
+      "line": 119,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SixIsland_RuinValley_Text_HectorPostBattle": {
+      "kind": "text",
+      "line": 123,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instruction_count": 5
+    }
+  },
+  "scripts": {
+    "SixIsland_RuinValley_Frlg_MapScripts": {
+      "label": "SixIsland_RuinValley_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "SixIsland_RuinValley_OnLoad"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, SixIsland_RuinValley_OnLoad",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SixIsland_RuinValley_OnLoad": {
+      "label": "SixIsland_RuinValley_OnLoad",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_USED_CUT_ON_RUIN_VALLEY_BRAILLE",
+            "SixIsland_RuinValley_EventScript_OpenDottedHoleDoor"
+          ],
+          "line": 6,
+          "raw": "call_if_set FLAG_USED_CUT_ON_RUIN_VALLEY_BRAILLE, SixIsland_RuinValley_EventScript_OpenDottedHoleDoor",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "SixIsland_RuinValley_EventScript_OpenDottedHoleDoor",
+          "line": 6
+        }
+      ]
+    },
+    "SixIsland_RuinValley_EventScript_OpenDottedHoleDoor": {
+      "label": "SixIsland_RuinValley_EventScript_OpenDottedHoleDoor",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "24",
+            "24",
+            "METATILE_SeviiIslands67_DottedHoleDoor_Open",
+            "0"
+          ],
+          "line": 10,
+          "raw": "setmetatile 24, 24, METATILE_SeviiIslands67_DottedHoleDoor_Open, 0",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 11,
+          "raw": "return",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SixIsland_RuinValley_EventScript_Scientist": {
+      "label": "SixIsland_RuinValley_EventScript_Scientist",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 14,
+          "raw": "lock",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SixIsland_RuinValley_Text_CantFigureOutHowToGetInside"
+          ],
+          "line": 15,
+          "raw": "msgbox SixIsland_RuinValley_Text_CantFigureOutHowToGetInside",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_RUIN_VALLEY_SCIENTIST",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 16,
+          "raw": "applymovement LOCALID_RUIN_VALLEY_SCIENTIST, Common_Movement_FacePlayer",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 17,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SixIsland_RuinValley_Text_IFoundThisPlace"
+          ],
+          "line": 18,
+          "raw": "msgbox SixIsland_RuinValley_Text_IFoundThisPlace",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_RUIN_VALLEY_SCIENTIST",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 19,
+          "raw": "applymovement LOCALID_RUIN_VALLEY_SCIENTIST, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 20,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 21,
+          "raw": "release",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SixIsland_RuinValley_Text_CantFigureOutHowToGetInside",
+          "mode": "",
+          "line": 15
+        },
+        {
+          "op": "msgbox",
+          "text_label": "SixIsland_RuinValley_Text_IFoundThisPlace",
+          "mode": "",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "SixIsland_RuinValley_EventScript_DottedHoleDoor": {
+      "label": "SixIsland_RuinValley_EventScript_DottedHoleDoor",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 25,
+          "raw": "lockall",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_USED_CUT_ON_RUIN_VALLEY_BRAILLE",
+            "SixIsland_RuinValley_EventScript_DottedHoleDoorOpen"
+          ],
+          "line": 26,
+          "raw": "goto_if_set FLAG_USED_CUT_ON_RUIN_VALLEY_BRAILLE, SixIsland_RuinValley_EventScript_DottedHoleDoorOpen",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SixIsland_RuinValley_Text_CheckDoorMoreThoroughly",
+            "MSGBOX_YESNO"
+          ],
+          "line": 27,
+          "raw": "msgbox SixIsland_RuinValley_Text_CheckDoorMoreThoroughly, MSGBOX_YESNO",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "SixIsland_RuinValley_EventScript_IgnoreDottedHoleDoor"
+          ],
+          "line": 28,
+          "raw": "goto_if_eq VAR_RESULT, NO, SixIsland_RuinValley_EventScript_IgnoreDottedHoleDoor",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SixIsland_RuinValley_Text_SeveralDotsOnTheDoor"
+          ],
+          "line": 29,
+          "raw": "msgbox SixIsland_RuinValley_Text_SeveralDotsOnTheDoor",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_Cut"
+          ],
+          "line": 30,
+          "raw": "braillemsgbox Braille_Text_Cut",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 31,
+          "raw": "releaseall",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SixIsland_RuinValley_Text_CheckDoorMoreThoroughly",
+          "mode": "MSGBOX_YESNO",
+          "line": 27
+        },
+        {
+          "op": "msgbox",
+          "text_label": "SixIsland_RuinValley_Text_SeveralDotsOnTheDoor",
+          "mode": "",
+          "line": 29
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "SixIsland_RuinValley_EventScript_DottedHoleDoorOpen",
+          "line": 26
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "SixIsland_RuinValley_EventScript_IgnoreDottedHoleDoor",
+          "line": 28
+        }
+      ]
+    },
+    "SixIsland_RuinValley_EventScript_DottedHoleDoorOpen": {
+      "label": "SixIsland_RuinValley_EventScript_DottedHoleDoorOpen",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SixIsland_RuinValley_Text_DoorIsOpen"
+          ],
+          "line": 35,
+          "raw": "msgbox SixIsland_RuinValley_Text_DoorIsOpen",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 36,
+          "raw": "releaseall",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SixIsland_RuinValley_Text_DoorIsOpen",
+          "mode": "",
+          "line": 35
+        }
+      ],
+      "branch_targets": []
+    },
+    "SixIsland_RuinValley_EventScript_IgnoreDottedHoleDoor": {
+      "label": "SixIsland_RuinValley_EventScript_IgnoreDottedHoleDoor",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SixIsland_RuinValley_Text_LeftDoorAlone"
+          ],
+          "line": 40,
+          "raw": "msgbox SixIsland_RuinValley_Text_LeftDoorAlone",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 41,
+          "raw": "releaseall",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SixIsland_RuinValley_Text_LeftDoorAlone",
+          "mode": "",
+          "line": 40
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SixIsland_RuinValley_Text_CantFigureOutHowToGetInside": {
+      "label": "SixIsland_RuinValley_Text_CantFigureOutHowToGetInside",
+      "line": 44,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "我弄不明白我是怎样\\n进来的。$",
+      "display_text": "我弄不明白我是怎样\n进来的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          13,
+          152,
+          10,
+          7,
+          1,
+          214,
+          9,
+          143,
+          1,
+          54,
+          13,
+          152,
+          12,
+          12,
+          16,
+          10,
+          14,
+          226,
+          254,
+          7,
+          74,
+          8,
+          41,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "0D 98 0A 07 01 D6 09 8F 01 36 0D 98 0C 0C 10 0A 0E E2 FE 07 4A 08 29 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_IFoundThisPlace": {
+      "label": "SixIsland_RuinValley_Text_IFoundThisPlace",
+      "line": 48,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "告诉你吧，是我找到了这个地方。\\p别一脸嫉妒地看着我，好吗？$",
+      "display_text": "告诉你吧，是我找到了这个地方。\n\n别一脸嫉妒地看着我，好吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          4,
+          80,
+          12,
+          130,
+          9,
+          217,
+          1,
+          40,
+          59,
+          12,
+          12,
+          13,
+          152,
+          16,
+          69,
+          3,
+          4,
+          8,
+          158,
+          16,
+          85,
+          4,
+          96,
+          3,
+          31,
+          3,
+          192,
+          55,
+          251,
+          1,
+          173,
+          15,
+          11,
+          8,
+          134,
+          5,
+          160,
+          3,
+          111,
+          3,
+          31,
+          7,
+          194,
+          16,
+          244,
+          13,
+          152,
+          59,
+          4,
+          233,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "04 50 0C 82 09 D9 01 28 3B 0C 0C 0D 98 10 45 03 04 08 9E 10 55 04 60 03 1F 03 C0 37 FB 01 AD 0F 0B 08 86 05 A0 03 6F 03 1F 07 C2 10 F4 0D 98 3B 04 E9 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_CheckDoorMoreThoroughly": {
+      "label": "SixIsland_RuinValley_Text_CheckDoorMoreThoroughly",
+      "line": 52,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "这扇门动都没动一下。\\n再认真检查一遍吧？$",
+      "display_text": "这扇门动都没动一下。\n再认真检查一遍吧？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          16,
+          85,
+          11,
+          166,
+          9,
+          93,
+          3,
+          84,
+          3,
+          97,
+          9,
+          83,
+          3,
+          84,
+          15,
+          11,
+          13,
+          230,
+          55,
+          254,
+          15,
+          229,
+          11,
+          79,
+          16,
+          89,
+          5,
+          215,
+          2,
+          13,
+          15,
+          11,
+          1,
+          166,
+          1,
+          40,
+          61,
+          255
+        ],
+        "hex": "10 55 0B A6 09 5D 03 54 03 61 09 53 03 54 0F 0B 0D E6 37 FE 0F E5 0B 4F 10 59 05 D7 02 0D 0F 0B 01 A6 01 28 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_LeftDoorAlone": {
+      "label": "SixIsland_RuinValley_Text_LeftDoorAlone",
+      "line": 56,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}不管这扇门了。$",
+      "display_text": "{PLAYER}不管这扇门了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          253,
+          1,
+          1,
+          214,
+          4,
+          164,
+          16,
+          85,
+          11,
+          166,
+          9,
+          93,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "FD 01 01 D6 04 A4 10 55 0B A6 09 5D 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_SeveralDotsOnTheDoor": {
+      "label": "SixIsland_RuinValley_Text_SeveralDotsOnTheDoor",
+      "line": 59,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "仔细观察，发现门上\\n有几个代码。$",
+      "display_text": "仔细观察，发现门上\n有几个代码。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 30,
+        "bytes": [
+          17,
+          8,
+          13,
+          220,
+          4,
+          163,
+          2,
+          16,
+          59,
+          3,
+          165,
+          14,
+          3,
+          9,
+          93,
+          11,
+          173,
+          254,
+          15,
+          126,
+          5,
+          163,
+          4,
+          96,
+          2,
+          218,
+          9,
+          37,
+          55,
+          255
+        ],
+        "hex": "11 08 0D DC 04 A3 02 10 3B 03 A5 0E 03 09 5D 0B AD FE 0F 7E 05 A3 04 60 02 DA 09 25 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_DoorIsOpen": {
+      "label": "SixIsland_RuinValley_Text_DoorIsOpen",
+      "line": 63,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "门打开了。$",
+      "display_text": "门打开了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 10,
+        "bytes": [
+          9,
+          93,
+          2,
+          210,
+          7,
+          184,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "09 5D 02 D2 07 B8 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 5,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_StanlyIntro": {
+      "label": "SixIsland_RuinValley_Text_StanlyIntro",
+      "line": 66,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "在这个世界上显然还有\\n很多秘密是没有解开的。$",
+      "display_text": "在这个世界上显然还有\n很多秘密是没有解开的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          15,
+          230,
+          16,
+          85,
+          4,
+          96,
+          12,
+          5,
+          7,
+          57,
+          11,
+          173,
+          14,
+          1,
+          11,
+          59,
+          5,
+          70,
+          15,
+          126,
+          254,
+          5,
+          11,
+          3,
+          133,
+          9,
+          112,
+          9,
+          116,
+          12,
+          12,
+          9,
+          83,
+          15,
+          126,
+          7,
+          52,
+          7,
+          184,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "0F E6 10 55 04 60 0C 05 07 39 0B AD 0E 01 0B 3B 05 46 0F 7E FE 05 0B 03 85 09 70 09 74 0C 0C 09 53 0F 7E 07 34 07 B8 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_StanlyDefeat": {
+      "label": "SixIsland_RuinValley_Text_StanlyDefeat",
+      "line": 70,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "嗯……$",
+      "display_text": "嗯……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 5,
+        "bytes": [
+          20,
+          97,
+          176,
+          176,
+          255
+        ],
+        "hex": "14 61 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 3,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_StanlyPostBattle": {
+      "label": "SixIsland_RuinValley_Text_StanlyPostBattle",
+      "line": 73,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "我建议你在某一天\\n也来思考一下\\l这个世界的未解之谜。$",
+      "display_text": "我建议你在某一天\n也来思考一下\n这个世界的未解之谜。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 50,
+        "bytes": [
+          13,
+          152,
+          5,
+          241,
+          15,
+          57,
+          9,
+          217,
+          15,
+          230,
+          9,
+          169,
+          15,
+          11,
+          12,
+          237,
+          254,
+          15,
+          2,
+          8,
+          41,
+          12,
+          95,
+          7,
+          202,
+          15,
+          11,
+          13,
+          230,
+          250,
+          16,
+          85,
+          4,
+          96,
+          12,
+          5,
+          7,
+          57,
+          3,
+          11,
+          13,
+          122,
+          7,
+          52,
+          16,
+          127,
+          9,
+          109,
+          55,
+          255
+        ],
+        "hex": "0D 98 05 F1 0F 39 09 D9 0F E6 09 A9 0F 0B 0C ED FE 0F 02 08 29 0C 5F 07 CA 0F 0B 0D E6 FA 10 55 04 60 0C 05 07 39 03 0B 0D 7A 07 34 10 7F 09 6D 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 16,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_FosterIntro": {
+      "label": "SixIsland_RuinValley_Text_FosterIntro",
+      "line": 78,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "我很好奇，是什么\\n驱使你来这儿的？$",
+      "display_text": "我很好奇，是什么\n驱使你来这儿的？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          13,
+          152,
+          5,
+          11,
+          4,
+          233,
+          10,
+          161,
+          59,
+          12,
+          12,
+          11,
+          238,
+          9,
+          76,
+          254,
+          11,
+          31,
+          11,
+          245,
+          9,
+          217,
+          8,
+          41,
+          16,
+          85,
+          3,
+          158,
+          3,
+          11,
+          61,
+          255
+        ],
+        "hex": "0D 98 05 0B 04 E9 0A A1 3B 0C 0C 0B EE 09 4C FE 0B 1F 0B F5 09 D9 08 29 10 55 03 9E 03 0B 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_FosterDefeat": {
+      "label": "SixIsland_RuinValley_Text_FosterDefeat",
+      "line": 82,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "离上次战斗已经过去很久了，\\n我的直觉早没了。$",
+      "display_text": "离上次战斗已经过去很久了，\n我的直觉早没了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 42,
+        "bytes": [
+          8,
+          96,
+          11,
+          173,
+          2,
+          174,
+          16,
+          48,
+          3,
+          92,
+          15,
+          33,
+          7,
+          93,
+          4,
+          197,
+          11,
+          37,
+          5,
+          11,
+          7,
+          115,
+          8,
+          158,
+          59,
+          254,
+          13,
+          152,
+          3,
+          11,
+          16,
+          130,
+          7,
+          165,
+          15,
+          243,
+          9,
+          83,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "08 60 0B AD 02 AE 10 30 03 5C 0F 21 07 5D 04 C5 0B 25 05 0B 07 73 08 9E 3B FE 0D 98 03 0B 10 82 07 A5 0F F3 09 53 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_FosterPostBattle": {
+      "label": "SixIsland_RuinValley_Text_FosterPostBattle",
+      "line": 86,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "在七岛有几个遗址\\p大部分都可以追溯至\\n很久很久以前了。$",
+      "display_text": "在七岛有几个遗址\n\n大部分都可以追溯至\n很久很久以前了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 52,
+        "bytes": [
+          15,
+          230,
+          10,
+          154,
+          3,
+          1,
+          15,
+          126,
+          5,
+          163,
+          4,
+          96,
+          15,
+          21,
+          16,
+          136,
+          251,
+          2,
+          211,
+          1,
+          218,
+          3,
+          217,
+          3,
+          97,
+          7,
+          215,
+          15,
+          36,
+          16,
+          230,
+          12,
+          128,
+          16,
+          146,
+          254,
+          5,
+          11,
+          7,
+          115,
+          5,
+          11,
+          7,
+          115,
+          15,
+          36,
+          10,
+          201,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0F E6 0A 9A 03 01 0F 7E 05 A3 04 60 0F 15 10 88 FB 02 D3 01 DA 03 D9 03 61 07 D7 0F 24 10 E6 0C 80 10 92 FE 05 0B 07 73 05 0B 07 73 0F 24 0A C9 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_LarryIntro": {
+      "label": "SixIsland_RuinValley_Text_LarryIntro",
+      "line": 91,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "据说在这座岛上\\n有一些神秘的石头。\\p我怀疑它们与\\n这些遗址有关$",
+      "display_text": "据说在这座岛上\n有一些神秘的石头。\n\n我怀疑它们与\n这些遗址有关",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 59,
+        "bytes": [
+          7,
+          141,
+          12,
+          88,
+          15,
+          230,
+          16,
+          85,
+          17,
+          49,
+          3,
+          1,
+          11,
+          173,
+          254,
+          15,
+          126,
+          15,
+          11,
+          14,
+          52,
+          11,
+          207,
+          9,
+          112,
+          3,
+          11,
+          11,
+          235,
+          13,
+          31,
+          55,
+          251,
+          13,
+          152,
+          5,
+          64,
+          15,
+          25,
+          12,
+          159,
+          9,
+          95,
+          15,
+          153,
+          254,
+          16,
+          85,
+          14,
+          52,
+          15,
+          21,
+          16,
+          136,
+          15,
+          126,
+          4,
+          160,
+          255
+        ],
+        "hex": "07 8D 0C 58 0F E6 10 55 11 31 03 01 0B AD FE 0F 7E 0F 0B 0E 34 0B CF 09 70 03 0B 0B EB 0D 1F 37 FB 0D 98 05 40 0F 19 0C 9F 09 5F 0F 99 FE 10 55 0E 34 0F 15 10 88 0F 7E 04 A0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 34,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_LarryDefeat": {
+      "label": "SixIsland_RuinValley_Text_LarryDefeat",
+      "line": 97,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "噢，太有趣了。$",
+      "display_text": "噢，太有趣了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 13,
+        "bytes": [
+          20,
+          122,
+          59,
+          12,
+          172,
+          15,
+          126,
+          11,
+          36,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "14 7A 3B 0C AC 0F 7E 0B 24 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 7,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_LarryPostBattle": {
+      "label": "SixIsland_RuinValley_Text_LarryPostBattle",
+      "line": 100,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "那些遗址……\\p我想我没有这个运气\\n找到方法进去。$",
+      "display_text": "那些遗址……\n\n我想我没有这个运气\n找到方法进去。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 44,
+        "bytes": [
+          9,
+          189,
+          14,
+          52,
+          15,
+          21,
+          16,
+          136,
+          176,
+          176,
+          251,
+          13,
+          152,
+          14,
+          24,
+          13,
+          152,
+          9,
+          83,
+          15,
+          126,
+          16,
+          85,
+          4,
+          96,
+          15,
+          215,
+          10,
+          179,
+          254,
+          16,
+          69,
+          3,
+          4,
+          3,
+          192,
+          3,
+          171,
+          7,
+          74,
+          11,
+          37,
+          55,
+          255
+        ],
+        "hex": "09 BD 0E 34 0F 15 10 88 B0 B0 FB 0D 98 0E 18 0D 98 09 53 0F 7E 10 55 04 60 0F D7 0A B3 FE 10 45 03 04 03 C0 03 AB 07 4A 0B 25 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 6,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 17,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_DarylIntro": {
+      "label": "SixIsland_RuinValley_Text_DarylIntro",
+      "line": 105,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "和你战斗一场，太兴奋了！$",
+      "display_text": "和你战斗一场，太兴奋了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          4,
+          243,
+          9,
+          217,
+          16,
+          48,
+          3,
+          92,
+          15,
+          11,
+          2,
+          35,
+          59,
+          12,
+          172,
+          14,
+          86,
+          3,
+          223,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "04 F3 09 D9 10 30 03 5C 0F 0B 02 23 3B 0C AC 0E 56 03 DF 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_DarylDefeat": {
+      "label": "SixIsland_RuinValley_Text_DarylDefeat",
+      "line": 108,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "噢，失败太容易换来\\n心碎的感觉了！$",
+      "display_text": "噢，失败太容易换来\n心碎的感觉了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          20,
+          122,
+          59,
+          11,
+          227,
+          1,
+          59,
+          12,
+          172,
+          11,
+          93,
+          15,
+          39,
+          5,
+          72,
+          8,
+          41,
+          254,
+          14,
+          79,
+          12,
+          140,
+          3,
+          11,
+          4,
+          58,
+          7,
+          165,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "14 7A 3B 0B E3 01 3B 0C AC 0B 5D 0F 27 05 48 08 29 FE 0E 4F 0C 8C 03 0B 04 3A 07 A5 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_DarylPostBattle": {
+      "label": "SixIsland_RuinValley_Text_DarylPostBattle",
+      "line": 112,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "体验攀岩的乐趣！$",
+      "display_text": "体验攀岩的乐趣！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          12,
+          230,
+          14,
+          210,
+          10,
+          39,
+          14,
+          187,
+          3,
+          11,
+          8,
+          75,
+          11,
+          36,
+          60,
+          255
+        ],
+        "hex": "0C E6 0E D2 0A 27 0E BB 03 0B 08 4B 0B 24 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_HectorIntro": {
+      "label": "SixIsland_RuinValley_Text_HectorIntro",
+      "line": 115,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "在这个地区\\n我对这块陆地实在太熟悉了。$",
+      "display_text": "在这个地区\n我对这块陆地实在太熟悉了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 37,
+        "bytes": [
+          15,
+          230,
+          16,
+          85,
+          4,
+          96,
+          3,
+          31,
+          11,
+          26,
+          254,
+          13,
+          152,
+          3,
+          121,
+          16,
+          85,
+          8,
+          0,
+          8,
+          238,
+          3,
+          31,
+          11,
+          241,
+          15,
+          230,
+          12,
+          172,
+          12,
+          49,
+          13,
+          200,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0F E6 10 55 04 60 03 1F 0B 1A FE 0D 98 03 79 10 55 08 00 08 EE 03 1F 0B F1 0F E6 0C AC 0C 31 0D C8 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_HectorDefeat": {
+      "label": "SixIsland_RuinValley_Text_HectorDefeat",
+      "line": 119,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "你不需要这么上进。\\n我很高兴地告诉你。$",
+      "display_text": "你不需要这么上进。\n我很高兴地告诉你。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          9,
+          217,
+          1,
+          214,
+          14,
+          115,
+          14,
+          241,
+          16,
+          85,
+          9,
+          76,
+          11,
+          173,
+          7,
+          74,
+          55,
+          254,
+          13,
+          152,
+          5,
+          11,
+          4,
+          73,
+          14,
+          86,
+          3,
+          31,
+          4,
+          80,
+          12,
+          130,
+          9,
+          217,
+          55,
+          255
+        ],
+        "hex": "09 D9 01 D6 0E 73 0E F1 10 55 09 4C 0B AD 07 4A 37 FE 0D 98 05 0B 04 49 0E 56 03 1F 04 50 0C 82 09 D9 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SixIsland_RuinValley_Text_HectorPostBattle": {
+      "label": "SixIsland_RuinValley_Text_HectorPostBattle",
+      "line": 123,
+      "source_file": "data/maps/SixIsland_RuinValley_Frlg/scripts.inc",
+      "raw_text": "通往遗址的门……\\n在外面有一些奇怪的\\l花纹刻在上面。\\p不过，\\n我不知道它们代表什么。$",
+      "display_text": "通往遗址的门……\n在外面有一些奇怪的\n花纹刻在上面。\n\n不过，\n我不知道它们代表什么。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          13,
+          16,
+          13,
+          97,
+          15,
+          21,
+          16,
+          136,
+          3,
+          11,
+          9,
+          93,
+          176,
+          176,
+          254,
+          15,
+          230,
+          13,
+          74,
+          9,
+          126,
+          15,
+          126,
+          15,
+          11,
+          14,
+          52,
+          10,
+          161,
+          4,
+          158,
+          3,
+          11,
+          250,
+          5,
+          53,
+          13,
+          140,
+          7,
+          218,
+          15,
+          230,
+          11,
+          173,
+          9,
+          126,
+          55,
+          251,
+          1,
+          214,
+          4,
+          197,
+          59,
+          254,
+          13,
+          152,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          12,
+          159,
+          9,
+          95,
+          2,
+          218,
+          1,
+          170,
+          11,
+          238,
+          9,
+          76,
+          55,
+          255
+        ],
+        "hex": "0D 10 0D 61 0F 15 10 88 03 0B 09 5D B0 B0 FE 0F E6 0D 4A 09 7E 0F 7E 0F 0B 0E 34 0A A1 04 9E 03 0B FA 05 35 0D 8C 07 DA 0F E6 0B AD 09 7E 37 FB 01 D6 04 C5 3B FE 0D 98 01 D6 10 7B 03 07 0C 9F 09 5F 02 DA 01 AA 0B EE 09 4C 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 19,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 46,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 2,
+      "braillemsgbox": 1,
+      "call_if_set": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "map_script": 1,
+      "setmetatile": 1,
+      "waitmovement": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 28,
+    "script_count": 7,
+    "movement_count": 0,
+    "text_count": 21,
+    "encoded_text_count": 21,
+    "text_source_byte_count": 735,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 21
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 2,
+      "braillemsgbox": 1,
+      "call_if_set": 1,
+      "end": 5,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "lockall": 1,
+      "map_script": 1,
+      "msgbox": 6,
+      "release": 1,
+      "releaseall": 3,
+      "return": 1,
+      "setmetatile": 1,
+      "waitmovement": 2
+    }
+  }
+}

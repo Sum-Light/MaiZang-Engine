@@ -1,0 +1,6412 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PetalburgWoods",
+    "map_script": "data/maps/PetalburgWoods/scripts.inc",
+    "map_json": "data/maps/PetalburgWoods/map.json",
+    "map_id": "MAP_PETALBURG_WOODS",
+    "map_name": "PetalburgWoods"
+  },
+  "labels": {
+    "PetalburgWoods_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_EventScript_DevonResearcherLeft": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 33
+    },
+    "PetalburgWoods_EventScript_DevonResearcherRight": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 34
+    },
+    "PetalburgWoods_EventScript_DevonResearcherIntro": {
+      "kind": "script",
+      "line": 75,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 5
+    },
+    "PetalburgWoods_EventScript_DevonResearcherPostBattle": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 12
+    },
+    "PetalburgWoods_EventScript_BagFull": {
+      "kind": "script",
+      "line": 96,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgWoods_EventScript_DevonResearcherFinish": {
+      "kind": "script",
+      "line": 101,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 6
+    },
+    "PetalburgWoods_EventScript_RemoveDevonResearcher": {
+      "kind": "script",
+      "line": 109,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 4
+    },
+    "PetalburgWoods_Movement_DevonResearcherLookAround": {
+      "kind": "movement",
+      "line": 115,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 17
+    },
+    "PetalburgWoods_Movement_DevonResearcherExitLeft": {
+      "kind": "movement",
+      "line": 134,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 9
+    },
+    "PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft": {
+      "kind": "movement",
+      "line": 145,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 5
+    },
+    "PetalburgWoods_Movement_DevonResearcherApproachPlayerRight": {
+      "kind": "movement",
+      "line": 152,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 7
+    },
+    "PetalburgWoods_Movement_DevonResearcherExitRight": {
+      "kind": "movement",
+      "line": 161,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 9
+    },
+    "PetalburgWoods_Movement_WatchResearcherLeave": {
+      "kind": "movement",
+      "line": 172,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 4
+    },
+    "PetalburgWoods_Movement_DevonResearcherFleeToPlayerLeft": {
+      "kind": "movement",
+      "line": 178,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 6
+    },
+    "PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight": {
+      "kind": "movement",
+      "line": 186,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 4
+    },
+    "PetalburgWoods_Movement_DevonResearcherStartExit": {
+      "kind": "movement",
+      "line": 192,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 8
+    },
+    "PetalburgWoods_Movement_AquaApproachResearcherLeft": {
+      "kind": "movement",
+      "line": 202,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgWoods_Movement_AquaBackOff": {
+      "kind": "movement",
+      "line": 207,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 4
+    },
+    "PetalburgWoods_Movement_AquaRunAway": {
+      "kind": "movement",
+      "line": 213,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 8
+    },
+    "PetalburgWoods_Movement_AquaApproachResearcherRight": {
+      "kind": "movement",
+      "line": 223,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 4
+    },
+    "PetalburgWoods_Movement_AquaEntrance": {
+      "kind": "movement",
+      "line": 229,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 5
+    },
+    "PetalburgWoods_Movement_AquaApproachPlayer": {
+      "kind": "movement",
+      "line": 236,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgWoods_EventScript_Boy1": {
+      "kind": "script",
+      "line": 240,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgWoods_EventScript_Boy2": {
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgWoods_EventScript_Girl": {
+      "kind": "script",
+      "line": 248,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 9
+    },
+    "PetalburgWoods_EventScript_ExplainMiracleSeed": {
+      "kind": "script",
+      "line": 259,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgWoods_EventScript_Sign1": {
+      "kind": "script",
+      "line": 264,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgWoods_EventScript_Sign2": {
+      "kind": "script",
+      "line": 268,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgWoods_EventScript_Lyle": {
+      "kind": "script",
+      "line": 272,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgWoods_EventScript_James": {
+      "kind": "script",
+      "line": 277,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 9
+    },
+    "PetalburgWoods_EventScript_TryRegisterJames": {
+      "kind": "script",
+      "line": 288,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 5
+    },
+    "PetalburgWoods_EventScript_RegisterJames": {
+      "kind": "script",
+      "line": 295,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 4
+    },
+    "PetalburgWoods_EventScript_TryRegisterJames2": {
+      "kind": "script",
+      "line": 301,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 4
+    },
+    "PetalburgWoods_EventScript_RegisterJames2": {
+      "kind": "script",
+      "line": 307,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 4
+    },
+    "PetalburgWoods_EventScript_JamesRematch": {
+      "kind": "script",
+      "line": 313,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgWoods_Text_NotAOneToBeFound": {
+      "kind": "text",
+      "line": 318,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_HaveYouSeenShroomish": {
+      "kind": "text",
+      "line": 321,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_IWasGoingToAmbushYou": {
+      "kind": "text",
+      "line": 324,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_HandOverThosePapers": {
+      "kind": "text",
+      "line": 327,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_YouHaveToHelpMe": {
+      "kind": "text",
+      "line": 330,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_NoOneCrossesTeamAqua": {
+      "kind": "text",
+      "line": 333,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_YoureKiddingMe": {
+      "kind": "text",
+      "line": 336,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_YouveGotSomeNerve": {
+      "kind": "text",
+      "line": 339,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_ThatWasAwfullyClose": {
+      "kind": "text",
+      "line": 342,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro": {
+      "kind": "text",
+      "line": 345,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_ICantBeWastingTime": {
+      "kind": "text",
+      "line": 348,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_YoureLoadedWithItems": {
+      "kind": "text",
+      "line": 351,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_GoBugPokemonTeam": {
+      "kind": "text",
+      "line": 354,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_ICouldntWin": {
+      "kind": "text",
+      "line": 357,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_ImOutOfPokeBalls": {
+      "kind": "text",
+      "line": 360,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_InstantlyPopularWithBugPokemon": {
+      "kind": "text",
+      "line": 363,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_CantBePopularIfILose": {
+      "kind": "text",
+      "line": 366,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_PeopleRespectYou": {
+      "kind": "text",
+      "line": 369,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_IWantRematch1": {
+      "kind": "text",
+      "line": 372,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_IWantRematch2": {
+      "kind": "text",
+      "line": 375,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_MyPokemonHaveGrown": {
+      "kind": "text",
+      "line": 378,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_CantBePopularIfLose": {
+      "kind": "text",
+      "line": 381,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_IveBeenTrainingHard": {
+      "kind": "text",
+      "line": 384,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_StayOutOfTallGrass": {
+      "kind": "text",
+      "line": 387,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_HiddenItemsExplanation": {
+      "kind": "text",
+      "line": 390,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_TryUsingThisItem": {
+      "kind": "text",
+      "line": 393,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_MiracleSeedExplanation": {
+      "kind": "text",
+      "line": 396,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_TrainerTipsExperience": {
+      "kind": "text",
+      "line": 399,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgWoods_Text_TrainerTipsPP": {
+      "kind": "text",
+      "line": 402,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "PetalburgWoods_MapScripts": {
+      "label": "PetalburgWoods_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_DevonResearcherLeft": {
+      "label": "PetalburgWoods_EventScript_DevonResearcherLeft",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 5,
+          "raw": "lockall",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PetalburgWoods_EventScript_DevonResearcherIntro"
+          ],
+          "line": 6,
+          "raw": "call PetalburgWoods_EventScript_DevonResearcherIntro",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+            "PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft"
+          ],
+          "line": 7,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 8,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_HaveYouSeenShroomish",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 9,
+          "raw": "msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 10,
+          "raw": "closemessage",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_ENCOUNTER_AQUA",
+            "FALSE"
+          ],
+          "line": 11,
+          "raw": "playbgm MUS_ENCOUNTER_AQUA, FALSE",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_GRUNT",
+            "PetalburgWoods_Movement_AquaEntrance"
+          ],
+          "line": 12,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_GRUNT, PetalburgWoods_Movement_AquaEntrance",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 13,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_IWasGoingToAmbushYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 14,
+          "raw": "msgbox PetalburgWoods_Text_IWasGoingToAmbushYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 15,
+          "raw": "closemessage",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_GRUNT",
+            "PetalburgWoods_Movement_AquaApproachResearcherLeft"
+          ],
+          "line": 16,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_GRUNT, PetalburgWoods_Movement_AquaApproachResearcherLeft",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 17,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 18,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 19,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_HandOverThosePapers",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 20,
+          "raw": "msgbox PetalburgWoods_Text_HandOverThosePapers, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 21,
+          "raw": "closemessage",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+            "PetalburgWoods_Movement_DevonResearcherFleeToPlayerLeft"
+          ],
+          "line": 22,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherFleeToPlayerLeft",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 23,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_YouHaveToHelpMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 24,
+          "raw": "msgbox PetalburgWoods_Text_YouHaveToHelpMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 25,
+          "raw": "closemessage",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_GRUNT",
+            "PetalburgWoods_Movement_AquaApproachPlayer"
+          ],
+          "line": 26,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_GRUNT, PetalburgWoods_Movement_AquaApproachPlayer",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 27,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_NoOneCrossesTeamAqua",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 28,
+          "raw": "msgbox PetalburgWoods_Text_NoOneCrossesTeamAqua, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "trainerbattle_no_intro",
+          "args": [
+            "TRAINER_GRUNT_PETALBURG_WOODS",
+            "PetalburgWoods_Text_YoureKiddingMe"
+          ],
+          "line": 29,
+          "raw": "trainerbattle_no_intro TRAINER_GRUNT_PETALBURG_WOODS, PetalburgWoods_Text_YoureKiddingMe",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_GRUNT",
+            "PetalburgWoods_Movement_AquaBackOff"
+          ],
+          "line": 30,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_GRUNT, PetalburgWoods_Movement_AquaBackOff",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 31,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PetalburgWoods_EventScript_DevonResearcherPostBattle"
+          ],
+          "line": 32,
+          "raw": "call PetalburgWoods_EventScript_DevonResearcherPostBattle",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "PetalburgWoods_Movement_WatchResearcherLeave"
+          ],
+          "line": 33,
+          "raw": "applymovement LOCALID_PLAYER, PetalburgWoods_Movement_WatchResearcherLeave",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+            "PetalburgWoods_Movement_DevonResearcherExitLeft"
+          ],
+          "line": 34,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherExitLeft",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 35,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "PetalburgWoods_EventScript_RemoveDevonResearcher"
+          ],
+          "line": 36,
+          "raw": "goto PetalburgWoods_EventScript_RemoveDevonResearcher",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_HaveYouSeenShroomish",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 9
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_IWasGoingToAmbushYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 14
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_HandOverThosePapers",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 20
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_YouHaveToHelpMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 24
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_NoOneCrossesTeamAqua",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 28
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PetalburgWoods_EventScript_DevonResearcherIntro",
+          "line": 6
+        },
+        {
+          "op": "call",
+          "target": "PetalburgWoods_EventScript_DevonResearcherPostBattle",
+          "line": 32
+        },
+        {
+          "op": "goto",
+          "target": "PetalburgWoods_EventScript_RemoveDevonResearcher",
+          "line": 36
+        }
+      ]
+    },
+    "PetalburgWoods_EventScript_DevonResearcherRight": {
+      "label": "PetalburgWoods_EventScript_DevonResearcherRight",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 40,
+          "raw": "lockall",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PetalburgWoods_EventScript_DevonResearcherIntro"
+          ],
+          "line": 41,
+          "raw": "call PetalburgWoods_EventScript_DevonResearcherIntro",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+            "PetalburgWoods_Movement_DevonResearcherApproachPlayerRight"
+          ],
+          "line": 42,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherApproachPlayerRight",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 43,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 44,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 45,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_HaveYouSeenShroomish",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 46,
+          "raw": "msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 47,
+          "raw": "closemessage",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_ENCOUNTER_AQUA",
+            "FALSE"
+          ],
+          "line": 48,
+          "raw": "playbgm MUS_ENCOUNTER_AQUA, FALSE",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_GRUNT",
+            "PetalburgWoods_Movement_AquaEntrance"
+          ],
+          "line": 49,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_GRUNT, PetalburgWoods_Movement_AquaEntrance",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 50,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_IWasGoingToAmbushYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 51,
+          "raw": "msgbox PetalburgWoods_Text_IWasGoingToAmbushYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 52,
+          "raw": "closemessage",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_GRUNT",
+            "PetalburgWoods_Movement_AquaApproachResearcherRight"
+          ],
+          "line": 53,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_GRUNT, PetalburgWoods_Movement_AquaApproachResearcherRight",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 54,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 55,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 56,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_HandOverThosePapers",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 57,
+          "raw": "msgbox PetalburgWoods_Text_HandOverThosePapers, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 58,
+          "raw": "closemessage",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+            "PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight"
+          ],
+          "line": 59,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 60,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_YouHaveToHelpMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 61,
+          "raw": "msgbox PetalburgWoods_Text_YouHaveToHelpMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 62,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 63,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_NoOneCrossesTeamAqua",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 64,
+          "raw": "msgbox PetalburgWoods_Text_NoOneCrossesTeamAqua, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "trainerbattle_no_intro",
+          "args": [
+            "TRAINER_GRUNT_PETALBURG_WOODS",
+            "PetalburgWoods_Text_YoureKiddingMe"
+          ],
+          "line": 65,
+          "raw": "trainerbattle_no_intro TRAINER_GRUNT_PETALBURG_WOODS, PetalburgWoods_Text_YoureKiddingMe",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_GRUNT",
+            "PetalburgWoods_Movement_AquaBackOff"
+          ],
+          "line": 66,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_GRUNT, PetalburgWoods_Movement_AquaBackOff",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 67,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PetalburgWoods_EventScript_DevonResearcherPostBattle"
+          ],
+          "line": 68,
+          "raw": "call PetalburgWoods_EventScript_DevonResearcherPostBattle",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "PetalburgWoods_Movement_WatchResearcherLeave"
+          ],
+          "line": 69,
+          "raw": "applymovement LOCALID_PLAYER, PetalburgWoods_Movement_WatchResearcherLeave",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+            "PetalburgWoods_Movement_DevonResearcherExitRight"
+          ],
+          "line": 70,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherExitRight",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 71,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "PetalburgWoods_EventScript_RemoveDevonResearcher"
+          ],
+          "line": 72,
+          "raw": "goto PetalburgWoods_EventScript_RemoveDevonResearcher",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 73,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_HaveYouSeenShroomish",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 46
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_IWasGoingToAmbushYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 51
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_HandOverThosePapers",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 57
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_YouHaveToHelpMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 61
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_NoOneCrossesTeamAqua",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 64
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PetalburgWoods_EventScript_DevonResearcherIntro",
+          "line": 41
+        },
+        {
+          "op": "call",
+          "target": "PetalburgWoods_EventScript_DevonResearcherPostBattle",
+          "line": 68
+        },
+        {
+          "op": "goto",
+          "target": "PetalburgWoods_EventScript_RemoveDevonResearcher",
+          "line": 72
+        }
+      ]
+    },
+    "PetalburgWoods_EventScript_DevonResearcherIntro": {
+      "label": "PetalburgWoods_EventScript_DevonResearcherIntro",
+      "kind": "script",
+      "line": 75,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+            "PetalburgWoods_Movement_DevonResearcherLookAround"
+          ],
+          "line": 76,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherLookAround",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 77,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_NotAOneToBeFound",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 78,
+          "raw": "msgbox PetalburgWoods_Text_NotAOneToBeFound, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 79,
+          "raw": "closemessage",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 80,
+          "raw": "return",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_NotAOneToBeFound",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 78
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_DevonResearcherPostBattle": {
+      "label": "PetalburgWoods_EventScript_DevonResearcherPostBattle",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_YouveGotSomeNerve",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 83,
+          "raw": "msgbox PetalburgWoods_Text_YouveGotSomeNerve, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 84,
+          "raw": "closemessage",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_GRUNT",
+            "PetalburgWoods_Movement_AquaRunAway"
+          ],
+          "line": 85,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_GRUNT, PetalburgWoods_Movement_AquaRunAway",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 86,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_GRUNT"
+          ],
+          "line": 87,
+          "raw": "removeobject LOCALID_PETALBURG_WOODS_GRUNT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 88,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 89,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_ThatWasAwfullyClose",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 90,
+          "raw": "msgbox PetalburgWoods_Text_ThatWasAwfullyClose, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_GREAT_BALL"
+          ],
+          "line": 91,
+          "raw": "giveitem ITEM_GREAT_BALL",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "PetalburgWoods_EventScript_BagFull"
+          ],
+          "line": 92,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, PetalburgWoods_EventScript_BagFull",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "PetalburgWoods_EventScript_DevonResearcherFinish"
+          ],
+          "line": 93,
+          "raw": "goto PetalburgWoods_EventScript_DevonResearcherFinish",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 94,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_YouveGotSomeNerve",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 83
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_ThatWasAwfullyClose",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 90
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "PetalburgWoods_EventScript_BagFull",
+          "line": 92
+        },
+        {
+          "op": "goto",
+          "target": "PetalburgWoods_EventScript_DevonResearcherFinish",
+          "line": 93
+        }
+      ]
+    },
+    "PetalburgWoods_EventScript_BagFull": {
+      "label": "PetalburgWoods_EventScript_BagFull",
+      "kind": "script",
+      "line": 96,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_YoureLoadedWithItems",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 97,
+          "raw": "msgbox PetalburgWoods_Text_YoureLoadedWithItems, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "PetalburgWoods_EventScript_DevonResearcherFinish"
+          ],
+          "line": 98,
+          "raw": "goto PetalburgWoods_EventScript_DevonResearcherFinish",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 99,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_YoureLoadedWithItems",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 97
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "PetalburgWoods_EventScript_DevonResearcherFinish",
+          "line": 98
+        }
+      ]
+    },
+    "PetalburgWoods_EventScript_DevonResearcherFinish": {
+      "label": "PetalburgWoods_EventScript_DevonResearcherFinish",
+      "kind": "script",
+      "line": 101,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 102,
+          "raw": "msgbox PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+            "PetalburgWoods_Movement_DevonResearcherStartExit"
+          ],
+          "line": 103,
+          "raw": "applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherStartExit",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 104,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_ICantBeWastingTime",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 105,
+          "raw": "msgbox PetalburgWoods_Text_ICantBeWastingTime, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 106,
+          "raw": "closemessage",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 107,
+          "raw": "return",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 102
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_ICantBeWastingTime",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 105
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_RemoveDevonResearcher": {
+      "label": "PetalburgWoods_EventScript_RemoveDevonResearcher",
+      "kind": "script",
+      "line": 109,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE"
+          ],
+          "line": 110,
+          "raw": "removeobject LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_PETALBURG_WOODS_STATE",
+            "1"
+          ],
+          "line": 111,
+          "raw": "setvar VAR_PETALBURG_WOODS_STATE, 1",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 112,
+          "raw": "releaseall",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 113,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_Boy1": {
+      "label": "PetalburgWoods_EventScript_Boy1",
+      "kind": "script",
+      "line": 240,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_StayOutOfTallGrass",
+            "MSGBOX_NPC"
+          ],
+          "line": 241,
+          "raw": "msgbox PetalburgWoods_Text_StayOutOfTallGrass, MSGBOX_NPC",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 242,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_StayOutOfTallGrass",
+          "mode": "MSGBOX_NPC",
+          "line": 241
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_Boy2": {
+      "label": "PetalburgWoods_EventScript_Boy2",
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_HiddenItemsExplanation",
+            "MSGBOX_NPC"
+          ],
+          "line": 245,
+          "raw": "msgbox PetalburgWoods_Text_HiddenItemsExplanation, MSGBOX_NPC",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 246,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_HiddenItemsExplanation",
+          "mode": "MSGBOX_NPC",
+          "line": 245
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_Girl": {
+      "label": "PetalburgWoods_EventScript_Girl",
+      "kind": "script",
+      "line": 248,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 249,
+          "raw": "lock",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 250,
+          "raw": "faceplayer",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_MIRACLE_SEED",
+            "PetalburgWoods_EventScript_ExplainMiracleSeed"
+          ],
+          "line": 251,
+          "raw": "goto_if_set FLAG_RECEIVED_MIRACLE_SEED, PetalburgWoods_EventScript_ExplainMiracleSeed",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_TryUsingThisItem",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 252,
+          "raw": "msgbox PetalburgWoods_Text_TryUsingThisItem, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_MIRACLE_SEED"
+          ],
+          "line": 253,
+          "raw": "giveitem ITEM_MIRACLE_SEED",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 254,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_MIRACLE_SEED"
+          ],
+          "line": 255,
+          "raw": "setflag FLAG_RECEIVED_MIRACLE_SEED",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 256,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 257,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_TryUsingThisItem",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 252
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "PetalburgWoods_EventScript_ExplainMiracleSeed",
+          "line": 251
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 254
+        }
+      ]
+    },
+    "PetalburgWoods_EventScript_ExplainMiracleSeed": {
+      "label": "PetalburgWoods_EventScript_ExplainMiracleSeed",
+      "kind": "script",
+      "line": 259,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_MiracleSeedExplanation",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 260,
+          "raw": "msgbox PetalburgWoods_Text_MiracleSeedExplanation, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 261,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 262,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_MiracleSeedExplanation",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 260
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_Sign1": {
+      "label": "PetalburgWoods_EventScript_Sign1",
+      "kind": "script",
+      "line": 264,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_TrainerTipsExperience",
+            "MSGBOX_SIGN"
+          ],
+          "line": 265,
+          "raw": "msgbox PetalburgWoods_Text_TrainerTipsExperience, MSGBOX_SIGN",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 266,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_TrainerTipsExperience",
+          "mode": "MSGBOX_SIGN",
+          "line": 265
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_Sign2": {
+      "label": "PetalburgWoods_EventScript_Sign2",
+      "kind": "script",
+      "line": 268,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_TrainerTipsPP",
+            "MSGBOX_SIGN"
+          ],
+          "line": 269,
+          "raw": "msgbox PetalburgWoods_Text_TrainerTipsPP, MSGBOX_SIGN",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 270,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_TrainerTipsPP",
+          "mode": "MSGBOX_SIGN",
+          "line": 269
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_Lyle": {
+      "label": "PetalburgWoods_EventScript_Lyle",
+      "kind": "script",
+      "line": 272,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_LYLE",
+            "PetalburgWoods_Text_GoBugPokemonTeam",
+            "PetalburgWoods_Text_ICouldntWin"
+          ],
+          "line": 273,
+          "raw": "trainerbattle_single TRAINER_LYLE, PetalburgWoods_Text_GoBugPokemonTeam, PetalburgWoods_Text_ICouldntWin",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_ImOutOfPokeBalls",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 274,
+          "raw": "msgbox PetalburgWoods_Text_ImOutOfPokeBalls, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 275,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_ImOutOfPokeBalls",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 274
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_James": {
+      "label": "PetalburgWoods_EventScript_James",
+      "kind": "script",
+      "line": 277,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_JAMES_1",
+            "PetalburgWoods_Text_InstantlyPopularWithBugPokemon",
+            "PetalburgWoods_Text_CantBePopularIfILose",
+            "PetalburgWoods_EventScript_TryRegisterJames"
+          ],
+          "line": 278,
+          "raw": "trainerbattle_single TRAINER_JAMES_1, PetalburgWoods_Text_InstantlyPopularWithBugPokemon, PetalburgWoods_Text_CantBePopularIfILose, PetalburgWoods_EventScript_TryRegisterJames",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 279,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "PetalburgWoods_EventScript_JamesRematch"
+          ],
+          "line": 280,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, PetalburgWoods_EventScript_JamesRematch",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "TRAINER_JAMES_1"
+          ],
+          "line": 281,
+          "raw": "setvar VAR_0x8004, TRAINER_JAMES_1",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "IsTrainerRegistered"
+          ],
+          "line": 282,
+          "raw": "specialvar VAR_RESULT, IsTrainerRegistered",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "PetalburgWoods_EventScript_TryRegisterJames2"
+          ],
+          "line": 283,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, PetalburgWoods_EventScript_TryRegisterJames2",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_PeopleRespectYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 284,
+          "raw": "msgbox PetalburgWoods_Text_PeopleRespectYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 285,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 286,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_PeopleRespectYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 284
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "PetalburgWoods_EventScript_JamesRematch",
+          "line": 280
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "PetalburgWoods_EventScript_TryRegisterJames2",
+          "line": 283
+        }
+      ]
+    },
+    "PetalburgWoods_EventScript_TryRegisterJames": {
+      "label": "PetalburgWoods_EventScript_TryRegisterJames",
+      "kind": "script",
+      "line": 288,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "PlayerFaceTrainerAfterBattle"
+          ],
+          "line": 289,
+          "raw": "special PlayerFaceTrainerAfterBattle",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 290,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_HAS_MATCH_CALL",
+            "PetalburgWoods_EventScript_RegisterJames"
+          ],
+          "line": 291,
+          "raw": "goto_if_set FLAG_HAS_MATCH_CALL, PetalburgWoods_EventScript_RegisterJames",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 292,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 293,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "PetalburgWoods_EventScript_RegisterJames",
+          "line": 291
+        }
+      ]
+    },
+    "PetalburgWoods_EventScript_RegisterJames": {
+      "label": "PetalburgWoods_EventScript_RegisterJames",
+      "kind": "script",
+      "line": 295,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_IWantRematch1",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 296,
+          "raw": "msgbox PetalburgWoods_Text_IWantRematch1, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_JAMES_1"
+          ],
+          "line": 297,
+          "raw": "register_matchcall TRAINER_JAMES_1",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 298,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 299,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_IWantRematch1",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 296
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_TryRegisterJames2": {
+      "label": "PetalburgWoods_EventScript_TryRegisterJames2",
+      "kind": "script",
+      "line": 301,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_HAS_MATCH_CALL",
+            "PetalburgWoods_EventScript_RegisterJames2"
+          ],
+          "line": 302,
+          "raw": "goto_if_set FLAG_HAS_MATCH_CALL, PetalburgWoods_EventScript_RegisterJames2",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_PeopleRespectYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 303,
+          "raw": "msgbox PetalburgWoods_Text_PeopleRespectYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 304,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 305,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_PeopleRespectYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 303
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "PetalburgWoods_EventScript_RegisterJames2",
+          "line": 302
+        }
+      ]
+    },
+    "PetalburgWoods_EventScript_RegisterJames2": {
+      "label": "PetalburgWoods_EventScript_RegisterJames2",
+      "kind": "script",
+      "line": 307,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_IWantRematch2",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 308,
+          "raw": "msgbox PetalburgWoods_Text_IWantRematch2, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_JAMES_1"
+          ],
+          "line": 309,
+          "raw": "register_matchcall TRAINER_JAMES_1",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 310,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 311,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_IWantRematch2",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 308
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgWoods_EventScript_JamesRematch": {
+      "label": "PetalburgWoods_EventScript_JamesRematch",
+      "kind": "script",
+      "line": 313,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch",
+          "args": [
+            "TRAINER_JAMES_1",
+            "PetalburgWoods_Text_MyPokemonHaveGrown",
+            "PetalburgWoods_Text_CantBePopularIfLose"
+          ],
+          "line": 314,
+          "raw": "trainerbattle_rematch TRAINER_JAMES_1, PetalburgWoods_Text_MyPokemonHaveGrown, PetalburgWoods_Text_CantBePopularIfLose",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgWoods_Text_IveBeenTrainingHard",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 315,
+          "raw": "msgbox PetalburgWoods_Text_IveBeenTrainingHard, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 316,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgWoods_Text_IveBeenTrainingHard",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 315
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "PetalburgWoods_Movement_DevonResearcherLookAround": {
+      "label": "PetalburgWoods_Movement_DevonResearcherLookAround",
+      "kind": "movement",
+      "line": 115,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "face_up",
+          "args": [],
+          "line": 116,
+          "raw": "face_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 117,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_4",
+          "args": [],
+          "line": 118,
+          "raw": "delay_4",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "face_right",
+          "args": [],
+          "line": 119,
+          "raw": "face_right",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 120,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 121,
+          "raw": "delay_8",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "face_left",
+          "args": [],
+          "line": 122,
+          "raw": "face_left",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 123,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 124,
+          "raw": "delay_8",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "face_down",
+          "args": [],
+          "line": 125,
+          "raw": "face_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 126,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "face_right",
+          "args": [],
+          "line": 127,
+          "raw": "face_right",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 128,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 129,
+          "raw": "delay_8",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "face_up",
+          "args": [],
+          "line": 130,
+          "raw": "face_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 131,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 132,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_DevonResearcherExitLeft": {
+      "label": "PetalburgWoods_Movement_DevonResearcherExitLeft",
+      "kind": "movement",
+      "line": 134,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 135,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 136,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 137,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 138,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 139,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 140,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 141,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 142,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 143,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft": {
+      "label": "PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft",
+      "kind": "movement",
+      "line": 145,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 146,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "face_player",
+          "args": [],
+          "line": 147,
+          "raw": "face_player",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 148,
+          "raw": "walk_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 149,
+          "raw": "walk_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 150,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_DevonResearcherApproachPlayerRight": {
+      "label": "PetalburgWoods_Movement_DevonResearcherApproachPlayerRight",
+      "kind": "movement",
+      "line": 152,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 153,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "face_player",
+          "args": [],
+          "line": 154,
+          "raw": "face_player",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 155,
+          "raw": "walk_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 156,
+          "raw": "walk_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 157,
+          "raw": "walk_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 158,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 159,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_DevonResearcherExitRight": {
+      "label": "PetalburgWoods_Movement_DevonResearcherExitRight",
+      "kind": "movement",
+      "line": 161,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 162,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 163,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 164,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 165,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 166,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 167,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 168,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 169,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 170,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_WatchResearcherLeave": {
+      "label": "PetalburgWoods_Movement_WatchResearcherLeave",
+      "kind": "movement",
+      "line": 172,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 173,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 174,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 175,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 176,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_DevonResearcherFleeToPlayerLeft": {
+      "label": "PetalburgWoods_Movement_DevonResearcherFleeToPlayerLeft",
+      "kind": "movement",
+      "line": 178,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 179,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 180,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 181,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 182,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 183,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 184,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight": {
+      "label": "PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight",
+      "kind": "movement",
+      "line": 186,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 187,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 188,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 189,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 190,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_DevonResearcherStartExit": {
+      "label": "PetalburgWoods_Movement_DevonResearcherStartExit",
+      "kind": "movement",
+      "line": 192,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_in_place_faster_down",
+          "args": [],
+          "line": 193,
+          "raw": "walk_in_place_faster_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 194,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 195,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 196,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 197,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 198,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "face_up",
+          "args": [],
+          "line": 199,
+          "raw": "face_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 200,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_AquaApproachResearcherLeft": {
+      "label": "PetalburgWoods_Movement_AquaApproachResearcherLeft",
+      "kind": "movement",
+      "line": 202,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 203,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 204,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 205,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_AquaBackOff": {
+      "label": "PetalburgWoods_Movement_AquaBackOff",
+      "kind": "movement",
+      "line": 207,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock_facing_direction",
+          "args": [],
+          "line": 208,
+          "raw": "lock_facing_direction",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 209,
+          "raw": "walk_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "unlock_facing_direction",
+          "args": [],
+          "line": 210,
+          "raw": "unlock_facing_direction",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 211,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_AquaRunAway": {
+      "label": "PetalburgWoods_Movement_AquaRunAway",
+      "kind": "movement",
+      "line": 213,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 214,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 215,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 216,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 217,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 218,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 219,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 220,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 221,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_AquaApproachResearcherRight": {
+      "label": "PetalburgWoods_Movement_AquaApproachResearcherRight",
+      "kind": "movement",
+      "line": 223,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 224,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 225,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 226,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 227,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_AquaEntrance": {
+      "label": "PetalburgWoods_Movement_AquaEntrance",
+      "kind": "movement",
+      "line": 229,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 230,
+          "raw": "walk_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 231,
+          "raw": "walk_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 232,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 233,
+          "raw": "delay_16",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 234,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgWoods_Movement_AquaApproachPlayer": {
+      "label": "PetalburgWoods_Movement_AquaApproachPlayer",
+      "kind": "movement",
+      "line": 236,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 237,
+          "raw": "walk_down",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 238,
+          "raw": "step_end",
+          "source_file": "data/maps/PetalburgWoods/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "PetalburgWoods_Text_NotAOneToBeFound": {
+      "label": "PetalburgWoods_Text_NotAOneToBeFound",
+      "line": 318,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "唔……\\n什么也没有啊……$",
+      "display_text": "唔……\n什么也没有啊……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          20,
+          43,
+          176,
+          176,
+          254,
+          11,
+          238,
+          9,
+          76,
+          15,
+          2,
+          9,
+          83,
+          15,
+          126,
+          1,
+          0,
+          176,
+          176,
+          255
+        ],
+        "hex": "14 2B B0 B0 FE 0B EE 09 4C 0F 02 09 53 0F 7E 01 00 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_HaveYouSeenShroomish": {
+      "label": "PetalburgWoods_Text_HaveYouSeenShroomish",
+      "line": 321,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "嗨，你在附近见到过叫做\\n蘑蘑菇的宝可梦吗？\\p我真的很喜欢那种宝可梦。$",
+      "display_text": "嗨，你在附近见到过叫做\n蘑蘑菇的宝可梦吗？\n\n我真的很喜欢那种宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 64,
+        "bytes": [
+          20,
+          103,
+          59,
+          9,
+          217,
+          15,
+          230,
+          4,
+          39,
+          7,
+          78,
+          5,
+          230,
+          3,
+          4,
+          4,
+          197,
+          7,
+          34,
+          17,
+          46,
+          254,
+          9,
+          152,
+          9,
+          152,
+          4,
+          133,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          9,
+          42,
+          61,
+          251,
+          13,
+          152,
+          16,
+          89,
+          3,
+          11,
+          5,
+          11,
+          13,
+          214,
+          5,
+          67,
+          9,
+          189,
+          16,
+          167,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "14 67 3B 09 D9 0F E6 04 27 07 4E 05 E6 03 04 04 C5 07 22 11 2E FE 09 98 09 98 04 85 03 0B 01 63 07 D7 09 66 09 2A 3D FB 0D 98 10 59 03 0B 05 0B 0D D6 05 43 09 BD 10 A7 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 36,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_IWasGoingToAmbushYou": {
+      "label": "PetalburgWoods_Text_IWasGoingToAmbushYou",
+      "line": 324,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "本打算偷袭你的，\\n但看你好像打算在橙华森林里\\l呆一辈子，\\p我等得不耐烦了，\\n干脆直接现身！$",
+      "display_text": "本打算偷袭你的，\n但看你好像打算在橙华森林里\n呆一辈子，\n\n我等得不耐烦了，\n干脆直接现身！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 83,
+        "bytes": [
+          1,
+          123,
+          2,
+          210,
+          12,
+          134,
+          13,
+          29,
+          13,
+          210,
+          9,
+          217,
+          3,
+          11,
+          59,
+          254,
+          2,
+          233,
+          7,
+          194,
+          9,
+          217,
+          4,
+          233,
+          14,
+          30,
+          2,
+          210,
+          12,
+          134,
+          15,
+          230,
+          2,
+          74,
+          5,
+          55,
+          11,
+          139,
+          8,
+          169,
+          8,
+          100,
+          250,
+          2,
+          212,
+          15,
+          11,
+          1,
+          111,
+          17,
+          11,
+          59,
+          251,
+          13,
+          152,
+          3,
+          15,
+          3,
+          10,
+          1,
+          214,
+          9,
+          195,
+          3,
+          182,
+          8,
+          158,
+          59,
+          254,
+          4,
+          51,
+          2,
+          192,
+          16,
+          130,
+          7,
+          37,
+          14,
+          3,
+          11,
+          203,
+          60,
+          255
+        ],
+        "hex": "01 7B 02 D2 0C 86 0D 1D 0D D2 09 D9 03 0B 3B FE 02 E9 07 C2 09 D9 04 E9 0E 1E 02 D2 0C 86 0F E6 02 4A 05 37 0B 8B 08 A9 08 64 FA 02 D4 0F 0B 01 6F 11 0B 3B FB 0D 98 03 0F 03 0A 01 D6 09 C3 03 B6 08 9E 3B FE 04 33 02 C0 10 82 07 25 0E 03 0B CB 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 23,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 30,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 40,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 49,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_HandOverThosePapers": {
+      "label": "PetalburgWoods_Text_HandOverThosePapers",
+      "line": 327,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "就是你！得文的研究员！\\p把那些文件交出来！$",
+      "display_text": "就是你！得文的研究员！\n\n把那些文件交出来！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 39,
+        "bytes": [
+          7,
+          125,
+          12,
+          12,
+          9,
+          217,
+          60,
+          3,
+          10,
+          13,
+          138,
+          3,
+          11,
+          14,
+          185,
+          7,
+          111,
+          15,
+          189,
+          60,
+          251,
+          1,
+          48,
+          9,
+          189,
+          14,
+          52,
+          13,
+          138,
+          5,
+          233,
+          7,
+          13,
+          2,
+          120,
+          8,
+          41,
+          60,
+          255
+        ],
+        "hex": "07 7D 0C 0C 09 D9 3C 03 0A 0D 8A 03 0B 0E B9 07 6F 0F BD 3C FB 01 30 09 BD 0E 34 0D 8A 05 E9 07 0D 02 78 08 29 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_YouHaveToHelpMe": {
+      "label": "PetalburgWoods_Text_YouHaveToHelpMe",
+      "line": 330,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "哇啊！\\p你是个宝可梦训练家，对吗？\\n拜托你帮帮我吧！$",
+      "display_text": "哇啊！\n\n你是个宝可梦训练家，对吗？\n拜托你帮帮我吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 47,
+        "bytes": [
+          13,
+          67,
+          1,
+          0,
+          60,
+          251,
+          9,
+          217,
+          12,
+          12,
+          4,
+          96,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          59,
+          3,
+          121,
+          9,
+          42,
+          61,
+          254,
+          1,
+          60,
+          13,
+          56,
+          9,
+          217,
+          1,
+          78,
+          1,
+          78,
+          13,
+          152,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0D 43 01 00 3C FB 09 D9 0C 0C 04 60 01 63 07 D7 09 66 0E 9E 08 8A 05 BD 3B 03 79 09 2A 3D FE 01 3C 0D 38 09 D9 01 4E 01 4E 0D 98 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 3,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_NoOneCrossesTeamAqua": {
+      "label": "PetalburgWoods_Text_NoOneCrossesTeamAqua",
+      "line": 333,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "嗯？你知道自己在做什么吗？\\n什么，你要保护他？\\p就算你只是个孩子，\\n和海洋队作对也没好下场！\\p来对战吧！$",
+      "display_text": "嗯？你知道自己在做什么吗？\n什么，你要保护他？\n\n就算你只是个孩子，\n和海洋队作对也没好下场！\n\n来对战吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 94,
+        "bytes": [
+          20,
+          97,
+          61,
+          9,
+          217,
+          16,
+          123,
+          3,
+          7,
+          17,
+          12,
+          5,
+          165,
+          15,
+          230,
+          17,
+          46,
+          11,
+          238,
+          9,
+          76,
+          9,
+          42,
+          61,
+          254,
+          11,
+          238,
+          9,
+          76,
+          59,
+          9,
+          217,
+          14,
+          241,
+          1,
+          96,
+          5,
+          49,
+          12,
+          158,
+          61,
+          251,
+          7,
+          125,
+          12,
+          134,
+          9,
+          217,
+          16,
+          140,
+          12,
+          12,
+          4,
+          96,
+          4,
+          200,
+          17,
+          11,
+          59,
+          254,
+          4,
+          243,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          17,
+          47,
+          3,
+          121,
+          15,
+          2,
+          9,
+          83,
+          4,
+          233,
+          13,
+          230,
+          2,
+          35,
+          60,
+          251,
+          8,
+          41,
+          3,
+          121,
+          16,
+          48,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "14 61 3D 09 D9 10 7B 03 07 11 0C 05 A5 0F E6 11 2E 0B EE 09 4C 09 2A 3D FE 0B EE 09 4C 3B 09 D9 0E F1 01 60 05 31 0C 9E 3D FB 07 7D 0C 86 09 D9 10 8C 0C 0C 04 60 04 C8 11 0B 3B FE 04 F3 04 C9 0E DC 03 78 11 2F 03 79 0F 02 09 53 04 E9 0D E6 02 23 3C FB 08 29 03 79 10 30 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 49,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 56,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_YoureKiddingMe": {
+      "label": "PetalburgWoods_Text_YoureKiddingMe",
+      "line": 336,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "开玩笑吧！这么强？！$",
+      "display_text": "开玩笑吧！这么强？！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          7,
+          184,
+          13,
+          78,
+          14,
+          49,
+          1,
+          40,
+          60,
+          16,
+          85,
+          9,
+          76,
+          10,
+          216,
+          61,
+          60,
+          255
+        ],
+        "hex": "07 B8 0D 4E 0E 31 01 28 3C 10 55 09 4C 0A D8 3D 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_YouveGotSomeNerve": {
+      "label": "PetalburgWoods_Text_YouveGotSomeNerve",
+      "line": 339,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "咕……敢和海洋队作对，\\n你胆子不小！\\l再来对战一次吧！\\p虽然想这么说，\\n可我已经没有宝可梦了……\\p而且，哼，我们海洋队还得在\\n卡那兹市找某些东西，\\p今天就放你一马！$",
+      "display_text": "咕……敢和海洋队作对，\n你胆子不小！\n再来对战一次吧！\n\n虽然想这么说，\n可我已经没有宝可梦了……\n\n而且，哼，我们海洋队还得在\n卡那兹市找某些东西，\n\n今天就放你一马！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 146,
+        "bytes": [
+          4,
+          134,
+          176,
+          176,
+          4,
+          60,
+          4,
+          243,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          17,
+          47,
+          3,
+          121,
+          59,
+          254,
+          9,
+          217,
+          2,
+          230,
+          17,
+          11,
+          1,
+          214,
+          14,
+          44,
+          60,
+          250,
+          15,
+          229,
+          8,
+          41,
+          3,
+          121,
+          16,
+          48,
+          15,
+          11,
+          2,
+          174,
+          1,
+          40,
+          60,
+          251,
+          12,
+          135,
+          11,
+          59,
+          14,
+          24,
+          16,
+          85,
+          9,
+          76,
+          12,
+          88,
+          59,
+          254,
+          7,
+          215,
+          13,
+          152,
+          15,
+          33,
+          7,
+          93,
+          9,
+          83,
+          15,
+          126,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          158,
+          176,
+          176,
+          251,
+          3,
+          157,
+          10,
+          235,
+          59,
+          5,
+          14,
+          59,
+          13,
+          152,
+          9,
+          95,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          5,
+          70,
+          3,
+          10,
+          15,
+          230,
+          254,
+          7,
+          182,
+          9,
+          189,
+          17,
+          0,
+          12,
+          21,
+          16,
+          69,
+          9,
+          169,
+          14,
+          52,
+          3,
+          80,
+          13,
+          189,
+          59,
+          251,
+          7,
+          67,
+          12,
+          237,
+          7,
+          125,
+          3,
+          200,
+          9,
+          217,
+          15,
+          11,
+          9,
+          39,
+          60,
+          255
+        ],
+        "hex": "04 86 B0 B0 04 3C 04 F3 04 C9 0E DC 03 78 11 2F 03 79 3B FE 09 D9 02 E6 11 0B 01 D6 0E 2C 3C FA 0F E5 08 29 03 79 10 30 0F 0B 02 AE 01 28 3C FB 0C 87 0B 3B 0E 18 10 55 09 4C 0C 58 3B FE 07 D7 0D 98 0F 21 07 5D 09 53 0F 7E 01 63 07 D7 09 66 08 9E B0 B0 FB 03 9D 0A EB 3B 05 0E 3B 0D 98 09 5F 04 C9 0E DC 03 78 05 46 03 0A 0F E6 FE 07 B6 09 BD 11 00 0C 15 10 45 09 A9 0E 34 03 50 0D BD 3B FB 07 43 0C ED 07 7D 03 C8 09 D9 0F 0B 09 27 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 19,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 38,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 52,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 67,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 79,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 89,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_ThatWasAwfullyClose": {
+      "label": "PetalburgWoods_Text_ThatWasAwfullyClose",
+      "line": 342,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "呼……\\n好险啊！\\p多亏了你，\\n重要的文件才没被抢走。\\p作为谢礼，\\n送你一个超级球吧！$",
+      "display_text": "呼……\n好险啊！\n\n多亏了你，\n重要的文件才没被抢走。\n\n作为谢礼，\n送你一个超级球吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 73,
+        "bytes": [
+          5,
+          35,
+          176,
+          176,
+          254,
+          4,
+          233,
+          14,
+          2,
+          1,
+          0,
+          60,
+          251,
+          3,
+          133,
+          8,
+          14,
+          8,
+          158,
+          9,
+          217,
+          59,
+          254,
+          16,
+          169,
+          14,
+          241,
+          3,
+          11,
+          13,
+          138,
+          5,
+          233,
+          1,
+          224,
+          9,
+          83,
+          1,
+          120,
+          10,
+          217,
+          17,
+          23,
+          55,
+          251,
+          17,
+          47,
+          13,
+          112,
+          14,
+          70,
+          8,
+          102,
+          59,
+          254,
+          12,
+          112,
+          9,
+          217,
+          15,
+          11,
+          4,
+          96,
+          2,
+          46,
+          5,
+          161,
+          11,
+          20,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "05 23 B0 B0 FE 04 E9 0E 02 01 00 3C FB 03 85 08 0E 08 9E 09 D9 3B FE 10 A9 0E F1 03 0B 0D 8A 05 E9 01 E0 09 53 01 78 0A D9 11 17 37 FB 11 2F 0D 70 0E 46 08 66 3B FE 0C 70 09 D9 0F 0B 04 60 02 2E 05 A1 0B 14 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 16,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro": {
+      "label": "PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro",
+      "line": 345,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "说起来刚才那个海洋队的混混说，\\n他们也在寻找卡那兹市的东西，是吗？$",
+      "display_text": "说起来刚才那个海洋队的混混说，\n他们也在寻找卡那兹市的东西，是吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 63,
+        "bytes": [
+          12,
+          88,
+          10,
+          171,
+          8,
+          41,
+          4,
+          63,
+          1,
+          224,
+          9,
+          189,
+          4,
+          96,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          3,
+          11,
+          5,
+          121,
+          5,
+          121,
+          12,
+          88,
+          59,
+          254,
+          12,
+          158,
+          9,
+          95,
+          15,
+          2,
+          15,
+          230,
+          14,
+          153,
+          16,
+          69,
+          7,
+          182,
+          9,
+          189,
+          17,
+          0,
+          12,
+          21,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          59,
+          12,
+          12,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0C 58 0A AB 08 29 04 3F 01 E0 09 BD 04 60 04 C9 0E DC 03 78 03 0B 05 79 05 79 0C 58 3B FE 0C 9E 09 5F 0F 02 0F E6 0E 99 10 45 07 B6 09 BD 11 00 0C 15 03 0B 03 50 0D BD 3B 0C 0C 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 34,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_ICantBeWastingTime": {
+      "label": "PetalburgWoods_Text_ICantBeWastingTime",
+      "line": 348,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "唔喔！情况紧急！\\n没时间再耽搁了！$",
+      "display_text": "唔喔！情况紧急！\n没时间再耽搁了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          20,
+          43,
+          20,
+          84,
+          60,
+          11,
+          11,
+          8,
+          13,
+          7,
+          70,
+          5,
+          156,
+          60,
+          254,
+          9,
+          83,
+          11,
+          237,
+          5,
+          207,
+          15,
+          229,
+          2,
+          224,
+          4,
+          83,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "14 2B 14 54 3C 0B 0B 08 0D 07 46 05 9C 3C FE 09 53 0B ED 05 CF 0F E5 02 E0 04 53 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_YoureLoadedWithItems": {
+      "label": "PetalburgWoods_Text_YoureLoadedWithItems",
+      "line": 351,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "你的道具已经满了，\\n我没法把这个超级球给你。$",
+      "display_text": "你的道具已经满了，\n我没法把这个超级球给你。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 42,
+        "bytes": [
+          9,
+          217,
+          3,
+          11,
+          3,
+          7,
+          7,
+          143,
+          15,
+          33,
+          7,
+          93,
+          9,
+          52,
+          8,
+          158,
+          59,
+          254,
+          13,
+          152,
+          9,
+          83,
+          3,
+          171,
+          1,
+          48,
+          16,
+          85,
+          4,
+          96,
+          2,
+          46,
+          5,
+          161,
+          11,
+          20,
+          4,
+          98,
+          9,
+          217,
+          55,
+          255
+        ],
+        "hex": "09 D9 03 0B 03 07 07 8F 0F 21 07 5D 09 34 08 9E 3B FE 0D 98 09 53 03 AB 01 30 10 55 04 60 02 2E 05 A1 0B 14 04 62 09 D9 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_GoBugPokemonTeam": {
+      "label": "PetalburgWoods_Text_GoBugPokemonTeam",
+      "line": 354,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "我捉了许多的宝可梦！\\p上啊！\\n我的虫宝可梦之队！$",
+      "display_text": "我捉了许多的宝可梦！\n\n上啊！\n我的虫宝可梦之队！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 44,
+        "bytes": [
+          13,
+          152,
+          16,
+          236,
+          8,
+          158,
+          14,
+          120,
+          3,
+          133,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          60,
+          251,
+          11,
+          173,
+          1,
+          0,
+          60,
+          254,
+          13,
+          152,
+          3,
+          11,
+          2,
+          104,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          127,
+          3,
+          120,
+          60,
+          255
+        ],
+        "hex": "0D 98 10 EC 08 9E 0E 78 03 85 03 0B 01 63 07 D7 09 66 3C FB 0B AD 01 00 3C FE 0D 98 03 0B 02 68 01 63 07 D7 09 66 10 7F 03 78 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_ICouldntWin": {
+      "label": "PetalburgWoods_Text_ICouldntWin",
+      "line": 357,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "拥有这些宝可梦，\\n我却无法获胜……$",
+      "display_text": "拥有这些宝可梦，\n我却无法获胜……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          15,
+          99,
+          15,
+          126,
+          16,
+          85,
+          14,
+          52,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          254,
+          13,
+          152,
+          11,
+          52,
+          13,
+          164,
+          3,
+          171,
+          5,
+          126,
+          11,
+          224,
+          176,
+          176,
+          255
+        ],
+        "hex": "0F 63 0F 7E 10 55 0E 34 01 63 07 D7 09 66 3B FE 0D 98 0B 34 0D A4 03 AB 05 7E 0B E0 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_ImOutOfPokeBalls": {
+      "label": "PetalburgWoods_Text_ImOutOfPokeBalls",
+      "line": 360,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "我捉了许多的宝可梦，\\n现在已经没有精灵球了。$",
+      "display_text": "我捉了许多的宝可梦，\n现在已经没有精灵球了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 42,
+        "bytes": [
+          13,
+          152,
+          16,
+          236,
+          8,
+          158,
+          14,
+          120,
+          3,
+          133,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          254,
+          14,
+          3,
+          15,
+          230,
+          15,
+          33,
+          7,
+          93,
+          9,
+          83,
+          15,
+          126,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0D 98 10 EC 08 9E 0E 78 03 85 03 0B 01 63 07 D7 09 66 3B FE 0E 03 0F E6 0F 21 07 5D 09 53 0F 7E 07 5B 08 BC 0B 14 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_InstantlyPopularWithBugPokemon": {
+      "label": "PetalburgWoods_Text_InstantlyPopularWithBugPokemon",
+      "line": 363,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "如果把虫宝可梦带到学校里，\\n马上就会变成明星的！$",
+      "display_text": "如果把虫宝可梦带到学校里，\n马上就会变成明星的！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          1,
+          48,
+          2,
+          104,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          2,
+          216,
+          3,
+          4,
+          14,
+          144,
+          14,
+          46,
+          8,
+          100,
+          59,
+          254,
+          9,
+          39,
+          11,
+          173,
+          7,
+          125,
+          5,
+          110,
+          1,
+          161,
+          2,
+          75,
+          9,
+          143,
+          14,
+          82,
+          3,
+          11,
+          60,
+          255
+        ],
+        "hex": "0B 67 04 C3 01 30 02 68 01 63 07 D7 09 66 02 D8 03 04 0E 90 0E 2E 08 64 3B FE 09 27 0B AD 07 7D 05 6E 01 A1 02 4B 09 8F 0E 52 03 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_CantBePopularIfILose": {
+      "label": "PetalburgWoods_Text_CantBePopularIfILose",
+      "line": 366,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "输了的话就不会成为明星了。$",
+      "display_text": "输了的话就不会成为明星了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          12,
+          41,
+          8,
+          158,
+          3,
+          11,
+          5,
+          61,
+          7,
+          125,
+          1,
+          214,
+          5,
+          110,
+          2,
+          75,
+          13,
+          112,
+          9,
+          143,
+          14,
+          82,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0C 29 08 9E 03 0B 05 3D 07 7D 01 D6 05 6E 02 4B 0D 70 09 8F 0E 52 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_PeopleRespectYou": {
+      "label": "PetalburgWoods_Text_PeopleRespectYou",
+      "line": 369,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "如果拥有一只好大的虫宝可梦，\\n大家会很羡慕你的。$",
+      "display_text": "如果拥有一只好大的虫宝可梦，\n大家会很羡慕你的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          15,
+          99,
+          15,
+          126,
+          15,
+          11,
+          16,
+          140,
+          4,
+          233,
+          2,
+          211,
+          3,
+          11,
+          2,
+          104,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          254,
+          2,
+          211,
+          5,
+          189,
+          5,
+          110,
+          5,
+          11,
+          14,
+          8,
+          9,
+          179,
+          9,
+          217,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "0B 67 04 C3 0F 63 0F 7E 0F 0B 10 8C 04 E9 02 D3 03 0B 02 68 01 63 07 D7 09 66 3B FE 02 D3 05 BD 05 6E 05 0B 0E 08 09 B3 09 D9 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_IWantRematch1": {
+      "label": "PetalburgWoods_Text_IWantRematch1",
+      "line": 372,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "等我的虫宝可梦\\n长大后，我们再比一次吧！\\p我把你登记到宝可导航里了！$",
+      "display_text": "等我的虫宝可梦\n长大后，我们再比一次吧！\n\n我把你登记到宝可导航里了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 64,
+        "bytes": [
+          3,
+          15,
+          13,
+          152,
+          3,
+          11,
+          2,
+          104,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          2,
+          38,
+          2,
+          211,
+          5,
+          34,
+          59,
+          13,
+          152,
+          9,
+          95,
+          15,
+          229,
+          1,
+          133,
+          15,
+          11,
+          2,
+          174,
+          1,
+          40,
+          60,
+          251,
+          13,
+          152,
+          1,
+          48,
+          9,
+          217,
+          3,
+          14,
+          5,
+          178,
+          3,
+          4,
+          1,
+          99,
+          7,
+          215,
+          3,
+          3,
+          4,
+          227,
+          8,
+          100,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "03 0F 0D 98 03 0B 02 68 01 63 07 D7 09 66 FE 02 26 02 D3 05 22 3B 0D 98 09 5F 0F E5 01 85 0F 0B 02 AE 01 28 3C FB 0D 98 01 30 09 D9 03 0E 05 B2 03 04 01 63 07 D7 03 03 04 E3 08 64 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 36,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_IWantRematch2": {
+      "label": "PetalburgWoods_Text_IWantRematch2",
+      "line": 375,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "等我的虫宝可梦\\n长大后，我们再比一次吧！\\p我把你登记到宝可导航里了！$",
+      "display_text": "等我的虫宝可梦\n长大后，我们再比一次吧！\n\n我把你登记到宝可导航里了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 64,
+        "bytes": [
+          3,
+          15,
+          13,
+          152,
+          3,
+          11,
+          2,
+          104,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          2,
+          38,
+          2,
+          211,
+          5,
+          34,
+          59,
+          13,
+          152,
+          9,
+          95,
+          15,
+          229,
+          1,
+          133,
+          15,
+          11,
+          2,
+          174,
+          1,
+          40,
+          60,
+          251,
+          13,
+          152,
+          1,
+          48,
+          9,
+          217,
+          3,
+          14,
+          5,
+          178,
+          3,
+          4,
+          1,
+          99,
+          7,
+          215,
+          3,
+          3,
+          4,
+          227,
+          8,
+          100,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "03 0F 0D 98 03 0B 02 68 01 63 07 D7 09 66 FE 02 26 02 D3 05 22 3B 0D 98 09 5F 0F E5 01 85 0F 0B 02 AE 01 28 3C FB 0D 98 01 30 09 D9 03 0E 05 B2 03 04 01 63 07 D7 03 03 04 E3 08 64 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 36,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_MyPokemonHaveGrown": {
+      "label": "PetalburgWoods_Text_MyPokemonHaveGrown",
+      "line": 378,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "我的虫宝可梦长大了，\\n我会再次变成明星的。$",
+      "display_text": "我的虫宝可梦长大了，\n我会再次变成明星的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          2,
+          104,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          2,
+          38,
+          2,
+          211,
+          8,
+          158,
+          59,
+          254,
+          13,
+          152,
+          5,
+          110,
+          15,
+          229,
+          2,
+          174,
+          1,
+          161,
+          2,
+          75,
+          9,
+          143,
+          14,
+          82,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "0D 98 03 0B 02 68 01 63 07 D7 09 66 02 26 02 D3 08 9E 3B FE 0D 98 05 6E 0F E5 02 AE 01 A1 02 4B 09 8F 0E 52 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_CantBePopularIfLose": {
+      "label": "PetalburgWoods_Text_CantBePopularIfLose",
+      "line": 381,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "输了的话就不会成为明星了。$",
+      "display_text": "输了的话就不会成为明星了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          12,
+          41,
+          8,
+          158,
+          3,
+          11,
+          5,
+          61,
+          7,
+          125,
+          1,
+          214,
+          5,
+          110,
+          2,
+          75,
+          13,
+          112,
+          9,
+          143,
+          14,
+          82,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0C 29 08 9E 03 0B 05 3D 07 7D 01 D6 05 6E 02 4B 0D 70 09 8F 0E 52 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_IveBeenTrainingHard": {
+      "label": "PetalburgWoods_Text_IveBeenTrainingHard",
+      "line": 384,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "如果拥有强大的宝可梦\\n就会被大家追捧的，对吧？\\l所以我一直在刻苦训练。$",
+      "display_text": "如果拥有强大的宝可梦\n就会被大家追捧的，对吧？\n所以我一直在刻苦训练。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 66,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          15,
+          99,
+          15,
+          126,
+          10,
+          216,
+          2,
+          211,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          7,
+          125,
+          5,
+          110,
+          1,
+          120,
+          2,
+          211,
+          5,
+          189,
+          16,
+          230,
+          10,
+          82,
+          3,
+          11,
+          59,
+          3,
+          121,
+          1,
+          40,
+          61,
+          250,
+          12,
+          156,
+          15,
+          36,
+          13,
+          152,
+          15,
+          11,
+          16,
+          130,
+          15,
+          230,
+          7,
+          218,
+          7,
+          238,
+          14,
+          158,
+          8,
+          138,
+          55,
+          255
+        ],
+        "hex": "0B 67 04 C3 0F 63 0F 7E 0A D8 02 D3 03 0B 01 63 07 D7 09 66 FE 07 7D 05 6E 01 78 02 D3 05 BD 10 E6 0A 52 03 0B 3B 03 79 01 28 3D FA 0C 9C 0F 24 0D 98 0F 0B 10 82 0F E6 07 DA 07 EE 0E 9E 08 8A 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 24,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_StayOutOfTallGrass": {
+      "label": "PetalburgWoods_Text_StayOutOfTallGrass",
+      "line": 387,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "哟，那边的！\\n你的宝可梦没事吧？\\p如果你的宝可梦很虚弱，\\n想避免战斗，那就得避开草堆。$",
+      "display_text": "哟，那边的！\n你的宝可梦没事吧？\n\n如果你的宝可梦很虚弱，\n想避免战斗，那就得避开草堆。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 78,
+        "bytes": [
+          15,
+          98,
+          59,
+          9,
+          189,
+          1,
+          156,
+          3,
+          11,
+          60,
+          254,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          9,
+          83,
+          12,
+          7,
+          1,
+          40,
+          61,
+          251,
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          11,
+          14,
+          116,
+          11,
+          117,
+          59,
+          254,
+          14,
+          24,
+          1,
+          153,
+          9,
+          122,
+          16,
+          48,
+          3,
+          92,
+          59,
+          9,
+          189,
+          7,
+          125,
+          3,
+          10,
+          1,
+          153,
+          7,
+          184,
+          2,
+          1,
+          3,
+          118,
+          55,
+          255
+        ],
+        "hex": "0F 62 3B 09 BD 01 9C 03 0B 3C FE 09 D9 03 0B 01 63 07 D7 09 66 09 53 0C 07 01 28 3D FB 0B 67 04 C3 09 D9 03 0B 01 63 07 D7 09 66 05 0B 0E 74 0B 75 3B FE 0E 18 01 99 09 7A 10 30 03 5C 3B 09 BD 07 7D 03 0A 01 99 07 B8 02 01 03 76 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 46,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_HiddenItemsExplanation": {
+      "label": "PetalburgWoods_Text_HiddenItemsExplanation",
+      "line": 390,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "有时候，地上会有些\\n你看不见的东西。\\p所以我不管走到哪儿\\n都会仔细搜索四周。$",
+      "display_text": "有时候，地上会有些\n你看不见的东西。\n\n所以我不管走到哪儿\n都会仔细搜索四周。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 71,
+        "bytes": [
+          15,
+          126,
+          11,
+          237,
+          5,
+          33,
+          59,
+          3,
+          31,
+          11,
+          173,
+          5,
+          110,
+          15,
+          126,
+          14,
+          52,
+          254,
+          9,
+          217,
+          7,
+          194,
+          1,
+          214,
+          5,
+          230,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          55,
+          251,
+          12,
+          156,
+          15,
+          36,
+          13,
+          152,
+          1,
+          214,
+          4,
+          164,
+          17,
+          23,
+          3,
+          4,
+          9,
+          186,
+          3,
+          158,
+          254,
+          3,
+          97,
+          5,
+          110,
+          17,
+          8,
+          13,
+          220,
+          12,
+          116,
+          12,
+          154,
+          12,
+          103,
+          16,
+          173,
+          55,
+          255
+        ],
+        "hex": "0F 7E 0B ED 05 21 3B 03 1F 0B AD 05 6E 0F 7E 0E 34 FE 09 D9 07 C2 01 D6 05 E6 03 0B 03 50 0D BD 37 FB 0C 9C 0F 24 0D 98 01 D6 04 A4 11 17 03 04 09 BA 03 9E FE 03 61 05 6E 11 08 0D DC 0C 74 0C 9A 0C 67 10 AD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 41,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_TryUsingThisItem": {
+      "label": "PetalburgWoods_Text_TryUsingThisItem",
+      "line": 393,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "哦，真漂亮！\\n那是卡那兹市道馆的徽章！\\p你一定是个训练家，\\n试试这个东西吧。$",
+      "display_text": "哦，真漂亮！\n那是卡那兹市道馆的徽章！\n\n你一定是个训练家，\n试试这个东西吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 69,
+        "bytes": [
+          10,
+          19,
+          59,
+          16,
+          89,
+          10,
+          106,
+          8,
+          148,
+          60,
+          254,
+          9,
+          189,
+          12,
+          12,
+          7,
+          182,
+          9,
+          189,
+          17,
+          0,
+          12,
+          21,
+          3,
+          7,
+          4,
+          165,
+          3,
+          11,
+          5,
+          98,
+          16,
+          53,
+          60,
+          251,
+          9,
+          217,
+          15,
+          11,
+          3,
+          77,
+          12,
+          12,
+          4,
+          96,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          59,
+          254,
+          12,
+          25,
+          12,
+          25,
+          16,
+          85,
+          4,
+          96,
+          3,
+          80,
+          13,
+          189,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "0A 13 3B 10 59 0A 6A 08 94 3C FE 09 BD 0C 0C 07 B6 09 BD 11 00 0C 15 03 07 04 A5 03 0B 05 62 10 35 3C FB 09 D9 0F 0B 03 4D 0C 0C 04 60 0E 9E 08 8A 05 BD 3B FE 0C 19 0C 19 10 55 04 60 03 50 0D BD 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 41,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_MiracleSeedExplanation": {
+      "label": "PetalburgWoods_Text_MiracleSeedExplanation",
+      "line": 396,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "这是奇迹种子，\\n让宝可梦携带的话，\\l它的草属性招式就会变强。\\p我想除了奇迹种子，\\n还有其它能让宝可梦携带的便利道具。$",
+      "display_text": "这是奇迹种子，\n让宝可梦携带的话，\n它的草属性招式就会变强。\n\n我想除了奇迹种子，\n还有其它能让宝可梦携带的便利道具。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 108,
+        "bytes": [
+          16,
+          85,
+          12,
+          12,
+          10,
+          161,
+          5,
+          142,
+          16,
+          167,
+          17,
+          11,
+          59,
+          254,
+          11,
+          67,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          58,
+          2,
+          216,
+          3,
+          11,
+          5,
+          61,
+          59,
+          250,
+          12,
+          159,
+          3,
+          11,
+          2,
+          1,
+          12,
+          57,
+          14,
+          95,
+          16,
+          67,
+          12,
+          2,
+          7,
+          125,
+          5,
+          110,
+          1,
+          161,
+          10,
+          216,
+          55,
+          251,
+          13,
+          152,
+          14,
+          24,
+          2,
+          127,
+          8,
+          158,
+          10,
+          161,
+          5,
+          142,
+          16,
+          167,
+          17,
+          11,
+          59,
+          254,
+          5,
+          70,
+          15,
+          126,
+          10,
+          159,
+          12,
+          159,
+          9,
+          210,
+          11,
+          67,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          58,
+          2,
+          216,
+          3,
+          11,
+          1,
+          160,
+          8,
+          112,
+          3,
+          7,
+          7,
+          143,
+          55,
+          255
+        ],
+        "hex": "10 55 0C 0C 0A A1 05 8E 10 A7 11 0B 3B FE 0B 43 01 63 07 D7 09 66 0E 3A 02 D8 03 0B 05 3D 3B FA 0C 9F 03 0B 02 01 0C 39 0E 5F 10 43 0C 02 07 7D 05 6E 01 A1 0A D8 37 FB 0D 98 0E 18 02 7F 08 9E 0A A1 05 8E 10 A7 11 0B 3B FE 05 46 0F 7E 0A 9F 0C 9F 09 D2 0B 43 01 63 07 D7 09 66 0E 3A 02 D8 03 0B 01 A0 08 70 03 07 07 8F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 18,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 43,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 62,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_TrainerTipsExperience": {
+      "label": "PetalburgWoods_Text_TrainerTipsExperience",
+      "line": 399,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "有用的公告牌！\\p所有在战斗中出过场的宝可梦\\n都会得到经验值。\\p想培育弱小的宝可梦，\\n就把它放到队伍列表的左侧。\\p战斗开始时，先把它换下场。\\n这样它不会受伤\\l也能获得经验值了。$",
+      "display_text": "有用的公告牌！\n\n所有在战斗中出过场的宝可梦\n都会得到经验值。\n\n想培育弱小的宝可梦，\n就把它放到队伍列表的左侧。\n\n战斗开始时，先把它换下场。\n这样它不会受伤\n也能获得经验值了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 161,
+        "bytes": [
+          15,
+          126,
+          15,
+          113,
+          3,
+          11,
+          4,
+          115,
+          4,
+          80,
+          10,
+          35,
+          60,
+          251,
+          12,
+          156,
+          15,
+          126,
+          15,
+          230,
+          16,
+          48,
+          3,
+          92,
+          16,
+          161,
+          2,
+          120,
+          4,
+          197,
+          2,
+          35,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          3,
+          97,
+          5,
+          110,
+          3,
+          10,
+          3,
+          4,
+          7,
+          93,
+          14,
+          210,
+          16,
+          134,
+          55,
+          251,
+          14,
+          24,
+          10,
+          61,
+          15,
+          171,
+          11,
+          117,
+          14,
+          44,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          254,
+          7,
+          125,
+          1,
+          48,
+          12,
+          159,
+          3,
+          200,
+          3,
+          4,
+          3,
+          120,
+          13,
+          175,
+          8,
+          163,
+          1,
+          170,
+          3,
+          11,
+          17,
+          43,
+          2,
+          4,
+          55,
+          251,
+          16,
+          48,
+          3,
+          92,
+          7,
+          184,
+          12,
+          1,
+          11,
+          237,
+          59,
+          13,
+          236,
+          1,
+          48,
+          12,
+          159,
+          5,
+          72,
+          13,
+          230,
+          2,
+          35,
+          55,
+          254,
+          16,
+          85,
+          14,
+          226,
+          12,
+          159,
+          1,
+          214,
+          5,
+          110,
+          12,
+          33,
+          11,
+          169,
+          250,
+          15,
+          2,
+          9,
+          210,
+          5,
+          126,
+          3,
+          10,
+          7,
+          93,
+          14,
+          210,
+          16,
+          134,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0F 7E 0F 71 03 0B 04 73 04 50 0A 23 3C FB 0C 9C 0F 7E 0F E6 10 30 03 5C 10 A1 02 78 04 C5 02 23 03 0B 01 63 07 D7 09 66 FE 03 61 05 6E 03 0A 03 04 07 5D 0E D2 10 86 37 FB 0E 18 0A 3D 0F AB 0B 75 0E 2C 03 0B 01 63 07 D7 09 66 3B FE 07 7D 01 30 0C 9F 03 C8 03 04 03 78 0D AF 08 A3 01 AA 03 0B 11 2B 02 04 37 FB 10 30 03 5C 07 B8 0C 01 0B ED 3B 0D EC 01 30 0C 9F 05 48 0D E6 02 23 37 FE 10 55 0E E2 0C 9F 01 D6 05 6E 0C 21 0B A9 FA 0F 02 09 D2 05 7E 03 0A 07 5D 0E D2 10 86 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 7,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 59,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 74,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 83,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 94,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgWoods_Text_TrainerTipsPP": {
+      "label": "PetalburgWoods_Text_TrainerTipsPP",
+      "line": 402,
+      "source_file": "data/maps/PetalburgWoods/scripts.inc",
+      "raw_text": "有用的公告牌！\\p除了被打击点数HP(体力)，\\n宝可梦还拥有用来在战斗中发动招式的\\l招式点数(PP)。\\p如果宝可梦的PP值耗尽，必须把它\\n带到宝可梦中心去。$",
+      "display_text": "有用的公告牌！\n\n除了被打击点数HP(体力)，\n宝可梦还拥有用来在战斗中发动招式的\n招式点数(PP)。\n\n如果宝可梦的PP值耗尽，必须把它\n带到宝可梦中心去。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 135,
+        "bytes": [
+          15,
+          126,
+          15,
+          113,
+          3,
+          11,
+          4,
+          115,
+          4,
+          80,
+          10,
+          35,
+          60,
+          251,
+          2,
+          127,
+          8,
+          158,
+          1,
+          120,
+          2,
+          210,
+          5,
+          132,
+          3,
+          42,
+          12,
+          66,
+          194,
+          202,
+          92,
+          12,
+          230,
+          8,
+          121,
+          93,
+          59,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          70,
+          15,
+          99,
+          15,
+          126,
+          15,
+          113,
+          8,
+          41,
+          15,
+          230,
+          16,
+          48,
+          3,
+          92,
+          16,
+          161,
+          3,
+          165,
+          3,
+          84,
+          16,
+          67,
+          12,
+          2,
+          3,
+          11,
+          250,
+          16,
+          67,
+          12,
+          2,
+          3,
+          42,
+          12,
+          66,
+          92,
+          202,
+          202,
+          93,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          202,
+          202,
+          16,
+          134,
+          4,
+          234,
+          7,
+          81,
+          59,
+          1,
+          149,
+          14,
+          118,
+          1,
+          48,
+          12,
+          159,
+          254,
+          2,
+          216,
+          3,
+          4,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          161,
+          14,
+          79,
+          11,
+          37,
+          55,
+          255
+        ],
+        "hex": "0F 7E 0F 71 03 0B 04 73 04 50 0A 23 3C FB 02 7F 08 9E 01 78 02 D2 05 84 03 2A 0C 42 C2 CA 5C 0C E6 08 79 5D 3B FE 01 63 07 D7 09 66 05 46 0F 63 0F 7E 0F 71 08 29 0F E6 10 30 03 5C 10 A1 03 A5 03 54 10 43 0C 02 03 0B FA 10 43 0C 02 03 2A 0C 42 5C CA CA 5D 37 FB 0B 67 04 C3 01 63 07 D7 09 66 03 0B CA CA 10 86 04 EA 07 51 3B 01 95 0E 76 01 30 0C 9F FE 02 D8 03 04 01 63 07 D7 09 66 10 A1 0E 4F 0B 25 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 7,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 23,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 42,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 53,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 71,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 82,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 23,
+      "closemessage": 10,
+      "delay_16": 19,
+      "delay_4": 1,
+      "delay_8": 3,
+      "face_down": 1,
+      "face_left": 1,
+      "face_player": 2,
+      "face_right": 2,
+      "face_up": 3,
+      "faceplayer": 1,
+      "giveitem": 2,
+      "goto_if_eq": 4,
+      "goto_if_set": 3,
+      "lock_facing_direction": 1,
+      "playbgm": 2,
+      "register_matchcall": 2,
+      "removeobject": 2,
+      "setflag": 1,
+      "setvar": 2,
+      "special": 1,
+      "specialvar": 2,
+      "step_end": 15,
+      "trainerbattle_no_intro": 2,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 2,
+      "unlock_facing_direction": 1,
+      "waitmovement": 22,
+      "walk_down": 8,
+      "walk_fast_down": 8,
+      "walk_fast_left": 2,
+      "walk_fast_right": 3,
+      "walk_fast_up": 19,
+      "walk_in_place_faster_down": 1,
+      "walk_in_place_faster_right": 1,
+      "walk_in_place_faster_up": 3,
+      "walk_up": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 65,
+    "script_count": 21,
+    "movement_count": 15,
+    "text_count": 29,
+    "encoded_text_count": 29,
+    "text_source_byte_count": 1837,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 29
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 23,
+      "call": 4,
+      "closemessage": 10,
+      "delay_16": 19,
+      "delay_4": 1,
+      "delay_8": 3,
+      "end": 18,
+      "face_down": 1,
+      "face_left": 1,
+      "face_player": 2,
+      "face_right": 2,
+      "face_up": 3,
+      "faceplayer": 1,
+      "giveitem": 2,
+      "goto": 4,
+      "goto_if_eq": 4,
+      "goto_if_set": 3,
+      "lock": 1,
+      "lock_facing_direction": 1,
+      "lockall": 2,
+      "msgbox": 28,
+      "playbgm": 2,
+      "register_matchcall": 2,
+      "release": 7,
+      "releaseall": 1,
+      "removeobject": 2,
+      "return": 2,
+      "setflag": 1,
+      "setvar": 2,
+      "special": 1,
+      "specialvar": 2,
+      "step_end": 15,
+      "trainerbattle_no_intro": 2,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 2,
+      "unlock_facing_direction": 1,
+      "waitmovement": 22,
+      "walk_down": 8,
+      "walk_fast_down": 8,
+      "walk_fast_left": 2,
+      "walk_fast_right": 3,
+      "walk_fast_up": 19,
+      "walk_in_place_faster_down": 1,
+      "walk_in_place_faster_right": 1,
+      "walk_in_place_faster_up": 3,
+      "walk_up": 1
+    }
+  }
+}

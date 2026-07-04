@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SSAnne_B1F_Room5_Frlg",
+    "map_script": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+    "map_json": "data/maps/SSAnne_B1F_Room5_Frlg/map.json",
+    "map_id": "MAP_SSANNE_B1F_ROOM5",
+    "map_name": "SSAnne_B1F_Room5_Frlg"
+  },
+  "labels": {
+    "SSAnne_B1F_Room5_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_B1F_Room5_EventScript_Boy": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_B1F_Room5_EventScript_Machoke": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "SSAnne_B1F_Room5_Text_MachokeHasStrengthToMoveRocks": {
+      "kind": "text",
+      "line": 18,
+      "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_B1F_Room5_Text_Machoke": {
+      "kind": "text",
+      "line": 22,
+      "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SSAnne_B1F_Room5_Frlg_MapScripts": {
+      "label": "SSAnne_B1F_Room5_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_B1F_Room5_EventScript_Boy": {
+      "label": "SSAnne_B1F_Room5_EventScript_Boy",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_B1F_Room5_Text_MachokeHasStrengthToMoveRocks",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox SSAnne_B1F_Room5_Text_MachokeHasStrengthToMoveRocks, MSGBOX_NPC",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_B1F_Room5_Text_MachokeHasStrengthToMoveRocks",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "SSAnne_B1F_Room5_EventScript_Machoke": {
+      "label": "SSAnne_B1F_Room5_EventScript_Machoke",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 9,
+          "raw": "lock",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 10,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 11,
+          "raw": "waitse",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_MACHOKE",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 12,
+          "raw": "playmoncry SPECIES_MACHOKE, CRY_MODE_NORMAL",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_B1F_Room5_Text_Machoke"
+          ],
+          "line": 13,
+          "raw": "msgbox SSAnne_B1F_Room5_Text_Machoke",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 14,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 15,
+          "raw": "release",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_B1F_Room5_Text_Machoke",
+          "mode": "",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SSAnne_B1F_Room5_Text_MachokeHasStrengthToMoveRocks": {
+      "label": "SSAnne_B1F_Room5_Text_MachokeHasStrengthToMoveRocks",
+      "line": 18,
+      "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+      "raw_text": "我的好友豪力超级强壮！\\p它有足够的力量来移动大石头！$",
+      "display_text": "我的好友豪力超级强壮！\n\n它有足够的力量来移动大石头！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 50,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          4,
+          233,
+          15,
+          127,
+          4,
+          230,
+          8,
+          121,
+          2,
+          46,
+          5,
+          161,
+          10,
+          216,
+          16,
+          226,
+          60,
+          251,
+          12,
+          159,
+          15,
+          126,
+          17,
+          27,
+          4,
+          131,
+          3,
+          11,
+          8,
+          121,
+          8,
+          146,
+          8,
+          41,
+          15,
+          22,
+          3,
+          84,
+          2,
+          211,
+          11,
+          235,
+          13,
+          31,
+          60,
+          255
+        ],
+        "hex": "0D 98 03 0B 04 E9 0F 7F 04 E6 08 79 02 2E 05 A1 0A D8 10 E2 3C FB 0C 9F 0F 7E 11 1B 04 83 03 0B 08 79 08 92 08 29 0F 16 03 54 02 D3 0B EB 0D 1F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room5_Text_Machoke": {
+      "label": "SSAnne_B1F_Room5_Text_Machoke",
+      "line": 22,
+      "source_file": "data/maps/SSAnne_B1F_Room5_Frlg/scripts.inc",
+      "raw_text": "豪力：哇哦！上啊上啊！$",
+      "display_text": "豪力：哇哦！上啊上啊！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          4,
+          230,
+          8,
+          121,
+          62,
+          13,
+          67,
+          10,
+          19,
+          60,
+          11,
+          173,
+          1,
+          0,
+          11,
+          173,
+          1,
+          0,
+          60,
+          255
+        ],
+        "hex": "04 E6 08 79 3E 0D 43 0A 13 3C 0B AD 01 00 0B AD 01 00 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "playmoncry": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 70,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "faceplayer": 1,
+      "lock": 1,
+      "msgbox": 2,
+      "playmoncry": 1,
+      "release": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    }
+  }
+}

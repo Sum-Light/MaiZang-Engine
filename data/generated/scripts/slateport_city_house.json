@@ -1,0 +1,450 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SlateportCity_House",
+    "map_script": "data/maps/SlateportCity_House/scripts.inc",
+    "map_json": "data/maps/SlateportCity_House/map.json",
+    "map_id": "MAP_SLATEPORT_CITY_HOUSE",
+    "map_name": "SlateportCity_House"
+  },
+  "labels": {
+    "SlateportCity_House_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SlateportCity_House/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_House_EventScript_PokefanM": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SlateportCity_House/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_House_EventScript_Girl": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SlateportCity_House/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_House_Text_NatureToDoWithStatGains": {
+      "kind": "text",
+      "line": 12,
+      "source_file": "data/maps/SlateportCity_House/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_House_Text_MustBeGoingToBattleTent": {
+      "kind": "text",
+      "line": 15,
+      "source_file": "data/maps/SlateportCity_House/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SlateportCity_House_MapScripts": {
+      "label": "SlateportCity_House_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SlateportCity_House/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SlateportCity_House/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_House_EventScript_PokefanM": {
+      "label": "SlateportCity_House_EventScript_PokefanM",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SlateportCity_House/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_House_Text_NatureToDoWithStatGains",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox SlateportCity_House_Text_NatureToDoWithStatGains, MSGBOX_NPC",
+          "source_file": "data/maps/SlateportCity_House/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_House/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_House_Text_NatureToDoWithStatGains",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "SlateportCity_House_EventScript_Girl": {
+      "label": "SlateportCity_House_EventScript_Girl",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SlateportCity_House/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_House_Text_MustBeGoingToBattleTent",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox SlateportCity_House_Text_MustBeGoingToBattleTent, MSGBOX_NPC",
+          "source_file": "data/maps/SlateportCity_House/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_House/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_House_Text_MustBeGoingToBattleTent",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SlateportCity_House_Text_NatureToDoWithStatGains": {
+      "label": "SlateportCity_House_Text_NatureToDoWithStatGains",
+      "line": 12,
+      "source_file": "data/maps/SlateportCity_House/scripts.inc",
+      "raw_text": "我的宝可梦是急躁性格。\\p比起我的其它宝可梦，\\n它的速度比较快。\\p也许宝可梦的性格\\n也会影响到它们的成长。$",
+      "display_text": "我的宝可梦是急躁性格。\n\n比起我的其它宝可梦，\n它的速度比较快。\n\n也许宝可梦的性格\n也会影响到它们的成长。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 97,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          12,
+          5,
+          156,
+          15,
+          246,
+          14,
+          95,
+          4,
+          91,
+          55,
+          251,
+          1,
+          133,
+          10,
+          171,
+          13,
+          152,
+          3,
+          11,
+          10,
+          159,
+          12,
+          159,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          254,
+          12,
+          159,
+          3,
+          11,
+          12,
+          124,
+          3,
+          109,
+          1,
+          133,
+          7,
+          33,
+          8,
+          3,
+          55,
+          251,
+          15,
+          2,
+          14,
+          120,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          14,
+          95,
+          4,
+          91,
+          254,
+          15,
+          2,
+          5,
+          110,
+          15,
+          94,
+          14,
+          25,
+          3,
+          4,
+          12,
+          159,
+          9,
+          95,
+          3,
+          11,
+          2,
+          75,
+          2,
+          38,
+          55,
+          255
+        ],
+        "hex": "0D 98 03 0B 01 63 07 D7 09 66 0C 0C 05 9C 0F F6 0E 5F 04 5B 37 FB 01 85 0A AB 0D 98 03 0B 0A 9F 0C 9F 01 63 07 D7 09 66 3B FE 0C 9F 03 0B 0C 7C 03 6D 01 85 07 21 08 03 37 FB 0F 02 0E 78 01 63 07 D7 09 66 03 0B 0E 5F 04 5B FE 0F 02 05 6E 0F 5E 0E 19 03 04 0C 9F 09 5F 03 0B 02 4B 02 26 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 23,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 43,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 56,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SlateportCity_House_Text_MustBeGoingToBattleTent": {
+      "label": "SlateportCity_House_Text_MustBeGoingToBattleTent",
+      "line": 15,
+      "source_file": "data/maps/SlateportCity_House/scripts.inc",
+      "raw_text": "你是个训练家对吧？\\p你来凯那市\\n一定是想去对战帐篷。$",
+      "display_text": "你是个训练家对吧？\n\n你来凯那市\n一定是想去对战帐篷。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 49,
+        "bytes": [
+          9,
+          217,
+          12,
+          12,
+          4,
+          96,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          121,
+          1,
+          40,
+          61,
+          251,
+          9,
+          217,
+          8,
+          41,
+          7,
+          187,
+          9,
+          189,
+          12,
+          21,
+          254,
+          15,
+          11,
+          3,
+          77,
+          12,
+          12,
+          14,
+          24,
+          11,
+          37,
+          3,
+          121,
+          16,
+          48,
+          16,
+          61,
+          10,
+          78,
+          55,
+          255
+        ],
+        "hex": "09 D9 0C 0C 04 60 0E 9E 08 8A 05 BD 03 79 01 28 3D FB 09 D9 08 29 07 BB 09 BD 0C 15 FE 0F 0B 03 4D 0C 0C 0E 18 0B 25 03 79 10 30 10 3D 0A 4E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 16,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 146,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2
+    }
+  }
+}

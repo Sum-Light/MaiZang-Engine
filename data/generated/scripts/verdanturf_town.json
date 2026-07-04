@@ -1,0 +1,1977 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "VerdanturfTown",
+    "map_script": "data/maps/VerdanturfTown/scripts.inc",
+    "map_json": "data/maps/VerdanturfTown/map.json",
+    "map_id": "MAP_VERDANTURF_TOWN",
+    "map_name": "VerdanturfTown"
+  },
+  "labels": {
+    "VerdanturfTown_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_EventScript_Twin": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 8
+    },
+    "VerdanturfTown_EventScript_TwinTunnelOpen": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 5
+    },
+    "VerdanturfTown_EventScript_Man": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_EventScript_Camper": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_EventScript_Boy": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 6
+    },
+    "VerdanturfTown_EventScript_BoyTunnelOpen": {
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_EventScript_TownSign": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_EventScript_WandasHouseSign": {
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_EventScript_BattleTentSign": {
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_EventScript_RusturfTunnelSign": {
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_Text_ManTryingToDigTunnel": {
+      "kind": "text",
+      "line": 64,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_Text_ManDugTunnelForLove": {
+      "kind": "text",
+      "line": 67,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_Text_AirCleanHere": {
+      "kind": "text",
+      "line": 70,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_Text_MakeBattleTentDebut": {
+      "kind": "text",
+      "line": 73,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_Text_GuyTryingToBustThroughCave": {
+      "kind": "text",
+      "line": 76,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_Text_EasyToGetToRustboroNow": {
+      "kind": "text",
+      "line": 79,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_Text_TownSign": {
+      "kind": "text",
+      "line": 82,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_Text_WandasHouse": {
+      "kind": "text",
+      "line": 85,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_Text_BattleTentSign": {
+      "kind": "text",
+      "line": 88,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_Text_RusturfTunnelSign": {
+      "kind": "text",
+      "line": 91,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "VerdanturfTown_MapScripts": {
+      "label": "VerdanturfTown_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "VerdanturfTown_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_OnTransition",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_OnTransition": {
+      "label": "VerdanturfTown_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_VISITED_VERDANTURF_TOWN"
+          ],
+          "line": 6,
+          "raw": "setflag FLAG_VISITED_VERDANTURF_TOWN",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_CONTEST_HALL_STATE",
+            "0"
+          ],
+          "line": 7,
+          "raw": "setvar VAR_CONTEST_HALL_STATE, 0",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_EventScript_Twin": {
+      "label": "VerdanturfTown_EventScript_Twin",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 11,
+          "raw": "lock",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 12,
+          "raw": "faceplayer",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RUSTURF_TUNNEL_OPENED",
+            "VerdanturfTown_EventScript_TwinTunnelOpen"
+          ],
+          "line": 13,
+          "raw": "goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_TwinTunnelOpen",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_Text_ManTryingToDigTunnel",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 14,
+          "raw": "msgbox VerdanturfTown_Text_ManTryingToDigTunnel, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_VERDANTURF_TWIN",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 15,
+          "raw": "applymovement LOCALID_VERDANTURF_TWIN, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 16,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 17,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_Text_ManTryingToDigTunnel",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 14
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "VerdanturfTown_EventScript_TwinTunnelOpen",
+          "line": 13
+        }
+      ]
+    },
+    "VerdanturfTown_EventScript_TwinTunnelOpen": {
+      "label": "VerdanturfTown_EventScript_TwinTunnelOpen",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_Text_ManDugTunnelForLove",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 21,
+          "raw": "msgbox VerdanturfTown_Text_ManDugTunnelForLove, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_VERDANTURF_TWIN",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 22,
+          "raw": "applymovement LOCALID_VERDANTURF_TWIN, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 23,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 24,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_Text_ManDugTunnelForLove",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_EventScript_Man": {
+      "label": "VerdanturfTown_EventScript_Man",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_Text_AirCleanHere",
+            "MSGBOX_NPC"
+          ],
+          "line": 28,
+          "raw": "msgbox VerdanturfTown_Text_AirCleanHere, MSGBOX_NPC",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_Text_AirCleanHere",
+          "mode": "MSGBOX_NPC",
+          "line": 28
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_EventScript_Camper": {
+      "label": "VerdanturfTown_EventScript_Camper",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_Text_MakeBattleTentDebut",
+            "MSGBOX_NPC"
+          ],
+          "line": 32,
+          "raw": "msgbox VerdanturfTown_Text_MakeBattleTentDebut, MSGBOX_NPC",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_Text_MakeBattleTentDebut",
+          "mode": "MSGBOX_NPC",
+          "line": 32
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_EventScript_Boy": {
+      "label": "VerdanturfTown_EventScript_Boy",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 36,
+          "raw": "lock",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 37,
+          "raw": "faceplayer",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RUSTURF_TUNNEL_OPENED",
+            "VerdanturfTown_EventScript_BoyTunnelOpen"
+          ],
+          "line": 38,
+          "raw": "goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_BoyTunnelOpen",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_Text_GuyTryingToBustThroughCave",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 39,
+          "raw": "msgbox VerdanturfTown_Text_GuyTryingToBustThroughCave, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 40,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 41,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_Text_GuyTryingToBustThroughCave",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 39
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "VerdanturfTown_EventScript_BoyTunnelOpen",
+          "line": 38
+        }
+      ]
+    },
+    "VerdanturfTown_EventScript_BoyTunnelOpen": {
+      "label": "VerdanturfTown_EventScript_BoyTunnelOpen",
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_Text_EasyToGetToRustboroNow",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 44,
+          "raw": "msgbox VerdanturfTown_Text_EasyToGetToRustboroNow, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 45,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 46,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_Text_EasyToGetToRustboroNow",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 44
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_EventScript_TownSign": {
+      "label": "VerdanturfTown_EventScript_TownSign",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_Text_TownSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 49,
+          "raw": "msgbox VerdanturfTown_Text_TownSign, MSGBOX_SIGN",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 50,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_Text_TownSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 49
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_EventScript_WandasHouseSign": {
+      "label": "VerdanturfTown_EventScript_WandasHouseSign",
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_Text_WandasHouse",
+            "MSGBOX_SIGN"
+          ],
+          "line": 53,
+          "raw": "msgbox VerdanturfTown_Text_WandasHouse, MSGBOX_SIGN",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 54,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_Text_WandasHouse",
+          "mode": "MSGBOX_SIGN",
+          "line": 53
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_EventScript_BattleTentSign": {
+      "label": "VerdanturfTown_EventScript_BattleTentSign",
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_Text_BattleTentSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 57,
+          "raw": "msgbox VerdanturfTown_Text_BattleTentSign, MSGBOX_SIGN",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 58,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_Text_BattleTentSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 57
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_EventScript_RusturfTunnelSign": {
+      "label": "VerdanturfTown_EventScript_RusturfTunnelSign",
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_Text_RusturfTunnelSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 61,
+          "raw": "msgbox VerdanturfTown_Text_RusturfTunnelSign, MSGBOX_SIGN",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_Text_RusturfTunnelSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 61
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "VerdanturfTown_Text_ManTryingToDigTunnel": {
+      "label": "VerdanturfTown_Text_ManTryingToDigTunnel",
+      "line": 64,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "raw_text": "爸爸告诉我，\\n这隧道里全是胆小的宝可梦。\\p它们听到巨响就会受惊，\\n引发大骚乱。\\p所以大型隧道工程\\n被迫中止了。\\p但有个男人还在\\n独自挖掘！$",
+      "display_text": "爸爸告诉我，\n这隧道里全是胆小的宝可梦。\n\n它们听到巨响就会受惊，\n引发大骚乱。\n\n所以大型隧道工程\n被迫中止了。\n\n但有个男人还在\n独自挖掘！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 126,
+        "bytes": [
+          1,
+          53,
+          1,
+          53,
+          4,
+          80,
+          12,
+          130,
+          13,
+          152,
+          59,
+          254,
+          16,
+          85,
+          12,
+          144,
+          3,
+          7,
+          8,
+          100,
+          11,
+          43,
+          12,
+          12,
+          2,
+          230,
+          14,
+          44,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          12,
+          159,
+          9,
+          95,
+          13,
+          7,
+          3,
+          4,
+          7,
+          142,
+          14,
+          25,
+          7,
+          125,
+          5,
+          110,
+          12,
+          33,
+          7,
+          90,
+          59,
+          254,
+          15,
+          77,
+          3,
+          165,
+          2,
+          211,
+          11,
+          133,
+          9,
+          12,
+          55,
+          251,
+          12,
+          156,
+          15,
+          36,
+          2,
+          211,
+          14,
+          88,
+          12,
+          144,
+          3,
+          7,
+          4,
+          108,
+          2,
+          78,
+          254,
+          1,
+          120,
+          10,
+          131,
+          16,
+          161,
+          16,
+          138,
+          8,
+          158,
+          55,
+          251,
+          2,
+          233,
+          15,
+          126,
+          4,
+          96,
+          9,
+          198,
+          11,
+          75,
+          5,
+          70,
+          15,
+          230,
+          254,
+          3,
+          101,
+          17,
+          12,
+          13,
+          66,
+          7,
+          162,
+          60,
+          255
+        ],
+        "hex": "01 35 01 35 04 50 0C 82 0D 98 3B FE 10 55 0C 90 03 07 08 64 0B 2B 0C 0C 02 E6 0E 2C 03 0B 01 63 07 D7 09 66 37 FB 0C 9F 09 5F 0D 07 03 04 07 8E 0E 19 07 7D 05 6E 0C 21 07 5A 3B FE 0F 4D 03 A5 02 D3 0B 85 09 0C 37 FB 0C 9C 0F 24 02 D3 0E 58 0C 90 03 07 04 6C 02 4E FE 01 78 0A 83 10 A1 10 8A 08 9E 37 FB 02 E9 0F 7E 04 60 09 C6 0B 4B 05 46 0F E6 FE 03 65 11 0C 0D 42 07 A2 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 42,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 52,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 60,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 69,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 76,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_Text_ManDugTunnelForLove": {
+      "label": "VerdanturfTown_Text_ManDugTunnelForLove",
+      "line": 67,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "raw_text": "听说那人挖隧道是\\n为了心爱的姑娘。\\p虽然不太懂，\\n但真浪漫啊！$",
+      "display_text": "听说那人挖隧道是\n为了心爱的姑娘。\n\n虽然不太懂，\n但真浪漫啊！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 57,
+        "bytes": [
+          13,
+          7,
+          12,
+          88,
+          9,
+          189,
+          11,
+          75,
+          13,
+          66,
+          12,
+          144,
+          3,
+          7,
+          12,
+          12,
+          254,
+          13,
+          112,
+          8,
+          158,
+          14,
+          79,
+          1,
+          13,
+          3,
+          11,
+          4,
+          139,
+          9,
+          229,
+          55,
+          251,
+          12,
+          135,
+          11,
+          59,
+          1,
+          214,
+          12,
+          172,
+          3,
+          83,
+          59,
+          254,
+          2,
+          233,
+          16,
+          89,
+          8,
+          64,
+          9,
+          56,
+          1,
+          0,
+          60,
+          255
+        ],
+        "hex": "0D 07 0C 58 09 BD 0B 4B 0D 42 0C 90 03 07 0C 0C FE 0D 70 08 9E 0E 4F 01 0D 03 0B 04 8B 09 E5 37 FB 0C 87 0B 3B 01 D6 0C AC 03 53 3B FE 02 E9 10 59 08 40 09 38 01 00 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 34,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_Text_AirCleanHere": {
+      "label": "VerdanturfTown_Text_AirCleanHere",
+      "line": 70,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "raw_text": "因风向关系，\\n火山灰永远吹不到这里，\\p所以这里空气非常清新。\\n住在这里，就算是体弱多病的人\\l也可能有奇迹般的好转。$",
+      "display_text": "因风向关系，\n火山灰永远吹不到这里，\n\n所以这里空气非常清新。\n住在这里，就算是体弱多病的人\n也可能有奇迹般的好转。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 106,
+        "bytes": [
+          15,
+          66,
+          3,
+          234,
+          14,
+          31,
+          4,
+          160,
+          13,
+          217,
+          59,
+          254,
+          5,
+          125,
+          11,
+          155,
+          5,
+          95,
+          15,
+          110,
+          15,
+          194,
+          2,
+          149,
+          1,
+          214,
+          3,
+          4,
+          16,
+          85,
+          8,
+          100,
+          59,
+          251,
+          12,
+          156,
+          15,
+          36,
+          16,
+          85,
+          8,
+          100,
+          7,
+          227,
+          10,
+          179,
+          3,
+          202,
+          2,
+          37,
+          11,
+          7,
+          14,
+          77,
+          55,
+          254,
+          16,
+          208,
+          15,
+          230,
+          16,
+          85,
+          8,
+          100,
+          59,
+          7,
+          125,
+          12,
+          134,
+          12,
+          12,
+          12,
+          230,
+          11,
+          117,
+          3,
+          133,
+          1,
+          188,
+          3,
+          11,
+          11,
+          75,
+          250,
+          15,
+          2,
+          7,
+          215,
+          9,
+          210,
+          15,
+          126,
+          10,
+          161,
+          5,
+          142,
+          1,
+          66,
+          3,
+          11,
+          4,
+          233,
+          16,
+          217,
+          55,
+          255
+        ],
+        "hex": "0F 42 03 EA 0E 1F 04 A0 0D D9 3B FE 05 7D 0B 9B 05 5F 0F 6E 0F C2 02 95 01 D6 03 04 10 55 08 64 3B FB 0C 9C 0F 24 10 55 08 64 07 E3 0A B3 03 CA 02 25 0B 07 0E 4D 37 FE 10 D0 0F E6 10 55 08 64 3B 07 7D 0C 86 0C 0C 0C E6 0B 75 03 85 01 BC 03 0B 0B 4B FA 0F 02 07 D7 09 D2 0F 7E 0A A1 05 8E 01 42 03 0B 04 E9 10 D9 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 48,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 61,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_Text_MakeBattleTentDebut": {
+      "label": "VerdanturfTown_Text_MakeBattleTentDebut",
+      "line": 73,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "raw_text": "我和宝可梦最近连胜不断，\\n决定在绿荫镇的对战帐篷首秀！$",
+      "display_text": "我和宝可梦最近连胜不断，\n决定在绿荫镇的对战帐篷首秀！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 52,
+        "bytes": [
+          13,
+          152,
+          4,
+          243,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          17,
+          38,
+          7,
+          78,
+          8,
+          127,
+          11,
+          224,
+          1,
+          214,
+          3,
+          116,
+          59,
+          254,
+          7,
+          166,
+          3,
+          77,
+          15,
+          230,
+          9,
+          6,
+          15,
+          65,
+          16,
+          101,
+          3,
+          11,
+          3,
+          121,
+          16,
+          48,
+          16,
+          61,
+          10,
+          78,
+          12,
+          28,
+          14,
+          110,
+          60,
+          255
+        ],
+        "hex": "0D 98 04 F3 01 63 07 D7 09 66 11 26 07 4E 08 7F 0B E0 01 D6 03 74 3B FE 07 A6 03 4D 0F E6 09 06 0F 41 10 65 03 0B 03 79 10 30 10 3D 0A 4E 0C 1C 0E 6E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_Text_GuyTryingToBustThroughCave": {
+      "label": "VerdanturfTown_Text_GuyTryingToBustThroughCave",
+      "line": 76,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "raw_text": "你看到友好商店旁边的\\n洞窟了吗？\\p里面有个人在努力打碎岩石\\n来打通隧道。\\p要是隧道能打通就太好了……\\n这样我们去卡那兹市就更容易了。$",
+      "display_text": "你看到友好商店旁边的\n洞窟了吗？\n\n里面有个人在努力打碎岩石\n来打通隧道。\n\n要是隧道能打通就太好了……\n这样我们去卡那兹市就更容易了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 123,
+        "bytes": [
+          9,
+          217,
+          7,
+          194,
+          3,
+          4,
+          15,
+          127,
+          4,
+          233,
+          11,
+          170,
+          3,
+          49,
+          10,
+          49,
+          1,
+          156,
+          3,
+          11,
+          254,
+          3,
+          89,
+          7,
+          237,
+          8,
+          158,
+          9,
+          42,
+          61,
+          251,
+          8,
+          100,
+          9,
+          126,
+          15,
+          126,
+          4,
+          96,
+          11,
+          75,
+          15,
+          230,
+          10,
+          9,
+          8,
+          121,
+          2,
+          210,
+          12,
+          140,
+          14,
+          187,
+          11,
+          235,
+          254,
+          8,
+          41,
+          2,
+          210,
+          13,
+          16,
+          12,
+          144,
+          3,
+          7,
+          55,
+          251,
+          14,
+          241,
+          12,
+          12,
+          12,
+          144,
+          3,
+          7,
+          9,
+          210,
+          2,
+          210,
+          13,
+          16,
+          7,
+          125,
+          12,
+          172,
+          4,
+          233,
+          8,
+          158,
+          176,
+          176,
+          254,
+          16,
+          85,
+          14,
+          226,
+          13,
+          152,
+          9,
+          95,
+          11,
+          37,
+          7,
+          182,
+          9,
+          189,
+          17,
+          0,
+          12,
+          21,
+          7,
+          125,
+          4,
+          102,
+          11,
+          93,
+          15,
+          39,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "09 D9 07 C2 03 04 0F 7F 04 E9 0B AA 03 31 0A 31 01 9C 03 0B FE 03 59 07 ED 08 9E 09 2A 3D FB 08 64 09 7E 0F 7E 04 60 0B 4B 0F E6 0A 09 08 79 02 D2 0C 8C 0E BB 0B EB FE 08 29 02 D2 0D 10 0C 90 03 07 37 FB 0E F1 0C 0C 0C 90 03 07 09 D2 02 D2 0D 10 07 7D 0C AC 04 E9 08 9E B0 B0 FE 10 55 0E E2 0D 98 09 5F 0B 25 07 B6 09 BD 11 00 0C 15 07 7D 04 66 0B 5D 0F 27 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 54,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 71,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_Text_EasyToGetToRustboroNow": {
+      "label": "VerdanturfTown_Text_EasyToGetToRustboroNow",
+      "line": 79,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "raw_text": "友好商店旁的洞穴\\n已经是连通两地的隧道啦！\\p太棒了——现在去卡那兹市买得文的\\n新产品方便多了。$",
+      "display_text": "友好商店旁的洞穴\n已经是连通两地的隧道啦！\n\n太棒了——现在去卡那兹市买得文的\n新产品方便多了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 88,
+        "bytes": [
+          15,
+          127,
+          4,
+          233,
+          11,
+          170,
+          3,
+          49,
+          10,
+          49,
+          3,
+          11,
+          3,
+          89,
+          14,
+          145,
+          254,
+          15,
+          33,
+          7,
+          93,
+          12,
+          12,
+          8,
+          127,
+          13,
+          16,
+          8,
+          144,
+          3,
+          31,
+          3,
+          11,
+          12,
+          144,
+          3,
+          7,
+          8,
+          39,
+          60,
+          251,
+          12,
+          172,
+          1,
+          83,
+          8,
+          158,
+          63,
+          63,
+          14,
+          3,
+          15,
+          230,
+          11,
+          37,
+          7,
+          182,
+          9,
+          189,
+          17,
+          0,
+          12,
+          21,
+          9,
+          44,
+          3,
+          10,
+          13,
+          138,
+          3,
+          11,
+          254,
+          14,
+          77,
+          2,
+          30,
+          10,
+          114,
+          3,
+          192,
+          1,
+          160,
+          3,
+          133,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0F 7F 04 E9 0B AA 03 31 0A 31 03 0B 03 59 0E 91 FE 0F 21 07 5D 0C 0C 08 7F 0D 10 08 90 03 1F 03 0B 0C 90 03 07 08 27 3C FB 0C AC 01 53 08 9E 3F 3F 0E 03 0F E6 0B 25 07 B6 09 BD 11 00 0C 15 09 2C 03 0A 0D 8A 03 0B FE 0E 4D 02 1E 0A 72 03 C0 01 A0 03 85 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 40,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 50,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_Text_TownSign": {
+      "label": "VerdanturfTown_Text_TownSign",
+      "line": 82,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "raw_text": "这里是绿茵镇。\\n“带有青草气息的风吹高原。”$",
+      "display_text": "这里是绿茵镇。\n“带有青草气息的风吹高原。”",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          12,
+          12,
+          9,
+          6,
+          15,
+          64,
+          16,
+          101,
+          55,
+          254,
+          177,
+          2,
+          216,
+          15,
+          126,
+          11,
+          2,
+          2,
+          1,
+          10,
+          179,
+          13,
+          198,
+          3,
+          11,
+          3,
+          234,
+          2,
+          149,
+          4,
+          73,
+          15,
+          185,
+          55,
+          178,
+          255
+        ],
+        "hex": "10 55 08 64 0C 0C 09 06 0F 40 10 65 37 FE B1 02 D8 0F 7E 0B 02 02 01 0A B3 0D C6 03 0B 03 EA 02 95 04 49 0F B9 37 B2 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_Text_WandasHouse": {
+      "label": "VerdanturfTown_Text_WandasHouse",
+      "line": 85,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "raw_text": "满盈的家$",
+      "display_text": "满盈的家",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 9,
+        "bytes": [
+          9,
+          52,
+          15,
+          93,
+          3,
+          11,
+          5,
+          189,
+          255
+        ],
+        "hex": "09 34 0F 5D 03 0B 05 BD FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 4,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_Text_BattleTentSign": {
+      "label": "VerdanturfTown_Text_BattleTentSign",
+      "line": 88,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "raw_text": "对战帐篷绿茵镇分址\\n“精彩对战，尽收眼底！”$",
+      "display_text": "对战帐篷绿茵镇分址\n“精彩对战，尽收眼底！”",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          3,
+          121,
+          16,
+          48,
+          16,
+          61,
+          10,
+          78,
+          9,
+          6,
+          15,
+          64,
+          16,
+          101,
+          3,
+          217,
+          16,
+          136,
+          254,
+          177,
+          7,
+          91,
+          1,
+          229,
+          3,
+          121,
+          16,
+          48,
+          59,
+          7,
+          81,
+          12,
+          26,
+          14,
+          196,
+          3,
+          30,
+          60,
+          178,
+          255
+        ],
+        "hex": "03 79 10 30 10 3D 0A 4E 09 06 0F 40 10 65 03 D9 10 88 FE B1 07 5B 01 E5 03 79 10 30 3B 07 51 0C 1A 0E C4 03 1E 3C B2 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_Text_RusturfTunnelSign": {
+      "label": "VerdanturfTown_Text_RusturfTunnelSign",
+      "line": 91,
+      "source_file": "data/maps/VerdanturfTown/scripts.inc",
+      "raw_text": "卡绿隧道\\n“连接卡那兹市和绿茵镇\\p隧道工程现已\\n终止施工。”$",
+      "display_text": "卡绿隧道\n“连接卡那兹市和绿茵镇\n\n隧道工程现已\n终止施工。”",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 55,
+        "bytes": [
+          7,
+          182,
+          9,
+          6,
+          12,
+          144,
+          3,
+          7,
+          254,
+          177,
+          8,
+          127,
+          7,
+          37,
+          7,
+          182,
+          9,
+          189,
+          17,
+          0,
+          12,
+          21,
+          4,
+          243,
+          9,
+          6,
+          15,
+          64,
+          16,
+          101,
+          251,
+          12,
+          144,
+          3,
+          7,
+          4,
+          108,
+          2,
+          78,
+          14,
+          3,
+          15,
+          33,
+          254,
+          16,
+          166,
+          16,
+          138,
+          11,
+          229,
+          4,
+          108,
+          55,
+          178,
+          255
+        ],
+        "hex": "07 B6 09 06 0C 90 03 07 FE B1 08 7F 07 25 07 B6 09 BD 11 00 0C 15 04 F3 09 06 0F 40 10 65 FB 0C 90 03 07 04 6C 02 4E 0E 03 0F 21 FE 10 A6 10 8A 0B E5 04 6C 37 B2 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 33,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 2,
+      "faceplayer": 2,
+      "goto_if_set": 2,
+      "map_script": 1,
+      "setflag": 1,
+      "setvar": 1,
+      "waitmovement": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 22,
+    "script_count": 12,
+    "movement_count": 0,
+    "text_count": 10,
+    "encoded_text_count": 10,
+    "text_source_byte_count": 696,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 10
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 2,
+      "end": 11,
+      "faceplayer": 2,
+      "goto_if_set": 2,
+      "lock": 2,
+      "map_script": 1,
+      "msgbox": 10,
+      "release": 4,
+      "setflag": 1,
+      "setvar": 1,
+      "waitmovement": 2
+    }
+  }
+}

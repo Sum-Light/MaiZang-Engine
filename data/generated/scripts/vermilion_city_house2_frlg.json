@@ -1,0 +1,959 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "VermilionCity_House2_Frlg",
+    "map_script": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+    "map_json": "data/maps/VermilionCity_House2_Frlg/map.json",
+    "map_id": "MAP_VERMILION_CITY_HOUSE2",
+    "map_name": "VermilionCity_House2_Frlg"
+  },
+  "labels": {
+    "VermilionCity_House2_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "VermilionCity_House2_EventScript_Elyssa": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "VermilionCity_House2_EventScript_DeclineTrade": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "VermilionCity_House2_EventScript_NotRequestedMon": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "VermilionCity_House2_EventScript_AlreadyTraded": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "VermilionCity_House2_Text_DoYouHaveMonWantToTradeForMyMon": {
+      "kind": "text",
+      "line": 38,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "VermilionCity_House2_Text_ThatsTooBad": {
+      "kind": "text",
+      "line": 43,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "VermilionCity_House2_Text_ThisIsNoMon": {
+      "kind": "text",
+      "line": 46,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "VermilionCity_House2_Text_ThankYou": {
+      "kind": "text",
+      "line": 51,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "VermilionCity_House2_Text_HowIsMyOldMon": {
+      "kind": "text",
+      "line": 54,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "VermilionCity_House2_Frlg_MapScripts": {
+      "label": "VermilionCity_House2_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VermilionCity_House2_EventScript_Elyssa": {
+      "label": "VermilionCity_House2_EventScript_Elyssa",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8008",
+            "INGAME_TRADE_FARFETCHD"
+          ],
+          "line": 7,
+          "raw": "setvar VAR_0x8008, INGAME_TRADE_FARFETCHD",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpeciesInfo"
+          ],
+          "line": 8,
+          "raw": "call EventScript_GetInGameTradeSpeciesInfo",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DID_CH_DING_TRADE",
+            "VermilionCity_House2_EventScript_AlreadyTraded"
+          ],
+          "line": 9,
+          "raw": "goto_if_set FLAG_DID_CH_DING_TRADE, VermilionCity_House2_EventScript_AlreadyTraded",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VermilionCity_House2_Text_DoYouHaveMonWantToTradeForMyMon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 10,
+          "raw": "msgbox VermilionCity_House2_Text_DoYouHaveMonWantToTradeForMyMon, MSGBOX_YESNO",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "VermilionCity_House2_EventScript_DeclineTrade"
+          ],
+          "line": 11,
+          "raw": "goto_if_eq VAR_RESULT, NO, VermilionCity_House2_EventScript_DeclineTrade",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_ChooseMonForInGameTrade"
+          ],
+          "line": 12,
+          "raw": "call EventScript_ChooseMonForInGameTrade",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_0x8004",
+            "PARTY_SIZE",
+            "VermilionCity_House2_EventScript_DeclineTrade"
+          ],
+          "line": 13,
+          "raw": "goto_if_ge VAR_0x8004, PARTY_SIZE, VermilionCity_House2_EventScript_DeclineTrade",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpecies"
+          ],
+          "line": 14,
+          "raw": "call EventScript_GetInGameTradeSpecies",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "VAR_0x8009",
+            "VermilionCity_House2_EventScript_NotRequestedMon"
+          ],
+          "line": 15,
+          "raw": "goto_if_ne VAR_RESULT, VAR_0x8009, VermilionCity_House2_EventScript_NotRequestedMon",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_DoInGameTrade"
+          ],
+          "line": 16,
+          "raw": "call EventScript_DoInGameTrade",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VermilionCity_House2_Text_ThankYou"
+          ],
+          "line": 17,
+          "raw": "msgbox VermilionCity_House2_Text_ThankYou",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DID_CH_DING_TRADE"
+          ],
+          "line": 18,
+          "raw": "setflag FLAG_DID_CH_DING_TRADE",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 19,
+          "raw": "release",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VermilionCity_House2_Text_DoYouHaveMonWantToTradeForMyMon",
+          "mode": "MSGBOX_YESNO",
+          "line": 10
+        },
+        {
+          "op": "msgbox",
+          "text_label": "VermilionCity_House2_Text_ThankYou",
+          "mode": "",
+          "line": 17
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpeciesInfo",
+          "line": 8
+        },
+        {
+          "op": "goto_if_set",
+          "target": "VermilionCity_House2_EventScript_AlreadyTraded",
+          "line": 9
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "VermilionCity_House2_EventScript_DeclineTrade",
+          "line": 11
+        },
+        {
+          "op": "call",
+          "target": "EventScript_ChooseMonForInGameTrade",
+          "line": 12
+        },
+        {
+          "op": "goto_if_ge",
+          "target": "VermilionCity_House2_EventScript_DeclineTrade",
+          "line": 13
+        },
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpecies",
+          "line": 14
+        },
+        {
+          "op": "goto_if_ne",
+          "target": "VermilionCity_House2_EventScript_NotRequestedMon",
+          "line": 15
+        },
+        {
+          "op": "call",
+          "target": "EventScript_DoInGameTrade",
+          "line": 16
+        }
+      ]
+    },
+    "VermilionCity_House2_EventScript_DeclineTrade": {
+      "label": "VermilionCity_House2_EventScript_DeclineTrade",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VermilionCity_House2_Text_ThatsTooBad"
+          ],
+          "line": 23,
+          "raw": "msgbox VermilionCity_House2_Text_ThatsTooBad",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 24,
+          "raw": "release",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VermilionCity_House2_Text_ThatsTooBad",
+          "mode": "",
+          "line": 23
+        }
+      ],
+      "branch_targets": []
+    },
+    "VermilionCity_House2_EventScript_NotRequestedMon": {
+      "label": "VermilionCity_House2_EventScript_NotRequestedMon",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 28,
+          "raw": "bufferspeciesname STR_VAR_1, VAR_0x8009",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VermilionCity_House2_Text_ThisIsNoMon"
+          ],
+          "line": 29,
+          "raw": "msgbox VermilionCity_House2_Text_ThisIsNoMon",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 30,
+          "raw": "release",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VermilionCity_House2_Text_ThisIsNoMon",
+          "mode": "",
+          "line": 29
+        }
+      ],
+      "branch_targets": []
+    },
+    "VermilionCity_House2_EventScript_AlreadyTraded": {
+      "label": "VermilionCity_House2_EventScript_AlreadyTraded",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VermilionCity_House2_Text_HowIsMyOldMon"
+          ],
+          "line": 34,
+          "raw": "msgbox VermilionCity_House2_Text_HowIsMyOldMon",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 35,
+          "raw": "release",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 36,
+          "raw": "end",
+          "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VermilionCity_House2_Text_HowIsMyOldMon",
+          "mode": "",
+          "line": 34
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "VermilionCity_House2_Text_DoYouHaveMonWantToTradeForMyMon": {
+      "label": "VermilionCity_House2_Text_DoYouHaveMonWantToTradeForMyMon",
+      "line": 38,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "raw_text": "嗨！\\n你有{STR_VAR_1}吗？\\p要和我的{STR_VAR_2}交换吗？$",
+      "display_text": "嗨！\n你有{STR_VAR_1}吗？\n\n要和我的{STR_VAR_2}交换吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          20,
+          103,
+          60,
+          254,
+          9,
+          217,
+          15,
+          126,
+          253,
+          2,
+          9,
+          42,
+          61,
+          251,
+          14,
+          241,
+          4,
+          243,
+          13,
+          152,
+          3,
+          11,
+          253,
+          3,
+          7,
+          13,
+          5,
+          72,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "14 67 3C FE 09 D9 0F 7E FD 02 09 2A 3D FB 0E F1 04 F3 0D 98 03 0B FD 03 07 0D 05 48 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 6,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 25,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 40,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 6,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_2",
+            "offset": 25,
+            "bytes": [
+              253,
+              3
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "VermilionCity_House2_Text_ThatsTooBad": {
+      "label": "VermilionCity_House2_Text_ThatsTooBad",
+      "line": 43,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "raw_text": "太糟了。$",
+      "display_text": "太糟了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 8,
+        "bytes": [
+          12,
+          172,
+          15,
+          239,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0C AC 0F EF 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 4,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VermilionCity_House2_Text_ThisIsNoMon": {
+      "label": "VermilionCity_House2_Text_ThisIsNoMon",
+      "line": 46,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "raw_text": "……这不是{STR_VAR_1}。\\p如果你得到了一只，\\n请和我交换吧！$",
+      "display_text": "……这不是{STR_VAR_1}。\n\n如果你得到了一只，\n请和我交换吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 44,
+        "bytes": [
+          176,
+          176,
+          16,
+          85,
+          1,
+          214,
+          12,
+          12,
+          253,
+          2,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          3,
+          10,
+          3,
+          4,
+          8,
+          158,
+          15,
+          11,
+          16,
+          140,
+          59,
+          254,
+          11,
+          13,
+          4,
+          243,
+          13,
+          152,
+          7,
+          13,
+          5,
+          72,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "B0 B0 10 55 01 D6 0C 0C FD 02 37 FB 0B 67 04 C3 09 D9 03 0A 03 04 08 9E 0F 0B 10 8C 3B FE 0B 0D 04 F3 0D 98 07 0D 05 48 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 5,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 5,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "VermilionCity_House2_Text_ThankYou": {
+      "label": "VermilionCity_House2_Text_ThankYou",
+      "line": 51,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "raw_text": "谢谢你！$",
+      "display_text": "谢谢你！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 8,
+        "bytes": [
+          14,
+          70,
+          14,
+          70,
+          9,
+          217,
+          60,
+          255
+        ],
+        "hex": "0E 46 0E 46 09 D9 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 4,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VermilionCity_House2_Text_HowIsMyOldMon": {
+      "label": "VermilionCity_House2_Text_HowIsMyOldMon",
+      "line": 54,
+      "source_file": "data/maps/VermilionCity_House2_Frlg/scripts.inc",
+      "raw_text": "我的{STR_VAR_2}怎么样了？\\p我的{STR_VAR_1}现在很好！$",
+      "display_text": "我的{STR_VAR_2}怎么样了？\n\n我的{STR_VAR_1}现在很好！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          253,
+          3,
+          16,
+          10,
+          9,
+          76,
+          14,
+          226,
+          8,
+          158,
+          61,
+          251,
+          13,
+          152,
+          3,
+          11,
+          253,
+          2,
+          14,
+          3,
+          15,
+          230,
+          5,
+          11,
+          4,
+          233,
+          60,
+          255
+        ],
+        "hex": "0D 98 03 0B FD 03 10 0A 09 4C 0E E2 08 9E 3D FB 0D 98 03 0B FD 02 0E 03 0F E6 05 0B 04 E9 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 2,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 22,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 38,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_2",
+            "offset": 2,
+            "bytes": [
+              253,
+              3
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 22,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "bufferspeciesname": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "goto_if_ge": 1,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "setflag": 1,
+      "setvar": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 5,
+    "encoded_text_count": 5,
+    "text_source_byte_count": 124,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 5
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "bufferspeciesname": 1,
+      "call": 4,
+      "end": 4,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "goto_if_ge": 1,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 5,
+      "release": 4,
+      "setflag": 1,
+      "setvar": 1
+    }
+  }
+}

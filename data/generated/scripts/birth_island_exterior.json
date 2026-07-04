@@ -1,0 +1,1164 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "BirthIsland_Exterior",
+    "map_script": "data/maps/BirthIsland_Exterior/scripts.inc",
+    "map_json": "data/maps/BirthIsland_Exterior/map.json",
+    "map_id": "MAP_BIRTH_ISLAND_EXTERIOR",
+    "map_name": "BirthIsland_Exterior"
+  },
+  "labels": {
+    "BirthIsland_Exterior_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 4
+    },
+    "BirthIsland_Exterior_OnReturnToField": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 2
+    },
+    "BirthIsland_Exterior_OnTransition": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 7
+    },
+    "BirthIsland_Exterior_EventScript_HideDeoxysAndPuzzle": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 3
+    },
+    "BirthIsland_Exterior_EventScript_TryShowDeoxysPuzzle": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 4
+    },
+    "BirthIsland_Exterior_OnResume": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 2
+    },
+    "BirthIsland_Exterior_EventScript_TryRemoveDeoxys": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 4
+    },
+    "BirthIsland_Exterior_EventScript_Triangle": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 10
+    },
+    "BirthIsland_Exterior_EventScript_Failed": {
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 2
+    },
+    "BirthIsland_Exterior_EventScript_Progressed": {
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 2
+    },
+    "BirthIsland_Exterior_EventScript_Complete": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 2
+    },
+    "BirthIsland_Exterior_EventScript_Deoxys": {
+      "kind": "script",
+      "line": 68,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 27
+    },
+    "BirthIsland_Exterior_EventScript_DefeatedDeoxys": {
+      "kind": "script",
+      "line": 97,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 4
+    },
+    "BirthIsland_Exterior_EventScript_RanFromDeoxys": {
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 3
+    },
+    "BirthIsland_Exterior_Movement_DeoxysApproach": {
+      "kind": "movement",
+      "line": 108,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instruction_count": 8
+    }
+  },
+  "scripts": {
+    "BirthIsland_Exterior_MapScripts": {
+      "label": "BirthIsland_Exterior_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "BirthIsland_Exterior_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, BirthIsland_Exterior_OnTransition",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "BirthIsland_Exterior_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, BirthIsland_Exterior_OnResume",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RETURN_TO_FIELD",
+            "BirthIsland_Exterior_OnReturnToField"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_RETURN_TO_FIELD, BirthIsland_Exterior_OnReturnToField",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BirthIsland_Exterior_OnReturnToField": {
+      "label": "BirthIsland_Exterior_OnReturnToField",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SetDeoxysRockPalette"
+          ],
+          "line": 8,
+          "raw": "special SetDeoxysRockPalette",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BirthIsland_Exterior_OnTransition": {
+      "label": "BirthIsland_Exterior_OnTransition",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_MAP_SCRIPT_CHECKED_DEOXYS"
+          ],
+          "line": 12,
+          "raw": "setflag FLAG_MAP_SCRIPT_CHECKED_DEOXYS",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_0",
+            "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL"
+          ],
+          "line": 13,
+          "raw": "setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_DEOXYS_ROCK_STEP_COUNT",
+            "0"
+          ],
+          "line": 14,
+          "raw": "setvar VAR_DEOXYS_ROCK_STEP_COUNT, 0",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_DEOXYS_ROCK_LEVEL",
+            "0"
+          ],
+          "line": 15,
+          "raw": "setvar VAR_DEOXYS_ROCK_LEVEL, 0",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_BATTLED_DEOXYS",
+            "BirthIsland_Exterior_EventScript_HideDeoxysAndPuzzle"
+          ],
+          "line": 16,
+          "raw": "call_if_set FLAG_BATTLED_DEOXYS, BirthIsland_Exterior_EventScript_HideDeoxysAndPuzzle",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_BATTLED_DEOXYS",
+            "BirthIsland_Exterior_EventScript_TryShowDeoxysPuzzle"
+          ],
+          "line": 17,
+          "raw": "call_if_unset FLAG_BATTLED_DEOXYS, BirthIsland_Exterior_EventScript_TryShowDeoxysPuzzle",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "BirthIsland_Exterior_EventScript_HideDeoxysAndPuzzle",
+          "line": 16
+        },
+        {
+          "op": "call_if_unset",
+          "target": "BirthIsland_Exterior_EventScript_TryShowDeoxysPuzzle",
+          "line": 17
+        }
+      ]
+    },
+    "BirthIsland_Exterior_EventScript_HideDeoxysAndPuzzle": {
+      "label": "BirthIsland_Exterior_EventScript_HideDeoxysAndPuzzle",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_DEOXYS"
+          ],
+          "line": 21,
+          "raw": "setflag FLAG_HIDE_DEOXYS",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_BIRTH_ISLAND_DEOXYS_TRIANGLE"
+          ],
+          "line": 22,
+          "raw": "setflag FLAG_HIDE_BIRTH_ISLAND_DEOXYS_TRIANGLE",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 23,
+          "raw": "return",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BirthIsland_Exterior_EventScript_TryShowDeoxysPuzzle": {
+      "label": "BirthIsland_Exterior_EventScript_TryShowDeoxysPuzzle",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DEFEATED_DEOXYS",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 26,
+          "raw": "goto_if_set FLAG_DEFEATED_DEOXYS, Common_EventScript_NopReturn",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_BIRTH_ISLAND_DEOXYS_TRIANGLE"
+          ],
+          "line": 27,
+          "raw": "clearflag FLAG_HIDE_BIRTH_ISLAND_DEOXYS_TRIANGLE",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_DEOXYS_ROCK_COMPLETE"
+          ],
+          "line": 28,
+          "raw": "clearflag FLAG_DEOXYS_ROCK_COMPLETE",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 29,
+          "raw": "return",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Common_EventScript_NopReturn",
+          "line": 26
+        }
+      ]
+    },
+    "BirthIsland_Exterior_OnResume": {
+      "label": "BirthIsland_Exterior_OnResume",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE",
+            "BirthIsland_Exterior_EventScript_TryRemoveDeoxys"
+          ],
+          "line": 32,
+          "raw": "call_if_set FLAG_SYS_CTRL_OBJ_DELETE, BirthIsland_Exterior_EventScript_TryRemoveDeoxys",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "BirthIsland_Exterior_EventScript_TryRemoveDeoxys",
+          "line": 32
+        }
+      ]
+    },
+    "BirthIsland_Exterior_EventScript_TryRemoveDeoxys": {
+      "label": "BirthIsland_Exterior_EventScript_TryRemoveDeoxys",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 36,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_CAUGHT",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 37,
+          "raw": "goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_BIRTH_ISLAND_DEOXYS"
+          ],
+          "line": 38,
+          "raw": "removeobject LOCALID_BIRTH_ISLAND_DEOXYS",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 39,
+          "raw": "return",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "Common_EventScript_NopReturn",
+          "line": 37
+        }
+      ]
+    },
+    "BirthIsland_Exterior_EventScript_Triangle": {
+      "label": "BirthIsland_Exterior_EventScript_Triangle",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 42,
+          "raw": "lock",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 43,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DoDeoxysRockInteraction"
+          ],
+          "line": 44,
+          "raw": "special DoDeoxysRockInteraction",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 45,
+          "raw": "waitstate",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 46,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DEOXYS_ROCK_FAILED",
+            "BirthIsland_Exterior_EventScript_Failed"
+          ],
+          "line": 47,
+          "raw": "case DEOXYS_ROCK_FAILED,     BirthIsland_Exterior_EventScript_Failed",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DEOXYS_ROCK_PROGRESSED",
+            "BirthIsland_Exterior_EventScript_Progressed"
+          ],
+          "line": 48,
+          "raw": "case DEOXYS_ROCK_PROGRESSED, BirthIsland_Exterior_EventScript_Progressed",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DEOXYS_ROCK_SOLVED",
+            "BirthIsland_Exterior_EventScript_Deoxys"
+          ],
+          "line": 49,
+          "raw": "case DEOXYS_ROCK_SOLVED,     BirthIsland_Exterior_EventScript_Deoxys",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DEOXYS_ROCK_COMPLETE",
+            "BirthIsland_Exterior_EventScript_Complete"
+          ],
+          "line": 50,
+          "raw": "case DEOXYS_ROCK_COMPLETE,   BirthIsland_Exterior_EventScript_Complete",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 51,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BirthIsland_Exterior_EventScript_Failed": {
+      "label": "BirthIsland_Exterior_EventScript_Failed",
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "release",
+          "args": [],
+          "line": 57,
+          "raw": "release",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 58,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BirthIsland_Exterior_EventScript_Progressed": {
+      "label": "BirthIsland_Exterior_EventScript_Progressed",
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "release",
+          "args": [],
+          "line": 61,
+          "raw": "release",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BirthIsland_Exterior_EventScript_Complete": {
+      "label": "BirthIsland_Exterior_EventScript_Complete",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "release",
+          "args": [],
+          "line": 65,
+          "raw": "release",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 66,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BirthIsland_Exterior_EventScript_Deoxys": {
+      "label": "BirthIsland_Exterior_EventScript_Deoxys",
+      "kind": "script",
+      "line": 68,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 69,
+          "raw": "waitse",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setfieldeffectargument",
+          "args": [
+            "0",
+            "LOCALID_BIRTH_ISLAND_EXTERIOR_ROCK"
+          ],
+          "line": 70,
+          "raw": "setfieldeffectargument 0, LOCALID_BIRTH_ISLAND_EXTERIOR_ROCK",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setfieldeffectargument",
+          "args": [
+            "1",
+            "MAP_NUM(MAP_BIRTH_ISLAND_EXTERIOR)"
+          ],
+          "line": 71,
+          "raw": "setfieldeffectargument 1, MAP_NUM(MAP_BIRTH_ISLAND_EXTERIOR)",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setfieldeffectargument",
+          "args": [
+            "2",
+            "MAP_GROUP(MAP_BIRTH_ISLAND_EXTERIOR)"
+          ],
+          "line": 72,
+          "raw": "setfieldeffectargument 2, MAP_GROUP(MAP_BIRTH_ISLAND_EXTERIOR)",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "dofieldeffect",
+          "args": [
+            "FLDEFF_DESTROY_DEOXYS_ROCK"
+          ],
+          "line": 73,
+          "raw": "dofieldeffect FLDEFF_DESTROY_DEOXYS_ROCK",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_RG_ENCOUNTER_DEOXYS",
+            "FALSE"
+          ],
+          "line": 74,
+          "raw": "playbgm MUS_RG_ENCOUNTER_DEOXYS, FALSE",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "waitfieldeffect",
+          "args": [
+            "FLDEFF_DESTROY_DEOXYS_ROCK"
+          ],
+          "line": 75,
+          "raw": "waitfieldeffect FLDEFF_DESTROY_DEOXYS_ROCK",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "addobject",
+          "args": [
+            "LOCALID_BIRTH_ISLAND_DEOXYS"
+          ],
+          "line": 76,
+          "raw": "addobject LOCALID_BIRTH_ISLAND_DEOXYS",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_BIRTH_ISLAND_DEOXYS",
+            "BirthIsland_Exterior_Movement_DeoxysApproach"
+          ],
+          "line": 77,
+          "raw": "applymovement LOCALID_BIRTH_ISLAND_DEOXYS, BirthIsland_Exterior_Movement_DeoxysApproach",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 78,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 79,
+          "raw": "waitse",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_DEOXYS_NORMAL",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 80,
+          "raw": "playmoncry SPECIES_DEOXYS_NORMAL, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 81,
+          "raw": "delay 40",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 82,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_LAST_TALKED",
+            "LOCALID_BIRTH_ISLAND_DEOXYS"
+          ],
+          "line": 83,
+          "raw": "setvar VAR_LAST_TALKED, LOCALID_BIRTH_ISLAND_DEOXYS",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "seteventmon",
+          "args": [
+            "SPECIES_DEOXYS_NORMAL",
+            "30"
+          ],
+          "line": 84,
+          "raw": "seteventmon SPECIES_DEOXYS_NORMAL, 30",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 85,
+          "raw": "setflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "BattleSetup_StartLegendaryBattle"
+          ],
+          "line": 86,
+          "raw": "special BattleSetup_StartLegendaryBattle",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 87,
+          "raw": "waitstate",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 88,
+          "raw": "clearflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 89,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_WON",
+            "BirthIsland_Exterior_EventScript_DefeatedDeoxys"
+          ],
+          "line": 90,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_WON, BirthIsland_Exterior_EventScript_DefeatedDeoxys",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_RAN",
+            "BirthIsland_Exterior_EventScript_RanFromDeoxys"
+          ],
+          "line": 91,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_RAN, BirthIsland_Exterior_EventScript_RanFromDeoxys",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_PLAYER_TELEPORTED",
+            "BirthIsland_Exterior_EventScript_RanFromDeoxys"
+          ],
+          "line": 92,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, BirthIsland_Exterior_EventScript_RanFromDeoxys",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_BATTLED_DEOXYS"
+          ],
+          "line": 93,
+          "raw": "setflag FLAG_BATTLED_DEOXYS",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 94,
+          "raw": "release",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 95,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BirthIsland_Exterior_EventScript_DefeatedDeoxys",
+          "line": 90
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BirthIsland_Exterior_EventScript_RanFromDeoxys",
+          "line": 91
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BirthIsland_Exterior_EventScript_RanFromDeoxys",
+          "line": 92
+        }
+      ]
+    },
+    "BirthIsland_Exterior_EventScript_DefeatedDeoxys": {
+      "label": "BirthIsland_Exterior_EventScript_DefeatedDeoxys",
+      "kind": "script",
+      "line": 97,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_DEOXYS"
+          ],
+          "line": 98,
+          "raw": "setflag FLAG_DEFEATED_DEOXYS",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_DEOXYS_NORMAL"
+          ],
+          "line": 99,
+          "raw": "setvar VAR_0x8004, SPECIES_DEOXYS_NORMAL",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_LegendaryFlewAway"
+          ],
+          "line": 100,
+          "raw": "goto Common_EventScript_LegendaryFlewAway",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 101,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_LegendaryFlewAway",
+          "line": 100
+        }
+      ]
+    },
+    "BirthIsland_Exterior_EventScript_RanFromDeoxys": {
+      "label": "BirthIsland_Exterior_EventScript_RanFromDeoxys",
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_DEOXYS_NORMAL"
+          ],
+          "line": 104,
+          "raw": "setvar VAR_0x8004, SPECIES_DEOXYS_NORMAL",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_LegendaryFlewAway"
+          ],
+          "line": 105,
+          "raw": "goto Common_EventScript_LegendaryFlewAway",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 106,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_LegendaryFlewAway",
+          "line": 105
+        }
+      ]
+    }
+  },
+  "movements": {
+    "BirthIsland_Exterior_Movement_DeoxysApproach": {
+      "label": "BirthIsland_Exterior_Movement_DeoxysApproach",
+      "kind": "movement",
+      "line": 108,
+      "source_file": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_slow_down",
+          "args": [],
+          "line": 109,
+          "raw": "walk_slow_down",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "walk_slow_down",
+          "args": [],
+          "line": 110,
+          "raw": "walk_slow_down",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "walk_slow_down",
+          "args": [],
+          "line": 111,
+          "raw": "walk_slow_down",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "walk_slow_down",
+          "args": [],
+          "line": 112,
+          "raw": "walk_slow_down",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "walk_slow_down",
+          "args": [],
+          "line": 113,
+          "raw": "walk_slow_down",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "walk_slow_down",
+          "args": [],
+          "line": 114,
+          "raw": "walk_slow_down",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "walk_slow_down",
+          "args": [],
+          "line": 115,
+          "raw": "walk_slow_down",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 116,
+          "raw": "step_end",
+          "source_file": "data/maps/BirthIsland_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addobject": 1,
+      "applymovement": 1,
+      "call_if_set": 2,
+      "call_if_unset": 1,
+      "case": 4,
+      "clearflag": 3,
+      "delay": 1,
+      "dofieldeffect": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "map_script": 3,
+      "playbgm": 1,
+      "playmoncry": 1,
+      "removeobject": 1,
+      "seteventmon": 1,
+      "setfieldeffectargument": 3,
+      "setflag": 6,
+      "setvar": 6,
+      "special": 3,
+      "specialvar": 2,
+      "step_end": 1,
+      "switch": 1,
+      "waitfieldeffect": 1,
+      "waitmoncry": 1,
+      "waitmovement": 1,
+      "waitse": 2,
+      "waitstate": 2,
+      "walk_slow_down": 7
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 15,
+    "script_count": 14,
+    "movement_count": 1,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addobject": 1,
+      "applymovement": 1,
+      "call_if_set": 2,
+      "call_if_unset": 1,
+      "case": 4,
+      "clearflag": 3,
+      "delay": 1,
+      "dofieldeffect": 1,
+      "end": 10,
+      "faceplayer": 1,
+      "goto": 2,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "map_script": 3,
+      "playbgm": 1,
+      "playmoncry": 1,
+      "release": 4,
+      "removeobject": 1,
+      "return": 3,
+      "seteventmon": 1,
+      "setfieldeffectargument": 3,
+      "setflag": 6,
+      "setvar": 6,
+      "special": 3,
+      "specialvar": 2,
+      "step_end": 1,
+      "switch": 1,
+      "waitfieldeffect": 1,
+      "waitmoncry": 1,
+      "waitmovement": 1,
+      "waitse": 2,
+      "waitstate": 2,
+      "walk_slow_down": 7
+    }
+  }
+}

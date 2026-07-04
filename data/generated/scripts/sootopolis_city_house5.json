@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SootopolisCity_House5",
+    "map_script": "data/maps/SootopolisCity_House5/scripts.inc",
+    "map_json": "data/maps/SootopolisCity_House5/map.json",
+    "map_id": "MAP_SOOTOPOLIS_CITY_HOUSE5",
+    "map_name": "SootopolisCity_House5"
+  },
+  "labels": {
+    "SootopolisCity_House5_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SootopolisCity_House5/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_House5_EventScript_Maniac": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SootopolisCity_House5/scripts.inc",
+      "instruction_count": 2
+    },
+    "SootopolisCity_House5_EventScript_Girl": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SootopolisCity_House5/scripts.inc",
+      "instruction_count": 2
+    },
+    "SootopolisCity_House5_Text_SootopolisMtPyreConnection": {
+      "kind": "text",
+      "line": 12,
+      "source_file": "data/maps/SootopolisCity_House5/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_House5_Text_BrotherUsedToStudySea": {
+      "kind": "text",
+      "line": 15,
+      "source_file": "data/maps/SootopolisCity_House5/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SootopolisCity_House5_MapScripts": {
+      "label": "SootopolisCity_House5_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SootopolisCity_House5/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SootopolisCity_House5/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SootopolisCity_House5_EventScript_Maniac": {
+      "label": "SootopolisCity_House5_EventScript_Maniac",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SootopolisCity_House5/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House5_Text_SootopolisMtPyreConnection",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox SootopolisCity_House5_Text_SootopolisMtPyreConnection, MSGBOX_NPC",
+          "source_file": "data/maps/SootopolisCity_House5/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_House5/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House5_Text_SootopolisMtPyreConnection",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "SootopolisCity_House5_EventScript_Girl": {
+      "label": "SootopolisCity_House5_EventScript_Girl",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SootopolisCity_House5/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House5_Text_BrotherUsedToStudySea",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox SootopolisCity_House5_Text_BrotherUsedToStudySea, MSGBOX_NPC",
+          "source_file": "data/maps/SootopolisCity_House5/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_House5/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House5_Text_BrotherUsedToStudySea",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SootopolisCity_House5_Text_SootopolisMtPyreConnection": {
+      "label": "SootopolisCity_House5_Text_SootopolisMtPyreConnection",
+      "line": 12,
+      "source_file": "data/maps/SootopolisCity_House5/scripts.inc",
+      "raw_text": "似乎琉璃市与\\n送神山之间存在着某种联系。\\p我还在研究所工作的时候\\n和同事一起做过这方面的调查。$",
+      "display_text": "似乎琉璃市与\n送神山之间存在着某种联系。\n\n我还在研究所工作的时候\n和同事一起做过这方面的调查。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 90,
+        "bytes": [
+          12,
+          105,
+          5,
+          36,
+          8,
+          195,
+          8,
+          122,
+          12,
+          21,
+          15,
+          153,
+          254,
+          12,
+          112,
+          11,
+          207,
+          11,
+          155,
+          16,
+          127,
+          5,
+          207,
+          2,
+          198,
+          15,
+          230,
+          16,
+          244,
+          9,
+          169,
+          16,
+          167,
+          8,
+          125,
+          13,
+          217,
+          55,
+          251,
+          13,
+          152,
+          5,
+          70,
+          15,
+          230,
+          14,
+          185,
+          7,
+          111,
+          12,
+          156,
+          4,
+          108,
+          17,
+          47,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          254,
+          4,
+          243,
+          13,
+          20,
+          12,
+          7,
+          15,
+          11,
+          10,
+          171,
+          17,
+          46,
+          4,
+          197,
+          16,
+          85,
+          3,
+          192,
+          9,
+          126,
+          3,
+          11,
+          3,
+          62,
+          2,
+          13,
+          55,
+          255
+        ],
+        "hex": "0C 69 05 24 08 C3 08 7A 0C 15 0F 99 FE 0C 70 0B CF 0B 9B 10 7F 05 CF 02 C6 0F E6 10 F4 09 A9 10 A7 08 7D 0D D9 37 FB 0D 98 05 46 0F E6 0E B9 07 6F 0C 9C 04 6C 11 2F 03 0B 0B ED 05 21 FE 04 F3 0D 14 0C 07 0F 0B 0A AB 11 2E 04 C5 10 55 03 C0 09 7E 03 0B 03 3E 02 0D 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 50,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SootopolisCity_House5_Text_BrotherUsedToStudySea": {
+      "label": "SootopolisCity_House5_Text_BrotherUsedToStudySea",
+      "line": 15,
+      "source_file": "data/maps/SootopolisCity_House5/scripts.inc",
+      "raw_text": "我哥哥曾经研究海洋。$",
+      "display_text": "我哥哥曾经研究海洋。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          13,
+          152,
+          4,
+          81,
+          4,
+          81,
+          16,
+          13,
+          7,
+          93,
+          14,
+          185,
+          7,
+          111,
+          4,
+          201,
+          14,
+          220,
+          55,
+          255
+        ],
+        "hex": "0D 98 04 51 04 51 10 0D 07 5D 0E B9 07 6F 04 C9 0E DC 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 110,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2
+    }
+  }
+}

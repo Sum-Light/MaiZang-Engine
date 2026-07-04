@@ -1,0 +1,1340 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "LilycoveCity_DepartmentStoreElevator",
+    "map_script": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+    "map_json": "data/maps/LilycoveCity_DepartmentStoreElevator/map.json",
+    "map_id": "MAP_LILYCOVE_CITY_DEPARTMENT_STORE_ELEVATOR",
+    "map_name": "LilycoveCity_DepartmentStoreElevator"
+  },
+  "labels": {
+    "LilycoveCity_DepartmentStoreElevator_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_Attendant": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 17
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom5th": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 3
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom4th": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 3
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom3rd": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 3
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom2nd": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 3
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom1st": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 3
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor": {
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 9
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_1stFloor": {
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 7
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_2ndFloor": {
+      "kind": "script",
+      "line": 69,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 7
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_3rdFloor": {
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 7
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_4thFloor": {
+      "kind": "script",
+      "line": 87,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 7
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_5thFloor": {
+      "kind": "script",
+      "line": 96,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 7
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect": {
+      "kind": "script",
+      "line": 105,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 3
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator": {
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 9
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_SetFloor": {
+      "kind": "script",
+      "line": 121,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "LilycoveCity_DepartmentStoreElevator_MapScripts": {
+      "label": "LilycoveCity_DepartmentStoreElevator_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_Attendant": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_Attendant",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "0"
+          ],
+          "line": 7,
+          "raw": "setvar VAR_0x8004, 0",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_TEMP_2",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_SetFloor"
+          ],
+          "line": 8,
+          "raw": "call_if_unset FLAG_TEMP_2, LilycoveCity_DepartmentStoreElevator_EventScript_SetFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8005",
+            "VAR_DEPT_STORE_FLOOR"
+          ],
+          "line": 9,
+          "raw": "copyvar VAR_0x8005, VAR_DEPT_STORE_FLOOR",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShowDeptStoreElevatorFloorSelect"
+          ],
+          "line": 10,
+          "raw": "special ShowDeptStoreElevatorFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_WhichFloorWouldYouLike"
+          ],
+          "line": 11,
+          "raw": "message gText_WhichFloorWouldYouLike",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 12,
+          "raw": "waitmessage",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "0"
+          ],
+          "line": 13,
+          "raw": "setvar VAR_0x8004, 0",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetDeptStoreDefaultFloorChoice"
+          ],
+          "line": 14,
+          "raw": "specialvar VAR_RESULT, GetDeptStoreDefaultFloorChoice",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 15,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom5th"
+          ],
+          "line": 16,
+          "raw": "case 0, LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom5th",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom4th"
+          ],
+          "line": 17,
+          "raw": "case 1, LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom4th",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom3rd"
+          ],
+          "line": 18,
+          "raw": "case 2, LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom3rd",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom2nd"
+          ],
+          "line": 19,
+          "raw": "case 3, LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom2nd",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom1st"
+          ],
+          "line": 20,
+          "raw": "case 4, LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom1st",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 21,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_WhichFloorWouldYouLike",
+          "mode": "",
+          "line": 11
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_SetFloor",
+          "line": 8
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom5th": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom5th",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_FLOORS",
+            "0",
+            "FALSE"
+          ],
+          "line": 25,
+          "raw": "multichoicedefault 0, 0, MULTI_FLOORS, 0, FALSE",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor"
+          ],
+          "line": 26,
+          "raw": "goto LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+          "line": 26
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom4th": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom4th",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_FLOORS",
+            "1",
+            "FALSE"
+          ],
+          "line": 30,
+          "raw": "multichoicedefault 0, 0, MULTI_FLOORS, 1, FALSE",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor"
+          ],
+          "line": 31,
+          "raw": "goto LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+          "line": 31
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom3rd": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom3rd",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_FLOORS",
+            "2",
+            "FALSE"
+          ],
+          "line": 35,
+          "raw": "multichoicedefault 0, 0, MULTI_FLOORS, 2, FALSE",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor"
+          ],
+          "line": 36,
+          "raw": "goto LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+          "line": 36
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom2nd": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom2nd",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_FLOORS",
+            "3",
+            "FALSE"
+          ],
+          "line": 40,
+          "raw": "multichoicedefault 0, 0, MULTI_FLOORS, 3, FALSE",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor"
+          ],
+          "line": 41,
+          "raw": "goto LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+          "line": 41
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom1st": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloorFrom1st",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_FLOORS",
+            "4",
+            "FALSE"
+          ],
+          "line": 45,
+          "raw": "multichoicedefault 0, 0, MULTI_FLOORS, 4, FALSE",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor"
+          ],
+          "line": 46,
+          "raw": "goto LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 47,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+          "line": 46
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_ChooseFloor",
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 50,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_5thFloor"
+          ],
+          "line": 51,
+          "raw": "case 0, LilycoveCity_DepartmentStoreElevator_EventScript_5thFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_4thFloor"
+          ],
+          "line": 52,
+          "raw": "case 1, LilycoveCity_DepartmentStoreElevator_EventScript_4thFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_3rdFloor"
+          ],
+          "line": 53,
+          "raw": "case 2, LilycoveCity_DepartmentStoreElevator_EventScript_3rdFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_2ndFloor"
+          ],
+          "line": 54,
+          "raw": "case 3, LilycoveCity_DepartmentStoreElevator_EventScript_2ndFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_1stFloor"
+          ],
+          "line": 55,
+          "raw": "case 4, LilycoveCity_DepartmentStoreElevator_EventScript_1stFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "5",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 56,
+          "raw": "case 5, LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 57,
+          "raw": "case MULTI_B_PRESSED, LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 58,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_1stFloor": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_1stFloor",
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "DEPT_STORE_FLOORNUM_1F"
+          ],
+          "line": 61,
+          "raw": "setvar VAR_0x8006, DEPT_STORE_FLOORNUM_1F",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_LILYCOVE_CITY_DEPARTMENT_STORE_1F",
+            "2",
+            "1"
+          ],
+          "line": 62,
+          "raw": "setdynamicwarp MAP_LILYCOVE_CITY_DEPARTMENT_STORE_1F, 2, 1",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_DEPT_STORE_FLOOR",
+            "DEPT_STORE_FLOORNUM_1F",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 63,
+          "raw": "goto_if_eq VAR_DEPT_STORE_FLOOR, DEPT_STORE_FLOORNUM_1F, LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator"
+          ],
+          "line": 64,
+          "raw": "call LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_DEPT_STORE_FLOOR",
+            "DEPT_STORE_FLOORNUM_1F"
+          ],
+          "line": 65,
+          "raw": "setvar VAR_DEPT_STORE_FLOOR, DEPT_STORE_FLOORNUM_1F",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 66,
+          "raw": "goto LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 67,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "line": 63
+        },
+        {
+          "op": "call",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+          "line": 64
+        },
+        {
+          "op": "goto",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "line": 66
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_2ndFloor": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_2ndFloor",
+      "kind": "script",
+      "line": 69,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "DEPT_STORE_FLOORNUM_2F"
+          ],
+          "line": 70,
+          "raw": "setvar VAR_0x8006, DEPT_STORE_FLOORNUM_2F",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_LILYCOVE_CITY_DEPARTMENT_STORE_2F",
+            "2",
+            "1"
+          ],
+          "line": 71,
+          "raw": "setdynamicwarp MAP_LILYCOVE_CITY_DEPARTMENT_STORE_2F, 2, 1",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_DEPT_STORE_FLOOR",
+            "DEPT_STORE_FLOORNUM_2F",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 72,
+          "raw": "goto_if_eq VAR_DEPT_STORE_FLOOR, DEPT_STORE_FLOORNUM_2F, LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator"
+          ],
+          "line": 73,
+          "raw": "call LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_DEPT_STORE_FLOOR",
+            "DEPT_STORE_FLOORNUM_2F"
+          ],
+          "line": 74,
+          "raw": "setvar VAR_DEPT_STORE_FLOOR, DEPT_STORE_FLOORNUM_2F",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 75,
+          "raw": "goto LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 76,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "line": 72
+        },
+        {
+          "op": "call",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+          "line": 73
+        },
+        {
+          "op": "goto",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "line": 75
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_3rdFloor": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_3rdFloor",
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "DEPT_STORE_FLOORNUM_3F"
+          ],
+          "line": 79,
+          "raw": "setvar VAR_0x8006, DEPT_STORE_FLOORNUM_3F",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_LILYCOVE_CITY_DEPARTMENT_STORE_3F",
+            "2",
+            "1"
+          ],
+          "line": 80,
+          "raw": "setdynamicwarp MAP_LILYCOVE_CITY_DEPARTMENT_STORE_3F, 2, 1",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_DEPT_STORE_FLOOR",
+            "DEPT_STORE_FLOORNUM_3F",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 81,
+          "raw": "goto_if_eq VAR_DEPT_STORE_FLOOR, DEPT_STORE_FLOORNUM_3F, LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator"
+          ],
+          "line": 82,
+          "raw": "call LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_DEPT_STORE_FLOOR",
+            "DEPT_STORE_FLOORNUM_3F"
+          ],
+          "line": 83,
+          "raw": "setvar VAR_DEPT_STORE_FLOOR, DEPT_STORE_FLOORNUM_3F",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 84,
+          "raw": "goto LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 85,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "line": 81
+        },
+        {
+          "op": "call",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+          "line": 82
+        },
+        {
+          "op": "goto",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "line": 84
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_4thFloor": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_4thFloor",
+      "kind": "script",
+      "line": 87,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "DEPT_STORE_FLOORNUM_4F"
+          ],
+          "line": 88,
+          "raw": "setvar VAR_0x8006, DEPT_STORE_FLOORNUM_4F",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_LILYCOVE_CITY_DEPARTMENT_STORE_4F",
+            "2",
+            "1"
+          ],
+          "line": 89,
+          "raw": "setdynamicwarp MAP_LILYCOVE_CITY_DEPARTMENT_STORE_4F, 2, 1",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_DEPT_STORE_FLOOR",
+            "DEPT_STORE_FLOORNUM_4F",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 90,
+          "raw": "goto_if_eq VAR_DEPT_STORE_FLOOR, DEPT_STORE_FLOORNUM_4F, LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator"
+          ],
+          "line": 91,
+          "raw": "call LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_DEPT_STORE_FLOOR",
+            "DEPT_STORE_FLOORNUM_4F"
+          ],
+          "line": 92,
+          "raw": "setvar VAR_DEPT_STORE_FLOOR, DEPT_STORE_FLOORNUM_4F",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 93,
+          "raw": "goto LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 94,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "line": 90
+        },
+        {
+          "op": "call",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+          "line": 91
+        },
+        {
+          "op": "goto",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "line": 93
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_5thFloor": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_5thFloor",
+      "kind": "script",
+      "line": 96,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "DEPT_STORE_FLOORNUM_5F"
+          ],
+          "line": 97,
+          "raw": "setvar VAR_0x8006, DEPT_STORE_FLOORNUM_5F",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_LILYCOVE_CITY_DEPARTMENT_STORE_5F",
+            "2",
+            "1"
+          ],
+          "line": 98,
+          "raw": "setdynamicwarp MAP_LILYCOVE_CITY_DEPARTMENT_STORE_5F, 2, 1",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_DEPT_STORE_FLOOR",
+            "DEPT_STORE_FLOORNUM_5F",
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 99,
+          "raw": "goto_if_eq VAR_DEPT_STORE_FLOOR, DEPT_STORE_FLOORNUM_5F, LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator"
+          ],
+          "line": 100,
+          "raw": "call LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_DEPT_STORE_FLOOR",
+            "DEPT_STORE_FLOORNUM_5F"
+          ],
+          "line": 101,
+          "raw": "setvar VAR_DEPT_STORE_FLOOR, DEPT_STORE_FLOORNUM_5F",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 102,
+          "raw": "goto LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 103,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "line": 99
+        },
+        {
+          "op": "call",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+          "line": 100
+        },
+        {
+          "op": "goto",
+          "target": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+          "line": 102
+        }
+      ]
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_ExitFloorSelect",
+      "kind": "script",
+      "line": 105,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "CloseDeptStoreElevatorWindow"
+          ],
+          "line": 106,
+          "raw": "special CloseDeptStoreElevatorWindow",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 107,
+          "raw": "release",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 108,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_MoveElevator",
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "CloseDeptStoreElevatorWindow"
+          ],
+          "line": 111,
+          "raw": "special CloseDeptStoreElevatorWindow",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 112,
+          "raw": "closemessage",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 113,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 114,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 115,
+          "raw": "waitse",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "MoveElevator"
+          ],
+          "line": 116,
+          "raw": "special MoveElevator",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 117,
+          "raw": "waitstate",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_2"
+          ],
+          "line": 118,
+          "raw": "setflag FLAG_TEMP_2",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 119,
+          "raw": "return",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_DepartmentStoreElevator_EventScript_SetFloor": {
+      "label": "LilycoveCity_DepartmentStoreElevator_EventScript_SetFloor",
+      "kind": "script",
+      "line": 121,
+      "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SetDeptStoreFloor"
+          ],
+          "line": 122,
+          "raw": "special SetDeptStoreFloor",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 123,
+          "raw": "return",
+          "source_file": "data/maps/LilycoveCity_DepartmentStoreElevator/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 1,
+      "call_if_unset": 1,
+      "case": 12,
+      "closemessage": 1,
+      "copyvar": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 5,
+      "multichoicedefault": 5,
+      "setdynamicwarp": 5,
+      "setflag": 1,
+      "setvar": 12,
+      "special": 5,
+      "specialvar": 1,
+      "switch": 2,
+      "waitmessage": 1,
+      "waitmovement": 1,
+      "waitse": 1,
+      "waitstate": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 16,
+    "script_count": 16,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 1,
+      "call": 5,
+      "call_if_unset": 1,
+      "case": 12,
+      "closemessage": 1,
+      "copyvar": 1,
+      "end": 13,
+      "faceplayer": 1,
+      "goto": 10,
+      "goto_if_eq": 5,
+      "lock": 1,
+      "message": 1,
+      "multichoicedefault": 5,
+      "release": 1,
+      "return": 2,
+      "setdynamicwarp": 5,
+      "setflag": 1,
+      "setvar": 12,
+      "special": 5,
+      "specialvar": 1,
+      "switch": 2,
+      "waitmessage": 1,
+      "waitmovement": 1,
+      "waitse": 1,
+      "waitstate": 1
+    }
+  }
+}

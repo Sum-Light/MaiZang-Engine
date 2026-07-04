@@ -1,0 +1,808 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SootopolisCity_House6",
+    "map_script": "data/maps/SootopolisCity_House6/scripts.inc",
+    "map_json": "data/maps/SootopolisCity_House6/map.json",
+    "map_id": "MAP_SOOTOPOLIS_CITY_HOUSE6",
+    "map_name": "SootopolisCity_House6"
+  },
+  "labels": {
+    "SootopolisCity_House6_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_House6_EventScript_Woman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instruction_count": 11
+    },
+    "SootopolisCity_House6_EventScript_DeclineWailmerDoll": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instruction_count": 3
+    },
+    "SootopolisCity_House6_EventScript_ReceivedWailmerDoll": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instruction_count": 3
+    },
+    "SootopolisCity_House6_EventScript_NoRoomForWailmerDoll": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instruction_count": 5
+    },
+    "SootopolisCity_House6_Text_FirstGuestInWhileTakeDoll": {
+      "kind": "text",
+      "line": 34,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_House6_Text_TakeGoodCareOfIt": {
+      "kind": "text",
+      "line": 37,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_House6_Text_IllHoldItForYou": {
+      "kind": "text",
+      "line": 40,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_House6_Text_DontWantThisDoll": {
+      "kind": "text",
+      "line": 43,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_House6_Text_LovePlushDolls": {
+      "kind": "text",
+      "line": 46,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SootopolisCity_House6_MapScripts": {
+      "label": "SootopolisCity_House6_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SootopolisCity_House6_EventScript_Woman": {
+      "label": "SootopolisCity_House6_EventScript_Woman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_WAILMER_DOLL",
+            "SootopolisCity_House6_EventScript_ReceivedWailmerDoll"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_RECEIVED_WAILMER_DOLL, SootopolisCity_House6_EventScript_ReceivedWailmerDoll",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House6_Text_FirstGuestInWhileTakeDoll",
+            "MSGBOX_YESNO"
+          ],
+          "line": 8,
+          "raw": "msgbox SootopolisCity_House6_Text_FirstGuestInWhileTakeDoll, MSGBOX_YESNO",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "SootopolisCity_House6_EventScript_DeclineWailmerDoll"
+          ],
+          "line": 9,
+          "raw": "call_if_eq VAR_RESULT, NO, SootopolisCity_House6_EventScript_DeclineWailmerDoll",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House6_Text_TakeGoodCareOfIt",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 10,
+          "raw": "msgbox SootopolisCity_House6_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "givedecoration",
+          "args": [
+            "DECOR_WAILMER_DOLL"
+          ],
+          "line": 11,
+          "raw": "givedecoration DECOR_WAILMER_DOLL",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "SootopolisCity_House6_EventScript_NoRoomForWailmerDoll"
+          ],
+          "line": 12,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, SootopolisCity_House6_EventScript_NoRoomForWailmerDoll",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_WAILMER_DOLL"
+          ],
+          "line": 13,
+          "raw": "setflag FLAG_RECEIVED_WAILMER_DOLL",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House6_Text_FirstGuestInWhileTakeDoll",
+          "mode": "MSGBOX_YESNO",
+          "line": 8
+        },
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House6_Text_TakeGoodCareOfIt",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 10
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "SootopolisCity_House6_EventScript_ReceivedWailmerDoll",
+          "line": 7
+        },
+        {
+          "op": "call_if_eq",
+          "target": "SootopolisCity_House6_EventScript_DeclineWailmerDoll",
+          "line": 9
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "SootopolisCity_House6_EventScript_NoRoomForWailmerDoll",
+          "line": 12
+        }
+      ]
+    },
+    "SootopolisCity_House6_EventScript_DeclineWailmerDoll": {
+      "label": "SootopolisCity_House6_EventScript_DeclineWailmerDoll",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House6_Text_DontWantThisDoll",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 18,
+          "raw": "msgbox SootopolisCity_House6_Text_DontWantThisDoll, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 19,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House6_Text_DontWantThisDoll",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "SootopolisCity_House6_EventScript_ReceivedWailmerDoll": {
+      "label": "SootopolisCity_House6_EventScript_ReceivedWailmerDoll",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House6_Text_LovePlushDolls",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 23,
+          "raw": "msgbox SootopolisCity_House6_Text_LovePlushDolls, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 24,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House6_Text_LovePlushDolls",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 23
+        }
+      ],
+      "branch_targets": []
+    },
+    "SootopolisCity_House6_EventScript_NoRoomForWailmerDoll": {
+      "label": "SootopolisCity_House6_EventScript_NoRoomForWailmerDoll",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferdecorationname",
+          "args": [
+            "STR_VAR_2",
+            "DECOR_WAILMER_DOLL"
+          ],
+          "line": 28,
+          "raw": "bufferdecorationname STR_VAR_2, DECOR_WAILMER_DOLL",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_NoRoomLeftForAnother",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 29,
+          "raw": "msgbox gText_NoRoomLeftForAnother, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House6_Text_IllHoldItForYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 30,
+          "raw": "msgbox SootopolisCity_House6_Text_IllHoldItForYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 31,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_House6/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_NoRoomLeftForAnother",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 29
+        },
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House6_Text_IllHoldItForYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 30
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SootopolisCity_House6_Text_FirstGuestInWhileTakeDoll": {
+      "label": "SootopolisCity_House6_Text_FirstGuestInWhileTakeDoll",
+      "line": 34,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "raw_text": "你好！你是我们\\n第一个客人，\\p你照亮了我的一天，\\n这个大吼吼鲸玩偶送给你。$",
+      "display_text": "你好！你是我们\n第一个客人，\n\n你照亮了我的一天，\n这个大吼吼鲸玩偶送给你。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 68,
+        "bytes": [
+          9,
+          217,
+          4,
+          233,
+          60,
+          9,
+          217,
+          12,
+          12,
+          13,
+          152,
+          9,
+          95,
+          254,
+          3,
+          33,
+          15,
+          11,
+          4,
+          96,
+          7,
+          219,
+          11,
+          75,
+          59,
+          251,
+          9,
+          217,
+          16,
+          72,
+          8,
+          148,
+          8,
+          158,
+          13,
+          152,
+          3,
+          11,
+          15,
+          11,
+          12,
+          237,
+          59,
+          254,
+          16,
+          85,
+          4,
+          96,
+          2,
+          211,
+          5,
+          31,
+          5,
+          31,
+          7,
+          88,
+          13,
+          78,
+          10,
+          25,
+          12,
+          112,
+          4,
+          98,
+          9,
+          217,
+          55,
+          255
+        ],
+        "hex": "09 D9 04 E9 3C 09 D9 0C 0C 0D 98 09 5F FE 03 21 0F 0B 04 60 07 DB 0B 4B 3B FB 09 D9 10 48 08 94 08 9E 0D 98 03 0B 0F 0B 0C ED 3B FE 10 55 04 60 02 D3 05 1F 05 1F 07 58 0D 4E 0A 19 0C 70 04 62 09 D9 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 40,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SootopolisCity_House6_Text_TakeGoodCareOfIt": {
+      "label": "SootopolisCity_House6_Text_TakeGoodCareOfIt",
+      "line": 37,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "raw_text": "要保存好它！$",
+      "display_text": "要保存好它！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 12,
+        "bytes": [
+          14,
+          241,
+          1,
+          96,
+          2,
+          198,
+          4,
+          233,
+          12,
+          159,
+          60,
+          255
+        ],
+        "hex": "0E F1 01 60 02 C6 04 E9 0C 9F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 6,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SootopolisCity_House6_Text_IllHoldItForYou": {
+      "label": "SootopolisCity_House6_Text_IllHoldItForYou",
+      "line": 40,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "raw_text": "嗯？你想要，但现在还不能拿？\\n那好，我先替你保管。$",
+      "display_text": "嗯？你想要，但现在还不能拿？\n那好，我先替你保管。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 45,
+        "bytes": [
+          20,
+          97,
+          61,
+          9,
+          217,
+          14,
+          24,
+          14,
+          241,
+          59,
+          2,
+          233,
+          14,
+          3,
+          15,
+          230,
+          5,
+          70,
+          1,
+          214,
+          9,
+          210,
+          9,
+          185,
+          61,
+          254,
+          9,
+          189,
+          4,
+          233,
+          59,
+          13,
+          152,
+          13,
+          236,
+          12,
+          231,
+          9,
+          217,
+          1,
+          96,
+          4,
+          164,
+          55,
+          255
+        ],
+        "hex": "14 61 3D 09 D9 0E 18 0E F1 3B 02 E9 0E 03 0F E6 05 46 01 D6 09 D2 09 B9 3D FE 09 BD 04 E9 3B 0D 98 0D EC 0C E7 09 D9 01 60 04 A4 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SootopolisCity_House6_Text_DontWantThisDoll": {
+      "label": "SootopolisCity_House6_Text_DontWantThisDoll",
+      "line": 43,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "raw_text": "你肯定吗？\\n不想要这个玩偶？$",
+      "display_text": "你肯定吗？\n不想要这个玩偶？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          9,
+          217,
+          7,
+          221,
+          3,
+          77,
+          9,
+          42,
+          61,
+          254,
+          1,
+          214,
+          14,
+          24,
+          14,
+          241,
+          16,
+          85,
+          4,
+          96,
+          13,
+          78,
+          10,
+          25,
+          61,
+          255
+        ],
+        "hex": "09 D9 07 DD 03 4D 09 2A 3D FE 01 D6 0E 18 0E F1 10 55 04 60 0D 4E 0A 19 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SootopolisCity_House6_Text_LovePlushDolls": {
+      "label": "SootopolisCity_House6_Text_LovePlushDolls",
+      "line": 46,
+      "source_file": "data/maps/SootopolisCity_House6/scripts.inc",
+      "raw_text": "我喜欢毛绒玩偶！$",
+      "display_text": "我喜欢毛绒玩偶！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          13,
+          152,
+          13,
+          214,
+          5,
+          67,
+          9,
+          67,
+          11,
+          94,
+          13,
+          78,
+          10,
+          25,
+          60,
+          255
+        ],
+        "hex": "0D 98 0D D6 05 43 09 43 0B 5E 0D 4E 0A 19 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "bufferdecorationname": 1,
+      "call_if_eq": 1,
+      "faceplayer": 1,
+      "givedecoration": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "setflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 5,
+    "encoded_text_count": 5,
+    "text_source_byte_count": 167,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 5
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "bufferdecorationname": 1,
+      "call_if_eq": 1,
+      "end": 4,
+      "faceplayer": 1,
+      "givedecoration": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 6,
+      "release": 4,
+      "setflag": 1
+    }
+  }
+}

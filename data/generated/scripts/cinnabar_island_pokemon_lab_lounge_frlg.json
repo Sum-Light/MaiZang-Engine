@@ -1,0 +1,1110 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CinnabarIsland_PokemonLab_Lounge_Frlg",
+    "map_script": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+    "map_json": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/map.json",
+    "map_id": "MAP_CINNABAR_ISLAND_POKEMON_LAB_LOUNGE",
+    "map_name": "CinnabarIsland_PokemonLab_Lounge_Frlg"
+  },
+  "labels": {
+    "CinnabarIsland_PokemonLab_Lounge_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_Scientist": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_Clifton": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonDeclineTrade": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonNotRequestedMon": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonAlreadyTraded": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_Norma": {
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 26
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade": {
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaNotRequestedMon": {
+      "kind": "script",
+      "line": 75,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaAlreadyTraded": {
+      "kind": "script",
+      "line": 81,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_PokemonLab_Lounge_Text_FoundFossilInMtMoon": {
+      "kind": "text",
+      "line": 86,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "CinnabarIsland_PokemonLab_Lounge_Frlg_MapScripts": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_Scientist": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_EventScript_Scientist",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_PokemonLab_Lounge_Text_FoundFossilInMtMoon",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox CinnabarIsland_PokemonLab_Lounge_Text_FoundFossilInMtMoon, MSGBOX_NPC",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_PokemonLab_Lounge_Text_FoundFossilInMtMoon",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_Clifton": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_EventScript_Clifton",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 9,
+          "raw": "lock",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 10,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8008",
+            "INGAME_TRADE_ELECTRODE"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_0x8008, INGAME_TRADE_ELECTRODE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpeciesInfo"
+          ],
+          "line": 12,
+          "raw": "call EventScript_GetInGameTradeSpeciesInfo",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DID_ESPHERE_TRADE",
+            "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonAlreadyTraded"
+          ],
+          "line": 13,
+          "raw": "goto_if_set FLAG_DID_ESPHERE_TRADE, CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonAlreadyTraded",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_DoYouHaveMonWouldYouTradeForMon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 14,
+          "raw": "msgbox Trade_Text_DoYouHaveMonWouldYouTradeForMon, MSGBOX_YESNO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonDeclineTrade"
+          ],
+          "line": 15,
+          "raw": "goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonDeclineTrade",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_ChooseMonForInGameTrade"
+          ],
+          "line": 16,
+          "raw": "call EventScript_ChooseMonForInGameTrade",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_0x8004",
+            "PARTY_SIZE",
+            "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonDeclineTrade"
+          ],
+          "line": 17,
+          "raw": "goto_if_ge VAR_0x8004, PARTY_SIZE, CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonDeclineTrade",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpecies"
+          ],
+          "line": 18,
+          "raw": "call EventScript_GetInGameTradeSpecies",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "VAR_0x8009",
+            "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonNotRequestedMon"
+          ],
+          "line": 19,
+          "raw": "goto_if_ne VAR_RESULT, VAR_0x8009, CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonNotRequestedMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_DoInGameTrade"
+          ],
+          "line": 20,
+          "raw": "call EventScript_DoInGameTrade",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_Thanks"
+          ],
+          "line": 21,
+          "raw": "msgbox Trade_Text_Thanks",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DID_ESPHERE_TRADE"
+          ],
+          "line": 22,
+          "raw": "setflag FLAG_DID_ESPHERE_TRADE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 23,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_DoYouHaveMonWouldYouTradeForMon",
+          "mode": "MSGBOX_YESNO",
+          "line": 14
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_Thanks",
+          "mode": "",
+          "line": 21
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpeciesInfo",
+          "line": 12
+        },
+        {
+          "op": "goto_if_set",
+          "target": "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonAlreadyTraded",
+          "line": 13
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonDeclineTrade",
+          "line": 15
+        },
+        {
+          "op": "call",
+          "target": "EventScript_ChooseMonForInGameTrade",
+          "line": 16
+        },
+        {
+          "op": "goto_if_ge",
+          "target": "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonDeclineTrade",
+          "line": 17
+        },
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpecies",
+          "line": 18
+        },
+        {
+          "op": "goto_if_ne",
+          "target": "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonNotRequestedMon",
+          "line": 19
+        },
+        {
+          "op": "call",
+          "target": "EventScript_DoInGameTrade",
+          "line": 20
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonDeclineTrade": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonDeclineTrade",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_WellIfYouDontWantTo"
+          ],
+          "line": 27,
+          "raw": "msgbox Trade_Text_WellIfYouDontWantTo",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 28,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_WellIfYouDontWantTo",
+          "mode": "",
+          "line": 27
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonNotRequestedMon": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonNotRequestedMon",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 32,
+          "raw": "bufferspeciesname STR_VAR_1, VAR_0x8009",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_ThisIsntMon"
+          ],
+          "line": 33,
+          "raw": "msgbox Trade_Text_ThisIsntMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 34,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_ThisIsntMon",
+          "mode": "",
+          "line": 33
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonAlreadyTraded": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_EventScript_CliftonAlreadyTraded",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_HasTradedMonGrownStronger"
+          ],
+          "line": 38,
+          "raw": "msgbox Trade_Text_HasTradedMonGrownStronger",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 39,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 40,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_HasTradedMonGrownStronger",
+          "mode": "",
+          "line": 38
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_Norma": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_EventScript_Norma",
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 43,
+          "raw": "lock",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 44,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8008",
+            "INGAME_TRADE_TANGELA"
+          ],
+          "line": 45,
+          "raw": "setvar VAR_0x8008, INGAME_TRADE_TANGELA",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8004",
+            "VAR_0x8008"
+          ],
+          "line": 46,
+          "raw": "copyvar VAR_0x8004, VAR_0x8008",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetInGameTradeSpeciesInfo"
+          ],
+          "line": 47,
+          "raw": "specialvar VAR_RESULT, GetInGameTradeSpeciesInfo",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8009",
+            "VAR_RESULT"
+          ],
+          "line": 48,
+          "raw": "copyvar VAR_0x8009, VAR_RESULT",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DID_TANGENY_TRADE",
+            "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaAlreadyTraded"
+          ],
+          "line": 49,
+          "raw": "goto_if_set FLAG_DID_TANGENY_TRADE, CinnabarIsland_PokemonLab_Lounge_EventScript_NormaAlreadyTraded",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_DoYouHaveMonWantToTradeForMon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 50,
+          "raw": "msgbox Trade_Text_DoYouHaveMonWantToTradeForMon, MSGBOX_YESNO",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade"
+          ],
+          "line": 51,
+          "raw": "goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ChoosePartyMon"
+          ],
+          "line": 52,
+          "raw": "special ChoosePartyMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 53,
+          "raw": "waitstate",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x800A",
+            "VAR_0x8004"
+          ],
+          "line": 54,
+          "raw": "copyvar VAR_0x800A, VAR_0x8004",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_0x8004",
+            "PARTY_SIZE",
+            "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade"
+          ],
+          "line": 55,
+          "raw": "goto_if_ge VAR_0x8004, PARTY_SIZE, CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8005",
+            "VAR_0x800A"
+          ],
+          "line": 56,
+          "raw": "copyvar VAR_0x8005, VAR_0x800A",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetTradeSpecies"
+          ],
+          "line": 57,
+          "raw": "specialvar VAR_RESULT, GetTradeSpecies",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x800B",
+            "VAR_RESULT"
+          ],
+          "line": 58,
+          "raw": "copyvar VAR_0x800B, VAR_RESULT",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "VAR_0x8009",
+            "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaNotRequestedMon"
+          ],
+          "line": 59,
+          "raw": "goto_if_ne VAR_RESULT, VAR_0x8009, CinnabarIsland_PokemonLab_Lounge_EventScript_NormaNotRequestedMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8004",
+            "VAR_0x8008"
+          ],
+          "line": 60,
+          "raw": "copyvar VAR_0x8004, VAR_0x8008",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8005",
+            "VAR_0x800A"
+          ],
+          "line": 61,
+          "raw": "copyvar VAR_0x8005, VAR_0x800A",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "CreateInGameTradePokemon"
+          ],
+          "line": 62,
+          "raw": "special CreateInGameTradePokemon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DoInGameTradeScene"
+          ],
+          "line": 63,
+          "raw": "special DoInGameTradeScene",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 64,
+          "raw": "waitstate",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_ThanksYoureAPal"
+          ],
+          "line": 65,
+          "raw": "msgbox Trade_Text_ThanksYoureAPal",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DID_TANGENY_TRADE"
+          ],
+          "line": 66,
+          "raw": "setflag FLAG_DID_TANGENY_TRADE",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 67,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 68,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_DoYouHaveMonWantToTradeForMon",
+          "mode": "MSGBOX_YESNO",
+          "line": 50
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_ThanksYoureAPal",
+          "mode": "",
+          "line": 65
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaAlreadyTraded",
+          "line": 49
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade",
+          "line": 51
+        },
+        {
+          "op": "goto_if_ge",
+          "target": "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade",
+          "line": 55
+        },
+        {
+          "op": "goto_if_ne",
+          "target": "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaNotRequestedMon",
+          "line": 59
+        }
+      ]
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaDeclineTrade",
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_ThatsTooBad"
+          ],
+          "line": 71,
+          "raw": "msgbox Trade_Text_ThatsTooBad",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 72,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 73,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_ThatsTooBad",
+          "mode": "",
+          "line": 71
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaNotRequestedMon": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaNotRequestedMon",
+      "kind": "script",
+      "line": 75,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 76,
+          "raw": "bufferspeciesname STR_VAR_1, VAR_0x8009",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_ThisIsNoMon"
+          ],
+          "line": 77,
+          "raw": "msgbox Trade_Text_ThisIsNoMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 78,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 79,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_ThisIsNoMon",
+          "mode": "",
+          "line": 77
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaAlreadyTraded": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_EventScript_NormaAlreadyTraded",
+      "kind": "script",
+      "line": 81,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_HowIsMyOldMon"
+          ],
+          "line": 82,
+          "raw": "msgbox Trade_Text_HowIsMyOldMon",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 83,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 84,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_HowIsMyOldMon",
+          "mode": "",
+          "line": 82
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "CinnabarIsland_PokemonLab_Lounge_Text_FoundFossilInMtMoon": {
+      "label": "CinnabarIsland_PokemonLab_Lounge_Text_FoundFossilInMtMoon",
+      "line": 86,
+      "source_file": "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc",
+      "raw_text": "我这块令人羡慕的化石\\n是在月见山找到的。\\p我认为里面是一只罕见的，\\n史前的宝可梦。$",
+      "display_text": "我这块令人羡慕的化石\n是在月见山找到的。\n\n我认为里面是一只罕见的，\n史前的宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 77,
+        "bytes": [
+          13,
+          152,
+          16,
+          85,
+          8,
+          0,
+          8,
+          193,
+          11,
+          75,
+          14,
+          8,
+          9,
+          179,
+          3,
+          11,
+          5,
+          60,
+          11,
+          235,
+          254,
+          12,
+          12,
+          15,
+          230,
+          15,
+          206,
+          5,
+          230,
+          11,
+          155,
+          16,
+          69,
+          3,
+          4,
+          3,
+          11,
+          55,
+          251,
+          13,
+          152,
+          11,
+          79,
+          13,
+          112,
+          8,
+          100,
+          9,
+          126,
+          12,
+          12,
+          15,
+          11,
+          16,
+          140,
+          4,
+          215,
+          5,
+          230,
+          3,
+          11,
+          59,
+          254,
+          11,
+          243,
+          10,
+          201,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "0D 98 10 55 08 00 08 C1 0B 4B 0E 08 09 B3 03 0B 05 3C 0B EB FE 0C 0C 0F E6 0F CE 05 E6 0B 9B 10 45 03 04 03 0B 37 FB 0D 98 0B 4F 0D 70 08 64 09 7E 0C 0C 0F 0B 10 8C 04 D7 05 E6 03 0B 3B FE 0B F3 0A C9 03 0B 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "bufferspeciesname": 2,
+      "copyvar": 7,
+      "faceplayer": 2,
+      "goto_if_eq": 2,
+      "goto_if_ge": 2,
+      "goto_if_ne": 2,
+      "goto_if_set": 2,
+      "setflag": 2,
+      "setvar": 2,
+      "special": 3,
+      "specialvar": 2,
+      "waitstate": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 10,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 77,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "bufferspeciesname": 2,
+      "call": 4,
+      "copyvar": 7,
+      "end": 9,
+      "faceplayer": 2,
+      "goto_if_eq": 2,
+      "goto_if_ge": 2,
+      "goto_if_ne": 2,
+      "goto_if_set": 2,
+      "lock": 2,
+      "msgbox": 11,
+      "release": 8,
+      "setflag": 2,
+      "setvar": 2,
+      "special": 3,
+      "specialvar": 2,
+      "waitstate": 2
+    }
+  }
+}

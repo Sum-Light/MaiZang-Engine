@@ -1,0 +1,1123 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route1_Frlg",
+    "map_script": "data/maps/Route1_Frlg/scripts.inc",
+    "map_json": "data/maps/Route1_Frlg/map.json",
+    "map_id": "MAP_ROUTE1",
+    "map_name": "Route1_Frlg"
+  },
+  "labels": {
+    "Route1_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route1_EventScript_MartClerk": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instruction_count": 18
+    },
+    "Route1_EventScript_AlreadyGotPotion": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route1_EventScript_Boy": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route1_EventScript_RouteSign": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route1_Text_WorkAtPokeMartTakeSample": {
+      "kind": "text",
+      "line": 37,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route1_Text_ComeSeeUsIfYouNeedPokeBalls": {
+      "kind": "text",
+      "line": 46,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route1_Text_PutPotionAway": {
+      "kind": "text",
+      "line": 50,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route1_Text_CanJumpFromLedges": {
+      "kind": "text",
+      "line": 54,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "Route1_Text_RouteSign": {
+      "kind": "text",
+      "line": 61,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "Route1_Frlg_MapScripts": {
+      "label": "Route1_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route1_EventScript_MartClerk": {
+      "label": "Route1_EventScript_MartClerk",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_GOT_POTION_ON_ROUTE_1",
+            "Route1_EventScript_AlreadyGotPotion"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_GOT_POTION_ON_ROUTE_1, Route1_EventScript_AlreadyGotPotion",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route1_Text_WorkAtPokeMartTakeSample"
+          ],
+          "line": 8,
+          "raw": "msgbox Route1_Text_WorkAtPokeMartTakeSample",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 9,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "checkitemspace",
+          "args": [
+            "ITEM_POTION"
+          ],
+          "line": 10,
+          "raw": "checkitemspace ITEM_POTION",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "EventScript_BagIsFull"
+          ],
+          "line": 11,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferitemname",
+          "args": [
+            "STR_VAR_2",
+            "ITEM_POTION"
+          ],
+          "line": 12,
+          "raw": "bufferitemname STR_VAR_2, ITEM_POTION",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_LEVEL_UP"
+          ],
+          "line": 13,
+          "raw": "playfanfare MUS_LEVEL_UP",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_ObtainedTheItem"
+          ],
+          "line": 14,
+          "raw": "message gText_ObtainedTheItem",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 15,
+          "raw": "waitmessage",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 16,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "additem",
+          "args": [
+            "ITEM_POTION"
+          ],
+          "line": 17,
+          "raw": "additem ITEM_POTION",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route1_Text_PutPotionAway"
+          ],
+          "line": 18,
+          "raw": "msgbox Route1_Text_PutPotionAway",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_RestorePrevTextColor"
+          ],
+          "line": 19,
+          "raw": "call EventScript_RestorePrevTextColor",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_GOT_POTION_ON_ROUTE_1"
+          ],
+          "line": 20,
+          "raw": "setflag FLAG_GOT_POTION_ON_ROUTE_1",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 21,
+          "raw": "release",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route1_Text_WorkAtPokeMartTakeSample",
+          "mode": "",
+          "line": 8
+        },
+        {
+          "op": "message",
+          "text_label": "gText_ObtainedTheItem",
+          "mode": "",
+          "line": 14
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route1_Text_PutPotionAway",
+          "mode": "",
+          "line": 18
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route1_EventScript_AlreadyGotPotion",
+          "line": 7
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_BagIsFull",
+          "line": 11
+        },
+        {
+          "op": "call",
+          "target": "EventScript_RestorePrevTextColor",
+          "line": 19
+        }
+      ]
+    },
+    "Route1_EventScript_AlreadyGotPotion": {
+      "label": "Route1_EventScript_AlreadyGotPotion",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route1_Text_ComeSeeUsIfYouNeedPokeBalls"
+          ],
+          "line": 25,
+          "raw": "msgbox Route1_Text_ComeSeeUsIfYouNeedPokeBalls",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 26,
+          "raw": "release",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route1_Text_ComeSeeUsIfYouNeedPokeBalls",
+          "mode": "",
+          "line": 25
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route1_EventScript_Boy": {
+      "label": "Route1_EventScript_Boy",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route1_Text_CanJumpFromLedges",
+            "MSGBOX_NPC"
+          ],
+          "line": 30,
+          "raw": "msgbox Route1_Text_CanJumpFromLedges, MSGBOX_NPC",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route1_Text_CanJumpFromLedges",
+          "mode": "MSGBOX_NPC",
+          "line": 30
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route1_EventScript_RouteSign": {
+      "label": "Route1_EventScript_RouteSign",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route1_Text_RouteSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 34,
+          "raw": "msgbox Route1_Text_RouteSign, MSGBOX_SIGN",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/Route1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route1_Text_RouteSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 34
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route1_Text_WorkAtPokeMartTakeSample": {
+      "label": "Route1_Text_WorkAtPokeMartTakeSample",
+      "line": 37,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "raw_text": "嗨！\\n我是一家宝可梦商店的职员。\\p宝可梦商店是可以很方便\\n的买到各种商品的连锁店。\\p有空请去常青市的宝可梦商店看看。\\p我知道，我会送你个样品。\\n给你！$",
+      "display_text": "嗨！\n我是一家宝可梦商店的职员。\n\n宝可梦商店是可以很方便\n的买到各种商品的连锁店。\n\n有空请去常青市的宝可梦商店看看。\n\n我知道，我会送你个样品。\n给你！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 138,
+        "bytes": [
+          20,
+          103,
+          60,
+          254,
+          13,
+          152,
+          12,
+          12,
+          15,
+          11,
+          5,
+          189,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          170,
+          3,
+          49,
+          3,
+          11,
+          16,
+          129,
+          15,
+          189,
+          55,
+          251,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          170,
+          3,
+          49,
+          12,
+          12,
+          7,
+          215,
+          15,
+          36,
+          5,
+          11,
+          3,
+          192,
+          1,
+          160,
+          254,
+          3,
+          11,
+          9,
+          44,
+          3,
+          4,
+          4,
+          97,
+          16,
+          167,
+          11,
+          170,
+          10,
+          114,
+          3,
+          11,
+          8,
+          127,
+          12,
+          155,
+          3,
+          49,
+          55,
+          251,
+          15,
+          126,
+          7,
+          227,
+          11,
+          13,
+          11,
+          37,
+          2,
+          37,
+          11,
+          2,
+          12,
+          21,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          170,
+          3,
+          49,
+          7,
+          194,
+          7,
+          194,
+          55,
+          251,
+          13,
+          152,
+          16,
+          123,
+          3,
+          7,
+          59,
+          13,
+          152,
+          5,
+          110,
+          12,
+          112,
+          9,
+          217,
+          4,
+          96,
+          14,
+          226,
+          10,
+          114,
+          55,
+          254,
+          4,
+          98,
+          9,
+          217,
+          60,
+          255
+        ],
+        "hex": "14 67 3C FE 0D 98 0C 0C 0F 0B 05 BD 01 63 07 D7 09 66 0B AA 03 31 03 0B 10 81 0F BD 37 FB 01 63 07 D7 09 66 0B AA 03 31 0C 0C 07 D7 0F 24 05 0B 03 C0 01 A0 FE 03 0B 09 2C 03 04 04 61 10 A7 0B AA 0A 72 03 0B 08 7F 0C 9B 03 31 37 FB 0F 7E 07 E3 0B 0D 0B 25 02 25 0B 02 0C 15 03 0B 01 63 07 D7 09 66 0B AA 03 31 07 C2 07 C2 37 FB 0D 98 10 7B 03 07 3B 0D 98 05 6E 0C 70 09 D9 04 60 0E E2 0A 72 37 FE 04 62 09 D9 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 44,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 62,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 76,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 81,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route1_Text_ComeSeeUsIfYouNeedPokeBalls": {
+      "label": "Route1_Text_ComeSeeUsIfYouNeedPokeBalls",
+      "line": 46,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "raw_text": "如果你想要精灵球收服宝可梦的话，\\n就来我们这儿看看吧。$",
+      "display_text": "如果你想要精灵球收服宝可梦的话，\n就来我们这儿看看吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 52,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          14,
+          24,
+          14,
+          241,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          12,
+          26,
+          4,
+          10,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          7,
+          125,
+          8,
+          41,
+          13,
+          152,
+          9,
+          95,
+          16,
+          85,
+          3,
+          158,
+          7,
+          194,
+          7,
+          194,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "0B 67 04 C3 09 D9 0E 18 0E F1 07 5B 08 BC 0B 14 0C 1A 04 0A 01 63 07 D7 09 66 03 0B 05 3D 3B FE 07 7D 08 29 0D 98 09 5F 10 55 03 9E 07 C2 07 C2 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 16,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route1_Text_PutPotionAway": {
+      "label": "Route1_Text_PutPotionAway",
+      "line": 50,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}把伤药放进了\\n背包的道具口袋里。$",
+      "display_text": "{PLAYER}把伤药放进了\n背包的道具口袋里。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 33,
+        "bytes": [
+          253,
+          1,
+          1,
+          48,
+          11,
+          169,
+          14,
+          240,
+          3,
+          200,
+          7,
+          74,
+          8,
+          158,
+          254,
+          1,
+          112,
+          1,
+          91,
+          3,
+          11,
+          3,
+          7,
+          7,
+          143,
+          7,
+          232,
+          2,
+          220,
+          8,
+          100,
+          55,
+          255
+        ],
+        "hex": "FD 01 01 30 0B A9 0E F0 03 C8 07 4A 08 9E FE 01 70 01 5B 03 0B 03 07 07 8F 07 E8 02 DC 08 64 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Route1_Text_CanJumpFromLedges": {
+      "label": "Route1_Text_CanJumpFromLedges",
+      "line": 54,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "raw_text": "看到路边那些突起的岩石吗？\\p虽然有点吓人，\\n但是你可以直接从那里跳下去。\\p走那条路的话。\\n你可以更快的回到真新镇。$",
+      "display_text": "看到路边那些突起的岩石吗？\n\n虽然有点吓人，\n但是你可以直接从那里跳下去。\n\n走那条路的话。\n你可以更快的回到真新镇。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 106,
+        "bytes": [
+          7,
+          194,
+          3,
+          4,
+          8,
+          232,
+          1,
+          156,
+          9,
+          189,
+          14,
+          52,
+          13,
+          35,
+          10,
+          171,
+          3,
+          11,
+          14,
+          187,
+          11,
+          235,
+          9,
+          42,
+          61,
+          251,
+          12,
+          135,
+          11,
+          59,
+          15,
+          126,
+          3,
+          42,
+          13,
+          233,
+          11,
+          75,
+          59,
+          254,
+          2,
+          233,
+          12,
+          12,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          16,
+          130,
+          7,
+          37,
+          2,
+          179,
+          9,
+          189,
+          8,
+          100,
+          13,
+          2,
+          13,
+          230,
+          11,
+          37,
+          55,
+          251,
+          17,
+          23,
+          9,
+          189,
+          12,
+          246,
+          8,
+          232,
+          3,
+          11,
+          5,
+          61,
+          55,
+          254,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          4,
+          102,
+          8,
+          3,
+          3,
+          11,
+          5,
+          101,
+          3,
+          4,
+          16,
+          89,
+          14,
+          77,
+          16,
+          101,
+          55,
+          255
+        ],
+        "hex": "07 C2 03 04 08 E8 01 9C 09 BD 0E 34 0D 23 0A AB 03 0B 0E BB 0B EB 09 2A 3D FB 0C 87 0B 3B 0F 7E 03 2A 0D E9 0B 4B 3B FE 02 E9 0C 0C 09 D9 07 D7 0F 24 10 82 07 25 02 B3 09 BD 08 64 0D 02 0D E6 0B 25 37 FB 11 17 09 BD 0C F6 08 E8 03 0B 05 3D 37 FE 09 D9 07 D7 0F 24 04 66 08 03 03 0B 05 65 03 04 10 59 0E 4D 10 65 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 47,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 61,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route1_Text_RouteSign": {
+      "label": "Route1_Text_RouteSign",
+      "line": 61,
+      "source_file": "data/maps/Route1_Frlg/scripts.inc",
+      "raw_text": "1号道路\\n真新镇-常青市$",
+      "display_text": "1号道路\n真新镇-常青市",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          162,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          254,
+          16,
+          89,
+          14,
+          77,
+          16,
+          101,
+          174,
+          2,
+          37,
+          11,
+          2,
+          12,
+          21,
+          255
+        ],
+        "hex": "A2 04 EB 03 07 08 E8 FE 10 59 0E 4D 10 65 AE 02 25 0B 02 0C 15 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "additem": 1,
+      "bufferitemname": 1,
+      "checkitemspace": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "playfanfare": 1,
+      "setflag": 1,
+      "textcolor": 1,
+      "waitfanfare": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 5,
+    "encoded_text_count": 5,
+    "text_source_byte_count": 351,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 5
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "additem": 1,
+      "bufferitemname": 1,
+      "call": 1,
+      "checkitemspace": 1,
+      "end": 4,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "message": 1,
+      "msgbox": 5,
+      "playfanfare": 1,
+      "release": 2,
+      "setflag": 1,
+      "textcolor": 1,
+      "waitfanfare": 1,
+      "waitmessage": 1
+    }
+  }
+}

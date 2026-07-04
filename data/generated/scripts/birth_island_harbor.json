@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "BirthIsland_Harbor",
+    "map_script": "data/maps/BirthIsland_Harbor/scripts.inc",
+    "map_json": "data/maps/BirthIsland_Harbor/map.json",
+    "map_id": "MAP_BIRTH_ISLAND_HARBOR",
+    "map_name": "BirthIsland_Harbor"
+  },
+  "labels": {
+    "BirthIsland_Harbor_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BirthIsland_Harbor/scripts.inc",
+      "instruction_count": 1
+    },
+    "BirthIsland_Harbor_EventScript_Sailor": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/BirthIsland_Harbor/scripts.inc",
+      "instruction_count": 16
+    },
+    "BirthIsland_Harbor_EventScript_AsYouLike": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/BirthIsland_Harbor/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "BirthIsland_Harbor_MapScripts": {
+      "label": "BirthIsland_Harbor_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BirthIsland_Harbor/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BirthIsland_Harbor_EventScript_Sailor": {
+      "label": "BirthIsland_Harbor_EventScript_Sailor",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/BirthIsland_Harbor/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BirthIsland_Harbor_Text_SailorReturn",
+            "MSGBOX_YESNO"
+          ],
+          "line": 7,
+          "raw": "msgbox BirthIsland_Harbor_Text_SailorReturn, MSGBOX_YESNO",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "BirthIsland_Harbor_EventScript_AsYouLike"
+          ],
+          "line": 8,
+          "raw": "goto_if_eq VAR_RESULT, NO, BirthIsland_Harbor_EventScript_AsYouLike",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EventTicket_Text_SailHome",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 9,
+          "raw": "msgbox EventTicket_Text_SailHome, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 10,
+          "raw": "closemessage",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 11,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 12,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 13,
+          "raw": "delay 30",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "hideobjectat",
+          "args": [
+            "LOCALID_BIRTH_ISLAND_SAILOR",
+            "MAP_BIRTH_ISLAND_HARBOR"
+          ],
+          "line": 14,
+          "raw": "hideobjectat LOCALID_BIRTH_ISLAND_SAILOR, MAP_BIRTH_ISLAND_HARBOR",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "LOCALID_BIRTH_ISLAND_SS_TIDAL"
+          ],
+          "line": 15,
+          "raw": "setvar VAR_0x8004, LOCALID_BIRTH_ISLAND_SS_TIDAL",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_FerryDepartIsland"
+          ],
+          "line": 16,
+          "raw": "call Common_EventScript_FerryDepartIsland",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_LILYCOVE_CITY_HARBOR",
+            "8",
+            "11"
+          ],
+          "line": 17,
+          "raw": "warp MAP_LILYCOVE_CITY_HARBOR, 8, 11",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 18,
+          "raw": "waitstate",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 19,
+          "raw": "release",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BirthIsland_Harbor_Text_SailorReturn",
+          "mode": "MSGBOX_YESNO",
+          "line": 7
+        },
+        {
+          "op": "msgbox",
+          "text_label": "EventTicket_Text_SailHome",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 9
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BirthIsland_Harbor_EventScript_AsYouLike",
+          "line": 8
+        },
+        {
+          "op": "call",
+          "target": "Common_EventScript_FerryDepartIsland",
+          "line": 16
+        }
+      ]
+    },
+    "BirthIsland_Harbor_EventScript_AsYouLike": {
+      "label": "BirthIsland_Harbor_EventScript_AsYouLike",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/BirthIsland_Harbor/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EventTicket_Text_AsYouLike",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 23,
+          "raw": "msgbox EventTicket_Text_AsYouLike, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 24,
+          "raw": "release",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/BirthIsland_Harbor/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EventTicket_Text_AsYouLike",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 23
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 1,
+      "closemessage": 1,
+      "delay": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "hideobjectat": 1,
+      "setvar": 1,
+      "waitmovement": 1,
+      "waitstate": 1,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 1,
+      "call": 1,
+      "closemessage": 1,
+      "delay": 1,
+      "end": 2,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "hideobjectat": 1,
+      "lock": 1,
+      "msgbox": 3,
+      "release": 2,
+      "setvar": 1,
+      "waitmovement": 1,
+      "waitstate": 1,
+      "warp": 1
+    }
+  }
+}

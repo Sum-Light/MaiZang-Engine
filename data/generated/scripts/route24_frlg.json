@@ -1,0 +1,2888 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route24_Frlg",
+    "map_script": "data/maps/Route24_Frlg/scripts.inc",
+    "map_json": "data/maps/Route24_Frlg/map.json",
+    "map_id": "MAP_ROUTE24",
+    "map_name": "Route24_Frlg"
+  },
+  "labels": {
+    "Route24_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route24_EventScript_Rocket": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "Route24_EventScript_NoRoomForNugget": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route24_EventScript_RocketPostBattle": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route24_EventScript_RocketTriggerLeft": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route24_EventScript_RocketTriggerRight": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route24_EventScript_RocketTrigger": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 11
+    },
+    "Route24_EventScript_BattleRocket": {
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "Route24_EventScript_RocketApproachPlayer": {
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route24_EventScript_RocketMotionToPlayer": {
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route24_EventScript_NoRoomForNuggetTrigger": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route24_EventScript_RocketWalkBackToPos": {
+      "kind": "script",
+      "line": 81,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route24_Movement_RocketApproachPlayer": {
+      "kind": "movement",
+      "line": 86,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Movement_RocketWalkBackToPos": {
+      "kind": "movement",
+      "line": 90,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route24_Movement_WalkDown": {
+      "kind": "movement",
+      "line": 95,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_JustEarnedFabulousPrize": {
+      "kind": "text",
+      "line": 99,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route24_Text_ReceivedNuggetFromMysteryTrainer": {
+      "kind": "text",
+      "line": 104,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_YouDontHaveAnyRoom": {
+      "kind": "text",
+      "line": 108,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route24_Text_JoinTeamRocket": {
+      "kind": "text",
+      "line": 111,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "Route24_Text_RocketDefeat": {
+      "kind": "text",
+      "line": 123,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_YoudBecomeTopRocketLeader": {
+      "kind": "text",
+      "line": 127,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route24_Text_ShaneIntro": {
+      "kind": "text",
+      "line": 133,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route24_Text_ShaneDefeat": {
+      "kind": "text",
+      "line": 136,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route24_Text_ShanePostBattle": {
+      "kind": "text",
+      "line": 139,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_EthanIntro": {
+      "kind": "text",
+      "line": 143,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_EthanDefeat": {
+      "kind": "text",
+      "line": 147,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_EthanPostBattle": {
+      "kind": "text",
+      "line": 151,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route24_Text_ReliIntro": {
+      "kind": "text",
+      "line": 154,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_ReliDefeat": {
+      "kind": "text",
+      "line": 158,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route24_Text_ReliPostBattle": {
+      "kind": "text",
+      "line": 161,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route24_Text_TimmyIntro": {
+      "kind": "text",
+      "line": 164,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_TimmyDefeat": {
+      "kind": "text",
+      "line": 168,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_TimmyPostBattle": {
+      "kind": "text",
+      "line": 172,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route24_Text_AliIntro": {
+      "kind": "text",
+      "line": 175,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_AliDefeat": {
+      "kind": "text",
+      "line": 179,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route24_Text_AliPostBattle": {
+      "kind": "text",
+      "line": 182,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route24_Text_CaleIntro": {
+      "kind": "text",
+      "line": 185,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "Route24_Text_CaleDefeat": {
+      "kind": "text",
+      "line": 192,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route24_Text_CalePostBattle": {
+      "kind": "text",
+      "line": 196,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "Route24_Frlg_MapScripts": {
+      "label": "Route24_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route24_EventScript_Rocket": {
+      "label": "Route24_EventScript_Rocket",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_ROUTE24",
+            "1",
+            "Route24_EventScript_RocketPostBattle"
+          ],
+          "line": 7,
+          "raw": "goto_if_eq VAR_MAP_SCENE_ROUTE24, 1, Route24_EventScript_RocketPostBattle",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route24_Text_JustEarnedFabulousPrize"
+          ],
+          "line": 8,
+          "raw": "msgbox Route24_Text_JustEarnedFabulousPrize",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "checkitemspace",
+          "args": [
+            "ITEM_NUGGET"
+          ],
+          "line": 9,
+          "raw": "checkitemspace ITEM_NUGGET",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Route24_EventScript_NoRoomForNugget"
+          ],
+          "line": 10,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Route24_EventScript_NoRoomForNugget",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Route24_EventScript_BattleRocket"
+          ],
+          "line": 11,
+          "raw": "call Route24_EventScript_BattleRocket",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 12,
+          "raw": "release",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route24_Text_JustEarnedFabulousPrize",
+          "mode": "",
+          "line": 8
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route24_EventScript_RocketPostBattle",
+          "line": 7
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route24_EventScript_NoRoomForNugget",
+          "line": 10
+        },
+        {
+          "op": "call",
+          "target": "Route24_EventScript_BattleRocket",
+          "line": 11
+        }
+      ]
+    },
+    "Route24_EventScript_NoRoomForNugget": {
+      "label": "Route24_EventScript_NoRoomForNugget",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route24_Text_YouDontHaveAnyRoom"
+          ],
+          "line": 16,
+          "raw": "msgbox Route24_Text_YouDontHaveAnyRoom",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 17,
+          "raw": "release",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route24_Text_YouDontHaveAnyRoom",
+          "mode": "",
+          "line": 16
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route24_EventScript_RocketPostBattle": {
+      "label": "Route24_EventScript_RocketPostBattle",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route24_Text_YoudBecomeTopRocketLeader"
+          ],
+          "line": 21,
+          "raw": "msgbox Route24_Text_YoudBecomeTopRocketLeader",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 22,
+          "raw": "release",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route24_Text_YoudBecomeTopRocketLeader",
+          "mode": "",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route24_EventScript_RocketTriggerLeft": {
+      "label": "Route24_EventScript_RocketTriggerLeft",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 26,
+          "raw": "lockall",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "0"
+          ],
+          "line": 27,
+          "raw": "setvar VAR_TEMP_1, 0",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route24_EventScript_RocketTrigger"
+          ],
+          "line": 28,
+          "raw": "goto Route24_EventScript_RocketTrigger",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route24_EventScript_RocketTrigger",
+          "line": 28
+        }
+      ]
+    },
+    "Route24_EventScript_RocketTriggerRight": {
+      "label": "Route24_EventScript_RocketTriggerRight",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 32,
+          "raw": "lockall",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 33,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route24_EventScript_RocketTrigger"
+          ],
+          "line": 34,
+          "raw": "goto Route24_EventScript_RocketTrigger",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route24_EventScript_RocketTrigger",
+          "line": 34
+        }
+      ]
+    },
+    "Route24_EventScript_RocketTrigger": {
+      "label": "Route24_EventScript_RocketTrigger",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 38,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "Route24_EventScript_RocketApproachPlayer"
+          ],
+          "line": 39,
+          "raw": "call_if_eq VAR_TEMP_1, 0, Route24_EventScript_RocketApproachPlayer",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_TEMP_1",
+            "1",
+            "Route24_EventScript_RocketMotionToPlayer"
+          ],
+          "line": 40,
+          "raw": "call_if_eq VAR_TEMP_1, 1, Route24_EventScript_RocketMotionToPlayer",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 41,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 42,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route24_Text_JustEarnedFabulousPrize"
+          ],
+          "line": 43,
+          "raw": "msgbox Route24_Text_JustEarnedFabulousPrize",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "checkitemspace",
+          "args": [
+            "ITEM_NUGGET"
+          ],
+          "line": 44,
+          "raw": "checkitemspace ITEM_NUGGET",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Route24_EventScript_NoRoomForNuggetTrigger"
+          ],
+          "line": 45,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Route24_EventScript_NoRoomForNuggetTrigger",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Route24_EventScript_BattleRocket"
+          ],
+          "line": 46,
+          "raw": "call Route24_EventScript_BattleRocket",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 47,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 48,
+          "raw": "end",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route24_Text_JustEarnedFabulousPrize",
+          "mode": "",
+          "line": 43
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "Route24_EventScript_RocketApproachPlayer",
+          "line": 39
+        },
+        {
+          "op": "call_if_eq",
+          "target": "Route24_EventScript_RocketMotionToPlayer",
+          "line": 40
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route24_EventScript_NoRoomForNuggetTrigger",
+          "line": 45
+        },
+        {
+          "op": "call",
+          "target": "Route24_EventScript_BattleRocket",
+          "line": 46
+        }
+      ]
+    },
+    "Route24_EventScript_BattleRocket": {
+      "label": "Route24_EventScript_BattleRocket",
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "giveitem_msg",
+          "args": [
+            "Route24_Text_ReceivedNuggetFromMysteryTrainer",
+            "ITEM_NUGGET"
+          ],
+          "line": 51,
+          "raw": "giveitem_msg Route24_Text_ReceivedNuggetFromMysteryTrainer, ITEM_NUGGET",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "Route24_Text_JoinTeamRocket"
+          ],
+          "line": 52,
+          "raw": "message Route24_Text_JoinTeamRocket",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 53,
+          "raw": "waitmessage",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_RG_ENCOUNTER_ROCKET",
+            "0"
+          ],
+          "line": 54,
+          "raw": "playbgm MUS_RG_ENCOUNTER_ROCKET, 0",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 55,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_LAST_TALKED",
+            "LOCALID_ROUTE24_ROCKET"
+          ],
+          "line": 56,
+          "raw": "setvar VAR_LAST_TALKED, LOCALID_ROUTE24_ROCKET",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "trainerbattle_no_intro",
+          "args": [
+            "TRAINER_TEAM_ROCKET_GRUNT_6",
+            "Route24_Text_RocketDefeat"
+          ],
+          "line": 57,
+          "raw": "trainerbattle_no_intro TRAINER_TEAM_ROCKET_GRUNT_6, Route24_Text_RocketDefeat",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route24_Text_YoudBecomeTopRocketLeader"
+          ],
+          "line": 58,
+          "raw": "msgbox Route24_Text_YoudBecomeTopRocketLeader",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_ROUTE24",
+            "1"
+          ],
+          "line": 59,
+          "raw": "setvar VAR_MAP_SCENE_ROUTE24, 1",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 60,
+          "raw": "return",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "Route24_Text_JoinTeamRocket",
+          "mode": "",
+          "line": 52
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route24_Text_YoudBecomeTopRocketLeader",
+          "mode": "",
+          "line": 58
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route24_EventScript_RocketApproachPlayer": {
+      "label": "Route24_EventScript_RocketApproachPlayer",
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE24_ROCKET",
+            "Route24_Movement_RocketApproachPlayer"
+          ],
+          "line": 63,
+          "raw": "applymovement LOCALID_ROUTE24_ROCKET, Route24_Movement_RocketApproachPlayer",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 64,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 65,
+          "raw": "return",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route24_EventScript_RocketMotionToPlayer": {
+      "label": "Route24_EventScript_RocketMotionToPlayer",
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE24_ROCKET",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 68,
+          "raw": "applymovement LOCALID_ROUTE24_ROCKET, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 69,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 70,
+          "raw": "return",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route24_EventScript_NoRoomForNuggetTrigger": {
+      "label": "Route24_EventScript_NoRoomForNuggetTrigger",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route24_Text_YouDontHaveAnyRoom"
+          ],
+          "line": 73,
+          "raw": "msgbox Route24_Text_YouDontHaveAnyRoom",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 74,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Route24_Movement_WalkDown"
+          ],
+          "line": 75,
+          "raw": "applymovement LOCALID_PLAYER, Route24_Movement_WalkDown",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 76,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "Route24_EventScript_RocketWalkBackToPos"
+          ],
+          "line": 77,
+          "raw": "call_if_eq VAR_TEMP_1, 0, Route24_EventScript_RocketWalkBackToPos",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 78,
+          "raw": "release",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 79,
+          "raw": "end",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route24_Text_YouDontHaveAnyRoom",
+          "mode": "",
+          "line": 73
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "Route24_EventScript_RocketWalkBackToPos",
+          "line": 77
+        }
+      ]
+    },
+    "Route24_EventScript_RocketWalkBackToPos": {
+      "label": "Route24_EventScript_RocketWalkBackToPos",
+      "kind": "script",
+      "line": 81,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE24_ROCKET",
+            "Route24_Movement_RocketWalkBackToPos"
+          ],
+          "line": 82,
+          "raw": "applymovement LOCALID_ROUTE24_ROCKET, Route24_Movement_RocketWalkBackToPos",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 83,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 84,
+          "raw": "return",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "Route24_Movement_RocketApproachPlayer": {
+      "label": "Route24_Movement_RocketApproachPlayer",
+      "kind": "movement",
+      "line": 86,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 87,
+          "raw": "walk_left",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 88,
+          "raw": "step_end",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route24_Movement_RocketWalkBackToPos": {
+      "label": "Route24_Movement_RocketWalkBackToPos",
+      "kind": "movement",
+      "line": 90,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 91,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 92,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 93,
+          "raw": "step_end",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route24_Movement_WalkDown": {
+      "label": "Route24_Movement_WalkDown",
+      "kind": "movement",
+      "line": 95,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 96,
+          "raw": "walk_down",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 97,
+          "raw": "step_end",
+          "source_file": "data/maps/Route24_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "Route24_Text_JustEarnedFabulousPrize": {
+      "label": "Route24_Text_JustEarnedFabulousPrize",
+      "line": 99,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "祝贺你！你战胜了\\n我们五个训练家！\\p你获得了一份神秘大礼！$",
+      "display_text": "祝贺你！你战胜了\n我们五个训练家！\n\n你获得了一份神秘大礼！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          16,
+          210,
+          5,
+          7,
+          9,
+          217,
+          60,
+          9,
+          217,
+          16,
+          48,
+          11,
+          224,
+          8,
+          158,
+          254,
+          13,
+          152,
+          9,
+          95,
+          13,
+          171,
+          4,
+          96,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          60,
+          251,
+          9,
+          217,
+          5,
+          126,
+          3,
+          10,
+          8,
+          158,
+          15,
+          11,
+          3,
+          224,
+          11,
+          207,
+          9,
+          112,
+          2,
+          211,
+          8,
+          102,
+          60,
+          255
+        ],
+        "hex": "10 D2 05 07 09 D9 3C 09 D9 10 30 0B E0 08 9E FE 0D 98 09 5F 0D AB 04 60 0E 9E 08 8A 05 BD 3C FB 09 D9 05 7E 03 0A 08 9E 0F 0B 03 E0 0B CF 09 70 02 D3 08 66 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 31,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_ReceivedNuggetFromMysteryTrainer": {
+      "label": "Route24_Text_ReceivedNuggetFromMysteryTrainer",
+      "line": 104,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}从谜之训练家那儿\\n获得了一个金珠！$",
+      "display_text": "{PLAYER}从谜之训练家那儿\n获得了一个金珠！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          253,
+          1,
+          2,
+          179,
+          9,
+          109,
+          16,
+          127,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          9,
+          189,
+          3,
+          158,
+          254,
+          5,
+          126,
+          3,
+          10,
+          8,
+          158,
+          15,
+          11,
+          4,
+          96,
+          7,
+          66,
+          16,
+          186,
+          60,
+          255
+        ],
+        "hex": "FD 01 02 B3 09 6D 10 7F 0E 9E 08 8A 05 BD 09 BD 03 9E FE 05 7E 03 0A 08 9E 0F 0B 04 60 07 42 10 BA 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 16,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Route24_Text_YouDontHaveAnyRoom": {
+      "label": "Route24_Text_YouDontHaveAnyRoom",
+      "line": 108,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "你没有退路了！$",
+      "display_text": "你没有退路了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 14,
+        "bytes": [
+          9,
+          217,
+          9,
+          83,
+          15,
+          126,
+          13,
+          51,
+          8,
+          232,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "09 D9 09 53 0F 7E 0D 33 08 E8 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 7,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_JoinTeamRocket": {
+      "label": "Route24_Text_JoinTeamRocket",
+      "line": 111,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "顺便问问，\\n你想加入火箭队吗？\\p我们是以抢夺宝可梦为主的\\n专业犯罪组织。\\p想加入吗？\\p你确定？\\p来吧，加入我们吧！\\p我是叫你加入我们！\\p好吧，看来得给你来点硬的！\\p我要让你无法拒绝！$",
+      "display_text": "顺便问问，\n你想加入火箭队吗？\n\n我们是以抢夺宝可梦为主的\n专业犯罪组织。\n\n想加入吗？\n\n你确定？\n\n来吧，加入我们吧！\n\n我是叫你加入我们！\n\n好吧，看来得给你来点硬的！\n\n我要让你无法拒绝！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 163,
+        "bytes": [
+          12,
+          86,
+          1,
+          160,
+          13,
+          144,
+          13,
+          144,
+          59,
+          254,
+          9,
+          217,
+          14,
+          24,
+          5,
+          190,
+          11,
+          107,
+          5,
+          125,
+          5,
+          232,
+          3,
+          120,
+          9,
+          42,
+          61,
+          251,
+          13,
+          152,
+          9,
+          95,
+          12,
+          12,
+          15,
+          36,
+          10,
+          217,
+          3,
+          134,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          112,
+          16,
+          200,
+          3,
+          11,
+          254,
+          16,
+          215,
+          15,
+          5,
+          3,
+          187,
+          17,
+          39,
+          17,
+          33,
+          16,
+          128,
+          55,
+          251,
+          14,
+          24,
+          5,
+          190,
+          11,
+          107,
+          9,
+          42,
+          61,
+          251,
+          9,
+          217,
+          11,
+          55,
+          3,
+          77,
+          61,
+          251,
+          8,
+          41,
+          1,
+          40,
+          59,
+          5,
+          190,
+          11,
+          107,
+          13,
+          152,
+          9,
+          95,
+          1,
+          40,
+          60,
+          251,
+          13,
+          152,
+          12,
+          12,
+          7,
+          34,
+          9,
+          217,
+          5,
+          190,
+          11,
+          107,
+          13,
+          152,
+          9,
+          95,
+          60,
+          251,
+          4,
+          233,
+          1,
+          40,
+          59,
+          7,
+          194,
+          8,
+          41,
+          3,
+          10,
+          4,
+          98,
+          9,
+          217,
+          8,
+          41,
+          3,
+          42,
+          15,
+          96,
+          3,
+          11,
+          60,
+          251,
+          13,
+          152,
+          14,
+          241,
+          11,
+          67,
+          9,
+          217,
+          13,
+          164,
+          3,
+          171,
+          7,
+          140,
+          7,
+          168,
+          60,
+          255
+        ],
+        "hex": "0C 56 01 A0 0D 90 0D 90 3B FE 09 D9 0E 18 05 BE 0B 6B 05 7D 05 E8 03 78 09 2A 3D FB 0D 98 09 5F 0C 0C 0F 24 0A D9 03 86 01 63 07 D7 09 66 0D 70 10 C8 03 0B FE 10 D7 0F 05 03 BB 11 27 11 21 10 80 37 FB 0E 18 05 BE 0B 6B 09 2A 3D FB 09 D9 0B 37 03 4D 3D FB 08 29 01 28 3B 05 BE 0B 6B 0D 98 09 5F 01 28 3C FB 0D 98 0C 0C 07 22 09 D9 05 BE 0B 6B 0D 98 09 5F 3C FB 04 E9 01 28 3B 07 C2 08 29 03 0A 04 62 09 D9 08 29 03 2A 0F 60 03 0B 3C FB 0D 98 0E F1 0B 43 09 D9 0D A4 03 AB 07 8C 07 A8 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 46,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 52,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 63,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 74,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 89,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 100,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_RocketDefeat": {
+      "label": "Route24_Text_RocketDefeat",
+      "line": 123,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "啊！\\n你太强了！$",
+      "display_text": "啊！\n你太强了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 14,
+        "bytes": [
+          1,
+          0,
+          60,
+          254,
+          9,
+          217,
+          12,
+          172,
+          10,
+          216,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "01 00 3C FE 09 D9 0C AC 0A D8 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_YoudBecomeTopRocketLeader": {
+      "label": "Route24_Text_YoudBecomeTopRocketLeader",
+      "line": 127,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "以你的能力，\\n你能成为火箭队的高级干部。\\p瞧瞧，多么好的机会！\\n浪费掉真是太可惜了。$",
+      "display_text": "以你的能力，\n你能成为火箭队的高级干部。\n\n瞧瞧，多么好的机会！\n浪费掉真是太可惜了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 77,
+        "bytes": [
+          15,
+          36,
+          9,
+          217,
+          3,
+          11,
+          9,
+          210,
+          8,
+          121,
+          59,
+          254,
+          9,
+          217,
+          9,
+          210,
+          2,
+          75,
+          13,
+          112,
+          5,
+          125,
+          5,
+          232,
+          3,
+          120,
+          3,
+          11,
+          4,
+          73,
+          5,
+          161,
+          4,
+          51,
+          1,
+          218,
+          55,
+          251,
+          10,
+          223,
+          10,
+          223,
+          59,
+          3,
+          133,
+          9,
+          76,
+          4,
+          233,
+          3,
+          11,
+          5,
+          135,
+          5,
+          110,
+          60,
+          254,
+          8,
+          64,
+          3,
+          212,
+          3,
+          59,
+          16,
+          89,
+          12,
+          12,
+          12,
+          172,
+          7,
+          215,
+          13,
+          203,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0F 24 09 D9 03 0B 09 D2 08 79 3B FE 09 D9 09 D2 02 4B 0D 70 05 7D 05 E8 03 78 03 0B 04 49 05 A1 04 33 01 DA 37 FB 0A DF 0A DF 3B 03 85 09 4C 04 E9 03 0B 05 87 05 6E 3C FE 08 40 03 D4 03 3B 10 59 0C 0C 0C AC 07 D7 0D CB 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_ShaneIntro": {
+      "label": "Route24_Text_ShaneIntro",
+      "line": 133,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我看见了你草地上的壮举！$",
+      "display_text": "我看见了你草地上的壮举！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 24,
+        "bytes": [
+          13,
+          152,
+          7,
+          194,
+          5,
+          230,
+          8,
+          158,
+          9,
+          217,
+          2,
+          1,
+          3,
+          31,
+          11,
+          173,
+          3,
+          11,
+          16,
+          226,
+          7,
+          137,
+          60,
+          255
+        ],
+        "hex": "0D 98 07 C2 05 E6 08 9E 09 D9 02 01 03 1F 0B AD 03 0B 10 E2 07 89 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_ShaneDefeat": {
+      "label": "Route24_Text_ShaneDefeat",
+      "line": 136,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我想不通！$",
+      "display_text": "我想不通！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 10,
+        "bytes": [
+          13,
+          152,
+          14,
+          24,
+          1,
+          214,
+          13,
+          16,
+          60,
+          255
+        ],
+        "hex": "0D 98 0E 18 01 D6 0D 10 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 5,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_ShanePostBattle": {
+      "label": "Route24_Text_ShanePostBattle",
+      "line": 139,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我藏着是因为\\n我害怕桥上的人们。$",
+      "display_text": "我藏着是因为\n我害怕桥上的人们。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          13,
+          152,
+          1,
+          243,
+          16,
+          244,
+          12,
+          12,
+          15,
+          66,
+          13,
+          112,
+          254,
+          13,
+          152,
+          4,
+          204,
+          10,
+          31,
+          10,
+          222,
+          11,
+          173,
+          3,
+          11,
+          11,
+          75,
+          9,
+          95,
+          55,
+          255
+        ],
+        "hex": "0D 98 01 F3 10 F4 0C 0C 0F 42 0D 70 FE 0D 98 04 CC 0A 1F 0A DE 0B AD 03 0B 0B 4B 09 5F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_EthanIntro": {
+      "label": "Route24_Text_EthanIntro",
+      "line": 143,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "嗯！我是5号！\\n我要把你踏在脚下！$",
+      "display_text": "嗯！我是5号！\n我要把你踏在脚下！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 30,
+        "bytes": [
+          20,
+          97,
+          60,
+          13,
+          152,
+          12,
+          12,
+          166,
+          4,
+          235,
+          60,
+          254,
+          13,
+          152,
+          14,
+          241,
+          1,
+          48,
+          9,
+          217,
+          12,
+          165,
+          15,
+          230,
+          7,
+          23,
+          13,
+          230,
+          60,
+          255
+        ],
+        "hex": "14 61 3C 0D 98 0C 0C A6 04 EB 3C FE 0D 98 0E F1 01 30 09 D9 0C A5 0F E6 07 17 0D E6 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_EthanDefeat": {
+      "label": "Route24_Text_EthanDefeat",
+      "line": 147,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "哇！\\n真厉害！$",
+      "display_text": "哇！\n真厉害！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 12,
+        "bytes": [
+          13,
+          67,
+          60,
+          254,
+          16,
+          89,
+          8,
+          108,
+          4,
+          204,
+          60,
+          255
+        ],
+        "hex": "0D 43 3C FE 10 59 08 6C 04 CC 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_EthanPostBattle": {
+      "label": "Route24_Text_EthanPostBattle",
+      "line": 151,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我尽力了，我不后悔！$",
+      "display_text": "我尽力了，我不后悔！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          13,
+          152,
+          7,
+          81,
+          8,
+          121,
+          8,
+          158,
+          59,
+          13,
+          152,
+          1,
+          214,
+          5,
+          34,
+          5,
+          103,
+          60,
+          255
+        ],
+        "hex": "0D 98 07 51 08 79 08 9E 3B 0D 98 01 D6 05 22 05 67 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_ReliIntro": {
+      "label": "Route24_Text_ReliIntro",
+      "line": 154,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我是4号！\\n感觉累了吗？$",
+      "display_text": "我是4号！\n感觉累了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          13,
+          152,
+          12,
+          12,
+          165,
+          4,
+          235,
+          60,
+          254,
+          4,
+          58,
+          7,
+          165,
+          8,
+          80,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0D 98 0C 0C A5 04 EB 3C FE 04 3A 07 A5 08 50 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_ReliDefeat": {
+      "label": "Route24_Text_ReliDefeat",
+      "line": 158,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我也失败了！$",
+      "display_text": "我也失败了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 12,
+        "bytes": [
+          13,
+          152,
+          15,
+          2,
+          11,
+          227,
+          1,
+          59,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "0D 98 0F 02 0B E3 01 3B 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 6,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_ReliPostBattle": {
+      "label": "Route24_Text_ReliPostBattle",
+      "line": 161,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我尽力了，我不后悔！$",
+      "display_text": "我尽力了，我不后悔！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          13,
+          152,
+          7,
+          81,
+          8,
+          121,
+          8,
+          158,
+          59,
+          13,
+          152,
+          1,
+          214,
+          5,
+          34,
+          5,
+          103,
+          60,
+          255
+        ],
+        "hex": "0D 98 07 51 08 79 08 9E 3B 0D 98 01 D6 05 22 05 67 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_TimmyIntro": {
+      "label": "Route24_Text_TimmyIntro",
+      "line": 164,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "3号在这儿！\\n我可没那么容易搞定！$",
+      "display_text": "3号在这儿！\n我可没那么容易搞定！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          164,
+          4,
+          235,
+          15,
+          230,
+          16,
+          85,
+          3,
+          158,
+          60,
+          254,
+          13,
+          152,
+          7,
+          215,
+          9,
+          83,
+          9,
+          189,
+          9,
+          76,
+          11,
+          93,
+          15,
+          39,
+          4,
+          77,
+          3,
+          77,
+          60,
+          255
+        ],
+        "hex": "A4 04 EB 0F E6 10 55 03 9E 3C FE 0D 98 07 D7 09 53 09 BD 09 4C 0B 5D 0F 27 04 4D 03 4D 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_TimmyDefeat": {
+      "label": "Route24_Text_TimmyDefeat",
+      "line": 168,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "啊！\\n被牵制住了！$",
+      "display_text": "啊！\n被牵制住了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          1,
+          0,
+          60,
+          254,
+          1,
+          120,
+          10,
+          188,
+          16,
+          151,
+          16,
+          208,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "01 00 3C FE 01 78 0A BC 10 97 10 D0 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_TimmyPostBattle": {
+      "label": "Route24_Text_TimmyPostBattle",
+      "line": 172,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我尽力了，我不后悔！$",
+      "display_text": "我尽力了，我不后悔！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          13,
+          152,
+          7,
+          81,
+          8,
+          121,
+          8,
+          158,
+          59,
+          13,
+          152,
+          1,
+          214,
+          5,
+          34,
+          5,
+          103,
+          60,
+          255
+        ],
+        "hex": "0D 98 07 51 08 79 08 9E 3B 0D 98 01 D6 05 22 05 67 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_AliIntro": {
+      "label": "Route24_Text_AliIntro",
+      "line": 175,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我是2号！\\n现在要认真了！$",
+      "display_text": "我是2号！\n现在要认真了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          13,
+          152,
+          12,
+          12,
+          163,
+          4,
+          235,
+          60,
+          254,
+          14,
+          3,
+          15,
+          230,
+          14,
+          241,
+          11,
+          79,
+          16,
+          89,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "0D 98 0C 0C A3 04 EB 3C FE 0E 03 0F E6 0E F1 0B 4F 10 59 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_AliDefeat": {
+      "label": "Route24_Text_AliDefeat",
+      "line": 179,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我是怎么输的？$",
+      "display_text": "我是怎么输的？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 14,
+        "bytes": [
+          13,
+          152,
+          12,
+          12,
+          16,
+          10,
+          9,
+          76,
+          12,
+          41,
+          3,
+          11,
+          61,
+          255
+        ],
+        "hex": "0D 98 0C 0C 10 0A 09 4C 0C 29 03 0B 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 7,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_AliPostBattle": {
+      "label": "Route24_Text_AliPostBattle",
+      "line": 182,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我尽力了，我不后悔！$",
+      "display_text": "我尽力了，我不后悔！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          13,
+          152,
+          7,
+          81,
+          8,
+          121,
+          8,
+          158,
+          59,
+          13,
+          152,
+          1,
+          214,
+          5,
+          34,
+          5,
+          103,
+          60,
+          255
+        ],
+        "hex": "0D 98 07 51 08 79 08 9E 3B 0D 98 01 D6 05 22 05 67 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_CaleIntro": {
+      "label": "Route24_Text_CaleIntro",
+      "line": 185,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "人们把这里称作\\n金珠大桥！\\p战胜我们五个训练家就可以\\n获得一份神秘大礼！\\p你能得到它吗？$",
+      "display_text": "人们把这里称作\n金珠大桥！\n\n战胜我们五个训练家就可以\n获得一份神秘大礼！\n\n你能得到它吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 82,
+        "bytes": [
+          11,
+          75,
+          9,
+          95,
+          1,
+          48,
+          16,
+          85,
+          8,
+          100,
+          2,
+          72,
+          17,
+          47,
+          254,
+          7,
+          66,
+          16,
+          186,
+          2,
+          211,
+          10,
+          222,
+          60,
+          251,
+          16,
+          48,
+          11,
+          224,
+          13,
+          152,
+          9,
+          95,
+          13,
+          171,
+          4,
+          96,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          7,
+          125,
+          7,
+          215,
+          15,
+          36,
+          254,
+          5,
+          126,
+          3,
+          10,
+          15,
+          11,
+          3,
+          224,
+          11,
+          207,
+          9,
+          112,
+          2,
+          211,
+          8,
+          102,
+          60,
+          251,
+          9,
+          217,
+          9,
+          210,
+          3,
+          10,
+          3,
+          4,
+          12,
+          159,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0B 4B 09 5F 01 30 10 55 08 64 02 48 11 2F FE 07 42 10 BA 02 D3 0A DE 3C FB 10 30 0B E0 0D 98 09 5F 0D AB 04 60 0E 9E 08 8A 05 BD 07 7D 07 D7 0F 24 FE 05 7E 03 0A 0F 0B 03 E0 0B CF 09 70 02 D3 08 66 3C FB 09 D9 09 D2 03 0A 03 04 0C 9F 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_CaleDefeat": {
+      "label": "Route24_Text_CaleDefeat",
+      "line": 192,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "呼！\\n好家伙！$",
+      "display_text": "呼！\n好家伙！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 12,
+        "bytes": [
+          5,
+          35,
+          60,
+          254,
+          4,
+          233,
+          5,
+          189,
+          5,
+          124,
+          60,
+          255
+        ],
+        "hex": "05 23 3C FE 04 E9 05 BD 05 7C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route24_Text_CalePostBattle": {
+      "label": "Route24_Text_CalePostBattle",
+      "line": 196,
+      "source_file": "data/maps/Route24_Frlg/scripts.inc",
+      "raw_text": "我尽力了。我不后悔！$",
+      "display_text": "我尽力了。我不后悔！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          13,
+          152,
+          7,
+          81,
+          8,
+          121,
+          8,
+          158,
+          55,
+          13,
+          152,
+          1,
+          214,
+          5,
+          34,
+          5,
+          103,
+          60,
+          255
+        ],
+        "hex": "0D 98 07 51 08 79 08 9E 37 0D 98 01 D6 05 22 05 67 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 5,
+      "call_if_eq": 3,
+      "checkitemspace": 2,
+      "closemessage": 1,
+      "faceplayer": 1,
+      "giveitem_msg": 1,
+      "goto_if_eq": 3,
+      "playbgm": 1,
+      "setvar": 4,
+      "step_end": 3,
+      "textcolor": 1,
+      "trainerbattle_no_intro": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1,
+      "waitmovement": 5,
+      "walk_down": 1,
+      "walk_in_place_faster_left": 1,
+      "walk_left": 1,
+      "walk_right": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 39,
+    "script_count": 12,
+    "movement_count": 3,
+    "text_count": 24,
+    "encoded_text_count": 24,
+    "text_source_byte_count": 770,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 24
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 5,
+      "call": 2,
+      "call_if_eq": 3,
+      "checkitemspace": 2,
+      "closemessage": 1,
+      "end": 7,
+      "faceplayer": 1,
+      "giveitem_msg": 1,
+      "goto": 2,
+      "goto_if_eq": 3,
+      "lock": 1,
+      "lockall": 2,
+      "message": 1,
+      "msgbox": 6,
+      "playbgm": 1,
+      "release": 4,
+      "releaseall": 1,
+      "return": 4,
+      "setvar": 4,
+      "step_end": 3,
+      "textcolor": 1,
+      "trainerbattle_no_intro": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1,
+      "waitmovement": 5,
+      "walk_down": 1,
+      "walk_in_place_faster_left": 1,
+      "walk_left": 1,
+      "walk_right": 1
+    }
+  }
+}

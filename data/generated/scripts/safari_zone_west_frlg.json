@@ -1,0 +1,630 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SafariZone_West_Frlg",
+    "map_script": "data/maps/SafariZone_West_Frlg/scripts.inc",
+    "map_json": "data/maps/SafariZone_West_Frlg/map.json",
+    "map_id": "MAP_SAFARI_ZONE_WEST",
+    "map_name": "SafariZone_West_Frlg"
+  },
+  "labels": {
+    "SafariZone_West_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SafariZone_West_EventScript_RestHouseSign": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_West_EventScript_LostTeethNotice": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_West_EventScript_TrainerTips": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_West_EventScript_AreaSign": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_West_Text_RestHouse": {
+      "kind": "text",
+      "line": 20,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SafariZone_West_Text_PleaseFindWardensLostTeeth": {
+      "kind": "text",
+      "line": 23,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "SafariZone_West_Text_SearchForSecretHouse": {
+      "kind": "text",
+      "line": 31,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SafariZone_West_Text_AreaSign": {
+      "kind": "text",
+      "line": 36,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "SafariZone_West_Frlg_MapScripts": {
+      "label": "SafariZone_West_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SafariZone_West_EventScript_RestHouseSign": {
+      "label": "SafariZone_West_EventScript_RestHouseSign",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_West_Text_RestHouse",
+            "MSGBOX_SIGN"
+          ],
+          "line": 5,
+          "raw": "msgbox SafariZone_West_Text_RestHouse, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_West_Text_RestHouse",
+          "mode": "MSGBOX_SIGN",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_West_EventScript_LostTeethNotice": {
+      "label": "SafariZone_West_EventScript_LostTeethNotice",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_West_Text_PleaseFindWardensLostTeeth",
+            "MSGBOX_SIGN"
+          ],
+          "line": 9,
+          "raw": "msgbox SafariZone_West_Text_PleaseFindWardensLostTeeth, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_West_Text_PleaseFindWardensLostTeeth",
+          "mode": "MSGBOX_SIGN",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_West_EventScript_TrainerTips": {
+      "label": "SafariZone_West_EventScript_TrainerTips",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_West_Text_SearchForSecretHouse",
+            "MSGBOX_SIGN"
+          ],
+          "line": 13,
+          "raw": "msgbox SafariZone_West_Text_SearchForSecretHouse, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_West_Text_SearchForSecretHouse",
+          "mode": "MSGBOX_SIGN",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_West_EventScript_AreaSign": {
+      "label": "SafariZone_West_EventScript_AreaSign",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_West_Text_AreaSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 17,
+          "raw": "msgbox SafariZone_West_Text_AreaSign, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_West_Text_AreaSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 17
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SafariZone_West_Text_RestHouse": {
+      "label": "SafariZone_West_Text_RestHouse",
+      "line": 20,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "raw_text": "休息屋$",
+      "display_text": "休息屋",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 7,
+        "bytes": [
+          14,
+          104,
+          13,
+          198,
+          13,
+          163,
+          255
+        ],
+        "hex": "0E 68 0D C6 0D A3 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 3,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_West_Text_PleaseFindWardensLostTeeth": {
+      "label": "SafariZone_West_Text_PleaseFindWardensLostTeeth",
+      "line": 23,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "raw_text": "寻物启示\\p寻找原野区园长\\n丢失了的金假牙。\\l它就掉在这里的某个地方。\\p是有奖悬赏！\\n联系人：园长$",
+      "display_text": "寻物启示\n\n寻找原野区园长\n丢失了的金假牙。\n它就掉在这里的某个地方。\n\n是有奖悬赏！\n联系人：园长",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 88,
+        "bytes": [
+          14,
+          153,
+          13,
+          181,
+          10,
+          175,
+          12,
+          3,
+          251,
+          14,
+          153,
+          16,
+          69,
+          15,
+          185,
+          15,
+          0,
+          11,
+          26,
+          15,
+          188,
+          2,
+          38,
+          254,
+          3,
+          79,
+          11,
+          227,
+          8,
+          158,
+          3,
+          11,
+          7,
+          66,
+          5,
+          196,
+          14,
+          169,
+          55,
+          250,
+          12,
+          159,
+          7,
+          125,
+          3,
+          59,
+          15,
+          230,
+          16,
+          85,
+          8,
+          100,
+          3,
+          11,
+          9,
+          169,
+          4,
+          96,
+          3,
+          31,
+          3,
+          192,
+          55,
+          251,
+          12,
+          12,
+          15,
+          126,
+          7,
+          3,
+          14,
+          135,
+          11,
+          171,
+          60,
+          254,
+          8,
+          125,
+          13,
+          217,
+          11,
+          75,
+          62,
+          15,
+          188,
+          2,
+          38,
+          255
+        ],
+        "hex": "0E 99 0D B5 0A AF 0C 03 FB 0E 99 10 45 0F B9 0F 00 0B 1A 0F BC 02 26 FE 03 4F 0B E3 08 9E 03 0B 07 42 05 C4 0E A9 37 FA 0C 9F 07 7D 03 3B 0F E6 10 55 08 64 03 0B 09 A9 04 60 03 1F 03 C0 37 FB 0C 0C 0F 7E 07 03 0E 87 0B AB 3C FE 08 7D 0D D9 0B 4B 3E 0F BC 02 26 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 4,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 23,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 37,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 45,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 53,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_West_Text_SearchForSecretHouse": {
+      "label": "SafariZone_West_Text_SearchForSecretHouse",
+      "line": 31,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "raw_text": "训练家贴士\\p区域性的探险活动！\\n搜索神秘小屋！$",
+      "display_text": "训练家贴士\n\n区域性的探险活动！\n搜索神秘小屋！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          13,
+          3,
+          12,
+          4,
+          251,
+          11,
+          26,
+          15,
+          160,
+          14,
+          95,
+          3,
+          11,
+          12,
+          190,
+          14,
+          2,
+          5,
+          123,
+          3,
+          84,
+          60,
+          254,
+          12,
+          116,
+          12,
+          154,
+          11,
+          207,
+          9,
+          112,
+          14,
+          44,
+          13,
+          163,
+          60,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 0D 03 0C 04 FB 0B 1A 0F A0 0E 5F 03 0B 0C BE 0E 02 05 7B 03 54 3C FE 0C 74 0C 9A 0B CF 09 70 0E 2C 0D A3 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 16,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_West_Text_AreaSign": {
+      "label": "SafariZone_West_Text_AreaSign",
+      "line": 36,
+      "source_file": "data/maps/SafariZone_West_Frlg/scripts.inc",
+      "raw_text": "栖息地3\\n往东：中部栖息地$",
+      "display_text": "栖息地3\n往东：中部栖息地",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 24,
+        "bytes": [
+          10,
+          151,
+          13,
+          198,
+          3,
+          31,
+          164,
+          254,
+          13,
+          97,
+          3,
+          80,
+          62,
+          16,
+          161,
+          1,
+          218,
+          10,
+          151,
+          13,
+          198,
+          3,
+          31,
+          255
+        ],
+        "hex": "0A 97 0D C6 03 1F A4 FE 0D 61 03 50 3E 10 A1 01 DA 0A 97 0D C6 03 1F FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 162,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 4,
+      "msgbox": 4
+    }
+  }
+}

@@ -1,0 +1,701 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CeruleanCave_B1F_Frlg",
+    "map_script": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+    "map_json": "data/maps/CeruleanCave_B1F_Frlg/map.json",
+    "map_id": "MAP_CERULEAN_CAVE_B1F",
+    "map_name": "CeruleanCave_B1F_Frlg"
+  },
+  "labels": {
+    "CeruleanCave_B1F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCave_B1F_OnResume": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeruleanCave_B1F_EventScript_TryRemoveMewtwo": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CeruleanCave_B1F_OnTransition": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeruleanCave_B1F_EventScript_ShowMewtwo": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeruleanCave_B1F_EventScript_Mewtwo": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instruction_count": 22
+    },
+    "CeruleanCave_B1F_EventScript_DefeatedMewtwo": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCave_B1F_EventScript_RanFromMewtwo": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCave_B1F_Text_Mew": {
+      "kind": "text",
+      "line": 58,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "CeruleanCave_B1F_Frlg_MapScripts": {
+      "label": "CeruleanCave_B1F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CeruleanCave_B1F_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CeruleanCave_B1F_OnResume",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "CeruleanCave_B1F_OnTransition"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, CeruleanCave_B1F_OnTransition",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeruleanCave_B1F_OnResume": {
+      "label": "CeruleanCave_B1F_OnResume",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE",
+            "CeruleanCave_B1F_EventScript_TryRemoveMewtwo"
+          ],
+          "line": 7,
+          "raw": "call_if_set FLAG_SYS_CTRL_OBJ_DELETE, CeruleanCave_B1F_EventScript_TryRemoveMewtwo",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "CeruleanCave_B1F_EventScript_TryRemoveMewtwo",
+          "line": 7
+        }
+      ]
+    },
+    "CeruleanCave_B1F_EventScript_TryRemoveMewtwo": {
+      "label": "CeruleanCave_B1F_EventScript_TryRemoveMewtwo",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 11,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_CAUGHT",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 12,
+          "raw": "goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "VAR_LAST_TALKED"
+          ],
+          "line": 13,
+          "raw": "removeobject VAR_LAST_TALKED",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 14,
+          "raw": "return",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "Common_EventScript_NopReturn",
+          "line": 12
+        }
+      ]
+    },
+    "CeruleanCave_B1F_OnTransition": {
+      "label": "CeruleanCave_B1F_OnTransition",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_FOUGHT_MEWTWO",
+            "CeruleanCave_B1F_EventScript_ShowMewtwo"
+          ],
+          "line": 17,
+          "raw": "call_if_unset FLAG_FOUGHT_MEWTWO, CeruleanCave_B1F_EventScript_ShowMewtwo",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "CeruleanCave_B1F_EventScript_ShowMewtwo",
+          "line": 17
+        }
+      ]
+    },
+    "CeruleanCave_B1F_EventScript_ShowMewtwo": {
+      "label": "CeruleanCave_B1F_EventScript_ShowMewtwo",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_MEWTWO"
+          ],
+          "line": 21,
+          "raw": "clearflag FLAG_HIDE_MEWTWO",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 22,
+          "raw": "return",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeruleanCave_B1F_EventScript_Mewtwo": {
+      "label": "CeruleanCave_B1F_EventScript_Mewtwo",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 25,
+          "raw": "lock",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 26,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 27,
+          "raw": "waitse",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_MEWTWO",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 28,
+          "raw": "playmoncry SPECIES_MEWTWO, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "CeruleanCave_B1F_Text_Mew"
+          ],
+          "line": 29,
+          "raw": "message CeruleanCave_B1F_Text_Mew",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 30,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 31,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 32,
+          "raw": "delay 20",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_RG_ENCOUNTER_GYM_LEADER",
+            "0"
+          ],
+          "line": 33,
+          "raw": "playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 34,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setwildbattle",
+          "args": [
+            "SPECIES_MEWTWO",
+            "70"
+          ],
+          "line": 35,
+          "raw": "setwildbattle SPECIES_MEWTWO, 70",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 36,
+          "raw": "setflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "BattleSetup_StartLegendaryBattle"
+          ],
+          "line": 37,
+          "raw": "special BattleSetup_StartLegendaryBattle",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 38,
+          "raw": "waitstate",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 39,
+          "raw": "clearflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 40,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_WON",
+            "CeruleanCave_B1F_EventScript_DefeatedMewtwo"
+          ],
+          "line": 41,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_WON, CeruleanCave_B1F_EventScript_DefeatedMewtwo",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_RAN",
+            "CeruleanCave_B1F_EventScript_RanFromMewtwo"
+          ],
+          "line": 42,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_RAN, CeruleanCave_B1F_EventScript_RanFromMewtwo",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_PLAYER_TELEPORTED",
+            "CeruleanCave_B1F_EventScript_RanFromMewtwo"
+          ],
+          "line": 43,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, CeruleanCave_B1F_EventScript_RanFromMewtwo",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_FOUGHT_MEWTWO"
+          ],
+          "line": 44,
+          "raw": "setflag FLAG_FOUGHT_MEWTWO",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 45,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 46,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "CeruleanCave_B1F_Text_Mew",
+          "mode": "",
+          "line": 29
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CeruleanCave_B1F_EventScript_DefeatedMewtwo",
+          "line": 41
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CeruleanCave_B1F_EventScript_RanFromMewtwo",
+          "line": 42
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CeruleanCave_B1F_EventScript_RanFromMewtwo",
+          "line": 43
+        }
+      ]
+    },
+    "CeruleanCave_B1F_EventScript_DefeatedMewtwo": {
+      "label": "CeruleanCave_B1F_EventScript_DefeatedMewtwo",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_FOUGHT_MEWTWO"
+          ],
+          "line": 49,
+          "raw": "setflag FLAG_FOUGHT_MEWTWO",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_RemoveStaticMon"
+          ],
+          "line": 50,
+          "raw": "goto EventScript_RemoveStaticMon",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 51,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_RemoveStaticMon",
+          "line": 50
+        }
+      ]
+    },
+    "CeruleanCave_B1F_EventScript_RanFromMewtwo": {
+      "label": "CeruleanCave_B1F_EventScript_RanFromMewtwo",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_MEWTWO"
+          ],
+          "line": 54,
+          "raw": "setvar VAR_0x8004, SPECIES_MEWTWO",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_MonFlewAway"
+          ],
+          "line": 55,
+          "raw": "goto EventScript_MonFlewAway",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 56,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_MonFlewAway",
+          "line": 55
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {
+    "CeruleanCave_B1F_Text_Mew": {
+      "label": "CeruleanCave_B1F_Text_Mew",
+      "line": 58,
+      "source_file": "data/maps/CeruleanCave_B1F_Frlg/scripts.inc",
+      "raw_text": "梦！$",
+      "display_text": "梦！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 4,
+        "bytes": [
+          9,
+          102,
+          60,
+          255
+        ],
+        "hex": "09 66 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 2,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "clearflag": 2,
+      "delay": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "map_script": 2,
+      "playbgm": 1,
+      "playmoncry": 1,
+      "removeobject": 1,
+      "setflag": 3,
+      "setvar": 1,
+      "setwildbattle": 1,
+      "special": 1,
+      "specialvar": 2,
+      "waitbuttonpress": 1,
+      "waitmessage": 1,
+      "waitmoncry": 1,
+      "waitse": 1,
+      "waitstate": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 4,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "clearflag": 2,
+      "delay": 1,
+      "end": 5,
+      "faceplayer": 1,
+      "goto": 2,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "lock": 1,
+      "map_script": 2,
+      "message": 1,
+      "playbgm": 1,
+      "playmoncry": 1,
+      "release": 1,
+      "removeobject": 1,
+      "return": 2,
+      "setflag": 3,
+      "setvar": 1,
+      "setwildbattle": 1,
+      "special": 1,
+      "specialvar": 2,
+      "waitbuttonpress": 1,
+      "waitmessage": 1,
+      "waitmoncry": 1,
+      "waitse": 1,
+      "waitstate": 1
+    }
+  }
+}

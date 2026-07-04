@@ -1,0 +1,665 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SSAnne_Exterior_Frlg",
+    "map_script": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+    "map_json": "data/maps/SSAnne_Exterior_Frlg/map.json",
+    "map_id": "MAP_SSANNE_EXTERIOR",
+    "map_name": "SSAnne_Exterior_Frlg"
+  },
+  "labels": {
+    "SSAnne_Exterior_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSAnne_Exterior_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_Exterior_OnFrame": {
+      "kind": "map_script_table",
+      "line": 10,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_Exterior_ExitSSAnne": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instruction_count": 17
+    },
+    "SSAnne_Exterior_WalkDown": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSAnne_Exterior_WalkInPlaceDown": {
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSAnne_Exterior_Movement_Exit": {
+      "kind": "movement",
+      "line": 43,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "SSAnne_Exterior_Movement_WalkDown": {
+      "kind": "movement",
+      "line": 55,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instruction_count": 10
+    }
+  },
+  "scripts": {
+    "SSAnne_Exterior_Frlg_MapScripts": {
+      "label": "SSAnne_Exterior_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SSAnne_Exterior_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SSAnne_Exterior_OnTransition",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "SSAnne_Exterior_OnFrame"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, SSAnne_Exterior_OnFrame",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_Exterior_OnTransition": {
+      "label": "SSAnne_Exterior_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setworldmapflag",
+          "args": [
+            "FLAG_WORLD_MAP_SSANNE_EXTERIOR"
+          ],
+          "line": 7,
+          "raw": "setworldmapflag FLAG_WORLD_MAP_SSANNE_EXTERIOR",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_Exterior_OnFrame": {
+      "label": "SSAnne_Exterior_OnFrame",
+      "kind": "map_script_table",
+      "line": 10,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_MAP_SCENE_VERMILION_CITY",
+            "1",
+            "SSAnne_Exterior_ExitSSAnne"
+          ],
+          "line": 11,
+          "raw": "map_script_2 VAR_MAP_SCENE_VERMILION_CITY, 1, SSAnne_Exterior_ExitSSAnne",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 12,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_Exterior_ExitSSAnne": {
+      "label": "SSAnne_Exterior_ExitSSAnne",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 15,
+          "raw": "lockall",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "getplayerxy",
+          "args": [
+            "VAR_0x8004",
+            "VAR_0x8005"
+          ],
+          "line": 16,
+          "raw": "getplayerxy VAR_0x8004, VAR_0x8005",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_le",
+          "args": [
+            "VAR_0x8005",
+            "6",
+            "SSAnne_Exterior_WalkDown"
+          ],
+          "line": 17,
+          "raw": "call_if_le VAR_0x8005, 6, SSAnne_Exterior_WalkDown",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_ge",
+          "args": [
+            "VAR_0x8005",
+            "7",
+            "SSAnne_Exterior_WalkInPlaceDown"
+          ],
+          "line": 18,
+          "raw": "call_if_ge VAR_0x8005, 7, SSAnne_Exterior_WalkInPlaceDown",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "fadenewbgm",
+          "args": [
+            "MUS_RG_SURF"
+          ],
+          "line": 19,
+          "raw": "fadenewbgm MUS_RG_SURF",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "50"
+          ],
+          "line": 20,
+          "raw": "delay 50",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DoSSAnneDepartureCutscene"
+          ],
+          "line": 21,
+          "raw": "special DoSSAnneDepartureCutscene",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 22,
+          "raw": "waitstate",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_SS_ANNE"
+          ],
+          "line": 23,
+          "raw": "removeobject LOCALID_SS_ANNE",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "SSAnne_Exterior_Movement_Exit"
+          ],
+          "line": 24,
+          "raw": "applymovement LOCALID_PLAYER, SSAnne_Exterior_Movement_Exit",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 25,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_VERMILION_CITY",
+            "2"
+          ],
+          "line": 26,
+          "raw": "setvar VAR_MAP_SCENE_VERMILION_CITY, 2",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_VERMILION_CITY_TICKET_CHECK_TRIGGER",
+            "0"
+          ],
+          "line": 27,
+          "raw": "setvar VAR_VERMILION_CITY_TICKET_CHECK_TRIGGER, 0",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_VERMILION_CITY",
+            "23",
+            "34"
+          ],
+          "line": 28,
+          "raw": "warp MAP_VERMILION_CITY, 23, 34",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 29,
+          "raw": "waitstate",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 30,
+          "raw": "releaseall",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_le",
+          "target": "SSAnne_Exterior_WalkDown",
+          "line": 17
+        },
+        {
+          "op": "call_if_ge",
+          "target": "SSAnne_Exterior_WalkInPlaceDown",
+          "line": 18
+        }
+      ]
+    },
+    "SSAnne_Exterior_WalkDown": {
+      "label": "SSAnne_Exterior_WalkDown",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "SSAnne_Exterior_Movement_WalkDown"
+          ],
+          "line": 34,
+          "raw": "applymovement LOCALID_PLAYER, SSAnne_Exterior_Movement_WalkDown",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 35,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 36,
+          "raw": "return",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_Exterior_WalkInPlaceDown": {
+      "label": "SSAnne_Exterior_WalkInPlaceDown",
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 39,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 40,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 41,
+          "raw": "return",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "SSAnne_Exterior_Movement_Exit": {
+      "label": "SSAnne_Exterior_Movement_Exit",
+      "kind": "movement",
+      "line": 43,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 44,
+          "raw": "walk_up",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 45,
+          "raw": "walk_up",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 46,
+          "raw": "walk_up",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 47,
+          "raw": "walk_up",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 48,
+          "raw": "walk_up",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 49,
+          "raw": "walk_up",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 50,
+          "raw": "walk_up",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 51,
+          "raw": "walk_up",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 52,
+          "raw": "walk_up",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 53,
+          "raw": "step_end",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_Exterior_Movement_WalkDown": {
+      "label": "SSAnne_Exterior_Movement_WalkDown",
+      "kind": "movement",
+      "line": 55,
+      "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 56,
+          "raw": "walk_down",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 57,
+          "raw": "walk_down",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 58,
+          "raw": "walk_down",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 59,
+          "raw": "walk_down",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 60,
+          "raw": "walk_down",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 61,
+          "raw": "walk_down",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 62,
+          "raw": "walk_down",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 63,
+          "raw": "walk_down",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 64,
+          "raw": "walk_down",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 65,
+          "raw": "step_end",
+          "source_file": "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 3,
+      "call_if_ge": 1,
+      "call_if_le": 1,
+      "delay": 1,
+      "fadenewbgm": 1,
+      "getplayerxy": 1,
+      "map_script": 2,
+      "map_script_2": 1,
+      "removeobject": 1,
+      "setvar": 2,
+      "setworldmapflag": 1,
+      "special": 1,
+      "step_end": 2,
+      "waitmovement": 3,
+      "waitstate": 2,
+      "walk_down": 9,
+      "walk_up": 9,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 8,
+    "script_count": 6,
+    "movement_count": 2,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 3,
+      "call_if_ge": 1,
+      "call_if_le": 1,
+      "delay": 1,
+      "end": 2,
+      "fadenewbgm": 1,
+      "getplayerxy": 1,
+      "lockall": 1,
+      "map_script": 2,
+      "map_script_2": 1,
+      "releaseall": 1,
+      "removeobject": 1,
+      "return": 2,
+      "setvar": 2,
+      "setworldmapflag": 1,
+      "special": 1,
+      "step_end": 2,
+      "waitmovement": 3,
+      "waitstate": 2,
+      "walk_down": 9,
+      "walk_up": 9,
+      "warp": 1
+    }
+  }
+}

@@ -1,0 +1,638 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route107",
+    "map_script": "data/maps/Route107/scripts.inc",
+    "map_json": "data/maps/Route107/map.json",
+    "map_id": "MAP_ROUTE107",
+    "map_name": "Route107"
+  },
+  "labels": {
+    "Route107_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route107_EventScript_Darrin": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route107_EventScript_Tony": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route107_EventScript_TonyRegisterMatchCallAfterBattle": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route107_EventScript_TonyRematch": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route107_EventScript_Denise": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route107_EventScript_Beth": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route107_EventScript_Lisa": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route107_EventScript_Ray": {
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route107_EventScript_Camron": {
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "Route107_MapScripts": {
+      "label": "Route107_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route107/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route107_EventScript_Darrin": {
+      "label": "Route107_EventScript_Darrin",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_DARRIN",
+            "Route107_Text_DarrinIntro",
+            "Route107_Text_DarrinDefeated"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_DARRIN, Route107_Text_DarrinIntro, Route107_Text_DarrinDefeated",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route107_Text_DarrinPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox Route107_Text_DarrinPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/Route107/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route107_Text_DarrinPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route107_EventScript_Tony": {
+      "label": "Route107_EventScript_Tony",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_TONY_1",
+            "Route107_Text_TonyIntro",
+            "Route107_Text_TonyDefeated",
+            "Route107_EventScript_TonyRegisterMatchCallAfterBattle"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_TONY_1, Route107_Text_TonyIntro, Route107_Text_TonyDefeated, Route107_EventScript_TonyRegisterMatchCallAfterBattle",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 11,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route107_EventScript_TonyRematch"
+          ],
+          "line": 12,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route107_EventScript_TonyRematch",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route107_Text_TonyPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 13,
+          "raw": "msgbox Route107_Text_TonyPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/Route107/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route107_Text_TonyPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 13
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route107_EventScript_TonyRematch",
+          "line": 12
+        }
+      ]
+    },
+    "Route107_EventScript_TonyRegisterMatchCallAfterBattle": {
+      "label": "Route107_EventScript_TonyRegisterMatchCallAfterBattle",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "PlayerFaceTrainerAfterBattle"
+          ],
+          "line": 18,
+          "raw": "special PlayerFaceTrainerAfterBattle",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 19,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route107_Text_TonyRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 20,
+          "raw": "msgbox Route107_Text_TonyRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_TONY_1"
+          ],
+          "line": 21,
+          "raw": "register_matchcall TRAINER_TONY_1",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 22,
+          "raw": "release",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/Route107/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route107_Text_TonyRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 20
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route107_EventScript_TonyRematch": {
+      "label": "Route107_EventScript_TonyRematch",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch",
+          "args": [
+            "TRAINER_TONY_1",
+            "Route107_Text_TonyRematchIntro",
+            "Route107_Text_TonyRematchDefeated"
+          ],
+          "line": 26,
+          "raw": "trainerbattle_rematch TRAINER_TONY_1, Route107_Text_TonyRematchIntro, Route107_Text_TonyRematchDefeated",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route107_Text_TonyRematchPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 27,
+          "raw": "msgbox Route107_Text_TonyRematchPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 28,
+          "raw": "end",
+          "source_file": "data/maps/Route107/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route107_Text_TonyRematchPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 27
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route107_EventScript_Denise": {
+      "label": "Route107_EventScript_Denise",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_DENISE",
+            "Route107_Text_DeniseIntro",
+            "Route107_Text_DeniseDefeated"
+          ],
+          "line": 31,
+          "raw": "trainerbattle_single TRAINER_DENISE, Route107_Text_DeniseIntro, Route107_Text_DeniseDefeated",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route107_Text_DenisePostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 32,
+          "raw": "msgbox Route107_Text_DenisePostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/Route107/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route107_Text_DenisePostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 32
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route107_EventScript_Beth": {
+      "label": "Route107_EventScript_Beth",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_BETH",
+            "Route107_Text_BethIntro",
+            "Route107_Text_BethDefeated"
+          ],
+          "line": 36,
+          "raw": "trainerbattle_single TRAINER_BETH, Route107_Text_BethIntro, Route107_Text_BethDefeated",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route107_Text_BethPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 37,
+          "raw": "msgbox Route107_Text_BethPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 38,
+          "raw": "end",
+          "source_file": "data/maps/Route107/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route107_Text_BethPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 37
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route107_EventScript_Lisa": {
+      "label": "Route107_EventScript_Lisa",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_double",
+          "args": [
+            "TRAINER_LISA_AND_RAY",
+            "Route107_Text_LisaIntro",
+            "Route107_Text_LisaDefeated",
+            "Route107_Text_LisaNotEnoughPokemon"
+          ],
+          "line": 41,
+          "raw": "trainerbattle_double TRAINER_LISA_AND_RAY, Route107_Text_LisaIntro, Route107_Text_LisaDefeated, Route107_Text_LisaNotEnoughPokemon",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route107_Text_LisaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 42,
+          "raw": "msgbox Route107_Text_LisaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 43,
+          "raw": "end",
+          "source_file": "data/maps/Route107/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route107_Text_LisaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 42
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route107_EventScript_Ray": {
+      "label": "Route107_EventScript_Ray",
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_double",
+          "args": [
+            "TRAINER_LISA_AND_RAY",
+            "Route107_Text_RayIntro",
+            "Route107_Text_RayDefeated",
+            "Route107_Text_RayNotEnoughPokemon"
+          ],
+          "line": 46,
+          "raw": "trainerbattle_double TRAINER_LISA_AND_RAY, Route107_Text_RayIntro, Route107_Text_RayDefeated, Route107_Text_RayNotEnoughPokemon",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route107_Text_RayPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 47,
+          "raw": "msgbox Route107_Text_RayPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 48,
+          "raw": "end",
+          "source_file": "data/maps/Route107/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route107_Text_RayPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 47
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route107_EventScript_Camron": {
+      "label": "Route107_EventScript_Camron",
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/Route107/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_CAMRON",
+            "Route107_Text_CamronIntro",
+            "Route107_Text_CamronDefeated"
+          ],
+          "line": 51,
+          "raw": "trainerbattle_single TRAINER_CAMRON, Route107_Text_CamronIntro, Route107_Text_CamronDefeated",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route107_Text_CamronPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 52,
+          "raw": "msgbox Route107_Text_CamronPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route107/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 53,
+          "raw": "end",
+          "source_file": "data/maps/Route107/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route107_Text_CamronPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 52
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "goto_if_eq": 1,
+      "register_matchcall": 1,
+      "special": 1,
+      "specialvar": 1,
+      "trainerbattle_double": 2,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 5,
+      "waitmovement": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 10,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 9,
+      "goto_if_eq": 1,
+      "msgbox": 9,
+      "register_matchcall": 1,
+      "release": 2,
+      "special": 1,
+      "specialvar": 1,
+      "trainerbattle_double": 2,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 5,
+      "waitmovement": 1
+    }
+  }
+}

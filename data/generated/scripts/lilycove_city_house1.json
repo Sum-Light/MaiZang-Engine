@@ -1,0 +1,411 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "LilycoveCity_House1",
+    "map_script": "data/maps/LilycoveCity_House1/scripts.inc",
+    "map_json": "data/maps/LilycoveCity_House1/map.json",
+    "map_id": "MAP_LILYCOVE_CITY_HOUSE1",
+    "map_name": "LilycoveCity_House1"
+  },
+  "labels": {
+    "LilycoveCity_House1_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LilycoveCity_House1/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_House1_EventScript_ExpertM": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/LilycoveCity_House1/scripts.inc",
+      "instruction_count": 2
+    },
+    "LilycoveCity_House1_EventScript_Kecleon": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/LilycoveCity_House1/scripts.inc",
+      "instruction_count": 8
+    },
+    "LilycoveCity_House1_Text_PokemonPartnersNotTools": {
+      "kind": "text",
+      "line": 18,
+      "source_file": "data/maps/LilycoveCity_House1/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_House1_Text_Kecleon": {
+      "kind": "text",
+      "line": 21,
+      "source_file": "data/maps/LilycoveCity_House1/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "LilycoveCity_House1_MapScripts": {
+      "label": "LilycoveCity_House1_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LilycoveCity_House1/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_House1_EventScript_ExpertM": {
+      "label": "LilycoveCity_House1_EventScript_ExpertM",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/LilycoveCity_House1/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_House1_Text_PokemonPartnersNotTools",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox LilycoveCity_House1_Text_PokemonPartnersNotTools, MSGBOX_NPC",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_House1_Text_PokemonPartnersNotTools",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "LilycoveCity_House1_EventScript_Kecleon": {
+      "label": "LilycoveCity_House1_EventScript_Kecleon",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/LilycoveCity_House1/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 9,
+          "raw": "lock",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 10,
+          "raw": "faceplayer",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 11,
+          "raw": "waitse",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_KECLEON",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 12,
+          "raw": "playmoncry SPECIES_KECLEON, CRY_MODE_NORMAL",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_House1_Text_Kecleon",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 13,
+          "raw": "msgbox LilycoveCity_House1_Text_Kecleon, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 14,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 15,
+          "raw": "release",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_House1/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_House1_Text_Kecleon",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "LilycoveCity_House1_Text_PokemonPartnersNotTools": {
+      "label": "LilycoveCity_House1_Text_PokemonPartnersNotTools",
+      "line": 18,
+      "source_file": "data/maps/LilycoveCity_House1/scripts.inc",
+      "raw_text": "宝可梦是人们的伙伴，\\n而不是工具。\\p可惜的是，\\n有些人并不明白这点……$",
+      "display_text": "宝可梦是人们的伙伴，\n而不是工具。\n\n可惜的是，\n有些人并不明白这点……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 63,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          12,
+          11,
+          75,
+          9,
+          95,
+          3,
+          11,
+          5,
+          124,
+          1,
+          72,
+          59,
+          254,
+          3,
+          157,
+          1,
+          214,
+          12,
+          12,
+          4,
+          108,
+          7,
+          143,
+          55,
+          251,
+          7,
+          215,
+          13,
+          203,
+          3,
+          11,
+          12,
+          12,
+          59,
+          254,
+          15,
+          126,
+          14,
+          52,
+          11,
+          75,
+          1,
+          189,
+          1,
+          214,
+          9,
+          143,
+          1,
+          54,
+          16,
+          85,
+          3,
+          42,
+          176,
+          176,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 0C 0C 0B 4B 09 5F 03 0B 05 7C 01 48 3B FE 03 9D 01 D6 0C 0C 04 6C 07 8F 37 FB 07 D7 0D CB 03 0B 0C 0C 3B FE 0F 7E 0E 34 0B 4B 01 BD 01 D6 09 8F 01 36 10 55 03 2A B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 38,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LilycoveCity_House1_Text_Kecleon": {
+      "label": "LilycoveCity_House1_Text_Kecleon",
+      "line": 21,
+      "source_file": "data/maps/LilycoveCity_House1/scripts.inc",
+      "raw_text": "变隐龙：露洛洛？$",
+      "display_text": "变隐龙：露洛洛？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 15,
+        "bytes": [
+          1,
+          161,
+          15,
+          78,
+          8,
+          205,
+          62,
+          8,
+          231,
+          9,
+          31,
+          9,
+          31,
+          61,
+          255
+        ],
+        "hex": "01 A1 0F 4E 08 CD 3E 08 E7 09 1F 09 1F 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "playmoncry": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 78,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "faceplayer": 1,
+      "lock": 1,
+      "msgbox": 2,
+      "playmoncry": 1,
+      "release": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    }
+  }
+}

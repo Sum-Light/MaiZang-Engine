@@ -1,0 +1,725 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SSAnne_B1F_Room1_Frlg",
+    "map_script": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+    "map_json": "data/maps/SSAnne_B1F_Room1_Frlg/map.json",
+    "map_id": "MAP_SSANNE_B1F_ROOM1",
+    "map_name": "SSAnne_B1F_Room1_Frlg"
+  },
+  "labels": {
+    "SSAnne_B1F_Room1_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_B1F_Room1_EventScript_Barny": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSAnne_B1F_Room1_EventScript_Phillip": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSAnne_B1F_Room1_Text_PhillipIntro": {
+      "kind": "text",
+      "line": 14,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_B1F_Room1_Text_PhillipDefeat": {
+      "kind": "text",
+      "line": 18,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_B1F_Room1_Text_PhillipPostBattle": {
+      "kind": "text",
+      "line": 22,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_B1F_Room1_Text_BarnyIntro": {
+      "kind": "text",
+      "line": 26,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "SSAnne_B1F_Room1_Text_BarnyDefeat": {
+      "kind": "text",
+      "line": 32,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_B1F_Room1_Text_BarnyPostBattle": {
+      "kind": "text",
+      "line": 36,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "SSAnne_B1F_Room1_Frlg_MapScripts": {
+      "label": "SSAnne_B1F_Room1_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_B1F_Room1_EventScript_Barny": {
+      "label": "SSAnne_B1F_Room1_EventScript_Barny",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_FISHERMAN_BARNY",
+            "SSAnne_B1F_Room1_Text_BarnyIntro",
+            "SSAnne_B1F_Room1_Text_BarnyDefeat"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_FISHERMAN_BARNY, SSAnne_B1F_Room1_Text_BarnyIntro, SSAnne_B1F_Room1_Text_BarnyDefeat",
+          "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_B1F_Room1_Text_BarnyPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox SSAnne_B1F_Room1_Text_BarnyPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_B1F_Room1_Text_BarnyPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "SSAnne_B1F_Room1_EventScript_Phillip": {
+      "label": "SSAnne_B1F_Room1_EventScript_Phillip",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_SAILOR_PHILLIP",
+            "SSAnne_B1F_Room1_Text_PhillipIntro",
+            "SSAnne_B1F_Room1_Text_PhillipDefeat"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_SAILOR_PHILLIP, SSAnne_B1F_Room1_Text_PhillipIntro, SSAnne_B1F_Room1_Text_PhillipDefeat",
+          "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_B1F_Room1_Text_PhillipPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox SSAnne_B1F_Room1_Text_PhillipPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_B1F_Room1_Text_PhillipPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SSAnne_B1F_Room1_Text_PhillipIntro": {
+      "label": "SSAnne_B1F_Room1_Text_PhillipIntro",
+      "line": 14,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "raw_text": "伙计，如果你输了的话就得走\\n从甲板上跳下去！$",
+      "display_text": "伙计，如果你输了的话就得走\n从甲板上跳下去！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 42,
+        "bytes": [
+          5,
+          124,
+          5,
+          177,
+          59,
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          12,
+          41,
+          8,
+          158,
+          3,
+          11,
+          5,
+          61,
+          7,
+          125,
+          3,
+          10,
+          17,
+          23,
+          254,
+          2,
+          179,
+          5,
+          194,
+          1,
+          68,
+          11,
+          173,
+          13,
+          2,
+          13,
+          230,
+          11,
+          37,
+          60,
+          255
+        ],
+        "hex": "05 7C 05 B1 3B 0B 67 04 C3 09 D9 0C 29 08 9E 03 0B 05 3D 07 7D 03 0A 11 17 FE 02 B3 05 C2 01 44 0B AD 0D 02 0D E6 0B 25 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room1_Text_PhillipDefeat": {
+      "label": "SSAnne_B1F_Room1_Text_PhillipDefeat",
+      "line": 18,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "raw_text": "啊！\\n居然被一个孩子打败了！$",
+      "display_text": "啊！\n居然被一个孩子打败了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          1,
+          0,
+          60,
+          254,
+          7,
+          131,
+          11,
+          59,
+          1,
+          120,
+          15,
+          11,
+          4,
+          96,
+          4,
+          200,
+          17,
+          11,
+          2,
+          210,
+          1,
+          59,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "01 00 3C FE 07 83 0B 3B 01 78 0F 0B 04 60 04 C8 11 0B 02 D2 01 3B 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room1_Text_PhillipPostBattle": {
+      "label": "SSAnne_B1F_Room1_Text_PhillipPostBattle",
+      "line": 22,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "raw_text": "当我们在出海时，\\n水母宝可梦有时会漂过去。$",
+      "display_text": "当我们在出海时，\n水母宝可梦有时会漂过去。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          2,
+          239,
+          13,
+          152,
+          9,
+          95,
+          15,
+          230,
+          2,
+          120,
+          4,
+          201,
+          11,
+          237,
+          59,
+          254,
+          12,
+          81,
+          9,
+          174,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          126,
+          11,
+          237,
+          5,
+          110,
+          10,
+          106,
+          4,
+          197,
+          11,
+          37,
+          55,
+          255
+        ],
+        "hex": "02 EF 0D 98 09 5F 0F E6 02 78 04 C9 0B ED 3B FE 0C 51 09 AE 01 63 07 D7 09 66 0F 7E 0B ED 05 6E 0A 6A 04 C5 0B 25 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room1_Text_BarnyIntro": {
+      "label": "SSAnne_B1F_Room1_Text_BarnyIntro",
+      "line": 26,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "raw_text": "你好，陌生人！\\p我不知道你是来自海洋\\n还是山林，但请停下来和我聊聊吧。\\p我所有的宝可梦都来自大海。$",
+      "display_text": "你好，陌生人！\n\n我不知道你是来自海洋\n还是山林，但请停下来和我聊聊吧。\n\n我所有的宝可梦都来自大海。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 91,
+        "bytes": [
+          9,
+          217,
+          4,
+          233,
+          59,
+          9,
+          166,
+          11,
+          216,
+          11,
+          75,
+          60,
+          251,
+          13,
+          152,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          9,
+          217,
+          12,
+          12,
+          8,
+          41,
+          17,
+          12,
+          4,
+          201,
+          14,
+          220,
+          254,
+          5,
+          70,
+          12,
+          12,
+          11,
+          155,
+          8,
+          169,
+          59,
+          2,
+          233,
+          11,
+          13,
+          13,
+          11,
+          13,
+          230,
+          8,
+          41,
+          4,
+          243,
+          13,
+          152,
+          8,
+          151,
+          8,
+          151,
+          1,
+          40,
+          55,
+          251,
+          13,
+          152,
+          12,
+          156,
+          15,
+          126,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          97,
+          8,
+          41,
+          17,
+          12,
+          2,
+          211,
+          4,
+          201,
+          55,
+          255
+        ],
+        "hex": "09 D9 04 E9 3B 09 A6 0B D8 0B 4B 3C FB 0D 98 01 D6 10 7B 03 07 09 D9 0C 0C 08 29 11 0C 04 C9 0E DC FE 05 46 0C 0C 0B 9B 08 A9 3B 02 E9 0B 0D 0D 0B 0D E6 08 29 04 F3 0D 98 08 97 08 97 01 28 37 FB 0D 98 0C 9C 0F 7E 03 0B 01 63 07 D7 09 66 03 61 08 29 11 0C 02 D3 04 C9 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 7,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 37,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 52,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room1_Text_BarnyDefeat": {
+      "label": "SSAnne_B1F_Room1_Text_BarnyDefeat",
+      "line": 32,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "raw_text": "该死！\\n让它跑掉了！$",
+      "display_text": "该死！\n让它跑掉了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          4,
+          45,
+          12,
+          99,
+          60,
+          254,
+          11,
+          67,
+          12,
+          159,
+          10,
+          57,
+          3,
+          59,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "04 2D 0C 63 3C FE 0B 43 0C 9F 0A 39 03 3B 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_B1F_Room1_Text_BarnyPostBattle": {
+      "label": "SSAnne_B1F_Room1_Text_BarnyPostBattle",
+      "line": 36,
+      "source_file": "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc",
+      "raw_text": "我本来也打算让你\\n当我的助手！$",
+      "display_text": "我本来也打算让你\n当我的助手！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          13,
+          152,
+          1,
+          123,
+          8,
+          41,
+          15,
+          2,
+          2,
+          210,
+          12,
+          134,
+          11,
+          67,
+          9,
+          217,
+          254,
+          2,
+          239,
+          13,
+          152,
+          3,
+          11,
+          16,
+          203,
+          12,
+          27,
+          60,
+          255
+        ],
+        "hex": "0D 98 01 7B 08 29 0F 02 02 D2 0C 86 0B 43 09 D9 FE 02 EF 0D 98 03 0B 10 CB 0C 1B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 6,
+    "encoded_text_count": 6,
+    "text_source_byte_count": 246,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 6
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2,
+      "trainerbattle_single": 2
+    }
+  }
+}

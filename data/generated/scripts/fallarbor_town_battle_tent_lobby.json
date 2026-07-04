@@ -1,0 +1,4159 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FallarborTown_BattleTentLobby",
+    "map_script": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+    "map_json": "data/maps/FallarborTown_BattleTentLobby/map.json",
+    "map_id": "MAP_FALLARBOR_TOWN_BATTLE_TENT_LOBBY",
+    "map_name": "FallarborTown_BattleTentLobby"
+  },
+  "labels": {
+    "FallarborTown_BattleTentLobby_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_BattleTentLobby_OnWarp": {
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_EventScript_TurnPlayerNorth": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_BattleTentLobby_OnFrame": {
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 6
+    },
+    "FallarborTown_BattleTentLobby_EventScript_GetChallengeStatus": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_EventScript_QuitWithoutSaving": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 8
+    },
+    "FallarborTown_BattleTentLobby_EventScript_WonChallenge": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 9
+    },
+    "FallarborTown_BattleTentLobby_EventScript_GivePrize": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 14
+    },
+    "FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 6
+    },
+    "FallarborTown_BattleTentLobby_EventScript_PrizeWaiting": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "FallarborTown_BattleTentLobby_EventScript_LostChallenge": {
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 12
+    },
+    "FallarborTown_BattleTentLobby_EventScript_ResumeChallenge": {
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 9
+    },
+    "FallarborTown_BattleTentLobby_EventScript_Attendant": {
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 6
+    },
+    "FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge": {
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 8
+    },
+    "FallarborTown_BattleTentLobby_EventScript_TryEnterChallenge": {
+      "kind": "script",
+      "line": 120,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 18
+    },
+    "FallarborTown_BattleTentLobby_EventScript_SaveBeforeChallenge": {
+      "kind": "script",
+      "line": 140,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 11
+    },
+    "FallarborTown_BattleTentLobby_EventScript_EnterChallenge": {
+      "kind": "script",
+      "line": 152,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 9
+    },
+    "FallarborTown_BattleTentLobby_EventScript_ExplainChallenge": {
+      "kind": "script",
+      "line": 163,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMons": {
+      "kind": "script",
+      "line": 167,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50": {
+      "kind": "script",
+      "line": 171,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen": {
+      "kind": "script",
+      "line": 175,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed": {
+      "kind": "script",
+      "line": 179,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge": {
+      "kind": "script",
+      "line": 183,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_BattleTentLobby_EventScript_CancelChallenge": {
+      "kind": "script",
+      "line": 185,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge": {
+      "kind": "script",
+      "line": 187,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_EventScript_WalkToDoor": {
+      "kind": "script",
+      "line": 191,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 11
+    },
+    "FallarborTown_BattleTentLobby_Movement_AttendantWalkToDoor": {
+      "kind": "movement",
+      "line": 204,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "FallarborTown_BattleTentLobby_Movement_AttendantEnterDoor": {
+      "kind": "movement",
+      "line": 210,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_BattleTentLobby_Movement_PlayerWalkToDoor": {
+      "kind": "movement",
+      "line": 215,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "FallarborTown_BattleTentLobby_Movement_PlayerEnterDoor": {
+      "kind": "movement",
+      "line": 221,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "FallarborTown_BattleTentLobby_EventScript_Hiker": {
+      "kind": "script",
+      "line": 227,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_EventScript_LittleBoy": {
+      "kind": "script",
+      "line": 231,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_EventScript_Lass": {
+      "kind": "script",
+      "line": 235,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_EventScript_Scott": {
+      "kind": "script",
+      "line": 239,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 8
+    },
+    "FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo": {
+      "kind": "script",
+      "line": 249,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesBoard": {
+      "kind": "script",
+      "line": 254,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard": {
+      "kind": "script",
+      "line": 260,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 12
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesLevel": {
+      "kind": "script",
+      "line": 274,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesBattle": {
+      "kind": "script",
+      "line": 279,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesMind": {
+      "kind": "script",
+      "line": 284,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesSkill": {
+      "kind": "script",
+      "line": 289,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesBody": {
+      "kind": "script",
+      "line": 294,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_BattleTentLobby_EventScript_ExitRules": {
+      "kind": "script",
+      "line": 299,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid": {
+      "kind": "text",
+      "line": 303,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_BattleTentLobby_Text_FallarborTentMyFavorite": {
+      "kind": "text",
+      "line": 306,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_BattleTentLobby_Text_CameToCampOut": {
+      "kind": "text",
+      "line": 309,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_BattleTentLobby_Text_ScottLookingForSomeone": {
+      "kind": "text",
+      "line": 312,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_BattleTentLobby_Text_ScottMakeChallenge": {
+      "kind": "text",
+      "line": 315,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "FallarborTown_BattleTentLobby_MapScripts": {
+      "label": "FallarborTown_BattleTentLobby_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "FallarborTown_BattleTentLobby_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, FallarborTown_BattleTentLobby_OnFrame",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "FallarborTown_BattleTentLobby_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, FallarborTown_BattleTentLobby_OnWarp",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_OnWarp": {
+      "label": "FallarborTown_BattleTentLobby_OnWarp",
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "FallarborTown_BattleTentLobby_EventScript_TurnPlayerNorth"
+          ],
+          "line": 7,
+          "raw": "map_script_2 VAR_TEMP_1, 0, FallarborTown_BattleTentLobby_EventScript_TurnPlayerNorth",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 8,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_TurnPlayerNorth": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_TurnPlayerNorth",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 12,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_OnFrame": {
+      "label": "FallarborTown_BattleTentLobby_OnFrame",
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "0",
+            "FallarborTown_BattleTentLobby_EventScript_GetChallengeStatus"
+          ],
+          "line": 16,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, 0, FallarborTown_BattleTentLobby_EventScript_GetChallengeStatus",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_SAVING",
+            "FallarborTown_BattleTentLobby_EventScript_QuitWithoutSaving"
+          ],
+          "line": 17,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING, FallarborTown_BattleTentLobby_EventScript_QuitWithoutSaving",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_PAUSED",
+            "FallarborTown_BattleTentLobby_EventScript_ResumeChallenge"
+          ],
+          "line": 18,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_PAUSED, FallarborTown_BattleTentLobby_EventScript_ResumeChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_WON",
+            "FallarborTown_BattleTentLobby_EventScript_WonChallenge"
+          ],
+          "line": 19,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_WON, FallarborTown_BattleTentLobby_EventScript_WonChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_LOST",
+            "FallarborTown_BattleTentLobby_EventScript_LostChallenge"
+          ],
+          "line": 20,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST, FallarborTown_BattleTentLobby_EventScript_LostChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 21,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_GetChallengeStatus": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_GetChallengeStatus",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_getstatus",
+          "args": [],
+          "line": 24,
+          "raw": "frontier_getstatus",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_QuitWithoutSaving": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_QuitWithoutSaving",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 28,
+          "raw": "lockall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_DidntSaveBeforeQuitting",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 29,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_DidntSaveBeforeQuitting, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 30,
+          "raw": "closemessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 31,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 32,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_LVL_MODE",
+            "FRONTIER_LVL_50"
+          ],
+          "line": 33,
+          "raw": "frontier_set FRONTIER_DATA_LVL_MODE, FRONTIER_LVL_50",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 34,
+          "raw": "releaseall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_DidntSaveBeforeQuitting",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 29
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_WonChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_WonChallenge",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 38,
+          "raw": "lockall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_BeatThreeTrainers",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 39,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_BeatThreeTrainers, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_WaitWhileSaveGame"
+          ],
+          "line": 40,
+          "raw": "message FallarborTown_BattleTentLobby_Text_WaitWhileSaveGame",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 41,
+          "raw": "waitmessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "fallarbortent_setrandomprize",
+          "args": [],
+          "line": 42,
+          "raw": "fallarbortent_setrandomprize",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_LVL_MODE",
+            "FRONTIER_LVL_50"
+          ],
+          "line": 43,
+          "raw": "frontier_set FRONTIER_DATA_LVL_MODE, FRONTIER_LVL_50",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "fallarbortent_save",
+          "args": [
+            "0"
+          ],
+          "line": 44,
+          "raw": "fallarbortent_save 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 45,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 46,
+          "raw": "waitse",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_BeatThreeTrainers",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 39
+        },
+        {
+          "op": "message",
+          "text_label": "FallarborTown_BattleTentLobby_Text_WaitWhileSaveGame",
+          "mode": "",
+          "line": 40
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_GivePrize": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_GivePrize",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_PresentYouWithPrize",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 49,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_PresentYouWithPrize, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "fallarbortent_giveprize",
+          "args": [],
+          "line": 50,
+          "raw": "fallarbortent_giveprize",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 51,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FALSE",
+            "FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize"
+          ],
+          "line": 52,
+          "raw": "case FALSE, FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 53,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_ReceivedPrize"
+          ],
+          "line": 54,
+          "raw": "message FallarborTown_BattleTentLobby_Text_ReceivedPrize",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 55,
+          "raw": "waitmessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_ITEM"
+          ],
+          "line": 56,
+          "raw": "playfanfare MUS_OBTAIN_ITEM",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 57,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 58,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 59,
+          "raw": "closemessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 60,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 61,
+          "raw": "releaseall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_PresentYouWithPrize",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 49
+        },
+        {
+          "op": "message",
+          "text_label": "FallarborTown_BattleTentLobby_Text_ReceivedPrize",
+          "mode": "",
+          "line": 54
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 58
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_BagFullReturnForPrize",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 65,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_BagFullReturnForPrize, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 66,
+          "raw": "waitmessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 67,
+          "raw": "closemessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 68,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 69,
+          "raw": "releaseall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 70,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_BagFullReturnForPrize",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 65
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_PrizeWaiting": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_PrizeWaiting",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 73,
+          "raw": "lockall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_BeatThreeTrainers",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 74,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_BeatThreeTrainers, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_GivePrize"
+          ],
+          "line": 75,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_GivePrize",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 76,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_BeatThreeTrainers",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 74
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_GivePrize",
+          "line": 75
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_LostChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_LostChallenge",
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 79,
+          "raw": "lockall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_ThankYouWaitWhileSaving"
+          ],
+          "line": 80,
+          "raw": "message FallarborTown_BattleTentLobby_Text_ThankYouWaitWhileSaving",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 81,
+          "raw": "waitmessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_LVL_MODE",
+            "FRONTIER_LVL_50"
+          ],
+          "line": 82,
+          "raw": "frontier_set FRONTIER_DATA_LVL_MODE, FRONTIER_LVL_50",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "fallarbortent_save",
+          "args": [
+            "0"
+          ],
+          "line": 83,
+          "raw": "fallarbortent_save 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 84,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 85,
+          "raw": "waitse",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 86,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 87,
+          "raw": "closemessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 88,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 89,
+          "raw": "releaseall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 90,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "FallarborTown_BattleTentLobby_Text_ThankYouWaitWhileSaving",
+          "mode": "",
+          "line": 80
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 86
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_ResumeChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_ResumeChallenge",
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 93,
+          "raw": "lockall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_LookingForwardToArrival"
+          ],
+          "line": 94,
+          "raw": "message FallarborTown_BattleTentLobby_Text_LookingForwardToArrival",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 95,
+          "raw": "waitmessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "fallarbortent_save",
+          "args": [
+            "CHALLENGE_STATUS_SAVING"
+          ],
+          "line": 96,
+          "raw": "fallarbortent_save CHALLENGE_STATUS_SAVING",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 97,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 98,
+          "raw": "waitse",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_PAUSED",
+            "FALSE"
+          ],
+          "line": 99,
+          "raw": "frontier_set FRONTIER_DATA_PAUSED, FALSE",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 100,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_EnterChallenge"
+          ],
+          "line": 101,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_EnterChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "FallarborTown_BattleTentLobby_Text_LookingForwardToArrival",
+          "mode": "",
+          "line": 94
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_EnterChallenge",
+          "line": 101
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_Attendant": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_Attendant",
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 104,
+          "raw": "lock",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 105,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "fallarbortent_getprize",
+          "args": [],
+          "line": 106,
+          "raw": "fallarbortent_getprize",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "ITEM_NONE",
+            "FallarborTown_BattleTentLobby_EventScript_PrizeWaiting"
+          ],
+          "line": 107,
+          "raw": "goto_if_ne VAR_RESULT, ITEM_NONE, FallarborTown_BattleTentLobby_EventScript_PrizeWaiting",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SavePlayerParty"
+          ],
+          "line": 108,
+          "raw": "special SavePlayerParty",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_WelcomeToBattleTent",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 109,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_WelcomeToBattleTent, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_WelcomeToBattleTent",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 109
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "FallarborTown_BattleTentLobby_EventScript_PrizeWaiting",
+          "line": 107
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge",
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_TakeChallenge"
+          ],
+          "line": 111,
+          "raw": "message FallarborTown_BattleTentLobby_Text_TakeChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 112,
+          "raw": "waitmessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "17",
+            "6",
+            "MULTI_CHALLENGEINFO",
+            "FALSE"
+          ],
+          "line": 113,
+          "raw": "multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 114,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "FallarborTown_BattleTentLobby_EventScript_TryEnterChallenge"
+          ],
+          "line": 115,
+          "raw": "case 0, FallarborTown_BattleTentLobby_EventScript_TryEnterChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "FallarborTown_BattleTentLobby_EventScript_ExplainChallenge"
+          ],
+          "line": 116,
+          "raw": "case 1, FallarborTown_BattleTentLobby_EventScript_ExplainChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "FallarborTown_BattleTentLobby_EventScript_CancelChallenge"
+          ],
+          "line": 117,
+          "raw": "case 2, FallarborTown_BattleTentLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "FallarborTown_BattleTentLobby_EventScript_CancelChallenge"
+          ],
+          "line": 118,
+          "raw": "case MULTI_B_PRESSED, FallarborTown_BattleTentLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "FallarborTown_BattleTentLobby_Text_TakeChallenge",
+          "mode": "",
+          "line": 111
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_TryEnterChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_TryEnterChallenge",
+      "kind": "script",
+      "line": 120,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_FRONTIER_FACILITY",
+            "FRONTIER_FACILITY_ARENA"
+          ],
+          "line": 121,
+          "raw": "setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_ARENA",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_FRONTIER_BATTLE_MODE",
+            "FRONTIER_MODE_SINGLES"
+          ],
+          "line": 122,
+          "raw": "setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "2"
+          ],
+          "line": 123,
+          "raw": "setvar VAR_RESULT, 2",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_checkineligible",
+          "args": [],
+          "line": 124,
+          "raw": "frontier_checkineligible",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "TRUE",
+            "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMons"
+          ],
+          "line": 125,
+          "raw": "goto_if_eq VAR_0x8004, TRUE, FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMons",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_LVL_MODE",
+            "FRONTIER_LVL_TENT"
+          ],
+          "line": 126,
+          "raw": "frontier_set FRONTIER_DATA_LVL_MODE, FRONTIER_LVL_TENT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_SelectThreeMons",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 127,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_SelectThreeMons, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 128,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "2"
+          ],
+          "line": 129,
+          "raw": "setvar VAR_0x8004, 2",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "FRONTIER_PARTY_SIZE"
+          ],
+          "line": 130,
+          "raw": "setvar VAR_0x8005, FRONTIER_PARTY_SIZE",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ChoosePartyForBattleFrontier"
+          ],
+          "line": 131,
+          "raw": "special ChoosePartyForBattleFrontier",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 132,
+          "raw": "waitstate",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge"
+          ],
+          "line": 133,
+          "raw": "goto_if_eq VAR_RESULT, 0, FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_SaveBeforeChallenge",
+            "MSGBOX_YESNO"
+          ],
+          "line": 134,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_SaveBeforeChallenge, MSGBOX_YESNO",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 135,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "NO",
+            "FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge"
+          ],
+          "line": 136,
+          "raw": "case NO, FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "YES",
+            "FallarborTown_BattleTentLobby_EventScript_SaveBeforeChallenge"
+          ],
+          "line": 137,
+          "raw": "case YES, FallarborTown_BattleTentLobby_EventScript_SaveBeforeChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge"
+          ],
+          "line": 138,
+          "raw": "case MULTI_B_PRESSED, FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_SelectThreeMons",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 127
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_SaveBeforeChallenge",
+          "mode": "MSGBOX_YESNO",
+          "line": 134
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMons",
+          "line": 125
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge",
+          "line": 133
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_SaveBeforeChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_SaveBeforeChallenge",
+      "kind": "script",
+      "line": 140,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 141,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_SELECTED_MON_ORDER"
+          ],
+          "line": 142,
+          "raw": "frontier_set FRONTIER_DATA_SELECTED_MON_ORDER",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "fallarbortent_init",
+          "args": [],
+          "line": 143,
+          "raw": "fallarbortent_init",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_SAVING"
+          ],
+          "line": 144,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_PAUSED",
+            "FALSE"
+          ],
+          "line": 145,
+          "raw": "frontier_set FRONTIER_DATA_PAUSED, FALSE",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 146,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 147,
+          "raw": "closemessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "2"
+          ],
+          "line": 148,
+          "raw": "delay 2",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_SaveGame"
+          ],
+          "line": 149,
+          "raw": "call Common_EventScript_SaveGame",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 150,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "FallarborTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed"
+          ],
+          "line": 151,
+          "raw": "goto_if_eq VAR_RESULT, 0, FallarborTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_SaveGame",
+          "line": 149
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "FallarborTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed",
+          "line": 151
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_EnterChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_EnterChallenge",
+      "kind": "script",
+      "line": 152,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SavePlayerParty"
+          ],
+          "line": 153,
+          "raw": "special SavePlayerParty",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_setpartyorder",
+          "args": [
+            "FRONTIER_PARTY_SIZE"
+          ],
+          "line": 154,
+          "raw": "frontier_setpartyorder FRONTIER_PARTY_SIZE",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_GuideYouToBattleTent",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 155,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_GuideYouToBattleTent, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 156,
+          "raw": "closemessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_WalkToDoor"
+          ],
+          "line": 157,
+          "raw": "call FallarborTown_BattleTentLobby_EventScript_WalkToDoor",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_FALLARBOR_TOWN_BATTLE_TENT_CORRIDOR",
+            "2",
+            "7"
+          ],
+          "line": 158,
+          "raw": "warp MAP_FALLARBOR_TOWN_BATTLE_TENT_CORRIDOR, 2, 7",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 159,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 160,
+          "raw": "waitstate",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 161,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_GuideYouToBattleTent",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 155
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "FallarborTown_BattleTentLobby_EventScript_WalkToDoor",
+          "line": 157
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_ExplainChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_ExplainChallenge",
+      "kind": "script",
+      "line": 163,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_ExplainFallarborTent",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 164,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_ExplainFallarborTent, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge"
+          ],
+          "line": 165,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_ExplainFallarborTent",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 164
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge",
+          "line": 165
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMons": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMons",
+      "kind": "script",
+      "line": 167,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 168,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_LVL_50",
+            "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50"
+          ],
+          "line": 169,
+          "raw": "case FRONTIER_LVL_50, FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_LVL_OPEN",
+            "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen"
+          ],
+          "line": 170,
+          "raw": "case FRONTIER_LVL_OPEN, FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50",
+      "kind": "script",
+      "line": 171,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLv50",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 172,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLv50, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge"
+          ],
+          "line": 173,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLv50",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 172
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge",
+          "line": 173
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen",
+      "kind": "script",
+      "line": 175,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 176,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge"
+          ],
+          "line": 177,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 176
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge",
+          "line": 177
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed",
+      "kind": "script",
+      "line": 179,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 180,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_CancelChallenge"
+          ],
+          "line": 181,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_CancelChallenge",
+          "line": 181
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge",
+      "kind": "script",
+      "line": 183,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 184,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_CancelChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_CancelChallenge",
+      "kind": "script",
+      "line": 185,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 186,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 186
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge",
+      "kind": "script",
+      "line": 187,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "release",
+          "args": [],
+          "line": 188,
+          "raw": "release",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 189,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_WalkToDoor": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_WalkToDoor",
+      "kind": "script",
+      "line": 191,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FALLARBOR_TENT_ATTENDANT",
+            "FallarborTown_BattleTentLobby_Movement_AttendantWalkToDoor"
+          ],
+          "line": 192,
+          "raw": "applymovement LOCALID_FALLARBOR_TENT_ATTENDANT, FallarborTown_BattleTentLobby_Movement_AttendantWalkToDoor",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "FallarborTown_BattleTentLobby_Movement_PlayerWalkToDoor"
+          ],
+          "line": 193,
+          "raw": "applymovement LOCALID_PLAYER, FallarborTown_BattleTentLobby_Movement_PlayerWalkToDoor",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 194,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "opendoor",
+          "args": [
+            "6",
+            "1"
+          ],
+          "line": 195,
+          "raw": "opendoor 6, 1",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 196,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FALLARBOR_TENT_ATTENDANT",
+            "FallarborTown_BattleTentLobby_Movement_AttendantEnterDoor"
+          ],
+          "line": 197,
+          "raw": "applymovement LOCALID_FALLARBOR_TENT_ATTENDANT, FallarborTown_BattleTentLobby_Movement_AttendantEnterDoor",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "FallarborTown_BattleTentLobby_Movement_PlayerEnterDoor"
+          ],
+          "line": 198,
+          "raw": "applymovement LOCALID_PLAYER, FallarborTown_BattleTentLobby_Movement_PlayerEnterDoor",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 199,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closedoor",
+          "args": [
+            "6",
+            "1"
+          ],
+          "line": 200,
+          "raw": "closedoor 6, 1",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 201,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 202,
+          "raw": "return",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_Hiker": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_Hiker",
+      "kind": "script",
+      "line": 227,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_CameToCampOut",
+            "MSGBOX_NPC"
+          ],
+          "line": 228,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_CameToCampOut, MSGBOX_NPC",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 229,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_CameToCampOut",
+          "mode": "MSGBOX_NPC",
+          "line": 228
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_LittleBoy": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_LittleBoy",
+      "kind": "script",
+      "line": 231,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid",
+            "MSGBOX_NPC"
+          ],
+          "line": 232,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid, MSGBOX_NPC",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 233,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid",
+          "mode": "MSGBOX_NPC",
+          "line": 232
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_Lass": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_Lass",
+      "kind": "script",
+      "line": 235,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_FallarborTentMyFavorite",
+            "MSGBOX_NPC"
+          ],
+          "line": 236,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_FallarborTentMyFavorite, MSGBOX_NPC",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 237,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_FallarborTentMyFavorite",
+          "mode": "MSGBOX_NPC",
+          "line": 236
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_Scott": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_Scott",
+      "kind": "script",
+      "line": 239,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 240,
+          "raw": "lock",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 241,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_MET_SCOTT_IN_FALLARBOR",
+            "FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo"
+          ],
+          "line": 242,
+          "raw": "goto_if_set FLAG_MET_SCOTT_IN_FALLARBOR, FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_ScottLookingForSomeone",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 243,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_ScottLookingForSomeone, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_SCOTT_STATE",
+            "1"
+          ],
+          "line": 244,
+          "raw": "addvar VAR_SCOTT_STATE, 1",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_MET_SCOTT_IN_FALLARBOR"
+          ],
+          "line": 245,
+          "raw": "setflag FLAG_MET_SCOTT_IN_FALLARBOR",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 246,
+          "raw": "release",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 247,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_ScottLookingForSomeone",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 243
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo",
+          "line": 242
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo",
+      "kind": "script",
+      "line": 249,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_BattleTentLobby_Text_ScottMakeChallenge",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 250,
+          "raw": "msgbox FallarborTown_BattleTentLobby_Text_ScottMakeChallenge, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 251,
+          "raw": "release",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 252,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_BattleTentLobby_Text_ScottMakeChallenge",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 250
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesBoard": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_RulesBoard",
+      "kind": "script",
+      "line": 254,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 255,
+          "raw": "lockall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleArenaLobby_Text_RulesAreListed",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 256,
+          "raw": "msgbox BattleFrontier_BattleArenaLobby_Text_RulesAreListed, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 257,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 258,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleArenaLobby_Text_RulesAreListed",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 256
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 257
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+      "kind": "script",
+      "line": 260,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleArenaLobby_Text_ReadWhichHeading"
+          ],
+          "line": 261,
+          "raw": "message BattleFrontier_BattleArenaLobby_Text_ReadWhichHeading",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 262,
+          "raw": "waitmessage",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "17",
+            "0",
+            "MULTI_FALLARBOR_TENT_RULES",
+            "FALSE"
+          ],
+          "line": 263,
+          "raw": "multichoice 17, 0, MULTI_FALLARBOR_TENT_RULES, FALSE",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 264,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "FallarborTown_BattleTentLobby_EventScript_RulesLevel"
+          ],
+          "line": 265,
+          "raw": "case 0, FallarborTown_BattleTentLobby_EventScript_RulesLevel",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "FallarborTown_BattleTentLobby_EventScript_RulesBattle"
+          ],
+          "line": 266,
+          "raw": "case 1, FallarborTown_BattleTentLobby_EventScript_RulesBattle",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "FallarborTown_BattleTentLobby_EventScript_RulesMind"
+          ],
+          "line": 267,
+          "raw": "case 2, FallarborTown_BattleTentLobby_EventScript_RulesMind",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "FallarborTown_BattleTentLobby_EventScript_RulesSkill"
+          ],
+          "line": 268,
+          "raw": "case 3, FallarborTown_BattleTentLobby_EventScript_RulesSkill",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "FallarborTown_BattleTentLobby_EventScript_RulesBody"
+          ],
+          "line": 269,
+          "raw": "case 4, FallarborTown_BattleTentLobby_EventScript_RulesBody",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "5",
+            "FallarborTown_BattleTentLobby_EventScript_ExitRules"
+          ],
+          "line": 270,
+          "raw": "case 5, FallarborTown_BattleTentLobby_EventScript_ExitRules",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "FallarborTown_BattleTentLobby_EventScript_ExitRules"
+          ],
+          "line": 271,
+          "raw": "case MULTI_B_PRESSED, FallarborTown_BattleTentLobby_EventScript_ExitRules",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 272,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleArenaLobby_Text_ReadWhichHeading",
+          "mode": "",
+          "line": 261
+        }
+      ],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesLevel": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_RulesLevel",
+      "kind": "script",
+      "line": 274,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleTentLobby_Text_ExplainLevelRules",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 275,
+          "raw": "msgbox BattleTentLobby_Text_ExplainLevelRules, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 276,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 277,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleTentLobby_Text_ExplainLevelRules",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 275
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 276
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesBattle": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_RulesBattle",
+      "kind": "script",
+      "line": 279,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleArenaLobby_Text_ExplainBattleRules",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 280,
+          "raw": "msgbox BattleFrontier_BattleArenaLobby_Text_ExplainBattleRules, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 281,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 282,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleArenaLobby_Text_ExplainBattleRules",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 280
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 281
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesMind": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_RulesMind",
+      "kind": "script",
+      "line": 284,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleArenaLobby_Text_ExplainMindRules",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 285,
+          "raw": "msgbox BattleFrontier_BattleArenaLobby_Text_ExplainMindRules, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 286,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 287,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleArenaLobby_Text_ExplainMindRules",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 285
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 286
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesSkill": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_RulesSkill",
+      "kind": "script",
+      "line": 289,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleArenaLobby_Text_ExplainSkillRules",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 290,
+          "raw": "msgbox BattleFrontier_BattleArenaLobby_Text_ExplainSkillRules, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 291,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 292,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleArenaLobby_Text_ExplainSkillRules",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 290
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 291
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_RulesBody": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_RulesBody",
+      "kind": "script",
+      "line": 294,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleArenaLobby_Text_ExplainBodyRules",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 295,
+          "raw": "msgbox BattleFrontier_BattleArenaLobby_Text_ExplainBodyRules, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 296,
+          "raw": "goto FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 297,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleArenaLobby_Text_ExplainBodyRules",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 295
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 296
+        }
+      ]
+    },
+    "FallarborTown_BattleTentLobby_EventScript_ExitRules": {
+      "label": "FallarborTown_BattleTentLobby_EventScript_ExitRules",
+      "kind": "script",
+      "line": 299,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 300,
+          "raw": "releaseall",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 301,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "FallarborTown_BattleTentLobby_Movement_AttendantWalkToDoor": {
+      "label": "FallarborTown_BattleTentLobby_Movement_AttendantWalkToDoor",
+      "kind": "movement",
+      "line": 204,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 205,
+          "raw": "walk_up",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 206,
+          "raw": "walk_up",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 207,
+          "raw": "walk_up",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 208,
+          "raw": "step_end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_Movement_AttendantEnterDoor": {
+      "label": "FallarborTown_BattleTentLobby_Movement_AttendantEnterDoor",
+      "kind": "movement",
+      "line": 210,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 211,
+          "raw": "walk_up",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 212,
+          "raw": "set_invisible",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 213,
+          "raw": "step_end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_Movement_PlayerWalkToDoor": {
+      "label": "FallarborTown_BattleTentLobby_Movement_PlayerWalkToDoor",
+      "kind": "movement",
+      "line": 215,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 216,
+          "raw": "walk_up",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 217,
+          "raw": "walk_up",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 218,
+          "raw": "walk_up",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 219,
+          "raw": "step_end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_BattleTentLobby_Movement_PlayerEnterDoor": {
+      "label": "FallarborTown_BattleTentLobby_Movement_PlayerEnterDoor",
+      "kind": "movement",
+      "line": 221,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 222,
+          "raw": "walk_up",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 223,
+          "raw": "walk_up",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 224,
+          "raw": "set_invisible",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 225,
+          "raw": "step_end",
+          "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid": {
+      "label": "FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid",
+      "line": 303,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "raw_text": "哼哼哼哼哼。\\p我要让大家以为我\\n只是个孩子而轻视我，\\p然后让他们大吃一惊，\\n拔得头筹！$",
+      "display_text": "哼哼哼哼哼。\n\n我要让大家以为我\n只是个孩子而轻视我，\n\n然后让他们大吃一惊，\n拔得头筹！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 79,
+        "bytes": [
+          5,
+          14,
+          5,
+          14,
+          5,
+          14,
+          5,
+          14,
+          5,
+          14,
+          55,
+          251,
+          13,
+          152,
+          14,
+          241,
+          11,
+          67,
+          2,
+          211,
+          5,
+          189,
+          15,
+          36,
+          13,
+          112,
+          13,
+          152,
+          254,
+          16,
+          140,
+          12,
+          12,
+          4,
+          96,
+          4,
+          200,
+          17,
+          11,
+          3,
+          157,
+          11,
+          3,
+          12,
+          24,
+          13,
+          152,
+          59,
+          251,
+          11,
+          59,
+          5,
+          34,
+          11,
+          67,
+          12,
+          158,
+          9,
+          95,
+          2,
+          211,
+          2,
+          86,
+          15,
+          11,
+          7,
+          90,
+          59,
+          254,
+          1,
+          45,
+          3,
+          10,
+          13,
+          31,
+          2,
+          113,
+          60,
+          255
+        ],
+        "hex": "05 0E 05 0E 05 0E 05 0E 05 0E 37 FB 0D 98 0E F1 0B 43 02 D3 05 BD 0F 24 0D 70 0D 98 FE 10 8C 0C 0C 04 60 04 C8 11 0B 03 9D 0B 03 0C 18 0D 98 3B FB 0B 3B 05 22 0B 43 0C 9E 09 5F 02 D3 02 56 0F 0B 07 5A 3B FE 01 2D 03 0A 0D 1F 02 71 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 6,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 16,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 40,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FallarborTown_BattleTentLobby_Text_FallarborTentMyFavorite": {
+      "label": "FallarborTown_BattleTentLobby_Text_FallarborTentMyFavorite",
+      "line": 306,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "raw_text": "你知道吗，不同城镇的对战帐篷\\n所举行的比赛也不同。\\p我最喜欢的就是秋叶镇的\\n对战帐篷。\\p训练家凭借着自己对宝可梦的信任，\\n努力赢得比赛，太令人激动了！$",
+      "display_text": "你知道吗，不同城镇的对战帐篷\n所举行的比赛也不同。\n\n我最喜欢的就是秋叶镇的\n对战帐篷。\n\n训练家凭借着自己对宝可梦的信任，\n努力赢得比赛，太令人激动了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 140,
+        "bytes": [
+          9,
+          217,
+          16,
+          123,
+          3,
+          7,
+          9,
+          42,
+          59,
+          1,
+          214,
+          13,
+          20,
+          2,
+          73,
+          16,
+          101,
+          3,
+          11,
+          3,
+          121,
+          16,
+          48,
+          16,
+          61,
+          10,
+          78,
+          254,
+          12,
+          156,
+          7,
+          137,
+          14,
+          91,
+          3,
+          11,
+          1,
+          133,
+          11,
+          124,
+          15,
+          2,
+          1,
+          214,
+          13,
+          20,
+          55,
+          251,
+          13,
+          152,
+          17,
+          38,
+          13,
+          214,
+          5,
+          67,
+          3,
+          11,
+          7,
+          125,
+          12,
+          12,
+          11,
+          17,
+          15,
+          6,
+          16,
+          101,
+          3,
+          11,
+          254,
+          3,
+          121,
+          16,
+          48,
+          16,
+          61,
+          10,
+          78,
+          55,
+          251,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          10,
+          121,
+          7,
+          58,
+          16,
+          244,
+          17,
+          12,
+          5,
+          165,
+          3,
+          121,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          14,
+          80,
+          11,
+          78,
+          59,
+          254,
+          10,
+          9,
+          8,
+          121,
+          15,
+          92,
+          3,
+          10,
+          1,
+          133,
+          11,
+          124,
+          59,
+          12,
+          172,
+          8,
+          193,
+          11,
+          75,
+          5,
+          143,
+          3,
+          84,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "09 D9 10 7B 03 07 09 2A 3B 01 D6 0D 14 02 49 10 65 03 0B 03 79 10 30 10 3D 0A 4E FE 0C 9C 07 89 0E 5B 03 0B 01 85 0B 7C 0F 02 01 D6 0D 14 37 FB 0D 98 11 26 0D D6 05 43 03 0B 07 7D 0C 0C 0B 11 0F 06 10 65 03 0B FE 03 79 10 30 10 3D 0A 4E 37 FB 0E 9E 08 8A 05 BD 0A 79 07 3A 10 F4 11 0C 05 A5 03 79 01 63 07 D7 09 66 03 0B 0E 50 0B 4E 3B FE 0A 09 08 79 0F 5C 03 0A 01 85 0B 7C 3B 0C AC 08 C1 0B 4B 05 8F 03 54 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 26,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 46,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 64,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 80,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FallarborTown_BattleTentLobby_Text_CameToCampOut": {
+      "label": "FallarborTown_BattleTentLobby_Text_CameToCampOut",
+      "line": 309,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "raw_text": "我听说过一些关于帐篷的事，\\n所以才出来宿营，\\p但我没想到现在的帐篷\\n会这么豪华！\\p既然都来了，就进去试试\\n放手一搏吧！$",
+      "display_text": "我听说过一些关于帐篷的事，\n所以才出来宿营，\n\n但我没想到现在的帐篷\n会这么豪华！\n\n既然都来了，就进去试试\n放手一搏吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 109,
+        "bytes": [
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          4,
+          197,
+          15,
+          11,
+          14,
+          52,
+          4,
+          160,
+          15,
+          136,
+          16,
+          61,
+          10,
+          78,
+          3,
+          11,
+          12,
+          7,
+          59,
+          254,
+          12,
+          156,
+          15,
+          36,
+          1,
+          224,
+          2,
+          120,
+          8,
+          41,
+          12,
+          129,
+          15,
+          88,
+          59,
+          251,
+          2,
+          233,
+          13,
+          152,
+          9,
+          83,
+          14,
+          24,
+          3,
+          4,
+          14,
+          3,
+          15,
+          230,
+          3,
+          11,
+          16,
+          61,
+          10,
+          78,
+          254,
+          5,
+          110,
+          16,
+          85,
+          9,
+          76,
+          4,
+          230,
+          5,
+          55,
+          60,
+          251,
+          5,
+          179,
+          11,
+          59,
+          3,
+          97,
+          8,
+          41,
+          8,
+          158,
+          59,
+          7,
+          125,
+          7,
+          74,
+          11,
+          37,
+          12,
+          25,
+          12,
+          25,
+          254,
+          3,
+          200,
+          12,
+          27,
+          15,
+          11,
+          1,
+          198,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0D 98 0D 07 0C 58 04 C5 0F 0B 0E 34 04 A0 0F 88 10 3D 0A 4E 03 0B 0C 07 3B FE 0C 9C 0F 24 01 E0 02 78 08 29 0C 81 0F 58 3B FB 02 E9 0D 98 09 53 0E 18 03 04 0E 03 0F E6 03 0B 10 3D 0A 4E FE 05 6E 10 55 09 4C 04 E6 05 37 3C FB 05 B3 0B 3B 03 61 08 29 08 9E 3B 07 7D 07 4A 0B 25 0C 19 0C 19 FE 03 C8 0C 1B 0F 0B 01 C6 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 43,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 56,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 64,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FallarborTown_BattleTentLobby_Text_ScottLookingForSomeone": {
+      "label": "FallarborTown_BattleTentLobby_Text_ScottLookingForSomeone",
+      "line": 312,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "raw_text": "亚希达：嗨，{PLAYER}{KUN}！\\n你也来这里的对战帐篷了！\\p这里的人看上去大多都\\n比较悠然自得，\\p但你知道，\\n我在寻找的是有……\\p怎么说呢……\\p胸怀强烈的求胜\\n渴望与决心的人。\\p如果有那样的训练家，\\n我马上就……\\p啊！没什么！\\n继续加油吧！$",
+      "display_text": "亚希达：嗨，{PLAYER}{KUN}！\n你也来这里的对战帐篷了！\n\n这里的人看上去大多都\n比较悠然自得，\n\n但你知道，\n我在寻找的是有……\n\n怎么说呢……\n\n胸怀强烈的求胜\n渴望与决心的人。\n\n如果有那样的训练家，\n我马上就……\n\n啊！没什么！\n继续加油吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 198,
+        "bytes": [
+          14,
+          176,
+          13,
+          199,
+          2,
+          207,
+          62,
+          20,
+          103,
+          59,
+          253,
+          1,
+          253,
+          5,
+          60,
+          254,
+          9,
+          217,
+          15,
+          2,
+          8,
+          41,
+          16,
+          85,
+          8,
+          100,
+          3,
+          11,
+          3,
+          121,
+          16,
+          48,
+          16,
+          61,
+          10,
+          78,
+          8,
+          158,
+          60,
+          251,
+          16,
+          85,
+          8,
+          100,
+          3,
+          11,
+          11,
+          75,
+          7,
+          194,
+          11,
+          173,
+          11,
+          37,
+          2,
+          211,
+          3,
+          133,
+          3,
+          97,
+          254,
+          1,
+          133,
+          7,
+          33,
+          15,
+          116,
+          11,
+          59,
+          17,
+          12,
+          3,
+          10,
+          59,
+          251,
+          2,
+          233,
+          9,
+          217,
+          16,
+          123,
+          3,
+          7,
+          59,
+          254,
+          13,
+          152,
+          15,
+          230,
+          14,
+          153,
+          16,
+          69,
+          3,
+          11,
+          12,
+          12,
+          15,
+          126,
+          176,
+          176,
+          251,
+          16,
+          10,
+          9,
+          76,
+          12,
+          88,
+          9,
+          206,
+          176,
+          176,
+          251,
+          14,
+          99,
+          5,
+          64,
+          10,
+          216,
+          8,
+          165,
+          3,
+          11,
+          11,
+          21,
+          11,
+          224,
+          254,
+          7,
+          216,
+          13,
+          99,
+          15,
+          153,
+          7,
+          166,
+          14,
+          79,
+          3,
+          11,
+          11,
+          75,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          15,
+          126,
+          9,
+          189,
+          14,
+          226,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          59,
+          254,
+          13,
+          152,
+          9,
+          39,
+          11,
+          173,
+          7,
+          125,
+          176,
+          176,
+          251,
+          1,
+          0,
+          60,
+          9,
+          83,
+          11,
+          238,
+          9,
+          76,
+          60,
+          254,
+          5,
+          183,
+          14,
+          131,
+          5,
+          190,
+          15,
+          123,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0E B0 0D C7 02 CF 3E 14 67 3B FD 01 FD 05 3C FE 09 D9 0F 02 08 29 10 55 08 64 03 0B 03 79 10 30 10 3D 0A 4E 08 9E 3C FB 10 55 08 64 03 0B 0B 4B 07 C2 0B AD 0B 25 02 D3 03 85 03 61 FE 01 85 07 21 0F 74 0B 3B 11 0C 03 0A 3B FB 02 E9 09 D9 10 7B 03 07 3B FE 0D 98 0F E6 0E 99 10 45 03 0B 0C 0C 0F 7E B0 B0 FB 10 0A 09 4C 0C 58 09 CE B0 B0 FB 0E 63 05 40 0A D8 08 A5 03 0B 0B 15 0B E0 FE 07 D8 0D 63 0F 99 07 A6 0E 4F 03 0B 0B 4B 37 FB 0B 67 04 C3 0F 7E 09 BD 0E E2 03 0B 0E 9E 08 8A 05 BD 3B FE 0D 98 09 27 0B AD 07 7D B0 B0 FB 01 00 3C 09 53 0B EE 09 4C 3C FE 05 B7 0E 83 05 BE 0F 7B 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 6,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 14,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 34,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 46,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 55,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 62,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 73,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 81,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 90,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 100,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 112,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 120,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 128,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 136,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 6,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 14,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "FallarborTown_BattleTentLobby_Text_ScottMakeChallenge": {
+      "label": "FallarborTown_BattleTentLobby_Text_ScottMakeChallenge",
+      "line": 315,
+      "source_file": "data/maps/FallarborTown_BattleTentLobby/scripts.inc",
+      "raw_text": "亚希达：与其同我闲聊浪费时间，\\n何不试着去挑战一下呢？$",
+      "display_text": "亚希达：与其同我闲聊浪费时间，\n何不试着去挑战一下呢？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 51,
+        "bytes": [
+          14,
+          176,
+          13,
+          199,
+          2,
+          207,
+          62,
+          15,
+          153,
+          10,
+          159,
+          13,
+          20,
+          13,
+          152,
+          13,
+          244,
+          8,
+          151,
+          8,
+          64,
+          3,
+          212,
+          11,
+          237,
+          5,
+          207,
+          59,
+          254,
+          4,
+          244,
+          1,
+          214,
+          12,
+          25,
+          16,
+          244,
+          11,
+          37,
+          12,
+          245,
+          16,
+          48,
+          15,
+          11,
+          13,
+          230,
+          9,
+          206,
+          61,
+          255
+        ],
+        "hex": "0E B0 0D C7 02 CF 3E 0F 99 0A 9F 0D 14 0D 98 0D F4 08 97 08 40 03 D4 0B ED 05 CF 3B FE 04 F4 01 D6 0C 19 10 F4 0B 25 0C F5 10 30 0F 0B 0D E6 09 CE 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addvar": 1,
+      "applymovement": 4,
+      "case": 17,
+      "closedoor": 1,
+      "closemessage": 6,
+      "delay": 1,
+      "faceplayer": 2,
+      "fadescreen": 1,
+      "fallarbortent_getprize": 1,
+      "fallarbortent_giveprize": 1,
+      "fallarbortent_init": 1,
+      "fallarbortent_save": 3,
+      "fallarbortent_setrandomprize": 1,
+      "frontier_checkineligible": 1,
+      "frontier_getstatus": 1,
+      "frontier_set": 11,
+      "frontier_setpartyorder": 1,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "map_script": 2,
+      "map_script_2": 6,
+      "multichoice": 2,
+      "opendoor": 1,
+      "playfanfare": 1,
+      "playse": 3,
+      "set_invisible": 2,
+      "setflag": 1,
+      "setvar": 14,
+      "special": 5,
+      "step_end": 4,
+      "switch": 5,
+      "turnobject": 1,
+      "waitdooranim": 2,
+      "waitfanfare": 1,
+      "waitmessage": 7,
+      "waitmovement": 2,
+      "waitse": 3,
+      "waitstate": 2,
+      "walk_up": 9,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 48,
+    "script_count": 39,
+    "movement_count": 4,
+    "text_count": 5,
+    "encoded_text_count": 5,
+    "text_source_byte_count": 577,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 5
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addvar": 1,
+      "applymovement": 4,
+      "call": 2,
+      "case": 17,
+      "closedoor": 1,
+      "closemessage": 6,
+      "delay": 1,
+      "end": 22,
+      "faceplayer": 2,
+      "fadescreen": 1,
+      "fallarbortent_getprize": 1,
+      "fallarbortent_giveprize": 1,
+      "fallarbortent_init": 1,
+      "fallarbortent_save": 3,
+      "fallarbortent_setrandomprize": 1,
+      "frontier_checkineligible": 1,
+      "frontier_getstatus": 1,
+      "frontier_set": 11,
+      "frontier_setpartyorder": 1,
+      "goto": 12,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "lock": 2,
+      "lockall": 6,
+      "map_script": 2,
+      "map_script_2": 6,
+      "message": 6,
+      "msgbox": 26,
+      "multichoice": 2,
+      "opendoor": 1,
+      "playfanfare": 1,
+      "playse": 3,
+      "release": 3,
+      "releaseall": 5,
+      "return": 1,
+      "set_invisible": 2,
+      "setflag": 1,
+      "setvar": 14,
+      "special": 5,
+      "step_end": 4,
+      "switch": 5,
+      "turnobject": 1,
+      "waitdooranim": 2,
+      "waitfanfare": 1,
+      "waitmessage": 7,
+      "waitmovement": 2,
+      "waitse": 3,
+      "waitstate": 2,
+      "walk_up": 9,
+      "warp": 1
+    }
+  }
+}

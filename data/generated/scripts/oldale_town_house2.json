@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "OldaleTown_House2",
+    "map_script": "data/maps/OldaleTown_House2/scripts.inc",
+    "map_json": "data/maps/OldaleTown_House2/map.json",
+    "map_id": "MAP_OLDALE_TOWN_HOUSE2",
+    "map_name": "OldaleTown_House2"
+  },
+  "labels": {
+    "OldaleTown_House2_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/OldaleTown_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "OldaleTown_House2_EventScript_Woman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/OldaleTown_House2/scripts.inc",
+      "instruction_count": 2
+    },
+    "OldaleTown_House2_EventScript_Man": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/OldaleTown_House2/scripts.inc",
+      "instruction_count": 2
+    },
+    "OldaleTown_House2_Text_PokemonLevelUp": {
+      "kind": "text",
+      "line": 12,
+      "source_file": "data/maps/OldaleTown_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon": {
+      "kind": "text",
+      "line": 15,
+      "source_file": "data/maps/OldaleTown_House2/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "OldaleTown_House2_MapScripts": {
+      "label": "OldaleTown_House2_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/OldaleTown_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/OldaleTown_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "OldaleTown_House2_EventScript_Woman": {
+      "label": "OldaleTown_House2_EventScript_Woman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/OldaleTown_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "OldaleTown_House2_Text_PokemonLevelUp",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox OldaleTown_House2_Text_PokemonLevelUp, MSGBOX_NPC",
+          "source_file": "data/maps/OldaleTown_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/OldaleTown_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "OldaleTown_House2_Text_PokemonLevelUp",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "OldaleTown_House2_EventScript_Man": {
+      "label": "OldaleTown_House2_EventScript_Man",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/OldaleTown_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon, MSGBOX_NPC",
+          "source_file": "data/maps/OldaleTown_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/OldaleTown_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "OldaleTown_House2_Text_PokemonLevelUp": {
+      "label": "OldaleTown_House2_Text_PokemonLevelUp",
+      "line": 12,
+      "source_file": "data/maps/OldaleTown_House2/scripts.inc",
+      "raw_text": "宝可梦战斗时，\\n会获得经验升级变强。$",
+      "display_text": "宝可梦战斗时，\n会获得经验升级变强。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          48,
+          3,
+          92,
+          11,
+          237,
+          59,
+          254,
+          5,
+          110,
+          5,
+          126,
+          3,
+          10,
+          7,
+          93,
+          14,
+          210,
+          11,
+          219,
+          5,
+          161,
+          1,
+          161,
+          10,
+          216,
+          55,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 10 30 03 5C 0B ED 3B FE 05 6E 05 7E 03 0A 07 5D 0E D2 0B DB 05 A1 01 A1 0A D8 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon": {
+      "label": "OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon",
+      "line": 15,
+      "source_file": "data/maps/OldaleTown_House2/scripts.inc",
+      "raw_text": "如果你的宝可梦变强了，\\n你就可能走得更远。$",
+      "display_text": "如果你的宝可梦变强了，\n你就可能走得更远。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          161,
+          10,
+          216,
+          8,
+          158,
+          59,
+          254,
+          9,
+          217,
+          7,
+          125,
+          7,
+          215,
+          9,
+          210,
+          17,
+          23,
+          3,
+          10,
+          4,
+          102,
+          15,
+          194,
+          55,
+          255
+        ],
+        "hex": "0B 67 04 C3 09 D9 03 0B 01 63 07 D7 09 66 01 A1 0A D8 08 9E 3B FE 09 D9 07 7D 07 D7 09 D2 11 17 03 0A 04 66 0F C2 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 74,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2
+    }
+  }
+}

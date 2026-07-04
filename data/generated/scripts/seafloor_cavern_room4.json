@@ -1,0 +1,596 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SeafloorCavern_Room4",
+    "map_script": "data/maps/SeafloorCavern_Room4/scripts.inc",
+    "map_json": "data/maps/SeafloorCavern_Room4/map.json",
+    "map_id": "MAP_SEAFLOOR_CAVERN_ROOM4",
+    "map_name": "SeafloorCavern_Room4"
+  },
+  "labels": {
+    "SeafloorCavern_Room4_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room4_EventScript_Grunt3": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instruction_count": 3
+    },
+    "SeafloorCavern_Room4_EventScript_Grunt4": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instruction_count": 3
+    },
+    "SeafloorCavern_Room4_Text_Grunt3Intro": {
+      "kind": "text",
+      "line": 14,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room4_Text_Grunt3Defeat": {
+      "kind": "text",
+      "line": 17,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room4_Text_Grunt3PostBattle": {
+      "kind": "text",
+      "line": 20,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room4_Text_Grunt4Intro": {
+      "kind": "text",
+      "line": 23,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room4_Text_Grunt4Defeat": {
+      "kind": "text",
+      "line": 26,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Room4_Text_Grunt4PostBattle": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SeafloorCavern_Room4_MapScripts": {
+      "label": "SeafloorCavern_Room4_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SeafloorCavern_Room4_EventScript_Grunt3": {
+      "label": "SeafloorCavern_Room4_EventScript_Grunt3",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_GRUNT_SEAFLOOR_CAVERN_3",
+            "SeafloorCavern_Room4_Text_Grunt3Intro",
+            "SeafloorCavern_Room4_Text_Grunt3Defeat"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_3, SeafloorCavern_Room4_Text_Grunt3Intro, SeafloorCavern_Room4_Text_Grunt3Defeat",
+          "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SeafloorCavern_Room4_Text_Grunt3PostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox SeafloorCavern_Room4_Text_Grunt3PostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SeafloorCavern_Room4_Text_Grunt3PostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "SeafloorCavern_Room4_EventScript_Grunt4": {
+      "label": "SeafloorCavern_Room4_EventScript_Grunt4",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_GRUNT_SEAFLOOR_CAVERN_4",
+            "SeafloorCavern_Room4_Text_Grunt4Intro",
+            "SeafloorCavern_Room4_Text_Grunt4Defeat"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_4, SeafloorCavern_Room4_Text_Grunt4Intro, SeafloorCavern_Room4_Text_Grunt4Defeat",
+          "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SeafloorCavern_Room4_Text_Grunt4PostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox SeafloorCavern_Room4_Text_Grunt4PostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SeafloorCavern_Room4_Text_Grunt4PostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SeafloorCavern_Room4_Text_Grunt3Intro": {
+      "label": "SeafloorCavern_Room4_Text_Grunt3Intro",
+      "line": 14,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "raw_text": "什么人？\\n从哪儿进来的？$",
+      "display_text": "什么人？\n从哪儿进来的？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          11,
+          238,
+          9,
+          76,
+          11,
+          75,
+          61,
+          254,
+          2,
+          179,
+          9,
+          186,
+          3,
+          158,
+          7,
+          74,
+          8,
+          41,
+          3,
+          11,
+          61,
+          255
+        ],
+        "hex": "0B EE 09 4C 0B 4B 3D FE 02 B3 09 BA 03 9E 07 4A 08 29 03 0B 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Room4_Text_Grunt3Defeat": {
+      "label": "SeafloorCavern_Room4_Text_Grunt3Defeat",
+      "line": 17,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "raw_text": "输了……$",
+      "display_text": "输了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 7,
+        "bytes": [
+          12,
+          41,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "0C 29 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 4,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Room4_Text_Grunt3PostBattle": {
+      "label": "SeafloorCavern_Room4_Text_Grunt3PostBattle",
+      "line": 20,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "raw_text": "根本找不到出口！\\p先说好——我才没害怕！$",
+      "display_text": "根本找不到出口！\n\n先说好——我才没害怕！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          4,
+          99,
+          1,
+          123,
+          16,
+          69,
+          1,
+          214,
+          3,
+          4,
+          2,
+          120,
+          7,
+          232,
+          60,
+          251,
+          13,
+          236,
+          12,
+          88,
+          4,
+          233,
+          63,
+          63,
+          13,
+          152,
+          1,
+          224,
+          9,
+          83,
+          4,
+          204,
+          10,
+          31,
+          60,
+          255
+        ],
+        "hex": "04 63 01 7B 10 45 01 D6 03 04 02 78 07 E8 3C FB 0D EC 0C 58 04 E9 3F 3F 0D 98 01 E0 09 53 04 CC 0A 1F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Room4_Text_Grunt4Intro": {
+      "label": "SeafloorCavern_Room4_Text_Grunt4Intro",
+      "line": 23,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "raw_text": "什么人？\\n想上哪儿去？$",
+      "display_text": "什么人？\n想上哪儿去？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          11,
+          238,
+          9,
+          76,
+          11,
+          75,
+          61,
+          254,
+          14,
+          24,
+          11,
+          173,
+          9,
+          186,
+          3,
+          158,
+          11,
+          37,
+          61,
+          255
+        ],
+        "hex": "0B EE 09 4C 0B 4B 3D FE 0E 18 0B AD 09 BA 03 9E 0B 25 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Room4_Text_Grunt4Defeat": {
+      "label": "SeafloorCavern_Room4_Text_Grunt4Defeat",
+      "line": 26,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "raw_text": "任务失败！$",
+      "display_text": "任务失败！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 10,
+        "bytes": [
+          11,
+          78,
+          13,
+          183,
+          11,
+          227,
+          1,
+          59,
+          60,
+          255
+        ],
+        "hex": "0B 4E 0D B7 0B E3 01 3B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 5,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Room4_Text_Grunt4PostBattle": {
+      "label": "SeafloorCavern_Room4_Text_Grunt4PostBattle",
+      "line": 29,
+      "source_file": "data/maps/SeafloorCavern_Room4/scripts.inc",
+      "raw_text": "我那废物搭档\\n把地图忘潜艇里了！\\p你说这货有什么用？$",
+      "display_text": "我那废物搭档\n把地图忘潜艇里了！\n\n你说这货有什么用？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 49,
+        "bytes": [
+          13,
+          152,
+          9,
+          189,
+          3,
+          210,
+          13,
+          181,
+          2,
+          206,
+          2,
+          243,
+          254,
+          1,
+          48,
+          3,
+          31,
+          13,
+          36,
+          13,
+          100,
+          10,
+          202,
+          13,
+          15,
+          8,
+          100,
+          8,
+          158,
+          60,
+          251,
+          9,
+          217,
+          12,
+          88,
+          16,
+          85,
+          5,
+          130,
+          15,
+          126,
+          11,
+          238,
+          9,
+          76,
+          15,
+          113,
+          61,
+          255
+        ],
+        "hex": "0D 98 09 BD 03 D2 0D B5 02 CE 02 F3 FE 01 30 03 1F 0D 24 0D 64 0A CA 0D 0F 08 64 08 9E 3C FB 09 D9 0C 58 10 55 05 82 0F 7E 0B EE 09 4C 0F 71 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 6,
+    "encoded_text_count": 6,
+    "text_source_byte_count": 144,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 6
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2,
+      "trainerbattle_single": 2
+    }
+  }
+}

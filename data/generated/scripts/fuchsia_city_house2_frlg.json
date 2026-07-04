@@ -1,0 +1,1266 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FuchsiaCity_House2_Frlg",
+    "map_script": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+    "map_json": "data/maps/FuchsiaCity_House2_Frlg/map.json",
+    "map_id": "MAP_FUCHSIA_CITY_HOUSE2",
+    "map_name": "FuchsiaCity_House2_Frlg"
+  },
+  "labels": {
+    "FuchsiaCity_House2_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "FuchsiaCity_House2_EventScript_FishingGurusBrother": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "FuchsiaCity_House2_EventScript_AlreadyGotGoodRod": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FuchsiaCity_House2_EventScript_GiveGoodRod": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "FuchsiaCity_House2_EventScript_NoRoomForGoodRod": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FuchsiaCity_House2_Text_DoYouLikeToFish": {
+      "kind": "text",
+      "line": 34,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "FuchsiaCity_House2_Text_LikeYourStyleTakeThis": {
+      "kind": "text",
+      "line": 41,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FuchsiaCity_House2_Text_ReceivedGoodRod": {
+      "kind": "text",
+      "line": 46,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FuchsiaCity_House2_Text_GoodRodCanCatchBetterMons": {
+      "kind": "text",
+      "line": 50,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "FuchsiaCity_House2_Text_OhThatsDisappointing": {
+      "kind": "text",
+      "line": 58,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FuchsiaCity_House2_Text_HowAreTheFishBiting": {
+      "kind": "text",
+      "line": 62,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FuchsiaCity_House2_Text_YouHaveNoRoomForGift": {
+      "kind": "text",
+      "line": 66,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "FuchsiaCity_House2_Frlg_MapScripts": {
+      "label": "FuchsiaCity_House2_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FuchsiaCity_House2_EventScript_FishingGurusBrother": {
+      "label": "FuchsiaCity_House2_EventScript_FishingGurusBrother",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_GOT_GOOD_ROD",
+            "FuchsiaCity_House2_EventScript_AlreadyGotGoodRod"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_GOT_GOOD_ROD, FuchsiaCity_House2_EventScript_AlreadyGotGoodRod",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FuchsiaCity_House2_Text_DoYouLikeToFish",
+            "MSGBOX_YESNO"
+          ],
+          "line": 8,
+          "raw": "msgbox FuchsiaCity_House2_Text_DoYouLikeToFish, MSGBOX_YESNO",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "FuchsiaCity_House2_EventScript_GiveGoodRod"
+          ],
+          "line": 9,
+          "raw": "goto_if_eq VAR_RESULT, YES, FuchsiaCity_House2_EventScript_GiveGoodRod",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FuchsiaCity_House2_Text_OhThatsDisappointing"
+          ],
+          "line": 10,
+          "raw": "msgbox FuchsiaCity_House2_Text_OhThatsDisappointing",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 11,
+          "raw": "release",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FuchsiaCity_House2_Text_DoYouLikeToFish",
+          "mode": "MSGBOX_YESNO",
+          "line": 8
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FuchsiaCity_House2_Text_OhThatsDisappointing",
+          "mode": "",
+          "line": 10
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "FuchsiaCity_House2_EventScript_AlreadyGotGoodRod",
+          "line": 7
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "FuchsiaCity_House2_EventScript_GiveGoodRod",
+          "line": 9
+        }
+      ]
+    },
+    "FuchsiaCity_House2_EventScript_AlreadyGotGoodRod": {
+      "label": "FuchsiaCity_House2_EventScript_AlreadyGotGoodRod",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FuchsiaCity_House2_Text_HowAreTheFishBiting"
+          ],
+          "line": 15,
+          "raw": "msgbox FuchsiaCity_House2_Text_HowAreTheFishBiting",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 16,
+          "raw": "release",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FuchsiaCity_House2_Text_HowAreTheFishBiting",
+          "mode": "",
+          "line": 15
+        }
+      ],
+      "branch_targets": []
+    },
+    "FuchsiaCity_House2_EventScript_GiveGoodRod": {
+      "label": "FuchsiaCity_House2_EventScript_GiveGoodRod",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FuchsiaCity_House2_Text_LikeYourStyleTakeThis"
+          ],
+          "line": 20,
+          "raw": "msgbox FuchsiaCity_House2_Text_LikeYourStyleTakeThis",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "checkitemspace",
+          "args": [
+            "ITEM_GOOD_ROD"
+          ],
+          "line": 21,
+          "raw": "checkitemspace ITEM_GOOD_ROD",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "FuchsiaCity_House2_EventScript_NoRoomForGoodRod"
+          ],
+          "line": 22,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, FuchsiaCity_House2_EventScript_NoRoomForGoodRod",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "giveitem_msg",
+          "args": [
+            "FuchsiaCity_House2_Text_ReceivedGoodRod",
+            "ITEM_GOOD_ROD"
+          ],
+          "line": 23,
+          "raw": "giveitem_msg FuchsiaCity_House2_Text_ReceivedGoodRod, ITEM_GOOD_ROD",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FuchsiaCity_House2_Text_GoodRodCanCatchBetterMons"
+          ],
+          "line": 24,
+          "raw": "msgbox FuchsiaCity_House2_Text_GoodRodCanCatchBetterMons",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_GOT_GOOD_ROD"
+          ],
+          "line": 25,
+          "raw": "setflag FLAG_GOT_GOOD_ROD",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 26,
+          "raw": "release",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FuchsiaCity_House2_Text_LikeYourStyleTakeThis",
+          "mode": "",
+          "line": 20
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FuchsiaCity_House2_Text_GoodRodCanCatchBetterMons",
+          "mode": "",
+          "line": 24
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "FuchsiaCity_House2_EventScript_NoRoomForGoodRod",
+          "line": 22
+        }
+      ]
+    },
+    "FuchsiaCity_House2_EventScript_NoRoomForGoodRod": {
+      "label": "FuchsiaCity_House2_EventScript_NoRoomForGoodRod",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FuchsiaCity_House2_Text_YouHaveNoRoomForGift"
+          ],
+          "line": 30,
+          "raw": "msgbox FuchsiaCity_House2_Text_YouHaveNoRoomForGift",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 31,
+          "raw": "release",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FuchsiaCity_House2_Text_YouHaveNoRoomForGift",
+          "mode": "",
+          "line": 30
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "FuchsiaCity_House2_Text_DoYouLikeToFish": {
+      "label": "FuchsiaCity_House2_Text_DoYouLikeToFish",
+      "line": 34,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "raw_text": "我是钓鱼大师的\\n哥哥。\\p我非常喜欢钓鱼！\\n没有钓鱼的生活我真难以想象。\\p告诉我，你喜欢钓鱼吗？$",
+      "display_text": "我是钓鱼大师的\n哥哥。\n\n我非常喜欢钓鱼！\n没有钓鱼的生活我真难以想象。\n\n告诉我，你喜欢钓鱼吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 86,
+        "bytes": [
+          13,
+          152,
+          12,
+          12,
+          3,
+          61,
+          15,
+          145,
+          2,
+          211,
+          11,
+          226,
+          3,
+          11,
+          254,
+          4,
+          81,
+          4,
+          81,
+          55,
+          251,
+          13,
+          152,
+          3,
+          202,
+          2,
+          37,
+          13,
+          214,
+          5,
+          67,
+          3,
+          61,
+          15,
+          145,
+          60,
+          254,
+          9,
+          83,
+          15,
+          126,
+          3,
+          61,
+          15,
+          145,
+          3,
+          11,
+          11,
+          216,
+          5,
+          123,
+          13,
+          152,
+          16,
+          89,
+          9,
+          199,
+          15,
+          36,
+          14,
+          24,
+          14,
+          32,
+          55,
+          251,
+          4,
+          80,
+          12,
+          130,
+          13,
+          152,
+          59,
+          9,
+          217,
+          13,
+          214,
+          5,
+          67,
+          3,
+          61,
+          15,
+          145,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0D 98 0C 0C 03 3D 0F 91 02 D3 0B E2 03 0B FE 04 51 04 51 37 FB 0D 98 03 CA 02 25 0D D6 05 43 03 3D 0F 91 3C FE 09 53 0F 7E 03 3D 0F 91 03 0B 0B D8 05 7B 0D 98 10 59 09 C7 0F 24 0E 18 0E 20 37 FB 04 50 0C 82 0D 98 3B 09 D9 0D D6 05 43 03 3D 0F 91 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 51,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FuchsiaCity_House2_Text_LikeYourStyleTakeThis": {
+      "label": "FuchsiaCity_House2_Text_LikeYourStyleTakeThis",
+      "line": 41,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "raw_text": "漂亮！我喜欢你的态度！\\n我认为我们可以成为朋友。\\p拿着它去钓鱼吧，年轻的朋友！$",
+      "display_text": "漂亮！我喜欢你的态度！\n我认为我们可以成为朋友。\n\n拿着它去钓鱼吧，年轻的朋友！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 72,
+        "bytes": [
+          10,
+          106,
+          8,
+          148,
+          60,
+          13,
+          152,
+          13,
+          214,
+          5,
+          67,
+          9,
+          217,
+          3,
+          11,
+          12,
+          173,
+          3,
+          109,
+          60,
+          254,
+          13,
+          152,
+          11,
+          79,
+          13,
+          112,
+          13,
+          152,
+          9,
+          95,
+          7,
+          215,
+          15,
+          36,
+          2,
+          75,
+          13,
+          112,
+          10,
+          80,
+          15,
+          127,
+          55,
+          251,
+          9,
+          185,
+          16,
+          244,
+          12,
+          159,
+          11,
+          37,
+          3,
+          61,
+          15,
+          145,
+          1,
+          40,
+          59,
+          9,
+          224,
+          11,
+          3,
+          3,
+          11,
+          10,
+          80,
+          15,
+          127,
+          60,
+          255
+        ],
+        "hex": "0A 6A 08 94 3C 0D 98 0D D6 05 43 09 D9 03 0B 0C AD 03 6D 3C FE 0D 98 0B 4F 0D 70 0D 98 09 5F 07 D7 0F 24 02 4B 0D 70 0A 50 0F 7F 37 FB 09 B9 10 F4 0C 9F 0B 25 03 3D 0F 91 01 28 3B 09 E0 0B 03 03 0B 0A 50 0F 7F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 25,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 41,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FuchsiaCity_House2_Text_ReceivedGoodRod": {
+      "label": "FuchsiaCity_House2_Text_ReceivedGoodRod",
+      "line": 46,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}从钓鱼大师的哥哥那里\\n得到了好钓竿。$",
+      "display_text": "{PLAYER}从钓鱼大师的哥哥那里\n得到了好钓竿。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 37,
+        "bytes": [
+          253,
+          1,
+          2,
+          179,
+          3,
+          61,
+          15,
+          145,
+          2,
+          211,
+          11,
+          226,
+          3,
+          11,
+          4,
+          81,
+          4,
+          81,
+          9,
+          189,
+          8,
+          100,
+          254,
+          3,
+          10,
+          3,
+          4,
+          8,
+          158,
+          4,
+          233,
+          3,
+          61,
+          4,
+          55,
+          55,
+          255
+        ],
+        "hex": "FD 01 02 B3 03 3D 0F 91 02 D3 0B E2 03 0B 04 51 04 51 09 BD 08 64 FE 03 0A 03 04 08 9E 04 E9 03 3D 04 37 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "FuchsiaCity_House2_Text_GoodRodCanCatchBetterMons": {
+      "label": "FuchsiaCity_House2_Text_GoodRodCanCatchBetterMons",
+      "line": 50,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "raw_text": "钓鱼是一种生活方式！\\n就像是最优美的诗歌。\\p寒酸的破钓竿只能够\\n钓到鲤鱼王，对吗？\\p但是有了好钓竿之后，\\n你可以钓到更多更强的宝可梦。$",
+      "display_text": "钓鱼是一种生活方式！\n就像是最优美的诗歌。\n\n寒酸的破钓竿只能够\n钓到鲤鱼王，对吗？\n\n但是有了好钓竿之后，\n你可以钓到更多更强的宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 124,
+        "bytes": [
+          3,
+          61,
+          15,
+          145,
+          12,
+          12,
+          15,
+          11,
+          16,
+          167,
+          11,
+          216,
+          5,
+          123,
+          3,
+          192,
+          12,
+          2,
+          60,
+          254,
+          7,
+          125,
+          14,
+          30,
+          12,
+          12,
+          17,
+          38,
+          15,
+          115,
+          9,
+          88,
+          3,
+          11,
+          11,
+          231,
+          4,
+          82,
+          55,
+          251,
+          4,
+          212,
+          12,
+          132,
+          3,
+          11,
+          10,
+          129,
+          3,
+          61,
+          4,
+          55,
+          16,
+          140,
+          9,
+          210,
+          4,
+          131,
+          254,
+          3,
+          61,
+          3,
+          4,
+          8,
+          101,
+          15,
+          145,
+          13,
+          93,
+          59,
+          3,
+          121,
+          9,
+          42,
+          61,
+          251,
+          2,
+          233,
+          12,
+          12,
+          15,
+          126,
+          8,
+          158,
+          4,
+          233,
+          3,
+          61,
+          4,
+          55,
+          16,
+          127,
+          5,
+          34,
+          59,
+          254,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          3,
+          61,
+          3,
+          4,
+          4,
+          102,
+          3,
+          133,
+          4,
+          102,
+          10,
+          216,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "03 3D 0F 91 0C 0C 0F 0B 10 A7 0B D8 05 7B 03 C0 0C 02 3C FE 07 7D 0E 1E 0C 0C 11 26 0F 73 09 58 03 0B 0B E7 04 52 37 FB 04 D4 0C 84 03 0B 0A 81 03 3D 04 37 10 8C 09 D2 04 83 FE 03 3D 03 04 08 65 0F 91 0D 5D 3B 03 79 09 2A 3D FB 02 E9 0C 0C 0F 7E 08 9E 04 E9 03 3D 04 37 10 7F 05 22 3B FE 09 D9 07 D7 0F 24 03 3D 03 04 04 66 03 85 04 66 0A D8 03 0B 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 44,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 56,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 72,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FuchsiaCity_House2_Text_OhThatsDisappointing": {
+      "label": "FuchsiaCity_House2_Text_OhThatsDisappointing",
+      "line": 58,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "raw_text": "喔……\\n真没劲儿……$",
+      "display_text": "喔……\n真没劲儿……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          20,
+          84,
+          176,
+          176,
+          254,
+          16,
+          89,
+          9,
+          83,
+          7,
+          82,
+          3,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "14 54 B0 B0 FE 10 59 09 53 07 52 03 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FuchsiaCity_House2_Text_HowAreTheFishBiting": {
+      "label": "FuchsiaCity_House2_Text_HowAreTheFishBiting",
+      "line": 62,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "raw_text": "你好，{PLAYER}！\\p钓鱼钓得怎么样啦？$",
+      "display_text": "你好，{PLAYER}！\n\n钓鱼钓得怎么样啦？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          9,
+          217,
+          4,
+          233,
+          59,
+          253,
+          1,
+          60,
+          251,
+          3,
+          61,
+          15,
+          145,
+          3,
+          61,
+          3,
+          10,
+          16,
+          10,
+          9,
+          76,
+          14,
+          226,
+          8,
+          39,
+          61,
+          255
+        ],
+        "hex": "09 D9 04 E9 3B FD 01 3C FB 03 3D 0F 91 03 3D 03 0A 10 0A 09 4C 0E E2 08 27 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "FuchsiaCity_House2_Text_YouHaveNoRoomForGift": {
+      "label": "FuchsiaCity_House2_Text_YouHaveNoRoomForGift",
+      "line": 66,
+      "source_file": "data/maps/FuchsiaCity_House2_Frlg/scripts.inc",
+      "raw_text": "喔不，\\p我有一个礼物要给你，\\n但是你背包放不下了了！$",
+      "display_text": "喔不，\n\n我有一个礼物要给你，\n但是你背包放不下了了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          20,
+          84,
+          1,
+          214,
+          59,
+          251,
+          13,
+          152,
+          15,
+          126,
+          15,
+          11,
+          4,
+          96,
+          8,
+          102,
+          13,
+          181,
+          14,
+          241,
+          4,
+          98,
+          9,
+          217,
+          59,
+          254,
+          2,
+          233,
+          12,
+          12,
+          9,
+          217,
+          1,
+          112,
+          1,
+          91,
+          3,
+          200,
+          1,
+          214,
+          13,
+          230,
+          8,
+          158,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "14 54 01 D6 3B FB 0D 98 0F 7E 0F 0B 04 60 08 66 0D B5 0E F1 04 62 09 D9 3B FE 02 E9 0C 0C 09 D9 01 70 01 5B 03 C8 01 D6 0D E6 08 9E 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 3,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "checkitemspace": 1,
+      "faceplayer": 1,
+      "giveitem_msg": 1,
+      "goto_if_eq": 2,
+      "goto_if_set": 1,
+      "setflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 12,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 410,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "checkitemspace": 1,
+      "end": 4,
+      "faceplayer": 1,
+      "giveitem_msg": 1,
+      "goto_if_eq": 2,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 6,
+      "release": 4,
+      "setflag": 1
+    }
+  }
+}

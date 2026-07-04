@@ -1,0 +1,2845 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FiveIsland_ResortGorgeous_House_Frlg",
+    "map_script": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+    "map_json": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/map.json",
+    "map_id": "MAP_FIVE_ISLAND_RESORT_GORGEOUS_HOUSE",
+    "map_name": "FiveIsland_ResortGorgeous_House_Frlg"
+  },
+  "labels": {
+    "FiveIsland_ResortGorgeous_House_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 3,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_Selphy": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_RequestMon": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_RequestTookTooLong": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_CheckForRequestedMon": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 26
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth": {
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerSouth": {
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerEast": {
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest": {
+      "kind": "script",
+      "line": 85,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward": {
+      "kind": "script",
+      "line": 90,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_JustFulfilledRequest": {
+      "kind": "script",
+      "line": 100,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerNorth": {
+      "kind": "movement",
+      "line": 105,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerSouth": {
+      "kind": "movement",
+      "line": 115,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast": {
+      "kind": "movement",
+      "line": 121,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerWest": {
+      "kind": "movement",
+      "line": 130,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FiveIsland_ResortGorgeous_House_Movement_ButlerEnter": {
+      "kind": "movement",
+      "line": 134,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_Butler": {
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FiveIsland_ResortGorgeous_House_Text_PleaseHearMyWish": {
+      "kind": "text",
+      "line": 143,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "FiveIsland_ResortGorgeous_House_Text_WishToSeeMonPlease": {
+      "kind": "text",
+      "line": 150,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FiveIsland_ResortGorgeous_House_Text_OhImTiredOfWaiting": {
+      "kind": "text",
+      "line": 156,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FiveIsland_ResortGorgeous_House_Text_MonYouCaughtForMeThankYou": {
+      "kind": "text",
+      "line": 162,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 13
+    },
+    "FiveIsland_ResortGorgeous_House_Text_ButlerYesMyLady": {
+      "kind": "text",
+      "line": 177,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "FiveIsland_ResortGorgeous_House_Text_SelphyGiveTokenOfAppreciation": {
+      "kind": "text",
+      "line": 180,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FiveIsland_ResortGorgeous_House_Text_ButlerIShallDoAsYouBid": {
+      "kind": "text",
+      "line": 184,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FiveIsland_ResortGorgeous_House_Text_ButlerPleaseAcceptThisAsHerThanks": {
+      "kind": "text",
+      "line": 188,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FiveIsland_ResortGorgeous_House_Text_ButlerBagAppearsToBeFull": {
+      "kind": "text",
+      "line": 193,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing": {
+      "kind": "text",
+      "line": 197,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FiveIsland_ResortGorgeous_House_Text_SelphyWishYouBestOfLuck": {
+      "kind": "text",
+      "line": 201,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "FiveIsland_ResortGorgeous_House_Text_LadySelphySmileHasBrillianceOfSun": {
+      "kind": "text",
+      "line": 204,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "FiveIsland_ResortGorgeous_House_Frlg_MapScripts": {
+      "label": "FiveIsland_ResortGorgeous_House_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 3,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_Selphy": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_Selphy",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 7,
+          "raw": "lock",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 8,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "SHOWN_REQUESTED_MON",
+            "FiveIsland_ResortGorgeous_House_EventScript_JustFulfilledRequest"
+          ],
+          "line": 9,
+          "raw": "goto_if_set SHOWN_REQUESTED_MON, FiveIsland_ResortGorgeous_House_EventScript_JustFulfilledRequest",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESORT_GORGEOUS_REQUESTED_MON",
+            "0xFFFF",
+            "FiveIsland_ResortGorgeous_House_EventScript_RequestTookTooLong"
+          ],
+          "line": 10,
+          "raw": "goto_if_eq VAR_RESORT_GORGEOUS_REQUESTED_MON, 0xFFFF, FiveIsland_ResortGorgeous_House_EventScript_RequestTookTooLong",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESORT_GORGEOUS_REQUESTED_MON",
+            "SPECIES_NONE",
+            "FiveIsland_ResortGorgeous_House_EventScript_CheckForRequestedMon"
+          ],
+          "line": 11,
+          "raw": "goto_if_ne VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE, FiveIsland_ResortGorgeous_House_EventScript_CheckForRequestedMon",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_PleaseHearMyWish"
+          ],
+          "line": 12,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_PleaseHearMyWish",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_EventScript_RequestMon"
+          ],
+          "line": 13,
+          "raw": "goto FiveIsland_ResortGorgeous_House_EventScript_RequestMon",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_PleaseHearMyWish",
+          "mode": "",
+          "line": 12
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_JustFulfilledRequest",
+          "line": 9
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_RequestTookTooLong",
+          "line": 10
+        },
+        {
+          "op": "goto_if_ne",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_CheckForRequestedMon",
+          "line": 11
+        },
+        {
+          "op": "goto",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_RequestMon",
+          "line": 13
+        }
+      ]
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_RequestMon": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_RequestMon",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SampleResortGorgeousMonAndReward"
+          ],
+          "line": 17,
+          "raw": "special SampleResortGorgeousMonAndReward",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_WishToSeeMonPlease"
+          ],
+          "line": 18,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_WishToSeeMonPlease",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 19,
+          "raw": "release",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_WishToSeeMonPlease",
+          "mode": "",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_RequestTookTooLong": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_RequestTookTooLong",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_OhImTiredOfWaiting"
+          ],
+          "line": 23,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_OhImTiredOfWaiting",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_EventScript_RequestMon"
+          ],
+          "line": 24,
+          "raw": "goto FiveIsland_ResortGorgeous_House_EventScript_RequestMon",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_OhImTiredOfWaiting",
+          "mode": "",
+          "line": 23
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_RequestMon",
+          "line": 24
+        }
+      ]
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_CheckForRequestedMon": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_CheckForRequestedMon",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8004",
+            "VAR_RESORT_GORGEOUS_REQUESTED_MON"
+          ],
+          "line": 28,
+          "raw": "copyvar VAR_0x8004, VAR_RESORT_GORGEOUS_REQUESTED_MON",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "DoesPlayerPartyContainSpecies"
+          ],
+          "line": 29,
+          "raw": "specialvar VAR_RESULT, DoesPlayerPartyContainSpecies",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon"
+          ],
+          "line": 30,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_EventScript_RequestMon"
+          ],
+          "line": 31,
+          "raw": "goto FiveIsland_ResortGorgeous_House_EventScript_RequestMon",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon",
+          "line": 30
+        },
+        {
+          "op": "goto",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_RequestMon",
+          "line": 31
+        }
+      ]
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SampleResortGorgeousMonAndReward"
+          ],
+          "line": 35,
+          "raw": "special SampleResortGorgeousMonAndReward",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_MonYouCaughtForMeThankYou"
+          ],
+          "line": 36,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_MonYouCaughtForMeThankYou",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "addobject",
+          "args": [
+            "LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER"
+          ],
+          "line": 37,
+          "raw": "addobject LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER",
+            "FiveIsland_ResortGorgeous_House_Movement_ButlerEnter"
+          ],
+          "line": 38,
+          "raw": "applymovement LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerEnter",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 39,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 40,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_ButlerYesMyLady"
+          ],
+          "line": 41,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_ButlerYesMyLady",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_RESORT_GORGEOUS_HOUSE_SELPHY",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 42,
+          "raw": "applymovement LOCALID_RESORT_GORGEOUS_HOUSE_SELPHY, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 43,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_FEMALE"
+          ],
+          "line": 44,
+          "raw": "textcolor NPC_TEXT_COLOR_FEMALE",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_SelphyGiveTokenOfAppreciation"
+          ],
+          "line": 45,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_SelphyGiveTokenOfAppreciation",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 46,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_ButlerIShallDoAsYouBid"
+          ],
+          "line": 47,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_ButlerIShallDoAsYouBid",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 48,
+          "raw": "closemessage",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_NORTH",
+            "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth"
+          ],
+          "line": 49,
+          "raw": "call_if_eq VAR_FACING, DIR_NORTH, FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_SOUTH",
+            "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerSouth"
+          ],
+          "line": 50,
+          "raw": "call_if_eq VAR_FACING, DIR_SOUTH, FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerSouth",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_EAST",
+            "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerEast"
+          ],
+          "line": 51,
+          "raw": "call_if_eq VAR_FACING, DIR_EAST, FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerEast",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_WEST",
+            "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest"
+          ],
+          "line": 52,
+          "raw": "call_if_eq VAR_FACING, DIR_WEST, FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyobjectxytoperm",
+          "args": [
+            "LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER"
+          ],
+          "line": 53,
+          "raw": "copyobjectxytoperm LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_ButlerPleaseAcceptThisAsHerThanks"
+          ],
+          "line": 54,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_ButlerPleaseAcceptThisAsHerThanks",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "VAR_RESORT_GORGEOUS_REWARD"
+          ],
+          "line": 55,
+          "raw": "giveitem VAR_RESORT_GORGEOUS_REWARD",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward"
+          ],
+          "line": 56,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "SHOWN_REQUESTED_MON"
+          ],
+          "line": 57,
+          "raw": "setflag SHOWN_REQUESTED_MON",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESORT_GORGEOUS_REQUESTED_MON",
+            "SPECIES_NONE"
+          ],
+          "line": 58,
+          "raw": "setvar VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 59,
+          "raw": "release",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 60,
+          "raw": "end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_MonYouCaughtForMeThankYou",
+          "mode": "",
+          "line": 36
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_ButlerYesMyLady",
+          "mode": "",
+          "line": 41
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_SelphyGiveTokenOfAppreciation",
+          "mode": "",
+          "line": 45
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_ButlerIShallDoAsYouBid",
+          "mode": "",
+          "line": 47
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_ButlerPleaseAcceptThisAsHerThanks",
+          "mode": "",
+          "line": 54
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth",
+          "line": 49
+        },
+        {
+          "op": "call_if_eq",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerSouth",
+          "line": 50
+        },
+        {
+          "op": "call_if_eq",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerEast",
+          "line": 51
+        },
+        {
+          "op": "call_if_eq",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest",
+          "line": 52
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward",
+          "line": 56
+        }
+      ]
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth",
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_RESORT_GORGEOUS_HOUSE_SELPHY",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 63,
+          "raw": "applymovement LOCALID_RESORT_GORGEOUS_HOUSE_SELPHY, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER",
+            "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerNorth"
+          ],
+          "line": 64,
+          "raw": "applymovement LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerNorth",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 65,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 66,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 67,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 68,
+          "raw": "return",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerSouth": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerSouth",
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER",
+            "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerSouth"
+          ],
+          "line": 71,
+          "raw": "applymovement LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerSouth",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 72,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 73,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 74,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 75,
+          "raw": "return",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerEast": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerEast",
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_RESORT_GORGEOUS_HOUSE_SELPHY",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 78,
+          "raw": "applymovement LOCALID_RESORT_GORGEOUS_HOUSE_SELPHY, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER",
+            "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast"
+          ],
+          "line": 79,
+          "raw": "applymovement LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 80,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 81,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 82,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 83,
+          "raw": "return",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest",
+      "kind": "script",
+      "line": 85,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER",
+            "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerWest"
+          ],
+          "line": 86,
+          "raw": "applymovement LOCALID_RESORT_GORGEOUS_HOUSE_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerWest",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 87,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 88,
+          "raw": "return",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward",
+      "kind": "script",
+      "line": 90,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 91,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_ButlerBagAppearsToBeFull"
+          ],
+          "line": 92,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_ButlerBagAppearsToBeFull",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_FEMALE"
+          ],
+          "line": 93,
+          "raw": "textcolor NPC_TEXT_COLOR_FEMALE",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing"
+          ],
+          "line": 94,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "SHOWN_REQUESTED_MON"
+          ],
+          "line": 95,
+          "raw": "setflag SHOWN_REQUESTED_MON",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESORT_GORGEOUS_REQUESTED_MON",
+            "SPECIES_NONE"
+          ],
+          "line": 96,
+          "raw": "setvar VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 97,
+          "raw": "release",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 98,
+          "raw": "end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_ButlerBagAppearsToBeFull",
+          "mode": "",
+          "line": 92
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing",
+          "mode": "",
+          "line": 94
+        }
+      ],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_JustFulfilledRequest": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_JustFulfilledRequest",
+      "kind": "script",
+      "line": 100,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_SelphyWishYouBestOfLuck"
+          ],
+          "line": 101,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_SelphyWishYouBestOfLuck",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 102,
+          "raw": "release",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 103,
+          "raw": "end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_SelphyWishYouBestOfLuck",
+          "mode": "",
+          "line": 101
+        }
+      ],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_EventScript_Butler": {
+      "label": "FiveIsland_ResortGorgeous_House_EventScript_Butler",
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FiveIsland_ResortGorgeous_House_Text_LadySelphySmileHasBrillianceOfSun",
+            "MSGBOX_NPC"
+          ],
+          "line": 140,
+          "raw": "msgbox FiveIsland_ResortGorgeous_House_Text_LadySelphySmileHasBrillianceOfSun, MSGBOX_NPC",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 141,
+          "raw": "end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FiveIsland_ResortGorgeous_House_Text_LadySelphySmileHasBrillianceOfSun",
+          "mode": "MSGBOX_NPC",
+          "line": 140
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerNorth": {
+      "label": "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerNorth",
+      "kind": "movement",
+      "line": 105,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 106,
+          "raw": "walk_left",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 107,
+          "raw": "walk_left",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 108,
+          "raw": "walk_left",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 109,
+          "raw": "walk_down",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 110,
+          "raw": "walk_down",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 111,
+          "raw": "walk_down",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 112,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 113,
+          "raw": "step_end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerSouth": {
+      "label": "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerSouth",
+      "kind": "movement",
+      "line": 115,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 116,
+          "raw": "walk_left",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 117,
+          "raw": "walk_left",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_down",
+          "args": [],
+          "line": 118,
+          "raw": "walk_in_place_faster_down",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 119,
+          "raw": "step_end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast": {
+      "label": "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast",
+      "kind": "movement",
+      "line": 121,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 122,
+          "raw": "walk_left",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 123,
+          "raw": "walk_left",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 124,
+          "raw": "walk_left",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 125,
+          "raw": "walk_down",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 126,
+          "raw": "step_end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerWest": {
+      "label": "FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerWest",
+      "kind": "movement",
+      "line": 130,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 131,
+          "raw": "walk_up",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 132,
+          "raw": "step_end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FiveIsland_ResortGorgeous_House_Movement_ButlerEnter": {
+      "label": "FiveIsland_ResortGorgeous_House_Movement_ButlerEnter",
+      "kind": "movement",
+      "line": 134,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_in_place_down",
+          "args": [],
+          "line": 135,
+          "raw": "walk_in_place_down",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 136,
+          "raw": "step_end",
+          "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "FiveIsland_ResortGorgeous_House_Text_PleaseHearMyWish": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_PleaseHearMyWish",
+      "line": 143,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "秋穗：哦？\\n我在什么地方见过你吗？\\p呃，算了，那无所谓。\\p我实在是太无聊了，\\n所以，请听听我的愿望吧！$",
+      "display_text": "秋穗：哦？\n我在什么地方见过你吗？\n\n呃，算了，那无所谓。\n\n我实在是太无聊了，\n所以，请听听我的愿望吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 90,
+        "bytes": [
+          11,
+          17,
+          12,
+          142,
+          62,
+          10,
+          19,
+          61,
+          254,
+          13,
+          152,
+          15,
+          230,
+          11,
+          238,
+          9,
+          76,
+          3,
+          31,
+          3,
+          192,
+          5,
+          230,
+          4,
+          197,
+          9,
+          217,
+          9,
+          42,
+          61,
+          251,
+          19,
+          245,
+          59,
+          12,
+          134,
+          8,
+          158,
+          59,
+          9,
+          189,
+          13,
+          164,
+          12,
+          156,
+          13,
+          131,
+          55,
+          251,
+          13,
+          152,
+          11,
+          241,
+          15,
+          230,
+          12,
+          12,
+          12,
+          172,
+          13,
+          164,
+          8,
+          151,
+          8,
+          158,
+          59,
+          254,
+          12,
+          156,
+          15,
+          36,
+          59,
+          11,
+          13,
+          13,
+          7,
+          13,
+          7,
+          13,
+          152,
+          3,
+          11,
+          15,
+          196,
+          13,
+          99,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0B 11 0C 8E 3E 0A 13 3D FE 0D 98 0F E6 0B EE 09 4C 03 1F 03 C0 05 E6 04 C5 09 D9 09 2A 3D FB 13 F5 3B 0C 86 08 9E 3B 09 BD 0D A4 0C 9C 0D 83 37 FB 0D 98 0B F1 0F E6 0C 0C 0C AC 0D A4 08 97 08 9E 3B FE 0C 9C 0F 24 3B 0B 0D 0D 07 0D 07 0D 98 03 0B 0F C4 0D 63 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 30,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 41,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 55,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_WishToSeeMonPlease": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_WishToSeeMonPlease",
+      "line": 150,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "我想见一只宝可梦。\\n一只可爱的{STR_VAR_1}。\\p我迫不及待，想马上见到！\\n求你了，实现我的愿望吧！$",
+      "display_text": "我想见一只宝可梦。\n一只可爱的{STR_VAR_1}。\n\n我迫不及待，想马上见到！\n求你了，实现我的愿望吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 78,
+        "bytes": [
+          13,
+          152,
+          14,
+          24,
+          5,
+          230,
+          15,
+          11,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          254,
+          15,
+          11,
+          16,
+          140,
+          7,
+          215,
+          1,
+          13,
+          3,
+          11,
+          253,
+          2,
+          55,
+          251,
+          13,
+          152,
+          10,
+          131,
+          1,
+          214,
+          5,
+          155,
+          2,
+          221,
+          59,
+          14,
+          24,
+          9,
+          39,
+          11,
+          173,
+          5,
+          230,
+          3,
+          4,
+          60,
+          254,
+          11,
+          21,
+          9,
+          217,
+          8,
+          158,
+          59,
+          11,
+          241,
+          14,
+          3,
+          13,
+          152,
+          3,
+          11,
+          15,
+          196,
+          13,
+          99,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0D 98 0E 18 05 E6 0F 0B 10 8C 01 63 07 D7 09 66 37 FE 0F 0B 10 8C 07 D7 01 0D 03 0B FD 02 37 FB 0D 98 0A 83 01 D6 05 9B 02 DD 3B 0E 18 09 27 0B AD 05 E6 03 04 3C FE 0B 15 09 D9 08 9E 3B 0B F1 0E 03 0D 98 03 0B 0F C4 0D 63 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 16,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 42,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 56,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 16,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_OhImTiredOfWaiting": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_OhImTiredOfWaiting",
+      "line": 156,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "秋穗：哦，我已经不耐烦了！\\n你总是让我失望了！\\p好吧，这次我就暂且原谅你，\\n但下次别给我失败！$",
+      "display_text": "秋穗：哦，我已经不耐烦了！\n你总是让我失望了！\n\n好吧，这次我就暂且原谅你，\n但下次别给我失败！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 85,
+        "bytes": [
+          11,
+          17,
+          12,
+          142,
+          62,
+          10,
+          19,
+          59,
+          13,
+          152,
+          15,
+          33,
+          7,
+          93,
+          1,
+          214,
+          9,
+          195,
+          3,
+          182,
+          8,
+          158,
+          60,
+          254,
+          9,
+          217,
+          17,
+          20,
+          12,
+          12,
+          11,
+          67,
+          13,
+          152,
+          11,
+          227,
+          13,
+          99,
+          8,
+          158,
+          60,
+          251,
+          4,
+          233,
+          1,
+          40,
+          59,
+          16,
+          85,
+          2,
+          174,
+          13,
+          152,
+          7,
+          125,
+          15,
+          233,
+          10,
+          235,
+          15,
+          185,
+          8,
+          149,
+          9,
+          217,
+          59,
+          254,
+          2,
+          233,
+          13,
+          230,
+          2,
+          174,
+          1,
+          173,
+          4,
+          98,
+          13,
+          152,
+          11,
+          227,
+          1,
+          59,
+          60,
+          255
+        ],
+        "hex": "0B 11 0C 8E 3E 0A 13 3B 0D 98 0F 21 07 5D 01 D6 09 C3 03 B6 08 9E 3C FE 09 D9 11 14 0C 0C 0B 43 0D 98 0B E3 0D 63 08 9E 3C FB 04 E9 01 28 3B 10 55 02 AE 0D 98 07 7D 0F E9 0A EB 0F B9 08 95 09 D9 3B FE 02 E9 0D E6 02 AE 01 AD 04 62 0D 98 0B E3 01 3B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 50,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_MonYouCaughtForMeThankYou": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_MonYouCaughtForMeThankYou",
+      "line": 162,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "秋穗：哦！\\p哦，太好了！那一定是你\\n为我收服的{STR_VAR_1}。\\p咯咯……\\n看起来和你蛮像的。\\p真的很感谢你！\\p…… …… ……\\n还有什么事吗？\\p你可以走了。\\p…… …… ……\\n呃，好吧。我知道了！\\p庆介\\n快给我出来！$",
+      "display_text": "秋穗：哦！\n\n哦，太好了！那一定是你\n为我收服的{STR_VAR_1}。\n\n咯咯……\n看起来和你蛮像的。\n\n真的很感谢你！\n\n…… …… ……\n还有什么事吗？\n\n你可以走了。\n\n…… …… ……\n呃，好吧。我知道了！\n\n庆介\n快给我出来！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 162,
+        "bytes": [
+          11,
+          17,
+          12,
+          142,
+          62,
+          10,
+          19,
+          60,
+          251,
+          10,
+          19,
+          59,
+          12,
+          172,
+          4,
+          233,
+          8,
+          158,
+          60,
+          9,
+          189,
+          15,
+          11,
+          3,
+          77,
+          12,
+          12,
+          9,
+          217,
+          254,
+          13,
+          112,
+          13,
+          152,
+          12,
+          26,
+          4,
+          10,
+          3,
+          11,
+          253,
+          2,
+          55,
+          251,
+          7,
+          183,
+          7,
+          183,
+          176,
+          176,
+          254,
+          7,
+          194,
+          10,
+          171,
+          8,
+          41,
+          4,
+          243,
+          9,
+          217,
+          9,
+          51,
+          14,
+          30,
+          3,
+          11,
+          55,
+          251,
+          16,
+          89,
+          3,
+          11,
+          5,
+          11,
+          4,
+          58,
+          14,
+          70,
+          9,
+          217,
+          60,
+          251,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          254,
+          5,
+          70,
+          15,
+          126,
+          11,
+          238,
+          9,
+          76,
+          12,
+          7,
+          9,
+          42,
+          61,
+          251,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          17,
+          23,
+          8,
+          158,
+          55,
+          251,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          254,
+          19,
+          245,
+          59,
+          4,
+          233,
+          1,
+          40,
+          55,
+          13,
+          152,
+          16,
+          123,
+          3,
+          7,
+          8,
+          158,
+          60,
+          251,
+          11,
+          14,
+          7,
+          59,
+          254,
+          8,
+          3,
+          4,
+          98,
+          13,
+          152,
+          2,
+          120,
+          8,
+          41,
+          60,
+          255
+        ],
+        "hex": "0B 11 0C 8E 3E 0A 13 3C FB 0A 13 3B 0C AC 04 E9 08 9E 3C 09 BD 0F 0B 03 4D 0C 0C 09 D9 FE 0D 70 0D 98 0C 1A 04 0A 03 0B FD 02 37 FB 07 B7 07 B7 B0 B0 FE 07 C2 0A AB 08 29 04 F3 09 D9 09 33 0E 1E 03 0B 37 FB 10 59 03 0B 05 0B 04 3A 0E 46 09 D9 3C FB B0 B0 00 B0 B0 00 B0 B0 FE 05 46 0F 7E 0B EE 09 4C 0C 07 09 2A 3D FB 09 D9 07 D7 0F 24 11 17 08 9E 37 FB B0 B0 00 B0 B0 00 B0 B0 FE 13 F5 3B 04 E9 01 28 37 0D 98 10 7B 03 07 08 9E 3C FB 0B 0E 07 3B FE 08 03 04 62 0D 98 02 78 08 29 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 25,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 37,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 43,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 54,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 63,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 73,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 82,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 90,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 100,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 112,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 116,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 124,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 25,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_ButlerYesMyLady": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_ButlerYesMyLady",
+      "line": 177,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "管家：我在，大小姐。$",
+      "display_text": "管家：我在，大小姐。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          4,
+          164,
+          5,
+          189,
+          62,
+          13,
+          152,
+          15,
+          230,
+          59,
+          2,
+          211,
+          14,
+          44,
+          7,
+          53,
+          55,
+          255
+        ],
+        "hex": "04 A4 05 BD 3E 0D 98 0F E6 3B 02 D3 0E 2C 07 35 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_SelphyGiveTokenOfAppreciation": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_SelphyGiveTokenOfAppreciation",
+      "line": 180,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "秋穗：你就负责\\n给那个人点什么奖励吧！$",
+      "display_text": "秋穗：你就负责\n给那个人点什么奖励吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          11,
+          17,
+          12,
+          142,
+          62,
+          9,
+          217,
+          7,
+          125,
+          4,
+          36,
+          16,
+          5,
+          254,
+          4,
+          98,
+          9,
+          189,
+          4,
+          96,
+          11,
+          75,
+          3,
+          42,
+          11,
+          238,
+          9,
+          76,
+          7,
+          3,
+          8,
+          109,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0B 11 0C 8E 3E 09 D9 07 7D 04 24 10 05 FE 04 62 09 BD 04 60 0B 4B 03 2A 0B EE 09 4C 07 03 08 6D 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_ButlerIShallDoAsYouBid": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_ButlerIShallDoAsYouBid",
+      "line": 184,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "管家：好的，我会按照您的吩咐。\\n大小姐。$",
+      "display_text": "管家：好的，我会按照您的吩咐。\n大小姐。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          4,
+          164,
+          5,
+          189,
+          62,
+          4,
+          233,
+          3,
+          11,
+          59,
+          13,
+          152,
+          5,
+          110,
+          1,
+          19,
+          16,
+          72,
+          9,
+          240,
+          3,
+          11,
+          3,
+          215,
+          4,
+          42,
+          55,
+          254,
+          2,
+          211,
+          14,
+          44,
+          7,
+          53,
+          55,
+          255
+        ],
+        "hex": "04 A4 05 BD 3E 04 E9 03 0B 3B 0D 98 05 6E 01 13 10 48 09 F0 03 0B 03 D7 04 2A 37 FE 02 D3 0E 2C 07 35 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_ButlerPleaseAcceptThisAsHerThanks": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_ButlerPleaseAcceptThisAsHerThanks",
+      "line": 188,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "管家：真的谢谢你\\n让大小姐这么开心。\\p请接受你应得的奖励吧……$",
+      "display_text": "管家：真的谢谢你\n让大小姐这么开心。\n\n请接受你应得的奖励吧……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 57,
+        "bytes": [
+          4,
+          164,
+          5,
+          189,
+          62,
+          16,
+          89,
+          3,
+          11,
+          14,
+          70,
+          14,
+          70,
+          9,
+          217,
+          254,
+          11,
+          67,
+          2,
+          211,
+          14,
+          44,
+          7,
+          53,
+          16,
+          85,
+          9,
+          76,
+          7,
+          184,
+          14,
+          79,
+          55,
+          251,
+          11,
+          13,
+          7,
+          37,
+          12,
+          33,
+          9,
+          217,
+          15,
+          84,
+          3,
+          10,
+          3,
+          11,
+          7,
+          3,
+          8,
+          109,
+          1,
+          40,
+          176,
+          176,
+          255
+        ],
+        "hex": "04 A4 05 BD 3E 10 59 03 0B 0E 46 0E 46 09 D9 FE 0B 43 02 D3 0E 2C 07 35 10 55 09 4C 07 B8 0E 4F 37 FB 0B 0D 07 25 0C 21 09 D9 0F 54 03 0A 03 0B 07 03 08 6D 01 28 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 33,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_ButlerBagAppearsToBeFull": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_ButlerBagAppearsToBeFull",
+      "line": 193,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "管家：真不幸，\\n你的背包好像满了……$",
+      "display_text": "管家：真不幸，\n你的背包好像满了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          4,
+          164,
+          5,
+          189,
+          62,
+          16,
+          89,
+          1,
+          214,
+          14,
+          93,
+          59,
+          254,
+          9,
+          217,
+          3,
+          11,
+          1,
+          112,
+          1,
+          91,
+          4,
+          233,
+          14,
+          30,
+          9,
+          52,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "04 A4 05 BD 3E 10 59 01 D6 0E 5D 3B FE 09 D9 03 0B 01 70 01 5B 04 E9 0E 1E 09 34 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing",
+      "line": 197,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "喔……\\n太遗憾了！$",
+      "display_text": "喔……\n太遗憾了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 15,
+        "bytes": [
+          20,
+          84,
+          176,
+          176,
+          254,
+          12,
+          172,
+          15,
+          21,
+          4,
+          220,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "14 54 B0 B0 FE 0C AC 0F 15 04 DC 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_SelphyWishYouBestOfLuck": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_SelphyWishYouBestOfLuck",
+      "line": 201,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "秋穗：祝你好运。$",
+      "display_text": "秋穗：祝你好运。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 15,
+        "bytes": [
+          11,
+          17,
+          12,
+          142,
+          62,
+          16,
+          210,
+          9,
+          217,
+          4,
+          233,
+          15,
+          215,
+          55,
+          255
+        ],
+        "hex": "0B 11 0C 8E 3E 10 D2 09 D9 04 E9 0F D7 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FiveIsland_ResortGorgeous_House_Text_LadySelphySmileHasBrillianceOfSun": {
+      "label": "FiveIsland_ResortGorgeous_House_Text_LadySelphySmileHasBrillianceOfSun",
+      "line": 204,
+      "source_file": "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc",
+      "raw_text": "管家：秋穗小姐的微笑\\n就像温暖的阳光。\\p拜托了！\\n请带给秋穗小姐快乐！$",
+      "display_text": "管家：秋穗小姐的微笑\n就像温暖的阳光。\n\n拜托了！\n请带给秋穗小姐快乐！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 64,
+        "bytes": [
+          4,
+          164,
+          5,
+          189,
+          62,
+          11,
+          17,
+          12,
+          142,
+          14,
+          44,
+          7,
+          53,
+          3,
+          11,
+          13,
+          104,
+          14,
+          49,
+          254,
+          7,
+          125,
+          14,
+          30,
+          13,
+          136,
+          10,
+          12,
+          3,
+          11,
+          14,
+          221,
+          4,
+          170,
+          55,
+          251,
+          1,
+          60,
+          13,
+          56,
+          8,
+          158,
+          60,
+          254,
+          11,
+          13,
+          2,
+          216,
+          4,
+          98,
+          11,
+          17,
+          12,
+          142,
+          14,
+          44,
+          7,
+          53,
+          8,
+          3,
+          8,
+          75,
+          60,
+          255
+        ],
+        "hex": "04 A4 05 BD 3E 0B 11 0C 8E 0E 2C 07 35 03 0B 0D 68 0E 31 FE 07 7D 0E 1E 0D 88 0A 0C 03 0B 0E DD 04 AA 37 FB 01 3C 0D 38 08 9E 3C FE 0B 0D 02 D8 04 62 0B 11 0C 8E 0E 2C 07 35 08 03 08 4B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 38,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addobject": 1,
+      "applymovement": 11,
+      "call_if_eq": 4,
+      "closemessage": 1,
+      "copyobjectxytoperm": 1,
+      "copyvar": 1,
+      "faceplayer": 1,
+      "giveitem": 1,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "setflag": 2,
+      "setvar": 2,
+      "special": 2,
+      "specialvar": 1,
+      "step_end": 5,
+      "textcolor": 5,
+      "waitmovement": 9,
+      "walk_down": 4,
+      "walk_in_place_down": 1,
+      "walk_in_place_faster_down": 1,
+      "walk_in_place_faster_right": 1,
+      "walk_left": 8,
+      "walk_up": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 30,
+    "script_count": 13,
+    "movement_count": 5,
+    "text_count": 12,
+    "encoded_text_count": 12,
+    "text_source_byte_count": 688,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 12
+    },
+    "orphan_instruction_count": 1,
+    "op_counts": {
+      "addobject": 1,
+      "applymovement": 11,
+      "call_if_eq": 4,
+      "closemessage": 1,
+      "copyobjectxytoperm": 1,
+      "copyvar": 1,
+      "end": 8,
+      "faceplayer": 1,
+      "giveitem": 1,
+      "goto": 3,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 12,
+      "release": 4,
+      "return": 4,
+      "setflag": 2,
+      "setvar": 2,
+      "special": 2,
+      "specialvar": 1,
+      "step_end": 5,
+      "textcolor": 5,
+      "waitmovement": 9,
+      "walk_down": 4,
+      "walk_in_place_down": 1,
+      "walk_in_place_faster_down": 1,
+      "walk_in_place_faster_right": 1,
+      "walk_left": 8,
+      "walk_up": 1
+    }
+  }
+}

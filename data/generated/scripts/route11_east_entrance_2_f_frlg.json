@@ -1,0 +1,2331 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route11_EastEntrance_2F_Frlg",
+    "map_script": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+    "map_json": "data/maps/Route11_EastEntrance_2F_Frlg/map.json",
+    "map_id": "MAP_ROUTE11_EAST_ENTRANCE_2F",
+    "map_name": "Route11_EastEntrance_2F_Frlg"
+  },
+  "labels": {
+    "Route11_EastEntrance_2F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 3,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route11_EastEntrance_2F_EventScript_LeftBinoculars": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "Route11_EastEntrance_2F_EventScript_LeftBinocularsSnorlaxGone": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route11_EastEntrance_2F_EventScript_RightBinoculars": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route11_EastEntrance_2F_EventScript_Turner": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "Route11_EastEntrance_2F_EventScript_DeclineTrade": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route11_EastEntrance_2F_EventScript_NotRequestedMon": {
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route11_EastEntrance_2F_EventScript_AlreadyTraded": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route11_EastEntrance_2F_EventScript_Aide": {
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 19
+    },
+    "Route11_EastEntrance_2F_EventScript_AlreadyGotItemfinder": {
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route11_EastEntrance_2F_EventScript_GetAideRequestInfo": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route11_EastEntrance_2F_Text_GiveItemfinderIfCaught30": {
+      "kind": "text",
+      "line": 87,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "Route11_EastEntrance_2F_Text_GreatHereYouGo": {
+      "kind": "text",
+      "line": 99,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route11_EastEntrance_2F_Text_ReceivedItemfinderFromAide": {
+      "kind": "text",
+      "line": 105,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route11_EastEntrance_2F_Text_ExplainItemfinder": {
+      "kind": "text",
+      "line": 109,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "Route11_EastEntrance_2F_Text_BigMonAsleepOnRoad": {
+      "kind": "text",
+      "line": 121,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route11_EastEntrance_2F_Text_WhatABreathtakingView": {
+      "kind": "text",
+      "line": 127,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route11_EastEntrance_2F_Text_RockTunnelGoodRouteToLavender": {
+      "kind": "text",
+      "line": 132,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 6
+    }
+  },
+  "scripts": {
+    "Route11_EastEntrance_2F_Frlg_MapScripts": {
+      "label": "Route11_EastEntrance_2F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 3,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route11_EastEntrance_2F_EventScript_LeftBinoculars": {
+      "label": "Route11_EastEntrance_2F_EventScript_LeftBinoculars",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 7,
+          "raw": "lockall",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_WOKE_UP_ROUTE_12_SNORLAX",
+            "Route11_EastEntrance_2F_EventScript_LeftBinocularsSnorlaxGone"
+          ],
+          "line": 8,
+          "raw": "goto_if_set FLAG_WOKE_UP_ROUTE_12_SNORLAX, Route11_EastEntrance_2F_EventScript_LeftBinocularsSnorlaxGone",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route11_EastEntrance_2F_Text_BigMonAsleepOnRoad"
+          ],
+          "line": 9,
+          "raw": "msgbox Route11_EastEntrance_2F_Text_BigMonAsleepOnRoad",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 10,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route11_EastEntrance_2F_Text_BigMonAsleepOnRoad",
+          "mode": "",
+          "line": 9
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route11_EastEntrance_2F_EventScript_LeftBinocularsSnorlaxGone",
+          "line": 8
+        }
+      ]
+    },
+    "Route11_EastEntrance_2F_EventScript_LeftBinocularsSnorlaxGone": {
+      "label": "Route11_EastEntrance_2F_EventScript_LeftBinocularsSnorlaxGone",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route11_EastEntrance_2F_Text_WhatABreathtakingView"
+          ],
+          "line": 14,
+          "raw": "msgbox Route11_EastEntrance_2F_Text_WhatABreathtakingView",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 15,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route11_EastEntrance_2F_Text_WhatABreathtakingView",
+          "mode": "",
+          "line": 14
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route11_EastEntrance_2F_EventScript_RightBinoculars": {
+      "label": "Route11_EastEntrance_2F_EventScript_RightBinoculars",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route11_EastEntrance_2F_Text_RockTunnelGoodRouteToLavender",
+            "MSGBOX_SIGN"
+          ],
+          "line": 19,
+          "raw": "msgbox Route11_EastEntrance_2F_Text_RockTunnelGoodRouteToLavender, MSGBOX_SIGN",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route11_EastEntrance_2F_Text_RockTunnelGoodRouteToLavender",
+          "mode": "MSGBOX_SIGN",
+          "line": 19
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route11_EastEntrance_2F_EventScript_Turner": {
+      "label": "Route11_EastEntrance_2F_EventScript_Turner",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 23,
+          "raw": "lock",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 24,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8008",
+            "INGAME_TRADE_NIDORINOA"
+          ],
+          "line": 25,
+          "raw": "setvar VAR_0x8008, INGAME_TRADE_NIDORINOA",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpeciesInfo"
+          ],
+          "line": 26,
+          "raw": "call EventScript_GetInGameTradeSpeciesInfo",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DID_NINA_TRADE",
+            "Route11_EastEntrance_2F_EventScript_AlreadyTraded"
+          ],
+          "line": 27,
+          "raw": "goto_if_set FLAG_DID_NINA_TRADE, Route11_EastEntrance_2F_EventScript_AlreadyTraded",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_LookingForMonWannaTradeForMon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 28,
+          "raw": "msgbox Trade_Text_LookingForMonWannaTradeForMon, MSGBOX_YESNO",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "Route11_EastEntrance_2F_EventScript_DeclineTrade"
+          ],
+          "line": 29,
+          "raw": "goto_if_eq VAR_RESULT, NO, Route11_EastEntrance_2F_EventScript_DeclineTrade",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_ChooseMonForInGameTrade"
+          ],
+          "line": 30,
+          "raw": "call EventScript_ChooseMonForInGameTrade",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_0x8004",
+            "PARTY_SIZE",
+            "Route11_EastEntrance_2F_EventScript_DeclineTrade"
+          ],
+          "line": 31,
+          "raw": "goto_if_ge VAR_0x8004, PARTY_SIZE, Route11_EastEntrance_2F_EventScript_DeclineTrade",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpecies"
+          ],
+          "line": 32,
+          "raw": "call EventScript_GetInGameTradeSpecies",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "VAR_0x8009",
+            "Route11_EastEntrance_2F_EventScript_NotRequestedMon"
+          ],
+          "line": 33,
+          "raw": "goto_if_ne VAR_RESULT, VAR_0x8009, Route11_EastEntrance_2F_EventScript_NotRequestedMon",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_DoInGameTrade"
+          ],
+          "line": 34,
+          "raw": "call EventScript_DoInGameTrade",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_HeyThanks"
+          ],
+          "line": 35,
+          "raw": "msgbox Trade_Text_HeyThanks",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DID_NINA_TRADE"
+          ],
+          "line": 36,
+          "raw": "setflag FLAG_DID_NINA_TRADE",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 37,
+          "raw": "release",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 38,
+          "raw": "end",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_LookingForMonWannaTradeForMon",
+          "mode": "MSGBOX_YESNO",
+          "line": 28
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_HeyThanks",
+          "mode": "",
+          "line": 35
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpeciesInfo",
+          "line": 26
+        },
+        {
+          "op": "goto_if_set",
+          "target": "Route11_EastEntrance_2F_EventScript_AlreadyTraded",
+          "line": 27
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route11_EastEntrance_2F_EventScript_DeclineTrade",
+          "line": 29
+        },
+        {
+          "op": "call",
+          "target": "EventScript_ChooseMonForInGameTrade",
+          "line": 30
+        },
+        {
+          "op": "goto_if_ge",
+          "target": "Route11_EastEntrance_2F_EventScript_DeclineTrade",
+          "line": 31
+        },
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpecies",
+          "line": 32
+        },
+        {
+          "op": "goto_if_ne",
+          "target": "Route11_EastEntrance_2F_EventScript_NotRequestedMon",
+          "line": 33
+        },
+        {
+          "op": "call",
+          "target": "EventScript_DoInGameTrade",
+          "line": 34
+        }
+      ]
+    },
+    "Route11_EastEntrance_2F_EventScript_DeclineTrade": {
+      "label": "Route11_EastEntrance_2F_EventScript_DeclineTrade",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_AwwOhWell"
+          ],
+          "line": 41,
+          "raw": "msgbox Trade_Text_AwwOhWell",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 42,
+          "raw": "release",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 43,
+          "raw": "end",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_AwwOhWell",
+          "mode": "",
+          "line": 41
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route11_EastEntrance_2F_EventScript_NotRequestedMon": {
+      "label": "Route11_EastEntrance_2F_EventScript_NotRequestedMon",
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 46,
+          "raw": "bufferspeciesname STR_VAR_1, VAR_0x8009",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_WhatThatsNoMon"
+          ],
+          "line": 47,
+          "raw": "msgbox Trade_Text_WhatThatsNoMon",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 48,
+          "raw": "release",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_WhatThatsNoMon",
+          "mode": "",
+          "line": 47
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route11_EastEntrance_2F_EventScript_AlreadyTraded": {
+      "label": "Route11_EastEntrance_2F_EventScript_AlreadyTraded",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_IsntMyOldMonGreat"
+          ],
+          "line": 52,
+          "raw": "msgbox Trade_Text_IsntMyOldMonGreat",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 53,
+          "raw": "release",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 54,
+          "raw": "end",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_IsntMyOldMonGreat",
+          "mode": "",
+          "line": 52
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route11_EastEntrance_2F_EventScript_Aide": {
+      "label": "Route11_EastEntrance_2F_EventScript_Aide",
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 57,
+          "raw": "lock",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 58,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Route11_EastEntrance_2F_EventScript_GetAideRequestInfo"
+          ],
+          "line": 59,
+          "raw": "call Route11_EastEntrance_2F_EventScript_GetAideRequestInfo",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_GOT_ITEMFINDER",
+            "Route11_EastEntrance_2F_EventScript_AlreadyGotItemfinder"
+          ],
+          "line": 60,
+          "raw": "goto_if_set FLAG_GOT_ITEMFINDER, Route11_EastEntrance_2F_EventScript_AlreadyGotItemfinder",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route11_EastEntrance_2F_Text_GiveItemfinderIfCaught30",
+            "MSGBOX_YESNO"
+          ],
+          "line": 61,
+          "raw": "msgbox Route11_EastEntrance_2F_Text_GiveItemfinderIfCaught30, MSGBOX_YESNO",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "Aide_EventScript_DeclineCheckMons"
+          ],
+          "line": 62,
+          "raw": "goto_if_eq VAR_RESULT, NO, Aide_EventScript_DeclineCheckMons",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "0"
+          ],
+          "line": 63,
+          "raw": "setvar VAR_0x8004, 0",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetFrlgPokedexCount"
+          ],
+          "line": 64,
+          "raw": "specialvar VAR_RESULT, GetFrlgPokedexCount",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_3",
+            "VAR_0x8006"
+          ],
+          "line": 65,
+          "raw": "buffernumberstring STR_VAR_3, VAR_0x8006",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Route11_EastEntrance_2F_EventScript_GetAideRequestInfo"
+          ],
+          "line": 66,
+          "raw": "call Route11_EastEntrance_2F_EventScript_GetAideRequestInfo",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_lt",
+          "args": [
+            "VAR_0x8006",
+            "REQUIRED_CAUGHT_MONS",
+            "Aide_EventScript_HaventCaughtEnough"
+          ],
+          "line": 67,
+          "raw": "goto_if_lt VAR_0x8006, REQUIRED_CAUGHT_MONS, Aide_EventScript_HaventCaughtEnough",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route11_EastEntrance_2F_Text_GreatHereYouGo"
+          ],
+          "line": 68,
+          "raw": "msgbox Route11_EastEntrance_2F_Text_GreatHereYouGo",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "checkitemspace",
+          "args": [
+            "ITEM_ITEMFINDER"
+          ],
+          "line": 69,
+          "raw": "checkitemspace ITEM_ITEMFINDER",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Aide_EventScript_NoRoomForItem"
+          ],
+          "line": 70,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Aide_EventScript_NoRoomForItem",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "giveitem_msg",
+          "args": [
+            "Route11_EastEntrance_2F_Text_ReceivedItemfinderFromAide",
+            "ITEM_ITEMFINDER"
+          ],
+          "line": 71,
+          "raw": "giveitem_msg Route11_EastEntrance_2F_Text_ReceivedItemfinderFromAide, ITEM_ITEMFINDER",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_GOT_ITEMFINDER"
+          ],
+          "line": 72,
+          "raw": "setflag FLAG_GOT_ITEMFINDER",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route11_EastEntrance_2F_Text_ExplainItemfinder"
+          ],
+          "line": 73,
+          "raw": "msgbox Route11_EastEntrance_2F_Text_ExplainItemfinder",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 74,
+          "raw": "release",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 75,
+          "raw": "end",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route11_EastEntrance_2F_Text_GiveItemfinderIfCaught30",
+          "mode": "MSGBOX_YESNO",
+          "line": 61
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route11_EastEntrance_2F_Text_GreatHereYouGo",
+          "mode": "",
+          "line": 68
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route11_EastEntrance_2F_Text_ExplainItemfinder",
+          "mode": "",
+          "line": 73
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Route11_EastEntrance_2F_EventScript_GetAideRequestInfo",
+          "line": 59
+        },
+        {
+          "op": "goto_if_set",
+          "target": "Route11_EastEntrance_2F_EventScript_AlreadyGotItemfinder",
+          "line": 60
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Aide_EventScript_DeclineCheckMons",
+          "line": 62
+        },
+        {
+          "op": "call",
+          "target": "Route11_EastEntrance_2F_EventScript_GetAideRequestInfo",
+          "line": 66
+        },
+        {
+          "op": "goto_if_lt",
+          "target": "Aide_EventScript_HaventCaughtEnough",
+          "line": 67
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Aide_EventScript_NoRoomForItem",
+          "line": 70
+        }
+      ]
+    },
+    "Route11_EastEntrance_2F_EventScript_AlreadyGotItemfinder": {
+      "label": "Route11_EastEntrance_2F_EventScript_AlreadyGotItemfinder",
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route11_EastEntrance_2F_Text_ExplainItemfinder"
+          ],
+          "line": 78,
+          "raw": "msgbox Route11_EastEntrance_2F_Text_ExplainItemfinder",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 79,
+          "raw": "release",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 80,
+          "raw": "end",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route11_EastEntrance_2F_Text_ExplainItemfinder",
+          "mode": "",
+          "line": 78
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route11_EastEntrance_2F_EventScript_GetAideRequestInfo": {
+      "label": "Route11_EastEntrance_2F_EventScript_GetAideRequestInfo",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "buffernumberstring",
+          "args": [
+            "STR_VAR_1",
+            "REQUIRED_CAUGHT_MONS"
+          ],
+          "line": 83,
+          "raw": "buffernumberstring STR_VAR_1, REQUIRED_CAUGHT_MONS",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferitemname",
+          "args": [
+            "STR_VAR_2",
+            "ITEM_ITEMFINDER"
+          ],
+          "line": 84,
+          "raw": "bufferitemname STR_VAR_2, ITEM_ITEMFINDER",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 85,
+          "raw": "return",
+          "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route11_EastEntrance_2F_Text_GiveItemfinderIfCaught30": {
+      "label": "Route11_EastEntrance_2F_Text_GiveItemfinderIfCaught30",
+      "line": 87,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "raw_text": "嗨！还记得我吗？\\n我是大木博士的助手之一。\\p如果你的宝可梦图鉴已经收集了\\n{STR_VAR_1}个宝可梦的数据， 我就会\\l给你一个奖励。\\p大木博士委托我把\\n{STR_VAR_2}给你。\\p那么{PLAYER}让我问问你。\\p你已经得到了至少\\n{STR_VAR_1}种宝可梦了吗？$",
+      "display_text": "嗨！还记得我吗？\n我是大木博士的助手之一。\n\n如果你的宝可梦图鉴已经收集了\n{STR_VAR_1}个宝可梦的数据， 我就会\n给你一个奖励。\n\n大木博士委托我把\n{STR_VAR_2}给你。\n\n那么{PLAYER}让我问问你。\n\n你已经得到了至少\n{STR_VAR_1}种宝可梦了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 183,
+        "bytes": [
+          20,
+          103,
+          60,
+          5,
+          70,
+          5,
+          178,
+          3,
+          10,
+          13,
+          152,
+          9,
+          42,
+          61,
+          254,
+          13,
+          152,
+          12,
+          12,
+          2,
+          211,
+          9,
+          180,
+          1,
+          196,
+          12,
+          4,
+          3,
+          11,
+          16,
+          203,
+          12,
+          27,
+          16,
+          127,
+          15,
+          11,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          36,
+          5,
+          227,
+          15,
+          33,
+          7,
+          93,
+          12,
+          26,
+          5,
+          154,
+          8,
+          158,
+          254,
+          253,
+          2,
+          4,
+          96,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          12,
+          66,
+          7,
+          141,
+          59,
+          0,
+          13,
+          152,
+          7,
+          125,
+          5,
+          110,
+          250,
+          4,
+          98,
+          9,
+          217,
+          15,
+          11,
+          4,
+          96,
+          7,
+          3,
+          8,
+          109,
+          55,
+          251,
+          2,
+          211,
+          9,
+          180,
+          1,
+          196,
+          12,
+          4,
+          13,
+          117,
+          13,
+          56,
+          13,
+          152,
+          1,
+          48,
+          254,
+          253,
+          3,
+          4,
+          98,
+          9,
+          217,
+          55,
+          251,
+          9,
+          189,
+          9,
+          76,
+          253,
+          1,
+          11,
+          67,
+          13,
+          152,
+          13,
+          144,
+          13,
+          144,
+          9,
+          217,
+          55,
+          251,
+          9,
+          217,
+          15,
+          33,
+          7,
+          93,
+          3,
+          10,
+          3,
+          4,
+          8,
+          158,
+          16,
+          146,
+          11,
+          183,
+          254,
+          253,
+          2,
+          16,
+          167,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "14 67 3C 05 46 05 B2 03 0A 0D 98 09 2A 3D FE 0D 98 0C 0C 02 D3 09 B4 01 C4 0C 04 03 0B 10 CB 0C 1B 10 7F 0F 0B 37 FB 0B 67 04 C3 09 D9 03 0B 01 63 07 D7 09 66 0D 24 05 E3 0F 21 07 5D 0C 1A 05 9A 08 9E FE FD 02 04 60 01 63 07 D7 09 66 03 0B 0C 42 07 8D 3B 00 0D 98 07 7D 05 6E FA 04 62 09 D9 0F 0B 04 60 07 03 08 6D 37 FB 02 D3 09 B4 01 C4 0C 04 0D 75 0D 38 0D 98 01 30 FE FD 03 04 62 09 D9 37 FB 09 BD 09 4C FD 01 0B 43 0D 98 0D 90 0D 90 09 D9 37 FB 09 D9 0F 21 07 5D 03 0A 03 04 08 9E 10 92 0B B7 FE FD 02 10 A7 01 63 07 D7 09 66 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 38,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 40,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 63,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 72,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 82,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 84,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 98,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 102,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 116,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 126,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 128,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 146,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 40,
+            "bytes": [
+              253,
+              2
+            ]
+          },
+          {
+            "token": "STR_VAR_2",
+            "offset": 84,
+            "bytes": [
+              253,
+              3
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 102,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_1",
+            "offset": 128,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Route11_EastEntrance_2F_Text_GreatHereYouGo": {
+      "label": "Route11_EastEntrance_2F_Text_GreatHereYouGo",
+      "line": 99,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "raw_text": "太棒了！你已经收集了\\n{STR_VAR_3}种宝可梦了！\\p恭喜！\\n这是奖励，拿去吧！$",
+      "display_text": "太棒了！你已经收集了\n{STR_VAR_3}种宝可梦了！\n\n恭喜！\n这是奖励，拿去吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 57,
+        "bytes": [
+          12,
+          172,
+          1,
+          83,
+          8,
+          158,
+          60,
+          9,
+          217,
+          15,
+          33,
+          7,
+          93,
+          12,
+          26,
+          5,
+          154,
+          8,
+          158,
+          254,
+          253,
+          4,
+          16,
+          167,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          158,
+          60,
+          251,
+          4,
+          111,
+          13,
+          214,
+          60,
+          254,
+          16,
+          85,
+          12,
+          12,
+          7,
+          3,
+          8,
+          109,
+          59,
+          9,
+          185,
+          11,
+          37,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0C AC 01 53 08 9E 3C 09 D9 0F 21 07 5D 0C 1A 05 9A 08 9E FE FD 04 10 A7 01 63 07 D7 09 66 08 9E 3C FB 04 6F 0D D6 3C FE 10 55 0C 0C 07 03 08 6D 3B 09 B9 0B 25 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_3}",
+            "offset": 12,
+            "bytes": [
+              253,
+              4
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_3",
+                "bytes": [
+                  253,
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_3",
+            "offset": 12,
+            "bytes": [
+              253,
+              4
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Route11_EastEntrance_2F_Text_ReceivedItemfinderFromAide": {
+      "label": "Route11_EastEntrance_2F_Text_ReceivedItemfinderFromAide",
+      "line": 105,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}从助手那儿\\n得到了{STR_VAR_2}。$",
+      "display_text": "{PLAYER}从助手那儿\n得到了{STR_VAR_2}。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          253,
+          1,
+          2,
+          179,
+          16,
+          203,
+          12,
+          27,
+          9,
+          189,
+          3,
+          158,
+          254,
+          3,
+          10,
+          3,
+          4,
+          8,
+          158,
+          253,
+          3,
+          55,
+          255
+        ],
+        "hex": "FD 01 02 B3 10 CB 0C 1B 09 BD 03 9E FE 03 0A 03 04 08 9E FD 03 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_2}",
+            "offset": 18,
+            "bytes": [
+              253,
+              3
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_2",
+                "bytes": [
+                  253,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "STR_VAR_2",
+            "offset": 18,
+            "bytes": [
+              253,
+              3
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Route11_EastEntrance_2F_Text_ExplainItemfinder": {
+      "label": "Route11_EastEntrance_2F_Text_ExplainItemfinder",
+      "line": 109,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "raw_text": "地面上有\\n隐藏的道具。\\p就用寻宝机器来找出\\n在你周围的隐藏道具吧。\\p由于这个机器机能有限，\\n所以它不能直接探明道具的位置。\\p它所做的\\n只有指向道具所在的方向。\\p找准方向之后，\\n侦察一下你认为可疑的地方。$",
+      "display_text": "地面上有\n隐藏的道具。\n\n就用寻宝机器来找出\n在你周围的隐藏道具吧。\n\n由于这个机器机能有限，\n所以它不能直接探明道具的位置。\n\n它所做的\n只有指向道具所在的方向。\n\n找准方向之后，\n侦察一下你认为可疑的地方。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 187,
+        "bytes": [
+          3,
+          31,
+          9,
+          126,
+          11,
+          173,
+          15,
+          126,
+          254,
+          15,
+          78,
+          1,
+          243,
+          3,
+          11,
+          3,
+          7,
+          7,
+          143,
+          55,
+          251,
+          7,
+          125,
+          15,
+          113,
+          14,
+          153,
+          1,
+          99,
+          5,
+          135,
+          10,
+          178,
+          8,
+          41,
+          16,
+          69,
+          2,
+          120,
+          254,
+          15,
+          230,
+          9,
+          217,
+          16,
+          173,
+          13,
+          109,
+          3,
+          11,
+          15,
+          78,
+          1,
+          243,
+          3,
+          7,
+          7,
+          143,
+          1,
+          40,
+          55,
+          251,
+          15,
+          119,
+          15,
+          136,
+          16,
+          85,
+          4,
+          96,
+          5,
+          135,
+          10,
+          178,
+          5,
+          135,
+          9,
+          210,
+          15,
+          126,
+          14,
+          11,
+          59,
+          254,
+          12,
+          156,
+          15,
+          36,
+          12,
+          159,
+          1,
+          214,
+          9,
+          210,
+          16,
+          130,
+          7,
+          37,
+          12,
+          190,
+          9,
+          143,
+          3,
+          7,
+          7,
+          143,
+          3,
+          11,
+          13,
+          129,
+          16,
+          148,
+          55,
+          251,
+          12,
+          159,
+          12,
+          156,
+          17,
+          46,
+          3,
+          11,
+          254,
+          16,
+          140,
+          15,
+          126,
+          16,
+          137,
+          14,
+          31,
+          3,
+          7,
+          7,
+          143,
+          12,
+          156,
+          15,
+          230,
+          3,
+          11,
+          3,
+          192,
+          14,
+          31,
+          55,
+          251,
+          16,
+          69,
+          16,
+          235,
+          3,
+          192,
+          14,
+          31,
+          16,
+          127,
+          5,
+          34,
+          59,
+          254,
+          16,
+          95,
+          2,
+          16,
+          15,
+          11,
+          13,
+          230,
+          9,
+          217,
+          11,
+          79,
+          13,
+          112,
+          7,
+          215,
+          15,
+          25,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          55,
+          255
+        ],
+        "hex": "03 1F 09 7E 0B AD 0F 7E FE 0F 4E 01 F3 03 0B 03 07 07 8F 37 FB 07 7D 0F 71 0E 99 01 63 05 87 0A B2 08 29 10 45 02 78 FE 0F E6 09 D9 10 AD 0D 6D 03 0B 0F 4E 01 F3 03 07 07 8F 01 28 37 FB 0F 77 0F 88 10 55 04 60 05 87 0A B2 05 87 09 D2 0F 7E 0E 0B 3B FE 0C 9C 0F 24 0C 9F 01 D6 09 D2 10 82 07 25 0C BE 09 8F 03 07 07 8F 03 0B 0D 81 10 94 37 FB 0C 9F 0C 9C 11 2E 03 0B FE 10 8C 0F 7E 10 89 0E 1F 03 07 07 8F 0C 9C 0F E6 03 0B 03 C0 0E 1F 37 FB 10 45 10 EB 03 C0 0E 1F 10 7F 05 22 3B FE 10 5F 02 10 0F 0B 0D E6 09 D9 0B 4F 0D 70 07 D7 0F 19 03 0B 03 1F 03 C0 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 23,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 36,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 49,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 66,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 72,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 86,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 95,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 110,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route11_EastEntrance_2F_Text_BigMonAsleepOnRoad": {
+      "label": "Route11_EastEntrance_2F_Text_BigMonAsleepOnRoad",
+      "line": 121,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "raw_text": "一架望远镜……\\n我来看看……\\p啊，一只体形巨大的宝可梦\\n正在路上睡觉！$",
+      "display_text": "一架望远镜……\n我来看看……\n\n啊，一只体形巨大的宝可梦\n正在路上睡觉！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 62,
+        "bytes": [
+          15,
+          11,
+          5,
+          199,
+          13,
+          99,
+          15,
+          194,
+          7,
+          101,
+          176,
+          176,
+          254,
+          13,
+          152,
+          8,
+          41,
+          7,
+          194,
+          7,
+          194,
+          176,
+          176,
+          251,
+          1,
+          0,
+          59,
+          15,
+          11,
+          16,
+          140,
+          12,
+          230,
+          14,
+          89,
+          7,
+          142,
+          2,
+          211,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          16,
+          112,
+          15,
+          230,
+          8,
+          232,
+          11,
+          173,
+          12,
+          82,
+          7,
+          165,
+          60,
+          255
+        ],
+        "hex": "0F 0B 05 C7 0D 63 0F C2 07 65 B0 B0 FE 0D 98 08 29 07 C2 07 C2 B0 B0 FB 01 00 3B 0F 0B 10 8C 0C E6 0E 59 07 8E 02 D3 03 0B 01 63 07 D7 09 66 FE 10 70 0F E6 08 E8 0B AD 0C 52 07 A5 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 38,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route11_EastEntrance_2F_Text_WhatABreathtakingView": {
+      "label": "Route11_EastEntrance_2F_Text_WhatABreathtakingView",
+      "line": 127,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "raw_text": "一架望远镜……\\n我来看看……\\p哇哦，多么壮观的美景！$",
+      "display_text": "一架望远镜……\n我来看看……\n\n哇哦，多么壮观的美景！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 45,
+        "bytes": [
+          15,
+          11,
+          5,
+          199,
+          13,
+          99,
+          15,
+          194,
+          7,
+          101,
+          176,
+          176,
+          254,
+          13,
+          152,
+          8,
+          41,
+          7,
+          194,
+          7,
+          194,
+          176,
+          176,
+          251,
+          13,
+          67,
+          10,
+          19,
+          59,
+          3,
+          133,
+          9,
+          76,
+          16,
+          226,
+          4,
+          163,
+          3,
+          11,
+          9,
+          88,
+          7,
+          96,
+          60,
+          255
+        ],
+        "hex": "0F 0B 05 C7 0D 63 0F C2 07 65 B0 B0 FE 0D 98 08 29 07 C2 07 C2 B0 B0 FB 0D 43 0A 13 3B 03 85 09 4C 10 E2 04 A3 03 0B 09 58 07 60 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route11_EastEntrance_2F_Text_RockTunnelGoodRouteToLavender": {
+      "label": "Route11_EastEntrance_2F_Text_RockTunnelGoodRouteToLavender",
+      "line": 132,
+      "source_file": "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc",
+      "raw_text": "一架望远镜……\\n我来看看……\\p从华蓝市\\n再到紫苑镇…\\p岩山隧道也许是一个\\n不错的路线。$",
+      "display_text": "一架望远镜……\n我来看看……\n\n从华蓝市\n再到紫苑镇…\n\n岩山隧道也许是一个\n不错的路线。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          15,
+          11,
+          5,
+          199,
+          13,
+          99,
+          15,
+          194,
+          7,
+          101,
+          176,
+          176,
+          254,
+          13,
+          152,
+          8,
+          41,
+          7,
+          194,
+          7,
+          194,
+          176,
+          176,
+          251,
+          2,
+          179,
+          5,
+          55,
+          8,
+          43,
+          12,
+          21,
+          254,
+          15,
+          229,
+          3,
+          4,
+          17,
+          7,
+          15,
+          195,
+          16,
+          101,
+          176,
+          251,
+          14,
+          187,
+          11,
+          155,
+          12,
+          144,
+          3,
+          7,
+          15,
+          2,
+          14,
+          120,
+          12,
+          12,
+          15,
+          11,
+          4,
+          96,
+          254,
+          1,
+          214,
+          2,
+          205,
+          3,
+          11,
+          8,
+          232,
+          14,
+          12,
+          55,
+          255
+        ],
+        "hex": "0F 0B 05 C7 0D 63 0F C2 07 65 B0 B0 FE 0D 98 08 29 07 C2 07 C2 B0 B0 FB 02 B3 05 37 08 2B 0C 15 FE 0F E5 03 04 11 07 0F C3 10 65 B0 FB 0E BB 0B 9B 0C 90 03 07 0F 02 0E 78 0C 0C 0F 0B 04 60 FE 01 D6 02 CD 03 0B 08 E8 0E 0C 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 40,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "bufferitemname": 1,
+      "buffernumberstring": 2,
+      "bufferspeciesname": 1,
+      "checkitemspace": 1,
+      "faceplayer": 2,
+      "giveitem_msg": 1,
+      "goto_if_eq": 3,
+      "goto_if_ge": 1,
+      "goto_if_lt": 1,
+      "goto_if_ne": 1,
+      "goto_if_set": 3,
+      "setflag": 2,
+      "setvar": 2,
+      "specialvar": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 18,
+    "script_count": 11,
+    "movement_count": 0,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 633,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 1,
+    "op_counts": {
+      "bufferitemname": 1,
+      "buffernumberstring": 2,
+      "bufferspeciesname": 1,
+      "call": 6,
+      "checkitemspace": 1,
+      "end": 9,
+      "faceplayer": 2,
+      "giveitem_msg": 1,
+      "goto_if_eq": 3,
+      "goto_if_ge": 1,
+      "goto_if_lt": 1,
+      "goto_if_ne": 1,
+      "goto_if_set": 3,
+      "lock": 2,
+      "lockall": 1,
+      "msgbox": 12,
+      "release": 6,
+      "releaseall": 2,
+      "return": 1,
+      "setflag": 2,
+      "setvar": 2,
+      "specialvar": 1
+    }
+  }
+}

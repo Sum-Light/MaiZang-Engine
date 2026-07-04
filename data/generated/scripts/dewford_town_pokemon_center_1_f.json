@@ -1,0 +1,525 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "DewfordTown_PokemonCenter_1F",
+    "map_script": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+    "map_json": "data/maps/DewfordTown_PokemonCenter_1F/map.json",
+    "map_id": "MAP_DEWFORD_TOWN_POKEMON_CENTER_1F",
+    "map_name": "DewfordTown_PokemonCenter_1F"
+  },
+  "labels": {
+    "DewfordTown_PokemonCenter_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "DewfordTown_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "DewfordTown_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 6
+    },
+    "DewfordTown_PokemonCenter_1F_EventScript_PokefanF": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "DewfordTown_PokemonCenter_1F_EventScript_Man": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "DewfordTown_PokemonCenter_1F_Text_StoneCavern": {
+      "kind": "text",
+      "line": 27,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "DewfordTown_PokemonCenter_1F_Text_FaintedMonCanUseHM": {
+      "kind": "text",
+      "line": 30,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "DewfordTown_PokemonCenter_1F_MapScripts": {
+      "label": "DewfordTown_PokemonCenter_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "DewfordTown_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "DewfordTown_PokemonCenter_1F_OnTransition": {
+      "label": "DewfordTown_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_DEWFORD_TOWN"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_DEWFORD_TOWN",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_UpdateBrineyLocation"
+          ],
+          "line": 8,
+          "raw": "call Common_EventScript_UpdateBrineyLocation",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_UpdateBrineyLocation",
+          "line": 8
+        }
+      ]
+    },
+    "DewfordTown_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "DewfordTown_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x800B",
+            "LOCALID_DEWFORD_NURSE"
+          ],
+          "line": 12,
+          "raw": "setvar VAR_0x800B, LOCALID_DEWFORD_NURSE",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_PkmnCenterNurse"
+          ],
+          "line": 13,
+          "raw": "call Common_EventScript_PkmnCenterNurse",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 14,
+          "raw": "waitmessage",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 15,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 16,
+          "raw": "release",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_PkmnCenterNurse",
+          "line": 13
+        }
+      ]
+    },
+    "DewfordTown_PokemonCenter_1F_EventScript_PokefanF": {
+      "label": "DewfordTown_PokemonCenter_1F_EventScript_PokefanF",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "DewfordTown_PokemonCenter_1F_Text_StoneCavern",
+            "MSGBOX_NPC"
+          ],
+          "line": 20,
+          "raw": "msgbox DewfordTown_PokemonCenter_1F_Text_StoneCavern, MSGBOX_NPC",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 21,
+          "raw": "end",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DewfordTown_PokemonCenter_1F_Text_StoneCavern",
+          "mode": "MSGBOX_NPC",
+          "line": 20
+        }
+      ],
+      "branch_targets": []
+    },
+    "DewfordTown_PokemonCenter_1F_EventScript_Man": {
+      "label": "DewfordTown_PokemonCenter_1F_EventScript_Man",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "DewfordTown_PokemonCenter_1F_Text_FaintedMonCanUseHM",
+            "MSGBOX_NPC"
+          ],
+          "line": 24,
+          "raw": "msgbox DewfordTown_PokemonCenter_1F_Text_FaintedMonCanUseHM, MSGBOX_NPC",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DewfordTown_PokemonCenter_1F_Text_FaintedMonCanUseHM",
+          "mode": "MSGBOX_NPC",
+          "line": 24
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "DewfordTown_PokemonCenter_1F_Text_StoneCavern": {
+      "label": "DewfordTown_PokemonCenter_1F_Text_StoneCavern",
+      "line": 27,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "镇子边上有个石窟。\\p据说那里面能\\n找到稀有的石头。$",
+      "display_text": "镇子边上有个石窟。\n\n据说那里面能\n找到稀有的石头。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 47,
+        "bytes": [
+          16,
+          101,
+          17,
+          11,
+          1,
+          156,
+          11,
+          173,
+          15,
+          126,
+          4,
+          96,
+          11,
+          235,
+          7,
+          237,
+          55,
+          251,
+          7,
+          141,
+          12,
+          88,
+          9,
+          189,
+          8,
+          100,
+          9,
+          126,
+          9,
+          210,
+          254,
+          16,
+          69,
+          3,
+          4,
+          13,
+          197,
+          15,
+          126,
+          3,
+          11,
+          11,
+          235,
+          13,
+          31,
+          55,
+          255
+        ],
+        "hex": "10 65 11 0B 01 9C 0B AD 0F 7E 04 60 0B EB 07 ED 37 FB 07 8D 0C 58 09 BD 08 64 09 7E 09 D2 FE 10 45 03 04 0D C5 0F 7E 03 0B 0B EB 0D 1F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 17,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "DewfordTown_PokemonCenter_1F_Text_FaintedMonCanUseHM": {
+      "label": "DewfordTown_PokemonCenter_1F_Text_FaintedMonCanUseHM",
+      "line": 30,
+      "source_file": "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "即使宝可梦昏厥不能战斗了，\\n它也仍然可以使用秘传招式。$",
+      "display_text": "即使宝可梦昏厥不能战斗了，\n它也仍然可以使用秘传招式。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 52,
+        "bytes": [
+          5,
+          159,
+          11,
+          245,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          117,
+          17,
+          91,
+          1,
+          214,
+          9,
+          210,
+          16,
+          48,
+          3,
+          92,
+          8,
+          158,
+          59,
+          254,
+          12,
+          159,
+          15,
+          2,
+          11,
+          84,
+          11,
+          59,
+          7,
+          215,
+          15,
+          36,
+          11,
+          245,
+          15,
+          113,
+          9,
+          112,
+          2,
+          139,
+          16,
+          67,
+          12,
+          2,
+          55,
+          255
+        ],
+        "hex": "05 9F 0B F5 01 63 07 D7 09 66 05 75 11 5B 01 D6 09 D2 10 30 03 5C 08 9E 3B FE 0C 9F 0F 02 0B 54 0B 3B 07 D7 0F 24 0B F5 0F 71 09 70 02 8B 10 43 0C 02 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 2,
+      "setrespawn": 1,
+      "setvar": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 99,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 2,
+      "end": 4,
+      "map_script": 2,
+      "msgbox": 2,
+      "release": 1,
+      "setrespawn": 1,
+      "setvar": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    }
+  }
+}

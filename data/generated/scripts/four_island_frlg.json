@@ -1,0 +1,2935 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FourIsland_Frlg",
+    "map_script": "data/maps/FourIsland_Frlg/scripts.inc",
+    "map_json": "data/maps/FourIsland_Frlg/map.json",
+    "map_id": "MAP_FOUR_ISLAND",
+    "map_name": "FourIsland_Frlg"
+  },
+  "labels": {
+    "FourIsland_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FourIsland_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FourIsland_EventScript_ShowRival": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_EventScript_TrySetDayCareManPos": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_EventScript_EndSetDayCareManPos": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "FourIsland_OnFrame": {
+      "kind": "map_script_table",
+      "line": 22,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_EventScript_RivalScene": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 24
+    },
+    "FourIsland_Movement_RivalApproach": {
+      "kind": "movement",
+      "line": 52,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "FourIsland_Movement_RivalExit": {
+      "kind": "movement",
+      "line": 59,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FourIsland_Movement_PlayerWatchRivalExit": {
+      "kind": "movement",
+      "line": 65,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FourIsland_EventScript_DaycareMan": {
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "FourIsland_EventScript_DaycareEggWaiting": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "FourIsland_EventScript_DaycareAcceptEgg": {
+      "kind": "script",
+      "line": 93,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "FourIsland_EventScript_DaycareReceivedEgg": {
+      "kind": "script",
+      "line": 100,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 11
+    },
+    "FourIsland_EventScript_CheckOnOneMon": {
+      "kind": "script",
+      "line": 113,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FourIsland_EventScript_CheckOnTwoMons": {
+      "kind": "script",
+      "line": 119,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "FourIsland_EventScript_OldWoman": {
+      "kind": "script",
+      "line": 129,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "FourIsland_EventScript_OldWomanLoreleiLeft": {
+      "kind": "script",
+      "line": 137,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FourIsland_EventScript_LittleGirl": {
+      "kind": "script",
+      "line": 143,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "FourIsland_EventScript_FatMan": {
+      "kind": "script",
+      "line": 151,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_EventScript_IslandSign": {
+      "kind": "script",
+      "line": 155,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_EventScript_LoreleisHouseSign": {
+      "kind": "script",
+      "line": 159,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_Text_IslandSign": {
+      "kind": "text",
+      "line": 163,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_Text_LoreleiHasReturned": {
+      "kind": "text",
+      "line": 167,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FourIsland_Text_LoreleiMetLaprasAsChild": {
+      "kind": "text",
+      "line": 172,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "FourIsland_Text_RivalAlreadyGotEggBeSmellingYa": {
+      "kind": "text",
+      "line": 181,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "FourIsland_Text_LoreleiHasLotsOfStuffedDolls": {
+      "kind": "text",
+      "line": 199,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "FourIsland_Text_MadeSlushieUsingIcefallCaveIce": {
+      "kind": "text",
+      "line": 202,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "FourIsland_Text_LoreleisHouse": {
+      "kind": "text",
+      "line": 210,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "FourIsland_Frlg_MapScripts": {
+      "label": "FourIsland_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "FourIsland_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, FourIsland_OnTransition",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "FourIsland_OnFrame"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, FourIsland_OnFrame",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_OnTransition": {
+      "label": "FourIsland_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setworldmapflag",
+          "args": [
+            "FLAG_WORLD_MAP_FOUR_ISLAND"
+          ],
+          "line": 7,
+          "raw": "setworldmapflag FLAG_WORLD_MAP_FOUR_ISLAND",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_FOUR_ISLAND",
+            "0",
+            "FourIsland_EventScript_ShowRival"
+          ],
+          "line": 8,
+          "raw": "call_if_eq VAR_MAP_SCENE_FOUR_ISLAND, 0, FourIsland_EventScript_ShowRival",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "FourIsland_EventScript_TrySetDayCareManPos"
+          ],
+          "line": 9,
+          "raw": "call FourIsland_EventScript_TrySetDayCareManPos",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "FourIsland_EventScript_ShowRival",
+          "line": 8
+        },
+        {
+          "op": "call",
+          "target": "FourIsland_EventScript_TrySetDayCareManPos",
+          "line": 9
+        }
+      ]
+    },
+    "FourIsland_EventScript_ShowRival": {
+      "label": "FourIsland_EventScript_ShowRival",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_FOUR_ISLAND_RIVAL"
+          ],
+          "line": 13,
+          "raw": "clearflag FLAG_HIDE_FOUR_ISLAND_RIVAL",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 14,
+          "raw": "return",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_EventScript_TrySetDayCareManPos": {
+      "label": "FourIsland_EventScript_TrySetDayCareManPos",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_PENDING_DAYCARE_EGG",
+            "FourIsland_EventScript_EndSetDayCareManPos"
+          ],
+          "line": 17,
+          "raw": "goto_if_unset FLAG_PENDING_DAYCARE_EGG, FourIsland_EventScript_EndSetDayCareManPos",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_FOUR_ISLAND_DAYCARE_MAN",
+            "16",
+            "14"
+          ],
+          "line": 18,
+          "raw": "setobjectxyperm LOCALID_FOUR_ISLAND_DAYCARE_MAN, 16, 14",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "FourIsland_EventScript_EndSetDayCareManPos",
+          "line": 17
+        }
+      ]
+    },
+    "FourIsland_EventScript_EndSetDayCareManPos": {
+      "label": "FourIsland_EventScript_EndSetDayCareManPos",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "return",
+          "args": [],
+          "line": 20,
+          "raw": "return",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_OnFrame": {
+      "label": "FourIsland_OnFrame",
+      "kind": "map_script_table",
+      "line": 22,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_MAP_SCENE_FOUR_ISLAND",
+            "0",
+            "FourIsland_EventScript_RivalScene"
+          ],
+          "line": 23,
+          "raw": "map_script_2 VAR_MAP_SCENE_FOUR_ISLAND, 0, FourIsland_EventScript_RivalScene",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 24,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_EventScript_RivalScene": {
+      "label": "FourIsland_EventScript_RivalScene",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 27,
+          "raw": "lockall",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 28,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FOUR_ISLAND_RIVAL",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 29,
+          "raw": "applymovement LOCALID_FOUR_ISLAND_RIVAL, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 30,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_RG_ENCOUNTER_RIVAL",
+            "0"
+          ],
+          "line": 31,
+          "raw": "playbgm MUS_RG_ENCOUNTER_RIVAL, 0",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FOUR_ISLAND_RIVAL",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 32,
+          "raw": "applymovement LOCALID_FOUR_ISLAND_RIVAL, Common_Movement_ExclamationMark",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 33,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FOUR_ISLAND_RIVAL",
+            "Common_Movement_Delay48"
+          ],
+          "line": 34,
+          "raw": "applymovement LOCALID_FOUR_ISLAND_RIVAL, Common_Movement_Delay48",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 35,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "25"
+          ],
+          "line": 36,
+          "raw": "delay 25",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FOUR_ISLAND_RIVAL",
+            "FourIsland_Movement_RivalApproach"
+          ],
+          "line": 37,
+          "raw": "applymovement LOCALID_FOUR_ISLAND_RIVAL, FourIsland_Movement_RivalApproach",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 38,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_Text_RivalAlreadyGotEggBeSmellingYa"
+          ],
+          "line": 39,
+          "raw": "msgbox FourIsland_Text_RivalAlreadyGotEggBeSmellingYa",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 40,
+          "raw": "closemessage",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "FourIsland_Movement_PlayerWatchRivalExit"
+          ],
+          "line": 41,
+          "raw": "applymovement LOCALID_PLAYER, FourIsland_Movement_PlayerWatchRivalExit",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FOUR_ISLAND_RIVAL",
+            "FourIsland_Movement_RivalExit"
+          ],
+          "line": 42,
+          "raw": "applymovement LOCALID_FOUR_ISLAND_RIVAL, FourIsland_Movement_RivalExit",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 43,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "fadedefaultbgm",
+          "args": [],
+          "line": 44,
+          "raw": "fadedefaultbgm",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_EXIT"
+          ],
+          "line": 45,
+          "raw": "playse SE_EXIT",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "35"
+          ],
+          "line": 46,
+          "raw": "delay 35",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_FOUR_ISLAND_RIVAL"
+          ],
+          "line": 47,
+          "raw": "removeobject LOCALID_FOUR_ISLAND_RIVAL",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_FOUR_ISLAND",
+            "1"
+          ],
+          "line": 48,
+          "raw": "setvar VAR_MAP_SCENE_FOUR_ISLAND, 1",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 49,
+          "raw": "releaseall",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 50,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_Text_RivalAlreadyGotEggBeSmellingYa",
+          "mode": "",
+          "line": 39
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_EventScript_DaycareMan": {
+      "label": "FourIsland_EventScript_DaycareMan",
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 71,
+          "raw": "lock",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 72,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "GetDaycareMonNicknames"
+          ],
+          "line": 73,
+          "raw": "special GetDaycareMonNicknames",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetDaycareState"
+          ],
+          "line": 74,
+          "raw": "specialvar VAR_RESULT, GetDaycareState",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "DAYCARE_EGG_WAITING",
+            "FourIsland_EventScript_DaycareEggWaiting"
+          ],
+          "line": 75,
+          "raw": "goto_if_eq VAR_RESULT, DAYCARE_EGG_WAITING, FourIsland_EventScript_DaycareEggWaiting",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "DAYCARE_ONE_MON",
+            "FourIsland_EventScript_CheckOnOneMon"
+          ],
+          "line": 76,
+          "raw": "goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, FourIsland_EventScript_CheckOnOneMon",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "DAYCARE_TWO_MONS",
+            "FourIsland_EventScript_CheckOnTwoMons"
+          ],
+          "line": 77,
+          "raw": "goto_if_eq VAR_RESULT, DAYCARE_TWO_MONS, FourIsland_EventScript_CheckOnTwoMons",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "DayCare_Text_ImDaycareManSpeakToMyWife"
+          ],
+          "line": 78,
+          "raw": "msgbox DayCare_Text_ImDaycareManSpeakToMyWife",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 79,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 80,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DayCare_Text_ImDaycareManSpeakToMyWife",
+          "mode": "",
+          "line": 78
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "FourIsland_EventScript_DaycareEggWaiting",
+          "line": 75
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "FourIsland_EventScript_CheckOnOneMon",
+          "line": 76
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "FourIsland_EventScript_CheckOnTwoMons",
+          "line": 77
+        }
+      ]
+    },
+    "FourIsland_EventScript_DaycareEggWaiting": {
+      "label": "FourIsland_EventScript_DaycareEggWaiting",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "DayCare_Text_DoYouWantEgg",
+            "MSGBOX_YESNO"
+          ],
+          "line": 83,
+          "raw": "msgbox DayCare_Text_DoYouWantEgg, MSGBOX_YESNO",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "FourIsland_EventScript_DaycareAcceptEgg"
+          ],
+          "line": 84,
+          "raw": "goto_if_eq VAR_RESULT, YES, FourIsland_EventScript_DaycareAcceptEgg",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "DayCare_Text_IWillKeepDoYouWantIt",
+            "MSGBOX_YESNO"
+          ],
+          "line": 85,
+          "raw": "msgbox DayCare_Text_IWillKeepDoYouWantIt, MSGBOX_YESNO",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "FourIsland_EventScript_DaycareAcceptEgg"
+          ],
+          "line": 86,
+          "raw": "goto_if_eq VAR_RESULT, YES, FourIsland_EventScript_DaycareAcceptEgg",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "DayCare_Text_IllKeepIt"
+          ],
+          "line": 87,
+          "raw": "msgbox DayCare_Text_IllKeepIt",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_PENDING_DAYCARE_EGG"
+          ],
+          "line": 88,
+          "raw": "clearflag FLAG_PENDING_DAYCARE_EGG",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "RejectEggFromDayCare"
+          ],
+          "line": 89,
+          "raw": "special RejectEggFromDayCare",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 90,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 91,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DayCare_Text_DoYouWantEgg",
+          "mode": "MSGBOX_YESNO",
+          "line": 83
+        },
+        {
+          "op": "msgbox",
+          "text_label": "DayCare_Text_IWillKeepDoYouWantIt",
+          "mode": "MSGBOX_YESNO",
+          "line": 85
+        },
+        {
+          "op": "msgbox",
+          "text_label": "DayCare_Text_IllKeepIt",
+          "mode": "",
+          "line": 87
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "FourIsland_EventScript_DaycareAcceptEgg",
+          "line": 84
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "FourIsland_EventScript_DaycareAcceptEgg",
+          "line": 86
+        }
+      ]
+    },
+    "FourIsland_EventScript_DaycareAcceptEgg": {
+      "label": "FourIsland_EventScript_DaycareAcceptEgg",
+      "kind": "script",
+      "line": 93,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "CalculatePlayerPartyCount"
+          ],
+          "line": 94,
+          "raw": "specialvar VAR_RESULT, CalculatePlayerPartyCount",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "PARTY_SIZE",
+            "FourIsland_EventScript_DaycareReceivedEgg"
+          ],
+          "line": 95,
+          "raw": "goto_if_ne VAR_RESULT, PARTY_SIZE, FourIsland_EventScript_DaycareReceivedEgg",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "DayCare_Text_YouHaveNoRoomForIt"
+          ],
+          "line": 96,
+          "raw": "msgbox DayCare_Text_YouHaveNoRoomForIt",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 97,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 98,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DayCare_Text_YouHaveNoRoomForIt",
+          "mode": "",
+          "line": 96
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "FourIsland_EventScript_DaycareReceivedEgg",
+          "line": 95
+        }
+      ]
+    },
+    "FourIsland_EventScript_DaycareReceivedEgg": {
+      "label": "FourIsland_EventScript_DaycareReceivedEgg",
+      "kind": "script",
+      "line": 100,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 101,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "DayCare_Text_ReceivedEgg"
+          ],
+          "line": 102,
+          "raw": "message DayCare_Text_ReceivedEgg",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_RestorePrevTextColor"
+          ],
+          "line": 103,
+          "raw": "call EventScript_RestorePrevTextColor",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_LEVEL_UP"
+          ],
+          "line": 104,
+          "raw": "playfanfare MUS_LEVEL_UP",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 105,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 106,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "DayCare_Text_TakeGoodCareOfIt"
+          ],
+          "line": 107,
+          "raw": "msgbox DayCare_Text_TakeGoodCareOfIt",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "GiveEggFromDaycare"
+          ],
+          "line": 108,
+          "raw": "special GiveEggFromDaycare",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_PENDING_DAYCARE_EGG"
+          ],
+          "line": 109,
+          "raw": "clearflag FLAG_PENDING_DAYCARE_EGG",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 110,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 111,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "DayCare_Text_ReceivedEgg",
+          "mode": "",
+          "line": 102
+        },
+        {
+          "op": "msgbox",
+          "text_label": "DayCare_Text_TakeGoodCareOfIt",
+          "mode": "",
+          "line": 107
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_RestorePrevTextColor",
+          "line": 103
+        }
+      ]
+    },
+    "FourIsland_EventScript_CheckOnOneMon": {
+      "label": "FourIsland_EventScript_CheckOnOneMon",
+      "kind": "script",
+      "line": 113,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "GetDaycareMonNicknames"
+          ],
+          "line": 114,
+          "raw": "special GetDaycareMonNicknames",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "DayCare_Text_YourMonIsDoingFine"
+          ],
+          "line": 115,
+          "raw": "msgbox DayCare_Text_YourMonIsDoingFine",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 116,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 117,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DayCare_Text_YourMonIsDoingFine",
+          "mode": "",
+          "line": 115
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_EventScript_CheckOnTwoMons": {
+      "label": "FourIsland_EventScript_CheckOnTwoMons",
+      "kind": "script",
+      "line": 119,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "GetDaycareMonNicknames"
+          ],
+          "line": 120,
+          "raw": "special GetDaycareMonNicknames",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "DayCare_Text_YourMonsAreDoingFine"
+          ],
+          "line": 121,
+          "raw": "msgbox DayCare_Text_YourMonsAreDoingFine",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SetDaycareCompatibilityString"
+          ],
+          "line": 122,
+          "raw": "special SetDaycareCompatibilityString",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShowFieldMessageStringVar4"
+          ],
+          "line": 123,
+          "raw": "special ShowFieldMessageStringVar4",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 124,
+          "raw": "waitmessage",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 125,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 126,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 127,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DayCare_Text_YourMonsAreDoingFine",
+          "mode": "",
+          "line": 121
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_EventScript_OldWoman": {
+      "label": "FourIsland_EventScript_OldWoman",
+      "kind": "script",
+      "line": 129,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 130,
+          "raw": "lock",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 131,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_IS_CHAMPION",
+            "FourIsland_EventScript_OldWomanLoreleiLeft"
+          ],
+          "line": 132,
+          "raw": "goto_if_set FLAG_IS_CHAMPION, FourIsland_EventScript_OldWomanLoreleiLeft",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_Text_LoreleiHasReturned"
+          ],
+          "line": 133,
+          "raw": "msgbox FourIsland_Text_LoreleiHasReturned",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 134,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 135,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_Text_LoreleiHasReturned",
+          "mode": "",
+          "line": 133
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "FourIsland_EventScript_OldWomanLoreleiLeft",
+          "line": 132
+        }
+      ]
+    },
+    "FourIsland_EventScript_OldWomanLoreleiLeft": {
+      "label": "FourIsland_EventScript_OldWomanLoreleiLeft",
+      "kind": "script",
+      "line": 137,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_LORELEI",
+            "5"
+          ],
+          "line": 138,
+          "raw": "famechecker FAMECHECKER_LORELEI, 5",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_Text_LoreleiMetLaprasAsChild"
+          ],
+          "line": 139,
+          "raw": "msgbox FourIsland_Text_LoreleiMetLaprasAsChild",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 140,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 141,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_Text_LoreleiMetLaprasAsChild",
+          "mode": "",
+          "line": 139
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_EventScript_LittleGirl": {
+      "label": "FourIsland_EventScript_LittleGirl",
+      "kind": "script",
+      "line": 143,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 144,
+          "raw": "lock",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 145,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_LORELEI",
+            "4"
+          ],
+          "line": 146,
+          "raw": "famechecker FAMECHECKER_LORELEI, 4",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_Text_LoreleiHasLotsOfStuffedDolls"
+          ],
+          "line": 147,
+          "raw": "msgbox FourIsland_Text_LoreleiHasLotsOfStuffedDolls",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 148,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 149,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_Text_LoreleiHasLotsOfStuffedDolls",
+          "mode": "",
+          "line": 147
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_EventScript_FatMan": {
+      "label": "FourIsland_EventScript_FatMan",
+      "kind": "script",
+      "line": 151,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_Text_MadeSlushieUsingIcefallCaveIce",
+            "MSGBOX_NPC"
+          ],
+          "line": 152,
+          "raw": "msgbox FourIsland_Text_MadeSlushieUsingIcefallCaveIce, MSGBOX_NPC",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 153,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_Text_MadeSlushieUsingIcefallCaveIce",
+          "mode": "MSGBOX_NPC",
+          "line": 152
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_EventScript_IslandSign": {
+      "label": "FourIsland_EventScript_IslandSign",
+      "kind": "script",
+      "line": 155,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_Text_IslandSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 156,
+          "raw": "msgbox FourIsland_Text_IslandSign, MSGBOX_SIGN",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 157,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_Text_IslandSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 156
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_EventScript_LoreleisHouseSign": {
+      "label": "FourIsland_EventScript_LoreleisHouseSign",
+      "kind": "script",
+      "line": 159,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_Text_LoreleisHouse",
+            "MSGBOX_SIGN"
+          ],
+          "line": 160,
+          "raw": "msgbox FourIsland_Text_LoreleisHouse, MSGBOX_SIGN",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 161,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_Text_LoreleisHouse",
+          "mode": "MSGBOX_SIGN",
+          "line": 160
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "FourIsland_Movement_RivalApproach": {
+      "label": "FourIsland_Movement_RivalApproach",
+      "kind": "movement",
+      "line": 52,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 53,
+          "raw": "walk_right",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 54,
+          "raw": "walk_right",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 55,
+          "raw": "walk_down",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 56,
+          "raw": "walk_down",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 57,
+          "raw": "step_end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_Movement_RivalExit": {
+      "label": "FourIsland_Movement_RivalExit",
+      "kind": "movement",
+      "line": 59,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 60,
+          "raw": "delay_16",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_4",
+          "args": [],
+          "line": 61,
+          "raw": "delay_4",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 62,
+          "raw": "walk_down",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 63,
+          "raw": "step_end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_Movement_PlayerWatchRivalExit": {
+      "label": "FourIsland_Movement_PlayerWatchRivalExit",
+      "kind": "movement",
+      "line": 65,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 66,
+          "raw": "walk_left",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 67,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 68,
+          "raw": "step_end",
+          "source_file": "data/maps/FourIsland_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "FourIsland_Text_IslandSign": {
+      "label": "FourIsland_Text_IslandSign",
+      "line": 163,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "raw_text": "四之岛\\n温暖的蓝色浮冰之岛$",
+      "display_text": "四之岛\n温暖的蓝色浮冰之岛",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          12,
+          103,
+          16,
+          127,
+          3,
+          1,
+          254,
+          13,
+          136,
+          10,
+          12,
+          3,
+          11,
+          8,
+          43,
+          11,
+          137,
+          4,
+          11,
+          1,
+          182,
+          16,
+          127,
+          3,
+          1,
+          255
+        ],
+        "hex": "0C 67 10 7F 03 01 FE 0D 88 0A 0C 03 0B 08 2B 0B 89 04 0B 01 B6 10 7F 03 01 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_Text_LoreleiHasReturned": {
+      "label": "FourIsland_Text_LoreleiHasReturned",
+      "line": 167,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "raw_text": "科拿回来了。\\p莫非是因为\\n都市生活的压力太大了吗？$",
+      "display_text": "科拿回来了。\n\n莫非是因为\n都市生活的压力太大了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 47,
+        "bytes": [
+          7,
+          212,
+          9,
+          185,
+          5,
+          101,
+          8,
+          41,
+          8,
+          158,
+          55,
+          251,
+          9,
+          160,
+          3,
+          202,
+          12,
+          12,
+          15,
+          66,
+          13,
+          112,
+          254,
+          3,
+          97,
+          12,
+          21,
+          11,
+          216,
+          5,
+          123,
+          3,
+          11,
+          14,
+          162,
+          8,
+          121,
+          12,
+          172,
+          2,
+          211,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 D4 09 B9 05 65 08 29 08 9E 37 FB 09 A0 03 CA 0C 0C 0F 42 0D 70 FE 03 61 0C 15 0B D8 05 7B 03 0B 0E A2 08 79 0C AC 02 D3 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 6,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_Text_LoreleiMetLaprasAsChild": {
+      "label": "FourIsland_Text_LoreleiMetLaprasAsChild",
+      "line": 172,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "raw_text": "科拿已经回来了。\\p我猜她的拉普拉斯就是那只\\n她在很小时候就遇到的宝可梦。\\p我想她是在冻瀑洞窟\\n收服到拉普拉斯的。\\p可能从那时起那只宝可梦\\n就一直陪伴着她。$",
+      "display_text": "科拿已经回来了。\n\n我猜她的拉普拉斯就是那只\n她在很小时候就遇到的宝可梦。\n\n我想她是在冻瀑洞窟\n收服到拉普拉斯的。\n\n可能从那时起那只宝可梦\n就一直陪伴着她。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 145,
+        "bytes": [
+          7,
+          212,
+          9,
+          185,
+          15,
+          33,
+          7,
+          93,
+          5,
+          101,
+          8,
+          41,
+          8,
+          158,
+          55,
+          251,
+          13,
+          152,
+          1,
+          221,
+          12,
+          160,
+          3,
+          11,
+          8,
+          34,
+          10,
+          144,
+          8,
+          34,
+          12,
+          92,
+          7,
+          125,
+          12,
+          12,
+          9,
+          189,
+          16,
+          140,
+          254,
+          12,
+          160,
+          15,
+          230,
+          5,
+          11,
+          14,
+          44,
+          11,
+          237,
+          5,
+          33,
+          7,
+          125,
+          15,
+          164,
+          3,
+          4,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          13,
+          152,
+          14,
+          24,
+          12,
+          160,
+          12,
+          12,
+          15,
+          230,
+          3,
+          88,
+          10,
+          148,
+          3,
+          89,
+          7,
+          237,
+          254,
+          12,
+          26,
+          4,
+          10,
+          3,
+          4,
+          8,
+          34,
+          10,
+          144,
+          8,
+          34,
+          12,
+          92,
+          3,
+          11,
+          55,
+          251,
+          7,
+          215,
+          9,
+          210,
+          2,
+          179,
+          9,
+          189,
+          11,
+          237,
+          10,
+          171,
+          9,
+          189,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          7,
+          125,
+          15,
+          11,
+          16,
+          130,
+          10,
+          64,
+          1,
+          72,
+          16,
+          244,
+          12,
+          160,
+          55,
+          255
+        ],
+        "hex": "07 D4 09 B9 0F 21 07 5D 05 65 08 29 08 9E 37 FB 0D 98 01 DD 0C A0 03 0B 08 22 0A 90 08 22 0C 5C 07 7D 0C 0C 09 BD 10 8C FE 0C A0 0F E6 05 0B 0E 2C 0B ED 05 21 07 7D 0F A4 03 04 03 0B 01 63 07 D7 09 66 37 FB 0D 98 0E 18 0C A0 0C 0C 0F E6 03 58 0A 94 03 59 07 ED FE 0C 1A 04 0A 03 04 08 22 0A 90 08 22 0C 5C 03 0B 37 FB 07 D7 09 D2 02 B3 09 BD 0B ED 0A AB 09 BD 10 8C 01 63 07 D7 09 66 FE 07 7D 0F 0B 10 82 0A 40 01 48 10 F4 0C A0 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 49,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 60,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 73,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 83,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_Text_RivalAlreadyGotEggBeSmellingYa": {
+      "label": "FourIsland_Text_RivalAlreadyGotEggBeSmellingYa",
+      "line": 181,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "raw_text": "{RIVAL}：嗨！\\n{PLAYER}！\\p你到七岛上来干什么？\\p你不该老学我，\\n知道吗？\\p反正我已经拿到宝可梦的蛋了，\\n在这岛上已经没什么事可做了。\\p嘿，我打赌你都不知道\\n什么是宝可梦的蛋。\\p那你就永远别想\\n完成全国宝可梦图鉴了。\\p对了，我在这岛上遇到了\\n一个我们都认识的人。\\p如果你好奇的话，\\n可以到处找找哦！\\p我呢，没时间浪费在这里了。\\p",
+      "display_text": "{RIVAL}：嗨！\n{PLAYER}！\n\n你到七岛上来干什么？\n\n你不该老学我，\n知道吗？\n\n反正我已经拿到宝可梦的蛋了，\n在这岛上已经没什么事可做了。\n\n嘿，我打赌你都不知道\n什么是宝可梦的蛋。\n\n那你就永远别想\n完成全国宝可梦图鉴了。\n\n对了，我在这岛上遇到了\n一个我们都认识的人。\n\n如果你好奇的话，\n可以到处找找哦！\n\n我呢，没时间浪费在这里了。\n\n",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 283,
+        "bytes": [
+          253,
+          6,
+          62,
+          20,
+          103,
+          60,
+          254,
+          253,
+          1,
+          60,
+          251,
+          9,
+          217,
+          3,
+          4,
+          10,
+          154,
+          3,
+          1,
+          11,
+          173,
+          8,
+          41,
+          4,
+          51,
+          11,
+          238,
+          9,
+          76,
+          61,
+          251,
+          9,
+          217,
+          1,
+          214,
+          4,
+          45,
+          8,
+          68,
+          14,
+          144,
+          13,
+          152,
+          59,
+          254,
+          16,
+          123,
+          3,
+          7,
+          9,
+          42,
+          61,
+          251,
+          3,
+          183,
+          16,
+          112,
+          13,
+          152,
+          15,
+          33,
+          7,
+          93,
+          9,
+          185,
+          3,
+          4,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          2,
+          238,
+          8,
+          158,
+          59,
+          254,
+          15,
+          230,
+          16,
+          85,
+          3,
+          1,
+          11,
+          173,
+          15,
+          33,
+          7,
+          93,
+          9,
+          83,
+          11,
+          238,
+          9,
+          76,
+          12,
+          7,
+          7,
+          215,
+          17,
+          46,
+          8,
+          158,
+          55,
+          251,
+          5,
+          8,
+          59,
+          13,
+          152,
+          2,
+          210,
+          3,
+          105,
+          9,
+          217,
+          3,
+          97,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          254,
+          11,
+          238,
+          9,
+          76,
+          12,
+          12,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          2,
+          238,
+          55,
+          251,
+          9,
+          189,
+          9,
+          217,
+          7,
+          125,
+          15,
+          110,
+          15,
+          194,
+          1,
+          173,
+          14,
+          24,
+          254,
+          13,
+          82,
+          2,
+          75,
+          11,
+          43,
+          4,
+          194,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          36,
+          5,
+          227,
+          8,
+          158,
+          55,
+          251,
+          3,
+          121,
+          8,
+          158,
+          59,
+          13,
+          152,
+          15,
+          230,
+          16,
+          85,
+          3,
+          1,
+          11,
+          173,
+          15,
+          164,
+          3,
+          4,
+          8,
+          158,
+          254,
+          15,
+          11,
+          4,
+          96,
+          13,
+          152,
+          9,
+          95,
+          3,
+          97,
+          11,
+          79,
+          11,
+          242,
+          3,
+          11,
+          11,
+          75,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          4,
+          233,
+          10,
+          161,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          7,
+          215,
+          15,
+          36,
+          3,
+          4,
+          2,
+          134,
+          16,
+          69,
+          16,
+          69,
+          10,
+          19,
+          60,
+          251,
+          13,
+          152,
+          9,
+          206,
+          59,
+          9,
+          83,
+          11,
+          237,
+          5,
+          207,
+          8,
+          64,
+          3,
+          212,
+          15,
+          230,
+          16,
+          85,
+          8,
+          100,
+          8,
+          158,
+          55,
+          251
+        ],
+        "hex": "FD 06 3E 14 67 3C FE FD 01 3C FB 09 D9 03 04 0A 9A 03 01 0B AD 08 29 04 33 0B EE 09 4C 3D FB 09 D9 01 D6 04 2D 08 44 0E 90 0D 98 3B FE 10 7B 03 07 09 2A 3D FB 03 B7 10 70 0D 98 0F 21 07 5D 09 B9 03 04 01 63 07 D7 09 66 03 0B 02 EE 08 9E 3B FE 0F E6 10 55 03 01 0B AD 0F 21 07 5D 09 53 0B EE 09 4C 0C 07 07 D7 11 2E 08 9E 37 FB 05 08 3B 0D 98 02 D2 03 69 09 D9 03 61 01 D6 10 7B 03 07 FE 0B EE 09 4C 0C 0C 01 63 07 D7 09 66 03 0B 02 EE 37 FB 09 BD 09 D9 07 7D 0F 6E 0F C2 01 AD 0E 18 FE 0D 52 02 4B 0B 2B 04 C2 01 63 07 D7 09 66 0D 24 05 E3 08 9E 37 FB 03 79 08 9E 3B 0D 98 0F E6 10 55 03 01 0B AD 0F A4 03 04 08 9E FE 0F 0B 04 60 0D 98 09 5F 03 61 0B 4F 0B F2 03 0B 0B 4B 37 FB 0B 67 04 C3 09 D9 04 E9 0A A1 03 0B 05 3D 3B FE 07 D7 0F 24 03 04 02 86 10 45 10 45 0A 13 3C FB 0D 98 09 CE 3B 09 53 0B ED 05 CF 08 40 03 D4 0F E6 10 55 08 64 08 9E 37 FB",
+        "terminator_present": false,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{RIVAL}",
+            "offset": 0,
+            "bytes": [
+              253,
+              6
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "RIVAL",
+                "bytes": [
+                  253,
+                  6
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 12,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 42,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 48,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 64,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 80,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 92,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 103,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 112,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 125,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 138,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 150,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 160,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 170,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 185,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "RIVAL",
+            "offset": 0,
+            "bytes": [
+              253,
+              6
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 12,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "FourIsland_Text_LoreleiHasLotsOfStuffedDolls": {
+      "label": "FourIsland_Text_LoreleiHasLotsOfStuffedDolls",
+      "line": 199,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "raw_text": "先闪啦！$",
+      "display_text": "先闪啦！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 8,
+        "bytes": [
+          13,
+          236,
+          11,
+          159,
+          8,
+          39,
+          60,
+          255
+        ],
+        "hex": "0D EC 0B 9F 08 27 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 4,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_Text_MadeSlushieUsingIcefallCaveIce": {
+      "label": "FourIsland_Text_MadeSlushieUsingIcefallCaveIce",
+      "line": 202,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "raw_text": "啊，你发现我了！\\n请别告诉科拿。\\p你知道科拿有许多许多\\n的毛绒娃娃吗？\\p每次她回四之岛，\\n她的收藏都会增加！$",
+      "display_text": "啊，你发现我了！\n请别告诉科拿。\n\n你知道科拿有许多许多\n的毛绒娃娃吗？\n\n每次她回四之岛，\n她的收藏都会增加！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 98,
+        "bytes": [
+          1,
+          0,
+          59,
+          9,
+          217,
+          3,
+          165,
+          14,
+          3,
+          13,
+          152,
+          8,
+          158,
+          60,
+          254,
+          11,
+          13,
+          1,
+          173,
+          4,
+          80,
+          12,
+          130,
+          7,
+          212,
+          9,
+          185,
+          55,
+          251,
+          9,
+          217,
+          16,
+          123,
+          3,
+          7,
+          7,
+          212,
+          9,
+          185,
+          15,
+          126,
+          14,
+          120,
+          3,
+          133,
+          14,
+          120,
+          3,
+          133,
+          254,
+          3,
+          11,
+          9,
+          67,
+          11,
+          94,
+          13,
+          70,
+          13,
+          70,
+          9,
+          42,
+          61,
+          251,
+          9,
+          87,
+          2,
+          174,
+          12,
+          160,
+          5,
+          101,
+          12,
+          103,
+          16,
+          127,
+          3,
+          1,
+          59,
+          254,
+          12,
+          160,
+          3,
+          11,
+          12,
+          26,
+          1,
+          243,
+          3,
+          97,
+          5,
+          110,
+          16,
+          11,
+          5,
+          190,
+          60,
+          255
+        ],
+        "hex": "01 00 3B 09 D9 03 A5 0E 03 0D 98 08 9E 3C FE 0B 0D 01 AD 04 50 0C 82 07 D4 09 B9 37 FB 09 D9 10 7B 03 07 07 D4 09 B9 0F 7E 0E 78 03 85 0E 78 03 85 FE 03 0B 09 43 0B 5E 0D 46 0D 46 09 2A 3D FB 09 57 02 AE 0C A0 05 65 0C 67 10 7F 03 01 3B FE 0C A0 03 0B 0C 1A 01 F3 03 61 05 6E 10 0B 05 BE 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 48,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 59,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_Text_LoreleisHouse": {
+      "label": "FourIsland_Text_LoreleisHouse",
+      "line": 210,
+      "source_file": "data/maps/FourIsland_Frlg/scripts.inc",
+      "raw_text": "哇，好冰！\\p我用冻瀑洞窟里采集到的冰\\n又做了一杯冰沙。\\p冰爽又美味哦！$",
+      "display_text": "哇，好冰！\n\n我用冻瀑洞窟里采集到的冰\n又做了一杯冰沙。\n\n冰爽又美味哦！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 64,
+        "bytes": [
+          13,
+          67,
+          59,
+          4,
+          233,
+          1,
+          182,
+          60,
+          251,
+          13,
+          152,
+          15,
+          113,
+          3,
+          88,
+          10,
+          148,
+          3,
+          89,
+          7,
+          237,
+          8,
+          100,
+          1,
+          228,
+          5,
+          154,
+          3,
+          4,
+          3,
+          11,
+          1,
+          182,
+          254,
+          15,
+          132,
+          17,
+          46,
+          8,
+          158,
+          15,
+          11,
+          1,
+          106,
+          1,
+          182,
+          11,
+          145,
+          55,
+          251,
+          1,
+          182,
+          12,
+          79,
+          15,
+          132,
+          9,
+          88,
+          13,
+          124,
+          10,
+          19,
+          60,
+          255
+        ],
+        "hex": "0D 43 3B 04 E9 01 B6 3C FB 0D 98 0F 71 03 58 0A 94 03 59 07 ED 08 64 01 E4 05 9A 03 04 03 0B 01 B6 FE 0F 84 11 2E 08 9E 0F 0B 01 6A 01 B6 0B 91 37 FB 01 B6 0C 4F 0F 84 09 58 0D 7C 0A 13 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 38,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 6,
+      "call_if_eq": 1,
+      "clearflag": 3,
+      "closemessage": 1,
+      "delay": 2,
+      "delay_16": 1,
+      "delay_4": 1,
+      "faceplayer": 3,
+      "fadedefaultbgm": 1,
+      "famechecker": 2,
+      "goto_if_eq": 5,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "goto_if_unset": 1,
+      "map_script": 2,
+      "map_script_2": 1,
+      "playbgm": 1,
+      "playfanfare": 1,
+      "playse": 1,
+      "removeobject": 1,
+      "setobjectxyperm": 1,
+      "setvar": 1,
+      "setworldmapflag": 1,
+      "special": 7,
+      "specialvar": 2,
+      "step_end": 3,
+      "textcolor": 2,
+      "waitbuttonpress": 2,
+      "waitfanfare": 1,
+      "waitmessage": 1,
+      "waitmovement": 5,
+      "walk_down": 3,
+      "walk_in_place_faster_right": 1,
+      "walk_left": 1,
+      "walk_right": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 29,
+    "script_count": 19,
+    "movement_count": 3,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 671,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 6,
+      "call": 2,
+      "call_if_eq": 1,
+      "clearflag": 3,
+      "closemessage": 1,
+      "delay": 2,
+      "delay_16": 1,
+      "delay_4": 1,
+      "end": 14,
+      "faceplayer": 3,
+      "fadedefaultbgm": 1,
+      "famechecker": 2,
+      "goto_if_eq": 5,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "goto_if_unset": 1,
+      "lock": 3,
+      "lockall": 1,
+      "map_script": 2,
+      "map_script_2": 1,
+      "message": 1,
+      "msgbox": 15,
+      "playbgm": 1,
+      "playfanfare": 1,
+      "playse": 1,
+      "release": 9,
+      "releaseall": 1,
+      "removeobject": 1,
+      "return": 2,
+      "setobjectxyperm": 1,
+      "setvar": 1,
+      "setworldmapflag": 1,
+      "special": 7,
+      "specialvar": 2,
+      "step_end": 3,
+      "textcolor": 2,
+      "waitbuttonpress": 2,
+      "waitfanfare": 1,
+      "waitmessage": 1,
+      "waitmovement": 5,
+      "walk_down": 3,
+      "walk_in_place_faster_right": 1,
+      "walk_left": 1,
+      "walk_right": 2
+    }
+  }
+}

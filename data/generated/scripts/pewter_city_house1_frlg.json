@@ -1,0 +1,727 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PewterCity_House1_Frlg",
+    "map_script": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+    "map_json": "data/maps/PewterCity_House1_Frlg/map.json",
+    "map_id": "MAP_PEWTER_CITY_HOUSE1",
+    "map_name": "PewterCity_House1_Frlg"
+  },
+  "labels": {
+    "PewterCity_House1_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PewterCity_House1_EventScript_BaldingMan": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_House1_EventScript_LittleBoy": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PewterCity_House1_EventScript_Nidoran": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "PewterCity_House1_EventScript_DoNidoranCry": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "PewterCity_House1_Text_Nidoran": {
+      "kind": "text",
+      "line": 33,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PewterCity_House1_Text_NidoranSit": {
+      "kind": "text",
+      "line": 36,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PewterCity_House1_Text_TradeMonsAreFinicky": {
+      "kind": "text",
+      "line": 39,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instruction_count": 7
+    }
+  },
+  "scripts": {
+    "PewterCity_House1_Frlg_MapScripts": {
+      "label": "PewterCity_House1_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PewterCity_House1_EventScript_BaldingMan": {
+      "label": "PewterCity_House1_EventScript_BaldingMan",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_House1_Text_TradeMonsAreFinicky",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox PewterCity_House1_Text_TradeMonsAreFinicky, MSGBOX_NPC",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_House1_Text_TradeMonsAreFinicky",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "PewterCity_House1_EventScript_LittleBoy": {
+      "label": "PewterCity_House1_EventScript_LittleBoy",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 9,
+          "raw": "lock",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_House1_Text_NidoranSit"
+          ],
+          "line": 10,
+          "raw": "msgbox PewterCity_House1_Text_NidoranSit",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PewterCity_House1_EventScript_DoNidoranCry"
+          ],
+          "line": 11,
+          "raw": "call PewterCity_House1_EventScript_DoNidoranCry",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 12,
+          "raw": "release",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_House1_Text_NidoranSit",
+          "mode": "",
+          "line": 10
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PewterCity_House1_EventScript_DoNidoranCry",
+          "line": 11
+        }
+      ]
+    },
+    "PewterCity_House1_EventScript_Nidoran": {
+      "label": "PewterCity_House1_EventScript_Nidoran",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 16,
+          "raw": "lock",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 17,
+          "raw": "faceplayer",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PewterCity_House1_EventScript_DoNidoranCry"
+          ],
+          "line": 18,
+          "raw": "call PewterCity_House1_EventScript_DoNidoranCry",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PEWTER_HOUSE_NIDORAN",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 19,
+          "raw": "applymovement LOCALID_PEWTER_HOUSE_NIDORAN, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 20,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 21,
+          "raw": "release",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PewterCity_House1_EventScript_DoNidoranCry",
+          "line": 18
+        }
+      ]
+    },
+    "PewterCity_House1_EventScript_DoNidoranCry": {
+      "label": "PewterCity_House1_EventScript_DoNidoranCry",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_NEUTRAL"
+          ],
+          "line": 25,
+          "raw": "textcolor NPC_TEXT_COLOR_NEUTRAL",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 26,
+          "raw": "waitse",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_NIDORAN_M",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 27,
+          "raw": "playmoncry SPECIES_NIDORAN_M, CRY_MODE_NORMAL",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_House1_Text_Nidoran"
+          ],
+          "line": 28,
+          "raw": "msgbox PewterCity_House1_Text_Nidoran",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 29,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_RestorePrevTextColor"
+          ],
+          "line": 30,
+          "raw": "call EventScript_RestorePrevTextColor",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 31,
+          "raw": "return",
+          "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_House1_Text_Nidoran",
+          "mode": "",
+          "line": 28
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_RestorePrevTextColor",
+          "line": 30
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {
+    "PewterCity_House1_Text_Nidoran": {
+      "label": "PewterCity_House1_Text_Nidoran",
+      "line": 33,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "raw_text": "尼多朗：啵啵！$",
+      "display_text": "尼多朗：啵啵！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 13,
+        "bytes": [
+          9,
+          215,
+          3,
+          133,
+          8,
+          63,
+          62,
+          20,
+          63,
+          20,
+          63,
+          60,
+          255
+        ],
+        "hex": "09 D7 03 85 08 3F 3E 14 3F 14 3F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 7,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PewterCity_House1_Text_NidoranSit": {
+      "label": "PewterCity_House1_Text_NidoranSit",
+      "line": 36,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "raw_text": "尼多朗，坐下！$",
+      "display_text": "尼多朗，坐下！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 13,
+        "bytes": [
+          9,
+          215,
+          3,
+          133,
+          8,
+          63,
+          59,
+          17,
+          48,
+          13,
+          230,
+          60,
+          255
+        ],
+        "hex": "09 D7 03 85 08 3F 3B 11 30 0D E6 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 7,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PewterCity_House1_Text_TradeMonsAreFinicky": {
+      "label": "PewterCity_House1_Text_TradeMonsAreFinicky",
+      "line": 39,
+      "source_file": "data/maps/PewterCity_House1_Frlg/scripts.inc",
+      "raw_text": "我们的宝可梦是外来的，\\n所以它很难控制。\\p外来的宝可梦就是说\\n你是通过交换得到它的。\\p它成长得很快，但是战斗中\\n可能不会听训练家的话。\\p但是如果有徽章就不一样了……$",
+      "display_text": "我们的宝可梦是外来的，\n所以它很难控制。\n\n外来的宝可梦就是说\n你是通过交换得到它的。\n\n它成长得很快，但是战斗中\n可能不会听训练家的话。\n\n但是如果有徽章就不一样了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 152,
+        "bytes": [
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          12,
+          13,
+          74,
+          8,
+          41,
+          3,
+          11,
+          59,
+          254,
+          12,
+          156,
+          15,
+          36,
+          12,
+          159,
+          5,
+          11,
+          9,
+          199,
+          7,
+          230,
+          16,
+          151,
+          55,
+          251,
+          13,
+          74,
+          8,
+          41,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          7,
+          125,
+          12,
+          12,
+          12,
+          88,
+          254,
+          9,
+          217,
+          12,
+          12,
+          13,
+          16,
+          4,
+          197,
+          7,
+          13,
+          5,
+          72,
+          3,
+          10,
+          3,
+          4,
+          12,
+          159,
+          3,
+          11,
+          55,
+          251,
+          12,
+          159,
+          2,
+          75,
+          2,
+          38,
+          3,
+          10,
+          5,
+          11,
+          8,
+          3,
+          59,
+          2,
+          233,
+          12,
+          12,
+          16,
+          48,
+          3,
+          92,
+          16,
+          161,
+          254,
+          7,
+          215,
+          9,
+          210,
+          1,
+          214,
+          5,
+          110,
+          13,
+          7,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          11,
+          5,
+          61,
+          55,
+          251,
+          2,
+          233,
+          12,
+          12,
+          11,
+          103,
+          4,
+          195,
+          15,
+          126,
+          5,
+          98,
+          16,
+          53,
+          7,
+          125,
+          1,
+          214,
+          15,
+          11,
+          14,
+          226,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 98 09 5F 03 0B 01 63 07 D7 09 66 0C 0C 0D 4A 08 29 03 0B 3B FE 0C 9C 0F 24 0C 9F 05 0B 09 C7 07 E6 10 97 37 FB 0D 4A 08 29 03 0B 01 63 07 D7 09 66 07 7D 0C 0C 0C 58 FE 09 D9 0C 0C 0D 10 04 C5 07 0D 05 48 03 0A 03 04 0C 9F 03 0B 37 FB 0C 9F 02 4B 02 26 03 0A 05 0B 08 03 3B 02 E9 0C 0C 10 30 03 5C 10 A1 FE 07 D7 09 D2 01 D6 05 6E 0D 07 0E 9E 08 8A 05 BD 03 0B 05 3D 37 FB 02 E9 0C 0C 0B 67 04 C3 0F 7E 05 62 10 35 07 7D 01 D6 0F 0B 0E E2 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 45,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 59,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 72,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 88,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 1,
+      "faceplayer": 1,
+      "playmoncry": 1,
+      "textcolor": 1,
+      "waitmoncry": 1,
+      "waitmovement": 1,
+      "waitse": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 8,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 178,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 1,
+      "call": 3,
+      "end": 3,
+      "faceplayer": 1,
+      "lock": 2,
+      "msgbox": 3,
+      "playmoncry": 1,
+      "release": 2,
+      "return": 1,
+      "textcolor": 1,
+      "waitmoncry": 1,
+      "waitmovement": 1,
+      "waitse": 1
+    }
+  }
+}

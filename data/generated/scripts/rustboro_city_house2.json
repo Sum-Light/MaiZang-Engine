@@ -1,0 +1,397 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "RustboroCity_House2",
+    "map_script": "data/maps/RustboroCity_House2/scripts.inc",
+    "map_json": "data/maps/RustboroCity_House2/map.json",
+    "map_id": "MAP_RUSTBORO_CITY_HOUSE2",
+    "map_name": "RustboroCity_House2"
+  },
+  "labels": {
+    "RustboroCity_House2_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RustboroCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_House2_EventScript_PokefanF": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/RustboroCity_House2/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_House2_EventScript_LittleGirl": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/RustboroCity_House2/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_House2_Text_TrainerSchoolExcellent": {
+      "kind": "text",
+      "line": 12,
+      "source_file": "data/maps/RustboroCity_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_House2_Text_RoxanneKnowsALot": {
+      "kind": "text",
+      "line": 15,
+      "source_file": "data/maps/RustboroCity_House2/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "RustboroCity_House2_MapScripts": {
+      "label": "RustboroCity_House2_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RustboroCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/RustboroCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_House2_EventScript_PokefanF": {
+      "label": "RustboroCity_House2_EventScript_PokefanF",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/RustboroCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_House2_Text_TrainerSchoolExcellent",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox RustboroCity_House2_Text_TrainerSchoolExcellent, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_House2_Text_TrainerSchoolExcellent",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_House2_EventScript_LittleGirl": {
+      "label": "RustboroCity_House2_EventScript_LittleGirl",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/RustboroCity_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_House2_Text_RoxanneKnowsALot",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox RustboroCity_House2_Text_RoxanneKnowsALot, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_House2_Text_RoxanneKnowsALot",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "RustboroCity_House2_Text_TrainerSchoolExcellent": {
+      "label": "RustboroCity_House2_Text_TrainerSchoolExcellent",
+      "line": 12,
+      "source_file": "data/maps/RustboroCity_House2/scripts.inc",
+      "raw_text": "训练家学校特别好。\\p在那儿学习的话，\\n甚至可能成为道馆馆主。$",
+      "display_text": "训练家学校特别好。\n\n在那儿学习的话，\n甚至可能成为道馆馆主。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 56,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          14,
+          144,
+          14,
+          46,
+          12,
+          217,
+          1,
+          173,
+          4,
+          233,
+          55,
+          251,
+          15,
+          230,
+          9,
+          189,
+          3,
+          158,
+          14,
+          144,
+          13,
+          212,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          11,
+          211,
+          16,
+          146,
+          7,
+          215,
+          9,
+          210,
+          2,
+          75,
+          13,
+          112,
+          3,
+          7,
+          4,
+          165,
+          4,
+          165,
+          16,
+          200,
+          55,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 0E 90 0E 2E 0C D9 01 AD 04 E9 37 FB 0F E6 09 BD 03 9E 0E 90 0D D4 03 0B 05 3D 3B FE 0B D3 10 92 07 D7 09 D2 02 4B 0D 70 03 07 04 A5 04 A5 10 C8 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_House2_Text_RoxanneKnowsALot": {
+      "label": "RustboroCity_House2_Text_RoxanneKnowsALot",
+      "line": 15,
+      "source_file": "data/maps/RustboroCity_House2/scripts.inc",
+      "raw_text": "道馆馆主杜娟了解\\n很多关于宝可梦的知识，\\p而且她也很强大！$",
+      "display_text": "道馆馆主杜娟了解\n很多关于宝可梦的知识，\n\n而且她也很强大！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 55,
+        "bytes": [
+          3,
+          7,
+          4,
+          165,
+          4,
+          165,
+          16,
+          200,
+          3,
+          106,
+          7,
+          154,
+          8,
+          158,
+          7,
+          52,
+          254,
+          5,
+          11,
+          3,
+          133,
+          4,
+          160,
+          15,
+          136,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          16,
+          123,
+          11,
+          242,
+          59,
+          251,
+          3,
+          157,
+          10,
+          235,
+          12,
+          160,
+          15,
+          2,
+          5,
+          11,
+          10,
+          216,
+          2,
+          211,
+          60,
+          255
+        ],
+        "hex": "03 07 04 A5 04 A5 10 C8 03 6A 07 9A 08 9E 07 34 FE 05 0B 03 85 04 A0 0F 88 01 63 07 D7 09 66 03 0B 10 7B 0B F2 3B FB 03 9D 0A EB 0C A0 0F 02 05 0B 0A D8 02 D3 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 31,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 111,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2
+    }
+  }
+}

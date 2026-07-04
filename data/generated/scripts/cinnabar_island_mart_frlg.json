@@ -1,0 +1,602 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CinnabarIsland_Mart_Frlg",
+    "map_script": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+    "map_json": "data/maps/CinnabarIsland_Mart_Frlg/map.json",
+    "map_id": "MAP_CINNABAR_ISLAND_MART",
+    "map_name": "CinnabarIsland_Mart_Frlg"
+  },
+  "labels": {
+    "CinnabarIsland_Mart_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CinnabarIsland_Mart_EventScript_Woman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CinnabarIsland_Mart_EventScript_Scientist": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CinnabarIsland_Mart_EventScript_Clerk": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CinnabarIsland_Mart_Items": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "CinnabarIsland_Mart_Text_DontTheyHaveXAttack": {
+      "kind": "text",
+      "line": 35,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CinnabarIsland_Mart_Text_ExtraItemsNeverHurt": {
+      "kind": "text",
+      "line": 40,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "CinnabarIsland_Mart_Frlg_MapScripts": {
+      "label": "CinnabarIsland_Mart_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CinnabarIsland_Mart_EventScript_Woman": {
+      "label": "CinnabarIsland_Mart_EventScript_Woman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_Mart_Text_DontTheyHaveXAttack",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox CinnabarIsland_Mart_Text_DontTheyHaveXAttack, MSGBOX_NPC",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_Mart_Text_DontTheyHaveXAttack",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_Mart_EventScript_Scientist": {
+      "label": "CinnabarIsland_Mart_EventScript_Scientist",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CinnabarIsland_Mart_Text_ExtraItemsNeverHurt",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox CinnabarIsland_Mart_Text_ExtraItemsNeverHurt, MSGBOX_NPC",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CinnabarIsland_Mart_Text_ExtraItemsNeverHurt",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_Mart_EventScript_Clerk": {
+      "label": "CinnabarIsland_Mart_EventScript_Clerk",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 13,
+          "raw": "lock",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 14,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_HowMayIServeYou"
+          ],
+          "line": 15,
+          "raw": "message gText_HowMayIServeYou",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 16,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "pokemart",
+          "args": [
+            "CinnabarIsland_Mart_Items"
+          ],
+          "line": 17,
+          "raw": "pokemart CinnabarIsland_Mart_Items",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain"
+          ],
+          "line": 18,
+          "raw": "msgbox gText_PleaseComeAgain",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 19,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 22,
+          "raw": ".align 2",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_HowMayIServeYou",
+          "mode": "",
+          "line": 15
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "CinnabarIsland_Mart_Items": {
+      "label": "CinnabarIsland_Mart_Items",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ULTRA_BALL"
+          ],
+          "line": 24,
+          "raw": ".2byte ITEM_ULTRA_BALL",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_GREAT_BALL"
+          ],
+          "line": 25,
+          "raw": ".2byte ITEM_GREAT_BALL",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_HYPER_POTION"
+          ],
+          "line": 26,
+          "raw": ".2byte ITEM_HYPER_POTION",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_REVIVE"
+          ],
+          "line": 27,
+          "raw": ".2byte ITEM_REVIVE",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_FULL_HEAL"
+          ],
+          "line": 28,
+          "raw": ".2byte ITEM_FULL_HEAL",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ESCAPE_ROPE"
+          ],
+          "line": 29,
+          "raw": ".2byte ITEM_ESCAPE_ROPE",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_MAX_REPEL"
+          ],
+          "line": 30,
+          "raw": ".2byte ITEM_MAX_REPEL",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_NONE"
+          ],
+          "line": 31,
+          "raw": ".2byte ITEM_NONE",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 32,
+          "raw": "release",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "CinnabarIsland_Mart_Text_DontTheyHaveXAttack": {
+      "label": "CinnabarIsland_Mart_Text_DontTheyHaveXAttack",
+      "line": 35,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "raw_text": "他们这里没有卖力量强化？\\p我喜欢这个道具\\n因为它能在战斗中提升攻击。$",
+      "display_text": "他们这里没有卖力量强化？\n\n我喜欢这个道具\n因为它能在战斗中提升攻击。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 65,
+        "bytes": [
+          12,
+          158,
+          9,
+          95,
+          16,
+          85,
+          8,
+          100,
+          9,
+          83,
+          15,
+          126,
+          9,
+          46,
+          8,
+          121,
+          8,
+          146,
+          10,
+          216,
+          5,
+          60,
+          61,
+          251,
+          13,
+          152,
+          13,
+          214,
+          5,
+          67,
+          16,
+          85,
+          4,
+          96,
+          3,
+          7,
+          7,
+          143,
+          254,
+          15,
+          66,
+          13,
+          112,
+          12,
+          159,
+          9,
+          210,
+          15,
+          230,
+          16,
+          48,
+          3,
+          92,
+          16,
+          161,
+          12,
+          226,
+          11,
+          219,
+          4,
+          109,
+          5,
+          132,
+          55,
+          255
+        ],
+        "hex": "0C 9E 09 5F 10 55 08 64 09 53 0F 7E 09 2E 08 79 08 92 0A D8 05 3C 3D FB 0D 98 0D D6 05 43 10 55 04 60 03 07 07 8F FE 0F 42 0D 70 0C 9F 09 D2 0F E6 10 30 03 5C 10 A1 0C E2 0B DB 04 6D 05 84 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 36,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CinnabarIsland_Mart_Text_ExtraItemsNeverHurt": {
+      "label": "CinnabarIsland_Mart_Text_ExtraItemsNeverHurt",
+      "line": 40,
+      "source_file": "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc",
+      "raw_text": "没有必要再用其它道具，\\n你永远不知道将会发生什么。$",
+      "display_text": "没有必要再用其它道具，\n你永远不知道将会发生什么。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          9,
+          83,
+          15,
+          126,
+          1,
+          149,
+          14,
+          241,
+          15,
+          229,
+          15,
+          113,
+          10,
+          159,
+          12,
+          159,
+          3,
+          7,
+          7,
+          143,
+          59,
+          254,
+          9,
+          217,
+          15,
+          110,
+          15,
+          194,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          5,
+          244,
+          5,
+          110,
+          3,
+          165,
+          11,
+          216,
+          11,
+          238,
+          9,
+          76,
+          55,
+          255
+        ],
+        "hex": "09 53 0F 7E 01 95 0E F1 0F E5 0F 71 0A 9F 0C 9F 03 07 07 8F 3B FE 09 D9 0F 6E 0F C2 01 D6 10 7B 03 07 05 F4 05 6E 03 A5 0B D8 0B EE 09 4C 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "pokemart": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 113,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 4,
+      "faceplayer": 1,
+      "lock": 1,
+      "message": 1,
+      "msgbox": 3,
+      "pokemart": 1,
+      "release": 2,
+      "waitmessage": 1
+    }
+  }
+}

@@ -1,0 +1,1377 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SeafloorCavern_Entrance",
+    "map_script": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+    "map_json": "data/maps/SeafloorCavern_Entrance/map.json",
+    "map_id": "MAP_SEAFLOOR_CAVERN_ENTRANCE",
+    "map_name": "SeafloorCavern_Entrance"
+  },
+  "labels": {
+    "SeafloorCavern_Entrance_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instruction_count": 2
+    },
+    "SeafloorCavern_Entrance_OnResume": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instruction_count": 3
+    },
+    "SeafloorCavern_Entrance_EventScript_Grunt": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instruction_count": 21
+    },
+    "SeafloorCavern_Entrance_EventScript_GruntSpeechShort": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instruction_count": 9
+    },
+    "SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instruction_count": 3
+    },
+    "SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest": {
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instruction_count": 3
+    },
+    "SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth": {
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instruction_count": 3
+    },
+    "SeafloorCavern_Entrance_Text_HearMagmaNearMossdeep": {
+      "kind": "text",
+      "line": 59,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instruction_count": 1
+    },
+    "SeafloorCavern_Entrance_Text_HearMagmaNearMossdeepShort": {
+      "kind": "text",
+      "line": 62,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SeafloorCavern_Entrance_MapScripts": {
+      "label": "SeafloorCavern_Entrance_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "SeafloorCavern_Entrance_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, SeafloorCavern_Entrance_OnResume",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SeafloorCavern_Entrance_OnResume": {
+      "label": "SeafloorCavern_Entrance_OnResume",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "setdivewarp",
+          "args": [
+            "MAP_UNDERWATER_SEAFLOOR_CAVERN",
+            "6",
+            "5"
+          ],
+          "line": 6,
+          "raw": "setdivewarp MAP_UNDERWATER_SEAFLOOR_CAVERN, 6, 5",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "setescapewarp",
+          "args": [
+            "MAP_UNDERWATER_SEAFLOOR_CAVERN",
+            "6",
+            "5"
+          ],
+          "line": 7,
+          "raw": "setescapewarp MAP_UNDERWATER_SEAFLOOR_CAVERN, 6, 5",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SeafloorCavern_Entrance_EventScript_Grunt": {
+      "label": "SeafloorCavern_Entrance_EventScript_Grunt",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 11,
+          "raw": "lockall",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT",
+            "1",
+            "SeafloorCavern_Entrance_EventScript_GruntSpeechShort"
+          ],
+          "line": 12,
+          "raw": "goto_if_eq VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT, 1, SeafloorCavern_Entrance_EventScript_GruntSpeechShort",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 13,
+          "raw": "waitse",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 14,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 15,
+          "raw": "applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT, Common_Movement_ExclamationMark",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 16,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT",
+            "Common_Movement_Delay48"
+          ],
+          "line": 17,
+          "raw": "applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT, Common_Movement_Delay48",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 18,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 19,
+          "raw": "delay 20",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_WEST",
+            "SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest"
+          ],
+          "line": 20,
+          "raw": "call_if_eq VAR_FACING, DIR_WEST, SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_EAST",
+            "SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast"
+          ],
+          "line": 21,
+          "raw": "call_if_eq VAR_FACING, DIR_EAST, SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_NORTH",
+            "SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth"
+          ],
+          "line": 22,
+          "raw": "call_if_eq VAR_FACING, DIR_NORTH, SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 23,
+          "raw": "delay 30",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT",
+            "1"
+          ],
+          "line": 24,
+          "raw": "setvar VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT, 1",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "copyobjectxytoperm",
+          "args": [
+            "LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT"
+          ],
+          "line": 25,
+          "raw": "copyobjectxytoperm LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SeafloorCavern_Entrance_Text_HearMagmaNearMossdeep",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 26,
+          "raw": "msgbox SeafloorCavern_Entrance_Text_HearMagmaNearMossdeep, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 27,
+          "raw": "closemessage",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 28,
+          "raw": "applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 29,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 30,
+          "raw": "releaseall",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SeafloorCavern_Entrance_Text_HearMagmaNearMossdeep",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 26
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "SeafloorCavern_Entrance_EventScript_GruntSpeechShort",
+          "line": 12
+        },
+        {
+          "op": "call_if_eq",
+          "target": "SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest",
+          "line": 20
+        },
+        {
+          "op": "call_if_eq",
+          "target": "SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast",
+          "line": 21
+        },
+        {
+          "op": "call_if_eq",
+          "target": "SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth",
+          "line": 22
+        }
+      ]
+    },
+    "SeafloorCavern_Entrance_EventScript_GruntSpeechShort": {
+      "label": "SeafloorCavern_Entrance_EventScript_GruntSpeechShort",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_WEST",
+            "SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest"
+          ],
+          "line": 34,
+          "raw": "call_if_eq VAR_FACING, DIR_WEST, SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_EAST",
+            "SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast"
+          ],
+          "line": 35,
+          "raw": "call_if_eq VAR_FACING, DIR_EAST, SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_NORTH",
+            "SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth"
+          ],
+          "line": 36,
+          "raw": "call_if_eq VAR_FACING, DIR_NORTH, SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SeafloorCavern_Entrance_Text_HearMagmaNearMossdeepShort",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 37,
+          "raw": "msgbox SeafloorCavern_Entrance_Text_HearMagmaNearMossdeepShort, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 38,
+          "raw": "closemessage",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 39,
+          "raw": "applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 40,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 41,
+          "raw": "releaseall",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SeafloorCavern_Entrance_Text_HearMagmaNearMossdeepShort",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 37
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest",
+          "line": 34
+        },
+        {
+          "op": "call_if_eq",
+          "target": "SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast",
+          "line": 35
+        },
+        {
+          "op": "call_if_eq",
+          "target": "SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth",
+          "line": 36
+        }
+      ]
+    },
+    "SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast": {
+      "label": "SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 45,
+          "raw": "applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 46,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 47,
+          "raw": "return",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest": {
+      "label": "SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest",
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 50,
+          "raw": "applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 51,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 52,
+          "raw": "return",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth": {
+      "label": "SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth",
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 55,
+          "raw": "applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 56,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 57,
+          "raw": "return",
+          "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SeafloorCavern_Entrance_Text_HearMagmaNearMossdeep": {
+      "label": "SeafloorCavern_Entrance_Text_HearMagmaNearMossdeep",
+      "line": 59,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "raw_text": "嘿！\\n我记得你！\\p既然你来了，那也就是说\\n你又想来给我们捣乱了！\\p像你这样的废物，难道还以为\\n能凭自己阻止我们海洋队？\\p告诉你，你还早了\\n一万亿年！\\p你这样的人和熔岩队\\n那些家伙倒是挺般配！\\p说起熔岩队，\\n听说有人在绿岭市看见过他们。\\p那些成捆的呆子，\\n他们没资格接近大海！$",
+      "display_text": "嘿！\n我记得你！\n\n既然你来了，那也就是说\n你又想来给我们捣乱了！\n\n像你这样的废物，难道还以为\n能凭自己阻止我们海洋队？\n\n告诉你，你还早了\n一万亿年！\n\n你这样的人和熔岩队\n那些家伙倒是挺般配！\n\n说起熔岩队，\n听说有人在绿岭市看见过他们。\n\n那些成捆的呆子，\n他们没资格接近大海！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 249,
+        "bytes": [
+          5,
+          8,
+          60,
+          254,
+          13,
+          152,
+          5,
+          178,
+          3,
+          10,
+          9,
+          217,
+          60,
+          251,
+          5,
+          179,
+          11,
+          59,
+          9,
+          217,
+          8,
+          41,
+          8,
+          158,
+          59,
+          9,
+          189,
+          15,
+          2,
+          7,
+          125,
+          12,
+          12,
+          12,
+          88,
+          254,
+          9,
+          217,
+          15,
+          132,
+          14,
+          24,
+          8,
+          41,
+          4,
+          98,
+          13,
+          152,
+          9,
+          95,
+          2,
+          245,
+          9,
+          12,
+          8,
+          158,
+          60,
+          251,
+          14,
+          30,
+          9,
+          217,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          3,
+          210,
+          13,
+          181,
+          59,
+          9,
+          199,
+          3,
+          7,
+          5,
+          70,
+          15,
+          36,
+          13,
+          112,
+          254,
+          9,
+          210,
+          10,
+          121,
+          17,
+          12,
+          5,
+          165,
+          17,
+          32,
+          16,
+          138,
+          13,
+          152,
+          9,
+          95,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          61,
+          251,
+          4,
+          80,
+          12,
+          130,
+          9,
+          217,
+          59,
+          9,
+          217,
+          5,
+          70,
+          15,
+          243,
+          8,
+          158,
+          254,
+          15,
+          11,
+          13,
+          90,
+          15,
+          42,
+          9,
+          224,
+          60,
+          251,
+          9,
+          217,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          11,
+          75,
+          4,
+          243,
+          11,
+          91,
+          14,
+          187,
+          3,
+          120,
+          254,
+          9,
+          189,
+          14,
+          52,
+          5,
+          189,
+          5,
+          124,
+          3,
+          0,
+          12,
+          12,
+          13,
+          14,
+          1,
+          66,
+          10,
+          65,
+          60,
+          251,
+          12,
+          88,
+          10,
+          171,
+          11,
+          91,
+          14,
+          187,
+          3,
+          120,
+          59,
+          254,
+          13,
+          7,
+          12,
+          88,
+          15,
+          126,
+          11,
+          75,
+          15,
+          230,
+          9,
+          6,
+          8,
+          190,
+          12,
+          21,
+          7,
+          194,
+          5,
+          230,
+          4,
+          197,
+          12,
+          158,
+          9,
+          95,
+          55,
+          251,
+          9,
+          189,
+          14,
+          52,
+          2,
+          75,
+          8,
+          27,
+          3,
+          11,
+          2,
+          212,
+          17,
+          11,
+          59,
+          254,
+          12,
+          158,
+          9,
+          95,
+          9,
+          83,
+          17,
+          2,
+          4,
+          91,
+          7,
+          37,
+          7,
+          78,
+          2,
+          211,
+          4,
+          201,
+          60,
+          255
+        ],
+        "hex": "05 08 3C FE 0D 98 05 B2 03 0A 09 D9 3C FB 05 B3 0B 3B 09 D9 08 29 08 9E 3B 09 BD 0F 02 07 7D 0C 0C 0C 58 FE 09 D9 0F 84 0E 18 08 29 04 62 0D 98 09 5F 02 F5 09 0C 08 9E 3C FB 0E 1E 09 D9 10 55 0E E2 03 0B 03 D2 0D B5 3B 09 C7 03 07 05 46 0F 24 0D 70 FE 09 D2 0A 79 11 0C 05 A5 11 20 10 8A 0D 98 09 5F 04 C9 0E DC 03 78 3D FB 04 50 0C 82 09 D9 3B 09 D9 05 46 0F F3 08 9E FE 0F 0B 0D 5A 0F 2A 09 E0 3C FB 09 D9 10 55 0E E2 03 0B 0B 4B 04 F3 0B 5B 0E BB 03 78 FE 09 BD 0E 34 05 BD 05 7C 03 00 0C 0C 0D 0E 01 42 0A 41 3C FB 0C 58 0A AB 0B 5B 0E BB 03 78 3B FE 0D 07 0C 58 0F 7E 0B 4B 0F E6 09 06 08 BE 0C 15 07 C2 05 E6 04 C5 0C 9E 09 5F 37 FB 09 BD 0E 34 02 4B 08 1B 03 0B 02 D4 11 0B 3B FE 0C 9E 09 5F 09 53 11 02 04 5B 07 25 07 4E 02 D3 04 C9 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 35,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 50,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 64,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 74,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 81,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 92,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 104,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 112,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 128,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 138,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 150,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SeafloorCavern_Entrance_Text_HearMagmaNearMossdeepShort": {
+      "label": "SeafloorCavern_Entrance_Text_HearMagmaNearMossdeepShort",
+      "line": 62,
+      "source_file": "data/maps/SeafloorCavern_Entrance/scripts.inc",
+      "raw_text": "像你这样的废物，难道还以为\\n能凭自己阻止我们海洋队？\\p告诉你，你还早了\\n一万亿年！\\p你这样的人和熔岩队\\n那些家伙倒是挺般配！\\p说起熔岩队，\\n听说有人在绿岭市看见过他们。\\p那些成捆的呆子，\\n他们没资格接近大海！$",
+      "display_text": "像你这样的废物，难道还以为\n能凭自己阻止我们海洋队？\n\n告诉你，你还早了\n一万亿年！\n\n你这样的人和熔岩队\n那些家伙倒是挺般配！\n\n说起熔岩队，\n听说有人在绿岭市看见过他们。\n\n那些成捆的呆子，\n他们没资格接近大海！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 191,
+        "bytes": [
+          14,
+          30,
+          9,
+          217,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          3,
+          210,
+          13,
+          181,
+          59,
+          9,
+          199,
+          3,
+          7,
+          5,
+          70,
+          15,
+          36,
+          13,
+          112,
+          254,
+          9,
+          210,
+          10,
+          121,
+          17,
+          12,
+          5,
+          165,
+          17,
+          32,
+          16,
+          138,
+          13,
+          152,
+          9,
+          95,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          61,
+          251,
+          4,
+          80,
+          12,
+          130,
+          9,
+          217,
+          59,
+          9,
+          217,
+          5,
+          70,
+          15,
+          243,
+          8,
+          158,
+          254,
+          15,
+          11,
+          13,
+          90,
+          15,
+          42,
+          9,
+          224,
+          60,
+          251,
+          9,
+          217,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          11,
+          75,
+          4,
+          243,
+          11,
+          91,
+          14,
+          187,
+          3,
+          120,
+          254,
+          9,
+          189,
+          14,
+          52,
+          5,
+          189,
+          5,
+          124,
+          3,
+          0,
+          12,
+          12,
+          13,
+          14,
+          1,
+          66,
+          10,
+          65,
+          60,
+          251,
+          12,
+          88,
+          10,
+          171,
+          11,
+          91,
+          14,
+          187,
+          3,
+          120,
+          59,
+          254,
+          13,
+          7,
+          12,
+          88,
+          15,
+          126,
+          11,
+          75,
+          15,
+          230,
+          9,
+          6,
+          8,
+          190,
+          12,
+          21,
+          7,
+          194,
+          5,
+          230,
+          4,
+          197,
+          12,
+          158,
+          9,
+          95,
+          55,
+          251,
+          9,
+          189,
+          14,
+          52,
+          2,
+          75,
+          8,
+          27,
+          3,
+          11,
+          2,
+          212,
+          17,
+          11,
+          59,
+          254,
+          12,
+          158,
+          9,
+          95,
+          9,
+          83,
+          17,
+          2,
+          4,
+          91,
+          7,
+          37,
+          7,
+          78,
+          2,
+          211,
+          4,
+          201,
+          60,
+          255
+        ],
+        "hex": "0E 1E 09 D9 10 55 0E E2 03 0B 03 D2 0D B5 3B 09 C7 03 07 05 46 0F 24 0D 70 FE 09 D2 0A 79 11 0C 05 A5 11 20 10 8A 0D 98 09 5F 04 C9 0E DC 03 78 3D FB 04 50 0C 82 09 D9 3B 09 D9 05 46 0F F3 08 9E FE 0F 0B 0D 5A 0F 2A 09 E0 3C FB 09 D9 10 55 0E E2 03 0B 0B 4B 04 F3 0B 5B 0E BB 03 78 FE 09 BD 0E 34 05 BD 05 7C 03 00 0C 0C 0D 0E 01 42 0A 41 3C FB 0C 58 0A AB 0B 5B 0E BB 03 78 3B FE 0D 07 0C 58 0F 7E 0B 4B 0F E6 09 06 08 BE 0C 15 07 C2 05 E6 04 C5 0C 9E 09 5F 37 FB 09 BD 0E 34 02 4B 08 1B 03 0B 02 D4 11 0B 3B FE 0C 9E 09 5F 09 53 11 02 04 5B 07 25 07 4E 02 D3 04 C9 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 27,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 37,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 44,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 55,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 67,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 75,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 91,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 101,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 113,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 7,
+      "call_if_eq": 6,
+      "closemessage": 2,
+      "copyobjectxytoperm": 1,
+      "delay": 2,
+      "goto_if_eq": 1,
+      "map_script": 1,
+      "playse": 1,
+      "setdivewarp": 1,
+      "setescapewarp": 1,
+      "setvar": 1,
+      "waitmovement": 7,
+      "waitse": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 7,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 440,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 7,
+      "call_if_eq": 6,
+      "closemessage": 2,
+      "copyobjectxytoperm": 1,
+      "delay": 2,
+      "end": 3,
+      "goto_if_eq": 1,
+      "lockall": 1,
+      "map_script": 1,
+      "msgbox": 2,
+      "playse": 1,
+      "releaseall": 2,
+      "return": 3,
+      "setdivewarp": 1,
+      "setescapewarp": 1,
+      "setvar": 1,
+      "waitmovement": 7,
+      "waitse": 1
+    }
+  }
+}

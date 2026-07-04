@@ -1,0 +1,4951 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "BattleFrontier_BattleDomePreBattleRoom",
+    "map_script": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+    "map_json": "data/maps/BattleFrontier_BattleDomePreBattleRoom/map.json",
+    "map_id": "MAP_BATTLE_FRONTIER_BATTLE_DOME_PRE_BATTLE_ROOM",
+    "map_name": "BattleFrontier_BattleDomePreBattleRoom"
+  },
+  "labels": {
+    "BattleFrontier_BattleDomePreBattleRoom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_OnWarp": {
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_TurnPlayerNorth": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_OnFrame": {
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_EnterRoom": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 14
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRoundNoRecord": {
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRecordBattle": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_RecordBattle": {
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskPauseChallenge": {
+      "kind": "script",
+      "line": 66,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge": {
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_RetireChallenge": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_PauseChallenge": {
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowOpponentInfo": {
+      "kind": "script",
+      "line": 96,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowTourneyTree": {
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowRoundMessage": {
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound1": {
+      "kind": "script",
+      "line": 119,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound2": {
+      "kind": "script",
+      "line": 123,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInSemifinals": {
+      "kind": "script",
+      "line": 127,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInFinals": {
+      "kind": "script",
+      "line": 131,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge": {
+      "kind": "script",
+      "line": 135,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 30
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForNextRoundMessage": {
+      "kind": "script",
+      "line": 167,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound1": {
+      "kind": "script",
+      "line": 176,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound2": {
+      "kind": "script",
+      "line": 180,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForSemifinals": {
+      "kind": "script",
+      "line": 184,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForFinals": {
+      "kind": "script",
+      "line": 188,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver": {
+      "kind": "script",
+      "line": 198,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold": {
+      "kind": "script",
+      "line": 204,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilverShort": {
+      "kind": "script",
+      "line": 210,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGoldShort": {
+      "kind": "script",
+      "line": 214,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle": {
+      "kind": "script",
+      "line": 218,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 12
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_RoundCompleteMessage": {
+      "kind": "script",
+      "line": 232,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_Round1Complete": {
+      "kind": "script",
+      "line": 240,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_Round2Complete": {
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_SemifinalsComplete": {
+      "kind": "script",
+      "line": 248,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Movement_AttendantMoveAside": {
+      "kind": "movement",
+      "line": 252,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerEnter": {
+      "kind": "movement",
+      "line": 257,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerWalkToDoor": {
+      "kind": "movement",
+      "line": 264,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerEnterDoor": {
+      "kind": "movement",
+      "line": 268,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound1": {
+      "kind": "text",
+      "line": 273,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound2": {
+      "kind": "text",
+      "line": 276,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForSemifinals": {
+      "kind": "text",
+      "line": 279,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForFinals": {
+      "kind": "text",
+      "line": 282,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ChooseTwoMons": {
+      "kind": "text",
+      "line": 285,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_RightThisWay": {
+      "kind": "text",
+      "line": 288,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_RestoreMonsToFullHealth": {
+      "kind": "text",
+      "line": 291,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_Round1Complete": {
+      "kind": "text",
+      "line": 294,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_Round2Complete": {
+      "kind": "text",
+      "line": 297,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_SemifinalsComplete": {
+      "kind": "text",
+      "line": 300,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForRound2": {
+      "kind": "text",
+      "line": 304,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForSemifinals": {
+      "kind": "text",
+      "line": 308,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForFinals": {
+      "kind": "text",
+      "line": 312,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_PlayersNextOpponentIsTrainer": {
+      "kind": "text",
+      "line": 315,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound1": {
+      "kind": "text",
+      "line": 318,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound2": {
+      "kind": "text",
+      "line": 321,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInSemifinals": {
+      "kind": "text",
+      "line": 324,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInFinals": {
+      "kind": "text",
+      "line": 327,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_SaveAndQuitGame": {
+      "kind": "text",
+      "line": 330,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_RetireYourChallenge": {
+      "kind": "text",
+      "line": 333,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_SavingDataPleaseWait": {
+      "kind": "text",
+      "line": 336,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_RecordLastMatch": {
+      "kind": "text",
+      "line": 339,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilver": {
+      "kind": "text",
+      "line": 342,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGold": {
+      "kind": "text",
+      "line": 346,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilverShort": {
+      "kind": "text",
+      "line": 349,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGoldShort": {
+      "kind": "text",
+      "line": 353,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "BattleFrontier_BattleDomePreBattleRoom_MapScripts": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "BattleFrontier_BattleDomePreBattleRoom_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattleDomePreBattleRoom_OnFrame",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "BattleFrontier_BattleDomePreBattleRoom_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattleDomePreBattleRoom_OnWarp",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_OnWarp": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_OnWarp",
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_TurnPlayerNorth"
+          ],
+          "line": 7,
+          "raw": "map_script_2 VAR_TEMP_1, 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_TurnPlayerNorth",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 8,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_TurnPlayerNorth": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_TurnPlayerNorth",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 12,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_OnFrame": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_OnFrame",
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_0",
+            "0",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_EnterRoom"
+          ],
+          "line": 16,
+          "raw": "map_script_2 VAR_TEMP_0, 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_EnterRoom",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 17,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_EnterRoom": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_EnterRoom",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8006",
+            "1",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle"
+          ],
+          "line": 20,
+          "raw": "goto_if_eq VAR_0x8006, 1, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "1"
+          ],
+          "line": 21,
+          "raw": "delay 1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_RECORD_DISABLED",
+            "TRUE"
+          ],
+          "line": 22,
+          "raw": "frontier_set FRONTIER_DATA_RECORD_DISABLED, TRUE",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_0",
+            "1"
+          ],
+          "line": 23,
+          "raw": "setvar VAR_TEMP_0, 1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerEnter"
+          ],
+          "line": 24,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerEnter",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 25,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 26,
+          "raw": "lockall",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle",
+          "line": 20
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForNextRoundMessage"
+          ],
+          "line": 28,
+          "raw": "call BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForNextRoundMessage",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 29,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 30,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_EventScript_GetCantRecordBattle"
+          ],
+          "line": 31,
+          "raw": "call BattleFrontier_EventScript_GetCantRecordBattle",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRoundNoRecord"
+          ],
+          "line": 32,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRoundNoRecord",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "16",
+            "0",
+            "MULTI_TOURNEY_WITH_RECORD",
+            "TRUE"
+          ],
+          "line": 33,
+          "raw": "multichoice 16, 0, MULTI_TOURNEY_WITH_RECORD, TRUE",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 34,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowOpponentInfo"
+          ],
+          "line": 35,
+          "raw": "case 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowOpponentInfo",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowTourneyTree"
+          ],
+          "line": 36,
+          "raw": "case 1, BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowTourneyTree",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge"
+          ],
+          "line": 37,
+          "raw": "case 2, BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRecordBattle"
+          ],
+          "line": 38,
+          "raw": "case 3, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRecordBattle",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskPauseChallenge"
+          ],
+          "line": 39,
+          "raw": "case 4, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskPauseChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "5",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge"
+          ],
+          "line": 40,
+          "raw": "case 5, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 41,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForNextRoundMessage",
+          "line": 28
+        },
+        {
+          "op": "call",
+          "target": "BattleFrontier_EventScript_GetCantRecordBattle",
+          "line": 31
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRoundNoRecord",
+          "line": 32
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRoundNoRecord": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRoundNoRecord",
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoice",
+          "args": [
+            "16",
+            "2",
+            "MULTI_TOURNEY_NO_RECORD",
+            "TRUE"
+          ],
+          "line": 44,
+          "raw": "multichoice 16, 2, MULTI_TOURNEY_NO_RECORD, TRUE",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 45,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowOpponentInfo"
+          ],
+          "line": 46,
+          "raw": "case 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowOpponentInfo",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowTourneyTree"
+          ],
+          "line": 47,
+          "raw": "case 1, BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowTourneyTree",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge"
+          ],
+          "line": 48,
+          "raw": "case 2, BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskPauseChallenge"
+          ],
+          "line": 49,
+          "raw": "case 3, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskPauseChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge"
+          ],
+          "line": 50,
+          "raw": "case 4, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 51,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRecordBattle": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRecordBattle",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_RecordLastMatch"
+          ],
+          "line": 54,
+          "raw": "message BattleFrontier_BattleDomePreBattleRoom_Text_RecordLastMatch",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 55,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "20",
+            "8",
+            "MULTI_YESNO",
+            "1",
+            "FALSE"
+          ],
+          "line": 56,
+          "raw": "multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 57,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 58,
+          "raw": "case 1, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_RecordBattle"
+          ],
+          "line": 59,
+          "raw": "case 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_RecordBattle",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 60,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_RecordLastMatch",
+          "mode": "",
+          "line": 54
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_RecordBattle": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_RecordBattle",
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_EventScript_SaveBattle"
+          ],
+          "line": 63,
+          "raw": "call BattleFrontier_EventScript_SaveBattle",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 64,
+          "raw": "goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_EventScript_SaveBattle",
+          "line": 63
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "line": 64
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskPauseChallenge": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskPauseChallenge",
+      "kind": "script",
+      "line": 66,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_SaveAndQuitGame",
+            "MSGBOX_YESNO"
+          ],
+          "line": 67,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_SaveAndQuitGame, MSGBOX_YESNO",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 68,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "NO",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 69,
+          "raw": "case NO, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "YES",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_PauseChallenge"
+          ],
+          "line": 70,
+          "raw": "case YES, BattleFrontier_BattleDomePreBattleRoom_EventScript_PauseChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 71,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_SaveAndQuitGame",
+          "mode": "MSGBOX_YESNO",
+          "line": 67
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge",
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_RetireYourChallenge"
+          ],
+          "line": 74,
+          "raw": "message BattleFrontier_BattleDomePreBattleRoom_Text_RetireYourChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 75,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "20",
+            "8",
+            "MULTI_YESNO",
+            "1",
+            "FALSE"
+          ],
+          "line": 76,
+          "raw": "multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 77,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 78,
+          "raw": "case 1, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_RetireChallenge"
+          ],
+          "line": 79,
+          "raw": "case 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_RetireChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 80,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_RetireYourChallenge",
+          "mode": "",
+          "line": 74
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_RetireChallenge": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_RetireChallenge",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "dome_resolvewinners",
+          "args": [
+            "DOME_PLAYER_RETIRED"
+          ],
+          "line": 83,
+          "raw": "dome_resolvewinners DOME_PLAYER_RETIRED",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleDomeBattleRoom_EventScript_WarpToLobbyLost"
+          ],
+          "line": 84,
+          "raw": "goto BattleFrontier_BattleDomeBattleRoom_EventScript_WarpToLobbyLost",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleDomeBattleRoom_EventScript_WarpToLobbyLost",
+          "line": 84
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_PauseChallenge": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_PauseChallenge",
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_SavingDataPleaseWait"
+          ],
+          "line": 87,
+          "raw": "message BattleFrontier_BattleDomePreBattleRoom_Text_SavingDataPleaseWait",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 88,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "dome_save",
+          "args": [
+            "CHALLENGE_STATUS_PAUSED"
+          ],
+          "line": 89,
+          "raw": "dome_save CHALLENGE_STATUS_PAUSED",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 90,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 91,
+          "raw": "waitse",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 92,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_reset",
+          "args": [],
+          "line": 93,
+          "raw": "frontier_reset",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 94,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_SavingDataPleaseWait",
+          "mode": "",
+          "line": 87
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowOpponentInfo": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowOpponentInfo",
+      "kind": "script",
+      "line": 96,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_PlayersNextOpponentIsTrainer",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 97,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_PlayersNextOpponentIsTrainer, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 98,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "dome_showopponentinfo",
+          "args": [],
+          "line": 99,
+          "raw": "dome_showopponentinfo",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 100,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 101,
+          "raw": "goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_PlayersNextOpponentIsTrainer",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 97
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "line": 101
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowTourneyTree": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowTourneyTree",
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowRoundMessage"
+          ],
+          "line": 104,
+          "raw": "call BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowRoundMessage",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 105,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "dome_showtourneytree",
+          "args": [],
+          "line": 106,
+          "raw": "dome_showtourneytree",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 107,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 108,
+          "raw": "goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowRoundMessage",
+          "line": 104
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "line": 108
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowRoundMessage": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowRoundMessage",
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 111,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 112,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_ROUND1",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound1"
+          ],
+          "line": 113,
+          "raw": "case DOME_ROUND1, BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_ROUND2",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound2"
+          ],
+          "line": 114,
+          "raw": "case DOME_ROUND2, BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound2",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_SEMIFINAL",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInSemifinals"
+          ],
+          "line": 115,
+          "raw": "case DOME_SEMIFINAL, BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInSemifinals",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_FINAL",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInFinals"
+          ],
+          "line": 116,
+          "raw": "case DOME_FINAL, BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInFinals",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 117,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound1": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound1",
+      "kind": "script",
+      "line": 119,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound1",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 120,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound1, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 121,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound1",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 120
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound2": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound2",
+      "kind": "script",
+      "line": 123,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound2",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 124,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound2, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 125,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound2",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 124
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInSemifinals": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInSemifinals",
+      "kind": "script",
+      "line": 127,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInSemifinals",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 128,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInSemifinals, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 129,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInSemifinals",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 128
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInFinals": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInFinals",
+      "kind": "script",
+      "line": 131,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInFinals",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 132,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInFinals, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 133,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInFinals",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 132
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge",
+      "kind": "script",
+      "line": 135,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_ChooseTwoMons"
+          ],
+          "line": 136,
+          "raw": "message BattleFrontier_BattleDomePreBattleRoom_Text_ChooseTwoMons",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 137,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 138,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 139,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_EventScript_GetLvlMode"
+          ],
+          "line": 140,
+          "raw": "call BattleFrontier_EventScript_GetLvlMode",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8004",
+            "VAR_RESULT"
+          ],
+          "line": 141,
+          "raw": "copyvar VAR_0x8004, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "DOME_BATTLE_PARTY_SIZE"
+          ],
+          "line": 142,
+          "raw": "setvar VAR_0x8005, DOME_BATTLE_PARTY_SIZE",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ChoosePartyForBattleFrontier"
+          ],
+          "line": 143,
+          "raw": "special ChoosePartyForBattleFrontier",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 144,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_resetsketch",
+          "args": [],
+          "line": 145,
+          "raw": "frontier_resetsketch",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 146,
+          "raw": "goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "dome_set",
+          "args": [
+            "DOME_DATA_SELECTED_MONS"
+          ],
+          "line": 147,
+          "raw": "dome_set DOME_DATA_SELECTED_MONS",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "dome_reduceparty",
+          "args": [],
+          "line": 148,
+          "raw": "dome_reduceparty",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "dome_setopponent",
+          "args": [],
+          "line": 149,
+          "raw": "dome_setopponent",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_RightThisWay",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 150,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_RightThisWay, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 151,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOME_PRE_BATTLE_ATTENDANT",
+            "BattleFrontier_BattleDomePreBattleRoom_Movement_AttendantMoveAside"
+          ],
+          "line": 152,
+          "raw": "applymovement LOCALID_DOME_PRE_BATTLE_ATTENDANT, BattleFrontier_BattleDomePreBattleRoom_Movement_AttendantMoveAside",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 153,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerWalkToDoor"
+          ],
+          "line": 154,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerWalkToDoor",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 155,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "opendoor",
+          "args": [
+            "5",
+            "1"
+          ],
+          "line": 156,
+          "raw": "opendoor 5, 1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 157,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerEnterDoor"
+          ],
+          "line": 158,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerEnterDoor",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 159,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "closedoor",
+          "args": [
+            "5",
+            "1"
+          ],
+          "line": 160,
+          "raw": "closedoor 5, 1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 161,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_DOME_BATTLE_ROOM",
+            "9",
+            "5"
+          ],
+          "line": 162,
+          "raw": "warp MAP_BATTLE_FRONTIER_BATTLE_DOME_BATTLE_ROOM, 9, 5",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_0",
+            "0"
+          ],
+          "line": 163,
+          "raw": "setvar VAR_TEMP_0, 0",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 164,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 165,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_ChooseTwoMons",
+          "mode": "",
+          "line": 136
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_RightThisWay",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 150
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_EventScript_GetLvlMode",
+          "line": 140
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "line": 146
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForNextRoundMessage": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForNextRoundMessage",
+      "kind": "script",
+      "line": 167,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 168,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 169,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_ROUND1",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound1"
+          ],
+          "line": 170,
+          "raw": "case DOME_ROUND1, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_ROUND2",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound2"
+          ],
+          "line": 171,
+          "raw": "case DOME_ROUND2, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound2",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_SEMIFINAL",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForSemifinals"
+          ],
+          "line": 172,
+          "raw": "case DOME_SEMIFINAL, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForSemifinals",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_FINAL",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForFinals"
+          ],
+          "line": 173,
+          "raw": "case DOME_FINAL, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForFinals",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 174,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound1": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound1",
+      "kind": "script",
+      "line": 176,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound1"
+          ],
+          "line": 177,
+          "raw": "message BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 178,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound1",
+          "mode": "",
+          "line": 177
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound2": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound2",
+      "kind": "script",
+      "line": 180,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound2"
+          ],
+          "line": 181,
+          "raw": "message BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound2",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 182,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound2",
+          "mode": "",
+          "line": 181
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForSemifinals": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForSemifinals",
+      "kind": "script",
+      "line": 184,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForSemifinals"
+          ],
+          "line": 185,
+          "raw": "message BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForSemifinals",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 186,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForSemifinals",
+          "mode": "",
+          "line": 185
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForFinals": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForFinals",
+      "kind": "script",
+      "line": 188,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_getbrainstatus",
+          "args": [],
+          "line": 189,
+          "raw": "frontier_getbrainstatus",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 190,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_BRAIN_SILVER",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver"
+          ],
+          "line": 191,
+          "raw": "case FRONTIER_BRAIN_SILVER, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_BRAIN_GOLD",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold"
+          ],
+          "line": 192,
+          "raw": "case FRONTIER_BRAIN_GOLD, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_BRAIN_STREAK",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver"
+          ],
+          "line": 193,
+          "raw": "case FRONTIER_BRAIN_STREAK, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_BRAIN_STREAK_LONG",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold"
+          ],
+          "line": 194,
+          "raw": "case FRONTIER_BRAIN_STREAK_LONG, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForFinals"
+          ],
+          "line": 195,
+          "raw": "message BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForFinals",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 196,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForFinals",
+          "mode": "",
+          "line": 195
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver",
+      "kind": "script",
+      "line": 198,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_TEMP_1",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilverShort"
+          ],
+          "line": 199,
+          "raw": "goto_if_set FLAG_TEMP_1, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilverShort",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilver",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 200,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilver, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_1"
+          ],
+          "line": 201,
+          "raw": "setflag FLAG_TEMP_1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 202,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilver",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 200
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilverShort",
+          "line": 199
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold",
+      "kind": "script",
+      "line": 204,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_TEMP_1",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGoldShort"
+          ],
+          "line": 205,
+          "raw": "goto_if_set FLAG_TEMP_1, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGoldShort",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGold",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 206,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGold, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_1"
+          ],
+          "line": 207,
+          "raw": "setflag FLAG_TEMP_1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 208,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGold",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 206
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGoldShort",
+          "line": 205
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilverShort": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilverShort",
+      "kind": "script",
+      "line": 210,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilverShort",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 211,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilverShort, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 212,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilverShort",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 211
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGoldShort": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGoldShort",
+      "kind": "script",
+      "line": 214,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGoldShort",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 215,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGoldShort, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 216,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGoldShort",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 215
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle",
+      "kind": "script",
+      "line": 218,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_0",
+            "1"
+          ],
+          "line": 219,
+          "raw": "setvar VAR_TEMP_0, 1",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_RestoreMonsToFullHealth",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 220,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_RestoreMonsToFullHealth, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 221,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_setpartyorder",
+          "args": [
+            "FRONTIER_PARTY_SIZE"
+          ],
+          "line": 222,
+          "raw": "frontier_setpartyorder FRONTIER_PARTY_SIZE",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_HEAL"
+          ],
+          "line": 223,
+          "raw": "playfanfare MUS_HEAL",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 224,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 225,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_RoundCompleteMessage"
+          ],
+          "line": 226,
+          "raw": "call BattleFrontier_BattleDomePreBattleRoom_EventScript_RoundCompleteMessage",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 227,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "dome_showstatictourneytree",
+          "args": [],
+          "line": 228,
+          "raw": "dome_showstatictourneytree",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 229,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound"
+          ],
+          "line": 230,
+          "raw": "goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_RestoreMonsToFullHealth",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 220
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_RoundCompleteMessage",
+          "line": 226
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound",
+          "line": 230
+        }
+      ]
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_RoundCompleteMessage": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_RoundCompleteMessage",
+      "kind": "script",
+      "line": 232,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 233,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 234,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_ROUND2",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_Round1Complete"
+          ],
+          "line": 235,
+          "raw": "case DOME_ROUND2, BattleFrontier_BattleDomePreBattleRoom_EventScript_Round1Complete",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_SEMIFINAL",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_Round2Complete"
+          ],
+          "line": 236,
+          "raw": "case DOME_SEMIFINAL, BattleFrontier_BattleDomePreBattleRoom_EventScript_Round2Complete",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "DOME_FINAL",
+            "BattleFrontier_BattleDomePreBattleRoom_EventScript_SemifinalsComplete"
+          ],
+          "line": 237,
+          "raw": "case DOME_FINAL, BattleFrontier_BattleDomePreBattleRoom_EventScript_SemifinalsComplete",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 238,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_Round1Complete": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_Round1Complete",
+      "kind": "script",
+      "line": 240,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_Round1Complete",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 241,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_Round1Complete, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 242,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_Round1Complete",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 241
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_Round2Complete": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_Round2Complete",
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_Round2Complete",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 245,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_Round2Complete, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 246,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_Round2Complete",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 245
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_EventScript_SemifinalsComplete": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_EventScript_SemifinalsComplete",
+      "kind": "script",
+      "line": 248,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleDomePreBattleRoom_Text_SemifinalsComplete",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 249,
+          "raw": "msgbox BattleFrontier_BattleDomePreBattleRoom_Text_SemifinalsComplete, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 250,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleDomePreBattleRoom_Text_SemifinalsComplete",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 249
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "BattleFrontier_BattleDomePreBattleRoom_Movement_AttendantMoveAside": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Movement_AttendantMoveAside",
+      "kind": "movement",
+      "line": 252,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 253,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "face_left",
+          "args": [],
+          "line": 254,
+          "raw": "face_left",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 255,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerEnter": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerEnter",
+      "kind": "movement",
+      "line": 257,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 258,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 259,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 260,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 261,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 262,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerWalkToDoor": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerWalkToDoor",
+      "kind": "movement",
+      "line": 264,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 265,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 266,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerEnterDoor": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Movement_PlayerEnterDoor",
+      "kind": "movement",
+      "line": 268,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 269,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 270,
+          "raw": "set_invisible",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 271,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound1": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound1",
+      "line": 273,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "接下来您将参加第1轮比赛。\\n准备好了吗？$",
+      "display_text": "接下来您将参加第1轮比赛。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 37,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          9,
+          240,
+          5,
+          244,
+          1,
+          233,
+          5,
+          190,
+          3,
+          33,
+          162,
+          9,
+          16,
+          1,
+          133,
+          11,
+          124,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 09 F0 05 F4 01 E9 05 BE 03 21 A2 09 10 01 85 0B 7C 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound2": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound2",
+      "line": 276,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "接下来您将参加第2轮比赛。\\n准备好了吗？$",
+      "display_text": "接下来您将参加第2轮比赛。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 37,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          9,
+          240,
+          5,
+          244,
+          1,
+          233,
+          5,
+          190,
+          3,
+          33,
+          163,
+          9,
+          16,
+          1,
+          133,
+          11,
+          124,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 09 F0 05 F4 01 E9 05 BE 03 21 A3 09 10 01 85 0B 7C 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForSemifinals": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForSemifinals",
+      "line": 279,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "接下来您将参加半决赛。\\n准备好了吗？$",
+      "display_text": "接下来您将参加半决赛。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          9,
+          240,
+          5,
+          244,
+          1,
+          233,
+          5,
+          190,
+          1,
+          74,
+          7,
+          166,
+          11,
+          124,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 09 F0 05 F4 01 E9 05 BE 01 4A 07 A6 0B 7C 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForFinals": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForFinals",
+      "line": 282,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "接下来您将参加决赛。\\n准备好了吗？$",
+      "display_text": "接下来您将参加决赛。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          9,
+          240,
+          5,
+          244,
+          1,
+          233,
+          5,
+          190,
+          7,
+          166,
+          11,
+          124,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 09 F0 05 F4 01 E9 05 BE 07 A6 0B 7C 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ChooseTwoMons": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_ChooseTwoMons",
+      "line": 285,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "请选择2只即将在对战中\\n登场的宝可梦。$",
+      "display_text": "请选择2只即将在对战中\n登场的宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          11,
+          13,
+          14,
+          138,
+          16,
+          6,
+          163,
+          16,
+          140,
+          5,
+          159,
+          5,
+          244,
+          15,
+          230,
+          3,
+          121,
+          16,
+          48,
+          16,
+          161,
+          254,
+          3,
+          14,
+          2,
+          35,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "0B 0D 0E 8A 10 06 A3 10 8C 05 9F 05 F4 0F E6 03 79 10 30 10 A1 FE 03 0E 02 23 03 0B 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_RightThisWay": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_RightThisWay",
+      "line": 288,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "这边请。$",
+      "display_text": "这边请。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 8,
+        "bytes": [
+          16,
+          85,
+          1,
+          156,
+          11,
+          13,
+          55,
+          255
+        ],
+        "hex": "10 55 01 9C 0B 0D 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 4,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_RestoreMonsToFullHealth": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_RestoreMonsToFullHealth",
+      "line": 291,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "辛苦了！\\p我来帮您的宝可梦\\n回复体力。$",
+      "display_text": "辛苦了！\n\n我来帮您的宝可梦\n回复体力。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          14,
+          76,
+          7,
+          238,
+          8,
+          158,
+          60,
+          251,
+          13,
+          152,
+          8,
+          41,
+          1,
+          78,
+          9,
+          240,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          5,
+          101,
+          4,
+          30,
+          12,
+          230,
+          8,
+          121,
+          55,
+          255
+        ],
+        "hex": "0E 4C 07 EE 08 9E 3C FB 0D 98 08 29 01 4E 09 F0 03 0B 01 63 07 D7 09 66 FE 05 65 04 1E 0C E6 08 79 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 4,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_Round1Complete": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_Round1Complete",
+      "line": 294,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "所有的第1轮比赛\\n都已结束。\\p这些是成功晋级的队伍！$",
+      "display_text": "所有的第1轮比赛\n都已结束。\n\n这些是成功晋级的队伍！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          12,
+          156,
+          15,
+          126,
+          3,
+          11,
+          3,
+          33,
+          162,
+          9,
+          16,
+          1,
+          133,
+          11,
+          124,
+          254,
+          3,
+          97,
+          15,
+          33,
+          7,
+          51,
+          12,
+          61,
+          55,
+          251,
+          16,
+          85,
+          14,
+          52,
+          12,
+          12,
+          2,
+          75,
+          4,
+          110,
+          7,
+          76,
+          5,
+          161,
+          3,
+          11,
+          3,
+          120,
+          13,
+          175,
+          60,
+          255
+        ],
+        "hex": "0C 9C 0F 7E 03 0B 03 21 A2 09 10 01 85 0B 7C FE 03 61 0F 21 07 33 0C 3D 37 FB 10 55 0E 34 0C 0C 02 4B 04 6E 07 4C 05 A1 03 0B 03 78 0D AF 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_Round2Complete": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_Round2Complete",
+      "line": 297,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "所有的第2轮比赛\\n都已结束。\\p这些是成功晋级的队伍！$",
+      "display_text": "所有的第2轮比赛\n都已结束。\n\n这些是成功晋级的队伍！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          12,
+          156,
+          15,
+          126,
+          3,
+          11,
+          3,
+          33,
+          163,
+          9,
+          16,
+          1,
+          133,
+          11,
+          124,
+          254,
+          3,
+          97,
+          15,
+          33,
+          7,
+          51,
+          12,
+          61,
+          55,
+          251,
+          16,
+          85,
+          14,
+          52,
+          12,
+          12,
+          2,
+          75,
+          4,
+          110,
+          7,
+          76,
+          5,
+          161,
+          3,
+          11,
+          3,
+          120,
+          13,
+          175,
+          60,
+          255
+        ],
+        "hex": "0C 9C 0F 7E 03 0B 03 21 A3 09 10 01 85 0B 7C FE 03 61 0F 21 07 33 0C 3D 37 FB 10 55 0E 34 0C 0C 02 4B 04 6E 07 4C 05 A1 03 0B 03 78 0D AF 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_SemifinalsComplete": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_SemifinalsComplete",
+      "line": 300,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "所有的半决赛比赛\\n都已结束。\\p这些是成功晋级的队伍！$",
+      "display_text": "所有的半决赛比赛\n都已结束。\n\n这些是成功晋级的队伍！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 49,
+        "bytes": [
+          12,
+          156,
+          15,
+          126,
+          3,
+          11,
+          1,
+          74,
+          7,
+          166,
+          11,
+          124,
+          1,
+          133,
+          11,
+          124,
+          254,
+          3,
+          97,
+          15,
+          33,
+          7,
+          51,
+          12,
+          61,
+          55,
+          251,
+          16,
+          85,
+          14,
+          52,
+          12,
+          12,
+          2,
+          75,
+          4,
+          110,
+          7,
+          76,
+          5,
+          161,
+          3,
+          11,
+          3,
+          120,
+          13,
+          175,
+          60,
+          255
+        ],
+        "hex": "0C 9C 0F 7E 03 0B 01 4A 07 A6 0B 7C 01 85 0B 7C FE 03 61 0F 21 07 33 0C 3D 37 FB 10 55 0E 34 0C 0C 02 4B 04 6E 07 4C 05 A1 03 0B 03 78 0D AF 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForRound2": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForRound2",
+      "line": 304,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "恭喜通过第1轮\\n比赛。\\p接下来是第2轮。\\n准备好了吗？$",
+      "display_text": "恭喜通过第1轮\n比赛。\n\n接下来是第2轮。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 47,
+        "bytes": [
+          4,
+          111,
+          13,
+          214,
+          13,
+          16,
+          4,
+          197,
+          3,
+          33,
+          162,
+          9,
+          16,
+          254,
+          1,
+          133,
+          11,
+          124,
+          55,
+          251,
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          163,
+          9,
+          16,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "04 6F 0D D6 0D 10 04 C5 03 21 A2 09 10 FE 01 85 0B 7C 37 FB 07 25 0D E6 08 29 0C 0C 03 21 A3 09 10 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForSemifinals": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForSemifinals",
+      "line": 308,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "恭喜进入\\n半决赛。\\p4个强队在此相遇。\\n准备好了吗？$",
+      "display_text": "恭喜进入\n半决赛。\n\n4个强队在此相遇。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          4,
+          111,
+          13,
+          214,
+          7,
+          74,
+          11,
+          107,
+          254,
+          1,
+          74,
+          7,
+          166,
+          11,
+          124,
+          55,
+          251,
+          165,
+          4,
+          96,
+          10,
+          216,
+          3,
+          120,
+          15,
+          230,
+          2,
+          171,
+          14,
+          13,
+          15,
+          164,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "04 6F 0D D6 07 4A 0B 6B FE 01 4A 07 A6 0B 7C 37 FB A5 04 60 0A D8 03 78 0F E6 02 AB 0E 0D 0F A4 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForFinals": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForFinals",
+      "line": 312,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "恭喜进入\\n决赛。\\p您是冠军候选之一。\\n准备好了吗？$",
+      "display_text": "恭喜进入\n决赛。\n\n您是冠军候选之一。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 45,
+        "bytes": [
+          4,
+          111,
+          13,
+          214,
+          7,
+          74,
+          11,
+          107,
+          254,
+          7,
+          166,
+          11,
+          124,
+          55,
+          251,
+          9,
+          240,
+          12,
+          12,
+          4,
+          162,
+          7,
+          172,
+          5,
+          33,
+          14,
+          138,
+          16,
+          127,
+          15,
+          11,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "04 6F 0D D6 07 4A 0B 6B FE 07 A6 0B 7C 37 FB 09 F0 0C 0C 04 A2 07 AC 05 21 0E 8A 10 7F 0F 0B 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_PlayersNextOpponentIsTrainer": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_PlayersNextOpponentIsTrainer",
+      "line": 315,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "{PLAYER}的下一位对手是\\n这位训练家。$",
+      "display_text": "{PLAYER}的下一位对手是\n这位训练家。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          253,
+          1,
+          3,
+          11,
+          13,
+          230,
+          15,
+          11,
+          13,
+          129,
+          3,
+          121,
+          12,
+          27,
+          12,
+          12,
+          254,
+          16,
+          85,
+          13,
+          129,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          55,
+          255
+        ],
+        "hex": "FD 01 03 0B 0D E6 0F 0B 0D 81 03 79 0C 1B 0C 0C FE 10 55 0D 81 0E 9E 08 8A 05 BD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound1": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound1",
+      "line": 318,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "锦标赛进入第1回合！$",
+      "display_text": "锦标赛进入第1回合！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          7,
+          71,
+          1,
+          167,
+          11,
+          124,
+          7,
+          74,
+          11,
+          107,
+          3,
+          33,
+          162,
+          5,
+          101,
+          4,
+          245,
+          60,
+          255
+        ],
+        "hex": "07 47 01 A7 0B 7C 07 4A 0B 6B 03 21 A2 05 65 04 F5 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound2": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound2",
+      "line": 321,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "锦标赛进入第2回合！$",
+      "display_text": "锦标赛进入第2回合！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          7,
+          71,
+          1,
+          167,
+          11,
+          124,
+          7,
+          74,
+          11,
+          107,
+          3,
+          33,
+          163,
+          5,
+          101,
+          4,
+          245,
+          60,
+          255
+        ],
+        "hex": "07 47 01 A7 0B 7C 07 4A 0B 6B 03 21 A3 05 65 04 F5 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInSemifinals": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInSemifinals",
+      "line": 324,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "锦标赛进入半决赛！$",
+      "display_text": "锦标赛进入半决赛！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          7,
+          71,
+          1,
+          167,
+          11,
+          124,
+          7,
+          74,
+          11,
+          107,
+          1,
+          74,
+          7,
+          166,
+          11,
+          124,
+          60,
+          255
+        ],
+        "hex": "07 47 01 A7 0B 7C 07 4A 0B 6B 01 4A 07 A6 0B 7C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInFinals": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInFinals",
+      "line": 327,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "锦标赛进入决赛！$",
+      "display_text": "锦标赛进入决赛！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          7,
+          71,
+          1,
+          167,
+          11,
+          124,
+          7,
+          74,
+          11,
+          107,
+          7,
+          166,
+          11,
+          124,
+          60,
+          255
+        ],
+        "hex": "07 47 01 A7 0B 7C 07 4A 0B 6B 07 A6 0B 7C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_SaveAndQuitGame": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_SaveAndQuitGame",
+      "line": 330,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "要写入记录\\n并且暂停吗？$",
+      "display_text": "要写入记录\n并且暂停吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          14,
+          241,
+          14,
+          63,
+          11,
+          107,
+          5,
+          178,
+          8,
+          237,
+          254,
+          1,
+          189,
+          10,
+          235,
+          15,
+          233,
+          13,
+          11,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0E F1 0E 3F 0B 6B 05 B2 08 ED FE 01 BD 0A EB 0F E9 0D 0B 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_RetireYourChallenge": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_RetireYourChallenge",
+      "line": 333,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "要结束对战锦标赛的挑战吗？$",
+      "display_text": "要结束对战锦标赛的挑战吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          14,
+          241,
+          7,
+          51,
+          12,
+          61,
+          3,
+          121,
+          16,
+          48,
+          7,
+          71,
+          1,
+          167,
+          11,
+          124,
+          3,
+          11,
+          12,
+          245,
+          16,
+          48,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0E F1 07 33 0C 3D 03 79 10 30 07 47 01 A7 0B 7C 03 0B 0C F5 10 30 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_SavingDataPleaseWait": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_SavingDataPleaseWait",
+      "line": 336,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "正在写入记录……\\n请稍候。$",
+      "display_text": "正在写入记录……\n请稍候。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          16,
+          112,
+          15,
+          230,
+          14,
+          63,
+          11,
+          107,
+          5,
+          178,
+          8,
+          237,
+          176,
+          176,
+          254,
+          11,
+          13,
+          11,
+          178,
+          5,
+          33,
+          55,
+          255
+        ],
+        "hex": "10 70 0F E6 0E 3F 0B 6B 05 B2 08 ED B0 B0 FE 0B 0D 0B B2 05 21 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_RecordLastMatch": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_RecordLastMatch",
+      "line": 339,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "要将您的最后一场对战\\n记录到开拓通行证上吗？$",
+      "display_text": "要将您的最后一场对战\n记录到开拓通行证上吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          14,
+          241,
+          5,
+          244,
+          9,
+          240,
+          3,
+          11,
+          17,
+          38,
+          5,
+          34,
+          15,
+          11,
+          2,
+          35,
+          3,
+          121,
+          16,
+          48,
+          254,
+          5,
+          178,
+          8,
+          237,
+          3,
+          4,
+          7,
+          184,
+          13,
+          64,
+          13,
+          16,
+          14,
+          91,
+          16,
+          117,
+          11,
+          173,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0E F1 05 F4 09 F0 03 0B 11 26 05 22 0F 0B 02 23 03 79 10 30 FE 05 B2 08 ED 03 04 07 B8 0D 40 0D 10 0E 5B 10 75 0B AD 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilver": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilver",
+      "line": 342,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "恭喜您成功\\n进入决赛！\\p在决赛中，您将挑战的人是——\\n巨蛋超级巨星石南。\\p准备好了吗？$",
+      "display_text": "恭喜您成功\n进入决赛！\n\n在决赛中，您将挑战的人是——\n巨蛋超级巨星石南。\n\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 77,
+        "bytes": [
+          4,
+          111,
+          13,
+          214,
+          9,
+          240,
+          2,
+          75,
+          4,
+          110,
+          254,
+          7,
+          74,
+          11,
+          107,
+          7,
+          166,
+          11,
+          124,
+          60,
+          251,
+          15,
+          230,
+          7,
+          166,
+          11,
+          124,
+          16,
+          161,
+          59,
+          9,
+          240,
+          5,
+          244,
+          12,
+          245,
+          16,
+          48,
+          3,
+          11,
+          11,
+          75,
+          12,
+          12,
+          63,
+          63,
+          254,
+          7,
+          142,
+          2,
+          238,
+          2,
+          46,
+          5,
+          161,
+          7,
+          142,
+          14,
+          82,
+          11,
+          235,
+          9,
+          197,
+          55,
+          251,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "04 6F 0D D6 09 F0 02 4B 04 6E FE 07 4A 0B 6B 07 A6 0B 7C 3C FB 0F E6 07 A6 0B 7C 10 A1 3B 09 F0 05 F4 0C F5 10 30 03 0B 0B 4B 0C 0C 3F 3F FE 07 8E 02 EE 02 2E 05 A1 07 8E 0E 52 0B EB 09 C5 37 FB 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGold": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGold",
+      "line": 346,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "恭喜您成功\\n进入决赛！\\p在决赛中，您将挑战的人是——\\n巨蛋超级巨星石南。\\p准备好了吗？$",
+      "display_text": "恭喜您成功\n进入决赛！\n\n在决赛中，您将挑战的人是——\n巨蛋超级巨星石南。\n\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 77,
+        "bytes": [
+          4,
+          111,
+          13,
+          214,
+          9,
+          240,
+          2,
+          75,
+          4,
+          110,
+          254,
+          7,
+          74,
+          11,
+          107,
+          7,
+          166,
+          11,
+          124,
+          60,
+          251,
+          15,
+          230,
+          7,
+          166,
+          11,
+          124,
+          16,
+          161,
+          59,
+          9,
+          240,
+          5,
+          244,
+          12,
+          245,
+          16,
+          48,
+          3,
+          11,
+          11,
+          75,
+          12,
+          12,
+          63,
+          63,
+          254,
+          7,
+          142,
+          2,
+          238,
+          2,
+          46,
+          5,
+          161,
+          7,
+          142,
+          14,
+          82,
+          11,
+          235,
+          9,
+          197,
+          55,
+          251,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "04 6F 0D D6 09 F0 02 4B 04 6E FE 07 4A 0B 6B 07 A6 0B 7C 3C FB 0F E6 07 A6 0B 7C 10 A1 3B 09 F0 05 F4 0C F5 10 30 03 0B 0B 4B 0C 0C 3F 3F FE 07 8E 02 EE 02 2E 05 A1 07 8E 0E 52 0B EB 09 C5 37 FB 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilverShort": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilverShort",
+      "line": 349,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "接下来的是您最后的对手石南。\\n准备好了吗？$",
+      "display_text": "接下来的是您最后的对手石南。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          3,
+          11,
+          12,
+          12,
+          9,
+          240,
+          17,
+          38,
+          5,
+          34,
+          3,
+          11,
+          3,
+          121,
+          12,
+          27,
+          11,
+          235,
+          9,
+          197,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 03 0B 0C 0C 09 F0 11 26 05 22 03 0B 03 79 0C 1B 0B EB 09 C5 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGoldShort": {
+      "label": "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGoldShort",
+      "line": 353,
+      "source_file": "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc",
+      "raw_text": "接下来的是您最后的对手石南。\\n准备好了吗？$",
+      "display_text": "接下来的是您最后的对手石南。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          3,
+          11,
+          12,
+          12,
+          9,
+          240,
+          17,
+          38,
+          5,
+          34,
+          3,
+          11,
+          3,
+          121,
+          12,
+          27,
+          11,
+          235,
+          9,
+          197,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 03 0B 0C 0C 09 F0 11 26 05 22 03 0B 03 79 0C 1B 0B EB 09 C5 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 4,
+      "case": 37,
+      "closedoor": 1,
+      "closemessage": 1,
+      "copyvar": 1,
+      "delay": 1,
+      "dome_reduceparty": 1,
+      "dome_resolvewinners": 1,
+      "dome_save": 1,
+      "dome_set": 1,
+      "dome_setopponent": 1,
+      "dome_showopponentinfo": 1,
+      "dome_showstatictourneytree": 1,
+      "dome_showtourneytree": 1,
+      "face_left": 1,
+      "fadescreen": 5,
+      "frontier_get": 3,
+      "frontier_getbrainstatus": 1,
+      "frontier_reset": 1,
+      "frontier_resetsketch": 1,
+      "frontier_set": 1,
+      "frontier_setpartyorder": 1,
+      "goto_if_eq": 3,
+      "goto_if_set": 2,
+      "map_script": 2,
+      "map_script_2": 2,
+      "multichoice": 2,
+      "multichoicedefault": 2,
+      "opendoor": 1,
+      "playfanfare": 1,
+      "playse": 1,
+      "set_invisible": 1,
+      "setflag": 2,
+      "setvar": 5,
+      "special": 3,
+      "step_end": 4,
+      "switch": 10,
+      "turnobject": 1,
+      "waitbuttonpress": 1,
+      "waitdooranim": 2,
+      "waitfanfare": 1,
+      "waitmessage": 5,
+      "waitmovement": 4,
+      "waitse": 1,
+      "waitstate": 5,
+      "walk_right": 1,
+      "walk_up": 6,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 65,
+    "script_count": 35,
+    "movement_count": 4,
+    "text_count": 26,
+    "encoded_text_count": 26,
+    "text_source_byte_count": 952,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 26
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 4,
+      "call": 6,
+      "case": 37,
+      "closedoor": 1,
+      "closemessage": 1,
+      "copyvar": 1,
+      "delay": 1,
+      "dome_reduceparty": 1,
+      "dome_resolvewinners": 1,
+      "dome_save": 1,
+      "dome_set": 1,
+      "dome_setopponent": 1,
+      "dome_showopponentinfo": 1,
+      "dome_showstatictourneytree": 1,
+      "dome_showtourneytree": 1,
+      "end": 3,
+      "face_left": 1,
+      "fadescreen": 5,
+      "frontier_get": 3,
+      "frontier_getbrainstatus": 1,
+      "frontier_reset": 1,
+      "frontier_resetsketch": 1,
+      "frontier_set": 1,
+      "frontier_setpartyorder": 1,
+      "goto": 5,
+      "goto_if_eq": 3,
+      "goto_if_set": 2,
+      "lockall": 1,
+      "map_script": 2,
+      "map_script_2": 2,
+      "message": 8,
+      "msgbox": 15,
+      "multichoice": 2,
+      "multichoicedefault": 2,
+      "opendoor": 1,
+      "playfanfare": 1,
+      "playse": 1,
+      "return": 18,
+      "set_invisible": 1,
+      "setflag": 2,
+      "setvar": 5,
+      "special": 3,
+      "step_end": 4,
+      "switch": 10,
+      "turnobject": 1,
+      "waitbuttonpress": 1,
+      "waitdooranim": 2,
+      "waitfanfare": 1,
+      "waitmessage": 5,
+      "waitmovement": 4,
+      "waitse": 1,
+      "waitstate": 5,
+      "walk_right": 1,
+      "walk_up": 6,
+      "warp": 1
+    }
+  }
+}

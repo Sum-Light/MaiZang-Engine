@@ -1,0 +1,527 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "EverGrandeCity",
+    "map_script": "data/maps/EverGrandeCity/scripts.inc",
+    "map_json": "data/maps/EverGrandeCity/map.json",
+    "map_id": "MAP_EVER_GRANDE_CITY",
+    "map_name": "EverGrandeCity"
+  },
+  "labels": {
+    "EverGrandeCity_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_EventScript_VictoryRoadSign": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_EventScript_CitySign": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_EventScript_PokemonLeagueSign": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_EventScript_SetVisitedEverGrande": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_Text_EnteringVictoryRoad": {
+      "kind": "text",
+      "line": 26,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_Text_EnteringPokemonLeague": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_Text_CitySign": {
+      "kind": "text",
+      "line": 32,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "EverGrandeCity_MapScripts": {
+      "label": "EverGrandeCity_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "EverGrandeCity_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_OnTransition",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_OnTransition": {
+      "label": "EverGrandeCity_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_WEATHER_CTRL",
+            "Common_EventScript_SetAbnormalWeather"
+          ],
+          "line": 6,
+          "raw": "call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "Common_EventScript_SetAbnormalWeather",
+          "line": 6
+        }
+      ]
+    },
+    "EverGrandeCity_EventScript_VictoryRoadSign": {
+      "label": "EverGrandeCity_EventScript_VictoryRoadSign",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_Text_EnteringVictoryRoad",
+            "MSGBOX_SIGN"
+          ],
+          "line": 10,
+          "raw": "msgbox EverGrandeCity_Text_EnteringVictoryRoad, MSGBOX_SIGN",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_Text_EnteringVictoryRoad",
+          "mode": "MSGBOX_SIGN",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    },
+    "EverGrandeCity_EventScript_CitySign": {
+      "label": "EverGrandeCity_EventScript_CitySign",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_Text_CitySign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 14,
+          "raw": "msgbox EverGrandeCity_Text_CitySign, MSGBOX_SIGN",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_Text_CitySign",
+          "mode": "MSGBOX_SIGN",
+          "line": 14
+        }
+      ],
+      "branch_targets": []
+    },
+    "EverGrandeCity_EventScript_PokemonLeagueSign": {
+      "label": "EverGrandeCity_EventScript_PokemonLeagueSign",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_Text_EnteringPokemonLeague",
+            "MSGBOX_SIGN"
+          ],
+          "line": 18,
+          "raw": "msgbox EverGrandeCity_Text_EnteringPokemonLeague, MSGBOX_SIGN",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_Text_EnteringPokemonLeague",
+          "mode": "MSGBOX_SIGN",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "EverGrandeCity_EventScript_SetVisitedEverGrande": {
+      "label": "EverGrandeCity_EventScript_SetVisitedEverGrande",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_VISITED_EVER_GRANDE_CITY"
+          ],
+          "line": 22,
+          "raw": "setflag FLAG_VISITED_EVER_GRANDE_CITY",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 23,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "EverGrandeCity_Text_EnteringVictoryRoad": {
+      "label": "EverGrandeCity_Text_EnteringVictoryRoad",
+      "line": 26,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "raw_text": "由此进入冠军之路$",
+      "display_text": "由此进入冠军之路",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 17,
+        "bytes": [
+          15,
+          119,
+          2,
+          171,
+          7,
+          74,
+          11,
+          107,
+          4,
+          162,
+          7,
+          172,
+          16,
+          127,
+          8,
+          232,
+          255
+        ],
+        "hex": "0F 77 02 AB 07 4A 0B 6B 04 A2 07 AC 10 7F 08 E8 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_Text_EnteringPokemonLeague": {
+      "label": "EverGrandeCity_Text_EnteringPokemonLeague",
+      "line": 29,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "raw_text": "由此进入宝可梦联盟\\n中心大门$",
+      "display_text": "由此进入宝可梦联盟\n中心大门",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          15,
+          119,
+          2,
+          171,
+          7,
+          74,
+          11,
+          107,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          125,
+          9,
+          99,
+          254,
+          16,
+          161,
+          14,
+          79,
+          2,
+          211,
+          9,
+          93,
+          255
+        ],
+        "hex": "0F 77 02 AB 07 4A 0B 6B 01 63 07 D7 09 66 08 7D 09 63 FE 10 A1 0E 4F 02 D3 09 5D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_Text_CitySign": {
+      "label": "EverGrandeCity_Text_CitySign",
+      "line": 32,
+      "source_file": "data/maps/EverGrandeCity/scripts.inc",
+      "raw_text": "这里是彩悠市。\\n“鲜花、海洋与宝可梦的乐园。”$",
+      "display_text": "这里是彩悠市。\n“鲜花、海洋与宝可梦的乐园。”",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 41,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          12,
+          12,
+          1,
+          229,
+          15,
+          116,
+          12,
+          21,
+          55,
+          254,
+          177,
+          13,
+          238,
+          5,
+          53,
+          58,
+          4,
+          201,
+          14,
+          220,
+          15,
+          153,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          8,
+          75,
+          15,
+          188,
+          55,
+          178,
+          255
+        ],
+        "hex": "10 55 08 64 0C 0C 01 E5 0F 74 0C 15 37 FE B1 0D EE 05 35 3A 04 C9 0E DC 0F 99 01 63 07 D7 09 66 03 0B 08 4B 0F BC 37 B2 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_set": 1,
+      "map_script": 1,
+      "setflag": 1,
+      "setvar": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 86,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call_if_set": 1,
+      "end": 5,
+      "map_script": 1,
+      "msgbox": 3,
+      "setflag": 1,
+      "setvar": 1
+    }
+  }
+}

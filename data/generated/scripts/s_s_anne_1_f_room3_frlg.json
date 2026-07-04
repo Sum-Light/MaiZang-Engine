@@ -1,0 +1,474 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SSAnne_1F_Room3_Frlg",
+    "map_script": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+    "map_json": "data/maps/SSAnne_1F_Room3_Frlg/map.json",
+    "map_id": "MAP_SSANNE_1F_ROOM3",
+    "map_name": "SSAnne_1F_Room3_Frlg"
+  },
+  "labels": {
+    "SSAnne_1F_Room3_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_1F_Room3_EventScript_LittleGirl": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_1F_Room3_EventScript_BaldingMan": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_1F_Room3_EventScript_Wigglytuff": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "SSAnne_1F_Room3_Text_CruiseIsElegantAndCozy": {
+      "kind": "text",
+      "line": 22,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_1F_Room3_Text_AlwaysTravelWithWigglytuff": {
+      "kind": "text",
+      "line": 25,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_1F_Room3_Text_Wigglytuff": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SSAnne_1F_Room3_Frlg_MapScripts": {
+      "label": "SSAnne_1F_Room3_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_1F_Room3_EventScript_LittleGirl": {
+      "label": "SSAnne_1F_Room3_EventScript_LittleGirl",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_1F_Room3_Text_AlwaysTravelWithWigglytuff",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox SSAnne_1F_Room3_Text_AlwaysTravelWithWigglytuff, MSGBOX_NPC",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_1F_Room3_Text_AlwaysTravelWithWigglytuff",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "SSAnne_1F_Room3_EventScript_BaldingMan": {
+      "label": "SSAnne_1F_Room3_EventScript_BaldingMan",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_1F_Room3_Text_CruiseIsElegantAndCozy",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox SSAnne_1F_Room3_Text_CruiseIsElegantAndCozy, MSGBOX_NPC",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_1F_Room3_Text_CruiseIsElegantAndCozy",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "SSAnne_1F_Room3_EventScript_Wigglytuff": {
+      "label": "SSAnne_1F_Room3_EventScript_Wigglytuff",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 13,
+          "raw": "lock",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 14,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 15,
+          "raw": "waitse",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_WIGGLYTUFF",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 16,
+          "raw": "playmoncry SPECIES_WIGGLYTUFF, CRY_MODE_NORMAL",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_1F_Room3_Text_Wigglytuff"
+          ],
+          "line": 17,
+          "raw": "msgbox SSAnne_1F_Room3_Text_Wigglytuff",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 18,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 19,
+          "raw": "release",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_1F_Room3_Text_Wigglytuff",
+          "mode": "",
+          "line": 17
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SSAnne_1F_Room3_Text_CruiseIsElegantAndCozy": {
+      "label": "SSAnne_1F_Room3_Text_CruiseIsElegantAndCozy",
+      "line": 22,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "raw_text": "世界漫游真是优雅舒适！$",
+      "display_text": "世界漫游真是优雅舒适！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          12,
+          5,
+          7,
+          57,
+          9,
+          56,
+          15,
+          124,
+          16,
+          89,
+          12,
+          12,
+          15,
+          115,
+          14,
+          174,
+          12,
+          43,
+          12,
+          15,
+          60,
+          255
+        ],
+        "hex": "0C 05 07 39 09 38 0F 7C 10 59 0C 0C 0F 73 0E AE 0C 2B 0C 0F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_1F_Room3_Text_AlwaysTravelWithWigglytuff": {
+      "label": "SSAnne_1F_Room3_Text_AlwaysTravelWithWigglytuff",
+      "line": 25,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "raw_text": "我旅行时总是带着胖可丁。\\n我出门时从来不会丢下它。$",
+      "display_text": "我旅行时总是带着胖可丁。\n我出门时从来不会丢下它。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          13,
+          152,
+          8,
+          244,
+          14,
+          91,
+          11,
+          237,
+          17,
+          20,
+          12,
+          12,
+          2,
+          216,
+          16,
+          244,
+          10,
+          51,
+          7,
+          215,
+          3,
+          70,
+          55,
+          254,
+          13,
+          152,
+          2,
+          120,
+          9,
+          93,
+          11,
+          237,
+          2,
+          179,
+          8,
+          41,
+          1,
+          214,
+          5,
+          110,
+          3,
+          79,
+          13,
+          230,
+          12,
+          159,
+          55,
+          255
+        ],
+        "hex": "0D 98 08 F4 0E 5B 0B ED 11 14 0C 0C 02 D8 10 F4 0A 33 07 D7 03 46 37 FE 0D 98 02 78 09 5D 0B ED 02 B3 08 29 01 D6 05 6E 03 4F 0D E6 0C 9F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_1F_Room3_Text_Wigglytuff": {
+      "label": "SSAnne_1F_Room3_Text_Wigglytuff",
+      "line": 29,
+      "source_file": "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc",
+      "raw_text": "胖可丁：噗噗噗噗！$",
+      "display_text": "胖可丁：噗噗噗噗！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 17,
+        "bytes": [
+          10,
+          51,
+          7,
+          215,
+          3,
+          70,
+          62,
+          20,
+          119,
+          20,
+          119,
+          20,
+          119,
+          20,
+          119,
+          60,
+          255
+        ],
+        "hex": "0A 33 07 D7 03 46 3E 14 77 14 77 14 77 14 77 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "playmoncry": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 87,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "faceplayer": 1,
+      "lock": 1,
+      "msgbox": 3,
+      "playmoncry": 1,
+      "release": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    }
+  }
+}

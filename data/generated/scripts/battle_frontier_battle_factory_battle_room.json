@@ -1,0 +1,3981 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "BattleFrontier_BattleFactoryBattleRoom",
+    "map_script": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+    "map_json": "data/maps/BattleFrontier_BattleFactoryBattleRoom/map.json",
+    "map_id": "MAP_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM",
+    "map_name": "BattleFrontier_BattleFactoryBattleRoom"
+  },
+  "labels": {
+    "BattleFrontier_BattleFactoryBattleRoom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_OnTransition": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetUpFactoryHeadObj": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_OnWarp": {
+      "kind": "map_script_table",
+      "line": 27,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_HideObjects": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_EndHideObjects": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxMale": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxFemale": {
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_OnFrame": {
+      "kind": "map_script_table",
+      "line": 47,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoomFactoryHeadBattle": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 9
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoom": {
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 11
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleOpponent": {
+      "kind": "script",
+      "line": 74,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 12
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost": {
+      "kind": "script",
+      "line": 87,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedOpponent": {
+      "kind": "script",
+      "line": 91,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak": {
+      "kind": "script",
+      "line": 97,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementBattleNum": {
+      "kind": "script",
+      "line": 99,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon": {
+      "kind": "script",
+      "line": 108,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNoland": {
+      "kind": "script",
+      "line": 112,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver": {
+      "kind": "script",
+      "line": 121,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandSilver": {
+      "kind": "script",
+      "line": 127,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 13
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_IntroNolandGold": {
+      "kind": "script",
+      "line": 142,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold": {
+      "kind": "script",
+      "line": 147,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandGold": {
+      "kind": "script",
+      "line": 153,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 13
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle": {
+      "kind": "script",
+      "line": 168,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland": {
+      "kind": "script",
+      "line": 176,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 13
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom": {
+      "kind": "movement",
+      "line": 191,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland": {
+      "kind": "movement",
+      "line": 200,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Movement_OpponentEnter": {
+      "kind": "movement",
+      "line": 204,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Movement_NolandMoveToBattle": {
+      "kind": "movement",
+      "line": 213,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby": {
+      "kind": "script",
+      "line": 220,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyDoubles": {
+      "kind": "script",
+      "line": 227,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle": {
+      "kind": "script",
+      "line": 232,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_GetAMoveOn": {
+      "kind": "text",
+      "line": 242,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_NolandImFactoryHead": {
+      "kind": "text",
+      "line": 245,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn": {
+      "kind": "text",
+      "line": 248,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_NolandLetsSeeFrontierPass": {
+      "kind": "text",
+      "line": 251,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_ReceivedKnowledgeSymbol": {
+      "kind": "text",
+      "line": 254,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_NextTimeNoHoldsBarred": {
+      "kind": "text",
+      "line": 257,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_HarderLookThanLastTime": {
+      "kind": "text",
+      "line": 260,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_AllRightBringItOn": {
+      "kind": "text",
+      "line": 263,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_OutOfMyLeagueLetsSeePass": {
+      "kind": "text",
+      "line": 266,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine": {
+      "kind": "text",
+      "line": 269,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou": {
+      "kind": "text",
+      "line": 272,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "BattleFrontier_BattleFactoryBattleRoom_MapScripts": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_MapScripts",
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "BattleFrontier_BattleFactoryBattleRoom_OnTransition"
+          ],
+          "line": 7,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_BattleFactoryBattleRoom_OnTransition",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "BattleFrontier_BattleFactoryBattleRoom_OnWarp"
+          ],
+          "line": 8,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattleFactoryBattleRoom_OnWarp",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "BattleFrontier_BattleFactoryBattleRoom_OnFrame"
+          ],
+          "line": 9,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattleFactoryBattleRoom_OnFrame",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 10,
+          "raw": ".byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_OnTransition": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_OnTransition",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_settrainers",
+          "args": [],
+          "line": 13,
+          "raw": "frontier_settrainers",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 14,
+          "raw": "checkplayergender",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxMale"
+          ],
+          "line": 15,
+          "raw": "call_if_eq VAR_RESULT, MALE, BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxMale",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxFemale"
+          ],
+          "line": 16,
+          "raw": "call_if_eq VAR_RESULT, FEMALE, BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxFemale",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_getbrainstatus",
+          "args": [],
+          "line": 17,
+          "raw": "frontier_getbrainstatus",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_TEMP_F",
+            "VAR_RESULT"
+          ],
+          "line": 18,
+          "raw": "copyvar VAR_TEMP_F, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "FRONTIER_BRAIN_NOT_READY",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetUpFactoryHeadObj"
+          ],
+          "line": 19,
+          "raw": "goto_if_ne VAR_RESULT, FRONTIER_BRAIN_NOT_READY, BattleFrontier_BattleFactoryBattleRoom_EventScript_SetUpFactoryHeadObj",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxMale",
+          "line": 15
+        },
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxFemale",
+          "line": 16
+        },
+        {
+          "op": "goto_if_ne",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetUpFactoryHeadObj",
+          "line": 19
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetUpFactoryHeadObj": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetUpFactoryHeadObj",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_EventScript_SetBrainObjectGfx"
+          ],
+          "line": 23,
+          "raw": "call BattleFrontier_EventScript_SetBrainObjectGfx",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_OPPONENT",
+            "7",
+            "9"
+          ],
+          "line": 24,
+          "raw": "setobjectxyperm LOCALID_FACTORY_BATTLE_OPPONENT, 7, 9",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_EventScript_SetBrainObjectGfx",
+          "line": 23
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_OnWarp": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_OnWarp",
+      "kind": "map_script_table",
+      "line": 27,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_HideObjects"
+          ],
+          "line": 28,
+          "raw": "map_script_2 VAR_TEMP_1, 0, BattleFrontier_BattleFactoryBattleRoom_EventScript_HideObjects",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 29,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_HideObjects": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_HideObjects",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 32,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "hideobjectat",
+          "args": [
+            "LOCALID_PLAYER",
+            "MAP_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM"
+          ],
+          "line": 33,
+          "raw": "hideobjectat LOCALID_PLAYER, MAP_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_TEMP_F",
+            "FRONTIER_BRAIN_NOT_READY",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_EndHideObjects"
+          ],
+          "line": 34,
+          "raw": "goto_if_ne VAR_TEMP_F, FRONTIER_BRAIN_NOT_READY, BattleFrontier_BattleFactoryBattleRoom_EventScript_EndHideObjects",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "hideobjectat",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_OPPONENT",
+            "MAP_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM"
+          ],
+          "line": 35,
+          "raw": "hideobjectat LOCALID_FACTORY_BATTLE_OPPONENT, MAP_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_EndHideObjects",
+          "line": 34
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_EndHideObjects": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_EndHideObjects",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxMale": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxMale",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_F",
+            "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL"
+          ],
+          "line": 40,
+          "raw": "setvar VAR_OBJ_GFX_ID_F, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 41,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxFemale": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxFemale",
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_F",
+            "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL"
+          ],
+          "line": 44,
+          "raw": "setvar VAR_OBJ_GFX_ID_F, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 45,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_OnFrame": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_OnFrame",
+      "kind": "map_script_table",
+      "line": 47,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_0",
+            "0",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoom"
+          ],
+          "line": 48,
+          "raw": "map_script_2 VAR_TEMP_0, 0, BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoom",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 49,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoomFactoryHeadBattle": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoomFactoryHeadBattle",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_GetAMoveOn",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 52,
+          "raw": "msgbox BattleFrontier_BattleFactoryBattleRoom_Text_GetAMoveOn, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 53,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_OPPONENT",
+            "BattleFrontier_BattleFactoryBattleRoom_Movement_NolandMoveToBattle"
+          ],
+          "line": 54,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_OPPONENT, BattleFrontier_BattleFactoryBattleRoom_Movement_NolandMoveToBattle",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_PLAYER",
+            "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom"
+          ],
+          "line": 55,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom"
+          ],
+          "line": 56,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 57,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle"
+          ],
+          "line": 58,
+          "raw": "call BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleOpponent"
+          ],
+          "line": 59,
+          "raw": "goto BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleOpponent",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 60,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_GetAMoveOn",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 52
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle",
+          "line": 58
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleOpponent",
+          "line": 59
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoom": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoom",
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_TEMP_F",
+            "FRONTIER_BRAIN_NOT_READY",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoomFactoryHeadBattle"
+          ],
+          "line": 63,
+          "raw": "goto_if_ne VAR_TEMP_F, FRONTIER_BRAIN_NOT_READY, BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoomFactoryHeadBattle",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_PLAYER",
+            "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom"
+          ],
+          "line": 64,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom"
+          ],
+          "line": 65,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 66,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle"
+          ],
+          "line": 67,
+          "raw": "call BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "factory_setopponentgfx",
+          "args": [],
+          "line": 68,
+          "raw": "factory_setopponentgfx",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_OPPONENT"
+          ],
+          "line": 69,
+          "raw": "removeobject LOCALID_FACTORY_BATTLE_OPPONENT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_OPPONENT",
+            "7",
+            "1"
+          ],
+          "line": 70,
+          "raw": "setobjectxyperm LOCALID_FACTORY_BATTLE_OPPONENT, 7, 1",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "addobject",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_OPPONENT"
+          ],
+          "line": 71,
+          "raw": "addobject LOCALID_FACTORY_BATTLE_OPPONENT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_OPPONENT",
+            "BattleFrontier_BattleFactoryBattleRoom_Movement_OpponentEnter"
+          ],
+          "line": 72,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_OPPONENT, BattleFrontier_BattleFactoryBattleRoom_Movement_OpponentEnter",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 73,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoomFactoryHeadBattle",
+          "line": 63
+        },
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle",
+          "line": 67
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleOpponent": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleOpponent",
+      "kind": "script",
+      "line": 74,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_TEMP_F",
+            "FRONTIER_BRAIN_NOT_READY",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNoland"
+          ],
+          "line": 75,
+          "raw": "goto_if_ne VAR_TEMP_F, FRONTIER_BRAIN_NOT_READY, BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNoland",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "palace_getopponentintro",
+          "args": [],
+          "line": 76,
+          "raw": "palace_getopponentintro",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 77,
+          "raw": "lockall",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gStringVar4",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 78,
+          "raw": "msgbox gStringVar4, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 79,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 80,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_RECORD_DISABLED",
+            "FALSE"
+          ],
+          "line": 81,
+          "raw": "frontier_set FRONTIER_DATA_RECORD_DISABLED, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 82,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "dofacilitytrainerbattle",
+          "args": [
+            "FRONTIER_FACILITY_FACTORY"
+          ],
+          "line": 83,
+          "raw": "dofacilitytrainerbattle FRONTIER_FACILITY_FACTORY",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 84,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 85,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedOpponent"
+          ],
+          "line": 86,
+          "raw": "case 1, BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedOpponent",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gStringVar4",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 78
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNoland",
+          "line": 75
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost",
+      "kind": "script",
+      "line": 87,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_LOST"
+          ],
+          "line": 88,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby"
+          ],
+          "line": 89,
+          "raw": "goto BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby",
+          "line": 89
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedOpponent": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedOpponent",
+      "kind": "script",
+      "line": 91,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "factory_get",
+          "args": [
+            "FACTORY_DATA_WIN_STREAK_SWAPS"
+          ],
+          "line": 92,
+          "raw": "factory_get FACTORY_DATA_WIN_STREAK_SWAPS",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MAX_STREAK",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak"
+          ],
+          "line": 93,
+          "raw": "goto_if_eq VAR_RESULT, MAX_STREAK, BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 94,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setorcopyvar",
+          "args": [
+            "VAR_0x8006",
+            "VAR_RESULT"
+          ],
+          "line": 95,
+          "raw": "setorcopyvar VAR_0x8006, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "factory_set",
+          "args": [
+            "FACTORY_DATA_WIN_STREAK_SWAPS"
+          ],
+          "line": 96,
+          "raw": "factory_set FACTORY_DATA_WIN_STREAK_SWAPS",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak",
+          "line": 93
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak",
+      "kind": "script",
+      "line": 97,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_EventScript_IncrementWinStreak"
+          ],
+          "line": 98,
+          "raw": "call BattleFrontier_EventScript_IncrementWinStreak",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_EventScript_IncrementWinStreak",
+          "line": 98
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementBattleNum": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementBattleNum",
+      "kind": "script",
+      "line": 99,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 100,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 101,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM",
+            "VAR_RESULT"
+          ],
+          "line": 102,
+          "raw": "frontier_set FRONTIER_DATA_BATTLE_NUM, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 103,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "7",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon"
+          ],
+          "line": 104,
+          "raw": "case 7, BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "1"
+          ],
+          "line": 105,
+          "raw": "setvar VAR_0x8006, 1",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_FACTORY_PRE_BATTLE_ROOM",
+            "8",
+            "8"
+          ],
+          "line": 106,
+          "raw": "warp MAP_BATTLE_FRONTIER_BATTLE_FACTORY_PRE_BATTLE_ROOM, 8, 8",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 107,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon",
+      "kind": "script",
+      "line": 108,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_WON"
+          ],
+          "line": 109,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_WON",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby"
+          ],
+          "line": 110,
+          "raw": "goto BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby",
+          "line": 110
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNoland": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNoland",
+      "kind": "script",
+      "line": 112,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_TEMP_F"
+          ],
+          "line": 113,
+          "raw": "switch VAR_TEMP_F",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_BRAIN_GOLD",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_IntroNolandGold"
+          ],
+          "line": 114,
+          "raw": "case FRONTIER_BRAIN_GOLD, BattleFrontier_BattleFactoryBattleRoom_EventScript_IntroNolandGold",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_BRAIN_STREAK",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver"
+          ],
+          "line": 115,
+          "raw": "case FRONTIER_BRAIN_STREAK, BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_BRAIN_STREAK_LONG",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold"
+          ],
+          "line": 116,
+          "raw": "case FRONTIER_BRAIN_STREAK_LONG, BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_HEARD_BRAIN_SPEECH"
+          ],
+          "line": 117,
+          "raw": "frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver"
+          ],
+          "line": 118,
+          "raw": "goto_if_ne VAR_RESULT, FALSE, BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_NolandImFactoryHead",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 119,
+          "raw": "msgbox BattleFrontier_BattleFactoryBattleRoom_Text_NolandImFactoryHead, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_HEARD_BRAIN_SPEECH"
+          ],
+          "line": 120,
+          "raw": "frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_NolandImFactoryHead",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 119
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver",
+          "line": 118
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver",
+      "kind": "script",
+      "line": 121,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 122,
+          "raw": "msgbox BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle"
+          ],
+          "line": 123,
+          "raw": "call BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "1",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandSilver"
+          ],
+          "line": 124,
+          "raw": "goto_if_eq VAR_RESULT, 1, BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandSilver",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost"
+          ],
+          "line": 125,
+          "raw": "goto BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 122
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle",
+          "line": 123
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandSilver",
+          "line": 124
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost",
+          "line": 125
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandSilver": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandSilver",
+      "kind": "script",
+      "line": 127,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_getsymbols",
+          "args": [],
+          "line": 128,
+          "raw": "frontier_getsymbols",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland"
+          ],
+          "line": 129,
+          "raw": "goto_if_ne VAR_RESULT, 0, BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_NolandLetsSeeFrontierPass",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 130,
+          "raw": "msgbox BattleFrontier_BattleFactoryBattleRoom_Text_NolandLetsSeeFrontierPass, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 131,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_PLAYER",
+            "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland"
+          ],
+          "line": 132,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 133,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_SYMBOL"
+          ],
+          "line": 134,
+          "raw": "playfanfare MUS_OBTAIN_SYMBOL",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_ReceivedKnowledgeSymbol"
+          ],
+          "line": 135,
+          "raw": "message BattleFrontier_BattleFactoryBattleRoom_Text_ReceivedKnowledgeSymbol",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 136,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 137,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_givesymbol",
+          "args": [],
+          "line": 138,
+          "raw": "frontier_givesymbol",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_NextTimeNoHoldsBarred",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 139,
+          "raw": "msgbox BattleFrontier_BattleFactoryBattleRoom_Text_NextTimeNoHoldsBarred, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland"
+          ],
+          "line": 140,
+          "raw": "goto BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_NolandLetsSeeFrontierPass",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 130
+        },
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_ReceivedKnowledgeSymbol",
+          "mode": "",
+          "line": 135
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_NextTimeNoHoldsBarred",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 139
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland",
+          "line": 129
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland",
+          "line": 140
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_IntroNolandGold": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_IntroNolandGold",
+      "kind": "script",
+      "line": 142,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_HEARD_BRAIN_SPEECH"
+          ],
+          "line": 143,
+          "raw": "frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold"
+          ],
+          "line": 144,
+          "raw": "goto_if_ne VAR_RESULT, FALSE, BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_HarderLookThanLastTime",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 145,
+          "raw": "msgbox BattleFrontier_BattleFactoryBattleRoom_Text_HarderLookThanLastTime, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_HEARD_BRAIN_SPEECH"
+          ],
+          "line": 146,
+          "raw": "frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_HarderLookThanLastTime",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 145
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold",
+          "line": 144
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold",
+      "kind": "script",
+      "line": 147,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_AllRightBringItOn",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 148,
+          "raw": "msgbox BattleFrontier_BattleFactoryBattleRoom_Text_AllRightBringItOn, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle"
+          ],
+          "line": 149,
+          "raw": "call BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "1",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandGold"
+          ],
+          "line": 150,
+          "raw": "goto_if_eq VAR_RESULT, 1, BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandGold",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost"
+          ],
+          "line": 151,
+          "raw": "goto BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_AllRightBringItOn",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 148
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle",
+          "line": 149
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandGold",
+          "line": 150
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost",
+          "line": 151
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandGold": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandGold",
+      "kind": "script",
+      "line": 153,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_getsymbols",
+          "args": [],
+          "line": 154,
+          "raw": "frontier_getsymbols",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "2",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland"
+          ],
+          "line": 155,
+          "raw": "goto_if_eq VAR_RESULT, 2, BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_OutOfMyLeagueLetsSeePass",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 156,
+          "raw": "msgbox BattleFrontier_BattleFactoryBattleRoom_Text_OutOfMyLeagueLetsSeePass, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 157,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_PLAYER",
+            "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland"
+          ],
+          "line": 158,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 159,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_SYMBOL"
+          ],
+          "line": 160,
+          "raw": "playfanfare MUS_OBTAIN_SYMBOL",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine"
+          ],
+          "line": 161,
+          "raw": "message BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 162,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 163,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_givesymbol",
+          "args": [],
+          "line": 164,
+          "raw": "frontier_givesymbol",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 165,
+          "raw": "msgbox BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland"
+          ],
+          "line": 166,
+          "raw": "goto BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_OutOfMyLeagueLetsSeePass",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 156
+        },
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine",
+          "mode": "",
+          "line": 161
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 165
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland",
+          "line": 155
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland",
+          "line": 166
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle",
+      "kind": "script",
+      "line": 168,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 169,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_RECORD_DISABLED",
+            "FALSE"
+          ],
+          "line": 170,
+          "raw": "frontier_set FRONTIER_DATA_RECORD_DISABLED, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 171,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "dofacilitytrainerbattle",
+          "args": [
+            "FACILITY_BATTLE_FACTORY"
+          ],
+          "line": 172,
+          "raw": "dofacilitytrainerbattle FACILITY_BATTLE_FACTORY",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 173,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 174,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland",
+      "kind": "script",
+      "line": 176,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "factory_get",
+          "args": [
+            "FACTORY_DATA_WIN_STREAK_SWAPS"
+          ],
+          "line": 177,
+          "raw": "factory_get FACTORY_DATA_WIN_STREAK_SWAPS",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MAX_STREAK",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak"
+          ],
+          "line": 178,
+          "raw": "goto_if_eq VAR_RESULT, MAX_STREAK, BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 179,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setorcopyvar",
+          "args": [
+            "VAR_0x8006",
+            "VAR_RESULT"
+          ],
+          "line": 180,
+          "raw": "setorcopyvar VAR_0x8006, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "factory_set",
+          "args": [
+            "FACTORY_DATA_WIN_STREAK_SWAPS"
+          ],
+          "line": 181,
+          "raw": "factory_set FACTORY_DATA_WIN_STREAK_SWAPS",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "factory_get",
+          "args": [
+            "FACTORY_DATA_WIN_STREAK"
+          ],
+          "line": 182,
+          "raw": "factory_get FACTORY_DATA_WIN_STREAK",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MAX_STREAK",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementBattleNum"
+          ],
+          "line": 183,
+          "raw": "goto_if_eq VAR_RESULT, MAX_STREAK, BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementBattleNum",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 184,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "factory_set",
+          "args": [
+            "FACTORY_DATA_WIN_STREAK",
+            "VAR_RESULT"
+          ],
+          "line": 185,
+          "raw": "factory_set FACTORY_DATA_WIN_STREAK, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 186,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 187,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon"
+          ],
+          "line": 188,
+          "raw": "goto BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 189,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak",
+          "line": 178
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementBattleNum",
+          "line": 183
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon",
+          "line": 188
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby",
+      "kind": "script",
+      "line": 220,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_RESULT",
+            "VAR_FRONTIER_BATTLE_MODE"
+          ],
+          "line": 221,
+          "raw": "copyvar VAR_RESULT, VAR_FRONTIER_BATTLE_MODE",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FRONTIER_MODE_DOUBLES",
+            "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyDoubles"
+          ],
+          "line": 222,
+          "raw": "goto_if_eq VAR_RESULT, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyDoubles",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY",
+            "4",
+            "8"
+          ],
+          "line": 223,
+          "raw": "warp MAP_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY, 4, 8",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 224,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 225,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyDoubles",
+          "line": 222
+        }
+      ]
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyDoubles": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyDoubles",
+      "kind": "script",
+      "line": 227,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "warp",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY",
+            "14",
+            "8"
+          ],
+          "line": 228,
+          "raw": "warp MAP_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY, 14, 8",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 229,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 230,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle",
+      "kind": "script",
+      "line": 232,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_SCIENTIST_1",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 233,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_SCIENTIST_1, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_SCIENTIST_2",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 234,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_SCIENTIST_2, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_SCIENTIST_3",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 235,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_SCIENTIST_3, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_SCIENTIST_4",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 236,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_SCIENTIST_4, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_SCIENTIST_5",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 237,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_SCIENTIST_5, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FACTORY_BATTLE_SCIENTIST_6",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 238,
+          "raw": "applymovement LOCALID_FACTORY_BATTLE_SCIENTIST_6, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 239,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 240,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom",
+      "kind": "movement",
+      "line": 191,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 192,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 193,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 194,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 195,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 196,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "face_right",
+          "args": [],
+          "line": 197,
+          "raw": "face_right",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 198,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland",
+      "kind": "movement",
+      "line": 200,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 201,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 202,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Movement_OpponentEnter": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Movement_OpponentEnter",
+      "kind": "movement",
+      "line": 204,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 205,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 206,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 207,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 208,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 209,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "face_left",
+          "args": [],
+          "line": 210,
+          "raw": "face_left",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 211,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Movement_NolandMoveToBattle": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Movement_NolandMoveToBattle",
+      "kind": "movement",
+      "line": 213,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 214,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 215,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 216,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "face_left",
+          "args": [],
+          "line": 217,
+          "raw": "face_left",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 218,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "BattleFrontier_BattleFactoryBattleRoom_Text_GetAMoveOn": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_GetAMoveOn",
+      "line": 242,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "嘿，嘿！\\n快点动起来！$",
+      "display_text": "嘿，嘿！\n快点动起来！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          5,
+          8,
+          59,
+          5,
+          8,
+          60,
+          254,
+          8,
+          3,
+          3,
+          42,
+          3,
+          84,
+          10,
+          171,
+          8,
+          41,
+          60,
+          255
+        ],
+        "hex": "05 08 3B 05 08 3C FE 08 03 03 2A 03 54 0A AB 08 29 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_NolandImFactoryHead": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_NolandImFactoryHead",
+      "line": 245,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "嘿，我叫达拉！\\n这里基本上由我负责，\\l这就是为什么我叫工厂头目！\\p我看了一下你交换式对战的数据。\\p你好像有正确的想法，\\n但是你的头脑太过死板！\\p听好了，知识可不只是读书\\n或者做功课。\\p仅仅做那种事……\\n很可能毫无作用！\\p你必须用你的身心去\\n亲自体验，明白吗？\\p我要在同等的条件\\n下和你较量。\\p我也会用租借的宝可梦！$",
+      "display_text": "嘿，我叫达拉！\n这里基本上由我负责，\n这就是为什么我叫工厂头目！\n\n我看了一下你交换式对战的数据。\n\n你好像有正确的想法，\n但是你的头脑太过死板！\n\n听好了，知识可不只是读书\n或者做功课。\n\n仅仅做那种事……\n很可能毫无作用！\n\n你必须用你的身心去\n亲自体验，明白吗？\n\n我要在同等的条件\n下和你较量。\n\n我也会用租借的宝可梦！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 285,
+        "bytes": [
+          5,
+          8,
+          59,
+          13,
+          152,
+          7,
+          34,
+          2,
+          207,
+          8,
+          34,
+          60,
+          254,
+          16,
+          85,
+          8,
+          100,
+          5,
+          134,
+          1,
+          123,
+          11,
+          173,
+          15,
+          119,
+          13,
+          152,
+          4,
+          36,
+          16,
+          5,
+          59,
+          250,
+          16,
+          85,
+          7,
+          125,
+          12,
+          12,
+          13,
+          112,
+          11,
+          238,
+          9,
+          76,
+          13,
+          152,
+          7,
+          34,
+          4,
+          108,
+          2,
+          41,
+          13,
+          31,
+          9,
+          181,
+          60,
+          251,
+          13,
+          152,
+          7,
+          194,
+          8,
+          158,
+          15,
+          11,
+          13,
+          230,
+          9,
+          217,
+          7,
+          13,
+          5,
+          72,
+          12,
+          2,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          12,
+          66,
+          7,
+          141,
+          55,
+          251,
+          9,
+          217,
+          4,
+          233,
+          14,
+          30,
+          15,
+          126,
+          16,
+          112,
+          11,
+          55,
+          3,
+          11,
+          14,
+          24,
+          3,
+          171,
+          59,
+          254,
+          2,
+          233,
+          12,
+          12,
+          9,
+          217,
+          3,
+          11,
+          13,
+          31,
+          9,
+          202,
+          12,
+          172,
+          4,
+          197,
+          12,
+          99,
+          1,
+          68,
+          60,
+          251,
+          13,
+          7,
+          4,
+          233,
+          8,
+          158,
+          59,
+          16,
+          123,
+          11,
+          242,
+          7,
+          215,
+          1,
+          214,
+          16,
+          140,
+          12,
+          12,
+          3,
+          102,
+          12,
+          46,
+          254,
+          5,
+          127,
+          16,
+          82,
+          17,
+          46,
+          4,
+          110,
+          7,
+          220,
+          55,
+          251,
+          7,
+          72,
+          7,
+          72,
+          17,
+          46,
+          9,
+          189,
+          16,
+          167,
+          12,
+          7,
+          176,
+          176,
+          254,
+          5,
+          11,
+          7,
+          215,
+          9,
+          210,
+          4,
+          231,
+          13,
+          164,
+          17,
+          47,
+          15,
+          113,
+          60,
+          251,
+          9,
+          217,
+          1,
+          149,
+          14,
+          118,
+          15,
+          113,
+          9,
+          217,
+          3,
+          11,
+          11,
+          203,
+          14,
+          79,
+          11,
+          37,
+          254,
+          10,
+          240,
+          17,
+          12,
+          12,
+          230,
+          14,
+          210,
+          59,
+          9,
+          143,
+          1,
+          54,
+          9,
+          42,
+          61,
+          251,
+          13,
+          152,
+          14,
+          241,
+          15,
+          230,
+          13,
+          20,
+          3,
+          15,
+          3,
+          11,
+          12,
+          246,
+          5,
+          233,
+          254,
+          13,
+          230,
+          4,
+          243,
+          9,
+          217,
+          7,
+          33,
+          8,
+          146,
+          55,
+          251,
+          13,
+          152,
+          15,
+          2,
+          5,
+          110,
+          15,
+          113,
+          17,
+          26,
+          7,
+          58,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          60,
+          255
+        ],
+        "hex": "05 08 3B 0D 98 07 22 02 CF 08 22 3C FE 10 55 08 64 05 86 01 7B 0B AD 0F 77 0D 98 04 24 10 05 3B FA 10 55 07 7D 0C 0C 0D 70 0B EE 09 4C 0D 98 07 22 04 6C 02 29 0D 1F 09 B5 3C FB 0D 98 07 C2 08 9E 0F 0B 0D E6 09 D9 07 0D 05 48 0C 02 03 79 10 30 03 0B 0C 42 07 8D 37 FB 09 D9 04 E9 0E 1E 0F 7E 10 70 0B 37 03 0B 0E 18 03 AB 3B FE 02 E9 0C 0C 09 D9 03 0B 0D 1F 09 CA 0C AC 04 C5 0C 63 01 44 3C FB 0D 07 04 E9 08 9E 3B 10 7B 0B F2 07 D7 01 D6 10 8C 0C 0C 03 66 0C 2E FE 05 7F 10 52 11 2E 04 6E 07 DC 37 FB 07 48 07 48 11 2E 09 BD 10 A7 0C 07 B0 B0 FE 05 0B 07 D7 09 D2 04 E7 0D A4 11 2F 0F 71 3C FB 09 D9 01 95 0E 76 0F 71 09 D9 03 0B 0B CB 0E 4F 0B 25 FE 0A F0 11 0C 0C E6 0E D2 3B 09 8F 01 36 09 2A 3D FB 0D 98 0E F1 0F E6 0D 14 03 0F 03 0B 0C F6 05 E9 FE 0D E6 04 F3 09 D9 07 21 08 92 37 FB 0D 98 0F 02 05 6E 0F 71 11 1A 07 3A 03 0B 01 63 07 D7 09 66 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 19,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 34,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 51,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 63,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 76,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 90,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 98,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 108,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 118,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 129,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 140,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 150,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 158,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 171,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn",
+      "line": 248,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "穷尽你毕生所学，\\n放马过来！$",
+      "display_text": "穷尽你毕生所学，\n放马过来！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          11,
+          16,
+          7,
+          81,
+          9,
+          217,
+          1,
+          140,
+          11,
+          216,
+          12,
+          156,
+          14,
+          144,
+          59,
+          254,
+          3,
+          200,
+          9,
+          39,
+          4,
+          197,
+          8,
+          41,
+          60,
+          255
+        ],
+        "hex": "0B 10 07 51 09 D9 01 8C 0B D8 0C 9C 0E 90 3B FE 03 C8 09 27 04 C5 08 29 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_NolandLetsSeeFrontierPass": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_NolandLetsSeeFrontierPass",
+      "line": 251,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "达拉：做得漂亮！\\n拿出你的开拓通行证。$",
+      "display_text": "达拉：做得漂亮！\n拿出你的开拓通行证。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          2,
+          207,
+          8,
+          34,
+          62,
+          17,
+          46,
+          3,
+          10,
+          10,
+          106,
+          8,
+          148,
+          60,
+          254,
+          9,
+          185,
+          2,
+          120,
+          9,
+          217,
+          3,
+          11,
+          7,
+          184,
+          13,
+          64,
+          13,
+          16,
+          14,
+          91,
+          16,
+          117,
+          55,
+          255
+        ],
+        "hex": "02 CF 08 22 3E 11 2E 03 0A 0A 6A 08 94 3C FE 09 B9 02 78 09 D9 03 0B 07 B8 0D 40 0D 10 0E 5B 10 75 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_ReceivedKnowledgeSymbol": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_ReceivedKnowledgeSymbol",
+      "line": 254,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "知识象征被刻在了\\n开拓通行证上！$",
+      "display_text": "知识象征被刻在了\n开拓通行证上！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          16,
+          123,
+          11,
+          242,
+          14,
+          32,
+          16,
+          106,
+          1,
+          120,
+          7,
+          218,
+          15,
+          230,
+          8,
+          158,
+          254,
+          7,
+          184,
+          13,
+          64,
+          13,
+          16,
+          14,
+          91,
+          16,
+          117,
+          11,
+          173,
+          60,
+          255
+        ],
+        "hex": "10 7B 0B F2 0E 20 10 6A 01 78 07 DA 0F E6 08 9E FE 07 B8 0D 40 0D 10 0E 5B 10 75 0B AD 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_NextTimeNoHoldsBarred": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_NextTimeNoHoldsBarred",
+      "line": 257,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "哈……\\n你真是个聪明的人……\\p下次，我会全力以赴的。\\n毫不留情，明白吗？\\p继续学习吧！$",
+      "display_text": "哈……\n你真是个聪明的人……\n\n下次，我会全力以赴的。\n毫不留情，明白吗？\n\n继续学习吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 74,
+        "bytes": [
+          4,
+          198,
+          176,
+          176,
+          254,
+          9,
+          217,
+          16,
+          89,
+          12,
+          12,
+          4,
+          96,
+          2,
+          175,
+          9,
+          143,
+          3,
+          11,
+          11,
+          75,
+          176,
+          176,
+          251,
+          13,
+          230,
+          2,
+          174,
+          59,
+          13,
+          152,
+          5,
+          110,
+          11,
+          43,
+          8,
+          121,
+          15,
+          36,
+          4,
+          26,
+          3,
+          11,
+          55,
+          254,
+          4,
+          231,
+          1,
+          214,
+          8,
+          199,
+          11,
+          11,
+          59,
+          9,
+          143,
+          1,
+          54,
+          9,
+          42,
+          61,
+          251,
+          5,
+          183,
+          14,
+          131,
+          14,
+          144,
+          13,
+          212,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "04 C6 B0 B0 FE 09 D9 10 59 0C 0C 04 60 02 AF 09 8F 03 0B 0B 4B B0 B0 FB 0D E6 02 AE 3B 0D 98 05 6E 0B 2B 08 79 0F 24 04 1A 03 0B 37 FE 04 E7 01 D6 08 C7 0B 0B 3B 09 8F 01 36 09 2A 3D FB 05 B7 0E 83 0E 90 0D D4 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_HarderLookThanLastTime": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_HarderLookThanLastTime",
+      "line": 260,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "达拉：嘿，嘿！近来如何？\\n你有在继续不断地学习吗？\\p……哦？\\p你看上去比我上次见到你\\n时更坚毅了。\\p那么，看起来这会很有趣！\\n我开始兴奋起来了，嘿！$",
+      "display_text": "达拉：嘿，嘿！近来如何？\n你有在继续不断地学习吗？\n\n……哦？\n\n你看上去比我上次见到你\n时更坚毅了。\n\n那么，看起来这会很有趣！\n我开始兴奋起来了，嘿！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 130,
+        "bytes": [
+          2,
+          207,
+          8,
+          34,
+          62,
+          5,
+          8,
+          59,
+          5,
+          8,
+          60,
+          7,
+          78,
+          8,
+          41,
+          11,
+          103,
+          4,
+          244,
+          61,
+          254,
+          9,
+          217,
+          15,
+          126,
+          15,
+          230,
+          5,
+          183,
+          14,
+          131,
+          1,
+          214,
+          3,
+          116,
+          3,
+          31,
+          14,
+          144,
+          13,
+          212,
+          9,
+          42,
+          61,
+          251,
+          176,
+          176,
+          10,
+          19,
+          61,
+          251,
+          9,
+          217,
+          7,
+          194,
+          11,
+          173,
+          11,
+          37,
+          1,
+          133,
+          13,
+          152,
+          11,
+          173,
+          2,
+          174,
+          5,
+          230,
+          3,
+          4,
+          9,
+          217,
+          254,
+          11,
+          237,
+          4,
+          102,
+          5,
+          204,
+          15,
+          51,
+          8,
+          158,
+          55,
+          251,
+          9,
+          189,
+          9,
+          76,
+          59,
+          7,
+          194,
+          10,
+          171,
+          8,
+          41,
+          16,
+          85,
+          5,
+          110,
+          5,
+          11,
+          15,
+          126,
+          11,
+          36,
+          60,
+          254,
+          13,
+          152,
+          7,
+          184,
+          12,
+          1,
+          14,
+          86,
+          3,
+          223,
+          10,
+          171,
+          8,
+          41,
+          8,
+          158,
+          59,
+          5,
+          8,
+          60,
+          255
+        ],
+        "hex": "02 CF 08 22 3E 05 08 3B 05 08 3C 07 4E 08 29 0B 67 04 F4 3D FE 09 D9 0F 7E 0F E6 05 B7 0E 83 01 D6 03 74 03 1F 0E 90 0D D4 09 2A 3D FB B0 B0 0A 13 3D FB 09 D9 07 C2 0B AD 0B 25 01 85 0D 98 0B AD 02 AE 05 E6 03 04 09 D9 FE 0B ED 04 66 05 CC 0F 33 08 9E 37 FB 09 BD 09 4C 3B 07 C2 0A AB 08 29 10 55 05 6E 05 0B 0F 7E 0B 24 3C FE 0D 98 07 B8 0C 01 0E 56 03 DF 0A AB 08 29 08 9E 3B 05 08 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 26,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 45,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 53,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 67,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 80,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_AllRightBringItOn": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_AllRightBringItOn",
+      "line": 263,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "好！\\n放马过来！$",
+      "display_text": "好！\n放马过来！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 14,
+        "bytes": [
+          4,
+          233,
+          60,
+          254,
+          3,
+          200,
+          9,
+          39,
+          4,
+          197,
+          8,
+          41,
+          60,
+          255
+        ],
+        "hex": "04 E9 3C FE 03 C8 09 27 04 C5 08 29 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_OutOfMyLeagueLetsSeePass": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_OutOfMyLeagueLetsSeePass",
+      "line": 266,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "达拉：什么……\\n你已经和我不在一个层次了！\\p唉！\\n拿出你的开拓通行证吧！$",
+      "display_text": "达拉：什么……\n你已经和我不在一个层次了！\n\n唉！\n拿出你的开拓通行证吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 64,
+        "bytes": [
+          2,
+          207,
+          8,
+          34,
+          62,
+          11,
+          238,
+          9,
+          76,
+          176,
+          176,
+          254,
+          9,
+          217,
+          15,
+          33,
+          7,
+          93,
+          4,
+          243,
+          13,
+          152,
+          1,
+          214,
+          15,
+          230,
+          15,
+          11,
+          4,
+          96,
+          2,
+          7,
+          2,
+          174,
+          8,
+          158,
+          60,
+          251,
+          1,
+          5,
+          60,
+          254,
+          9,
+          185,
+          2,
+          120,
+          9,
+          217,
+          3,
+          11,
+          7,
+          184,
+          13,
+          64,
+          13,
+          16,
+          14,
+          91,
+          16,
+          117,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "02 CF 08 22 3E 0B EE 09 4C B0 B0 FE 09 D9 0F 21 07 5D 04 F3 0D 98 01 D6 0F E6 0F 0B 04 60 02 07 02 AE 08 9E 3C FB 01 05 3C FE 09 B9 02 78 09 D9 03 0B 07 B8 0D 40 0D 10 0E 5B 10 75 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 39,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine",
+      "line": 269,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "知识象征闪耀着\\n金色的光芒！$",
+      "display_text": "知识象征闪耀着\n金色的光芒！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          16,
+          123,
+          11,
+          242,
+          14,
+          32,
+          16,
+          106,
+          11,
+          159,
+          14,
+          242,
+          16,
+          244,
+          254,
+          7,
+          66,
+          11,
+          137,
+          3,
+          11,
+          4,
+          170,
+          9,
+          58,
+          60,
+          255
+        ],
+        "hex": "10 7B 0B F2 0E 20 10 6A 0B 9F 0E F2 10 F4 FE 07 42 0B 89 03 0B 04 AA 09 3A 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou": {
+      "label": "BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou",
+      "line": 272,
+      "source_file": "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc",
+      "raw_text": "切！\\p这绝对是我最后一次\\n输给你！\\p我们必须再来一次，如何？$",
+      "display_text": "切！\n\n这绝对是我最后一次\n输给你！\n\n我们必须再来一次，如何？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          10,
+          233,
+          60,
+          251,
+          16,
+          85,
+          7,
+          168,
+          3,
+          121,
+          12,
+          12,
+          13,
+          152,
+          17,
+          38,
+          5,
+          34,
+          15,
+          11,
+          2,
+          174,
+          254,
+          12,
+          41,
+          4,
+          98,
+          9,
+          217,
+          60,
+          251,
+          13,
+          152,
+          9,
+          95,
+          1,
+          149,
+          14,
+          118,
+          15,
+          229,
+          8,
+          41,
+          15,
+          11,
+          2,
+          174,
+          59,
+          11,
+          103,
+          4,
+          244,
+          61,
+          255
+        ],
+        "hex": "0A E9 3C FB 10 55 07 A8 03 79 0C 0C 0D 98 11 26 05 22 0F 0B 02 AE FE 0C 29 04 62 09 D9 3C FB 0D 98 09 5F 01 95 0E 76 0F E5 08 29 0F 0B 02 AE 3B 0B 67 04 F4 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 2,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 33,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addobject": 1,
+      "addvar": 5,
+      "applymovement": 14,
+      "call_if_eq": 2,
+      "case": 5,
+      "checkplayergender": 1,
+      "closemessage": 4,
+      "copyvar": 2,
+      "dofacilitytrainerbattle": 2,
+      "face_left": 2,
+      "face_right": 1,
+      "factory_get": 3,
+      "factory_set": 3,
+      "factory_setopponentgfx": 1,
+      "frontier_get": 4,
+      "frontier_getbrainstatus": 1,
+      "frontier_getsymbols": 2,
+      "frontier_givesymbol": 2,
+      "frontier_set": 7,
+      "frontier_settrainers": 1,
+      "goto_if_eq": 7,
+      "goto_if_ne": 7,
+      "hideobjectat": 2,
+      "map_script": 3,
+      "map_script_2": 2,
+      "palace_getopponentintro": 1,
+      "playfanfare": 2,
+      "removeobject": 1,
+      "setobjectxyperm": 2,
+      "setorcopyvar": 2,
+      "setvar": 4,
+      "special": 2,
+      "step_end": 4,
+      "switch": 3,
+      "waitfanfare": 2,
+      "waitmessage": 4,
+      "waitmovement": 6,
+      "waitstate": 5,
+      "walk_down": 5,
+      "walk_right": 1,
+      "walk_up": 8,
+      "warp": 3
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 43,
+    "script_count": 28,
+    "movement_count": 4,
+    "text_count": 11,
+    "encoded_text_count": 11,
+    "text_source_byte_count": 759,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 11
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addobject": 1,
+      "addvar": 5,
+      "applymovement": 14,
+      "call": 6,
+      "call_if_eq": 2,
+      "case": 5,
+      "checkplayergender": 1,
+      "closemessage": 4,
+      "copyvar": 2,
+      "dofacilitytrainerbattle": 2,
+      "end": 7,
+      "face_left": 2,
+      "face_right": 1,
+      "factory_get": 3,
+      "factory_set": 3,
+      "factory_setopponentgfx": 1,
+      "frontier_get": 4,
+      "frontier_getbrainstatus": 1,
+      "frontier_getsymbols": 2,
+      "frontier_givesymbol": 2,
+      "frontier_set": 7,
+      "frontier_settrainers": 1,
+      "goto": 8,
+      "goto_if_eq": 7,
+      "goto_if_ne": 7,
+      "hideobjectat": 2,
+      "lockall": 1,
+      "map_script": 3,
+      "map_script_2": 2,
+      "message": 2,
+      "msgbox": 10,
+      "palace_getopponentintro": 1,
+      "playfanfare": 2,
+      "removeobject": 1,
+      "return": 4,
+      "setobjectxyperm": 2,
+      "setorcopyvar": 2,
+      "setvar": 4,
+      "special": 2,
+      "step_end": 4,
+      "switch": 3,
+      "waitfanfare": 2,
+      "waitmessage": 4,
+      "waitmovement": 6,
+      "waitstate": 5,
+      "walk_down": 5,
+      "walk_right": 1,
+      "walk_up": 8,
+      "warp": 3
+    }
+  }
+}

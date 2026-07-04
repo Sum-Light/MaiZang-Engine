@@ -1,0 +1,1163 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "NavelRock_Summit_Frlg",
+    "map_script": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+    "map_json": "data/maps/NavelRock_Summit_Frlg/map.json",
+    "map_id": "MAP_NAVEL_ROCK_SUMMIT",
+    "map_name": "NavelRock_Summit_Frlg"
+  },
+  "labels": {
+    "NavelRock_Summit_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "NavelRock_Summit_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "NavelRock_Summit_EventScript_HideHoOh": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "NavelRock_Summit_EventScript_TryShowHoOh": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "NavelRock_Summit_OnResume": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "NavelRock_Summit_EventScript_TryRemoveHoOh": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "NavelRock_Summit_EventScript_HoOh": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 37
+    },
+    "NavelRock_Summit_EventScript_DefeatedHoOh": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "NavelRock_Summit_EventScript_RanFromHoOh": {
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Movement_CameraPanUp": {
+      "kind": "movement",
+      "line": 83,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "Movement_CameraPanDown": {
+      "kind": "movement",
+      "line": 89,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Movement_HoOhApproach": {
+      "kind": "movement",
+      "line": 97,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "Movement_HoOhAppear": {
+      "kind": "movement",
+      "line": 108,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instruction_count": 7
+    }
+  },
+  "scripts": {
+    "NavelRock_Summit_Frlg_MapScripts": {
+      "label": "NavelRock_Summit_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "NavelRock_Summit_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, NavelRock_Summit_OnTransition",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "NavelRock_Summit_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, NavelRock_Summit_OnResume",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NavelRock_Summit_OnTransition": {
+      "label": "NavelRock_Summit_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_FOUGHT_HO_OH",
+            "NavelRock_Summit_EventScript_HideHoOh"
+          ],
+          "line": 7,
+          "raw": "call_if_set FLAG_FOUGHT_HO_OH, NavelRock_Summit_EventScript_HideHoOh",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_FOUGHT_HO_OH",
+            "NavelRock_Summit_EventScript_TryShowHoOh"
+          ],
+          "line": 8,
+          "raw": "call_if_unset FLAG_FOUGHT_HO_OH, NavelRock_Summit_EventScript_TryShowHoOh",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "NavelRock_Summit_EventScript_HideHoOh",
+          "line": 7
+        },
+        {
+          "op": "call_if_unset",
+          "target": "NavelRock_Summit_EventScript_TryShowHoOh",
+          "line": 8
+        }
+      ]
+    },
+    "NavelRock_Summit_EventScript_HideHoOh": {
+      "label": "NavelRock_Summit_EventScript_HideHoOh",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 12,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_HO_OH"
+          ],
+          "line": 13,
+          "raw": "setflag FLAG_HIDE_HO_OH",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 14,
+          "raw": "return",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "NavelRock_Summit_EventScript_TryShowHoOh": {
+      "label": "NavelRock_Summit_EventScript_TryShowHoOh",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 17,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_HO_OH_FLEW_AWAY",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 18,
+          "raw": "goto_if_set FLAG_HO_OH_FLEW_AWAY, Common_EventScript_NopReturn",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "0"
+          ],
+          "line": 19,
+          "raw": "setvar VAR_TEMP_1, 0",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_HO_OH"
+          ],
+          "line": 20,
+          "raw": "clearflag FLAG_HIDE_HO_OH",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 21,
+          "raw": "return",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Common_EventScript_NopReturn",
+          "line": 18
+        }
+      ]
+    },
+    "NavelRock_Summit_OnResume": {
+      "label": "NavelRock_Summit_OnResume",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE",
+            "NavelRock_Summit_EventScript_TryRemoveHoOh"
+          ],
+          "line": 24,
+          "raw": "call_if_set FLAG_SYS_CTRL_OBJ_DELETE, NavelRock_Summit_EventScript_TryRemoveHoOh",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "NavelRock_Summit_EventScript_TryRemoveHoOh",
+          "line": 24
+        }
+      ]
+    },
+    "NavelRock_Summit_EventScript_TryRemoveHoOh": {
+      "label": "NavelRock_Summit_EventScript_TryRemoveHoOh",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 28,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_CAUGHT",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 29,
+          "raw": "goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_NAVEL_ROCK_HO_OH"
+          ],
+          "line": 30,
+          "raw": "removeobject LOCALID_NAVEL_ROCK_HO_OH",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 31,
+          "raw": "return",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "Common_EventScript_NopReturn",
+          "line": 29
+        }
+      ]
+    },
+    "NavelRock_Summit_EventScript_HoOh": {
+      "label": "NavelRock_Summit_EventScript_HoOh",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 34,
+          "raw": "lockall",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 35,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SpawnCameraObject"
+          ],
+          "line": 36,
+          "raw": "special SpawnCameraObject",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "3"
+          ],
+          "line": 37,
+          "raw": "setvar VAR_0x8004, 3",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "35"
+          ],
+          "line": 38,
+          "raw": "setvar VAR_0x8005, 35",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoopWingFlapSE"
+          ],
+          "line": 39,
+          "raw": "special LoopWingFlapSE",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_NAVEL_ROCK_HO_OH",
+            "Movement_HoOhAppear"
+          ],
+          "line": 40,
+          "raw": "applymovement LOCALID_NAVEL_ROCK_HO_OH, Movement_HoOhAppear",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CAMERA",
+            "Movement_CameraPanUp"
+          ],
+          "line": 41,
+          "raw": "applymovement LOCALID_CAMERA, Movement_CameraPanUp",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 42,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "50"
+          ],
+          "line": 43,
+          "raw": "delay 50",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setweather",
+          "args": [
+            "0"
+          ],
+          "line": 44,
+          "raw": "setweather 0",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "doweather",
+          "args": [],
+          "line": 45,
+          "raw": "doweather",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 46,
+          "raw": "waitse",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_HO_OH",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 47,
+          "raw": "playmoncry SPECIES_HO_OH, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 48,
+          "raw": "delay 30",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 49,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "60"
+          ],
+          "line": 50,
+          "raw": "delay 60",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "3"
+          ],
+          "line": 51,
+          "raw": "setvar VAR_0x8004, 3",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "35"
+          ],
+          "line": 52,
+          "raw": "setvar VAR_0x8005, 35",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoopWingFlapSE"
+          ],
+          "line": 53,
+          "raw": "special LoopWingFlapSE",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_CAMERA",
+            "Movement_CameraPanDown"
+          ],
+          "line": 54,
+          "raw": "applymovement LOCALID_CAMERA, Movement_CameraPanDown",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_NAVEL_ROCK_HO_OH",
+            "Movement_HoOhApproach"
+          ],
+          "line": 55,
+          "raw": "applymovement LOCALID_NAVEL_ROCK_HO_OH, Movement_HoOhApproach",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 56,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "RemoveCameraObject"
+          ],
+          "line": 57,
+          "raw": "special RemoveCameraObject",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "seteventmon",
+          "args": [
+            "SPECIES_HO_OH",
+            "70"
+          ],
+          "line": 58,
+          "raw": "seteventmon SPECIES_HO_OH, 70",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 59,
+          "raw": "setflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "BattleSetup_StartLegendaryBattle"
+          ],
+          "line": 60,
+          "raw": "special BattleSetup_StartLegendaryBattle",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 61,
+          "raw": "waitstate",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 62,
+          "raw": "clearflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_LAST_TALKED",
+            "LOCALID_NAVEL_ROCK_HO_OH"
+          ],
+          "line": 63,
+          "raw": "setvar VAR_LAST_TALKED, LOCALID_NAVEL_ROCK_HO_OH",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 64,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_WON",
+            "NavelRock_Summit_EventScript_DefeatedHoOh"
+          ],
+          "line": 65,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_WON, NavelRock_Summit_EventScript_DefeatedHoOh",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_RAN",
+            "NavelRock_Summit_EventScript_RanFromHoOh"
+          ],
+          "line": 66,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_RAN, NavelRock_Summit_EventScript_RanFromHoOh",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_PLAYER_TELEPORTED",
+            "NavelRock_Summit_EventScript_RanFromHoOh"
+          ],
+          "line": 67,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, NavelRock_Summit_EventScript_RanFromHoOh",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_FOUGHT_HO_OH"
+          ],
+          "line": 68,
+          "raw": "setflag FLAG_FOUGHT_HO_OH",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 69,
+          "raw": "releaseall",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 70,
+          "raw": "end",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "NavelRock_Summit_EventScript_DefeatedHoOh",
+          "line": 65
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "NavelRock_Summit_EventScript_RanFromHoOh",
+          "line": 66
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "NavelRock_Summit_EventScript_RanFromHoOh",
+          "line": 67
+        }
+      ]
+    },
+    "NavelRock_Summit_EventScript_DefeatedHoOh": {
+      "label": "NavelRock_Summit_EventScript_DefeatedHoOh",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HO_OH_FLEW_AWAY"
+          ],
+          "line": 73,
+          "raw": "setflag FLAG_HO_OH_FLEW_AWAY",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_HO_OH"
+          ],
+          "line": 74,
+          "raw": "setvar VAR_0x8004, SPECIES_HO_OH",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_MonFlewAway"
+          ],
+          "line": 75,
+          "raw": "goto EventScript_MonFlewAway",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 76,
+          "raw": "end",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_MonFlewAway",
+          "line": 75
+        }
+      ]
+    },
+    "NavelRock_Summit_EventScript_RanFromHoOh": {
+      "label": "NavelRock_Summit_EventScript_RanFromHoOh",
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_HO_OH"
+          ],
+          "line": 79,
+          "raw": "setvar VAR_0x8004, SPECIES_HO_OH",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EventScript_MonFlewAway"
+          ],
+          "line": 80,
+          "raw": "goto EventScript_MonFlewAway",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 81,
+          "raw": "end",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "EventScript_MonFlewAway",
+          "line": 80
+        }
+      ]
+    }
+  },
+  "movements": {
+    "Movement_CameraPanUp": {
+      "label": "Movement_CameraPanUp",
+      "kind": "movement",
+      "line": 83,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 84,
+          "raw": "walk_up",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 85,
+          "raw": "walk_up",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 86,
+          "raw": "walk_up",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 87,
+          "raw": "step_end",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Movement_CameraPanDown": {
+      "label": "Movement_CameraPanDown",
+      "kind": "movement",
+      "line": 89,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 90,
+          "raw": "delay_16",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 91,
+          "raw": "delay_16",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 92,
+          "raw": "walk_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 93,
+          "raw": "walk_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 94,
+          "raw": "walk_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 95,
+          "raw": "step_end",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Movement_HoOhApproach": {
+      "label": "Movement_HoOhApproach",
+      "kind": "movement",
+      "line": 97,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 98,
+          "raw": "walk_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 99,
+          "raw": "walk_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 100,
+          "raw": "walk_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 101,
+          "raw": "walk_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 102,
+          "raw": "walk_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_down",
+          "args": [],
+          "line": 103,
+          "raw": "walk_in_place_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 104,
+          "raw": "delay_16",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 105,
+          "raw": "delay_16",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 106,
+          "raw": "step_end",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Movement_HoOhAppear": {
+      "label": "Movement_HoOhAppear",
+      "kind": "movement",
+      "line": 108,
+      "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 109,
+          "raw": "delay_16",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 110,
+          "raw": "delay_16",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_down",
+          "args": [],
+          "line": 111,
+          "raw": "walk_in_place_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_down",
+          "args": [],
+          "line": 112,
+          "raw": "walk_in_place_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_down",
+          "args": [],
+          "line": 113,
+          "raw": "walk_in_place_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_down",
+          "args": [],
+          "line": 114,
+          "raw": "walk_in_place_down",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 115,
+          "raw": "step_end",
+          "source_file": "data/maps/NavelRock_Summit_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 4,
+      "call_if_set": 2,
+      "call_if_unset": 1,
+      "clearflag": 2,
+      "delay": 3,
+      "delay_16": 6,
+      "doweather": 1,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "map_script": 2,
+      "playmoncry": 1,
+      "removeobject": 1,
+      "seteventmon": 1,
+      "setflag": 4,
+      "setvar": 11,
+      "setweather": 1,
+      "special": 5,
+      "specialvar": 2,
+      "step_end": 4,
+      "waitmoncry": 1,
+      "waitmovement": 2,
+      "waitse": 1,
+      "waitstate": 1,
+      "walk_down": 8,
+      "walk_in_place_down": 5,
+      "walk_up": 3
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 13,
+    "script_count": 9,
+    "movement_count": 4,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 4,
+      "call_if_set": 2,
+      "call_if_unset": 1,
+      "clearflag": 2,
+      "delay": 3,
+      "delay_16": 6,
+      "doweather": 1,
+      "end": 5,
+      "goto": 2,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "lockall": 1,
+      "map_script": 2,
+      "playmoncry": 1,
+      "releaseall": 1,
+      "removeobject": 1,
+      "return": 3,
+      "seteventmon": 1,
+      "setflag": 4,
+      "setvar": 11,
+      "setweather": 1,
+      "special": 5,
+      "specialvar": 2,
+      "step_end": 4,
+      "waitmoncry": 1,
+      "waitmovement": 2,
+      "waitse": 1,
+      "waitstate": 1,
+      "walk_down": 8,
+      "walk_in_place_down": 5,
+      "walk_up": 3
+    }
+  }
+}

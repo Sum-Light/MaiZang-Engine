@@ -1,0 +1,1470 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PalletTown_PlayersHouse_1F_Frlg",
+    "map_script": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+    "map_json": "data/maps/PalletTown_PlayersHouse_1F_Frlg/map.json",
+    "map_id": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
+    "map_name": "PalletTown_PlayersHouse_1F_Frlg"
+  },
+  "labels": {
+    "PalletTown_PlayersHouse_1F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_Mom": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 11
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouFemale": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_MomHeal": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_TV": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_TVScreen": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_TVScreenMale": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_TVScreenFemale": {
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou": {
+      "kind": "text",
+      "line": 56,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou": {
+      "kind": "text",
+      "line": 63,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest": {
+      "kind": "text",
+      "line": 70,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare": {
+      "kind": "text",
+      "line": 74,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PalletTown_PlayersHouse_1F_Text_MovieOnTVFourBoysOnRailroad": {
+      "kind": "text",
+      "line": 79,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad": {
+      "kind": "text",
+      "line": 85,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PalletTown_PlayersHouse_1F_Text_OopsWrongSide": {
+      "kind": "text",
+      "line": 91,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "PalletTown_PlayersHouse_1F_Frlg_MapScripts": {
+      "label": "PalletTown_PlayersHouse_1F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_Mom": {
+      "label": "PalletTown_PlayersHouse_1F_EventScript_Mom",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_BEAT_RIVAL_IN_OAKS_LAB",
+            "PalletTown_PlayersHouse_1F_EventScript_MomHeal"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_BEAT_RIVAL_IN_OAKS_LAB, PalletTown_PlayersHouse_1F_EventScript_MomHeal",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 8,
+          "raw": "checkplayergender",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale"
+          ],
+          "line": 9,
+          "raw": "call_if_eq VAR_RESULT, MALE, PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouFemale"
+          ],
+          "line": 10,
+          "raw": "call_if_eq VAR_RESULT, FEMALE, PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouFemale",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 11,
+          "raw": "closemessage",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYERS_HOUSE_1F_MOM",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 12,
+          "raw": "applymovement LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 13,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "PalletTown_PlayersHouse_1F_EventScript_MomHeal",
+          "line": 7
+        },
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale",
+          "line": 9
+        },
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouFemale",
+          "line": 10
+        }
+      ]
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale": {
+      "label": "PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou"
+          ],
+          "line": 18,
+          "raw": "msgbox PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 19,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou",
+          "mode": "",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouFemale": {
+      "label": "PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouFemale",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou"
+          ],
+          "line": 22,
+          "raw": "msgbox PalletTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 23,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou",
+          "mode": "",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_MomHeal": {
+      "label": "PalletTown_PlayersHouse_1F_EventScript_MomHeal",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest"
+          ],
+          "line": 26,
+          "raw": "msgbox PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 27,
+          "raw": "closemessage",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_OutOfCenterPartyHeal"
+          ],
+          "line": 28,
+          "raw": "call Common_EventScript_OutOfCenterPartyHeal",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare"
+          ],
+          "line": 29,
+          "raw": "msgbox PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 30,
+          "raw": "release",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest",
+          "mode": "",
+          "line": 26
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare",
+          "mode": "",
+          "line": 29
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_OutOfCenterPartyHeal",
+          "line": 28
+        }
+      ]
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_TV": {
+      "label": "PalletTown_PlayersHouse_1F_EventScript_TV",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 35,
+          "raw": "lockall",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_NORTH",
+            "PalletTown_PlayersHouse_1F_EventScript_TVScreen"
+          ],
+          "line": 36,
+          "raw": "goto_if_eq VAR_FACING, DIR_NORTH, PalletTown_PlayersHouse_1F_EventScript_TVScreen",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_PlayersHouse_1F_Text_OopsWrongSide"
+          ],
+          "line": 37,
+          "raw": "msgbox PalletTown_PlayersHouse_1F_Text_OopsWrongSide",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 38,
+          "raw": "releaseall",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 39,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_PlayersHouse_1F_Text_OopsWrongSide",
+          "mode": "",
+          "line": 37
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "PalletTown_PlayersHouse_1F_EventScript_TVScreen",
+          "line": 36
+        }
+      ]
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_TVScreen": {
+      "label": "PalletTown_PlayersHouse_1F_EventScript_TVScreen",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 42,
+          "raw": "checkplayergender",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "PalletTown_PlayersHouse_1F_EventScript_TVScreenMale"
+          ],
+          "line": 43,
+          "raw": "call_if_eq VAR_RESULT, MALE, PalletTown_PlayersHouse_1F_EventScript_TVScreenMale",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "PalletTown_PlayersHouse_1F_EventScript_TVScreenFemale"
+          ],
+          "line": 44,
+          "raw": "call_if_eq VAR_RESULT, FEMALE, PalletTown_PlayersHouse_1F_EventScript_TVScreenFemale",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 45,
+          "raw": "releaseall",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 46,
+          "raw": "end",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_PlayersHouse_1F_EventScript_TVScreenMale",
+          "line": 43
+        },
+        {
+          "op": "call_if_eq",
+          "target": "PalletTown_PlayersHouse_1F_EventScript_TVScreenFemale",
+          "line": 44
+        }
+      ]
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_TVScreenMale": {
+      "label": "PalletTown_PlayersHouse_1F_EventScript_TVScreenMale",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_PlayersHouse_1F_Text_MovieOnTVFourBoysOnRailroad"
+          ],
+          "line": 49,
+          "raw": "msgbox PalletTown_PlayersHouse_1F_Text_MovieOnTVFourBoysOnRailroad",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 50,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_PlayersHouse_1F_Text_MovieOnTVFourBoysOnRailroad",
+          "mode": "",
+          "line": 49
+        }
+      ],
+      "branch_targets": []
+    },
+    "PalletTown_PlayersHouse_1F_EventScript_TVScreenFemale": {
+      "label": "PalletTown_PlayersHouse_1F_EventScript_TVScreenFemale",
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad"
+          ],
+          "line": 53,
+          "raw": "msgbox PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 54,
+          "raw": "return",
+          "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad",
+          "mode": "",
+          "line": 53
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou": {
+      "label": "PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou",
+      "line": 56,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "raw_text": "妈妈：……好吧。\\n电视上说过。\\l每一个男孩子都有离开家的那一天。\\p对了，隔壁的大木博士\\n正在找你呢。$",
+      "display_text": "妈妈：……好吧。\n电视上说过。\n每一个男孩子都有离开家的那一天。\n\n对了，隔壁的大木博士\n正在找你呢。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 89,
+        "bytes": [
+          9,
+          34,
+          9,
+          34,
+          62,
+          176,
+          176,
+          4,
+          233,
+          1,
+          40,
+          55,
+          254,
+          3,
+          46,
+          12,
+          24,
+          11,
+          173,
+          12,
+          88,
+          4,
+          197,
+          55,
+          250,
+          9,
+          87,
+          15,
+          11,
+          4,
+          96,
+          9,
+          198,
+          4,
+          200,
+          17,
+          11,
+          3,
+          97,
+          15,
+          126,
+          8,
+          96,
+          7,
+          184,
+          5,
+          189,
+          3,
+          11,
+          9,
+          189,
+          15,
+          11,
+          12,
+          237,
+          55,
+          251,
+          3,
+          121,
+          8,
+          158,
+          59,
+          4,
+          94,
+          1,
+          151,
+          3,
+          11,
+          2,
+          211,
+          9,
+          180,
+          1,
+          196,
+          12,
+          4,
+          254,
+          16,
+          112,
+          15,
+          230,
+          16,
+          69,
+          9,
+          217,
+          9,
+          206,
+          55,
+          255
+        ],
+        "hex": "09 22 09 22 3E B0 B0 04 E9 01 28 37 FE 03 2E 0C 18 0B AD 0C 58 04 C5 37 FA 09 57 0F 0B 04 60 09 C6 04 C8 11 0B 03 61 0F 7E 08 60 07 B8 05 BD 03 0B 09 BD 0F 0B 0C ED 37 FB 03 79 08 9E 3B 04 5E 01 97 03 0B 02 D3 09 B4 01 C4 0C 04 FE 10 70 0F E6 10 45 09 D9 09 CE 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 16,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 34,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 46,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 54,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou": {
+      "label": "PalletTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou",
+      "line": 63,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "raw_text": "妈妈 ……好吧。\\n电视上说过，\\l每一个女孩子都梦想着去旅行。\\p对了，隔壁的大木博士\\n正在找你呢。$",
+      "display_text": "妈妈 ……好吧。\n电视上说过，\n每一个女孩子都梦想着去旅行。\n\n对了，隔壁的大木博士\n正在找你呢。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 85,
+        "bytes": [
+          9,
+          34,
+          9,
+          34,
+          0,
+          176,
+          176,
+          4,
+          233,
+          1,
+          40,
+          55,
+          254,
+          3,
+          46,
+          12,
+          24,
+          11,
+          173,
+          12,
+          88,
+          4,
+          197,
+          59,
+          250,
+          9,
+          87,
+          15,
+          11,
+          4,
+          96,
+          10,
+          11,
+          4,
+          200,
+          17,
+          11,
+          3,
+          97,
+          9,
+          102,
+          14,
+          24,
+          16,
+          244,
+          11,
+          37,
+          8,
+          244,
+          14,
+          91,
+          55,
+          251,
+          3,
+          121,
+          8,
+          158,
+          59,
+          4,
+          94,
+          1,
+          151,
+          3,
+          11,
+          2,
+          211,
+          9,
+          180,
+          1,
+          196,
+          12,
+          4,
+          254,
+          16,
+          112,
+          15,
+          230,
+          16,
+          69,
+          9,
+          217,
+          9,
+          206,
+          55,
+          255
+        ],
+        "hex": "09 22 09 22 00 B0 B0 04 E9 01 28 37 FE 03 2E 0C 18 0B AD 0C 58 04 C5 3B FA 09 57 0F 0B 04 60 0A 0B 04 C8 11 0B 03 61 09 66 0E 18 10 F4 0B 25 08 F4 0E 5B 37 FB 03 79 08 9E 3B 04 5E 01 97 03 0B 02 D3 09 B4 01 C4 0C 04 FE 10 70 0F E6 10 45 09 D9 09 CE 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 16,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 52,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest": {
+      "label": "PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest",
+      "line": 70,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "raw_text": "妈妈 {PLAYER}！\\n你应该稍微休息一下。$",
+      "display_text": "妈妈 {PLAYER}！\n你应该稍微休息一下。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          9,
+          34,
+          9,
+          34,
+          0,
+          253,
+          1,
+          60,
+          254,
+          9,
+          217,
+          15,
+          84,
+          4,
+          45,
+          11,
+          178,
+          13,
+          104,
+          14,
+          104,
+          13,
+          198,
+          15,
+          11,
+          13,
+          230,
+          55,
+          255
+        ],
+        "hex": "09 22 09 22 00 FD 01 3C FE 09 D9 0F 54 04 2D 0B B2 0D 68 0E 68 0D C6 0F 0B 0D E6 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare": {
+      "label": "PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare",
+      "line": 74,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "raw_text": "妈妈：嗯，很好！你和你的\\n宝可梦看起来精力十足。\\l路上小心！$",
+      "display_text": "妈妈：嗯，很好！你和你的\n宝可梦看起来精力十足。\n路上小心！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          9,
+          34,
+          9,
+          34,
+          62,
+          20,
+          97,
+          59,
+          5,
+          11,
+          4,
+          233,
+          60,
+          9,
+          217,
+          4,
+          243,
+          9,
+          217,
+          3,
+          11,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          7,
+          194,
+          10,
+          171,
+          8,
+          41,
+          7,
+          91,
+          8,
+          121,
+          11,
+          234,
+          17,
+          27,
+          55,
+          250,
+          8,
+          232,
+          11,
+          173,
+          14,
+          44,
+          14,
+          79,
+          60,
+          255
+        ],
+        "hex": "09 22 09 22 3E 14 61 3B 05 0B 04 E9 3C 09 D9 04 F3 09 D9 03 0B FE 01 63 07 D7 09 66 07 C2 0A AB 08 29 07 5B 08 79 0B EA 11 1B 37 FA 08 E8 0B AD 0E 2C 0E 4F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 25,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_PlayersHouse_1F_Text_MovieOnTVFourBoysOnRailroad": {
+      "label": "PalletTown_PlayersHouse_1F_Text_MovieOnTVFourBoysOnRailroad",
+      "line": 79,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "raw_text": "电视上播放着一部电影。\\n四个男孩沿着铁轨\\l步行着开始了旅行。\\p……我也该走了。$",
+      "display_text": "电视上播放着一部电影。\n四个男孩沿着铁轨\n步行着开始了旅行。\n\n……我也该走了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 71,
+        "bytes": [
+          3,
+          46,
+          12,
+          24,
+          11,
+          173,
+          1,
+          192,
+          3,
+          200,
+          16,
+          244,
+          15,
+          11,
+          1,
+          218,
+          3,
+          46,
+          15,
+          94,
+          55,
+          254,
+          12,
+          103,
+          4,
+          96,
+          9,
+          198,
+          4,
+          200,
+          14,
+          193,
+          16,
+          244,
+          13,
+          4,
+          4,
+          180,
+          250,
+          1,
+          216,
+          14,
+          91,
+          16,
+          244,
+          7,
+          184,
+          12,
+          1,
+          8,
+          158,
+          8,
+          244,
+          14,
+          91,
+          55,
+          251,
+          176,
+          176,
+          13,
+          152,
+          15,
+          2,
+          4,
+          45,
+          17,
+          23,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "03 2E 0C 18 0B AD 01 C0 03 C8 10 F4 0F 0B 01 DA 03 2E 0F 5E 37 FE 0C 67 04 60 09 C6 04 C8 0E C1 10 F4 0D 04 04 B4 FA 01 D8 0E 5B 10 F4 07 B8 0C 01 08 9E 08 F4 0E 5B 37 FB B0 B0 0D 98 0F 02 04 2D 11 17 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 21,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad": {
+      "label": "PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad",
+      "line": 85,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "raw_text": "电视上播放着一部电影。\\n一个扎着马尾的女孩\\l沿着砖块砌成的路开始了旅行。\\p……我也该走了。$",
+      "display_text": "电视上播放着一部电影。\n一个扎着马尾的女孩\n沿着砖块砌成的路开始了旅行。\n\n……我也该走了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 83,
+        "bytes": [
+          3,
+          46,
+          12,
+          24,
+          11,
+          173,
+          1,
+          192,
+          3,
+          200,
+          16,
+          244,
+          15,
+          11,
+          1,
+          218,
+          3,
+          46,
+          15,
+          94,
+          55,
+          254,
+          15,
+          11,
+          4,
+          96,
+          16,
+          15,
+          16,
+          244,
+          9,
+          39,
+          13,
+          120,
+          3,
+          11,
+          10,
+          11,
+          4,
+          200,
+          250,
+          14,
+          193,
+          16,
+          244,
+          16,
+          216,
+          8,
+          0,
+          10,
+          177,
+          2,
+          75,
+          3,
+          11,
+          8,
+          232,
+          7,
+          184,
+          12,
+          1,
+          8,
+          158,
+          8,
+          244,
+          14,
+          91,
+          55,
+          251,
+          176,
+          176,
+          13,
+          152,
+          15,
+          2,
+          4,
+          45,
+          17,
+          23,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "03 2E 0C 18 0B AD 01 C0 03 C8 10 F4 0F 0B 01 DA 03 2E 0F 5E 37 FE 0F 0B 04 60 10 0F 10 F4 09 27 0D 78 03 0B 0A 0B 04 C8 FA 0E C1 10 F4 10 D8 08 00 0A B1 02 4B 03 0B 08 E8 07 B8 0C 01 08 9E 08 F4 0E 5B 37 FB B0 B0 0D 98 0F 02 04 2D 11 17 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 22,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PalletTown_PlayersHouse_1F_Text_OopsWrongSide": {
+      "label": "PalletTown_PlayersHouse_1F_Text_OopsWrongSide",
+      "line": 91,
+      "source_file": "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc",
+      "raw_text": "哎哟，方向错了……$",
+      "display_text": "哎哟，方向错了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          1,
+          4,
+          15,
+          98,
+          59,
+          3,
+          192,
+          14,
+          31,
+          2,
+          205,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "01 04 0F 62 3B 03 C0 0E 1F 02 CD 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 1,
+      "call_if_eq": 4,
+      "checkplayergender": 2,
+      "closemessage": 2,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "waitmovement": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 16,
+    "script_count": 9,
+    "movement_count": 0,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 427,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 1,
+      "call": 1,
+      "call_if_eq": 4,
+      "checkplayergender": 2,
+      "closemessage": 2,
+      "end": 4,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "lockall": 1,
+      "msgbox": 7,
+      "release": 2,
+      "releaseall": 2,
+      "return": 4,
+      "waitmovement": 1
+    }
+  }
+}

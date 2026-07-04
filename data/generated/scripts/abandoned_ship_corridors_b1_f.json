@@ -1,0 +1,1226 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "AbandonedShip_Corridors_B1F",
+    "map_script": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+    "map_json": "data/maps/AbandonedShip_Corridors_B1F/map.json",
+    "map_id": "MAP_ABANDONED_SHIP_CORRIDORS_B1F",
+    "map_name": "AbandonedShip_Corridors_B1F"
+  },
+  "labels": {
+    "AbandonedShip_Corridors_B1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "AbandonedShip_Corridors_B1F_OnResume": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "AbandonedShip_Corridors_B1F_OnLoad": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_LockStorageRoom": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_TuberM": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_StorageRoomDoor": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 12
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_DoorIsLocked": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_DoorIsUnlocked": {
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_Duncan": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "AbandonedShip_Corridors_B1F_Text_DuncanIntro": {
+      "kind": "text",
+      "line": 56,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Corridors_B1F_Text_DuncanDefeat": {
+      "kind": "text",
+      "line": 59,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Corridors_B1F_Text_DuncanPostBattle": {
+      "kind": "text",
+      "line": 62,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Corridors_B1F_Text_YayItsAShip": {
+      "kind": "text",
+      "line": 65,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Corridors_B1F_Text_DoorIsLocked": {
+      "kind": "text",
+      "line": 68,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Corridors_B1F_Text_InsertedStorageKey": {
+      "kind": "text",
+      "line": 71,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Text_TheDoorIsOpen": {
+      "kind": "text",
+      "line": 74,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "AbandonedShip_Corridors_B1F_MapScripts": {
+      "label": "AbandonedShip_Corridors_B1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "AbandonedShip_Corridors_B1F_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, AbandonedShip_Corridors_B1F_OnResume",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "AbandonedShip_Corridors_B1F_OnLoad"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, AbandonedShip_Corridors_B1F_OnLoad",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "AbandonedShip_Corridors_B1F_OnResume": {
+      "label": "AbandonedShip_Corridors_B1F_OnResume",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setdivewarp",
+          "args": [
+            "MAP_ABANDONED_SHIP_UNDERWATER1",
+            "5",
+            "4"
+          ],
+          "line": 7,
+          "raw": "setdivewarp MAP_ABANDONED_SHIP_UNDERWATER1, 5, 4",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "AbandonedShip_Corridors_B1F_OnLoad": {
+      "label": "AbandonedShip_Corridors_B1F_OnLoad",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_USED_STORAGE_KEY",
+            "AbandonedShip_Corridors_B1F_EventScript_LockStorageRoom"
+          ],
+          "line": 11,
+          "raw": "call_if_unset FLAG_USED_STORAGE_KEY, AbandonedShip_Corridors_B1F_EventScript_LockStorageRoom",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_USED_STORAGE_KEY",
+            "AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom"
+          ],
+          "line": 12,
+          "raw": "call_if_set FLAG_USED_STORAGE_KEY, AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "AbandonedShip_Corridors_B1F_EventScript_LockStorageRoom",
+          "line": 11
+        },
+        {
+          "op": "call_if_set",
+          "target": "AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom",
+          "line": 12
+        }
+      ]
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_LockStorageRoom": {
+      "label": "AbandonedShip_Corridors_B1F_EventScript_LockStorageRoom",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "11",
+            "4",
+            "METATILE_InsideShip_IntactDoor_Bottom_Locked",
+            "TRUE"
+          ],
+          "line": 16,
+          "raw": "setmetatile 11, 4, METATILE_InsideShip_IntactDoor_Bottom_Locked, TRUE",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 17,
+          "raw": "return",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom": {
+      "label": "AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "11",
+            "4",
+            "METATILE_InsideShip_IntactDoor_Bottom_Unlocked",
+            "TRUE"
+          ],
+          "line": 20,
+          "raw": "setmetatile 11, 4, METATILE_InsideShip_IntactDoor_Bottom_Unlocked, TRUE",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 21,
+          "raw": "return",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_TuberM": {
+      "label": "AbandonedShip_Corridors_B1F_EventScript_TuberM",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "AbandonedShip_Corridors_B1F_Text_YayItsAShip",
+            "MSGBOX_NPC"
+          ],
+          "line": 24,
+          "raw": "msgbox AbandonedShip_Corridors_B1F_Text_YayItsAShip, MSGBOX_NPC",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "AbandonedShip_Corridors_B1F_Text_YayItsAShip",
+          "mode": "MSGBOX_NPC",
+          "line": 24
+        }
+      ],
+      "branch_targets": []
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_StorageRoomDoor": {
+      "label": "AbandonedShip_Corridors_B1F_EventScript_StorageRoomDoor",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 28,
+          "raw": "lockall",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_USED_STORAGE_KEY",
+            "AbandonedShip_Corridors_B1F_EventScript_DoorIsUnlocked"
+          ],
+          "line": 29,
+          "raw": "goto_if_set FLAG_USED_STORAGE_KEY, AbandonedShip_Corridors_B1F_EventScript_DoorIsUnlocked",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "checkitem",
+          "args": [
+            "ITEM_STORAGE_KEY"
+          ],
+          "line": 30,
+          "raw": "checkitem ITEM_STORAGE_KEY",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "AbandonedShip_Corridors_B1F_EventScript_DoorIsLocked"
+          ],
+          "line": 31,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, AbandonedShip_Corridors_B1F_EventScript_DoorIsLocked",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "AbandonedShip_Corridors_B1F_Text_InsertedStorageKey",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 32,
+          "raw": "msgbox AbandonedShip_Corridors_B1F_Text_InsertedStorageKey, MSGBOX_DEFAULT",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 33,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "removeitem",
+          "args": [
+            "ITEM_STORAGE_KEY"
+          ],
+          "line": 34,
+          "raw": "removeitem ITEM_STORAGE_KEY",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_USED_STORAGE_KEY"
+          ],
+          "line": 35,
+          "raw": "setflag FLAG_USED_STORAGE_KEY",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom"
+          ],
+          "line": 36,
+          "raw": "call AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 37,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 38,
+          "raw": "releaseall",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 39,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "AbandonedShip_Corridors_B1F_Text_InsertedStorageKey",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 32
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "AbandonedShip_Corridors_B1F_EventScript_DoorIsUnlocked",
+          "line": 29
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "AbandonedShip_Corridors_B1F_EventScript_DoorIsLocked",
+          "line": 31
+        },
+        {
+          "op": "call",
+          "target": "AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom",
+          "line": 36
+        }
+      ]
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_DoorIsLocked": {
+      "label": "AbandonedShip_Corridors_B1F_EventScript_DoorIsLocked",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "AbandonedShip_Corridors_B1F_Text_DoorIsLocked",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 42,
+          "raw": "msgbox AbandonedShip_Corridors_B1F_Text_DoorIsLocked, MSGBOX_DEFAULT",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 43,
+          "raw": "releaseall",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "AbandonedShip_Corridors_B1F_Text_DoorIsLocked",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 42
+        }
+      ],
+      "branch_targets": []
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_DoorIsUnlocked": {
+      "label": "AbandonedShip_Corridors_B1F_EventScript_DoorIsUnlocked",
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "AbandonedShip_Text_TheDoorIsOpen",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 47,
+          "raw": "msgbox AbandonedShip_Text_TheDoorIsOpen, MSGBOX_DEFAULT",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 48,
+          "raw": "releaseall",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "AbandonedShip_Text_TheDoorIsOpen",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 47
+        }
+      ],
+      "branch_targets": []
+    },
+    "AbandonedShip_Corridors_B1F_EventScript_Duncan": {
+      "label": "AbandonedShip_Corridors_B1F_EventScript_Duncan",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_DUNCAN",
+            "AbandonedShip_Corridors_B1F_Text_DuncanIntro",
+            "AbandonedShip_Corridors_B1F_Text_DuncanDefeat"
+          ],
+          "line": 52,
+          "raw": "trainerbattle_single TRAINER_DUNCAN, AbandonedShip_Corridors_B1F_Text_DuncanIntro, AbandonedShip_Corridors_B1F_Text_DuncanDefeat",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "AbandonedShip_Corridors_B1F_Text_DuncanPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 53,
+          "raw": "msgbox AbandonedShip_Corridors_B1F_Text_DuncanPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 54,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "AbandonedShip_Corridors_B1F_Text_DuncanPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 53
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "AbandonedShip_Corridors_B1F_Text_DuncanIntro": {
+      "label": "AbandonedShip_Corridors_B1F_Text_DuncanIntro",
+      "line": 56,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "raw_text": "启航的时候，我们水手\\n都带着自己的宝可梦。\\l对战一场怎么样？$",
+      "display_text": "启航的时候，我们水手\n都带着自己的宝可梦。\n对战一场怎么样？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 56,
+        "bytes": [
+          10,
+          175,
+          4,
+          227,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          59,
+          13,
+          152,
+          9,
+          95,
+          12,
+          81,
+          12,
+          27,
+          254,
+          3,
+          97,
+          2,
+          216,
+          16,
+          244,
+          17,
+          12,
+          5,
+          165,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          250,
+          3,
+          121,
+          16,
+          48,
+          15,
+          11,
+          2,
+          35,
+          16,
+          10,
+          9,
+          76,
+          14,
+          226,
+          61,
+          255
+        ],
+        "hex": "0A AF 04 E3 03 0B 0B ED 05 21 3B 0D 98 09 5F 0C 51 0C 1B FE 03 61 02 D8 10 F4 11 0C 05 A5 03 0B 01 63 07 D7 09 66 37 FA 03 79 10 30 0F 0B 02 23 10 0A 09 4C 0E E2 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 22,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "AbandonedShip_Corridors_B1F_Text_DuncanDefeat": {
+      "label": "AbandonedShip_Corridors_B1F_Text_DuncanDefeat",
+      "line": 59,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "raw_text": "哎呀，我被击沉了！$",
+      "display_text": "哎呀，我被击沉了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 17,
+        "bytes": [
+          1,
+          4,
+          14,
+          166,
+          59,
+          13,
+          152,
+          1,
+          120,
+          5,
+          132,
+          2,
+          67,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "01 04 0E A6 3B 0D 98 01 78 05 84 02 43 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "AbandonedShip_Corridors_B1F_Text_DuncanPostBattle": {
+      "label": "AbandonedShip_Corridors_B1F_Text_DuncanPostBattle",
+      "line": 62,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "raw_text": "我们的船现在搁浅了。\\p如果有会潜水的宝可梦的话，\\n或许能帮上什么忙……$",
+      "display_text": "我们的船现在搁浅了。\n\n如果有会潜水的宝可梦的话，\n或许能帮上什么忙……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 65,
+        "bytes": [
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          2,
+          140,
+          14,
+          3,
+          15,
+          230,
+          4,
+          83,
+          10,
+          204,
+          8,
+          158,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          15,
+          126,
+          5,
+          110,
+          10,
+          202,
+          12,
+          81,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          5,
+          127,
+          14,
+          120,
+          9,
+          210,
+          1,
+          78,
+          11,
+          173,
+          11,
+          238,
+          9,
+          76,
+          9,
+          62,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 98 09 5F 03 0B 02 8C 0E 03 0F E6 04 53 0A CC 08 9E 37 FB 0B 67 04 C3 0F 7E 05 6E 0A CA 0C 51 03 0B 01 63 07 D7 09 66 03 0B 05 3D 3B FE 05 7F 0E 78 09 D2 01 4E 0B AD 0B EE 09 4C 09 3E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "AbandonedShip_Corridors_B1F_Text_YayItsAShip": {
+      "label": "AbandonedShip_Corridors_B1F_Text_YayItsAShip",
+      "line": 65,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "raw_text": "耶！\\n是船啊！$",
+      "display_text": "耶！\n是船啊！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 12,
+        "bytes": [
+          14,
+          245,
+          60,
+          254,
+          12,
+          12,
+          2,
+          140,
+          1,
+          0,
+          60,
+          255
+        ],
+        "hex": "0E F5 3C FE 0C 0C 02 8C 01 00 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "AbandonedShip_Corridors_B1F_Text_DoorIsLocked": {
+      "label": "AbandonedShip_Corridors_B1F_Text_DoorIsLocked",
+      "line": 68,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "raw_text": "门锁上了。\\p门上写着“仓库”。$",
+      "display_text": "门锁上了。\n\n门上写着“仓库”。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          9,
+          93,
+          12,
+          155,
+          11,
+          173,
+          8,
+          158,
+          55,
+          251,
+          9,
+          93,
+          11,
+          173,
+          14,
+          63,
+          16,
+          244,
+          177,
+          1,
+          241,
+          7,
+          240,
+          178,
+          55,
+          255
+        ],
+        "hex": "09 5D 0C 9B 0B AD 08 9E 37 FB 09 5D 0B AD 0E 3F 10 F4 B1 01 F1 07 F0 B2 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "AbandonedShip_Corridors_B1F_Text_InsertedStorageKey": {
+      "label": "AbandonedShip_Corridors_B1F_Text_InsertedStorageKey",
+      "line": 71,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "raw_text": "{PLAYER}插入了\\n仓库的钥匙。\\p插入的钥匙很快卡住了，\\n不过门被打开了。$",
+      "display_text": "{PLAYER}插入了\n仓库的钥匙。\n\n插入的钥匙很快卡住了，\n不过门被打开了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 59,
+        "bytes": [
+          253,
+          1,
+          2,
+          9,
+          11,
+          107,
+          8,
+          158,
+          254,
+          1,
+          241,
+          7,
+          240,
+          3,
+          11,
+          15,
+          203,
+          2,
+          89,
+          55,
+          251,
+          2,
+          9,
+          11,
+          107,
+          3,
+          11,
+          15,
+          203,
+          2,
+          89,
+          5,
+          11,
+          8,
+          3,
+          7,
+          182,
+          16,
+          208,
+          8,
+          158,
+          59,
+          254,
+          1,
+          214,
+          4,
+          197,
+          9,
+          93,
+          1,
+          120,
+          2,
+          210,
+          7,
+          184,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "FD 01 02 09 0B 6B 08 9E FE 01 F1 07 F0 03 0B 0F CB 02 59 37 FB 02 09 0B 6B 03 0B 0F CB 02 59 05 0B 08 03 07 B6 10 D0 08 9E 3B FE 01 D6 04 C5 09 5D 01 78 02 D2 07 B8 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "AbandonedShip_Text_TheDoorIsOpen": {
+      "label": "AbandonedShip_Text_TheDoorIsOpen",
+      "line": 74,
+      "source_file": "data/maps/AbandonedShip_Corridors_B1F/scripts.inc",
+      "raw_text": "门开了。$",
+      "display_text": "门开了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 8,
+        "bytes": [
+          9,
+          93,
+          7,
+          184,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "09 5D 07 B8 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 4,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "checkitem": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "map_script": 2,
+      "playse": 1,
+      "removeitem": 1,
+      "setdivewarp": 1,
+      "setflag": 1,
+      "setmetatile": 2,
+      "special": 1,
+      "trainerbattle_single": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 17,
+    "script_count": 10,
+    "movement_count": 0,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 243,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "checkitem": 1,
+      "end": 7,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "lockall": 1,
+      "map_script": 2,
+      "msgbox": 5,
+      "playse": 1,
+      "releaseall": 3,
+      "removeitem": 1,
+      "return": 2,
+      "setdivewarp": 1,
+      "setflag": 1,
+      "setmetatile": 2,
+      "special": 1,
+      "trainerbattle_single": 1
+    }
+  }
+}

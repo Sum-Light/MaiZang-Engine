@@ -1,0 +1,2449 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PetalburgCity_WallysHouse",
+    "map_script": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+    "map_json": "data/maps/PetalburgCity_WallysHouse/map.json",
+    "map_id": "MAP_PETALBURG_CITY_WALLYS_HOUSE",
+    "map_name": "PetalburgCity_WallysHouse"
+  },
+  "labels": {
+    "PetalburgCity_WallysHouse_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgCity_WallysHouse_OnWarp": {
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgCity_WallysHouse_EventScript_PlayerWallysDadFaceEachOther": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgCity_WallysHouse_OnFrame": {
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgCity_WallysHouse_EventScript_GiveHMSurf": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 8
+    },
+    "PetalburgCity_WallysHouse_EventScript_WallysDad": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 9
+    },
+    "PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad": {
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgCity_WallysHouse_EventScript_PlayedWithWally": {
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgCity_WallysHouse_EventScript_WallysMom": {
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 6
+    },
+    "PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf": {
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally": {
+      "kind": "text",
+      "line": 68,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing": {
+      "kind": "text",
+      "line": 71,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_WallysHouse_Text_PleaseExcuseUs": {
+      "kind": "text",
+      "line": 74,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces": {
+      "kind": "text",
+      "line": 77,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon": {
+      "kind": "text",
+      "line": 80,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity": {
+      "kind": "text",
+      "line": 83,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_WallysHouse_Text_WallyWasReallyHappy": {
+      "kind": "text",
+      "line": 86,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling": {
+      "kind": "text",
+      "line": 89,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "PetalburgCity_WallysHouse_MapScripts": {
+      "label": "PetalburgCity_WallysHouse_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "PetalburgCity_WallysHouse_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_WallysHouse_OnFrame",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "PetalburgCity_WallysHouse_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PetalburgCity_WallysHouse_OnWarp",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgCity_WallysHouse_OnWarp": {
+      "label": "PetalburgCity_WallysHouse_OnWarp",
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_PETALBURG_CITY_STATE",
+            "4",
+            "PetalburgCity_WallysHouse_EventScript_PlayerWallysDadFaceEachOther"
+          ],
+          "line": 7,
+          "raw": "map_script_2 VAR_PETALBURG_CITY_STATE, 4, PetalburgCity_WallysHouse_EventScript_PlayerWallysDadFaceEachOther",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 8,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgCity_WallysHouse_EventScript_PlayerWallysDadFaceEachOther": {
+      "label": "PetalburgCity_WallysHouse_EventScript_PlayerWallysDadFaceEachOther",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_EAST"
+          ],
+          "line": 11,
+          "raw": "turnobject LOCALID_PLAYER, DIR_EAST",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_WALLYS_HOUSE_WALLYS_DAD",
+            "DIR_WEST"
+          ],
+          "line": 12,
+          "raw": "turnobject LOCALID_WALLYS_HOUSE_WALLYS_DAD, DIR_WEST",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgCity_WallysHouse_OnFrame": {
+      "label": "PetalburgCity_WallysHouse_OnFrame",
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_PETALBURG_CITY_STATE",
+            "4",
+            "PetalburgCity_WallysHouse_EventScript_GiveHMSurf"
+          ],
+          "line": 16,
+          "raw": "map_script_2 VAR_PETALBURG_CITY_STATE, 4, PetalburgCity_WallysHouse_EventScript_GiveHMSurf",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 17,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgCity_WallysHouse_EventScript_GiveHMSurf": {
+      "label": "PetalburgCity_WallysHouse_EventScript_GiveHMSurf",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 20,
+          "raw": "lockall",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_WallysHouse_Text_PleaseExcuseUs",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 21,
+          "raw": "msgbox PetalburgCity_WallysHouse_Text_PleaseExcuseUs, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_HM_SURF"
+          ],
+          "line": 22,
+          "raw": "giveitem ITEM_HM_SURF",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_HM_SURF"
+          ],
+          "line": 23,
+          "raw": "setflag FLAG_RECEIVED_HM_SURF",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 24,
+          "raw": "msgbox PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_PETALBURG_CITY_STATE",
+            "5"
+          ],
+          "line": 25,
+          "raw": "setvar VAR_PETALBURG_CITY_STATE, 5",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 26,
+          "raw": "releaseall",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_WallysHouse_Text_PleaseExcuseUs",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 21
+        },
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 24
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgCity_WallysHouse_EventScript_WallysDad": {
+      "label": "PetalburgCity_WallysHouse_EventScript_WallysDad",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 30,
+          "raw": "lock",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 31,
+          "raw": "faceplayer",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DEFEATED_WALLY_VICTORY_ROAD",
+            "PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad"
+          ],
+          "line": 32,
+          "raw": "goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_HM_SURF",
+            "PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf"
+          ],
+          "line": 33,
+          "raw": "goto_if_set FLAG_RECEIVED_HM_SURF, PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_THANKED_FOR_PLAYING_WITH_WALLY",
+            "PetalburgCity_WallysHouse_EventScript_PlayedWithWally"
+          ],
+          "line": 34,
+          "raw": "goto_if_set FLAG_THANKED_FOR_PLAYING_WITH_WALLY, PetalburgCity_WallysHouse_EventScript_PlayedWithWally",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 35,
+          "raw": "msgbox PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_THANKED_FOR_PLAYING_WITH_WALLY"
+          ],
+          "line": 36,
+          "raw": "setflag FLAG_THANKED_FOR_PLAYING_WITH_WALLY",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 37,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 38,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 35
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad",
+          "line": 32
+        },
+        {
+          "op": "goto_if_set",
+          "target": "PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf",
+          "line": 33
+        },
+        {
+          "op": "goto_if_set",
+          "target": "PetalburgCity_WallysHouse_EventScript_PlayedWithWally",
+          "line": 34
+        }
+      ]
+    },
+    "PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf": {
+      "label": "PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 41,
+          "raw": "msgbox PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 42,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 43,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 41
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad": {
+      "label": "PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad",
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 46,
+          "raw": "msgbox PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 47,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 48,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 46
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgCity_WallysHouse_EventScript_PlayedWithWally": {
+      "label": "PetalburgCity_WallysHouse_EventScript_PlayedWithWally",
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 51,
+          "raw": "msgbox PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 52,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 53,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 51
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgCity_WallysHouse_EventScript_WallysMom": {
+      "label": "PetalburgCity_WallysHouse_EventScript_WallysMom",
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 56,
+          "raw": "lock",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 57,
+          "raw": "faceplayer",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_HM_SURF",
+            "PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf"
+          ],
+          "line": 58,
+          "raw": "goto_if_set FLAG_RECEIVED_HM_SURF, PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_WallysHouse_Text_WallyWasReallyHappy",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 59,
+          "raw": "msgbox PetalburgCity_WallysHouse_Text_WallyWasReallyHappy, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 60,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 61,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_WallysHouse_Text_WallyWasReallyHappy",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 59
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf",
+          "line": 58
+        }
+      ]
+    },
+    "PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf": {
+      "label": "PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf",
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 64,
+          "raw": "msgbox PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 65,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 66,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 64
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally": {
+      "label": "PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally",
+      "line": 68,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "raw_text": "你是……\\n啊，你一定就是{PLAYER}{KUN}吧？\\p谢谢你刚才能\\n和满充一起玩。\\p他从小就体弱多病。\\p我们打算送他到\\n绿茵镇的亲戚家去，\\p那里的空气\\n比这儿洁净。\\p什么？满充在哪儿？\\n我们家满充已经出发了。\\p不知道现在\\n该到哪儿了呢？$",
+      "display_text": "你是……\n啊，你一定就是{PLAYER}{KUN}吧？\n\n谢谢你刚才能\n和满充一起玩。\n\n他从小就体弱多病。\n\n我们打算送他到\n绿茵镇的亲戚家去，\n\n那里的空气\n比这儿洁净。\n\n什么？满充在哪儿？\n我们家满充已经出发了。\n\n不知道现在\n该到哪儿了呢？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 193,
+        "bytes": [
+          9,
+          217,
+          12,
+          12,
+          176,
+          176,
+          254,
+          1,
+          0,
+          59,
+          9,
+          217,
+          15,
+          11,
+          3,
+          77,
+          7,
+          125,
+          12,
+          12,
+          253,
+          1,
+          253,
+          5,
+          1,
+          40,
+          61,
+          251,
+          14,
+          70,
+          14,
+          70,
+          9,
+          217,
+          4,
+          63,
+          1,
+          224,
+          9,
+          210,
+          254,
+          4,
+          243,
+          9,
+          52,
+          2,
+          102,
+          15,
+          11,
+          10,
+          171,
+          13,
+          78,
+          55,
+          251,
+          12,
+          158,
+          2,
+          179,
+          14,
+          44,
+          7,
+          125,
+          12,
+          230,
+          11,
+          117,
+          3,
+          133,
+          1,
+          188,
+          55,
+          251,
+          13,
+          152,
+          9,
+          95,
+          2,
+          210,
+          12,
+          134,
+          12,
+          112,
+          12,
+          158,
+          3,
+          4,
+          254,
+          9,
+          6,
+          15,
+          64,
+          16,
+          101,
+          3,
+          11,
+          10,
+          240,
+          10,
+          152,
+          5,
+          189,
+          11,
+          37,
+          59,
+          251,
+          9,
+          189,
+          8,
+          100,
+          3,
+          11,
+          7,
+          227,
+          10,
+          179,
+          254,
+          1,
+          133,
+          16,
+          85,
+          3,
+          158,
+          7,
+          50,
+          7,
+          107,
+          55,
+          251,
+          11,
+          238,
+          9,
+          76,
+          61,
+          9,
+          52,
+          2,
+          102,
+          15,
+          230,
+          9,
+          186,
+          3,
+          158,
+          61,
+          254,
+          13,
+          152,
+          9,
+          95,
+          5,
+          189,
+          9,
+          52,
+          2,
+          102,
+          15,
+          33,
+          7,
+          93,
+          2,
+          120,
+          3,
+          165,
+          8,
+          158,
+          55,
+          251,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          14,
+          3,
+          15,
+          230,
+          254,
+          4,
+          45,
+          3,
+          4,
+          9,
+          186,
+          3,
+          158,
+          8,
+          158,
+          9,
+          206,
+          61,
+          255
+        ],
+        "hex": "09 D9 0C 0C B0 B0 FE 01 00 3B 09 D9 0F 0B 03 4D 07 7D 0C 0C FD 01 FD 05 01 28 3D FB 0E 46 0E 46 09 D9 04 3F 01 E0 09 D2 FE 04 F3 09 34 02 66 0F 0B 0A AB 0D 4E 37 FB 0C 9E 02 B3 0E 2C 07 7D 0C E6 0B 75 03 85 01 BC 37 FB 0D 98 09 5F 02 D2 0C 86 0C 70 0C 9E 03 04 FE 09 06 0F 40 10 65 03 0B 0A F0 0A 98 05 BD 0B 25 3B FB 09 BD 08 64 03 0B 07 E3 0A B3 FE 01 85 10 55 03 9E 07 32 07 6B 37 FB 0B EE 09 4C 3D 09 34 02 66 0F E6 09 BA 03 9E 3D FE 0D 98 09 5F 05 BD 09 34 02 66 0F 21 07 5D 02 78 03 A5 08 9E 37 FB 01 D6 10 7B 03 07 0E 03 0F E6 FE 04 2D 03 04 09 BA 03 9E 08 9E 09 CE 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 13,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 21,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 45,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 56,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 65,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 76,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 83,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 91,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 102,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 115,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 122,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 131,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 13,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 21,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing": {
+      "label": "PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing",
+      "line": 71,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "raw_text": "不知道我家满充在做什么？$",
+      "display_text": "不知道我家满充在做什么？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 24,
+        "bytes": [
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          13,
+          152,
+          5,
+          189,
+          9,
+          52,
+          2,
+          102,
+          15,
+          230,
+          17,
+          46,
+          11,
+          238,
+          9,
+          76,
+          61,
+          255
+        ],
+        "hex": "01 D6 10 7B 03 07 0D 98 05 BD 09 34 02 66 0F E6 11 2E 0B EE 09 4C 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgCity_WallysHouse_Text_PleaseExcuseUs": {
+      "label": "PetalburgCity_WallysHouse_Text_PleaseExcuseUs",
+      "line": 74,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "raw_text": "{PLAYER}{KUN}！原谅我们\\n这样拉你过来，\\p但是，自从我家满充去了\\n绿茵镇之后，他的身体好多了。\\p我们都欠你的情！\\p满充离开镇子前，\\n是你陪他捕捉了一只宝可梦对吗？\\p我想那让满充\\n非常开心。\\p实际上，不只是满充，\\n作为父亲的我也很开心，\\p很开心他能交上\\n你这样的好朋友。\\p这点礼物虽然不算什么\\n但还是请你收下。$",
+      "display_text": "{PLAYER}{KUN}！原谅我们\n这样拉你过来，\n\n但是，自从我家满充去了\n绿茵镇之后，他的身体好多了。\n\n我们都欠你的情！\n\n满充离开镇子前，\n是你陪他捕捉了一只宝可梦对吗？\n\n我想那让满充\n非常开心。\n\n实际上，不只是满充，\n作为父亲的我也很开心，\n\n很开心他能交上\n你这样的好朋友。\n\n这点礼物虽然不算什么\n但还是请你收下。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 271,
+        "bytes": [
+          253,
+          1,
+          253,
+          5,
+          60,
+          15,
+          185,
+          8,
+          149,
+          13,
+          152,
+          9,
+          95,
+          254,
+          16,
+          85,
+          14,
+          226,
+          8,
+          34,
+          9,
+          217,
+          4,
+          197,
+          8,
+          41,
+          59,
+          251,
+          2,
+          233,
+          12,
+          12,
+          59,
+          17,
+          12,
+          2,
+          179,
+          13,
+          152,
+          5,
+          189,
+          9,
+          52,
+          2,
+          102,
+          11,
+          37,
+          8,
+          158,
+          254,
+          9,
+          6,
+          15,
+          64,
+          16,
+          101,
+          16,
+          127,
+          5,
+          34,
+          59,
+          12,
+          158,
+          3,
+          11,
+          11,
+          203,
+          12,
+          230,
+          4,
+          233,
+          3,
+          133,
+          8,
+          158,
+          55,
+          251,
+          13,
+          152,
+          9,
+          95,
+          3,
+          97,
+          10,
+          208,
+          9,
+          217,
+          3,
+          11,
+          11,
+          11,
+          60,
+          251,
+          9,
+          52,
+          2,
+          102,
+          8,
+          96,
+          7,
+          184,
+          16,
+          101,
+          17,
+          11,
+          10,
+          201,
+          59,
+          254,
+          12,
+          12,
+          9,
+          217,
+          10,
+          64,
+          12,
+          158,
+          1,
+          209,
+          16,
+          236,
+          8,
+          158,
+          15,
+          11,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          121,
+          9,
+          42,
+          61,
+          251,
+          13,
+          152,
+          14,
+          24,
+          9,
+          189,
+          11,
+          67,
+          9,
+          52,
+          2,
+          102,
+          254,
+          3,
+          202,
+          2,
+          37,
+          7,
+          184,
+          14,
+          79,
+          55,
+          251,
+          11,
+          241,
+          5,
+          181,
+          11,
+          173,
+          59,
+          1,
+          214,
+          16,
+          140,
+          12,
+          12,
+          9,
+          52,
+          2,
+          102,
+          59,
+          254,
+          17,
+          47,
+          13,
+          112,
+          4,
+          34,
+          10,
+          240,
+          3,
+          11,
+          13,
+          152,
+          15,
+          2,
+          5,
+          11,
+          7,
+          184,
+          14,
+          79,
+          59,
+          251,
+          5,
+          11,
+          7,
+          184,
+          14,
+          79,
+          12,
+          158,
+          9,
+          210,
+          7,
+          13,
+          11,
+          173,
+          254,
+          9,
+          217,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          4,
+          233,
+          10,
+          80,
+          15,
+          127,
+          55,
+          251,
+          16,
+          85,
+          3,
+          42,
+          8,
+          102,
+          13,
+          181,
+          12,
+          135,
+          11,
+          59,
+          1,
+          214,
+          12,
+          134,
+          11,
+          238,
+          9,
+          76,
+          254,
+          2,
+          233,
+          5,
+          70,
+          12,
+          12,
+          11,
+          13,
+          9,
+          217,
+          12,
+          26,
+          13,
+          230,
+          55,
+          255
+        ],
+        "hex": "FD 01 FD 05 3C 0F B9 08 95 0D 98 09 5F FE 10 55 0E E2 08 22 09 D9 04 C5 08 29 3B FB 02 E9 0C 0C 3B 11 0C 02 B3 0D 98 05 BD 09 34 02 66 0B 25 08 9E FE 09 06 0F 40 10 65 10 7F 05 22 3B 0C 9E 03 0B 0B CB 0C E6 04 E9 03 85 08 9E 37 FB 0D 98 09 5F 03 61 0A D0 09 D9 03 0B 0B 0B 3C FB 09 34 02 66 08 60 07 B8 10 65 11 0B 0A C9 3B FE 0C 0C 09 D9 0A 40 0C 9E 01 D1 10 EC 08 9E 0F 0B 10 8C 01 63 07 D7 09 66 03 79 09 2A 3D FB 0D 98 0E 18 09 BD 0B 43 09 34 02 66 FE 03 CA 02 25 07 B8 0E 4F 37 FB 0B F1 05 B5 0B AD 3B 01 D6 10 8C 0C 0C 09 34 02 66 3B FE 11 2F 0D 70 04 22 0A F0 03 0B 0D 98 0F 02 05 0B 07 B8 0E 4F 3B FB 05 0B 07 B8 0E 4F 0C 9E 09 D2 07 0D 0B AD FE 09 D9 10 55 0E E2 03 0B 04 E9 0A 50 0F 7F 37 FB 10 55 03 2A 08 66 0D B5 0C 87 0B 3B 01 D6 0C 86 0B EE 09 4C FE 02 E9 05 46 0C 0C 0B 0D 09 D9 0C 1A 0D E6 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 8,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 27,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 40,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 56,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 66,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 76,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 93,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 101,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 108,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 120,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 133,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 142,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 152,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 164,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 174,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 8,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces": {
+      "label": "PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces",
+      "line": 77,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "raw_text": "如果你的宝可梦会冲浪，\\n你就可以去很多地方了。$",
+      "display_text": "如果你的宝可梦会冲浪，\n你就可以去很多地方了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 44,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          110,
+          2,
+          103,
+          8,
+          64,
+          59,
+          254,
+          9,
+          217,
+          7,
+          125,
+          7,
+          215,
+          15,
+          36,
+          11,
+          37,
+          5,
+          11,
+          3,
+          133,
+          3,
+          31,
+          3,
+          192,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0B 67 04 C3 09 D9 03 0B 01 63 07 D7 09 66 05 6E 02 67 08 40 3B FE 09 D9 07 7D 07 D7 0F 24 0B 25 05 0B 03 85 03 1F 03 C0 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon": {
+      "label": "PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon",
+      "line": 80,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "raw_text": "满充很快就会回家了，\\n真想快点见到他。$",
+      "display_text": "满充很快就会回家了，\n真想快点见到他。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          9,
+          52,
+          2,
+          102,
+          5,
+          11,
+          8,
+          3,
+          7,
+          125,
+          5,
+          110,
+          5,
+          101,
+          5,
+          189,
+          8,
+          158,
+          59,
+          254,
+          16,
+          89,
+          14,
+          24,
+          8,
+          3,
+          3,
+          42,
+          5,
+          230,
+          3,
+          4,
+          12,
+          158,
+          55,
+          255
+        ],
+        "hex": "09 34 02 66 05 0B 08 03 07 7D 05 6E 05 65 05 BD 08 9E 3B FE 10 59 0E 18 08 03 03 2A 05 E6 03 04 0C 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity": {
+      "label": "PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity",
+      "line": 83,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "raw_text": "哦？你在彩悠市\\n遇到了满充？\\p哎，{PLAYER}{KUN}，别闹了。\\p他可能健康多了，\\n但它不可能一个人\\l到那么远的地方去。$",
+      "display_text": "哦？你在彩悠市\n遇到了满充？\n\n哎，{PLAYER}{KUN}，别闹了。\n\n他可能健康多了，\n但它不可能一个人\n到那么远的地方去。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 93,
+        "bytes": [
+          10,
+          19,
+          61,
+          9,
+          217,
+          15,
+          230,
+          1,
+          229,
+          15,
+          116,
+          12,
+          21,
+          254,
+          15,
+          164,
+          3,
+          4,
+          8,
+          158,
+          9,
+          52,
+          2,
+          102,
+          61,
+          251,
+          1,
+          4,
+          59,
+          253,
+          1,
+          253,
+          5,
+          59,
+          1,
+          173,
+          9,
+          204,
+          8,
+          158,
+          55,
+          251,
+          12,
+          158,
+          7,
+          215,
+          9,
+          210,
+          5,
+          234,
+          7,
+          195,
+          3,
+          133,
+          8,
+          158,
+          59,
+          254,
+          2,
+          233,
+          12,
+          159,
+          1,
+          214,
+          7,
+          215,
+          9,
+          210,
+          15,
+          11,
+          4,
+          96,
+          11,
+          75,
+          250,
+          3,
+          4,
+          9,
+          189,
+          9,
+          76,
+          15,
+          194,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          11,
+          37,
+          55,
+          255
+        ],
+        "hex": "0A 13 3D 09 D9 0F E6 01 E5 0F 74 0C 15 FE 0F A4 03 04 08 9E 09 34 02 66 3D FB 01 04 3B FD 01 FD 05 3B 01 AD 09 CC 08 9E 37 FB 0C 9E 07 D7 09 D2 05 EA 07 C3 03 85 08 9E 3B FE 02 E9 0C 9F 01 D6 07 D7 09 D2 0F 0B 04 60 0B 4B FA 03 04 09 BD 09 4C 0F C2 03 0B 03 1F 03 C0 0B 25 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 19,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 27,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 37,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 47,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 57,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 68,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 19,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 27,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "PetalburgCity_WallysHouse_Text_WallyWasReallyHappy": {
+      "label": "PetalburgCity_WallysHouse_Text_WallyWasReallyHappy",
+      "line": 86,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "raw_text": "满充非常兴奋地告诉我们\\n他捕捉到了一只宝可梦。\\p已经有很多年没看到过\\n他那快乐的笑容了。$",
+      "display_text": "满充非常兴奋地告诉我们\n他捕捉到了一只宝可梦。\n\n已经有很多年没看到过\n他那快乐的笑容了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 84,
+        "bytes": [
+          9,
+          52,
+          2,
+          102,
+          3,
+          202,
+          2,
+          37,
+          14,
+          86,
+          3,
+          223,
+          3,
+          31,
+          4,
+          80,
+          12,
+          130,
+          13,
+          152,
+          9,
+          95,
+          254,
+          12,
+          158,
+          1,
+          209,
+          16,
+          236,
+          3,
+          4,
+          8,
+          158,
+          15,
+          11,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          15,
+          33,
+          7,
+          93,
+          15,
+          126,
+          5,
+          11,
+          3,
+          133,
+          9,
+          224,
+          9,
+          83,
+          7,
+          194,
+          3,
+          4,
+          4,
+          197,
+          254,
+          12,
+          158,
+          9,
+          189,
+          8,
+          3,
+          8,
+          75,
+          3,
+          11,
+          14,
+          49,
+          11,
+          93,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "09 34 02 66 03 CA 02 25 0E 56 03 DF 03 1F 04 50 0C 82 0D 98 09 5F FE 0C 9E 01 D1 10 EC 03 04 08 9E 0F 0B 10 8C 01 63 07 D7 09 66 37 FB 0F 21 07 5D 0F 7E 05 0B 03 85 09 E0 09 53 07 C2 03 04 04 C5 FE 0C 9E 09 BD 08 03 08 4B 03 0B 0E 31 0B 5D 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling": {
+      "label": "PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling",
+      "line": 89,
+      "source_file": "data/maps/PetalburgCity_WallysHouse/scripts.inc",
+      "raw_text": "有件事你一定要\\n对我丈夫保密……\\p我们的满充没跟任何人说\\n就离开了绿茵镇。\\p你知道，尽管满充身体很弱，\\n但他的意志很坚强。\\p我知道他总有一天\\n会平安无事地回家的！$",
+      "display_text": "有件事你一定要\n对我丈夫保密……\n\n我们的满充没跟任何人说\n就离开了绿茵镇。\n\n你知道，尽管满充身体很弱，\n但他的意志很坚强。\n\n我知道他总有一天\n会平安无事地回家的！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 149,
+        "bytes": [
+          15,
+          126,
+          5,
+          233,
+          12,
+          7,
+          9,
+          217,
+          15,
+          11,
+          3,
+          77,
+          14,
+          241,
+          254,
+          3,
+          121,
+          13,
+          152,
+          16,
+          60,
+          3,
+          245,
+          1,
+          96,
+          9,
+          116,
+          176,
+          176,
+          251,
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          9,
+          52,
+          2,
+          102,
+          9,
+          83,
+          4,
+          100,
+          11,
+          78,
+          4,
+          244,
+          11,
+          75,
+          12,
+          88,
+          254,
+          7,
+          125,
+          8,
+          96,
+          7,
+          184,
+          8,
+          158,
+          9,
+          6,
+          15,
+          64,
+          16,
+          101,
+          55,
+          251,
+          9,
+          217,
+          16,
+          123,
+          3,
+          7,
+          59,
+          7,
+          81,
+          4,
+          164,
+          9,
+          52,
+          2,
+          102,
+          11,
+          203,
+          12,
+          230,
+          5,
+          11,
+          11,
+          117,
+          59,
+          254,
+          2,
+          233,
+          12,
+          158,
+          3,
+          11,
+          15,
+          50,
+          16,
+          143,
+          5,
+          11,
+          5,
+          204,
+          10,
+          216,
+          55,
+          251,
+          13,
+          152,
+          16,
+          123,
+          3,
+          7,
+          12,
+          158,
+          17,
+          20,
+          15,
+          126,
+          15,
+          11,
+          12,
+          237,
+          254,
+          5,
+          110,
+          10,
+          120,
+          1,
+          17,
+          13,
+          164,
+          12,
+          7,
+          3,
+          31,
+          5,
+          101,
+          5,
+          189,
+          3,
+          11,
+          60,
+          255
+        ],
+        "hex": "0F 7E 05 E9 0C 07 09 D9 0F 0B 03 4D 0E F1 FE 03 79 0D 98 10 3C 03 F5 01 60 09 74 B0 B0 FB 0D 98 09 5F 03 0B 09 34 02 66 09 53 04 64 0B 4E 04 F4 0B 4B 0C 58 FE 07 7D 08 60 07 B8 08 9E 09 06 0F 40 10 65 37 FB 09 D9 10 7B 03 07 3B 07 51 04 A4 09 34 02 66 0B CB 0C E6 05 0B 0B 75 3B FE 02 E9 0C 9E 03 0B 0F 32 10 8F 05 0B 05 CC 0A D8 37 FB 0D 98 10 7B 03 07 0C 9E 11 14 0F 7E 0F 0B 0C ED FE 05 6E 0A 78 01 11 0D A4 0C 07 03 1F 05 65 05 BD 03 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 40,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 55,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 66,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 76,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 88,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 2,
+      "giveitem": 1,
+      "goto_if_set": 4,
+      "map_script": 2,
+      "map_script_2": 2,
+      "setflag": 2,
+      "setvar": 1,
+      "turnobject": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 19,
+    "script_count": 11,
+    "movement_count": 0,
+    "text_count": 8,
+    "encoded_text_count": 8,
+    "text_source_byte_count": 894,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 8
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 8,
+      "faceplayer": 2,
+      "giveitem": 1,
+      "goto_if_set": 4,
+      "lock": 2,
+      "lockall": 1,
+      "map_script": 2,
+      "map_script_2": 2,
+      "msgbox": 8,
+      "release": 6,
+      "releaseall": 1,
+      "setflag": 2,
+      "setvar": 1,
+      "turnobject": 2
+    }
+  }
+}

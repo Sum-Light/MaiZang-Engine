@@ -1,0 +1,1656 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "GraniteCave_StevensRoom",
+    "map_script": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+    "map_json": "data/maps/GraniteCave_StevensRoom/map.json",
+    "map_id": "MAP_GRANITE_CAVE_STEVENS_ROOM",
+    "map_name": "GraniteCave_StevensRoom"
+  },
+  "labels": {
+    "GraniteCave_StevensRoom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "GraniteCave_StevensRoom_EventScript_Steven": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 28
+    },
+    "GraniteCave_StevensRoom_EventScript_StevenExitNorth": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "GraniteCave_StevensRoom_EventScript_StevenExitWestEast": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "GraniteCave_StevensRoom_EventScript_StevenExitSouth": {
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "GraniteCave_StevensRoom_EventScript_BagFull": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "GraniteCave_StevensRoom_Movement_StevenExit": {
+      "kind": "movement",
+      "line": 55,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit": {
+      "kind": "movement",
+      "line": 64,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "GraniteCave_StevensRoom_Movement_StevenExitSouth": {
+      "kind": "movement",
+      "line": 71,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 9
+    },
+    "GraniteCave_StevensRoom_Text_ImStevenLetterForMe": {
+      "kind": "text",
+      "line": 82,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "GraniteCave_StevensRoom_Text_ThankYouTakeThis": {
+      "kind": "text",
+      "line": 85,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister": {
+      "kind": "text",
+      "line": 88,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "GraniteCave_StevensRoom_Text_RegisteredSteven": {
+      "kind": "text",
+      "line": 91,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "GraniteCave_StevensRoom_Text_IveGotToHurryAlong": {
+      "kind": "text",
+      "line": 94,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "GraniteCave_StevensRoom_Text_OhBagIsFull": {
+      "kind": "text",
+      "line": 97,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "GraniteCave_StevensRoom_MapScripts": {
+      "label": "GraniteCave_StevensRoom_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "GraniteCave_StevensRoom_EventScript_Steven": {
+      "label": "GraniteCave_StevensRoom_EventScript_Steven",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "GraniteCave_StevensRoom_Text_ImStevenLetterForMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 7,
+          "raw": "msgbox GraniteCave_StevensRoom_Text_ImStevenLetterForMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "ITEM_LETTER"
+          ],
+          "line": 8,
+          "raw": "setvar VAR_0x8004, ITEM_LETTER",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_PlayerHandedOverTheItem"
+          ],
+          "line": 9,
+          "raw": "call Common_EventScript_PlayerHandedOverTheItem",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DELIVERED_STEVEN_LETTER"
+          ],
+          "line": 10,
+          "raw": "setflag FLAG_DELIVERED_STEVEN_LETTER",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "GraniteCave_StevensRoom_Text_ThankYouTakeThis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 11,
+          "raw": "msgbox GraniteCave_StevensRoom_Text_ThankYouTakeThis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_TM_STEEL_WING"
+          ],
+          "line": 12,
+          "raw": "giveitem ITEM_TM_STEEL_WING",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "GraniteCave_StevensRoom_EventScript_BagFull"
+          ],
+          "line": 13,
+          "raw": "call_if_eq VAR_RESULT, FALSE, GraniteCave_StevensRoom_EventScript_BagFull",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 14,
+          "raw": "msgbox GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 15,
+          "raw": "closemessage",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 16,
+          "raw": "delay 30",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_REGISTER_MATCH_CALL"
+          ],
+          "line": 17,
+          "raw": "playfanfare MUS_REGISTER_MATCH_CALL",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "GraniteCave_StevensRoom_Text_RegisteredSteven",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 18,
+          "raw": "msgbox GraniteCave_StevensRoom_Text_RegisteredSteven, MSGBOX_DEFAULT",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 19,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 20,
+          "raw": "closemessage",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "30"
+          ],
+          "line": 21,
+          "raw": "delay 30",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_REGISTERED_STEVEN_POKENAV"
+          ],
+          "line": 22,
+          "raw": "setflag FLAG_REGISTERED_STEVEN_POKENAV",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "GraniteCave_StevensRoom_Text_IveGotToHurryAlong",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 23,
+          "raw": "msgbox GraniteCave_StevensRoom_Text_IveGotToHurryAlong, MSGBOX_DEFAULT",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 24,
+          "raw": "closemessage",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_NORTH",
+            "GraniteCave_StevensRoom_EventScript_StevenExitNorth"
+          ],
+          "line": 25,
+          "raw": "call_if_eq VAR_FACING, DIR_NORTH, GraniteCave_StevensRoom_EventScript_StevenExitNorth",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_SOUTH",
+            "GraniteCave_StevensRoom_EventScript_StevenExitSouth"
+          ],
+          "line": 26,
+          "raw": "call_if_eq VAR_FACING, DIR_SOUTH, GraniteCave_StevensRoom_EventScript_StevenExitSouth",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_WEST",
+            "GraniteCave_StevensRoom_EventScript_StevenExitWestEast"
+          ],
+          "line": 27,
+          "raw": "call_if_eq VAR_FACING, DIR_WEST, GraniteCave_StevensRoom_EventScript_StevenExitWestEast",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_EAST",
+            "GraniteCave_StevensRoom_EventScript_StevenExitWestEast"
+          ],
+          "line": 28,
+          "raw": "call_if_eq VAR_FACING, DIR_EAST, GraniteCave_StevensRoom_EventScript_StevenExitWestEast",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_EXIT"
+          ],
+          "line": 29,
+          "raw": "playse SE_EXIT",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_GRANITE_CAVE_STEVEN"
+          ],
+          "line": 30,
+          "raw": "removeobject LOCALID_GRANITE_CAVE_STEVEN",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 31,
+          "raw": "release",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "GraniteCave_StevensRoom_Text_ImStevenLetterForMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 7
+        },
+        {
+          "op": "msgbox",
+          "text_label": "GraniteCave_StevensRoom_Text_ThankYouTakeThis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 11
+        },
+        {
+          "op": "msgbox",
+          "text_label": "GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 14
+        },
+        {
+          "op": "msgbox",
+          "text_label": "GraniteCave_StevensRoom_Text_RegisteredSteven",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 18
+        },
+        {
+          "op": "msgbox",
+          "text_label": "GraniteCave_StevensRoom_Text_IveGotToHurryAlong",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 23
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_PlayerHandedOverTheItem",
+          "line": 9
+        },
+        {
+          "op": "call_if_eq",
+          "target": "GraniteCave_StevensRoom_EventScript_BagFull",
+          "line": 13
+        },
+        {
+          "op": "call_if_eq",
+          "target": "GraniteCave_StevensRoom_EventScript_StevenExitNorth",
+          "line": 25
+        },
+        {
+          "op": "call_if_eq",
+          "target": "GraniteCave_StevensRoom_EventScript_StevenExitSouth",
+          "line": 26
+        },
+        {
+          "op": "call_if_eq",
+          "target": "GraniteCave_StevensRoom_EventScript_StevenExitWestEast",
+          "line": 27
+        },
+        {
+          "op": "call_if_eq",
+          "target": "GraniteCave_StevensRoom_EventScript_StevenExitWestEast",
+          "line": 28
+        }
+      ]
+    },
+    "GraniteCave_StevensRoom_EventScript_StevenExitNorth": {
+      "label": "GraniteCave_StevensRoom_EventScript_StevenExitNorth",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_GRANITE_CAVE_STEVEN",
+            "GraniteCave_StevensRoom_Movement_StevenExit"
+          ],
+          "line": 35,
+          "raw": "applymovement LOCALID_GRANITE_CAVE_STEVEN, GraniteCave_StevensRoom_Movement_StevenExit",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 36,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 37,
+          "raw": "return",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "GraniteCave_StevensRoom_EventScript_StevenExitWestEast": {
+      "label": "GraniteCave_StevensRoom_EventScript_StevenExitWestEast",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit"
+          ],
+          "line": 40,
+          "raw": "applymovement LOCALID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_GRANITE_CAVE_STEVEN",
+            "GraniteCave_StevensRoom_Movement_StevenExit"
+          ],
+          "line": 41,
+          "raw": "applymovement LOCALID_GRANITE_CAVE_STEVEN, GraniteCave_StevensRoom_Movement_StevenExit",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 42,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 43,
+          "raw": "return",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "GraniteCave_StevensRoom_EventScript_StevenExitSouth": {
+      "label": "GraniteCave_StevensRoom_EventScript_StevenExitSouth",
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit"
+          ],
+          "line": 46,
+          "raw": "applymovement LOCALID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_GRANITE_CAVE_STEVEN",
+            "GraniteCave_StevensRoom_Movement_StevenExitSouth"
+          ],
+          "line": 47,
+          "raw": "applymovement LOCALID_GRANITE_CAVE_STEVEN, GraniteCave_StevensRoom_Movement_StevenExitSouth",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 48,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 49,
+          "raw": "return",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "GraniteCave_StevensRoom_EventScript_BagFull": {
+      "label": "GraniteCave_StevensRoom_EventScript_BagFull",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "GraniteCave_StevensRoom_Text_OhBagIsFull",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 52,
+          "raw": "msgbox GraniteCave_StevensRoom_Text_OhBagIsFull, MSGBOX_DEFAULT",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 53,
+          "raw": "return",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "GraniteCave_StevensRoom_Text_OhBagIsFull",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 52
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "GraniteCave_StevensRoom_Movement_StevenExit": {
+      "label": "GraniteCave_StevensRoom_Movement_StevenExit",
+      "kind": "movement",
+      "line": 55,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 56,
+          "raw": "walk_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 57,
+          "raw": "walk_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 58,
+          "raw": "walk_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 59,
+          "raw": "walk_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 60,
+          "raw": "walk_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 61,
+          "raw": "delay_8",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 62,
+          "raw": "step_end",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit": {
+      "label": "GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit",
+      "kind": "movement",
+      "line": 64,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 65,
+          "raw": "delay_16",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 66,
+          "raw": "delay_16",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 67,
+          "raw": "delay_16",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 68,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 69,
+          "raw": "step_end",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "GraniteCave_StevensRoom_Movement_StevenExitSouth": {
+      "label": "GraniteCave_StevensRoom_Movement_StevenExitSouth",
+      "kind": "movement",
+      "line": 71,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 72,
+          "raw": "walk_left",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 73,
+          "raw": "walk_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 74,
+          "raw": "walk_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 75,
+          "raw": "walk_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 76,
+          "raw": "walk_right",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 77,
+          "raw": "walk_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 78,
+          "raw": "walk_up",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 79,
+          "raw": "delay_8",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 80,
+          "raw": "step_end",
+          "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "GraniteCave_StevensRoom_Text_ImStevenLetterForMe": {
+      "label": "GraniteCave_StevensRoom_Text_ImStevenLetterForMe",
+      "line": 82,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "raw_text": "我的名字是大吾。\\p我对稀有的石头很有兴趣，\\n所有经常四处旅行。\\p哦？\\n有给我的信？$",
+      "display_text": "我的名字是大吾。\n\n我对稀有的石头很有兴趣，\n所有经常四处旅行。\n\n哦？\n有给我的信？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 74,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          9,
+          147,
+          17,
+          14,
+          12,
+          12,
+          2,
+          211,
+          13,
+          167,
+          55,
+          251,
+          13,
+          152,
+          3,
+          121,
+          13,
+          197,
+          15,
+          126,
+          3,
+          11,
+          11,
+          235,
+          13,
+          31,
+          5,
+          11,
+          15,
+          126,
+          14,
+          86,
+          11,
+          36,
+          59,
+          254,
+          12,
+          156,
+          15,
+          126,
+          7,
+          93,
+          2,
+          37,
+          12,
+          103,
+          2,
+          134,
+          8,
+          244,
+          14,
+          91,
+          55,
+          251,
+          10,
+          19,
+          61,
+          254,
+          15,
+          126,
+          4,
+          98,
+          13,
+          152,
+          3,
+          11,
+          14,
+          80,
+          61,
+          255
+        ],
+        "hex": "0D 98 03 0B 09 93 11 0E 0C 0C 02 D3 0D A7 37 FB 0D 98 03 79 0D C5 0F 7E 03 0B 0B EB 0D 1F 05 0B 0F 7E 0E 56 0B 24 3B FE 0C 9C 0F 7E 07 5D 02 25 0C 67 02 86 08 F4 0E 5B 37 FB 0A 13 3D FE 0F 7E 04 62 0D 98 03 0B 0E 50 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 37,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "GraniteCave_StevensRoom_Text_ThankYouTakeThis": {
+      "label": "GraniteCave_StevensRoom_Text_ThankYouTakeThis",
+      "line": 85,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "raw_text": "大吾：嗯，谢谢你。\\p特意专程送信过来，\\n要好好答谢你才行。\\p我想想……\\n这个招式学习器给你吧。\\p里面有我最爱的招式\\n钢翼。$",
+      "display_text": "大吾：嗯，谢谢你。\n\n特意专程送信过来，\n要好好答谢你才行。\n\n我想想……\n这个招式学习器给你吧。\n\n里面有我最爱的招式\n钢翼。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 108,
+        "bytes": [
+          2,
+          211,
+          13,
+          167,
+          62,
+          20,
+          97,
+          59,
+          14,
+          70,
+          14,
+          70,
+          9,
+          217,
+          55,
+          251,
+          12,
+          217,
+          15,
+          50,
+          16,
+          215,
+          2,
+          78,
+          12,
+          112,
+          14,
+          80,
+          4,
+          197,
+          8,
+          41,
+          59,
+          254,
+          14,
+          241,
+          4,
+          233,
+          4,
+          233,
+          2,
+          208,
+          14,
+          70,
+          9,
+          217,
+          1,
+          224,
+          14,
+          91,
+          55,
+          251,
+          13,
+          152,
+          14,
+          24,
+          14,
+          24,
+          176,
+          176,
+          254,
+          16,
+          85,
+          4,
+          96,
+          16,
+          67,
+          12,
+          2,
+          14,
+          144,
+          13,
+          212,
+          10,
+          178,
+          4,
+          98,
+          9,
+          217,
+          1,
+          40,
+          55,
+          251,
+          8,
+          100,
+          9,
+          126,
+          15,
+          126,
+          13,
+          152,
+          17,
+          38,
+          1,
+          13,
+          3,
+          11,
+          16,
+          67,
+          12,
+          2,
+          254,
+          4,
+          64,
+          15,
+          61,
+          55,
+          255
+        ],
+        "hex": "02 D3 0D A7 3E 14 61 3B 0E 46 0E 46 09 D9 37 FB 0C D9 0F 32 10 D7 02 4E 0C 70 0E 50 04 C5 08 29 3B FE 0E F1 04 E9 04 E9 02 D0 0E 46 09 D9 01 E0 0E 5B 37 FB 0D 98 0E 18 0E 18 B0 B0 FE 10 55 04 60 10 43 0C 02 0E 90 0D D4 0A B2 04 62 09 D9 01 28 37 FB 08 64 09 7E 0F 7E 0D 98 11 26 01 0D 03 0B 10 43 0C 02 FE 04 40 0F 3D 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 31,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 38,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 51,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 62,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 67,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister": {
+      "label": "GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister",
+      "line": 88,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "raw_text": "大吾：你的宝可梦看起来\\n培养得很不错。\\p继续努力的话，也许有一天能\\n成为宝可梦联盟的冠军呢。\\l我是这么想的喔。\\p对了！既然有缘相识，\\n就在宝可导航里\\l互相登录一下吧。\\p…… …… ……$",
+      "display_text": "大吾：你的宝可梦看起来\n培养得很不错。\n\n继续努力的话，也许有一天能\n成为宝可梦联盟的冠军呢。\n我是这么想的喔。\n\n对了！既然有缘相识，\n就在宝可导航里\n互相登录一下吧。\n\n…… …… ……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 161,
+        "bytes": [
+          2,
+          211,
+          13,
+          167,
+          62,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          7,
+          194,
+          10,
+          171,
+          8,
+          41,
+          254,
+          10,
+          61,
+          14,
+          225,
+          3,
+          10,
+          5,
+          11,
+          1,
+          214,
+          2,
+          205,
+          55,
+          251,
+          5,
+          183,
+          14,
+          131,
+          10,
+          9,
+          8,
+          121,
+          3,
+          11,
+          5,
+          61,
+          59,
+          15,
+          2,
+          14,
+          120,
+          15,
+          126,
+          15,
+          11,
+          12,
+          237,
+          9,
+          210,
+          254,
+          2,
+          75,
+          13,
+          112,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          125,
+          9,
+          99,
+          3,
+          11,
+          4,
+          162,
+          7,
+          172,
+          9,
+          206,
+          55,
+          250,
+          13,
+          152,
+          12,
+          12,
+          16,
+          85,
+          9,
+          76,
+          14,
+          24,
+          3,
+          11,
+          20,
+          84,
+          55,
+          251,
+          3,
+          121,
+          8,
+          158,
+          60,
+          5,
+          179,
+          11,
+          59,
+          15,
+          126,
+          15,
+          193,
+          14,
+          13,
+          11,
+          242,
+          59,
+          254,
+          7,
+          125,
+          15,
+          230,
+          1,
+          99,
+          7,
+          215,
+          3,
+          3,
+          4,
+          227,
+          8,
+          100,
+          250,
+          5,
+          50,
+          14,
+          13,
+          3,
+          14,
+          8,
+          237,
+          15,
+          11,
+          13,
+          230,
+          1,
+          40,
+          55,
+          251,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          255
+        ],
+        "hex": "02 D3 0D A7 3E 09 D9 03 0B 01 63 07 D7 09 66 07 C2 0A AB 08 29 FE 0A 3D 0E E1 03 0A 05 0B 01 D6 02 CD 37 FB 05 B7 0E 83 0A 09 08 79 03 0B 05 3D 3B 0F 02 0E 78 0F 7E 0F 0B 0C ED 09 D2 FE 02 4B 0D 70 01 63 07 D7 09 66 08 7D 09 63 03 0B 04 A2 07 AC 09 CE 37 FA 0D 98 0C 0C 10 55 09 4C 0E 18 03 0B 14 54 37 FB 03 79 08 9E 3C 05 B3 0B 3B 0F 7E 0F C1 0E 0D 0B F2 3B FE 07 7D 0F E6 01 63 07 D7 03 03 04 E3 08 64 FA 05 32 0E 0D 03 0E 08 ED 0F 0B 0D E6 01 28 37 FB B0 B0 00 B0 B0 00 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 49,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 59,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 71,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 80,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 90,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 100,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "GraniteCave_StevensRoom_Text_RegisteredSteven": {
+      "label": "GraniteCave_StevensRoom_Text_RegisteredSteven",
+      "line": 91,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "raw_text": "把大吾\\n登记到宝可导航里了。$",
+      "display_text": "把大吾\n登记到宝可导航里了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          1,
+          48,
+          2,
+          211,
+          13,
+          167,
+          254,
+          3,
+          14,
+          5,
+          178,
+          3,
+          4,
+          1,
+          99,
+          7,
+          215,
+          3,
+          3,
+          4,
+          227,
+          8,
+          100,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "01 30 02 D3 0D A7 FE 03 0E 05 B2 03 04 01 63 07 D7 03 03 04 E3 08 64 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "GraniteCave_StevensRoom_Text_IveGotToHurryAlong": {
+      "label": "GraniteCave_StevensRoom_Text_IveGotToHurryAlong",
+      "line": 94,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "raw_text": "好了，那我先走一步了。$",
+      "display_text": "好了，那我先走一步了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          4,
+          233,
+          8,
+          158,
+          59,
+          9,
+          189,
+          13,
+          152,
+          13,
+          236,
+          17,
+          23,
+          15,
+          11,
+          1,
+          216,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "04 E9 08 9E 3B 09 BD 0D 98 0D EC 11 17 0F 0B 01 D8 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "GraniteCave_StevensRoom_Text_OhBagIsFull": {
+      "label": "GraniteCave_StevensRoom_Text_OhBagIsFull",
+      "line": 97,
+      "source_file": "data/maps/GraniteCave_StevensRoom/scripts.inc",
+      "raw_text": "喔，你的包满了……\\n真可惜呢。$",
+      "display_text": "喔，你的包满了……\n真可惜呢。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          20,
+          84,
+          59,
+          9,
+          217,
+          3,
+          11,
+          1,
+          91,
+          9,
+          52,
+          8,
+          158,
+          176,
+          176,
+          254,
+          16,
+          89,
+          7,
+          215,
+          13,
+          203,
+          9,
+          206,
+          55,
+          255
+        ],
+        "hex": "14 54 3B 09 D9 03 0B 01 5B 09 34 08 9E B0 B0 FE 10 59 07 D7 0D CB 09 CE 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 5,
+      "call_if_eq": 5,
+      "closemessage": 3,
+      "delay": 2,
+      "delay_16": 3,
+      "delay_8": 2,
+      "faceplayer": 1,
+      "giveitem": 1,
+      "playfanfare": 1,
+      "playse": 1,
+      "removeobject": 1,
+      "setflag": 2,
+      "setvar": 1,
+      "step_end": 3,
+      "waitfanfare": 1,
+      "waitmovement": 3,
+      "walk_in_place_faster_up": 1,
+      "walk_left": 1,
+      "walk_right": 1,
+      "walk_up": 10
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 15,
+    "script_count": 6,
+    "movement_count": 3,
+    "text_count": 6,
+    "encoded_text_count": 6,
+    "text_source_byte_count": 417,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 6
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 5,
+      "call": 1,
+      "call_if_eq": 5,
+      "closemessage": 3,
+      "delay": 2,
+      "delay_16": 3,
+      "delay_8": 2,
+      "end": 1,
+      "faceplayer": 1,
+      "giveitem": 1,
+      "lock": 1,
+      "msgbox": 6,
+      "playfanfare": 1,
+      "playse": 1,
+      "release": 1,
+      "removeobject": 1,
+      "return": 4,
+      "setflag": 2,
+      "setvar": 1,
+      "step_end": 3,
+      "waitfanfare": 1,
+      "waitmovement": 3,
+      "walk_in_place_faster_up": 1,
+      "walk_left": 1,
+      "walk_right": 1,
+      "walk_up": 10
+    }
+  }
+}

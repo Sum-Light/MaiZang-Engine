@@ -1,0 +1,570 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SaffronCity_CopycatsHouse_1F_Frlg",
+    "map_script": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+    "map_json": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/map.json",
+    "map_id": "MAP_SAFFRON_CITY_COPYCATS_HOUSE_1F",
+    "map_name": "SaffronCity_CopycatsHouse_1F_Frlg"
+  },
+  "labels": {
+    "SaffronCity_CopycatsHouse_1F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SaffronCity_CopycatsHouse_1F_EventScript_CopycatsMom": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SaffronCity_CopycatsHouse_1F_EventScript_CopycatsDad": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SaffronCity_CopycatsHouse_1F_EventScript_Chansey": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered": {
+      "kind": "text",
+      "line": 22,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople": {
+      "kind": "text",
+      "line": 26,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "SaffronCity_CopycatsHouse_1F_Text_Chansey": {
+      "kind": "text",
+      "line": 32,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SaffronCity_CopycatsHouse_1F_Frlg_MapScripts": {
+      "label": "SaffronCity_CopycatsHouse_1F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SaffronCity_CopycatsHouse_1F_EventScript_CopycatsMom": {
+      "label": "SaffronCity_CopycatsHouse_1F_EventScript_CopycatsMom",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered, MSGBOX_NPC",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "SaffronCity_CopycatsHouse_1F_EventScript_CopycatsDad": {
+      "label": "SaffronCity_CopycatsHouse_1F_EventScript_CopycatsDad",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople, MSGBOX_NPC",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "SaffronCity_CopycatsHouse_1F_EventScript_Chansey": {
+      "label": "SaffronCity_CopycatsHouse_1F_EventScript_Chansey",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 13,
+          "raw": "lock",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 14,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 15,
+          "raw": "waitse",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_CHANSEY",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 16,
+          "raw": "playmoncry SPECIES_CHANSEY, CRY_MODE_NORMAL",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SaffronCity_CopycatsHouse_1F_Text_Chansey"
+          ],
+          "line": 17,
+          "raw": "msgbox SaffronCity_CopycatsHouse_1F_Text_Chansey",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 18,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 19,
+          "raw": "release",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SaffronCity_CopycatsHouse_1F_Text_Chansey",
+          "mode": "",
+          "line": 17
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered": {
+      "label": "SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered",
+      "line": 22,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "raw_text": "我女儿总是以自己为中心。\\n所以她几乎没有什么朋友。$",
+      "display_text": "我女儿总是以自己为中心。\n所以她几乎没有什么朋友。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          13,
+          152,
+          10,
+          11,
+          3,
+          158,
+          17,
+          20,
+          12,
+          12,
+          15,
+          36,
+          17,
+          12,
+          5,
+          165,
+          13,
+          112,
+          16,
+          161,
+          14,
+          79,
+          55,
+          254,
+          12,
+          156,
+          15,
+          36,
+          12,
+          160,
+          5,
+          163,
+          5,
+          36,
+          9,
+          83,
+          15,
+          126,
+          11,
+          238,
+          9,
+          76,
+          10,
+          80,
+          15,
+          127,
+          55,
+          255
+        ],
+        "hex": "0D 98 0A 0B 03 9E 11 14 0C 0C 0F 24 11 0C 05 A5 0D 70 10 A1 0E 4F 37 FE 0C 9C 0F 24 0C A0 05 A3 05 24 09 53 0F 7E 0B EE 09 4C 0A 50 0F 7F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople": {
+      "label": "SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople",
+      "line": 26,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "raw_text": "我的女儿喜欢模仿其他人\\n这确实有点令人恼火。\\p这种模仿他人的行为使她在附近\\n赢得了模仿少女的外号。$",
+      "display_text": "我的女儿喜欢模仿其他人\n这确实有点令人恼火。\n\n这种模仿他人的行为使她在附近\n赢得了模仿少女的外号。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 94,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          10,
+          11,
+          3,
+          158,
+          13,
+          214,
+          5,
+          67,
+          9,
+          153,
+          3,
+          197,
+          10,
+          159,
+          12,
+          158,
+          11,
+          75,
+          254,
+          16,
+          85,
+          11,
+          55,
+          11,
+          241,
+          15,
+          126,
+          3,
+          42,
+          8,
+          193,
+          11,
+          75,
+          9,
+          203,
+          5,
+          125,
+          55,
+          251,
+          16,
+          85,
+          16,
+          167,
+          9,
+          153,
+          3,
+          197,
+          12,
+          158,
+          11,
+          75,
+          3,
+          11,
+          14,
+          91,
+          13,
+          112,
+          11,
+          245,
+          12,
+          160,
+          15,
+          230,
+          4,
+          39,
+          7,
+          78,
+          254,
+          15,
+          92,
+          3,
+          10,
+          8,
+          158,
+          9,
+          153,
+          3,
+          197,
+          11,
+          183,
+          10,
+          11,
+          3,
+          11,
+          13,
+          74,
+          4,
+          235,
+          55,
+          255
+        ],
+        "hex": "0D 98 03 0B 0A 0B 03 9E 0D D6 05 43 09 99 03 C5 0A 9F 0C 9E 0B 4B FE 10 55 0B 37 0B F1 0F 7E 03 2A 08 C1 0B 4B 09 CB 05 7D 37 FB 10 55 10 A7 09 99 03 C5 0C 9E 0B 4B 03 0B 0E 5B 0D 70 0B F5 0C A0 0F E6 04 27 07 4E FE 0F 5C 03 0A 08 9E 09 99 03 C5 0B B7 0A 0B 03 0B 0D 4A 04 EB 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 52,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SaffronCity_CopycatsHouse_1F_Text_Chansey": {
+      "label": "SaffronCity_CopycatsHouse_1F_Text_Chansey",
+      "line": 32,
+      "source_file": "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc",
+      "raw_text": "吉利蛋：琴！茜！$",
+      "display_text": "吉利蛋：琴！茜！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 14,
+        "bytes": [
+          5,
+          149,
+          8,
+          112,
+          2,
+          238,
+          62,
+          10,
+          242,
+          60,
+          19,
+          2,
+          60,
+          255
+        ],
+        "hex": "05 95 08 70 02 EE 3E 0A F2 3C 13 02 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "playmoncry": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 156,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "faceplayer": 1,
+      "lock": 1,
+      "msgbox": 3,
+      "playmoncry": 1,
+      "release": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    }
+  }
+}

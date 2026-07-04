@@ -1,0 +1,466 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "AbandonedShip_Corridors_1F",
+    "map_script": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+    "map_json": "data/maps/AbandonedShip_Corridors_1F/map.json",
+    "map_id": "MAP_ABANDONED_SHIP_CORRIDORS_1F",
+    "map_name": "AbandonedShip_Corridors_1F"
+  },
+  "labels": {
+    "AbandonedShip_Corridors_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Corridors_1F_EventScript_Youngster": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "AbandonedShip_Corridors_1F_EventScript_Charlie": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "AbandonedShip_Corridors_1F_Text_CharlieIntro": {
+      "kind": "text",
+      "line": 13,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Corridors_1F_Text_CharlieDefeat": {
+      "kind": "text",
+      "line": 16,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Corridors_1F_Text_CharliePostBattle": {
+      "kind": "text",
+      "line": 19,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "AbandonedShip_Corridors_1F_Text_IsntItFunHere": {
+      "kind": "text",
+      "line": 22,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "AbandonedShip_Corridors_1F_MapScripts": {
+      "label": "AbandonedShip_Corridors_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "AbandonedShip_Corridors_1F_EventScript_Youngster": {
+      "label": "AbandonedShip_Corridors_1F_EventScript_Youngster",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "AbandonedShip_Corridors_1F_Text_IsntItFunHere",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox AbandonedShip_Corridors_1F_Text_IsntItFunHere, MSGBOX_NPC",
+          "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "AbandonedShip_Corridors_1F_Text_IsntItFunHere",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "AbandonedShip_Corridors_1F_EventScript_Charlie": {
+      "label": "AbandonedShip_Corridors_1F_EventScript_Charlie",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_CHARLIE",
+            "AbandonedShip_Corridors_1F_Text_CharlieIntro",
+            "AbandonedShip_Corridors_1F_Text_CharlieDefeat"
+          ],
+          "line": 9,
+          "raw": "trainerbattle_single TRAINER_CHARLIE, AbandonedShip_Corridors_1F_Text_CharlieIntro, AbandonedShip_Corridors_1F_Text_CharlieDefeat",
+          "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "AbandonedShip_Corridors_1F_Text_CharliePostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 10,
+          "raw": "msgbox AbandonedShip_Corridors_1F_Text_CharliePostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "AbandonedShip_Corridors_1F_Text_CharliePostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "AbandonedShip_Corridors_1F_Text_CharlieIntro": {
+      "label": "AbandonedShip_Corridors_1F_Text_CharlieIntro",
+      "line": 13,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "raw_text": "带着游泳圈上船\\n有什么好笑的？$",
+      "display_text": "带着游泳圈上船\n有什么好笑的？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          2,
+          216,
+          16,
+          244,
+          15,
+          124,
+          15,
+          108,
+          11,
+          38,
+          11,
+          173,
+          2,
+          140,
+          254,
+          15,
+          126,
+          11,
+          238,
+          9,
+          76,
+          4,
+          233,
+          14,
+          49,
+          3,
+          11,
+          61,
+          255
+        ],
+        "hex": "02 D8 10 F4 0F 7C 0F 6C 0B 26 0B AD 02 8C FE 0F 7E 0B EE 09 4C 04 E9 0E 31 03 0B 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "AbandonedShip_Corridors_1F_Text_CharlieDefeat": {
+      "label": "AbandonedShip_Corridors_1F_Text_CharlieDefeat",
+      "line": 16,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "raw_text": "啊，你赢了！$",
+      "display_text": "啊，你赢了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 11,
+        "bytes": [
+          1,
+          0,
+          59,
+          9,
+          217,
+          15,
+          92,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "01 00 3B 09 D9 0F 5C 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 6,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "AbandonedShip_Corridors_1F_Text_CharliePostBattle": {
+      "label": "AbandonedShip_Corridors_1F_Text_CharliePostBattle",
+      "line": 19,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "raw_text": "抓着游泳圈的时候\\n是很难扔精灵球的！$",
+      "display_text": "抓着游泳圈的时候\n是很难扔精灵球的！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          16,
+          212,
+          16,
+          244,
+          15,
+          124,
+          15,
+          108,
+          11,
+          38,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          254,
+          12,
+          12,
+          5,
+          11,
+          9,
+          199,
+          11,
+          83,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          3,
+          11,
+          60,
+          255
+        ],
+        "hex": "10 D4 10 F4 0F 7C 0F 6C 0B 26 03 0B 0B ED 05 21 FE 0C 0C 05 0B 09 C7 0B 53 07 5B 08 BC 0B 14 03 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "AbandonedShip_Corridors_1F_Text_IsntItFunHere": {
+      "label": "AbandonedShip_Corridors_1F_Text_IsntItFunHere",
+      "line": 22,
+      "source_file": "data/maps/AbandonedShip_Corridors_1F/scripts.inc",
+      "raw_text": "这里挺好玩的吧？\\n我一来这里就兴奋！$",
+      "display_text": "这里挺好玩的吧？\n我一来这里就兴奋！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          13,
+          14,
+          4,
+          233,
+          13,
+          78,
+          3,
+          11,
+          1,
+          40,
+          61,
+          254,
+          13,
+          152,
+          15,
+          11,
+          8,
+          41,
+          16,
+          85,
+          8,
+          100,
+          7,
+          125,
+          14,
+          86,
+          3,
+          223,
+          60,
+          255
+        ],
+        "hex": "10 55 08 64 0D 0E 04 E9 0D 4E 03 0B 01 28 3D FE 0D 98 0F 0B 08 29 10 55 08 64 07 7D 0E 56 03 DF 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 109,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2,
+      "trainerbattle_single": 1
+    }
+  }
+}

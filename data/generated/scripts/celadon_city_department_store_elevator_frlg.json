@@ -1,0 +1,1281 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CeladonCity_DepartmentStore_Elevator_Frlg",
+    "map_script": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+    "map_json": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/map.json",
+    "map_id": "MAP_CELADON_CITY_DEPARTMENT_STORE_ELEVATOR",
+    "map_name": "CeladonCity_DepartmentStore_Elevator_Frlg"
+  },
+  "labels": {
+    "CeladonCity_DepartmentStore_Elevator_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelect": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom5F": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom4F": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom3F": {
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom2F": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom1F": {
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor": {
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_To1F": {
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_To2F": {
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_To3F": {
+      "kind": "script",
+      "line": 76,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_To4F": {
+      "kind": "script",
+      "line": 85,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_To5F": {
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect": {
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator": {
+      "kind": "script",
+      "line": 108,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instruction_count": 7
+    }
+  },
+  "scripts": {
+    "CeladonCity_DepartmentStore_Elevator_Frlg_MapScripts": {
+      "label": "CeladonCity_DepartmentStore_Elevator_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelect": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelect",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 5,
+          "raw": "lockall",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "3"
+          ],
+          "line": 6,
+          "raw": "setvar VAR_0x8004, 3",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_TEMP_2",
+            "EventScript_GetElevatorFloor"
+          ],
+          "line": 7,
+          "raw": "call_if_unset FLAG_TEMP_2, EventScript_GetElevatorFloor",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8005",
+            "VAR_ELEVATOR_FLOOR"
+          ],
+          "line": 8,
+          "raw": "copyvar VAR_0x8005, VAR_ELEVATOR_FLOOR",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawElevatorCurrentFloorWindow"
+          ],
+          "line": 9,
+          "raw": "special DrawElevatorCurrentFloorWindow",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_WantWhichFloor"
+          ],
+          "line": 10,
+          "raw": "message gText_WantWhichFloor",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 11,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "3"
+          ],
+          "line": 12,
+          "raw": "setvar VAR_0x8004, 3",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "InitElevatorFloorSelectMenuPos"
+          ],
+          "line": 13,
+          "raw": "specialvar VAR_RESULT, InitElevatorFloorSelectMenuPos",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 14,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom5F"
+          ],
+          "line": 15,
+          "raw": "case 0, CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom5F",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom4F"
+          ],
+          "line": 16,
+          "raw": "case 1, CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom4F",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom3F"
+          ],
+          "line": 17,
+          "raw": "case 2, CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom3F",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom2F"
+          ],
+          "line": 18,
+          "raw": "case 3, CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom2F",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom1F"
+          ],
+          "line": 19,
+          "raw": "case 4, CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom1F",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_WantWhichFloor",
+          "mode": "",
+          "line": 10
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "EventScript_GetElevatorFloor",
+          "line": 7
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom5F": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom5F",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_DEPT_STORE_ELEVATOR",
+            "0",
+            "FALSE"
+          ],
+          "line": 23,
+          "raw": "multichoicedefault 0, 0, MULTI_DEPT_STORE_ELEVATOR, 0, FALSE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor"
+          ],
+          "line": 24,
+          "raw": "goto CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+          "line": 24
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom4F": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom4F",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_DEPT_STORE_ELEVATOR",
+            "1",
+            "FALSE"
+          ],
+          "line": 28,
+          "raw": "multichoicedefault 0, 0, MULTI_DEPT_STORE_ELEVATOR, 1, FALSE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor"
+          ],
+          "line": 29,
+          "raw": "goto CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 30,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+          "line": 29
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom3F": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom3F",
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_DEPT_STORE_ELEVATOR",
+            "2",
+            "FALSE"
+          ],
+          "line": 33,
+          "raw": "multichoicedefault 0, 0, MULTI_DEPT_STORE_ELEVATOR, 2, FALSE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor"
+          ],
+          "line": 34,
+          "raw": "goto CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+          "line": 34
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom2F": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom2F",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_DEPT_STORE_ELEVATOR",
+            "3",
+            "FALSE"
+          ],
+          "line": 38,
+          "raw": "multichoicedefault 0, 0, MULTI_DEPT_STORE_ELEVATOR, 3, FALSE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor"
+          ],
+          "line": 39,
+          "raw": "goto CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 40,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+          "line": 39
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom1F": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelectFrom1F",
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "0",
+            "0",
+            "MULTI_DEPT_STORE_ELEVATOR",
+            "4",
+            "FALSE"
+          ],
+          "line": 43,
+          "raw": "multichoicedefault 0, 0, MULTI_DEPT_STORE_ELEVATOR, 4, FALSE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor"
+          ],
+          "line": 44,
+          "raw": "goto CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 45,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+          "line": 44
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_ChooseFloor",
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 48,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_To5F"
+          ],
+          "line": 49,
+          "raw": "case 0, CeladonCity_DepartmentStore_Elevator_EventScript_To5F",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_To4F"
+          ],
+          "line": 50,
+          "raw": "case 1, CeladonCity_DepartmentStore_Elevator_EventScript_To4F",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_To3F"
+          ],
+          "line": 51,
+          "raw": "case 2, CeladonCity_DepartmentStore_Elevator_EventScript_To3F",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_To2F"
+          ],
+          "line": 52,
+          "raw": "case 3, CeladonCity_DepartmentStore_Elevator_EventScript_To2F",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_To1F"
+          ],
+          "line": 53,
+          "raw": "case 4, CeladonCity_DepartmentStore_Elevator_EventScript_To1F",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "5",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 54,
+          "raw": "case 5, CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "127",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 55,
+          "raw": "case 127, CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 56,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_To1F": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_To1F",
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "4"
+          ],
+          "line": 59,
+          "raw": "setvar VAR_0x8006, 4",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_CELADON_CITY_DEPARTMENT_STORE_1F",
+            "255",
+            "6",
+            "1"
+          ],
+          "line": 60,
+          "raw": "setdynamicwarp MAP_CELADON_CITY_DEPARTMENT_STORE_1F, 255, 6, 1",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "4",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 61,
+          "raw": "goto_if_eq VAR_ELEVATOR_FLOOR, 4, CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator"
+          ],
+          "line": 62,
+          "raw": "call CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "4"
+          ],
+          "line": 63,
+          "raw": "setvar VAR_ELEVATOR_FLOOR, 4",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 64,
+          "raw": "goto CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 65,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "line": 61
+        },
+        {
+          "op": "call",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+          "line": 62
+        },
+        {
+          "op": "goto",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "line": 64
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_To2F": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_To2F",
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "5"
+          ],
+          "line": 68,
+          "raw": "setvar VAR_0x8006, 5",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_CELADON_CITY_DEPARTMENT_STORE_2F",
+            "255",
+            "6",
+            "1"
+          ],
+          "line": 69,
+          "raw": "setdynamicwarp MAP_CELADON_CITY_DEPARTMENT_STORE_2F, 255, 6, 1",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "5",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 70,
+          "raw": "goto_if_eq VAR_ELEVATOR_FLOOR, 5, CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator"
+          ],
+          "line": 71,
+          "raw": "call CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "5"
+          ],
+          "line": 72,
+          "raw": "setvar VAR_ELEVATOR_FLOOR, 5",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 73,
+          "raw": "goto CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 74,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "line": 70
+        },
+        {
+          "op": "call",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+          "line": 71
+        },
+        {
+          "op": "goto",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "line": 73
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_To3F": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_To3F",
+      "kind": "script",
+      "line": 76,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "6"
+          ],
+          "line": 77,
+          "raw": "setvar VAR_0x8006, 6",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_CELADON_CITY_DEPARTMENT_STORE_3F",
+            "255",
+            "6",
+            "1"
+          ],
+          "line": 78,
+          "raw": "setdynamicwarp MAP_CELADON_CITY_DEPARTMENT_STORE_3F, 255, 6, 1",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "6",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 79,
+          "raw": "goto_if_eq VAR_ELEVATOR_FLOOR, 6, CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator"
+          ],
+          "line": 80,
+          "raw": "call CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "6"
+          ],
+          "line": 81,
+          "raw": "setvar VAR_ELEVATOR_FLOOR, 6",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 82,
+          "raw": "goto CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 83,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "line": 79
+        },
+        {
+          "op": "call",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+          "line": 80
+        },
+        {
+          "op": "goto",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "line": 82
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_To4F": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_To4F",
+      "kind": "script",
+      "line": 85,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "7"
+          ],
+          "line": 86,
+          "raw": "setvar VAR_0x8006, 7",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_CELADON_CITY_DEPARTMENT_STORE_4F",
+            "255",
+            "6",
+            "1"
+          ],
+          "line": 87,
+          "raw": "setdynamicwarp MAP_CELADON_CITY_DEPARTMENT_STORE_4F, 255, 6, 1",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "7",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 88,
+          "raw": "goto_if_eq VAR_ELEVATOR_FLOOR, 7, CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator"
+          ],
+          "line": 89,
+          "raw": "call CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "7"
+          ],
+          "line": 90,
+          "raw": "setvar VAR_ELEVATOR_FLOOR, 7",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 91,
+          "raw": "goto CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 92,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "line": 88
+        },
+        {
+          "op": "call",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+          "line": 89
+        },
+        {
+          "op": "goto",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "line": 91
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_To5F": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_To5F",
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "8"
+          ],
+          "line": 95,
+          "raw": "setvar VAR_0x8006, 8",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setdynamicwarp",
+          "args": [
+            "MAP_CELADON_CITY_DEPARTMENT_STORE_5F",
+            "255",
+            "6",
+            "1"
+          ],
+          "line": 96,
+          "raw": "setdynamicwarp MAP_CELADON_CITY_DEPARTMENT_STORE_5F, 255, 6, 1",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "8",
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 97,
+          "raw": "goto_if_eq VAR_ELEVATOR_FLOOR, 8, CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator"
+          ],
+          "line": 98,
+          "raw": "call CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ELEVATOR_FLOOR",
+            "8"
+          ],
+          "line": 99,
+          "raw": "setvar VAR_ELEVATOR_FLOOR, 8",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect"
+          ],
+          "line": 100,
+          "raw": "goto CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 101,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "line": 97
+        },
+        {
+          "op": "call",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+          "line": 98
+        },
+        {
+          "op": "goto",
+          "target": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+          "line": 100
+        }
+      ]
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_ExitFloorSelect",
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "CloseElevatorCurrentFloorWindow"
+          ],
+          "line": 104,
+          "raw": "special CloseElevatorCurrentFloorWindow",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 105,
+          "raw": "releaseall",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 106,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator": {
+      "label": "CeladonCity_DepartmentStore_Elevator_EventScript_MoveElevator",
+      "kind": "script",
+      "line": 108,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "CloseElevatorCurrentFloorWindow"
+          ],
+          "line": 109,
+          "raw": "special CloseElevatorCurrentFloorWindow",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 110,
+          "raw": "closemessage",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 111,
+          "raw": "waitse",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "AnimateElevator"
+          ],
+          "line": 112,
+          "raw": "special AnimateElevator",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 113,
+          "raw": "waitstate",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_2"
+          ],
+          "line": 114,
+          "raw": "setflag FLAG_TEMP_2",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 115,
+          "raw": "return",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_unset": 1,
+      "case": 12,
+      "closemessage": 1,
+      "copyvar": 1,
+      "goto_if_eq": 5,
+      "multichoicedefault": 5,
+      "setdynamicwarp": 5,
+      "setflag": 1,
+      "setvar": 12,
+      "special": 4,
+      "specialvar": 1,
+      "switch": 2,
+      "waitmessage": 1,
+      "waitse": 1,
+      "waitstate": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 15,
+    "script_count": 15,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 5,
+      "call_if_unset": 1,
+      "case": 12,
+      "closemessage": 1,
+      "copyvar": 1,
+      "end": 13,
+      "goto": 10,
+      "goto_if_eq": 5,
+      "lockall": 1,
+      "message": 1,
+      "multichoicedefault": 5,
+      "releaseall": 1,
+      "return": 1,
+      "setdynamicwarp": 5,
+      "setflag": 1,
+      "setvar": 12,
+      "special": 4,
+      "specialvar": 1,
+      "switch": 2,
+      "waitmessage": 1,
+      "waitse": 1,
+      "waitstate": 1
+    }
+  }
+}

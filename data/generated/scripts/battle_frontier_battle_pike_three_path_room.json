@@ -1,0 +1,4449 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "BattleFrontier_BattlePikeThreePathRoom",
+    "map_script": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+    "map_json": "data/maps/BattleFrontier_BattlePikeThreePathRoom/map.json",
+    "map_id": "MAP_BATTLE_FRONTIER_BATTLE_PIKE_THREE_PATH_ROOM",
+    "map_name": "BattleFrontier_BattlePikeThreePathRoom"
+  },
+  "labels": {
+    "BattleFrontier_BattlePikeThreePathRoom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_OnFrame": {
+      "kind": "map_script_table",
+      "line": 7,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_OnWarp": {
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_TurnPlayerNorth": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GetChallengeStatus": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpToLobby": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_ResumeChallenge": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 16
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_Attendant": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 10
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom1": {
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom3": {
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom5": {
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom7": {
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom9": {
+      "kind": "script",
+      "line": 91,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom11": {
+      "kind": "script",
+      "line": 98,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom13": {
+      "kind": "script",
+      "line": 105,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge": {
+      "kind": "script",
+      "line": 112,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_PauseChallenge": {
+      "kind": "script",
+      "line": 120,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 10
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge": {
+      "kind": "script",
+      "line": 132,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge": {
+      "kind": "script",
+      "line": 141,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetHintRoom": {
+      "kind": "script",
+      "line": 150,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetPikeQueenHint": {
+      "kind": "script",
+      "line": 156,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GivePikeQueenHint": {
+      "kind": "script",
+      "line": 160,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 9
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintGiver": {
+      "kind": "script",
+      "line": 171,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 11
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint": {
+      "kind": "script",
+      "line": 184,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AcceptHint": {
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveLeftRoomHint": {
+      "kind": "script",
+      "line": 197,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveCenterRoomHint": {
+      "kind": "script",
+      "line": 201,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveRightRoomHint": {
+      "kind": "script",
+      "line": 205,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint": {
+      "kind": "script",
+      "line": 209,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintNostalgia": {
+      "kind": "script",
+      "line": 218,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintWhispering": {
+      "kind": "script",
+      "line": 223,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPokemon": {
+      "kind": "script",
+      "line": 228,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPeople": {
+      "kind": "script",
+      "line": 233,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveBrainHint": {
+      "kind": "script",
+      "line": 238,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverApproachPlayer": {
+      "kind": "movement",
+      "line": 245,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverReturnToPos": {
+      "kind": "movement",
+      "line": 254,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom1": {
+      "kind": "text",
+      "line": 264,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom3": {
+      "kind": "text",
+      "line": 267,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom5": {
+      "kind": "text",
+      "line": 270,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom7": {
+      "kind": "text",
+      "line": 273,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom9": {
+      "kind": "text",
+      "line": 276,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom11": {
+      "kind": "text",
+      "line": 279,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom13": {
+      "kind": "text",
+      "line": 282,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_ContinueWithChallenge": {
+      "kind": "text",
+      "line": 285,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_SaveChallengeAndQuit": {
+      "kind": "text",
+      "line": 288,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_RetireFromChallenge": {
+      "kind": "text",
+      "line": 291,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_AwaitingReturnSaveBeforeResume": {
+      "kind": "text",
+      "line": 294,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_PleaseEnjoyChallenge": {
+      "kind": "text",
+      "line": 297,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_SavingYourData": {
+      "kind": "text",
+      "line": 300,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack": {
+      "kind": "text",
+      "line": 303,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_FindingItDifficultToChoose": {
+      "kind": "text",
+      "line": 306,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_ApologizeForImpertinence": {
+      "kind": "text",
+      "line": 309,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutRightPath": {
+      "kind": "text",
+      "line": 312,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutCenterPath": {
+      "kind": "text",
+      "line": 315,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutLeftPath": {
+      "kind": "text",
+      "line": 318,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_AromaOfPokemon": {
+      "kind": "text",
+      "line": 321,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_PresenceOfPeople": {
+      "kind": "text",
+      "line": 324,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_HeardWhispering": {
+      "kind": "text",
+      "line": 327,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_WaveOfNostaliga": {
+      "kind": "text",
+      "line": 330,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_TerrifyingEvent": {
+      "kind": "text",
+      "line": 333,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_DreadfulPresence": {
+      "kind": "text",
+      "line": 336,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "BattleFrontier_BattlePikeThreePathRoom_MapScripts": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "BattleFrontier_BattlePikeRoom_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, BattleFrontier_BattlePikeRoom_OnResume",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "BattleFrontier_BattlePikeThreePathRoom_OnFrame"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattlePikeThreePathRoom_OnFrame",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "BattleFrontier_BattlePikeThreePathRoom_OnWarp"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattlePikeThreePathRoom_OnWarp",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_OnFrame": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_OnFrame",
+      "kind": "map_script_table",
+      "line": 7,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "0",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_GetChallengeStatus"
+          ],
+          "line": 8,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, 0, BattleFrontier_BattlePikeThreePathRoom_EventScript_GetChallengeStatus",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_SAVING",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpToLobby"
+          ],
+          "line": 9,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING, BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpToLobby",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_PAUSED",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_ResumeChallenge"
+          ],
+          "line": 10,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_PAUSED, BattleFrontier_BattlePikeThreePathRoom_EventScript_ResumeChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_5",
+            "0",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetHintRoom"
+          ],
+          "line": 11,
+          "raw": "map_script_2 VAR_TEMP_5, 0, BattleFrontier_BattlePikeThreePathRoom_EventScript_SetHintRoom",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_5",
+            "1",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_GivePikeQueenHint"
+          ],
+          "line": 12,
+          "raw": "map_script_2 VAR_TEMP_5, 1, BattleFrontier_BattlePikeThreePathRoom_EventScript_GivePikeQueenHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 13,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_OnWarp": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_OnWarp",
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_4",
+            "0",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_TurnPlayerNorth"
+          ],
+          "line": 16,
+          "raw": "map_script_2 VAR_TEMP_4, 0, BattleFrontier_BattlePikeThreePathRoom_EventScript_TurnPlayerNorth",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 17,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_TurnPlayerNorth": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_TurnPlayerNorth",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_4",
+            "1"
+          ],
+          "line": 20,
+          "raw": "setvar VAR_TEMP_4, 1",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 21,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GetChallengeStatus": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GetChallengeStatus",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_getstatus",
+          "args": [],
+          "line": 25,
+          "raw": "frontier_getstatus",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpToLobby": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_WarpToLobby",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "warp",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY",
+            "5",
+            "6"
+          ],
+          "line": 29,
+          "raw": "warp MAP_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY, 5, 6",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 30,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_ResumeChallenge": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_ResumeChallenge",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 34,
+          "raw": "lockall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_AwaitingReturnSaveBeforeResume"
+          ],
+          "line": 35,
+          "raw": "message BattleFrontier_BattlePikeThreePathRoom_Text_AwaitingReturnSaveBeforeResume",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 36,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "pike_save",
+          "args": [
+            "CHALLENGE_STATUS_SAVING"
+          ],
+          "line": 37,
+          "raw": "pike_save CHALLENGE_STATUS_SAVING",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 38,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 39,
+          "raw": "waitse",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_PAUSED",
+            "FALSE"
+          ],
+          "line": 40,
+          "raw": "frontier_set FRONTIER_DATA_PAUSED, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 41,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SavePlayerParty"
+          ],
+          "line": 42,
+          "raw": "special SavePlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_setpartyorder",
+          "args": [
+            "FRONTIER_PARTY_SIZE"
+          ],
+          "line": 43,
+          "raw": "frontier_setpartyorder FRONTIER_PARTY_SIZE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_PleaseEnjoyChallenge",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 44,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_PleaseEnjoyChallenge, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 45,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 46,
+          "raw": "releaseall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_settrainers",
+          "args": [],
+          "line": 47,
+          "raw": "frontier_settrainers",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "99"
+          ],
+          "line": 48,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 99",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_AwaitingReturnSaveBeforeResume",
+          "mode": "",
+          "line": 35
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_PleaseEnjoyChallenge",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 44
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_Attendant": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_Attendant",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 52,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 53,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom1"
+          ],
+          "line": 54,
+          "raw": "case 1, BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom1",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom3"
+          ],
+          "line": 55,
+          "raw": "case 3, BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom3",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "5",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom5"
+          ],
+          "line": 56,
+          "raw": "case 5, BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom5",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "7",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom7"
+          ],
+          "line": 57,
+          "raw": "case 7, BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom7",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "9",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom9"
+          ],
+          "line": 58,
+          "raw": "case 9, BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom9",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "11",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom11"
+          ],
+          "line": 59,
+          "raw": "case 11, BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom11",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "13",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom13"
+          ],
+          "line": 60,
+          "raw": "case 13, BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom13",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 61,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom1": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom1",
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 64,
+          "raw": "lock",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 65,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom1",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 66,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom1, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge"
+          ],
+          "line": 67,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 68,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom1",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 66
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "line": 67
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom3": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom3",
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 71,
+          "raw": "lock",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 72,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom3",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 73,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom3, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge"
+          ],
+          "line": 74,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 75,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom3",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 73
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "line": 74
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom5": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom5",
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 78,
+          "raw": "lock",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 79,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom5",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 80,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom5, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge"
+          ],
+          "line": 81,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 82,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom5",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 80
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "line": 81
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom7": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom7",
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 85,
+          "raw": "lock",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 86,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom7",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 87,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom7, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge"
+          ],
+          "line": 88,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 89,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom7",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 87
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "line": 88
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom9": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom9",
+      "kind": "script",
+      "line": 91,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 92,
+          "raw": "lock",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 93,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom9",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 94,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom9, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge"
+          ],
+          "line": 95,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 96,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom9",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 94
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "line": 95
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom11": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom11",
+      "kind": "script",
+      "line": 98,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 99,
+          "raw": "lock",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 100,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom11",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 101,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom11, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge"
+          ],
+          "line": 102,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 103,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom11",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 101
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "line": 102
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom13": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom13",
+      "kind": "script",
+      "line": 105,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 106,
+          "raw": "lock",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 107,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom13",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 108,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom13, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge"
+          ],
+          "line": 109,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 110,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom13",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 108
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+          "line": 109
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge",
+      "kind": "script",
+      "line": 112,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_ContinueWithChallenge",
+            "MSGBOX_YESNO"
+          ],
+          "line": 113,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_ContinueWithChallenge, MSGBOX_YESNO",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 114,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "NO",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge"
+          ],
+          "line": 115,
+          "raw": "case NO, BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge"
+          ],
+          "line": 116,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 117,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 118,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_ContinueWithChallenge",
+          "mode": "MSGBOX_YESNO",
+          "line": 113
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_PauseChallenge": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_PauseChallenge",
+      "kind": "script",
+      "line": 120,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_saveparty",
+          "args": [],
+          "line": 121,
+          "raw": "frontier_saveparty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_SavingYourData"
+          ],
+          "line": 122,
+          "raw": "message BattleFrontier_BattlePikeThreePathRoom_Text_SavingYourData",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 123,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 124,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "pike_save",
+          "args": [
+            "CHALLENGE_STATUS_PAUSED"
+          ],
+          "line": 125,
+          "raw": "pike_save CHALLENGE_STATUS_PAUSED",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 126,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 127,
+          "raw": "waitse",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 128,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_reset",
+          "args": [],
+          "line": 129,
+          "raw": "frontier_reset",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 130,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_SavingYourData",
+          "mode": "",
+          "line": 122
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge",
+      "kind": "script",
+      "line": 132,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_SaveChallengeAndQuit",
+            "MSGBOX_YESNO"
+          ],
+          "line": 133,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_SaveChallengeAndQuit, MSGBOX_YESNO",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 134,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "YES",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_PauseChallenge"
+          ],
+          "line": 135,
+          "raw": "case YES, BattleFrontier_BattlePikeThreePathRoom_EventScript_PauseChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "NO",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge"
+          ],
+          "line": 136,
+          "raw": "case NO, BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge"
+          ],
+          "line": 137,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 138,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 139,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_SaveChallengeAndQuit",
+          "mode": "MSGBOX_YESNO",
+          "line": 133
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge",
+      "kind": "script",
+      "line": 141,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_RetireFromChallenge"
+          ],
+          "line": 142,
+          "raw": "message BattleFrontier_BattlePikeThreePathRoom_Text_RetireFromChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 143,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "20",
+            "8",
+            "MULTI_YESNO",
+            "1",
+            "FALSE"
+          ],
+          "line": 144,
+          "raw": "multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 145,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattlePike_EventScript_Retire"
+          ],
+          "line": 146,
+          "raw": "case 0, BattleFrontier_BattlePike_EventScript_Retire",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 147,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 148,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_RetireFromChallenge",
+          "mode": "",
+          "line": 142
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetHintRoom": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetHintRoom",
+      "kind": "script",
+      "line": 150,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "pike_sethintroom",
+          "args": [],
+          "line": 151,
+          "raw": "pike_sethintroom",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetPikeQueenHint"
+          ],
+          "line": 152,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, BattleFrontier_BattlePikeThreePathRoom_EventScript_SetPikeQueenHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_5",
+            "255"
+          ],
+          "line": 153,
+          "raw": "setvar VAR_TEMP_5, 255",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 154,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetPikeQueenHint",
+          "line": 152
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetPikeQueenHint": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_SetPikeQueenHint",
+      "kind": "script",
+      "line": 156,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_5",
+            "1"
+          ],
+          "line": 157,
+          "raw": "setvar VAR_TEMP_5, 1",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 158,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GivePikeQueenHint": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GivePikeQueenHint",
+      "kind": "script",
+      "line": 160,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PIKE_HINT_GIVER",
+            "BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverApproachPlayer"
+          ],
+          "line": 161,
+          "raw": "applymovement LOCALID_PIKE_HINT_GIVER, BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverApproachPlayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 162,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 163,
+          "raw": "lockall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_TerrifyingEvent",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 164,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_TerrifyingEvent, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 165,
+          "raw": "releaseall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PIKE_HINT_GIVER",
+            "BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverReturnToPos"
+          ],
+          "line": 166,
+          "raw": "applymovement LOCALID_PIKE_HINT_GIVER, BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverReturnToPos",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 167,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_5",
+            "255"
+          ],
+          "line": 168,
+          "raw": "setvar VAR_TEMP_5, 255",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 169,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_TerrifyingEvent",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 164
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintGiver": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintGiver",
+      "kind": "script",
+      "line": 171,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "pike_gethint",
+          "args": [],
+          "line": 172,
+          "raw": "pike_gethint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PIKE_HINT_BRAIN",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveBrainHint"
+          ],
+          "line": 173,
+          "raw": "goto_if_eq VAR_RESULT, PIKE_HINT_BRAIN, BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveBrainHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "lock",
+          "args": [],
+          "line": 174,
+          "raw": "lock",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 175,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_FindingItDifficultToChoose",
+            "MSGBOX_YESNO"
+          ],
+          "line": 176,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_FindingItDifficultToChoose, MSGBOX_YESNO",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 177,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "YES",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_AcceptHint"
+          ],
+          "line": 178,
+          "raw": "case YES, BattleFrontier_BattlePikeThreePathRoom_EventScript_AcceptHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "NO",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint"
+          ],
+          "line": 179,
+          "raw": "case NO, BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint"
+          ],
+          "line": 180,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 181,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 182,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_FindingItDifficultToChoose",
+          "mode": "MSGBOX_YESNO",
+          "line": 176
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveBrainHint",
+          "line": 173
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint",
+      "kind": "script",
+      "line": 184,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_ApologizeForImpertinence",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 185,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_ApologizeForImpertinence, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 186,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 187,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_ApologizeForImpertinence",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 185
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_AcceptHint": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_AcceptHint",
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "pike_gethintroomid",
+          "args": [],
+          "line": 190,
+          "raw": "pike_gethintroomid",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 191,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_LEFT",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveLeftRoomHint"
+          ],
+          "line": 192,
+          "raw": "case PIKE_ROOM_LEFT, BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveLeftRoomHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_CENTER",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveCenterRoomHint"
+          ],
+          "line": 193,
+          "raw": "case PIKE_ROOM_CENTER, BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveCenterRoomHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_ROOM_RIGHT",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveRightRoomHint"
+          ],
+          "line": 194,
+          "raw": "case PIKE_ROOM_RIGHT, BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveRightRoomHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 195,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveLeftRoomHint": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveLeftRoomHint",
+      "kind": "script",
+      "line": 197,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutLeftPath",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 198,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutLeftPath, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint"
+          ],
+          "line": 199,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutLeftPath",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 198
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint",
+          "line": 199
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveCenterRoomHint": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveCenterRoomHint",
+      "kind": "script",
+      "line": 201,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutCenterPath",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 202,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutCenterPath, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint"
+          ],
+          "line": 203,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutCenterPath",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 202
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint",
+          "line": 203
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveRightRoomHint": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveRightRoomHint",
+      "kind": "script",
+      "line": 205,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutRightPath",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 206,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutRightPath, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint"
+          ],
+          "line": 207,
+          "raw": "goto BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutRightPath",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 206
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint",
+          "line": 207
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint",
+      "kind": "script",
+      "line": 209,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "pike_gethint",
+          "args": [],
+          "line": 210,
+          "raw": "pike_gethint",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 211,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_HINT_NOSTALGIA",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintNostalgia"
+          ],
+          "line": 212,
+          "raw": "case PIKE_HINT_NOSTALGIA, BattleFrontier_BattlePikeThreePathRoom_EventScript_HintNostalgia",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_HINT_WHISPERING",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintWhispering"
+          ],
+          "line": 213,
+          "raw": "case PIKE_HINT_WHISPERING, BattleFrontier_BattlePikeThreePathRoom_EventScript_HintWhispering",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_HINT_POKEMON",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPokemon"
+          ],
+          "line": 214,
+          "raw": "case PIKE_HINT_POKEMON, BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPokemon",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "PIKE_HINT_PEOPLE",
+            "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPeople"
+          ],
+          "line": 215,
+          "raw": "case PIKE_HINT_PEOPLE, BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPeople",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 216,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintNostalgia": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintNostalgia",
+      "kind": "script",
+      "line": 218,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_WaveOfNostaliga",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 219,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_WaveOfNostaliga, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 220,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 221,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_WaveOfNostaliga",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 219
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintWhispering": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintWhispering",
+      "kind": "script",
+      "line": 223,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_HeardWhispering",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 224,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_HeardWhispering, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 225,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 226,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_HeardWhispering",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 224
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPokemon": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPokemon",
+      "kind": "script",
+      "line": 228,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_AromaOfPokemon",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 229,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_AromaOfPokemon, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 230,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 231,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_AromaOfPokemon",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 229
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPeople": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPeople",
+      "kind": "script",
+      "line": 233,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_PresenceOfPeople",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 234,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_PresenceOfPeople, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 235,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 236,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_PresenceOfPeople",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 234
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveBrainHint": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveBrainHint",
+      "kind": "script",
+      "line": 238,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 239,
+          "raw": "lock",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 240,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeThreePathRoom_Text_DreadfulPresence",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 241,
+          "raw": "msgbox BattleFrontier_BattlePikeThreePathRoom_Text_DreadfulPresence, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 242,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 243,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeThreePathRoom_Text_DreadfulPresence",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 241
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverApproachPlayer": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverApproachPlayer",
+      "kind": "movement",
+      "line": 245,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 246,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 247,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 248,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 249,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 250,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 251,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 252,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverReturnToPos": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverReturnToPos",
+      "kind": "movement",
+      "line": 254,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 255,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 256,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 257,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 258,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 259,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 260,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "face_down",
+          "args": [],
+          "line": 261,
+          "raw": "face_down",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 262,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom1": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom1",
+      "line": 264,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "您现在在\\n1号房间……$",
+      "display_text": "您现在在\n1号房间……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          9,
+          240,
+          14,
+          3,
+          15,
+          230,
+          15,
+          230,
+          254,
+          162,
+          4,
+          235,
+          3,
+          194,
+          5,
+          207,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 F0 0E 03 0F E6 0F E6 FE A2 04 EB 03 C2 05 CF B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom3": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom3",
+      "line": 267,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "您现在在\\n3号房间……$",
+      "display_text": "您现在在\n3号房间……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          9,
+          240,
+          14,
+          3,
+          15,
+          230,
+          15,
+          230,
+          254,
+          164,
+          4,
+          235,
+          3,
+          194,
+          5,
+          207,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 F0 0E 03 0F E6 0F E6 FE A4 04 EB 03 C2 05 CF B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom5": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom5",
+      "line": 270,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "您现在在\\n5号房间……$",
+      "display_text": "您现在在\n5号房间……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          9,
+          240,
+          14,
+          3,
+          15,
+          230,
+          15,
+          230,
+          254,
+          166,
+          4,
+          235,
+          3,
+          194,
+          5,
+          207,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 F0 0E 03 0F E6 0F E6 FE A6 04 EB 03 C2 05 CF B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom7": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom7",
+      "line": 273,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "您现在在\\n7号房间……$",
+      "display_text": "您现在在\n7号房间……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          9,
+          240,
+          14,
+          3,
+          15,
+          230,
+          15,
+          230,
+          254,
+          168,
+          4,
+          235,
+          3,
+          194,
+          5,
+          207,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 F0 0E 03 0F E6 0F E6 FE A8 04 EB 03 C2 05 CF B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom9": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom9",
+      "line": 276,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "您现在在\\n9号房间……$",
+      "display_text": "您现在在\n9号房间……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          9,
+          240,
+          14,
+          3,
+          15,
+          230,
+          15,
+          230,
+          254,
+          170,
+          4,
+          235,
+          3,
+          194,
+          5,
+          207,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 F0 0E 03 0F E6 0F E6 FE AA 04 EB 03 C2 05 CF B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom11": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom11",
+      "line": 279,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "您现在在\\n11号房间……$",
+      "display_text": "您现在在\n11号房间……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          9,
+          240,
+          14,
+          3,
+          15,
+          230,
+          15,
+          230,
+          254,
+          162,
+          162,
+          4,
+          235,
+          3,
+          194,
+          5,
+          207,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 F0 0E 03 0F E6 0F E6 FE A2 A2 04 EB 03 C2 05 CF B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom13": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom13",
+      "line": 282,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "您现在在\\n13号房间……$",
+      "display_text": "您现在在\n13号房间……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          9,
+          240,
+          14,
+          3,
+          15,
+          230,
+          15,
+          230,
+          254,
+          162,
+          164,
+          4,
+          235,
+          3,
+          194,
+          5,
+          207,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 F0 0E 03 0F E6 0F E6 FE A2 A4 04 EB 03 C2 05 CF B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_ContinueWithChallenge": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_ContinueWithChallenge",
+      "line": 285,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "您要继续\\n您的挑战吗？$",
+      "display_text": "您要继续\n您的挑战吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          9,
+          240,
+          14,
+          241,
+          5,
+          183,
+          14,
+          131,
+          254,
+          9,
+          240,
+          3,
+          11,
+          12,
+          245,
+          16,
+          48,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "09 F0 0E F1 05 B7 0E 83 FE 09 F0 03 0B 0C F5 10 30 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_SaveChallengeAndQuit": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_SaveChallengeAndQuit",
+      "line": 288,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "要写入记录\\n并且暂停吗？$",
+      "display_text": "要写入记录\n并且暂停吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          14,
+          241,
+          14,
+          63,
+          11,
+          107,
+          5,
+          178,
+          8,
+          237,
+          254,
+          1,
+          189,
+          10,
+          235,
+          15,
+          233,
+          13,
+          11,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0E F1 0E 3F 0B 6B 05 B2 08 ED FE 01 BD 0A EB 0F E9 0D 0B 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_RetireFromChallenge": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_RetireFromChallenge",
+      "line": 291,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "要结束选择式对战的挑战吗？$",
+      "display_text": "要结束选择式对战的挑战吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          14,
+          241,
+          7,
+          51,
+          12,
+          61,
+          14,
+          138,
+          16,
+          6,
+          12,
+          2,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          12,
+          245,
+          16,
+          48,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0E F1 07 33 0C 3D 0E 8A 10 06 0C 02 03 79 10 30 03 0B 0C F5 10 30 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_AwaitingReturnSaveBeforeResume": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_AwaitingReturnSaveBeforeResume",
+      "line": 294,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "我们已经恭候多时……\\p在继续您的选择式对战\\n挑战前，请让我先写入记录……$",
+      "display_text": "我们已经恭候多时……\n\n在继续您的选择式对战\n挑战前，请让我先写入记录……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 66,
+        "bytes": [
+          13,
+          152,
+          9,
+          95,
+          15,
+          33,
+          7,
+          93,
+          4,
+          111,
+          5,
+          33,
+          3,
+          133,
+          11,
+          237,
+          176,
+          176,
+          251,
+          15,
+          230,
+          5,
+          183,
+          14,
+          131,
+          9,
+          240,
+          3,
+          11,
+          14,
+          138,
+          16,
+          6,
+          12,
+          2,
+          3,
+          121,
+          16,
+          48,
+          254,
+          12,
+          245,
+          16,
+          48,
+          10,
+          201,
+          59,
+          11,
+          13,
+          11,
+          67,
+          13,
+          152,
+          13,
+          236,
+          14,
+          63,
+          11,
+          107,
+          5,
+          178,
+          8,
+          237,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 98 09 5F 0F 21 07 5D 04 6F 05 21 03 85 0B ED B0 B0 FB 0F E6 05 B7 0E 83 09 F0 03 0B 0E 8A 10 06 0C 02 03 79 10 30 FE 0C F5 10 30 0A C9 3B 0B 0D 0B 43 0D 98 0D EC 0E 3F 0B 6B 05 B2 08 ED B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 38,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_PleaseEnjoyChallenge": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_PleaseEnjoyChallenge",
+      "line": 297,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "请好好享受您的选择式对战\\n挑战吧……$",
+      "display_text": "请好好享受您的选择式对战\n挑战吧……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          11,
+          13,
+          4,
+          233,
+          4,
+          233,
+          14,
+          26,
+          12,
+          33,
+          9,
+          240,
+          3,
+          11,
+          14,
+          138,
+          16,
+          6,
+          12,
+          2,
+          3,
+          121,
+          16,
+          48,
+          254,
+          12,
+          245,
+          16,
+          48,
+          1,
+          40,
+          176,
+          176,
+          255
+        ],
+        "hex": "0B 0D 04 E9 04 E9 0E 1A 0C 21 09 F0 03 0B 0E 8A 10 06 0C 02 03 79 10 30 FE 0C F5 10 30 01 28 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_SavingYourData": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_SavingYourData",
+      "line": 300,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "正在写入记录……\\n请稍等……$",
+      "display_text": "正在写入记录……\n请稍等……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 24,
+        "bytes": [
+          16,
+          112,
+          15,
+          230,
+          14,
+          63,
+          11,
+          107,
+          5,
+          178,
+          8,
+          237,
+          176,
+          176,
+          254,
+          11,
+          13,
+          11,
+          178,
+          3,
+          15,
+          176,
+          176,
+          255
+        ],
+        "hex": "10 70 0F E6 0E 3F 0B 6B 05 B2 08 ED B0 B0 FE 0B 0D 0B B2 03 0F B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack": {
+      "label": "BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack",
+      "line": 303,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "道路被阻断了！\\n没有退路了……$",
+      "display_text": "道路被阻断了！\n没有退路了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          3,
+          7,
+          8,
+          232,
+          1,
+          120,
+          17,
+          32,
+          3,
+          116,
+          8,
+          158,
+          60,
+          254,
+          9,
+          83,
+          15,
+          126,
+          13,
+          51,
+          8,
+          232,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "03 07 08 E8 01 78 11 20 03 74 08 9E 3C FE 09 53 0F 7E 0D 33 08 E8 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_FindingItDifficultToChoose": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_FindingItDifficultToChoose",
+      "line": 306,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "冒昧打扰，但……\\p您是否觉得有些难以\\n选择道路？$",
+      "display_text": "冒昧打扰，但……\n\n您是否觉得有些难以\n选择道路？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          9,
+          72,
+          9,
+          89,
+          2,
+          210,
+          11,
+          69,
+          59,
+          2,
+          233,
+          176,
+          176,
+          251,
+          9,
+          240,
+          12,
+          12,
+          3,
+          244,
+          7,
+          165,
+          3,
+          10,
+          15,
+          126,
+          14,
+          52,
+          9,
+          199,
+          15,
+          36,
+          254,
+          14,
+          138,
+          16,
+          6,
+          3,
+          7,
+          8,
+          232,
+          61,
+          255
+        ],
+        "hex": "09 48 09 59 02 D2 0B 45 3B 02 E9 B0 B0 FB 09 F0 0C 0C 03 F4 07 A5 03 0A 0F 7E 0E 34 09 C7 0F 24 FE 0E 8A 10 06 03 07 08 E8 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_ApologizeForImpertinence": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_ApologizeForImpertinence",
+      "line": 309,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "原来如此……\\n抱歉失礼了……$",
+      "display_text": "原来如此……\n抱歉失礼了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 24,
+        "bytes": [
+          15,
+          185,
+          8,
+          41,
+          11,
+          103,
+          2,
+          171,
+          176,
+          176,
+          254,
+          1,
+          100,
+          10,
+          209,
+          11,
+          227,
+          8,
+          102,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "0F B9 08 29 0B 67 02 AB B0 B0 FE 01 64 0A D1 0B E3 08 66 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutRightPath": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutRightPath",
+      "line": 312,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "哦，让我看看……有一些关于\\n右边道路的事……$",
+      "display_text": "哦，让我看看……有一些关于\n右边道路的事……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 39,
+        "bytes": [
+          10,
+          19,
+          59,
+          11,
+          67,
+          13,
+          152,
+          7,
+          194,
+          7,
+          194,
+          176,
+          176,
+          15,
+          126,
+          15,
+          11,
+          14,
+          52,
+          4,
+          160,
+          15,
+          136,
+          254,
+          15,
+          128,
+          1,
+          156,
+          3,
+          7,
+          8,
+          232,
+          3,
+          11,
+          12,
+          7,
+          176,
+          176,
+          255
+        ],
+        "hex": "0A 13 3B 0B 43 0D 98 07 C2 07 C2 B0 B0 0F 7E 0F 0B 0E 34 04 A0 0F 88 FE 0F 80 01 9C 03 07 08 E8 03 0B 0C 07 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutCenterPath": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutCenterPath",
+      "line": 315,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "哦，让我看看……有一些关于\\n中间道路的事……$",
+      "display_text": "哦，让我看看……有一些关于\n中间道路的事……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 39,
+        "bytes": [
+          10,
+          19,
+          59,
+          11,
+          67,
+          13,
+          152,
+          7,
+          194,
+          7,
+          194,
+          176,
+          176,
+          15,
+          126,
+          15,
+          11,
+          14,
+          52,
+          4,
+          160,
+          15,
+          136,
+          254,
+          16,
+          161,
+          5,
+          207,
+          3,
+          7,
+          8,
+          232,
+          3,
+          11,
+          12,
+          7,
+          176,
+          176,
+          255
+        ],
+        "hex": "0A 13 3B 0B 43 0D 98 07 C2 07 C2 B0 B0 0F 7E 0F 0B 0E 34 04 A0 0F 88 FE 10 A1 05 CF 03 07 08 E8 03 0B 0C 07 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutLeftPath": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutLeftPath",
+      "line": 318,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "哦，让我看看……有一些关于\\n左边道路的事……$",
+      "display_text": "哦，让我看看……有一些关于\n左边道路的事……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 39,
+        "bytes": [
+          10,
+          19,
+          59,
+          11,
+          67,
+          13,
+          152,
+          7,
+          194,
+          7,
+          194,
+          176,
+          176,
+          15,
+          126,
+          15,
+          11,
+          14,
+          52,
+          4,
+          160,
+          15,
+          136,
+          254,
+          17,
+          43,
+          1,
+          156,
+          3,
+          7,
+          8,
+          232,
+          3,
+          11,
+          12,
+          7,
+          176,
+          176,
+          255
+        ],
+        "hex": "0A 13 3B 0B 43 0D 98 07 C2 07 C2 B0 B0 0F 7E 0F 0B 0E 34 04 A0 0F 88 FE 11 2B 01 9C 03 07 08 E8 03 0B 0C 07 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_AromaOfPokemon": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_AromaOfPokemon",
+      "line": 321,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "似乎有宝可梦在里面的感觉……$",
+      "display_text": "似乎有宝可梦在里面的感觉……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          12,
+          105,
+          5,
+          36,
+          15,
+          126,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          230,
+          8,
+          100,
+          9,
+          126,
+          3,
+          11,
+          4,
+          58,
+          7,
+          165,
+          176,
+          176,
+          255
+        ],
+        "hex": "0C 69 05 24 0F 7E 01 63 07 D7 09 66 0F E6 08 64 09 7E 03 0B 04 3A 07 A5 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_PresenceOfPeople": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_PresenceOfPeople",
+      "line": 324,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "是……训练家吗？\\n感觉到好像有人在里面……$",
+      "display_text": "是……训练家吗？\n感觉到好像有人在里面……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 37,
+        "bytes": [
+          12,
+          12,
+          176,
+          176,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          9,
+          42,
+          61,
+          254,
+          4,
+          58,
+          7,
+          165,
+          3,
+          4,
+          4,
+          233,
+          14,
+          30,
+          15,
+          126,
+          11,
+          75,
+          15,
+          230,
+          8,
+          100,
+          9,
+          126,
+          176,
+          176,
+          255
+        ],
+        "hex": "0C 0C B0 B0 0E 9E 08 8A 05 BD 09 2A 3D FE 04 3A 07 A5 03 04 04 E9 0E 1E 0F 7E 0B 4B 0F E6 08 64 09 7E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_HeardWhispering": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_HeardWhispering",
+      "line": 327,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "好像听得到轻声细语般的声音……$",
+      "display_text": "好像听得到轻声细语般的声音……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          4,
+          233,
+          14,
+          30,
+          13,
+          7,
+          3,
+          10,
+          3,
+          4,
+          11,
+          3,
+          11,
+          215,
+          13,
+          220,
+          15,
+          157,
+          1,
+          66,
+          3,
+          11,
+          11,
+          215,
+          15,
+          68,
+          176,
+          176,
+          255
+        ],
+        "hex": "04 E9 0E 1E 0D 07 03 0A 03 04 0B 03 0B D7 0D DC 0F 9D 01 42 03 0B 0B D7 0F 44 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_WaveOfNostaliga": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_WaveOfNostaliga",
+      "line": 330,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "不知道为什么，\\n有股熟悉的氛围……$",
+      "display_text": "不知道为什么，\n有股熟悉的氛围……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          13,
+          112,
+          11,
+          238,
+          9,
+          76,
+          59,
+          254,
+          15,
+          126,
+          4,
+          145,
+          12,
+          49,
+          13,
+          200,
+          3,
+          11,
+          3,
+          216,
+          13,
+          109,
+          176,
+          176,
+          255
+        ],
+        "hex": "01 D6 10 7B 03 07 0D 70 0B EE 09 4C 3B FE 0F 7E 04 91 0C 31 0D C8 03 0B 03 D8 0D 6D B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_TerrifyingEvent": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_TerrifyingEvent",
+      "line": 333,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "我很抱歉地说……\\p一件可怕的事，没错，一件恐怖的事，\\n将要降临到您头上……\\p我劝您要万分小心\\n做好最坏的打算。$",
+      "display_text": "我很抱歉地说……\n\n一件可怕的事，没错，一件恐怖的事，\n将要降临到您头上……\n\n我劝您要万分小心\n做好最坏的打算。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 99,
+        "bytes": [
+          13,
+          152,
+          5,
+          11,
+          1,
+          100,
+          10,
+          209,
+          3,
+          31,
+          12,
+          88,
+          176,
+          176,
+          251,
+          15,
+          11,
+          5,
+          233,
+          7,
+          215,
+          10,
+          31,
+          3,
+          11,
+          12,
+          7,
+          59,
+          9,
+          83,
+          2,
+          205,
+          59,
+          15,
+          11,
+          5,
+          233,
+          7,
+          228,
+          1,
+          219,
+          3,
+          11,
+          12,
+          7,
+          59,
+          254,
+          5,
+          244,
+          14,
+          241,
+          7,
+          7,
+          8,
+          172,
+          3,
+          4,
+          9,
+          240,
+          13,
+          31,
+          11,
+          173,
+          176,
+          176,
+          251,
+          13,
+          152,
+          11,
+          48,
+          9,
+          240,
+          14,
+          241,
+          13,
+          90,
+          3,
+          217,
+          14,
+          44,
+          14,
+          79,
+          254,
+          17,
+          46,
+          4,
+          233,
+          17,
+          38,
+          5,
+          66,
+          3,
+          11,
+          2,
+          210,
+          12,
+          134,
+          55,
+          255
+        ],
+        "hex": "0D 98 05 0B 01 64 0A D1 03 1F 0C 58 B0 B0 FB 0F 0B 05 E9 07 D7 0A 1F 03 0B 0C 07 3B 09 53 02 CD 3B 0F 0B 05 E9 07 E4 01 DB 03 0B 0C 07 3B FE 05 F4 0E F1 07 07 08 AC 03 04 09 F0 0D 1F 0B AD B0 B0 FB 0D 98 0B 30 09 F0 0E F1 0D 5A 03 D9 0E 2C 0E 4F FE 11 2E 04 E9 11 26 05 42 03 0B 02 D2 0C 86 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 49,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 59,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeThreePathRoom_Text_DreadfulPresence": {
+      "label": "BattleFrontier_BattlePikeThreePathRoom_Text_DreadfulPresence",
+      "line": 336,
+      "source_file": "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc",
+      "raw_text": "无论哪道门后都有一股很可怕的感觉……$",
+      "display_text": "无论哪道门后都有一股很可怕的感觉……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          13,
+          164,
+          9,
+          21,
+          9,
+          186,
+          3,
+          7,
+          9,
+          93,
+          5,
+          34,
+          3,
+          97,
+          15,
+          126,
+          15,
+          11,
+          4,
+          145,
+          5,
+          11,
+          7,
+          215,
+          10,
+          31,
+          3,
+          11,
+          4,
+          58,
+          7,
+          165,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D A4 09 15 09 BA 03 07 09 5D 05 22 03 61 0F 7E 0F 0B 04 91 05 0B 07 D7 0A 1F 03 0B 04 3A 07 A5 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 2,
+      "case": 23,
+      "closemessage": 1,
+      "face_down": 1,
+      "faceplayer": 9,
+      "fadescreen": 1,
+      "frontier_get": 1,
+      "frontier_getstatus": 1,
+      "frontier_reset": 1,
+      "frontier_saveparty": 1,
+      "frontier_set": 2,
+      "frontier_setpartyorder": 1,
+      "frontier_settrainers": 1,
+      "goto_if_eq": 2,
+      "map_script": 3,
+      "map_script_2": 6,
+      "multichoicedefault": 1,
+      "pike_gethint": 2,
+      "pike_gethintroomid": 1,
+      "pike_save": 2,
+      "pike_sethintroom": 1,
+      "playse": 2,
+      "setvar": 5,
+      "special": 2,
+      "step_end": 2,
+      "switch": 7,
+      "turnobject": 1,
+      "waitmessage": 3,
+      "waitmovement": 2,
+      "waitse": 2,
+      "waitstate": 1,
+      "walk_down": 4,
+      "walk_left": 2,
+      "walk_right": 2,
+      "walk_up": 4,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 61,
+    "script_count": 34,
+    "movement_count": 2,
+    "text_count": 25,
+    "encoded_text_count": 25,
+    "text_source_byte_count": 798,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 25
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 2,
+      "case": 23,
+      "closemessage": 1,
+      "end": 28,
+      "face_down": 1,
+      "faceplayer": 9,
+      "fadescreen": 1,
+      "frontier_get": 1,
+      "frontier_getstatus": 1,
+      "frontier_reset": 1,
+      "frontier_saveparty": 1,
+      "frontier_set": 2,
+      "frontier_setpartyorder": 1,
+      "frontier_settrainers": 1,
+      "goto": 10,
+      "goto_if_eq": 2,
+      "lock": 9,
+      "lockall": 2,
+      "map_script": 3,
+      "map_script_2": 6,
+      "message": 3,
+      "msgbox": 21,
+      "multichoicedefault": 1,
+      "pike_gethint": 2,
+      "pike_gethintroomid": 1,
+      "pike_save": 2,
+      "pike_sethintroom": 1,
+      "playse": 2,
+      "release": 10,
+      "releaseall": 2,
+      "setvar": 5,
+      "special": 2,
+      "step_end": 2,
+      "switch": 7,
+      "turnobject": 1,
+      "waitmessage": 3,
+      "waitmovement": 2,
+      "waitse": 2,
+      "waitstate": 1,
+      "walk_down": 4,
+      "walk_left": 2,
+      "walk_right": 2,
+      "walk_up": 4,
+      "warp": 1
+    }
+  }
+}

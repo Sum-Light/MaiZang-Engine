@@ -1,0 +1,2765 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route117",
+    "map_script": "data/maps/Route117/scripts.inc",
+    "map_json": "data/maps/Route117/map.json",
+    "map_id": "MAP_ROUTE117",
+    "map_name": "Route117"
+  },
+  "labels": {
+    "Route117_MapScripts": {
+      "kind": "map_script_table",
+      "line": 4,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route117_OnTransition": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 8
+    },
+    "Route117_EventScript_ShowDaycareMon1": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 5
+    },
+    "Route117_EventScript_ShowDaycareMon0": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route117_EventScript_DaycareMonIncompatible": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_DaycareMonMedCompatibility": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_DaycareMonMaxCompatibility": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_TryMoveDayCareMan": {
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route117_EventScript_StopMoveDayCareMan": {
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route117_EventScript_Woman": {
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route117_EventScript_LittleBoy": {
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route117_EventScript_Girl": {
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route117_EventScript_RouteSignVerdanturf": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route117_EventScript_RouteSignMauville": {
+      "kind": "script",
+      "line": 68,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route117_EventScript_DayCareSign": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route117_EventScript_Isaac": {
+      "kind": "script",
+      "line": 76,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route117_EventScript_RegisterIsaac": {
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route117_EventScript_RematchIsaac": {
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_Lydia": {
+      "kind": "script",
+      "line": 97,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route117_EventScript_RegisterLydia": {
+      "kind": "script",
+      "line": 105,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route117_EventScript_RematchLydia": {
+      "kind": "script",
+      "line": 113,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_Dylan": {
+      "kind": "script",
+      "line": 118,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route117_EventScript_RegisterDylan": {
+      "kind": "script",
+      "line": 126,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route117_EventScript_RematchDylan": {
+      "kind": "script",
+      "line": 134,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_Maria": {
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route117_EventScript_RegisterMaria": {
+      "kind": "script",
+      "line": 147,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route117_EventScript_RematchMaria": {
+      "kind": "script",
+      "line": 155,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_Derek": {
+      "kind": "script",
+      "line": 160,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_Anna": {
+      "kind": "script",
+      "line": 165,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route117_EventScript_RegisterAnna": {
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route117_EventScript_RematchAnna": {
+      "kind": "script",
+      "line": 179,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_Meg": {
+      "kind": "script",
+      "line": 184,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route117_EventScript_RegisterMeg": {
+      "kind": "script",
+      "line": 192,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route117_EventScript_RematchMeg": {
+      "kind": "script",
+      "line": 198,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_Melina": {
+      "kind": "script",
+      "line": 203,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_Brandi": {
+      "kind": "script",
+      "line": 208,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_EventScript_Aisha": {
+      "kind": "script",
+      "line": 213,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route117_Text_DayCarePokemonHadNewMove": {
+      "kind": "text",
+      "line": 218,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route117_Text_ArentTheseFlowersPretty": {
+      "kind": "text",
+      "line": 221,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route117_Text_AirIsTastyHere": {
+      "kind": "text",
+      "line": 224,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route117_Text_RouteSignVerdanturf": {
+      "kind": "text",
+      "line": 227,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route117_Text_RouteSignMauville": {
+      "kind": "text",
+      "line": 230,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route117_Text_DayCareSign": {
+      "kind": "text",
+      "line": 233,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "Route117_MapScripts": {
+      "label": "Route117_MapScripts",
+      "kind": "map_script_table",
+      "line": 4,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "Route117_OnTransition"
+          ],
+          "line": 5,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, Route117_OnTransition",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 6,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route117_OnTransition": {
+      "label": "Route117_OnTransition",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "Route117_EventScript_TryMoveDayCareMan"
+          ],
+          "line": 9,
+          "raw": "call Route117_EventScript_TryMoveDayCareMan",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_1"
+          ],
+          "line": 11,
+          "raw": "setflag FLAG_TEMP_1",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_2"
+          ],
+          "line": 12,
+          "raw": "setflag FLAG_TEMP_2",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "getdaycaregfx",
+          "args": [
+            "VAR_OBJ_GFX_ID_0",
+            "VAR_OBJ_GFX_ID_1",
+            "VAR_TEMP_0",
+            "VAR_TEMP_1"
+          ],
+          "line": 13,
+          "raw": "getdaycaregfx VAR_OBJ_GFX_ID_0, VAR_OBJ_GFX_ID_1, VAR_TEMP_0, VAR_TEMP_1",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 14,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "Route117_EventScript_ShowDaycareMon1"
+          ],
+          "line": 15,
+          "raw": "case 2, Route117_EventScript_ShowDaycareMon1",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "Route117_EventScript_ShowDaycareMon0"
+          ],
+          "line": 16,
+          "raw": "case 1, Route117_EventScript_ShowDaycareMon0",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Route117_EventScript_TryMoveDayCareMan",
+          "line": 9
+        }
+      ]
+    },
+    "Route117_EventScript_ShowDaycareMon1": {
+      "label": "Route117_EventScript_ShowDaycareMon1",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SetDaycareCompatibilityString"
+          ],
+          "line": 21,
+          "raw": "special SetDaycareCompatibilityString",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PARENTS_INCOMPATIBLE",
+            "Route117_EventScript_DaycareMonIncompatible"
+          ],
+          "line": 22,
+          "raw": "call_if_eq VAR_RESULT, PARENTS_INCOMPATIBLE, Route117_EventScript_DaycareMonIncompatible",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PARENTS_MED_COMPATIBILITY",
+            "Route117_EventScript_DaycareMonMedCompatibility"
+          ],
+          "line": 24,
+          "raw": "call_if_eq VAR_RESULT, PARENTS_MED_COMPATIBILITY, Route117_EventScript_DaycareMonMedCompatibility",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "PARENTS_MAX_COMPATIBILITY",
+            "Route117_EventScript_DaycareMonMaxCompatibility"
+          ],
+          "line": 25,
+          "raw": "call_if_eq VAR_RESULT, PARENTS_MAX_COMPATIBILITY, Route117_EventScript_DaycareMonMaxCompatibility",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_TEMP_2"
+          ],
+          "line": 26,
+          "raw": "clearflag FLAG_TEMP_2",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "Route117_EventScript_DaycareMonIncompatible",
+          "line": 22
+        },
+        {
+          "op": "call_if_eq",
+          "target": "Route117_EventScript_DaycareMonMedCompatibility",
+          "line": 24
+        },
+        {
+          "op": "call_if_eq",
+          "target": "Route117_EventScript_DaycareMonMaxCompatibility",
+          "line": 25
+        }
+      ]
+    },
+    "Route117_EventScript_ShowDaycareMon0": {
+      "label": "Route117_EventScript_ShowDaycareMon0",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_TEMP_1"
+          ],
+          "line": 28,
+          "raw": "clearflag FLAG_TEMP_1",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route117_EventScript_DaycareMonIncompatible": {
+      "label": "Route117_EventScript_DaycareMonIncompatible",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_DAYCARE_MON_0",
+            "MOVEMENT_TYPE_FACE_DOWN_UP_AND_LEFT"
+          ],
+          "line": 32,
+          "raw": "setobjectmovementtype LOCALID_DAYCARE_MON_0, MOVEMENT_TYPE_FACE_DOWN_UP_AND_LEFT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_DAYCARE_MON_1",
+            "MOVEMENT_TYPE_FACE_DOWN_UP_AND_RIGHT"
+          ],
+          "line": 33,
+          "raw": "setobjectmovementtype LOCALID_DAYCARE_MON_1, MOVEMENT_TYPE_FACE_DOWN_UP_AND_RIGHT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 34,
+          "raw": "return",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route117_EventScript_DaycareMonMedCompatibility": {
+      "label": "Route117_EventScript_DaycareMonMedCompatibility",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_DAYCARE_MON_0",
+            "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT"
+          ],
+          "line": 37,
+          "raw": "setobjectmovementtype LOCALID_DAYCARE_MON_0, MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_DAYCARE_MON_1",
+            "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT"
+          ],
+          "line": 38,
+          "raw": "setobjectmovementtype LOCALID_DAYCARE_MON_1, MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 39,
+          "raw": "return",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route117_EventScript_DaycareMonMaxCompatibility": {
+      "label": "Route117_EventScript_DaycareMonMaxCompatibility",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_DAYCARE_MON_0",
+            "MOVEMENT_TYPE_WALK_IN_PLACE_RIGHT"
+          ],
+          "line": 42,
+          "raw": "setobjectmovementtype LOCALID_DAYCARE_MON_0, MOVEMENT_TYPE_WALK_IN_PLACE_RIGHT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_DAYCARE_MON_1",
+            "MOVEMENT_TYPE_WALK_IN_PLACE_LEFT"
+          ],
+          "line": 43,
+          "raw": "setobjectmovementtype LOCALID_DAYCARE_MON_1, MOVEMENT_TYPE_WALK_IN_PLACE_LEFT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 44,
+          "raw": "return",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route117_EventScript_TryMoveDayCareMan": {
+      "label": "Route117_EventScript_TryMoveDayCareMan",
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_PENDING_DAYCARE_EGG",
+            "Route117_EventScript_StopMoveDayCareMan"
+          ],
+          "line": 47,
+          "raw": "goto_if_unset FLAG_PENDING_DAYCARE_EGG, Route117_EventScript_StopMoveDayCareMan",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_DAYCARE_MAN",
+            "47",
+            "6"
+          ],
+          "line": 48,
+          "raw": "setobjectxyperm LOCALID_DAYCARE_MAN, 47, 6",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "Route117_EventScript_StopMoveDayCareMan",
+          "line": 47
+        }
+      ]
+    },
+    "Route117_EventScript_StopMoveDayCareMan": {
+      "label": "Route117_EventScript_StopMoveDayCareMan",
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "return",
+          "args": [],
+          "line": 50,
+          "raw": "return",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Woman": {
+      "label": "Route117_EventScript_Woman",
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_ArentTheseFlowersPretty",
+            "MSGBOX_NPC"
+          ],
+          "line": 53,
+          "raw": "msgbox Route117_Text_ArentTheseFlowersPretty, MSGBOX_NPC",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 54,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_ArentTheseFlowersPretty",
+          "mode": "MSGBOX_NPC",
+          "line": 53
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_LittleBoy": {
+      "label": "Route117_EventScript_LittleBoy",
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_AirIsTastyHere",
+            "MSGBOX_NPC"
+          ],
+          "line": 57,
+          "raw": "msgbox Route117_Text_AirIsTastyHere, MSGBOX_NPC",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 58,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_AirIsTastyHere",
+          "mode": "MSGBOX_NPC",
+          "line": 57
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Girl": {
+      "label": "Route117_EventScript_Girl",
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_DayCarePokemonHadNewMove",
+            "MSGBOX_NPC"
+          ],
+          "line": 61,
+          "raw": "msgbox Route117_Text_DayCarePokemonHadNewMove, MSGBOX_NPC",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_DayCarePokemonHadNewMove",
+          "mode": "MSGBOX_NPC",
+          "line": 61
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_RouteSignVerdanturf": {
+      "label": "Route117_EventScript_RouteSignVerdanturf",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_RouteSignVerdanturf",
+            "MSGBOX_SIGN"
+          ],
+          "line": 65,
+          "raw": "msgbox Route117_Text_RouteSignVerdanturf, MSGBOX_SIGN",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 66,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_RouteSignVerdanturf",
+          "mode": "MSGBOX_SIGN",
+          "line": 65
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_RouteSignMauville": {
+      "label": "Route117_EventScript_RouteSignMauville",
+      "kind": "script",
+      "line": 68,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_RouteSignMauville",
+            "MSGBOX_SIGN"
+          ],
+          "line": 69,
+          "raw": "msgbox Route117_Text_RouteSignMauville, MSGBOX_SIGN",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 70,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_RouteSignMauville",
+          "mode": "MSGBOX_SIGN",
+          "line": 69
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_DayCareSign": {
+      "label": "Route117_EventScript_DayCareSign",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_DayCareSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 73,
+          "raw": "msgbox Route117_Text_DayCareSign, MSGBOX_SIGN",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 74,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_DayCareSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 73
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Isaac": {
+      "label": "Route117_EventScript_Isaac",
+      "kind": "script",
+      "line": 76,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_ISAAC_1",
+            "Route117_Text_IsaacIntro",
+            "Route117_Text_IsaacDefeat",
+            "Route117_EventScript_RegisterIsaac"
+          ],
+          "line": 77,
+          "raw": "trainerbattle_single TRAINER_ISAAC_1, Route117_Text_IsaacIntro, Route117_Text_IsaacDefeat, Route117_EventScript_RegisterIsaac",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 78,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route117_EventScript_RematchIsaac"
+          ],
+          "line": 79,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route117_EventScript_RematchIsaac",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_IsaacPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 80,
+          "raw": "msgbox Route117_Text_IsaacPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 81,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 82,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_IsaacPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 80
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route117_EventScript_RematchIsaac",
+          "line": 79
+        }
+      ]
+    },
+    "Route117_EventScript_RegisterIsaac": {
+      "label": "Route117_EventScript_RegisterIsaac",
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "PlayerFaceTrainerAfterBattle"
+          ],
+          "line": 85,
+          "raw": "special PlayerFaceTrainerAfterBattle",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 86,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_IsaacRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 87,
+          "raw": "msgbox Route117_Text_IsaacRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_ISAAC_1"
+          ],
+          "line": 88,
+          "raw": "register_matchcall TRAINER_ISAAC_1",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 89,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 90,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_IsaacRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 87
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_RematchIsaac": {
+      "label": "Route117_EventScript_RematchIsaac",
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch",
+          "args": [
+            "TRAINER_ISAAC_1",
+            "Route117_Text_IsaacRematchIntro",
+            "Route117_Text_IsaacRematchDefeat"
+          ],
+          "line": 93,
+          "raw": "trainerbattle_rematch TRAINER_ISAAC_1, Route117_Text_IsaacRematchIntro, Route117_Text_IsaacRematchDefeat",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_IsaacPostRematch",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 94,
+          "raw": "msgbox Route117_Text_IsaacPostRematch, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 95,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_IsaacPostRematch",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 94
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Lydia": {
+      "label": "Route117_EventScript_Lydia",
+      "kind": "script",
+      "line": 97,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_LYDIA_1",
+            "Route117_Text_LydiaIntro",
+            "Route117_Text_LydiaDefeat",
+            "Route117_EventScript_RegisterLydia"
+          ],
+          "line": 98,
+          "raw": "trainerbattle_single TRAINER_LYDIA_1, Route117_Text_LydiaIntro, Route117_Text_LydiaDefeat, Route117_EventScript_RegisterLydia",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 99,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route117_EventScript_RematchLydia"
+          ],
+          "line": 100,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route117_EventScript_RematchLydia",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_LydiaPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 101,
+          "raw": "msgbox Route117_Text_LydiaPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 102,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 103,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_LydiaPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 101
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route117_EventScript_RematchLydia",
+          "line": 100
+        }
+      ]
+    },
+    "Route117_EventScript_RegisterLydia": {
+      "label": "Route117_EventScript_RegisterLydia",
+      "kind": "script",
+      "line": 105,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "PlayerFaceTrainerAfterBattle"
+          ],
+          "line": 106,
+          "raw": "special PlayerFaceTrainerAfterBattle",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 107,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_LydiaRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 108,
+          "raw": "msgbox Route117_Text_LydiaRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_LYDIA_1"
+          ],
+          "line": 109,
+          "raw": "register_matchcall TRAINER_LYDIA_1",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 110,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 111,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_LydiaRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 108
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_RematchLydia": {
+      "label": "Route117_EventScript_RematchLydia",
+      "kind": "script",
+      "line": 113,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch",
+          "args": [
+            "TRAINER_LYDIA_1",
+            "Route117_Text_LydiaRematchIntro",
+            "Route117_Text_LydiaRematchDefeat"
+          ],
+          "line": 114,
+          "raw": "trainerbattle_rematch TRAINER_LYDIA_1, Route117_Text_LydiaRematchIntro, Route117_Text_LydiaRematchDefeat",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_LydiaPostRematch",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 115,
+          "raw": "msgbox Route117_Text_LydiaPostRematch, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 116,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_LydiaPostRematch",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 115
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Dylan": {
+      "label": "Route117_EventScript_Dylan",
+      "kind": "script",
+      "line": 118,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_DYLAN_1",
+            "Route117_Text_DylanIntro",
+            "Route117_Text_DylanDefeat",
+            "Route117_EventScript_RegisterDylan"
+          ],
+          "line": 119,
+          "raw": "trainerbattle_single TRAINER_DYLAN_1, Route117_Text_DylanIntro, Route117_Text_DylanDefeat, Route117_EventScript_RegisterDylan",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 120,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route117_EventScript_RematchDylan"
+          ],
+          "line": 121,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route117_EventScript_RematchDylan",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_DylanPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 122,
+          "raw": "msgbox Route117_Text_DylanPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 123,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 124,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_DylanPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 122
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route117_EventScript_RematchDylan",
+          "line": 121
+        }
+      ]
+    },
+    "Route117_EventScript_RegisterDylan": {
+      "label": "Route117_EventScript_RegisterDylan",
+      "kind": "script",
+      "line": 126,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "PlayerFaceTrainerAfterBattle"
+          ],
+          "line": 127,
+          "raw": "special PlayerFaceTrainerAfterBattle",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 128,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_DylanRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 129,
+          "raw": "msgbox Route117_Text_DylanRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_DYLAN_1"
+          ],
+          "line": 130,
+          "raw": "register_matchcall TRAINER_DYLAN_1",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 131,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 132,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_DylanRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 129
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_RematchDylan": {
+      "label": "Route117_EventScript_RematchDylan",
+      "kind": "script",
+      "line": 134,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch",
+          "args": [
+            "TRAINER_DYLAN_1",
+            "Route117_Text_DylanRematchIntro",
+            "Route117_Text_DylanRematchDefeat"
+          ],
+          "line": 135,
+          "raw": "trainerbattle_rematch TRAINER_DYLAN_1, Route117_Text_DylanRematchIntro, Route117_Text_DylanRematchDefeat",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_DylanPostRematch",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 136,
+          "raw": "msgbox Route117_Text_DylanPostRematch, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 137,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_DylanPostRematch",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 136
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Maria": {
+      "label": "Route117_EventScript_Maria",
+      "kind": "script",
+      "line": 139,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_MARIA_1",
+            "Route117_Text_MariaIntro",
+            "Route117_Text_MariaDefeat",
+            "Route117_EventScript_RegisterMaria"
+          ],
+          "line": 140,
+          "raw": "trainerbattle_single TRAINER_MARIA_1, Route117_Text_MariaIntro, Route117_Text_MariaDefeat, Route117_EventScript_RegisterMaria",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 141,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route117_EventScript_RematchMaria"
+          ],
+          "line": 142,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route117_EventScript_RematchMaria",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_MariaPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 143,
+          "raw": "msgbox Route117_Text_MariaPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 144,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 145,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_MariaPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 143
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route117_EventScript_RematchMaria",
+          "line": 142
+        }
+      ]
+    },
+    "Route117_EventScript_RegisterMaria": {
+      "label": "Route117_EventScript_RegisterMaria",
+      "kind": "script",
+      "line": 147,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "PlayerFaceTrainerAfterBattle"
+          ],
+          "line": 148,
+          "raw": "special PlayerFaceTrainerAfterBattle",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 149,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_MariaRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 150,
+          "raw": "msgbox Route117_Text_MariaRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_MARIA_1"
+          ],
+          "line": 151,
+          "raw": "register_matchcall TRAINER_MARIA_1",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 152,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 153,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_MariaRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 150
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_RematchMaria": {
+      "label": "Route117_EventScript_RematchMaria",
+      "kind": "script",
+      "line": 155,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch",
+          "args": [
+            "TRAINER_MARIA_1",
+            "Route117_Text_MariaRematchIntro",
+            "Route117_Text_MariaRematchDefeat"
+          ],
+          "line": 156,
+          "raw": "trainerbattle_rematch TRAINER_MARIA_1, Route117_Text_MariaRematchIntro, Route117_Text_MariaRematchDefeat",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_MariaPostRematch",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 157,
+          "raw": "msgbox Route117_Text_MariaPostRematch, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 158,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_MariaPostRematch",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 157
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Derek": {
+      "label": "Route117_EventScript_Derek",
+      "kind": "script",
+      "line": 160,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_DEREK",
+            "Route117_Text_DerekIntro",
+            "Route117_Text_DerekDefeat"
+          ],
+          "line": 161,
+          "raw": "trainerbattle_single TRAINER_DEREK, Route117_Text_DerekIntro, Route117_Text_DerekDefeat",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_DerekPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 162,
+          "raw": "msgbox Route117_Text_DerekPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 163,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_DerekPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 162
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Anna": {
+      "label": "Route117_EventScript_Anna",
+      "kind": "script",
+      "line": 165,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_double",
+          "args": [
+            "TRAINER_ANNA_AND_MEG_1",
+            "Route117_Text_AnnaIntro",
+            "Route117_Text_AnnaDefeat",
+            "Route117_Text_AnnaNotEnoughMons",
+            "Route117_EventScript_RegisterAnna"
+          ],
+          "line": 166,
+          "raw": "trainerbattle_double TRAINER_ANNA_AND_MEG_1, Route117_Text_AnnaIntro, Route117_Text_AnnaDefeat, Route117_Text_AnnaNotEnoughMons, Route117_EventScript_RegisterAnna",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 167,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route117_EventScript_RematchAnna"
+          ],
+          "line": 168,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route117_EventScript_RematchAnna",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_AnnaPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 169,
+          "raw": "msgbox Route117_Text_AnnaPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 170,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 171,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_AnnaPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 169
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route117_EventScript_RematchAnna",
+          "line": 168
+        }
+      ]
+    },
+    "Route117_EventScript_RegisterAnna": {
+      "label": "Route117_EventScript_RegisterAnna",
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_AnnaAndMegRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 174,
+          "raw": "msgbox Route117_Text_AnnaAndMegRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_ANNA_AND_MEG_1"
+          ],
+          "line": 175,
+          "raw": "register_matchcall TRAINER_ANNA_AND_MEG_1",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 176,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 177,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_AnnaAndMegRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 174
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_RematchAnna": {
+      "label": "Route117_EventScript_RematchAnna",
+      "kind": "script",
+      "line": 179,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch_double",
+          "args": [
+            "TRAINER_ANNA_AND_MEG_1",
+            "Route117_Text_AnnaRematchIntro",
+            "Route117_Text_AnnaRematchDefeat",
+            "Route117_Text_AnnaRematchNotEnoughMons"
+          ],
+          "line": 180,
+          "raw": "trainerbattle_rematch_double TRAINER_ANNA_AND_MEG_1, Route117_Text_AnnaRematchIntro, Route117_Text_AnnaRematchDefeat, Route117_Text_AnnaRematchNotEnoughMons",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_AnnaPostRematch",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 181,
+          "raw": "msgbox Route117_Text_AnnaPostRematch, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 182,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_AnnaPostRematch",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 181
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Meg": {
+      "label": "Route117_EventScript_Meg",
+      "kind": "script",
+      "line": 184,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_double",
+          "args": [
+            "TRAINER_ANNA_AND_MEG_1",
+            "Route117_Text_MegIntro",
+            "Route117_Text_MegDefeat",
+            "Route117_Text_MegNotEnoughMons",
+            "Route117_EventScript_RegisterMeg"
+          ],
+          "line": 185,
+          "raw": "trainerbattle_double TRAINER_ANNA_AND_MEG_1, Route117_Text_MegIntro, Route117_Text_MegDefeat, Route117_Text_MegNotEnoughMons, Route117_EventScript_RegisterMeg",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 186,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route117_EventScript_RematchMeg"
+          ],
+          "line": 187,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route117_EventScript_RematchMeg",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_MegPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 188,
+          "raw": "msgbox Route117_Text_MegPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 189,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 190,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_MegPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 188
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route117_EventScript_RematchMeg",
+          "line": 187
+        }
+      ]
+    },
+    "Route117_EventScript_RegisterMeg": {
+      "label": "Route117_EventScript_RegisterMeg",
+      "kind": "script",
+      "line": 192,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_AnnaAndMegRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 193,
+          "raw": "msgbox Route117_Text_AnnaAndMegRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_ANNA_AND_MEG_1"
+          ],
+          "line": 194,
+          "raw": "register_matchcall TRAINER_ANNA_AND_MEG_1",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 195,
+          "raw": "release",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 196,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_AnnaAndMegRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 193
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_RematchMeg": {
+      "label": "Route117_EventScript_RematchMeg",
+      "kind": "script",
+      "line": 198,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch_double",
+          "args": [
+            "TRAINER_ANNA_AND_MEG_1",
+            "Route117_Text_MegRematchIntro",
+            "Route117_Text_MegRematchDefeat",
+            "Route117_Text_MegRematchNotEnoughMons"
+          ],
+          "line": 199,
+          "raw": "trainerbattle_rematch_double TRAINER_ANNA_AND_MEG_1, Route117_Text_MegRematchIntro, Route117_Text_MegRematchDefeat, Route117_Text_MegRematchNotEnoughMons",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_MegPostRematch",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 200,
+          "raw": "msgbox Route117_Text_MegPostRematch, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 201,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_MegPostRematch",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 200
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Melina": {
+      "label": "Route117_EventScript_Melina",
+      "kind": "script",
+      "line": 203,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_MELINA",
+            "Route117_Text_MelinaIntro",
+            "Route117_Text_MelinaDefeat"
+          ],
+          "line": 204,
+          "raw": "trainerbattle_single TRAINER_MELINA, Route117_Text_MelinaIntro, Route117_Text_MelinaDefeat",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_MelinaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 205,
+          "raw": "msgbox Route117_Text_MelinaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 206,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_MelinaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 205
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Brandi": {
+      "label": "Route117_EventScript_Brandi",
+      "kind": "script",
+      "line": 208,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_BRANDI",
+            "Route117_Text_BrandiIntro",
+            "Route117_Text_BrandiDefeat"
+          ],
+          "line": 209,
+          "raw": "trainerbattle_single TRAINER_BRANDI, Route117_Text_BrandiIntro, Route117_Text_BrandiDefeat",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_BrandiPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 210,
+          "raw": "msgbox Route117_Text_BrandiPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 211,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_BrandiPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 210
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route117_EventScript_Aisha": {
+      "label": "Route117_EventScript_Aisha",
+      "kind": "script",
+      "line": 213,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_AISHA",
+            "Route117_Text_AishaIntro",
+            "Route117_Text_AishaDefeat"
+          ],
+          "line": 214,
+          "raw": "trainerbattle_single TRAINER_AISHA, Route117_Text_AishaIntro, Route117_Text_AishaDefeat",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route117_Text_AishaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 215,
+          "raw": "msgbox Route117_Text_AishaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route117/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 216,
+          "raw": "end",
+          "source_file": "data/maps/Route117/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route117_Text_AishaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 215
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route117_Text_DayCarePokemonHadNewMove": {
+      "label": "Route117_Text_DayCarePokemonHadNewMove",
+      "line": 218,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "raw_text": "我把宝可梦寄存\\n在培育屋里，\\p但当我取回它时，它学会了一个\\n我从未教过的招式。\\l真的，我非常吃惊。$",
+      "display_text": "我把宝可梦寄存\n在培育屋里，\n\n但当我取回它时，它学会了一个\n我从未教过的招式。\n真的，我非常吃惊。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 90,
+        "bytes": [
+          13,
+          152,
+          1,
+          48,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          175,
+          2,
+          198,
+          254,
+          15,
+          230,
+          10,
+          61,
+          15,
+          171,
+          13,
+          163,
+          8,
+          100,
+          59,
+          251,
+          2,
+          233,
+          2,
+          239,
+          13,
+          152,
+          11,
+          33,
+          5,
+          101,
+          12,
+          159,
+          11,
+          237,
+          59,
+          12,
+          159,
+          14,
+          144,
+          5,
+          110,
+          8,
+          158,
+          15,
+          11,
+          4,
+          96,
+          254,
+          13,
+          152,
+          2,
+          179,
+          13,
+          122,
+          7,
+          30,
+          4,
+          197,
+          3,
+          11,
+          16,
+          67,
+          12,
+          2,
+          55,
+          250,
+          16,
+          89,
+          3,
+          11,
+          59,
+          13,
+          152,
+          3,
+          202,
+          2,
+          37,
+          2,
+          86,
+          7,
+          90,
+          55,
+          255
+        ],
+        "hex": "0D 98 01 30 01 63 07 D7 09 66 05 AF 02 C6 FE 0F E6 0A 3D 0F AB 0D A3 08 64 3B FB 02 E9 02 EF 0D 98 0B 21 05 65 0C 9F 0B ED 3B 0C 9F 0E 90 05 6E 08 9E 0F 0B 04 60 FE 0D 98 02 B3 0D 7A 07 1E 04 C5 03 0B 10 43 0C 02 37 FA 10 59 03 0B 3B 0D 98 03 CA 02 25 02 56 07 5A 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 42,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 53,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route117_Text_ArentTheseFlowersPretty": {
+      "label": "Route117_Text_ArentTheseFlowersPretty",
+      "line": 221,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "raw_text": "你怎么想？\\n这些花很漂亮吧？\\p都是我种的！$",
+      "display_text": "你怎么想？\n这些花很漂亮吧？\n\n都是我种的！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          9,
+          217,
+          16,
+          10,
+          9,
+          76,
+          14,
+          24,
+          61,
+          254,
+          16,
+          85,
+          14,
+          52,
+          5,
+          53,
+          5,
+          11,
+          10,
+          106,
+          8,
+          148,
+          1,
+          40,
+          61,
+          251,
+          3,
+          97,
+          12,
+          12,
+          13,
+          152,
+          16,
+          167,
+          3,
+          11,
+          60,
+          255
+        ],
+        "hex": "09 D9 10 0A 09 4C 0E 18 3D FE 10 55 0E 34 05 35 05 0B 0A 6A 08 94 01 28 3D FB 03 61 0C 0C 0D 98 10 A7 03 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route117_Text_AirIsTastyHere": {
+      "label": "Route117_Text_AirIsTastyHere",
+      "line": 224,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "raw_text": "这的空气中有一股清香！$",
+      "display_text": "这的空气中有一股清香！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          16,
+          85,
+          3,
+          11,
+          7,
+          227,
+          10,
+          179,
+          16,
+          161,
+          15,
+          126,
+          15,
+          11,
+          4,
+          145,
+          11,
+          7,
+          14,
+          16,
+          60,
+          255
+        ],
+        "hex": "10 55 03 0B 07 E3 0A B3 10 A1 0F 7E 0F 0B 04 91 0B 07 0E 10 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route117_Text_RouteSignVerdanturf": {
+      "label": "Route117_Text_RouteSignVerdanturf",
+      "line": 227,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "raw_text": "117号道路\\n{LEFT_ARROW}绿茵镇$",
+      "display_text": "117号道路\n{LEFT_ARROW}绿茵镇",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          162,
+          162,
+          168,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          254,
+          123,
+          9,
+          6,
+          15,
+          64,
+          16,
+          101,
+          255
+        ],
+        "hex": "A2 A2 A8 04 EB 03 07 08 E8 FE 7B 09 06 0F 40 10 65 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{LEFT_ARROW}",
+            "offset": 8,
+            "bytes": [
+              123
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "LEFT_ARROW",
+                "bytes": [
+                  123
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route117_Text_RouteSignMauville": {
+      "label": "Route117_Text_RouteSignMauville",
+      "line": 230,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "raw_text": "117号道路\\n{RIGHT_ARROW}紫堇市$",
+      "display_text": "117号道路\n{RIGHT_ARROW}紫堇市",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          162,
+          162,
+          168,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          254,
+          124,
+          17,
+          7,
+          19,
+          57,
+          12,
+          21,
+          255
+        ],
+        "hex": "A2 A2 A8 04 EB 03 07 08 E8 FE 7C 11 07 13 39 0C 15 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{RIGHT_ARROW}",
+            "offset": 8,
+            "bytes": [
+              124
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "RIGHT_ARROW",
+                "bytes": [
+                  124
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route117_Text_DayCareSign": {
+      "label": "Route117_Text_DayCareSign",
+      "line": 233,
+      "source_file": "data/maps/Route117/scripts.inc",
+      "raw_text": "培育屋\\n“替你抚养宝可梦。”$",
+      "display_text": "培育屋\n“替你抚养宝可梦。”",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 25,
+        "bytes": [
+          10,
+          61,
+          15,
+          171,
+          13,
+          163,
+          254,
+          177,
+          12,
+          231,
+          9,
+          217,
+          4,
+          17,
+          14,
+          225,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          178,
+          255
+        ],
+        "hex": "0A 3D 0F AB 0D A3 FE B1 0C E7 09 D9 04 11 0E E1 01 63 07 D7 09 66 37 B2 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_eq": 3,
+      "case": 2,
+      "clearflag": 2,
+      "getdaycaregfx": 1,
+      "goto_if_eq": 6,
+      "goto_if_unset": 1,
+      "map_script": 1,
+      "register_matchcall": 6,
+      "setflag": 2,
+      "setobjectmovementtype": 6,
+      "setobjectxyperm": 1,
+      "special": 5,
+      "specialvar": 6,
+      "switch": 1,
+      "trainerbattle_double": 2,
+      "trainerbattle_rematch": 4,
+      "trainerbattle_rematch_double": 2,
+      "trainerbattle_single": 8,
+      "waitmovement": 4
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 43,
+    "script_count": 37,
+    "movement_count": 0,
+    "text_count": 6,
+    "encoded_text_count": 6,
+    "text_source_byte_count": 211,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 6
+    },
+    "orphan_instruction_count": 2,
+    "op_counts": {
+      "call": 1,
+      "call_if_eq": 3,
+      "case": 2,
+      "clearflag": 2,
+      "end": 30,
+      "getdaycaregfx": 1,
+      "goto_if_eq": 6,
+      "goto_if_unset": 1,
+      "map_script": 1,
+      "msgbox": 28,
+      "register_matchcall": 6,
+      "release": 12,
+      "return": 4,
+      "setflag": 2,
+      "setobjectmovementtype": 6,
+      "setobjectxyperm": 1,
+      "special": 5,
+      "specialvar": 6,
+      "switch": 1,
+      "trainerbattle_double": 2,
+      "trainerbattle_rematch": 4,
+      "trainerbattle_rematch_double": 2,
+      "trainerbattle_single": 8,
+      "waitmovement": 4
+    }
+  }
+}

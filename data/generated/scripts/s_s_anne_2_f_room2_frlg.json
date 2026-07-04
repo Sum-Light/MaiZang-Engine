@@ -1,0 +1,579 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SSAnne_2F_Room2_Frlg",
+    "map_script": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+    "map_json": "data/maps/SSAnne_2F_Room2_Frlg/map.json",
+    "map_id": "MAP_SSANNE_2F_ROOM2",
+    "map_name": "SSAnne_2F_Room2_Frlg"
+  },
+  "labels": {
+    "SSAnne_2F_Room2_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_2F_Room2_EventScript_Dale": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSAnne_2F_Room2_EventScript_Brooks": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSAnne_2F_Room2_Text_BrooksIntro": {
+      "kind": "text",
+      "line": 14,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_2F_Room2_Text_BrooksDefeat": {
+      "kind": "text",
+      "line": 17,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_2F_Room2_Text_BrooksPostBattle": {
+      "kind": "text",
+      "line": 21,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_2F_Room2_Text_DaleIntro": {
+      "kind": "text",
+      "line": 24,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_2F_Room2_Text_DaleDefeat": {
+      "kind": "text",
+      "line": 27,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_2F_Room2_Text_DalePostBattle": {
+      "kind": "text",
+      "line": 30,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "SSAnne_2F_Room2_Frlg_MapScripts": {
+      "label": "SSAnne_2F_Room2_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_2F_Room2_EventScript_Dale": {
+      "label": "SSAnne_2F_Room2_EventScript_Dale",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_FISHERMAN_DALE",
+            "SSAnne_2F_Room2_Text_DaleIntro",
+            "SSAnne_2F_Room2_Text_DaleDefeat"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_FISHERMAN_DALE, SSAnne_2F_Room2_Text_DaleIntro, SSAnne_2F_Room2_Text_DaleDefeat",
+          "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_2F_Room2_Text_DalePostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox SSAnne_2F_Room2_Text_DalePostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_2F_Room2_Text_DalePostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "SSAnne_2F_Room2_EventScript_Brooks": {
+      "label": "SSAnne_2F_Room2_EventScript_Brooks",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_GENTLEMAN_BROOKS",
+            "SSAnne_2F_Room2_Text_BrooksIntro",
+            "SSAnne_2F_Room2_Text_BrooksDefeat"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_GENTLEMAN_BROOKS, SSAnne_2F_Room2_Text_BrooksIntro, SSAnne_2F_Room2_Text_BrooksDefeat",
+          "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_2F_Room2_Text_BrooksPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox SSAnne_2F_Room2_Text_BrooksPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_2F_Room2_Text_BrooksPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SSAnne_2F_Room2_Text_BrooksIntro": {
+      "label": "SSAnne_2F_Room2_Text_BrooksIntro",
+      "line": 14,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "raw_text": "和年轻人战斗能使我保持年轻。$",
+      "display_text": "和年轻人战斗能使我保持年轻。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          4,
+          243,
+          9,
+          224,
+          11,
+          3,
+          11,
+          75,
+          16,
+          48,
+          3,
+          92,
+          9,
+          210,
+          11,
+          245,
+          13,
+          152,
+          1,
+          96,
+          2,
+          88,
+          9,
+          224,
+          11,
+          3,
+          55,
+          255
+        ],
+        "hex": "04 F3 09 E0 0B 03 0B 4B 10 30 03 5C 09 D2 0B F5 0D 98 01 60 02 58 09 E0 0B 03 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_2F_Room2_Text_BrooksDefeat": {
+      "label": "SSAnne_2F_Room2_Text_BrooksDefeat",
+      "line": 17,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "raw_text": "战斗棒极了！\\n啊，我感觉我又变年轻了！$",
+      "display_text": "战斗棒极了！\n啊，我感觉我又变年轻了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          16,
+          48,
+          3,
+          92,
+          1,
+          83,
+          5,
+          150,
+          8,
+          158,
+          60,
+          254,
+          1,
+          0,
+          59,
+          13,
+          152,
+          4,
+          58,
+          7,
+          165,
+          13,
+          152,
+          15,
+          132,
+          1,
+          161,
+          9,
+          224,
+          11,
+          3,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "10 30 03 5C 01 53 05 96 08 9E 3C FE 01 00 3B 0D 98 04 3A 07 A5 0D 98 0F 84 01 A1 09 E0 0B 03 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_2F_Room2_Text_BrooksPostBattle": {
+      "label": "SSAnne_2F_Room2_Text_BrooksPostBattle",
+      "line": 21,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "raw_text": "如果放在15年前，我肯定我能赢！$",
+      "display_text": "如果放在15年前，我肯定我能赢！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          3,
+          200,
+          15,
+          230,
+          162,
+          166,
+          9,
+          224,
+          10,
+          201,
+          59,
+          13,
+          152,
+          7,
+          221,
+          3,
+          77,
+          13,
+          152,
+          9,
+          210,
+          15,
+          92,
+          60,
+          255
+        ],
+        "hex": "0B 67 04 C3 03 C8 0F E6 A2 A6 09 E0 0A C9 3B 0D 98 07 DD 03 4D 0D 98 09 D2 0F 5C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_2F_Room2_Text_DaleIntro": {
+      "label": "SSAnne_2F_Room2_Text_DaleIntro",
+      "line": 24,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "raw_text": "看看我钓到了什么！$",
+      "display_text": "看看我钓到了什么！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          7,
+          194,
+          7,
+          194,
+          13,
+          152,
+          3,
+          61,
+          3,
+          4,
+          8,
+          158,
+          11,
+          238,
+          9,
+          76,
+          60,
+          255
+        ],
+        "hex": "07 C2 07 C2 0D 98 03 3D 03 04 08 9E 0B EE 09 4C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_2F_Room2_Text_DaleDefeat": {
+      "label": "SSAnne_2F_Room2_Text_DaleDefeat",
+      "line": 27,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "raw_text": "全都倒下了！$",
+      "display_text": "全都倒下了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 12,
+        "bytes": [
+          11,
+          43,
+          3,
+          97,
+          3,
+          0,
+          13,
+          230,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "0B 2B 03 61 03 00 0D E6 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 6,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_2F_Room2_Text_DalePostBattle": {
+      "label": "SSAnne_2F_Room2_Text_DalePostBattle",
+      "line": 30,
+      "source_file": "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc",
+      "raw_text": "聚会？\\p船上的聚会现在应该结束了。$",
+      "display_text": "聚会？\n\n船上的聚会现在应该结束了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          7,
+          139,
+          5,
+          110,
+          61,
+          251,
+          2,
+          140,
+          11,
+          173,
+          3,
+          11,
+          7,
+          139,
+          5,
+          110,
+          14,
+          3,
+          15,
+          230,
+          15,
+          84,
+          4,
+          45,
+          7,
+          51,
+          12,
+          61,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "07 8B 05 6E 3D FB 02 8C 0B AD 03 0B 07 8B 05 6E 0E 03 0F E6 0F 54 04 2D 07 33 0C 3D 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 3,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 6,
+    "encoded_text_count": 6,
+    "text_source_byte_count": 154,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 6
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2,
+      "trainerbattle_single": 2
+    }
+  }
+}

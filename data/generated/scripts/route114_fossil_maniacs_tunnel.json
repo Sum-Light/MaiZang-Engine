@@ -1,0 +1,1459 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route114_FossilManiacsTunnel",
+    "map_script": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+    "map_json": "data/maps/Route114_FossilManiacsTunnel/map.json",
+    "map_id": "MAP_ROUTE114_FOSSIL_MANIACS_TUNNEL",
+    "map_name": "Route114_FossilManiacsTunnel"
+  },
+  "labels": {
+    "Route114_FossilManiacsTunnel_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route114_FossilManiacsTunnel_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route114_FossilManiacsTunnel_EventScript_MoveFossilManiac": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route114_FossilManiacsTunnel_OnLoad": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 8
+    },
+    "Route114_FossilManiacsTunnel_EventScript_FossilManiac": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 10
+    },
+    "Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil": {
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route114_FossilManiacsTunnel_Text_LookInDesertForFossils": {
+      "kind": "text",
+      "line": 56,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils": {
+      "kind": "text",
+      "line": 59,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route114_FossilManiacsTunnel_Text_FossilsAreWonderful": {
+      "kind": "text",
+      "line": 62,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route114_FossilManiacsTunnel_Text_NotSafeThatWay": {
+      "kind": "text",
+      "line": 65,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "Route114_FossilManiacsTunnel_MapScripts": {
+      "label": "Route114_FossilManiacsTunnel_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "Route114_FossilManiacsTunnel_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, Route114_FossilManiacsTunnel_OnTransition",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "Route114_FossilManiacsTunnel_OnLoad"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, Route114_FossilManiacsTunnel_OnLoad",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route114_FossilManiacsTunnel_OnTransition": {
+      "label": "Route114_FossilManiacsTunnel_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_GAME_CLEAR",
+            "Route114_FossilManiacsTunnel_EventScript_MoveFossilManiac"
+          ],
+          "line": 7,
+          "raw": "call_if_set FLAG_SYS_GAME_CLEAR, Route114_FossilManiacsTunnel_EventScript_MoveFossilManiac",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "Route114_FossilManiacsTunnel_EventScript_MoveFossilManiac",
+          "line": 7
+        }
+      ]
+    },
+    "Route114_FossilManiacsTunnel_EventScript_MoveFossilManiac": {
+      "label": "Route114_FossilManiacsTunnel_EventScript_MoveFossilManiac",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_FOSSIL_MANIAC",
+            "6",
+            "5"
+          ],
+          "line": 11,
+          "raw": "setobjectxyperm LOCALID_FOSSIL_MANIAC, 6, 5",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_FOSSIL_MANIAC",
+            "MOVEMENT_TYPE_FACE_DOWN"
+          ],
+          "line": 12,
+          "raw": "setobjectmovementtype LOCALID_FOSSIL_MANIAC, MOVEMENT_TYPE_FACE_DOWN",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 13,
+          "raw": "return",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route114_FossilManiacsTunnel_OnLoad": {
+      "label": "Route114_FossilManiacsTunnel_OnLoad",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_SYS_GAME_CLEAR",
+            "Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass"
+          ],
+          "line": 16,
+          "raw": "call_if_unset FLAG_SYS_GAME_CLEAR, Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass",
+          "line": 16
+        }
+      ]
+    },
+    "Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass": {
+      "label": "Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "1",
+            "METATILE_Fallarbor_RedRockWall",
+            "TRUE"
+          ],
+          "line": 20,
+          "raw": "setmetatile 6, 1, METATILE_Fallarbor_RedRockWall, TRUE",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "2",
+            "METATILE_Fallarbor_RedRockWall",
+            "TRUE"
+          ],
+          "line": 21,
+          "raw": "setmetatile 6, 2, METATILE_Fallarbor_RedRockWall, TRUE",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 22,
+          "raw": "return",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn": {
+      "label": "Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 25,
+          "raw": "lockall",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_FOSSIL_MANIAC",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 26,
+          "raw": "applymovement LOCALID_FOSSIL_MANIAC, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 27,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 28,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route114_FossilManiacsTunnel_Text_NotSafeThatWay",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 29,
+          "raw": "msgbox Route114_FossilManiacsTunnel_Text_NotSafeThatWay, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_FOSSIL_MANIAC_STATE",
+            "2"
+          ],
+          "line": 30,
+          "raw": "setvar VAR_FOSSIL_MANIAC_STATE, 2",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 31,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route114_FossilManiacsTunnel_Text_NotSafeThatWay",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 29
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route114_FossilManiacsTunnel_EventScript_FossilManiac": {
+      "label": "Route114_FossilManiacsTunnel_EventScript_FossilManiac",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 35,
+          "raw": "lock",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 36,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_REVIVED_FOSSIL_MON",
+            "Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil"
+          ],
+          "line": 37,
+          "raw": "goto_if_set FLAG_RECEIVED_REVIVED_FOSSIL_MON, Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "checkitem",
+          "args": [
+            "ITEM_ROOT_FOSSIL"
+          ],
+          "line": 38,
+          "raw": "checkitem ITEM_ROOT_FOSSIL",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil"
+          ],
+          "line": 39,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "checkitem",
+          "args": [
+            "ITEM_CLAW_FOSSIL"
+          ],
+          "line": 40,
+          "raw": "checkitem ITEM_CLAW_FOSSIL",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil"
+          ],
+          "line": 41,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route114_FossilManiacsTunnel_Text_LookInDesertForFossils",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 42,
+          "raw": "msgbox Route114_FossilManiacsTunnel_Text_LookInDesertForFossils, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 43,
+          "raw": "release",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route114_FossilManiacsTunnel_Text_LookInDesertForFossils",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 42
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil",
+          "line": 37
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil",
+          "line": 39
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil",
+          "line": 41
+        }
+      ]
+    },
+    "Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil": {
+      "label": "Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil",
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 47,
+          "raw": "msgbox Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 48,
+          "raw": "release",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 47
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil": {
+      "label": "Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route114_FossilManiacsTunnel_Text_FossilsAreWonderful",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 52,
+          "raw": "msgbox Route114_FossilManiacsTunnel_Text_FossilsAreWonderful, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 53,
+          "raw": "release",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 54,
+          "raw": "end",
+          "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route114_FossilManiacsTunnel_Text_FossilsAreWonderful",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 52
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route114_FossilManiacsTunnel_Text_LookInDesertForFossils": {
+      "label": "Route114_FossilManiacsTunnel_Text_LookInDesertForFossils",
+      "line": 56,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "raw_text": "我是化石迷……\\n我是喜欢化石的好人……\\p你想要化石？\\p但是这里所有的化石\\n全部属于我……不能给你……\\p如果你也需要化石\\n去沙漠里找找吧\\l那里到处是沙砾\\l也许会藏着化石……$",
+      "display_text": "我是化石迷……\n我是喜欢化石的好人……\n\n你想要化石？\n\n但是这里所有的化石\n全部属于我……不能给你……\n\n如果你也需要化石\n去沙漠里找找吧\n那里到处是沙砾\n也许会藏着化石……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 152,
+        "bytes": [
+          13,
+          152,
+          12,
+          12,
+          5,
+          60,
+          11,
+          235,
+          9,
+          108,
+          176,
+          176,
+          254,
+          13,
+          152,
+          12,
+          12,
+          13,
+          214,
+          5,
+          67,
+          5,
+          60,
+          11,
+          235,
+          3,
+          11,
+          4,
+          233,
+          11,
+          75,
+          176,
+          176,
+          251,
+          9,
+          217,
+          14,
+          24,
+          14,
+          241,
+          5,
+          60,
+          11,
+          235,
+          61,
+          251,
+          2,
+          233,
+          12,
+          12,
+          16,
+          85,
+          8,
+          100,
+          12,
+          156,
+          15,
+          126,
+          3,
+          11,
+          5,
+          60,
+          11,
+          235,
+          254,
+          11,
+          43,
+          1,
+          218,
+          12,
+          57,
+          15,
+          136,
+          13,
+          152,
+          176,
+          176,
+          1,
+          214,
+          9,
+          210,
+          4,
+          98,
+          9,
+          217,
+          176,
+          176,
+          251,
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          15,
+          2,
+          14,
+          115,
+          14,
+          241,
+          5,
+          60,
+          11,
+          235,
+          254,
+          11,
+          37,
+          11,
+          145,
+          9,
+          164,
+          8,
+          100,
+          16,
+          69,
+          16,
+          69,
+          1,
+          40,
+          250,
+          9,
+          189,
+          8,
+          100,
+          3,
+          4,
+          2,
+          134,
+          12,
+          12,
+          11,
+          145,
+          8,
+          110,
+          250,
+          15,
+          2,
+          14,
+          120,
+          5,
+          110,
+          1,
+          243,
+          16,
+          244,
+          5,
+          60,
+          11,
+          235,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 98 0C 0C 05 3C 0B EB 09 6C B0 B0 FE 0D 98 0C 0C 0D D6 05 43 05 3C 0B EB 03 0B 04 E9 0B 4B B0 B0 FB 09 D9 0E 18 0E F1 05 3C 0B EB 3D FB 02 E9 0C 0C 10 55 08 64 0C 9C 0F 7E 03 0B 05 3C 0B EB FE 0B 2B 01 DA 0C 39 0F 88 0D 98 B0 B0 01 D6 09 D2 04 62 09 D9 B0 B0 FB 0B 67 04 C3 09 D9 0F 02 0E 73 0E F1 05 3C 0B EB FE 0B 25 0B 91 09 A4 08 64 10 45 10 45 01 28 FA 09 BD 08 64 03 04 02 86 0C 0C 0B 91 08 6E FA 0F 02 0E 78 05 6E 01 F3 10 F4 05 3C 0B EB B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 54,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 64,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 73,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 82,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 93,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils": {
+      "label": "Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils",
+      "line": 59,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "raw_text": "难道说你找到了化石？\\n太好了……不会是做梦吧……\\p你想对那个化石\\n做什么？\\p我听说，得文正在做研究\\n把宝可梦从\\l化石中复活……\\p我喜欢我的化石，\\n因此我不喜欢那样做……$",
+      "display_text": "难道说你找到了化石？\n太好了……不会是做梦吧……\n\n你想对那个化石\n做什么？\n\n我听说，得文正在做研究\n把宝可梦从\n化石中复活……\n\n我喜欢我的化石，\n因此我不喜欢那样做……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 149,
+        "bytes": [
+          9,
+          199,
+          3,
+          7,
+          12,
+          88,
+          9,
+          217,
+          16,
+          69,
+          3,
+          4,
+          8,
+          158,
+          5,
+          60,
+          11,
+          235,
+          61,
+          254,
+          12,
+          172,
+          4,
+          233,
+          8,
+          158,
+          176,
+          176,
+          1,
+          214,
+          5,
+          110,
+          12,
+          12,
+          17,
+          46,
+          9,
+          102,
+          1,
+          40,
+          176,
+          176,
+          251,
+          9,
+          217,
+          14,
+          24,
+          3,
+          121,
+          9,
+          189,
+          4,
+          96,
+          5,
+          60,
+          11,
+          235,
+          254,
+          17,
+          46,
+          11,
+          238,
+          9,
+          76,
+          61,
+          251,
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          59,
+          3,
+          10,
+          13,
+          138,
+          16,
+          112,
+          15,
+          230,
+          17,
+          46,
+          14,
+          185,
+          7,
+          111,
+          254,
+          1,
+          48,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          2,
+          179,
+          250,
+          5,
+          60,
+          11,
+          235,
+          16,
+          161,
+          4,
+          30,
+          5,
+          123,
+          176,
+          176,
+          251,
+          13,
+          152,
+          13,
+          214,
+          5,
+          67,
+          13,
+          152,
+          3,
+          11,
+          5,
+          60,
+          11,
+          235,
+          59,
+          254,
+          15,
+          66,
+          2,
+          171,
+          13,
+          152,
+          1,
+          214,
+          13,
+          214,
+          5,
+          67,
+          9,
+          189,
+          14,
+          226,
+          17,
+          46,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 C7 03 07 0C 58 09 D9 10 45 03 04 08 9E 05 3C 0B EB 3D FE 0C AC 04 E9 08 9E B0 B0 01 D6 05 6E 0C 0C 11 2E 09 66 01 28 B0 B0 FB 09 D9 0E 18 03 79 09 BD 04 60 05 3C 0B EB FE 11 2E 0B EE 09 4C 3D FB 0D 98 0D 07 0C 58 3B 03 0A 0D 8A 10 70 0F E6 11 2E 0E B9 07 6F FE 01 30 01 63 07 D7 09 66 02 B3 FA 05 3C 0B EB 10 A1 04 1E 05 7B B0 B0 FB 0D 98 0D D6 05 43 0D 98 03 0B 05 3C 0B EB 3B FE 0F 42 02 AB 0D 98 01 D6 0D D6 05 43 09 BD 0E E2 11 2E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 25,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 40,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 53,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 60,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 69,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 79,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 92,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route114_FossilManiacsTunnel_Text_FossilsAreWonderful": {
+      "label": "Route114_FossilManiacsTunnel_Text_FossilsAreWonderful",
+      "line": 62,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "raw_text": "化石是那么的……迷人……\\n它是那么完美……$",
+      "display_text": "化石是那么的……迷人……\n它是那么完美……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          5,
+          60,
+          11,
+          235,
+          12,
+          12,
+          9,
+          189,
+          9,
+          76,
+          3,
+          11,
+          176,
+          176,
+          9,
+          108,
+          11,
+          75,
+          176,
+          176,
+          254,
+          12,
+          159,
+          12,
+          12,
+          9,
+          189,
+          9,
+          76,
+          13,
+          82,
+          9,
+          88,
+          176,
+          176,
+          255
+        ],
+        "hex": "05 3C 0B EB 0C 0C 09 BD 09 4C 03 0B B0 B0 09 6C 0B 4B B0 B0 FE 0C 9F 0C 0C 09 BD 09 4C 0D 52 09 58 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route114_FossilManiacsTunnel_Text_NotSafeThatWay": {
+      "label": "Route114_FossilManiacsTunnel_Text_NotSafeThatWay",
+      "line": 65,
+      "source_file": "data/maps/Route114_FossilManiacsTunnel/scripts.inc",
+      "raw_text": "哦……\\n那条路不安全……\\p你看到了，当所有墙壁倒塌时……\\n我正要挖洞离开……\\p我认为现在下面\\n有一个巨大的洞……\\p但是我要走了\\n因为我认为那里没有化石……$",
+      "display_text": "哦……\n那条路不安全……\n\n你看到了，当所有墙壁倒塌时……\n我正要挖洞离开……\n\n我认为现在下面\n有一个巨大的洞……\n\n但是我要走了\n因为我认为那里没有化石……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 135,
+        "bytes": [
+          10,
+          19,
+          176,
+          176,
+          254,
+          9,
+          189,
+          12,
+          246,
+          8,
+          232,
+          1,
+          214,
+          1,
+          17,
+          11,
+          43,
+          176,
+          176,
+          251,
+          9,
+          217,
+          7,
+          194,
+          3,
+          4,
+          8,
+          158,
+          59,
+          2,
+          239,
+          12,
+          156,
+          15,
+          126,
+          10,
+          214,
+          1,
+          151,
+          3,
+          0,
+          12,
+          157,
+          11,
+          237,
+          176,
+          176,
+          254,
+          13,
+          152,
+          16,
+          112,
+          14,
+          241,
+          13,
+          66,
+          3,
+          89,
+          8,
+          96,
+          7,
+          184,
+          176,
+          176,
+          251,
+          13,
+          152,
+          11,
+          79,
+          13,
+          112,
+          14,
+          3,
+          15,
+          230,
+          13,
+          230,
+          9,
+          126,
+          254,
+          15,
+          126,
+          15,
+          11,
+          4,
+          96,
+          7,
+          142,
+          2,
+          211,
+          3,
+          11,
+          3,
+          89,
+          176,
+          176,
+          251,
+          2,
+          233,
+          12,
+          12,
+          13,
+          152,
+          14,
+          241,
+          17,
+          23,
+          8,
+          158,
+          254,
+          15,
+          66,
+          13,
+          112,
+          13,
+          152,
+          11,
+          79,
+          13,
+          112,
+          9,
+          189,
+          8,
+          100,
+          9,
+          83,
+          15,
+          126,
+          5,
+          60,
+          11,
+          235,
+          176,
+          176,
+          255
+        ],
+        "hex": "0A 13 B0 B0 FE 09 BD 0C F6 08 E8 01 D6 01 11 0B 2B B0 B0 FB 09 D9 07 C2 03 04 08 9E 3B 02 EF 0C 9C 0F 7E 0A D6 01 97 03 00 0C 9D 0B ED B0 B0 FE 0D 98 10 70 0E F1 0D 42 03 59 08 60 07 B8 B0 B0 FB 0D 98 0B 4F 0D 70 0E 03 0F E6 0D E6 09 7E FE 0F 7E 0F 0B 04 60 07 8E 02 D3 03 0B 03 59 B0 B0 FB 02 E9 0C 0C 0D 98 0E F1 11 17 08 9E FE 0F 42 0D 70 0D 98 0B 4F 0D 70 09 BD 08 64 09 53 0F 7E 05 3C 0B EB B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 41,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 50,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 61,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 69,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 84,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 2,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "checkitem": 2,
+      "faceplayer": 1,
+      "goto_if_eq": 2,
+      "goto_if_set": 1,
+      "map_script": 2,
+      "setmetatile": 2,
+      "setobjectmovementtype": 1,
+      "setobjectxyperm": 1,
+      "setvar": 1,
+      "waitmovement": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 13,
+    "script_count": 9,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 472,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 2,
+      "call_if_set": 1,
+      "call_if_unset": 1,
+      "checkitem": 2,
+      "end": 6,
+      "faceplayer": 1,
+      "goto_if_eq": 2,
+      "goto_if_set": 1,
+      "lock": 1,
+      "lockall": 1,
+      "map_script": 2,
+      "msgbox": 4,
+      "release": 3,
+      "releaseall": 1,
+      "return": 2,
+      "setmetatile": 2,
+      "setobjectmovementtype": 1,
+      "setobjectxyperm": 1,
+      "setvar": 1,
+      "waitmovement": 1
+    }
+  }
+}

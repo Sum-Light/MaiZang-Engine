@@ -1,0 +1,1573 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FallarborTown_MoveRelearnersHouse",
+    "map_script": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+    "map_json": "data/maps/FallarborTown_MoveRelearnersHouse/map.json",
+    "map_id": "MAP_FALLARBOR_TOWN_MOVE_RELEARNERS_HOUSE",
+    "map_name": "FallarborTown_MoveRelearnersHouse"
+  },
+  "labels": {
+    "FallarborTown_MoveRelearnersHouse_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_MoveRelearner": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 8
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 7
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 11
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMove": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 8
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_NoMoveToTeachMon": {
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_CantTeachEgg": {
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale": {
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_ImTheMoveTutor": {
+      "kind": "text",
+      "line": 61,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_ThatsAHeartScaleWantMeToTeachMove": {
+      "kind": "text",
+      "line": 64,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_TutorWhichMon": {
+      "kind": "text",
+      "line": 67,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove": {
+      "kind": "text",
+      "line": 70,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon": {
+      "kind": "text",
+      "line": 73,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_HandedOverHeartScale": {
+      "kind": "text",
+      "line": 76,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_ComeBackWithHeartScale": {
+      "kind": "text",
+      "line": 79,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg": {
+      "kind": "text",
+      "line": 82,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "FallarborTown_MoveRelearnersHouse_MapScripts": {
+      "label": "FallarborTown_MoveRelearnersHouse_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_MoveRelearner": {
+      "label": "FallarborTown_MoveRelearnersHouse_EventScript_MoveRelearner",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 5,
+          "raw": "lockall",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOVE_RELEARNER",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 6,
+          "raw": "applymovement LOCALID_MOVE_RELEARNER, Common_Movement_FacePlayer",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 7,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_TEMP_1",
+            "FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove"
+          ],
+          "line": 8,
+          "raw": "goto_if_set FLAG_TEMP_1, FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_Text_ImTheMoveTutor",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 9,
+          "raw": "msgbox FallarborTown_MoveRelearnersHouse_Text_ImTheMoveTutor, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_1"
+          ],
+          "line": 10,
+          "raw": "setflag FLAG_TEMP_1",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove"
+          ],
+          "line": 11,
+          "raw": "goto FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_MoveRelearnersHouse_Text_ImTheMoveTutor",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 9
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove",
+          "line": 8
+        },
+        {
+          "op": "goto",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove",
+          "line": 11
+        }
+      ]
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove": {
+      "label": "FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "checkitem",
+          "args": [
+            "ITEM_HEART_SCALE"
+          ],
+          "line": 15,
+          "raw": "checkitem ITEM_HEART_SCALE",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale"
+          ],
+          "line": 16,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_Text_ThatsAHeartScaleWantMeToTeachMove",
+            "MSGBOX_YESNO"
+          ],
+          "line": 17,
+          "raw": "msgbox FallarborTown_MoveRelearnersHouse_Text_ThatsAHeartScaleWantMeToTeachMove, MSGBOX_YESNO",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 18,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "NO",
+            "FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale"
+          ],
+          "line": 19,
+          "raw": "case NO, FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon"
+          ],
+          "line": 20,
+          "raw": "goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 21,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_MoveRelearnersHouse_Text_ThatsAHeartScaleWantMeToTeachMove",
+          "mode": "MSGBOX_YESNO",
+          "line": 17
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale",
+          "line": 16
+        },
+        {
+          "op": "goto",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon",
+          "line": 20
+        }
+      ]
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon": {
+      "label": "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_Text_TutorWhichMon",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 24,
+          "raw": "msgbox FallarborTown_MoveRelearnersHouse_Text_TutorWhichMon, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "setmoverelearnerstate",
+          "args": [
+            "MOVE_RELEARNER_LEVEL_UP_MOVES"
+          ],
+          "line": 25,
+          "raw": "setmoverelearnerstate MOVE_RELEARNER_LEVEL_UP_MOVES",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "chooseboxmon",
+          "args": [
+            "SELECT_PC_MON_MOVE_RELEARNER"
+          ],
+          "line": 26,
+          "raw": "chooseboxmon SELECT_PC_MON_MOVE_RELEARNER",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 27,
+          "raw": "waitstate",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "PARTY_NOTHING_CHOSEN",
+            "FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale"
+          ],
+          "line": 28,
+          "raw": "goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "IsSelectedMonEgg"
+          ],
+          "line": 29,
+          "raw": "special IsSelectedMonEgg",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "FallarborTown_MoveRelearnersHouse_EventScript_CantTeachEgg"
+          ],
+          "line": 30,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, FallarborTown_MoveRelearnersHouse_EventScript_CantTeachEgg",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HasMovesToRelearn"
+          ],
+          "line": 31,
+          "raw": "special HasMovesToRelearn",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "FallarborTown_MoveRelearnersHouse_EventScript_NoMoveToTeachMon"
+          ],
+          "line": 32,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, FallarborTown_MoveRelearnersHouse_EventScript_NoMoveToTeachMon",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMove"
+          ],
+          "line": 33,
+          "raw": "goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMove",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_MoveRelearnersHouse_Text_TutorWhichMon",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 24
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale",
+          "line": 28
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_CantTeachEgg",
+          "line": 30
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_NoMoveToTeachMon",
+          "line": 32
+        },
+        {
+          "op": "goto",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMove",
+          "line": 33
+        }
+      ]
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMove": {
+      "label": "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMove",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 37,
+          "raw": "msgbox FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "TeachMoveRelearnerMove"
+          ],
+          "line": 38,
+          "raw": "special TeachMoveRelearnerMove",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 39,
+          "raw": "waitstate",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "0",
+            "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon"
+          ],
+          "line": 40,
+          "raw": "goto_if_eq VAR_0x8004, 0, FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_Text_HandedOverHeartScale",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 41,
+          "raw": "msgbox FallarborTown_MoveRelearnersHouse_Text_HandedOverHeartScale, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "removeitem",
+          "args": [
+            "ITEM_HEART_SCALE"
+          ],
+          "line": 42,
+          "raw": "removeitem ITEM_HEART_SCALE",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale"
+          ],
+          "line": 43,
+          "raw": "goto FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 37
+        },
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_MoveRelearnersHouse_Text_HandedOverHeartScale",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 41
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon",
+          "line": 40
+        },
+        {
+          "op": "goto",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale",
+          "line": 43
+        }
+      ]
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_NoMoveToTeachMon": {
+      "label": "FallarborTown_MoveRelearnersHouse_EventScript_NoMoveToTeachMon",
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 47,
+          "raw": "msgbox FallarborTown_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon"
+          ],
+          "line": 48,
+          "raw": "goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 49,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 47
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon",
+          "line": 48
+        }
+      ]
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_CantTeachEgg": {
+      "label": "FallarborTown_MoveRelearnersHouse_EventScript_CantTeachEgg",
+      "kind": "script",
+      "line": 51,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 52,
+          "raw": "msgbox FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon"
+          ],
+          "line": 53,
+          "raw": "goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 54,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 52
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon",
+          "line": 53
+        }
+      ]
+    },
+    "FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale": {
+      "label": "FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale",
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FallarborTown_MoveRelearnersHouse_Text_ComeBackWithHeartScale",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 57,
+          "raw": "msgbox FallarborTown_MoveRelearnersHouse_Text_ComeBackWithHeartScale, MSGBOX_DEFAULT",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 58,
+          "raw": "releaseall",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 59,
+          "raw": "end",
+          "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FallarborTown_MoveRelearnersHouse_Text_ComeBackWithHeartScale",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 57
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "FallarborTown_MoveRelearnersHouse_Text_ImTheMoveTutor": {
+      "label": "FallarborTown_MoveRelearnersHouse_Text_ImTheMoveTutor",
+      "line": 61,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "raw_text": "大家都叫我\\n宝可梦招式爱好者！\\p宝可梦成长过程中能学会的\\n所有招式我都一清二楚。\\p我知道的那些招式\\n甚至可以教给宝可梦！\\p如果你给我心之鳞片，\\n我就把知道的招式教给你的宝可梦！$",
+      "display_text": "大家都叫我\n宝可梦招式爱好者！\n\n宝可梦成长过程中能学会的\n所有招式我都一清二楚。\n\n我知道的那些招式\n甚至可以教给宝可梦！\n\n如果你给我心之鳞片，\n我就把知道的招式教给你的宝可梦！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 165,
+        "bytes": [
+          2,
+          211,
+          5,
+          189,
+          3,
+          97,
+          7,
+          34,
+          13,
+          152,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          67,
+          12,
+          2,
+          1,
+          13,
+          4,
+          233,
+          16,
+          82,
+          60,
+          251,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          2,
+          75,
+          2,
+          38,
+          4,
+          197,
+          2,
+          78,
+          16,
+          161,
+          9,
+          210,
+          14,
+          144,
+          5,
+          110,
+          3,
+          11,
+          254,
+          12,
+          156,
+          15,
+          126,
+          16,
+          67,
+          12,
+          2,
+          13,
+          152,
+          3,
+          97,
+          15,
+          11,
+          11,
+          7,
+          3,
+          163,
+          2,
+          128,
+          55,
+          251,
+          13,
+          152,
+          16,
+          123,
+          3,
+          7,
+          3,
+          11,
+          9,
+          189,
+          14,
+          52,
+          16,
+          67,
+          12,
+          2,
+          254,
+          11,
+          211,
+          16,
+          146,
+          7,
+          215,
+          15,
+          36,
+          7,
+          30,
+          4,
+          98,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          60,
+          251,
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          4,
+          98,
+          13,
+          152,
+          14,
+          79,
+          16,
+          127,
+          8,
+          174,
+          10,
+          103,
+          59,
+          254,
+          13,
+          152,
+          7,
+          125,
+          1,
+          48,
+          16,
+          123,
+          3,
+          7,
+          3,
+          11,
+          16,
+          67,
+          12,
+          2,
+          7,
+          30,
+          4,
+          98,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          60,
+          255
+        ],
+        "hex": "02 D3 05 BD 03 61 07 22 0D 98 FE 01 63 07 D7 09 66 10 43 0C 02 01 0D 04 E9 10 52 3C FB 01 63 07 D7 09 66 02 4B 02 26 04 C5 02 4E 10 A1 09 D2 0E 90 05 6E 03 0B FE 0C 9C 0F 7E 10 43 0C 02 0D 98 03 61 0F 0B 0B 07 03 A3 02 80 37 FB 0D 98 10 7B 03 07 03 0B 09 BD 0E 34 10 43 0C 02 FE 0B D3 10 92 07 D7 0F 24 07 1E 04 62 01 63 07 D7 09 66 3C FB 0B 67 04 C3 09 D9 04 62 0D 98 0E 4F 10 7F 08 AE 0A 67 3B FE 0D 98 07 7D 01 30 10 7B 03 07 03 0B 10 43 0C 02 07 1E 04 62 09 D9 03 0B 01 63 07 D7 09 66 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 43,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 53,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 65,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 77,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 95,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_ThatsAHeartScaleWantMeToTeachMove": {
+      "label": "FallarborTown_MoveRelearnersHouse_Text_ThatsAHeartScaleWantMeToTeachMove",
+      "line": 64,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "raw_text": "哇哦！\\n这是心之鳞片！\\p要把招式教给你的宝可梦吗？$",
+      "display_text": "哇哦！\n这是心之鳞片！\n\n要把招式教给你的宝可梦吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          13,
+          67,
+          10,
+          19,
+          60,
+          254,
+          16,
+          85,
+          12,
+          12,
+          14,
+          79,
+          16,
+          127,
+          8,
+          174,
+          10,
+          103,
+          60,
+          251,
+          14,
+          241,
+          1,
+          48,
+          16,
+          67,
+          12,
+          2,
+          7,
+          30,
+          4,
+          98,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0D 43 0A 13 3C FE 10 55 0C 0C 0E 4F 10 7F 08 AE 0A 67 3C FB 0E F1 01 30 10 43 0C 02 07 1E 04 62 09 D9 03 0B 01 63 07 D7 09 66 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_TutorWhichMon": {
+      "label": "FallarborTown_MoveRelearnersHouse_Text_TutorWhichMon",
+      "line": 67,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "raw_text": "要选择哪只宝可梦？$",
+      "display_text": "要选择哪只宝可梦？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          14,
+          241,
+          14,
+          138,
+          16,
+          6,
+          9,
+          186,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          61,
+          255
+        ],
+        "hex": "0E F1 0E 8A 10 06 09 BA 10 8C 01 63 07 D7 09 66 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove": {
+      "label": "FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove",
+      "line": 70,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "raw_text": "要学习哪个招式？$",
+      "display_text": "要学习哪个招式？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          14,
+          241,
+          14,
+          144,
+          13,
+          212,
+          9,
+          186,
+          4,
+          96,
+          16,
+          67,
+          12,
+          2,
+          61,
+          255
+        ],
+        "hex": "0E F1 0E 90 0D D4 09 BA 04 60 10 43 0C 02 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon": {
+      "label": "FallarborTown_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon",
+      "line": 73,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "raw_text": "抱歉……\\p我看来没有能够教给\\n这只宝可梦的招式。$",
+      "display_text": "抱歉……\n\n我看来没有能够教给\n这只宝可梦的招式。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 44,
+        "bytes": [
+          1,
+          100,
+          10,
+          209,
+          176,
+          176,
+          251,
+          13,
+          152,
+          7,
+          194,
+          8,
+          41,
+          9,
+          83,
+          15,
+          126,
+          9,
+          210,
+          4,
+          131,
+          7,
+          30,
+          4,
+          98,
+          254,
+          16,
+          85,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          16,
+          67,
+          12,
+          2,
+          55,
+          255
+        ],
+        "hex": "01 64 0A D1 B0 B0 FB 0D 98 07 C2 08 29 09 53 0F 7E 09 D2 04 83 07 1E 04 62 FE 10 55 10 8C 01 63 07 D7 09 66 03 0B 10 43 0C 02 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 4,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_HandedOverHeartScale": {
+      "label": "FallarborTown_MoveRelearnersHouse_Text_HandedOverHeartScale",
+      "line": 76,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "raw_text": "{PLAYER}将1个心之鳞片\\n作为谢礼送给了对方！$",
+      "display_text": "{PLAYER}将1个心之鳞片\n作为谢礼送给了对方！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          253,
+          1,
+          5,
+          244,
+          162,
+          4,
+          96,
+          14,
+          79,
+          16,
+          127,
+          8,
+          174,
+          10,
+          103,
+          254,
+          17,
+          47,
+          13,
+          112,
+          14,
+          70,
+          8,
+          102,
+          12,
+          112,
+          4,
+          98,
+          8,
+          158,
+          3,
+          121,
+          3,
+          192,
+          60,
+          255
+        ],
+        "hex": "FD 01 05 F4 A2 04 60 0E 4F 10 7F 08 AE 0A 67 FE 11 2F 0D 70 0E 46 08 66 0C 70 04 62 08 9E 03 79 03 C0 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_ComeBackWithHeartScale": {
+      "label": "FallarborTown_MoveRelearnersHouse_Text_ComeBackWithHeartScale",
+      "line": 79,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "raw_text": "如果有想让宝可梦学习的招式，\\n就把心之鳞片带过来吧！$",
+      "display_text": "如果有想让宝可梦学习的招式，\n就把心之鳞片带过来吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 50,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          15,
+          126,
+          14,
+          24,
+          11,
+          67,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          144,
+          13,
+          212,
+          3,
+          11,
+          16,
+          67,
+          12,
+          2,
+          59,
+          254,
+          7,
+          125,
+          1,
+          48,
+          14,
+          79,
+          16,
+          127,
+          8,
+          174,
+          10,
+          103,
+          2,
+          216,
+          4,
+          197,
+          8,
+          41,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0B 67 04 C3 0F 7E 0E 18 0B 43 01 63 07 D7 09 66 0E 90 0D D4 03 0B 10 43 0C 02 3B FE 07 7D 01 30 0E 4F 10 7F 08 AE 0A 67 02 D8 04 C5 08 29 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg": {
+      "label": "FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg",
+      "line": 82,
+      "source_file": "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc",
+      "raw_text": "嗯……\\p蛋应该没法学习招式吧？$",
+      "display_text": "嗯……\n\n蛋应该没法学习招式吧？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          20,
+          97,
+          176,
+          176,
+          251,
+          2,
+          238,
+          15,
+          84,
+          4,
+          45,
+          9,
+          83,
+          3,
+          171,
+          14,
+          144,
+          13,
+          212,
+          16,
+          67,
+          12,
+          2,
+          1,
+          40,
+          61,
+          255
+        ],
+        "hex": "14 61 B0 B0 FB 02 EE 0F 54 04 2D 09 53 03 AB 0E 90 0D D4 10 43 0C 02 01 28 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 3,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 1,
+      "case": 1,
+      "checkitem": 1,
+      "chooseboxmon": 1,
+      "goto_if_eq": 5,
+      "goto_if_set": 1,
+      "removeitem": 1,
+      "setflag": 1,
+      "setmoverelearnerstate": 1,
+      "special": 3,
+      "switch": 1,
+      "waitmovement": 1,
+      "waitstate": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 16,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 8,
+    "encoded_text_count": 8,
+    "text_source_byte_count": 402,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 8
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 1,
+      "case": 1,
+      "checkitem": 1,
+      "chooseboxmon": 1,
+      "end": 7,
+      "goto": 6,
+      "goto_if_eq": 5,
+      "goto_if_set": 1,
+      "lockall": 1,
+      "msgbox": 8,
+      "releaseall": 1,
+      "removeitem": 1,
+      "setflag": 1,
+      "setmoverelearnerstate": 1,
+      "special": 3,
+      "switch": 1,
+      "waitmovement": 1,
+      "waitstate": 2
+    }
+  }
+}

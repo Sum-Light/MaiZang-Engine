@@ -1,0 +1,1421 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "ViridianCity_Mart_Frlg",
+    "map_script": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+    "map_json": "data/maps/ViridianCity_Mart_Frlg/map.json",
+    "map_id": "MAP_VIRIDIAN_CITY_MART",
+    "map_name": "ViridianCity_Mart_Frlg"
+  },
+  "labels": {
+    "ViridianCity_Mart_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_Mart_OnLoad": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Mart_EventScript_HideQuestionnaire": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_Mart_OnFrame": {
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Mart_EventScript_ParcelScene": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 15
+    },
+    "ViridianCity_Mart_Movement_ApproachCounter": {
+      "kind": "movement",
+      "line": 36,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "ViridianCity_Mart_Movement_FacePlayer": {
+      "kind": "movement",
+      "line": 44,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "ViridianCity_Mart_EventScript_Clerk": {
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "ViridianCity_Mart_Items": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "ViridianCity_Mart_EventScript_SayHiToOak": {
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_Mart_EventScript_Woman": {
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Mart_EventScript_Youngster": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Mart_Text_YouCameFromPallet": {
+      "kind": "text",
+      "line": 86,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Mart_Text_TakeThisToProfOak": {
+      "kind": "text",
+      "line": 90,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ViridianCity_Mart_Text_ReceivedOaksParcelFromClerk": {
+      "kind": "text",
+      "line": 95,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Mart_Text_SayHiToOakForMe": {
+      "kind": "text",
+      "line": 99,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Mart_Text_ShopDoesGoodBusinessInAntidotes": {
+      "kind": "text",
+      "line": 103,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ViridianCity_Mart_Text_GotToBuySomePotions": {
+      "kind": "text",
+      "line": 107,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "ViridianCity_Mart_Frlg_MapScripts": {
+      "label": "ViridianCity_Mart_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "ViridianCity_Mart_OnLoad"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, ViridianCity_Mart_OnLoad",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "ViridianCity_Mart_OnFrame"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, ViridianCity_Mart_OnFrame",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ViridianCity_Mart_OnLoad": {
+      "label": "ViridianCity_Mart_OnLoad",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_SYS_POKEDEX_GET",
+            "ViridianCity_Mart_EventScript_HideQuestionnaire"
+          ],
+          "line": 7,
+          "raw": "goto_if_unset FLAG_SYS_POKEDEX_GET, ViridianCity_Mart_EventScript_HideQuestionnaire",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "ViridianCity_Mart_EventScript_HideQuestionnaire",
+          "line": 7
+        }
+      ]
+    },
+    "ViridianCity_Mart_EventScript_HideQuestionnaire": {
+      "label": "ViridianCity_Mart_EventScript_HideQuestionnaire",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "1",
+            "3",
+            "METATILE_Mart_CounterMid_Top",
+            "1"
+          ],
+          "line": 11,
+          "raw": "setmetatile 1, 3, METATILE_Mart_CounterMid_Top, 1",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "1",
+            "4",
+            "METATILE_Mart_CounterMid_Bottom",
+            "1"
+          ],
+          "line": 12,
+          "raw": "setmetatile 1, 4, METATILE_Mart_CounterMid_Bottom, 1",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ViridianCity_Mart_OnFrame": {
+      "label": "ViridianCity_Mart_OnFrame",
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_MART",
+            "0",
+            "ViridianCity_Mart_EventScript_ParcelScene"
+          ],
+          "line": 16,
+          "raw": "map_script_2 VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 0, ViridianCity_Mart_EventScript_ParcelScene",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 17,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ViridianCity_Mart_EventScript_ParcelScene": {
+      "label": "ViridianCity_Mart_EventScript_ParcelScene",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 20,
+          "raw": "lockall",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 21,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_VIRIDIAN_MART_CLERK",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 22,
+          "raw": "applymovement LOCALID_VIRIDIAN_MART_CLERK, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 23,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Mart_Text_YouCameFromPallet"
+          ],
+          "line": 24,
+          "raw": "msgbox ViridianCity_Mart_Text_YouCameFromPallet",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 25,
+          "raw": "closemessage",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_VIRIDIAN_MART_CLERK",
+            "ViridianCity_Mart_Movement_FacePlayer"
+          ],
+          "line": 26,
+          "raw": "applymovement LOCALID_VIRIDIAN_MART_CLERK, ViridianCity_Mart_Movement_FacePlayer",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "ViridianCity_Mart_Movement_ApproachCounter"
+          ],
+          "line": 27,
+          "raw": "applymovement LOCALID_PLAYER, ViridianCity_Mart_Movement_ApproachCounter",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 28,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Mart_Text_TakeThisToProfOak"
+          ],
+          "line": 29,
+          "raw": "msgbox ViridianCity_Mart_Text_TakeThisToProfOak",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_MART",
+            "1"
+          ],
+          "line": 30,
+          "raw": "setvar VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 1",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "giveitem_msg",
+          "args": [
+            "ViridianCity_Mart_Text_ReceivedOaksParcelFromClerk",
+            "ITEM_OAKS_PARCEL",
+            "1",
+            "MUS_RG_OBTAIN_KEY_ITEM"
+          ],
+          "line": 31,
+          "raw": "giveitem_msg ViridianCity_Mart_Text_ReceivedOaksParcelFromClerk, ITEM_OAKS_PARCEL, 1, MUS_RG_OBTAIN_KEY_ITEM",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB",
+            "5"
+          ],
+          "line": 32,
+          "raw": "setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 5",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 33,
+          "raw": "releaseall",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Mart_Text_YouCameFromPallet",
+          "mode": "",
+          "line": 24
+        },
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Mart_Text_TakeThisToProfOak",
+          "mode": "",
+          "line": 29
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_Mart_EventScript_Clerk": {
+      "label": "ViridianCity_Mart_EventScript_Clerk",
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 53,
+          "raw": "lock",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 54,
+          "raw": "faceplayer",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_VIRIDIAN_CITY_MART",
+            "1",
+            "ViridianCity_Mart_EventScript_SayHiToOak"
+          ],
+          "line": 55,
+          "raw": "goto_if_eq VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 1, ViridianCity_Mart_EventScript_SayHiToOak",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_HowMayIServeYou"
+          ],
+          "line": 56,
+          "raw": "message gText_HowMayIServeYou",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 57,
+          "raw": "waitmessage",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "pokemart",
+          "args": [
+            "ViridianCity_Mart_Items"
+          ],
+          "line": 58,
+          "raw": "pokemart ViridianCity_Mart_Items",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain"
+          ],
+          "line": 59,
+          "raw": "msgbox gText_PleaseComeAgain",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 60,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 61,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 63,
+          "raw": ".align 2",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_HowMayIServeYou",
+          "mode": "",
+          "line": 56
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "",
+          "line": 59
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "ViridianCity_Mart_EventScript_SayHiToOak",
+          "line": 55
+        }
+      ]
+    },
+    "ViridianCity_Mart_Items": {
+      "label": "ViridianCity_Mart_Items",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POKE_BALL"
+          ],
+          "line": 65,
+          "raw": ".2byte ITEM_POKE_BALL",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POTION"
+          ],
+          "line": 66,
+          "raw": ".2byte ITEM_POTION",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ANTIDOTE"
+          ],
+          "line": 67,
+          "raw": ".2byte ITEM_ANTIDOTE",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_PARALYZE_HEAL"
+          ],
+          "line": 68,
+          "raw": ".2byte ITEM_PARALYZE_HEAL",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_NONE"
+          ],
+          "line": 69,
+          "raw": ".2byte ITEM_NONE",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 70,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 71,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ViridianCity_Mart_EventScript_SayHiToOak": {
+      "label": "ViridianCity_Mart_EventScript_SayHiToOak",
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Mart_Text_SayHiToOakForMe"
+          ],
+          "line": 74,
+          "raw": "msgbox ViridianCity_Mart_Text_SayHiToOakForMe",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 75,
+          "raw": "release",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 76,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Mart_Text_SayHiToOakForMe",
+          "mode": "",
+          "line": 74
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_Mart_EventScript_Woman": {
+      "label": "ViridianCity_Mart_EventScript_Woman",
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Mart_Text_ShopDoesGoodBusinessInAntidotes",
+            "MSGBOX_NPC"
+          ],
+          "line": 79,
+          "raw": "msgbox ViridianCity_Mart_Text_ShopDoesGoodBusinessInAntidotes, MSGBOX_NPC",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 80,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Mart_Text_ShopDoesGoodBusinessInAntidotes",
+          "mode": "MSGBOX_NPC",
+          "line": 79
+        }
+      ],
+      "branch_targets": []
+    },
+    "ViridianCity_Mart_EventScript_Youngster": {
+      "label": "ViridianCity_Mart_EventScript_Youngster",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ViridianCity_Mart_Text_GotToBuySomePotions",
+            "MSGBOX_NPC"
+          ],
+          "line": 83,
+          "raw": "msgbox ViridianCity_Mart_Text_GotToBuySomePotions, MSGBOX_NPC",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 84,
+          "raw": "end",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ViridianCity_Mart_Text_GotToBuySomePotions",
+          "mode": "MSGBOX_NPC",
+          "line": 83
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "ViridianCity_Mart_Movement_ApproachCounter": {
+      "label": "ViridianCity_Mart_Movement_ApproachCounter",
+      "kind": "movement",
+      "line": 36,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 37,
+          "raw": "walk_up",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 38,
+          "raw": "walk_up",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 39,
+          "raw": "walk_up",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 40,
+          "raw": "walk_up",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 41,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 42,
+          "raw": "step_end",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ViridianCity_Mart_Movement_FacePlayer": {
+      "label": "ViridianCity_Mart_Movement_FacePlayer",
+      "kind": "movement",
+      "line": 44,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 45,
+          "raw": "delay_16",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 46,
+          "raw": "delay_16",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 47,
+          "raw": "delay_16",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 48,
+          "raw": "delay_16",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 49,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 50,
+          "raw": "step_end",
+          "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "ViridianCity_Mart_Text_YouCameFromPallet": {
+      "label": "ViridianCity_Mart_Text_YouCameFromPallet",
+      "line": 86,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "raw_text": "嘿！\\n你来自真新镇？$",
+      "display_text": "嘿！\n你来自真新镇？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          5,
+          8,
+          60,
+          254,
+          9,
+          217,
+          8,
+          41,
+          17,
+          12,
+          16,
+          89,
+          14,
+          77,
+          16,
+          101,
+          61,
+          255
+        ],
+        "hex": "05 08 3C FE 09 D9 08 29 11 0C 10 59 0E 4D 10 65 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Mart_Text_TakeThisToProfOak": {
+      "label": "ViridianCity_Mart_Text_TakeThisToProfOak",
+      "line": 90,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "raw_text": "你认识大木博士，对吗？\\p他订的包裹到了。\\n你能帮我捎给他吗？$",
+      "display_text": "你认识大木博士，对吗？\n\n他订的包裹到了。\n你能帮我捎给他吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 55,
+        "bytes": [
+          9,
+          217,
+          11,
+          79,
+          11,
+          242,
+          2,
+          211,
+          9,
+          180,
+          1,
+          196,
+          12,
+          4,
+          59,
+          3,
+          121,
+          9,
+          42,
+          61,
+          251,
+          12,
+          158,
+          3,
+          78,
+          3,
+          11,
+          1,
+          91,
+          4,
+          196,
+          3,
+          4,
+          8,
+          158,
+          55,
+          254,
+          9,
+          217,
+          9,
+          210,
+          1,
+          78,
+          13,
+          152,
+          11,
+          177,
+          4,
+          98,
+          12,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "09 D9 0B 4F 0B F2 02 D3 09 B4 01 C4 0C 04 3B 03 79 09 2A 3D FB 0C 9E 03 4E 03 0B 01 5B 04 C4 03 04 08 9E 37 FE 09 D9 09 D2 01 4E 0D 98 0B B1 04 62 0C 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Mart_Text_ReceivedOaksParcelFromClerk": {
+      "label": "ViridianCity_Mart_Text_ReceivedOaksParcelFromClerk",
+      "line": 95,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "raw_text": "{PLAYER}从宝可梦商店的店员处\\n得到了大木的包裹。$",
+      "display_text": "{PLAYER}从宝可梦商店的店员处\n得到了大木的包裹。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 41,
+        "bytes": [
+          253,
+          1,
+          2,
+          179,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          170,
+          3,
+          49,
+          3,
+          11,
+          3,
+          49,
+          15,
+          189,
+          2,
+          134,
+          254,
+          3,
+          10,
+          3,
+          4,
+          8,
+          158,
+          2,
+          211,
+          9,
+          180,
+          3,
+          11,
+          1,
+          91,
+          4,
+          196,
+          55,
+          255
+        ],
+        "hex": "FD 01 02 B3 01 63 07 D7 09 66 0B AA 03 31 03 0B 03 31 0F BD 02 86 FE 03 0A 03 04 08 9E 02 D3 09 B4 03 0B 01 5B 04 C4 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Mart_Text_SayHiToOakForMe": {
+      "label": "ViridianCity_Mart_Text_SayHiToOakForMe",
+      "line": 99,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "raw_text": "谢谢！请替我向\\n大木博士问好。$",
+      "display_text": "谢谢！请替我向\n大木博士问好。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          14,
+          70,
+          14,
+          70,
+          60,
+          11,
+          13,
+          12,
+          231,
+          13,
+          152,
+          14,
+          31,
+          254,
+          2,
+          211,
+          9,
+          180,
+          1,
+          196,
+          12,
+          4,
+          13,
+          144,
+          4,
+          233,
+          55,
+          255
+        ],
+        "hex": "0E 46 0E 46 3C 0B 0D 0C E7 0D 98 0E 1F FE 02 D3 09 B4 01 C4 0C 04 0D 90 04 E9 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Mart_Text_ShopDoesGoodBusinessInAntidotes": {
+      "label": "ViridianCity_Mart_Text_ShopDoesGoodBusinessInAntidotes",
+      "line": 103,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "raw_text": "我听说这家商店的\\n解毒药卖的很好。$",
+      "display_text": "我听说这家商店的\n解毒药卖的很好。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 33,
+        "bytes": [
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          16,
+          85,
+          5,
+          189,
+          11,
+          170,
+          3,
+          49,
+          3,
+          11,
+          254,
+          7,
+          52,
+          3,
+          99,
+          14,
+          240,
+          9,
+          46,
+          3,
+          11,
+          5,
+          11,
+          4,
+          233,
+          55,
+          255
+        ],
+        "hex": "0D 98 0D 07 0C 58 10 55 05 BD 0B AA 03 31 03 0B FE 07 34 03 63 0E F0 09 2E 03 0B 05 0B 04 E9 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ViridianCity_Mart_Text_GotToBuySomePotions": {
+      "label": "ViridianCity_Mart_Text_GotToBuySomePotions",
+      "line": 107,
+      "source_file": "data/maps/ViridianCity_Mart_Frlg/scripts.inc",
+      "raw_text": "我要买一些伤药。\\p你无法预见你的宝可梦\\n什么时候需要快速恢复。$",
+      "display_text": "我要买一些伤药。\n\n你无法预见你的宝可梦\n什么时候需要快速恢复。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 59,
+        "bytes": [
+          13,
+          152,
+          14,
+          241,
+          9,
+          44,
+          15,
+          11,
+          14,
+          52,
+          11,
+          169,
+          14,
+          240,
+          55,
+          251,
+          9,
+          217,
+          13,
+          164,
+          3,
+          171,
+          15,
+          176,
+          5,
+          230,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          11,
+          238,
+          9,
+          76,
+          11,
+          237,
+          5,
+          33,
+          14,
+          115,
+          14,
+          241,
+          8,
+          3,
+          12,
+          124,
+          5,
+          99,
+          4,
+          30,
+          55,
+          255
+        ],
+        "hex": "0D 98 0E F1 09 2C 0F 0B 0E 34 0B A9 0E F0 37 FB 09 D9 0D A4 03 AB 0F B0 05 E6 09 D9 03 0B 01 63 07 D7 09 66 FE 0B EE 09 4C 0B ED 05 21 0E 73 0E F1 08 03 0C 7C 05 63 04 1E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 33,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 3,
+      "closemessage": 1,
+      "delay_16": 4,
+      "faceplayer": 1,
+      "giveitem_msg": 1,
+      "goto_if_eq": 1,
+      "goto_if_unset": 1,
+      "map_script": 2,
+      "map_script_2": 1,
+      "pokemart": 1,
+      "setmetatile": 2,
+      "setvar": 2,
+      "step_end": 2,
+      "textcolor": 1,
+      "waitmessage": 1,
+      "waitmovement": 2,
+      "walk_in_place_faster_left": 1,
+      "walk_in_place_faster_right": 1,
+      "walk_up": 4
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 18,
+    "script_count": 10,
+    "movement_count": 2,
+    "text_count": 6,
+    "encoded_text_count": 6,
+    "text_source_byte_count": 234,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 6
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 3,
+      "closemessage": 1,
+      "delay_16": 4,
+      "end": 8,
+      "faceplayer": 1,
+      "giveitem_msg": 1,
+      "goto_if_eq": 1,
+      "goto_if_unset": 1,
+      "lock": 1,
+      "lockall": 1,
+      "map_script": 2,
+      "map_script_2": 1,
+      "message": 1,
+      "msgbox": 6,
+      "pokemart": 1,
+      "release": 3,
+      "releaseall": 1,
+      "setmetatile": 2,
+      "setvar": 2,
+      "step_end": 2,
+      "textcolor": 1,
+      "waitmessage": 1,
+      "waitmovement": 2,
+      "walk_in_place_faster_left": 1,
+      "walk_in_place_faster_right": 1,
+      "walk_up": 4
+    }
+  }
+}

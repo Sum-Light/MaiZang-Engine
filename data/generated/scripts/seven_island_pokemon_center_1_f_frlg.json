@@ -1,0 +1,742 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SevenIsland_PokemonCenter_1F_Frlg",
+    "map_script": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+    "map_json": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/map.json",
+    "map_id": "MAP_SEVEN_ISLAND_POKEMON_CENTER_1F",
+    "map_name": "SevenIsland_PokemonCenter_1F_Frlg"
+  },
+  "labels": {
+    "SevenIsland_PokemonCenter_1F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SevenIsland_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "SevenIsland_PokemonCenter_1F_EventScript_OldMan": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_PokemonCenter_1F_EventScript_Sailor": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_PokemonCenter_1F_EventScript_Beauty": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SevenIsland_PokemonCenter_1F_Text_EventsDependingOnConnections": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "SevenIsland_PokemonCenter_1F_Text_DidYouRideSeagallopHere": {
+      "kind": "text",
+      "line": 36,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "SevenIsland_PokemonCenter_1F_Text_CheckOutTrainerTower": {
+      "kind": "text",
+      "line": 44,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "SevenIsland_PokemonCenter_1F_Frlg_MapScripts": {
+      "label": "SevenIsland_PokemonCenter_1F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SevenIsland_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SevenIsland_PokemonCenter_1F_OnTransition": {
+      "label": "SevenIsland_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_SEVEN_ISLAND"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_SEVEN_ISLAND",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SevenIsland_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "SevenIsland_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 11,
+          "raw": "lock",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 12,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_PkmnCenterNurse_Frlg"
+          ],
+          "line": 13,
+          "raw": "call EventScript_PkmnCenterNurse_Frlg",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_PkmnCenterNurse_Frlg",
+          "line": 13
+        }
+      ]
+    },
+    "SevenIsland_PokemonCenter_1F_EventScript_OldMan": {
+      "label": "SevenIsland_PokemonCenter_1F_EventScript_OldMan",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SevenIsland_PokemonCenter_1F_Text_EventsDependingOnConnections",
+            "MSGBOX_NPC"
+          ],
+          "line": 18,
+          "raw": "msgbox SevenIsland_PokemonCenter_1F_Text_EventsDependingOnConnections, MSGBOX_NPC",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SevenIsland_PokemonCenter_1F_Text_EventsDependingOnConnections",
+          "mode": "MSGBOX_NPC",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "SevenIsland_PokemonCenter_1F_EventScript_Sailor": {
+      "label": "SevenIsland_PokemonCenter_1F_EventScript_Sailor",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SevenIsland_PokemonCenter_1F_Text_DidYouRideSeagallopHere",
+            "MSGBOX_NPC"
+          ],
+          "line": 22,
+          "raw": "msgbox SevenIsland_PokemonCenter_1F_Text_DidYouRideSeagallopHere, MSGBOX_NPC",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SevenIsland_PokemonCenter_1F_Text_DidYouRideSeagallopHere",
+          "mode": "MSGBOX_NPC",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    },
+    "SevenIsland_PokemonCenter_1F_EventScript_Beauty": {
+      "label": "SevenIsland_PokemonCenter_1F_EventScript_Beauty",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SevenIsland_PokemonCenter_1F_Text_CheckOutTrainerTower",
+            "MSGBOX_NPC"
+          ],
+          "line": 26,
+          "raw": "msgbox SevenIsland_PokemonCenter_1F_Text_CheckOutTrainerTower, MSGBOX_NPC",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SevenIsland_PokemonCenter_1F_Text_CheckOutTrainerTower",
+          "mode": "MSGBOX_NPC",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SevenIsland_PokemonCenter_1F_Text_EventsDependingOnConnections": {
+      "label": "SevenIsland_PokemonCenter_1F_Text_EventsDependingOnConnections",
+      "line": 29,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "在这岛上，不同的事件\\n都有着一定的关联。\\p这都是些什么关联？\\p这就要靠你\\n自己去探索了。$",
+      "display_text": "在这岛上，不同的事件\n都有着一定的关联。\n\n这都是些什么关联？\n\n这就要靠你\n自己去探索了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 81,
+        "bytes": [
+          15,
+          230,
+          16,
+          85,
+          3,
+          1,
+          11,
+          173,
+          59,
+          1,
+          214,
+          13,
+          20,
+          3,
+          11,
+          12,
+          7,
+          5,
+          233,
+          254,
+          3,
+          97,
+          15,
+          126,
+          16,
+          244,
+          15,
+          11,
+          3,
+          77,
+          3,
+          11,
+          4,
+          160,
+          8,
+          125,
+          55,
+          251,
+          16,
+          85,
+          3,
+          97,
+          12,
+          12,
+          14,
+          52,
+          11,
+          238,
+          9,
+          76,
+          4,
+          160,
+          8,
+          125,
+          61,
+          251,
+          16,
+          85,
+          7,
+          125,
+          14,
+          241,
+          7,
+          205,
+          9,
+          217,
+          254,
+          17,
+          12,
+          5,
+          165,
+          11,
+          37,
+          12,
+          190,
+          12,
+          154,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0F E6 10 55 03 01 0B AD 3B 01 D6 0D 14 03 0B 0C 07 05 E9 FE 03 61 0F 7E 10 F4 0F 0B 03 4D 03 0B 04 A0 08 7D 37 FB 10 55 03 61 0C 0C 0E 34 0B EE 09 4C 04 A0 08 7D 3D FB 10 55 07 7D 0E F1 07 CD 09 D9 FE 11 0C 05 A5 0B 25 0C BE 0C 9A 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_PokemonCenter_1F_Text_DidYouRideSeagallopHere": {
+      "label": "SevenIsland_PokemonCenter_1F_Text_DidYouRideSeagallopHere",
+      "line": 36,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "你是乘坐海烈焰马号\\n来到这里的吗？\\p这里至少有十艘\\n这种高速船。\\p不过我都不知道\\n它们会航行到哪里。$",
+      "display_text": "你是乘坐海烈焰马号\n来到这里的吗？\n\n这里至少有十艘\n这种高速船。\n\n不过我都不知道\n它们会航行到哪里。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 93,
+        "bytes": [
+          9,
+          217,
+          12,
+          12,
+          2,
+          77,
+          17,
+          48,
+          4,
+          201,
+          8,
+          165,
+          14,
+          207,
+          9,
+          39,
+          4,
+          235,
+          254,
+          8,
+          41,
+          3,
+          4,
+          16,
+          85,
+          8,
+          100,
+          3,
+          11,
+          9,
+          42,
+          61,
+          251,
+          16,
+          85,
+          8,
+          100,
+          16,
+          146,
+          11,
+          183,
+          15,
+          126,
+          11,
+          234,
+          12,
+          117,
+          254,
+          16,
+          85,
+          16,
+          167,
+          4,
+          73,
+          12,
+          124,
+          2,
+          140,
+          55,
+          251,
+          1,
+          214,
+          4,
+          197,
+          13,
+          152,
+          3,
+          97,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          254,
+          12,
+          159,
+          9,
+          95,
+          5,
+          110,
+          4,
+          227,
+          14,
+          91,
+          3,
+          4,
+          9,
+          186,
+          8,
+          100,
+          55,
+          255
+        ],
+        "hex": "09 D9 0C 0C 02 4D 11 30 04 C9 08 A5 0E CF 09 27 04 EB FE 08 29 03 04 10 55 08 64 03 0B 09 2A 3D FB 10 55 08 64 10 92 0B B7 0F 7E 0B EA 0C 75 FE 10 55 10 A7 04 49 0C 7C 02 8C 37 FB 01 D6 04 C5 0D 98 03 61 01 D6 10 7B 03 07 FE 0C 9F 09 5F 05 6E 04 E3 0E 5B 03 04 09 BA 08 64 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 35,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 55,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SevenIsland_PokemonCenter_1F_Text_CheckOutTrainerTower": {
+      "label": "SevenIsland_PokemonCenter_1F_Text_CheckOutTrainerTower",
+      "line": 44,
+      "source_file": "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "如果你够自信，你可以\\n去训练家之塔。$",
+      "display_text": "如果你够自信，你可以\n去训练家之塔。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          9,
+          217,
+          4,
+          131,
+          17,
+          12,
+          14,
+          80,
+          59,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          254,
+          11,
+          37,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          16,
+          127,
+          12,
+          161,
+          55,
+          255
+        ],
+        "hex": "0B 67 04 C3 09 D9 04 83 11 0C 0E 50 3B 09 D9 07 D7 0F 24 FE 0B 25 0E 9E 08 8A 05 BD 10 7F 0C A1 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "map_script": 2,
+      "setrespawn": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 208,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "end": 5,
+      "faceplayer": 1,
+      "lock": 1,
+      "map_script": 2,
+      "msgbox": 3,
+      "release": 1,
+      "setrespawn": 1
+    }
+  }
+}

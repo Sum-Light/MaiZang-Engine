@@ -1,0 +1,1276 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "IslandCave",
+    "map_script": "data/maps/IslandCave/scripts.inc",
+    "map_json": "data/maps/IslandCave/map.json",
+    "map_id": "MAP_ISLAND_CAVE",
+    "map_name": "IslandCave"
+  },
+  "labels": {
+    "IslandCave_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 4
+    },
+    "IslandCave_OnResume": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 2
+    },
+    "IslandCave_EventScript_TryRemoveRegice": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 4
+    },
+    "IslandCave_OnLoad": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 2
+    },
+    "IslandCave_EventScript_HideRegiEntrance": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 7
+    },
+    "IslandCave_OnTransition": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 4
+    },
+    "IslandCave_EventScript_ShowRegice": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 2
+    },
+    "IslandCave_EventScript_OpenRegiEntrance": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 10
+    },
+    "IslandCave_EventScript_CaveEntranceMiddle": {
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 8
+    },
+    "IslandCave_EventScript_BigHoleInWall": {
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 3
+    },
+    "IslandCave_EventScript_CaveEntranceSide": {
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 8
+    },
+    "IslandCave_EventScript_CloseBrailleMsg": {
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 4
+    },
+    "IslandCave_EventScript_ClearSteps": {
+      "kind": "script",
+      "line": 83,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 5
+    },
+    "IslandCave_EventScript_Regice": {
+      "kind": "script",
+      "line": 90,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 18
+    },
+    "IslandCave_EventScript_DefeatedRegice": {
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 3
+    },
+    "IslandCave_EventScript_RanFromRegice": {
+      "kind": "script",
+      "line": 115,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "IslandCave_MapScripts": {
+      "label": "IslandCave_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "IslandCave_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, IslandCave_OnResume",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "IslandCave_OnLoad"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, IslandCave_OnLoad",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "IslandCave_OnTransition"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, IslandCave_OnTransition",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "IslandCave_OnResume": {
+      "label": "IslandCave_OnResume",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE",
+            "IslandCave_EventScript_TryRemoveRegice"
+          ],
+          "line": 8,
+          "raw": "call_if_set FLAG_SYS_CTRL_OBJ_DELETE, IslandCave_EventScript_TryRemoveRegice",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "IslandCave_EventScript_TryRemoveRegice",
+          "line": 8
+        }
+      ]
+    },
+    "IslandCave_EventScript_TryRemoveRegice": {
+      "label": "IslandCave_EventScript_TryRemoveRegice",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 12,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_CAUGHT",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 13,
+          "raw": "goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "VAR_LAST_TALKED"
+          ],
+          "line": 14,
+          "raw": "removeobject VAR_LAST_TALKED",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 15,
+          "raw": "return",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "Common_EventScript_NopReturn",
+          "line": 13
+        }
+      ]
+    },
+    "IslandCave_OnLoad": {
+      "label": "IslandCave_OnLoad",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_SYS_BRAILLE_REGICE_COMPLETED",
+            "IslandCave_EventScript_HideRegiEntrance"
+          ],
+          "line": 18,
+          "raw": "call_if_unset FLAG_SYS_BRAILLE_REGICE_COMPLETED, IslandCave_EventScript_HideRegiEntrance",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "IslandCave_EventScript_HideRegiEntrance",
+          "line": 18
+        }
+      ]
+    },
+    "IslandCave_EventScript_HideRegiEntrance": {
+      "label": "IslandCave_EventScript_HideRegiEntrance",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "19",
+            "METATILE_Cave_EntranceCover",
+            "TRUE"
+          ],
+          "line": 22,
+          "raw": "setmetatile 7, 19, METATILE_Cave_EntranceCover, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "8",
+            "19",
+            "METATILE_Cave_EntranceCover",
+            "TRUE"
+          ],
+          "line": 23,
+          "raw": "setmetatile 8, 19, METATILE_Cave_EntranceCover, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "9",
+            "19",
+            "METATILE_Cave_EntranceCover",
+            "TRUE"
+          ],
+          "line": 24,
+          "raw": "setmetatile 9, 19, METATILE_Cave_EntranceCover, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "20",
+            "METATILE_Cave_SealedChamberBraille_Mid",
+            "TRUE"
+          ],
+          "line": 25,
+          "raw": "setmetatile 7, 20, METATILE_Cave_SealedChamberBraille_Mid, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "8",
+            "20",
+            "METATILE_Cave_SealedChamberBraille_Mid",
+            "TRUE"
+          ],
+          "line": 26,
+          "raw": "setmetatile 8, 20, METATILE_Cave_SealedChamberBraille_Mid, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "9",
+            "20",
+            "METATILE_Cave_SealedChamberBraille_Mid",
+            "TRUE"
+          ],
+          "line": 27,
+          "raw": "setmetatile 9, 20, METATILE_Cave_SealedChamberBraille_Mid, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 28,
+          "raw": "return",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "IslandCave_OnTransition": {
+      "label": "IslandCave_OnTransition",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_LANDMARK_ISLAND_CAVE"
+          ],
+          "line": 31,
+          "raw": "setflag FLAG_LANDMARK_ISLAND_CAVE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "IslandCave_EventScript_ClearSteps"
+          ],
+          "line": 32,
+          "raw": "call IslandCave_EventScript_ClearSteps",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_DEFEATED_REGICE",
+            "IslandCave_EventScript_ShowRegice"
+          ],
+          "line": 33,
+          "raw": "call_if_unset FLAG_DEFEATED_REGICE, IslandCave_EventScript_ShowRegice",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "IslandCave_EventScript_ClearSteps",
+          "line": 32
+        },
+        {
+          "op": "call_if_unset",
+          "target": "IslandCave_EventScript_ShowRegice",
+          "line": 33
+        }
+      ]
+    },
+    "IslandCave_EventScript_ShowRegice": {
+      "label": "IslandCave_EventScript_ShowRegice",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_REGICE"
+          ],
+          "line": 37,
+          "raw": "clearflag FLAG_HIDE_REGICE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 38,
+          "raw": "return",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "IslandCave_EventScript_OpenRegiEntrance": {
+      "label": "IslandCave_EventScript_OpenRegiEntrance",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "19",
+            "METATILE_Cave_SealedChamberEntrance_TopLeft",
+            "TRUE"
+          ],
+          "line": 41,
+          "raw": "setmetatile 7, 19, METATILE_Cave_SealedChamberEntrance_TopLeft, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "8",
+            "19",
+            "METATILE_Cave_SealedChamberEntrance_TopMid",
+            "TRUE"
+          ],
+          "line": 42,
+          "raw": "setmetatile 8, 19, METATILE_Cave_SealedChamberEntrance_TopMid, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "9",
+            "19",
+            "METATILE_Cave_SealedChamberEntrance_TopRight",
+            "TRUE"
+          ],
+          "line": 43,
+          "raw": "setmetatile 9, 19, METATILE_Cave_SealedChamberEntrance_TopRight, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "7",
+            "20",
+            "METATILE_Cave_SealedChamberEntrance_BottomLeft",
+            "TRUE"
+          ],
+          "line": 44,
+          "raw": "setmetatile 7, 20, METATILE_Cave_SealedChamberEntrance_BottomLeft, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "8",
+            "20",
+            "METATILE_Cave_SealedChamberEntrance_BottomMid",
+            "FALSE"
+          ],
+          "line": 45,
+          "raw": "setmetatile 8, 20, METATILE_Cave_SealedChamberEntrance_BottomMid, FALSE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "9",
+            "20",
+            "METATILE_Cave_SealedChamberEntrance_BottomRight",
+            "TRUE"
+          ],
+          "line": 46,
+          "raw": "setmetatile 9, 20, METATILE_Cave_SealedChamberEntrance_BottomRight, TRUE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 47,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_BANG"
+          ],
+          "line": 48,
+          "raw": "playse SE_BANG",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_BRAILLE_REGICE_COMPLETED"
+          ],
+          "line": 49,
+          "raw": "setflag FLAG_SYS_BRAILLE_REGICE_COMPLETED",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 50,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "IslandCave_EventScript_CaveEntranceMiddle": {
+      "label": "IslandCave_EventScript_CaveEntranceMiddle",
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 53,
+          "raw": "lockall",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_TEMP_REGICE_PUZZLE_FAILED",
+            "IslandCave_EventScript_ClearSteps"
+          ],
+          "line": 54,
+          "raw": "call_if_set FLAG_TEMP_REGICE_PUZZLE_FAILED, IslandCave_EventScript_ClearSteps",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_SYS_BRAILLE_REGICE_COMPLETED",
+            "IslandCave_EventScript_BigHoleInWall"
+          ],
+          "line": 55,
+          "raw": "goto_if_set FLAG_SYS_BRAILLE_REGICE_COMPLETED, IslandCave_EventScript_BigHoleInWall",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "braillemessage",
+          "args": [
+            "IslandCave_Braille_RunLapAroundWall"
+          ],
+          "line": 56,
+          "raw": "braillemessage IslandCave_Braille_RunLapAroundWall",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_REGICE_PUZZLE_STARTED"
+          ],
+          "line": 57,
+          "raw": "setflag FLAG_TEMP_REGICE_PUZZLE_STARTED",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShouldDoBrailleRegicePuzzle"
+          ],
+          "line": 58,
+          "raw": "special ShouldDoBrailleRegicePuzzle",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "IslandCave_EventScript_CloseBrailleMsg"
+          ],
+          "line": 59,
+          "raw": "goto IslandCave_EventScript_CloseBrailleMsg",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 60,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "IslandCave_EventScript_ClearSteps",
+          "line": 54
+        },
+        {
+          "op": "goto_if_set",
+          "target": "IslandCave_EventScript_BigHoleInWall",
+          "line": 55
+        },
+        {
+          "op": "goto",
+          "target": "IslandCave_EventScript_CloseBrailleMsg",
+          "line": 59
+        }
+      ]
+    },
+    "IslandCave_EventScript_BigHoleInWall": {
+      "label": "IslandCave_EventScript_BigHoleInWall",
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_BigHoleInTheWall",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 63,
+          "raw": "msgbox gText_BigHoleInTheWall, MSGBOX_DEFAULT",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 64,
+          "raw": "releaseall",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 65,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_BigHoleInTheWall",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 63
+        }
+      ],
+      "branch_targets": []
+    },
+    "IslandCave_EventScript_CaveEntranceSide": {
+      "label": "IslandCave_EventScript_CaveEntranceSide",
+      "kind": "script",
+      "line": 67,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 68,
+          "raw": "lockall",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_TEMP_REGICE_PUZZLE_FAILED",
+            "IslandCave_EventScript_ClearSteps"
+          ],
+          "line": 69,
+          "raw": "call_if_set FLAG_TEMP_REGICE_PUZZLE_FAILED, IslandCave_EventScript_ClearSteps",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "braillemessage",
+          "args": [
+            "IslandCave_Braille_RunLapAroundWall"
+          ],
+          "line": 70,
+          "raw": "braillemessage IslandCave_Braille_RunLapAroundWall",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_SYS_BRAILLE_REGICE_COMPLETED",
+            "IslandCave_EventScript_CloseBrailleMsg"
+          ],
+          "line": 71,
+          "raw": "goto_if_set FLAG_SYS_BRAILLE_REGICE_COMPLETED, IslandCave_EventScript_CloseBrailleMsg",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_REGICE_PUZZLE_STARTED"
+          ],
+          "line": 72,
+          "raw": "setflag FLAG_TEMP_REGICE_PUZZLE_STARTED",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShouldDoBrailleRegicePuzzle"
+          ],
+          "line": 73,
+          "raw": "special ShouldDoBrailleRegicePuzzle",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "IslandCave_EventScript_CloseBrailleMsg"
+          ],
+          "line": 74,
+          "raw": "goto IslandCave_EventScript_CloseBrailleMsg",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 75,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "IslandCave_EventScript_ClearSteps",
+          "line": 69
+        },
+        {
+          "op": "goto_if_set",
+          "target": "IslandCave_EventScript_CloseBrailleMsg",
+          "line": 71
+        },
+        {
+          "op": "goto",
+          "target": "IslandCave_EventScript_CloseBrailleMsg",
+          "line": 74
+        }
+      ]
+    },
+    "IslandCave_EventScript_CloseBrailleMsg": {
+      "label": "IslandCave_EventScript_CloseBrailleMsg",
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 78,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "closebraillemessage",
+          "args": [],
+          "line": 79,
+          "raw": "closebraillemessage",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 80,
+          "raw": "releaseall",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 81,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "IslandCave_EventScript_ClearSteps": {
+      "label": "IslandCave_EventScript_ClearSteps",
+      "kind": "script",
+      "line": 83,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_REGICE_STEPS_1",
+            "0"
+          ],
+          "line": 84,
+          "raw": "setvar VAR_REGICE_STEPS_1, 0",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_REGICE_STEPS_2",
+            "0"
+          ],
+          "line": 85,
+          "raw": "setvar VAR_REGICE_STEPS_2, 0",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_REGICE_STEPS_3",
+            "0"
+          ],
+          "line": 86,
+          "raw": "setvar VAR_REGICE_STEPS_3, 0",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_TEMP_REGICE_PUZZLE_FAILED"
+          ],
+          "line": 87,
+          "raw": "clearflag FLAG_TEMP_REGICE_PUZZLE_FAILED",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 88,
+          "raw": "return",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "IslandCave_EventScript_Regice": {
+      "label": "IslandCave_EventScript_Regice",
+      "kind": "script",
+      "line": 90,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 91,
+          "raw": "lock",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 92,
+          "raw": "faceplayer",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 93,
+          "raw": "waitse",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_REGICE",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 94,
+          "raw": "playmoncry SPECIES_REGICE, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 95,
+          "raw": "delay 40",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 96,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setwildbattle",
+          "args": [
+            "SPECIES_REGICE",
+            "40"
+          ],
+          "line": 97,
+          "raw": "setwildbattle SPECIES_REGICE, 40",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 98,
+          "raw": "setflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "StartRegiBattle"
+          ],
+          "line": 99,
+          "raw": "special StartRegiBattle",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 100,
+          "raw": "waitstate",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_SYS_CTRL_OBJ_DELETE"
+          ],
+          "line": 101,
+          "raw": "clearflag FLAG_SYS_CTRL_OBJ_DELETE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "GetBattleOutcome"
+          ],
+          "line": 102,
+          "raw": "specialvar VAR_RESULT, GetBattleOutcome",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_WON",
+            "IslandCave_EventScript_DefeatedRegice"
+          ],
+          "line": 103,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_WON, IslandCave_EventScript_DefeatedRegice",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_RAN",
+            "IslandCave_EventScript_RanFromRegice"
+          ],
+          "line": 104,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_RAN, IslandCave_EventScript_RanFromRegice",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_PLAYER_TELEPORTED",
+            "IslandCave_EventScript_RanFromRegice"
+          ],
+          "line": 105,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, IslandCave_EventScript_RanFromRegice",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_REGICE"
+          ],
+          "line": 106,
+          "raw": "setflag FLAG_DEFEATED_REGICE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 107,
+          "raw": "release",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 108,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "IslandCave_EventScript_DefeatedRegice",
+          "line": 103
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "IslandCave_EventScript_RanFromRegice",
+          "line": 104
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "IslandCave_EventScript_RanFromRegice",
+          "line": 105
+        }
+      ]
+    },
+    "IslandCave_EventScript_DefeatedRegice": {
+      "label": "IslandCave_EventScript_DefeatedRegice",
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_REGICE"
+          ],
+          "line": 111,
+          "raw": "setflag FLAG_DEFEATED_REGICE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_RemoveStaticPokemon"
+          ],
+          "line": 112,
+          "raw": "goto Common_EventScript_RemoveStaticPokemon",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 113,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_RemoveStaticPokemon",
+          "line": 112
+        }
+      ]
+    },
+    "IslandCave_EventScript_RanFromRegice": {
+      "label": "IslandCave_EventScript_RanFromRegice",
+      "kind": "script",
+      "line": 115,
+      "source_file": "data/maps/IslandCave/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SPECIES_REGICE"
+          ],
+          "line": 116,
+          "raw": "setvar VAR_0x8004, SPECIES_REGICE",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_LegendaryFlewAway"
+          ],
+          "line": 117,
+          "raw": "goto Common_EventScript_LegendaryFlewAway",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 118,
+          "raw": "end",
+          "source_file": "data/maps/IslandCave/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Common_EventScript_LegendaryFlewAway",
+          "line": 117
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "braillemessage": 2,
+      "call_if_set": 3,
+      "call_if_unset": 2,
+      "clearflag": 3,
+      "closebraillemessage": 1,
+      "delay": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 2,
+      "map_script": 3,
+      "playmoncry": 1,
+      "playse": 1,
+      "removeobject": 1,
+      "setflag": 7,
+      "setmetatile": 12,
+      "setvar": 4,
+      "setwildbattle": 1,
+      "special": 4,
+      "specialvar": 2,
+      "waitbuttonpress": 1,
+      "waitmoncry": 1,
+      "waitse": 1,
+      "waitstate": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 16,
+    "script_count": 16,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "braillemessage": 2,
+      "call": 1,
+      "call_if_set": 3,
+      "call_if_unset": 2,
+      "clearflag": 3,
+      "closebraillemessage": 1,
+      "delay": 1,
+      "end": 11,
+      "faceplayer": 1,
+      "goto": 4,
+      "goto_if_eq": 3,
+      "goto_if_ne": 1,
+      "goto_if_set": 2,
+      "lock": 1,
+      "lockall": 2,
+      "map_script": 3,
+      "msgbox": 1,
+      "playmoncry": 1,
+      "playse": 1,
+      "release": 1,
+      "releaseall": 2,
+      "removeobject": 1,
+      "return": 4,
+      "setflag": 7,
+      "setmetatile": 12,
+      "setvar": 4,
+      "setwildbattle": 1,
+      "special": 4,
+      "specialvar": 2,
+      "waitbuttonpress": 1,
+      "waitmoncry": 1,
+      "waitse": 1,
+      "waitstate": 1
+    }
+  }
+}

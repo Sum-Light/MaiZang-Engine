@@ -1,0 +1,481 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "BattleFrontier_BattlePikeRoomWildMons",
+    "map_script": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+    "map_json": "data/maps/BattleFrontier_BattlePikeRoomWildMons/map.json",
+    "map_id": "MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS",
+    "map_name": "BattleFrontier_BattlePikeRoomWildMons"
+  },
+  "labels": {
+    "BattleFrontier_BattlePikeRoomWildMons_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_OnFrame": {
+      "kind": "map_script_table",
+      "line": 7,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetInWildMonRoom": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_WarpToLobbyLost": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_OnWarp": {
+      "kind": "map_script_table",
+      "line": 23,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_TurnPlayerNorth": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_OnResume": {
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetLost": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "BattleFrontier_BattlePikeRoomWildMons_MapScripts": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "BattleFrontier_BattlePikeRoomWildMons_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, BattleFrontier_BattlePikeRoomWildMons_OnResume",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "BattleFrontier_BattlePikeRoomWildMons_OnFrame"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattlePikeRoomWildMons_OnFrame",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "BattleFrontier_BattlePikeRoomWildMons_OnWarp"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattlePikeRoomWildMons_OnWarp",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_OnFrame": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_OnFrame",
+      "kind": "map_script_table",
+      "line": 7,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_0",
+            "0",
+            "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetInWildMonRoom"
+          ],
+          "line": 8,
+          "raw": "map_script_2 VAR_TEMP_0, 0, BattleFrontier_BattlePikeRoomWildMons_EventScript_SetInWildMonRoom",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "1",
+            "BattleFrontier_BattlePikeRoomWildMons_EventScript_WarpToLobbyLost"
+          ],
+          "line": 9,
+          "raw": "map_script_2 VAR_TEMP_1, 1, BattleFrontier_BattlePikeRoomWildMons_EventScript_WarpToLobbyLost",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 10,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetInWildMonRoom": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetInWildMonRoom",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_0",
+            "1"
+          ],
+          "line": 13,
+          "raw": "setvar VAR_TEMP_0, 1",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "pike_inwildmonroom",
+          "args": [],
+          "line": 14,
+          "raw": "pike_inwildmonroom",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_WarpToLobbyLost": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_EventScript_WarpToLobbyLost",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_LOST"
+          ],
+          "line": 18,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY",
+            "5",
+            "6"
+          ],
+          "line": 19,
+          "raw": "warp MAP_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY, 5, 6",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 20,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 21,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_OnWarp": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_OnWarp",
+      "kind": "map_script_table",
+      "line": 23,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_4",
+            "0",
+            "BattleFrontier_BattlePikeRoomWildMons_EventScript_TurnPlayerNorth"
+          ],
+          "line": 24,
+          "raw": "map_script_2 VAR_TEMP_4, 0, BattleFrontier_BattlePikeRoomWildMons_EventScript_TurnPlayerNorth",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 25,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_TurnPlayerNorth": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_EventScript_TurnPlayerNorth",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_4",
+            "1"
+          ],
+          "line": 28,
+          "raw": "setvar VAR_TEMP_4, 1",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 29,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 30,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_OnResume": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_OnResume",
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattlePikeRoom_EventScript_ResetSketchedMoves"
+          ],
+          "line": 33,
+          "raw": "call BattleFrontier_BattlePikeRoom_EventScript_ResetSketchedMoves",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_OUTCOME"
+          ],
+          "line": 34,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_OUTCOME",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_LOST",
+            "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetLost"
+          ],
+          "line": 35,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_LOST, BattleFrontier_BattlePikeRoomWildMons_EventScript_SetLost",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "B_OUTCOME_DREW",
+            "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetLost"
+          ],
+          "line": 36,
+          "raw": "goto_if_eq VAR_RESULT, B_OUTCOME_DREW, BattleFrontier_BattlePikeRoomWildMons_EventScript_SetLost",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattlePikeRoom_EventScript_ResetSketchedMoves",
+          "line": 33
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetLost",
+          "line": 35
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetLost",
+          "line": 36
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetLost": {
+      "label": "BattleFrontier_BattlePikeRoomWildMons_EventScript_SetLost",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 40,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 41,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "frontier_get": 1,
+      "frontier_set": 1,
+      "goto_if_eq": 2,
+      "map_script": 3,
+      "map_script_2": 3,
+      "pike_inwildmonroom": 1,
+      "setvar": 3,
+      "turnobject": 1,
+      "waitstate": 1,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 8,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "end": 5,
+      "frontier_get": 1,
+      "frontier_set": 1,
+      "goto_if_eq": 2,
+      "map_script": 3,
+      "map_script_2": 3,
+      "pike_inwildmonroom": 1,
+      "setvar": 3,
+      "turnobject": 1,
+      "waitstate": 1,
+      "warp": 1
+    }
+  }
+}

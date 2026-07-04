@@ -1,0 +1,1507 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route123_BerryMastersHouse",
+    "map_script": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+    "map_json": "data/maps/Route123_BerryMastersHouse/map.json",
+    "map_id": "MAP_ROUTE123_BERRY_MASTERS_HOUSE",
+    "map_name": "Route123_BerryMastersHouse"
+  },
+  "labels": {
+    "Route123_BerryMastersHouse_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route123_BerryMastersHouse_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route123_BerryMastersHouse_EventScript_BerryMaster": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 20
+    },
+    "Route123_BerryMastersHouse_EventScript_ReceivedBerryToday": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route123_BerryMastersHouse_EventScript_BerryMastersWife": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 12
+    },
+    "Route123_BerryMastersHouse_EventScript_CancelPhrase": {
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route123_BerryMastersHouse_EventScript_GavePhrase": {
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route123_BerryMastersHouse_EventScript_GiveNormalBerry": {
+      "kind": "script",
+      "line": 65,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 8
+    },
+    "Route123_BerryMastersHouse_EventScript_GiveSpelonBerry": {
+      "kind": "script",
+      "line": 75,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route123_BerryMastersHouse_EventScript_GivePamtreBerry": {
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route123_BerryMastersHouse_EventScript_GiveWatmelBerry": {
+      "kind": "script",
+      "line": 93,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route123_BerryMastersHouse_EventScript_GiveDurinBerry": {
+      "kind": "script",
+      "line": 102,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route123_BerryMastersHouse_EventScript_GiveBelueBerry": {
+      "kind": "script",
+      "line": 111,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route123_BerryMastersHouse_EventScript_ReceivedWifeBerryToday": {
+      "kind": "script",
+      "line": 120,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route123_BerryMastersHouse_EventScript_GaveBerry": {
+      "kind": "script",
+      "line": 125,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "Route123_BerryMastersHouse_MapScripts": {
+      "label": "Route123_BerryMastersHouse_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "Route123_BerryMastersHouse_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, Route123_BerryMastersHouse_OnTransition",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route123_BerryMastersHouse_OnTransition": {
+      "label": "Route123_BerryMastersHouse_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_LANDMARK_BERRY_MASTERS_HOUSE"
+          ],
+          "line": 6,
+          "raw": "setflag FLAG_LANDMARK_BERRY_MASTERS_HOUSE",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route123_BerryMastersHouse_EventScript_BerryMaster": {
+      "label": "Route123_BerryMastersHouse_EventScript_BerryMaster",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 10,
+          "raw": "lock",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 11,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "dotimebasedevents",
+          "args": [],
+          "line": 12,
+          "raw": "dotimebasedevents",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY",
+            "Route123_BerryMastersHouse_EventScript_ReceivedBerryToday"
+          ],
+          "line": 13,
+          "raw": "goto_if_set FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY, Route123_BerryMastersHouse_EventScript_ReceivedBerryToday",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_YoureDeservingOfBerry",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 14,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_YoureDeservingOfBerry, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "random",
+          "args": [
+            "NUM_BERRY_MASTER_BERRIES"
+          ],
+          "line": 15,
+          "raw": "random NUM_BERRY_MASTER_BERRIES",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "NUM_BERRY_MASTER_BERRIES_SKIPPED"
+          ],
+          "line": 16,
+          "raw": "addvar VAR_RESULT, NUM_BERRY_MASTER_BERRIES_SKIPPED",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "FIRST_BERRY_INDEX"
+          ],
+          "line": 17,
+          "raw": "addvar VAR_RESULT, FIRST_BERRY_INDEX",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 18,
+          "raw": "giveitem VAR_RESULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 19,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY"
+          ],
+          "line": 20,
+          "raw": "setflag FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_WhyBeStingyTakeAnother",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 21,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_WhyBeStingyTakeAnother, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "random",
+          "args": [
+            "NUM_BERRY_MASTER_BERRIES"
+          ],
+          "line": 22,
+          "raw": "random NUM_BERRY_MASTER_BERRIES",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "NUM_BERRY_MASTER_BERRIES_SKIPPED"
+          ],
+          "line": 23,
+          "raw": "addvar VAR_RESULT, NUM_BERRY_MASTER_BERRIES_SKIPPED",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "FIRST_BERRY_INDEX"
+          ],
+          "line": 24,
+          "raw": "addvar VAR_RESULT, FIRST_BERRY_INDEX",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 25,
+          "raw": "giveitem VAR_RESULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 26,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_VisitPrettyPetalFlowerShop",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 27,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_VisitPrettyPetalFlowerShop, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 28,
+          "raw": "release",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_YoureDeservingOfBerry",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 14
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_WhyBeStingyTakeAnother",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 21
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_VisitPrettyPetalFlowerShop",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 27
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route123_BerryMastersHouse_EventScript_ReceivedBerryToday",
+          "line": 13
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 19
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 26
+        }
+      ]
+    },
+    "Route123_BerryMastersHouse_EventScript_ReceivedBerryToday": {
+      "label": "Route123_BerryMastersHouse_EventScript_ReceivedBerryToday",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_DoneForToday",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 32,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_DoneForToday, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 33,
+          "raw": "release",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_DoneForToday",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 32
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route123_BerryMastersHouse_EventScript_BerryMastersWife": {
+      "label": "Route123_BerryMastersHouse_EventScript_BerryMastersWife",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 37,
+          "raw": "lock",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 38,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "dotimebasedevents",
+          "args": [],
+          "line": 39,
+          "raw": "dotimebasedevents",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DAILY_BERRY_MASTERS_WIFE",
+            "Route123_BerryMastersHouse_EventScript_ReceivedWifeBerryToday"
+          ],
+          "line": 40,
+          "raw": "goto_if_set FLAG_DAILY_BERRY_MASTERS_WIFE, Route123_BerryMastersHouse_EventScript_ReceivedWifeBerryToday",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_HeardAGoodSayingLately",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 41,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_HeardAGoodSayingLately, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "EASY_CHAT_TYPE_GOOD_SAYING"
+          ],
+          "line": 42,
+          "raw": "setvar VAR_0x8004, EASY_CHAT_TYPE_GOOD_SAYING",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_ShowEasyChatScreen"
+          ],
+          "line": 43,
+          "raw": "call Common_ShowEasyChatScreen",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "lock",
+          "args": [],
+          "line": 44,
+          "raw": "lock",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 45,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route123_BerryMastersHouse_EventScript_GavePhrase"
+          ],
+          "line": 46,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route123_BerryMastersHouse_EventScript_GavePhrase",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Route123_BerryMastersHouse_EventScript_CancelPhrase"
+          ],
+          "line": 47,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Route123_BerryMastersHouse_EventScript_CancelPhrase",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 48,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_HeardAGoodSayingLately",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 41
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route123_BerryMastersHouse_EventScript_ReceivedWifeBerryToday",
+          "line": 40
+        },
+        {
+          "op": "call",
+          "target": "Common_ShowEasyChatScreen",
+          "line": 43
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route123_BerryMastersHouse_EventScript_GavePhrase",
+          "line": 46
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route123_BerryMastersHouse_EventScript_CancelPhrase",
+          "line": 47
+        }
+      ]
+    },
+    "Route123_BerryMastersHouse_EventScript_CancelPhrase": {
+      "label": "Route123_BerryMastersHouse_EventScript_CancelPhrase",
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_Ah",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 51,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_Ah, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 52,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 53,
+          "raw": "release",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 54,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_Ah",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 51
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 52
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route123_BerryMastersHouse_EventScript_GavePhrase": {
+      "label": "Route123_BerryMastersHouse_EventScript_GavePhrase",
+      "kind": "script",
+      "line": 56,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "NOT_SPECIAL_PHRASE",
+            "Route123_BerryMastersHouse_EventScript_GiveNormalBerry"
+          ],
+          "line": 57,
+          "raw": "goto_if_eq VAR_0x8004, NOT_SPECIAL_PHRASE, Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "PHRASE_GREAT_BATTLE",
+            "Route123_BerryMastersHouse_EventScript_GiveSpelonBerry"
+          ],
+          "line": 58,
+          "raw": "goto_if_eq VAR_0x8004, PHRASE_GREAT_BATTLE, Route123_BerryMastersHouse_EventScript_GiveSpelonBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "PHRASE_CHALLENGE_CONTEST",
+            "Route123_BerryMastersHouse_EventScript_GivePamtreBerry"
+          ],
+          "line": 59,
+          "raw": "goto_if_eq VAR_0x8004, PHRASE_CHALLENGE_CONTEST, Route123_BerryMastersHouse_EventScript_GivePamtreBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "PHRASE_OVERWHELMING_LATIAS",
+            "Route123_BerryMastersHouse_EventScript_GiveWatmelBerry"
+          ],
+          "line": 60,
+          "raw": "goto_if_eq VAR_0x8004, PHRASE_OVERWHELMING_LATIAS, Route123_BerryMastersHouse_EventScript_GiveWatmelBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "PHRASE_COOL_LATIOS",
+            "Route123_BerryMastersHouse_EventScript_GiveDurinBerry"
+          ],
+          "line": 61,
+          "raw": "goto_if_eq VAR_0x8004, PHRASE_COOL_LATIOS, Route123_BerryMastersHouse_EventScript_GiveDurinBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "PHRASE_SUPER_HUSTLE",
+            "Route123_BerryMastersHouse_EventScript_GiveBelueBerry"
+          ],
+          "line": 62,
+          "raw": "goto_if_eq VAR_0x8004, PHRASE_SUPER_HUSTLE, Route123_BerryMastersHouse_EventScript_GiveBelueBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 63,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "line": 57
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route123_BerryMastersHouse_EventScript_GiveSpelonBerry",
+          "line": 58
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route123_BerryMastersHouse_EventScript_GivePamtreBerry",
+          "line": 59
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route123_BerryMastersHouse_EventScript_GiveWatmelBerry",
+          "line": 60
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route123_BerryMastersHouse_EventScript_GiveDurinBerry",
+          "line": 61
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route123_BerryMastersHouse_EventScript_GiveBelueBerry",
+          "line": 62
+        }
+      ]
+    },
+    "Route123_BerryMastersHouse_EventScript_GiveNormalBerry": {
+      "label": "Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+      "kind": "script",
+      "line": 65,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_GoodSayingTakeThis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 66,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_GoodSayingTakeThis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "random",
+          "args": [
+            "NUM_BERRY_MASTER_WIFE_BERRIES"
+          ],
+          "line": 67,
+          "raw": "random NUM_BERRY_MASTER_WIFE_BERRIES",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "FIRST_BERRY_INDEX"
+          ],
+          "line": 68,
+          "raw": "addvar VAR_RESULT, FIRST_BERRY_INDEX",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 69,
+          "raw": "giveitem VAR_RESULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 70,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route123_BerryMastersHouse_EventScript_GaveBerry"
+          ],
+          "line": 71,
+          "raw": "goto Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 72,
+          "raw": "release",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 73,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_GoodSayingTakeThis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 66
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 70
+        },
+        {
+          "op": "goto",
+          "target": "Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "line": 71
+        }
+      ]
+    },
+    "Route123_BerryMastersHouse_EventScript_GiveSpelonBerry": {
+      "label": "Route123_BerryMastersHouse_EventScript_GiveSpelonBerry",
+      "kind": "script",
+      "line": 75,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_SPELON_BERRY",
+            "Route123_BerryMastersHouse_EventScript_GiveNormalBerry"
+          ],
+          "line": 76,
+          "raw": "goto_if_set FLAG_RECEIVED_SPELON_BERRY, Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_InspirationalTakeThis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 77,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_InspirationalTakeThis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_SPELON_BERRY"
+          ],
+          "line": 78,
+          "raw": "giveitem ITEM_SPELON_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 79,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_SPELON_BERRY"
+          ],
+          "line": 80,
+          "raw": "setflag FLAG_RECEIVED_SPELON_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route123_BerryMastersHouse_EventScript_GaveBerry"
+          ],
+          "line": 81,
+          "raw": "goto Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 82,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_InspirationalTakeThis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 77
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "line": 76
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 79
+        },
+        {
+          "op": "goto",
+          "target": "Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "line": 81
+        }
+      ]
+    },
+    "Route123_BerryMastersHouse_EventScript_GivePamtreBerry": {
+      "label": "Route123_BerryMastersHouse_EventScript_GivePamtreBerry",
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_PAMTRE_BERRY",
+            "Route123_BerryMastersHouse_EventScript_GiveNormalBerry"
+          ],
+          "line": 85,
+          "raw": "goto_if_set FLAG_RECEIVED_PAMTRE_BERRY, Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_InspirationalTakeThis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 86,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_InspirationalTakeThis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_PAMTRE_BERRY"
+          ],
+          "line": 87,
+          "raw": "giveitem ITEM_PAMTRE_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 88,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_PAMTRE_BERRY"
+          ],
+          "line": 89,
+          "raw": "setflag FLAG_RECEIVED_PAMTRE_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route123_BerryMastersHouse_EventScript_GaveBerry"
+          ],
+          "line": 90,
+          "raw": "goto Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 91,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_InspirationalTakeThis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 86
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "line": 85
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 88
+        },
+        {
+          "op": "goto",
+          "target": "Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "line": 90
+        }
+      ]
+    },
+    "Route123_BerryMastersHouse_EventScript_GiveWatmelBerry": {
+      "label": "Route123_BerryMastersHouse_EventScript_GiveWatmelBerry",
+      "kind": "script",
+      "line": 93,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_WATMEL_BERRY",
+            "Route123_BerryMastersHouse_EventScript_GiveNormalBerry"
+          ],
+          "line": 94,
+          "raw": "goto_if_set FLAG_RECEIVED_WATMEL_BERRY, Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_InspirationalTakeThis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 95,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_InspirationalTakeThis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_WATMEL_BERRY"
+          ],
+          "line": 96,
+          "raw": "giveitem ITEM_WATMEL_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 97,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_WATMEL_BERRY"
+          ],
+          "line": 98,
+          "raw": "setflag FLAG_RECEIVED_WATMEL_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route123_BerryMastersHouse_EventScript_GaveBerry"
+          ],
+          "line": 99,
+          "raw": "goto Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 100,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_InspirationalTakeThis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 95
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "line": 94
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 97
+        },
+        {
+          "op": "goto",
+          "target": "Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "line": 99
+        }
+      ]
+    },
+    "Route123_BerryMastersHouse_EventScript_GiveDurinBerry": {
+      "label": "Route123_BerryMastersHouse_EventScript_GiveDurinBerry",
+      "kind": "script",
+      "line": 102,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_DURIN_BERRY",
+            "Route123_BerryMastersHouse_EventScript_GiveNormalBerry"
+          ],
+          "line": 103,
+          "raw": "goto_if_set FLAG_RECEIVED_DURIN_BERRY, Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_InspirationalTakeThis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 104,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_InspirationalTakeThis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_DURIN_BERRY"
+          ],
+          "line": 105,
+          "raw": "giveitem ITEM_DURIN_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 106,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_DURIN_BERRY"
+          ],
+          "line": 107,
+          "raw": "setflag FLAG_RECEIVED_DURIN_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route123_BerryMastersHouse_EventScript_GaveBerry"
+          ],
+          "line": 108,
+          "raw": "goto Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 109,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_InspirationalTakeThis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 104
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "line": 103
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 106
+        },
+        {
+          "op": "goto",
+          "target": "Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "line": 108
+        }
+      ]
+    },
+    "Route123_BerryMastersHouse_EventScript_GiveBelueBerry": {
+      "label": "Route123_BerryMastersHouse_EventScript_GiveBelueBerry",
+      "kind": "script",
+      "line": 111,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_BELUE_BERRY",
+            "Route123_BerryMastersHouse_EventScript_GiveNormalBerry"
+          ],
+          "line": 112,
+          "raw": "goto_if_set FLAG_RECEIVED_BELUE_BERRY, Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_InspirationalTakeThis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 113,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_InspirationalTakeThis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_BELUE_BERRY"
+          ],
+          "line": 114,
+          "raw": "giveitem ITEM_BELUE_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 115,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_BELUE_BERRY"
+          ],
+          "line": 116,
+          "raw": "setflag FLAG_RECEIVED_BELUE_BERRY",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route123_BerryMastersHouse_EventScript_GaveBerry"
+          ],
+          "line": 117,
+          "raw": "goto Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 118,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_InspirationalTakeThis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 113
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route123_BerryMastersHouse_EventScript_GiveNormalBerry",
+          "line": 112
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 115
+        },
+        {
+          "op": "goto",
+          "target": "Route123_BerryMastersHouse_EventScript_GaveBerry",
+          "line": 117
+        }
+      ]
+    },
+    "Route123_BerryMastersHouse_EventScript_ReceivedWifeBerryToday": {
+      "label": "Route123_BerryMastersHouse_EventScript_ReceivedWifeBerryToday",
+      "kind": "script",
+      "line": 120,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 121,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 122,
+          "raw": "release",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 123,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 121
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route123_BerryMastersHouse_EventScript_GaveBerry": {
+      "label": "Route123_BerryMastersHouse_EventScript_GaveBerry",
+      "kind": "script",
+      "line": 125,
+      "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DAILY_BERRY_MASTERS_WIFE"
+          ],
+          "line": 126,
+          "raw": "setflag FLAG_DAILY_BERRY_MASTERS_WIFE",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 127,
+          "raw": "msgbox Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 128,
+          "raw": "release",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 129,
+          "raw": "end",
+          "source_file": "data/maps/Route123_BerryMastersHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 127
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addvar": 5,
+      "dotimebasedevents": 2,
+      "faceplayer": 3,
+      "giveitem": 8,
+      "goto_if_eq": 16,
+      "goto_if_set": 7,
+      "map_script": 1,
+      "random": 3,
+      "setflag": 8,
+      "setvar": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 15,
+    "script_count": 15,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addvar": 5,
+      "call": 1,
+      "dotimebasedevents": 2,
+      "end": 14,
+      "faceplayer": 3,
+      "giveitem": 8,
+      "goto": 6,
+      "goto_if_eq": 16,
+      "goto_if_set": 7,
+      "lock": 3,
+      "map_script": 1,
+      "msgbox": 15,
+      "random": 3,
+      "release": 6,
+      "setflag": 8,
+      "setvar": 1
+    }
+  }
+}

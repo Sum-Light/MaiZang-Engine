@@ -1,0 +1,5429 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "RustboroCity_PokemonSchool",
+    "map_script": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+    "map_json": "data/maps/RustboroCity_PokemonSchool/map.json",
+    "map_id": "MAP_RUSTBORO_CITY_POKEMON_SCHOOL",
+    "map_name": "RustboroCity_PokemonSchool"
+  },
+  "labels": {
+    "RustboroCity_PokemonSchool_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_EventScript_Blackboard": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 4
+    },
+    "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 12
+    },
+    "RustboroCity_PokemonSchool_EventScript_Poison": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_PokemonSchool_EventScript_Paralysis": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_PokemonSchool_EventScript_Sleep": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_PokemonSchool_EventScript_Burn": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_PokemonSchool_EventScript_Freeze": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_PokemonSchool_EventScript_ExitTopicSelect": {
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_PokemonSchool_EventScript_GameboyKid1": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_PokemonSchool_EventScript_GameboyKid2": {
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_PokemonSchool_EventScript_RichBoy": {
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_PokemonSchool_EventScript_Lass": {
+      "kind": "script",
+      "line": 65,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_PokemonSchool_EventScript_SchoolKidM": {
+      "kind": "script",
+      "line": 69,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_PokemonSchool_EventScript_StudentNotebook": {
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_PokemonSchool_EventScript_Teacher": {
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 14
+    },
+    "RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast": {
+      "kind": "script",
+      "line": 93,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest": {
+      "kind": "script",
+      "line": 98,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_PokemonSchool_EventScript_GaveQuickClaw": {
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 6
+    },
+    "RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsWest": {
+      "kind": "movement",
+      "line": 111,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 23
+    },
+    "RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsEast": {
+      "kind": "movement",
+      "line": 136,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 25
+    },
+    "RustboroCity_PokemonSchool_EventScript_Scott": {
+      "kind": "script",
+      "line": 163,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 10
+    },
+    "RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready": {
+      "kind": "script",
+      "line": 175,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 4
+    },
+    "RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge": {
+      "kind": "script",
+      "line": 181,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge": {
+      "kind": "script",
+      "line": 186,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge": {
+      "kind": "script",
+      "line": 191,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 4
+    },
+    "RustboroCity_PokemonSchool_EventScript_ScottWatchStudents": {
+      "kind": "script",
+      "line": 197,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges": {
+      "kind": "text",
+      "line": 202,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ReadWhichTopic": {
+      "kind": "text",
+      "line": 205,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainPoison": {
+      "kind": "text",
+      "line": 208,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainParalysis": {
+      "kind": "text",
+      "line": 211,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainSleep": {
+      "kind": "text",
+      "line": 214,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainBurn": {
+      "kind": "text",
+      "line": 217,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainFreeze": {
+      "kind": "text",
+      "line": 220,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw": {
+      "kind": "text",
+      "line": 223,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainQuickClaw": {
+      "kind": "text",
+      "line": 226,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_TradingRightNow": {
+      "kind": "text",
+      "line": 229,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot": {
+      "kind": "text",
+      "line": 232,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems": {
+      "kind": "text",
+      "line": 235,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself": {
+      "kind": "text",
+      "line": 238,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry": {
+      "kind": "text",
+      "line": 241,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_StudentsNotes": {
+      "kind": "text",
+      "line": 244,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut": {
+      "kind": "text",
+      "line": 247,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown": {
+      "kind": "text",
+      "line": 250,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ScottStoneBadge": {
+      "kind": "text",
+      "line": 253,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge": {
+      "kind": "text",
+      "line": 256,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "RustboroCity_PokemonSchool_MapScripts": {
+      "label": "RustboroCity_PokemonSchool_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_Blackboard": {
+      "label": "RustboroCity_PokemonSchool_EventScript_Blackboard",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 5,
+          "raw": "lockall",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 6,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic"
+          ],
+          "line": 7,
+          "raw": "goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 6
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "line": 7
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic": {
+      "label": "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ReadWhichTopic"
+          ],
+          "line": 11,
+          "raw": "message RustboroCity_PokemonSchool_Text_ReadWhichTopic",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 12,
+          "raw": "waitmessage",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "multichoicegrid",
+          "args": [
+            "8",
+            "1",
+            "MULTI_STATUS_INFO",
+            "3",
+            "FALSE"
+          ],
+          "line": 13,
+          "raw": "multichoicegrid 8, 1, MULTI_STATUS_INFO, 3, FALSE",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 14,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "RustboroCity_PokemonSchool_EventScript_Poison"
+          ],
+          "line": 15,
+          "raw": "case 0, RustboroCity_PokemonSchool_EventScript_Poison",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "RustboroCity_PokemonSchool_EventScript_Paralysis"
+          ],
+          "line": 16,
+          "raw": "case 1, RustboroCity_PokemonSchool_EventScript_Paralysis",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "RustboroCity_PokemonSchool_EventScript_Sleep"
+          ],
+          "line": 17,
+          "raw": "case 2, RustboroCity_PokemonSchool_EventScript_Sleep",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "RustboroCity_PokemonSchool_EventScript_Burn"
+          ],
+          "line": 18,
+          "raw": "case 3, RustboroCity_PokemonSchool_EventScript_Burn",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "RustboroCity_PokemonSchool_EventScript_Freeze"
+          ],
+          "line": 19,
+          "raw": "case 4, RustboroCity_PokemonSchool_EventScript_Freeze",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "5",
+            "RustboroCity_PokemonSchool_EventScript_ExitTopicSelect"
+          ],
+          "line": 20,
+          "raw": "case 5, RustboroCity_PokemonSchool_EventScript_ExitTopicSelect",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "RustboroCity_PokemonSchool_EventScript_ExitTopicSelect"
+          ],
+          "line": 21,
+          "raw": "case MULTI_B_PRESSED, RustboroCity_PokemonSchool_EventScript_ExitTopicSelect",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "RustboroCity_PokemonSchool_Text_ReadWhichTopic",
+          "mode": "",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_Poison": {
+      "label": "RustboroCity_PokemonSchool_EventScript_Poison",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ExplainPoison",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 25,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_ExplainPoison, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic"
+          ],
+          "line": 26,
+          "raw": "goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_ExplainPoison",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 25
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "line": 26
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_Paralysis": {
+      "label": "RustboroCity_PokemonSchool_EventScript_Paralysis",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ExplainParalysis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 30,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_ExplainParalysis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic"
+          ],
+          "line": 31,
+          "raw": "goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_ExplainParalysis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 30
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "line": 31
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_Sleep": {
+      "label": "RustboroCity_PokemonSchool_EventScript_Sleep",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ExplainSleep",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 35,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_ExplainSleep, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic"
+          ],
+          "line": 36,
+          "raw": "goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_ExplainSleep",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 35
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "line": 36
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_Burn": {
+      "label": "RustboroCity_PokemonSchool_EventScript_Burn",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ExplainBurn",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 40,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_ExplainBurn, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic"
+          ],
+          "line": 41,
+          "raw": "goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_ExplainBurn",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 40
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "line": 41
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_Freeze": {
+      "label": "RustboroCity_PokemonSchool_EventScript_Freeze",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ExplainFreeze",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 45,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_ExplainFreeze, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic"
+          ],
+          "line": 46,
+          "raw": "goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 47,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_ExplainFreeze",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 45
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic",
+          "line": 46
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_ExitTopicSelect": {
+      "label": "RustboroCity_PokemonSchool_EventScript_ExitTopicSelect",
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 50,
+          "raw": "releaseall",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 51,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_GameboyKid1": {
+      "label": "RustboroCity_PokemonSchool_EventScript_GameboyKid1",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_TradingRightNow",
+            "MSGBOX_NPC"
+          ],
+          "line": 54,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_TradingRightNow, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 55,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_TradingRightNow",
+          "mode": "MSGBOX_NPC",
+          "line": 54
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_GameboyKid2": {
+      "label": "RustboroCity_PokemonSchool_EventScript_GameboyKid2",
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot",
+            "MSGBOX_NPC"
+          ],
+          "line": 58,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 59,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot",
+          "mode": "MSGBOX_NPC",
+          "line": 58
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_RichBoy": {
+      "label": "RustboroCity_PokemonSchool_EventScript_RichBoy",
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems",
+            "MSGBOX_NPC"
+          ],
+          "line": 62,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 63,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems",
+          "mode": "MSGBOX_NPC",
+          "line": 62
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_Lass": {
+      "label": "RustboroCity_PokemonSchool_EventScript_Lass",
+      "kind": "script",
+      "line": 65,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself",
+            "MSGBOX_NPC"
+          ],
+          "line": 66,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 67,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself",
+          "mode": "MSGBOX_NPC",
+          "line": 66
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_SchoolKidM": {
+      "label": "RustboroCity_PokemonSchool_EventScript_SchoolKidM",
+      "kind": "script",
+      "line": 69,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry",
+            "MSGBOX_NPC"
+          ],
+          "line": 70,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 71,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry",
+          "mode": "MSGBOX_NPC",
+          "line": 70
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_StudentNotebook": {
+      "label": "RustboroCity_PokemonSchool_EventScript_StudentNotebook",
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_StudentsNotes",
+            "MSGBOX_SIGN"
+          ],
+          "line": 74,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_StudentsNotes, MSGBOX_SIGN",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 75,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_StudentsNotes",
+          "mode": "MSGBOX_SIGN",
+          "line": 74
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_Teacher": {
+      "label": "RustboroCity_PokemonSchool_EventScript_Teacher",
+      "kind": "script",
+      "line": 77,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 78,
+          "raw": "lock",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 79,
+          "raw": "faceplayer",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_QUICK_CLAW",
+            "RustboroCity_PokemonSchool_EventScript_GaveQuickClaw"
+          ],
+          "line": 80,
+          "raw": "goto_if_set FLAG_RECEIVED_QUICK_CLAW, RustboroCity_PokemonSchool_EventScript_GaveQuickClaw",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_EAST",
+            "RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast"
+          ],
+          "line": 81,
+          "raw": "call_if_eq VAR_FACING, DIR_EAST, RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_WEST",
+            "RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest"
+          ],
+          "line": 82,
+          "raw": "call_if_eq VAR_FACING, DIR_WEST, RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 83,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_QUICK_CLAW"
+          ],
+          "line": 84,
+          "raw": "giveitem ITEM_QUICK_CLAW",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 85,
+          "raw": "goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 86,
+          "raw": "closemessage",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 87,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 88,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_QUICK_CLAW"
+          ],
+          "line": 89,
+          "raw": "setflag FLAG_RECEIVED_QUICK_CLAW",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 90,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 91,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 83
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "RustboroCity_PokemonSchool_EventScript_GaveQuickClaw",
+          "line": 80
+        },
+        {
+          "op": "call_if_eq",
+          "target": "RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast",
+          "line": 81
+        },
+        {
+          "op": "call_if_eq",
+          "target": "RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest",
+          "line": 82
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 85
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast": {
+      "label": "RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast",
+      "kind": "script",
+      "line": 93,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsEast"
+          ],
+          "line": 94,
+          "raw": "applymovement VAR_LAST_TALKED, RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsEast",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 95,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 96,
+          "raw": "return",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest": {
+      "label": "RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest",
+      "kind": "script",
+      "line": 98,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsWest"
+          ],
+          "line": 99,
+          "raw": "applymovement VAR_LAST_TALKED, RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsWest",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 100,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 101,
+          "raw": "return",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_GaveQuickClaw": {
+      "label": "RustboroCity_PokemonSchool_EventScript_GaveQuickClaw",
+      "kind": "script",
+      "line": 103,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ExplainQuickClaw",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 104,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_ExplainQuickClaw, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 105,
+          "raw": "closemessage",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 106,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 107,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 108,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 109,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_ExplainQuickClaw",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 104
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_Scott": {
+      "label": "RustboroCity_PokemonSchool_EventScript_Scott",
+      "kind": "script",
+      "line": 163,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 164,
+          "raw": "lock",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 165,
+          "raw": "faceplayer",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE",
+            "RustboroCity_PokemonSchool_EventScript_ScottWatchStudents"
+          ],
+          "line": 166,
+          "raw": "goto_if_set FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE, RustboroCity_PokemonSchool_EventScript_ScottWatchStudents",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_MET_SCOTT_RUSTBORO",
+            "RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready"
+          ],
+          "line": 167,
+          "raw": "goto_if_set FLAG_MET_SCOTT_RUSTBORO, RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_BADGE01_GET",
+            "RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge"
+          ],
+          "line": 168,
+          "raw": "goto_if_set FLAG_BADGE01_GET, RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 169,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_SCOTT_STATE",
+            "1"
+          ],
+          "line": 170,
+          "raw": "addvar VAR_SCOTT_STATE, 1",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_MET_SCOTT_RUSTBORO"
+          ],
+          "line": 171,
+          "raw": "setflag FLAG_MET_SCOTT_RUSTBORO",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 172,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 173,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 169
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "RustboroCity_PokemonSchool_EventScript_ScottWatchStudents",
+          "line": 166
+        },
+        {
+          "op": "goto_if_set",
+          "target": "RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready",
+          "line": 167
+        },
+        {
+          "op": "goto_if_set",
+          "target": "RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge",
+          "line": 168
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready": {
+      "label": "RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready",
+      "kind": "script",
+      "line": 175,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_BADGE01_GET",
+            "RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge"
+          ],
+          "line": 176,
+          "raw": "goto_if_set FLAG_BADGE01_GET, RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 177,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 178,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 179,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 177
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge",
+          "line": 176
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge": {
+      "label": "RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge",
+      "kind": "script",
+      "line": 181,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 182,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge"
+          ],
+          "line": 183,
+          "raw": "goto RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 184,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 182
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge",
+          "line": 183
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge": {
+      "label": "RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge",
+      "kind": "script",
+      "line": 186,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_ScottStoneBadge",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 187,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_ScottStoneBadge, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge"
+          ],
+          "line": 188,
+          "raw": "goto RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 189,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_ScottStoneBadge",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 187
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge",
+          "line": 188
+        }
+      ]
+    },
+    "RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge": {
+      "label": "RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge",
+      "kind": "script",
+      "line": 191,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_SCOTT_STATE",
+            "1"
+          ],
+          "line": 192,
+          "raw": "addvar VAR_SCOTT_STATE, 1",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE"
+          ],
+          "line": 193,
+          "raw": "setflag FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 194,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 195,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_EventScript_ScottWatchStudents": {
+      "label": "RustboroCity_PokemonSchool_EventScript_ScottWatchStudents",
+      "kind": "script",
+      "line": 197,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 198,
+          "raw": "msgbox RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 199,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 200,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 198
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsWest": {
+      "label": "RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsWest",
+      "kind": "movement",
+      "line": 111,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 112,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 113,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 114,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 115,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_down",
+          "args": [],
+          "line": 116,
+          "raw": "walk_in_place_faster_down",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 117,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 118,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 119,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 120,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 121,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 122,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 123,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 124,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 125,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 126,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 127,
+          "raw": "delay_8",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 128,
+          "raw": "walk_up",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 129,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 130,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 131,
+          "raw": "walk_up",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 132,
+          "raw": "walk_up",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 133,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 134,
+          "raw": "step_end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsEast": {
+      "label": "RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsEast",
+      "kind": "movement",
+      "line": 136,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 137,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 138,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 139,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 140,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 141,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 142,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_down",
+          "args": [],
+          "line": 143,
+          "raw": "walk_in_place_faster_down",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 144,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 145,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 146,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 147,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 148,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 149,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 150,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 151,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 152,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 153,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 154,
+          "raw": "delay_8",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 155,
+          "raw": "walk_up",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 156,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 157,
+          "raw": "walk_up",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 158,
+          "raw": "walk_up",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 159,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 160,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 161,
+          "raw": "step_end",
+          "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges": {
+      "label": "RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges",
+      "line": 202,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "黑板上写着可能影响\\n宝可梦战斗的状态变化。$",
+      "display_text": "黑板上写着可能影响\n宝可梦战斗的状态变化。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 41,
+        "bytes": [
+          5,
+          9,
+          1,
+          68,
+          11,
+          173,
+          14,
+          63,
+          16,
+          244,
+          7,
+          215,
+          9,
+          210,
+          15,
+          94,
+          14,
+          25,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          48,
+          3,
+          92,
+          3,
+          11,
+          16,
+          227,
+          12,
+          173,
+          1,
+          161,
+          5,
+          60,
+          55,
+          255
+        ],
+        "hex": "05 09 01 44 0B AD 0E 3F 10 F4 07 D7 09 D2 0F 5E 0E 19 FE 01 63 07 D7 09 66 10 30 03 5C 03 0B 10 E3 0C AD 01 A1 05 3C 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 22,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ReadWhichTopic": {
+      "label": "RustboroCity_PokemonSchool_Text_ReadWhichTopic",
+      "line": 205,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "想读哪一条？$",
+      "display_text": "想读哪一条？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 12,
+        "bytes": [
+          14,
+          24,
+          3,
+          102,
+          9,
+          186,
+          15,
+          11,
+          12,
+          246,
+          61,
+          255
+        ],
+        "hex": "0E 18 03 66 09 BA 0F 0B 0C F6 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 6,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainPoison": {
+      "label": "RustboroCity_PokemonSchool_Text_ExplainPoison",
+      "line": 208,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "宝可梦中毒后，\\n会慢慢损失体力，\\p此效果在战斗后\\n依然残留。\\p在探险中，中毒的宝可梦的体力P\\n也会不断减少。\\p使用解毒药可解毒。$",
+      "display_text": "宝可梦中毒后，\n会慢慢损失体力，\n\n此效果在战斗后\n依然残留。\n\n在探险中，中毒的宝可梦的体力P\n也会不断减少。\n\n使用解毒药可解毒。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 116,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          161,
+          3,
+          99,
+          5,
+          34,
+          59,
+          254,
+          5,
+          110,
+          9,
+          55,
+          9,
+          55,
+          12,
+          147,
+          11,
+          227,
+          12,
+          230,
+          8,
+          121,
+          59,
+          251,
+          2,
+          171,
+          14,
+          50,
+          4,
+          195,
+          15,
+          230,
+          16,
+          48,
+          3,
+          92,
+          5,
+          34,
+          254,
+          15,
+          16,
+          11,
+          59,
+          1,
+          235,
+          8,
+          199,
+          55,
+          251,
+          15,
+          230,
+          12,
+          190,
+          14,
+          2,
+          16,
+          161,
+          59,
+          16,
+          161,
+          3,
+          99,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          12,
+          230,
+          8,
+          121,
+          202,
+          254,
+          15,
+          2,
+          5,
+          110,
+          1,
+          214,
+          3,
+          116,
+          5,
+          224,
+          11,
+          183,
+          55,
+          251,
+          11,
+          245,
+          15,
+          113,
+          7,
+          52,
+          3,
+          99,
+          14,
+          240,
+          7,
+          215,
+          7,
+          52,
+          3,
+          99,
+          55,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 10 A1 03 63 05 22 3B FE 05 6E 09 37 09 37 0C 93 0B E3 0C E6 08 79 3B FB 02 AB 0E 32 04 C3 0F E6 10 30 03 5C 05 22 FE 0F 10 0B 3B 01 EB 08 C7 37 FB 0F E6 0C BE 0E 02 10 A1 3B 10 A1 03 63 03 0B 01 63 07 D7 09 66 03 0B 0C E6 08 79 CA FE 0F 02 05 6E 01 D6 03 74 05 E0 0B B7 37 FB 0B F5 0F 71 07 34 03 63 0E F0 07 D7 07 34 03 63 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 50,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 59,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 70,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainParalysis": {
+      "label": "RustboroCity_PokemonSchool_Text_ExplainParalysis",
+      "line": 211,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "宝可梦麻痹后，\\n速度会降低，\\p战斗中有可能\\n无法使用招式。\\p此效果战斗后依然残留。\\n使用解麻药可治愈。$",
+      "display_text": "宝可梦麻痹后，\n速度会降低，\n\n战斗中有可能\n无法使用招式。\n\n此效果战斗后依然残留。\n使用解麻药可治愈。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 93,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          9,
+          35,
+          1,
+          145,
+          5,
+          34,
+          59,
+          254,
+          12,
+          124,
+          3,
+          109,
+          5,
+          110,
+          7,
+          7,
+          3,
+          20,
+          59,
+          251,
+          16,
+          48,
+          3,
+          92,
+          16,
+          161,
+          15,
+          126,
+          7,
+          215,
+          9,
+          210,
+          254,
+          13,
+          164,
+          3,
+          171,
+          11,
+          245,
+          15,
+          113,
+          16,
+          67,
+          12,
+          2,
+          55,
+          251,
+          2,
+          171,
+          14,
+          50,
+          4,
+          195,
+          16,
+          48,
+          3,
+          92,
+          5,
+          34,
+          15,
+          16,
+          11,
+          59,
+          1,
+          235,
+          8,
+          199,
+          55,
+          254,
+          11,
+          245,
+          15,
+          113,
+          7,
+          52,
+          9,
+          35,
+          14,
+          240,
+          7,
+          215,
+          16,
+          159,
+          15,
+          168,
+          55,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 09 23 01 91 05 22 3B FE 0C 7C 03 6D 05 6E 07 07 03 14 3B FB 10 30 03 5C 10 A1 0F 7E 07 D7 09 D2 FE 0D A4 03 AB 0B F5 0F 71 10 43 0C 02 37 FB 02 AB 0E 32 04 C3 10 30 03 5C 05 22 0F 10 0B 3B 01 EB 08 C7 37 FE 0B F5 0F 71 07 34 09 23 0E F0 07 D7 10 9F 0F A8 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 23,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 45,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 56,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainSleep": {
+      "label": "RustboroCity_PokemonSchool_Text_ExplainSleep",
+      "line": 214,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "宝可梦睡着后，\\n就无法攻击了。\\p宝可梦有可能自己醒来，\\n但如果战斗结束后\\l它还在睡觉，那么它会一直睡着。\\p用解眠药叫醒它。$",
+      "display_text": "宝可梦睡着后，\n就无法攻击了。\n\n宝可梦有可能自己醒来，\n但如果战斗结束后\n它还在睡觉，那么它会一直睡着。\n\n用解眠药叫醒它。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 112,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          82,
+          16,
+          244,
+          5,
+          34,
+          59,
+          254,
+          7,
+          125,
+          13,
+          164,
+          3,
+          171,
+          4,
+          109,
+          5,
+          132,
+          8,
+          158,
+          55,
+          251,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          126,
+          7,
+          215,
+          9,
+          210,
+          17,
+          12,
+          5,
+          165,
+          14,
+          92,
+          8,
+          41,
+          59,
+          254,
+          2,
+          233,
+          11,
+          103,
+          4,
+          195,
+          16,
+          48,
+          3,
+          92,
+          7,
+          51,
+          12,
+          61,
+          5,
+          34,
+          250,
+          12,
+          159,
+          5,
+          70,
+          15,
+          230,
+          12,
+          82,
+          7,
+          165,
+          59,
+          9,
+          189,
+          9,
+          76,
+          12,
+          159,
+          5,
+          110,
+          15,
+          11,
+          16,
+          130,
+          12,
+          82,
+          16,
+          244,
+          55,
+          251,
+          15,
+          113,
+          7,
+          52,
+          9,
+          119,
+          14,
+          240,
+          7,
+          34,
+          14,
+          92,
+          12,
+          159,
+          55,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 0C 52 10 F4 05 22 3B FE 07 7D 0D A4 03 AB 04 6D 05 84 08 9E 37 FB 01 63 07 D7 09 66 0F 7E 07 D7 09 D2 11 0C 05 A5 0E 5C 08 29 3B FE 02 E9 0B 67 04 C3 10 30 03 5C 07 33 0C 3D 05 22 FA 0C 9F 05 46 0F E6 0C 52 07 A5 3B 09 BD 09 4C 0C 9F 05 6E 0F 0B 10 82 0C 52 10 F4 37 FB 0F 71 07 34 09 77 0E F0 07 22 0E 5C 0C 9F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 39,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 56,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 66,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainBurn": {
+      "label": "RustboroCity_PokemonSchool_Text_ExplainBurn",
+      "line": 217,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "灼伤会降低攻击，\\n同时会降低伤者的体力。\\p战斗后灼伤还会留下。\\n用灼伤药可以治愈。$",
+      "display_text": "灼伤会降低攻击，\n同时会降低伤者的体力。\n\n战斗后灼伤还会留下。\n用灼伤药可以治愈。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          16,
+          245,
+          11,
+          169,
+          5,
+          110,
+          7,
+          7,
+          3,
+          20,
+          4,
+          109,
+          5,
+          132,
+          59,
+          254,
+          13,
+          20,
+          11,
+          237,
+          5,
+          110,
+          7,
+          7,
+          3,
+          20,
+          11,
+          169,
+          16,
+          82,
+          3,
+          11,
+          12,
+          230,
+          8,
+          121,
+          55,
+          251,
+          16,
+          48,
+          3,
+          92,
+          5,
+          34,
+          16,
+          245,
+          11,
+          169,
+          5,
+          70,
+          5,
+          110,
+          8,
+          199,
+          13,
+          230,
+          55,
+          254,
+          15,
+          113,
+          16,
+          245,
+          11,
+          169,
+          14,
+          240,
+          7,
+          215,
+          15,
+          36,
+          16,
+          159,
+          15,
+          168,
+          55,
+          255
+        ],
+        "hex": "10 F5 0B A9 05 6E 07 07 03 14 04 6D 05 84 3B FE 0D 14 0B ED 05 6E 07 07 03 14 0B A9 10 52 03 0B 0C E6 08 79 37 FB 10 30 03 5C 05 22 10 F5 0B A9 05 46 05 6E 08 C7 0D E6 37 FE 0F 71 10 F5 0B A9 0E F0 07 D7 0F 24 10 9F 0F A8 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainFreeze": {
+      "label": "RustboroCity_PokemonSchool_Text_ExplainFreeze",
+      "line": 220,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "宝可梦被冰冻后，\\n它完全无法反击，\\p战斗后依然会保持冻结。\\n用解冻药为它解冻。$",
+      "display_text": "宝可梦被冰冻后，\n它完全无法反击，\n\n战斗后依然会保持冻结。\n用解冻药为它解冻。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 72,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          120,
+          1,
+          182,
+          3,
+          88,
+          5,
+          34,
+          59,
+          254,
+          12,
+          159,
+          13,
+          82,
+          11,
+          43,
+          13,
+          164,
+          3,
+          171,
+          3,
+          183,
+          5,
+          132,
+          59,
+          251,
+          16,
+          48,
+          3,
+          92,
+          5,
+          34,
+          15,
+          16,
+          11,
+          59,
+          5,
+          110,
+          1,
+          96,
+          2,
+          88,
+          3,
+          88,
+          7,
+          51,
+          55,
+          254,
+          15,
+          113,
+          7,
+          52,
+          3,
+          88,
+          14,
+          240,
+          13,
+          112,
+          12,
+          159,
+          7,
+          52,
+          3,
+          88,
+          55,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 01 78 01 B6 03 58 05 22 3B FE 0C 9F 0D 52 0B 2B 0D A4 03 AB 03 B7 05 84 3B FB 10 30 03 5C 05 22 0F 10 0B 3B 05 6E 01 60 02 58 03 58 07 33 37 FE 0F 71 07 34 03 58 0E F0 0D 70 0C 9F 07 34 03 58 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw": {
+      "label": "RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw",
+      "line": 223,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "对于偷懒的学生，\\n我就让他们尝尝我的先制之爪。\\p你是不是个好学生，\\n只要看看你怎么用这件道具\\l就能知道。$",
+      "display_text": "对于偷懒的学生，\n我就让他们尝尝我的先制之爪。\n\n你是不是个好学生，\n只要看看你怎么用这件道具\n就能知道。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 97,
+        "bytes": [
+          3,
+          121,
+          15,
+          136,
+          13,
+          29,
+          8,
+          54,
+          3,
+          11,
+          14,
+          144,
+          11,
+          216,
+          59,
+          254,
+          13,
+          152,
+          7,
+          125,
+          11,
+          67,
+          12,
+          158,
+          9,
+          95,
+          2,
+          36,
+          2,
+          36,
+          13,
+          152,
+          3,
+          11,
+          13,
+          236,
+          16,
+          151,
+          16,
+          127,
+          16,
+          213,
+          55,
+          251,
+          9,
+          217,
+          12,
+          12,
+          1,
+          214,
+          12,
+          12,
+          4,
+          96,
+          4,
+          233,
+          14,
+          144,
+          11,
+          216,
+          59,
+          254,
+          16,
+          140,
+          14,
+          241,
+          7,
+          194,
+          7,
+          194,
+          9,
+          217,
+          16,
+          10,
+          9,
+          76,
+          15,
+          113,
+          16,
+          85,
+          5,
+          233,
+          3,
+          7,
+          7,
+          143,
+          250,
+          7,
+          125,
+          9,
+          210,
+          16,
+          123,
+          3,
+          7,
+          55,
+          255
+        ],
+        "hex": "03 79 0F 88 0D 1D 08 36 03 0B 0E 90 0B D8 3B FE 0D 98 07 7D 0B 43 0C 9E 09 5F 02 24 02 24 0D 98 03 0B 0D EC 10 97 10 7F 10 D5 37 FB 09 D9 0C 0C 01 D6 0C 0C 04 60 04 E9 0E 90 0B D8 3B FE 10 8C 0E F1 07 C2 07 C2 09 D9 10 0A 09 4C 0F 71 10 55 05 E9 03 07 07 8F FA 07 7D 09 D2 10 7B 03 07 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 49,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 56,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ExplainQuickClaw": {
+      "label": "RustboroCity_PokemonSchool_Text_ExplainQuickClaw",
+      "line": 226,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "带着先制之爪的宝可梦\\n偶尔会提高速度\\l比对手先发动攻击。\\p还有很多可以给宝可梦\\n携带的东西，\\p只是这一点就\\n足够你学很久了！$",
+      "display_text": "带着先制之爪的宝可梦\n偶尔会提高速度\n比对手先发动攻击。\n\n还有很多可以给宝可梦\n携带的东西，\n\n只是这一点就\n足够你学很久了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 116,
+        "bytes": [
+          2,
+          216,
+          16,
+          244,
+          13,
+          236,
+          16,
+          151,
+          16,
+          127,
+          16,
+          213,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          10,
+          25,
+          3,
+          160,
+          5,
+          110,
+          12,
+          226,
+          4,
+          73,
+          12,
+          124,
+          3,
+          109,
+          250,
+          1,
+          133,
+          3,
+          121,
+          12,
+          27,
+          13,
+          236,
+          3,
+          165,
+          3,
+          84,
+          4,
+          109,
+          5,
+          132,
+          55,
+          251,
+          5,
+          70,
+          15,
+          126,
+          5,
+          11,
+          3,
+          133,
+          7,
+          215,
+          15,
+          36,
+          4,
+          98,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          14,
+          58,
+          2,
+          216,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          59,
+          251,
+          16,
+          140,
+          12,
+          12,
+          16,
+          85,
+          15,
+          11,
+          3,
+          42,
+          7,
+          125,
+          254,
+          17,
+          27,
+          4,
+          131,
+          9,
+          217,
+          14,
+          144,
+          5,
+          11,
+          7,
+          115,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "02 D8 10 F4 0D EC 10 97 10 7F 10 D5 03 0B 01 63 07 D7 09 66 FE 0A 19 03 A0 05 6E 0C E2 04 49 0C 7C 03 6D FA 01 85 03 79 0C 1B 0D EC 03 A5 03 54 04 6D 05 84 37 FB 05 46 0F 7E 05 0B 03 85 07 D7 0F 24 04 62 01 63 07 D7 09 66 FE 0E 3A 02 D8 03 0B 03 50 0D BD 3B FB 10 8C 0C 0C 10 55 0F 0B 03 2A 07 7D FE 11 1B 04 83 09 D9 0E 90 05 0B 07 73 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 19,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 30,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 42,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 50,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 58,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 68,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_TradingRightNow": {
+      "label": "RustboroCity_PokemonSchool_Text_TradingRightNow",
+      "line": 229,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "我刚才在和朋友\\n交换宝可梦。$",
+      "display_text": "我刚才在和朋友\n交换宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          13,
+          152,
+          4,
+          63,
+          1,
+          224,
+          15,
+          230,
+          4,
+          243,
+          10,
+          80,
+          15,
+          127,
+          254,
+          7,
+          13,
+          5,
+          72,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "0D 98 04 3F 01 E0 0F E6 04 F3 0A 50 0F 7F FE 07 0D 05 48 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 15,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot": {
+      "label": "RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot",
+      "line": 232,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "我一直想要一只橡实果，\\n现在终于有了！$",
+      "display_text": "我一直想要一只橡实果，\n现在终于有了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 36,
+        "bytes": [
+          13,
+          152,
+          15,
+          11,
+          16,
+          130,
+          14,
+          24,
+          14,
+          241,
+          15,
+          11,
+          16,
+          140,
+          14,
+          29,
+          11,
+          241,
+          4,
+          195,
+          59,
+          254,
+          14,
+          3,
+          15,
+          230,
+          16,
+          166,
+          15,
+          136,
+          15,
+          126,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "0D 98 0F 0B 10 82 0E 18 0E F1 0F 0B 10 8C 0E 1D 0B F1 04 C3 3B FE 0E 03 0F E6 10 A6 0F 88 0F 7E 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems": {
+      "label": "RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems",
+      "line": 235,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "宝可梦可以带一些道具，\\n但它们不会使用伤药或\\l解毒药这样的人造道具。$",
+      "display_text": "宝可梦可以带一些道具，\n但它们不会使用伤药或\n解毒药这样的人造道具。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 65,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          7,
+          215,
+          15,
+          36,
+          2,
+          216,
+          15,
+          11,
+          14,
+          52,
+          3,
+          7,
+          7,
+          143,
+          59,
+          254,
+          2,
+          233,
+          12,
+          159,
+          9,
+          95,
+          1,
+          214,
+          5,
+          110,
+          11,
+          245,
+          15,
+          113,
+          11,
+          169,
+          14,
+          240,
+          5,
+          127,
+          250,
+          7,
+          52,
+          3,
+          99,
+          14,
+          240,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          11,
+          75,
+          16,
+          1,
+          3,
+          7,
+          7,
+          143,
+          55,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 07 D7 0F 24 02 D8 0F 0B 0E 34 03 07 07 8F 3B FE 02 E9 0C 9F 09 5F 01 D6 05 6E 0B F5 0F 71 0B A9 0E F0 05 7F FA 07 34 03 63 0E F0 10 55 0E E2 03 0B 0B 4B 10 01 03 07 07 8F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 23,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 36,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself": {
+      "label": "RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself",
+      "line": 238,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "你知道某些宝可梦的招式\\n可以使对手宝可梦混乱吗？\\p混乱的宝可梦有时\\n会不知为何攻击自己。\\p但一旦它退出战斗，\\n它就会恢复正常。$",
+      "display_text": "你知道某些宝可梦的招式\n可以使对手宝可梦混乱吗？\n\n混乱的宝可梦有时\n会不知为何攻击自己。\n\n但一旦它退出战斗，\n它就会恢复正常。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 118,
+        "bytes": [
+          9,
+          217,
+          16,
+          123,
+          3,
+          7,
+          9,
+          169,
+          14,
+          52,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          16,
+          67,
+          12,
+          2,
+          254,
+          7,
+          215,
+          15,
+          36,
+          11,
+          245,
+          3,
+          121,
+          12,
+          27,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          121,
+          9,
+          12,
+          9,
+          42,
+          61,
+          251,
+          5,
+          121,
+          9,
+          12,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          126,
+          11,
+          237,
+          254,
+          5,
+          110,
+          1,
+          214,
+          16,
+          123,
+          13,
+          112,
+          4,
+          244,
+          4,
+          109,
+          5,
+          132,
+          17,
+          12,
+          5,
+          165,
+          55,
+          251,
+          2,
+          233,
+          15,
+          11,
+          2,
+          231,
+          12,
+          159,
+          13,
+          51,
+          2,
+          120,
+          16,
+          48,
+          3,
+          92,
+          59,
+          254,
+          12,
+          159,
+          7,
+          125,
+          5,
+          110,
+          5,
+          99,
+          4,
+          30,
+          16,
+          112,
+          2,
+          37,
+          55,
+          255
+        ],
+        "hex": "09 D9 10 7B 03 07 09 A9 0E 34 01 63 07 D7 09 66 03 0B 10 43 0C 02 FE 07 D7 0F 24 0B F5 03 79 0C 1B 01 63 07 D7 09 66 05 79 09 0C 09 2A 3D FB 05 79 09 0C 03 0B 01 63 07 D7 09 66 0F 7E 0B ED FE 05 6E 01 D6 10 7B 0D 70 04 F4 04 6D 05 84 11 0C 05 A5 37 FB 02 E9 0F 0B 02 E7 0C 9F 0D 33 02 78 10 30 03 5C 3B FE 0C 9F 07 7D 05 6E 05 63 04 1E 10 70 02 25 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 25,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 47,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 58,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 68,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry": {
+      "label": "RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry",
+      "line": 241,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "带着树果的宝可梦\\n能够自我治疗……\\p许多道具都可以\\n让宝可梦携带……\\p唉，及时记下笔记\\n太难了……$",
+      "display_text": "带着树果的宝可梦\n能够自我治疗……\n\n许多道具都可以\n让宝可梦携带……\n\n唉，及时记下笔记\n太难了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 87,
+        "bytes": [
+          2,
+          216,
+          16,
+          244,
+          12,
+          60,
+          4,
+          195,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          9,
+          210,
+          4,
+          131,
+          17,
+          12,
+          13,
+          152,
+          16,
+          159,
+          8,
+          153,
+          176,
+          176,
+          251,
+          14,
+          120,
+          3,
+          133,
+          3,
+          7,
+          7,
+          143,
+          3,
+          97,
+          7,
+          215,
+          15,
+          36,
+          254,
+          11,
+          67,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          58,
+          2,
+          216,
+          176,
+          176,
+          251,
+          1,
+          5,
+          59,
+          5,
+          155,
+          11,
+          237,
+          5,
+          178,
+          13,
+          230,
+          1,
+          135,
+          5,
+          178,
+          254,
+          12,
+          172,
+          9,
+          199,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "02 D8 10 F4 0C 3C 04 C3 03 0B 01 63 07 D7 09 66 FE 09 D2 04 83 11 0C 0D 98 10 9F 08 99 B0 B0 FB 0E 78 03 85 03 07 07 8F 03 61 07 D7 0F 24 FE 0B 43 01 63 07 D7 09 66 0E 3A 02 D8 B0 B0 FB 01 05 3B 05 9B 0B ED 05 B2 0D E6 01 87 05 B2 FE 0C AC 09 C7 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 37,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 47,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 54,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_StudentsNotes": {
+      "label": "RustboroCity_PokemonSchool_Text_StudentsNotes",
+      "line": 244,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "这是这个学生的笔记本……\\p用精灵球可以\\n捕捉宝可梦。\\p一个训练家最多可以\\n同时携带6只宝可梦。\\p训练家就是捕捉宝可梦，\\n并培育它们，\\l与它们共同战斗的人。\\p训练家的任务是\\n打败在宝可梦道馆中\\l等待着的强大训练家。$",
+      "display_text": "这是这个学生的笔记本……\n\n用精灵球可以\n捕捉宝可梦。\n\n一个训练家最多可以\n同时携带6只宝可梦。\n\n训练家就是捕捉宝可梦，\n并培育它们，\n与它们共同战斗的人。\n\n训练家的任务是\n打败在宝可梦道馆中\n等待着的强大训练家。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 194,
+        "bytes": [
+          16,
+          85,
+          12,
+          12,
+          16,
+          85,
+          4,
+          96,
+          14,
+          144,
+          11,
+          216,
+          3,
+          11,
+          1,
+          135,
+          5,
+          178,
+          1,
+          123,
+          176,
+          176,
+          251,
+          15,
+          113,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          7,
+          215,
+          15,
+          36,
+          254,
+          1,
+          209,
+          16,
+          236,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          15,
+          11,
+          4,
+          96,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          17,
+          38,
+          3,
+          133,
+          7,
+          215,
+          15,
+          36,
+          254,
+          13,
+          20,
+          11,
+          237,
+          14,
+          58,
+          2,
+          216,
+          167,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          7,
+          125,
+          12,
+          12,
+          1,
+          209,
+          16,
+          236,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          254,
+          1,
+          189,
+          10,
+          61,
+          15,
+          171,
+          12,
+          159,
+          9,
+          95,
+          59,
+          250,
+          15,
+          153,
+          12,
+          159,
+          9,
+          95,
+          4,
+          122,
+          13,
+          20,
+          16,
+          48,
+          3,
+          92,
+          3,
+          11,
+          11,
+          75,
+          55,
+          251,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          11,
+          11,
+          78,
+          13,
+          183,
+          12,
+          12,
+          254,
+          2,
+          210,
+          1,
+          59,
+          15,
+          230,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          7,
+          4,
+          165,
+          16,
+          161,
+          250,
+          3,
+          15,
+          2,
+          221,
+          16,
+          244,
+          3,
+          11,
+          10,
+          216,
+          2,
+          211,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          55,
+          255
+        ],
+        "hex": "10 55 0C 0C 10 55 04 60 0E 90 0B D8 03 0B 01 87 05 B2 01 7B B0 B0 FB 0F 71 07 5B 08 BC 0B 14 07 D7 0F 24 FE 01 D1 10 EC 01 63 07 D7 09 66 37 FB 0F 0B 04 60 0E 9E 08 8A 05 BD 11 26 03 85 07 D7 0F 24 FE 0D 14 0B ED 0E 3A 02 D8 A7 10 8C 01 63 07 D7 09 66 37 FB 0E 9E 08 8A 05 BD 07 7D 0C 0C 01 D1 10 EC 01 63 07 D7 09 66 3B FE 01 BD 0A 3D 0F AB 0C 9F 09 5F 3B FA 0F 99 0C 9F 09 5F 04 7A 0D 14 10 30 03 5C 03 0B 0B 4B 37 FB 0E 9E 08 8A 05 BD 03 0B 0B 4E 0D B7 0C 0C FE 02 D2 01 3B 0F E6 01 63 07 D7 09 66 03 07 04 A5 10 A1 FA 03 0F 02 DD 10 F4 03 0B 0A D8 02 D3 0E 9E 08 8A 05 BD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 51,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 64,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 72,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 84,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 93,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 104,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 116,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut": {
+      "label": "RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut",
+      "line": 247,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "你好，我们以前见过面吧？\\n我想是在橙华市见过。\\p我来自我介绍一下。\\n我叫亚希达，\\p正为了寻找出类拔萃的\\n训练家而四处旅行，\\p具体地说，就是寻找宝可梦对战专家。\\p你为什么会来这所学校呢？\\n你也是训练家吗？\\p那你首先要做的就是\\n拥有一只会居合劈的宝可梦。\\p如果我没记错的话，\\n这城镇里就有人拥有居合劈。$",
+      "display_text": "你好，我们以前见过面吧？\n我想是在橙华市见过。\n\n我来自我介绍一下。\n我叫亚希达，\n\n正为了寻找出类拔萃的\n训练家而四处旅行，\n\n具体地说，就是寻找宝可梦对战专家。\n\n你为什么会来这所学校呢？\n你也是训练家吗？\n\n那你首先要做的就是\n拥有一只会居合劈的宝可梦。\n\n如果我没记错的话，\n这城镇里就有人拥有居合劈。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 274,
+        "bytes": [
+          9,
+          217,
+          4,
+          233,
+          59,
+          13,
+          152,
+          9,
+          95,
+          15,
+          36,
+          10,
+          201,
+          5,
+          230,
+          4,
+          197,
+          9,
+          126,
+          1,
+          40,
+          61,
+          254,
+          13,
+          152,
+          14,
+          24,
+          12,
+          12,
+          15,
+          230,
+          2,
+          74,
+          5,
+          55,
+          12,
+          21,
+          5,
+          230,
+          4,
+          197,
+          55,
+          251,
+          13,
+          152,
+          8,
+          41,
+          17,
+          12,
+          13,
+          152,
+          7,
+          59,
+          11,
+          186,
+          15,
+          11,
+          13,
+          230,
+          55,
+          254,
+          13,
+          152,
+          7,
+          34,
+          14,
+          176,
+          13,
+          199,
+          2,
+          207,
+          59,
+          251,
+          16,
+          112,
+          13,
+          112,
+          8,
+          158,
+          14,
+          153,
+          16,
+          69,
+          2,
+          120,
+          8,
+          85,
+          1,
+          45,
+          19,
+          70,
+          3,
+          11,
+          254,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          157,
+          12,
+          103,
+          2,
+          134,
+          8,
+          244,
+          14,
+          91,
+          59,
+          251,
+          7,
+          143,
+          12,
+          230,
+          3,
+          31,
+          12,
+          88,
+          59,
+          7,
+          125,
+          12,
+          12,
+          14,
+          153,
+          16,
+          69,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          121,
+          16,
+          48,
+          16,
+          215,
+          5,
+          189,
+          55,
+          251,
+          9,
+          217,
+          13,
+          112,
+          11,
+          238,
+          9,
+          76,
+          5,
+          110,
+          8,
+          41,
+          16,
+          85,
+          12,
+          156,
+          14,
+          144,
+          14,
+          46,
+          9,
+          206,
+          61,
+          254,
+          9,
+          217,
+          15,
+          2,
+          12,
+          12,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          9,
+          42,
+          61,
+          251,
+          9,
+          189,
+          9,
+          217,
+          12,
+          28,
+          13,
+          236,
+          14,
+          241,
+          17,
+          46,
+          3,
+          11,
+          7,
+          125,
+          12,
+          12,
+          254,
+          15,
+          99,
+          15,
+          126,
+          15,
+          11,
+          16,
+          140,
+          5,
+          110,
+          7,
+          131,
+          4,
+          245,
+          10,
+          89,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          13,
+          152,
+          9,
+          83,
+          5,
+          178,
+          2,
+          205,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          16,
+          85,
+          2,
+          73,
+          16,
+          101,
+          8,
+          100,
+          7,
+          125,
+          15,
+          126,
+          11,
+          75,
+          15,
+          99,
+          15,
+          126,
+          7,
+          131,
+          4,
+          245,
+          10,
+          89,
+          55,
+          255
+        ],
+        "hex": "09 D9 04 E9 3B 0D 98 09 5F 0F 24 0A C9 05 E6 04 C5 09 7E 01 28 3D FE 0D 98 0E 18 0C 0C 0F E6 02 4A 05 37 0C 15 05 E6 04 C5 37 FB 0D 98 08 29 11 0C 0D 98 07 3B 0B BA 0F 0B 0D E6 37 FE 0D 98 07 22 0E B0 0D C7 02 CF 3B FB 10 70 0D 70 08 9E 0E 99 10 45 02 78 08 55 01 2D 13 46 03 0B FE 0E 9E 08 8A 05 BD 03 9D 0C 67 02 86 08 F4 0E 5B 3B FB 07 8F 0C E6 03 1F 0C 58 3B 07 7D 0C 0C 0E 99 10 45 01 63 07 D7 09 66 03 79 10 30 10 D7 05 BD 37 FB 09 D9 0D 70 0B EE 09 4C 05 6E 08 29 10 55 0C 9C 0E 90 0E 2E 09 CE 3D FE 09 D9 0F 02 0C 0C 0E 9E 08 8A 05 BD 09 2A 3D FB 09 BD 09 D9 0C 1C 0D EC 0E F1 11 2E 03 0B 07 7D 0C 0C FE 0F 63 0F 7E 0F 0B 10 8C 05 6E 07 83 04 F5 0A 59 03 0B 01 63 07 D7 09 66 37 FB 0B 67 04 C3 0D 98 09 53 05 B2 02 CD 03 0B 05 3D 3B FE 10 55 02 49 10 65 08 64 07 7D 0F 7E 0B 4B 0F 63 0F 7E 07 83 04 F5 0A 59 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 43,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 55,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 66,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 85,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 99,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 109,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 120,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 135,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 146,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 161,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown": {
+      "label": "RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown",
+      "line": 250,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "亚希达：嗯……\\p这里的学生天赋还不明确，\\n但潜力是有的。$",
+      "display_text": "亚希达：嗯……\n\n这里的学生天赋还不明确，\n但潜力是有的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 50,
+        "bytes": [
+          14,
+          176,
+          13,
+          199,
+          2,
+          207,
+          62,
+          20,
+          97,
+          176,
+          176,
+          251,
+          16,
+          85,
+          8,
+          100,
+          3,
+          11,
+          14,
+          144,
+          11,
+          216,
+          12,
+          237,
+          4,
+          29,
+          5,
+          70,
+          1,
+          214,
+          9,
+          143,
+          11,
+          55,
+          59,
+          254,
+          2,
+          233,
+          10,
+          202,
+          8,
+          121,
+          12,
+          12,
+          15,
+          126,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "0E B0 0D C7 02 CF 3E 14 61 B0 B0 FB 10 55 08 64 03 0B 0E 90 0B D8 0C ED 04 1D 05 46 01 D6 09 8F 0B 37 3B FE 02 E9 0A CA 08 79 0C 0C 0F 7E 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 7,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ScottStoneBadge": {
+      "label": "RustboroCity_PokemonSchool_Text_ScottStoneBadge",
+      "line": 253,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "亚希达：哦，那是什么？\\p岩石徽章是吗？\\n真令人吃惊。\\p不过，我更想看看\\n对战时的你。\\p仅凭一枚联盟徽章\\n很难看出训练家的水平高低。$",
+      "display_text": "亚希达：哦，那是什么？\n\n岩石徽章是吗？\n真令人吃惊。\n\n不过，我更想看看\n对战时的你。\n\n仅凭一枚联盟徽章\n很难看出训练家的水平高低。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 117,
+        "bytes": [
+          14,
+          176,
+          13,
+          199,
+          2,
+          207,
+          62,
+          10,
+          19,
+          59,
+          9,
+          189,
+          12,
+          12,
+          11,
+          238,
+          9,
+          76,
+          61,
+          251,
+          14,
+          187,
+          11,
+          235,
+          5,
+          98,
+          16,
+          53,
+          12,
+          12,
+          9,
+          42,
+          61,
+          254,
+          16,
+          89,
+          8,
+          193,
+          11,
+          75,
+          2,
+          86,
+          7,
+          90,
+          55,
+          251,
+          1,
+          214,
+          4,
+          197,
+          59,
+          13,
+          152,
+          4,
+          102,
+          14,
+          24,
+          7,
+          194,
+          7,
+          194,
+          254,
+          3,
+          121,
+          16,
+          48,
+          11,
+          237,
+          3,
+          11,
+          9,
+          217,
+          55,
+          251,
+          7,
+          72,
+          10,
+          121,
+          15,
+          11,
+          9,
+          78,
+          8,
+          125,
+          9,
+          99,
+          5,
+          98,
+          16,
+          53,
+          254,
+          5,
+          11,
+          9,
+          199,
+          7,
+          194,
+          2,
+          120,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          11,
+          12,
+          81,
+          10,
+          120,
+          4,
+          73,
+          3,
+          20,
+          55,
+          255
+        ],
+        "hex": "0E B0 0D C7 02 CF 3E 0A 13 3B 09 BD 0C 0C 0B EE 09 4C 3D FB 0E BB 0B EB 05 62 10 35 0C 0C 09 2A 3D FE 10 59 08 C1 0B 4B 02 56 07 5A 37 FB 01 D6 04 C5 3B 0D 98 04 66 0E 18 07 C2 07 C2 FE 03 79 10 30 0B ED 03 0B 09 D9 37 FB 07 48 0A 79 0F 0B 09 4E 08 7D 09 63 05 62 10 35 FE 05 0B 09 C7 07 C2 02 78 0E 9E 08 8A 05 BD 03 0B 0C 51 0A 78 04 49 03 14 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 38,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 46,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 56,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 71,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge": {
+      "label": "RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge",
+      "line": 256,
+      "source_file": "data/maps/RustboroCity_PokemonSchool/scripts.inc",
+      "raw_text": "你好，我们以前见过面吧？\\n我想是在橙华市见过。\\p我来介绍一下自己。\\n我叫亚希达，\\p正为了寻找出类拔萃的\\n训练家而四处旅行，\\p具体地说，就是寻找宝可梦对战专家。\\p哦，那是什么？\\p岩石徽章是吗？\\p真令人吃惊，尤其是对你这样的\\n新人训练家来说。\\p不过，我更想看看\\n对战时的你。\\p仅凭一枚联盟徽章\\n很难看出训练家的水平高低。$",
+      "display_text": "你好，我们以前见过面吧？\n我想是在橙华市见过。\n\n我来介绍一下自己。\n我叫亚希达，\n\n正为了寻找出类拔萃的\n训练家而四处旅行，\n\n具体地说，就是寻找宝可梦对战专家。\n\n哦，那是什么？\n\n岩石徽章是吗？\n\n真令人吃惊，尤其是对你这样的\n新人训练家来说。\n\n不过，我更想看看\n对战时的你。\n\n仅凭一枚联盟徽章\n很难看出训练家的水平高低。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 287,
+        "bytes": [
+          9,
+          217,
+          4,
+          233,
+          59,
+          13,
+          152,
+          9,
+          95,
+          15,
+          36,
+          10,
+          201,
+          5,
+          230,
+          4,
+          197,
+          9,
+          126,
+          1,
+          40,
+          61,
+          254,
+          13,
+          152,
+          14,
+          24,
+          12,
+          12,
+          15,
+          230,
+          2,
+          74,
+          5,
+          55,
+          12,
+          21,
+          5,
+          230,
+          4,
+          197,
+          55,
+          251,
+          13,
+          152,
+          8,
+          41,
+          7,
+          59,
+          11,
+          186,
+          15,
+          11,
+          13,
+          230,
+          17,
+          12,
+          5,
+          165,
+          55,
+          254,
+          13,
+          152,
+          7,
+          34,
+          14,
+          176,
+          13,
+          199,
+          2,
+          207,
+          59,
+          251,
+          16,
+          112,
+          13,
+          112,
+          8,
+          158,
+          14,
+          153,
+          16,
+          69,
+          2,
+          120,
+          8,
+          85,
+          1,
+          45,
+          19,
+          70,
+          3,
+          11,
+          254,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          157,
+          12,
+          103,
+          2,
+          134,
+          8,
+          244,
+          14,
+          91,
+          59,
+          251,
+          7,
+          143,
+          12,
+          230,
+          3,
+          31,
+          12,
+          88,
+          59,
+          7,
+          125,
+          12,
+          12,
+          14,
+          153,
+          16,
+          69,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          121,
+          16,
+          48,
+          16,
+          215,
+          5,
+          189,
+          55,
+          251,
+          10,
+          19,
+          59,
+          9,
+          189,
+          12,
+          12,
+          11,
+          238,
+          9,
+          76,
+          61,
+          251,
+          14,
+          187,
+          11,
+          235,
+          5,
+          98,
+          16,
+          53,
+          12,
+          12,
+          9,
+          42,
+          61,
+          251,
+          16,
+          89,
+          8,
+          193,
+          11,
+          75,
+          2,
+          86,
+          7,
+          90,
+          59,
+          15,
+          118,
+          10,
+          159,
+          12,
+          12,
+          3,
+          121,
+          9,
+          217,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          254,
+          14,
+          77,
+          11,
+          75,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          8,
+          41,
+          12,
+          88,
+          55,
+          251,
+          1,
+          214,
+          4,
+          197,
+          59,
+          13,
+          152,
+          4,
+          102,
+          14,
+          24,
+          7,
+          194,
+          7,
+          194,
+          254,
+          3,
+          121,
+          16,
+          48,
+          11,
+          237,
+          3,
+          11,
+          9,
+          217,
+          55,
+          251,
+          7,
+          72,
+          10,
+          121,
+          15,
+          11,
+          9,
+          78,
+          8,
+          125,
+          9,
+          99,
+          5,
+          98,
+          16,
+          53,
+          254,
+          5,
+          11,
+          9,
+          199,
+          7,
+          194,
+          2,
+          120,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          11,
+          12,
+          81,
+          10,
+          120,
+          4,
+          73,
+          3,
+          20,
+          55,
+          255
+        ],
+        "hex": "09 D9 04 E9 3B 0D 98 09 5F 0F 24 0A C9 05 E6 04 C5 09 7E 01 28 3D FE 0D 98 0E 18 0C 0C 0F E6 02 4A 05 37 0C 15 05 E6 04 C5 37 FB 0D 98 08 29 07 3B 0B BA 0F 0B 0D E6 11 0C 05 A5 37 FE 0D 98 07 22 0E B0 0D C7 02 CF 3B FB 10 70 0D 70 08 9E 0E 99 10 45 02 78 08 55 01 2D 13 46 03 0B FE 0E 9E 08 8A 05 BD 03 9D 0C 67 02 86 08 F4 0E 5B 3B FB 07 8F 0C E6 03 1F 0C 58 3B 07 7D 0C 0C 0E 99 10 45 01 63 07 D7 09 66 03 79 10 30 10 D7 05 BD 37 FB 0A 13 3B 09 BD 0C 0C 0B EE 09 4C 3D FB 0E BB 0B EB 05 62 10 35 0C 0C 09 2A 3D FB 10 59 08 C1 0B 4B 02 56 07 5A 3B 0F 76 0A 9F 0C 0C 03 79 09 D9 10 55 0E E2 03 0B FE 0E 4D 0B 4B 0E 9E 08 8A 05 BD 08 29 0C 58 37 FB 01 D6 04 C5 3B 0D 98 04 66 0E 18 07 C2 07 C2 FE 03 79 10 30 0B ED 03 0B 09 D9 37 FB 07 48 0A 79 0F 0B 09 4E 08 7D 09 63 05 62 10 35 FE 05 0B 09 C7 07 C2 02 78 0E 9E 08 8A 05 BD 03 0B 0C 51 0A 78 04 49 03 14 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 43,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 55,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 66,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 85,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 94,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 103,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 119,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 129,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 139,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 147,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 157,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 172,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addvar": 2,
+      "applymovement": 4,
+      "call_if_eq": 2,
+      "case": 7,
+      "closemessage": 2,
+      "delay_16": 14,
+      "delay_8": 2,
+      "faceplayer": 2,
+      "giveitem": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 5,
+      "multichoicegrid": 1,
+      "setflag": 3,
+      "step_end": 2,
+      "switch": 1,
+      "waitmessage": 1,
+      "waitmovement": 4,
+      "walk_down": 6,
+      "walk_in_place_faster_down": 2,
+      "walk_in_place_faster_left": 2,
+      "walk_left": 7,
+      "walk_right": 7,
+      "walk_up": 6
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 46,
+    "script_count": 25,
+    "movement_count": 2,
+    "text_count": 19,
+    "encoded_text_count": 19,
+    "text_source_byte_count": 1990,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 19
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addvar": 2,
+      "applymovement": 4,
+      "call_if_eq": 2,
+      "case": 7,
+      "closemessage": 2,
+      "delay_16": 14,
+      "delay_8": 2,
+      "end": 22,
+      "faceplayer": 2,
+      "giveitem": 1,
+      "goto": 8,
+      "goto_if_eq": 1,
+      "goto_if_set": 5,
+      "lock": 2,
+      "lockall": 1,
+      "message": 1,
+      "msgbox": 19,
+      "multichoicegrid": 1,
+      "release": 6,
+      "releaseall": 1,
+      "return": 2,
+      "setflag": 3,
+      "step_end": 2,
+      "switch": 1,
+      "waitmessage": 1,
+      "waitmovement": 4,
+      "walk_down": 6,
+      "walk_in_place_faster_down": 2,
+      "walk_in_place_faster_left": 2,
+      "walk_left": 7,
+      "walk_right": 7,
+      "walk_up": 6
+    }
+  }
+}

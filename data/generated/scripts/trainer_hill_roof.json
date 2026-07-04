@@ -1,0 +1,758 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "TrainerHill_Roof",
+    "map_script": "data/maps/TrainerHill_Roof/scripts.inc",
+    "map_json": "data/maps/TrainerHill_Roof/map.json",
+    "map_id": "MAP_TRAINER_HILL_ROOF",
+    "map_name": "TrainerHill_Roof"
+  },
+  "labels": {
+    "TrainerHill_Roof_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerHill_Roof_EventScript_Owner": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 8
+    },
+    "TrainerHill_Roof_EventScript_Arrived": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 1
+    },
+    "TrainerHill_Roof_EventScript_GivePrize": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 5
+    },
+    "TrainerHill_Roof_EventScript_ReceivePrize": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 6
+    },
+    "TrainerHill_Roof_EventScript_NoRoomForPrize": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 4
+    },
+    "TrainerHill_Roof_EventScript_CheckFinalTime": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 5
+    },
+    "TrainerHill_Roof_EventScript_NewRecord": {
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerHill_Roof_EventScript_NoNewRecord": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerHill_Roof_EventScript_EndSpeakToOwner": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 3
+    },
+    "TrainerHill_Roof_EventScript_AlreadyReceivedPrize": {
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "TrainerHill_Roof_MapScripts": {
+      "label": "TrainerHill_Roof_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "TrainerHill_OnResume"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, TrainerHill_OnResume",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "TrainerHill_OnFrame"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, TrainerHill_OnFrame",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Roof_EventScript_Owner": {
+      "label": "TrainerHill_Roof_EventScript_Owner",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerhill_settrainerflags",
+          "args": [],
+          "line": 7,
+          "raw": "trainerhill_settrainerflags",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "lock",
+          "args": [],
+          "line": 8,
+          "raw": "lock",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 9,
+          "raw": "faceplayer",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "trainerhill_getownerstate",
+          "args": [],
+          "line": 10,
+          "raw": "trainerhill_getownerstate",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 11,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TrainerHill_Roof_EventScript_Arrived"
+          ],
+          "line": 12,
+          "raw": "case 0, TrainerHill_Roof_EventScript_Arrived",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TrainerHill_Roof_EventScript_GivePrize"
+          ],
+          "line": 13,
+          "raw": "case 1, TrainerHill_Roof_EventScript_GivePrize",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "TrainerHill_Roof_EventScript_AlreadyReceivedPrize"
+          ],
+          "line": 14,
+          "raw": "case 2, TrainerHill_Roof_EventScript_AlreadyReceivedPrize",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Roof_EventScript_Arrived": {
+      "label": "TrainerHill_Roof_EventScript_Arrived",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerHill_Roof_Text_YouFinallyCameBravo",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 16,
+          "raw": "msgbox TrainerHill_Roof_Text_YouFinallyCameBravo, MSGBOX_DEFAULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerHill_Roof_Text_YouFinallyCameBravo",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 16
+        }
+      ],
+      "branch_targets": []
+    },
+    "TrainerHill_Roof_EventScript_GivePrize": {
+      "label": "TrainerHill_Roof_EventScript_GivePrize",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerhill_giveprize",
+          "args": [],
+          "line": 18,
+          "raw": "trainerhill_giveprize",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 19,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TrainerHill_Roof_EventScript_ReceivePrize"
+          ],
+          "line": 20,
+          "raw": "case 0, TrainerHill_Roof_EventScript_ReceivePrize",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TrainerHill_Roof_EventScript_NoRoomForPrize"
+          ],
+          "line": 21,
+          "raw": "case 1, TrainerHill_Roof_EventScript_NoRoomForPrize",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "TrainerHill_Roof_EventScript_CheckFinalTime"
+          ],
+          "line": 22,
+          "raw": "case 2, TrainerHill_Roof_EventScript_CheckFinalTime",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Roof_EventScript_ReceivePrize": {
+      "label": "TrainerHill_Roof_EventScript_ReceivePrize",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerHill_Roof_Text_HaveTheMostMarvelousGift",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 24,
+          "raw": "msgbox TrainerHill_Roof_Text_HaveTheMostMarvelousGift, MSGBOX_DEFAULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_LEVEL_UP"
+          ],
+          "line": 25,
+          "raw": "playfanfare MUS_LEVEL_UP",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_ObtainedTheItem"
+          ],
+          "line": 26,
+          "raw": "message gText_ObtainedTheItem",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 27,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 28,
+          "raw": "waitmessage",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerHill_Roof_EventScript_CheckFinalTime"
+          ],
+          "line": 29,
+          "raw": "goto TrainerHill_Roof_EventScript_CheckFinalTime",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerHill_Roof_Text_HaveTheMostMarvelousGift",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 24
+        },
+        {
+          "op": "message",
+          "text_label": "gText_ObtainedTheItem",
+          "mode": "",
+          "line": 26
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerHill_Roof_EventScript_CheckFinalTime",
+          "line": 29
+        }
+      ]
+    },
+    "TrainerHill_Roof_EventScript_NoRoomForPrize": {
+      "label": "TrainerHill_Roof_EventScript_NoRoomForPrize",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerHill_Roof_Text_HaveTheMostMarvelousGift",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 32,
+          "raw": "msgbox TrainerHill_Roof_Text_HaveTheMostMarvelousGift, MSGBOX_DEFAULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_TheBagIsFull",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 33,
+          "raw": "msgbox gText_TheBagIsFull, MSGBOX_DEFAULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerHill_Roof_Text_FullUpBeBackLaterForThis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 34,
+          "raw": "msgbox TrainerHill_Roof_Text_FullUpBeBackLaterForThis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerHill_Roof_EventScript_CheckFinalTime"
+          ],
+          "line": 35,
+          "raw": "goto TrainerHill_Roof_EventScript_CheckFinalTime",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerHill_Roof_Text_HaveTheMostMarvelousGift",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 32
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_TheBagIsFull",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 33
+        },
+        {
+          "op": "msgbox",
+          "text_label": "TrainerHill_Roof_Text_FullUpBeBackLaterForThis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 34
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerHill_Roof_EventScript_CheckFinalTime",
+          "line": 35
+        }
+      ]
+    },
+    "TrainerHill_Roof_EventScript_CheckFinalTime": {
+      "label": "TrainerHill_Roof_EventScript_CheckFinalTime",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerhill_finaltime",
+          "args": [],
+          "line": 38,
+          "raw": "trainerhill_finaltime",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 39,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "TrainerHill_Roof_EventScript_NewRecord"
+          ],
+          "line": 40,
+          "raw": "case 0, TrainerHill_Roof_EventScript_NewRecord",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "TrainerHill_Roof_EventScript_NoNewRecord"
+          ],
+          "line": 41,
+          "raw": "case 1, TrainerHill_Roof_EventScript_NoNewRecord",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "TrainerHill_Roof_EventScript_EndSpeakToOwner"
+          ],
+          "line": 42,
+          "raw": "case 2, TrainerHill_Roof_EventScript_EndSpeakToOwner",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "TrainerHill_Roof_EventScript_NewRecord": {
+      "label": "TrainerHill_Roof_EventScript_NewRecord",
+      "kind": "script",
+      "line": 43,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerHill_Roof_Text_GotHereMarvelouslyQuickly",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 44,
+          "raw": "msgbox TrainerHill_Roof_Text_GotHereMarvelouslyQuickly, MSGBOX_DEFAULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerHill_Roof_EventScript_EndSpeakToOwner"
+          ],
+          "line": 45,
+          "raw": "goto TrainerHill_Roof_EventScript_EndSpeakToOwner",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 46,
+          "raw": "end",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerHill_Roof_Text_GotHereMarvelouslyQuickly",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 44
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerHill_Roof_EventScript_EndSpeakToOwner",
+          "line": 45
+        }
+      ]
+    },
+    "TrainerHill_Roof_EventScript_NoNewRecord": {
+      "label": "TrainerHill_Roof_EventScript_NoNewRecord",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerHill_Roof_Text_YouWerentVeryQuick",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 49,
+          "raw": "msgbox TrainerHill_Roof_Text_YouWerentVeryQuick, MSGBOX_DEFAULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "TrainerHill_Roof_EventScript_EndSpeakToOwner"
+          ],
+          "line": 50,
+          "raw": "goto TrainerHill_Roof_EventScript_EndSpeakToOwner",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 51,
+          "raw": "end",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerHill_Roof_Text_YouWerentVeryQuick",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 49
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "TrainerHill_Roof_EventScript_EndSpeakToOwner",
+          "line": 50
+        }
+      ]
+    },
+    "TrainerHill_Roof_EventScript_EndSpeakToOwner": {
+      "label": "TrainerHill_Roof_EventScript_EndSpeakToOwner",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerHill_Roof_Text_ArriveZippierNextTime",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 54,
+          "raw": "msgbox TrainerHill_Roof_Text_ArriveZippierNextTime, MSGBOX_DEFAULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 55,
+          "raw": "release",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 56,
+          "raw": "end",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerHill_Roof_Text_ArriveZippierNextTime",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 54
+        }
+      ],
+      "branch_targets": []
+    },
+    "TrainerHill_Roof_EventScript_AlreadyReceivedPrize": {
+      "label": "TrainerHill_Roof_EventScript_AlreadyReceivedPrize",
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/TrainerHill_Roof/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "TrainerHill_Roof_Text_ArriveZippierNextTime",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 59,
+          "raw": "msgbox TrainerHill_Roof_Text_ArriveZippierNextTime, MSGBOX_DEFAULT",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 60,
+          "raw": "release",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 61,
+          "raw": "end",
+          "source_file": "data/maps/TrainerHill_Roof/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "TrainerHill_Roof_Text_ArriveZippierNextTime",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 59
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "case": 9,
+      "faceplayer": 1,
+      "map_script": 2,
+      "playfanfare": 1,
+      "switch": 3,
+      "trainerhill_finaltime": 1,
+      "trainerhill_getownerstate": 1,
+      "trainerhill_giveprize": 1,
+      "trainerhill_settrainerflags": 1,
+      "waitfanfare": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 11,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "case": 9,
+      "end": 4,
+      "faceplayer": 1,
+      "goto": 4,
+      "lock": 1,
+      "map_script": 2,
+      "message": 1,
+      "msgbox": 9,
+      "playfanfare": 1,
+      "release": 2,
+      "switch": 3,
+      "trainerhill_finaltime": 1,
+      "trainerhill_getownerstate": 1,
+      "trainerhill_giveprize": 1,
+      "trainerhill_settrainerflags": 1,
+      "waitfanfare": 1,
+      "waitmessage": 1
+    }
+  }
+}

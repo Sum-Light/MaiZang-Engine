@@ -1,0 +1,677 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SSAnne_1F_Room6_Frlg",
+    "map_script": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+    "map_json": "data/maps/SSAnne_1F_Room6_Frlg/map.json",
+    "map_id": "MAP_SSANNE_1F_ROOM6",
+    "map_name": "SSAnne_1F_Room6_Frlg"
+  },
+  "labels": {
+    "SSAnne_1F_Room6_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_1F_Room6_EventScript_Woman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "SSAnne_1F_Room6_EventScript_DeclineHeal": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "SSAnne_1F_Room6_EventScript_DeclineHealMale": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSAnne_1F_Room6_Text_TakeAShortRest": {
+      "kind": "text",
+      "line": 27,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed": {
+      "kind": "text",
+      "line": 31,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_1F_Room6_Text_SorryYouLookLikeMyBrother": {
+      "kind": "text",
+      "line": 35,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_1F_Room6_Text_SorryYouLookLikeMySister": {
+      "kind": "text",
+      "line": 39,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "SSAnne_1F_Room6_Frlg_MapScripts": {
+      "label": "SSAnne_1F_Room6_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_1F_Room6_EventScript_Woman": {
+      "label": "SSAnne_1F_Room6_EventScript_Woman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_1F_Room6_Text_TakeAShortRest",
+            "MSGBOX_YESNO"
+          ],
+          "line": 7,
+          "raw": "msgbox SSAnne_1F_Room6_Text_TakeAShortRest, MSGBOX_YESNO",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "SSAnne_1F_Room6_EventScript_DeclineHeal"
+          ],
+          "line": 8,
+          "raw": "goto_if_eq VAR_RESULT, NO, SSAnne_1F_Room6_EventScript_DeclineHeal",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 9,
+          "raw": "closemessage",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_OutOfCenterPartyHeal"
+          ],
+          "line": 10,
+          "raw": "call Common_EventScript_OutOfCenterPartyHeal",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed"
+          ],
+          "line": 11,
+          "raw": "msgbox SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 12,
+          "raw": "release",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_1F_Room6_Text_TakeAShortRest",
+          "mode": "MSGBOX_YESNO",
+          "line": 7
+        },
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed",
+          "mode": "",
+          "line": 11
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "SSAnne_1F_Room6_EventScript_DeclineHeal",
+          "line": 8
+        },
+        {
+          "op": "call",
+          "target": "Common_EventScript_OutOfCenterPartyHeal",
+          "line": 10
+        }
+      ]
+    },
+    "SSAnne_1F_Room6_EventScript_DeclineHeal": {
+      "label": "SSAnne_1F_Room6_EventScript_DeclineHeal",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 16,
+          "raw": "checkplayergender",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "SSAnne_1F_Room6_EventScript_DeclineHealMale"
+          ],
+          "line": 17,
+          "raw": "goto_if_eq VAR_RESULT, MALE, SSAnne_1F_Room6_EventScript_DeclineHealMale",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_1F_Room6_Text_SorryYouLookLikeMySister"
+          ],
+          "line": 18,
+          "raw": "msgbox SSAnne_1F_Room6_Text_SorryYouLookLikeMySister",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 19,
+          "raw": "release",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_1F_Room6_Text_SorryYouLookLikeMySister",
+          "mode": "",
+          "line": 18
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "SSAnne_1F_Room6_EventScript_DeclineHealMale",
+          "line": 17
+        }
+      ]
+    },
+    "SSAnne_1F_Room6_EventScript_DeclineHealMale": {
+      "label": "SSAnne_1F_Room6_EventScript_DeclineHealMale",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_1F_Room6_Text_SorryYouLookLikeMyBrother"
+          ],
+          "line": 23,
+          "raw": "msgbox SSAnne_1F_Room6_Text_SorryYouLookLikeMyBrother",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 24,
+          "raw": "release",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_1F_Room6_Text_SorryYouLookLikeMyBrother",
+          "mode": "",
+          "line": 23
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SSAnne_1F_Room6_Text_TakeAShortRest": {
+      "label": "SSAnne_1F_Room6_Text_TakeAShortRest",
+      "line": 27,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "raw_text": "你看上去有点累。\\n想休息一会儿吗？$",
+      "display_text": "你看上去有点累。\n想休息一会儿吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          9,
+          217,
+          7,
+          194,
+          11,
+          173,
+          11,
+          37,
+          15,
+          126,
+          3,
+          42,
+          8,
+          80,
+          55,
+          254,
+          14,
+          24,
+          14,
+          104,
+          13,
+          198,
+          15,
+          11,
+          5,
+          110,
+          3,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "09 D9 07 C2 0B AD 0B 25 0F 7E 03 2A 08 50 37 FE 0E 18 0E 68 0D C6 0F 0B 05 6E 03 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed": {
+      "label": "SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed",
+      "line": 31,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "raw_text": "我很高兴看到大家\\n都恢复了精神。$",
+      "display_text": "我很高兴看到大家\n都恢复了精神。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          13,
+          152,
+          5,
+          11,
+          4,
+          73,
+          14,
+          86,
+          7,
+          194,
+          3,
+          4,
+          2,
+          211,
+          5,
+          189,
+          254,
+          3,
+          97,
+          5,
+          99,
+          4,
+          30,
+          8,
+          158,
+          7,
+          91,
+          11,
+          207,
+          55,
+          255
+        ],
+        "hex": "0D 98 05 0B 04 49 0E 56 07 C2 03 04 02 D3 05 BD FE 03 61 05 63 04 1E 08 9E 07 5B 0B CF 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_1F_Room6_Text_SorryYouLookLikeMyBrother": {
+      "label": "SSAnne_1F_Room6_Text_SorryYouLookLikeMyBrother",
+      "line": 35,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "raw_text": "哦，我对过分关心你感到抱歉。\\n你看起来像我的小弟弟……$",
+      "display_text": "哦，我对过分关心你感到抱歉。\n你看起来像我的小弟弟……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 50,
+        "bytes": [
+          10,
+          19,
+          59,
+          13,
+          152,
+          3,
+          121,
+          4,
+          197,
+          3,
+          217,
+          4,
+          160,
+          14,
+          79,
+          9,
+          217,
+          4,
+          58,
+          3,
+          4,
+          1,
+          100,
+          10,
+          209,
+          55,
+          254,
+          9,
+          217,
+          7,
+          194,
+          10,
+          171,
+          8,
+          41,
+          14,
+          30,
+          13,
+          152,
+          3,
+          11,
+          14,
+          44,
+          3,
+          35,
+          3,
+          35,
+          176,
+          176,
+          255
+        ],
+        "hex": "0A 13 3B 0D 98 03 79 04 C5 03 D9 04 A0 0E 4F 09 D9 04 3A 03 04 01 64 0A D1 37 FE 09 D9 07 C2 0A AB 08 29 0E 1E 0D 98 03 0B 0E 2C 03 23 03 23 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSAnne_1F_Room6_Text_SorryYouLookLikeMySister": {
+      "label": "SSAnne_1F_Room6_Text_SorryYouLookLikeMySister",
+      "line": 39,
+      "source_file": "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc",
+      "raw_text": "哦，我对过分关心你感到抱歉。\\n你看起来像我的小妹妹……$",
+      "display_text": "哦，我对过分关心你感到抱歉。\n你看起来像我的小妹妹……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 50,
+        "bytes": [
+          10,
+          19,
+          59,
+          13,
+          152,
+          3,
+          121,
+          4,
+          197,
+          3,
+          217,
+          4,
+          160,
+          14,
+          79,
+          9,
+          217,
+          4,
+          58,
+          3,
+          4,
+          1,
+          100,
+          10,
+          209,
+          55,
+          254,
+          9,
+          217,
+          7,
+          194,
+          10,
+          171,
+          8,
+          41,
+          14,
+          30,
+          13,
+          152,
+          3,
+          11,
+          14,
+          44,
+          9,
+          91,
+          9,
+          91,
+          176,
+          176,
+          255
+        ],
+        "hex": "0A 13 3B 0D 98 03 79 04 C5 03 D9 04 A0 0E 4F 09 D9 04 3A 03 04 01 64 0A D1 37 FE 09 D9 07 C2 0A AB 08 29 0E 1E 0D 98 03 0B 0E 2C 09 5B 09 5B B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "checkplayergender": 1,
+      "closemessage": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 8,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 163,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "checkplayergender": 1,
+      "closemessage": 1,
+      "end": 3,
+      "faceplayer": 1,
+      "goto_if_eq": 2,
+      "lock": 1,
+      "msgbox": 4,
+      "release": 3
+    }
+  }
+}

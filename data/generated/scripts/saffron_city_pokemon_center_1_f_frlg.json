@@ -1,0 +1,802 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SaffronCity_PokemonCenter_1F_Frlg",
+    "map_script": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+    "map_json": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/map.json",
+    "map_id": "MAP_SAFFRON_CITY_POKEMON_CENTER_1F",
+    "map_name": "SaffronCity_PokemonCenter_1F_Frlg"
+  },
+  "labels": {
+    "SaffronCity_PokemonCenter_1F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SaffronCity_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SaffronCity_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "SaffronCity_PokemonCenter_1F_EventScript_Gentleman": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SaffronCity_PokemonCenter_1F_EventScript_Woman": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SaffronCity_PokemonCenter_1F_EventScript_Youngster": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "SaffronCity_PokemonCenter_1F_EventScript_YoungsterRocketsGone": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies": {
+      "kind": "text",
+      "line": 38,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame": {
+      "kind": "text",
+      "line": 42,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SaffronCity_PokemonCenter_1F_Text_GreatIfEliteFourCameBeatRockets": {
+      "kind": "text",
+      "line": 47,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "SaffronCity_PokemonCenter_1F_Text_TeamRocketTookOff": {
+      "kind": "text",
+      "line": 53,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "SaffronCity_PokemonCenter_1F_Frlg_MapScripts": {
+      "label": "SaffronCity_PokemonCenter_1F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SaffronCity_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SaffronCity_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SaffronCity_PokemonCenter_1F_OnTransition": {
+      "label": "SaffronCity_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_SAFFRON_CITY"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_SAFFRON_CITY",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SaffronCity_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "SaffronCity_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 11,
+          "raw": "lock",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 12,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_PkmnCenterNurse_Frlg"
+          ],
+          "line": 13,
+          "raw": "call EventScript_PkmnCenterNurse_Frlg",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_PkmnCenterNurse_Frlg",
+          "line": 13
+        }
+      ]
+    },
+    "SaffronCity_PokemonCenter_1F_EventScript_Gentleman": {
+      "label": "SaffronCity_PokemonCenter_1F_EventScript_Gentleman",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame",
+            "MSGBOX_NPC"
+          ],
+          "line": 18,
+          "raw": "msgbox SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame, MSGBOX_NPC",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame",
+          "mode": "MSGBOX_NPC",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "SaffronCity_PokemonCenter_1F_EventScript_Woman": {
+      "label": "SaffronCity_PokemonCenter_1F_EventScript_Woman",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies",
+            "MSGBOX_NPC"
+          ],
+          "line": 22,
+          "raw": "msgbox SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies, MSGBOX_NPC",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies",
+          "mode": "MSGBOX_NPC",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    },
+    "SaffronCity_PokemonCenter_1F_EventScript_Youngster": {
+      "label": "SaffronCity_PokemonCenter_1F_EventScript_Youngster",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 26,
+          "raw": "lock",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 27,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_MAP_SCENE_SILPH_CO_11F",
+            "1",
+            "SaffronCity_PokemonCenter_1F_EventScript_YoungsterRocketsGone"
+          ],
+          "line": 28,
+          "raw": "goto_if_eq VAR_MAP_SCENE_SILPH_CO_11F, 1, SaffronCity_PokemonCenter_1F_EventScript_YoungsterRocketsGone",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SaffronCity_PokemonCenter_1F_Text_GreatIfEliteFourCameBeatRockets"
+          ],
+          "line": 29,
+          "raw": "msgbox SaffronCity_PokemonCenter_1F_Text_GreatIfEliteFourCameBeatRockets",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 30,
+          "raw": "release",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SaffronCity_PokemonCenter_1F_Text_GreatIfEliteFourCameBeatRockets",
+          "mode": "",
+          "line": 29
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "SaffronCity_PokemonCenter_1F_EventScript_YoungsterRocketsGone",
+          "line": 28
+        }
+      ]
+    },
+    "SaffronCity_PokemonCenter_1F_EventScript_YoungsterRocketsGone": {
+      "label": "SaffronCity_PokemonCenter_1F_EventScript_YoungsterRocketsGone",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SaffronCity_PokemonCenter_1F_Text_TeamRocketTookOff"
+          ],
+          "line": 34,
+          "raw": "msgbox SaffronCity_PokemonCenter_1F_Text_TeamRocketTookOff",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 35,
+          "raw": "release",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 36,
+          "raw": "end",
+          "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SaffronCity_PokemonCenter_1F_Text_TeamRocketTookOff",
+          "mode": "",
+          "line": 34
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies": {
+      "label": "SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies",
+      "line": 38,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "不同的宝可梦成长速度\\n不一样。$",
+      "display_text": "不同的宝可梦成长速度\n不一样。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          1,
+          214,
+          13,
+          20,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          2,
+          75,
+          2,
+          38,
+          12,
+          124,
+          3,
+          109,
+          254,
+          1,
+          214,
+          15,
+          11,
+          14,
+          226,
+          55,
+          255
+        ],
+        "hex": "01 D6 0D 14 03 0B 01 63 07 D7 09 66 02 4B 02 26 0C 7C 03 6D FE 01 D6 0F 0B 0E E2 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame": {
+      "label": "SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame",
+      "line": 42,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "西尔佛公司的名声远扬。\\p它的名气吸引了\\n火箭队。$",
+      "display_text": "西尔佛公司的名声远扬。\n\n它的名气吸引了\n火箭队。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 45,
+        "bytes": [
+          13,
+          189,
+          3,
+          160,
+          3,
+          243,
+          4,
+          115,
+          12,
+          97,
+          3,
+          11,
+          9,
+          147,
+          11,
+          215,
+          15,
+          194,
+          14,
+          216,
+          55,
+          251,
+          12,
+          159,
+          3,
+          11,
+          9,
+          147,
+          10,
+          179,
+          13,
+          194,
+          15,
+          77,
+          8,
+          158,
+          254,
+          5,
+          125,
+          5,
+          232,
+          3,
+          120,
+          55,
+          255
+        ],
+        "hex": "0D BD 03 A0 03 F3 04 73 0C 61 03 0B 09 93 0B D7 0F C2 0E D8 37 FB 0C 9F 03 0B 09 93 0A B3 0D C2 0F 4D 08 9E FE 05 7D 05 E8 03 78 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SaffronCity_PokemonCenter_1F_Text_GreatIfEliteFourCameBeatRockets": {
+      "label": "SaffronCity_PokemonCenter_1F_Text_GreatIfEliteFourCameBeatRockets",
+      "line": 47,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "唉……\\n这样的话不就好了？\\p让四天王赶来\\n灭了火箭队？$",
+      "display_text": "唉……\n这样的话不就好了？\n\n让四天王赶来\n灭了火箭队？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          1,
+          5,
+          176,
+          176,
+          254,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          5,
+          61,
+          1,
+          214,
+          7,
+          125,
+          4,
+          233,
+          8,
+          158,
+          61,
+          251,
+          11,
+          67,
+          12,
+          103,
+          12,
+          237,
+          13,
+          93,
+          4,
+          57,
+          8,
+          41,
+          254,
+          9,
+          136,
+          8,
+          158,
+          5,
+          125,
+          5,
+          232,
+          3,
+          120,
+          61,
+          255
+        ],
+        "hex": "01 05 B0 B0 FE 10 55 0E E2 03 0B 05 3D 01 D6 07 7D 04 E9 08 9E 3D FB 0B 43 0C 67 0C ED 0D 5D 04 39 08 29 FE 09 88 08 9E 05 7D 05 E8 03 78 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SaffronCity_PokemonCenter_1F_Text_TeamRocketTookOff": {
+      "label": "SaffronCity_PokemonCenter_1F_Text_TeamRocketTookOff",
+      "line": 53,
+      "source_file": "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "火箭队离开了！\\n我们又可以安全地出行了！\\l太棒了！$",
+      "display_text": "火箭队离开了！\n我们又可以安全地出行了！\n太棒了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          5,
+          125,
+          5,
+          232,
+          3,
+          120,
+          8,
+          96,
+          7,
+          184,
+          8,
+          158,
+          60,
+          254,
+          13,
+          152,
+          9,
+          95,
+          15,
+          132,
+          7,
+          215,
+          15,
+          36,
+          1,
+          17,
+          11,
+          43,
+          3,
+          31,
+          2,
+          120,
+          14,
+          91,
+          8,
+          158,
+          60,
+          250,
+          12,
+          172,
+          1,
+          83,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "05 7D 05 E8 03 78 08 60 07 B8 08 9E 3C FE 0D 98 09 5F 0F 84 07 D7 0F 24 01 11 0B 2B 03 1F 02 78 0E 5B 08 9E 3C FA 0C AC 01 53 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 21,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 2,
+      "goto_if_eq": 1,
+      "map_script": 2,
+      "setrespawn": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 7,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 168,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "end": 6,
+      "faceplayer": 2,
+      "goto_if_eq": 1,
+      "lock": 2,
+      "map_script": 2,
+      "msgbox": 4,
+      "release": 3,
+      "setrespawn": 1
+    }
+  }
+}

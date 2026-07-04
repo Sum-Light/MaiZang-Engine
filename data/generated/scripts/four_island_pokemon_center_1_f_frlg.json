@@ -1,0 +1,1243 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "FourIsland_PokemonCenter_1F_Frlg",
+    "map_script": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+    "map_json": "data/maps/FourIsland_PokemonCenter_1F_Frlg/map.json",
+    "map_id": "MAP_FOUR_ISLAND_POKEMON_CENTER_1F",
+    "map_name": "FourIsland_PokemonCenter_1F_Frlg"
+  },
+  "labels": {
+    "FourIsland_PokemonCenter_1F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "FourIsland_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "FourIsland_PokemonCenter_1F_EventScript_Man": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_PokemonCenter_1F_EventScript_Woman": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_PokemonCenter_1F_EventScript_Gentleman": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Text_BodySlamTeach": {
+      "kind": "text",
+      "line": 30,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "Text_BodySlamDeclined": {
+      "kind": "text",
+      "line": 40,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Text_BodySlamWhichMon": {
+      "kind": "text",
+      "line": 44,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Text_BodySlamTaught": {
+      "kind": "text",
+      "line": 48,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "FourIsland_House1_Text_FatMan": {
+      "kind": "text",
+      "line": 51,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "FourIsland_PokemonCenter_1F_Text_RareIceMonsInCave": {
+      "kind": "text",
+      "line": 55,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "FourIsland_PokemonCenter_1F_Text_DayCarePeopleFoundEggBefore": {
+      "kind": "text",
+      "line": 61,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "FourIsland_PokemonCenter_1F_Text_NewPokemonJournalHasntArrived": {
+      "kind": "text",
+      "line": 69,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "FourIsland_PokemonCenter_1F_Frlg_MapScripts": {
+      "label": "FourIsland_PokemonCenter_1F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "FourIsland_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, FourIsland_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_PokemonCenter_1F_OnTransition": {
+      "label": "FourIsland_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_FOUR_ISLAND"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_FOUR_ISLAND",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "FourIsland_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "FourIsland_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 11,
+          "raw": "lock",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 12,
+          "raw": "faceplayer",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_PkmnCenterNurse_Frlg"
+          ],
+          "line": 13,
+          "raw": "call EventScript_PkmnCenterNurse_Frlg",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 14,
+          "raw": "release",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_PkmnCenterNurse_Frlg",
+          "line": 13
+        }
+      ]
+    },
+    "FourIsland_PokemonCenter_1F_EventScript_Man": {
+      "label": "FourIsland_PokemonCenter_1F_EventScript_Man",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_PokemonCenter_1F_Text_RareIceMonsInCave",
+            "MSGBOX_NPC"
+          ],
+          "line": 18,
+          "raw": "msgbox FourIsland_PokemonCenter_1F_Text_RareIceMonsInCave, MSGBOX_NPC",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_PokemonCenter_1F_Text_RareIceMonsInCave",
+          "mode": "MSGBOX_NPC",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_PokemonCenter_1F_EventScript_Woman": {
+      "label": "FourIsland_PokemonCenter_1F_EventScript_Woman",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_PokemonCenter_1F_Text_DayCarePeopleFoundEggBefore",
+            "MSGBOX_NPC"
+          ],
+          "line": 22,
+          "raw": "msgbox FourIsland_PokemonCenter_1F_Text_DayCarePeopleFoundEggBefore, MSGBOX_NPC",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_PokemonCenter_1F_Text_DayCarePeopleFoundEggBefore",
+          "mode": "MSGBOX_NPC",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    },
+    "FourIsland_PokemonCenter_1F_EventScript_Gentleman": {
+      "label": "FourIsland_PokemonCenter_1F_EventScript_Gentleman",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "FourIsland_PokemonCenter_1F_Text_NewPokemonJournalHasntArrived",
+            "MSGBOX_NPC"
+          ],
+          "line": 26,
+          "raw": "msgbox FourIsland_PokemonCenter_1F_Text_NewPokemonJournalHasntArrived, MSGBOX_NPC",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "FourIsland_PokemonCenter_1F_Text_NewPokemonJournalHasntArrived",
+          "mode": "MSGBOX_NPC",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Text_BodySlamTeach": {
+      "label": "Text_BodySlamTeach",
+      "line": 30,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "准备好了吗？\\n啪啪啪！\\p我们在举行泰山压顶比赛。\\n我倒要看看是谁先倒下。\\p即使你让加入我们，\\n你也是一个新手。\\p不如让我把泰山压顶教给\\n你的一只宝可梦怎么样？$",
+      "display_text": "准备好了吗？\n啪啪啪！\n\n我们在举行泰山压顶比赛。\n我倒要看看是谁先倒下。\n\n即使你让加入我们，\n你也是一个新手。\n\n不如让我把泰山压顶教给\n你的一只宝可梦怎么样？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 145,
+        "bytes": [
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          254,
+          10,
+          27,
+          10,
+          27,
+          10,
+          27,
+          60,
+          251,
+          13,
+          152,
+          9,
+          95,
+          15,
+          230,
+          7,
+          137,
+          14,
+          91,
+          12,
+          170,
+          11,
+          155,
+          14,
+          162,
+          3,
+          74,
+          1,
+          133,
+          11,
+          124,
+          55,
+          254,
+          13,
+          152,
+          3,
+          0,
+          14,
+          241,
+          7,
+          194,
+          7,
+          194,
+          12,
+          12,
+          12,
+          80,
+          13,
+          236,
+          3,
+          0,
+          13,
+          230,
+          55,
+          251,
+          5,
+          159,
+          11,
+          245,
+          9,
+          217,
+          11,
+          67,
+          5,
+          190,
+          11,
+          107,
+          13,
+          152,
+          9,
+          95,
+          59,
+          254,
+          9,
+          217,
+          15,
+          2,
+          12,
+          12,
+          15,
+          11,
+          4,
+          96,
+          14,
+          77,
+          12,
+          27,
+          55,
+          251,
+          1,
+          214,
+          11,
+          103,
+          11,
+          67,
+          13,
+          152,
+          1,
+          48,
+          12,
+          170,
+          11,
+          155,
+          14,
+          162,
+          3,
+          74,
+          7,
+          30,
+          4,
+          98,
+          254,
+          9,
+          217,
+          3,
+          11,
+          15,
+          11,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          10,
+          9,
+          76,
+          14,
+          226,
+          61,
+          255
+        ],
+        "hex": "10 EB 01 75 04 E9 08 9E 09 2A 3D FE 0A 1B 0A 1B 0A 1B 3C FB 0D 98 09 5F 0F E6 07 89 0E 5B 0C AA 0B 9B 0E A2 03 4A 01 85 0B 7C 37 FE 0D 98 03 00 0E F1 07 C2 07 C2 0C 0C 0C 50 0D EC 03 00 0D E6 37 FB 05 9F 0B F5 09 D9 0B 43 05 BE 0B 6B 0D 98 09 5F 3B FE 09 D9 0F 02 0C 0C 0F 0B 04 60 0E 4D 0C 1B 37 FB 01 D6 0B 67 0B 43 0D 98 01 30 0C AA 0B 9B 0E A2 03 4A 07 1E 04 62 FE 09 D9 03 0B 0F 0B 10 8C 01 63 07 D7 09 66 10 0A 09 4C 0E E2 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 50,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 60,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 73,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 86,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_BodySlamDeclined": {
+      "label": "Text_BodySlamDeclined",
+      "line": 40,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "下次再来吧！\\n啪啪啪！$",
+      "display_text": "下次再来吧！\n啪啪啪！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          13,
+          230,
+          2,
+          174,
+          15,
+          229,
+          8,
+          41,
+          1,
+          40,
+          60,
+          254,
+          10,
+          27,
+          10,
+          27,
+          10,
+          27,
+          60,
+          255
+        ],
+        "hex": "0D E6 02 AE 0F E5 08 29 01 28 3C FE 0A 1B 0A 1B 0A 1B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_BodySlamWhichMon": {
+      "label": "Text_BodySlamWhichMon",
+      "line": 44,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "想让哪只宝可梦掌握\\n泰山压顶？$",
+      "display_text": "想让哪只宝可梦掌握\n泰山压顶？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          14,
+          24,
+          11,
+          67,
+          9,
+          186,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          57,
+          13,
+          155,
+          254,
+          12,
+          170,
+          11,
+          155,
+          14,
+          162,
+          3,
+          74,
+          61,
+          255
+        ],
+        "hex": "0E 18 0B 43 09 BA 10 8C 01 63 07 D7 09 66 10 39 0D 9B FE 0C AA 0B 9B 0E A2 03 4A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_BodySlamTaught": {
+      "label": "Text_BodySlamTaught",
+      "line": 48,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "啪啪啪$",
+      "display_text": "啪啪啪",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 7,
+        "bytes": [
+          10,
+          27,
+          10,
+          27,
+          10,
+          27,
+          255
+        ],
+        "hex": "0A 1B 0A 1B 0A 1B FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 3,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_House1_Text_FatMan": {
+      "label": "FourIsland_House1_Text_FatMan",
+      "line": 51,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "それ　ぼよーん！\\nおまえ　おもいなあー！$",
+      "display_text": "それ　ぼよーん！\nおまえ　おもいなあー！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          15,
+          42,
+          0,
+          74,
+          38,
+          174,
+          46,
+          60,
+          254,
+          5,
+          31,
+          4,
+          0,
+          5,
+          35,
+          2,
+          21,
+          1,
+          174,
+          60,
+          255
+        ],
+        "hex": "0F 2A 00 4A 26 AE 2E 3C FE 05 1F 04 00 05 23 02 15 01 AE 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_PokemonCenter_1F_Text_RareIceMonsInCave": {
+      "label": "FourIsland_PokemonCenter_1F_Text_RareIceMonsInCave",
+      "line": 55,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "在那个洞穴里住着一只\\n稀有的冰属性宝可梦。\\p很多游客都想去\\n亲眼见识一下那只宝可梦。$",
+      "display_text": "在那个洞穴里住着一只\n稀有的冰属性宝可梦。\n\n很多游客都想去\n亲眼见识一下那只宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 80,
+        "bytes": [
+          15,
+          230,
+          9,
+          189,
+          4,
+          96,
+          3,
+          89,
+          14,
+          145,
+          8,
+          100,
+          16,
+          208,
+          16,
+          244,
+          15,
+          11,
+          16,
+          140,
+          254,
+          13,
+          197,
+          15,
+          126,
+          3,
+          11,
+          1,
+          182,
+          12,
+          57,
+          14,
+          95,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          5,
+          11,
+          3,
+          133,
+          15,
+          124,
+          7,
+          219,
+          3,
+          97,
+          14,
+          24,
+          11,
+          37,
+          254,
+          10,
+          240,
+          14,
+          196,
+          5,
+          230,
+          11,
+          242,
+          15,
+          11,
+          13,
+          230,
+          9,
+          189,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "0F E6 09 BD 04 60 03 59 0E 91 08 64 10 D0 10 F4 0F 0B 10 8C FE 0D C5 0F 7E 03 0B 01 B6 0C 39 0E 5F 01 63 07 D7 09 66 37 FB 05 0B 03 85 0F 7C 07 DB 03 61 0E 18 0B 25 FE 0A F0 0E C4 05 E6 0B F2 0F 0B 0D E6 09 BD 10 8C 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_PokemonCenter_1F_Text_DayCarePeopleFoundEggBefore": {
+      "label": "FourIsland_PokemonCenter_1F_Text_DayCarePeopleFoundEggBefore",
+      "line": 61,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "什么？宝可梦的蛋？\\n……我不知道。\\p……哦，我想起来了！培育屋的人\\n在城镇里说过什么。\\p他们过去在他们的房屋里\\n找到了蛋。$",
+      "display_text": "什么？宝可梦的蛋？\n……我不知道。\n\n……哦，我想起来了！培育屋的人\n在城镇里说过什么。\n\n他们过去在他们的房屋里\n找到了蛋。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 107,
+        "bytes": [
+          11,
+          238,
+          9,
+          76,
+          61,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          2,
+          238,
+          61,
+          254,
+          176,
+          176,
+          13,
+          152,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          55,
+          251,
+          176,
+          176,
+          10,
+          19,
+          59,
+          13,
+          152,
+          14,
+          24,
+          10,
+          171,
+          8,
+          41,
+          8,
+          158,
+          60,
+          10,
+          61,
+          15,
+          171,
+          13,
+          163,
+          3,
+          11,
+          11,
+          75,
+          254,
+          15,
+          230,
+          2,
+          73,
+          16,
+          101,
+          8,
+          100,
+          12,
+          88,
+          4,
+          197,
+          11,
+          238,
+          9,
+          76,
+          55,
+          251,
+          12,
+          158,
+          9,
+          95,
+          4,
+          197,
+          11,
+          37,
+          15,
+          230,
+          12,
+          158,
+          9,
+          95,
+          3,
+          11,
+          3,
+          194,
+          13,
+          163,
+          8,
+          100,
+          254,
+          16,
+          69,
+          3,
+          4,
+          8,
+          158,
+          2,
+          238,
+          55,
+          255
+        ],
+        "hex": "0B EE 09 4C 3D 01 63 07 D7 09 66 03 0B 02 EE 3D FE B0 B0 0D 98 01 D6 10 7B 03 07 37 FB B0 B0 0A 13 3B 0D 98 0E 18 0A AB 08 29 08 9E 3C 0A 3D 0F AB 0D A3 03 0B 0B 4B FE 0F E6 02 49 10 65 08 64 0C 58 04 C5 0B EE 09 4C 37 FB 0C 9E 09 5F 04 C5 0B 25 0F E6 0C 9E 09 5F 03 0B 03 C2 0D A3 08 64 FE 10 45 03 04 08 9E 02 EE 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 46,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 59,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 66,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "FourIsland_PokemonCenter_1F_Text_NewPokemonJournalHasntArrived": {
+      "label": "FourIsland_PokemonCenter_1F_Text_NewPokemonJournalHasntArrived",
+      "line": 69,
+      "source_file": "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc",
+      "raw_text": "这是？\\p新的宝可梦特刊\\n还没有送到这座岛上来吗？$",
+      "display_text": "这是？\n\n新的宝可梦特刊\n还没有送到这座岛上来吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 45,
+        "bytes": [
+          16,
+          85,
+          12,
+          12,
+          61,
+          251,
+          14,
+          77,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          217,
+          7,
+          189,
+          254,
+          5,
+          70,
+          9,
+          83,
+          15,
+          126,
+          12,
+          112,
+          3,
+          4,
+          16,
+          85,
+          17,
+          49,
+          3,
+          1,
+          11,
+          173,
+          8,
+          41,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "10 55 0C 0C 3D FB 0E 4D 03 0B 01 63 07 D7 09 66 0C D9 07 BD FE 05 46 09 53 0F 7E 0C 70 03 04 10 55 11 31 03 01 0B AD 08 29 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 3,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "map_script": 2,
+      "setrespawn": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 14,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 8,
+    "encoded_text_count": 8,
+    "text_source_byte_count": 454,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 8
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "end": 5,
+      "faceplayer": 1,
+      "lock": 1,
+      "map_script": 2,
+      "msgbox": 3,
+      "release": 1,
+      "setrespawn": 1
+    }
+  }
+}

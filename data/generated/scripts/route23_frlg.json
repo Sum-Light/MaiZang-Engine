@@ -1,0 +1,1350 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route23_Frlg",
+    "map_script": "data/maps/Route23_Frlg/scripts.inc",
+    "map_json": "data/maps/Route23_Frlg/map.json",
+    "map_id": "MAP_ROUTE23",
+    "map_name": "Route23_Frlg"
+  },
+  "labels": {
+    "Route23_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route23_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route23_EventScript_CascadeBadgeGuard": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_ThunderBadgeGuard": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_RainbowBadgeGuard": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_SoulBadgeGuard": {
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_MarshBadgeGuard": {
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_VolcanoBadgeGuard": {
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_EarthBadgeGuard": {
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_CascadeBadgeGuardTrigger": {
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_ThunderBadgeGuardTrigger": {
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_RainbowBadgeGuardTrigger": {
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_SoulBadgeGuardTrigger": {
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_MarshBadgeGuardTrigger": {
+      "kind": "script",
+      "line": 102,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_VolcanoBadgeGuardTrigger": {
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_EarthBadgeGuardTrigger": {
+      "kind": "script",
+      "line": 118,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route23_EventScript_VictoryRoadGateSign": {
+      "kind": "script",
+      "line": 126,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route23_Text_VictoryRoadGateSign": {
+      "kind": "text",
+      "line": 130,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "Route23_Frlg_MapScripts": {
+      "label": "Route23_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "Route23_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, Route23_OnTransition",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route23_OnTransition": {
+      "label": "Route23_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_VICTORY_ROAD_3F_BOULDER"
+          ],
+          "line": 6,
+          "raw": "clearflag FLAG_HIDE_VICTORY_ROAD_3F_BOULDER",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_VICTORY_ROAD_2F_BOULDER"
+          ],
+          "line": 7,
+          "raw": "setflag FLAG_HIDE_VICTORY_ROAD_2F_BOULDER",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_VICTORY_ROAD_1F",
+            "0"
+          ],
+          "line": 8,
+          "raw": "setvar VAR_MAP_SCENE_VICTORY_ROAD_1F, 0",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1",
+            "0"
+          ],
+          "line": 9,
+          "raw": "setvar VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 0",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2",
+            "0"
+          ],
+          "line": 10,
+          "raw": "setvar VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 0",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_VICTORY_ROAD_3F",
+            "0"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_MAP_SCENE_VICTORY_ROAD_3F, 0",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route23_EventScript_CascadeBadgeGuard": {
+      "label": "Route23_EventScript_CascadeBadgeGuard",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 15,
+          "raw": "lock",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 16,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "2"
+          ],
+          "line": 17,
+          "raw": "setvar VAR_TEMP_1, 2",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_CASCADE_BADGE"
+          ],
+          "line": 18,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_CASCADE_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuard"
+          ],
+          "line": 19,
+          "raw": "goto Route23_EventScript_BadgeGuard",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuard",
+          "line": 19
+        }
+      ]
+    },
+    "Route23_EventScript_ThunderBadgeGuard": {
+      "label": "Route23_EventScript_ThunderBadgeGuard",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 23,
+          "raw": "lock",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 24,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "3"
+          ],
+          "line": 25,
+          "raw": "setvar VAR_TEMP_1, 3",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_THUNDER_BADGE"
+          ],
+          "line": 26,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_THUNDER_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuard"
+          ],
+          "line": 27,
+          "raw": "goto Route23_EventScript_BadgeGuard",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 28,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuard",
+          "line": 27
+        }
+      ]
+    },
+    "Route23_EventScript_RainbowBadgeGuard": {
+      "label": "Route23_EventScript_RainbowBadgeGuard",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 31,
+          "raw": "lock",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 32,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "4"
+          ],
+          "line": 33,
+          "raw": "setvar VAR_TEMP_1, 4",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_RAINBOW_BADGE"
+          ],
+          "line": 34,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_RAINBOW_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuard"
+          ],
+          "line": 35,
+          "raw": "goto Route23_EventScript_BadgeGuard",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 36,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuard",
+          "line": 35
+        }
+      ]
+    },
+    "Route23_EventScript_SoulBadgeGuard": {
+      "label": "Route23_EventScript_SoulBadgeGuard",
+      "kind": "script",
+      "line": 38,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 39,
+          "raw": "lock",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 40,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "5"
+          ],
+          "line": 41,
+          "raw": "setvar VAR_TEMP_1, 5",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_SOUL_BADGE"
+          ],
+          "line": 42,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_SOUL_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuard"
+          ],
+          "line": 43,
+          "raw": "goto Route23_EventScript_BadgeGuard",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuard",
+          "line": 43
+        }
+      ]
+    },
+    "Route23_EventScript_MarshBadgeGuard": {
+      "label": "Route23_EventScript_MarshBadgeGuard",
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 47,
+          "raw": "lock",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 48,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "6"
+          ],
+          "line": 49,
+          "raw": "setvar VAR_TEMP_1, 6",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_MARSH_BADGE"
+          ],
+          "line": 50,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_MARSH_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuard"
+          ],
+          "line": 51,
+          "raw": "goto Route23_EventScript_BadgeGuard",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 52,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuard",
+          "line": 51
+        }
+      ]
+    },
+    "Route23_EventScript_VolcanoBadgeGuard": {
+      "label": "Route23_EventScript_VolcanoBadgeGuard",
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 55,
+          "raw": "lock",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 56,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "7"
+          ],
+          "line": 57,
+          "raw": "setvar VAR_TEMP_1, 7",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_VOLCANO_BADGE"
+          ],
+          "line": 58,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_VOLCANO_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuard"
+          ],
+          "line": 59,
+          "raw": "goto Route23_EventScript_BadgeGuard",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 60,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuard",
+          "line": 59
+        }
+      ]
+    },
+    "Route23_EventScript_EarthBadgeGuard": {
+      "label": "Route23_EventScript_EarthBadgeGuard",
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 63,
+          "raw": "lock",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 64,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "8"
+          ],
+          "line": 65,
+          "raw": "setvar VAR_TEMP_1, 8",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_EARTH_BADGE"
+          ],
+          "line": 66,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_EARTH_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuard"
+          ],
+          "line": 67,
+          "raw": "goto Route23_EventScript_BadgeGuard",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 68,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuard",
+          "line": 67
+        }
+      ]
+    },
+    "Route23_EventScript_CascadeBadgeGuardTrigger": {
+      "label": "Route23_EventScript_CascadeBadgeGuardTrigger",
+      "kind": "script",
+      "line": 70,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 71,
+          "raw": "lockall",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "2"
+          ],
+          "line": 72,
+          "raw": "setvar VAR_TEMP_1, 2",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8009",
+            "LOCALID_CASCADE_BADGE_GUARD"
+          ],
+          "line": 73,
+          "raw": "setvar VAR_0x8009, LOCALID_CASCADE_BADGE_GUARD",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_CASCADE_BADGE"
+          ],
+          "line": 74,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_CASCADE_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuardTrigger"
+          ],
+          "line": 75,
+          "raw": "goto Route23_EventScript_BadgeGuardTrigger",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 76,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuardTrigger",
+          "line": 75
+        }
+      ]
+    },
+    "Route23_EventScript_ThunderBadgeGuardTrigger": {
+      "label": "Route23_EventScript_ThunderBadgeGuardTrigger",
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 79,
+          "raw": "lockall",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "3"
+          ],
+          "line": 80,
+          "raw": "setvar VAR_TEMP_1, 3",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8009",
+            "LOCALID_THUNDER_BADGE_GUARD"
+          ],
+          "line": 81,
+          "raw": "setvar VAR_0x8009, LOCALID_THUNDER_BADGE_GUARD",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_THUNDER_BADGE"
+          ],
+          "line": 82,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_THUNDER_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuardTrigger"
+          ],
+          "line": 83,
+          "raw": "goto Route23_EventScript_BadgeGuardTrigger",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 84,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuardTrigger",
+          "line": 83
+        }
+      ]
+    },
+    "Route23_EventScript_RainbowBadgeGuardTrigger": {
+      "label": "Route23_EventScript_RainbowBadgeGuardTrigger",
+      "kind": "script",
+      "line": 86,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 87,
+          "raw": "lockall",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "4"
+          ],
+          "line": 88,
+          "raw": "setvar VAR_TEMP_1, 4",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8009",
+            "LOCALID_RAINBOW_BADGE_GUARD"
+          ],
+          "line": 89,
+          "raw": "setvar VAR_0x8009, LOCALID_RAINBOW_BADGE_GUARD",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_RAINBOW_BADGE"
+          ],
+          "line": 90,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_RAINBOW_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuardTrigger"
+          ],
+          "line": 91,
+          "raw": "goto Route23_EventScript_BadgeGuardTrigger",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 92,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuardTrigger",
+          "line": 91
+        }
+      ]
+    },
+    "Route23_EventScript_SoulBadgeGuardTrigger": {
+      "label": "Route23_EventScript_SoulBadgeGuardTrigger",
+      "kind": "script",
+      "line": 94,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 95,
+          "raw": "lockall",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "5"
+          ],
+          "line": 96,
+          "raw": "setvar VAR_TEMP_1, 5",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8009",
+            "LOCALID_SOUL_BADGE_GUARD"
+          ],
+          "line": 97,
+          "raw": "setvar VAR_0x8009, LOCALID_SOUL_BADGE_GUARD",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_SOUL_BADGE"
+          ],
+          "line": 98,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_SOUL_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuardTrigger"
+          ],
+          "line": 99,
+          "raw": "goto Route23_EventScript_BadgeGuardTrigger",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 100,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuardTrigger",
+          "line": 99
+        }
+      ]
+    },
+    "Route23_EventScript_MarshBadgeGuardTrigger": {
+      "label": "Route23_EventScript_MarshBadgeGuardTrigger",
+      "kind": "script",
+      "line": 102,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 103,
+          "raw": "lockall",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "6"
+          ],
+          "line": 104,
+          "raw": "setvar VAR_TEMP_1, 6",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8009",
+            "LOCALID_MARSH_BADGE_GUARD"
+          ],
+          "line": 105,
+          "raw": "setvar VAR_0x8009, LOCALID_MARSH_BADGE_GUARD",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_MARSH_BADGE"
+          ],
+          "line": 106,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_MARSH_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuardTrigger"
+          ],
+          "line": 107,
+          "raw": "goto Route23_EventScript_BadgeGuardTrigger",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 108,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuardTrigger",
+          "line": 107
+        }
+      ]
+    },
+    "Route23_EventScript_VolcanoBadgeGuardTrigger": {
+      "label": "Route23_EventScript_VolcanoBadgeGuardTrigger",
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 111,
+          "raw": "lockall",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "7"
+          ],
+          "line": 112,
+          "raw": "setvar VAR_TEMP_1, 7",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8009",
+            "LOCALID_VOLCANO_BADGE_GUARD"
+          ],
+          "line": 113,
+          "raw": "setvar VAR_0x8009, LOCALID_VOLCANO_BADGE_GUARD",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_VOLCANO_BADGE"
+          ],
+          "line": 114,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_VOLCANO_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuardTrigger"
+          ],
+          "line": 115,
+          "raw": "goto Route23_EventScript_BadgeGuardTrigger",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 116,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuardTrigger",
+          "line": 115
+        }
+      ]
+    },
+    "Route23_EventScript_EarthBadgeGuardTrigger": {
+      "label": "Route23_EventScript_EarthBadgeGuardTrigger",
+      "kind": "script",
+      "line": 118,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 119,
+          "raw": "lockall",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "8"
+          ],
+          "line": 120,
+          "raw": "setvar VAR_TEMP_1, 8",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8009",
+            "LOCALID_EARTH_BADGE_GUARD"
+          ],
+          "line": 121,
+          "raw": "setvar VAR_0x8009, LOCALID_EARTH_BADGE_GUARD",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "bufferstdstring",
+          "args": [
+            "STR_VAR_1",
+            "STDSTRING_EARTH_BADGE"
+          ],
+          "line": 122,
+          "raw": "bufferstdstring STR_VAR_1, STDSTRING_EARTH_BADGE",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route23_EventScript_BadgeGuardTrigger"
+          ],
+          "line": 123,
+          "raw": "goto Route23_EventScript_BadgeGuardTrigger",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 124,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route23_EventScript_BadgeGuardTrigger",
+          "line": 123
+        }
+      ]
+    },
+    "Route23_EventScript_VictoryRoadGateSign": {
+      "label": "Route23_EventScript_VictoryRoadGateSign",
+      "kind": "script",
+      "line": 126,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route23_Text_VictoryRoadGateSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 127,
+          "raw": "msgbox Route23_Text_VictoryRoadGateSign, MSGBOX_SIGN",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 128,
+          "raw": "end",
+          "source_file": "data/maps/Route23_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route23_Text_VictoryRoadGateSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 127
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route23_Text_VictoryRoadGateSign": {
+      "label": "Route23_Text_VictoryRoadGateSign",
+      "line": 130,
+      "source_file": "data/maps/Route23_Frlg/scripts.inc",
+      "raw_text": "冠军之路入口处 -\\n宝可梦联盟$",
+      "display_text": "冠军之路入口处 -\n宝可梦联盟",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          4,
+          162,
+          7,
+          172,
+          16,
+          127,
+          8,
+          232,
+          11,
+          107,
+          7,
+          232,
+          2,
+          134,
+          0,
+          174,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          125,
+          9,
+          99,
+          255
+        ],
+        "hex": "04 A2 07 AC 10 7F 08 E8 0B 6B 07 E8 02 86 00 AE FE 01 63 07 D7 09 66 08 7D 09 63 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "bufferstdstring": 14,
+      "clearflag": 1,
+      "faceplayer": 7,
+      "map_script": 1,
+      "setflag": 1,
+      "setvar": 25
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 18,
+    "script_count": 17,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 28,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "bufferstdstring": 14,
+      "clearflag": 1,
+      "end": 16,
+      "faceplayer": 7,
+      "goto": 14,
+      "lock": 7,
+      "lockall": 7,
+      "map_script": 1,
+      "msgbox": 1,
+      "setflag": 1,
+      "setvar": 25
+    }
+  }
+}

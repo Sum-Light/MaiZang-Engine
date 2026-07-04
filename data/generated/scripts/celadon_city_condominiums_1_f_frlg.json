@@ -1,0 +1,1360 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CeladonCity_Condominiums_1F_Frlg",
+    "map_script": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+    "map_json": "data/maps/CeladonCity_Condominiums_1F_Frlg/map.json",
+    "map_id": "MAP_CELADON_CITY_CONDOMINIUMS_1F",
+    "map_name": "CeladonCity_Condominiums_1F_Frlg"
+  },
+  "labels": {
+    "CeladonCity_Condominiums_1F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeladonCity_Condominiums_1F_EventScript_TeaWoman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 12
+    },
+    "CeladonCity_Condominiums_1F_EventScript_TeaWomanAfterTea": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeladonCity_Condominiums_1F_EventScript_TeaWomanMentionDaisy": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "CeladonCity_Condominiums_1F_EventScript_Meowth": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "CeladonCity_Condominiums_1F_EventScript_Clefairy": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "CeladonCity_Condominiums_1F_EventScript_Nidoran": {
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "CeladonCity_Condominiums_1F_EventScript_SuiteSign": {
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Condominiums_1F_Text_Meowth": {
+      "kind": "text",
+      "line": 64,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeladonCity_Condominiums_1F_Text_TryThisDrinkInstead": {
+      "kind": "text",
+      "line": 67,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Condominiums_1F_Text_NothingBeatsThirstLikeTea": {
+      "kind": "text",
+      "line": 71,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Condominiums_1F_Text_MyDearMonsKeepMeCompany": {
+      "kind": "text",
+      "line": 75,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_Condominiums_1F_Text_DaisyComesToBuyTea": {
+      "kind": "text",
+      "line": 79,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 7
+    },
+    "CeladonCity_Condominiums_1F_Text_Clefairy": {
+      "kind": "text",
+      "line": 88,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeladonCity_Condominiums_1F_Text_Nidoran": {
+      "kind": "text",
+      "line": 91,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeladonCity_Condominiums_1F_Text_ManagersSuite": {
+      "kind": "text",
+      "line": 94,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "CeladonCity_Condominiums_1F_Frlg_MapScripts": {
+      "label": "CeladonCity_Condominiums_1F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeladonCity_Condominiums_1F_EventScript_TeaWoman": {
+      "label": "CeladonCity_Condominiums_1F_EventScript_TeaWoman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_TALKED_TO_TEA_LADY_AFTER_HOF",
+            "CeladonCity_Condominiums_1F_EventScript_TeaWomanAfterTea"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_TALKED_TO_TEA_LADY_AFTER_HOF, CeladonCity_Condominiums_1F_EventScript_TeaWomanAfterTea",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_SYS_GAME_CLEAR",
+            "CeladonCity_Condominiums_1F_EventScript_TeaWomanMentionDaisy"
+          ],
+          "line": 8,
+          "raw": "goto_if_set FLAG_SYS_GAME_CLEAR, CeladonCity_Condominiums_1F_EventScript_TeaWomanMentionDaisy",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_GOT_TEA",
+            "CeladonCity_Condominiums_1F_EventScript_TeaWomanAfterTea"
+          ],
+          "line": 9,
+          "raw": "goto_if_set FLAG_GOT_TEA, CeladonCity_Condominiums_1F_EventScript_TeaWomanAfterTea",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Condominiums_1F_Text_TryThisDrinkInstead"
+          ],
+          "line": 10,
+          "raw": "msgbox CeladonCity_Condominiums_1F_Text_TryThisDrinkInstead",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_GOT_TEA"
+          ],
+          "line": 11,
+          "raw": "setflag FLAG_GOT_TEA",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_TEA"
+          ],
+          "line": 12,
+          "raw": "giveitem ITEM_TEA",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "EventScript_BagIsFull"
+          ],
+          "line": 13,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Condominiums_1F_Text_NothingBeatsThirstLikeTea"
+          ],
+          "line": 14,
+          "raw": "msgbox CeladonCity_Condominiums_1F_Text_NothingBeatsThirstLikeTea",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 15,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Condominiums_1F_Text_TryThisDrinkInstead",
+          "mode": "",
+          "line": 10
+        },
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Condominiums_1F_Text_NothingBeatsThirstLikeTea",
+          "mode": "",
+          "line": 14
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "CeladonCity_Condominiums_1F_EventScript_TeaWomanAfterTea",
+          "line": 7
+        },
+        {
+          "op": "goto_if_set",
+          "target": "CeladonCity_Condominiums_1F_EventScript_TeaWomanMentionDaisy",
+          "line": 8
+        },
+        {
+          "op": "goto_if_set",
+          "target": "CeladonCity_Condominiums_1F_EventScript_TeaWomanAfterTea",
+          "line": 9
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_BagIsFull",
+          "line": 13
+        }
+      ]
+    },
+    "CeladonCity_Condominiums_1F_EventScript_TeaWomanAfterTea": {
+      "label": "CeladonCity_Condominiums_1F_EventScript_TeaWomanAfterTea",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Condominiums_1F_Text_MyDearMonsKeepMeCompany"
+          ],
+          "line": 19,
+          "raw": "msgbox CeladonCity_Condominiums_1F_Text_MyDearMonsKeepMeCompany",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 20,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 21,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Condominiums_1F_Text_MyDearMonsKeepMeCompany",
+          "mode": "",
+          "line": 19
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_Condominiums_1F_EventScript_TeaWomanMentionDaisy": {
+      "label": "CeladonCity_Condominiums_1F_EventScript_TeaWomanMentionDaisy",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "famechecker",
+          "args": [
+            "FAMECHECKER_DAISY",
+            "4"
+          ],
+          "line": 24,
+          "raw": "famechecker FAMECHECKER_DAISY, 4",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TALKED_TO_TEA_LADY_AFTER_HOF"
+          ],
+          "line": 25,
+          "raw": "setflag FLAG_TALKED_TO_TEA_LADY_AFTER_HOF",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Condominiums_1F_Text_DaisyComesToBuyTea"
+          ],
+          "line": 26,
+          "raw": "msgbox CeladonCity_Condominiums_1F_Text_DaisyComesToBuyTea",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 27,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 28,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Condominiums_1F_Text_DaisyComesToBuyTea",
+          "mode": "",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_Condominiums_1F_EventScript_Meowth": {
+      "label": "CeladonCity_Condominiums_1F_EventScript_Meowth",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 31,
+          "raw": "lock",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 32,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 33,
+          "raw": "waitse",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_MEOWTH",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 34,
+          "raw": "playmoncry SPECIES_MEOWTH, CRY_MODE_NORMAL",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Condominiums_1F_Text_Meowth"
+          ],
+          "line": 35,
+          "raw": "msgbox CeladonCity_Condominiums_1F_Text_Meowth",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 36,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 37,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 38,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Condominiums_1F_Text_Meowth",
+          "mode": "",
+          "line": 35
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_Condominiums_1F_EventScript_Clefairy": {
+      "label": "CeladonCity_Condominiums_1F_EventScript_Clefairy",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 41,
+          "raw": "lock",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 42,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 43,
+          "raw": "waitse",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_CLEFAIRY",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 44,
+          "raw": "playmoncry SPECIES_CLEFAIRY, CRY_MODE_NORMAL",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Condominiums_1F_Text_Clefairy"
+          ],
+          "line": 45,
+          "raw": "msgbox CeladonCity_Condominiums_1F_Text_Clefairy",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 46,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 47,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 48,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Condominiums_1F_Text_Clefairy",
+          "mode": "",
+          "line": 45
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_Condominiums_1F_EventScript_Nidoran": {
+      "label": "CeladonCity_Condominiums_1F_EventScript_Nidoran",
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 51,
+          "raw": "lock",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 52,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 53,
+          "raw": "waitse",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_NIDORAN_F",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 54,
+          "raw": "playmoncry SPECIES_NIDORAN_F, CRY_MODE_NORMAL",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Condominiums_1F_Text_Nidoran"
+          ],
+          "line": 55,
+          "raw": "msgbox CeladonCity_Condominiums_1F_Text_Nidoran",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 56,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 57,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 58,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Condominiums_1F_Text_Nidoran",
+          "mode": "",
+          "line": 55
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_Condominiums_1F_EventScript_SuiteSign": {
+      "label": "CeladonCity_Condominiums_1F_EventScript_SuiteSign",
+      "kind": "script",
+      "line": 60,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_Condominiums_1F_Text_ManagersSuite",
+            "MSGBOX_SIGN"
+          ],
+          "line": 61,
+          "raw": "msgbox CeladonCity_Condominiums_1F_Text_ManagersSuite, MSGBOX_SIGN",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_Condominiums_1F_Text_ManagersSuite",
+          "mode": "MSGBOX_SIGN",
+          "line": 61
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "CeladonCity_Condominiums_1F_Text_Meowth": {
+      "label": "CeladonCity_Condominiums_1F_Text_Meowth",
+      "line": 64,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "raw_text": "喵喵：喵！$",
+      "display_text": "喵喵：喵！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 9,
+        "bytes": [
+          20,
+          53,
+          20,
+          53,
+          62,
+          20,
+          53,
+          60,
+          255
+        ],
+        "hex": "14 35 14 35 3E 14 35 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 5,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Condominiums_1F_Text_TryThisDrinkInstead": {
+      "label": "CeladonCity_Condominiums_1F_Text_TryThisDrinkInstead",
+      "line": 67,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "raw_text": "你不该把钱都花在饮料上。\\p试试这个。$",
+      "display_text": "你不该把钱都花在饮料上。\n\n试试这个。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          9,
+          217,
+          1,
+          214,
+          4,
+          45,
+          1,
+          48,
+          10,
+          199,
+          3,
+          97,
+          5,
+          53,
+          15,
+          230,
+          15,
+          75,
+          8,
+          162,
+          11,
+          173,
+          55,
+          251,
+          12,
+          25,
+          12,
+          25,
+          16,
+          85,
+          4,
+          96,
+          55,
+          255
+        ],
+        "hex": "09 D9 01 D6 04 2D 01 30 0A C7 03 61 05 35 0F E6 0F 4B 08 A2 0B AD 37 FB 0C 19 0C 19 10 55 04 60 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Condominiums_1F_Text_NothingBeatsThirstLikeTea": {
+      "label": "CeladonCity_Condominiums_1F_Text_NothingBeatsThirstLikeTea",
+      "line": 71,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "raw_text": "没有什么能比热茶更解渴了。\\p茶是最好的饮品。$",
+      "display_text": "没有什么能比热茶更解渴了。\n\n茶是最好的饮品。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 42,
+        "bytes": [
+          9,
+          83,
+          15,
+          126,
+          11,
+          238,
+          9,
+          76,
+          9,
+          210,
+          1,
+          133,
+          11,
+          72,
+          2,
+          12,
+          4,
+          102,
+          7,
+          52,
+          7,
+          216,
+          8,
+          158,
+          55,
+          251,
+          2,
+          12,
+          12,
+          12,
+          17,
+          38,
+          4,
+          233,
+          3,
+          11,
+          15,
+          75,
+          10,
+          114,
+          55,
+          255
+        ],
+        "hex": "09 53 0F 7E 0B EE 09 4C 09 D2 01 85 0B 48 02 0C 04 66 07 34 07 D8 08 9E 37 FB 02 0C 0C 0C 11 26 04 E9 03 0B 0F 4B 0A 72 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 13,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Condominiums_1F_Text_MyDearMonsKeepMeCompany": {
+      "label": "CeladonCity_Condominiums_1F_Text_MyDearMonsKeepMeCompany",
+      "line": 75,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "raw_text": "我亲爱的宝可梦一直陪伴着我。\\n喵喵还会拾钱回来呢！$",
+      "display_text": "我亲爱的宝可梦一直陪伴着我。\n喵喵还会拾钱回来呢！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 48,
+        "bytes": [
+          13,
+          152,
+          10,
+          240,
+          1,
+          13,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          11,
+          16,
+          130,
+          10,
+          64,
+          1,
+          72,
+          16,
+          244,
+          13,
+          152,
+          55,
+          254,
+          20,
+          53,
+          20,
+          53,
+          5,
+          70,
+          5,
+          110,
+          11,
+          236,
+          10,
+          199,
+          5,
+          101,
+          8,
+          41,
+          9,
+          206,
+          60,
+          255
+        ],
+        "hex": "0D 98 0A F0 01 0D 03 0B 01 63 07 D7 09 66 0F 0B 10 82 0A 40 01 48 10 F4 0D 98 37 FE 14 35 14 35 05 46 05 6E 0B EC 0A C7 05 65 08 29 09 CE 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Condominiums_1F_Text_DaisyComesToBuyTea": {
+      "label": "CeladonCity_Condominiums_1F_Text_DaisyComesToBuyTea",
+      "line": 79,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "raw_text": "你好哦，甜心。\\n我的茶好喝吗？\\p对了亲爱的。你是不是从\\n真新镇来的吗？\\p一个从真新镇来的小女孩，叫奈奈美，\\n她每天都要喝茶。\\p她经常去玉虹百货大楼买茶叶。$",
+      "display_text": "你好哦，甜心。\n我的茶好喝吗？\n\n对了亲爱的。你是不是从\n真新镇来的吗？\n\n一个从真新镇来的小女孩，叫奈奈美，\n她每天都要喝茶。\n\n她经常去玉虹百货大楼买茶叶。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 140,
+        "bytes": [
+          9,
+          217,
+          4,
+          233,
+          10,
+          19,
+          59,
+          12,
+          241,
+          14,
+          79,
+          55,
+          254,
+          13,
+          152,
+          3,
+          11,
+          2,
+          12,
+          4,
+          233,
+          4,
+          238,
+          9,
+          42,
+          61,
+          251,
+          3,
+          121,
+          8,
+          158,
+          10,
+          240,
+          1,
+          13,
+          3,
+          11,
+          55,
+          9,
+          217,
+          12,
+          12,
+          1,
+          214,
+          12,
+          12,
+          2,
+          179,
+          254,
+          16,
+          89,
+          14,
+          77,
+          16,
+          101,
+          8,
+          41,
+          3,
+          11,
+          9,
+          42,
+          61,
+          251,
+          15,
+          11,
+          4,
+          96,
+          2,
+          179,
+          16,
+          89,
+          14,
+          77,
+          16,
+          101,
+          8,
+          41,
+          3,
+          11,
+          14,
+          44,
+          10,
+          11,
+          4,
+          200,
+          59,
+          7,
+          34,
+          9,
+          196,
+          9,
+          196,
+          9,
+          88,
+          59,
+          254,
+          12,
+          160,
+          9,
+          87,
+          12,
+          237,
+          3,
+          97,
+          14,
+          241,
+          4,
+          238,
+          2,
+          12,
+          55,
+          251,
+          12,
+          160,
+          7,
+          93,
+          2,
+          37,
+          11,
+          37,
+          15,
+          159,
+          5,
+          22,
+          1,
+          56,
+          5,
+          130,
+          2,
+          211,
+          8,
+          214,
+          9,
+          44,
+          2,
+          12,
+          15,
+          6,
+          55,
+          255
+        ],
+        "hex": "09 D9 04 E9 0A 13 3B 0C F1 0E 4F 37 FE 0D 98 03 0B 02 0C 04 E9 04 EE 09 2A 3D FB 03 79 08 9E 0A F0 01 0D 03 0B 37 09 D9 0C 0C 01 D6 0C 0C 02 B3 FE 10 59 0E 4D 10 65 08 29 03 0B 09 2A 3D FB 0F 0B 04 60 02 B3 10 59 0E 4D 10 65 08 29 03 0B 0E 2C 0A 0B 04 C8 3B 07 22 09 C4 09 C4 09 58 3B FE 0C A0 09 57 0C ED 03 61 0E F1 04 EE 02 0C 37 FB 0C A0 07 5D 02 25 0B 25 0F 9F 05 16 01 38 05 82 02 D3 08 D6 09 2C 02 0C 0F 06 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 57,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 67,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 83,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Condominiums_1F_Text_Clefairy": {
+      "label": "CeladonCity_Condominiums_1F_Text_Clefairy",
+      "line": 88,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "raw_text": "皮皮：皮 皮皮皮！$",
+      "display_text": "皮皮：皮 皮皮皮！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          10,
+          95,
+          10,
+          95,
+          62,
+          10,
+          95,
+          0,
+          10,
+          95,
+          10,
+          95,
+          10,
+          95,
+          60,
+          255
+        ],
+        "hex": "0A 5F 0A 5F 3E 0A 5F 00 0A 5F 0A 5F 0A 5F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Condominiums_1F_Text_Nidoran": {
+      "label": "CeladonCity_Condominiums_1F_Text_Nidoran",
+      "line": 91,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "raw_text": "尼多兰：咔 咔呜！$",
+      "display_text": "尼多兰：咔 咔呜！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 16,
+        "bytes": [
+          9,
+          215,
+          3,
+          133,
+          8,
+          49,
+          62,
+          20,
+          5,
+          0,
+          20,
+          5,
+          13,
+          158,
+          60,
+          255
+        ],
+        "hex": "09 D7 03 85 08 31 3E 14 05 00 14 05 0D 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_Condominiums_1F_Text_ManagersSuite": {
+      "label": "CeladonCity_Condominiums_1F_Text_ManagersSuite",
+      "line": 94,
+      "source_file": "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc",
+      "raw_text": "玉虹大厦\\n经理套间$",
+      "display_text": "玉虹大厦\n经理套间",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          15,
+          159,
+          5,
+          22,
+          2,
+          211,
+          13,
+          231,
+          254,
+          7,
+          93,
+          8,
+          98,
+          12,
+          216,
+          5,
+          207,
+          255
+        ],
+        "hex": "0F 9F 05 16 02 D3 0D E7 FE 07 5D 08 62 0C D8 05 CF FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 4,
+      "famechecker": 1,
+      "giveitem": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 3,
+      "playmoncry": 3,
+      "setflag": 2,
+      "waitmoncry": 3,
+      "waitse": 3
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 16,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 8,
+    "encoded_text_count": 8,
+    "text_source_byte_count": 323,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 8
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 7,
+      "faceplayer": 4,
+      "famechecker": 1,
+      "giveitem": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 3,
+      "lock": 4,
+      "msgbox": 8,
+      "playmoncry": 3,
+      "release": 6,
+      "setflag": 2,
+      "waitmoncry": 3,
+      "waitse": 3
+    }
+  }
+}

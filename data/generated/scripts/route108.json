@@ -1,0 +1,583 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route108",
+    "map_script": "data/maps/Route108/scripts.inc",
+    "map_json": "data/maps/Route108/map.json",
+    "map_id": "MAP_ROUTE108",
+    "map_name": "Route108"
+  },
+  "labels": {
+    "Route108_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route108_EventScript_Jerome": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route108_EventScript_Matthew": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route108_EventScript_Tara": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route108_EventScript_Missy": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route108_EventScript_Carolina": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route108_EventScript_Cory": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route108_EventScript_CoryRegisterMatchCallAfterBattle": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route108_EventScript_CoryRematch": {
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "Route108_MapScripts": {
+      "label": "Route108_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route108/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route108_EventScript_Jerome": {
+      "label": "Route108_EventScript_Jerome",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_JEROME",
+            "Route108_Text_JeromeIntro",
+            "Route108_Text_JeromeDefeated"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_JEROME, Route108_Text_JeromeIntro, Route108_Text_JeromeDefeated",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route108_Text_JeromePostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox Route108_Text_JeromePostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/Route108/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route108_Text_JeromePostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route108_EventScript_Matthew": {
+      "label": "Route108_EventScript_Matthew",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_MATTHEW",
+            "Route108_Text_MatthewIntro",
+            "Route108_Text_MatthewDefeated"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_MATTHEW, Route108_Text_MatthewIntro, Route108_Text_MatthewDefeated",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route108_Text_MatthewPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox Route108_Text_MatthewPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/Route108/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route108_Text_MatthewPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route108_EventScript_Tara": {
+      "label": "Route108_EventScript_Tara",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_TARA",
+            "Route108_Text_TaraIntro",
+            "Route108_Text_TaraDefeated"
+          ],
+          "line": 15,
+          "raw": "trainerbattle_single TRAINER_TARA, Route108_Text_TaraIntro, Route108_Text_TaraDefeated",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route108_Text_TaraPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 16,
+          "raw": "msgbox Route108_Text_TaraPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/Route108/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route108_Text_TaraPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 16
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route108_EventScript_Missy": {
+      "label": "Route108_EventScript_Missy",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_MISSY",
+            "Route108_Text_MissyIntro",
+            "Route108_Text_MissyDefeated"
+          ],
+          "line": 20,
+          "raw": "trainerbattle_single TRAINER_MISSY, Route108_Text_MissyIntro, Route108_Text_MissyDefeated",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route108_Text_MissyPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 21,
+          "raw": "msgbox Route108_Text_MissyPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/Route108/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route108_Text_MissyPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route108_EventScript_Carolina": {
+      "label": "Route108_EventScript_Carolina",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_CAROLINA",
+            "Route108_Text_CarolinaIntro",
+            "Route108_Text_CarolinaDefeated"
+          ],
+          "line": 25,
+          "raw": "trainerbattle_single TRAINER_CAROLINA, Route108_Text_CarolinaIntro, Route108_Text_CarolinaDefeated",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route108_Text_CarolinaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 26,
+          "raw": "msgbox Route108_Text_CarolinaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/Route108/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route108_Text_CarolinaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route108_EventScript_Cory": {
+      "label": "Route108_EventScript_Cory",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_CORY_1",
+            "Route108_Text_CoryIntro",
+            "Route108_Text_CoryDefeated",
+            "Route108_EventScript_CoryRegisterMatchCallAfterBattle"
+          ],
+          "line": 30,
+          "raw": "trainerbattle_single TRAINER_CORY_1, Route108_Text_CoryIntro, Route108_Text_CoryDefeated, Route108_EventScript_CoryRegisterMatchCallAfterBattle",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ShouldTryRematchBattle"
+          ],
+          "line": 31,
+          "raw": "specialvar VAR_RESULT, ShouldTryRematchBattle",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "Route108_EventScript_CoryRematch"
+          ],
+          "line": 32,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, Route108_EventScript_CoryRematch",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route108_Text_CoryPostBattle",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 33,
+          "raw": "msgbox Route108_Text_CoryPostBattle, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 34,
+          "raw": "release",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/Route108/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route108_Text_CoryPostBattle",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 33
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route108_EventScript_CoryRematch",
+          "line": 32
+        }
+      ]
+    },
+    "Route108_EventScript_CoryRegisterMatchCallAfterBattle": {
+      "label": "Route108_EventScript_CoryRegisterMatchCallAfterBattle",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "PlayerFaceTrainerAfterBattle"
+          ],
+          "line": 38,
+          "raw": "special PlayerFaceTrainerAfterBattle",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 39,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route108_Text_CoryRegister",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 40,
+          "raw": "msgbox Route108_Text_CoryRegister, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "register_matchcall",
+          "args": [
+            "TRAINER_CORY_1"
+          ],
+          "line": 41,
+          "raw": "register_matchcall TRAINER_CORY_1",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 42,
+          "raw": "release",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 43,
+          "raw": "end",
+          "source_file": "data/maps/Route108/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route108_Text_CoryRegister",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 40
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route108_EventScript_CoryRematch": {
+      "label": "Route108_EventScript_CoryRematch",
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/Route108/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_rematch",
+          "args": [
+            "TRAINER_CORY_1",
+            "Route108_Text_CoryRematchIntro",
+            "Route108_Text_CoryRematchDefeated"
+          ],
+          "line": 46,
+          "raw": "trainerbattle_rematch TRAINER_CORY_1, Route108_Text_CoryRematchIntro, Route108_Text_CoryRematchDefeated",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route108_Text_CoryRematchPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 47,
+          "raw": "msgbox Route108_Text_CoryRematchPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route108/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 48,
+          "raw": "end",
+          "source_file": "data/maps/Route108/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route108_Text_CoryRematchPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 47
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "goto_if_eq": 1,
+      "register_matchcall": 1,
+      "special": 1,
+      "specialvar": 1,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 6,
+      "waitmovement": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 9,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 8,
+      "goto_if_eq": 1,
+      "msgbox": 8,
+      "register_matchcall": 1,
+      "release": 2,
+      "special": 1,
+      "specialvar": 1,
+      "trainerbattle_rematch": 1,
+      "trainerbattle_single": 6,
+      "waitmovement": 1
+    }
+  }
+}

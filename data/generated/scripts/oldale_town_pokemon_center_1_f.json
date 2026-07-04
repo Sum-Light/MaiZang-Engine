@@ -1,0 +1,963 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "OldaleTown_PokemonCenter_1F",
+    "map_script": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+    "map_json": "data/maps/OldaleTown_PokemonCenter_1F/map.json",
+    "map_id": "MAP_OLDALE_TOWN_POKEMON_CENTER_1F",
+    "map_name": "OldaleTown_PokemonCenter_1F"
+  },
+  "labels": {
+    "OldaleTown_PokemonCenter_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "OldaleTown_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "OldaleTown_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 6
+    },
+    "OldaleTown_PokemonCenter_1F_EventScript_Gentleman": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "OldaleTown_PokemonCenter_1F_EventScript_Boy": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "OldaleTown_PokemonCenter_1F_EventScript_Girl": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 6
+    },
+    "OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC": {
+      "kind": "text",
+      "line": 40,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat": {
+      "kind": "text",
+      "line": 43,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "OldaleTown_PokemonCenter_1F_Text_WirelessClubNotAvailable": {
+      "kind": "text",
+      "line": 46,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub": {
+      "kind": "text",
+      "line": 49,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "OldaleTown_PokemonCenter_1F_MapScripts": {
+      "label": "OldaleTown_PokemonCenter_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "OldaleTown_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "OldaleTown_PokemonCenter_1F_OnTransition": {
+      "label": "OldaleTown_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_OLDALE_TOWN"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_OLDALE_TOWN",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_UpdateBrineyLocation"
+          ],
+          "line": 8,
+          "raw": "call Common_EventScript_UpdateBrineyLocation",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_UpdateBrineyLocation",
+          "line": 8
+        }
+      ]
+    },
+    "OldaleTown_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "OldaleTown_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x800B",
+            "LOCALID_OLDALE_NURSE"
+          ],
+          "line": 12,
+          "raw": "setvar VAR_0x800B, LOCALID_OLDALE_NURSE",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_PkmnCenterNurse"
+          ],
+          "line": 13,
+          "raw": "call Common_EventScript_PkmnCenterNurse",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 14,
+          "raw": "waitmessage",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 15,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 16,
+          "raw": "release",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_PkmnCenterNurse",
+          "line": 13
+        }
+      ]
+    },
+    "OldaleTown_PokemonCenter_1F_EventScript_Gentleman": {
+      "label": "OldaleTown_PokemonCenter_1F_EventScript_Gentleman",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC",
+            "MSGBOX_NPC"
+          ],
+          "line": 20,
+          "raw": "msgbox OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC, MSGBOX_NPC",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 21,
+          "raw": "end",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC",
+          "mode": "MSGBOX_NPC",
+          "line": 20
+        }
+      ],
+      "branch_targets": []
+    },
+    "OldaleTown_PokemonCenter_1F_EventScript_Boy": {
+      "label": "OldaleTown_PokemonCenter_1F_EventScript_Boy",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat",
+            "MSGBOX_NPC"
+          ],
+          "line": 24,
+          "raw": "msgbox OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat, MSGBOX_NPC",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat",
+          "mode": "MSGBOX_NPC",
+          "line": 24
+        }
+      ],
+      "branch_targets": []
+    },
+    "OldaleTown_PokemonCenter_1F_EventScript_Girl": {
+      "label": "OldaleTown_PokemonCenter_1F_EventScript_Girl",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 28,
+          "raw": "lock",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 29,
+          "raw": "faceplayer",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_SYS_POKEDEX_GET",
+            "OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable"
+          ],
+          "line": 30,
+          "raw": "goto_if_set FLAG_SYS_POKEDEX_GET, OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "OldaleTown_PokemonCenter_1F_Text_WirelessClubNotAvailable",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 31,
+          "raw": "msgbox OldaleTown_PokemonCenter_1F_Text_WirelessClubNotAvailable, MSGBOX_DEFAULT",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 32,
+          "raw": "release",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "OldaleTown_PokemonCenter_1F_Text_WirelessClubNotAvailable",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 31
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable",
+          "line": 30
+        }
+      ]
+    },
+    "OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable": {
+      "label": "OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 36,
+          "raw": "msgbox OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub, MSGBOX_DEFAULT",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 37,
+          "raw": "release",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 38,
+          "raw": "end",
+          "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 36
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC": {
+      "label": "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC",
+      "line": 40,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "那边角落里的电脑是提供给所有\\n宝可梦训练家使用的。\\p当然，\\n你也可以随意使用。$",
+      "display_text": "那边角落里的电脑是提供给所有\n宝可梦训练家使用的。\n\n当然，\n你也可以随意使用。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 73,
+        "bytes": [
+          9,
+          189,
+          1,
+          156,
+          7,
+          25,
+          9,
+          30,
+          8,
+          100,
+          3,
+          11,
+          3,
+          46,
+          9,
+          202,
+          12,
+          12,
+          12,
+          226,
+          4,
+          113,
+          4,
+          98,
+          12,
+          156,
+          15,
+          126,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          11,
+          245,
+          15,
+          113,
+          3,
+          11,
+          55,
+          251,
+          2,
+          239,
+          11,
+          59,
+          59,
+          254,
+          9,
+          217,
+          15,
+          2,
+          7,
+          215,
+          15,
+          36,
+          12,
+          137,
+          15,
+          50,
+          11,
+          245,
+          15,
+          113,
+          55,
+          255
+        ],
+        "hex": "09 BD 01 9C 07 19 09 1E 08 64 03 0B 03 2E 09 CA 0C 0C 0C E2 04 71 04 62 0C 9C 0F 7E FE 01 63 07 D7 09 66 0E 9E 08 8A 05 BD 0B F5 0F 71 03 0B 37 FB 02 EF 0B 3B 3B FE 09 D9 0F 02 07 D7 0F 24 0C 89 0F 32 0B F5 0F 71 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 26,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat": {
+      "label": "OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat",
+      "line": 43,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "宝可梦中心真棒！\\p你可以随时使用他们\\n提供的服务，而且完全免费，\\l什么也不用担心！$",
+      "display_text": "宝可梦中心真棒！\n\n你可以随时使用他们\n提供的服务，而且完全免费，\n什么也不用担心！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          161,
+          14,
+          79,
+          16,
+          89,
+          1,
+          83,
+          60,
+          251,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          12,
+          137,
+          11,
+          237,
+          11,
+          245,
+          15,
+          113,
+          12,
+          158,
+          9,
+          95,
+          254,
+          12,
+          226,
+          4,
+          113,
+          3,
+          11,
+          4,
+          10,
+          13,
+          183,
+          59,
+          3,
+          157,
+          10,
+          235,
+          13,
+          82,
+          11,
+          43,
+          9,
+          122,
+          3,
+          212,
+          59,
+          250,
+          11,
+          238,
+          9,
+          76,
+          15,
+          2,
+          1,
+          214,
+          15,
+          113,
+          2,
+          225,
+          14,
+          79,
+          60,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 10 A1 0E 4F 10 59 01 53 3C FB 09 D9 07 D7 0F 24 0C 89 0B ED 0B F5 0F 71 0C 9E 09 5F FE 0C E2 04 71 03 0B 04 0A 0D B7 3B 03 9D 0A EB 0D 52 0B 2B 09 7A 03 D4 3B FA 0B EE 09 4C 0F 02 01 D6 0F 71 02 E1 0E 4F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 34,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "OldaleTown_PokemonCenter_1F_Text_WirelessClubNotAvailable": {
+      "label": "OldaleTown_PokemonCenter_1F_Text_WirelessClubNotAvailable",
+      "line": 46,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "二楼的宝可梦无线俱乐部\\n最近刚刚建好，\\p但据说现在\\n还在调整中。$",
+      "display_text": "二楼的宝可梦无线俱乐部\n最近刚刚建好，\n\n但据说现在\n还在调整中。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 60,
+        "bytes": [
+          3,
+          163,
+          8,
+          214,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          164,
+          14,
+          12,
+          7,
+          147,
+          8,
+          75,
+          1,
+          218,
+          254,
+          17,
+          38,
+          7,
+          78,
+          4,
+          63,
+          4,
+          63,
+          5,
+          241,
+          4,
+          233,
+          59,
+          251,
+          2,
+          233,
+          7,
+          141,
+          12,
+          88,
+          14,
+          3,
+          15,
+          230,
+          254,
+          5,
+          70,
+          15,
+          230,
+          3,
+          62,
+          16,
+          110,
+          16,
+          161,
+          55,
+          255
+        ],
+        "hex": "03 A3 08 D6 03 0B 01 63 07 D7 09 66 0D A4 0E 0C 07 93 08 4B 01 DA FE 11 26 07 4E 04 3F 04 3F 05 F1 04 E9 3B FB 02 E9 07 8D 0C 58 0E 03 0F E6 FE 05 46 0F E6 03 3E 10 6E 10 A1 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 35,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub": {
+      "label": "OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub",
+      "line": 49,
+      "source_file": "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc",
+      "raw_text": "二楼的宝可梦无线俱乐部\\n最近刚刚建好，\\p我马上就去交换了宝可梦。$",
+      "display_text": "二楼的宝可梦无线俱乐部\n最近刚刚建好，\n\n我马上就去交换了宝可梦。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 61,
+        "bytes": [
+          3,
+          163,
+          8,
+          214,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          164,
+          14,
+          12,
+          7,
+          147,
+          8,
+          75,
+          1,
+          218,
+          254,
+          17,
+          38,
+          7,
+          78,
+          4,
+          63,
+          4,
+          63,
+          5,
+          241,
+          4,
+          233,
+          59,
+          251,
+          13,
+          152,
+          9,
+          39,
+          11,
+          173,
+          7,
+          125,
+          11,
+          37,
+          7,
+          13,
+          5,
+          72,
+          8,
+          158,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          255
+        ],
+        "hex": "03 A3 08 D6 03 0B 01 63 07 D7 09 66 0D A4 0E 0C 07 93 08 4B 01 DA FE 11 26 07 4E 04 3F 04 3F 05 F1 04 E9 3B FB 0D 98 09 27 0B AD 07 7D 0B 25 07 0D 05 48 08 9E 01 63 07 D7 09 66 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 34,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "map_script": 2,
+      "setrespawn": 1,
+      "setvar": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 7,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 270,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 2,
+      "end": 6,
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "map_script": 2,
+      "msgbox": 4,
+      "release": 3,
+      "setrespawn": 1,
+      "setvar": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    }
+  }
+}

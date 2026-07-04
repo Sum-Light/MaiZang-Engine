@@ -1,0 +1,2504 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SlateportCity_SternsShipyard_1F",
+    "map_script": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+    "map_json": "data/maps/SlateportCity_SternsShipyard_1F/map.json",
+    "map_id": "MAP_SLATEPORT_CITY_STERNS_SHIPYARD_1F",
+    "map_name": "SlateportCity_SternsShipyard_1F"
+  },
+  "labels": {
+    "SlateportCity_SternsShipyard_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_Dock": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 16
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_FerryReady": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 5
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 5
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_GoFindStern": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 8
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran": {
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 5
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_Scientist1": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_Scientist2": {
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_Briney": {
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails": {
+      "kind": "text",
+      "line": 65,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_SternsShipyard_1F_Text_MeetDockDeliverToStern": {
+      "kind": "text",
+      "line": 68,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_SternsShipyard_1F_Text_CouldYouFindStern": {
+      "kind": "text",
+      "line": 71,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_SternsShipyard_1F_Text_CouldUseAdviceFromVeteran": {
+      "kind": "text",
+      "line": 74,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_SternsShipyard_1F_Text_BrineyJoinedUs": {
+      "kind": "text",
+      "line": 77,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_SternsShipyard_1F_Text_FerryIsReady": {
+      "kind": "text",
+      "line": 80,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_SternsShipyard_1F_Text_DecidedToHelpDock": {
+      "kind": "text",
+      "line": 83,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing": {
+      "kind": "text",
+      "line": 86,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily": {
+      "kind": "text",
+      "line": 89,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SlateportCity_SternsShipyard_1F_MapScripts": {
+      "label": "SlateportCity_SternsShipyard_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_Dock": {
+      "label": "SlateportCity_SternsShipyard_1F_EventScript_Dock",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 5,
+          "raw": "lockall",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_SYS_GAME_CLEAR",
+            "SlateportCity_SternsShipyard_1F_EventScript_FerryReady"
+          ],
+          "line": 6,
+          "raw": "goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_SternsShipyard_1F_EventScript_FerryReady",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_BADGE07_GET",
+            "SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_BADGE07_GET, SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DELIVERED_DEVON_GOODS",
+            "SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran"
+          ],
+          "line": 8,
+          "raw": "goto_if_set FLAG_DELIVERED_DEVON_GOODS, SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DOCK_REJECTED_DEVON_GOODS",
+            "SlateportCity_SternsShipyard_1F_EventScript_GoFindStern"
+          ],
+          "line": 9,
+          "raw": "goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS, SlateportCity_SternsShipyard_1F_EventScript_GoFindStern",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 10,
+          "raw": "msgbox SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOCK",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 11,
+          "raw": "applymovement LOCALID_DOCK, Common_Movement_FacePlayer",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 12,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_SternsShipyard_1F_Text_MeetDockDeliverToStern",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 13,
+          "raw": "msgbox SlateportCity_SternsShipyard_1F_Text_MeetDockDeliverToStern, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 14,
+          "raw": "closemessage",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOCK",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 15,
+          "raw": "applymovement LOCALID_DOCK, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 16,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DOCK_REJECTED_DEVON_GOODS"
+          ],
+          "line": 17,
+          "raw": "setflag FLAG_DOCK_REJECTED_DEVON_GOODS",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
+          ],
+          "line": 18,
+          "raw": "setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 19,
+          "raw": "releaseall",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 10
+        },
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_SternsShipyard_1F_Text_MeetDockDeliverToStern",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 13
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "SlateportCity_SternsShipyard_1F_EventScript_FerryReady",
+          "line": 6
+        },
+        {
+          "op": "goto_if_set",
+          "target": "SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined",
+          "line": 7
+        },
+        {
+          "op": "goto_if_set",
+          "target": "SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran",
+          "line": 8
+        },
+        {
+          "op": "goto_if_set",
+          "target": "SlateportCity_SternsShipyard_1F_EventScript_GoFindStern",
+          "line": 9
+        }
+      ]
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_FerryReady": {
+      "label": "SlateportCity_SternsShipyard_1F_EventScript_FerryReady",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOCK",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 23,
+          "raw": "applymovement LOCALID_DOCK, Common_Movement_FacePlayer",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 24,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_SternsShipyard_1F_Text_FerryIsReady",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 25,
+          "raw": "msgbox SlateportCity_SternsShipyard_1F_Text_FerryIsReady, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 26,
+          "raw": "releaseall",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_SternsShipyard_1F_Text_FerryIsReady",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 25
+        }
+      ],
+      "branch_targets": []
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined": {
+      "label": "SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOCK",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 30,
+          "raw": "applymovement LOCALID_DOCK, Common_Movement_FacePlayer",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 31,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_SternsShipyard_1F_Text_BrineyJoinedUs",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 32,
+          "raw": "msgbox SlateportCity_SternsShipyard_1F_Text_BrineyJoinedUs, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 33,
+          "raw": "releaseall",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_SternsShipyard_1F_Text_BrineyJoinedUs",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 32
+        }
+      ],
+      "branch_targets": []
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_GoFindStern": {
+      "label": "SlateportCity_SternsShipyard_1F_EventScript_GoFindStern",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOCK",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 37,
+          "raw": "applymovement LOCALID_DOCK, Common_Movement_FacePlayer",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 38,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_SternsShipyard_1F_Text_CouldYouFindStern",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 39,
+          "raw": "msgbox SlateportCity_SternsShipyard_1F_Text_CouldYouFindStern, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 40,
+          "raw": "closemessage",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOCK",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 41,
+          "raw": "applymovement LOCALID_DOCK, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 42,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 43,
+          "raw": "releaseall",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_SternsShipyard_1F_Text_CouldYouFindStern",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 39
+        }
+      ],
+      "branch_targets": []
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran": {
+      "label": "SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran",
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DOCK",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 47,
+          "raw": "applymovement LOCALID_DOCK, Common_Movement_FacePlayer",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 48,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_SternsShipyard_1F_Text_CouldUseAdviceFromVeteran",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 49,
+          "raw": "msgbox SlateportCity_SternsShipyard_1F_Text_CouldUseAdviceFromVeteran, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 50,
+          "raw": "releaseall",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 51,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_SternsShipyard_1F_Text_CouldUseAdviceFromVeteran",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 49
+        }
+      ],
+      "branch_targets": []
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_Scientist1": {
+      "label": "SlateportCity_SternsShipyard_1F_EventScript_Scientist1",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing",
+            "MSGBOX_NPC"
+          ],
+          "line": 54,
+          "raw": "msgbox SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing, MSGBOX_NPC",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 55,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing",
+          "mode": "MSGBOX_NPC",
+          "line": 54
+        }
+      ],
+      "branch_targets": []
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_Scientist2": {
+      "label": "SlateportCity_SternsShipyard_1F_EventScript_Scientist2",
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily",
+            "MSGBOX_NPC"
+          ],
+          "line": 58,
+          "raw": "msgbox SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily, MSGBOX_NPC",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 59,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily",
+          "mode": "MSGBOX_NPC",
+          "line": 58
+        }
+      ],
+      "branch_targets": []
+    },
+    "SlateportCity_SternsShipyard_1F_EventScript_Briney": {
+      "label": "SlateportCity_SternsShipyard_1F_EventScript_Briney",
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SlateportCity_SternsShipyard_1F_Text_DecidedToHelpDock",
+            "MSGBOX_NPC"
+          ],
+          "line": 62,
+          "raw": "msgbox SlateportCity_SternsShipyard_1F_Text_DecidedToHelpDock, MSGBOX_NPC",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 63,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SlateportCity_SternsShipyard_1F_Text_DecidedToHelpDock",
+          "mode": "MSGBOX_NPC",
+          "line": 62
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails": {
+      "label": "SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails",
+      "line": 65,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "raw_text": "唔……如果这个放这里，\\n那个放那里……\\p那么这个东西放哪里？\\n那个装置又该怎么办？\\p啊啊啊！\\n完全理不清头绪！$",
+      "display_text": "唔……如果这个放这里，\n那个放那里……\n\n那么这个东西放哪里？\n那个装置又该怎么办？\n\n啊啊啊！\n完全理不清头绪！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 97,
+        "bytes": [
+          20,
+          43,
+          176,
+          176,
+          11,
+          103,
+          4,
+          195,
+          16,
+          85,
+          4,
+          96,
+          3,
+          200,
+          16,
+          85,
+          8,
+          100,
+          59,
+          254,
+          9,
+          189,
+          4,
+          96,
+          3,
+          200,
+          9,
+          189,
+          8,
+          100,
+          176,
+          176,
+          251,
+          9,
+          189,
+          9,
+          76,
+          16,
+          85,
+          4,
+          96,
+          3,
+          80,
+          13,
+          189,
+          3,
+          200,
+          9,
+          186,
+          8,
+          100,
+          61,
+          254,
+          9,
+          189,
+          4,
+          96,
+          16,
+          223,
+          16,
+          148,
+          15,
+          132,
+          4,
+          45,
+          16,
+          10,
+          9,
+          76,
+          1,
+          75,
+          61,
+          251,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          60,
+          254,
+          13,
+          82,
+          11,
+          43,
+          8,
+          98,
+          1,
+          214,
+          11,
+          7,
+          13,
+          31,
+          14,
+          130,
+          60,
+          255
+        ],
+        "hex": "14 2B B0 B0 0B 67 04 C3 10 55 04 60 03 C8 10 55 08 64 3B FE 09 BD 04 60 03 C8 09 BD 08 64 B0 B0 FB 09 BD 09 4C 10 55 04 60 03 50 0D BD 03 C8 09 BA 08 64 3D FE 09 BD 04 60 10 DF 10 94 0F 84 04 2D 10 0A 09 4C 01 4B 3D FB 01 00 01 00 01 00 3C FE 0D 52 0B 2B 08 62 01 D6 0B 07 0D 1F 0E 82 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 44,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 50,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 60,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SlateportCity_SternsShipyard_1F_Text_MeetDockDeliverToStern": {
+      "label": "SlateportCity_SternsShipyard_1F_Text_MeetDockDeliverToStern",
+      "line": 68,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "raw_text": "嗯？\\n你好，我是津贺。\\p楠木馆长雇我来\\n设计一艘渡轮。\\p啊！那个……\\n那是得文的物品吗？\\p但是，呃……\\n这样不行……\\p楠木馆长出去了，\\n他说有些事要处理。\\p可以请你帮忙找找楠木馆长，\\n把包裹交给他吗？$",
+      "display_text": "嗯？\n你好，我是津贺。\n\n楠木馆长雇我来\n设计一艘渡轮。\n\n啊！那个……\n那是得文的物品吗？\n\n但是，呃……\n这样不行……\n\n楠木馆长出去了，\n他说有些事要处理。\n\n可以请你帮忙找找楠木馆长，\n把包裹交给他吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 173,
+        "bytes": [
+          20,
+          97,
+          61,
+          254,
+          9,
+          217,
+          4,
+          233,
+          59,
+          13,
+          152,
+          12,
+          12,
+          7,
+          68,
+          5,
+          7,
+          55,
+          251,
+          23,
+          175,
+          9,
+          180,
+          4,
+          165,
+          2,
+          38,
+          4,
+          149,
+          13,
+          152,
+          8,
+          41,
+          254,
+          11,
+          198,
+          5,
+          177,
+          15,
+          11,
+          12,
+          117,
+          3,
+          110,
+          9,
+          16,
+          55,
+          251,
+          1,
+          0,
+          60,
+          9,
+          189,
+          4,
+          96,
+          176,
+          176,
+          254,
+          9,
+          189,
+          12,
+          12,
+          3,
+          10,
+          13,
+          138,
+          3,
+          11,
+          13,
+          181,
+          10,
+          114,
+          9,
+          42,
+          61,
+          251,
+          2,
+          233,
+          12,
+          12,
+          59,
+          19,
+          245,
+          176,
+          176,
+          254,
+          16,
+          85,
+          14,
+          226,
+          1,
+          214,
+          14,
+          91,
+          176,
+          176,
+          251,
+          23,
+          175,
+          9,
+          180,
+          4,
+          165,
+          2,
+          38,
+          2,
+          120,
+          11,
+          37,
+          8,
+          158,
+          59,
+          254,
+          12,
+          158,
+          12,
+          88,
+          15,
+          126,
+          14,
+          52,
+          12,
+          7,
+          14,
+          241,
+          2,
+          134,
+          8,
+          98,
+          55,
+          251,
+          7,
+          215,
+          15,
+          36,
+          11,
+          13,
+          9,
+          217,
+          1,
+          78,
+          9,
+          62,
+          16,
+          69,
+          16,
+          69,
+          23,
+          175,
+          9,
+          180,
+          4,
+          165,
+          2,
+          38,
+          59,
+          254,
+          1,
+          48,
+          1,
+          91,
+          4,
+          196,
+          7,
+          13,
+          4,
+          98,
+          12,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "14 61 3D FE 09 D9 04 E9 3B 0D 98 0C 0C 07 44 05 07 37 FB 17 AF 09 B4 04 A5 02 26 04 95 0D 98 08 29 FE 0B C6 05 B1 0F 0B 0C 75 03 6E 09 10 37 FB 01 00 3C 09 BD 04 60 B0 B0 FE 09 BD 0C 0C 03 0A 0D 8A 03 0B 0D B5 0A 72 09 2A 3D FB 02 E9 0C 0C 3B 13 F5 B0 B0 FE 10 55 0E E2 01 D6 0E 5B B0 B0 FB 17 AF 09 B4 04 A5 02 26 02 78 0B 25 08 9E 3B FE 0C 9E 0C 58 0F 7E 0E 34 0C 07 0E F1 02 86 08 62 37 FB 07 D7 0F 24 0B 0D 09 D9 01 4E 09 3E 10 45 10 45 17 AF 09 B4 04 A5 02 26 3B FE 01 30 01 5B 04 C4 07 0D 04 62 0C 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 2,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 30,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 38,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 49,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 57,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 65,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 75,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 86,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 101,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 111,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SlateportCity_SternsShipyard_1F_Text_CouldYouFindStern": {
+      "label": "SlateportCity_SternsShipyard_1F_Text_CouldYouFindStern",
+      "line": 71,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "raw_text": "津贺：楠木馆长\\n去哪儿了呢？\\p可以请你帮忙找找楠木馆长，\\n把包裹交给他吗？$",
+      "display_text": "津贺：楠木馆长\n去哪儿了呢？\n\n可以请你帮忙找找楠木馆长，\n把包裹交给他吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 68,
+        "bytes": [
+          7,
+          68,
+          5,
+          7,
+          62,
+          23,
+          175,
+          9,
+          180,
+          4,
+          165,
+          2,
+          38,
+          254,
+          11,
+          37,
+          9,
+          186,
+          3,
+          158,
+          8,
+          158,
+          9,
+          206,
+          61,
+          251,
+          7,
+          215,
+          15,
+          36,
+          11,
+          13,
+          9,
+          217,
+          1,
+          78,
+          9,
+          62,
+          16,
+          69,
+          16,
+          69,
+          23,
+          175,
+          9,
+          180,
+          4,
+          165,
+          2,
+          38,
+          59,
+          254,
+          1,
+          48,
+          1,
+          91,
+          4,
+          196,
+          7,
+          13,
+          4,
+          98,
+          12,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 44 05 07 3E 17 AF 09 B4 04 A5 02 26 FE 0B 25 09 BA 03 9E 08 9E 09 CE 3D FB 07 D7 0F 24 0B 0D 09 D9 01 4E 09 3E 10 45 10 45 17 AF 09 B4 04 A5 02 26 3B FE 01 30 01 5B 04 C4 07 0D 04 62 0C 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 40,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SlateportCity_SternsShipyard_1F_Text_CouldUseAdviceFromVeteran": {
+      "label": "SlateportCity_SternsShipyard_1F_Text_CouldUseAdviceFromVeteran",
+      "line": 74,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "raw_text": "津贺：造船是一门艺术。\\p很多东西并不是\\n只靠计算就能够知道的。\\p真希望能向哪位熟悉大海的\\n资深老水手请教一下……$",
+      "display_text": "津贺：造船是一门艺术。\n\n很多东西并不是\n只靠计算就能够知道的。\n\n真希望能向哪位熟悉大海的\n资深老水手请教一下……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 104,
+        "bytes": [
+          7,
+          68,
+          5,
+          7,
+          62,
+          16,
+          1,
+          2,
+          140,
+          12,
+          12,
+          15,
+          11,
+          9,
+          93,
+          15,
+          37,
+          12,
+          58,
+          55,
+          251,
+          5,
+          11,
+          3,
+          133,
+          3,
+          80,
+          13,
+          189,
+          1,
+          189,
+          1,
+          214,
+          12,
+          12,
+          254,
+          16,
+          140,
+          7,
+          205,
+          5,
+          177,
+          12,
+          134,
+          7,
+          125,
+          9,
+          210,
+          4,
+          131,
+          16,
+          123,
+          3,
+          7,
+          3,
+          11,
+          55,
+          251,
+          16,
+          89,
+          13,
+          199,
+          13,
+          99,
+          9,
+          210,
+          14,
+          31,
+          9,
+          186,
+          13,
+          129,
+          12,
+          49,
+          13,
+          200,
+          2,
+          211,
+          4,
+          201,
+          3,
+          11,
+          254,
+          17,
+          2,
+          11,
+          204,
+          8,
+          68,
+          12,
+          81,
+          12,
+          27,
+          11,
+          13,
+          7,
+          30,
+          15,
+          11,
+          13,
+          230,
+          176,
+          176,
+          255
+        ],
+        "hex": "07 44 05 07 3E 10 01 02 8C 0C 0C 0F 0B 09 5D 0F 25 0C 3A 37 FB 05 0B 03 85 03 50 0D BD 01 BD 01 D6 0C 0C FE 10 8C 07 CD 05 B1 0C 86 07 7D 09 D2 04 83 10 7B 03 07 03 0B 37 FB 10 59 0D C7 0D 63 09 D2 0E 1F 09 BA 0D 81 0C 31 0D C8 02 D3 04 C9 03 0B FE 11 02 0B CC 08 44 0C 51 0C 1B 0B 0D 07 1E 0F 0B 0D E6 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 47,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 60,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SlateportCity_SternsShipyard_1F_Text_BrineyJoinedUs": {
+      "label": "SlateportCity_SternsShipyard_1F_Text_BrineyJoinedUs",
+      "line": 77,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "raw_text": "津贺：嗨！哈奇老人\\n也来帮我们的忙了。\\p多亏了这位资深老水手，\\n渡轮的组装正在顺利进行中。$",
+      "display_text": "津贺：嗨！哈奇老人\n也来帮我们的忙了。\n\n多亏了这位资深老水手，\n渡轮的组装正在顺利进行中。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 83,
+        "bytes": [
+          7,
+          68,
+          5,
+          7,
+          62,
+          20,
+          103,
+          60,
+          4,
+          198,
+          10,
+          161,
+          8,
+          68,
+          11,
+          75,
+          254,
+          15,
+          2,
+          8,
+          41,
+          1,
+          78,
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          9,
+          62,
+          8,
+          158,
+          55,
+          251,
+          3,
+          133,
+          8,
+          14,
+          8,
+          158,
+          16,
+          85,
+          13,
+          129,
+          17,
+          2,
+          11,
+          204,
+          8,
+          68,
+          12,
+          81,
+          12,
+          27,
+          59,
+          254,
+          3,
+          110,
+          9,
+          16,
+          3,
+          11,
+          17,
+          33,
+          16,
+          223,
+          16,
+          112,
+          15,
+          230,
+          12,
+          86,
+          8,
+          112,
+          7,
+          74,
+          14,
+          91,
+          16,
+          161,
+          55,
+          255
+        ],
+        "hex": "07 44 05 07 3E 14 67 3C 04 C6 0A A1 08 44 0B 4B FE 0F 02 08 29 01 4E 0D 98 09 5F 03 0B 09 3E 08 9E 37 FB 03 85 08 0E 08 9E 10 55 0D 81 11 02 0B CC 08 44 0C 51 0C 1B 3B FE 03 6E 09 10 03 0B 11 21 10 DF 10 70 0F E6 0C 56 08 70 07 4A 0E 5B 10 A1 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SlateportCity_SternsShipyard_1F_Text_FerryIsReady": {
+      "label": "SlateportCity_SternsShipyard_1F_Text_FerryIsReady",
+      "line": 80,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "raw_text": "津贺：渡轮终于造好了！\\p这崭新的破浪号是\\n工业技术的奇迹！\\p但我觉得我们\\n甚至还能做得更好。\\p要知道，技术的进步\\n永无止境。$",
+      "display_text": "津贺：渡轮终于造好了！\n\n这崭新的破浪号是\n工业技术的奇迹！\n\n但我觉得我们\n甚至还能做得更好。\n\n要知道，技术的进步\n永无止境。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 113,
+        "bytes": [
+          7,
+          68,
+          5,
+          7,
+          62,
+          3,
+          110,
+          9,
+          16,
+          16,
+          166,
+          15,
+          136,
+          16,
+          1,
+          4,
+          233,
+          8,
+          158,
+          60,
+          251,
+          16,
+          85,
+          16,
+          43,
+          14,
+          77,
+          3,
+          11,
+          10,
+          129,
+          8,
+          64,
+          4,
+          235,
+          12,
+          12,
+          254,
+          4,
+          108,
+          15,
+          5,
+          5,
+          167,
+          12,
+          58,
+          3,
+          11,
+          10,
+          161,
+          5,
+          142,
+          60,
+          251,
+          2,
+          233,
+          13,
+          152,
+          7,
+          165,
+          3,
+          10,
+          13,
+          152,
+          9,
+          95,
+          254,
+          11,
+          211,
+          16,
+          146,
+          5,
+          70,
+          9,
+          210,
+          17,
+          46,
+          3,
+          10,
+          4,
+          102,
+          4,
+          233,
+          55,
+          251,
+          14,
+          241,
+          16,
+          123,
+          3,
+          7,
+          59,
+          5,
+          167,
+          12,
+          58,
+          3,
+          11,
+          7,
+          74,
+          1,
+          216,
+          254,
+          15,
+          110,
+          13,
+          164,
+          16,
+          138,
+          7,
+          99,
+          55,
+          255
+        ],
+        "hex": "07 44 05 07 3E 03 6E 09 10 10 A6 0F 88 10 01 04 E9 08 9E 3C FB 10 55 10 2B 0E 4D 03 0B 0A 81 08 40 04 EB 0C 0C FE 04 6C 0F 05 05 A7 0C 3A 03 0B 0A A1 05 8E 3C FB 02 E9 0D 98 07 A5 03 0A 0D 98 09 5F FE 0B D3 10 92 05 46 09 D2 11 2E 03 0A 04 66 04 E9 37 FB 0E F1 10 7B 03 07 3B 05 A7 0C 3A 03 0B 07 4A 01 D8 FE 0F 6E 0D A4 10 8A 07 63 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 31,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 50,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 61,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 68,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SlateportCity_SternsShipyard_1F_Text_DecidedToHelpDock": {
+      "label": "SlateportCity_SternsShipyard_1F_Text_DecidedToHelpDock",
+      "line": 83,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "raw_text": "哈奇：啊，{PLAYER}{KUN}！\\n好久不见！\\p自从我遇见了你，\\n我这个老水手又焕发青春啦！\\p所以我决定来\\n帮津贺造渡轮。\\p毕竟你看，\\n渡轮上可以载很多人呢。\\p那个津贺\\n也真不简单。\\p有他的技术和我的经验，\\n我敢肯定我们一定\\l能造出一了不起的船！$",
+      "display_text": "哈奇：啊，{PLAYER}{KUN}！\n好久不见！\n\n自从我遇见了你，\n我这个老水手又焕发青春啦！\n\n所以我决定来\n帮津贺造渡轮。\n\n毕竟你看，\n渡轮上可以载很多人呢。\n\n那个津贺\n也真不简单。\n\n有他的技术和我的经验，\n我敢肯定我们一定\n能造出一了不起的船！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 205,
+        "bytes": [
+          4,
+          198,
+          10,
+          161,
+          62,
+          1,
+          0,
+          59,
+          253,
+          1,
+          253,
+          5,
+          60,
+          254,
+          4,
+          233,
+          7,
+          115,
+          1,
+          214,
+          5,
+          230,
+          60,
+          251,
+          17,
+          12,
+          2,
+          179,
+          13,
+          152,
+          15,
+          164,
+          5,
+          230,
+          8,
+          158,
+          9,
+          217,
+          59,
+          254,
+          13,
+          152,
+          16,
+          85,
+          4,
+          96,
+          8,
+          68,
+          12,
+          81,
+          12,
+          27,
+          15,
+          132,
+          5,
+          77,
+          3,
+          165,
+          11,
+          2,
+          2,
+          154,
+          8,
+          39,
+          60,
+          251,
+          12,
+          156,
+          15,
+          36,
+          13,
+          152,
+          7,
+          166,
+          3,
+          77,
+          8,
+          41,
+          254,
+          1,
+          78,
+          7,
+          68,
+          5,
+          7,
+          16,
+          1,
+          3,
+          110,
+          9,
+          16,
+          55,
+          251,
+          1,
+          140,
+          7,
+          105,
+          9,
+          217,
+          7,
+          194,
+          59,
+          254,
+          3,
+          110,
+          9,
+          16,
+          11,
+          173,
+          7,
+          215,
+          15,
+          36,
+          15,
+          228,
+          5,
+          11,
+          3,
+          133,
+          11,
+          75,
+          9,
+          206,
+          55,
+          251,
+          9,
+          189,
+          4,
+          96,
+          7,
+          68,
+          5,
+          7,
+          254,
+          15,
+          2,
+          16,
+          89,
+          1,
+          214,
+          5,
+          221,
+          2,
+          227,
+          55,
+          251,
+          15,
+          126,
+          12,
+          158,
+          3,
+          11,
+          5,
+          167,
+          12,
+          58,
+          4,
+          243,
+          13,
+          152,
+          3,
+          11,
+          7,
+          93,
+          14,
+          210,
+          59,
+          254,
+          13,
+          152,
+          4,
+          60,
+          7,
+          221,
+          3,
+          77,
+          13,
+          152,
+          9,
+          95,
+          15,
+          11,
+          3,
+          77,
+          250,
+          9,
+          210,
+          16,
+          1,
+          2,
+          120,
+          15,
+          11,
+          8,
+          158,
+          1,
+          214,
+          10,
+          171,
+          3,
+          11,
+          2,
+          140,
+          60,
+          255
+        ],
+        "hex": "04 C6 0A A1 3E 01 00 3B FD 01 FD 05 3C FE 04 E9 07 73 01 D6 05 E6 3C FB 11 0C 02 B3 0D 98 0F A4 05 E6 08 9E 09 D9 3B FE 0D 98 10 55 04 60 08 44 0C 51 0C 1B 0F 84 05 4D 03 A5 0B 02 02 9A 08 27 3C FB 0C 9C 0F 24 0D 98 07 A6 03 4D 08 29 FE 01 4E 07 44 05 07 10 01 03 6E 09 10 37 FB 01 8C 07 69 09 D9 07 C2 3B FE 03 6E 09 10 0B AD 07 D7 0F 24 0F E4 05 0B 03 85 0B 4B 09 CE 37 FB 09 BD 04 60 07 44 05 07 FE 0F 02 10 59 01 D6 05 DD 02 E3 37 FB 0F 7E 0C 9E 03 0B 05 A7 0C 3A 04 F3 0D 98 03 0B 07 5D 0E D2 3B FE 0D 98 04 3C 07 DD 03 4D 0D 98 09 5F 0F 0B 03 4D FA 09 D2 10 01 02 78 0F 0B 08 9E 01 D6 0A AB 03 0B 02 8C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 5,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 13,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 26,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 51,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 59,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 68,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 75,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 88,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 94,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 102,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 115,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 125,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 137,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 5,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 13,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing": {
+      "label": "SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing",
+      "line": 86,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "raw_text": "季节，天气，\\n月亮在天空中的位置……\\p这些，还有其他很多东西\\n都会对大海产生影响。\\p是的！\\n大海就好像生物一样！$",
+      "display_text": "季节，天气，\n月亮在天空中的位置……\n\n这些，还有其他很多东西\n都会对大海产生影响。\n\n是的！\n大海就好像生物一样！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 100,
+        "bytes": [
+          5,
+          169,
+          7,
+          44,
+          59,
+          12,
+          237,
+          10,
+          179,
+          59,
+          254,
+          15,
+          206,
+          8,
+          148,
+          15,
+          230,
+          12,
+          237,
+          7,
+          227,
+          16,
+          161,
+          3,
+          11,
+          13,
+          129,
+          16,
+          148,
+          176,
+          176,
+          251,
+          16,
+          85,
+          14,
+          52,
+          59,
+          5,
+          70,
+          15,
+          126,
+          10,
+          159,
+          12,
+          158,
+          5,
+          11,
+          3,
+          133,
+          3,
+          80,
+          13,
+          189,
+          254,
+          3,
+          97,
+          5,
+          110,
+          3,
+          121,
+          2,
+          211,
+          4,
+          201,
+          2,
+          30,
+          11,
+          216,
+          15,
+          94,
+          14,
+          25,
+          55,
+          251,
+          12,
+          12,
+          3,
+          11,
+          60,
+          254,
+          2,
+          211,
+          4,
+          201,
+          7,
+          125,
+          4,
+          233,
+          14,
+          30,
+          11,
+          216,
+          13,
+          181,
+          15,
+          11,
+          14,
+          226,
+          60,
+          255
+        ],
+        "hex": "05 A9 07 2C 3B 0C ED 0A B3 3B FE 0F CE 08 94 0F E6 0C ED 07 E3 10 A1 03 0B 0D 81 10 94 B0 B0 FB 10 55 0E 34 3B 05 46 0F 7E 0A 9F 0C 9E 05 0B 03 85 03 50 0D BD FE 03 61 05 6E 03 79 02 D3 04 C9 02 1E 0B D8 0F 5E 0E 19 37 FB 0C 0C 03 0B 3C FE 02 D3 04 C9 07 7D 04 E9 0E 1E 0B D8 0D B5 0F 0B 0E E2 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 44,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 49,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 61,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily": {
+      "label": "SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily",
+      "line": 89,
+      "source_file": "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc",
+      "raw_text": "我很容易晕船，\\n所以我只能到这儿来帮忙。$",
+      "display_text": "我很容易晕船，\n所以我只能到这儿来帮忙。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          13,
+          152,
+          5,
+          11,
+          11,
+          93,
+          15,
+          39,
+          15,
+          218,
+          2,
+          140,
+          59,
+          254,
+          12,
+          156,
+          15,
+          36,
+          13,
+          152,
+          16,
+          140,
+          9,
+          210,
+          3,
+          4,
+          16,
+          85,
+          3,
+          158,
+          8,
+          41,
+          1,
+          78,
+          9,
+          62,
+          55,
+          255
+        ],
+        "hex": "0D 98 05 0B 0B 5D 0F 27 0F DA 02 8C 3B FE 0C 9C 0F 24 0D 98 10 8C 09 D2 03 04 10 55 03 9E 08 29 01 4E 09 3E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 7,
+      "closemessage": 2,
+      "goto_if_set": 4,
+      "setflag": 2,
+      "waitmovement": 7
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 18,
+    "script_count": 9,
+    "movement_count": 0,
+    "text_count": 9,
+    "encoded_text_count": 9,
+    "text_source_byte_count": 981,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 9
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 7,
+      "closemessage": 2,
+      "end": 8,
+      "goto_if_set": 4,
+      "lockall": 1,
+      "msgbox": 9,
+      "releaseall": 5,
+      "setflag": 2,
+      "waitmovement": 7
+    }
+  }
+}

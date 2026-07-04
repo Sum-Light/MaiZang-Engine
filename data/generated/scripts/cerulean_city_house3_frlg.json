@@ -1,0 +1,670 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CeruleanCity_House3_Frlg",
+    "map_script": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+    "map_json": "data/maps/CeruleanCity_House3_Frlg/map.json",
+    "map_id": "MAP_CERULEAN_CITY_HOUSE3",
+    "map_name": "CeruleanCity_House3_Frlg"
+  },
+  "labels": {
+    "CeruleanCity_House3_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeruleanCity_House3_EventScript_OldWoman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeruleanCity_House3_EventScript_Dontae": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "CeruleanCity_House3_EventScript_DeclineTrade": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCity_House3_EventScript_NotRequestedMon": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CeruleanCity_House3_EventScript_AlreadyTraded": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "CeruleanCity_House3_Text_PleaseTradeWithMyHusband": {
+      "kind": "text",
+      "line": 42,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "CeruleanCity_House3_Frlg_MapScripts": {
+      "label": "CeruleanCity_House3_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeruleanCity_House3_EventScript_OldWoman": {
+      "label": "CeruleanCity_House3_EventScript_OldWoman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeruleanCity_House3_Text_PleaseTradeWithMyHusband",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox CeruleanCity_House3_Text_PleaseTradeWithMyHusband, MSGBOX_NPC",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeruleanCity_House3_Text_PleaseTradeWithMyHusband",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeruleanCity_House3_EventScript_Dontae": {
+      "label": "CeruleanCity_House3_EventScript_Dontae",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 9,
+          "raw": "lock",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 10,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8008",
+            "INGAME_TRADE_JYNX"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_0x8008, INGAME_TRADE_JYNX",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpeciesInfo"
+          ],
+          "line": 12,
+          "raw": "call EventScript_GetInGameTradeSpeciesInfo",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DID_ZYNX_TRADE",
+            "CeruleanCity_House3_EventScript_AlreadyTraded"
+          ],
+          "line": 13,
+          "raw": "goto_if_set FLAG_DID_ZYNX_TRADE, CeruleanCity_House3_EventScript_AlreadyTraded",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_DoYouHaveMonWouldYouTradeForMon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 14,
+          "raw": "msgbox Trade_Text_DoYouHaveMonWouldYouTradeForMon, MSGBOX_YESNO",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "CeruleanCity_House3_EventScript_DeclineTrade"
+          ],
+          "line": 15,
+          "raw": "goto_if_eq VAR_RESULT, NO, CeruleanCity_House3_EventScript_DeclineTrade",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_ChooseMonForInGameTrade"
+          ],
+          "line": 16,
+          "raw": "call EventScript_ChooseMonForInGameTrade",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_0x8004",
+            "PARTY_SIZE",
+            "CeruleanCity_House3_EventScript_DeclineTrade"
+          ],
+          "line": 17,
+          "raw": "goto_if_ge VAR_0x8004, PARTY_SIZE, CeruleanCity_House3_EventScript_DeclineTrade",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpecies"
+          ],
+          "line": 18,
+          "raw": "call EventScript_GetInGameTradeSpecies",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "VAR_0x8009",
+            "CeruleanCity_House3_EventScript_NotRequestedMon"
+          ],
+          "line": 19,
+          "raw": "goto_if_ne VAR_RESULT, VAR_0x8009, CeruleanCity_House3_EventScript_NotRequestedMon",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_DoInGameTrade"
+          ],
+          "line": 20,
+          "raw": "call EventScript_DoInGameTrade",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_Thanks"
+          ],
+          "line": 21,
+          "raw": "msgbox Trade_Text_Thanks",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DID_ZYNX_TRADE"
+          ],
+          "line": 22,
+          "raw": "setflag FLAG_DID_ZYNX_TRADE",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 23,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_DoYouHaveMonWouldYouTradeForMon",
+          "mode": "MSGBOX_YESNO",
+          "line": 14
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_Thanks",
+          "mode": "",
+          "line": 21
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpeciesInfo",
+          "line": 12
+        },
+        {
+          "op": "goto_if_set",
+          "target": "CeruleanCity_House3_EventScript_AlreadyTraded",
+          "line": 13
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "CeruleanCity_House3_EventScript_DeclineTrade",
+          "line": 15
+        },
+        {
+          "op": "call",
+          "target": "EventScript_ChooseMonForInGameTrade",
+          "line": 16
+        },
+        {
+          "op": "goto_if_ge",
+          "target": "CeruleanCity_House3_EventScript_DeclineTrade",
+          "line": 17
+        },
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpecies",
+          "line": 18
+        },
+        {
+          "op": "goto_if_ne",
+          "target": "CeruleanCity_House3_EventScript_NotRequestedMon",
+          "line": 19
+        },
+        {
+          "op": "call",
+          "target": "EventScript_DoInGameTrade",
+          "line": 20
+        }
+      ]
+    },
+    "CeruleanCity_House3_EventScript_DeclineTrade": {
+      "label": "CeruleanCity_House3_EventScript_DeclineTrade",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_WellIfYouDontWantTo"
+          ],
+          "line": 27,
+          "raw": "msgbox Trade_Text_WellIfYouDontWantTo",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 28,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_WellIfYouDontWantTo",
+          "mode": "",
+          "line": 27
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeruleanCity_House3_EventScript_NotRequestedMon": {
+      "label": "CeruleanCity_House3_EventScript_NotRequestedMon",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 32,
+          "raw": "bufferspeciesname STR_VAR_1, VAR_0x8009",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_ThisIsntMon"
+          ],
+          "line": 33,
+          "raw": "msgbox Trade_Text_ThisIsntMon",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 34,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_ThisIsntMon",
+          "mode": "",
+          "line": 33
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeruleanCity_House3_EventScript_AlreadyTraded": {
+      "label": "CeruleanCity_House3_EventScript_AlreadyTraded",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_HasTradedMonGrownStronger"
+          ],
+          "line": 38,
+          "raw": "msgbox Trade_Text_HasTradedMonGrownStronger",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 39,
+          "raw": "release",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 40,
+          "raw": "end",
+          "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_HasTradedMonGrownStronger",
+          "mode": "",
+          "line": 38
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "CeruleanCity_House3_Text_PleaseTradeWithMyHusband": {
+      "label": "CeruleanCity_House3_Text_PleaseTradeWithMyHusband",
+      "line": 42,
+      "source_file": "data/maps/CeruleanCity_House3_Frlg/scripts.inc",
+      "raw_text": "我的丈夫喜欢交换宝可梦。\\p你是正在为完成你的宝可梦图鉴\\n收集宝可梦吗？\\p你想和他交换吗？$",
+      "display_text": "我的丈夫喜欢交换宝可梦。\n\n你是正在为完成你的宝可梦图鉴\n收集宝可梦吗？\n\n你想和他交换吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 83,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          16,
+          60,
+          3,
+          245,
+          13,
+          214,
+          5,
+          67,
+          7,
+          13,
+          5,
+          72,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          55,
+          251,
+          9,
+          217,
+          12,
+          12,
+          16,
+          112,
+          15,
+          230,
+          13,
+          112,
+          13,
+          82,
+          2,
+          75,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          36,
+          5,
+          227,
+          254,
+          12,
+          26,
+          5,
+          154,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          9,
+          42,
+          61,
+          251,
+          9,
+          217,
+          14,
+          24,
+          4,
+          243,
+          12,
+          158,
+          7,
+          13,
+          5,
+          72,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0D 98 03 0B 10 3C 03 F5 0D D6 05 43 07 0D 05 48 01 63 07 D7 09 66 37 FB 09 D9 0C 0C 10 70 0F E6 0D 70 0D 52 02 4B 09 D9 03 0B 01 63 07 D7 09 66 0D 24 05 E3 FE 0C 1A 05 9A 01 63 07 D7 09 66 09 2A 3D FB 09 D9 0E 18 04 F3 0C 9E 07 0D 05 48 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 37,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "bufferspeciesname": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "goto_if_ge": 1,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "setflag": 1,
+      "setvar": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 83,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "bufferspeciesname": 1,
+      "call": 4,
+      "end": 5,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "goto_if_ge": 1,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 6,
+      "release": 4,
+      "setflag": 1,
+      "setvar": 1
+    }
+  }
+}

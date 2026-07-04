@@ -1,0 +1,777 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "ShoalCave_LowTideLowerRoom",
+    "map_script": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+    "map_json": "data/maps/ShoalCave_LowTideLowerRoom/map.json",
+    "map_id": "MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM",
+    "map_name": "ShoalCave_LowTideLowerRoom"
+  },
+  "labels": {
+    "ShoalCave_LowTideLowerRoom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "ShoalCave_LowTideLowerRoom_OnLoad": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatilesEnd": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_ShoalSalt4": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instruction_count": 9
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_ReceivedShoalSalt": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_BlackBelt": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instruction_count": 9
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "ShoalCave_LowTideLowerRoom_Text_CanOvercomeColdWithFocus": {
+      "kind": "text",
+      "line": 49,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "ShoalCave_LowTideLowerRoom_Text_EverythingStartsWithFocus": {
+      "kind": "text",
+      "line": 52,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "ShoalCave_LowTideLowerRoom_MapScripts": {
+      "label": "ShoalCave_LowTideLowerRoom_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "ShoalCave_LowTideLowerRoom_OnLoad"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, ShoalCave_LowTideLowerRoom_OnLoad",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ShoalCave_LowTideLowerRoom_OnLoad": {
+      "label": "ShoalCave_LowTideLowerRoom_OnLoad",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles"
+          ],
+          "line": 6,
+          "raw": "call ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles",
+          "line": 6
+        }
+      ]
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles": {
+      "label": "ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_SHOAL_SALT_4",
+            "ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatilesEnd"
+          ],
+          "line": 10,
+          "raw": "goto_if_set FLAG_RECEIVED_SHOAL_SALT_4, ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatilesEnd",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "18",
+            "2",
+            "METATILE_Cave_ShoalCave_DirtPile_Large",
+            "TRUE"
+          ],
+          "line": 11,
+          "raw": "setmetatile 18, 2, METATILE_Cave_ShoalCave_DirtPile_Large, TRUE",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 12,
+          "raw": "return",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatilesEnd",
+          "line": 10
+        }
+      ]
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatilesEnd": {
+      "label": "ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatilesEnd",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "return",
+          "args": [],
+          "line": 15,
+          "raw": "return",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_ShoalSalt4": {
+      "label": "ShoalCave_LowTideLowerRoom_EventScript_ShoalSalt4",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 18,
+          "raw": "lockall",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_SHOAL_SALT_4",
+            "ShoalCave_LowTideLowerRoom_EventScript_ReceivedShoalSalt"
+          ],
+          "line": 19,
+          "raw": "goto_if_set FLAG_RECEIVED_SHOAL_SALT_4, ShoalCave_LowTideLowerRoom_EventScript_ReceivedShoalSalt",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_SHOAL_SALT"
+          ],
+          "line": 20,
+          "raw": "giveitem ITEM_SHOAL_SALT",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 21,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "setmetatile",
+          "args": [
+            "18",
+            "2",
+            "METATILE_Cave_ShoalCave_DirtPile_Small",
+            "FALSE"
+          ],
+          "line": 22,
+          "raw": "setmetatile 18, 2, METATILE_Cave_ShoalCave_DirtPile_Small, FALSE",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "DrawWholeMapView"
+          ],
+          "line": 23,
+          "raw": "special DrawWholeMapView",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_SHOAL_SALT_4"
+          ],
+          "line": 24,
+          "raw": "setflag FLAG_RECEIVED_SHOAL_SALT_4",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 25,
+          "raw": "releaseall",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "ShoalCave_LowTideLowerRoom_EventScript_ReceivedShoalSalt",
+          "line": 19
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 21
+        }
+      ]
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_ReceivedShoalSalt": {
+      "label": "ShoalCave_LowTideLowerRoom_EventScript_ReceivedShoalSalt",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ShoalCave_Text_WasShoalSaltNowNothing",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 29,
+          "raw": "msgbox ShoalCave_Text_WasShoalSaltNowNothing, MSGBOX_DEFAULT",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 30,
+          "raw": "releaseall",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 31,
+          "raw": "end",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ShoalCave_Text_WasShoalSaltNowNothing",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 29
+        }
+      ],
+      "branch_targets": []
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_BlackBelt": {
+      "label": "ShoalCave_LowTideLowerRoom_EventScript_BlackBelt",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 34,
+          "raw": "lock",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 35,
+          "raw": "faceplayer",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_FOCUS_BAND",
+            "ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand"
+          ],
+          "line": 36,
+          "raw": "goto_if_set FLAG_RECEIVED_FOCUS_BAND, ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ShoalCave_LowTideLowerRoom_Text_CanOvercomeColdWithFocus",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 37,
+          "raw": "msgbox ShoalCave_LowTideLowerRoom_Text_CanOvercomeColdWithFocus, MSGBOX_DEFAULT",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_FOCUS_BAND"
+          ],
+          "line": 38,
+          "raw": "giveitem ITEM_FOCUS_BAND",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 39,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_FOCUS_BAND"
+          ],
+          "line": 40,
+          "raw": "setflag FLAG_RECEIVED_FOCUS_BAND",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 41,
+          "raw": "release",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ShoalCave_LowTideLowerRoom_Text_CanOvercomeColdWithFocus",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 37
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand",
+          "line": 36
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 39
+        }
+      ]
+    },
+    "ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand": {
+      "label": "ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ShoalCave_LowTideLowerRoom_Text_EverythingStartsWithFocus",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 45,
+          "raw": "msgbox ShoalCave_LowTideLowerRoom_Text_EverythingStartsWithFocus, MSGBOX_DEFAULT",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 46,
+          "raw": "release",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 47,
+          "raw": "end",
+          "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ShoalCave_LowTideLowerRoom_Text_EverythingStartsWithFocus",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 45
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "ShoalCave_LowTideLowerRoom_Text_CanOvercomeColdWithFocus": {
+      "label": "ShoalCave_LowTideLowerRoom_Text_CanOvercomeColdWithFocus",
+      "line": 49,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "raw_text": "这里刺骨的寒冷\\n妨碍了训练，\\p但只要集中精力就能战胜困难！\\p有了气势头带，静下心来\\n与严寒抗争吧！$",
+      "display_text": "这里刺骨的寒冷\n妨碍了训练，\n\n但只要集中精力就能战胜困难！\n\n有了气势头带，静下心来\n与严寒抗争吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 91,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          2,
+          172,
+          4,
+          143,
+          3,
+          11,
+          4,
+          212,
+          8,
+          89,
+          254,
+          3,
+          196,
+          1,
+          12,
+          8,
+          158,
+          14,
+          158,
+          8,
+          138,
+          59,
+          251,
+          2,
+          233,
+          16,
+          140,
+          14,
+          241,
+          5,
+          154,
+          16,
+          161,
+          7,
+          91,
+          8,
+          121,
+          7,
+          125,
+          9,
+          210,
+          16,
+          48,
+          11,
+          224,
+          8,
+          28,
+          9,
+          199,
+          60,
+          251,
+          15,
+          126,
+          8,
+          158,
+          10,
+          179,
+          12,
+          11,
+          13,
+          31,
+          2,
+          216,
+          59,
+          7,
+          98,
+          13,
+          230,
+          14,
+          79,
+          8,
+          41,
+          254,
+          15,
+          153,
+          14,
+          184,
+          4,
+          212,
+          7,
+          199,
+          16,
+          108,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "10 55 08 64 02 AC 04 8F 03 0B 04 D4 08 59 FE 03 C4 01 0C 08 9E 0E 9E 08 8A 3B FB 02 E9 10 8C 0E F1 05 9A 10 A1 07 5B 08 79 07 7D 09 D2 10 30 0B E0 08 1C 09 C7 3C FB 0F 7E 08 9E 0A B3 0C 0B 0D 1F 02 D8 3B 07 62 0D E6 0E 4F 08 29 FE 0F 99 0E B8 04 D4 07 C7 10 6C 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 31,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 53,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ShoalCave_LowTideLowerRoom_Text_EverythingStartsWithFocus": {
+      "label": "ShoalCave_LowTideLowerRoom_Text_EverythingStartsWithFocus",
+      "line": 52,
+      "source_file": "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc",
+      "raw_text": "只有集中精力才能成功！$",
+      "display_text": "只有集中精力才能成功！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 22,
+        "bytes": [
+          16,
+          140,
+          15,
+          126,
+          5,
+          154,
+          16,
+          161,
+          7,
+          91,
+          8,
+          121,
+          1,
+          224,
+          9,
+          210,
+          2,
+          75,
+          4,
+          110,
+          60,
+          255
+        ],
+        "hex": "10 8C 0F 7E 05 9A 10 A1 07 5B 08 79 01 E0 09 D2 02 4B 04 6E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "giveitem": 2,
+      "goto_if_eq": 2,
+      "goto_if_set": 3,
+      "map_script": 1,
+      "setflag": 2,
+      "setmetatile": 2,
+      "special": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 113,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "end": 5,
+      "faceplayer": 1,
+      "giveitem": 2,
+      "goto_if_eq": 2,
+      "goto_if_set": 3,
+      "lock": 1,
+      "lockall": 1,
+      "map_script": 1,
+      "msgbox": 3,
+      "release": 2,
+      "releaseall": 2,
+      "return": 2,
+      "setflag": 2,
+      "setmetatile": 2,
+      "special": 1
+    }
+  }
+}

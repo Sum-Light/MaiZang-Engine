@@ -1,0 +1,4779 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "VerdanturfTown_BattleTentLobby",
+    "map_script": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+    "map_json": "data/maps/VerdanturfTown_BattleTentLobby/map.json",
+    "map_id": "MAP_VERDANTURF_TOWN_BATTLE_TENT_LOBBY",
+    "map_name": "VerdanturfTown_BattleTentLobby"
+  },
+  "labels": {
+    "VerdanturfTown_BattleTentLobby_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_OnWarp": {
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_TurnPlayerNorth": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_OnFrame": {
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 6
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_GetChallengeStatus": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_QuitWithoutSaving": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 8
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_WonChallenge": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 9
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_GivePrize": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 14
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 6
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_LostChallenge": {
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 12
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ResumeChallenge": {
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 10
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_Attendant": {
+      "kind": "script",
+      "line": 104,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 6
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge": {
+      "kind": "script",
+      "line": 111,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 8
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_TryEnterChallenge": {
+      "kind": "script",
+      "line": 121,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 18
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_SaveBeforeChallenge": {
+      "kind": "script",
+      "line": 141,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 11
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge": {
+      "kind": "script",
+      "line": 153,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 9
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ExplainChallenge": {
+      "kind": "script",
+      "line": 164,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMons": {
+      "kind": "script",
+      "line": 168,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50": {
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen": {
+      "kind": "script",
+      "line": 177,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed": {
+      "kind": "script",
+      "line": 181,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge": {
+      "kind": "script",
+      "line": 185,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge": {
+      "kind": "script",
+      "line": 187,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge": {
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor": {
+      "kind": "script",
+      "line": 193,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 11
+    },
+    "VerdanturfTown_BattleTentLobby_Movement_WalkToDoor": {
+      "kind": "movement",
+      "line": 206,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "VerdanturfTown_BattleTentLobby_Movement_AttendantEnterDoor": {
+      "kind": "movement",
+      "line": 212,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_Movement_PlayerEnterDoor": {
+      "kind": "movement",
+      "line": 217,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_AttractGiver": {
+      "kind": "script",
+      "line": 223,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 10
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract": {
+      "kind": "script",
+      "line": 235,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_Boy1": {
+      "kind": "script",
+      "line": 240,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_Boy2": {
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_Scott": {
+      "kind": "script",
+      "line": 250,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 8
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo": {
+      "kind": "script",
+      "line": 260,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_LittleBoy": {
+      "kind": "script",
+      "line": 265,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesBoard": {
+      "kind": "script",
+      "line": 271,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard": {
+      "kind": "script",
+      "line": 277,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 15
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesLevel": {
+      "kind": "script",
+      "line": 294,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesBasics": {
+      "kind": "script",
+      "line": 299,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesNature": {
+      "kind": "script",
+      "line": 304,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesMoves": {
+      "kind": "script",
+      "line": 309,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesUnderpowered": {
+      "kind": "script",
+      "line": 314,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesWhenInDanger": {
+      "kind": "script",
+      "line": 319,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ExitRules": {
+      "kind": "script",
+      "line": 324,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "VerdanturfTown_BattleTentLobby_Text_MonsReluctantToUseDislikedMoves": {
+      "kind": "text",
+      "line": 328,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_BattleTentLobby_Text_GentleMonsScaryIfAngry": {
+      "kind": "text",
+      "line": 331,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_BattleTentLobby_Text_AttractionRunsDeep": {
+      "kind": "text",
+      "line": 334,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_BattleTentLobby_Text_AttractionMutual": {
+      "kind": "text",
+      "line": 337,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_BattleTentLobby_Text_TaughtWhatKindsOfMoves": {
+      "kind": "text",
+      "line": 340,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_BattleTentLobby_Text_ScottCanMeetToughTrainers": {
+      "kind": "text",
+      "line": 343,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "VerdanturfTown_BattleTentLobby_Text_ScottVisitRegularly": {
+      "kind": "text",
+      "line": 346,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "VerdanturfTown_BattleTentLobby_MapScripts": {
+      "label": "VerdanturfTown_BattleTentLobby_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "VerdanturfTown_BattleTentLobby_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, VerdanturfTown_BattleTentLobby_OnFrame",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "VerdanturfTown_BattleTentLobby_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, VerdanturfTown_BattleTentLobby_OnWarp",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_OnWarp": {
+      "label": "VerdanturfTown_BattleTentLobby_OnWarp",
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "VerdanturfTown_BattleTentLobby_EventScript_TurnPlayerNorth"
+          ],
+          "line": 7,
+          "raw": "map_script_2 VAR_TEMP_1, 0, VerdanturfTown_BattleTentLobby_EventScript_TurnPlayerNorth",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 8,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_TurnPlayerNorth": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_TurnPlayerNorth",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 12,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_OnFrame": {
+      "label": "VerdanturfTown_BattleTentLobby_OnFrame",
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "0",
+            "VerdanturfTown_BattleTentLobby_EventScript_GetChallengeStatus"
+          ],
+          "line": 16,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, 0, VerdanturfTown_BattleTentLobby_EventScript_GetChallengeStatus",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_SAVING",
+            "VerdanturfTown_BattleTentLobby_EventScript_QuitWithoutSaving"
+          ],
+          "line": 17,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING, VerdanturfTown_BattleTentLobby_EventScript_QuitWithoutSaving",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_PAUSED",
+            "VerdanturfTown_BattleTentLobby_EventScript_ResumeChallenge"
+          ],
+          "line": 18,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_PAUSED, VerdanturfTown_BattleTentLobby_EventScript_ResumeChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_WON",
+            "VerdanturfTown_BattleTentLobby_EventScript_WonChallenge"
+          ],
+          "line": 19,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_WON, VerdanturfTown_BattleTentLobby_EventScript_WonChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_LOST",
+            "VerdanturfTown_BattleTentLobby_EventScript_LostChallenge"
+          ],
+          "line": 20,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST, VerdanturfTown_BattleTentLobby_EventScript_LostChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 21,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_GetChallengeStatus": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_GetChallengeStatus",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_getstatus",
+          "args": [],
+          "line": 24,
+          "raw": "frontier_getstatus",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_QuitWithoutSaving": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_QuitWithoutSaving",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 28,
+          "raw": "lockall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePalaceLobby_Text_FailedToSaveBeforeEndingChallenge",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 29,
+          "raw": "msgbox BattleFrontier_BattlePalaceLobby_Text_FailedToSaveBeforeEndingChallenge, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 30,
+          "raw": "closemessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 31,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 32,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_LVL_MODE",
+            "FRONTIER_LVL_50"
+          ],
+          "line": 33,
+          "raw": "frontier_set FRONTIER_DATA_LVL_MODE, FRONTIER_LVL_50",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 34,
+          "raw": "releaseall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 35,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePalaceLobby_Text_FailedToSaveBeforeEndingChallenge",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 29
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_WonChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_WonChallenge",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 38,
+          "raw": "lockall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_AchievedThreeWinStreak",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 39,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_AchievedThreeWinStreak, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_FeatWillBeRecorded"
+          ],
+          "line": 40,
+          "raw": "message VerdanturfTown_BattleTentLobby_Text_FeatWillBeRecorded",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 41,
+          "raw": "waitmessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "verdanturftent_setrandomprize",
+          "args": [],
+          "line": 42,
+          "raw": "verdanturftent_setrandomprize",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_LVL_MODE",
+            "FRONTIER_LVL_50"
+          ],
+          "line": 43,
+          "raw": "frontier_set FRONTIER_DATA_LVL_MODE, FRONTIER_LVL_50",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "verdanturftent_save",
+          "args": [
+            "0"
+          ],
+          "line": 44,
+          "raw": "verdanturftent_save 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 45,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 46,
+          "raw": "waitse",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_AchievedThreeWinStreak",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 39
+        },
+        {
+          "op": "message",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_FeatWillBeRecorded",
+          "mode": "",
+          "line": 40
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_GivePrize": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_GivePrize",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_PresentYouWithPrize",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 49,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_PresentYouWithPrize, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "verdanturftent_giveprize",
+          "args": [],
+          "line": 50,
+          "raw": "verdanturftent_giveprize",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 51,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FALSE",
+            "VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize"
+          ],
+          "line": 52,
+          "raw": "case FALSE, VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 53,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleDomeLobby_Text_ReceivedPrize"
+          ],
+          "line": 54,
+          "raw": "message BattleFrontier_BattleDomeLobby_Text_ReceivedPrize",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 55,
+          "raw": "waitmessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_ITEM"
+          ],
+          "line": 56,
+          "raw": "playfanfare MUS_OBTAIN_ITEM",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 57,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_ReturnFortified",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 58,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_ReturnFortified, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 59,
+          "raw": "closemessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 60,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 61,
+          "raw": "releaseall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_PresentYouWithPrize",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 49
+        },
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleDomeLobby_Text_ReceivedPrize",
+          "mode": "",
+          "line": 54
+        },
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_ReturnFortified",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 58
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePalaceLobby_Text_NoSpaceForPrize",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 65,
+          "raw": "msgbox BattleFrontier_BattlePalaceLobby_Text_NoSpaceForPrize, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 66,
+          "raw": "waitmessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 67,
+          "raw": "closemessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 68,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 69,
+          "raw": "releaseall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 70,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePalaceLobby_Text_NoSpaceForPrize",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 65
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 73,
+          "raw": "lockall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_AchievedThreeWinStreak",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 74,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_AchievedThreeWinStreak, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_GivePrize"
+          ],
+          "line": 75,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_GivePrize",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 76,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_AchievedThreeWinStreak",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 74
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_GivePrize",
+          "line": 75
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_LostChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_LostChallenge",
+      "kind": "script",
+      "line": 78,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 79,
+          "raw": "lockall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_ResultsWillBeRecorded"
+          ],
+          "line": 80,
+          "raw": "message VerdanturfTown_BattleTentLobby_Text_ResultsWillBeRecorded",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 81,
+          "raw": "waitmessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_LVL_MODE",
+            "FRONTIER_LVL_50"
+          ],
+          "line": 82,
+          "raw": "frontier_set FRONTIER_DATA_LVL_MODE, FRONTIER_LVL_50",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "verdanturftent_save",
+          "args": [
+            "0"
+          ],
+          "line": 83,
+          "raw": "verdanturftent_save 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 84,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 85,
+          "raw": "waitse",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_ReturnFortified",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 86,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_ReturnFortified, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 87,
+          "raw": "closemessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 88,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 89,
+          "raw": "releaseall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 90,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_ResultsWillBeRecorded",
+          "mode": "",
+          "line": 80
+        },
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_ReturnFortified",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 86
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ResumeChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_ResumeChallenge",
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 93,
+          "raw": "lockall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePalaceLobby_Text_WeHaveBeenWaiting",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 94,
+          "raw": "msgbox BattleFrontier_BattlePalaceLobby_Text_WeHaveBeenWaiting, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattlePalaceLobby_Text_MustSaveBeforeChallenge"
+          ],
+          "line": 95,
+          "raw": "message BattleFrontier_BattlePalaceLobby_Text_MustSaveBeforeChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 96,
+          "raw": "waitmessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "verdanturftent_save",
+          "args": [
+            "CHALLENGE_STATUS_SAVING"
+          ],
+          "line": 97,
+          "raw": "verdanturftent_save CHALLENGE_STATUS_SAVING",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 98,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 99,
+          "raw": "waitse",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_PAUSED",
+            "FALSE"
+          ],
+          "line": 100,
+          "raw": "frontier_set FRONTIER_DATA_PAUSED, FALSE",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 101,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge"
+          ],
+          "line": 102,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePalaceLobby_Text_WeHaveBeenWaiting",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 94
+        },
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattlePalaceLobby_Text_MustSaveBeforeChallenge",
+          "mode": "",
+          "line": 95
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge",
+          "line": 102
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_Attendant": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_Attendant",
+      "kind": "script",
+      "line": 104,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 105,
+          "raw": "lock",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 106,
+          "raw": "faceplayer",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "verdanturftent_getprize",
+          "args": [],
+          "line": 107,
+          "raw": "verdanturftent_getprize",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "ITEM_NONE",
+            "VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting"
+          ],
+          "line": 108,
+          "raw": "goto_if_ne VAR_RESULT, ITEM_NONE, VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SavePlayerParty"
+          ],
+          "line": 109,
+          "raw": "special SavePlayerParty",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_WelcomeToBattleTent",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 110,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_WelcomeToBattleTent, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_WelcomeToBattleTent",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 110
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting",
+          "line": 108
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge",
+      "kind": "script",
+      "line": 111,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_TakeChallenge"
+          ],
+          "line": 112,
+          "raw": "message VerdanturfTown_BattleTentLobby_Text_TakeChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 113,
+          "raw": "waitmessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "17",
+            "6",
+            "MULTI_CHALLENGEINFO",
+            "FALSE"
+          ],
+          "line": 114,
+          "raw": "multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 115,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "VerdanturfTown_BattleTentLobby_EventScript_TryEnterChallenge"
+          ],
+          "line": 116,
+          "raw": "case 0, VerdanturfTown_BattleTentLobby_EventScript_TryEnterChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "VerdanturfTown_BattleTentLobby_EventScript_ExplainChallenge"
+          ],
+          "line": 117,
+          "raw": "case 1, VerdanturfTown_BattleTentLobby_EventScript_ExplainChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge"
+          ],
+          "line": 118,
+          "raw": "case 2, VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge"
+          ],
+          "line": 119,
+          "raw": "case MULTI_B_PRESSED, VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_TakeChallenge",
+          "mode": "",
+          "line": 112
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_TryEnterChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_TryEnterChallenge",
+      "kind": "script",
+      "line": 121,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_FRONTIER_FACILITY",
+            "FRONTIER_FACILITY_PALACE"
+          ],
+          "line": 122,
+          "raw": "setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_PALACE",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_FRONTIER_BATTLE_MODE",
+            "FRONTIER_MODE_SINGLES"
+          ],
+          "line": 123,
+          "raw": "setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RESULT",
+            "2"
+          ],
+          "line": 124,
+          "raw": "setvar VAR_RESULT, 2",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_checkineligible",
+          "args": [],
+          "line": 125,
+          "raw": "frontier_checkineligible",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "TRUE",
+            "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMons"
+          ],
+          "line": 126,
+          "raw": "goto_if_eq VAR_0x8004, TRUE, VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMons",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_LVL_MODE",
+            "FRONTIER_LVL_TENT"
+          ],
+          "line": 127,
+          "raw": "frontier_set FRONTIER_DATA_LVL_MODE, FRONTIER_LVL_TENT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_SelectThreeMons",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 128,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_SelectThreeMons, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 129,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "1"
+          ],
+          "line": 130,
+          "raw": "setvar VAR_0x8004, 1",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "FRONTIER_PARTY_SIZE"
+          ],
+          "line": 131,
+          "raw": "setvar VAR_0x8005, FRONTIER_PARTY_SIZE",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ChoosePartyForBattleFrontier"
+          ],
+          "line": 132,
+          "raw": "special ChoosePartyForBattleFrontier",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 133,
+          "raw": "waitstate",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge"
+          ],
+          "line": 134,
+          "raw": "goto_if_eq VAR_RESULT, 0, VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_SaveBeforeChallenge",
+            "MSGBOX_YESNO"
+          ],
+          "line": 135,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_SaveBeforeChallenge, MSGBOX_YESNO",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 136,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "NO",
+            "VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge"
+          ],
+          "line": 137,
+          "raw": "case NO, VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "YES",
+            "VerdanturfTown_BattleTentLobby_EventScript_SaveBeforeChallenge"
+          ],
+          "line": 138,
+          "raw": "case YES, VerdanturfTown_BattleTentLobby_EventScript_SaveBeforeChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge"
+          ],
+          "line": 139,
+          "raw": "case MULTI_B_PRESSED, VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_SelectThreeMons",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 128
+        },
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_SaveBeforeChallenge",
+          "mode": "MSGBOX_YESNO",
+          "line": 135
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMons",
+          "line": 126
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge",
+          "line": 134
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_SaveBeforeChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_SaveBeforeChallenge",
+      "kind": "script",
+      "line": 141,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 142,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_SELECTED_MON_ORDER"
+          ],
+          "line": 143,
+          "raw": "frontier_set FRONTIER_DATA_SELECTED_MON_ORDER",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "verdanturftent_init",
+          "args": [],
+          "line": 144,
+          "raw": "verdanturftent_init",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_SAVING"
+          ],
+          "line": 145,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_PAUSED",
+            "FALSE"
+          ],
+          "line": 146,
+          "raw": "frontier_set FRONTIER_DATA_PAUSED, FALSE",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 147,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 148,
+          "raw": "closemessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "2"
+          ],
+          "line": 149,
+          "raw": "delay 2",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_SaveGame"
+          ],
+          "line": 150,
+          "raw": "call Common_EventScript_SaveGame",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 151,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "VerdanturfTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed"
+          ],
+          "line": 152,
+          "raw": "goto_if_eq VAR_RESULT, 0, VerdanturfTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_SaveGame",
+          "line": 150
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed",
+          "line": 152
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge",
+      "kind": "script",
+      "line": 153,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SavePlayerParty"
+          ],
+          "line": 154,
+          "raw": "special SavePlayerParty",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_setpartyorder",
+          "args": [
+            "FRONTIER_PARTY_SIZE"
+          ],
+          "line": 155,
+          "raw": "frontier_setpartyorder FRONTIER_PARTY_SIZE",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_NowFollowMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 156,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_NowFollowMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 157,
+          "raw": "closemessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor"
+          ],
+          "line": 158,
+          "raw": "call VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_VERDANTURF_TOWN_BATTLE_TENT_CORRIDOR",
+            "2",
+            "7"
+          ],
+          "line": 159,
+          "raw": "warp MAP_VERDANTURF_TOWN_BATTLE_TENT_CORRIDOR, 2, 7",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 160,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 161,
+          "raw": "waitstate",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 162,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_NowFollowMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 156
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor",
+          "line": 158
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ExplainChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_ExplainChallenge",
+      "kind": "script",
+      "line": 164,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_ExplainVerdanturfTent",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 165,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_ExplainVerdanturfTent, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge"
+          ],
+          "line": 166,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_ExplainVerdanturfTent",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 165
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge",
+          "line": 166
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMons": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMons",
+      "kind": "script",
+      "line": 168,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 169,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_LVL_50",
+            "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50"
+          ],
+          "line": 170,
+          "raw": "case FRONTIER_LVL_50, VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_LVL_OPEN",
+            "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen"
+          ],
+          "line": 171,
+          "raw": "case FRONTIER_LVL_OPEN, VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50",
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_NotEnoughValidMonsLv50",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 174,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_NotEnoughValidMonsLv50, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge"
+          ],
+          "line": 175,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_NotEnoughValidMonsLv50",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 174
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge",
+          "line": 175
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen",
+      "kind": "script",
+      "line": 177,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 178,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge"
+          ],
+          "line": 179,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 178
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge",
+          "line": 179
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed",
+      "kind": "script",
+      "line": 181,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 182,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge"
+          ],
+          "line": 183,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge",
+          "line": 183
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge",
+      "kind": "script",
+      "line": 185,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 186,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge",
+      "kind": "script",
+      "line": 187,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_ReturnFortified",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 188,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_ReturnFortified, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_ReturnFortified",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 188
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge",
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "release",
+          "args": [],
+          "line": 190,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 191,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor",
+      "kind": "script",
+      "line": 193,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_VERDANTURF_TENT_ATTENDANT",
+            "VerdanturfTown_BattleTentLobby_Movement_WalkToDoor"
+          ],
+          "line": 194,
+          "raw": "applymovement LOCALID_VERDANTURF_TENT_ATTENDANT, VerdanturfTown_BattleTentLobby_Movement_WalkToDoor",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "VerdanturfTown_BattleTentLobby_Movement_WalkToDoor"
+          ],
+          "line": 195,
+          "raw": "applymovement LOCALID_PLAYER, VerdanturfTown_BattleTentLobby_Movement_WalkToDoor",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 196,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "opendoor",
+          "args": [
+            "6",
+            "1"
+          ],
+          "line": 197,
+          "raw": "opendoor 6, 1",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 198,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_VERDANTURF_TENT_ATTENDANT",
+            "VerdanturfTown_BattleTentLobby_Movement_AttendantEnterDoor"
+          ],
+          "line": 199,
+          "raw": "applymovement LOCALID_VERDANTURF_TENT_ATTENDANT, VerdanturfTown_BattleTentLobby_Movement_AttendantEnterDoor",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "VerdanturfTown_BattleTentLobby_Movement_PlayerEnterDoor"
+          ],
+          "line": 200,
+          "raw": "applymovement LOCALID_PLAYER, VerdanturfTown_BattleTentLobby_Movement_PlayerEnterDoor",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 201,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "closedoor",
+          "args": [
+            "6",
+            "1"
+          ],
+          "line": 202,
+          "raw": "closedoor 6, 1",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitdooranim",
+          "args": [],
+          "line": 203,
+          "raw": "waitdooranim",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 204,
+          "raw": "return",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_AttractGiver": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_AttractGiver",
+      "kind": "script",
+      "line": 223,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 224,
+          "raw": "lock",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 225,
+          "raw": "faceplayer",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_TM_ATTRACT",
+            "VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract"
+          ],
+          "line": 226,
+          "raw": "goto_if_set FLAG_RECEIVED_TM_ATTRACT, VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_AttractionRunsDeep",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 227,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_AttractionRunsDeep, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_TM_ATTRACT"
+          ],
+          "line": 228,
+          "raw": "giveitem ITEM_TM_ATTRACT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 229,
+          "raw": "goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_TM_ATTRACT"
+          ],
+          "line": 230,
+          "raw": "setflag FLAG_RECEIVED_TM_ATTRACT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_AttractionMutual",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 231,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_AttractionMutual, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 232,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 233,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_AttractionRunsDeep",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 227
+        },
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_AttractionMutual",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 231
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract",
+          "line": 226
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 229
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract",
+      "kind": "script",
+      "line": 235,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_AttractionMutual",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 236,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_AttractionMutual, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 237,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 238,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_AttractionMutual",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 236
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_Boy1": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_Boy1",
+      "kind": "script",
+      "line": 240,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_TaughtWhatKindsOfMoves",
+            "MSGBOX_NPC"
+          ],
+          "line": 241,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_TaughtWhatKindsOfMoves, MSGBOX_NPC",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 242,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_TaughtWhatKindsOfMoves",
+          "mode": "MSGBOX_NPC",
+          "line": 241
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_Boy2": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_Boy2",
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 245,
+          "raw": "lock",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_MonsReluctantToUseDislikedMoves",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 246,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_MonsReluctantToUseDislikedMoves, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 247,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 248,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_MonsReluctantToUseDislikedMoves",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 246
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_Scott": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_Scott",
+      "kind": "script",
+      "line": 250,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 251,
+          "raw": "lock",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 252,
+          "raw": "faceplayer",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_MET_SCOTT_IN_VERDANTURF",
+            "VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo"
+          ],
+          "line": 253,
+          "raw": "goto_if_set FLAG_MET_SCOTT_IN_VERDANTURF, VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_ScottCanMeetToughTrainers",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 254,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_ScottCanMeetToughTrainers, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_SCOTT_STATE",
+            "1"
+          ],
+          "line": 255,
+          "raw": "addvar VAR_SCOTT_STATE, 1",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_MET_SCOTT_IN_VERDANTURF"
+          ],
+          "line": 256,
+          "raw": "setflag FLAG_MET_SCOTT_IN_VERDANTURF",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 257,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 258,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_ScottCanMeetToughTrainers",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 254
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo",
+          "line": 253
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo",
+      "kind": "script",
+      "line": 260,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_ScottVisitRegularly",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 261,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_ScottVisitRegularly, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 262,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 263,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_ScottVisitRegularly",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 261
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_LittleBoy": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_LittleBoy",
+      "kind": "script",
+      "line": 265,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 266,
+          "raw": "lock",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_GentleMonsScaryIfAngry",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 267,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_GentleMonsScaryIfAngry, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 268,
+          "raw": "release",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 269,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_GentleMonsScaryIfAngry",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 267
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesBoard": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_RulesBoard",
+      "kind": "script",
+      "line": 271,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 272,
+          "raw": "lockall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_Text_RulesAreListed",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 273,
+          "raw": "msgbox VerdanturfTown_BattleTentLobby_Text_RulesAreListed, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 274,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 275,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "VerdanturfTown_BattleTentLobby_Text_RulesAreListed",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 273
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 274
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+      "kind": "script",
+      "line": 277,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattlePalaceLobby_Text_ReadWhichHeading"
+          ],
+          "line": 278,
+          "raw": "message BattleFrontier_BattlePalaceLobby_Text_ReadWhichHeading",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 279,
+          "raw": "waitmessage",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "SCROLL_MULTI_BATTLE_TENT_RULES"
+          ],
+          "line": 280,
+          "raw": "setvar VAR_0x8004, SCROLL_MULTI_BATTLE_TENT_RULES",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ShowScrollableMultichoice"
+          ],
+          "line": 281,
+          "raw": "special ShowScrollableMultichoice",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 282,
+          "raw": "waitstate",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 283,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "VerdanturfTown_BattleTentLobby_EventScript_RulesLevel"
+          ],
+          "line": 284,
+          "raw": "case 0, VerdanturfTown_BattleTentLobby_EventScript_RulesLevel",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "VerdanturfTown_BattleTentLobby_EventScript_RulesBasics"
+          ],
+          "line": 285,
+          "raw": "case 1, VerdanturfTown_BattleTentLobby_EventScript_RulesBasics",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "VerdanturfTown_BattleTentLobby_EventScript_RulesNature"
+          ],
+          "line": 286,
+          "raw": "case 2, VerdanturfTown_BattleTentLobby_EventScript_RulesNature",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "VerdanturfTown_BattleTentLobby_EventScript_RulesMoves"
+          ],
+          "line": 287,
+          "raw": "case 3, VerdanturfTown_BattleTentLobby_EventScript_RulesMoves",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "VerdanturfTown_BattleTentLobby_EventScript_RulesUnderpowered"
+          ],
+          "line": 288,
+          "raw": "case 4, VerdanturfTown_BattleTentLobby_EventScript_RulesUnderpowered",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "5",
+            "VerdanturfTown_BattleTentLobby_EventScript_RulesWhenInDanger"
+          ],
+          "line": 289,
+          "raw": "case 5, VerdanturfTown_BattleTentLobby_EventScript_RulesWhenInDanger",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "6",
+            "VerdanturfTown_BattleTentLobby_EventScript_ExitRules"
+          ],
+          "line": 290,
+          "raw": "case 6, VerdanturfTown_BattleTentLobby_EventScript_ExitRules",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "VerdanturfTown_BattleTentLobby_EventScript_ExitRules"
+          ],
+          "line": 291,
+          "raw": "case MULTI_B_PRESSED, VerdanturfTown_BattleTentLobby_EventScript_ExitRules",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 292,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattlePalaceLobby_Text_ReadWhichHeading",
+          "mode": "",
+          "line": 278
+        }
+      ],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesLevel": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_RulesLevel",
+      "kind": "script",
+      "line": 294,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleTentLobby_Text_ExplainLevelRules",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 295,
+          "raw": "msgbox BattleTentLobby_Text_ExplainLevelRules, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 296,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 297,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleTentLobby_Text_ExplainLevelRules",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 295
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 296
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesBasics": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_RulesBasics",
+      "kind": "script",
+      "line": 299,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesBasics",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 300,
+          "raw": "msgbox BattleFrontier_BattlePalaceLobby_Text_ExplainRulesBasics, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 301,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 302,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesBasics",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 300
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 301
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesNature": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_RulesNature",
+      "kind": "script",
+      "line": 304,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesNature",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 305,
+          "raw": "msgbox BattleFrontier_BattlePalaceLobby_Text_ExplainRulesNature, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 306,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 307,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesNature",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 305
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 306
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesMoves": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_RulesMoves",
+      "kind": "script",
+      "line": 309,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesMoves",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 310,
+          "raw": "msgbox BattleFrontier_BattlePalaceLobby_Text_ExplainRulesMoves, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 311,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 312,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesMoves",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 310
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 311
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesUnderpowered": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_RulesUnderpowered",
+      "kind": "script",
+      "line": 314,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesUnderpowered",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 315,
+          "raw": "msgbox BattleFrontier_BattlePalaceLobby_Text_ExplainRulesUnderpowered, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 316,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 317,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesUnderpowered",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 315
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 316
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_RulesWhenInDanger": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_RulesWhenInDanger",
+      "kind": "script",
+      "line": 319,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesWhenInDanger",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 320,
+          "raw": "msgbox BattleFrontier_BattlePalaceLobby_Text_ExplainRulesWhenInDanger, MSGBOX_DEFAULT",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 321,
+          "raw": "goto VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 322,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesWhenInDanger",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 320
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "VerdanturfTown_BattleTentLobby_EventScript_ReadRulesBoard",
+          "line": 321
+        }
+      ]
+    },
+    "VerdanturfTown_BattleTentLobby_EventScript_ExitRules": {
+      "label": "VerdanturfTown_BattleTentLobby_EventScript_ExitRules",
+      "kind": "script",
+      "line": 324,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 325,
+          "raw": "releaseall",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 326,
+          "raw": "end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "VerdanturfTown_BattleTentLobby_Movement_WalkToDoor": {
+      "label": "VerdanturfTown_BattleTentLobby_Movement_WalkToDoor",
+      "kind": "movement",
+      "line": 206,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 207,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 208,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 209,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 210,
+          "raw": "step_end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_Movement_AttendantEnterDoor": {
+      "label": "VerdanturfTown_BattleTentLobby_Movement_AttendantEnterDoor",
+      "kind": "movement",
+      "line": 212,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 213,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 214,
+          "raw": "set_invisible",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 215,
+          "raw": "step_end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "VerdanturfTown_BattleTentLobby_Movement_PlayerEnterDoor": {
+      "label": "VerdanturfTown_BattleTentLobby_Movement_PlayerEnterDoor",
+      "kind": "movement",
+      "line": 217,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 218,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 219,
+          "raw": "walk_up",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 220,
+          "raw": "set_invisible",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 221,
+          "raw": "step_end",
+          "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "VerdanturfTown_BattleTentLobby_Text_MonsReluctantToUseDislikedMoves": {
+      "label": "VerdanturfTown_BattleTentLobby_Text_MonsReluctantToUseDislikedMoves",
+      "line": 328,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "raw_text": "如果宝可梦不喜欢一个招式，\\n它就不愿使用这招式，\\p无论招式多么强大\\n都一样。\\p比如说，一只拥有温顺性格的\\n宝可梦很可能不想\\l伤害对手。\\p如果不能因材施教，\\n它们使用自己讨厌的招式时\\l可能会失败。$",
+      "display_text": "如果宝可梦不喜欢一个招式，\n它就不愿使用这招式，\n\n无论招式多么强大\n都一样。\n\n比如说，一只拥有温顺性格的\n宝可梦很可能不想\n伤害对手。\n\n如果不能因材施教，\n它们使用自己讨厌的招式时\n可能会失败。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 179,
+        "bytes": [
+          11,
+          103,
+          4,
+          195,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          214,
+          13,
+          214,
+          5,
+          67,
+          15,
+          11,
+          4,
+          96,
+          16,
+          67,
+          12,
+          2,
+          59,
+          254,
+          12,
+          159,
+          7,
+          125,
+          1,
+          214,
+          15,
+          196,
+          11,
+          245,
+          15,
+          113,
+          16,
+          85,
+          16,
+          67,
+          12,
+          2,
+          59,
+          251,
+          13,
+          164,
+          9,
+          21,
+          16,
+          67,
+          12,
+          2,
+          3,
+          133,
+          9,
+          76,
+          10,
+          216,
+          2,
+          211,
+          254,
+          3,
+          97,
+          15,
+          11,
+          14,
+          226,
+          55,
+          251,
+          1,
+          133,
+          11,
+          103,
+          12,
+          88,
+          59,
+          15,
+          11,
+          16,
+          140,
+          15,
+          99,
+          15,
+          126,
+          13,
+          136,
+          12,
+          86,
+          14,
+          95,
+          4,
+          91,
+          3,
+          11,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          5,
+          11,
+          7,
+          215,
+          9,
+          210,
+          1,
+          214,
+          14,
+          24,
+          250,
+          11,
+          169,
+          4,
+          204,
+          3,
+          121,
+          12,
+          27,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          1,
+          214,
+          9,
+          210,
+          15,
+          66,
+          1,
+          223,
+          11,
+          229,
+          7,
+          30,
+          59,
+          254,
+          12,
+          159,
+          9,
+          95,
+          11,
+          245,
+          15,
+          113,
+          17,
+          12,
+          5,
+          165,
+          12,
+          215,
+          14,
+          202,
+          3,
+          11,
+          16,
+          67,
+          12,
+          2,
+          11,
+          237,
+          250,
+          7,
+          215,
+          9,
+          210,
+          5,
+          110,
+          11,
+          227,
+          1,
+          59,
+          55,
+          255
+        ],
+        "hex": "0B 67 04 C3 01 63 07 D7 09 66 01 D6 0D D6 05 43 0F 0B 04 60 10 43 0C 02 3B FE 0C 9F 07 7D 01 D6 0F C4 0B F5 0F 71 10 55 10 43 0C 02 3B FB 0D A4 09 15 10 43 0C 02 03 85 09 4C 0A D8 02 D3 FE 03 61 0F 0B 0E E2 37 FB 01 85 0B 67 0C 58 3B 0F 0B 10 8C 0F 63 0F 7E 0D 88 0C 56 0E 5F 04 5B 03 0B FE 01 63 07 D7 09 66 05 0B 07 D7 09 D2 01 D6 0E 18 FA 0B A9 04 CC 03 79 0C 1B 37 FB 0B 67 04 C3 01 D6 09 D2 0F 42 01 DF 0B E5 07 1E 3B FE 0C 9F 09 5F 0B F5 0F 71 11 0C 05 A5 0C D7 0E CA 03 0B 10 43 0C 02 0B ED FA 07 D7 09 D2 05 6E 0B E3 01 3B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 25,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 41,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 56,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 66,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 73,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 84,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 98,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 106,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_BattleTentLobby_Text_GentleMonsScaryIfAngry": {
+      "label": "VerdanturfTown_BattleTentLobby_Text_GentleMonsScaryIfAngry",
+      "line": 331,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "raw_text": "我姐姐通常很温柔，\\n但如果把她惹怒了，\\l她会变得非常非常可怕！\\p我敢说温顺性格的宝可梦\\n生气的时候也会很可怕！$",
+      "display_text": "我姐姐通常很温柔，\n但如果把她惹怒了，\n她会变得非常非常可怕！\n\n我敢说温顺性格的宝可梦\n生气的时候也会很可怕！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 103,
+        "bytes": [
+          13,
+          152,
+          7,
+          53,
+          7,
+          53,
+          13,
+          16,
+          2,
+          37,
+          5,
+          11,
+          13,
+          136,
+          11,
+          97,
+          59,
+          254,
+          2,
+          233,
+          11,
+          103,
+          4,
+          195,
+          1,
+          48,
+          12,
+          160,
+          11,
+          71,
+          10,
+          10,
+          8,
+          158,
+          59,
+          250,
+          12,
+          160,
+          5,
+          110,
+          1,
+          161,
+          3,
+          10,
+          3,
+          202,
+          2,
+          37,
+          3,
+          202,
+          2,
+          37,
+          7,
+          215,
+          10,
+          31,
+          60,
+          251,
+          13,
+          152,
+          4,
+          60,
+          12,
+          88,
+          13,
+          136,
+          12,
+          86,
+          14,
+          95,
+          4,
+          91,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          11,
+          216,
+          10,
+          179,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          15,
+          2,
+          5,
+          110,
+          5,
+          11,
+          7,
+          215,
+          10,
+          31,
+          60,
+          255
+        ],
+        "hex": "0D 98 07 35 07 35 0D 10 02 25 05 0B 0D 88 0B 61 3B FE 02 E9 0B 67 04 C3 01 30 0C A0 0B 47 0A 0A 08 9E 3B FA 0C A0 05 6E 01 A1 03 0A 03 CA 02 25 03 CA 02 25 07 D7 0A 1F 3C FB 0D 98 04 3C 0C 58 0D 88 0C 56 0E 5F 04 5B 03 0B 01 63 07 D7 09 66 FE 0B D8 0A B3 03 0B 0B ED 05 21 0F 02 05 6E 05 0B 07 D7 0A 1F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 20,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 46,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 59,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_BattleTentLobby_Text_AttractionRunsDeep": {
+      "label": "VerdanturfTown_BattleTentLobby_Text_AttractionRunsDeep",
+      "line": 334,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "raw_text": "我对宝可梦感到……\\n它那么地迷人……\\p啊，你好，你没看见吧？\\n啊，算了，没关系，\\p你想给你的宝可梦用\\n这个招式学习器吗？$",
+      "display_text": "我对宝可梦感到……\n它那么地迷人……\n\n啊，你好，你没看见吧？\n啊，算了，没关系，\n\n你想给你的宝可梦用\n这个招式学习器吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 105,
+        "bytes": [
+          13,
+          152,
+          3,
+          121,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          4,
+          58,
+          3,
+          4,
+          176,
+          176,
+          254,
+          12,
+          159,
+          9,
+          189,
+          9,
+          76,
+          3,
+          31,
+          9,
+          108,
+          11,
+          75,
+          176,
+          176,
+          251,
+          1,
+          0,
+          59,
+          9,
+          217,
+          4,
+          233,
+          59,
+          9,
+          217,
+          9,
+          83,
+          7,
+          194,
+          5,
+          230,
+          1,
+          40,
+          61,
+          254,
+          1,
+          0,
+          59,
+          12,
+          134,
+          8,
+          158,
+          59,
+          9,
+          83,
+          4,
+          160,
+          13,
+          217,
+          59,
+          251,
+          9,
+          217,
+          14,
+          24,
+          4,
+          98,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          113,
+          254,
+          16,
+          85,
+          4,
+          96,
+          16,
+          67,
+          12,
+          2,
+          14,
+          144,
+          13,
+          212,
+          10,
+          178,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0D 98 03 79 01 63 07 D7 09 66 04 3A 03 04 B0 B0 FE 0C 9F 09 BD 09 4C 03 1F 09 6C 0B 4B B0 B0 FB 01 00 3B 09 D9 04 E9 3B 09 D9 09 53 07 C2 05 E6 01 28 3D FE 01 00 3B 0C 86 08 9E 3B 09 53 04 A0 0D D9 3B FB 09 D9 0E 18 04 62 09 D9 03 0B 01 63 07 D7 09 66 0F 71 FE 10 55 04 60 10 43 0C 02 0E 90 0D D4 0A B2 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 43,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 54,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 65,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_BattleTentLobby_Text_AttractionMutual": {
+      "label": "VerdanturfTown_BattleTentLobby_Text_AttractionMutual",
+      "line": 337,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "raw_text": "我对宝可梦感到……\\n我想这吸引力一定是相互的！\\p它们对战时完全按照\\n我想的那样做！$",
+      "display_text": "我对宝可梦感到……\n我想这吸引力一定是相互的！\n\n它们对战时完全按照\n我想的那样做！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          13,
+          152,
+          3,
+          121,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          4,
+          58,
+          3,
+          4,
+          176,
+          176,
+          254,
+          13,
+          152,
+          14,
+          24,
+          16,
+          85,
+          13,
+          194,
+          15,
+          77,
+          8,
+          121,
+          15,
+          11,
+          3,
+          77,
+          12,
+          12,
+          14,
+          13,
+          5,
+          50,
+          3,
+          11,
+          60,
+          251,
+          12,
+          159,
+          9,
+          95,
+          3,
+          121,
+          16,
+          48,
+          11,
+          237,
+          13,
+          82,
+          11,
+          43,
+          1,
+          19,
+          16,
+          72,
+          254,
+          13,
+          152,
+          14,
+          24,
+          3,
+          11,
+          9,
+          189,
+          14,
+          226,
+          17,
+          46,
+          60,
+          255
+        ],
+        "hex": "0D 98 03 79 01 63 07 D7 09 66 04 3A 03 04 B0 B0 FE 0D 98 0E 18 10 55 0D C2 0F 4D 08 79 0F 0B 03 4D 0C 0C 0E 0D 05 32 03 0B 3C FB 0C 9F 09 5F 03 79 10 30 0B ED 0D 52 0B 2B 01 13 10 48 FE 0D 98 0E 18 03 0B 09 BD 0E E2 11 2E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_BattleTentLobby_Text_TaughtWhatKindsOfMoves": {
+      "label": "VerdanturfTown_BattleTentLobby_Text_TaughtWhatKindsOfMoves",
+      "line": 340,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "raw_text": "你给你的宝可梦\\n教了些什么招式？\\p我想如果它们会回复或者\\n保护自己的话，\\l会让你在战斗中更有优势。$",
+      "display_text": "你给你的宝可梦\n教了些什么招式？\n\n我想如果它们会回复或者\n保护自己的话，\n会让你在战斗中更有优势。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 92,
+        "bytes": [
+          9,
+          217,
+          4,
+          98,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          7,
+          30,
+          8,
+          158,
+          14,
+          52,
+          11,
+          238,
+          9,
+          76,
+          16,
+          67,
+          12,
+          2,
+          61,
+          251,
+          13,
+          152,
+          14,
+          24,
+          11,
+          103,
+          4,
+          195,
+          12,
+          159,
+          9,
+          95,
+          5,
+          110,
+          5,
+          101,
+          4,
+          30,
+          5,
+          127,
+          16,
+          82,
+          254,
+          1,
+          96,
+          5,
+          49,
+          17,
+          12,
+          5,
+          165,
+          3,
+          11,
+          5,
+          61,
+          59,
+          250,
+          5,
+          110,
+          11,
+          67,
+          9,
+          217,
+          15,
+          230,
+          16,
+          48,
+          3,
+          92,
+          16,
+          161,
+          4,
+          102,
+          15,
+          126,
+          15,
+          115,
+          12,
+          11,
+          55,
+          255
+        ],
+        "hex": "09 D9 04 62 09 D9 03 0B 01 63 07 D7 09 66 FE 07 1E 08 9E 0E 34 0B EE 09 4C 10 43 0C 02 3D FB 0D 98 0E 18 0B 67 04 C3 0C 9F 09 5F 05 6E 05 65 04 1E 05 7F 10 52 FE 01 60 05 31 11 0C 05 A5 03 0B 05 3D 3B FA 05 6E 0B 43 09 D9 0F E6 10 30 03 5C 10 A1 04 66 0F 7E 0F 73 0C 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 39,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 53,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_BattleTentLobby_Text_ScottCanMeetToughTrainers": {
+      "label": "VerdanturfTown_BattleTentLobby_Text_ScottCanMeetToughTrainers",
+      "line": 343,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "raw_text": "亚希达：嗨，{PLAYER}{KUN}！\\n我就知道能在这儿遇到你，\\p因为，无论规则如何，\\n无论战斗怎样，\\p你总能在对战帐篷中\\n碰见强大的训练家。\\p{PLAYER}{KUN}，\\n我希望你能全力以赴！$",
+      "display_text": "亚希达：嗨，{PLAYER}{KUN}！\n我就知道能在这儿遇到你，\n\n因为，无论规则如何，\n无论战斗怎样，\n\n你总能在对战帐篷中\n碰见强大的训练家。\n\n{PLAYER}{KUN}，\n我希望你能全力以赴！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 136,
+        "bytes": [
+          14,
+          176,
+          13,
+          199,
+          2,
+          207,
+          62,
+          20,
+          103,
+          59,
+          253,
+          1,
+          253,
+          5,
+          60,
+          254,
+          13,
+          152,
+          7,
+          125,
+          16,
+          123,
+          3,
+          7,
+          9,
+          210,
+          15,
+          230,
+          16,
+          85,
+          3,
+          158,
+          15,
+          164,
+          3,
+          4,
+          9,
+          217,
+          59,
+          251,
+          15,
+          66,
+          13,
+          112,
+          59,
+          13,
+          164,
+          9,
+          21,
+          4,
+          174,
+          16,
+          7,
+          11,
+          103,
+          4,
+          244,
+          59,
+          254,
+          13,
+          164,
+          9,
+          21,
+          16,
+          48,
+          3,
+          92,
+          16,
+          10,
+          14,
+          226,
+          59,
+          251,
+          9,
+          217,
+          17,
+          20,
+          9,
+          210,
+          15,
+          230,
+          3,
+          121,
+          16,
+          48,
+          16,
+          61,
+          10,
+          78,
+          16,
+          161,
+          254,
+          10,
+          83,
+          5,
+          230,
+          10,
+          216,
+          2,
+          211,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          55,
+          251,
+          253,
+          1,
+          253,
+          5,
+          59,
+          254,
+          13,
+          152,
+          13,
+          199,
+          13,
+          99,
+          9,
+          217,
+          9,
+          210,
+          11,
+          43,
+          8,
+          121,
+          15,
+          36,
+          4,
+          26,
+          60,
+          255
+        ],
+        "hex": "0E B0 0D C7 02 CF 3E 14 67 3B FD 01 FD 05 3C FE 0D 98 07 7D 10 7B 03 07 09 D2 0F E6 10 55 03 9E 0F A4 03 04 09 D9 3B FB 0F 42 0D 70 3B 0D A4 09 15 04 AE 10 07 0B 67 04 F4 3B FE 0D A4 09 15 10 30 03 5C 10 0A 0E E2 3B FB 09 D9 11 14 09 D2 0F E6 03 79 10 30 10 3D 0A 4E 10 A1 FE 0A 53 05 E6 0A D8 02 D3 03 0B 0E 9E 08 8A 05 BD 37 FB FD 01 FD 05 3B FE 0D 98 0D C7 0D 63 09 D9 09 D2 0B 2B 08 79 0F 24 04 1A 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 6,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 14,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 34,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 46,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 55,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 66,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 77,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 79,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 87,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 93,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 105,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 6,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 14,
+            "bytes": [
+              253,
+              5
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 79,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 87,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "VerdanturfTown_BattleTentLobby_Text_ScottVisitRegularly": {
+      "label": "VerdanturfTown_BattleTentLobby_Text_ScottVisitRegularly",
+      "line": 346,
+      "source_file": "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc",
+      "raw_text": "亚希达：我经常来这儿，\\n为了能观摩强大的训练家\\l在不同的处境下如何战斗。$",
+      "display_text": "亚希达：我经常来这儿，\n为了能观摩强大的训练家\n在不同的处境下如何战斗。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 68,
+        "bytes": [
+          14,
+          176,
+          13,
+          199,
+          2,
+          207,
+          62,
+          13,
+          152,
+          7,
+          93,
+          2,
+          37,
+          8,
+          41,
+          16,
+          85,
+          3,
+          158,
+          59,
+          254,
+          13,
+          112,
+          8,
+          158,
+          9,
+          210,
+          4,
+          163,
+          9,
+          156,
+          10,
+          216,
+          2,
+          211,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          250,
+          15,
+          230,
+          1,
+          214,
+          13,
+          20,
+          3,
+          11,
+          2,
+          134,
+          7,
+          99,
+          13,
+          230,
+          11,
+          103,
+          4,
+          244,
+          16,
+          48,
+          3,
+          92,
+          55,
+          255
+        ],
+        "hex": "0E B0 0D C7 02 CF 3E 0D 98 07 5D 02 25 08 29 10 55 03 9E 3B FE 0D 70 08 9E 09 D2 04 A3 09 9C 0A D8 02 D3 03 0B 0E 9E 08 8A 05 BD FA 0F E6 01 D6 0D 14 03 0B 02 86 07 63 0D E6 0B 67 04 F4 10 30 03 5C 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 24,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 38,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addvar": 1,
+      "applymovement": 4,
+      "case": 18,
+      "closedoor": 1,
+      "closemessage": 6,
+      "delay": 1,
+      "faceplayer": 3,
+      "fadescreen": 1,
+      "frontier_checkineligible": 1,
+      "frontier_getstatus": 1,
+      "frontier_set": 11,
+      "frontier_setpartyorder": 1,
+      "giveitem": 1,
+      "goto_if_eq": 4,
+      "goto_if_ne": 1,
+      "goto_if_set": 2,
+      "map_script": 2,
+      "map_script_2": 6,
+      "multichoice": 1,
+      "opendoor": 1,
+      "playfanfare": 1,
+      "playse": 3,
+      "set_invisible": 2,
+      "setflag": 2,
+      "setvar": 15,
+      "special": 6,
+      "step_end": 3,
+      "switch": 5,
+      "turnobject": 1,
+      "verdanturftent_getprize": 1,
+      "verdanturftent_giveprize": 1,
+      "verdanturftent_init": 1,
+      "verdanturftent_save": 3,
+      "verdanturftent_setrandomprize": 1,
+      "waitdooranim": 2,
+      "waitfanfare": 1,
+      "waitmessage": 7,
+      "waitmovement": 2,
+      "waitse": 3,
+      "waitstate": 3,
+      "walk_up": 6,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 52,
+    "script_count": 42,
+    "movement_count": 3,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 759,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addvar": 1,
+      "applymovement": 4,
+      "call": 2,
+      "case": 18,
+      "closedoor": 1,
+      "closemessage": 6,
+      "delay": 1,
+      "end": 25,
+      "faceplayer": 3,
+      "fadescreen": 1,
+      "frontier_checkineligible": 1,
+      "frontier_getstatus": 1,
+      "frontier_set": 11,
+      "frontier_setpartyorder": 1,
+      "giveitem": 1,
+      "goto": 13,
+      "goto_if_eq": 4,
+      "goto_if_ne": 1,
+      "goto_if_set": 2,
+      "lock": 5,
+      "lockall": 6,
+      "map_script": 2,
+      "map_script_2": 6,
+      "message": 6,
+      "msgbox": 31,
+      "multichoice": 1,
+      "opendoor": 1,
+      "playfanfare": 1,
+      "playse": 3,
+      "release": 7,
+      "releaseall": 5,
+      "return": 1,
+      "set_invisible": 2,
+      "setflag": 2,
+      "setvar": 15,
+      "special": 6,
+      "step_end": 3,
+      "switch": 5,
+      "turnobject": 1,
+      "verdanturftent_getprize": 1,
+      "verdanturftent_giveprize": 1,
+      "verdanturftent_init": 1,
+      "verdanturftent_save": 3,
+      "verdanturftent_setrandomprize": 1,
+      "waitdooranim": 2,
+      "waitfanfare": 1,
+      "waitmessage": 7,
+      "waitmovement": 2,
+      "waitse": 3,
+      "waitstate": 3,
+      "walk_up": 6,
+      "warp": 1
+    }
+  }
+}

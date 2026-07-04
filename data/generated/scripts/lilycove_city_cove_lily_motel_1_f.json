@@ -1,0 +1,2043 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "LilycoveCity_CoveLilyMotel_1F",
+    "map_script": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+    "map_json": "data/maps/LilycoveCity_CoveLilyMotel_1F/map.json",
+    "map_id": "MAP_LILYCOVE_CITY_COVE_LILY_MOTEL_1F",
+    "map_name": "LilycoveCity_CoveLilyMotel_1F"
+  },
+  "labels": {
+    "LilycoveCity_CoveLilyMotel_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_CoveLilyMotel_1F_EventScript_MotelOwner": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 12
+    },
+    "LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 9
+    },
+    "LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 9
+    },
+    "LilycoveCity_CoveLilyMotel_1F_EventScript_BlockingTV": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 17
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV": {
+      "kind": "movement",
+      "line": 59,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 5
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer": {
+      "kind": "movement",
+      "line": 66,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn": {
+      "kind": "movement",
+      "line": 70,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 4
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot": {
+      "kind": "text",
+      "line": 76,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_NoGuestsWithTeamAqua": {
+      "kind": "text",
+      "line": 79,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV": {
+      "kind": "text",
+      "line": 82,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem": {
+      "kind": "text",
+      "line": 85,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_HeardAquaHideoutBusted": {
+      "kind": "text",
+      "line": 88,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar": {
+      "kind": "text",
+      "line": 91,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_BetterGetWorkingOnGuestsDinner": {
+      "kind": "text",
+      "line": 94,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "LilycoveCity_CoveLilyMotel_1F_MapScripts": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_CoveLilyMotel_1F_EventScript_MotelOwner": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_EventScript_MotelOwner",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 5,
+          "raw": "lockall",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_SYS_GAME_CLEAR",
+            "LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear"
+          ],
+          "line": 6,
+          "raw": "goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_BADGE07_GET",
+            "LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_BADGE07_GET, LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 8,
+          "raw": "msgbox LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOTEL_OWNER",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 9,
+          "raw": "applymovement LOCALID_MOTEL_OWNER, Common_Movement_FacePlayer",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 10,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_CoveLilyMotel_1F_Text_NoGuestsWithTeamAqua",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 11,
+          "raw": "msgbox LilycoveCity_CoveLilyMotel_1F_Text_NoGuestsWithTeamAqua, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 12,
+          "raw": "closemessage",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOTEL_OWNER",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 13,
+          "raw": "applymovement LOCALID_MOTEL_OWNER, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 14,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 15,
+          "raw": "releaseall",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 8
+        },
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_CoveLilyMotel_1F_Text_NoGuestsWithTeamAqua",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 11
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear",
+          "line": 6
+        },
+        {
+          "op": "goto_if_set",
+          "target": "LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted",
+          "line": 7
+        }
+      ]
+    },
+    "LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 19,
+          "raw": "msgbox LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOTEL_OWNER",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 20,
+          "raw": "applymovement LOCALID_MOTEL_OWNER, Common_Movement_FacePlayer",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 21,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_CoveLilyMotel_1F_Text_HeardAquaHideoutBusted",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 22,
+          "raw": "msgbox LilycoveCity_CoveLilyMotel_1F_Text_HeardAquaHideoutBusted, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 23,
+          "raw": "closemessage",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOTEL_OWNER",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 24,
+          "raw": "applymovement LOCALID_MOTEL_OWNER, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 25,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 26,
+          "raw": "releaseall",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 19
+        },
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_CoveLilyMotel_1F_Text_HeardAquaHideoutBusted",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    },
+    "LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 30,
+          "raw": "msgbox LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOTEL_OWNER",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 31,
+          "raw": "applymovement LOCALID_MOTEL_OWNER, Common_Movement_FacePlayer",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 32,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_CoveLilyMotel_1F_Text_BetterGetWorkingOnGuestsDinner",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 33,
+          "raw": "msgbox LilycoveCity_CoveLilyMotel_1F_Text_BetterGetWorkingOnGuestsDinner, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 34,
+          "raw": "closemessage",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOTEL_OWNER",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 35,
+          "raw": "applymovement LOCALID_MOTEL_OWNER, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 36,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 37,
+          "raw": "releaseall",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 38,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 30
+        },
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_CoveLilyMotel_1F_Text_BetterGetWorkingOnGuestsDinner",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 33
+        }
+      ],
+      "branch_targets": []
+    },
+    "LilycoveCity_CoveLilyMotel_1F_EventScript_BlockingTV": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_EventScript_BlockingTV",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 41,
+          "raw": "lockall",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 42,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOTEL_OWNER",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 43,
+          "raw": "applymovement LOCALID_MOTEL_OWNER, Common_Movement_ExclamationMark",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 44,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOTEL_OWNER",
+            "Common_Movement_Delay48"
+          ],
+          "line": 45,
+          "raw": "applymovement LOCALID_MOTEL_OWNER, Common_Movement_Delay48",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 46,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterDown"
+          ],
+          "line": 47,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 48,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 49,
+          "raw": "msgbox LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV, MSGBOX_DEFAULT",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 50,
+          "raw": "closemessage",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV"
+          ],
+          "line": 51,
+          "raw": "applymovement LOCALID_PLAYER, LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOTEL_OWNER",
+            "LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer"
+          ],
+          "line": 52,
+          "raw": "applymovement LOCALID_MOTEL_OWNER, LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 53,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_MOTEL_OWNER",
+            "LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn"
+          ],
+          "line": 54,
+          "raw": "applymovement LOCALID_MOTEL_OWNER, LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 55,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 56,
+          "raw": "release",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 57,
+          "raw": "end",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 49
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV",
+      "kind": "movement",
+      "line": 59,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "face_right",
+          "args": [],
+          "line": 60,
+          "raw": "face_right",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "lock_facing_direction",
+          "args": [],
+          "line": 61,
+          "raw": "lock_facing_direction",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 62,
+          "raw": "walk_left",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "unlock_facing_direction",
+          "args": [],
+          "line": 63,
+          "raw": "unlock_facing_direction",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 64,
+          "raw": "step_end",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer",
+      "kind": "movement",
+      "line": 66,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 67,
+          "raw": "walk_up",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 68,
+          "raw": "step_end",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn",
+      "kind": "movement",
+      "line": 70,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "face_down",
+          "args": [],
+          "line": 71,
+          "raw": "face_down",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 72,
+          "raw": "walk_down",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "face_up",
+          "args": [],
+          "line": 73,
+          "raw": "face_up",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 74,
+          "raw": "step_end",
+          "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot",
+      "line": 76,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "raw_text": "唔，原来他们\\n用宝可梦吸引顾客。\\p嗯，也许我也该为我们的旅馆\\n找一只可爱的宝可梦做吉祥物。\\p这样就能吸引更多人\\n来我们这里住宿了吧？$",
+      "display_text": "唔，原来他们\n用宝可梦吸引顾客。\n\n嗯，也许我也该为我们的旅馆\n找一只可爱的宝可梦做吉祥物。\n\n这样就能吸引更多人\n来我们这里住宿了吧？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 123,
+        "bytes": [
+          20,
+          43,
+          59,
+          15,
+          185,
+          8,
+          41,
+          12,
+          158,
+          9,
+          95,
+          254,
+          15,
+          113,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          194,
+          15,
+          77,
+          4,
+          147,
+          7,
+          219,
+          55,
+          251,
+          20,
+          97,
+          59,
+          15,
+          2,
+          14,
+          120,
+          13,
+          152,
+          15,
+          2,
+          4,
+          45,
+          13,
+          112,
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          8,
+          244,
+          4,
+          165,
+          254,
+          16,
+          69,
+          15,
+          11,
+          16,
+          140,
+          7,
+          215,
+          1,
+          13,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          17,
+          46,
+          5,
+          149,
+          14,
+          22,
+          13,
+          181,
+          55,
+          251,
+          16,
+          85,
+          14,
+          226,
+          7,
+          125,
+          9,
+          210,
+          13,
+          194,
+          15,
+          77,
+          4,
+          102,
+          3,
+          133,
+          11,
+          75,
+          254,
+          8,
+          41,
+          13,
+          152,
+          9,
+          95,
+          16,
+          85,
+          8,
+          100,
+          16,
+          208,
+          12,
+          129,
+          8,
+          158,
+          1,
+          40,
+          61,
+          255
+        ],
+        "hex": "14 2B 3B 0F B9 08 29 0C 9E 09 5F FE 0F 71 01 63 07 D7 09 66 0D C2 0F 4D 04 93 07 DB 37 FB 14 61 3B 0F 02 0E 78 0D 98 0F 02 04 2D 0D 70 0D 98 09 5F 03 0B 08 F4 04 A5 FE 10 45 0F 0B 10 8C 07 D7 01 0D 03 0B 01 63 07 D7 09 66 11 2E 05 95 0E 16 0D B5 37 FB 10 55 0E E2 07 7D 09 D2 0D C2 0F 4D 04 66 03 85 0B 4B FE 08 29 0D 98 09 5F 10 55 08 64 10 D0 0C 81 08 9E 01 28 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 48,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 59,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 71,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_NoGuestsWithTeamAqua": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_Text_NoGuestsWithTeamAqua",
+      "line": 79,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "raw_text": "啊，抱歉，抱歉！\\n我看电视看入迷了！\\p自从海洋队来城里以后，\\n都没什么游客来了。$",
+      "display_text": "啊，抱歉，抱歉！\n我看电视看入迷了！\n\n自从海洋队来城里以后，\n都没什么游客来了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 72,
+        "bytes": [
+          1,
+          0,
+          59,
+          1,
+          100,
+          10,
+          209,
+          59,
+          1,
+          100,
+          10,
+          209,
+          60,
+          254,
+          13,
+          152,
+          7,
+          194,
+          3,
+          46,
+          12,
+          24,
+          7,
+          194,
+          11,
+          107,
+          9,
+          108,
+          8,
+          158,
+          60,
+          251,
+          17,
+          12,
+          2,
+          179,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          8,
+          41,
+          2,
+          73,
+          8,
+          100,
+          15,
+          36,
+          5,
+          34,
+          59,
+          254,
+          3,
+          97,
+          9,
+          83,
+          11,
+          238,
+          9,
+          76,
+          15,
+          124,
+          7,
+          219,
+          8,
+          41,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "01 00 3B 01 64 0A D1 3B 01 64 0A D1 3C FE 0D 98 07 C2 03 2E 0C 18 07 C2 0B 6B 09 6C 08 9E 3C FB 11 0C 02 B3 04 C9 0E DC 03 78 08 29 02 49 08 64 0F 24 05 22 3B FE 03 61 09 53 0B EE 09 4C 0F 7C 07 DB 08 29 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 43,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV",
+      "line": 82,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "raw_text": "喂，别挡着！\\n我看不到电视了！$",
+      "display_text": "喂，别挡着！\n我看不到电视了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 27,
+        "bytes": [
+          13,
+          127,
+          59,
+          1,
+          173,
+          2,
+          240,
+          16,
+          244,
+          60,
+          254,
+          13,
+          152,
+          7,
+          194,
+          1,
+          214,
+          3,
+          4,
+          3,
+          46,
+          12,
+          24,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "0D 7F 3B 01 AD 02 F0 10 F4 3C FE 0D 98 07 C2 01 D6 03 04 03 2E 0C 18 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem",
+      "line": 85,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "raw_text": "真吃惊！你说宝可梦\\n可以找到别人掉下的东西？\\p如果我们也有\\n那么聪明的宝可梦……\\p我们就能找出\\n客人们遗落的东西了……$",
+      "display_text": "真吃惊！你说宝可梦\n可以找到别人掉下的东西？\n\n如果我们也有\n那么聪明的宝可梦……\n\n我们就能找出\n客人们遗落的东西了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 108,
+        "bytes": [
+          16,
+          89,
+          2,
+          86,
+          7,
+          90,
+          60,
+          9,
+          217,
+          12,
+          88,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          7,
+          215,
+          15,
+          36,
+          16,
+          69,
+          3,
+          4,
+          1,
+          173,
+          11,
+          75,
+          3,
+          59,
+          13,
+          230,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          61,
+          251,
+          11,
+          103,
+          4,
+          195,
+          13,
+          152,
+          9,
+          95,
+          15,
+          2,
+          15,
+          126,
+          254,
+          9,
+          189,
+          9,
+          76,
+          2,
+          175,
+          9,
+          143,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          176,
+          176,
+          251,
+          13,
+          152,
+          9,
+          95,
+          7,
+          125,
+          9,
+          210,
+          16,
+          69,
+          2,
+          120,
+          254,
+          7,
+          219,
+          11,
+          75,
+          9,
+          95,
+          15,
+          21,
+          9,
+          30,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "10 59 02 56 07 5A 3C 09 D9 0C 58 01 63 07 D7 09 66 FE 07 D7 0F 24 10 45 03 04 01 AD 0B 4B 03 3B 0D E6 03 0B 03 50 0D BD 3D FB 0B 67 04 C3 0D 98 09 5F 0F 02 0F 7E FE 09 BD 09 4C 02 AF 09 8F 03 0B 01 63 07 D7 09 66 B0 B0 FB 0D 98 09 5F 07 7D 09 D2 10 45 02 78 FE 07 DB 0B 4B 09 5F 0F 15 09 1E 03 0B 03 50 0D BD 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 43,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 51,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 64,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_HeardAquaHideoutBusted": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_Text_HeardAquaHideoutBusted",
+      "line": 88,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "raw_text": "啊，抱歉，抱歉！\\n我看电视看入迷了！\\p我听说有人到捣毁了\\n海洋队的基地，\\p多亏如此，我们刚刚\\n接到了一个大团体订房预约，\\p是一个公司，叫做……呃……\\n游戏什么的……$",
+      "display_text": "啊，抱歉，抱歉！\n我看电视看入迷了！\n\n我听说有人到捣毁了\n海洋队的基地，\n\n多亏如此，我们刚刚\n接到了一个大团体订房预约，\n\n是一个公司，叫做……呃……\n游戏什么的……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 144,
+        "bytes": [
+          1,
+          0,
+          59,
+          1,
+          100,
+          10,
+          209,
+          59,
+          1,
+          100,
+          10,
+          209,
+          60,
+          254,
+          13,
+          152,
+          7,
+          194,
+          3,
+          46,
+          12,
+          24,
+          7,
+          194,
+          11,
+          107,
+          9,
+          108,
+          8,
+          158,
+          60,
+          251,
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          15,
+          126,
+          11,
+          75,
+          3,
+          4,
+          2,
+          245,
+          5,
+          102,
+          8,
+          158,
+          254,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          3,
+          11,
+          5,
+          134,
+          3,
+          31,
+          59,
+          251,
+          3,
+          133,
+          8,
+          14,
+          11,
+          103,
+          2,
+          171,
+          59,
+          13,
+          152,
+          9,
+          95,
+          4,
+          63,
+          4,
+          63,
+          254,
+          7,
+          37,
+          3,
+          4,
+          8,
+          158,
+          15,
+          11,
+          4,
+          96,
+          2,
+          211,
+          13,
+          45,
+          12,
+          230,
+          3,
+          78,
+          3,
+          194,
+          15,
+          176,
+          15,
+          200,
+          59,
+          251,
+          12,
+          12,
+          15,
+          11,
+          4,
+          96,
+          4,
+          115,
+          12,
+          97,
+          59,
+          7,
+          34,
+          17,
+          46,
+          176,
+          176,
+          19,
+          245,
+          176,
+          176,
+          254,
+          15,
+          124,
+          13,
+          219,
+          11,
+          238,
+          9,
+          76,
+          3,
+          11,
+          176,
+          176,
+          255
+        ],
+        "hex": "01 00 3B 01 64 0A D1 3B 01 64 0A D1 3C FE 0D 98 07 C2 03 2E 0C 18 07 C2 0B 6B 09 6C 08 9E 3C FB 0D 98 0D 07 0C 58 0F 7E 0B 4B 03 04 02 F5 05 66 08 9E FE 04 C9 0E DC 03 78 03 0B 05 86 03 1F 3B FB 03 85 08 0E 0B 67 02 AB 3B 0D 98 09 5F 04 3F 04 3F FE 07 25 03 04 08 9E 0F 0B 04 60 02 D3 0D 2D 0C E6 03 4E 03 C2 0F B0 0F C8 3B FB 0C 0C 0F 0B 04 60 04 73 0C 61 3B 07 22 11 2E B0 B0 13 F5 B0 B0 FE 0F 7C 0D DB 0B EE 09 4C 03 0B B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 50,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 65,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 80,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 89,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar",
+      "line": 91,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "raw_text": "好家伙！看门的宝可梦\\n捉到了窃贼？\\p如果我们也有\\n强大的宝可梦看门……\\p我们的客人\\n会更有安全感。$",
+      "display_text": "好家伙！看门的宝可梦\n捉到了窃贼？\n\n如果我们也有\n强大的宝可梦看门……\n\n我们的客人\n会更有安全感。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 89,
+        "bytes": [
+          4,
+          233,
+          5,
+          189,
+          5,
+          124,
+          60,
+          7,
+          194,
+          9,
+          93,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          16,
+          236,
+          3,
+          4,
+          8,
+          158,
+          10,
+          237,
+          16,
+          9,
+          61,
+          251,
+          11,
+          103,
+          4,
+          195,
+          13,
+          152,
+          9,
+          95,
+          15,
+          2,
+          15,
+          126,
+          254,
+          10,
+          216,
+          2,
+          211,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          7,
+          194,
+          9,
+          93,
+          176,
+          176,
+          251,
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          7,
+          219,
+          11,
+          75,
+          254,
+          5,
+          110,
+          4,
+          102,
+          15,
+          126,
+          1,
+          17,
+          11,
+          43,
+          4,
+          58,
+          55,
+          255
+        ],
+        "hex": "04 E9 05 BD 05 7C 3C 07 C2 09 5D 03 0B 01 63 07 D7 09 66 FE 10 EC 03 04 08 9E 0A ED 10 09 3D FB 0B 67 04 C3 0D 98 09 5F 0F 02 0F 7E FE 0A D8 02 D3 03 0B 01 63 07 D7 09 66 07 C2 09 5D B0 B0 FB 0D 98 09 5F 03 0B 07 DB 0B 4B FE 05 6E 04 66 0F 7E 01 11 0B 2B 04 3A 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 45,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 54,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "LilycoveCity_CoveLilyMotel_1F_Text_BetterGetWorkingOnGuestsDinner": {
+      "label": "LilycoveCity_CoveLilyMotel_1F_Text_BetterGetWorkingOnGuestsDinner",
+      "line": 94,
+      "source_file": "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc",
+      "raw_text": "啊，抱歉，抱歉！\\n我看电视看入迷了。\\p嗯，没错，刚刚来了\\n一个团队的客人，\\p他们以游戏狂想家之名订的房间，\\n我想他们一定是制作游戏的人。\\p啊——噢，我得赶紧\\n去准备晚饭了！$",
+      "display_text": "啊，抱歉，抱歉！\n我看电视看入迷了。\n\n嗯，没错，刚刚来了\n一个团队的客人，\n\n他们以游戏狂想家之名订的房间，\n我想他们一定是制作游戏的人。\n\n啊——噢，我得赶紧\n去准备晚饭了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 153,
+        "bytes": [
+          1,
+          0,
+          59,
+          1,
+          100,
+          10,
+          209,
+          59,
+          1,
+          100,
+          10,
+          209,
+          60,
+          254,
+          13,
+          152,
+          7,
+          194,
+          3,
+          46,
+          12,
+          24,
+          7,
+          194,
+          11,
+          107,
+          9,
+          108,
+          8,
+          158,
+          55,
+          251,
+          20,
+          97,
+          59,
+          9,
+          83,
+          2,
+          205,
+          59,
+          4,
+          63,
+          4,
+          63,
+          8,
+          41,
+          8,
+          158,
+          254,
+          15,
+          11,
+          4,
+          96,
+          13,
+          45,
+          3,
+          120,
+          3,
+          11,
+          7,
+          219,
+          11,
+          75,
+          59,
+          251,
+          12,
+          158,
+          9,
+          95,
+          15,
+          36,
+          15,
+          124,
+          13,
+          219,
+          8,
+          8,
+          14,
+          24,
+          5,
+          189,
+          16,
+          127,
+          9,
+          147,
+          3,
+          78,
+          3,
+          11,
+          3,
+          194,
+          5,
+          207,
+          59,
+          254,
+          13,
+          152,
+          14,
+          24,
+          12,
+          158,
+          9,
+          95,
+          15,
+          11,
+          3,
+          77,
+          12,
+          12,
+          16,
+          151,
+          17,
+          47,
+          15,
+          124,
+          13,
+          219,
+          3,
+          11,
+          11,
+          75,
+          55,
+          251,
+          1,
+          0,
+          63,
+          63,
+          20,
+          122,
+          59,
+          13,
+          152,
+          3,
+          10,
+          4,
+          57,
+          7,
+          70,
+          254,
+          11,
+          37,
+          16,
+          235,
+          1,
+          117,
+          13,
+          85,
+          3,
+          188,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "01 00 3B 01 64 0A D1 3B 01 64 0A D1 3C FE 0D 98 07 C2 03 2E 0C 18 07 C2 0B 6B 09 6C 08 9E 37 FB 14 61 3B 09 53 02 CD 3B 04 3F 04 3F 08 29 08 9E FE 0F 0B 04 60 0D 2D 03 78 03 0B 07 DB 0B 4B 3B FB 0C 9E 09 5F 0F 24 0F 7C 0D DB 08 08 0E 18 05 BD 10 7F 09 93 03 4E 03 0B 03 C2 05 CF 3B FE 0D 98 0E 18 0C 9E 09 5F 0F 0B 03 4D 0C 0C 10 97 11 2F 0F 7C 0D DB 03 0B 0B 4B 37 FB 01 00 3F 3F 14 7A 3B 0D 98 03 0A 04 39 07 46 FE 0B 25 10 EB 01 75 0D 55 03 BC 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 30,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 40,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 57,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 73,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 84,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 93,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 12,
+      "closemessage": 4,
+      "face_down": 1,
+      "face_right": 1,
+      "face_up": 1,
+      "goto_if_set": 2,
+      "lock_facing_direction": 1,
+      "playse": 1,
+      "step_end": 3,
+      "unlock_facing_direction": 1,
+      "waitmovement": 11,
+      "walk_down": 1,
+      "walk_left": 1,
+      "walk_up": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 15,
+    "script_count": 5,
+    "movement_count": 3,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 716,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 12,
+      "closemessage": 4,
+      "end": 4,
+      "face_down": 1,
+      "face_right": 1,
+      "face_up": 1,
+      "goto_if_set": 2,
+      "lock_facing_direction": 1,
+      "lockall": 2,
+      "msgbox": 7,
+      "playse": 1,
+      "release": 1,
+      "releaseall": 3,
+      "step_end": 3,
+      "unlock_facing_direction": 1,
+      "waitmovement": 11,
+      "walk_down": 1,
+      "walk_left": 1,
+      "walk_up": 1
+    }
+  }
+}

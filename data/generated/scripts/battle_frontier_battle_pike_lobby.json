@@ -1,0 +1,6320 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "BattleFrontier_BattlePikeLobby",
+    "map_script": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+    "map_json": "data/maps/BattleFrontier_BattlePikeLobby/map.json",
+    "map_id": "MAP_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY",
+    "map_name": "BattleFrontier_BattlePikeLobby"
+  },
+  "labels": {
+    "BattleFrontier_BattlePikeLobby_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeLobby_OnFrame": {
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeLobby_OnWarp": {
+      "kind": "map_script_table",
+      "line": 13,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_TurnPlayerNorth": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_GetChallengeStatus": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_QuitWithoutSaving": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 11
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_WonChallenge": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_DefeatedQueen": {
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints": {
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 21
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_LostChallenge": {
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 18
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_Attendant": {
+      "kind": "script",
+      "line": 93,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge": {
+      "kind": "script",
+      "line": 100,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge": {
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 23
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_SaveBeforeChallenge": {
+      "kind": "script",
+      "line": 135,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 27
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_ExplainChallenge": {
+      "kind": "script",
+      "line": 164,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMons": {
+      "kind": "script",
+      "line": 168,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50": {
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen": {
+      "kind": "script",
+      "line": 179,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_CancelChallengeSaveFailed": {
+      "kind": "script",
+      "line": 185,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge": {
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge": {
+      "kind": "script",
+      "line": 192,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge": {
+      "kind": "script",
+      "line": 194,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_ShowResults": {
+      "kind": "script",
+      "line": 198,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_WalkToCorridor": {
+      "kind": "script",
+      "line": 206,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeLobby_Movement_PlayerWalkToCorridor": {
+      "kind": "movement",
+      "line": 212,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Movement_AttendantWalkToCorridor": {
+      "kind": "movement",
+      "line": 214,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_Hiker": {
+      "kind": "script",
+      "line": 220,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_Twin": {
+      "kind": "script",
+      "line": 224,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_Beauty": {
+      "kind": "script",
+      "line": 228,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_RulesBoard": {
+      "kind": "script",
+      "line": 232,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard": {
+      "kind": "script",
+      "line": 238,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 10
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_RulesPokenavBag": {
+      "kind": "script",
+      "line": 250,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_RulesHeldItems": {
+      "kind": "script",
+      "line": 255,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_RulesMonOrder": {
+      "kind": "script",
+      "line": 260,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_ExitRules": {
+      "kind": "script",
+      "line": 265,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattlePike_EventScript_CloseCurtain": {
+      "kind": "script",
+      "line": 269,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattlePikeLobby_Text_WelcomeToBattlePike": {
+      "kind": "text",
+      "line": 276,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_TakeChallenge": {
+      "kind": "text",
+      "line": 279,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ExplainBattlePike": {
+      "kind": "text",
+      "line": 282,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou": {
+      "kind": "text",
+      "line": 285,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_WhichChallengeMode": {
+      "kind": "text",
+      "line": 288,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLv50": {
+      "kind": "text",
+      "line": 291,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsEnd": {
+      "kind": "text",
+      "line": 294,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLvOpen": {
+      "kind": "text",
+      "line": 297,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_PleaseChooseThreeMons": {
+      "kind": "text",
+      "line": 300,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_SaveBeforeChallenge": {
+      "kind": "text",
+      "line": 303,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_StepThisWay": {
+      "kind": "text",
+      "line": 306,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ChallengeEndedRecordResults": {
+      "kind": "text",
+      "line": 309,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_PossessLuckInAbundance": {
+      "kind": "text",
+      "line": 312,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ShallRecordResults": {
+      "kind": "text",
+      "line": 315,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints2": {
+      "kind": "text",
+      "line": 319,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ReachedBattlePointLimit": {
+      "kind": "text",
+      "line": 323,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_FailedToSaveBeforeQuitting": {
+      "kind": "text",
+      "line": 326,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_SnatchedVictoryFromQueen": {
+      "kind": "text",
+      "line": 329,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints": {
+      "kind": "text",
+      "line": 332,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_OneRoomAwayFromGoal": {
+      "kind": "text",
+      "line": 335,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_NeverHadToBattleTrainer": {
+      "kind": "text",
+      "line": 338,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ThinkAbilitiesUsefulHere": {
+      "kind": "text",
+      "line": 341,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_TrainersWhicheverPathIChoose": {
+      "kind": "text",
+      "line": 345,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_RulesAreListed": {
+      "kind": "text",
+      "line": 348,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ReadWhichHeading": {
+      "kind": "text",
+      "line": 351,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ExplainPokenavBagRules": {
+      "kind": "text",
+      "line": 354,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ExplainHeldItemRules": {
+      "kind": "text",
+      "line": 357,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules": {
+      "kind": "text",
+      "line": 360,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "BattleFrontier_BattlePikeLobby_MapScripts": {
+      "label": "BattleFrontier_BattlePikeLobby_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "BattleFrontier_BattlePikeLobby_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattlePikeLobby_OnFrame",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "BattleFrontier_BattlePikeLobby_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattlePikeLobby_OnWarp",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_OnFrame": {
+      "label": "BattleFrontier_BattlePikeLobby_OnFrame",
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "0",
+            "BattleFrontier_BattlePikeLobby_EventScript_GetChallengeStatus"
+          ],
+          "line": 7,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, 0, BattleFrontier_BattlePikeLobby_EventScript_GetChallengeStatus",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_SAVING",
+            "BattleFrontier_BattlePikeLobby_EventScript_QuitWithoutSaving"
+          ],
+          "line": 8,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING, BattleFrontier_BattlePikeLobby_EventScript_QuitWithoutSaving",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_WON",
+            "BattleFrontier_BattlePikeLobby_EventScript_WonChallenge"
+          ],
+          "line": 9,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_WON, BattleFrontier_BattlePikeLobby_EventScript_WonChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_LOST",
+            "BattleFrontier_BattlePikeLobby_EventScript_LostChallenge"
+          ],
+          "line": 10,
+          "raw": "map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST, BattleFrontier_BattlePikeLobby_EventScript_LostChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 11,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_OnWarp": {
+      "label": "BattleFrontier_BattlePikeLobby_OnWarp",
+      "kind": "map_script_table",
+      "line": 13,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "BattleFrontier_BattlePikeLobby_EventScript_TurnPlayerNorth"
+          ],
+          "line": 14,
+          "raw": "map_script_2 VAR_TEMP_1, 0, BattleFrontier_BattlePikeLobby_EventScript_TurnPlayerNorth",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 15,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_TurnPlayerNorth": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_TurnPlayerNorth",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 18,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 19,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_GetChallengeStatus": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_GetChallengeStatus",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_getstatus",
+          "args": [],
+          "line": 23,
+          "raw": "frontier_getstatus",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_QuitWithoutSaving": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_QuitWithoutSaving",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 27,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_resethelditems",
+          "args": [],
+          "line": 28,
+          "raw": "pike_resethelditems",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 29,
+          "raw": "lockall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_FailedToSaveBeforeQuitting",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 30,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_FailedToSaveBeforeQuitting, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 31,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_set",
+          "args": [
+            "PIKE_DATA_WIN_STREAK",
+            "0"
+          ],
+          "line": 32,
+          "raw": "pike_set PIKE_DATA_WIN_STREAK, 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_set",
+          "args": [
+            "PIKE_DATA_WIN_STREAK_ACTIVE",
+            "FALSE"
+          ],
+          "line": 33,
+          "raw": "pike_set PIKE_DATA_WIN_STREAK_ACTIVE, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 34,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 35,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 36,
+          "raw": "releaseall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_FailedToSaveBeforeQuitting",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 30
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_WonChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_WonChallenge",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 40,
+          "raw": "lockall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_isbrain",
+          "args": [],
+          "line": 41,
+          "raw": "frontier_isbrain",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattlePikeLobby_EventScript_DefeatedQueen"
+          ],
+          "line": 42,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, BattleFrontier_BattlePikeLobby_EventScript_DefeatedQueen",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_PossessLuckInAbundance",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 43,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_PossessLuckInAbundance, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 44,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints"
+          ],
+          "line": 45,
+          "raw": "goto BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_PossessLuckInAbundance",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 43
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_DefeatedQueen",
+          "line": 42
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints",
+          "line": 45
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_DefeatedQueen": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_DefeatedQueen",
+      "kind": "script",
+      "line": 47,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_SnatchedVictoryFromQueen",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 48,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_SnatchedVictoryFromQueen, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 49,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_SnatchedVictoryFromQueen",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 48
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints",
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 51,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_givepoints",
+          "args": [],
+          "line": 52,
+          "raw": "frontier_givepoints",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_Text_ObtainedXBattlePoints",
+            "MSGBOX_GETPOINTS"
+          ],
+          "line": 53,
+          "raw": "msgbox BattleFrontier_Text_ObtainedXBattlePoints, MSGBOX_GETPOINTS",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_checkairshow",
+          "args": [],
+          "line": 54,
+          "raw": "frontier_checkairshow",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_get",
+          "args": [
+            "PIKE_DATA_TOTAL_STREAKS"
+          ],
+          "line": 55,
+          "raw": "pike_get PIKE_DATA_TOTAL_STREAKS",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 56,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_set",
+          "args": [
+            "PIKE_DATA_TOTAL_STREAKS",
+            "VAR_RESULT"
+          ],
+          "line": 57,
+          "raw": "pike_set PIKE_DATA_TOTAL_STREAKS, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 58,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 59,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "callnative",
+          "args": [
+            "UpdateFollowingPokemon"
+          ],
+          "line": 60,
+          "raw": "callnative UpdateFollowingPokemon",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_resethelditems",
+          "args": [],
+          "line": 61,
+          "raw": "pike_resethelditems",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_ShallRecordResults"
+          ],
+          "line": 62,
+          "raw": "message BattleFrontier_BattlePikeLobby_Text_ShallRecordResults",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 63,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_save",
+          "args": [
+            "0"
+          ],
+          "line": 64,
+          "raw": "pike_save 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 65,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 66,
+          "raw": "waitse",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 67,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 68,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 69,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 70,
+          "raw": "releaseall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 71,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 51
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_Text_ObtainedXBattlePoints",
+          "mode": "MSGBOX_GETPOINTS",
+          "line": 53
+        },
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_ShallRecordResults",
+          "mode": "",
+          "line": 62
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 67
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_LostChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_LostChallenge",
+      "kind": "script",
+      "line": 73,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 74,
+          "raw": "lockall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_ChallengeEndedRecordResults"
+          ],
+          "line": 75,
+          "raw": "message BattleFrontier_BattlePikeLobby_Text_ChallengeEndedRecordResults",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 76,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_checkairshow",
+          "args": [],
+          "line": 77,
+          "raw": "frontier_checkairshow",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM",
+            "0"
+          ],
+          "line": 78,
+          "raw": "frontier_set FRONTIER_DATA_BATTLE_NUM, 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_set",
+          "args": [
+            "PIKE_DATA_WIN_STREAK_ACTIVE",
+            "FALSE"
+          ],
+          "line": 79,
+          "raw": "pike_set PIKE_DATA_WIN_STREAK_ACTIVE, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 80,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 81,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "callnative",
+          "args": [
+            "UpdateFollowingPokemon"
+          ],
+          "line": 82,
+          "raw": "callnative UpdateFollowingPokemon",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_resethelditems",
+          "args": [],
+          "line": 83,
+          "raw": "pike_resethelditems",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_save",
+          "args": [
+            "0"
+          ],
+          "line": 84,
+          "raw": "pike_save 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 85,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 86,
+          "raw": "waitse",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 87,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 88,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 89,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 90,
+          "raw": "releaseall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 91,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_ChallengeEndedRecordResults",
+          "mode": "",
+          "line": 75
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 87
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_Attendant": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_Attendant",
+      "kind": "script",
+      "line": 93,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 94,
+          "raw": "lock",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 95,
+          "raw": "faceplayer",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_FRONTIER_FACILITY",
+            "FRONTIER_FACILITY_PIKE"
+          ],
+          "line": 96,
+          "raw": "setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_PIKE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_FRONTIER_BATTLE_MODE",
+            "FRONTIER_MODE_SINGLES"
+          ],
+          "line": 97,
+          "raw": "setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SavePlayerParty"
+          ],
+          "line": 98,
+          "raw": "special SavePlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_WelcomeToBattlePike",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 99,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_WelcomeToBattlePike, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_WelcomeToBattlePike",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 99
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge",
+      "kind": "script",
+      "line": 100,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_TakeChallenge"
+          ],
+          "line": 101,
+          "raw": "message BattleFrontier_BattlePikeLobby_Text_TakeChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 102,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "17",
+            "6",
+            "MULTI_CHALLENGEINFO",
+            "FALSE"
+          ],
+          "line": 103,
+          "raw": "multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 104,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge"
+          ],
+          "line": 105,
+          "raw": "case 0, BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattlePikeLobby_EventScript_ExplainChallenge"
+          ],
+          "line": 106,
+          "raw": "case 1, BattleFrontier_BattlePikeLobby_EventScript_ExplainChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge"
+          ],
+          "line": 107,
+          "raw": "case 2, BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge"
+          ],
+          "line": 108,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_TakeChallenge",
+          "mode": "",
+          "line": 101
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge",
+      "kind": "script",
+      "line": 110,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_WhichChallengeMode"
+          ],
+          "line": 111,
+          "raw": "message BattleFrontier_BattlePikeLobby_Text_WhichChallengeMode",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 112,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "17",
+            "6",
+            "MULTI_LEVEL_MODE",
+            "FALSE"
+          ],
+          "line": 113,
+          "raw": "multichoice 17, 6, MULTI_LEVEL_MODE, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 114,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_LVL_TENT",
+            "BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge"
+          ],
+          "line": 115,
+          "raw": "case FRONTIER_LVL_TENT, BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge"
+          ],
+          "line": 116,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_checkineligible",
+          "args": [],
+          "line": 117,
+          "raw": "frontier_checkineligible",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_0x8004",
+            "TRUE",
+            "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMons"
+          ],
+          "line": 118,
+          "raw": "goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMons",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_LVL_MODE",
+            "VAR_RESULT"
+          ],
+          "line": 119,
+          "raw": "frontier_set FRONTIER_DATA_LVL_MODE, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_PleaseChooseThreeMons",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 120,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_PleaseChooseThreeMons, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 121,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "callnative",
+          "args": [
+            "RemoveFollowingPokemon"
+          ],
+          "line": 122,
+          "raw": "callnative RemoveFollowingPokemon",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_EventScript_GetLvlMode"
+          ],
+          "line": 123,
+          "raw": "call BattleFrontier_EventScript_GetLvlMode",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_0x8004",
+            "VAR_RESULT"
+          ],
+          "line": 124,
+          "raw": "copyvar VAR_0x8004, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "FRONTIER_PARTY_SIZE"
+          ],
+          "line": 125,
+          "raw": "setvar VAR_0x8005, FRONTIER_PARTY_SIZE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ChoosePartyForBattleFrontier"
+          ],
+          "line": 126,
+          "raw": "special ChoosePartyForBattleFrontier",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 127,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge"
+          ],
+          "line": 128,
+          "raw": "goto_if_eq VAR_RESULT, 0, BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_SaveBeforeChallenge",
+            "MSGBOX_YESNO"
+          ],
+          "line": 129,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_SaveBeforeChallenge, MSGBOX_YESNO",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 130,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "NO",
+            "BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge"
+          ],
+          "line": 131,
+          "raw": "case NO, BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "YES",
+            "BattleFrontier_BattlePikeLobby_EventScript_SaveBeforeChallenge"
+          ],
+          "line": 132,
+          "raw": "case YES, BattleFrontier_BattlePikeLobby_EventScript_SaveBeforeChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge"
+          ],
+          "line": 133,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_WhichChallengeMode",
+          "mode": "",
+          "line": 111
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_PleaseChooseThreeMons",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 120
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_SaveBeforeChallenge",
+          "mode": "MSGBOX_YESNO",
+          "line": 129
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMons",
+          "line": 118
+        },
+        {
+          "op": "call",
+          "target": "BattleFrontier_EventScript_GetLvlMode",
+          "line": 123
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge",
+          "line": 128
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_SaveBeforeChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_SaveBeforeChallenge",
+      "kind": "script",
+      "line": 135,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 136,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "0"
+          ],
+          "line": 137,
+          "raw": "setvar VAR_TEMP_1, 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_SELECTED_MON_ORDER"
+          ],
+          "line": 138,
+          "raw": "frontier_set FRONTIER_DATA_SELECTED_MON_ORDER",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_init",
+          "args": [],
+          "line": 139,
+          "raw": "pike_init",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_SAVING"
+          ],
+          "line": 140,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_set",
+          "args": [
+            "PIKE_DATA_WIN_STREAK_ACTIVE",
+            "TRUE"
+          ],
+          "line": 141,
+          "raw": "pike_set PIKE_DATA_WIN_STREAK_ACTIVE, TRUE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_savehelditems",
+          "args": [],
+          "line": 142,
+          "raw": "pike_savehelditems",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_PAUSED",
+            "FALSE"
+          ],
+          "line": 143,
+          "raw": "frontier_set FRONTIER_DATA_PAUSED, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 144,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 145,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "2"
+          ],
+          "line": 146,
+          "raw": "delay 2",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_SaveGame"
+          ],
+          "line": 147,
+          "raw": "call Common_EventScript_SaveGame",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "255"
+          ],
+          "line": 148,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 255",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "pike_savehelditems",
+          "args": [],
+          "line": 149,
+          "raw": "pike_savehelditems",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "BattleFrontier_BattlePikeLobby_EventScript_CancelChallengeSaveFailed"
+          ],
+          "line": 150,
+          "raw": "goto_if_eq VAR_RESULT, 0, BattleFrontier_BattlePikeLobby_EventScript_CancelChallengeSaveFailed",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "SavePlayerParty"
+          ],
+          "line": 151,
+          "raw": "special SavePlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_setpartyorder",
+          "args": [
+            "FRONTIER_PARTY_SIZE"
+          ],
+          "line": 152,
+          "raw": "frontier_setpartyorder FRONTIER_PARTY_SIZE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_StepThisWay",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 153,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_StepThisWay, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 154,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_settrainers",
+          "args": [],
+          "line": 155,
+          "raw": "frontier_settrainers",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_EventScript_WalkToCorridor"
+          ],
+          "line": 156,
+          "raw": "call BattleFrontier_BattlePikeLobby_EventScript_WalkToCorridor",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 157,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattlePike_EventScript_CloseCurtain"
+          ],
+          "line": 158,
+          "raw": "call BattleFrontier_BattlePike_EventScript_CloseCurtain",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "warpsilent",
+          "args": [
+            "MAP_BATTLE_FRONTIER_BATTLE_PIKE_CORRIDOR",
+            "6",
+            "7"
+          ],
+          "line": 159,
+          "raw": "warpsilent MAP_BATTLE_FRONTIER_BATTLE_PIKE_CORRIDOR, 6, 7",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 160,
+          "raw": "setvar VAR_TEMP_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 161,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 162,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_StepThisWay",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 153
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_SaveGame",
+          "line": 147
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_CancelChallengeSaveFailed",
+          "line": 150
+        },
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_WalkToCorridor",
+          "line": 156
+        },
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattlePike_EventScript_CloseCurtain",
+          "line": 158
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_ExplainChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_ExplainChallenge",
+      "kind": "script",
+      "line": 164,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_ExplainBattlePike",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 165,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_ExplainBattlePike, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge"
+          ],
+          "line": 166,
+          "raw": "goto BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_ExplainBattlePike",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 165
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge",
+          "line": 166
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMons": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMons",
+      "kind": "script",
+      "line": 168,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 169,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_LVL_50",
+            "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50"
+          ],
+          "line": 170,
+          "raw": "case FRONTIER_LVL_50, BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "FRONTIER_LVL_OPEN",
+            "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen"
+          ],
+          "line": 171,
+          "raw": "case FRONTIER_LVL_OPEN, BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50",
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLv50",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 174,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLv50, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_ShowCaughtBannedSpecies"
+          ],
+          "line": 175,
+          "raw": "call BattleFrontier_ShowCaughtBannedSpecies",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsEnd",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 176,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge"
+          ],
+          "line": 177,
+          "raw": "goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLv50",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 174
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsEnd",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 176
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_ShowCaughtBannedSpecies",
+          "line": 175
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge",
+          "line": 177
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen",
+      "kind": "script",
+      "line": 179,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLvOpen",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 180,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLvOpen, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_ShowCaughtBannedSpecies"
+          ],
+          "line": 181,
+          "raw": "call BattleFrontier_ShowCaughtBannedSpecies",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsEnd",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 182,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge"
+          ],
+          "line": 183,
+          "raw": "goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLvOpen",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 180
+        },
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsEnd",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 182
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_ShowCaughtBannedSpecies",
+          "line": 181
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge",
+          "line": 183
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_CancelChallengeSaveFailed": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_CancelChallengeSaveFailed",
+      "kind": "script",
+      "line": 185,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "0"
+          ],
+          "line": 186,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge"
+          ],
+          "line": 187,
+          "raw": "goto BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge",
+          "line": 187
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge",
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 190,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "callnative",
+          "args": [
+            "UpdateFollowingPokemon"
+          ],
+          "line": 191,
+          "raw": "callnative UpdateFollowingPokemon",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge",
+      "kind": "script",
+      "line": 192,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 193,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 193
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge",
+      "kind": "script",
+      "line": 194,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "release",
+          "args": [],
+          "line": 195,
+          "raw": "release",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 196,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_ShowResults": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_ShowResults",
+      "kind": "script",
+      "line": 198,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 199,
+          "raw": "lockall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "frontier_results",
+          "args": [
+            "FRONTIER_FACILITY_PIKE"
+          ],
+          "line": 200,
+          "raw": "frontier_results FRONTIER_FACILITY_PIKE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 201,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "RemoveRecordsWindow"
+          ],
+          "line": 202,
+          "raw": "special RemoveRecordsWindow",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 203,
+          "raw": "releaseall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 204,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_WalkToCorridor": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_WalkToCorridor",
+      "kind": "script",
+      "line": 206,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PIKE_LOBBY_ATTENDANT",
+            "BattleFrontier_BattlePikeLobby_Movement_AttendantWalkToCorridor"
+          ],
+          "line": 207,
+          "raw": "applymovement LOCALID_PIKE_LOBBY_ATTENDANT, BattleFrontier_BattlePikeLobby_Movement_AttendantWalkToCorridor",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "BattleFrontier_BattlePikeLobby_Movement_PlayerWalkToCorridor"
+          ],
+          "line": 208,
+          "raw": "applymovement LOCALID_PLAYER, BattleFrontier_BattlePikeLobby_Movement_PlayerWalkToCorridor",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 209,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 210,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_Hiker": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_Hiker",
+      "kind": "script",
+      "line": 220,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_OneRoomAwayFromGoal",
+            "MSGBOX_NPC"
+          ],
+          "line": 221,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_OneRoomAwayFromGoal, MSGBOX_NPC",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 222,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_OneRoomAwayFromGoal",
+          "mode": "MSGBOX_NPC",
+          "line": 221
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_Twin": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_Twin",
+      "kind": "script",
+      "line": 224,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_NeverHadToBattleTrainer",
+            "MSGBOX_NPC"
+          ],
+          "line": 225,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_NeverHadToBattleTrainer, MSGBOX_NPC",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 226,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_NeverHadToBattleTrainer",
+          "mode": "MSGBOX_NPC",
+          "line": 225
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_Beauty": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_Beauty",
+      "kind": "script",
+      "line": 228,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_ThinkAbilitiesUsefulHere",
+            "MSGBOX_NPC"
+          ],
+          "line": 229,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_ThinkAbilitiesUsefulHere, MSGBOX_NPC",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 230,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_ThinkAbilitiesUsefulHere",
+          "mode": "MSGBOX_NPC",
+          "line": 229
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_RulesBoard": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_RulesBoard",
+      "kind": "script",
+      "line": 232,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 233,
+          "raw": "lockall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_RulesAreListed",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 234,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_RulesAreListed, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 235,
+          "raw": "goto BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 236,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_RulesAreListed",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 234
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard",
+          "line": 235
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard",
+      "kind": "script",
+      "line": 238,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_ReadWhichHeading"
+          ],
+          "line": 239,
+          "raw": "message BattleFrontier_BattlePikeLobby_Text_ReadWhichHeading",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 240,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "16",
+            "4",
+            "MULTI_BATTLE_PIKE_RULES",
+            "FALSE"
+          ],
+          "line": 241,
+          "raw": "multichoice 16, 4, MULTI_BATTLE_PIKE_RULES, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 242,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattlePikeLobby_EventScript_RulesPokenavBag"
+          ],
+          "line": 243,
+          "raw": "case 0, BattleFrontier_BattlePikeLobby_EventScript_RulesPokenavBag",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattlePikeLobby_EventScript_RulesHeldItems"
+          ],
+          "line": 244,
+          "raw": "case 1, BattleFrontier_BattlePikeLobby_EventScript_RulesHeldItems",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "BattleFrontier_BattlePikeLobby_EventScript_RulesMonOrder"
+          ],
+          "line": 245,
+          "raw": "case 2, BattleFrontier_BattlePikeLobby_EventScript_RulesMonOrder",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "BattleFrontier_BattlePikeLobby_EventScript_ExitRules"
+          ],
+          "line": 246,
+          "raw": "case 3, BattleFrontier_BattlePikeLobby_EventScript_ExitRules",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattlePikeLobby_EventScript_ExitRules"
+          ],
+          "line": 247,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattlePikeLobby_EventScript_ExitRules",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 248,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_ReadWhichHeading",
+          "mode": "",
+          "line": 239
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_RulesPokenavBag": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_RulesPokenavBag",
+      "kind": "script",
+      "line": 250,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_ExplainPokenavBagRules",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 251,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_ExplainPokenavBagRules, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 252,
+          "raw": "goto BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 253,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_ExplainPokenavBagRules",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 251
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard",
+          "line": 252
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_RulesHeldItems": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_RulesHeldItems",
+      "kind": "script",
+      "line": 255,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_ExplainHeldItemRules",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 256,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_ExplainHeldItemRules, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 257,
+          "raw": "goto BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 258,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_ExplainHeldItemRules",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 256
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard",
+          "line": 257
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_RulesMonOrder": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_RulesMonOrder",
+      "kind": "script",
+      "line": 260,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 261,
+          "raw": "msgbox BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard"
+          ],
+          "line": 262,
+          "raw": "goto BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 263,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 261
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattlePikeLobby_EventScript_ReadRulesBoard",
+          "line": 262
+        }
+      ]
+    },
+    "BattleFrontier_BattlePikeLobby_EventScript_ExitRules": {
+      "label": "BattleFrontier_BattlePikeLobby_EventScript_ExitRules",
+      "kind": "script",
+      "line": 265,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 266,
+          "raw": "releaseall",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 267,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePike_EventScript_CloseCurtain": {
+      "label": "BattleFrontier_BattlePike_EventScript_CloseCurtain",
+      "kind": "script",
+      "line": 269,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIKE_CURTAIN_CLOSE"
+          ],
+          "line": 270,
+          "raw": "playse SE_PIKE_CURTAIN_CLOSE",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "CloseBattlePikeCurtain"
+          ],
+          "line": 271,
+          "raw": "special CloseBattlePikeCurtain",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 272,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 273,
+          "raw": "waitse",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 274,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "BattleFrontier_BattlePikeLobby_Movement_PlayerWalkToCorridor": {
+      "label": "BattleFrontier_BattlePikeLobby_Movement_PlayerWalkToCorridor",
+      "kind": "movement",
+      "line": 212,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 213,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattlePikeLobby_Movement_AttendantWalkToCorridor": {
+      "label": "BattleFrontier_BattlePikeLobby_Movement_AttendantWalkToCorridor",
+      "kind": "movement",
+      "line": 214,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 215,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 216,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 217,
+          "raw": "set_invisible",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 218,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "BattleFrontier_BattlePikeLobby_Text_WelcomeToBattlePike": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_WelcomeToBattlePike",
+      "line": 276,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "训练家的运气\\n将在此接受考验……\\p欢迎来到对战管道……\\p我是您对战管道的向导……$",
+      "display_text": "训练家的运气\n将在此接受考验……\n\n欢迎来到对战管道……\n\n我是您对战管道的向导……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 72,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          11,
+          15,
+          215,
+          10,
+          179,
+          254,
+          5,
+          244,
+          15,
+          230,
+          2,
+          171,
+          7,
+          37,
+          12,
+          33,
+          7,
+          202,
+          14,
+          210,
+          176,
+          176,
+          251,
+          5,
+          67,
+          15,
+          91,
+          8,
+          41,
+          3,
+          4,
+          3,
+          121,
+          16,
+          48,
+          4,
+          164,
+          3,
+          7,
+          176,
+          176,
+          251,
+          13,
+          152,
+          12,
+          12,
+          9,
+          240,
+          3,
+          121,
+          16,
+          48,
+          4,
+          164,
+          3,
+          7,
+          3,
+          11,
+          14,
+          31,
+          3,
+          3,
+          176,
+          176,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 03 0B 0F D7 0A B3 FE 05 F4 0F E6 02 AB 07 25 0C 21 07 CA 0E D2 B0 B0 FB 05 43 0F 5B 08 29 03 04 03 79 10 30 04 A4 03 07 B0 B0 FB 0D 98 0C 0C 09 F0 03 79 10 30 04 A4 03 07 03 0B 0E 1F 03 03 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 43,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_TakeChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_TakeChallenge",
+      "line": 279,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "要挑战对战管道吗？$",
+      "display_text": "要挑战对战管道吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          14,
+          241,
+          12,
+          245,
+          16,
+          48,
+          3,
+          121,
+          16,
+          48,
+          4,
+          164,
+          3,
+          7,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0E F1 0C F5 10 30 03 79 10 30 04 A4 03 07 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ExplainBattlePike": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_ExplainBattlePike",
+      "line": 282,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "这里举办名为\\n选择式对战的比赛。\\p选择式对战的规则\\n很简单……\\p在3条道路中选择1条\\n抵达对战管道最后的终点房间。\\l仅此而已。\\p然而，在选择的道路上会\\n发生什么事完全取决于\\l挑战者的运气……\\p如果您达到了终点，\\n我们将向您呈上对战点数。\\p如果您在挑战中想要暂停的话，\\n请与途中大房间中的工作人员沟通。\\p如果在暂停之前没有写入记录，\\n我们将视挑战为无效。$",
+      "display_text": "这里举办名为\n选择式对战的比赛。\n\n选择式对战的规则\n很简单……\n\n在3条道路中选择1条\n抵达对战管道最后的终点房间。\n仅此而已。\n\n然而，在选择的道路上会\n发生什么事完全取决于\n挑战者的运气……\n\n如果您达到了终点，\n我们将向您呈上对战点数。\n\n如果您在挑战中想要暂停的话，\n请与途中大房间中的工作人员沟通。\n\n如果在暂停之前没有写入记录，\n我们将视挑战为无效。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 322,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          7,
+          137,
+          1,
+          75,
+          9,
+          147,
+          13,
+          112,
+          254,
+          14,
+          138,
+          16,
+          6,
+          12,
+          2,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          1,
+          133,
+          11,
+          124,
+          55,
+          251,
+          14,
+          138,
+          16,
+          6,
+          12,
+          2,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          4,
+          174,
+          16,
+          7,
+          254,
+          5,
+          11,
+          5,
+          221,
+          2,
+          227,
+          176,
+          176,
+          251,
+          15,
+          230,
+          164,
+          12,
+          246,
+          3,
+          7,
+          8,
+          232,
+          16,
+          161,
+          14,
+          138,
+          16,
+          6,
+          162,
+          12,
+          246,
+          254,
+          3,
+          29,
+          2,
+          207,
+          3,
+          121,
+          16,
+          48,
+          4,
+          164,
+          3,
+          7,
+          17,
+          38,
+          5,
+          34,
+          3,
+          11,
+          16,
+          166,
+          3,
+          42,
+          3,
+          194,
+          5,
+          207,
+          55,
+          250,
+          7,
+          72,
+          2,
+          171,
+          3,
+          157,
+          15,
+          33,
+          55,
+          251,
+          11,
+          59,
+          3,
+          157,
+          59,
+          15,
+          230,
+          14,
+          138,
+          16,
+          6,
+          3,
+          11,
+          3,
+          7,
+          8,
+          232,
+          11,
+          173,
+          5,
+          110,
+          254,
+          3,
+          165,
+          11,
+          216,
+          11,
+          238,
+          9,
+          76,
+          12,
+          7,
+          13,
+          82,
+          11,
+          43,
+          11,
+          33,
+          7,
+          166,
+          15,
+          136,
+          250,
+          12,
+          245,
+          16,
+          48,
+          16,
+          82,
+          3,
+          11,
+          15,
+          215,
+          10,
+          179,
+          176,
+          176,
+          251,
+          11,
+          103,
+          4,
+          195,
+          9,
+          240,
+          2,
+          207,
+          3,
+          4,
+          8,
+          158,
+          16,
+          166,
+          3,
+          42,
+          59,
+          254,
+          13,
+          152,
+          9,
+          95,
+          5,
+          244,
+          14,
+          31,
+          9,
+          240,
+          2,
+          76,
+          11,
+          173,
+          3,
+          121,
+          16,
+          48,
+          3,
+          42,
+          12,
+          66,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          9,
+          240,
+          15,
+          230,
+          12,
+          245,
+          16,
+          48,
+          16,
+          161,
+          14,
+          24,
+          14,
+          241,
+          15,
+          233,
+          13,
+          11,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          11,
+          13,
+          15,
+          153,
+          13,
+          38,
+          16,
+          161,
+          2,
+          211,
+          3,
+          194,
+          5,
+          207,
+          16,
+          161,
+          3,
+          11,
+          4,
+          108,
+          17,
+          47,
+          11,
+          75,
+          15,
+          189,
+          4,
+          125,
+          13,
+          16,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          15,
+          230,
+          15,
+          233,
+          13,
+          11,
+          16,
+          127,
+          10,
+          201,
+          9,
+          83,
+          15,
+          126,
+          14,
+          63,
+          11,
+          107,
+          5,
+          178,
+          8,
+          237,
+          59,
+          254,
+          13,
+          152,
+          9,
+          95,
+          5,
+          244,
+          12,
+          24,
+          12,
+          245,
+          16,
+          48,
+          13,
+          112,
+          13,
+          164,
+          14,
+          50,
+          55,
+          255
+        ],
+        "hex": "10 55 08 64 07 89 01 4B 09 93 0D 70 FE 0E 8A 10 06 0C 02 03 79 10 30 03 0B 01 85 0B 7C 37 FB 0E 8A 10 06 0C 02 03 79 10 30 03 0B 04 AE 10 07 FE 05 0B 05 DD 02 E3 B0 B0 FB 0F E6 A4 0C F6 03 07 08 E8 10 A1 0E 8A 10 06 A2 0C F6 FE 03 1D 02 CF 03 79 10 30 04 A4 03 07 11 26 05 22 03 0B 10 A6 03 2A 03 C2 05 CF 37 FA 07 48 02 AB 03 9D 0F 21 37 FB 0B 3B 03 9D 3B 0F E6 0E 8A 10 06 03 0B 03 07 08 E8 0B AD 05 6E FE 03 A5 0B D8 0B EE 09 4C 0C 07 0D 52 0B 2B 0B 21 07 A6 0F 88 FA 0C F5 10 30 10 52 03 0B 0F D7 0A B3 B0 B0 FB 0B 67 04 C3 09 F0 02 CF 03 04 08 9E 10 A6 03 2A 3B FE 0D 98 09 5F 05 F4 0E 1F 09 F0 02 4C 0B AD 03 79 10 30 03 2A 0C 42 37 FB 0B 67 04 C3 09 F0 0F E6 0C F5 10 30 10 A1 0E 18 0E F1 0F E9 0D 0B 03 0B 05 3D 3B FE 0B 0D 0F 99 0D 26 10 A1 02 D3 03 C2 05 CF 10 A1 03 0B 04 6C 11 2F 0B 4B 0F BD 04 7D 0D 10 37 FB 0B 67 04 C3 0F E6 0F E9 0D 0B 10 7F 0A C9 09 53 0F 7E 0E 3F 0B 6B 05 B2 08 ED 3B FE 0D 98 09 5F 05 F4 0C 18 0C F5 10 30 0D 70 0D A4 0E 32 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 34,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 46,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 62,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 69,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 82,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 94,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 104,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 115,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 129,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 145,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 163,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 179,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 191,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou",
+      "line": 285,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "期待您再次光临……$",
+      "display_text": "期待您再次光临……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 17,
+        "bytes": [
+          10,
+          149,
+          2,
+          221,
+          9,
+          240,
+          15,
+          229,
+          2,
+          174,
+          4,
+          170,
+          8,
+          172,
+          176,
+          176,
+          255
+        ],
+        "hex": "0A 95 02 DD 09 F0 0F E5 02 AE 04 AA 08 AC B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_WhichChallengeMode": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_WhichChallengeMode",
+      "line": 288,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "您有2个选择，\\nLv. 50级和自由等级。\\l要挑战哪个？$",
+      "display_text": "您有2个选择，\nLv. 50级和自由等级。\n要挑战哪个？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 45,
+        "bytes": [
+          9,
+          240,
+          15,
+          126,
+          163,
+          4,
+          96,
+          14,
+          138,
+          16,
+          6,
+          59,
+          254,
+          198,
+          234,
+          173,
+          0,
+          166,
+          161,
+          5,
+          161,
+          4,
+          243,
+          17,
+          12,
+          15,
+          119,
+          3,
+          15,
+          5,
+          161,
+          55,
+          250,
+          14,
+          241,
+          12,
+          245,
+          16,
+          48,
+          9,
+          186,
+          4,
+          96,
+          61,
+          255
+        ],
+        "hex": "09 F0 0F 7E A3 04 60 0E 8A 10 06 3B FE C6 EA AD 00 A6 A1 05 A1 04 F3 11 0C 0F 77 03 0F 05 A1 37 FA 0E F1 0C F5 10 30 09 BA 04 60 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 22,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLv50": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLv50",
+      "line": 291,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "冒昧打扰，但……\\p您能够参加对战的\\n宝可梦不满3只。\\p您需要准备3只等级50以内的\\n不同种类的宝可梦，\\p并且让它们分别携带不同道具\\n才可参加对战。\\p此外，蛋{STR_VAR_1}！$",
+      "display_text": "冒昧打扰，但……\n\n您能够参加对战的\n宝可梦不满3只。\n\n您需要准备3只等级50以内的\n不同种类的宝可梦，\n\n并且让它们分别携带不同道具\n才可参加对战。\n\n此外，蛋{STR_VAR_1}！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 142,
+        "bytes": [
+          9,
+          72,
+          9,
+          89,
+          2,
+          210,
+          11,
+          69,
+          59,
+          2,
+          233,
+          176,
+          176,
+          251,
+          9,
+          240,
+          9,
+          210,
+          4,
+          131,
+          1,
+          233,
+          5,
+          190,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          214,
+          9,
+          52,
+          164,
+          16,
+          140,
+          55,
+          251,
+          9,
+          240,
+          14,
+          115,
+          14,
+          241,
+          16,
+          235,
+          1,
+          117,
+          164,
+          16,
+          140,
+          3,
+          15,
+          5,
+          161,
+          166,
+          161,
+          15,
+          36,
+          9,
+          208,
+          3,
+          11,
+          254,
+          1,
+          214,
+          13,
+          20,
+          16,
+          167,
+          8,
+          85,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          251,
+          1,
+          189,
+          10,
+          235,
+          11,
+          67,
+          12,
+          159,
+          9,
+          95,
+          3,
+          217,
+          1,
+          173,
+          14,
+          58,
+          2,
+          216,
+          1,
+          214,
+          13,
+          20,
+          3,
+          7,
+          7,
+          143,
+          254,
+          1,
+          224,
+          7,
+          215,
+          1,
+          233,
+          5,
+          190,
+          3,
+          121,
+          16,
+          48,
+          55,
+          251,
+          2,
+          171,
+          13,
+          74,
+          59,
+          2,
+          238,
+          253,
+          2,
+          60,
+          255
+        ],
+        "hex": "09 48 09 59 02 D2 0B 45 3B 02 E9 B0 B0 FB 09 F0 09 D2 04 83 01 E9 05 BE 03 79 10 30 03 0B FE 01 63 07 D7 09 66 01 D6 09 34 A4 10 8C 37 FB 09 F0 0E 73 0E F1 10 EB 01 75 A4 10 8C 03 0F 05 A1 A6 A1 0F 24 09 D0 03 0B FE 01 D6 0D 14 10 A7 08 55 03 0B 01 63 07 D7 09 66 3B FB 01 BD 0A EB 0B 43 0C 9F 09 5F 03 D9 01 AD 0E 3A 02 D8 01 D6 0D 14 03 07 07 8F FE 01 E0 07 D7 01 E9 05 BE 03 79 10 30 37 FB 02 AB 0D 4A 3B 02 EE FD 02 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 55,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 70,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 79,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 85,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 97,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 85,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsEnd": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsEnd",
+      "line": 294,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "请在准备就绪之后，\\n再来参加吧……$",
+      "display_text": "请在准备就绪之后，\n再来参加吧……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          11,
+          13,
+          15,
+          230,
+          16,
+          235,
+          1,
+          117,
+          7,
+          125,
+          14,
+          130,
+          16,
+          127,
+          5,
+          34,
+          59,
+          254,
+          15,
+          229,
+          8,
+          41,
+          1,
+          233,
+          5,
+          190,
+          1,
+          40,
+          176,
+          176,
+          255
+        ],
+        "hex": "0B 0D 0F E6 10 EB 01 75 07 7D 0E 82 10 7F 05 22 3B FE 0F E5 08 29 01 E9 05 BE 01 28 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLvOpen": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLvOpen",
+      "line": 297,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "冒昧打扰，但……\\p您能够参加对战的\\n宝可梦不满3只。\\p您需要准备3只\\n不同种类的宝可梦，\\p并且让它们分别携带不同道具\\n才可参加对战。\\p此外，蛋{STR_VAR_1}！$",
+      "display_text": "冒昧打扰，但……\n\n您能够参加对战的\n宝可梦不满3只。\n\n您需要准备3只\n不同种类的宝可梦，\n\n并且让它们分别携带不同道具\n才可参加对战。\n\n此外，蛋{STR_VAR_1}！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 130,
+        "bytes": [
+          9,
+          72,
+          9,
+          89,
+          2,
+          210,
+          11,
+          69,
+          59,
+          2,
+          233,
+          176,
+          176,
+          251,
+          9,
+          240,
+          9,
+          210,
+          4,
+          131,
+          1,
+          233,
+          5,
+          190,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          214,
+          9,
+          52,
+          164,
+          16,
+          140,
+          55,
+          251,
+          9,
+          240,
+          14,
+          115,
+          14,
+          241,
+          16,
+          235,
+          1,
+          117,
+          164,
+          16,
+          140,
+          254,
+          1,
+          214,
+          13,
+          20,
+          16,
+          167,
+          8,
+          85,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          251,
+          1,
+          189,
+          10,
+          235,
+          11,
+          67,
+          12,
+          159,
+          9,
+          95,
+          3,
+          217,
+          1,
+          173,
+          14,
+          58,
+          2,
+          216,
+          1,
+          214,
+          13,
+          20,
+          3,
+          7,
+          7,
+          143,
+          254,
+          1,
+          224,
+          7,
+          215,
+          1,
+          233,
+          5,
+          190,
+          3,
+          121,
+          16,
+          48,
+          55,
+          251,
+          2,
+          171,
+          13,
+          74,
+          59,
+          2,
+          238,
+          253,
+          2,
+          60,
+          255
+        ],
+        "hex": "09 48 09 59 02 D2 0B 45 3B 02 E9 B0 B0 FB 09 F0 09 D2 04 83 01 E9 05 BE 03 79 10 30 03 0B FE 01 63 07 D7 09 66 01 D6 09 34 A4 10 8C 37 FB 09 F0 0E 73 0E F1 10 EB 01 75 A4 10 8C FE 01 D6 0D 14 10 A7 08 55 03 0B 01 63 07 D7 09 66 3B FB 01 BD 0A EB 0B 43 0C 9F 09 5F 03 D9 01 AD 0E 3A 02 D8 01 D6 0D 14 03 07 07 8F FE 01 E0 07 D7 01 E9 05 BE 03 79 10 30 37 FB 02 AB 0D 4A 3B 02 EE FD 02 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 37,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 48,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 63,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 72,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{STR_VAR_1}",
+            "offset": 78,
+            "bytes": [
+              253,
+              2
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "STR_VAR_1",
+                "bytes": [
+                  253,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 90,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "STR_VAR_1",
+            "offset": 78,
+            "bytes": [
+              253,
+              2
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_PleaseChooseThreeMons": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_PleaseChooseThreeMons",
+      "line": 300,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "请选择要参加挑战的\\n3只宝可梦……$",
+      "display_text": "请选择要参加挑战的\n3只宝可梦……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          11,
+          13,
+          14,
+          138,
+          16,
+          6,
+          14,
+          241,
+          1,
+          233,
+          5,
+          190,
+          12,
+          245,
+          16,
+          48,
+          3,
+          11,
+          254,
+          164,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          176,
+          176,
+          255
+        ],
+        "hex": "0B 0D 0E 8A 10 06 0E F1 01 E9 05 BE 0C F5 10 30 03 0B FE A4 10 8C 01 63 07 D7 09 66 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_SaveBeforeChallenge": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_SaveBeforeChallenge",
+      "line": 303,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "在开始对战之前，\\n需要先写入记录。\\l可以吗？$",
+      "display_text": "在开始对战之前，\n需要先写入记录。\n可以吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          15,
+          230,
+          7,
+          184,
+          12,
+          1,
+          3,
+          121,
+          16,
+          48,
+          16,
+          127,
+          10,
+          201,
+          59,
+          254,
+          14,
+          115,
+          14,
+          241,
+          13,
+          236,
+          14,
+          63,
+          11,
+          107,
+          5,
+          178,
+          8,
+          237,
+          55,
+          250,
+          7,
+          215,
+          15,
+          36,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0F E6 07 B8 0C 01 03 79 10 30 10 7F 0A C9 3B FE 0E 73 0E F1 0D EC 0E 3F 0B 6B 05 B2 08 ED 37 FA 07 D7 0F 24 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 18,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_StepThisWay": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_StepThisWay",
+      "line": 306,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "这边请……$",
+      "display_text": "这边请……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 9,
+        "bytes": [
+          16,
+          85,
+          1,
+          156,
+          11,
+          13,
+          176,
+          176,
+          255
+        ],
+        "hex": "10 55 01 9C 0B 0D B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 5,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ChallengeEndedRecordResults": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_ChallengeEndedRecordResults",
+      "line": 309,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "您的挑战已结束……\\p正在记录结果。\\n请稍等……$",
+      "display_text": "您的挑战已结束……\n\n正在记录结果。\n请稍等……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 40,
+        "bytes": [
+          9,
+          240,
+          3,
+          11,
+          12,
+          245,
+          16,
+          48,
+          15,
+          33,
+          7,
+          51,
+          12,
+          61,
+          176,
+          176,
+          251,
+          16,
+          112,
+          15,
+          230,
+          5,
+          178,
+          8,
+          237,
+          7,
+          51,
+          4,
+          195,
+          55,
+          254,
+          11,
+          13,
+          11,
+          178,
+          3,
+          15,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 F0 03 0B 0C F5 10 30 0F 21 07 33 0C 3D B0 B0 FB 10 70 0F E6 05 B2 08 ED 07 33 04 C3 37 FE 0B 0D 0B B2 03 0F B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_PossessLuckInAbundance": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_PossessLuckInAbundance",
+      "line": 312,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "您完成了挑战……\\p不得不说……您好像拥有\\n非凡的运气……$",
+      "display_text": "您完成了挑战……\n\n不得不说……您好像拥有\n非凡的运气……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 49,
+        "bytes": [
+          9,
+          240,
+          13,
+          82,
+          2,
+          75,
+          8,
+          158,
+          12,
+          245,
+          16,
+          48,
+          176,
+          176,
+          251,
+          1,
+          214,
+          3,
+          10,
+          1,
+          214,
+          12,
+          88,
+          176,
+          176,
+          9,
+          240,
+          4,
+          233,
+          14,
+          30,
+          15,
+          99,
+          15,
+          126,
+          254,
+          3,
+          202,
+          3,
+          181,
+          3,
+          11,
+          15,
+          215,
+          10,
+          179,
+          176,
+          176,
+          255
+        ],
+        "hex": "09 F0 0D 52 02 4B 08 9E 0C F5 10 30 B0 B0 FB 01 D6 03 0A 01 D6 0C 58 B0 B0 09 F0 04 E9 0E 1E 0F 63 0F 7E FE 03 CA 03 B5 03 0B 0F D7 0A B3 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ShallRecordResults": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_ShallRecordResults",
+      "line": 315,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "正在记录结果。\\n请稍等……$",
+      "display_text": "正在记录结果。\n请稍等……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          16,
+          112,
+          15,
+          230,
+          5,
+          178,
+          8,
+          237,
+          7,
+          51,
+          4,
+          195,
+          55,
+          254,
+          11,
+          13,
+          11,
+          178,
+          3,
+          15,
+          176,
+          176,
+          255
+        ],
+        "hex": "10 70 0F E6 05 B2 08 ED 07 33 04 C3 37 FE 0B 0D 0B B2 03 0F B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints2": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints2",
+      "line": 319,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "为祝贺您完成对战管道的挑战，\\n我们将向您呈上对战点数……$",
+      "display_text": "为祝贺您完成对战管道的挑战，\n我们将向您呈上对战点数……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 53,
+        "bytes": [
+          13,
+          112,
+          16,
+          210,
+          5,
+          7,
+          9,
+          240,
+          13,
+          82,
+          2,
+          75,
+          3,
+          121,
+          16,
+          48,
+          4,
+          164,
+          3,
+          7,
+          3,
+          11,
+          12,
+          245,
+          16,
+          48,
+          59,
+          254,
+          13,
+          152,
+          9,
+          95,
+          5,
+          244,
+          14,
+          31,
+          9,
+          240,
+          2,
+          76,
+          11,
+          173,
+          3,
+          121,
+          16,
+          48,
+          3,
+          42,
+          12,
+          66,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 70 10 D2 05 07 09 F0 0D 52 02 4B 03 79 10 30 04 A4 03 07 03 0B 0C F5 10 30 3B FE 0D 98 09 5F 05 F4 0E 1F 09 F0 02 4C 0B AD 03 79 10 30 03 2A 0C 42 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ReachedBattlePointLimit": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_ReachedBattlePointLimit",
+      "line": 323,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "看起来您的对战点数\\n已经达到上限……\\p请用对战点数\\n兑换奖品后再回来……$",
+      "display_text": "看起来您的对战点数\n已经达到上限……\n\n请用对战点数\n兑换奖品后再回来……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 66,
+        "bytes": [
+          7,
+          194,
+          10,
+          171,
+          8,
+          41,
+          9,
+          240,
+          3,
+          11,
+          3,
+          121,
+          16,
+          48,
+          3,
+          42,
+          12,
+          66,
+          254,
+          15,
+          33,
+          7,
+          93,
+          2,
+          207,
+          3,
+          4,
+          11,
+          173,
+          14,
+          11,
+          176,
+          176,
+          251,
+          11,
+          13,
+          15,
+          113,
+          3,
+          121,
+          16,
+          48,
+          3,
+          42,
+          12,
+          66,
+          254,
+          3,
+          119,
+          5,
+          72,
+          7,
+          3,
+          10,
+          114,
+          5,
+          34,
+          15,
+          229,
+          5,
+          101,
+          8,
+          41,
+          176,
+          176,
+          255
+        ],
+        "hex": "07 C2 0A AB 08 29 09 F0 03 0B 03 79 10 30 03 2A 0C 42 FE 0F 21 07 5D 02 CF 03 04 0B AD 0E 0B B0 B0 FB 0B 0D 0F 71 03 79 10 30 03 2A 0C 42 FE 03 77 05 48 07 03 0A 72 05 22 0F E5 05 65 08 29 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 39,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_FailedToSaveBeforeQuitting": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_FailedToSaveBeforeQuitting",
+      "line": 326,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "冒昧打扰，但……\\p您在上次结束时\\n没有成功写入记录。\\p真抱歉……没有写入记录的\\n挑战我们将视其为无效。$",
+      "display_text": "冒昧打扰，但……\n\n您在上次结束时\n没有成功写入记录。\n\n真抱歉……没有写入记录的\n挑战我们将视其为无效。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 92,
+        "bytes": [
+          9,
+          72,
+          9,
+          89,
+          2,
+          210,
+          11,
+          69,
+          59,
+          2,
+          233,
+          176,
+          176,
+          251,
+          9,
+          240,
+          15,
+          230,
+          11,
+          173,
+          2,
+          174,
+          7,
+          51,
+          12,
+          61,
+          11,
+          237,
+          254,
+          9,
+          83,
+          15,
+          126,
+          2,
+          75,
+          4,
+          110,
+          14,
+          63,
+          11,
+          107,
+          5,
+          178,
+          8,
+          237,
+          55,
+          251,
+          16,
+          89,
+          1,
+          100,
+          10,
+          209,
+          176,
+          176,
+          9,
+          83,
+          15,
+          126,
+          14,
+          63,
+          11,
+          107,
+          5,
+          178,
+          8,
+          237,
+          3,
+          11,
+          254,
+          12,
+          245,
+          16,
+          48,
+          13,
+          152,
+          9,
+          95,
+          5,
+          244,
+          12,
+          24,
+          10,
+          159,
+          13,
+          112,
+          13,
+          164,
+          14,
+          50,
+          55,
+          255
+        ],
+        "hex": "09 48 09 59 02 D2 0B 45 3B 02 E9 B0 B0 FB 09 F0 0F E6 0B AD 02 AE 07 33 0C 3D 0B ED FE 09 53 0F 7E 02 4B 04 6E 0E 3F 0B 6B 05 B2 08 ED 37 FB 10 59 01 64 0A D1 B0 B0 09 53 0F 7E 0E 3F 0B 6B 05 B2 08 ED 03 0B FE 0C F5 10 30 0D 98 09 5F 05 F4 0C 18 0A 9F 0D 70 0D A4 0E 32 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 17,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 42,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 55,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_SnatchedVictoryFromQueen": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_SnatchedVictoryFromQueen",
+      "line": 329,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "恭喜……\\p您从管道皇后那获取了胜利\\n并完成了挑战……$",
+      "display_text": "恭喜……\n\n您从管道皇后那获取了胜利\n并完成了挑战……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 47,
+        "bytes": [
+          4,
+          111,
+          13,
+          214,
+          176,
+          176,
+          251,
+          9,
+          240,
+          2,
+          179,
+          4,
+          164,
+          3,
+          7,
+          5,
+          87,
+          5,
+          34,
+          9,
+          189,
+          5,
+          126,
+          11,
+          33,
+          8,
+          158,
+          11,
+          224,
+          8,
+          112,
+          254,
+          1,
+          189,
+          13,
+          82,
+          2,
+          75,
+          8,
+          158,
+          12,
+          245,
+          16,
+          48,
+          176,
+          176,
+          255
+        ],
+        "hex": "04 6F 0D D6 B0 B0 FB 09 F0 02 B3 04 A4 03 07 05 57 05 22 09 BD 05 7E 0B 21 08 9E 0B E0 08 70 FE 01 BD 0D 52 02 4B 08 9E 0C F5 10 30 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 4,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints",
+      "line": 332,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "为了表彰您非凡的运气，\\n我们将向您呈上对战点数……$",
+      "display_text": "为了表彰您非凡的运气，\n我们将向您呈上对战点数……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 47,
+        "bytes": [
+          13,
+          112,
+          8,
+          158,
+          1,
+          170,
+          16,
+          54,
+          9,
+          240,
+          3,
+          202,
+          3,
+          181,
+          3,
+          11,
+          15,
+          215,
+          10,
+          179,
+          59,
+          254,
+          13,
+          152,
+          9,
+          95,
+          5,
+          244,
+          14,
+          31,
+          9,
+          240,
+          2,
+          76,
+          11,
+          173,
+          3,
+          121,
+          16,
+          48,
+          3,
+          42,
+          12,
+          66,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 70 08 9E 01 AA 10 36 09 F0 03 CA 03 B5 03 0B 0F D7 0A B3 3B FE 0D 98 09 5F 05 F4 0E 1F 09 F0 02 4C 0B AD 03 79 10 30 03 2A 0C 42 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 26,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_OneRoomAwayFromGoal": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_OneRoomAwayFromGoal",
+      "line": 335,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "啊！功亏一篑！\\n我离终点只差一个房间了！\\p在这里，你最好留意中毒、冰冻等等\\n之类的异常状态。$",
+      "display_text": "啊！功亏一篑！\n我离终点只差一个房间了！\n\n在这里，你最好留意中毒、冰冻等等\n之类的异常状态。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 84,
+        "bytes": [
+          1,
+          0,
+          60,
+          4,
+          110,
+          8,
+          14,
+          15,
+          11,
+          28,
+          198,
+          60,
+          254,
+          13,
+          152,
+          8,
+          96,
+          16,
+          166,
+          3,
+          42,
+          16,
+          140,
+          2,
+          18,
+          15,
+          11,
+          4,
+          96,
+          3,
+          194,
+          5,
+          207,
+          8,
+          158,
+          60,
+          251,
+          15,
+          230,
+          16,
+          85,
+          8,
+          100,
+          59,
+          9,
+          217,
+          17,
+          38,
+          4,
+          233,
+          8,
+          199,
+          15,
+          50,
+          16,
+          161,
+          3,
+          99,
+          58,
+          1,
+          182,
+          3,
+          88,
+          3,
+          15,
+          3,
+          15,
+          254,
+          16,
+          127,
+          8,
+          85,
+          3,
+          11,
+          15,
+          60,
+          2,
+          37,
+          16,
+          227,
+          12,
+          173,
+          55,
+          255
+        ],
+        "hex": "01 00 3C 04 6E 08 0E 0F 0B 1C C6 3C FE 0D 98 08 60 10 A6 03 2A 10 8C 02 12 0F 0B 04 60 03 C2 05 CF 08 9E 3C FB 0F E6 10 55 08 64 3B 09 D9 11 26 04 E9 08 C7 0F 32 10 A1 03 63 3A 01 B6 03 58 03 0F 03 0F FE 10 7F 08 55 03 0B 0F 3C 02 25 10 E3 0C AD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 49,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_NeverHadToBattleTrainer": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_NeverHadToBattleTrainer",
+      "line": 338,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "我已经完成了10次挑战，\\n但我没有和任何一个\\l训练家对战过。$",
+      "display_text": "我已经完成了10次挑战，\n但我没有和任何一个\n训练家对战过。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 55,
+        "bytes": [
+          13,
+          152,
+          15,
+          33,
+          7,
+          93,
+          13,
+          82,
+          2,
+          75,
+          8,
+          158,
+          162,
+          161,
+          2,
+          174,
+          12,
+          245,
+          16,
+          48,
+          59,
+          254,
+          2,
+          233,
+          13,
+          152,
+          9,
+          83,
+          15,
+          126,
+          4,
+          243,
+          11,
+          78,
+          4,
+          244,
+          15,
+          11,
+          4,
+          96,
+          250,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          121,
+          16,
+          48,
+          4,
+          197,
+          55,
+          255
+        ],
+        "hex": "0D 98 0F 21 07 5D 0D 52 02 4B 08 9E A2 A1 02 AE 0C F5 10 30 3B FE 02 E9 0D 98 09 53 0F 7E 04 F3 0B 4E 04 F4 0F 0B 04 60 FA 0E 9E 08 8A 05 BD 03 79 10 30 04 C5 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 23,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ThinkAbilitiesUsefulHere": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_ThinkAbilitiesUsefulHere",
+      "line": 341,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "听着！听着！\\p你难道不认为宝可梦的\\n某些特性在这里\\l会很有用吗？$",
+      "display_text": "听着！听着！\n\n你难道不认为宝可梦的\n某些特性在这里\n会很有用吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 59,
+        "bytes": [
+          13,
+          7,
+          16,
+          244,
+          60,
+          13,
+          7,
+          16,
+          244,
+          60,
+          251,
+          9,
+          217,
+          9,
+          199,
+          3,
+          7,
+          1,
+          214,
+          11,
+          79,
+          13,
+          112,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          254,
+          9,
+          169,
+          14,
+          52,
+          12,
+          217,
+          14,
+          95,
+          15,
+          230,
+          16,
+          85,
+          8,
+          100,
+          250,
+          5,
+          110,
+          5,
+          11,
+          15,
+          126,
+          15,
+          113,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0D 07 10 F4 3C 0D 07 10 F4 3C FB 09 D9 09 C7 03 07 01 D6 0B 4F 0D 70 01 63 07 D7 09 66 03 0B FE 09 A9 0E 34 0C D9 0E 5F 0F E6 10 55 08 64 FA 05 6E 05 0B 0F 7E 0F 71 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 6,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 27,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 35,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_TrainersWhicheverPathIChoose": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_TrainersWhicheverPathIChoose",
+      "line": 345,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "这个怪异的地方是什么？\\n我根本弄不明白！\\p我已经进行挑战好多次了\\n但无论我选哪个路线\\l还是要遇到训练家。$",
+      "display_text": "这个怪异的地方是什么？\n我根本弄不明白！\n\n我已经进行挑战好多次了\n但无论我选哪个路线\n还是要遇到训练家。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 98,
+        "bytes": [
+          16,
+          85,
+          4,
+          96,
+          4,
+          158,
+          15,
+          60,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          12,
+          12,
+          11,
+          238,
+          9,
+          76,
+          61,
+          254,
+          13,
+          152,
+          4,
+          99,
+          1,
+          123,
+          10,
+          7,
+          1,
+          214,
+          9,
+          143,
+          1,
+          54,
+          60,
+          251,
+          13,
+          152,
+          15,
+          33,
+          7,
+          93,
+          7,
+          74,
+          14,
+          91,
+          12,
+          245,
+          16,
+          48,
+          4,
+          233,
+          3,
+          133,
+          2,
+          174,
+          8,
+          158,
+          254,
+          2,
+          233,
+          13,
+          164,
+          9,
+          21,
+          13,
+          152,
+          14,
+          138,
+          9,
+          186,
+          4,
+          96,
+          8,
+          232,
+          14,
+          12,
+          250,
+          5,
+          70,
+          12,
+          12,
+          14,
+          241,
+          15,
+          164,
+          3,
+          4,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          55,
+          255
+        ],
+        "hex": "10 55 04 60 04 9E 0F 3C 03 0B 03 1F 03 C0 0C 0C 0B EE 09 4C 3D FE 0D 98 04 63 01 7B 0A 07 01 D6 09 8F 01 36 3C FB 0D 98 0F 21 07 5D 07 4A 0E 5B 0C F5 10 30 04 E9 03 85 02 AE 08 9E FE 02 E9 0D A4 09 15 0D 98 0E 8A 09 BA 04 60 08 E8 0E 0C FA 05 46 0C 0C 0E F1 0F A4 03 04 0E 9E 08 8A 05 BD 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 45,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 56,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_RulesAreListed": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_RulesAreListed",
+      "line": 348,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "上面列出了选择式对战的规则。$",
+      "display_text": "上面列出了选择式对战的规则。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          11,
+          173,
+          9,
+          126,
+          8,
+          163,
+          2,
+          120,
+          8,
+          158,
+          14,
+          138,
+          16,
+          6,
+          12,
+          2,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          4,
+          174,
+          16,
+          7,
+          55,
+          255
+        ],
+        "hex": "0B AD 09 7E 08 A3 02 78 08 9E 0E 8A 10 06 0C 02 03 79 10 30 03 0B 04 AE 10 07 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ReadWhichHeading": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_ReadWhichHeading",
+      "line": 351,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "要读哪一部分的说明？$",
+      "display_text": "要读哪一部分的说明？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          14,
+          241,
+          3,
+          102,
+          9,
+          186,
+          15,
+          11,
+          1,
+          218,
+          3,
+          217,
+          3,
+          11,
+          12,
+          88,
+          9,
+          143,
+          61,
+          255
+        ],
+        "hex": "0E F1 03 66 09 BA 0F 0B 01 DA 03 D9 03 0B 0C 58 09 8F 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ExplainPokenavBagRules": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_ExplainPokenavBagRules",
+      "line": 354,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "在选择式对战的挑战中\\n包包和宝可导航不能使用。$",
+      "display_text": "在选择式对战的挑战中\n包包和宝可导航不能使用。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 45,
+        "bytes": [
+          15,
+          230,
+          14,
+          138,
+          16,
+          6,
+          12,
+          2,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          12,
+          245,
+          16,
+          48,
+          16,
+          161,
+          254,
+          1,
+          91,
+          1,
+          91,
+          4,
+          243,
+          1,
+          99,
+          7,
+          215,
+          3,
+          3,
+          4,
+          227,
+          1,
+          214,
+          9,
+          210,
+          11,
+          245,
+          15,
+          113,
+          55,
+          255
+        ],
+        "hex": "0F E6 0E 8A 10 06 0C 02 03 79 10 30 03 0B 0C F5 10 30 10 A1 FE 01 5B 01 5B 04 F3 01 63 07 D7 03 03 04 E3 01 D6 09 D2 0B F5 0F 71 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ExplainHeldItemRules": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_ExplainHeldItemRules",
+      "line": 357,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "在一次选择式对战的挑战中，\\n宝可梦携带的任何树果或者香草\\l只能生效1次。$",
+      "display_text": "在一次选择式对战的挑战中，\n宝可梦携带的任何树果或者香草\n只能生效1次。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 68,
+        "bytes": [
+          15,
+          230,
+          15,
+          11,
+          2,
+          174,
+          14,
+          138,
+          16,
+          6,
+          12,
+          2,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          12,
+          245,
+          16,
+          48,
+          16,
+          161,
+          59,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          58,
+          2,
+          216,
+          3,
+          11,
+          11,
+          78,
+          4,
+          244,
+          12,
+          60,
+          4,
+          195,
+          5,
+          127,
+          16,
+          82,
+          14,
+          16,
+          2,
+          1,
+          250,
+          16,
+          140,
+          9,
+          210,
+          11,
+          216,
+          14,
+          50,
+          162,
+          2,
+          174,
+          55,
+          255
+        ],
+        "hex": "0F E6 0F 0B 02 AE 0E 8A 10 06 0C 02 03 79 10 30 03 0B 0C F5 10 30 10 A1 3B FE 01 63 07 D7 09 66 0E 3A 02 D8 03 0B 0B 4E 04 F4 0C 3C 04 C3 05 7F 10 52 0E 10 02 01 FA 10 8C 09 D2 0B D8 0E 32 A2 02 AE 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 29,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 38,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules": {
+      "label": "BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules",
+      "line": 360,
+      "source_file": "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc",
+      "raw_text": "在一次选择式对战的挑战中，\\n宝可梦的顺序不能改变。\\p顺序需要在您挑战之前\\n就确定好。$",
+      "display_text": "在一次选择式对战的挑战中，\n宝可梦的顺序不能改变。\n\n顺序需要在您挑战之前\n就确定好。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 79,
+        "bytes": [
+          15,
+          230,
+          15,
+          11,
+          2,
+          174,
+          14,
+          138,
+          16,
+          6,
+          12,
+          2,
+          3,
+          121,
+          16,
+          48,
+          3,
+          11,
+          12,
+          245,
+          16,
+          48,
+          16,
+          161,
+          59,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          12,
+          86,
+          14,
+          125,
+          1,
+          214,
+          9,
+          210,
+          4,
+          46,
+          1,
+          161,
+          55,
+          251,
+          12,
+          86,
+          14,
+          125,
+          14,
+          115,
+          14,
+          241,
+          15,
+          230,
+          9,
+          240,
+          12,
+          245,
+          16,
+          48,
+          16,
+          127,
+          10,
+          201,
+          254,
+          7,
+          125,
+          11,
+          55,
+          3,
+          77,
+          4,
+          233,
+          55,
+          255
+        ],
+        "hex": "0F E6 0F 0B 02 AE 0E 8A 10 06 0C 02 03 79 10 30 03 0B 0C F5 10 30 10 A1 3B FE 01 63 07 D7 09 66 03 0B 0C 56 0E 7D 01 D6 09 D2 04 2E 01 A1 37 FB 0C 56 0E 7D 0E 73 0E F1 0F E6 09 F0 0C F5 10 30 10 7F 0A C9 FE 07 7D 0B 37 03 4D 04 E9 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 26,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 38,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addvar": 1,
+      "applymovement": 2,
+      "callnative": 4,
+      "case": 16,
+      "closemessage": 5,
+      "copyvar": 1,
+      "delay": 1,
+      "faceplayer": 1,
+      "fadescreen": 1,
+      "frontier_checkairshow": 2,
+      "frontier_checkineligible": 1,
+      "frontier_getstatus": 1,
+      "frontier_givepoints": 1,
+      "frontier_isbrain": 1,
+      "frontier_results": 1,
+      "frontier_set": 7,
+      "frontier_setpartyorder": 1,
+      "frontier_settrainers": 1,
+      "goto_if_eq": 4,
+      "map_script": 2,
+      "map_script_2": 5,
+      "multichoice": 3,
+      "pike_get": 1,
+      "pike_init": 1,
+      "pike_resethelditems": 3,
+      "pike_save": 2,
+      "pike_savehelditems": 2,
+      "pike_set": 5,
+      "playse": 3,
+      "set_invisible": 1,
+      "setvar": 11,
+      "special": 13,
+      "step_end": 1,
+      "switch": 5,
+      "turnobject": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 7,
+      "waitmovement": 1,
+      "waitse": 3,
+      "waitstate": 3,
+      "walk_up": 3,
+      "warpsilent": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 64,
+    "script_count": 34,
+    "movement_count": 2,
+    "text_count": 28,
+    "encoded_text_count": 28,
+    "text_source_byte_count": 1810,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 28
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addvar": 1,
+      "applymovement": 2,
+      "call": 6,
+      "callnative": 4,
+      "case": 16,
+      "closemessage": 5,
+      "copyvar": 1,
+      "delay": 1,
+      "end": 17,
+      "faceplayer": 1,
+      "fadescreen": 1,
+      "frontier_checkairshow": 2,
+      "frontier_checkineligible": 1,
+      "frontier_getstatus": 1,
+      "frontier_givepoints": 1,
+      "frontier_isbrain": 1,
+      "frontier_results": 1,
+      "frontier_set": 7,
+      "frontier_setpartyorder": 1,
+      "frontier_settrainers": 1,
+      "goto": 9,
+      "goto_if_eq": 4,
+      "lock": 1,
+      "lockall": 5,
+      "map_script": 2,
+      "map_script_2": 5,
+      "message": 5,
+      "msgbox": 24,
+      "multichoice": 3,
+      "pike_get": 1,
+      "pike_init": 1,
+      "pike_resethelditems": 3,
+      "pike_save": 2,
+      "pike_savehelditems": 2,
+      "pike_set": 5,
+      "playse": 3,
+      "release": 1,
+      "releaseall": 5,
+      "return": 2,
+      "set_invisible": 1,
+      "setvar": 11,
+      "special": 13,
+      "step_end": 1,
+      "switch": 5,
+      "turnobject": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 7,
+      "waitmovement": 1,
+      "waitse": 3,
+      "waitstate": 3,
+      "walk_up": 3,
+      "warpsilent": 1
+    }
+  }
+}

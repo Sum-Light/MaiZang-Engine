@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SSAnne_3F_Corridor_Frlg",
+    "map_script": "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc",
+    "map_json": "data/maps/SSAnne_3F_Corridor_Frlg/map.json",
+    "map_id": "MAP_SSANNE_3F_CORRIDOR",
+    "map_name": "SSAnne_3F_Corridor_Frlg"
+  },
+  "labels": {
+    "SSAnne_3F_Corridor_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSAnne_3F_Corridor_EventScript_Sailor": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SSAnne_3F_Corridor_Text_CaptainTeachesCutToMons": {
+      "kind": "text",
+      "line": 8,
+      "source_file": "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "SSAnne_3F_Corridor_Frlg_MapScripts": {
+      "label": "SSAnne_3F_Corridor_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSAnne_3F_Corridor_EventScript_Sailor": {
+      "label": "SSAnne_3F_Corridor_EventScript_Sailor",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SSAnne_3F_Corridor_Text_CaptainTeachesCutToMons",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox SSAnne_3F_Corridor_Text_CaptainTeachesCutToMons, MSGBOX_NPC",
+          "source_file": "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSAnne_3F_Corridor_Text_CaptainTeachesCutToMons",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SSAnne_3F_Corridor_Text_CaptainTeachesCutToMons": {
+      "label": "SSAnne_3F_Corridor_Text_CaptainTeachesCutToMons",
+      "line": 8,
+      "source_file": "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc",
+      "raw_text": "我们的船长是剑道大师。\\n他的居合斩非常厉害。\\p据说他还能教宝可梦居合斩！$",
+      "display_text": "我们的船长是剑道大师。\n他的居合斩非常厉害。\n\n据说他还能教宝可梦居合斩！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 68,
+        "bytes": [
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          2,
+          140,
+          2,
+          38,
+          12,
+          12,
+          5,
+          236,
+          3,
+          7,
+          2,
+          211,
+          11,
+          226,
+          55,
+          254,
+          12,
+          158,
+          3,
+          11,
+          7,
+          131,
+          4,
+          245,
+          16,
+          41,
+          3,
+          202,
+          2,
+          37,
+          8,
+          108,
+          4,
+          204,
+          55,
+          251,
+          7,
+          141,
+          12,
+          88,
+          12,
+          158,
+          5,
+          70,
+          9,
+          210,
+          7,
+          30,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          7,
+          131,
+          4,
+          245,
+          16,
+          41,
+          60,
+          255
+        ],
+        "hex": "0D 98 09 5F 03 0B 02 8C 02 26 0C 0C 05 EC 03 07 02 D3 0B E2 37 FE 0C 9E 03 0B 07 83 04 F5 10 29 03 CA 02 25 08 6C 04 CC 37 FB 07 8D 0C 58 0C 9E 05 46 09 D2 07 1E 01 63 07 D7 09 66 07 83 04 F5 10 29 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 38,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 68,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 1,
+      "msgbox": 1
+    }
+  }
+}

@@ -1,0 +1,655 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SootopolisCity_House1",
+    "map_script": "data/maps/SootopolisCity_House1/scripts.inc",
+    "map_json": "data/maps/SootopolisCity_House1/map.json",
+    "map_id": "MAP_SOOTOPOLIS_CITY_HOUSE1",
+    "map_name": "SootopolisCity_House1"
+  },
+  "labels": {
+    "SootopolisCity_House1_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_House1_EventScript_BrickBreakBlackBelt": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instruction_count": 10
+    },
+    "SootopolisCity_House1_EventScript_ReceivedBrickBreak": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instruction_count": 3
+    },
+    "SootopolisCity_House1_EventScript_Kecleon": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instruction_count": 8
+    },
+    "SootopolisCity_House1_Text_DevelopedThisTM": {
+      "kind": "text",
+      "line": 31,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_House1_Text_ExplainBrickBreak": {
+      "kind": "text",
+      "line": 34,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_House1_Text_Kecleon": {
+      "kind": "text",
+      "line": 37,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SootopolisCity_House1_MapScripts": {
+      "label": "SootopolisCity_House1_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SootopolisCity_House1_EventScript_BrickBreakBlackBelt": {
+      "label": "SootopolisCity_House1_EventScript_BrickBreakBlackBelt",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_TM_BRICK_BREAK",
+            "SootopolisCity_House1_EventScript_ReceivedBrickBreak"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_RECEIVED_TM_BRICK_BREAK, SootopolisCity_House1_EventScript_ReceivedBrickBreak",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House1_Text_DevelopedThisTM",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 8,
+          "raw": "msgbox SootopolisCity_House1_Text_DevelopedThisTM, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_TM_BRICK_BREAK"
+          ],
+          "line": 9,
+          "raw": "giveitem ITEM_TM_BRICK_BREAK",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 10,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_TM_BRICK_BREAK"
+          ],
+          "line": 11,
+          "raw": "setflag FLAG_RECEIVED_TM_BRICK_BREAK",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House1_Text_ExplainBrickBreak",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 12,
+          "raw": "msgbox SootopolisCity_House1_Text_ExplainBrickBreak, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 13,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House1_Text_DevelopedThisTM",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 8
+        },
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House1_Text_ExplainBrickBreak",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 12
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "SootopolisCity_House1_EventScript_ReceivedBrickBreak",
+          "line": 7
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 10
+        }
+      ]
+    },
+    "SootopolisCity_House1_EventScript_ReceivedBrickBreak": {
+      "label": "SootopolisCity_House1_EventScript_ReceivedBrickBreak",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House1_Text_ExplainBrickBreak",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 17,
+          "raw": "msgbox SootopolisCity_House1_Text_ExplainBrickBreak, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 18,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House1_Text_ExplainBrickBreak",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 17
+        }
+      ],
+      "branch_targets": []
+    },
+    "SootopolisCity_House1_EventScript_Kecleon": {
+      "label": "SootopolisCity_House1_EventScript_Kecleon",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 22,
+          "raw": "lock",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 23,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 24,
+          "raw": "waitse",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_KECLEON",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 25,
+          "raw": "playmoncry SPECIES_KECLEON, CRY_MODE_NORMAL",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_House1_Text_Kecleon",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 26,
+          "raw": "msgbox SootopolisCity_House1_Text_Kecleon, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 27,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 28,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_House1/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_House1_Text_Kecleon",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SootopolisCity_House1_Text_DevelopedThisTM": {
+      "label": "SootopolisCity_House1_Text_DevelopedThisTM",
+      "line": 31,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "raw_text": "我在琉璃市\\n磨练了30年，\\p制作出了这个强大的招式学习器。\\n我传授给你吧！$",
+      "display_text": "我在琉璃市\n磨练了30年，\n\n制作出了这个强大的招式学习器。\n我传授给你吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 67,
+        "bytes": [
+          13,
+          152,
+          15,
+          230,
+          8,
+          195,
+          8,
+          122,
+          12,
+          21,
+          254,
+          9,
+          155,
+          8,
+          138,
+          8,
+          158,
+          164,
+          161,
+          9,
+          224,
+          59,
+          251,
+          16,
+          151,
+          17,
+          47,
+          2,
+          120,
+          8,
+          158,
+          16,
+          85,
+          4,
+          96,
+          10,
+          216,
+          2,
+          211,
+          3,
+          11,
+          16,
+          67,
+          12,
+          2,
+          14,
+          144,
+          13,
+          212,
+          10,
+          178,
+          55,
+          254,
+          13,
+          152,
+          2,
+          139,
+          12,
+          31,
+          4,
+          98,
+          9,
+          217,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0D 98 0F E6 08 C3 08 7A 0C 15 FE 09 9B 08 8A 08 9E A4 A1 09 E0 3B FB 10 97 11 2F 02 78 08 9E 10 55 04 60 0A D8 02 D3 03 0B 10 43 0C 02 0E 90 0D D4 0A B2 37 FE 0D 98 02 8B 0C 1F 04 62 09 D9 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 40,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SootopolisCity_House1_Text_ExplainBrickBreak": {
+      "label": "SootopolisCity_House1_Text_ExplainBrickBreak",
+      "line": 34,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "raw_text": "招式学习器31的内容是劈瓦！这是一种\\n无法描述的恐怖招式。$",
+      "display_text": "招式学习器31的内容是劈瓦！这是一种\n无法描述的恐怖招式。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          16,
+          67,
+          12,
+          2,
+          14,
+          144,
+          13,
+          212,
+          10,
+          178,
+          164,
+          162,
+          3,
+          11,
+          9,
+          208,
+          11,
+          93,
+          12,
+          12,
+          10,
+          89,
+          13,
+          71,
+          60,
+          16,
+          85,
+          12,
+          12,
+          15,
+          11,
+          16,
+          167,
+          254,
+          13,
+          164,
+          3,
+          171,
+          9,
+          128,
+          12,
+          59,
+          3,
+          11,
+          7,
+          228,
+          1,
+          219,
+          16,
+          67,
+          12,
+          2,
+          55,
+          255
+        ],
+        "hex": "10 43 0C 02 0E 90 0D D4 0A B2 A4 A2 03 0B 09 D0 0B 5D 0C 0C 0A 59 0D 47 3C 10 55 0C 0C 0F 0B 10 A7 FE 0D A4 03 AB 09 80 0C 3B 03 0B 07 E4 01 DB 10 43 0C 02 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SootopolisCity_House1_Text_Kecleon": {
+      "label": "SootopolisCity_House1_Text_Kecleon",
+      "line": 37,
+      "source_file": "data/maps/SootopolisCity_House1/scripts.inc",
+      "raw_text": "变隐龙：噗噗噗呀。$",
+      "display_text": "变隐龙：噗噗噗呀。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 17,
+        "bytes": [
+          1,
+          161,
+          15,
+          78,
+          8,
+          205,
+          62,
+          20,
+          119,
+          20,
+          119,
+          20,
+          119,
+          14,
+          166,
+          55,
+          255
+        ],
+        "hex": "01 A1 0F 4E 08 CD 3E 14 77 14 77 14 77 0E A6 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 2,
+      "giveitem": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "playmoncry": 1,
+      "setflag": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 138,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "faceplayer": 2,
+      "giveitem": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "lock": 2,
+      "msgbox": 4,
+      "playmoncry": 1,
+      "release": 3,
+      "setflag": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    }
+  }
+}

@@ -702,7 +702,7 @@ def _iter_script_references(exported_maps):
                 if script_label is None:
                     continue
                 script_label = str(script_label).strip()
-                if script_label in ("", "0", "NULL"):
+                if script_label in ("", "0", "0x0", "NULL"):
                     continue
                 record = _event_reference_context(exported, event_kind, event)
                 record["script_label"] = script_label

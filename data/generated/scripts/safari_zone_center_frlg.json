@@ -1,0 +1,440 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SafariZone_Center_Frlg",
+    "map_script": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+    "map_json": "data/maps/SafariZone_Center_Frlg/map.json",
+    "map_id": "MAP_SAFARI_ZONE_CENTER",
+    "map_name": "SafariZone_Center_Frlg"
+  },
+  "labels": {
+    "SafariZone_Center_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_Center_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_Center_EventScript_RestHouseSign": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_Center_EventScript_TrainerTips": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_Center_EventScript_AreaSign": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SafariZone_Center_Text_RestHouse": {
+      "kind": "text",
+      "line": 21,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "SafariZone_Center_Text_PressStartToCheckTime": {
+      "kind": "text",
+      "line": 24,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SafariZone_Center_Text_CenterArea": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SafariZone_Center_Frlg_MapScripts": {
+      "label": "SafariZone_Center_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SafariZone_Center_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SafariZone_Center_OnTransition",
+          "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SafariZone_Center_OnTransition": {
+      "label": "SafariZone_Center_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setworldmapflag",
+          "args": [
+            "FLAG_WORLD_MAP_SAFARI_ZONE_CENTER"
+          ],
+          "line": 6,
+          "raw": "setworldmapflag FLAG_WORLD_MAP_SAFARI_ZONE_CENTER",
+          "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SafariZone_Center_EventScript_RestHouseSign": {
+      "label": "SafariZone_Center_EventScript_RestHouseSign",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_Center_Text_RestHouse",
+            "MSGBOX_SIGN"
+          ],
+          "line": 10,
+          "raw": "msgbox SafariZone_Center_Text_RestHouse, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_Center_Text_RestHouse",
+          "mode": "MSGBOX_SIGN",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_Center_EventScript_TrainerTips": {
+      "label": "SafariZone_Center_EventScript_TrainerTips",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_Center_Text_PressStartToCheckTime",
+            "MSGBOX_SIGN"
+          ],
+          "line": 14,
+          "raw": "msgbox SafariZone_Center_Text_PressStartToCheckTime, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_Center_Text_PressStartToCheckTime",
+          "mode": "MSGBOX_SIGN",
+          "line": 14
+        }
+      ],
+      "branch_targets": []
+    },
+    "SafariZone_Center_EventScript_AreaSign": {
+      "label": "SafariZone_Center_EventScript_AreaSign",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SafariZone_Center_Text_CenterArea",
+            "MSGBOX_SIGN"
+          ],
+          "line": 18,
+          "raw": "msgbox SafariZone_Center_Text_CenterArea, MSGBOX_SIGN",
+          "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SafariZone_Center_Text_CenterArea",
+          "mode": "MSGBOX_SIGN",
+          "line": 18
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SafariZone_Center_Text_RestHouse": {
+      "label": "SafariZone_Center_Text_RestHouse",
+      "line": 21,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "raw_text": "休息屋$",
+      "display_text": "休息屋",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 7,
+        "bytes": [
+          14,
+          104,
+          13,
+          198,
+          13,
+          163,
+          255
+        ],
+        "hex": "0E 68 0D C6 0D A3 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 3,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_Center_Text_PressStartToCheckTime": {
+      "label": "SafariZone_Center_Text_PressStartToCheckTime",
+      "line": 24,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "raw_text": "训练家贴士\\p按开始检查\\n剩下的时间。$",
+      "display_text": "训练家贴士\n\n按开始检查\n剩下的时间。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          13,
+          3,
+          12,
+          4,
+          251,
+          1,
+          19,
+          7,
+          184,
+          12,
+          1,
+          5,
+          215,
+          2,
+          13,
+          254,
+          11,
+          223,
+          13,
+          230,
+          3,
+          11,
+          11,
+          237,
+          5,
+          207,
+          55,
+          255
+        ],
+        "hex": "0E 9E 08 8A 05 BD 0D 03 0C 04 FB 01 13 07 B8 0C 01 05 D7 02 0D FE 0B DF 0D E6 03 0B 0B ED 05 CF 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SafariZone_Center_Text_CenterArea": {
+      "label": "SafariZone_Center_Text_CenterArea",
+      "line": 29,
+      "source_file": "data/maps/SafariZone_Center_Frlg/scripts.inc",
+      "raw_text": "中部栖息地$",
+      "display_text": "中部栖息地",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 11,
+        "bytes": [
+          16,
+          161,
+          1,
+          218,
+          10,
+          151,
+          13,
+          198,
+          3,
+          31,
+          255
+        ],
+        "hex": "10 A1 01 DA 0A 97 0D C6 03 1F FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 5,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 1,
+      "setworldmapflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 8,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 52,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 4,
+      "map_script": 1,
+      "msgbox": 3,
+      "setworldmapflag": 1
+    }
+  }
+}

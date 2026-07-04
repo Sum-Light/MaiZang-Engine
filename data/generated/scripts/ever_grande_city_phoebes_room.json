@@ -1,0 +1,1259 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "EverGrandeCity_PhoebesRoom",
+    "map_script": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+    "map_json": "data/maps/EverGrandeCity_PhoebesRoom/map.json",
+    "map_id": "MAP_EVER_GRANDE_CITY_PHOEBES_ROOM",
+    "map_name": "EverGrandeCity_PhoebesRoom"
+  },
+  "labels": {
+    "EverGrandeCity_PhoebesRoom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "EverGrandeCity_PhoebesRoom_OnWarp": {
+      "kind": "map_script_table",
+      "line": 7,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_PlayerTurnNorth": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_PhoebesRoom_OnFrame": {
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_WalkInCloseDoor": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "EverGrandeCity_PhoebesRoom_OnLoad": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_ResetAdvanceToNextRoom": {
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_CloseDoor": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_Phoebe": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech": {
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_Defeated": {
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "EverGrandeCity_PhoebesRoom_Text_IntroSpeech": {
+      "kind": "text",
+      "line": 61,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_PhoebesRoom_Text_Defeat": {
+      "kind": "text",
+      "line": 64,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech": {
+      "kind": "text",
+      "line": 67,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "EverGrandeCity_PhoebesRoom_MapScripts": {
+      "label": "EverGrandeCity_PhoebesRoom_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "EverGrandeCity_PhoebesRoom_OnLoad"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, EverGrandeCity_PhoebesRoom_OnLoad",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "EverGrandeCity_PhoebesRoom_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, EverGrandeCity_PhoebesRoom_OnWarp",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "EverGrandeCity_PhoebesRoom_OnFrame"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_PhoebesRoom_OnFrame",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_PhoebesRoom_OnWarp": {
+      "label": "EverGrandeCity_PhoebesRoom_OnWarp",
+      "kind": "map_script_table",
+      "line": 7,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "EverGrandeCity_PhoebesRoom_EventScript_PlayerTurnNorth"
+          ],
+          "line": 8,
+          "raw": "map_script_2 VAR_TEMP_1, 0, EverGrandeCity_PhoebesRoom_EventScript_PlayerTurnNorth",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 9,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_PlayerTurnNorth": {
+      "label": "EverGrandeCity_PhoebesRoom_EventScript_PlayerTurnNorth",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 12,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_PhoebesRoom_OnFrame": {
+      "label": "EverGrandeCity_PhoebesRoom_OnFrame",
+      "kind": "map_script_table",
+      "line": 15,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_ELITE_4_STATE",
+            "1",
+            "EverGrandeCity_PhoebesRoom_EventScript_WalkInCloseDoor"
+          ],
+          "line": 16,
+          "raw": "map_script_2 VAR_ELITE_4_STATE, 1, EverGrandeCity_PhoebesRoom_EventScript_WalkInCloseDoor",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 17,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_WalkInCloseDoor": {
+      "label": "EverGrandeCity_PhoebesRoom_EventScript_WalkInCloseDoor",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 20,
+          "raw": "lockall",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EliteFour_EventScript_WalkInCloseDoor"
+          ],
+          "line": 21,
+          "raw": "call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ELITE_4_STATE",
+            "2"
+          ],
+          "line": 22,
+          "raw": "setvar VAR_ELITE_4_STATE, 2",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 23,
+          "raw": "releaseall",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EliteFour_EventScript_WalkInCloseDoor",
+          "line": 21
+        }
+      ]
+    },
+    "EverGrandeCity_PhoebesRoom_OnLoad": {
+      "label": "EverGrandeCity_PhoebesRoom_OnLoad",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_set",
+          "args": [
+            "FLAG_DEFEATED_ELITE_4_PHOEBE",
+            "EverGrandeCity_PhoebesRoom_EventScript_ResetAdvanceToNextRoom"
+          ],
+          "line": 27,
+          "raw": "call_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_ResetAdvanceToNextRoom",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_ELITE_4_STATE",
+            "2",
+            "EverGrandeCity_PhoebesRoom_EventScript_CloseDoor"
+          ],
+          "line": 28,
+          "raw": "call_if_eq VAR_ELITE_4_STATE, 2, EverGrandeCity_PhoebesRoom_EventScript_CloseDoor",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 29,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_set",
+          "target": "EverGrandeCity_PhoebesRoom_EventScript_ResetAdvanceToNextRoom",
+          "line": 27
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EverGrandeCity_PhoebesRoom_EventScript_CloseDoor",
+          "line": 28
+        }
+      ]
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_ResetAdvanceToNextRoom": {
+      "label": "EverGrandeCity_PhoebesRoom_EventScript_ResetAdvanceToNextRoom",
+      "kind": "script",
+      "line": 31,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom"
+          ],
+          "line": 32,
+          "raw": "call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 33,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom",
+          "line": 32
+        }
+      ]
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_CloseDoor": {
+      "label": "EverGrandeCity_PhoebesRoom_EventScript_CloseDoor",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EliteFour_EventScript_CloseDoor"
+          ],
+          "line": 36,
+          "raw": "call PokemonLeague_EliteFour_EventScript_CloseDoor",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 37,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EliteFour_EventScript_CloseDoor",
+          "line": 36
+        }
+      ]
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_Phoebe": {
+      "label": "EverGrandeCity_PhoebesRoom_EventScript_Phoebe",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 40,
+          "raw": "lock",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 41,
+          "raw": "faceplayer",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DEFEATED_ELITE_4_PHOEBE",
+            "EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech"
+          ],
+          "line": 42,
+          "raw": "goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_ENCOUNTER_ELITE_FOUR",
+            "FALSE"
+          ],
+          "line": 43,
+          "raw": "playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_PhoebesRoom_Text_IntroSpeech",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 44,
+          "raw": "msgbox EverGrandeCity_PhoebesRoom_Text_IntroSpeech, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "trainerbattle_no_intro",
+          "args": [
+            "TRAINER_PHOEBE",
+            "EverGrandeCity_PhoebesRoom_Text_Defeat"
+          ],
+          "line": 45,
+          "raw": "trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_Defeat",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "EverGrandeCity_PhoebesRoom_EventScript_Defeated"
+          ],
+          "line": 46,
+          "raw": "goto EverGrandeCity_PhoebesRoom_EventScript_Defeated",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 47,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_PhoebesRoom_Text_IntroSpeech",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 44
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech",
+          "line": 42
+        },
+        {
+          "op": "goto",
+          "target": "EverGrandeCity_PhoebesRoom_EventScript_Defeated",
+          "line": 46
+        }
+      ]
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech": {
+      "label": "EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech",
+      "kind": "script",
+      "line": 49,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 50,
+          "raw": "msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 51,
+          "raw": "release",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 52,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 50
+        }
+      ],
+      "branch_targets": []
+    },
+    "EverGrandeCity_PhoebesRoom_EventScript_Defeated": {
+      "label": "EverGrandeCity_PhoebesRoom_EventScript_Defeated",
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DEFEATED_ELITE_4_PHOEBE"
+          ],
+          "line": 55,
+          "raw": "setflag FLAG_DEFEATED_ELITE_4_PHOEBE",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles"
+          ],
+          "line": 56,
+          "raw": "call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 57,
+          "raw": "msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 58,
+          "raw": "release",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 59,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 57
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles",
+          "line": 56
+        }
+      ]
+    }
+  },
+  "movements": {},
+  "texts": {
+    "EverGrandeCity_PhoebesRoom_Text_IntroSpeech": {
+      "label": "EverGrandeCity_PhoebesRoom_Text_IntroSpeech",
+      "line": 61,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "raw_text": "啊哈哈哈！\\p我是四天王中的芙蓉。\\n我在送神山进行修行。\\p在修行过程中，我得到了能与\\n幽灵宝可梦亲密交流的能力。\\p没错，我和宝可梦之间的\\n牵绊非常地深。\\p那么，来试试看你有没有能力\\n伤到我的宝可梦吧！$",
+      "display_text": "啊哈哈哈！\n\n我是四天王中的芙蓉。\n我在送神山进行修行。\n\n在修行过程中，我得到了能与\n幽灵宝可梦亲密交流的能力。\n\n没错，我和宝可梦之间的\n牵绊非常地深。\n\n那么，来试试看你有没有能力\n伤到我的宝可梦吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 182,
+        "bytes": [
+          1,
+          0,
+          4,
+          198,
+          4,
+          198,
+          4,
+          198,
+          60,
+          251,
+          13,
+          152,
+          12,
+          12,
+          12,
+          103,
+          12,
+          237,
+          13,
+          93,
+          16,
+          161,
+          3,
+          11,
+          18,
+          207,
+          11,
+          88,
+          55,
+          254,
+          13,
+          152,
+          15,
+          230,
+          12,
+          112,
+          11,
+          207,
+          11,
+          155,
+          7,
+          74,
+          14,
+          91,
+          14,
+          105,
+          14,
+          91,
+          55,
+          251,
+          15,
+          230,
+          14,
+          105,
+          14,
+          91,
+          4,
+          197,
+          2,
+          78,
+          16,
+          161,
+          59,
+          13,
+          152,
+          3,
+          10,
+          3,
+          4,
+          8,
+          158,
+          9,
+          210,
+          15,
+          153,
+          254,
+          15,
+          114,
+          8,
+          188,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          10,
+          240,
+          9,
+          116,
+          7,
+          13,
+          8,
+          202,
+          3,
+          11,
+          9,
+          210,
+          8,
+          121,
+          55,
+          251,
+          9,
+          83,
+          2,
+          205,
+          59,
+          13,
+          152,
+          4,
+          243,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          127,
+          5,
+          207,
+          3,
+          11,
+          254,
+          10,
+          188,
+          1,
+          76,
+          3,
+          202,
+          2,
+          37,
+          3,
+          31,
+          11,
+          204,
+          55,
+          251,
+          9,
+          189,
+          9,
+          76,
+          59,
+          8,
+          41,
+          12,
+          25,
+          12,
+          25,
+          7,
+          194,
+          9,
+          217,
+          15,
+          126,
+          9,
+          83,
+          15,
+          126,
+          9,
+          210,
+          8,
+          121,
+          254,
+          11,
+          169,
+          3,
+          4,
+          13,
+          152,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "01 00 04 C6 04 C6 04 C6 3C FB 0D 98 0C 0C 0C 67 0C ED 0D 5D 10 A1 03 0B 12 CF 0B 58 37 FE 0D 98 0F E6 0C 70 0B CF 0B 9B 07 4A 0E 5B 0E 69 0E 5B 37 FB 0F E6 0E 69 0E 5B 04 C5 02 4E 10 A1 3B 0D 98 03 0A 03 04 08 9E 09 D2 0F 99 FE 0F 72 08 BC 01 63 07 D7 09 66 0A F0 09 74 07 0D 08 CA 03 0B 09 D2 08 79 37 FB 09 53 02 CD 3B 0D 98 04 F3 01 63 07 D7 09 66 10 7F 05 CF 03 0B FE 0A BC 01 4C 03 CA 02 25 03 1F 0B CC 37 FB 09 BD 09 4C 3B 08 29 0C 19 0C 19 07 C2 09 D9 0F 7E 09 53 0F 7E 09 D2 08 79 FE 0B A9 03 04 0D 98 03 0B 01 63 07 D7 09 66 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 17,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 59,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 72,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 81,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 96,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 107,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_PhoebesRoom_Text_Defeat": {
+      "label": "EverGrandeCity_PhoebesRoom_Text_Defeat",
+      "line": 64,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "raw_text": "哦，天呀。\\n我输了。$",
+      "display_text": "哦，天呀。\n我输了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 17,
+        "bytes": [
+          10,
+          19,
+          59,
+          12,
+          237,
+          14,
+          166,
+          55,
+          254,
+          13,
+          152,
+          12,
+          41,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0A 13 3B 0C ED 0E A6 37 FE 0D 98 0C 29 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech": {
+      "label": "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech",
+      "line": 67,
+      "source_file": "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc",
+      "raw_text": "你和你的宝可梦也有着\\n不容置疑的牵绊啊。\\p我竟然没看出来这一点，\\n也难怪是我输了。\\p嗯，我想看看到你们的牵绊\\n能带你们到多远。\\p前进吧，继续去下一个房间。$",
+      "display_text": "你和你的宝可梦也有着\n不容置疑的牵绊啊。\n\n我竟然没看出来这一点，\n也难怪是我输了。\n\n嗯，我想看看到你们的牵绊\n能带你们到多远。\n\n前进吧，继续去下一个房间。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 142,
+        "bytes": [
+          9,
+          217,
+          4,
+          243,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          2,
+          15,
+          126,
+          16,
+          244,
+          254,
+          1,
+          214,
+          11,
+          93,
+          16,
+          148,
+          15,
+          25,
+          3,
+          11,
+          10,
+          188,
+          1,
+          76,
+          1,
+          0,
+          55,
+          251,
+          13,
+          152,
+          7,
+          105,
+          11,
+          59,
+          9,
+          83,
+          7,
+          194,
+          2,
+          120,
+          8,
+          41,
+          16,
+          85,
+          15,
+          11,
+          3,
+          42,
+          59,
+          254,
+          15,
+          2,
+          9,
+          199,
+          4,
+          158,
+          12,
+          12,
+          13,
+          152,
+          12,
+          41,
+          8,
+          158,
+          55,
+          251,
+          20,
+          97,
+          59,
+          13,
+          152,
+          14,
+          24,
+          7,
+          194,
+          7,
+          194,
+          3,
+          4,
+          9,
+          217,
+          9,
+          95,
+          3,
+          11,
+          10,
+          188,
+          1,
+          76,
+          254,
+          9,
+          210,
+          2,
+          216,
+          9,
+          217,
+          9,
+          95,
+          3,
+          4,
+          3,
+          133,
+          15,
+          194,
+          55,
+          251,
+          10,
+          201,
+          7,
+          74,
+          1,
+          40,
+          59,
+          5,
+          183,
+          14,
+          131,
+          11,
+          37,
+          13,
+          230,
+          15,
+          11,
+          4,
+          96,
+          3,
+          194,
+          5,
+          207,
+          55,
+          255
+        ],
+        "hex": "09 D9 04 F3 09 D9 03 0B 01 63 07 D7 09 66 0F 02 0F 7E 10 F4 FE 01 D6 0B 5D 10 94 0F 19 03 0B 0A BC 01 4C 01 00 37 FB 0D 98 07 69 0B 3B 09 53 07 C2 02 78 08 29 10 55 0F 0B 03 2A 3B FE 0F 02 09 C7 04 9E 0C 0C 0D 98 0C 29 08 9E 37 FB 14 61 3B 0D 98 0E 18 07 C2 07 C2 03 04 09 D9 09 5F 03 0B 0A BC 01 4C FE 09 D2 02 D8 09 D9 09 5F 03 04 03 85 0F C2 37 FB 0A C9 07 4A 01 28 3B 05 B7 0E 83 0B 25 0D E6 0F 0B 04 60 03 C2 05 CF 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 44,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 58,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 68,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 83,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "call_if_eq": 1,
+      "call_if_set": 1,
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "map_script": 3,
+      "map_script_2": 2,
+      "playbgm": 1,
+      "setflag": 1,
+      "setvar": 1,
+      "trainerbattle_no_intro": 1,
+      "turnobject": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 14,
+    "script_count": 11,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 341,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 4,
+      "call_if_eq": 1,
+      "call_if_set": 1,
+      "end": 6,
+      "faceplayer": 1,
+      "goto": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "lockall": 1,
+      "map_script": 3,
+      "map_script_2": 2,
+      "msgbox": 3,
+      "playbgm": 1,
+      "release": 2,
+      "releaseall": 1,
+      "return": 2,
+      "setflag": 1,
+      "setvar": 1,
+      "trainerbattle_no_intro": 1,
+      "turnobject": 1
+    }
+  }
+}

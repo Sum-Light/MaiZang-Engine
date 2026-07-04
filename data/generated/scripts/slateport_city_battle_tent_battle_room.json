@@ -1,0 +1,983 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SlateportCity_BattleTentBattleRoom",
+    "map_script": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+    "map_json": "data/maps/SlateportCity_BattleTentBattleRoom/map.json",
+    "map_id": "MAP_SLATEPORT_CITY_BATTLE_TENT_BATTLE_ROOM",
+    "map_name": "SlateportCity_BattleTentBattleRoom"
+  },
+  "labels": {
+    "SlateportCity_BattleTentBattleRoom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "SlateportCity_BattleTentBattleRoom_OnTransition": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfx": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxMale": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxFemale": {
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_BattleTentBattleRoom_OnWarp": {
+      "kind": "map_script_table",
+      "line": 30,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_SetUpObjects": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "SlateportCity_BattleTentBattleRoom_OnFrame": {
+      "kind": "map_script_table",
+      "line": 40,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_EnterRoom": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 19
+    },
+    "SlateportCity_BattleTent_EventScript_WarpToLobbyLost": {
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_DefeatedOpponent": {
+      "kind": "script",
+      "line": 71,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_WarpToLobbyWon": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "SlateportCity_BattleTentBattleRoom_Movement_PlayerEnter": {
+      "kind": "movement",
+      "line": 89,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "SlateportCity_BattleTentBattleRoom_Movement_OpponentEnter": {
+      "kind": "movement",
+      "line": 96,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instruction_count": 6
+    }
+  },
+  "scripts": {
+    "SlateportCity_BattleTentBattleRoom_MapScripts": {
+      "label": "SlateportCity_BattleTentBattleRoom_MapScripts",
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SlateportCity_BattleTentBattleRoom_OnTransition"
+          ],
+          "line": 7,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_BattleTentBattleRoom_OnTransition",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "SlateportCity_BattleTentBattleRoom_OnWarp"
+          ],
+          "line": 8,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SlateportCity_BattleTentBattleRoom_OnWarp",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "SlateportCity_BattleTentBattleRoom_OnFrame"
+          ],
+          "line": 9,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, SlateportCity_BattleTentBattleRoom_OnFrame",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 10,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_BattleTentBattleRoom_OnTransition": {
+      "label": "SlateportCity_BattleTentBattleRoom_OnTransition",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfx"
+          ],
+          "line": 13,
+          "raw": "call SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfx",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfx",
+          "line": 13
+        }
+      ]
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfx": {
+      "label": "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfx",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 17,
+          "raw": "checkplayergender",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxMale"
+          ],
+          "line": 18,
+          "raw": "goto_if_eq VAR_RESULT, MALE, SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxMale",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxFemale"
+          ],
+          "line": 19,
+          "raw": "goto_if_eq VAR_RESULT, FEMALE, SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxFemale",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 20,
+          "raw": "return",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxMale",
+          "line": 18
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxFemale",
+          "line": 19
+        }
+      ]
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxMale": {
+      "label": "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxMale",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_1",
+            "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL"
+          ],
+          "line": 23,
+          "raw": "setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 24,
+          "raw": "return",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxFemale": {
+      "label": "SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxFemale",
+      "kind": "script",
+      "line": 26,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_1",
+            "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL"
+          ],
+          "line": 27,
+          "raw": "setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 28,
+          "raw": "return",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_BattleTentBattleRoom_OnWarp": {
+      "label": "SlateportCity_BattleTentBattleRoom_OnWarp",
+      "kind": "map_script_table",
+      "line": 30,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "SlateportCity_BattleTentBattleRoom_EventScript_SetUpObjects"
+          ],
+          "line": 31,
+          "raw": "map_script_2 VAR_TEMP_1, 0, SlateportCity_BattleTentBattleRoom_EventScript_SetUpObjects",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 32,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_SetUpObjects": {
+      "label": "SlateportCity_BattleTentBattleRoom_EventScript_SetUpObjects",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 35,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "hideobjectat",
+          "args": [
+            "LOCALID_PLAYER",
+            "MAP_FALLARBOR_TOWN_BATTLE_TENT_BATTLE_ROOM"
+          ],
+          "line": 36,
+          "raw": "hideobjectat LOCALID_PLAYER, MAP_FALLARBOR_TOWN_BATTLE_TENT_BATTLE_ROOM",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "hideobjectat",
+          "args": [
+            "LOCALID_SLATEPORT_TENT_BATTLE_OPPONENT",
+            "MAP_SLATEPORT_CITY_BATTLE_TENT_BATTLE_ROOM"
+          ],
+          "line": 37,
+          "raw": "hideobjectat LOCALID_SLATEPORT_TENT_BATTLE_OPPONENT, MAP_SLATEPORT_CITY_BATTLE_TENT_BATTLE_ROOM",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 38,
+          "raw": "end",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_BattleTentBattleRoom_OnFrame": {
+      "label": "SlateportCity_BattleTentBattleRoom_OnFrame",
+      "kind": "map_script_table",
+      "line": 40,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_0",
+            "0",
+            "SlateportCity_BattleTentBattleRoom_EventScript_EnterRoom"
+          ],
+          "line": 41,
+          "raw": "map_script_2 VAR_TEMP_0, 0, SlateportCity_BattleTentBattleRoom_EventScript_EnterRoom",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 42,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_EnterRoom": {
+      "label": "SlateportCity_BattleTentBattleRoom_EventScript_EnterRoom",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_SLATEPORT_TENT_BATTLE_PLAYER",
+            "SlateportCity_BattleTentBattleRoom_Movement_PlayerEnter"
+          ],
+          "line": 45,
+          "raw": "applymovement LOCALID_SLATEPORT_TENT_BATTLE_PLAYER, SlateportCity_BattleTentBattleRoom_Movement_PlayerEnter",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 46,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "factory_setopponentgfx",
+          "args": [],
+          "line": 47,
+          "raw": "factory_setopponentgfx",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_SLATEPORT_TENT_BATTLE_OPPONENT",
+            "5",
+            "1"
+          ],
+          "line": 48,
+          "raw": "setobjectxyperm LOCALID_SLATEPORT_TENT_BATTLE_OPPONENT, 5, 1",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_SLATEPORT_TENT_BATTLE_OPPONENT"
+          ],
+          "line": 49,
+          "raw": "removeobject LOCALID_SLATEPORT_TENT_BATTLE_OPPONENT",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "1"
+          ],
+          "line": 50,
+          "raw": "delay 1",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "addobject",
+          "args": [
+            "LOCALID_SLATEPORT_TENT_BATTLE_OPPONENT"
+          ],
+          "line": 51,
+          "raw": "addobject LOCALID_SLATEPORT_TENT_BATTLE_OPPONENT",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_SLATEPORT_TENT_BATTLE_OPPONENT",
+            "SlateportCity_BattleTentBattleRoom_Movement_OpponentEnter"
+          ],
+          "line": 52,
+          "raw": "applymovement LOCALID_SLATEPORT_TENT_BATTLE_OPPONENT, SlateportCity_BattleTentBattleRoom_Movement_OpponentEnter",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 53,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "battletent_getopponentintro",
+          "args": [],
+          "line": 54,
+          "raw": "battletent_getopponentintro",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 55,
+          "raw": "lockall",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gStringVar4",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 56,
+          "raw": "msgbox gStringVar4, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 57,
+          "raw": "waitmessage",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 58,
+          "raw": "closemessage",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 59,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "dofacilitytrainerbattle",
+          "args": [
+            "FACILITY_BATTLE_FACTORY"
+          ],
+          "line": 60,
+          "raw": "dofacilitytrainerbattle FACILITY_BATTLE_FACTORY",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 61,
+          "raw": "waitstate",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 62,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "SlateportCity_BattleTentBattleRoom_EventScript_DefeatedOpponent"
+          ],
+          "line": 63,
+          "raw": "case 1, SlateportCity_BattleTentBattleRoom_EventScript_DefeatedOpponent",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gStringVar4",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 56
+        }
+      ],
+      "branch_targets": []
+    },
+    "SlateportCity_BattleTent_EventScript_WarpToLobbyLost": {
+      "label": "SlateportCity_BattleTent_EventScript_WarpToLobbyLost",
+      "kind": "script",
+      "line": 64,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_LOST"
+          ],
+          "line": 65,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 66,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_SLATEPORT_CITY_BATTLE_TENT_LOBBY",
+            "6",
+            "6"
+          ],
+          "line": 67,
+          "raw": "warp MAP_SLATEPORT_CITY_BATTLE_TENT_LOBBY, 6, 6",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 68,
+          "raw": "waitstate",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_DefeatedOpponent": {
+      "label": "SlateportCity_BattleTentBattleRoom_EventScript_DefeatedOpponent",
+      "kind": "script",
+      "line": 71,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 72,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_RESULT",
+            "1"
+          ],
+          "line": 73,
+          "raw": "addvar VAR_RESULT, 1",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM",
+            "VAR_RESULT"
+          ],
+          "line": 74,
+          "raw": "frontier_set FRONTIER_DATA_BATTLE_NUM, VAR_RESULT",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 75,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "SlateportCity_BattleTentBattleRoom_EventScript_WarpToLobbyWon"
+          ],
+          "line": 76,
+          "raw": "case 3, SlateportCity_BattleTentBattleRoom_EventScript_WarpToLobbyWon",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8006",
+            "1"
+          ],
+          "line": 77,
+          "raw": "setvar VAR_0x8006, 1",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_SLATEPORT_CITY_BATTLE_TENT_CORRIDOR",
+            "2",
+            "3"
+          ],
+          "line": 78,
+          "raw": "warp MAP_SLATEPORT_CITY_BATTLE_TENT_CORRIDOR, 2, 3",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 79,
+          "raw": "waitstate",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_BattleTentBattleRoom_EventScript_WarpToLobbyWon": {
+      "label": "SlateportCity_BattleTentBattleRoom_EventScript_WarpToLobbyWon",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_WON"
+          ],
+          "line": 83,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_WON",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 84,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_SLATEPORT_CITY_BATTLE_TENT_LOBBY",
+            "6",
+            "6"
+          ],
+          "line": 85,
+          "raw": "warp MAP_SLATEPORT_CITY_BATTLE_TENT_LOBBY, 6, 6",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 86,
+          "raw": "waitstate",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "SlateportCity_BattleTentBattleRoom_Movement_PlayerEnter": {
+      "label": "SlateportCity_BattleTentBattleRoom_Movement_PlayerEnter",
+      "kind": "movement",
+      "line": 89,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 90,
+          "raw": "walk_up",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 91,
+          "raw": "walk_up",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 92,
+          "raw": "walk_up",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 93,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 94,
+          "raw": "step_end",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SlateportCity_BattleTentBattleRoom_Movement_OpponentEnter": {
+      "label": "SlateportCity_BattleTentBattleRoom_Movement_OpponentEnter",
+      "kind": "movement",
+      "line": 96,
+      "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 97,
+          "raw": "walk_down",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 98,
+          "raw": "walk_down",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 99,
+          "raw": "walk_down",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 100,
+          "raw": "walk_down",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 101,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 102,
+          "raw": "step_end",
+          "source_file": "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addobject": 1,
+      "addvar": 1,
+      "applymovement": 2,
+      "battletent_getopponentintro": 1,
+      "case": 2,
+      "checkplayergender": 1,
+      "closemessage": 1,
+      "delay": 1,
+      "dofacilitytrainerbattle": 1,
+      "factory_setopponentgfx": 1,
+      "frontier_get": 1,
+      "frontier_set": 3,
+      "goto_if_eq": 2,
+      "hideobjectat": 2,
+      "map_script": 3,
+      "map_script_2": 2,
+      "removeobject": 1,
+      "setobjectxyperm": 1,
+      "setvar": 4,
+      "special": 3,
+      "step_end": 2,
+      "switch": 2,
+      "waitmessage": 1,
+      "waitmovement": 2,
+      "waitstate": 4,
+      "walk_down": 4,
+      "walk_in_place_faster_left": 1,
+      "walk_in_place_faster_right": 1,
+      "walk_up": 3,
+      "warp": 3
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 14,
+    "script_count": 12,
+    "movement_count": 2,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addobject": 1,
+      "addvar": 1,
+      "applymovement": 2,
+      "battletent_getopponentintro": 1,
+      "call": 1,
+      "case": 2,
+      "checkplayergender": 1,
+      "closemessage": 1,
+      "delay": 1,
+      "dofacilitytrainerbattle": 1,
+      "end": 2,
+      "factory_setopponentgfx": 1,
+      "frontier_get": 1,
+      "frontier_set": 3,
+      "goto_if_eq": 2,
+      "hideobjectat": 2,
+      "lockall": 1,
+      "map_script": 3,
+      "map_script_2": 2,
+      "msgbox": 1,
+      "removeobject": 1,
+      "return": 3,
+      "setobjectxyperm": 1,
+      "setvar": 4,
+      "special": 3,
+      "step_end": 2,
+      "switch": 2,
+      "waitmessage": 1,
+      "waitmovement": 2,
+      "waitstate": 4,
+      "walk_down": 4,
+      "walk_in_place_faster_left": 1,
+      "walk_in_place_faster_right": 1,
+      "walk_up": 3,
+      "warp": 3
+    }
+  }
+}

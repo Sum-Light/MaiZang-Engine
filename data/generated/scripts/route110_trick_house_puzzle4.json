@@ -1,0 +1,1202 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route110_TrickHousePuzzle4",
+    "map_script": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+    "map_json": "data/maps/Route110_TrickHousePuzzle4/map.json",
+    "map_id": "MAP_ROUTE110_TRICK_HOUSE_PUZZLE4",
+    "map_name": "Route110_TrickHousePuzzle4"
+  },
+  "labels": {
+    "Route110_TrickHousePuzzle4_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route110_TrickHousePuzzle4_EventScript_Scroll": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route110_TrickHousePuzzle4_EventScript_FoundScroll": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route110_TrickHousePuzzle4_EventScript_Cora": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route110_TrickHousePuzzle4_EventScript_Yuji": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route110_TrickHousePuzzle4_EventScript_Paula": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route110_TrickHousePuzzle4_Text_WroteSecretCodeLockOpened": {
+      "kind": "text",
+      "line": 30,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route110_TrickHousePuzzle4_Text_CoraIntro": {
+      "kind": "text",
+      "line": 33,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route110_TrickHousePuzzle4_Text_CoraDefeat": {
+      "kind": "text",
+      "line": 36,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route110_TrickHousePuzzle4_Text_CoraPostBattle": {
+      "kind": "text",
+      "line": 39,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route110_TrickHousePuzzle4_Text_YujiIntro": {
+      "kind": "text",
+      "line": 42,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route110_TrickHousePuzzle4_Text_YujiDefeat": {
+      "kind": "text",
+      "line": 45,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route110_TrickHousePuzzle4_Text_YujiPostBattle": {
+      "kind": "text",
+      "line": 48,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route110_TrickHousePuzzle4_Text_PaulaIntro": {
+      "kind": "text",
+      "line": 51,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route110_TrickHousePuzzle4_Text_PaulaDefeat": {
+      "kind": "text",
+      "line": 54,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route110_TrickHousePuzzle4_Text_PaulaPostBattle": {
+      "kind": "text",
+      "line": 57,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "Route110_TrickHousePuzzle4_MapScripts": {
+      "label": "Route110_TrickHousePuzzle4_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route110_TrickHousePuzzle4_EventScript_Scroll": {
+      "label": "Route110_TrickHousePuzzle4_EventScript_Scroll",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 5,
+          "raw": "lockall",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_TRICK_HOUSE_PUZZLE_4_STATE",
+            "0",
+            "Route110_TrickHousePuzzle4_EventScript_FoundScroll"
+          ],
+          "line": 6,
+          "raw": "goto_if_eq VAR_TRICK_HOUSE_PUZZLE_4_STATE, 0, Route110_TrickHousePuzzle4_EventScript_FoundScroll",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route110_TrickHousePuzzle_EventScript_ReadScrollAgain"
+          ],
+          "line": 7,
+          "raw": "goto Route110_TrickHousePuzzle_EventScript_ReadScrollAgain",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route110_TrickHousePuzzle4_EventScript_FoundScroll",
+          "line": 6
+        },
+        {
+          "op": "goto",
+          "target": "Route110_TrickHousePuzzle_EventScript_ReadScrollAgain",
+          "line": 7
+        }
+      ]
+    },
+    "Route110_TrickHousePuzzle4_EventScript_FoundScroll": {
+      "label": "Route110_TrickHousePuzzle4_EventScript_FoundScroll",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TRICK_HOUSE_PUZZLE_4_STATE",
+            "1"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_TRICK_HOUSE_PUZZLE_4_STATE, 1",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route110_TrickHousePuzzle_EventScript_FoundScroll"
+          ],
+          "line": 12,
+          "raw": "goto Route110_TrickHousePuzzle_EventScript_FoundScroll",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route110_TrickHousePuzzle_EventScript_FoundScroll",
+          "line": 12
+        }
+      ]
+    },
+    "Route110_TrickHousePuzzle4_EventScript_Cora": {
+      "label": "Route110_TrickHousePuzzle4_EventScript_Cora",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_CORA",
+            "Route110_TrickHousePuzzle4_Text_CoraIntro",
+            "Route110_TrickHousePuzzle4_Text_CoraDefeat"
+          ],
+          "line": 16,
+          "raw": "trainerbattle_single TRAINER_CORA, Route110_TrickHousePuzzle4_Text_CoraIntro, Route110_TrickHousePuzzle4_Text_CoraDefeat",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route110_TrickHousePuzzle4_Text_CoraPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 17,
+          "raw": "msgbox Route110_TrickHousePuzzle4_Text_CoraPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route110_TrickHousePuzzle4_Text_CoraPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 17
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route110_TrickHousePuzzle4_EventScript_Yuji": {
+      "label": "Route110_TrickHousePuzzle4_EventScript_Yuji",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_YUJI",
+            "Route110_TrickHousePuzzle4_Text_YujiIntro",
+            "Route110_TrickHousePuzzle4_Text_YujiDefeat"
+          ],
+          "line": 21,
+          "raw": "trainerbattle_single TRAINER_YUJI, Route110_TrickHousePuzzle4_Text_YujiIntro, Route110_TrickHousePuzzle4_Text_YujiDefeat",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route110_TrickHousePuzzle4_Text_YujiPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 22,
+          "raw": "msgbox Route110_TrickHousePuzzle4_Text_YujiPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route110_TrickHousePuzzle4_Text_YujiPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route110_TrickHousePuzzle4_EventScript_Paula": {
+      "label": "Route110_TrickHousePuzzle4_EventScript_Paula",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_PAULA",
+            "Route110_TrickHousePuzzle4_Text_PaulaIntro",
+            "Route110_TrickHousePuzzle4_Text_PaulaDefeat"
+          ],
+          "line": 26,
+          "raw": "trainerbattle_single TRAINER_PAULA, Route110_TrickHousePuzzle4_Text_PaulaIntro, Route110_TrickHousePuzzle4_Text_PaulaDefeat",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route110_TrickHousePuzzle4_Text_PaulaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 27,
+          "raw": "msgbox Route110_TrickHousePuzzle4_Text_PaulaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 28,
+          "raw": "end",
+          "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route110_TrickHousePuzzle4_Text_PaulaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 27
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route110_TrickHousePuzzle4_Text_WroteSecretCodeLockOpened": {
+      "label": "Route110_TrickHousePuzzle4_Text_WroteSecretCodeLockOpened",
+      "line": 30,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "raw_text": "{PLAYER}在门上写下\\n密码。\\p“戏法大王真棒”\\n…… …… …… ……\\p锁“咔嗒”一声开了！$",
+      "display_text": "{PLAYER}在门上写下\n密码。\n\n“戏法大王真棒”\n…… …… …… ……\n\n锁“咔嗒”一声开了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 64,
+        "bytes": [
+          253,
+          1,
+          15,
+          230,
+          9,
+          93,
+          11,
+          173,
+          14,
+          63,
+          13,
+          230,
+          254,
+          9,
+          116,
+          9,
+          37,
+          55,
+          251,
+          177,
+          13,
+          219,
+          3,
+          171,
+          2,
+          211,
+          13,
+          93,
+          16,
+          89,
+          1,
+          83,
+          178,
+          254,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          251,
+          12,
+          155,
+          177,
+          20,
+          5,
+          20,
+          70,
+          178,
+          15,
+          11,
+          11,
+          215,
+          7,
+          184,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "FD 01 0F E6 09 5D 0B AD 0E 3F 0D E6 FE 09 74 09 25 37 FB B1 0D DB 03 AB 02 D3 0D 5D 10 59 01 53 B2 FE B0 B0 00 B0 B0 00 B0 B0 00 B0 B0 FB 0C 9B B1 14 05 14 46 B2 0F 0B 0B D7 07 B8 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 41,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 53,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Route110_TrickHousePuzzle4_Text_CoraIntro": {
+      "label": "Route110_TrickHousePuzzle4_Text_CoraIntro",
+      "line": 33,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "raw_text": "思考这些太麻烦了，\\n我只想战斗而已！$",
+      "display_text": "思考这些太麻烦了，\n我只想战斗而已！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 34,
+        "bytes": [
+          12,
+          95,
+          7,
+          202,
+          16,
+          85,
+          14,
+          52,
+          12,
+          172,
+          9,
+          35,
+          3,
+          182,
+          8,
+          158,
+          59,
+          254,
+          13,
+          152,
+          16,
+          140,
+          14,
+          24,
+          16,
+          48,
+          3,
+          92,
+          3,
+          157,
+          15,
+          33,
+          60,
+          255
+        ],
+        "hex": "0C 5F 07 CA 10 55 0E 34 0C AC 09 23 03 B6 08 9E 3B FE 0D 98 10 8C 0E 18 10 30 03 5C 03 9D 0F 21 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route110_TrickHousePuzzle4_Text_CoraDefeat": {
+      "label": "Route110_TrickHousePuzzle4_Text_CoraDefeat",
+      "line": 36,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "raw_text": "就算会输，我还是喜欢\\n挑战高手！$",
+      "display_text": "就算会输，我还是喜欢\n挑战高手！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 30,
+        "bytes": [
+          7,
+          125,
+          12,
+          134,
+          5,
+          110,
+          12,
+          41,
+          59,
+          13,
+          152,
+          5,
+          70,
+          12,
+          12,
+          13,
+          214,
+          5,
+          67,
+          254,
+          12,
+          245,
+          16,
+          48,
+          4,
+          73,
+          12,
+          27,
+          60,
+          255
+        ],
+        "hex": "07 7D 0C 86 05 6E 0C 29 3B 0D 98 05 46 0C 0C 0D D6 05 43 FE 0C F5 10 30 04 49 0C 1B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route110_TrickHousePuzzle4_Text_CoraPostBattle": {
+      "label": "Route110_TrickHousePuzzle4_Text_CoraPostBattle",
+      "line": 39,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "raw_text": "只要有训练家的地方，\\n都是我的目的地。\\l你也是这么想的吧？$",
+      "display_text": "只要有训练家的地方，\n都是我的目的地。\n你也是这么想的吧？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          16,
+          140,
+          14,
+          241,
+          15,
+          126,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          59,
+          254,
+          3,
+          97,
+          12,
+          12,
+          13,
+          152,
+          3,
+          11,
+          9,
+          181,
+          3,
+          11,
+          3,
+          31,
+          55,
+          250,
+          9,
+          217,
+          15,
+          2,
+          12,
+          12,
+          16,
+          85,
+          9,
+          76,
+          14,
+          24,
+          3,
+          11,
+          1,
+          40,
+          61,
+          255
+        ],
+        "hex": "10 8C 0E F1 0F 7E 0E 9E 08 8A 05 BD 03 0B 03 1F 03 C0 3B FE 03 61 0C 0C 0D 98 03 0B 09 B5 03 0B 03 1F 37 FA 09 D9 0F 02 0C 0C 10 55 09 4C 0E 18 03 0B 01 28 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 20,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 31,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route110_TrickHousePuzzle4_Text_YujiIntro": {
+      "label": "Route110_TrickHousePuzzle4_Text_YujiIntro",
+      "line": 42,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "raw_text": "哈！像这样的小石头，\\n我用一根手指头就能推走！$",
+      "display_text": "哈！像这样的小石头，\n我用一根手指头就能推走！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          4,
+          198,
+          60,
+          14,
+          30,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          14,
+          44,
+          11,
+          235,
+          13,
+          31,
+          59,
+          254,
+          13,
+          152,
+          15,
+          113,
+          15,
+          11,
+          4,
+          99,
+          12,
+          27,
+          16,
+          137,
+          13,
+          31,
+          7,
+          125,
+          9,
+          210,
+          13,
+          46,
+          17,
+          23,
+          60,
+          255
+        ],
+        "hex": "04 C6 3C 0E 1E 10 55 0E E2 03 0B 0E 2C 0B EB 0D 1F 3B FE 0D 98 0F 71 0F 0B 04 63 0C 1B 10 89 0D 1F 07 7D 09 D2 0D 2E 11 17 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route110_TrickHousePuzzle4_Text_YujiDefeat": {
+      "label": "Route110_TrickHousePuzzle4_Text_YujiDefeat",
+      "line": 45,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "raw_text": "我能推动这些小石头，但\\n我解不开谜题……$",
+      "display_text": "我能推动这些小石头，但\n我解不开谜题……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 37,
+        "bytes": [
+          13,
+          152,
+          9,
+          210,
+          13,
+          46,
+          3,
+          84,
+          16,
+          85,
+          14,
+          52,
+          14,
+          44,
+          11,
+          235,
+          13,
+          31,
+          59,
+          2,
+          233,
+          254,
+          13,
+          152,
+          7,
+          52,
+          1,
+          214,
+          7,
+          184,
+          9,
+          109,
+          12,
+          227,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 98 09 D2 0D 2E 03 54 10 55 0E 34 0E 2C 0B EB 0D 1F 3B 02 E9 FE 0D 98 07 34 01 D6 07 B8 09 6D 0C E3 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route110_TrickHousePuzzle4_Text_YujiPostBattle": {
+      "label": "Route110_TrickHousePuzzle4_Text_YujiPostBattle",
+      "line": 48,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "raw_text": "四肢发达并不完全是好事……\\n你必须要动脑子！$",
+      "display_text": "四肢发达并不完全是好事……\n你必须要动脑子！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 41,
+        "bytes": [
+          12,
+          103,
+          16,
+          124,
+          3,
+          165,
+          2,
+          207,
+          1,
+          189,
+          1,
+          214,
+          13,
+          82,
+          11,
+          43,
+          12,
+          12,
+          4,
+          233,
+          12,
+          7,
+          176,
+          176,
+          254,
+          9,
+          217,
+          1,
+          149,
+          14,
+          118,
+          14,
+          241,
+          3,
+          84,
+          9,
+          202,
+          17,
+          11,
+          60,
+          255
+        ],
+        "hex": "0C 67 10 7C 03 A5 02 CF 01 BD 01 D6 0D 52 0B 2B 0C 0C 04 E9 0C 07 B0 B0 FE 09 D9 01 95 0E 76 0E F1 03 54 09 CA 11 0B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route110_TrickHousePuzzle4_Text_PaulaIntro": {
+      "label": "Route110_TrickHousePuzzle4_Text_PaulaIntro",
+      "line": 51,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "raw_text": "戏法屋的谜题越来越难了，\\n不是吗？$",
+      "display_text": "戏法屋的谜题越来越难了，\n不是吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          13,
+          219,
+          3,
+          171,
+          13,
+          163,
+          3,
+          11,
+          9,
+          109,
+          12,
+          227,
+          15,
+          201,
+          8,
+          41,
+          15,
+          201,
+          9,
+          199,
+          8,
+          158,
+          59,
+          254,
+          1,
+          214,
+          12,
+          12,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0D DB 03 AB 0D A3 03 0B 09 6D 0C E3 0F C9 08 29 0F C9 09 C7 08 9E 3B FE 01 D6 0C 0C 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route110_TrickHousePuzzle4_Text_PaulaDefeat": {
+      "label": "Route110_TrickHousePuzzle4_Text_PaulaDefeat",
+      "line": 54,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "raw_text": "哇啊！$",
+      "display_text": "哇啊！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 6,
+        "bytes": [
+          13,
+          67,
+          1,
+          0,
+          60,
+          255
+        ],
+        "hex": "0D 43 01 00 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 3,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route110_TrickHousePuzzle4_Text_PaulaPostBattle": {
+      "label": "Route110_TrickHousePuzzle4_Text_PaulaPostBattle",
+      "line": 57,
+      "source_file": "data/maps/Route110_TrickHousePuzzle4/scripts.inc",
+      "raw_text": "有人成功走到头了吗？$",
+      "display_text": "有人成功走到头了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 20,
+        "bytes": [
+          15,
+          126,
+          11,
+          75,
+          2,
+          75,
+          4,
+          110,
+          17,
+          23,
+          3,
+          4,
+          13,
+          31,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0F 7E 0B 4B 02 4B 04 6E 11 17 03 04 0D 1F 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 10,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "goto_if_eq": 1,
+      "setvar": 1,
+      "trainerbattle_single": 3
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 16,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 10,
+    "encoded_text_count": 10,
+    "text_source_byte_count": 361,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 10
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 5,
+      "goto": 2,
+      "goto_if_eq": 1,
+      "lockall": 1,
+      "msgbox": 3,
+      "setvar": 1,
+      "trainerbattle_single": 3
+    }
+  }
+}

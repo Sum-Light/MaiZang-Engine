@@ -1,0 +1,4391 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "RustboroCity_DevonCorp_3F",
+    "map_script": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+    "map_json": "data/maps/RustboroCity_DevonCorp_3F/map.json",
+    "map_id": "MAP_RUSTBORO_CITY_DEVON_CORP_3F",
+    "map_name": "RustboroCity_DevonCorp_3F"
+  },
+  "labels": {
+    "RustboroCity_DevonCorp_3F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 4
+    },
+    "RustboroCity_DevonCorp_3F_OnTransition": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_SetEmployeePos": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_DevonCorp_3F_OnWarp": {
+      "kind": "map_script_table",
+      "line": 16,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_PlayerFaceEast": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_DevonCorp_3F_OnFrame": {
+      "kind": "map_script_table",
+      "line": 24,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_MeetPresident": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 44
+    },
+    "RustboroCity_DevonCorp_3F_Movement_Unused": {
+      "kind": "movement",
+      "line": 74,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 5
+    },
+    "RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident": {
+      "kind": "movement",
+      "line": 81,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 15
+    },
+    "RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk": {
+      "kind": "movement",
+      "line": 98,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen": {
+      "kind": "movement",
+      "line": 103,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 9
+    },
+    "RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer": {
+      "kind": "movement",
+      "line": 114,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 9
+    },
+    "RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident": {
+      "kind": "movement",
+      "line": 125,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 14
+    },
+    "RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk": {
+      "kind": "movement",
+      "line": 141,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 6
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_MrStone": {
+      "kind": "script",
+      "line": 149,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 10
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_GiveExpShare": {
+      "kind": "script",
+      "line": 161,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 10
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor": {
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 6
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_Employee": {
+      "kind": "script",
+      "line": 181,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 6
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls": {
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 3
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_RareRocksDisplay": {
+      "kind": "script",
+      "line": 194,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor": {
+      "kind": "text",
+      "line": 198,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis": {
+      "kind": "text",
+      "line": 201,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_ReceivedPokenav": {
+      "kind": "text",
+      "line": 204,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp": {
+      "kind": "text",
+      "line": 207,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare": {
+      "kind": "text",
+      "line": 210,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_CountingOnYou": {
+      "kind": "text",
+      "line": 213,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter": {
+      "kind": "text",
+      "line": 216,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_ExplainExpShare": {
+      "kind": "text",
+      "line": 219,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends": {
+      "kind": "text",
+      "line": 222,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere": {
+      "kind": "text",
+      "line": 225,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe": {
+      "kind": "text",
+      "line": 228,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_PleaseGoAhead": {
+      "kind": "text",
+      "line": 231,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_VisitCaptSternShipyard": {
+      "kind": "text",
+      "line": 234,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular": {
+      "kind": "text",
+      "line": 237,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_DevonCorp_3F_Text_RareRocksDisplay": {
+      "kind": "text",
+      "line": 240,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "RustboroCity_DevonCorp_3F_MapScripts": {
+      "label": "RustboroCity_DevonCorp_3F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "RustboroCity_DevonCorp_3F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_3F_OnTransition",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "RustboroCity_DevonCorp_3F_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, RustboroCity_DevonCorp_3F_OnWarp",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "RustboroCity_DevonCorp_3F_OnFrame"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_DevonCorp_3F_OnFrame",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_OnTransition": {
+      "label": "RustboroCity_DevonCorp_3F_OnTransition",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_DEVON_CORP_3F_STATE",
+            "0",
+            "RustboroCity_DevonCorp_3F_EventScript_SetEmployeePos"
+          ],
+          "line": 8,
+          "raw": "call_if_eq VAR_DEVON_CORP_3F_STATE, 0, RustboroCity_DevonCorp_3F_EventScript_SetEmployeePos",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "RustboroCity_DevonCorp_3F_EventScript_SetEmployeePos",
+          "line": 8
+        }
+      ]
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_SetEmployeePos": {
+      "label": "RustboroCity_DevonCorp_3F_EventScript_SetEmployeePos",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_DEVON_CORP_3F_EMPLOYEE",
+            "3",
+            "2"
+          ],
+          "line": 12,
+          "raw": "setobjectxyperm LOCALID_DEVON_CORP_3F_EMPLOYEE, 3, 2",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_DEVON_CORP_3F_EMPLOYEE",
+            "MOVEMENT_TYPE_FACE_LEFT"
+          ],
+          "line": 13,
+          "raw": "setobjectmovementtype LOCALID_DEVON_CORP_3F_EMPLOYEE, MOVEMENT_TYPE_FACE_LEFT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 14,
+          "raw": "return",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_OnWarp": {
+      "label": "RustboroCity_DevonCorp_3F_OnWarp",
+      "kind": "map_script_table",
+      "line": 16,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_DEVON_CORP_3F_STATE",
+            "0",
+            "RustboroCity_DevonCorp_3F_EventScript_PlayerFaceEast"
+          ],
+          "line": 17,
+          "raw": "map_script_2 VAR_DEVON_CORP_3F_STATE, 0, RustboroCity_DevonCorp_3F_EventScript_PlayerFaceEast",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 18,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_PlayerFaceEast": {
+      "label": "RustboroCity_DevonCorp_3F_EventScript_PlayerFaceEast",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_EAST"
+          ],
+          "line": 21,
+          "raw": "turnobject LOCALID_PLAYER, DIR_EAST",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_OnFrame": {
+      "label": "RustboroCity_DevonCorp_3F_OnFrame",
+      "kind": "map_script_table",
+      "line": 24,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_DEVON_CORP_3F_STATE",
+            "0",
+            "RustboroCity_DevonCorp_3F_EventScript_MeetPresident"
+          ],
+          "line": 25,
+          "raw": "map_script_2 VAR_DEVON_CORP_3F_STATE, 0, RustboroCity_DevonCorp_3F_EventScript_MeetPresident",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 26,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_MeetPresident": {
+      "label": "RustboroCity_DevonCorp_3F_EventScript_MeetPresident",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 29,
+          "raw": "lockall",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 30,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 31,
+          "raw": "closemessage",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DEVON_CORP_3F_EMPLOYEE",
+            "RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen"
+          ],
+          "line": 32,
+          "raw": "applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE, RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 33,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "80"
+          ],
+          "line": 34,
+          "raw": "delay 80",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DEVON_CORP_3F_EMPLOYEE",
+            "RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer"
+          ],
+          "line": 35,
+          "raw": "applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE, RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 36,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 37,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 38,
+          "raw": "closemessage",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_FOLLOW_ME",
+            "FALSE"
+          ],
+          "line": 39,
+          "raw": "playbgm MUS_FOLLOW_ME, FALSE",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DEVON_CORP_3F_EMPLOYEE",
+            "RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident"
+          ],
+          "line": 40,
+          "raw": "applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE, RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident"
+          ],
+          "line": 41,
+          "raw": "applymovement LOCALID_PLAYER, RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 42,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_PleaseGoAhead",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 43,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_PleaseGoAhead, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 44,
+          "raw": "closemessage",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "fadedefaultbgm",
+          "args": [],
+          "line": 45,
+          "raw": "fadedefaultbgm",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_DEVON_CORP_3F_EMPLOYEE",
+            "RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk"
+          ],
+          "line": 46,
+          "raw": "applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE, RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk"
+          ],
+          "line": 47,
+          "raw": "applymovement LOCALID_PLAYER, RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 48,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 49,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_LETTER"
+          ],
+          "line": 50,
+          "raw": "giveitem ITEM_LETTER",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 51,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_ITEM"
+          ],
+          "line": 52,
+          "raw": "playfanfare MUS_OBTAIN_ITEM",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_ReceivedPokenav"
+          ],
+          "line": 53,
+          "raw": "message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 54,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_POKENAV_GET"
+          ],
+          "line": 55,
+          "raw": "setflag FLAG_SYS_POKENAV_GET",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_POKENAV"
+          ],
+          "line": 56,
+          "raw": "setflag FLAG_RECEIVED_POKENAV",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT"
+          ],
+          "line": 57,
+          "raw": "setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 58,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 59,
+          "raw": "closemessage",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_OutOfCenterPartyHeal"
+          ],
+          "line": 60,
+          "raw": "call Common_EventScript_OutOfCenterPartyHeal",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 61,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND"
+          ],
+          "line": 62,
+          "raw": "setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND"
+          ],
+          "line": 63,
+          "raw": "clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_RUSTURF_TUNNEL_WANDA"
+          ],
+          "line": 64,
+          "raw": "clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY"
+          ],
+          "line": 65,
+          "raw": "clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_BRINEYS_HOUSE_PEEKO"
+          ],
+          "line": 66,
+          "raw": "clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_BRINEY_LOCATION",
+            "1"
+          ],
+          "line": 67,
+          "raw": "setvar VAR_BRINEY_LOCATION, 1",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_RUSTBORO_CITY_RIVAL"
+          ],
+          "line": 68,
+          "raw": "clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_DEVON_CORP_3F_STATE",
+            "1"
+          ],
+          "line": 69,
+          "raw": "setvar VAR_DEVON_CORP_3F_STATE, 1",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_RUSTBORO_CITY_STATE",
+            "6"
+          ],
+          "line": 70,
+          "raw": "setvar VAR_RUSTBORO_CITY_STATE, 6",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 71,
+          "raw": "releaseall",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 72,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 30
+        },
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 37
+        },
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_PleaseGoAhead",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 43
+        },
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 49
+        },
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 51
+        },
+        {
+          "op": "message",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_ReceivedPokenav",
+          "mode": "",
+          "line": 53
+        },
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 58
+        },
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 61
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_OutOfCenterPartyHeal",
+          "line": 60
+        }
+      ]
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_MrStone": {
+      "label": "RustboroCity_DevonCorp_3F_EventScript_MrStone",
+      "kind": "script",
+      "line": 149,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 150,
+          "raw": "lock",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 151,
+          "raw": "faceplayer",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_EXP_SHARE",
+            "RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor"
+          ],
+          "line": 152,
+          "raw": "goto_if_set FLAG_RECEIVED_EXP_SHARE, RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DELIVERED_STEVEN_LETTER",
+            "RustboroCity_DevonCorp_3F_EventScript_GiveExpShare"
+          ],
+          "line": 153,
+          "raw": "goto_if_set FLAG_DELIVERED_STEVEN_LETTER, RustboroCity_DevonCorp_3F_EventScript_GiveExpShare",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_CountingOnYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 154,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_CountingOnYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 155,
+          "raw": "closemessage",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 156,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 157,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 158,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 159,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_CountingOnYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 154
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor",
+          "line": 152
+        },
+        {
+          "op": "goto_if_set",
+          "target": "RustboroCity_DevonCorp_3F_EventScript_GiveExpShare",
+          "line": 153
+        }
+      ]
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_GiveExpShare": {
+      "label": "RustboroCity_DevonCorp_3F_EventScript_GiveExpShare",
+      "kind": "script",
+      "line": 161,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 162,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_EXP_SHARE"
+          ],
+          "line": 163,
+          "raw": "giveitem ITEM_EXP_SHARE",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "Common_EventScript_ShowBagIsFull"
+          ],
+          "line": 164,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_EXP_SHARE"
+          ],
+          "line": 165,
+          "raw": "setflag FLAG_RECEIVED_EXP_SHARE",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_ExplainExpShare",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 166,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_ExplainExpShare, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 167,
+          "raw": "closemessage",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 168,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 169,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 170,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 171,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 162
+        },
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_ExplainExpShare",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 166
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Common_EventScript_ShowBagIsFull",
+          "line": 164
+        }
+      ]
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor": {
+      "label": "RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor",
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 174,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 175,
+          "raw": "closemessage",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "VAR_LAST_TALKED",
+            "Common_Movement_FaceOriginalDirection"
+          ],
+          "line": 176,
+          "raw": "applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 177,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 178,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 179,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 174
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_Employee": {
+      "label": "RustboroCity_DevonCorp_3F_EventScript_Employee",
+      "kind": "script",
+      "line": 181,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 182,
+          "raw": "lock",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 183,
+          "raw": "faceplayer",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_REPEAT_BALL",
+            "RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls"
+          ],
+          "line": 184,
+          "raw": "goto_if_set FLAG_RECEIVED_REPEAT_BALL, RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_VisitCaptSternShipyard",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 185,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_VisitCaptSternShipyard, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 186,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 187,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_VisitCaptSternShipyard",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 185
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls",
+          "line": 184
+        }
+      ]
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls": {
+      "label": "RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls",
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 190,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 191,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 192,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 190
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_EventScript_RareRocksDisplay": {
+      "label": "RustboroCity_DevonCorp_3F_EventScript_RareRocksDisplay",
+      "kind": "script",
+      "line": 194,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_DevonCorp_3F_Text_RareRocksDisplay",
+            "MSGBOX_SIGN"
+          ],
+          "line": 195,
+          "raw": "msgbox RustboroCity_DevonCorp_3F_Text_RareRocksDisplay, MSGBOX_SIGN",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 196,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_DevonCorp_3F_Text_RareRocksDisplay",
+          "mode": "MSGBOX_SIGN",
+          "line": 195
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "RustboroCity_DevonCorp_3F_Movement_Unused": {
+      "label": "RustboroCity_DevonCorp_3F_Movement_Unused",
+      "kind": "movement",
+      "line": 74,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 75,
+          "raw": "walk_up",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 76,
+          "raw": "walk_up",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 77,
+          "raw": "walk_up",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 78,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 79,
+          "raw": "step_end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident": {
+      "label": "RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident",
+      "kind": "movement",
+      "line": 81,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 82,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 83,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 84,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 85,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 86,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 87,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 88,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 89,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 90,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 91,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 92,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 93,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 94,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 95,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 96,
+          "raw": "step_end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk": {
+      "label": "RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk",
+      "kind": "movement",
+      "line": 98,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 99,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_down",
+          "args": [],
+          "line": 100,
+          "raw": "walk_in_place_faster_down",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 101,
+          "raw": "step_end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen": {
+      "label": "RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen",
+      "kind": "movement",
+      "line": 103,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 104,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 105,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 106,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 107,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 108,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 109,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 110,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 111,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 112,
+          "raw": "step_end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer": {
+      "label": "RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer",
+      "kind": "movement",
+      "line": 114,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 115,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 116,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 117,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 118,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 119,
+          "raw": "walk_up",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 120,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 121,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 122,
+          "raw": "walk_left",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 123,
+          "raw": "step_end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident": {
+      "label": "RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident",
+      "kind": "movement",
+      "line": 125,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 126,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 127,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 128,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 129,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 130,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 131,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 132,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 133,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 134,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 135,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 136,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 137,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 138,
+          "raw": "walk_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 139,
+          "raw": "step_end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk": {
+      "label": "RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk",
+      "kind": "movement",
+      "line": 141,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "instructions": [
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 142,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 143,
+          "raw": "delay_16",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 144,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 145,
+          "raw": "walk_down",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 146,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 147,
+          "raw": "step_end",
+          "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor": {
+      "label": "RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor",
+      "line": 198,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "我是兹伏奇，\\n得文公司的社长。\\p刚刚听说了你的事迹！\\p你不止一次，而是两次\\n救了我们公司的员工！\\p我有件事想拜托给\\n你这样出色的人。\\p我知道你要送包裹到\\n凯那市的船厂去。\\p唔，在那之前，\\n能不能顺路去武斗镇一趟？\\p我希望你能把这封信交给\\n武斗镇里一个叫大吾的人。$",
+      "display_text": "我是兹伏奇，\n得文公司的社长。\n\n刚刚听说了你的事迹！\n\n你不止一次，而是两次\n救了我们公司的员工！\n\n我有件事想拜托给\n你这样出色的人。\n\n我知道你要送包裹到\n凯那市的船厂去。\n\n唔，在那之前，\n能不能顺路去武斗镇一趟？\n\n我希望你能把这封信交给\n武斗镇里一个叫大吾的人。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 240,
+        "bytes": [
+          13,
+          152,
+          12,
+          12,
+          17,
+          0,
+          4,
+          8,
+          10,
+          161,
+          59,
+          254,
+          3,
+          10,
+          13,
+          138,
+          4,
+          115,
+          12,
+          97,
+          3,
+          11,
+          11,
+          197,
+          2,
+          38,
+          55,
+          251,
+          4,
+          63,
+          4,
+          63,
+          13,
+          7,
+          12,
+          88,
+          8,
+          158,
+          9,
+          217,
+          3,
+          11,
+          12,
+          7,
+          5,
+          142,
+          60,
+          251,
+          9,
+          217,
+          1,
+          214,
+          16,
+          138,
+          15,
+          11,
+          2,
+          174,
+          59,
+          3,
+          157,
+          12,
+          12,
+          8,
+          144,
+          2,
+          174,
+          254,
+          7,
+          120,
+          8,
+          158,
+          13,
+          152,
+          9,
+          95,
+          4,
+          115,
+          12,
+          97,
+          3,
+          11,
+          15,
+          189,
+          4,
+          108,
+          60,
+          251,
+          13,
+          152,
+          15,
+          126,
+          5,
+          233,
+          12,
+          7,
+          14,
+          24,
+          1,
+          60,
+          13,
+          56,
+          4,
+          98,
+          254,
+          9,
+          217,
+          16,
+          85,
+          14,
+          226,
+          2,
+          120,
+          11,
+          137,
+          3,
+          11,
+          11,
+          75,
+          55,
+          251,
+          13,
+          152,
+          16,
+          123,
+          3,
+          7,
+          9,
+          217,
+          14,
+          241,
+          12,
+          112,
+          1,
+          91,
+          4,
+          196,
+          3,
+          4,
+          254,
+          7,
+          187,
+          9,
+          189,
+          12,
+          21,
+          3,
+          11,
+          2,
+          140,
+          2,
+          41,
+          11,
+          37,
+          55,
+          251,
+          20,
+          43,
+          59,
+          15,
+          230,
+          9,
+          189,
+          16,
+          127,
+          10,
+          201,
+          59,
+          254,
+          9,
+          210,
+          1,
+          214,
+          9,
+          210,
+          12,
+          86,
+          8,
+          232,
+          11,
+          37,
+          13,
+          170,
+          3,
+          92,
+          16,
+          101,
+          15,
+          11,
+          12,
+          204,
+          61,
+          251,
+          13,
+          152,
+          13,
+          199,
+          13,
+          99,
+          9,
+          217,
+          9,
+          210,
+          1,
+          48,
+          16,
+          85,
+          3,
+          229,
+          14,
+          80,
+          7,
+          13,
+          4,
+          98,
+          254,
+          13,
+          170,
+          3,
+          92,
+          16,
+          101,
+          8,
+          100,
+          15,
+          11,
+          4,
+          96,
+          7,
+          34,
+          2,
+          211,
+          13,
+          167,
+          3,
+          11,
+          11,
+          75,
+          55,
+          255
+        ],
+        "hex": "0D 98 0C 0C 11 00 04 08 0A A1 3B FE 03 0A 0D 8A 04 73 0C 61 03 0B 0B C5 02 26 37 FB 04 3F 04 3F 0D 07 0C 58 08 9E 09 D9 03 0B 0C 07 05 8E 3C FB 09 D9 01 D6 10 8A 0F 0B 02 AE 3B 03 9D 0C 0C 08 90 02 AE FE 07 78 08 9E 0D 98 09 5F 04 73 0C 61 03 0B 0F BD 04 6C 3C FB 0D 98 0F 7E 05 E9 0C 07 0E 18 01 3C 0D 38 04 62 FE 09 D9 10 55 0E E2 02 78 0B 89 03 0B 0B 4B 37 FB 0D 98 10 7B 03 07 09 D9 0E F1 0C 70 01 5B 04 C4 03 04 FE 07 BB 09 BD 0C 15 03 0B 02 8C 02 29 0B 25 37 FB 14 2B 3B 0F E6 09 BD 10 7F 0A C9 3B FE 09 D2 01 D6 09 D2 0C 56 08 E8 0B 25 0D AA 03 5C 10 65 0F 0B 0C CC 3D FB 0D 98 0D C7 0D 63 09 D9 09 D2 01 30 10 55 03 E5 0E 50 07 0D 04 62 FE 0D AA 03 5C 10 65 08 64 0F 0B 04 60 07 22 02 D3 0D A7 03 0B 0B 4B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 40,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 52,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 62,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 72,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 83,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 93,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 102,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 116,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 129,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 143,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis": {
+      "label": "RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis",
+      "line": 201,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "兹伏奇：你知道，\\n作为一位优秀的社长，\\p我绝不会吝啬到\\n让人白白帮忙。\\p因此我把这个送给你！$",
+      "display_text": "兹伏奇：你知道，\n作为一位优秀的社长，\n\n我绝不会吝啬到\n让人白白帮忙。\n\n因此我把这个送给你！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 84,
+        "bytes": [
+          17,
+          0,
+          4,
+          8,
+          10,
+          161,
+          62,
+          9,
+          217,
+          16,
+          123,
+          3,
+          7,
+          59,
+          254,
+          17,
+          47,
+          13,
+          112,
+          15,
+          11,
+          13,
+          129,
+          15,
+          115,
+          14,
+          110,
+          3,
+          11,
+          11,
+          197,
+          2,
+          38,
+          59,
+          251,
+          13,
+          152,
+          7,
+          168,
+          1,
+          214,
+          5,
+          110,
+          8,
+          178,
+          17,
+          85,
+          3,
+          4,
+          254,
+          11,
+          67,
+          11,
+          75,
+          1,
+          54,
+          1,
+          54,
+          1,
+          78,
+          9,
+          62,
+          55,
+          251,
+          15,
+          66,
+          2,
+          171,
+          13,
+          152,
+          1,
+          48,
+          16,
+          85,
+          4,
+          96,
+          12,
+          112,
+          4,
+          98,
+          9,
+          217,
+          60,
+          255
+        ],
+        "hex": "11 00 04 08 0A A1 3E 09 D9 10 7B 03 07 3B FE 11 2F 0D 70 0F 0B 0D 81 0F 73 0E 6E 03 0B 0B C5 02 26 3B FB 0D 98 07 A8 01 D6 05 6E 08 B2 11 55 03 04 FE 0B 43 0B 4B 01 36 01 36 01 4E 09 3E 37 FB 0F 42 02 AB 0D 98 01 30 10 55 04 60 0C 70 04 62 09 D9 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 38,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 50,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_ReceivedPokenav": {
+      "label": "RustboroCity_DevonCorp_3F_Text_ReceivedPokenav",
+      "line": 204,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "{PLAYER}得到了宝可导航。$",
+      "display_text": "{PLAYER}得到了宝可导航。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          253,
+          1,
+          3,
+          10,
+          3,
+          4,
+          8,
+          158,
+          1,
+          99,
+          7,
+          215,
+          3,
+          3,
+          4,
+          227,
+          55,
+          255
+        ],
+        "hex": "FD 01 03 0A 03 04 08 9E 01 63 07 D7 03 03 04 E3 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp": {
+      "label": "RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp",
+      "line": 207,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "兹伏奇：那个装置……\\p那是宝可梦导航器，\\n简称宝可导航，\\p对冒险中的训练家来说\\n是不可或缺的工具。\\p那里面有丰缘地区\\n的地图，\\p你可以很方便地查看\\n武斗镇和凯那市的地点！\\p对了，我听说一些邪恶的犯罪组织\\n——我想是熔岩队和海洋队——\\l在到处惹是生非，\\p建议你出发前最好\\n先好好休息一下。$",
+      "display_text": "兹伏奇：那个装置……\n\n那是宝可梦导航器，\n简称宝可导航，\n\n对冒险中的训练家来说\n是不可或缺的工具。\n\n那里面有丰缘地区\n的地图，\n\n你可以很方便地查看\n武斗镇和凯那市的地点！\n\n对了，我听说一些邪恶的犯罪组织\n——我想是熔岩队和海洋队——\n在到处惹是生非，\n\n建议你出发前最好\n先好好休息一下。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 259,
+        "bytes": [
+          17,
+          0,
+          4,
+          8,
+          10,
+          161,
+          62,
+          9,
+          189,
+          4,
+          96,
+          16,
+          223,
+          16,
+          148,
+          176,
+          176,
+          251,
+          9,
+          189,
+          12,
+          12,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          3,
+          4,
+          227,
+          10,
+          178,
+          59,
+          254,
+          5,
+          221,
+          2,
+          72,
+          1,
+          99,
+          7,
+          215,
+          3,
+          3,
+          4,
+          227,
+          59,
+          251,
+          3,
+          121,
+          9,
+          72,
+          14,
+          2,
+          16,
+          161,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          8,
+          41,
+          12,
+          88,
+          254,
+          12,
+          12,
+          1,
+          214,
+          7,
+          215,
+          5,
+          127,
+          11,
+          49,
+          3,
+          11,
+          4,
+          108,
+          7,
+          143,
+          55,
+          251,
+          9,
+          189,
+          8,
+          100,
+          9,
+          126,
+          15,
+          126,
+          3,
+          228,
+          15,
+          193,
+          3,
+          31,
+          11,
+          26,
+          254,
+          3,
+          11,
+          3,
+          31,
+          13,
+          36,
+          59,
+          251,
+          9,
+          217,
+          7,
+          215,
+          15,
+          36,
+          5,
+          11,
+          3,
+          192,
+          1,
+          160,
+          3,
+          31,
+          2,
+          13,
+          7,
+          194,
+          254,
+          13,
+          170,
+          3,
+          92,
+          16,
+          101,
+          4,
+          243,
+          7,
+          187,
+          9,
+          189,
+          12,
+          21,
+          3,
+          11,
+          3,
+          31,
+          3,
+          42,
+          60,
+          251,
+          3,
+          121,
+          8,
+          158,
+          59,
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          15,
+          11,
+          14,
+          52,
+          14,
+          59,
+          3,
+          150,
+          3,
+          11,
+          3,
+          187,
+          17,
+          39,
+          17,
+          33,
+          16,
+          128,
+          254,
+          63,
+          63,
+          13,
+          152,
+          14,
+          24,
+          12,
+          12,
+          11,
+          91,
+          14,
+          187,
+          3,
+          120,
+          4,
+          243,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          63,
+          63,
+          250,
+          15,
+          230,
+          3,
+          4,
+          2,
+          134,
+          11,
+          71,
+          12,
+          12,
+          11,
+          216,
+          3,
+          202,
+          59,
+          251,
+          5,
+          241,
+          15,
+          57,
+          9,
+          217,
+          2,
+          120,
+          3,
+          165,
+          10,
+          201,
+          17,
+          38,
+          4,
+          233,
+          254,
+          13,
+          236,
+          4,
+          233,
+          4,
+          233,
+          14,
+          104,
+          13,
+          198,
+          15,
+          11,
+          13,
+          230,
+          55,
+          255
+        ],
+        "hex": "11 00 04 08 0A A1 3E 09 BD 04 60 10 DF 10 94 B0 B0 FB 09 BD 0C 0C 01 63 07 D7 09 66 03 03 04 E3 0A B2 3B FE 05 DD 02 48 01 63 07 D7 03 03 04 E3 3B FB 03 79 09 48 0E 02 10 A1 03 0B 0E 9E 08 8A 05 BD 08 29 0C 58 FE 0C 0C 01 D6 07 D7 05 7F 0B 31 03 0B 04 6C 07 8F 37 FB 09 BD 08 64 09 7E 0F 7E 03 E4 0F C1 03 1F 0B 1A FE 03 0B 03 1F 0D 24 3B FB 09 D9 07 D7 0F 24 05 0B 03 C0 01 A0 03 1F 02 0D 07 C2 FE 0D AA 03 5C 10 65 04 F3 07 BB 09 BD 0C 15 03 0B 03 1F 03 2A 3C FB 03 79 08 9E 3B 0D 98 0D 07 0C 58 0F 0B 0E 34 0E 3B 03 96 03 0B 03 BB 11 27 11 21 10 80 FE 3F 3F 0D 98 0E 18 0C 0C 0B 5B 0E BB 03 78 04 F3 04 C9 0E DC 03 78 3F 3F FA 0F E6 03 04 02 86 0B 47 0C 0C 0B D8 03 CA 3B FB 05 F1 0F 39 09 D9 02 78 03 A5 0A C9 11 26 04 E9 FE 0D EC 04 E9 04 E9 0E 68 0D C6 0F 0B 0D E6 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 30,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 42,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 53,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 63,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 69,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 80,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 93,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 110,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 126,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 136,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 146,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 156,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare": {
+      "label": "RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare",
+      "line": 210,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "兹伏奇：好了，{PLAYER}{KUN}，\\n路上小心！$",
+      "display_text": "兹伏奇：好了，{PLAYER}{KUN}，\n路上小心！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 28,
+        "bytes": [
+          17,
+          0,
+          4,
+          8,
+          10,
+          161,
+          62,
+          4,
+          233,
+          8,
+          158,
+          59,
+          253,
+          1,
+          253,
+          5,
+          59,
+          254,
+          8,
+          232,
+          11,
+          173,
+          14,
+          44,
+          14,
+          79,
+          60,
+          255
+        ],
+        "hex": "11 00 04 08 0A A1 3E 04 E9 08 9E 3B FD 01 FD 05 3B FE 08 E8 0B AD 0E 2C 0E 4F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 7,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 15,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 28,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 7,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 15,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_CountingOnYou": {
+      "label": "RustboroCity_DevonCorp_3F_Text_CountingOnYou",
+      "line": 213,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "兹伏奇：就拜托给你了！$",
+      "display_text": "兹伏奇：就拜托给你了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          17,
+          0,
+          4,
+          8,
+          10,
+          161,
+          62,
+          7,
+          125,
+          1,
+          60,
+          13,
+          56,
+          4,
+          98,
+          9,
+          217,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "11 00 04 08 0A A1 3E 07 7D 01 3C 0D 38 04 62 09 D9 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter": {
+      "label": "RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter",
+      "line": 216,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "兹伏奇：你把信送到了？\\n非常感谢！\\p这是我的谢礼，\\n应该对你这样的训练家有所帮助。$",
+      "display_text": "兹伏奇：你把信送到了？\n非常感谢！\n\n这是我的谢礼，\n应该对你这样的训练家有所帮助。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 75,
+        "bytes": [
+          17,
+          0,
+          4,
+          8,
+          10,
+          161,
+          62,
+          9,
+          217,
+          1,
+          48,
+          14,
+          80,
+          12,
+          112,
+          3,
+          4,
+          8,
+          158,
+          61,
+          254,
+          3,
+          202,
+          2,
+          37,
+          4,
+          58,
+          14,
+          70,
+          60,
+          251,
+          16,
+          85,
+          12,
+          12,
+          13,
+          152,
+          3,
+          11,
+          14,
+          70,
+          8,
+          102,
+          59,
+          254,
+          15,
+          84,
+          4,
+          45,
+          3,
+          121,
+          9,
+          217,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          15,
+          126,
+          12,
+          156,
+          1,
+          78,
+          16,
+          203,
+          55,
+          255
+        ],
+        "hex": "11 00 04 08 0A A1 3E 09 D9 01 30 0E 50 0C 70 03 04 08 9E 3D FE 03 CA 02 25 04 3A 0E 46 3C FB 10 55 0C 0C 0D 98 03 0B 0E 46 08 66 3B FE 0F 54 04 2D 03 79 09 D9 10 55 0E E2 03 0B 0E 9E 08 8A 05 BD 0F 7E 0C 9C 01 4E 10 CB 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_ExplainExpShare": {
+      "label": "RustboroCity_DevonCorp_3F_Text_ExplainExpShare",
+      "line": 219,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "兹伏奇：携带这个学习装置的宝可梦，\\n即使没有实际参与战斗，\\l也能分享到部分经验值。\\p对于培养弱小的宝可梦来说，\\n学习装置非常实用。$",
+      "display_text": "兹伏奇：携带这个学习装置的宝可梦，\n即使没有实际参与战斗，\n也能分享到部分经验值。\n\n对于培养弱小的宝可梦来说，\n学习装置非常实用。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 121,
+        "bytes": [
+          17,
+          0,
+          4,
+          8,
+          10,
+          161,
+          62,
+          14,
+          58,
+          2,
+          216,
+          16,
+          85,
+          4,
+          96,
+          14,
+          144,
+          13,
+          212,
+          16,
+          223,
+          16,
+          148,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          254,
+          5,
+          159,
+          11,
+          245,
+          9,
+          83,
+          15,
+          126,
+          11,
+          241,
+          5,
+          181,
+          1,
+          233,
+          15,
+          153,
+          16,
+          48,
+          3,
+          92,
+          59,
+          250,
+          15,
+          2,
+          9,
+          210,
+          3,
+          217,
+          14,
+          26,
+          3,
+          4,
+          1,
+          218,
+          3,
+          217,
+          7,
+          93,
+          14,
+          210,
+          16,
+          134,
+          55,
+          251,
+          3,
+          121,
+          15,
+          136,
+          10,
+          61,
+          14,
+          225,
+          11,
+          117,
+          14,
+          44,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          41,
+          12,
+          88,
+          59,
+          254,
+          14,
+          144,
+          13,
+          212,
+          16,
+          223,
+          16,
+          148,
+          3,
+          202,
+          2,
+          37,
+          11,
+          241,
+          15,
+          113,
+          55,
+          255
+        ],
+        "hex": "11 00 04 08 0A A1 3E 0E 3A 02 D8 10 55 04 60 0E 90 0D D4 10 DF 10 94 03 0B 01 63 07 D7 09 66 3B FE 05 9F 0B F5 09 53 0F 7E 0B F1 05 B5 01 E9 0F 99 10 30 03 5C 3B FA 0F 02 09 D2 03 D9 0E 1A 03 04 01 DA 03 D9 07 5D 0E D2 10 86 37 FB 03 79 0F 88 0A 3D 0E E1 0B 75 0E 2C 03 0B 01 63 07 D7 09 66 08 29 0C 58 3B FE 0E 90 0D D4 10 DF 10 94 03 CA 02 25 0B F1 0F 71 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 17,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 30,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 43,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 58,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 69,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends": {
+      "label": "RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends",
+      "line": 222,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "兹伏奇：我从年轻时起，\\n就一直全身心投入工作，\\p所以我也不怎么了解\\n流行趋势之类的东西。\\p现在的年轻人们都想成为\\n宝可梦联盟的训练家吗？$",
+      "display_text": "兹伏奇：我从年轻时起，\n就一直全身心投入工作，\n\n所以我也不怎么了解\n流行趋势之类的东西。\n\n现在的年轻人们都想成为\n宝可梦联盟的训练家吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 127,
+        "bytes": [
+          17,
+          0,
+          4,
+          8,
+          10,
+          161,
+          62,
+          13,
+          152,
+          2,
+          179,
+          9,
+          224,
+          11,
+          3,
+          11,
+          237,
+          10,
+          171,
+          59,
+          254,
+          7,
+          125,
+          15,
+          11,
+          16,
+          130,
+          11,
+          43,
+          11,
+          203,
+          14,
+          79,
+          13,
+          30,
+          11,
+          107,
+          4,
+          108,
+          17,
+          47,
+          59,
+          251,
+          12,
+          156,
+          15,
+          36,
+          13,
+          152,
+          15,
+          2,
+          1,
+          214,
+          16,
+          10,
+          9,
+          76,
+          8,
+          158,
+          7,
+          52,
+          254,
+          8,
+          202,
+          14,
+          91,
+          11,
+          25,
+          12,
+          11,
+          16,
+          127,
+          8,
+          85,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          55,
+          251,
+          14,
+          3,
+          15,
+          230,
+          3,
+          11,
+          9,
+          224,
+          11,
+          3,
+          11,
+          75,
+          9,
+          95,
+          3,
+          97,
+          14,
+          24,
+          2,
+          75,
+          13,
+          112,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          125,
+          9,
+          99,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "11 00 04 08 0A A1 3E 0D 98 02 B3 09 E0 0B 03 0B ED 0A AB 3B FE 07 7D 0F 0B 10 82 0B 2B 0B CB 0E 4F 0D 1E 0B 6B 04 6C 11 2F 3B FB 0C 9C 0F 24 0D 98 0F 02 01 D6 10 0A 09 4C 08 9E 07 34 FE 08 CA 0E 5B 0B 19 0C 0B 10 7F 08 55 03 0B 03 50 0D BD 37 FB 0E 03 0F E6 03 0B 09 E0 0B 03 0B 4B 09 5F 03 61 0E 18 02 4B 0D 70 FE 01 63 07 D7 09 66 08 7D 09 63 03 0B 0E 9E 08 8A 05 BD 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 47,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 60,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 73,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere": {
+      "label": "RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere",
+      "line": 225,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "这里是得文公司的3楼。\\p社长办公室的\\n所在地。\\p无论如何，我无法表明\\n我对你所做的事情的感谢。\\p呃……另外，你帮我们\\n取回来的那个包裹……\\p能再请你帮忙\\n送到凯那市的船厂吗？\\p如果再让那些强盗\\n抢走就糟了。\\p呃……哈哈哈，那，呃，\\n能帮我这个忙吗？\\p啊，对了，\\n请在此稍等一下。$",
+      "display_text": "这里是得文公司的3楼。\n\n社长办公室的\n所在地。\n\n无论如何，我无法表明\n我对你所做的事情的感谢。\n\n呃……另外，你帮我们\n取回来的那个包裹……\n\n能再请你帮忙\n送到凯那市的船厂吗？\n\n如果再让那些强盗\n抢走就糟了。\n\n呃……哈哈哈，那，呃，\n能帮我这个忙吗？\n\n啊，对了，\n请在此稍等一下。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 244,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          12,
+          12,
+          3,
+          10,
+          13,
+          138,
+          4,
+          115,
+          12,
+          97,
+          3,
+          11,
+          164,
+          8,
+          214,
+          55,
+          251,
+          11,
+          197,
+          2,
+          38,
+          1,
+          75,
+          4,
+          115,
+          12,
+          23,
+          3,
+          11,
+          254,
+          12,
+          156,
+          15,
+          230,
+          3,
+          31,
+          55,
+          251,
+          13,
+          164,
+          9,
+          21,
+          11,
+          103,
+          4,
+          244,
+          59,
+          13,
+          152,
+          13,
+          164,
+          3,
+          171,
+          1,
+          170,
+          9,
+          143,
+          254,
+          13,
+          152,
+          3,
+          121,
+          9,
+          217,
+          12,
+          156,
+          17,
+          46,
+          3,
+          11,
+          12,
+          7,
+          11,
+          11,
+          3,
+          11,
+          4,
+          58,
+          14,
+          70,
+          55,
+          251,
+          19,
+          245,
+          176,
+          176,
+          8,
+          192,
+          13,
+          74,
+          59,
+          9,
+          217,
+          1,
+          78,
+          13,
+          152,
+          9,
+          95,
+          254,
+          11,
+          33,
+          5,
+          101,
+          8,
+          41,
+          3,
+          11,
+          9,
+          189,
+          4,
+          96,
+          1,
+          91,
+          4,
+          196,
+          176,
+          176,
+          251,
+          9,
+          210,
+          15,
+          229,
+          11,
+          13,
+          9,
+          217,
+          1,
+          78,
+          9,
+          62,
+          254,
+          12,
+          112,
+          3,
+          4,
+          7,
+          187,
+          9,
+          189,
+          12,
+          21,
+          3,
+          11,
+          2,
+          140,
+          2,
+          41,
+          9,
+          42,
+          61,
+          251,
+          11,
+          103,
+          4,
+          195,
+          15,
+          229,
+          11,
+          67,
+          9,
+          189,
+          14,
+          52,
+          10,
+          216,
+          3,
+          8,
+          254,
+          10,
+          217,
+          17,
+          23,
+          7,
+          125,
+          15,
+          239,
+          8,
+          158,
+          55,
+          251,
+          19,
+          245,
+          176,
+          176,
+          4,
+          198,
+          4,
+          198,
+          4,
+          198,
+          59,
+          9,
+          189,
+          59,
+          19,
+          245,
+          59,
+          254,
+          9,
+          210,
+          1,
+          78,
+          13,
+          152,
+          16,
+          85,
+          4,
+          96,
+          9,
+          62,
+          9,
+          42,
+          61,
+          251,
+          1,
+          0,
+          59,
+          3,
+          121,
+          8,
+          158,
+          59,
+          254,
+          11,
+          13,
+          15,
+          230,
+          2,
+          171,
+          11,
+          178,
+          3,
+          15,
+          15,
+          11,
+          13,
+          230,
+          55,
+          255
+        ],
+        "hex": "10 55 08 64 0C 0C 03 0A 0D 8A 04 73 0C 61 03 0B A4 08 D6 37 FB 0B C5 02 26 01 4B 04 73 0C 17 03 0B FE 0C 9C 0F E6 03 1F 37 FB 0D A4 09 15 0B 67 04 F4 3B 0D 98 0D A4 03 AB 01 AA 09 8F FE 0D 98 03 79 09 D9 0C 9C 11 2E 03 0B 0C 07 0B 0B 03 0B 04 3A 0E 46 37 FB 13 F5 B0 B0 08 C0 0D 4A 3B 09 D9 01 4E 0D 98 09 5F FE 0B 21 05 65 08 29 03 0B 09 BD 04 60 01 5B 04 C4 B0 B0 FB 09 D2 0F E5 0B 0D 09 D9 01 4E 09 3E FE 0C 70 03 04 07 BB 09 BD 0C 15 03 0B 02 8C 02 29 09 2A 3D FB 0B 67 04 C3 0F E5 0B 43 09 BD 0E 34 0A D8 03 08 FE 0A D9 11 17 07 7D 0F EF 08 9E 37 FB 13 F5 B0 B0 04 C6 04 C6 04 C6 3B 09 BD 3B 13 F5 3B FE 09 D2 01 4E 0D 98 10 55 04 60 09 3E 09 2A 3D FB 01 00 3B 03 79 08 9E 3B FE 0B 0D 0F E6 02 AB 0B B2 03 0F 0F 0B 0D E6 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 25,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 37,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 51,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 63,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 75,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 83,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 95,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 105,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 113,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 126,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 136,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 143,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 153,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe": {
+      "label": "RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe",
+      "line": 228,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "我们的社长有话\\n想跟你说。\\p跟我来。$",
+      "display_text": "我们的社长有话\n想跟你说。\n\n跟我来。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 33,
+        "bytes": [
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          11,
+          197,
+          2,
+          38,
+          15,
+          126,
+          5,
+          61,
+          254,
+          14,
+          24,
+          4,
+          100,
+          9,
+          217,
+          12,
+          88,
+          55,
+          251,
+          4,
+          100,
+          13,
+          152,
+          8,
+          41,
+          55,
+          255
+        ],
+        "hex": "0D 98 09 5F 03 0B 0B C5 02 26 0F 7E 05 3D FE 0E 18 04 64 09 D9 0C 58 37 FB 04 64 0D 98 08 29 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_PleaseGoAhead": {
+      "label": "RustboroCity_DevonCorp_3F_Text_PleaseGoAhead",
+      "line": 231,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "过来吧。$",
+      "display_text": "过来吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 8,
+        "bytes": [
+          4,
+          197,
+          8,
+          41,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "04 C5 08 29 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 4,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_VisitCaptSternShipyard": {
+      "label": "RustboroCity_DevonCorp_3F_Text_VisitCaptSternShipyard",
+      "line": 234,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "你到凯那市的船厂后，\\n应该去找楠木馆长。$",
+      "display_text": "你到凯那市的船厂后，\n应该去找楠木馆长。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          9,
+          217,
+          3,
+          4,
+          7,
+          187,
+          9,
+          189,
+          12,
+          21,
+          3,
+          11,
+          2,
+          140,
+          2,
+          41,
+          5,
+          34,
+          59,
+          254,
+          15,
+          84,
+          4,
+          45,
+          11,
+          37,
+          16,
+          69,
+          23,
+          175,
+          9,
+          180,
+          4,
+          165,
+          2,
+          38,
+          55,
+          255
+        ],
+        "hex": "09 D9 03 04 07 BB 09 BD 0C 15 03 0B 02 8C 02 29 05 22 3B FE 0F 54 04 2D 0B 25 10 45 17 AF 09 B4 04 A5 02 26 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular": {
+      "label": "RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular",
+      "line": 237,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "得文的新产品重复球\\n和时间球很快就\\l在训练家之中流行起来了。$",
+      "display_text": "得文的新产品重复球\n和时间球很快就\n在训练家之中流行起来了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 58,
+        "bytes": [
+          3,
+          10,
+          13,
+          138,
+          3,
+          11,
+          14,
+          77,
+          2,
+          30,
+          10,
+          114,
+          16,
+          169,
+          4,
+          30,
+          11,
+          20,
+          254,
+          4,
+          243,
+          11,
+          237,
+          5,
+          207,
+          11,
+          20,
+          5,
+          11,
+          8,
+          3,
+          7,
+          125,
+          250,
+          15,
+          230,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          16,
+          127,
+          16,
+          161,
+          8,
+          202,
+          14,
+          91,
+          10,
+          171,
+          8,
+          41,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "03 0A 0D 8A 03 0B 0E 4D 02 1E 0A 72 10 A9 04 1E 0B 14 FE 04 F3 0B ED 05 CF 0B 14 05 0B 08 03 07 7D FA 0F E6 0E 9E 08 8A 05 BD 10 7F 10 A1 08 CA 0E 5B 0A AB 08 29 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 18,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_DevonCorp_3F_Text_RareRocksDisplay": {
+      "label": "RustboroCity_DevonCorp_3F_Text_RareRocksDisplay",
+      "line": 240,
+      "source_file": "data/maps/RustboroCity_DevonCorp_3F/scripts.inc",
+      "raw_text": "这是社长收集的\\n稀有岩石。$",
+      "display_text": "这是社长收集的\n稀有岩石。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 25,
+        "bytes": [
+          16,
+          85,
+          12,
+          12,
+          11,
+          197,
+          2,
+          38,
+          12,
+          26,
+          5,
+          154,
+          3,
+          11,
+          254,
+          13,
+          197,
+          15,
+          126,
+          14,
+          187,
+          11,
+          235,
+          55,
+          255
+        ],
+        "hex": "10 55 0C 0C 0B C5 02 26 0C 1A 05 9A 03 0B FE 0D C5 0F 7E 0E BB 0B EB 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 9,
+      "call_if_eq": 1,
+      "clearflag": 5,
+      "closemessage": 7,
+      "delay": 1,
+      "delay_16": 3,
+      "faceplayer": 2,
+      "fadedefaultbgm": 1,
+      "giveitem": 2,
+      "goto_if_eq": 1,
+      "goto_if_set": 3,
+      "map_script": 3,
+      "map_script_2": 2,
+      "playbgm": 1,
+      "playfanfare": 1,
+      "setflag": 5,
+      "setobjectmovementtype": 1,
+      "setobjectxyperm": 1,
+      "setvar": 3,
+      "step_end": 7,
+      "turnobject": 1,
+      "waitfanfare": 1,
+      "waitmovement": 7,
+      "walk_down": 5,
+      "walk_in_place_faster_down": 1,
+      "walk_in_place_faster_left": 2,
+      "walk_in_place_faster_right": 1,
+      "walk_left": 7,
+      "walk_right": 31,
+      "walk_up": 4
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 35,
+    "script_count": 13,
+    "movement_count": 7,
+    "text_count": 15,
+    "encoded_text_count": 15,
+    "text_source_byte_count": 1379,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 15
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 9,
+      "call": 1,
+      "call_if_eq": 1,
+      "clearflag": 5,
+      "closemessage": 7,
+      "delay": 1,
+      "delay_16": 3,
+      "end": 9,
+      "faceplayer": 2,
+      "fadedefaultbgm": 1,
+      "giveitem": 2,
+      "goto_if_eq": 1,
+      "goto_if_set": 3,
+      "lock": 2,
+      "lockall": 1,
+      "map_script": 3,
+      "map_script_2": 2,
+      "message": 1,
+      "msgbox": 14,
+      "playbgm": 1,
+      "playfanfare": 1,
+      "release": 5,
+      "releaseall": 1,
+      "return": 1,
+      "setflag": 5,
+      "setobjectmovementtype": 1,
+      "setobjectxyperm": 1,
+      "setvar": 3,
+      "step_end": 7,
+      "turnobject": 1,
+      "waitfanfare": 1,
+      "waitmovement": 7,
+      "walk_down": 5,
+      "walk_in_place_faster_down": 1,
+      "walk_in_place_faster_left": 2,
+      "walk_in_place_faster_right": 1,
+      "walk_left": 7,
+      "walk_right": 31,
+      "walk_up": 4
+    }
+  }
+}

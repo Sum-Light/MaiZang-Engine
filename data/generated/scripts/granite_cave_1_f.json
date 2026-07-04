@@ -1,0 +1,751 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "GraniteCave_1F",
+    "map_script": "data/maps/GraniteCave_1F/scripts.inc",
+    "map_json": "data/maps/GraniteCave_1F/map.json",
+    "map_id": "MAP_GRANITE_CAVE_1F",
+    "map_name": "GraniteCave_1F"
+  },
+  "labels": {
+    "GraniteCave_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/GraniteCave_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "GraniteCave_1F_EventScript_Hiker": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/GraniteCave_1F/scripts.inc",
+      "instruction_count": 9
+    },
+    "GraniteCave_1F_EventScript_ReceivedFlash": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/GraniteCave_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "GraniteCave_1F_Text_GetsDarkAheadHereYouGo": {
+      "kind": "text",
+      "line": 20,
+      "source_file": "data/maps/GraniteCave_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "GraniteCave_1F_Text_ExplainFlash": {
+      "kind": "text",
+      "line": 23,
+      "source_file": "data/maps/GraniteCave_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "GraniteCave_1F_MapScripts": {
+      "label": "GraniteCave_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/GraniteCave_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "GraniteCave_1F_EventScript_Hiker": {
+      "label": "GraniteCave_1F_EventScript_Hiker",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/GraniteCave_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_HM_FLASH",
+            "GraniteCave_1F_EventScript_ReceivedFlash"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_RECEIVED_HM_FLASH, GraniteCave_1F_EventScript_ReceivedFlash",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "GraniteCave_1F_Text_GetsDarkAheadHereYouGo",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 8,
+          "raw": "msgbox GraniteCave_1F_Text_GetsDarkAheadHereYouGo, MSGBOX_DEFAULT",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_HM_FLASH"
+          ],
+          "line": 9,
+          "raw": "giveitem ITEM_HM_FLASH",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_HM_FLASH"
+          ],
+          "line": 10,
+          "raw": "setflag FLAG_RECEIVED_HM_FLASH",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "GraniteCave_1F_Text_ExplainFlash",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 11,
+          "raw": "msgbox GraniteCave_1F_Text_ExplainFlash, MSGBOX_DEFAULT",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 12,
+          "raw": "release",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "GraniteCave_1F_Text_GetsDarkAheadHereYouGo",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 8
+        },
+        {
+          "op": "msgbox",
+          "text_label": "GraniteCave_1F_Text_ExplainFlash",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 11
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "GraniteCave_1F_EventScript_ReceivedFlash",
+          "line": 7
+        }
+      ]
+    },
+    "GraniteCave_1F_EventScript_ReceivedFlash": {
+      "label": "GraniteCave_1F_EventScript_ReceivedFlash",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/GraniteCave_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "GraniteCave_1F_Text_ExplainFlash",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 16,
+          "raw": "msgbox GraniteCave_1F_Text_ExplainFlash, MSGBOX_DEFAULT",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 17,
+          "raw": "release",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/GraniteCave_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "GraniteCave_1F_Text_ExplainFlash",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 16
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "GraniteCave_1F_Text_GetsDarkAheadHereYouGo": {
+      "label": "GraniteCave_1F_Text_GetsDarkAheadHereYouGo",
+      "line": 20,
+      "source_file": "data/maps/GraniteCave_1F/scripts.inc",
+      "raw_text": "喂，那边的。\\n前面黑得可怕，\\l继续探索下去会很危险。\\p先前有个人来过……\\n我想应该是大吾。\\p他会使用闪光，\\n所以应该没事，可是……\\p唔，对于我们登山男而言，帮助他人\\n解决困难是我们的座右铭。\\p给，这个送你了。$",
+      "display_text": "喂，那边的。\n前面黑得可怕，\n继续探索下去会很危险。\n\n先前有个人来过……\n我想应该是大吾。\n\n他会使用闪光，\n所以应该没事，可是……\n\n唔，对于我们登山男而言，帮助他人\n解决困难是我们的座右铭。\n\n给，这个送你了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 184,
+        "bytes": [
+          13,
+          127,
+          59,
+          9,
+          189,
+          1,
+          156,
+          3,
+          11,
+          55,
+          254,
+          10,
+          201,
+          9,
+          126,
+          5,
+          9,
+          3,
+          10,
+          7,
+          215,
+          10,
+          31,
+          59,
+          250,
+          5,
+          183,
+          14,
+          131,
+          12,
+          190,
+          12,
+          154,
+          13,
+          230,
+          11,
+          37,
+          5,
+          110,
+          5,
+          11,
+          13,
+          105,
+          14,
+          2,
+          55,
+          251,
+          13,
+          236,
+          10,
+          201,
+          15,
+          126,
+          4,
+          96,
+          11,
+          75,
+          8,
+          41,
+          4,
+          197,
+          176,
+          176,
+          254,
+          13,
+          152,
+          14,
+          24,
+          15,
+          84,
+          4,
+          45,
+          12,
+          12,
+          2,
+          211,
+          13,
+          167,
+          55,
+          251,
+          12,
+          158,
+          5,
+          110,
+          11,
+          245,
+          15,
+          113,
+          11,
+          159,
+          4,
+          170,
+          59,
+          254,
+          12,
+          156,
+          15,
+          36,
+          15,
+          84,
+          4,
+          45,
+          9,
+          83,
+          12,
+          7,
+          59,
+          7,
+          215,
+          12,
+          12,
+          176,
+          176,
+          251,
+          20,
+          43,
+          59,
+          3,
+          121,
+          15,
+          136,
+          13,
+          152,
+          9,
+          95,
+          3,
+          14,
+          11,
+          155,
+          9,
+          198,
+          3,
+          157,
+          14,
+          189,
+          59,
+          1,
+          78,
+          16,
+          203,
+          12,
+          158,
+          11,
+          75,
+          254,
+          7,
+          52,
+          7,
+          166,
+          8,
+          28,
+          9,
+          199,
+          12,
+          12,
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          17,
+          49,
+          15,
+          128,
+          9,
+          146,
+          55,
+          251,
+          4,
+          98,
+          59,
+          16,
+          85,
+          4,
+          96,
+          12,
+          112,
+          9,
+          217,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0D 7F 3B 09 BD 01 9C 03 0B 37 FE 0A C9 09 7E 05 09 03 0A 07 D7 0A 1F 3B FA 05 B7 0E 83 0C BE 0C 9A 0D E6 0B 25 05 6E 05 0B 0D 69 0E 02 37 FB 0D EC 0A C9 0F 7E 04 60 0B 4B 08 29 04 C5 B0 B0 FE 0D 98 0E 18 0F 54 04 2D 0C 0C 02 D3 0D A7 37 FB 0C 9E 05 6E 0B F5 0F 71 0B 9F 04 AA 3B FE 0C 9C 0F 24 0F 54 04 2D 09 53 0C 07 3B 07 D7 0C 0C B0 B0 FB 14 2B 3B 03 79 0F 88 0D 98 09 5F 03 0E 0B 9B 09 C6 03 9D 0E BD 3B 01 4E 10 CB 0C 9E 0B 4B FE 07 34 07 A6 08 1C 09 C7 0C 0C 0D 98 09 5F 03 0B 11 31 0F 80 09 92 37 FB 04 62 3B 10 55 04 60 0C 70 09 D9 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 15,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 39,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 49,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 58,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 71,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 89,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 103,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 113,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "GraniteCave_1F_Text_ExplainFlash": {
+      "label": "GraniteCave_1F_Text_ExplainFlash",
+      "line": 23,
+      "source_file": "data/maps/GraniteCave_1F/scripts.inc",
+      "raw_text": "把闪光招式教给宝可梦，\\n使用的时候，\\p就能够照亮\\n漆黑的山洞。\\p但你必须先去武斗镇的宝可梦道馆\\n取得道馆徽章。$",
+      "display_text": "把闪光招式教给宝可梦，\n使用的时候，\n\n就能够照亮\n漆黑的山洞。\n\n但你必须先去武斗镇的宝可梦道馆\n取得道馆徽章。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 102,
+        "bytes": [
+          1,
+          48,
+          11,
+          159,
+          4,
+          170,
+          16,
+          67,
+          12,
+          2,
+          7,
+          30,
+          4,
+          98,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          254,
+          11,
+          245,
+          15,
+          113,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          59,
+          251,
+          7,
+          125,
+          9,
+          210,
+          4,
+          131,
+          16,
+          72,
+          8,
+          148,
+          254,
+          10,
+          156,
+          5,
+          9,
+          3,
+          11,
+          11,
+          155,
+          3,
+          89,
+          55,
+          251,
+          2,
+          233,
+          9,
+          217,
+          1,
+          149,
+          14,
+          118,
+          13,
+          236,
+          11,
+          37,
+          13,
+          170,
+          3,
+          92,
+          16,
+          101,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          7,
+          4,
+          165,
+          254,
+          11,
+          33,
+          3,
+          10,
+          3,
+          7,
+          4,
+          165,
+          5,
+          98,
+          16,
+          53,
+          55,
+          255
+        ],
+        "hex": "01 30 0B 9F 04 AA 10 43 0C 02 07 1E 04 62 01 63 07 D7 09 66 3B FE 0B F5 0F 71 03 0B 0B ED 05 21 3B FB 07 7D 09 D2 04 83 10 48 08 94 FE 0A 9C 05 09 03 0B 0B 9B 03 59 37 FB 02 E9 09 D9 01 95 0E 76 0D EC 0B 25 0D AA 03 5C 10 65 03 0B 01 63 07 D7 09 66 03 07 04 A5 FE 0B 21 03 0A 03 07 04 A5 05 62 10 35 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 34,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 51,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 60,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "giveitem": 1,
+      "goto_if_set": 1,
+      "setflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 286,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "faceplayer": 1,
+      "giveitem": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 3,
+      "release": 2,
+      "setflag": 1
+    }
+  }
+}

@@ -1,0 +1,1129 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route116_TunnelersRestHouse",
+    "map_script": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+    "map_json": "data/maps/Route116_TunnelersRestHouse/map.json",
+    "map_id": "MAP_ROUTE116_TUNNELERS_REST_HOUSE",
+    "map_name": "Route116_TunnelersRestHouse"
+  },
+  "labels": {
+    "Route116_TunnelersRestHouse_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route116_TunnelersRestHouse_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route116_TunnelersRestHouse_EventScript_Tunneler1": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route116_TunnelersRestHouse_EventScript_Tunneler2": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route116_TunnelersRestHouse_EventScript_Tunneler3": {
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route116_TunnelersRestHouse_EventScript_TunnelOpened": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route116_TunnelersRestHouse_Text_WeHadToStopBoring": {
+      "kind": "text",
+      "line": 30,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route116_TunnelersRestHouse_Text_ManDiggingHisWayToVerdanturf": {
+      "kind": "text",
+      "line": 33,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route116_TunnelersRestHouse_Text_GetToVerdanturfWithoutTunnel": {
+      "kind": "text",
+      "line": 36,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough": {
+      "kind": "text",
+      "line": 39,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "Route116_TunnelersRestHouse_MapScripts": {
+      "label": "Route116_TunnelersRestHouse_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "Route116_TunnelersRestHouse_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, Route116_TunnelersRestHouse_OnTransition",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route116_TunnelersRestHouse_OnTransition": {
+      "label": "Route116_TunnelersRestHouse_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_LANDMARK_TUNNELERS_REST_HOUSE"
+          ],
+          "line": 6,
+          "raw": "setflag FLAG_LANDMARK_TUNNELERS_REST_HOUSE",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route116_TunnelersRestHouse_EventScript_Tunneler1": {
+      "label": "Route116_TunnelersRestHouse_EventScript_Tunneler1",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route116_TunnelersRestHouse_Text_WeHadToStopBoring",
+            "MSGBOX_NPC"
+          ],
+          "line": 10,
+          "raw": "msgbox Route116_TunnelersRestHouse_Text_WeHadToStopBoring, MSGBOX_NPC",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route116_TunnelersRestHouse_Text_WeHadToStopBoring",
+          "mode": "MSGBOX_NPC",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route116_TunnelersRestHouse_EventScript_Tunneler2": {
+      "label": "Route116_TunnelersRestHouse_EventScript_Tunneler2",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route116_TunnelersRestHouse_Text_ManDiggingHisWayToVerdanturf",
+            "MSGBOX_NPC"
+          ],
+          "line": 14,
+          "raw": "msgbox Route116_TunnelersRestHouse_Text_ManDiggingHisWayToVerdanturf, MSGBOX_NPC",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route116_TunnelersRestHouse_Text_ManDiggingHisWayToVerdanturf",
+          "mode": "MSGBOX_NPC",
+          "line": 14
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route116_TunnelersRestHouse_EventScript_Tunneler3": {
+      "label": "Route116_TunnelersRestHouse_EventScript_Tunneler3",
+      "kind": "script",
+      "line": 17,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 18,
+          "raw": "lock",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 19,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RUSTURF_TUNNEL_OPENED",
+            "Route116_TunnelersRestHouse_EventScript_TunnelOpened"
+          ],
+          "line": 20,
+          "raw": "goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, Route116_TunnelersRestHouse_EventScript_TunnelOpened",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route116_TunnelersRestHouse_Text_GetToVerdanturfWithoutTunnel",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 21,
+          "raw": "msgbox Route116_TunnelersRestHouse_Text_GetToVerdanturfWithoutTunnel, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 22,
+          "raw": "release",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route116_TunnelersRestHouse_Text_GetToVerdanturfWithoutTunnel",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 21
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "Route116_TunnelersRestHouse_EventScript_TunnelOpened",
+          "line": 20
+        }
+      ]
+    },
+    "Route116_TunnelersRestHouse_EventScript_TunnelOpened": {
+      "label": "Route116_TunnelersRestHouse_EventScript_TunnelOpened",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 26,
+          "raw": "msgbox Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 27,
+          "raw": "release",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 28,
+          "raw": "end",
+          "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route116_TunnelersRestHouse_Text_WeHadToStopBoring": {
+      "label": "Route116_TunnelersRestHouse_Text_WeHadToStopBoring",
+      "line": 30,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "raw_text": "那边的卡绿隧道啊……\\p起初我们动用大型机械组织了\\n庞大的施工队开凿岩层。\\l但后来不得不停工了。\\p因为发现这样会严重影响到\\n野生宝可梦的栖息环境。\\p所以现在我们只能\\n无所事事地闲逛了。$",
+      "display_text": "那边的卡绿隧道啊……\n\n起初我们动用大型机械组织了\n庞大的施工队开凿岩层。\n但后来不得不停工了。\n\n因为发现这样会严重影响到\n野生宝可梦的栖息环境。\n\n所以现在我们只能\n无所事事地闲逛了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 170,
+        "bytes": [
+          9,
+          189,
+          1,
+          156,
+          3,
+          11,
+          7,
+          182,
+          9,
+          6,
+          12,
+          144,
+          3,
+          7,
+          1,
+          0,
+          176,
+          176,
+          251,
+          10,
+          171,
+          2,
+          119,
+          13,
+          152,
+          9,
+          95,
+          3,
+          84,
+          15,
+          113,
+          2,
+          211,
+          14,
+          88,
+          5,
+          135,
+          14,
+          64,
+          17,
+          33,
+          16,
+          128,
+          8,
+          158,
+          254,
+          10,
+          48,
+          2,
+          211,
+          3,
+          11,
+          11,
+          229,
+          4,
+          108,
+          3,
+          120,
+          7,
+          184,
+          15,
+          240,
+          14,
+          187,
+          2,
+          7,
+          55,
+          250,
+          2,
+          233,
+          5,
+          34,
+          8,
+          41,
+          1,
+          214,
+          3,
+          10,
+          1,
+          214,
+          13,
+          11,
+          4,
+          108,
+          8,
+          158,
+          55,
+          251,
+          15,
+          66,
+          13,
+          112,
+          3,
+          165,
+          14,
+          3,
+          16,
+          85,
+          14,
+          226,
+          5,
+          110,
+          14,
+          184,
+          16,
+          169,
+          15,
+          94,
+          14,
+          25,
+          3,
+          4,
+          254,
+          15,
+          0,
+          11,
+          216,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          10,
+          151,
+          13,
+          198,
+          5,
+          68,
+          7,
+          99,
+          55,
+          251,
+          12,
+          156,
+          15,
+          36,
+          14,
+          3,
+          15,
+          230,
+          13,
+          152,
+          9,
+          95,
+          16,
+          140,
+          9,
+          210,
+          254,
+          13,
+          164,
+          12,
+          156,
+          12,
+          7,
+          12,
+          7,
+          3,
+          31,
+          13,
+          244,
+          4,
+          172,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "09 BD 01 9C 03 0B 07 B6 09 06 0C 90 03 07 01 00 B0 B0 FB 0A AB 02 77 0D 98 09 5F 03 54 0F 71 02 D3 0E 58 05 87 0E 40 11 21 10 80 08 9E FE 0A 30 02 D3 03 0B 0B E5 04 6C 03 78 07 B8 0F F0 0E BB 02 07 37 FA 02 E9 05 22 08 29 01 D6 03 0A 01 D6 0D 0B 04 6C 08 9E 37 FB 0F 42 0D 70 03 A5 0E 03 10 55 0E E2 05 6E 0E B8 10 A9 0F 5E 0E 19 03 04 FE 0F 00 0B D8 01 63 07 D7 09 66 03 0B 0A 97 0D C6 05 44 07 63 37 FB 0C 9C 0F 24 0E 03 0F E6 0D 98 09 5F 10 8C 09 D2 FE 0D A4 0C 9C 0C 07 0C 07 03 1F 0D F4 04 AC 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 38,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 50,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 64,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 77,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 87,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 98,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route116_TunnelersRestHouse_Text_ManDiggingHisWayToVerdanturf": {
+      "label": "Route116_TunnelersRestHouse_Text_ManDiggingHisWayToVerdanturf",
+      "line": 33,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "raw_text": "有个男人正独自向\\n绿茵镇方向挖掘。\\l他急着想打通隧道。\\p说是只要不用机械慢慢挖\\n就不会惊扰宝可梦\\l也能保护自然环境。\\p不知道他现在挖通了没有？$",
+      "display_text": "有个男人正独自向\n绿茵镇方向挖掘。\n他急着想打通隧道。\n\n说是只要不用机械慢慢挖\n就不会惊扰宝可梦\n也能保护自然环境。\n\n不知道他现在挖通了没有？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 133,
+        "bytes": [
+          15,
+          126,
+          4,
+          96,
+          9,
+          198,
+          11,
+          75,
+          16,
+          112,
+          3,
+          101,
+          17,
+          12,
+          14,
+          31,
+          254,
+          9,
+          6,
+          15,
+          64,
+          16,
+          101,
+          3,
+          192,
+          14,
+          31,
+          13,
+          66,
+          7,
+          162,
+          55,
+          250,
+          12,
+          158,
+          5,
+          156,
+          16,
+          244,
+          14,
+          24,
+          2,
+          210,
+          13,
+          16,
+          12,
+          144,
+          3,
+          7,
+          55,
+          251,
+          12,
+          88,
+          12,
+          12,
+          16,
+          140,
+          14,
+          241,
+          1,
+          214,
+          15,
+          113,
+          5,
+          135,
+          14,
+          64,
+          9,
+          55,
+          9,
+          55,
+          13,
+          66,
+          254,
+          7,
+          125,
+          1,
+          214,
+          5,
+          110,
+          7,
+          90,
+          11,
+          69,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          250,
+          15,
+          2,
+          9,
+          210,
+          1,
+          96,
+          5,
+          49,
+          17,
+          12,
+          11,
+          59,
+          5,
+          68,
+          7,
+          99,
+          55,
+          251,
+          1,
+          214,
+          16,
+          123,
+          3,
+          7,
+          12,
+          158,
+          14,
+          3,
+          15,
+          230,
+          13,
+          66,
+          13,
+          16,
+          8,
+          158,
+          9,
+          83,
+          15,
+          126,
+          61,
+          255
+        ],
+        "hex": "0F 7E 04 60 09 C6 0B 4B 10 70 03 65 11 0C 0E 1F FE 09 06 0F 40 10 65 03 C0 0E 1F 0D 42 07 A2 37 FA 0C 9E 05 9C 10 F4 0E 18 02 D2 0D 10 0C 90 03 07 37 FB 0C 58 0C 0C 10 8C 0E F1 01 D6 0F 71 05 87 0E 40 09 37 09 37 0D 42 FE 07 7D 01 D6 05 6E 07 5A 0B 45 01 63 07 D7 09 66 FA 0F 02 09 D2 01 60 05 31 11 0C 0B 3B 05 44 07 63 37 FB 01 D6 10 7B 03 07 0C 9E 0E 03 0F E6 0D 42 0D 10 08 9E 09 53 0F 7E 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 18,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 42,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 52,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 63,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 77,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route116_TunnelersRestHouse_Text_GetToVerdanturfWithoutTunnel": {
+      "label": "Route116_TunnelersRestHouse_Text_GetToVerdanturfWithoutTunnel",
+      "line": 36,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "raw_text": "要绕开隧道去绿茵镇的话，\\n得先渡海到武斗镇，\\l再坐船到凯那市，\\l最后穿过紫堇市才行。$",
+      "display_text": "要绕开隧道去绿茵镇的话，\n得先渡海到武斗镇，\n再坐船到凯那市，\n最后穿过紫堇市才行。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 78,
+        "bytes": [
+          14,
+          241,
+          11,
+          70,
+          7,
+          184,
+          12,
+          144,
+          3,
+          7,
+          11,
+          37,
+          9,
+          6,
+          15,
+          64,
+          16,
+          101,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          3,
+          10,
+          13,
+          236,
+          3,
+          110,
+          4,
+          201,
+          3,
+          4,
+          13,
+          170,
+          3,
+          92,
+          16,
+          101,
+          59,
+          250,
+          15,
+          229,
+          17,
+          48,
+          2,
+          140,
+          3,
+          4,
+          7,
+          187,
+          9,
+          189,
+          12,
+          21,
+          59,
+          250,
+          17,
+          38,
+          5,
+          34,
+          2,
+          137,
+          4,
+          197,
+          17,
+          7,
+          19,
+          57,
+          12,
+          21,
+          1,
+          224,
+          14,
+          91,
+          55,
+          255
+        ],
+        "hex": "0E F1 0B 46 07 B8 0C 90 03 07 0B 25 09 06 0F 40 10 65 03 0B 05 3D 3B FE 03 0A 0D EC 03 6E 04 C9 03 04 0D AA 03 5C 10 65 3B FA 0F E5 11 30 02 8C 03 04 07 BB 09 BD 0C 15 3B FA 11 26 05 22 02 89 04 C5 11 07 13 39 0C 15 01 E0 0E 5B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 23,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 33,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 45,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough": {
+      "label": "Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough",
+      "line": 39,
+      "source_file": "data/maps/Route116_TunnelersRestHouse/scripts.inc",
+      "raw_text": "听到了吗？到绿茵镇的隧道\\n已经打通了！\\p看来只要怀抱足够强烈的愿望，\\n梦想就真的能实现呢。$",
+      "display_text": "听到了吗？到绿茵镇的隧道\n已经打通了！\n\n看来只要怀抱足够强烈的愿望，\n梦想就真的能实现呢。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 84,
+        "bytes": [
+          13,
+          7,
+          3,
+          4,
+          8,
+          158,
+          9,
+          42,
+          61,
+          3,
+          4,
+          9,
+          6,
+          15,
+          64,
+          16,
+          101,
+          3,
+          11,
+          12,
+          144,
+          3,
+          7,
+          254,
+          15,
+          33,
+          7,
+          93,
+          2,
+          210,
+          13,
+          16,
+          8,
+          158,
+          60,
+          251,
+          7,
+          194,
+          8,
+          41,
+          16,
+          140,
+          14,
+          241,
+          5,
+          64,
+          1,
+          100,
+          17,
+          27,
+          4,
+          131,
+          10,
+          216,
+          8,
+          165,
+          3,
+          11,
+          15,
+          196,
+          13,
+          99,
+          59,
+          254,
+          9,
+          102,
+          14,
+          24,
+          7,
+          125,
+          16,
+          89,
+          3,
+          11,
+          9,
+          210,
+          11,
+          241,
+          14,
+          3,
+          9,
+          206,
+          55,
+          255
+        ],
+        "hex": "0D 07 03 04 08 9E 09 2A 3D 03 04 09 06 0F 40 10 65 03 0B 0C 90 03 07 FE 0F 21 07 5D 02 D2 0D 10 08 9E 3C FB 07 C2 08 29 10 8C 0E F1 05 40 01 64 11 1B 04 83 0A D8 08 A5 03 0B 0F C4 0D 63 3B FE 09 66 0E 18 07 7D 10 59 03 0B 09 D2 0B F1 0E 03 09 CE 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 48,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "map_script": 1,
+      "setflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 10,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 465,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 5,
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "map_script": 1,
+      "msgbox": 4,
+      "release": 2,
+      "setflag": 1
+    }
+  }
+}

@@ -78,13 +78,15 @@ Snapshot: `tools/importer/export_map.py --all` now exports 939/939 source maps a
 
 ### 3. Script And Text Import For Overworld
 
-- [ ] Batch-export all map `scripts.inc` files, not only the first-slice maps.
-- [ ] Preserve source labels, instruction order, macro-expanded op names, raw operands, source line numbers where available, and shared-script references.
+- [x] Batch-export all map `scripts.inc` files, not only the first-slice maps.
+- [x] Preserve source labels, instruction order, macro-expanded op names, raw operands, source line numbers where available, and shared-script references.
 - [ ] Export all movement labels referenced by map scripts and shared scripts.
-- [ ] Export all local text labels with charmap metadata, control codes, placeholders, byte counts, and terminators.
+- [x] Export all local text labels with charmap metadata, control codes, placeholders, byte counts, and terminators.
 - [ ] Resolve shared script includes used by maps, including player house, rival graphics, movement, and common event scripts.
 - [ ] Report orphan instructions, unknown macros, unresolved labels, missing text labels, and unsupported directives per script file.
 - [ ] Add a script import coverage report by map id with script count, movement count, text count, unsupported opcode count, and missing reference count.
+
+Snapshot: `tools/importer/export_event_scripts.py --all-maps` now exports 887/887 source map `scripts.inc` files into `data/generated/scripts/`, reports the 52 maps without source script files, and writes `data/generated/overworld/script_batch_report.json`. Current map-script batch metrics are 18,984 labels, 10,293 scripts, 1,280 movement labels, 7,411 local text labels, 413,452 source text bytes, 0 charmap warnings, 44 orphan instructions, and 35,865 runtime-preview unsupported op occurrences. Combined with the 2 existing shared script bundles, `data/generated/import_manifest.json` now indexes 889 script bundles and 10,351 generated script labels; map event script validation resolves 3,804/5,314 real event script references and reports 1,510 missing references across 582 unique shared/common or dynamic labels. `0x0` null script pointers are excluded from missing-label counts.
 
 ### 4. Tileset And Metatile Asset Import
 

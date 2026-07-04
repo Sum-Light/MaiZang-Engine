@@ -1,0 +1,1506 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "EverGrandeCity_PokemonCenter_1F",
+    "map_script": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+    "map_json": "data/maps/EverGrandeCity_PokemonCenter_1F/map.json",
+    "map_id": "MAP_EVER_GRANDE_CITY_POKEMON_CENTER_1F",
+    "map_name": "EverGrandeCity_PokemonCenter_1F"
+  },
+  "labels": {
+    "EverGrandeCity_PokemonCenter_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_TryShowScott": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 6
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_Woman": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_ExpertM": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_Scott": {
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 14
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExitNorth": {
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExit": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "EverGrandeCity_PokemonCenter_1F_Movement_ScottExitNorth": {
+      "kind": "movement",
+      "line": 58,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 7
+    },
+    "EverGrandeCity_PokemonCenter_1F_Movement_ScottExit": {
+      "kind": "movement",
+      "line": 67,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 7
+    },
+    "EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad": {
+      "kind": "text",
+      "line": 76,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_PokemonCenter_1F_Text_BelieveInYourPokemon": {
+      "kind": "text",
+      "line": 79,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou": {
+      "kind": "text",
+      "line": 82,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "EverGrandeCity_PokemonCenter_1F_MapScripts": {
+      "label": "EverGrandeCity_PokemonCenter_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "EverGrandeCity_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_PokemonCenter_1F_OnTransition": {
+      "label": "EverGrandeCity_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_EVER_GRANDE_CITY"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_EVER_GRANDE_CITY",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_MET_SCOTT_IN_EVERGRANDE",
+            "EverGrandeCity_PokemonCenter_1F_EventScript_TryShowScott"
+          ],
+          "line": 8,
+          "raw": "call_if_unset FLAG_MET_SCOTT_IN_EVERGRANDE, EverGrandeCity_PokemonCenter_1F_EventScript_TryShowScott",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "EverGrandeCity_PokemonCenter_1F_EventScript_TryShowScott",
+          "line": 8
+        }
+      ]
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_TryShowScott": {
+      "label": "EverGrandeCity_PokemonCenter_1F_EventScript_TryShowScott",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_BADGE06_GET",
+            "Common_EventScript_NopReturn"
+          ],
+          "line": 12,
+          "raw": "goto_if_unset FLAG_BADGE06_GET, Common_EventScript_NopReturn",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT"
+          ],
+          "line": 13,
+          "raw": "clearflag FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 14,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "Common_EventScript_NopReturn",
+          "line": 12
+        }
+      ]
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "EverGrandeCity_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x800B",
+            "LOCALID_EVER_GRANDE_NURSE"
+          ],
+          "line": 17,
+          "raw": "setvar VAR_0x800B, LOCALID_EVER_GRANDE_NURSE",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_PkmnCenterNurse"
+          ],
+          "line": 18,
+          "raw": "call Common_EventScript_PkmnCenterNurse",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 19,
+          "raw": "waitmessage",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 20,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 21,
+          "raw": "release",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_PkmnCenterNurse",
+          "line": 18
+        }
+      ]
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_Woman": {
+      "label": "EverGrandeCity_PokemonCenter_1F_EventScript_Woman",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad",
+            "MSGBOX_NPC"
+          ],
+          "line": 25,
+          "raw": "msgbox EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad, MSGBOX_NPC",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad",
+          "mode": "MSGBOX_NPC",
+          "line": 25
+        }
+      ],
+      "branch_targets": []
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_ExpertM": {
+      "label": "EverGrandeCity_PokemonCenter_1F_EventScript_ExpertM",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_PokemonCenter_1F_Text_BelieveInYourPokemon",
+            "MSGBOX_NPC"
+          ],
+          "line": 29,
+          "raw": "msgbox EverGrandeCity_PokemonCenter_1F_Text_BelieveInYourPokemon, MSGBOX_NPC",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 30,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_PokemonCenter_1F_Text_BelieveInYourPokemon",
+          "mode": "MSGBOX_NPC",
+          "line": 29
+        }
+      ],
+      "branch_targets": []
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_Scott": {
+      "label": "EverGrandeCity_PokemonCenter_1F_EventScript_Scott",
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 33,
+          "raw": "lock",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 34,
+          "raw": "faceplayer",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 35,
+          "raw": "msgbox EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou, MSGBOX_DEFAULT",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 36,
+          "raw": "closemessage",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_NORTH",
+            "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExitNorth"
+          ],
+          "line": 37,
+          "raw": "call_if_eq VAR_FACING, DIR_NORTH, EverGrandeCity_PokemonCenter_1F_EventScript_ScottExitNorth",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_EAST",
+            "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExit"
+          ],
+          "line": 38,
+          "raw": "call_if_eq VAR_FACING, DIR_EAST, EverGrandeCity_PokemonCenter_1F_EventScript_ScottExit",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FACING",
+            "DIR_WEST",
+            "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExit"
+          ],
+          "line": 39,
+          "raw": "call_if_eq VAR_FACING, DIR_WEST, EverGrandeCity_PokemonCenter_1F_EventScript_ScottExit",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "addvar",
+          "args": [
+            "VAR_SCOTT_STATE",
+            "1"
+          ],
+          "line": 40,
+          "raw": "addvar VAR_SCOTT_STATE, 1",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_MET_SCOTT_IN_EVERGRANDE"
+          ],
+          "line": 41,
+          "raw": "setflag FLAG_MET_SCOTT_IN_EVERGRANDE",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_EXIT"
+          ],
+          "line": 42,
+          "raw": "playse SE_EXIT",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 43,
+          "raw": "waitse",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_EVER_GRANDE_SCOTT"
+          ],
+          "line": 44,
+          "raw": "removeobject LOCALID_EVER_GRANDE_SCOTT",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 45,
+          "raw": "release",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 46,
+          "raw": "end",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 35
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExitNorth",
+          "line": 37
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExit",
+          "line": 38
+        },
+        {
+          "op": "call_if_eq",
+          "target": "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExit",
+          "line": 39
+        }
+      ]
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExitNorth": {
+      "label": "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExitNorth",
+      "kind": "script",
+      "line": 48,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_EVER_GRANDE_SCOTT",
+            "EverGrandeCity_PokemonCenter_1F_Movement_ScottExitNorth"
+          ],
+          "line": 49,
+          "raw": "applymovement LOCALID_EVER_GRANDE_SCOTT, EverGrandeCity_PokemonCenter_1F_Movement_ScottExitNorth",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 50,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 51,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExit": {
+      "label": "EverGrandeCity_PokemonCenter_1F_EventScript_ScottExit",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_EVER_GRANDE_SCOTT",
+            "EverGrandeCity_PokemonCenter_1F_Movement_ScottExit"
+          ],
+          "line": 54,
+          "raw": "applymovement LOCALID_EVER_GRANDE_SCOTT, EverGrandeCity_PokemonCenter_1F_Movement_ScottExit",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 55,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 56,
+          "raw": "return",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "EverGrandeCity_PokemonCenter_1F_Movement_ScottExitNorth": {
+      "label": "EverGrandeCity_PokemonCenter_1F_Movement_ScottExitNorth",
+      "kind": "movement",
+      "line": 58,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 59,
+          "raw": "walk_left",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 60,
+          "raw": "walk_down",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 61,
+          "raw": "walk_down",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 62,
+          "raw": "walk_left",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 63,
+          "raw": "walk_down",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 64,
+          "raw": "walk_down",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 65,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EverGrandeCity_PokemonCenter_1F_Movement_ScottExit": {
+      "label": "EverGrandeCity_PokemonCenter_1F_Movement_ScottExit",
+      "kind": "movement",
+      "line": 67,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 68,
+          "raw": "walk_down",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 69,
+          "raw": "walk_down",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 70,
+          "raw": "walk_left",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 71,
+          "raw": "walk_left",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 72,
+          "raw": "walk_down",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 73,
+          "raw": "walk_down",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 74,
+          "raw": "step_end",
+          "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad": {
+      "label": "EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad",
+      "line": 76,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "穿过冠军之路，\\n宝可梦联盟就在眼前。\\p已经走了这么远，\\n到底是什么让你坚持到现在？$",
+      "display_text": "穿过冠军之路，\n宝可梦联盟就在眼前。\n\n已经走了这么远，\n到底是什么让你坚持到现在？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          2,
+          137,
+          4,
+          197,
+          4,
+          162,
+          7,
+          172,
+          16,
+          127,
+          8,
+          232,
+          59,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          125,
+          9,
+          99,
+          7,
+          125,
+          15,
+          230,
+          14,
+          196,
+          10,
+          201,
+          55,
+          251,
+          15,
+          33,
+          7,
+          93,
+          17,
+          23,
+          8,
+          158,
+          16,
+          85,
+          9,
+          76,
+          15,
+          194,
+          59,
+          254,
+          3,
+          4,
+          3,
+          30,
+          12,
+          12,
+          11,
+          238,
+          9,
+          76,
+          11,
+          67,
+          9,
+          217,
+          5,
+          204,
+          2,
+          88,
+          3,
+          4,
+          14,
+          3,
+          15,
+          230,
+          61,
+          255
+        ],
+        "hex": "02 89 04 C5 04 A2 07 AC 10 7F 08 E8 3B FE 01 63 07 D7 09 66 08 7D 09 63 07 7D 0F E6 0E C4 0A C9 37 FB 0F 21 07 5D 11 17 08 9E 10 55 09 4C 0F C2 3B FE 03 04 03 1E 0C 0C 0B EE 09 4C 0B 43 09 D9 05 CC 02 58 03 04 0E 03 0F E6 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_PokemonCenter_1F_Text_BelieveInYourPokemon": {
+      "label": "EverGrandeCity_PokemonCenter_1F_Text_BelieveInYourPokemon",
+      "line": 79,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "漫长而艰苦的冠军之路……\\p它就像是你人生中\\n所经历的小路……\\p相信自己的宝可梦并且\\n给予它你的信心！$",
+      "display_text": "漫长而艰苦的冠军之路……\n\n它就像是你人生中\n所经历的小路……\n\n相信自己的宝可梦并且\n给予它你的信心！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 92,
+        "bytes": [
+          9,
+          56,
+          2,
+          38,
+          3,
+          157,
+          5,
+          211,
+          7,
+          238,
+          3,
+          11,
+          4,
+          162,
+          7,
+          172,
+          16,
+          127,
+          8,
+          232,
+          176,
+          176,
+          251,
+          12,
+          159,
+          7,
+          125,
+          14,
+          30,
+          12,
+          12,
+          9,
+          217,
+          11,
+          75,
+          11,
+          216,
+          16,
+          161,
+          254,
+          12,
+          156,
+          7,
+          93,
+          8,
+          111,
+          3,
+          11,
+          14,
+          44,
+          8,
+          232,
+          176,
+          176,
+          251,
+          14,
+          13,
+          14,
+          80,
+          17,
+          12,
+          5,
+          165,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          189,
+          10,
+          235,
+          254,
+          4,
+          98,
+          15,
+          150,
+          12,
+          159,
+          9,
+          217,
+          3,
+          11,
+          14,
+          80,
+          14,
+          79,
+          60,
+          255
+        ],
+        "hex": "09 38 02 26 03 9D 05 D3 07 EE 03 0B 04 A2 07 AC 10 7F 08 E8 B0 B0 FB 0C 9F 07 7D 0E 1E 0C 0C 09 D9 0B 4B 0B D8 10 A1 FE 0C 9C 07 5D 08 6F 03 0B 0E 2C 08 E8 B0 B0 FB 0E 0D 0E 50 11 0C 05 A5 03 0B 01 63 07 D7 09 66 01 BD 0A EB FE 04 62 0F 96 0C 9F 09 D9 03 0B 0E 50 0E 4F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 54,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou": {
+      "label": "EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou",
+      "line": 82,
+      "source_file": "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "亚希达：{PLAYER}{KUN}，\\n你终于来挑战宝可梦联盟了！\\p我真为你感到高兴！\\n我的支持没有白费！\\p{PLAYER}{KUN}，\\n要是你成为了联盟冠军……\\p那到时我会联系你的。\\p好了，{PLAYER}{KUN}。\\n去攀登巅峰吧！$",
+      "display_text": "亚希达：{PLAYER}{KUN}，\n你终于来挑战宝可梦联盟了！\n\n我真为你感到高兴！\n我的支持没有白费！\n\n{PLAYER}{KUN}，\n要是你成为了联盟冠军……\n\n那到时我会联系你的。\n\n好了，{PLAYER}{KUN}。\n去攀登巅峰吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 149,
+        "bytes": [
+          14,
+          176,
+          13,
+          199,
+          2,
+          207,
+          62,
+          253,
+          1,
+          253,
+          5,
+          59,
+          254,
+          9,
+          217,
+          16,
+          166,
+          15,
+          136,
+          8,
+          41,
+          12,
+          245,
+          16,
+          48,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          125,
+          9,
+          99,
+          8,
+          158,
+          60,
+          251,
+          13,
+          152,
+          16,
+          89,
+          13,
+          112,
+          9,
+          217,
+          4,
+          58,
+          3,
+          4,
+          4,
+          73,
+          14,
+          86,
+          60,
+          254,
+          13,
+          152,
+          3,
+          11,
+          16,
+          120,
+          2,
+          88,
+          9,
+          83,
+          15,
+          126,
+          1,
+          54,
+          3,
+          212,
+          60,
+          251,
+          253,
+          1,
+          253,
+          5,
+          59,
+          254,
+          14,
+          241,
+          12,
+          12,
+          9,
+          217,
+          2,
+          75,
+          13,
+          112,
+          8,
+          158,
+          8,
+          125,
+          9,
+          99,
+          4,
+          162,
+          7,
+          172,
+          176,
+          176,
+          251,
+          9,
+          189,
+          3,
+          4,
+          11,
+          237,
+          13,
+          152,
+          5,
+          110,
+          8,
+          125,
+          13,
+          217,
+          9,
+          217,
+          3,
+          11,
+          55,
+          251,
+          4,
+          233,
+          8,
+          158,
+          59,
+          253,
+          1,
+          253,
+          5,
+          55,
+          254,
+          11,
+          37,
+          10,
+          39,
+          3,
+          14,
+          20,
+          213,
+          3,
+          232,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "0E B0 0D C7 02 CF 3E FD 01 FD 05 3B FE 09 D9 10 A6 0F 88 08 29 0C F5 10 30 01 63 07 D7 09 66 08 7D 09 63 08 9E 3C FB 0D 98 10 59 0D 70 09 D9 04 3A 03 04 04 49 0E 56 3C FE 0D 98 03 0B 10 78 02 58 09 53 0F 7E 01 36 03 D4 3C FB FD 01 FD 05 3B FE 0E F1 0C 0C 09 D9 02 4B 0D 70 08 9E 08 7D 09 63 04 A2 07 AC B0 B0 FB 09 BD 03 04 0B ED 0D 98 05 6E 08 7D 0D D9 09 D9 03 0B 37 FB 04 E9 08 9E 3B FD 01 FD 05 37 FE 0B 25 0A 27 03 0E 14 D5 03 E8 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 4,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 12,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 18,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 44,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 55,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 57,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 65,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 71,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 85,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 97,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 102,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 110,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 116,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 125,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 4,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 12,
+            "bytes": [
+              253,
+              5
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 57,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 65,
+            "bytes": [
+              253,
+              5
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 102,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 110,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addvar": 1,
+      "applymovement": 2,
+      "call_if_eq": 3,
+      "call_if_unset": 1,
+      "clearflag": 1,
+      "closemessage": 1,
+      "faceplayer": 1,
+      "goto_if_unset": 1,
+      "map_script": 2,
+      "playse": 1,
+      "removeobject": 1,
+      "setflag": 1,
+      "setrespawn": 1,
+      "setvar": 1,
+      "step_end": 2,
+      "waitbuttonpress": 1,
+      "waitmessage": 1,
+      "waitmovement": 2,
+      "waitse": 1,
+      "walk_down": 8,
+      "walk_left": 4
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 14,
+    "script_count": 9,
+    "movement_count": 2,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 317,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addvar": 1,
+      "applymovement": 2,
+      "call": 1,
+      "call_if_eq": 3,
+      "call_if_unset": 1,
+      "clearflag": 1,
+      "closemessage": 1,
+      "end": 5,
+      "faceplayer": 1,
+      "goto_if_unset": 1,
+      "lock": 1,
+      "map_script": 2,
+      "msgbox": 3,
+      "playse": 1,
+      "release": 2,
+      "removeobject": 1,
+      "return": 3,
+      "setflag": 1,
+      "setrespawn": 1,
+      "setvar": 1,
+      "step_end": 2,
+      "waitbuttonpress": 1,
+      "waitmessage": 1,
+      "waitmovement": 2,
+      "waitse": 1,
+      "walk_down": 8,
+      "walk_left": 4
+    }
+  }
+}

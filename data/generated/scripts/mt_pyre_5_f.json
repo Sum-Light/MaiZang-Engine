@@ -1,0 +1,447 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "MtPyre_5F",
+    "map_script": "data/maps/MtPyre_5F/scripts.inc",
+    "map_json": "data/maps/MtPyre_5F/map.json",
+    "map_id": "MAP_MT_PYRE_5F",
+    "map_name": "MtPyre_5F"
+  },
+  "labels": {
+    "MtPyre_5F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MtPyre_5F/scripts.inc",
+      "instruction_count": 1
+    },
+    "MtPyre_4F_EventScript_Tasha": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/MtPyre_5F/scripts.inc",
+      "instruction_count": 3
+    },
+    "MtPyre_4F_Text_TashaIntro": {
+      "kind": "text",
+      "line": 11,
+      "source_file": "data/maps/MtPyre_5F/scripts.inc",
+      "instruction_count": 1
+    },
+    "MtPyre_4F_Text_TashaDefeat": {
+      "kind": "text",
+      "line": 14,
+      "source_file": "data/maps/MtPyre_5F/scripts.inc",
+      "instruction_count": 1
+    },
+    "MtPyre_4F_Text_TashaPostBattle": {
+      "kind": "text",
+      "line": 17,
+      "source_file": "data/maps/MtPyre_5F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "MtPyre_5F_MapScripts": {
+      "label": "MtPyre_5F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MtPyre_5F/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/MtPyre_5F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtPyre_4F_EventScript_Tasha": {
+      "label": "MtPyre_4F_EventScript_Tasha",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/MtPyre_5F/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_TASHA",
+            "MtPyre_4F_Text_TashaIntro",
+            "MtPyre_4F_Text_TashaDefeat"
+          ],
+          "line": 7,
+          "raw": "trainerbattle_single TRAINER_TASHA, MtPyre_4F_Text_TashaIntro, MtPyre_4F_Text_TashaDefeat",
+          "source_file": "data/maps/MtPyre_5F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "MtPyre_4F_Text_TashaPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 8,
+          "raw": "msgbox MtPyre_4F_Text_TashaPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/MtPyre_5F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/MtPyre_5F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MtPyre_4F_Text_TashaPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 8
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "MtPyre_4F_Text_TashaIntro": {
+      "label": "MtPyre_4F_Text_TashaIntro",
+      "line": 11,
+      "source_file": "data/maps/MtPyre_5F/scripts.inc",
+      "raw_text": "我热爱一切恐怖的事物……\\n就像一种病……\\p当我在此……\\n我因恐惧而颤抖……$",
+      "display_text": "我热爱一切恐怖的事物……\n就像一种病……\n\n当我在此……\n我因恐惧而颤抖……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 64,
+        "bytes": [
+          13,
+          152,
+          11,
+          72,
+          1,
+          13,
+          15,
+          11,
+          10,
+          233,
+          7,
+          228,
+          1,
+          219,
+          3,
+          11,
+          12,
+          7,
+          13,
+          181,
+          176,
+          176,
+          254,
+          7,
+          125,
+          14,
+          30,
+          15,
+          11,
+          16,
+          167,
+          1,
+          188,
+          176,
+          176,
+          251,
+          2,
+          239,
+          13,
+          152,
+          15,
+          230,
+          2,
+          171,
+          176,
+          176,
+          254,
+          13,
+          152,
+          15,
+          66,
+          7,
+          228,
+          7,
+          149,
+          3,
+          157,
+          2,
+          32,
+          3,
+          91,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 98 0B 48 01 0D 0F 0B 0A E9 07 E4 01 DB 03 0B 0C 07 0D B5 B0 B0 FE 07 7D 0E 1E 0F 0B 10 A7 01 BC B0 B0 FB 02 EF 0D 98 0F E6 02 AB B0 B0 FE 0D 98 0F 42 07 E4 07 95 03 9D 02 20 03 5B B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 29,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 40,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MtPyre_4F_Text_TashaDefeat": {
+      "label": "MtPyre_4F_Text_TashaDefeat",
+      "line": 14,
+      "source_file": "data/maps/MtPyre_5F/scripts.inc",
+      "raw_text": "我讨厌失败……$",
+      "display_text": "我讨厌失败……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 13,
+        "bytes": [
+          13,
+          152,
+          12,
+          215,
+          14,
+          202,
+          11,
+          227,
+          1,
+          59,
+          176,
+          176,
+          255
+        ],
+        "hex": "0D 98 0C D7 0E CA 0B E3 01 3B B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 7,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MtPyre_4F_Text_TashaPostBattle": {
+      "label": "MtPyre_4F_Text_TashaPostBattle",
+      "line": 17,
+      "source_file": "data/maps/MtPyre_5F/scripts.inc",
+      "raw_text": "我想看看可怕的东西……\\n我不能离开……\\p呐……\\n你不想和我一起来吗？$",
+      "display_text": "我想看看可怕的东西……\n我不能离开……\n\n呐……\n你不想和我一起来吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 59,
+        "bytes": [
+          13,
+          152,
+          14,
+          24,
+          7,
+          194,
+          7,
+          194,
+          7,
+          215,
+          10,
+          31,
+          3,
+          11,
+          3,
+          80,
+          13,
+          189,
+          176,
+          176,
+          254,
+          13,
+          152,
+          1,
+          214,
+          9,
+          210,
+          8,
+          96,
+          7,
+          184,
+          176,
+          176,
+          251,
+          9,
+          187,
+          176,
+          176,
+          254,
+          9,
+          217,
+          1,
+          214,
+          14,
+          24,
+          4,
+          243,
+          13,
+          152,
+          15,
+          11,
+          10,
+          171,
+          8,
+          41,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0D 98 0E 18 07 C2 07 C2 07 D7 0A 1F 03 0B 03 50 0D BD B0 B0 FE 0D 98 01 D6 09 D2 08 60 07 B8 B0 B0 FB 09 BB B0 B0 FE 09 D9 01 D6 0E 18 04 F3 0D 98 0F 0B 0A AB 08 29 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 136,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 1,
+      "msgbox": 1,
+      "trainerbattle_single": 1
+    }
+  }
+}

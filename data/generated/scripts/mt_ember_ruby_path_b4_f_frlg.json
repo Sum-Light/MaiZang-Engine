@@ -1,0 +1,565 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "MtEmber_RubyPath_B4F_Frlg",
+    "map_script": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+    "map_json": "data/maps/MtEmber_RubyPath_B4F_Frlg/map.json",
+    "map_id": "MAP_MT_EMBER_RUBY_PATH_B4F",
+    "map_name": "MtEmber_RubyPath_B4F_Frlg"
+  },
+  "labels": {
+    "MtEmber_RubyPath_B4F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleABC": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleGHI": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleMNO": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleTUV": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleDEF": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleJKL": {
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BraillePQRS": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleWXYZ": {
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BraillePeriod": {
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleComma": {
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instruction_count": 4
+    }
+  },
+  "scripts": {
+    "MtEmber_RubyPath_B4F_Frlg_MapScripts": {
+      "label": "MtEmber_RubyPath_B4F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleABC": {
+      "label": "MtEmber_RubyPath_B4F_EventScript_BrailleABC",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 5,
+          "raw": "lockall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_ABC"
+          ],
+          "line": 6,
+          "raw": "braillemsgbox Braille_Text_ABC",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 7,
+          "raw": "releaseall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleGHI": {
+      "label": "MtEmber_RubyPath_B4F_EventScript_BrailleGHI",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 11,
+          "raw": "lockall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_GHI"
+          ],
+          "line": 12,
+          "raw": "braillemsgbox Braille_Text_GHI",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 13,
+          "raw": "releaseall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleMNO": {
+      "label": "MtEmber_RubyPath_B4F_EventScript_BrailleMNO",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 17,
+          "raw": "lockall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_MNO"
+          ],
+          "line": 18,
+          "raw": "braillemsgbox Braille_Text_MNO",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 19,
+          "raw": "releaseall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleTUV": {
+      "label": "MtEmber_RubyPath_B4F_EventScript_BrailleTUV",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 23,
+          "raw": "lockall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_TUV"
+          ],
+          "line": 24,
+          "raw": "braillemsgbox Braille_Text_TUV",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 25,
+          "raw": "releaseall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleDEF": {
+      "label": "MtEmber_RubyPath_B4F_EventScript_BrailleDEF",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 29,
+          "raw": "lockall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_DEF"
+          ],
+          "line": 30,
+          "raw": "braillemsgbox Braille_Text_DEF",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 31,
+          "raw": "releaseall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 32,
+          "raw": "end",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleJKL": {
+      "label": "MtEmber_RubyPath_B4F_EventScript_BrailleJKL",
+      "kind": "script",
+      "line": 34,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 35,
+          "raw": "lockall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_JKL"
+          ],
+          "line": 36,
+          "raw": "braillemsgbox Braille_Text_JKL",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 37,
+          "raw": "releaseall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 38,
+          "raw": "end",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BraillePQRS": {
+      "label": "MtEmber_RubyPath_B4F_EventScript_BraillePQRS",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 41,
+          "raw": "lockall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_PQRS"
+          ],
+          "line": 42,
+          "raw": "braillemsgbox Braille_Text_PQRS",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 43,
+          "raw": "releaseall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleWXYZ": {
+      "label": "MtEmber_RubyPath_B4F_EventScript_BrailleWXYZ",
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 47,
+          "raw": "lockall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_WXYZ"
+          ],
+          "line": 48,
+          "raw": "braillemsgbox Braille_Text_WXYZ",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 49,
+          "raw": "releaseall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 50,
+          "raw": "end",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BraillePeriod": {
+      "label": "MtEmber_RubyPath_B4F_EventScript_BraillePeriod",
+      "kind": "script",
+      "line": 52,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 53,
+          "raw": "lockall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_Period"
+          ],
+          "line": 54,
+          "raw": "braillemsgbox Braille_Text_Period",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 55,
+          "raw": "releaseall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 56,
+          "raw": "end",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtEmber_RubyPath_B4F_EventScript_BrailleComma": {
+      "label": "MtEmber_RubyPath_B4F_EventScript_BrailleComma",
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 59,
+          "raw": "lockall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "braillemsgbox",
+          "args": [
+            "Braille_Text_Comma"
+          ],
+          "line": 60,
+          "raw": "braillemsgbox Braille_Text_Comma",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 61,
+          "raw": "releaseall",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 62,
+          "raw": "end",
+          "source_file": "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "braillemsgbox": 10
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 11,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "braillemsgbox": 10,
+      "end": 10,
+      "lockall": 10,
+      "releaseall": 10
+    }
+  }
+}

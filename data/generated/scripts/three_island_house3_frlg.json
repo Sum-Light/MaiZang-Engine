@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "ThreeIsland_House3_Frlg",
+    "map_script": "data/maps/ThreeIsland_House3_Frlg/scripts.inc",
+    "map_json": "data/maps/ThreeIsland_House3_Frlg/map.json",
+    "map_id": "MAP_THREE_ISLAND_HOUSE3",
+    "map_name": "ThreeIsland_House3_Frlg"
+  },
+  "labels": {
+    "ThreeIsland_House3_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ThreeIsland_House3_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "ThreeIsland_House3_EventScript_Beauty": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/ThreeIsland_House3_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ThreeIsland_House3_Text_WantedToLiveSomewhereQuiet": {
+      "kind": "text",
+      "line": 8,
+      "source_file": "data/maps/ThreeIsland_House3_Frlg/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "ThreeIsland_House3_Frlg_MapScripts": {
+      "label": "ThreeIsland_House3_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ThreeIsland_House3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/ThreeIsland_House3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ThreeIsland_House3_EventScript_Beauty": {
+      "label": "ThreeIsland_House3_EventScript_Beauty",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/ThreeIsland_House3_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ThreeIsland_House3_Text_WantedToLiveSomewhereQuiet",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox ThreeIsland_House3_Text_WantedToLiveSomewhereQuiet, MSGBOX_NPC",
+          "source_file": "data/maps/ThreeIsland_House3_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/ThreeIsland_House3_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ThreeIsland_House3_Text_WantedToLiveSomewhereQuiet",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "ThreeIsland_House3_Text_WantedToLiveSomewhereQuiet": {
+      "label": "ThreeIsland_House3_Text_WantedToLiveSomewhereQuiet",
+      "line": 8,
+      "source_file": "data/maps/ThreeIsland_House3_Frlg/scripts.inc",
+      "raw_text": "我喜欢在安静的地方居住，\\n为此我买了这幢房子。\\p今天，我会去享受一下钓鱼的乐趣。$",
+      "display_text": "我喜欢在安静的地方居住，\n为此我买了这幢房子。\n\n今天，我会去享受一下钓鱼的乐趣。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 75,
+        "bytes": [
+          13,
+          152,
+          13,
+          214,
+          5,
+          67,
+          15,
+          230,
+          1,
+          17,
+          7,
+          98,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          7,
+          131,
+          16,
+          208,
+          59,
+          254,
+          13,
+          112,
+          2,
+          171,
+          13,
+          152,
+          9,
+          44,
+          8,
+          158,
+          16,
+          85,
+          2,
+          145,
+          3,
+          194,
+          17,
+          11,
+          55,
+          251,
+          7,
+          67,
+          12,
+          237,
+          59,
+          13,
+          152,
+          5,
+          110,
+          11,
+          37,
+          14,
+          26,
+          12,
+          33,
+          15,
+          11,
+          13,
+          230,
+          3,
+          61,
+          15,
+          145,
+          3,
+          11,
+          8,
+          75,
+          11,
+          36,
+          55,
+          255
+        ],
+        "hex": "0D 98 0D D6 05 43 0F E6 01 11 07 62 03 0B 03 1F 03 C0 07 83 10 D0 3B FE 0D 70 02 AB 0D 98 09 2C 08 9E 10 55 02 91 03 C2 11 0B 37 FB 07 43 0C ED 3B 0D 98 05 6E 0B 25 0E 1A 0C 21 0F 0B 0D E6 03 3D 0F 91 03 0B 08 4B 0B 24 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 75,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 1,
+      "msgbox": 1
+    }
+  }
+}

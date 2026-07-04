@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route5_Frlg",
+    "map_script": "data/maps/Route5_Frlg/scripts.inc",
+    "map_json": "data/maps/Route5_Frlg/map.json",
+    "map_id": "MAP_ROUTE5",
+    "map_name": "Route5_Frlg"
+  },
+  "labels": {
+    "Route5_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route5_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route5_EventScript_UndergroundPathSign": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route5_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route5_Text_UndergroundPathSign": {
+      "kind": "text",
+      "line": 8,
+      "source_file": "data/maps/Route5_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "Route5_Frlg_MapScripts": {
+      "label": "Route5_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route5_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route5_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route5_EventScript_UndergroundPathSign": {
+      "label": "Route5_EventScript_UndergroundPathSign",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route5_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route5_Text_UndergroundPathSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 5,
+          "raw": "msgbox Route5_Text_UndergroundPathSign, MSGBOX_SIGN",
+          "source_file": "data/maps/Route5_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/Route5_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route5_Text_UndergroundPathSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route5_Text_UndergroundPathSign": {
+      "label": "Route5_Text_UndergroundPathSign",
+      "line": 8,
+      "source_file": "data/maps/Route5_Frlg/scripts.inc",
+      "raw_text": "地下通道\\n华蓝市-枯叶市$",
+      "display_text": "地下通道\n华蓝市-枯叶市",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          3,
+          31,
+          13,
+          230,
+          13,
+          16,
+          3,
+          7,
+          254,
+          5,
+          55,
+          8,
+          43,
+          12,
+          21,
+          174,
+          7,
+          235,
+          15,
+          6,
+          12,
+          21,
+          255
+        ],
+        "hex": "03 1F 0D E6 0D 10 03 07 FE 05 37 08 2B 0C 15 AE 07 EB 0F 06 0C 15 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 23,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 1,
+      "msgbox": 1
+    }
+  }
+}

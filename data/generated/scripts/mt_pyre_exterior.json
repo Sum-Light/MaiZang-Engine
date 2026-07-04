@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "MtPyre_Exterior",
+    "map_script": "data/maps/MtPyre_Exterior/scripts.inc",
+    "map_json": "data/maps/MtPyre_Exterior/map.json",
+    "map_id": "MAP_MT_PYRE_EXTERIOR",
+    "map_name": "MtPyre_Exterior"
+  },
+  "labels": {
+    "MtPyre_Exterior_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instruction_count": 2
+    },
+    "MtPyre_Exterior_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instruction_count": 2
+    },
+    "MtPyre_Exterior_EventScript_CheckEnterFromSummit": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instruction_count": 3
+    },
+    "MtPyre_Exterior_EventScript_EnterFromSummit": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instruction_count": 2
+    },
+    "MtPyre_Exterior_EventScript_FogTrigger": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instruction_count": 3
+    },
+    "MtPyre_Exterior_EventScript_SunTrigger": {
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "MtPyre_Exterior_MapScripts": {
+      "label": "MtPyre_Exterior_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "MtPyre_Exterior_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Exterior_OnTransition",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtPyre_Exterior_OnTransition": {
+      "label": "MtPyre_Exterior_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "MtPyre_Exterior_EventScript_CheckEnterFromSummit"
+          ],
+          "line": 6,
+          "raw": "call MtPyre_Exterior_EventScript_CheckEnterFromSummit",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "MtPyre_Exterior_EventScript_CheckEnterFromSummit",
+          "line": 6
+        }
+      ]
+    },
+    "MtPyre_Exterior_EventScript_CheckEnterFromSummit": {
+      "label": "MtPyre_Exterior_EventScript_CheckEnterFromSummit",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "getplayerxy",
+          "args": [
+            "VAR_TEMP_0",
+            "VAR_TEMP_1"
+          ],
+          "line": 10,
+          "raw": "getplayerxy VAR_TEMP_0, VAR_TEMP_1",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        },
+        {
+          "op": "goto_if_lt",
+          "args": [
+            "VAR_TEMP_1",
+            "12",
+            "MtPyre_Exterior_EventScript_EnterFromSummit"
+          ],
+          "line": 11,
+          "raw": "goto_if_lt VAR_TEMP_1, 12, MtPyre_Exterior_EventScript_EnterFromSummit",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 12,
+          "raw": "return",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_lt",
+          "target": "MtPyre_Exterior_EventScript_EnterFromSummit",
+          "line": 11
+        }
+      ]
+    },
+    "MtPyre_Exterior_EventScript_EnterFromSummit": {
+      "label": "MtPyre_Exterior_EventScript_EnterFromSummit",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "setweather",
+          "args": [
+            "WEATHER_FOG_HORIZONTAL"
+          ],
+          "line": 15,
+          "raw": "setweather WEATHER_FOG_HORIZONTAL",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 16,
+          "raw": "return",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtPyre_Exterior_EventScript_FogTrigger": {
+      "label": "MtPyre_Exterior_EventScript_FogTrigger",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "setweather",
+          "args": [
+            "WEATHER_FOG_HORIZONTAL"
+          ],
+          "line": 19,
+          "raw": "setweather WEATHER_FOG_HORIZONTAL",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        },
+        {
+          "op": "doweather",
+          "args": [],
+          "line": 20,
+          "raw": "doweather",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 21,
+          "raw": "end",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MtPyre_Exterior_EventScript_SunTrigger": {
+      "label": "MtPyre_Exterior_EventScript_SunTrigger",
+      "kind": "script",
+      "line": 23,
+      "source_file": "data/maps/MtPyre_Exterior/scripts.inc",
+      "instructions": [
+        {
+          "op": "setweather",
+          "args": [
+            "WEATHER_SUNNY"
+          ],
+          "line": 24,
+          "raw": "setweather WEATHER_SUNNY",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        },
+        {
+          "op": "doweather",
+          "args": [],
+          "line": 25,
+          "raw": "doweather",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/maps/MtPyre_Exterior/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "doweather": 2,
+      "getplayerxy": 1,
+      "goto_if_lt": 1,
+      "map_script": 1,
+      "setweather": 3
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 6,
+    "script_count": 6,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "doweather": 2,
+      "end": 3,
+      "getplayerxy": 1,
+      "goto_if_lt": 1,
+      "map_script": 1,
+      "return": 2,
+      "setweather": 3
+    }
+  }
+}

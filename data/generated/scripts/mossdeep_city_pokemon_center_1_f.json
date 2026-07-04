@@ -1,0 +1,557 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "MossdeepCity_PokemonCenter_1F",
+    "map_script": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+    "map_json": "data/maps/MossdeepCity_PokemonCenter_1F/map.json",
+    "map_id": "MAP_MOSSDEEP_CITY_POKEMON_CENTER_1F",
+    "map_name": "MossdeepCity_PokemonCenter_1F"
+  },
+  "labels": {
+    "MossdeepCity_PokemonCenter_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "MossdeepCity_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 6
+    },
+    "MossdeepCity_PokemonCenter_1F_EventScript_Woman": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_PokemonCenter_1F_EventScript_Girl": {
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_PokemonCenter_1F_Text_GymLeaderDuoFormidable": {
+      "kind": "text",
+      "line": 26,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "MossdeepCity_PokemonCenter_1F_MapScripts": {
+      "label": "MossdeepCity_PokemonCenter_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "MossdeepCity_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_PokemonCenter_1F_OnTransition": {
+      "label": "MossdeepCity_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_MOSSDEEP_CITY"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_MOSSDEEP_CITY",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "MossdeepCity_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x800B",
+            "LOCALID_MOSSDEEP_NURSE"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_0x800B, LOCALID_MOSSDEEP_NURSE",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_PkmnCenterNurse"
+          ],
+          "line": 12,
+          "raw": "call Common_EventScript_PkmnCenterNurse",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 13,
+          "raw": "waitmessage",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 14,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 15,
+          "raw": "release",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_PkmnCenterNurse",
+          "line": 12
+        }
+      ]
+    },
+    "MossdeepCity_PokemonCenter_1F_EventScript_Woman": {
+      "label": "MossdeepCity_PokemonCenter_1F_EventScript_Woman",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_PokemonCenter_1F_Text_GymLeaderDuoFormidable",
+            "MSGBOX_NPC"
+          ],
+          "line": 19,
+          "raw": "msgbox MossdeepCity_PokemonCenter_1F_Text_GymLeaderDuoFormidable, MSGBOX_NPC",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 20,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_PokemonCenter_1F_Text_GymLeaderDuoFormidable",
+          "mode": "MSGBOX_NPC",
+          "line": 19
+        }
+      ],
+      "branch_targets": []
+    },
+    "MossdeepCity_PokemonCenter_1F_EventScript_Girl": {
+      "label": "MossdeepCity_PokemonCenter_1F_EventScript_Girl",
+      "kind": "script",
+      "line": 22,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves",
+            "MSGBOX_NPC"
+          ],
+          "line": 23,
+          "raw": "msgbox MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves, MSGBOX_NPC",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves",
+          "mode": "MSGBOX_NPC",
+          "line": 23
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "MossdeepCity_PokemonCenter_1F_Text_GymLeaderDuoFormidable": {
+      "label": "MossdeepCity_PokemonCenter_1F_Text_GymLeaderDuoFormidable",
+      "line": 26,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "城镇里的道馆馆主是\\n一对很强大的双胞姐弟。\\p他们的组合，嗯，\\n让人拍手叫绝！$",
+      "display_text": "城镇里的道馆馆主是\n一对很强大的双胞姐弟。\n\n他们的组合，嗯，\n让人拍手叫绝！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 70,
+        "bytes": [
+          2,
+          73,
+          16,
+          101,
+          8,
+          100,
+          3,
+          11,
+          3,
+          7,
+          4,
+          165,
+          4,
+          165,
+          16,
+          200,
+          12,
+          12,
+          254,
+          15,
+          11,
+          3,
+          121,
+          5,
+          11,
+          10,
+          216,
+          2,
+          211,
+          3,
+          11,
+          12,
+          78,
+          1,
+          90,
+          7,
+          53,
+          3,
+          35,
+          55,
+          251,
+          12,
+          158,
+          9,
+          95,
+          3,
+          11,
+          17,
+          33,
+          4,
+          245,
+          59,
+          20,
+          97,
+          59,
+          254,
+          11,
+          67,
+          11,
+          75,
+          10,
+          33,
+          12,
+          27,
+          7,
+          34,
+          7,
+          168,
+          60,
+          255
+        ],
+        "hex": "02 49 10 65 08 64 03 0B 03 07 04 A5 04 A5 10 C8 0C 0C FE 0F 0B 03 79 05 0B 0A D8 02 D3 03 0B 0C 4E 01 5A 07 35 03 23 37 FB 0C 9E 09 5F 03 0B 11 21 04 F5 3B 14 61 3B FE 0B 43 0B 4B 0A 21 0C 1B 07 22 07 A8 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 41,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves": {
+      "label": "MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves",
+      "line": 29,
+      "source_file": "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "由于宝可梦特性的不同，\\n有些招式会改变，\\l甚至有些会根本无用。$",
+      "display_text": "由于宝可梦特性的不同，\n有些招式会改变，\n甚至有些会根本无用。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 58,
+        "bytes": [
+          15,
+          119,
+          15,
+          136,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          217,
+          14,
+          95,
+          3,
+          11,
+          1,
+          214,
+          13,
+          20,
+          59,
+          254,
+          15,
+          126,
+          14,
+          52,
+          16,
+          67,
+          12,
+          2,
+          5,
+          110,
+          4,
+          46,
+          1,
+          161,
+          59,
+          250,
+          11,
+          211,
+          16,
+          146,
+          15,
+          126,
+          14,
+          52,
+          5,
+          110,
+          4,
+          99,
+          1,
+          123,
+          13,
+          164,
+          15,
+          113,
+          55,
+          255
+        ],
+        "hex": "0F 77 0F 88 01 63 07 D7 09 66 0C D9 0E 5F 03 0B 01 D6 0D 14 3B FE 0F 7E 0E 34 10 43 0C 02 05 6E 04 2E 01 A1 3B FA 0B D3 10 92 0F 7E 0E 34 05 6E 04 63 01 7B 0D A4 0F 71 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 21,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 33,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 2,
+      "setrespawn": 1,
+      "setvar": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 128,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "end": 4,
+      "map_script": 2,
+      "msgbox": 2,
+      "release": 1,
+      "setrespawn": 1,
+      "setvar": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    }
+  }
+}

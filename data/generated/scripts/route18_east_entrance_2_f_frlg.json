@@ -1,0 +1,758 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route18_EastEntrance_2F_Frlg",
+    "map_script": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+    "map_json": "data/maps/Route18_EastEntrance_2F_Frlg/map.json",
+    "map_id": "MAP_ROUTE18_EAST_ENTRANCE_2F",
+    "map_name": "Route18_EastEntrance_2F_Frlg"
+  },
+  "labels": {
+    "Route18_EastEntrance_2F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route18_EastEntrance_2F_EventScript_LeftBinoculars": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_EastEntrance_2F_EventScript_RightBinoculars": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route18_EastEntrance_2F_EventScript_Haden": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 16
+    },
+    "Route18_EastEntrance_2F_EventScript_DeclineTrade": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route18_EastEntrance_2F_EventScript_NotRequestedMon": {
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route18_EastEntrance_2F_EventScript_AlreadyTraded": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route18_EastEntrance_2F_Text_PalletTownInWest": {
+      "kind": "text",
+      "line": 46,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route18_EastEntrance_2F_Text_PeopleSwimming": {
+      "kind": "text",
+      "line": 51,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    }
+  },
+  "scripts": {
+    "Route18_EastEntrance_2F_Frlg_MapScripts": {
+      "label": "Route18_EastEntrance_2F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route18_EastEntrance_2F_EventScript_LeftBinoculars": {
+      "label": "Route18_EastEntrance_2F_EventScript_LeftBinoculars",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route18_EastEntrance_2F_Text_PalletTownInWest",
+            "MSGBOX_SIGN"
+          ],
+          "line": 5,
+          "raw": "msgbox Route18_EastEntrance_2F_Text_PalletTownInWest, MSGBOX_SIGN",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route18_EastEntrance_2F_Text_PalletTownInWest",
+          "mode": "MSGBOX_SIGN",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route18_EastEntrance_2F_EventScript_RightBinoculars": {
+      "label": "Route18_EastEntrance_2F_EventScript_RightBinoculars",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route18_EastEntrance_2F_Text_PeopleSwimming",
+            "MSGBOX_SIGN"
+          ],
+          "line": 9,
+          "raw": "msgbox Route18_EastEntrance_2F_Text_PeopleSwimming, MSGBOX_SIGN",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route18_EastEntrance_2F_Text_PeopleSwimming",
+          "mode": "MSGBOX_SIGN",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route18_EastEntrance_2F_EventScript_Haden": {
+      "label": "Route18_EastEntrance_2F_EventScript_Haden",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 13,
+          "raw": "lock",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 14,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8008",
+            "INGAME_TRADE_LICKITUNG"
+          ],
+          "line": 15,
+          "raw": "setvar VAR_0x8008, INGAME_TRADE_LICKITUNG",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpeciesInfo"
+          ],
+          "line": 16,
+          "raw": "call EventScript_GetInGameTradeSpeciesInfo",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_DID_MARC_TRADE",
+            "Route18_EastEntrance_2F_EventScript_AlreadyTraded"
+          ],
+          "line": 17,
+          "raw": "goto_if_set FLAG_DID_MARC_TRADE, Route18_EastEntrance_2F_EventScript_AlreadyTraded",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_LookingForMonWannaTradeForMon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 18,
+          "raw": "msgbox Trade_Text_LookingForMonWannaTradeForMon, MSGBOX_YESNO",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "Route18_EastEntrance_2F_EventScript_DeclineTrade"
+          ],
+          "line": 19,
+          "raw": "goto_if_eq VAR_RESULT, NO, Route18_EastEntrance_2F_EventScript_DeclineTrade",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_ChooseMonForInGameTrade"
+          ],
+          "line": 20,
+          "raw": "call EventScript_ChooseMonForInGameTrade",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_0x8004",
+            "PARTY_SIZE",
+            "Route18_EastEntrance_2F_EventScript_DeclineTrade"
+          ],
+          "line": 21,
+          "raw": "goto_if_ge VAR_0x8004, PARTY_SIZE, Route18_EastEntrance_2F_EventScript_DeclineTrade",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_GetInGameTradeSpecies"
+          ],
+          "line": 22,
+          "raw": "call EventScript_GetInGameTradeSpecies",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "VAR_0x8009",
+            "Route18_EastEntrance_2F_EventScript_NotRequestedMon"
+          ],
+          "line": 23,
+          "raw": "goto_if_ne VAR_RESULT, VAR_0x8009, Route18_EastEntrance_2F_EventScript_NotRequestedMon",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_DoInGameTrade"
+          ],
+          "line": 24,
+          "raw": "call EventScript_DoInGameTrade",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_HeyThanks"
+          ],
+          "line": 25,
+          "raw": "msgbox Trade_Text_HeyThanks",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_DID_MARC_TRADE"
+          ],
+          "line": 26,
+          "raw": "setflag FLAG_DID_MARC_TRADE",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 27,
+          "raw": "release",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 28,
+          "raw": "end",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_LookingForMonWannaTradeForMon",
+          "mode": "MSGBOX_YESNO",
+          "line": 18
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_HeyThanks",
+          "mode": "",
+          "line": 25
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpeciesInfo",
+          "line": 16
+        },
+        {
+          "op": "goto_if_set",
+          "target": "Route18_EastEntrance_2F_EventScript_AlreadyTraded",
+          "line": 17
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route18_EastEntrance_2F_EventScript_DeclineTrade",
+          "line": 19
+        },
+        {
+          "op": "call",
+          "target": "EventScript_ChooseMonForInGameTrade",
+          "line": 20
+        },
+        {
+          "op": "goto_if_ge",
+          "target": "Route18_EastEntrance_2F_EventScript_DeclineTrade",
+          "line": 21
+        },
+        {
+          "op": "call",
+          "target": "EventScript_GetInGameTradeSpecies",
+          "line": 22
+        },
+        {
+          "op": "goto_if_ne",
+          "target": "Route18_EastEntrance_2F_EventScript_NotRequestedMon",
+          "line": 23
+        },
+        {
+          "op": "call",
+          "target": "EventScript_DoInGameTrade",
+          "line": 24
+        }
+      ]
+    },
+    "Route18_EastEntrance_2F_EventScript_DeclineTrade": {
+      "label": "Route18_EastEntrance_2F_EventScript_DeclineTrade",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_AwwOhWell"
+          ],
+          "line": 31,
+          "raw": "msgbox Trade_Text_AwwOhWell",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 32,
+          "raw": "release",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 33,
+          "raw": "end",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_AwwOhWell",
+          "mode": "",
+          "line": 31
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route18_EastEntrance_2F_EventScript_NotRequestedMon": {
+      "label": "Route18_EastEntrance_2F_EventScript_NotRequestedMon",
+      "kind": "script",
+      "line": 35,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "VAR_0x8009"
+          ],
+          "line": 36,
+          "raw": "bufferspeciesname STR_VAR_1, VAR_0x8009",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_WhatThatsNoMon"
+          ],
+          "line": 37,
+          "raw": "msgbox Trade_Text_WhatThatsNoMon",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 38,
+          "raw": "release",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 39,
+          "raw": "end",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_WhatThatsNoMon",
+          "mode": "",
+          "line": 37
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route18_EastEntrance_2F_EventScript_AlreadyTraded": {
+      "label": "Route18_EastEntrance_2F_EventScript_AlreadyTraded",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Trade_Text_IsntMyOldMonGreat"
+          ],
+          "line": 42,
+          "raw": "msgbox Trade_Text_IsntMyOldMonGreat",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 43,
+          "raw": "release",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Trade_Text_IsntMyOldMonGreat",
+          "mode": "",
+          "line": 42
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route18_EastEntrance_2F_Text_PalletTownInWest": {
+      "label": "Route18_EastEntrance_2F_Text_PalletTownInWest",
+      "line": 46,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "raw_text": "一架望远镜……\\n我来看看……\\p真新镇在西面。$",
+      "display_text": "一架望远镜……\n我来看看……\n\n真新镇在西面。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          15,
+          11,
+          5,
+          199,
+          13,
+          99,
+          15,
+          194,
+          7,
+          101,
+          176,
+          176,
+          254,
+          13,
+          152,
+          8,
+          41,
+          7,
+          194,
+          7,
+          194,
+          176,
+          176,
+          251,
+          16,
+          89,
+          14,
+          77,
+          16,
+          101,
+          15,
+          230,
+          13,
+          189,
+          9,
+          126,
+          55,
+          255
+        ],
+        "hex": "0F 0B 05 C7 0D 63 0F C2 07 65 B0 B0 FE 0D 98 08 29 07 C2 07 C2 B0 B0 FB 10 59 0E 4D 10 65 0F E6 0D BD 09 7E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 24,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route18_EastEntrance_2F_Text_PeopleSwimming": {
+      "label": "Route18_EastEntrance_2F_Text_PeopleSwimming",
+      "line": 51,
+      "source_file": "data/maps/Route18_EastEntrance_2F_Frlg/scripts.inc",
+      "raw_text": "一架望远镜……\\n我来看看……\\p看到了，是一个正在游泳的人。$",
+      "display_text": "一架望远镜……\n我来看看……\n\n看到了，是一个正在游泳的人。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 51,
+        "bytes": [
+          15,
+          11,
+          5,
+          199,
+          13,
+          99,
+          15,
+          194,
+          7,
+          101,
+          176,
+          176,
+          254,
+          13,
+          152,
+          8,
+          41,
+          7,
+          194,
+          7,
+          194,
+          176,
+          176,
+          251,
+          7,
+          194,
+          3,
+          4,
+          8,
+          158,
+          59,
+          12,
+          12,
+          15,
+          11,
+          4,
+          96,
+          16,
+          112,
+          15,
+          230,
+          15,
+          124,
+          15,
+          108,
+          3,
+          11,
+          11,
+          75,
+          55,
+          255
+        ],
+        "hex": "0F 0B 05 C7 0D 63 0F C2 07 65 B0 B0 FE 0D 98 08 29 07 C2 07 C2 B0 B0 FB 07 C2 03 04 08 9E 3B 0C 0C 0F 0B 04 60 10 70 0F E6 0F 7C 0F 6C 03 0B 0B 4B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 31,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "bufferspeciesname": 1,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "goto_if_ge": 1,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "setflag": 1,
+      "setvar": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 7,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 89,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "bufferspeciesname": 1,
+      "call": 4,
+      "end": 6,
+      "faceplayer": 1,
+      "goto_if_eq": 1,
+      "goto_if_ge": 1,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 7,
+      "release": 4,
+      "setflag": 1,
+      "setvar": 1
+    }
+  }
+}

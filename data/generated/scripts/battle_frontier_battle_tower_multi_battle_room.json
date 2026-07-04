@@ -1,0 +1,5272 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "BattleFrontier_BattleTowerMultiBattleRoom",
+    "map_script": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+    "map_json": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/map.json",
+    "map_id": "MAP_BATTLE_FRONTIER_BATTLE_TOWER_MULTI_BATTLE_ROOM",
+    "map_name": "BattleFrontier_BattleTowerMultiBattleRoom"
+  },
+  "labels": {
+    "BattleFrontier_BattleTowerMultiBattleRoom_MapScripts": {
+      "kind": "map_script_table",
+      "line": 7,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_OnTransition": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetObjGfx": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetPlayerGfxFemale": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetLinkPlayerGfx": {
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_OnWarp": {
+      "kind": "map_script_table",
+      "line": 33,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_HidePlayerObj": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_OnFrame": {
+      "kind": "map_script_table",
+      "line": 41,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_EnterRoom": {
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 14
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_OpponentsEnter": {
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 19
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoOpponentIntrosLink": {
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 13
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoTowerBattle": {
+      "kind": "script",
+      "line": 96,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost": {
+      "kind": "script",
+      "line": 100,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DefeatedOpponents": {
+      "kind": "script",
+      "line": 107,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 18
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetorePartyMsgLink": {
+      "kind": "script",
+      "line": 127,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RestoreParty": {
+      "kind": "script",
+      "line": 131,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents": {
+      "kind": "script",
+      "line": 138,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 12
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsNoRecord": {
+      "kind": "script",
+      "line": 152,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRecordBattle": {
+      "kind": "script",
+      "line": 160,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RecordBattle": {
+      "kind": "script",
+      "line": 169,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskPauseChallenge": {
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallenge": {
+      "kind": "script",
+      "line": 180,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 7
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge": {
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 10
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyWon": {
+      "kind": "script",
+      "line": 201,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_PauseChallenge": {
+      "kind": "script",
+      "line": 208,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSet": {
+      "kind": "script",
+      "line": 218,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 9
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor2ndOpponentSet": {
+      "kind": "script",
+      "line": 229,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor3rdOpponentSet": {
+      "kind": "script",
+      "line": 234,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor4thOpponentSet": {
+      "kind": "script",
+      "line": 239,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor5thOpponentSet": {
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor6thOpponentSet": {
+      "kind": "script",
+      "line": 249,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor7thOpponentSet": {
+      "kind": "script",
+      "line": 254,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSetLink": {
+      "kind": "script",
+      "line": 259,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor2ndOpponentSetLink": {
+      "kind": "script",
+      "line": 269,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor3rdOpponentSetLink": {
+      "kind": "script",
+      "line": 275,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor4thOpponentSetLink": {
+      "kind": "script",
+      "line": 281,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor5thOpponentSetLink": {
+      "kind": "script",
+      "line": 287,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor6thOpponentSetLink": {
+      "kind": "script",
+      "line": 293,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor7thOpponentSetLink": {
+      "kind": "script",
+      "line": 299,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_LinkDelayForMsg": {
+      "kind": "script",
+      "line": 305,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink": {
+      "kind": "script",
+      "line": 310,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLinkNoRecord": {
+      "kind": "script",
+      "line": 320,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallengeLink": {
+      "kind": "script",
+      "line": 328,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 9
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRecordBattleLink": {
+      "kind": "script",
+      "line": 339,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 10
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink": {
+      "kind": "script",
+      "line": 351,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetireChallengeLink": {
+      "kind": "script",
+      "line": 359,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 8
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReconnectLink": {
+      "kind": "script",
+      "line": 369,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_PlayerEnterRoom": {
+      "kind": "movement",
+      "line": 373,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_PartnerEnterRoom": {
+      "kind": "movement",
+      "line": 381,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant": {
+      "kind": "movement",
+      "line": 389,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceBattle": {
+      "kind": "movement",
+      "line": 393,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent1Enter": {
+      "kind": "movement",
+      "line": 397,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent2Enter": {
+      "kind": "movement",
+      "line": 405,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 6
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent2Exit": {
+      "kind": "movement",
+      "line": 413,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent1Exit": {
+      "kind": "movement",
+      "line": 420,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 5
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer": {
+      "kind": "movement",
+      "line": 427,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 3
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantReturnToPos": {
+      "kind": "movement",
+      "line": 432,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 4
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft": {
+      "kind": "movement",
+      "line": 438,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 2
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor2ndOpponentSet": {
+      "kind": "text",
+      "line": 442,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor3rdOpponentSet": {
+      "kind": "text",
+      "line": 445,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor4thOpponentSet": {
+      "kind": "text",
+      "line": 448,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor5thOpponentSet": {
+      "kind": "text",
+      "line": 451,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor6thOpponentSet": {
+      "kind": "text",
+      "line": 454,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor7thOpponentSet": {
+      "kind": "text",
+      "line": 457,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_2ndOpponentSetNext": {
+      "kind": "text",
+      "line": 461,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_3rdOpponentSetNext": {
+      "kind": "text",
+      "line": 465,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_4thOpponentSetNext": {
+      "kind": "text",
+      "line": 469,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_5thOpponentSetNext": {
+      "kind": "text",
+      "line": 473,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_6thOpponentSetNext": {
+      "kind": "text",
+      "line": 477,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_7thOpponentSetNext": {
+      "kind": "text",
+      "line": 481,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "gText_LinkStandby3": {
+      "kind": "text",
+      "line": 484,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    },
+    "gText_YourPartnerHasRetired": {
+      "kind": "text",
+      "line": 487,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "BattleFrontier_BattleTowerMultiBattleRoom_MapScripts": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_MapScripts",
+      "kind": "map_script_table",
+      "line": 7,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "BattleFrontier_BattleTowerMultiBattleRoom_OnTransition"
+          ],
+          "line": 8,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_BattleTowerMultiBattleRoom_OnTransition",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "BattleFrontier_BattleTowerMultiBattleRoom_OnWarp"
+          ],
+          "line": 9,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattleTowerMultiBattleRoom_OnWarp",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "BattleFrontier_BattleTowerMultiBattleRoom_OnFrame"
+          ],
+          "line": 10,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattleTowerMultiBattleRoom_OnFrame",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 11,
+          "raw": ".byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_OnTransition": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_OnTransition",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FRONTIER_BATTLE_MODE",
+            "FRONTIER_MODE_MULTIS",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetObjGfx"
+          ],
+          "line": 14,
+          "raw": "call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetObjGfx",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FRONTIER_BATTLE_MODE",
+            "FRONTIER_MODE_LINK_MULTIS",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetLinkPlayerGfx"
+          ],
+          "line": 15,
+          "raw": "call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetLinkPlayerGfx",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetObjGfx",
+          "line": 14
+        },
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetLinkPlayerGfx",
+          "line": 15
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetObjGfx": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetObjGfx",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "tower_setpartnergfx",
+          "args": [],
+          "line": 19,
+          "raw": "tower_setpartnergfx",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 20,
+          "raw": "checkplayergender",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetPlayerGfxFemale"
+          ],
+          "line": 21,
+          "raw": "goto_if_eq VAR_RESULT, FEMALE, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetPlayerGfxFemale",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_F",
+            "OBJ_EVENT_GFX_BRENDAN_NORMAL"
+          ],
+          "line": 22,
+          "raw": "setvar VAR_OBJ_GFX_ID_F, OBJ_EVENT_GFX_BRENDAN_NORMAL",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 23,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetPlayerGfxFemale",
+          "line": 21
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetPlayerGfxFemale": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetPlayerGfxFemale",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_F",
+            "OBJ_EVENT_GFX_MAY_NORMAL"
+          ],
+          "line": 26,
+          "raw": "setvar VAR_OBJ_GFX_ID_F, OBJ_EVENT_GFX_MAY_NORMAL",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 27,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetLinkPlayerGfx": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_SetLinkPlayerGfx",
+      "kind": "script",
+      "line": 29,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "SetBattleTowerLinkPlayerGfx"
+          ],
+          "line": 30,
+          "raw": "special SetBattleTowerLinkPlayerGfx",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 31,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_OnWarp": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_OnWarp",
+      "kind": "map_script_table",
+      "line": 33,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_HidePlayerObj"
+          ],
+          "line": 34,
+          "raw": "map_script_2 VAR_TEMP_1, 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_HidePlayerObj",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 35,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_HidePlayerObj": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_HidePlayerObj",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "hideobjectat",
+          "args": [
+            "LOCALID_PLAYER",
+            "MAP_BATTLE_FRONTIER_BATTLE_TOWER_MULTI_BATTLE_ROOM"
+          ],
+          "line": 38,
+          "raw": "hideobjectat LOCALID_PLAYER, MAP_BATTLE_FRONTIER_BATTLE_TOWER_MULTI_BATTLE_ROOM",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 39,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_OnFrame": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_OnFrame",
+      "kind": "map_script_table",
+      "line": 41,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_0",
+            "0",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_EnterRoom"
+          ],
+          "line": 42,
+          "raw": "map_script_2 VAR_TEMP_0, 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_EnterRoom",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 43,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_EnterRoom": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_EnterRoom",
+      "kind": "script",
+      "line": 45,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_0",
+            "1"
+          ],
+          "line": 46,
+          "raw": "setvar VAR_TEMP_0, 1",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_PLAYER",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_PlayerEnterRoom"
+          ],
+          "line": 47,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_PLAYER, BattleFrontier_BattleTowerMultiBattleRoom_Movement_PlayerEnterRoom",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_PARTNER",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_PartnerEnterRoom"
+          ],
+          "line": 48,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_PARTNER, BattleFrontier_BattleTowerMultiBattleRoom_Movement_PartnerEnterRoom",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 49,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 50,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_OpponentsEnter"
+          ],
+          "line": 51,
+          "raw": "goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_OpponentsEnter",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer"
+          ],
+          "line": 52,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_1, BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer"
+          ],
+          "line": 53,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_2, BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 54,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_PLAYER",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant"
+          ],
+          "line": 55,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_PLAYER, BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_PARTNER",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant"
+          ],
+          "line": 56,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_PARTNER, BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 57,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_RECORD_DISABLED",
+            "TRUE"
+          ],
+          "line": 58,
+          "raw": "frontier_set FRONTIER_DATA_RECORD_DISABLED, TRUE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 59,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_OpponentsEnter",
+          "line": 51
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "line": 59
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_OpponentsEnter": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_OpponentsEnter",
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "tower_setopponent",
+          "args": [],
+          "line": 62,
+          "raw": "tower_setopponent",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "addobject",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1"
+          ],
+          "line": 63,
+          "raw": "addobject LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "addobject",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2"
+          ],
+          "line": 64,
+          "raw": "addobject LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent1Enter"
+          ],
+          "line": 65,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1, BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent1Enter",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent2Enter"
+          ],
+          "line": 66,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2, BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent2Enter",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 67,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_FRONTIER_BATTLE_MODE",
+            "FRONTIER_MODE_LINK_MULTIS",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoOpponentIntrosLink"
+          ],
+          "line": 68,
+          "raw": "goto_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoOpponentIntrosLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "tower_getopponentintro",
+          "args": [
+            "0"
+          ],
+          "line": 69,
+          "raw": "tower_getopponentintro 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "15"
+          ],
+          "line": 70,
+          "raw": "delay 15",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft"
+          ],
+          "line": 71,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1, BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 72,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gStringVar4",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 73,
+          "raw": "msgbox gStringVar4, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 74,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "tower_getopponentintro",
+          "args": [
+            "1"
+          ],
+          "line": 75,
+          "raw": "tower_getopponentintro 1",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft"
+          ],
+          "line": 76,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2, BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 77,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gStringVar4",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 78,
+          "raw": "msgbox gStringVar4, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 79,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoTowerBattle"
+          ],
+          "line": 80,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoTowerBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gStringVar4",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 73
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gStringVar4",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 78
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoOpponentIntrosLink",
+          "line": 68
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoTowerBattle",
+          "line": 80
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoOpponentIntrosLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoOpponentIntrosLink",
+      "kind": "script",
+      "line": 82,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "tower_getopponentintro",
+          "args": [
+            "0"
+          ],
+          "line": 83,
+          "raw": "tower_getopponentintro 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "15"
+          ],
+          "line": 84,
+          "raw": "delay 15",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft"
+          ],
+          "line": 85,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1, BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 86,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "messageautoscroll",
+          "args": [
+            "gStringVar4"
+          ],
+          "line": 87,
+          "raw": "messageautoscroll gStringVar4",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 88,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "48"
+          ],
+          "line": 89,
+          "raw": "delay 48",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "tower_getopponentintro",
+          "args": [
+            "1"
+          ],
+          "line": 90,
+          "raw": "tower_getopponentintro 1",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft"
+          ],
+          "line": 91,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2, BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 92,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "messageautoscroll",
+          "args": [
+            "gStringVar4"
+          ],
+          "line": 93,
+          "raw": "messageautoscroll gStringVar4",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 94,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "48"
+          ],
+          "line": 95,
+          "raw": "delay 48",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoTowerBattle": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DoTowerBattle",
+      "kind": "script",
+      "line": 96,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_EventScript_DoTowerBattle"
+          ],
+          "line": 97,
+          "raw": "call BattleFrontier_BattleTowerBattleRoom_EventScript_DoTowerBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 98,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "B_OUTCOME_WON",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DefeatedOpponents"
+          ],
+          "line": 99,
+          "raw": "case B_OUTCOME_WON, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DefeatedOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattleTowerBattleRoom_EventScript_DoTowerBattle",
+          "line": 97
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost",
+      "kind": "script",
+      "line": 100,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_LOST"
+          ],
+          "line": 101,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "tower_set",
+          "args": [
+            "TOWER_DATA_LVL_MODE"
+          ],
+          "line": 102,
+          "raw": "tower_set TOWER_DATA_LVL_MODE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "FANCOUNTER_USED_BATTLE_TOWER"
+          ],
+          "line": 103,
+          "raw": "setvar VAR_0x8004, FANCOUNTER_USED_BATTLE_TOWER",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "Script_TryGainNewFanFromCounter"
+          ],
+          "line": 104,
+          "raw": "special Script_TryGainNewFanFromCounter",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobby"
+          ],
+          "line": 105,
+          "raw": "goto BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobby",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobby",
+          "line": 105
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DefeatedOpponents": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_DefeatedOpponents",
+      "kind": "script",
+      "line": 107,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_EventScript_IncrementWinStreak"
+          ],
+          "line": 108,
+          "raw": "call BattleFrontier_EventScript_IncrementWinStreak",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "tower_setbattlewon",
+          "args": [],
+          "line": 109,
+          "raw": "tower_setbattlewon",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 110,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "7",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyWon"
+          ],
+          "line": 111,
+          "raw": "case 7, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyWon",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent2Exit"
+          ],
+          "line": 112,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2, BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent2Exit",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent1Exit"
+          ],
+          "line": 113,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1, BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent1Exit",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 114,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1"
+          ],
+          "line": 115,
+          "raw": "removeobject LOCALID_TOWER_MULTI_BATTLE_OPPONENT_1",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2"
+          ],
+          "line": 116,
+          "raw": "removeobject LOCALID_TOWER_MULTI_BATTLE_OPPONENT_2",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer"
+          ],
+          "line": 117,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_1, BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer"
+          ],
+          "line": 118,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_2, BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 119,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_PLAYER",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant"
+          ],
+          "line": 120,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_PLAYER, BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_PARTNER",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant"
+          ],
+          "line": 121,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_PARTNER, BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 122,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_FRONTIER_BATTLE_MODE",
+            "FRONTIER_MODE_LINK_MULTIS",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetorePartyMsgLink"
+          ],
+          "line": 123,
+          "raw": "goto_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetorePartyMsgLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 124,
+          "raw": "msgbox BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth, MSGBOX_DEFAULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RestoreParty"
+          ],
+          "line": 125,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RestoreParty",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 124
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_EventScript_IncrementWinStreak",
+          "line": 108
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetorePartyMsgLink",
+          "line": 123
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RestoreParty",
+          "line": 125
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetorePartyMsgLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetorePartyMsgLink",
+      "kind": "script",
+      "line": 127,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "messageautoscroll",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth"
+          ],
+          "line": 128,
+          "raw": "messageautoscroll BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 129,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "48"
+          ],
+          "line": 130,
+          "raw": "delay 48",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RestoreParty": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RestoreParty",
+      "kind": "script",
+      "line": 131,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "LoadPlayerParty"
+          ],
+          "line": 132,
+          "raw": "special LoadPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_setpartyorder",
+          "args": [
+            "FRONTIER_MULTI_PARTY_SIZE"
+          ],
+          "line": 133,
+          "raw": "frontier_setpartyorder FRONTIER_MULTI_PARTY_SIZE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_FRONTIER_BATTLE_MODE",
+            "FRONTIER_MODE_LINK_MULTIS",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReconnectLink"
+          ],
+          "line": 134,
+          "raw": "call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReconnectLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_HEAL"
+          ],
+          "line": 135,
+          "raw": "playfanfare MUS_HEAL",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 136,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 137,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReconnectLink",
+          "line": 134
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+      "kind": "script",
+      "line": 138,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_get",
+          "args": [
+            "FRONTIER_DATA_BATTLE_NUM"
+          ],
+          "line": 139,
+          "raw": "frontier_get FRONTIER_DATA_BATTLE_NUM",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSet"
+          ],
+          "line": 140,
+          "raw": "call BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_FRONTIER_BATTLE_MODE",
+            "FRONTIER_MODE_LINK_MULTIS",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge"
+          ],
+          "line": 141,
+          "raw": "goto_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_EventScript_GetCantRecordBattle"
+          ],
+          "line": 142,
+          "raw": "call BattleFrontier_EventScript_GetCantRecordBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "TRUE",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsNoRecord"
+          ],
+          "line": 143,
+          "raw": "goto_if_eq VAR_RESULT, TRUE, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsNoRecord",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "19",
+            "4",
+            "MULTI_GO_ON_RECORD_REST_RETIRE",
+            "TRUE"
+          ],
+          "line": 144,
+          "raw": "multichoice 19, 4, MULTI_GO_ON_RECORD_REST_RETIRE, TRUE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 145,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge"
+          ],
+          "line": 146,
+          "raw": "case 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRecordBattle"
+          ],
+          "line": 147,
+          "raw": "case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRecordBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskPauseChallenge"
+          ],
+          "line": 148,
+          "raw": "case 2, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskPauseChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallenge"
+          ],
+          "line": 149,
+          "raw": "case 3, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 150,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSet",
+          "line": 140
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge",
+          "line": 141
+        },
+        {
+          "op": "call",
+          "target": "BattleFrontier_EventScript_GetCantRecordBattle",
+          "line": 142
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsNoRecord",
+          "line": 143
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsNoRecord": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsNoRecord",
+      "kind": "script",
+      "line": 152,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoice",
+          "args": [
+            "20",
+            "6",
+            "MULTI_GO_ON_REST_RETIRE",
+            "TRUE"
+          ],
+          "line": 153,
+          "raw": "multichoice 20, 6, MULTI_GO_ON_REST_RETIRE, TRUE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 154,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge"
+          ],
+          "line": 155,
+          "raw": "case 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskPauseChallenge"
+          ],
+          "line": 156,
+          "raw": "case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskPauseChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallenge"
+          ],
+          "line": 157,
+          "raw": "case 2, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 158,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRecordBattle": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRecordBattle",
+      "kind": "script",
+      "line": 160,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_Text_RecordYourBattle"
+          ],
+          "line": 161,
+          "raw": "message BattleFrontier_BattleTowerBattleRoom_Text_RecordYourBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 162,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "20",
+            "8",
+            "MULTI_YESNO",
+            "1",
+            "FALSE"
+          ],
+          "line": 163,
+          "raw": "multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 164,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 165,
+          "raw": "case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RecordBattle"
+          ],
+          "line": 166,
+          "raw": "case 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RecordBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 167,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerBattleRoom_Text_RecordYourBattle",
+          "mode": "",
+          "line": 161
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RecordBattle": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RecordBattle",
+      "kind": "script",
+      "line": 169,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_EventScript_SaveBattle"
+          ],
+          "line": 170,
+          "raw": "call BattleFrontier_EventScript_SaveBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 171,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_EventScript_SaveBattle",
+          "line": 170
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "line": 171
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskPauseChallenge": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskPauseChallenge",
+      "kind": "script",
+      "line": 173,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_Text_SaveAndQuitGame",
+            "MSGBOX_YESNO"
+          ],
+          "line": 174,
+          "raw": "msgbox BattleFrontier_BattleTowerBattleRoom_Text_SaveAndQuitGame, MSGBOX_YESNO",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 175,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "NO",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 176,
+          "raw": "case NO, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "YES",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_PauseChallenge"
+          ],
+          "line": 177,
+          "raw": "case YES, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_PauseChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 178,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "BattleFrontier_BattleTowerBattleRoom_Text_SaveAndQuitGame",
+          "mode": "MSGBOX_YESNO",
+          "line": 174
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallenge": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallenge",
+      "kind": "script",
+      "line": 180,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_Text_CancelYourChallenge"
+          ],
+          "line": 181,
+          "raw": "message BattleFrontier_BattleTowerBattleRoom_Text_CancelYourChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 182,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "20",
+            "8",
+            "MULTI_YESNO",
+            "1",
+            "FALSE"
+          ],
+          "line": 183,
+          "raw": "multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 184,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 185,
+          "raw": "case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost"
+          ],
+          "line": 186,
+          "raw": "case 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 187,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerBattleRoom_Text_CancelYourChallenge",
+          "mode": "",
+          "line": 181
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge",
+      "kind": "script",
+      "line": 189,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 190,
+          "raw": "closemessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_TEMP_2"
+          ],
+          "line": 191,
+          "raw": "clearflag FLAG_TEMP_2",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_PLAYER",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceBattle"
+          ],
+          "line": 192,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_PLAYER, BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_PARTNER",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceBattle"
+          ],
+          "line": 193,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_PARTNER, BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 194,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantReturnToPos"
+          ],
+          "line": 195,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_1, BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantReturnToPos",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantReturnToPos"
+          ],
+          "line": 196,
+          "raw": "applymovement LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_2, BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantReturnToPos",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 197,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_OpponentsEnter"
+          ],
+          "line": 198,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_OpponentsEnter",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 199,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_OpponentsEnter",
+          "line": 198
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyWon": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyWon",
+      "kind": "script",
+      "line": 201,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "frontier_set",
+          "args": [
+            "FRONTIER_DATA_CHALLENGE_STATUS",
+            "CHALLENGE_STATUS_WON"
+          ],
+          "line": 202,
+          "raw": "frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_WON",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "tower_set",
+          "args": [
+            "TOWER_DATA_LVL_MODE"
+          ],
+          "line": 203,
+          "raw": "tower_set TOWER_DATA_LVL_MODE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "FANCOUNTER_USED_BATTLE_TOWER"
+          ],
+          "line": 204,
+          "raw": "setvar VAR_0x8004, FANCOUNTER_USED_BATTLE_TOWER",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "Script_TryGainNewFanFromCounter"
+          ],
+          "line": 205,
+          "raw": "special Script_TryGainNewFanFromCounter",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobby"
+          ],
+          "line": 206,
+          "raw": "goto BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobby",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobby",
+          "line": 206
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_PauseChallenge": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_PauseChallenge",
+      "kind": "script",
+      "line": 208,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_Text_SavingPleaseWait"
+          ],
+          "line": 209,
+          "raw": "message BattleFrontier_BattleTowerBattleRoom_Text_SavingPleaseWait",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 210,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "tower_save",
+          "args": [
+            "CHALLENGE_STATUS_PAUSED"
+          ],
+          "line": 211,
+          "raw": "tower_save CHALLENGE_STATUS_PAUSED",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SAVE"
+          ],
+          "line": 212,
+          "raw": "playse SE_SAVE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 213,
+          "raw": "waitse",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "1"
+          ],
+          "line": 214,
+          "raw": "fadescreen 1",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "frontier_reset",
+          "args": [],
+          "line": 215,
+          "raw": "frontier_reset",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 216,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerBattleRoom_Text_SavingPleaseWait",
+          "mode": "",
+          "line": 209
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSet",
+      "kind": "script",
+      "line": 218,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_FRONTIER_BATTLE_MODE",
+            "FRONTIER_MODE_LINK_MULTIS",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSetLink"
+          ],
+          "line": 219,
+          "raw": "goto_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSetLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_TEMP_F",
+            "VAR_RESULT"
+          ],
+          "line": 220,
+          "raw": "copyvar VAR_TEMP_F, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_TEMP_F"
+          ],
+          "line": 221,
+          "raw": "switch VAR_TEMP_F",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor2ndOpponentSet"
+          ],
+          "line": 222,
+          "raw": "case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor2ndOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor3rdOpponentSet"
+          ],
+          "line": 223,
+          "raw": "case 2, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor3rdOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor4thOpponentSet"
+          ],
+          "line": 224,
+          "raw": "case 3, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor4thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor5thOpponentSet"
+          ],
+          "line": 225,
+          "raw": "case 4, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor5thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "5",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor6thOpponentSet"
+          ],
+          "line": 226,
+          "raw": "case 5, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor6thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "6",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor7thOpponentSet"
+          ],
+          "line": 227,
+          "raw": "case 6, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor7thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSetLink",
+          "line": 219
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor2ndOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor2ndOpponentSet",
+      "kind": "script",
+      "line": 229,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor2ndOpponentSet"
+          ],
+          "line": 230,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor2ndOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 231,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 232,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor2ndOpponentSet",
+          "mode": "",
+          "line": 230
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor3rdOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor3rdOpponentSet",
+      "kind": "script",
+      "line": 234,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor3rdOpponentSet"
+          ],
+          "line": 235,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor3rdOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 236,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 237,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor3rdOpponentSet",
+          "mode": "",
+          "line": 235
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor4thOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor4thOpponentSet",
+      "kind": "script",
+      "line": 239,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor4thOpponentSet"
+          ],
+          "line": 240,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor4thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 241,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 242,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor4thOpponentSet",
+          "mode": "",
+          "line": 240
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor5thOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor5thOpponentSet",
+      "kind": "script",
+      "line": 244,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor5thOpponentSet"
+          ],
+          "line": 245,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor5thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 246,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 247,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor5thOpponentSet",
+          "mode": "",
+          "line": 245
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor6thOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor6thOpponentSet",
+      "kind": "script",
+      "line": 249,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor6thOpponentSet"
+          ],
+          "line": 250,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor6thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 251,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 252,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor6thOpponentSet",
+          "mode": "",
+          "line": 250
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor7thOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor7thOpponentSet",
+      "kind": "script",
+      "line": 254,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor7thOpponentSet"
+          ],
+          "line": 255,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor7thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 256,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 257,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor7thOpponentSet",
+          "mode": "",
+          "line": 255
+        }
+      ],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSetLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSetLink",
+      "kind": "script",
+      "line": 259,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "copyvar",
+          "args": [
+            "VAR_TEMP_F",
+            "VAR_RESULT"
+          ],
+          "line": 260,
+          "raw": "copyvar VAR_TEMP_F, VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_TEMP_F"
+          ],
+          "line": 261,
+          "raw": "switch VAR_TEMP_F",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor2ndOpponentSetLink"
+          ],
+          "line": 262,
+          "raw": "case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor2ndOpponentSetLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor3rdOpponentSetLink"
+          ],
+          "line": 263,
+          "raw": "case 2, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor3rdOpponentSetLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "3",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor4thOpponentSetLink"
+          ],
+          "line": 264,
+          "raw": "case 3, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor4thOpponentSetLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "4",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor5thOpponentSetLink"
+          ],
+          "line": 265,
+          "raw": "case 4, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor5thOpponentSetLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "5",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor6thOpponentSetLink"
+          ],
+          "line": 266,
+          "raw": "case 5, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor6thOpponentSetLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "6",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor7thOpponentSetLink"
+          ],
+          "line": 267,
+          "raw": "case 6, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor7thOpponentSetLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor2ndOpponentSetLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor2ndOpponentSetLink",
+      "kind": "script",
+      "line": 269,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor2ndOpponentSet"
+          ],
+          "line": 270,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor2ndOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 271,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink"
+          ],
+          "line": 272,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 273,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor2ndOpponentSet",
+          "mode": "",
+          "line": 270
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "line": 272
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor3rdOpponentSetLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor3rdOpponentSetLink",
+      "kind": "script",
+      "line": 275,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor3rdOpponentSet"
+          ],
+          "line": 276,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor3rdOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 277,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink"
+          ],
+          "line": 278,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 279,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor3rdOpponentSet",
+          "mode": "",
+          "line": 276
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "line": 278
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor4thOpponentSetLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor4thOpponentSetLink",
+      "kind": "script",
+      "line": 281,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor4thOpponentSet"
+          ],
+          "line": 282,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor4thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 283,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink"
+          ],
+          "line": 284,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 285,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor4thOpponentSet",
+          "mode": "",
+          "line": 282
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "line": 284
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor5thOpponentSetLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor5thOpponentSetLink",
+      "kind": "script",
+      "line": 287,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor5thOpponentSet"
+          ],
+          "line": 288,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor5thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 289,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink"
+          ],
+          "line": 290,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 291,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor5thOpponentSet",
+          "mode": "",
+          "line": 288
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "line": 290
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor6thOpponentSetLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor6thOpponentSetLink",
+      "kind": "script",
+      "line": 293,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor6thOpponentSet"
+          ],
+          "line": 294,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor6thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 295,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink"
+          ],
+          "line": 296,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 297,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor6thOpponentSet",
+          "mode": "",
+          "line": 294
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "line": 296
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor7thOpponentSetLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyFor7thOpponentSetLink",
+      "kind": "script",
+      "line": 299,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor7thOpponentSet"
+          ],
+          "line": 300,
+          "raw": "message BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor7thOpponentSet",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 301,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink"
+          ],
+          "line": 302,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 303,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor7thOpponentSet",
+          "mode": "",
+          "line": 300
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+          "line": 302
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_LinkDelayForMsg": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_LinkDelayForMsg",
+      "kind": "script",
+      "line": 305,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 306,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "48"
+          ],
+          "line": 307,
+          "raw": "delay 48",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 308,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink",
+      "kind": "script",
+      "line": 310,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_TEMP_2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLinkNoRecord"
+          ],
+          "line": 311,
+          "raw": "goto_if_set FLAG_TEMP_2, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLinkNoRecord",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "multichoice",
+          "args": [
+            "19",
+            "6",
+            "MULTI_GO_ON_RECORD_RETIRE",
+            "TRUE"
+          ],
+          "line": 312,
+          "raw": "multichoice 19, 6, MULTI_GO_ON_RECORD_RETIRE, TRUE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 313,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallengeLink"
+          ],
+          "line": 314,
+          "raw": "case 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallengeLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRecordBattleLink"
+          ],
+          "line": 315,
+          "raw": "case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRecordBattleLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "2",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink"
+          ],
+          "line": 316,
+          "raw": "case 2, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink"
+          ],
+          "line": 317,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 318,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLinkNoRecord",
+          "line": 311
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLinkNoRecord": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLinkNoRecord",
+      "kind": "script",
+      "line": 320,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "multichoice",
+          "args": [
+            "20",
+            "8",
+            "MULTI_GO_ON_RETIRE",
+            "TRUE"
+          ],
+          "line": 321,
+          "raw": "multichoice 20, 8, MULTI_GO_ON_RETIRE, TRUE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 322,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "0",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallengeLink"
+          ],
+          "line": 323,
+          "raw": "case 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallengeLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink"
+          ],
+          "line": 324,
+          "raw": "case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink"
+          ],
+          "line": 325,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 326,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallengeLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallengeLink",
+      "kind": "script",
+      "line": 328,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "BATTLE_TOWER_LINK_CONTINUE"
+          ],
+          "line": 329,
+          "raw": "setvar VAR_0x8004, BATTLE_TOWER_LINK_CONTINUE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "0"
+          ],
+          "line": 330,
+          "raw": "setvar VAR_0x8005, 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_LinkStandby3"
+          ],
+          "line": 331,
+          "raw": "message gText_LinkStandby3",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 332,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LinkRetireStatusWithBattleTowerPartner"
+          ],
+          "line": 333,
+          "raw": "special LinkRetireStatusWithBattleTowerPartner",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 334,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "BATTLE_TOWER_LINKSTAT_CONTINUE",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost"
+          ],
+          "line": 335,
+          "raw": "goto_if_ne VAR_RESULT, BATTLE_TOWER_LINKSTAT_CONTINUE, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_LinkDelayForMsg"
+          ],
+          "line": 336,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_LinkDelayForMsg",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 337,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_LinkStandby3",
+          "mode": "",
+          "line": 331
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost",
+          "line": 335
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_LinkDelayForMsg",
+          "line": 336
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRecordBattleLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRecordBattleLink",
+      "kind": "script",
+      "line": 339,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_Text_RecordYourBattle"
+          ],
+          "line": 340,
+          "raw": "message BattleFrontier_BattleTowerBattleRoom_Text_RecordYourBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 341,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "20",
+            "8",
+            "MULTI_YESNO",
+            "1",
+            "FALSE"
+          ],
+          "line": 342,
+          "raw": "multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "switch",
+          "args": [
+            "VAR_RESULT"
+          ],
+          "line": 343,
+          "raw": "switch VAR_RESULT",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "1",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 344,
+          "raw": "case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "case",
+          "args": [
+            "MULTI_B_PRESSED",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 345,
+          "raw": "case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "BattleFrontier_EventScript_SaveBattle"
+          ],
+          "line": 346,
+          "raw": "call BattleFrontier_EventScript_SaveBattle",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_TEMP_2"
+          ],
+          "line": 347,
+          "raw": "setflag FLAG_TEMP_2",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 348,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 349,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerBattleRoom_Text_RecordYourBattle",
+          "mode": "",
+          "line": 340
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "BattleFrontier_EventScript_SaveBattle",
+          "line": 346
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "line": 348
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallengeLink",
+      "kind": "script",
+      "line": 351,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "message",
+          "args": [
+            "BattleFrontier_BattleTowerBattleRoom_Text_CancelYourChallenge"
+          ],
+          "line": 352,
+          "raw": "message BattleFrontier_BattleTowerBattleRoom_Text_CancelYourChallenge",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 353,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "multichoicedefault",
+          "args": [
+            "20",
+            "8",
+            "MULTI_YESNO",
+            "1",
+            "FALSE"
+          ],
+          "line": 354,
+          "raw": "multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetireChallengeLink"
+          ],
+          "line": 355,
+          "raw": "goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetireChallengeLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents"
+          ],
+          "line": 356,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 357,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "BattleFrontier_BattleTowerBattleRoom_Text_CancelYourChallenge",
+          "mode": "",
+          "line": 352
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetireChallengeLink",
+          "line": 355
+        },
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents",
+          "line": 356
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetireChallengeLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_RetireChallengeLink",
+      "kind": "script",
+      "line": 359,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8004",
+            "BATTLE_TOWER_LINK_RETIRE"
+          ],
+          "line": 360,
+          "raw": "setvar VAR_0x8004, BATTLE_TOWER_LINK_RETIRE",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x8005",
+            "0"
+          ],
+          "line": 361,
+          "raw": "setvar VAR_0x8005, 0",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_LinkStandby3"
+          ],
+          "line": 362,
+          "raw": "message gText_LinkStandby3",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 363,
+          "raw": "waitmessage",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "LinkRetireStatusWithBattleTowerPartner"
+          ],
+          "line": 364,
+          "raw": "special LinkRetireStatusWithBattleTowerPartner",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 365,
+          "raw": "waitstate",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost"
+          ],
+          "line": 366,
+          "raw": "goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 367,
+          "raw": "end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_LinkStandby3",
+          "mode": "",
+          "line": 362
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost",
+          "line": 366
+        }
+      ]
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReconnectLink": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReconnectLink",
+      "kind": "script",
+      "line": 369,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "special",
+          "args": [
+            "BattleTowerReconnectLink"
+          ],
+          "line": 370,
+          "raw": "special BattleTowerReconnectLink",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 371,
+          "raw": "return",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_PlayerEnterRoom": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_PlayerEnterRoom",
+      "kind": "movement",
+      "line": 373,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 374,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 375,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 376,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 377,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "face_right",
+          "args": [],
+          "line": 378,
+          "raw": "face_right",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 379,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_PartnerEnterRoom": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_PartnerEnterRoom",
+      "kind": "movement",
+      "line": 381,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 382,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 383,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 384,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 385,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "face_right",
+          "args": [],
+          "line": 386,
+          "raw": "face_right",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 387,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceAttendant",
+      "kind": "movement",
+      "line": 389,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "face_left",
+          "args": [],
+          "line": 390,
+          "raw": "face_left",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 391,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceBattle": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_FaceBattle",
+      "kind": "movement",
+      "line": 393,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 394,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 395,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent1Enter": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent1Enter",
+      "kind": "movement",
+      "line": 397,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 398,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 399,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 400,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 401,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "face_left",
+          "args": [],
+          "line": 402,
+          "raw": "face_left",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 403,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent2Enter": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent2Enter",
+      "kind": "movement",
+      "line": 405,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 406,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 407,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 408,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 409,
+          "raw": "walk_down",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "face_left",
+          "args": [],
+          "line": 410,
+          "raw": "face_left",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 411,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent2Exit": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent2Exit",
+      "kind": "movement",
+      "line": 413,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 414,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 415,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 416,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "set_invisible",
+          "args": [],
+          "line": 417,
+          "raw": "set_invisible",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 418,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent1Exit": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_Opponent1Exit",
+      "kind": "movement",
+      "line": 420,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 421,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 422,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 423,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 424,
+          "raw": "walk_up",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 425,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantApproachPlayer",
+      "kind": "movement",
+      "line": 427,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 428,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 429,
+          "raw": "walk_right",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 430,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantReturnToPos": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_AttendantReturnToPos",
+      "kind": "movement",
+      "line": 432,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 433,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 434,
+          "raw": "walk_left",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 435,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 436,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft",
+      "kind": "movement",
+      "line": 438,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_in_place_left",
+          "args": [],
+          "line": 439,
+          "raw": "walk_in_place_left",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 440,
+          "raw": "step_end",
+          "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor2ndOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor2ndOpponentSet",
+      "line": 442,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第2对对手。\\n准备好了吗？$",
+      "display_text": "接下来是第2对对手。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          163,
+          3,
+          121,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A3 03 79 03 79 0C 1B 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor3rdOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor3rdOpponentSet",
+      "line": 445,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第3对对手。\\n准备好了吗？$",
+      "display_text": "接下来是第3对对手。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          164,
+          3,
+          121,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A4 03 79 03 79 0C 1B 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor4thOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor4thOpponentSet",
+      "line": 448,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第4对对手。\\n准备好了吗？$",
+      "display_text": "接下来是第4对对手。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          165,
+          3,
+          121,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A5 03 79 03 79 0C 1B 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor5thOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor5thOpponentSet",
+      "line": 451,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第5对对手。\\n准备好了吗？$",
+      "display_text": "接下来是第5对对手。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          166,
+          3,
+          121,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A6 03 79 03 79 0C 1B 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor6thOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor6thOpponentSet",
+      "line": 454,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第6对对手。\\n准备好了吗？$",
+      "display_text": "接下来是第6对对手。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          167,
+          3,
+          121,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A7 03 79 03 79 0C 1B 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor7thOpponentSet": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor7thOpponentSet",
+      "line": 457,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第7对对手。\\n准备好了吗？$",
+      "display_text": "接下来是第7对对手。\n准备好了吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 31,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          168,
+          3,
+          121,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          16,
+          235,
+          1,
+          117,
+          4,
+          233,
+          8,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A8 03 79 03 79 0C 1B 37 FE 10 EB 01 75 04 E9 08 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_2ndOpponentSetNext": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_2ndOpponentSetNext",
+      "line": 461,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第2对手。\\n加油！$",
+      "display_text": "接下来是第2对手。\n加油！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          163,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          5,
+          190,
+          15,
+          123,
+          60,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A3 03 79 0C 1B 37 FE 05 BE 0F 7B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_3rdOpponentSetNext": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_3rdOpponentSetNext",
+      "line": 465,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第3对手。\\n加油！$",
+      "display_text": "接下来是第3对手。\n加油！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          164,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          5,
+          190,
+          15,
+          123,
+          60,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A4 03 79 0C 1B 37 FE 05 BE 0F 7B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_4thOpponentSetNext": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_4thOpponentSetNext",
+      "line": 469,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第4对手。\\n加油！$",
+      "display_text": "接下来是第4对手。\n加油！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          165,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          5,
+          190,
+          15,
+          123,
+          60,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A5 03 79 0C 1B 37 FE 05 BE 0F 7B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_5thOpponentSetNext": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_5thOpponentSetNext",
+      "line": 473,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第5对手。\\n加油！$",
+      "display_text": "接下来是第5对手。\n加油！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          166,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          5,
+          190,
+          15,
+          123,
+          60,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A6 03 79 0C 1B 37 FE 05 BE 0F 7B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_6thOpponentSetNext": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_6thOpponentSetNext",
+      "line": 477,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第6对手。\\n加油！$",
+      "display_text": "接下来是第6对手。\n加油！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          167,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          5,
+          190,
+          15,
+          123,
+          60,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A7 03 79 0C 1B 37 FE 05 BE 0F 7B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "BattleFrontier_BattleTowerMultiBattleRoom_Text_7thOpponentSetNext": {
+      "label": "BattleFrontier_BattleTowerMultiBattleRoom_Text_7thOpponentSetNext",
+      "line": 481,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "接下来是第7对手。\\n加油！$",
+      "display_text": "接下来是第7对手。\n加油！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          7,
+          37,
+          13,
+          230,
+          8,
+          41,
+          12,
+          12,
+          3,
+          33,
+          168,
+          3,
+          121,
+          12,
+          27,
+          55,
+          254,
+          5,
+          190,
+          15,
+          123,
+          60,
+          255
+        ],
+        "hex": "07 25 0D E6 08 29 0C 0C 03 21 A8 03 79 0C 1B 37 FE 05 BE 0F 7B 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "gText_LinkStandby3": {
+      "label": "gText_LinkStandby3",
+      "line": 484,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "正在等待连接……$",
+      "display_text": "正在等待连接……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 15,
+        "bytes": [
+          16,
+          112,
+          15,
+          230,
+          3,
+          15,
+          2,
+          221,
+          8,
+          127,
+          7,
+          37,
+          176,
+          176,
+          255
+        ],
+        "hex": "10 70 0F E6 03 0F 02 DD 08 7F 07 25 B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "gText_YourPartnerHasRetired": {
+      "label": "gText_YourPartnerHasRetired",
+      "line": 487,
+      "source_file": "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc",
+      "raw_text": "您的搭档已退出。\\p对战间挑战\\n将取消。$",
+      "display_text": "您的搭档已退出。\n\n对战间挑战\n将取消。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          9,
+          240,
+          3,
+          11,
+          2,
+          206,
+          2,
+          243,
+          15,
+          33,
+          13,
+          51,
+          2,
+          120,
+          55,
+          251,
+          3,
+          121,
+          16,
+          48,
+          5,
+          207,
+          12,
+          245,
+          16,
+          48,
+          254,
+          5,
+          244,
+          11,
+          33,
+          14,
+          40,
+          55,
+          255
+        ],
+        "hex": "09 F0 03 0B 02 CE 02 F3 0F 21 0D 33 02 78 37 FB 03 79 10 30 05 CF 0C F5 10 30 FE 05 F4 0B 21 0E 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 15,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "addobject": 2,
+      "applymovement": 22,
+      "call_if_eq": 3,
+      "case": 41,
+      "checkplayergender": 1,
+      "clearflag": 1,
+      "closemessage": 1,
+      "copyvar": 2,
+      "delay": 6,
+      "face_left": 3,
+      "face_right": 2,
+      "fadescreen": 1,
+      "frontier_get": 2,
+      "frontier_reset": 1,
+      "frontier_set": 3,
+      "frontier_setpartyorder": 1,
+      "goto_if_eq": 8,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "hideobjectat": 1,
+      "map_script": 3,
+      "map_script_2": 2,
+      "messageautoscroll": 3,
+      "multichoice": 4,
+      "multichoicedefault": 4,
+      "playfanfare": 1,
+      "playse": 1,
+      "removeobject": 2,
+      "set_invisible": 1,
+      "setflag": 1,
+      "setvar": 9,
+      "special": 8,
+      "step_end": 11,
+      "switch": 12,
+      "tower_getopponentintro": 4,
+      "tower_save": 1,
+      "tower_set": 2,
+      "tower_setbattlewon": 1,
+      "tower_setopponent": 1,
+      "tower_setpartnergfx": 1,
+      "waitfanfare": 1,
+      "waitmessage": 25,
+      "waitmovement": 13,
+      "waitse": 1,
+      "waitstate": 2,
+      "walk_down": 7,
+      "walk_in_place_faster_right": 2,
+      "walk_in_place_left": 1,
+      "walk_left": 3,
+      "walk_right": 3,
+      "walk_up": 14
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 72,
+    "script_count": 47,
+    "movement_count": 11,
+    "text_count": 14,
+    "encoded_text_count": 14,
+    "text_source_byte_count": 374,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 14
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "addobject": 2,
+      "applymovement": 22,
+      "call": 6,
+      "call_if_eq": 3,
+      "case": 41,
+      "checkplayergender": 1,
+      "clearflag": 1,
+      "closemessage": 1,
+      "copyvar": 2,
+      "delay": 6,
+      "end": 16,
+      "face_left": 3,
+      "face_right": 2,
+      "fadescreen": 1,
+      "frontier_get": 2,
+      "frontier_reset": 1,
+      "frontier_set": 3,
+      "frontier_setpartyorder": 1,
+      "goto": 17,
+      "goto_if_eq": 8,
+      "goto_if_ne": 1,
+      "goto_if_set": 1,
+      "hideobjectat": 1,
+      "map_script": 3,
+      "map_script_2": 2,
+      "message": 19,
+      "messageautoscroll": 3,
+      "msgbox": 4,
+      "multichoice": 4,
+      "multichoicedefault": 4,
+      "playfanfare": 1,
+      "playse": 1,
+      "removeobject": 2,
+      "return": 11,
+      "set_invisible": 1,
+      "setflag": 1,
+      "setvar": 9,
+      "special": 8,
+      "step_end": 11,
+      "switch": 12,
+      "tower_getopponentintro": 4,
+      "tower_save": 1,
+      "tower_set": 2,
+      "tower_setbattlewon": 1,
+      "tower_setopponent": 1,
+      "tower_setpartnergfx": 1,
+      "waitfanfare": 1,
+      "waitmessage": 25,
+      "waitmovement": 13,
+      "waitse": 1,
+      "waitstate": 2,
+      "walk_down": 7,
+      "walk_in_place_faster_right": 2,
+      "walk_in_place_left": 1,
+      "walk_left": 3,
+      "walk_right": 3,
+      "walk_up": 14
+    }
+  }
+}

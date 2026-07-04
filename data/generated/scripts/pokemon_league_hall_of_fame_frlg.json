@@ -1,0 +1,1032 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PokemonLeague_HallOfFame_Frlg",
+    "map_script": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+    "map_json": "data/maps/PokemonLeague_HallOfFame_Frlg/map.json",
+    "map_id": "MAP_POKEMON_LEAGUE_HALL_OF_FAME",
+    "map_name": "PokemonLeague_HallOfFame_Frlg"
+  },
+  "labels": {
+    "PokemonLeague_HallOfFame_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PokemonLeague_HallOfFame_OnWarp": {
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_HallOfFame_OnFrame": {
+      "kind": "map_script_table",
+      "line": 14,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PokemonLeague_HallOfFame_EventScript_EnterRoom": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instruction_count": 25
+    },
+    "PokemonLeague_HallOfFame_Movement_EnterRoom": {
+      "kind": "movement",
+      "line": 45,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "PokemonLeague_HallOfFame_Text_OakCongratulations": {
+      "kind": "text",
+      "line": 56,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instruction_count": 13
+    }
+  },
+  "scripts": {
+    "PokemonLeague_HallOfFame_Frlg_MapScripts": {
+      "label": "PokemonLeague_HallOfFame_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "PokemonLeague_HallOfFame_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_HallOfFame_OnFrame",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE",
+            "PokemonLeague_HallOfFame_OnWarp"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_HallOfFame_OnWarp",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_HallOfFame_OnWarp": {
+      "label": "PokemonLeague_HallOfFame_OnWarp",
+      "kind": "map_script_table",
+      "line": 6,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth"
+          ],
+          "line": 7,
+          "raw": "map_script_2 VAR_TEMP_1, 0, PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 8,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth": {
+      "label": "PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "turnobject",
+          "args": [
+            "LOCALID_PLAYER",
+            "DIR_NORTH"
+          ],
+          "line": 11,
+          "raw": "turnobject LOCALID_PLAYER, DIR_NORTH",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_HallOfFame_OnFrame": {
+      "label": "PokemonLeague_HallOfFame_OnFrame",
+      "kind": "map_script_table",
+      "line": 14,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_TEMP_1",
+            "0",
+            "PokemonLeague_HallOfFame_EventScript_EnterRoom"
+          ],
+          "line": 15,
+          "raw": "map_script_2 VAR_TEMP_1, 0, PokemonLeague_HallOfFame_EventScript_EnterRoom",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 16,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PokemonLeague_HallOfFame_EventScript_EnterRoom": {
+      "label": "PokemonLeague_HallOfFame_EventScript_EnterRoom",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 19,
+          "raw": "lockall",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "textcolor",
+          "args": [
+            "NPC_TEXT_COLOR_MALE"
+          ],
+          "line": 20,
+          "raw": "textcolor NPC_TEXT_COLOR_MALE",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "PokemonLeague_HallOfFame_Movement_EnterRoom"
+          ],
+          "line": 21,
+          "raw": "applymovement LOCALID_PLAYER, PokemonLeague_HallOfFame_Movement_EnterRoom",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 22,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_HALL_OF_FAME_PROF_OAK",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 23,
+          "raw": "applymovement LOCALID_HALL_OF_FAME_PROF_OAK, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 24,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 25,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "18"
+          ],
+          "line": 26,
+          "raw": "delay 18",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "PokemonLeague_HallOfFame_Text_OakCongratulations"
+          ],
+          "line": 27,
+          "raw": "msgbox PokemonLeague_HallOfFame_Text_OakCongratulations",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 28,
+          "raw": "closemessage",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_HALL_OF_FAME_PROF_OAK",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 29,
+          "raw": "applymovement LOCALID_HALL_OF_FAME_PROF_OAK, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 30,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 31,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 32,
+          "raw": "delay 20",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "dofieldeffect",
+          "args": [
+            "FLDEFF_HALL_OF_FAME_RECORD_FRLG"
+          ],
+          "line": 33,
+          "raw": "dofieldeffect FLDEFF_HALL_OF_FAME_RECORD_FRLG",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitfieldeffect",
+          "args": [
+            "FLDEFF_HALL_OF_FAME_RECORD_FRLG"
+          ],
+          "line": 34,
+          "raw": "waitfieldeffect FLDEFF_HALL_OF_FAME_RECORD_FRLG",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "40"
+          ],
+          "line": 35,
+          "raw": "delay 40",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_1",
+            "1"
+          ],
+          "line": 36,
+          "raw": "setvar VAR_TEMP_1, 1",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "EventScript_SetDefeatedEliteFourFlagsVars"
+          ],
+          "line": 37,
+          "raw": "call EventScript_SetDefeatedEliteFourFlagsVars",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_PALLET_TOWN"
+          ],
+          "line": 38,
+          "raw": "setrespawn HEAL_LOCATION_PALLET_TOWN",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "fadescreenspeed",
+          "args": [
+            "FADE_TO_BLACK",
+            "24"
+          ],
+          "line": 39,
+          "raw": "fadescreenspeed FADE_TO_BLACK, 24",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "EnterHallOfFame"
+          ],
+          "line": 40,
+          "raw": "special EnterHallOfFame",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 41,
+          "raw": "waitstate",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 42,
+          "raw": "releaseall",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 43,
+          "raw": "end",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PokemonLeague_HallOfFame_Text_OakCongratulations",
+          "mode": "",
+          "line": 27
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "EventScript_SetDefeatedEliteFourFlagsVars",
+          "line": 37
+        }
+      ]
+    }
+  },
+  "movements": {
+    "PokemonLeague_HallOfFame_Movement_EnterRoom": {
+      "label": "PokemonLeague_HallOfFame_Movement_EnterRoom",
+      "kind": "movement",
+      "line": 45,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 46,
+          "raw": "walk_up",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 47,
+          "raw": "walk_up",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 48,
+          "raw": "walk_up",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 49,
+          "raw": "walk_up",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 50,
+          "raw": "walk_up",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 51,
+          "raw": "walk_up",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 52,
+          "raw": "walk_up",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 53,
+          "raw": "walk_up",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 54,
+          "raw": "step_end",
+          "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "PokemonLeague_HallOfFame_Text_OakCongratulations": {
+      "label": "PokemonLeague_HallOfFame_Text_OakCongratulations",
+      "line": 56,
+      "source_file": "data/maps/PokemonLeague_HallOfFame_Frlg/scripts.inc",
+      "raw_text": "大木：咳嗯！\\n祝贺，{PLAYER}！\\p这层楼是\\n宝可梦荣誉殿堂。\\p宝可梦联盟冠军\\n将因为他们的战绩而而得到荣光。\\p他们的宝可梦也会被记录在\\n荣誉殿堂里。\\p{PLAYER}！\\p你努力战斗到此成为了\\n新的联盟冠军。\\p祝贺你，{PLAYER}，你和你的\\n宝可梦是荣誉殿堂的成员了！$",
+      "display_text": "大木：咳嗯！\n祝贺，{PLAYER}！\n\n这层楼是\n宝可梦荣誉殿堂。\n\n宝可梦联盟冠军\n将因为他们的战绩而而得到荣光。\n\n他们的宝可梦也会被记录在\n荣誉殿堂里。\n\n{PLAYER}！\n\n你努力战斗到此成为了\n新的联盟冠军。\n\n祝贺你，{PLAYER}，你和你的\n宝可梦是荣誉殿堂的成员了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 211,
+        "bytes": [
+          2,
+          211,
+          9,
+          180,
+          62,
+          7,
+          214,
+          20,
+          97,
+          60,
+          254,
+          16,
+          210,
+          5,
+          7,
+          59,
+          253,
+          1,
+          60,
+          251,
+          16,
+          85,
+          2,
+          7,
+          8,
+          214,
+          12,
+          12,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          11,
+          89,
+          15,
+          172,
+          3,
+          53,
+          12,
+          196,
+          55,
+          251,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          125,
+          9,
+          99,
+          4,
+          162,
+          7,
+          172,
+          254,
+          5,
+          244,
+          15,
+          66,
+          13,
+          112,
+          12,
+          158,
+          9,
+          95,
+          3,
+          11,
+          16,
+          48,
+          5,
+          147,
+          3,
+          157,
+          3,
+          157,
+          3,
+          10,
+          3,
+          4,
+          11,
+          89,
+          4,
+          170,
+          55,
+          251,
+          12,
+          158,
+          9,
+          95,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          2,
+          5,
+          110,
+          1,
+          120,
+          5,
+          178,
+          8,
+          237,
+          15,
+          230,
+          254,
+          11,
+          89,
+          15,
+          172,
+          3,
+          53,
+          12,
+          196,
+          8,
+          100,
+          55,
+          251,
+          253,
+          1,
+          60,
+          251,
+          9,
+          217,
+          10,
+          9,
+          8,
+          121,
+          16,
+          48,
+          3,
+          92,
+          3,
+          4,
+          2,
+          171,
+          2,
+          75,
+          13,
+          112,
+          8,
+          158,
+          254,
+          14,
+          77,
+          3,
+          11,
+          8,
+          125,
+          9,
+          99,
+          4,
+          162,
+          7,
+          172,
+          55,
+          251,
+          16,
+          210,
+          5,
+          7,
+          9,
+          217,
+          59,
+          253,
+          1,
+          59,
+          9,
+          217,
+          4,
+          243,
+          9,
+          217,
+          3,
+          11,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          12,
+          12,
+          11,
+          89,
+          15,
+          172,
+          3,
+          53,
+          12,
+          196,
+          3,
+          11,
+          2,
+          75,
+          15,
+          189,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "02 D3 09 B4 3E 07 D6 14 61 3C FE 10 D2 05 07 3B FD 01 3C FB 10 55 02 07 08 D6 0C 0C FE 01 63 07 D7 09 66 0B 59 0F AC 03 35 0C C4 37 FB 01 63 07 D7 09 66 08 7D 09 63 04 A2 07 AC FE 05 F4 0F 42 0D 70 0C 9E 09 5F 03 0B 10 30 05 93 03 9D 03 9D 03 0A 03 04 0B 59 04 AA 37 FB 0C 9E 09 5F 03 0B 01 63 07 D7 09 66 0F 02 05 6E 01 78 05 B2 08 ED 0F E6 FE 0B 59 0F AC 03 35 0C C4 08 64 37 FB FD 01 3C FB 09 D9 0A 09 08 79 10 30 03 5C 03 04 02 AB 02 4B 0D 70 08 9E FE 0E 4D 03 0B 08 7D 09 63 04 A2 07 AC 37 FB 10 D2 05 07 09 D9 3B FD 01 3B 09 D9 04 F3 09 D9 03 0B FE 01 63 07 D7 09 66 0C 0C 0B 59 0F AC 03 35 0C C4 03 0B 02 4B 0F BD 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 11,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 36,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 45,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 62,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 76,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 84,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 86,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 95,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 107,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 116,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 122,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 135,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 150,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 11,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 86,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "PLAYER",
+            "offset": 122,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 5,
+      "closemessage": 1,
+      "delay": 3,
+      "dofieldeffect": 1,
+      "fadescreenspeed": 1,
+      "map_script": 2,
+      "map_script_2": 2,
+      "setrespawn": 1,
+      "setvar": 1,
+      "special": 1,
+      "step_end": 1,
+      "textcolor": 1,
+      "turnobject": 1,
+      "waitfieldeffect": 1,
+      "waitmovement": 3,
+      "waitstate": 1,
+      "walk_up": 8
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 7,
+    "script_count": 5,
+    "movement_count": 1,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 211,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 5,
+      "call": 1,
+      "closemessage": 1,
+      "delay": 3,
+      "dofieldeffect": 1,
+      "end": 2,
+      "fadescreenspeed": 1,
+      "lockall": 1,
+      "map_script": 2,
+      "map_script_2": 2,
+      "msgbox": 1,
+      "releaseall": 1,
+      "setrespawn": 1,
+      "setvar": 1,
+      "special": 1,
+      "step_end": 1,
+      "textcolor": 1,
+      "turnobject": 1,
+      "waitfieldeffect": 1,
+      "waitmovement": 3,
+      "waitstate": 1,
+      "walk_up": 8
+    }
+  }
+}

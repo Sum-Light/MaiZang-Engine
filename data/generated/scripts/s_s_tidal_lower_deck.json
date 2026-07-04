@@ -1,0 +1,715 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SSTidalLowerDeck",
+    "map_script": "data/maps/SSTidalLowerDeck/scripts.inc",
+    "map_json": "data/maps/SSTidalLowerDeck/map.json",
+    "map_id": "MAP_SS_TIDAL_LOWER_DECK",
+    "map_name": "SSTidalLowerDeck"
+  },
+  "labels": {
+    "SSTidalLowerDeck_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSTidalLowerDeck_EventScript_Phillip": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSTidalLowerDeck_EventScript_Leonard": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instruction_count": 3
+    },
+    "SSTidalLowerDeck_Text_PhillipIntro": {
+      "kind": "text",
+      "line": 14,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSTidalLowerDeck_Text_PhillipDefeat": {
+      "kind": "text",
+      "line": 17,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSTidalLowerDeck_Text_PhillipPostBattle": {
+      "kind": "text",
+      "line": 20,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSTidalLowerDeck_Text_LeonardIntro": {
+      "kind": "text",
+      "line": 23,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSTidalLowerDeck_Text_LeonardDefeat": {
+      "kind": "text",
+      "line": 26,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instruction_count": 1
+    },
+    "SSTidalLowerDeck_Text_LeonardPostBattle": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SSTidalLowerDeck_MapScripts": {
+      "label": "SSTidalLowerDeck_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SSTidalLowerDeck/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SSTidalLowerDeck_EventScript_Phillip": {
+      "label": "SSTidalLowerDeck_EventScript_Phillip",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_PHILLIP",
+            "SSTidalLowerDeck_Text_PhillipIntro",
+            "SSTidalLowerDeck_Text_PhillipDefeat"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_PHILLIP, SSTidalLowerDeck_Text_PhillipIntro, SSTidalLowerDeck_Text_PhillipDefeat",
+          "source_file": "data/maps/SSTidalLowerDeck/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSTidalLowerDeck_Text_PhillipPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox SSTidalLowerDeck_Text_PhillipPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SSTidalLowerDeck/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SSTidalLowerDeck/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSTidalLowerDeck_Text_PhillipPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "SSTidalLowerDeck_EventScript_Leonard": {
+      "label": "SSTidalLowerDeck_EventScript_Leonard",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_LEONARD",
+            "SSTidalLowerDeck_Text_LeonardIntro",
+            "SSTidalLowerDeck_Text_LeonardDefeat"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_LEONARD, SSTidalLowerDeck_Text_LeonardIntro, SSTidalLowerDeck_Text_LeonardDefeat",
+          "source_file": "data/maps/SSTidalLowerDeck/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SSTidalLowerDeck_Text_LeonardPostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox SSTidalLowerDeck_Text_LeonardPostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/SSTidalLowerDeck/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/SSTidalLowerDeck/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SSTidalLowerDeck_Text_LeonardPostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SSTidalLowerDeck_Text_PhillipIntro": {
+      "label": "SSTidalLowerDeck_Text_PhillipIntro",
+      "line": 14,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "raw_text": "啊！一天到晚打扫这么大的地方\\n我已经受够了！\\p我们速战速决！$",
+      "display_text": "啊！一天到晚打扫这么大的地方\n我已经受够了！\n\n我们速战速决！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 56,
+        "bytes": [
+          1,
+          0,
+          60,
+          15,
+          11,
+          12,
+          237,
+          3,
+          4,
+          13,
+          85,
+          2,
+          210,
+          11,
+          134,
+          16,
+          85,
+          9,
+          76,
+          2,
+          211,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          254,
+          13,
+          152,
+          15,
+          33,
+          7,
+          93,
+          12,
+          33,
+          4,
+          131,
+          8,
+          158,
+          60,
+          251,
+          13,
+          152,
+          9,
+          95,
+          12,
+          124,
+          16,
+          48,
+          12,
+          124,
+          7,
+          166,
+          60,
+          255
+        ],
+        "hex": "01 00 3C 0F 0B 0C ED 03 04 0D 55 02 D2 0B 86 10 55 09 4C 02 D3 03 0B 03 1F 03 C0 FE 0D 98 0F 21 07 5D 0C 21 04 83 08 9E 3C FB 0D 98 09 5F 0C 7C 10 30 0C 7C 07 A6 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSTidalLowerDeck_Text_PhillipDefeat": {
+      "label": "SSTidalLowerDeck_Text_PhillipDefeat",
+      "line": 17,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "raw_text": "弟弟，我输了！$",
+      "display_text": "弟弟，我输了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 13,
+        "bytes": [
+          3,
+          35,
+          3,
+          35,
+          59,
+          13,
+          152,
+          12,
+          41,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "03 23 03 23 3B 0D 98 0C 29 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 7,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSTidalLowerDeck_Text_PhillipPostBattle": {
+      "label": "SSTidalLowerDeck_Text_PhillipPostBattle",
+      "line": 20,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "raw_text": "我们是清扫兄弟！\\p哥哥负责倒洗涤剂，\\n弟弟负责擦地板！$",
+      "display_text": "我们是清扫兄弟！\n\n哥哥负责倒洗涤剂，\n弟弟负责擦地板！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 50,
+        "bytes": [
+          13,
+          152,
+          9,
+          95,
+          12,
+          12,
+          11,
+          7,
+          11,
+          134,
+          14,
+          97,
+          3,
+          35,
+          60,
+          251,
+          4,
+          81,
+          4,
+          81,
+          4,
+          36,
+          16,
+          5,
+          3,
+          0,
+          13,
+          216,
+          3,
+          26,
+          5,
+          172,
+          59,
+          254,
+          3,
+          35,
+          3,
+          35,
+          4,
+          36,
+          16,
+          5,
+          1,
+          220,
+          3,
+          31,
+          1,
+          68,
+          60,
+          255
+        ],
+        "hex": "0D 98 09 5F 0C 0C 0B 07 0B 86 0E 61 03 23 3C FB 04 51 04 51 04 24 10 05 03 00 0D D8 03 1A 05 AC 3B FE 03 23 03 23 04 24 10 05 01 DC 03 1F 01 44 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSTidalLowerDeck_Text_LeonardIntro": {
+      "label": "SSTidalLowerDeck_Text_LeonardIntro",
+      "line": 23,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "raw_text": "这里是船体的底部，\\n空间很大，\\l正好适合来一场宝可梦对战。$",
+      "display_text": "这里是船体的底部，\n空间很大，\n正好适合来一场宝可梦对战。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          16,
+          85,
+          8,
+          100,
+          12,
+          12,
+          2,
+          140,
+          12,
+          230,
+          3,
+          11,
+          3,
+          30,
+          1,
+          218,
+          59,
+          254,
+          7,
+          227,
+          5,
+          207,
+          5,
+          11,
+          2,
+          211,
+          59,
+          250,
+          16,
+          112,
+          4,
+          233,
+          12,
+          15,
+          4,
+          245,
+          8,
+          41,
+          15,
+          11,
+          2,
+          35,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          121,
+          16,
+          48,
+          55,
+          255
+        ],
+        "hex": "10 55 08 64 0C 0C 02 8C 0C E6 03 0B 03 1E 01 DA 3B FE 07 E3 05 CF 05 0B 02 D3 3B FA 10 70 04 E9 0C 0F 04 F5 08 29 0F 0B 02 23 01 63 07 D7 09 66 03 79 10 30 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 16,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 31,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSTidalLowerDeck_Text_LeonardDefeat": {
+      "label": "SSTidalLowerDeck_Text_LeonardDefeat",
+      "line": 26,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "raw_text": "哥哥，我输了！$",
+      "display_text": "哥哥，我输了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 13,
+        "bytes": [
+          4,
+          81,
+          4,
+          81,
+          59,
+          13,
+          152,
+          12,
+          41,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "04 51 04 51 3B 0D 98 0C 29 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 7,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SSTidalLowerDeck_Text_LeonardPostBattle": {
+      "label": "SSTidalLowerDeck_Text_LeonardPostBattle",
+      "line": 29,
+      "source_file": "data/maps/SSTidalLowerDeck/scripts.inc",
+      "raw_text": "我们是清扫兄弟！\\p哥哥负责倒洗涤剂，\\n弟弟负责擦地板！$",
+      "display_text": "我们是清扫兄弟！\n\n哥哥负责倒洗涤剂，\n弟弟负责擦地板！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 50,
+        "bytes": [
+          13,
+          152,
+          9,
+          95,
+          12,
+          12,
+          11,
+          7,
+          11,
+          134,
+          14,
+          97,
+          3,
+          35,
+          60,
+          251,
+          4,
+          81,
+          4,
+          81,
+          4,
+          36,
+          16,
+          5,
+          3,
+          0,
+          13,
+          216,
+          3,
+          26,
+          5,
+          172,
+          59,
+          254,
+          3,
+          35,
+          3,
+          35,
+          4,
+          36,
+          16,
+          5,
+          1,
+          220,
+          3,
+          31,
+          1,
+          68,
+          60,
+          255
+        ],
+        "hex": "0D 98 09 5F 0C 0C 0B 07 0B 86 0E 61 03 23 3C FB 04 51 04 51 04 24 10 05 03 00 0D D8 03 1A 05 AC 3B FE 03 23 03 23 04 24 10 05 01 DC 03 1F 01 44 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 6,
+    "encoded_text_count": 6,
+    "text_source_byte_count": 236,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 6
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2,
+      "trainerbattle_single": 2
+    }
+  }
+}

@@ -1,0 +1,1387 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route121_SafariZoneEntrance",
+    "map_script": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+    "map_json": "data/maps/Route121_SafariZoneEntrance/map.json",
+    "map_id": "MAP_ROUTE121_SAFARI_ZONE_ENTRANCE",
+    "map_name": "Route121_SafariZoneEntrance"
+  },
+  "labels": {
+    "Route121_SafariZoneEntrance_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route121_SafariZoneEntrance_OnFrame": {
+      "kind": "map_script_table",
+      "line": 5,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route121_SafariZoneEntrance_EventScript_ExitSafariZone": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route121_SafariZoneEntrance_Movement_ExitSafariZone": {
+      "kind": "movement",
+      "line": 17,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 9
+    },
+    "Route121_SafariZoneEntrance_EventScript_WelcomeAttendant": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route121_SafariZoneEntrance_EventScript_InfoAttendant": {
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route121_SafariZoneEntrance_EventScript_FirstTimeInfo": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route121_SafariZoneEntrance_EventScript_EntranceCounterTrigger": {
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 9
+    },
+    "Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone": {
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 24
+    },
+    "Route121_SafariZoneEntrance_EventScript_CheckHasRoomForPokemon": {
+      "kind": "script",
+      "line": 83,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon": {
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route121_SafariZoneEntrance_EventScript_NoPokeblockCase": {
+      "kind": "script",
+      "line": 95,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route121_SafariZoneEntrance_EventScript_NotEnoughMoney": {
+      "kind": "script",
+      "line": 100,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter": {
+      "kind": "script",
+      "line": 105,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route121_SafariZoneEntrance_Movement_BackAwayFromCounter": {
+      "kind": "movement",
+      "line": 113,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route121_SafariZoneEntrance_Movement_EnterSafariZone": {
+      "kind": "movement",
+      "line": 117,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 9
+    },
+    "Route121_SafariZoneEntrance_EventScript_TrainerTipSign": {
+      "kind": "script",
+      "line": 128,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "Route121_SafariZoneEntrance_MapScripts": {
+      "label": "Route121_SafariZoneEntrance_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "Route121_SafariZoneEntrance_OnFrame"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, Route121_SafariZoneEntrance_OnFrame",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route121_SafariZoneEntrance_OnFrame": {
+      "label": "Route121_SafariZoneEntrance_OnFrame",
+      "kind": "map_script_table",
+      "line": 5,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_SAFARI_ZONE_STATE",
+            "1",
+            "Route121_SafariZoneEntrance_EventScript_ExitSafariZone"
+          ],
+          "line": 6,
+          "raw": "map_script_2 VAR_SAFARI_ZONE_STATE, 1, Route121_SafariZoneEntrance_EventScript_ExitSafariZone",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 7,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route121_SafariZoneEntrance_EventScript_ExitSafariZone": {
+      "label": "Route121_SafariZoneEntrance_EventScript_ExitSafariZone",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 10,
+          "raw": "lockall",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Route121_SafariZoneEntrance_Movement_ExitSafariZone"
+          ],
+          "line": 11,
+          "raw": "applymovement LOCALID_PLAYER, Route121_SafariZoneEntrance_Movement_ExitSafariZone",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 12,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_SAFARI_ZONE_STATE",
+            "0"
+          ],
+          "line": 13,
+          "raw": "setvar VAR_SAFARI_ZONE_STATE, 0",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 14,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route121_SafariZoneEntrance_EventScript_WelcomeAttendant": {
+      "label": "Route121_SafariZoneEntrance_EventScript_WelcomeAttendant",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_WelcomeToSafariZone",
+            "MSGBOX_NPC"
+          ],
+          "line": 29,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_WelcomeToSafariZone, MSGBOX_NPC",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 30,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_WelcomeToSafariZone",
+          "mode": "MSGBOX_NPC",
+          "line": 29
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route121_SafariZoneEntrance_EventScript_InfoAttendant": {
+      "label": "Route121_SafariZoneEntrance_EventScript_InfoAttendant",
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 33,
+          "raw": "lock",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 34,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_WelcomeFirstTime",
+            "MSGBOX_YESNO"
+          ],
+          "line": 35,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_WelcomeFirstTime, MSGBOX_YESNO",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "Route121_SafariZoneEntrance_EventScript_FirstTimeInfo"
+          ],
+          "line": 36,
+          "raw": "goto_if_eq VAR_RESULT, YES, Route121_SafariZoneEntrance_EventScript_FirstTimeInfo",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_ComeInAndEnjoy",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 37,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_ComeInAndEnjoy, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 38,
+          "raw": "release",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 39,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_WelcomeFirstTime",
+          "mode": "MSGBOX_YESNO",
+          "line": 35
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_ComeInAndEnjoy",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 37
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route121_SafariZoneEntrance_EventScript_FirstTimeInfo",
+          "line": 36
+        }
+      ]
+    },
+    "Route121_SafariZoneEntrance_EventScript_FirstTimeInfo": {
+      "label": "Route121_SafariZoneEntrance_EventScript_FirstTimeInfo",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_FirstTimeInfo",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 42,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_FirstTimeInfo, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 43,
+          "raw": "release",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_FirstTimeInfo",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 42
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route121_SafariZoneEntrance_EventScript_EntranceCounterTrigger": {
+      "label": "Route121_SafariZoneEntrance_EventScript_EntranceCounterTrigger",
+      "kind": "script",
+      "line": 46,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 47,
+          "raw": "lockall",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterUp"
+          ],
+          "line": 48,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 49,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "showmoneybox",
+          "args": [
+            "0",
+            "0"
+          ],
+          "line": 50,
+          "raw": "showmoneybox 0, 0",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_WouldYouLikeToPlay",
+            "MSGBOX_YESNO"
+          ],
+          "line": 51,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_WouldYouLikeToPlay, MSGBOX_YESNO",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "YES",
+            "Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone"
+          ],
+          "line": 52,
+          "raw": "goto_if_eq VAR_RESULT, YES, Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_PlayAnotherTime",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 53,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_PlayAnotherTime, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter"
+          ],
+          "line": 54,
+          "raw": "goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 55,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_WouldYouLikeToPlay",
+          "mode": "MSGBOX_YESNO",
+          "line": 51
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_PlayAnotherTime",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 53
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone",
+          "line": 52
+        },
+        {
+          "op": "goto",
+          "target": "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter",
+          "line": 54
+        }
+      ]
+    },
+    "Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone": {
+      "label": "Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone",
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "checkitem",
+          "args": [
+            "ITEM_POKEBLOCK_CASE"
+          ],
+          "line": 58,
+          "raw": "checkitem ITEM_POKEBLOCK_CASE",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "Route121_SafariZoneEntrance_EventScript_NoPokeblockCase"
+          ],
+          "line": 59,
+          "raw": "goto_if_eq VAR_RESULT, 0, Route121_SafariZoneEntrance_EventScript_NoPokeblockCase",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Route121_SafariZoneEntrance_EventScript_CheckHasRoomForPokemon"
+          ],
+          "line": 60,
+          "raw": "call Route121_SafariZoneEntrance_EventScript_CheckHasRoomForPokemon",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "checkmoney",
+          "args": [
+            "500"
+          ],
+          "line": 61,
+          "raw": "checkmoney 500",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "0",
+            "Route121_SafariZoneEntrance_EventScript_NotEnoughMoney"
+          ],
+          "line": 62,
+          "raw": "goto_if_eq VAR_RESULT, 0, Route121_SafariZoneEntrance_EventScript_NotEnoughMoney",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_SHOP"
+          ],
+          "line": 63,
+          "raw": "playse SE_SHOP",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_ThatWillBe500Please",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 64,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_ThatWillBe500Please, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "removemoney",
+          "args": [
+            "500"
+          ],
+          "line": 65,
+          "raw": "removemoney 500",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "updatemoneybox",
+          "args": [],
+          "line": 66,
+          "raw": "updatemoneybox",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_HereAreYourSafariBalls",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 67,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_HereAreYourSafariBalls, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_ITEM"
+          ],
+          "line": 68,
+          "raw": "playfanfare MUS_OBTAIN_ITEM",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_Received30SafariBalls"
+          ],
+          "line": 69,
+          "raw": "message Route121_SafariZoneEntrance_Text_Received30SafariBalls",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 70,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_PleaseEnjoyYourself",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 71,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_PleaseEnjoyYourself, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 72,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "hidemoneybox",
+          "args": [],
+          "line": 73,
+          "raw": "hidemoneybox",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Route121_SafariZoneEntrance_Movement_EnterSafariZone"
+          ],
+          "line": 74,
+          "raw": "applymovement LOCALID_PLAYER, Route121_SafariZoneEntrance_Movement_EnterSafariZone",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 75,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "EnterSafariMode"
+          ],
+          "line": 76,
+          "raw": "special EnterSafariMode",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_SAFARI_ZONE_STATE",
+            "2"
+          ],
+          "line": 77,
+          "raw": "setvar VAR_SAFARI_ZONE_STATE, 2",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_GOOD_LUCK_SAFARI_ZONE"
+          ],
+          "line": 78,
+          "raw": "clearflag FLAG_GOOD_LUCK_SAFARI_ZONE",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_SAFARI_ZONE_SOUTH",
+            "32",
+            "33"
+          ],
+          "line": 79,
+          "raw": "warp MAP_SAFARI_ZONE_SOUTH, 32, 33",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 80,
+          "raw": "waitstate",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 81,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_ThatWillBe500Please",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 64
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_HereAreYourSafariBalls",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 67
+        },
+        {
+          "op": "message",
+          "text_label": "Route121_SafariZoneEntrance_Text_Received30SafariBalls",
+          "mode": "",
+          "line": 69
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_PleaseEnjoyYourself",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 71
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "Route121_SafariZoneEntrance_EventScript_NoPokeblockCase",
+          "line": 59
+        },
+        {
+          "op": "call",
+          "target": "Route121_SafariZoneEntrance_EventScript_CheckHasRoomForPokemon",
+          "line": 60
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route121_SafariZoneEntrance_EventScript_NotEnoughMoney",
+          "line": 62
+        }
+      ]
+    },
+    "Route121_SafariZoneEntrance_EventScript_CheckHasRoomForPokemon": {
+      "label": "Route121_SafariZoneEntrance_EventScript_CheckHasRoomForPokemon",
+      "kind": "script",
+      "line": 83,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "getpartysize",
+          "args": [],
+          "line": 84,
+          "raw": "getpartysize",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "goto_if_ne",
+          "args": [
+            "VAR_RESULT",
+            "PARTY_SIZE",
+            "Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon"
+          ],
+          "line": 85,
+          "raw": "goto_if_ne VAR_RESULT, PARTY_SIZE, Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "specialvar",
+          "args": [
+            "VAR_RESULT",
+            "ScriptCheckFreePokemonStorageSpace"
+          ],
+          "line": 86,
+          "raw": "specialvar VAR_RESULT, ScriptCheckFreePokemonStorageSpace",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "1",
+            "Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon"
+          ],
+          "line": 87,
+          "raw": "goto_if_eq VAR_RESULT, 1, Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_PCIsFull",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 88,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_PCIsFull, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter"
+          ],
+          "line": 89,
+          "raw": "goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 90,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_PCIsFull",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 88
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ne",
+          "target": "Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon",
+          "line": 85
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon",
+          "line": 87
+        },
+        {
+          "op": "goto",
+          "target": "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter",
+          "line": 89
+        }
+      ]
+    },
+    "Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon": {
+      "label": "Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon",
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "return",
+          "args": [],
+          "line": 93,
+          "raw": "return",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route121_SafariZoneEntrance_EventScript_NoPokeblockCase": {
+      "label": "Route121_SafariZoneEntrance_EventScript_NoPokeblockCase",
+      "kind": "script",
+      "line": 95,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 96,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter"
+          ],
+          "line": 97,
+          "raw": "goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 98,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 96
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter",
+          "line": 97
+        }
+      ]
+    },
+    "Route121_SafariZoneEntrance_EventScript_NotEnoughMoney": {
+      "label": "Route121_SafariZoneEntrance_EventScript_NotEnoughMoney",
+      "kind": "script",
+      "line": 100,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_NotEnoughMoney",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 101,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_NotEnoughMoney, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter"
+          ],
+          "line": 102,
+          "raw": "goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 103,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_NotEnoughMoney",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 101
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto",
+          "target": "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter",
+          "line": 102
+        }
+      ]
+    },
+    "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter": {
+      "label": "Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter",
+      "kind": "script",
+      "line": 105,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 106,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "hidemoneybox",
+          "args": [],
+          "line": 107,
+          "raw": "hidemoneybox",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Route121_SafariZoneEntrance_Movement_BackAwayFromCounter"
+          ],
+          "line": 108,
+          "raw": "applymovement LOCALID_PLAYER, Route121_SafariZoneEntrance_Movement_BackAwayFromCounter",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 109,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 110,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 111,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route121_SafariZoneEntrance_EventScript_TrainerTipSign": {
+      "label": "Route121_SafariZoneEntrance_EventScript_TrainerTipSign",
+      "kind": "script",
+      "line": 128,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route121_SafariZoneEntrance_Text_TrainerTip",
+            "MSGBOX_SIGN"
+          ],
+          "line": 129,
+          "raw": "msgbox Route121_SafariZoneEntrance_Text_TrainerTip, MSGBOX_SIGN",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 130,
+          "raw": "end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route121_SafariZoneEntrance_Text_TrainerTip",
+          "mode": "MSGBOX_SIGN",
+          "line": 129
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "Route121_SafariZoneEntrance_Movement_ExitSafariZone": {
+      "label": "Route121_SafariZoneEntrance_Movement_ExitSafariZone",
+      "kind": "movement",
+      "line": 17,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 18,
+          "raw": "walk_up",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 19,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 20,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 21,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 22,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 23,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 24,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 25,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 26,
+          "raw": "step_end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route121_SafariZoneEntrance_Movement_BackAwayFromCounter": {
+      "label": "Route121_SafariZoneEntrance_Movement_BackAwayFromCounter",
+      "kind": "movement",
+      "line": 113,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 114,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 115,
+          "raw": "step_end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route121_SafariZoneEntrance_Movement_EnterSafariZone": {
+      "label": "Route121_SafariZoneEntrance_Movement_EnterSafariZone",
+      "kind": "movement",
+      "line": 117,
+      "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 118,
+          "raw": "walk_left",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 119,
+          "raw": "walk_left",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 120,
+          "raw": "walk_left",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 121,
+          "raw": "walk_left",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 122,
+          "raw": "walk_left",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 123,
+          "raw": "walk_left",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 124,
+          "raw": "walk_down",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 125,
+          "raw": "delay_16",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 126,
+          "raw": "step_end",
+          "source_file": "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 4,
+      "checkitem": 1,
+      "checkmoney": 1,
+      "clearflag": 1,
+      "closemessage": 2,
+      "delay_16": 1,
+      "faceplayer": 1,
+      "getpartysize": 1,
+      "goto_if_eq": 5,
+      "goto_if_ne": 1,
+      "hidemoneybox": 2,
+      "map_script": 1,
+      "map_script_2": 1,
+      "playfanfare": 1,
+      "playse": 1,
+      "removemoney": 1,
+      "setvar": 2,
+      "showmoneybox": 1,
+      "special": 1,
+      "specialvar": 1,
+      "step_end": 3,
+      "updatemoneybox": 1,
+      "waitfanfare": 1,
+      "waitmovement": 4,
+      "waitstate": 1,
+      "walk_down": 1,
+      "walk_left": 6,
+      "walk_right": 8,
+      "walk_up": 1,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 17,
+    "script_count": 14,
+    "movement_count": 3,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 4,
+      "call": 1,
+      "checkitem": 1,
+      "checkmoney": 1,
+      "clearflag": 1,
+      "closemessage": 2,
+      "delay_16": 1,
+      "end": 11,
+      "faceplayer": 1,
+      "getpartysize": 1,
+      "goto": 4,
+      "goto_if_eq": 5,
+      "goto_if_ne": 1,
+      "hidemoneybox": 2,
+      "lock": 1,
+      "lockall": 2,
+      "map_script": 1,
+      "map_script_2": 1,
+      "message": 1,
+      "msgbox": 13,
+      "playfanfare": 1,
+      "playse": 1,
+      "release": 2,
+      "releaseall": 2,
+      "removemoney": 1,
+      "return": 1,
+      "setvar": 2,
+      "showmoneybox": 1,
+      "special": 1,
+      "specialvar": 1,
+      "step_end": 3,
+      "updatemoneybox": 1,
+      "waitfanfare": 1,
+      "waitmovement": 4,
+      "waitstate": 1,
+      "walk_down": 1,
+      "walk_left": 6,
+      "walk_right": 8,
+      "walk_up": 1,
+      "warp": 1
+    }
+  }
+}

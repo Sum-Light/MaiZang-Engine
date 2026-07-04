@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "UndergroundPath_WestEntrance_Frlg",
+    "map_script": "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc",
+    "map_json": "data/maps/UndergroundPath_WestEntrance_Frlg/map.json",
+    "map_id": "MAP_UNDERGROUND_PATH_WEST_ENTRANCE",
+    "map_name": "UndergroundPath_WestEntrance_Frlg"
+  },
+  "labels": {
+    "UndergroundPath_WestEntrance_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "UndergroundPath_WestEntrance_EventScript_BaldingMan": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "UndergroundPath_WestEntrance_Text_SleepyMonNearCeladon": {
+      "kind": "text",
+      "line": 8,
+      "source_file": "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "UndergroundPath_WestEntrance_Frlg_MapScripts": {
+      "label": "UndergroundPath_WestEntrance_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "UndergroundPath_WestEntrance_EventScript_BaldingMan": {
+      "label": "UndergroundPath_WestEntrance_EventScript_BaldingMan",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "UndergroundPath_WestEntrance_Text_SleepyMonNearCeladon",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox UndergroundPath_WestEntrance_Text_SleepyMonNearCeladon, MSGBOX_NPC",
+          "source_file": "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "UndergroundPath_WestEntrance_Text_SleepyMonNearCeladon",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "UndergroundPath_WestEntrance_Text_SleepyMonNearCeladon": {
+      "label": "UndergroundPath_WestEntrance_Text_SleepyMonNearCeladon",
+      "line": 8,
+      "source_file": "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc",
+      "raw_text": "我听说一只爱睡觉的宝可梦\\n出现在玉虹市附近。$",
+      "display_text": "我听说一只爱睡觉的宝可梦\n出现在玉虹市附近。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 43,
+        "bytes": [
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          15,
+          11,
+          16,
+          140,
+          1,
+          13,
+          12,
+          82,
+          7,
+          165,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          2,
+          120,
+          14,
+          3,
+          15,
+          230,
+          15,
+          159,
+          5,
+          22,
+          12,
+          21,
+          4,
+          39,
+          7,
+          78,
+          55,
+          255
+        ],
+        "hex": "0D 98 0D 07 0C 58 0F 0B 10 8C 01 0D 0C 52 07 A5 03 0B 01 63 07 D7 09 66 FE 02 78 0E 03 0F E6 0F 9F 05 16 0C 15 04 27 07 4E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 23,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 3,
+    "script_count": 2,
+    "movement_count": 0,
+    "text_count": 1,
+    "encoded_text_count": 1,
+    "text_source_byte_count": 43,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 1
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 1,
+      "msgbox": 1
+    }
+  }
+}

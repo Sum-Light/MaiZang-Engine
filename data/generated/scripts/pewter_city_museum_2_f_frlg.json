@@ -1,0 +1,1516 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PewterCity_Museum_2F_Frlg",
+    "map_script": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+    "map_json": "data/maps/PewterCity_Museum_2F_Frlg/map.json",
+    "map_id": "MAP_PEWTER_CITY_MUSEUM_2F",
+    "map_name": "PewterCity_Museum_2F_Frlg"
+  },
+  "labels": {
+    "PewterCity_Museum_2F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PewterCity_Museum_2F_EventScript_Man": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_Museum_2F_EventScript_OldMan": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_Museum_2F_EventScript_Scientist": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_Museum_2F_EventScript_LittleGirl": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_Museum_2F_EventScript_BaldingMan": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_Museum_2F_EventScript_SpaceShuttle": {
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_Museum_2F_EventScript_MoonStone": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Text_SeismicTossTeach": {
+      "kind": "text",
+      "line": 32,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "Text_SeismicTossDeclined": {
+      "kind": "text",
+      "line": 43,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Text_SeismicTossWhichMon": {
+      "kind": "text",
+      "line": 47,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "Text_SeismicTossTaught": {
+      "kind": "text",
+      "line": 51,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_Museum_1F_Text_WhatsSpecialAboutMoonStone": {
+      "kind": "text",
+      "line": 55,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PewterCity_Museum_1F_Text_BoughtColorTVForMoonLanding": {
+      "kind": "text",
+      "line": 60,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "PewterCity_Museum_1F_Text_RunningSpaceExhibitThisMonth": {
+      "kind": "text",
+      "line": 67,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu": {
+      "kind": "text",
+      "line": 71,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "PewterCity_Museum_1F_Text_PikachuSoonIPromise": {
+      "kind": "text",
+      "line": 76,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PewterCity_Museum_1F_Text_SpaceShuttle": {
+      "kind": "text",
+      "line": 79,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon": {
+      "kind": "text",
+      "line": 82,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "PewterCity_Museum_2F_Frlg_MapScripts": {
+      "label": "PewterCity_Museum_2F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PewterCity_Museum_2F_EventScript_Man": {
+      "label": "PewterCity_Museum_2F_EventScript_Man",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_Museum_1F_Text_WhatsSpecialAboutMoonStone",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox PewterCity_Museum_1F_Text_WhatsSpecialAboutMoonStone, MSGBOX_NPC",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_Museum_1F_Text_WhatsSpecialAboutMoonStone",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "PewterCity_Museum_2F_EventScript_OldMan": {
+      "label": "PewterCity_Museum_2F_EventScript_OldMan",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_Museum_1F_Text_BoughtColorTVForMoonLanding",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox PewterCity_Museum_1F_Text_BoughtColorTVForMoonLanding, MSGBOX_NPC",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_Museum_1F_Text_BoughtColorTVForMoonLanding",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "PewterCity_Museum_2F_EventScript_Scientist": {
+      "label": "PewterCity_Museum_2F_EventScript_Scientist",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_Museum_1F_Text_RunningSpaceExhibitThisMonth",
+            "MSGBOX_NPC"
+          ],
+          "line": 13,
+          "raw": "msgbox PewterCity_Museum_1F_Text_RunningSpaceExhibitThisMonth, MSGBOX_NPC",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_Museum_1F_Text_RunningSpaceExhibitThisMonth",
+          "mode": "MSGBOX_NPC",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    },
+    "PewterCity_Museum_2F_EventScript_LittleGirl": {
+      "label": "PewterCity_Museum_2F_EventScript_LittleGirl",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu",
+            "MSGBOX_NPC"
+          ],
+          "line": 17,
+          "raw": "msgbox PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu, MSGBOX_NPC",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu",
+          "mode": "MSGBOX_NPC",
+          "line": 17
+        }
+      ],
+      "branch_targets": []
+    },
+    "PewterCity_Museum_2F_EventScript_BaldingMan": {
+      "label": "PewterCity_Museum_2F_EventScript_BaldingMan",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_Museum_1F_Text_PikachuSoonIPromise",
+            "MSGBOX_NPC"
+          ],
+          "line": 21,
+          "raw": "msgbox PewterCity_Museum_1F_Text_PikachuSoonIPromise, MSGBOX_NPC",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 22,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_Museum_1F_Text_PikachuSoonIPromise",
+          "mode": "MSGBOX_NPC",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    },
+    "PewterCity_Museum_2F_EventScript_SpaceShuttle": {
+      "label": "PewterCity_Museum_2F_EventScript_SpaceShuttle",
+      "kind": "script",
+      "line": 24,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_Museum_1F_Text_SpaceShuttle",
+            "MSGBOX_SIGN"
+          ],
+          "line": 25,
+          "raw": "msgbox PewterCity_Museum_1F_Text_SpaceShuttle, MSGBOX_SIGN",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 26,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_Museum_1F_Text_SpaceShuttle",
+          "mode": "MSGBOX_SIGN",
+          "line": 25
+        }
+      ],
+      "branch_targets": []
+    },
+    "PewterCity_Museum_2F_EventScript_MoonStone": {
+      "label": "PewterCity_Museum_2F_EventScript_MoonStone",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon",
+            "MSGBOX_SIGN"
+          ],
+          "line": 29,
+          "raw": "msgbox PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon, MSGBOX_SIGN",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 30,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon",
+          "mode": "MSGBOX_SIGN",
+          "line": 29
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Text_SeismicTossTeach": {
+      "label": "Text_SeismicTossTeach",
+      "line": 32,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "宇宙的秘密……\\n地球的奥妙……\\p我们对这个世界的事\\n知道的太少了。\\p但是这能激励我们更努力地学习。\\n而不是乱折腾。\\p你唯一能折腾的一件事就是……\\p嗯，地球上投怎么样？\\n要让我把这技能教给一只宝可梦吗？$",
+      "display_text": "宇宙的秘密……\n地球的奥妙……\n\n我们对这个世界的事\n知道的太少了。\n\n但是这能激励我们更努力地学习。\n而不是乱折腾。\n\n你唯一能折腾的一件事就是……\n\n嗯，地球上投怎么样？\n要让我把这技能教给一只宝可梦吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 181,
+        "bytes": [
+          15,
+          156,
+          16,
+          183,
+          3,
+          11,
+          9,
+          112,
+          9,
+          116,
+          176,
+          176,
+          254,
+          3,
+          31,
+          11,
+          20,
+          3,
+          11,
+          1,
+          33,
+          9,
+          134,
+          176,
+          176,
+          251,
+          13,
+          152,
+          9,
+          95,
+          3,
+          121,
+          16,
+          85,
+          4,
+          96,
+          12,
+          5,
+          7,
+          57,
+          3,
+          11,
+          12,
+          7,
+          254,
+          16,
+          123,
+          3,
+          7,
+          3,
+          11,
+          12,
+          172,
+          11,
+          183,
+          8,
+          158,
+          55,
+          251,
+          2,
+          233,
+          12,
+          12,
+          16,
+          85,
+          9,
+          210,
+          5,
+          143,
+          8,
+          109,
+          13,
+          152,
+          9,
+          95,
+          4,
+          102,
+          10,
+          9,
+          8,
+          121,
+          3,
+          31,
+          14,
+          144,
+          13,
+          212,
+          55,
+          254,
+          3,
+          157,
+          1,
+          214,
+          12,
+          12,
+          9,
+          12,
+          16,
+          78,
+          12,
+          219,
+          55,
+          251,
+          9,
+          217,
+          13,
+          110,
+          15,
+          11,
+          9,
+          210,
+          16,
+          78,
+          12,
+          219,
+          3,
+          11,
+          15,
+          11,
+          5,
+          233,
+          12,
+          7,
+          7,
+          125,
+          12,
+          12,
+          176,
+          176,
+          251,
+          20,
+          97,
+          59,
+          3,
+          31,
+          11,
+          20,
+          11,
+          173,
+          13,
+          30,
+          16,
+          10,
+          9,
+          76,
+          14,
+          226,
+          61,
+          254,
+          14,
+          241,
+          11,
+          67,
+          13,
+          152,
+          1,
+          48,
+          16,
+          85,
+          5,
+          167,
+          9,
+          210,
+          7,
+          30,
+          4,
+          98,
+          15,
+          11,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0F 9C 10 B7 03 0B 09 70 09 74 B0 B0 FE 03 1F 0B 14 03 0B 01 21 09 86 B0 B0 FB 0D 98 09 5F 03 79 10 55 04 60 0C 05 07 39 03 0B 0C 07 FE 10 7B 03 07 03 0B 0C AC 0B B7 08 9E 37 FB 02 E9 0C 0C 10 55 09 D2 05 8F 08 6D 0D 98 09 5F 04 66 0A 09 08 79 03 1F 0E 90 0D D4 37 FE 03 9D 01 D6 0C 0C 09 0C 10 4E 0C DB 37 FB 09 D9 0D 6E 0F 0B 09 D2 10 4E 0C DB 03 0B 0F 0B 05 E9 0C 07 07 7D 0C 0C B0 B0 FB 14 61 3B 03 1F 0B 14 0B AD 0D 1E 10 0A 09 4C 0E E2 3D FE 0E F1 0B 43 0D 98 01 30 10 55 05 A7 09 D2 07 1E 04 62 0F 0B 10 8C 01 63 07 D7 09 66 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 36,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 53,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 62,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 78,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 90,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 108,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_SeismicTossDeclined": {
+      "label": "Text_SeismicTossDeclined",
+      "line": 43,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "这样好吗？\\n我确定你一定会回来的。$",
+      "display_text": "这样好吗？\n我确定你一定会回来的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 32,
+        "bytes": [
+          16,
+          85,
+          14,
+          226,
+          4,
+          233,
+          9,
+          42,
+          61,
+          254,
+          13,
+          152,
+          11,
+          55,
+          3,
+          77,
+          9,
+          217,
+          15,
+          11,
+          3,
+          77,
+          5,
+          110,
+          5,
+          101,
+          8,
+          41,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "10 55 0E E2 04 E9 09 2A 3D FE 0D 98 0B 37 03 4D 09 D9 0F 0B 03 4D 05 6E 05 65 08 29 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_SeismicTossWhichMon": {
+      "label": "Text_SeismicTossWhichMon",
+      "line": 47,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "想要哪只宝可梦学习\\n地球上投？$",
+      "display_text": "想要哪只宝可梦学习\n地球上投？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 29,
+        "bytes": [
+          14,
+          24,
+          14,
+          241,
+          9,
+          186,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          144,
+          13,
+          212,
+          254,
+          3,
+          31,
+          11,
+          20,
+          11,
+          173,
+          13,
+          30,
+          61,
+          255
+        ],
+        "hex": "0E 18 0E F1 09 BA 10 8C 01 63 07 D7 09 66 0E 90 0D D4 FE 03 1F 0B 14 0B AD 0D 1E 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 16,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Text_SeismicTossTaught": {
+      "label": "Text_SeismicTossTaught",
+      "line": 51,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "我希望你不再乱折腾了。\\n继续吧。$",
+      "display_text": "我希望你不再乱折腾了。\n继续吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 30,
+        "bytes": [
+          13,
+          152,
+          13,
+          199,
+          13,
+          99,
+          9,
+          217,
+          1,
+          214,
+          15,
+          229,
+          9,
+          12,
+          16,
+          78,
+          12,
+          219,
+          8,
+          158,
+          55,
+          254,
+          5,
+          183,
+          14,
+          131,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "0D 98 0D C7 0D 63 09 D9 01 D6 0F E5 09 0C 10 4E 0C DB 08 9E 37 FE 05 B7 0E 83 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PewterCity_Museum_1F_Text_WhatsSpecialAboutMoonStone": {
+      "label": "PewterCity_Museum_1F_Text_WhatsSpecialAboutMoonStone",
+      "line": 55,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "月之石，哈？\\p它很特殊吗？\\n在我看来不过是普通石头罢了。$",
+      "display_text": "月之石，哈？\n\n它很特殊吗？\n在我看来不过是普通石头罢了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 51,
+        "bytes": [
+          15,
+          206,
+          16,
+          127,
+          11,
+          235,
+          59,
+          4,
+          198,
+          61,
+          251,
+          12,
+          159,
+          5,
+          11,
+          12,
+          217,
+          12,
+          39,
+          9,
+          42,
+          61,
+          254,
+          15,
+          230,
+          13,
+          152,
+          7,
+          194,
+          8,
+          41,
+          1,
+          214,
+          4,
+          197,
+          12,
+          12,
+          10,
+          144,
+          13,
+          16,
+          11,
+          235,
+          13,
+          31,
+          1,
+          52,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0F CE 10 7F 0B EB 3B 04 C6 3D FB 0C 9F 05 0B 0C D9 0C 27 09 2A 3D FE 0F E6 0D 98 07 C2 08 29 01 D6 04 C5 0C 0C 0A 90 0D 10 0B EB 0D 1F 01 34 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 6,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PewterCity_Museum_1F_Text_BoughtColorTVForMoonLanding": {
+      "label": "PewterCity_Museum_1F_Text_BoughtColorTVForMoonLanding",
+      "line": 60,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "1969年7月20日！\\p人类在那一天第一次\\n登上月球。\\p为了看到那个新闻，\\n我甚至买了台彩色电视机。$",
+      "display_text": "1969年7月20日！\n\n人类在那一天第一次\n登上月球。\n\n为了看到那个新闻，\n我甚至买了台彩色电视机。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 86,
+        "bytes": [
+          162,
+          170,
+          167,
+          170,
+          9,
+          224,
+          168,
+          15,
+          206,
+          163,
+          161,
+          11,
+          85,
+          60,
+          251,
+          11,
+          75,
+          8,
+          85,
+          15,
+          230,
+          9,
+          189,
+          15,
+          11,
+          12,
+          237,
+          3,
+          33,
+          15,
+          11,
+          2,
+          174,
+          254,
+          3,
+          14,
+          11,
+          173,
+          15,
+          206,
+          11,
+          20,
+          55,
+          251,
+          13,
+          112,
+          8,
+          158,
+          7,
+          194,
+          3,
+          4,
+          9,
+          189,
+          4,
+          96,
+          14,
+          77,
+          13,
+          139,
+          59,
+          254,
+          13,
+          152,
+          11,
+          211,
+          16,
+          146,
+          9,
+          44,
+          8,
+          158,
+          12,
+          169,
+          1,
+          229,
+          11,
+          137,
+          3,
+          46,
+          12,
+          24,
+          5,
+          135,
+          55,
+          255
+        ],
+        "hex": "A2 AA A7 AA 09 E0 A8 0F CE A3 A1 0B 55 3C FB 0B 4B 08 55 0F E6 09 BD 0F 0B 0C ED 03 21 0F 0B 02 AE FE 03 0E 0B AD 0F CE 0B 14 37 FB 0D 70 08 9E 07 C2 03 04 09 BD 04 60 0E 4D 0D 8B 3B FE 0D 98 0B D3 10 92 09 2C 08 9E 0C A9 01 E5 0B 89 03 2E 0C 18 05 87 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 11,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 40,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 54,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PewterCity_Museum_1F_Text_RunningSpaceExhibitThisMonth": {
+      "label": "PewterCity_Museum_1F_Text_RunningSpaceExhibitThisMonth",
+      "line": 67,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "这个月我们正在进行\\n关于宇宙的展览。$",
+      "display_text": "这个月我们正在进行\n关于宇宙的展览。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 35,
+        "bytes": [
+          16,
+          85,
+          4,
+          96,
+          15,
+          206,
+          13,
+          152,
+          9,
+          95,
+          16,
+          112,
+          15,
+          230,
+          7,
+          74,
+          14,
+          91,
+          254,
+          4,
+          160,
+          15,
+          136,
+          15,
+          156,
+          16,
+          183,
+          3,
+          11,
+          16,
+          44,
+          8,
+          53,
+          55,
+          255
+        ],
+        "hex": "10 55 04 60 0F CE 0D 98 09 5F 10 70 0F E6 07 4A 0E 5B FE 04 A0 0F 88 0F 9C 10 B7 03 0B 10 2C 08 35 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu": {
+      "label": "PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu",
+      "line": 71,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "我想要一只皮卡丘！\\n它太可爱了！\\p我让我的爸爸去给我收服一只！$",
+      "display_text": "我想要一只皮卡丘！\n它太可爱了！\n\n我让我的爸爸去给我收服一只！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 58,
+        "bytes": [
+          13,
+          152,
+          14,
+          24,
+          14,
+          241,
+          15,
+          11,
+          16,
+          140,
+          10,
+          95,
+          7,
+          182,
+          11,
+          18,
+          60,
+          254,
+          12,
+          159,
+          12,
+          172,
+          7,
+          215,
+          1,
+          13,
+          8,
+          158,
+          60,
+          251,
+          13,
+          152,
+          11,
+          67,
+          13,
+          152,
+          3,
+          11,
+          1,
+          53,
+          1,
+          53,
+          11,
+          37,
+          4,
+          98,
+          13,
+          152,
+          12,
+          26,
+          4,
+          10,
+          15,
+          11,
+          16,
+          140,
+          60,
+          255
+        ],
+        "hex": "0D 98 0E 18 0E F1 0F 0B 10 8C 0A 5F 07 B6 0B 12 3C FE 0C 9F 0C AC 07 D7 01 0D 08 9E 3C FB 0D 98 0B 43 0D 98 03 0B 01 35 01 35 0B 25 04 62 0D 98 0C 1A 04 0A 0F 0B 10 8C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 33,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PewterCity_Museum_1F_Text_PikachuSoonIPromise": {
+      "label": "PewterCity_Museum_1F_Text_PikachuSoonIPromise",
+      "line": 76,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "好的，一只皮卡丘吧，我去捉！$",
+      "display_text": "好的，一只皮卡丘吧，我去捉！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 26,
+        "bytes": [
+          4,
+          233,
+          3,
+          11,
+          59,
+          15,
+          11,
+          16,
+          140,
+          10,
+          95,
+          7,
+          182,
+          11,
+          18,
+          1,
+          40,
+          59,
+          13,
+          152,
+          11,
+          37,
+          16,
+          236,
+          60,
+          255
+        ],
+        "hex": "04 E9 03 0B 3B 0F 0B 10 8C 0A 5F 07 B6 0B 12 01 28 3B 0D 98 0B 25 10 EC 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PewterCity_Museum_1F_Text_SpaceShuttle": {
+      "label": "PewterCity_Museum_1F_Text_SpaceShuttle",
+      "line": 79,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "航天飞机哥伦比亚号$",
+      "display_text": "航天飞机哥伦比亚号",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          4,
+          227,
+          12,
+          237,
+          3,
+          204,
+          5,
+          135,
+          4,
+          81,
+          9,
+          17,
+          1,
+          133,
+          14,
+          176,
+          4,
+          235,
+          255
+        ],
+        "hex": "04 E3 0C ED 03 CC 05 87 04 51 09 11 01 85 0E B0 04 EB FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 9,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon": {
+      "label": "PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon",
+      "line": 82,
+      "source_file": "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc",
+      "raw_text": "落在的月见山的陨石\\n被称作月之石。$",
+      "display_text": "落在的月见山的陨石\n被称作月之石。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 33,
+        "bytes": [
+          9,
+          30,
+          15,
+          230,
+          3,
+          11,
+          15,
+          206,
+          5,
+          230,
+          11,
+          155,
+          3,
+          11,
+          15,
+          213,
+          11,
+          235,
+          254,
+          1,
+          120,
+          2,
+          72,
+          17,
+          47,
+          15,
+          206,
+          16,
+          127,
+          11,
+          235,
+          55,
+          255
+        ],
+        "hex": "09 1E 0F E6 03 0B 0F CE 05 E6 0B 9B 03 0B 0F D5 0B EB FE 01 78 02 48 11 2F 0F CE 10 7F 0B EB 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 18,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 19,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 11,
+    "encoded_text_count": 11,
+    "text_source_byte_count": 580,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 11
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 7,
+      "msgbox": 7
+    }
+  }
+}

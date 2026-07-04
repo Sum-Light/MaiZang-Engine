@@ -1,0 +1,373 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SilphCo_1F_Frlg",
+    "map_script": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+    "map_json": "data/maps/SilphCo_1F_Frlg/map.json",
+    "map_id": "MAP_SILPH_CO_1F",
+    "map_name": "SilphCo_1F_Frlg"
+  },
+  "labels": {
+    "SilphCo_1F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SilphCo_1F_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SilphCo_1F_EventScript_Receptionist": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SilphCo_1F_EventScript_FloorSign": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "SilphCo_1F_Text_WelcomePresidentInBoardroom": {
+      "kind": "text",
+      "line": 17,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "SilphCo_1F_Text_FloorSign": {
+      "kind": "text",
+      "line": 22,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "SilphCo_1F_Frlg_MapScripts": {
+      "label": "SilphCo_1F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SilphCo_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SilphCo_1F_OnTransition",
+          "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SilphCo_1F_OnTransition": {
+      "label": "SilphCo_1F_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setworldmapflag",
+          "args": [
+            "FLAG_WORLD_MAP_SILPH_CO_1F"
+          ],
+          "line": 6,
+          "raw": "setworldmapflag FLAG_WORLD_MAP_SILPH_CO_1F",
+          "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SilphCo_1F_EventScript_Receptionist": {
+      "label": "SilphCo_1F_EventScript_Receptionist",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SilphCo_1F_Text_WelcomePresidentInBoardroom",
+            "MSGBOX_NPC"
+          ],
+          "line": 10,
+          "raw": "msgbox SilphCo_1F_Text_WelcomePresidentInBoardroom, MSGBOX_NPC",
+          "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SilphCo_1F_Text_WelcomePresidentInBoardroom",
+          "mode": "MSGBOX_NPC",
+          "line": 10
+        }
+      ],
+      "branch_targets": []
+    },
+    "SilphCo_1F_EventScript_FloorSign": {
+      "label": "SilphCo_1F_EventScript_FloorSign",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SilphCo_1F_Text_FloorSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 14,
+          "raw": "msgbox SilphCo_1F_Text_FloorSign, MSGBOX_SIGN",
+          "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 15,
+          "raw": "end",
+          "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SilphCo_1F_Text_FloorSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 14
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SilphCo_1F_Text_WelcomePresidentInBoardroom": {
+      "label": "SilphCo_1F_Text_WelcomePresidentInBoardroom",
+      "line": 17,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "raw_text": "欢迎光临。\\p总裁在11F的\\n会议室。$",
+      "display_text": "欢迎光临。\n\n总裁在11F的\n会议室。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 30,
+        "bytes": [
+          5,
+          67,
+          15,
+          91,
+          4,
+          170,
+          8,
+          172,
+          55,
+          251,
+          17,
+          20,
+          1,
+          222,
+          15,
+          230,
+          162,
+          162,
+          192,
+          3,
+          11,
+          254,
+          5,
+          110,
+          15,
+          57,
+          12,
+          23,
+          55,
+          255
+        ],
+        "hex": "05 43 0F 5B 04 AA 08 AC 37 FB 11 14 01 DE 0F E6 A2 A2 C0 03 0B FE 05 6E 0F 39 0C 17 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 14,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SilphCo_1F_Text_FloorSign": {
+      "label": "SilphCo_1F_Text_FloorSign",
+      "line": 22,
+      "source_file": "data/maps/SilphCo_1F_Frlg/scripts.inc",
+      "raw_text": "西尔佛公司总部\\n1层$",
+      "display_text": "西尔佛公司总部\n1层",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 19,
+        "bytes": [
+          13,
+          189,
+          3,
+          160,
+          3,
+          243,
+          4,
+          115,
+          12,
+          97,
+          17,
+          20,
+          1,
+          218,
+          254,
+          162,
+          2,
+          7,
+          255
+        ],
+        "hex": "0D BD 03 A0 03 F3 04 73 0C 61 11 14 01 DA FE A2 02 07 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 11,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "map_script": 1,
+      "setworldmapflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 6,
+    "script_count": 4,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 49,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 3,
+      "map_script": 1,
+      "msgbox": 2,
+      "setworldmapflag": 1
+    }
+  }
+}

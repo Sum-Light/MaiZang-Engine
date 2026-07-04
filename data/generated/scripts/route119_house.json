@@ -1,0 +1,445 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route119_House",
+    "map_script": "data/maps/Route119_House/scripts.inc",
+    "map_json": "data/maps/Route119_House/map.json",
+    "map_id": "MAP_ROUTE119_HOUSE",
+    "map_name": "Route119_House"
+  },
+  "labels": {
+    "Route119_House_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route119_House/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route119_House_EventScript_Woman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route119_House/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route119_House_EventScript_Wingull": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/Route119_House/scripts.inc",
+      "instruction_count": 8
+    },
+    "Route119_House_Text_RumorAboutCaveOfOrigin": {
+      "kind": "text",
+      "line": 18,
+      "source_file": "data/maps/Route119_House/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route119_House_Text_Wingull": {
+      "kind": "text",
+      "line": 21,
+      "source_file": "data/maps/Route119_House/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "Route119_House_MapScripts": {
+      "label": "Route119_House_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route119_House/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route119_House_EventScript_Woman": {
+      "label": "Route119_House_EventScript_Woman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/Route119_House/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route119_House_Text_RumorAboutCaveOfOrigin",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox Route119_House_Text_RumorAboutCaveOfOrigin, MSGBOX_NPC",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route119_House_Text_RumorAboutCaveOfOrigin",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route119_House_EventScript_Wingull": {
+      "label": "Route119_House_EventScript_Wingull",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/Route119_House/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 9,
+          "raw": "lock",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 10,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 11,
+          "raw": "waitse",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_WINGULL",
+            "CRY_MODE_NORMAL"
+          ],
+          "line": 12,
+          "raw": "playmoncry SPECIES_WINGULL, CRY_MODE_NORMAL",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route119_House_Text_Wingull",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 13,
+          "raw": "msgbox Route119_House_Text_Wingull, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 14,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 15,
+          "raw": "release",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/Route119_House/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route119_House_Text_Wingull",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "Route119_House_Text_RumorAboutCaveOfOrigin": {
+      "label": "Route119_House_Text_RumorAboutCaveOfOrigin",
+      "line": 18,
+      "source_file": "data/maps/Route119_House/scripts.inc",
+      "raw_text": "我听说有一个洞窟叫做\\n觉醒神殿，\\p传说宝可梦的灵魂会\\n在那里复生。这样的事情\\l真的有可能发生吗？$",
+      "display_text": "我听说有一个洞窟叫做\n觉醒神殿，\n\n传说宝可梦的灵魂会\n在那里复生。这样的事情\n真的有可能发生吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 90,
+        "bytes": [
+          13,
+          152,
+          13,
+          7,
+          12,
+          88,
+          15,
+          126,
+          15,
+          11,
+          4,
+          96,
+          3,
+          89,
+          7,
+          237,
+          7,
+          34,
+          17,
+          46,
+          254,
+          7,
+          165,
+          14,
+          92,
+          11,
+          207,
+          3,
+          53,
+          59,
+          251,
+          2,
+          139,
+          12,
+          88,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          8,
+          188,
+          5,
+          119,
+          5,
+          110,
+          254,
+          15,
+          230,
+          9,
+          189,
+          8,
+          100,
+          4,
+          30,
+          11,
+          216,
+          55,
+          16,
+          85,
+          14,
+          226,
+          3,
+          11,
+          12,
+          7,
+          11,
+          11,
+          250,
+          16,
+          89,
+          3,
+          11,
+          15,
+          126,
+          7,
+          215,
+          9,
+          210,
+          3,
+          165,
+          11,
+          216,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0D 98 0D 07 0C 58 0F 7E 0F 0B 04 60 03 59 07 ED 07 22 11 2E FE 07 A5 0E 5C 0B CF 03 35 3B FB 02 8B 0C 58 01 63 07 D7 09 66 03 0B 08 BC 05 77 05 6E FE 0F E6 09 BD 08 64 04 1E 0B D8 37 10 55 0E E2 03 0B 0C 07 0B 0B FA 10 59 03 0B 0F 7E 07 D7 09 D2 03 A5 0B D8 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 28,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 41,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 52,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route119_House_Text_Wingull": {
+      "label": "Route119_House_Text_Wingull",
+      "line": 21,
+      "source_file": "data/maps/Route119_House/scripts.inc",
+      "raw_text": "长翅鸥：欧雷！$",
+      "display_text": "长翅鸥：欧雷！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 13,
+        "bytes": [
+          2,
+          38,
+          2,
+          99,
+          10,
+          21,
+          62,
+          10,
+          20,
+          8,
+          76,
+          60,
+          255
+        ],
+        "hex": "02 26 02 63 0A 15 3E 0A 14 08 4C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 7,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "playmoncry": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 103,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "faceplayer": 1,
+      "lock": 1,
+      "msgbox": 2,
+      "playmoncry": 1,
+      "release": 1,
+      "waitmoncry": 1,
+      "waitse": 1
+    }
+  }
+}

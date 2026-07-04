@@ -1,0 +1,1008 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "DewfordTown_House2",
+    "map_script": "data/maps/DewfordTown_House2/scripts.inc",
+    "map_json": "data/maps/DewfordTown_House2/map.json",
+    "map_id": "MAP_DEWFORD_TOWN_HOUSE2",
+    "map_name": "DewfordTown_House2"
+  },
+  "labels": {
+    "DewfordTown_House2_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "DewfordTown_House2_EventScript_Man": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instruction_count": 9
+    },
+    "DewfordTown_House2_EventScript_NoRoomForScarf": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instruction_count": 3
+    },
+    "DewfordTown_House2_EventScript_ExplainSilkScarf": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instruction_count": 3
+    },
+    "DewfordTown_House2_EventScript_Boy": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instruction_count": 2
+    },
+    "DewfordTown_House2_Text_WantYouToHaveSilkScarf": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "DewfordTown_House2_Text_NoRoom": {
+      "kind": "text",
+      "line": 32,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "DewfordTown_House2_Text_ExplainSilkScarf": {
+      "kind": "text",
+      "line": 35,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instruction_count": 1
+    },
+    "DewfordTown_House2_Text_BrawlySoCool": {
+      "kind": "text",
+      "line": 38,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "DewfordTown_House2_MapScripts": {
+      "label": "DewfordTown_House2_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "DewfordTown_House2_EventScript_Man": {
+      "label": "DewfordTown_House2_EventScript_Man",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_RECEIVED_SILK_SCARF",
+            "DewfordTown_House2_EventScript_ExplainSilkScarf"
+          ],
+          "line": 7,
+          "raw": "goto_if_set FLAG_RECEIVED_SILK_SCARF, DewfordTown_House2_EventScript_ExplainSilkScarf",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "DewfordTown_House2_Text_WantYouToHaveSilkScarf",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 8,
+          "raw": "msgbox DewfordTown_House2_Text_WantYouToHaveSilkScarf, MSGBOX_DEFAULT",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_SILK_SCARF"
+          ],
+          "line": 9,
+          "raw": "giveitem ITEM_SILK_SCARF",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "DewfordTown_House2_EventScript_NoRoomForScarf"
+          ],
+          "line": 10,
+          "raw": "goto_if_eq VAR_RESULT, FALSE, DewfordTown_House2_EventScript_NoRoomForScarf",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_SILK_SCARF"
+          ],
+          "line": 11,
+          "raw": "setflag FLAG_RECEIVED_SILK_SCARF",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 12,
+          "raw": "release",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DewfordTown_House2_Text_WantYouToHaveSilkScarf",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 8
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "DewfordTown_House2_EventScript_ExplainSilkScarf",
+          "line": 7
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "DewfordTown_House2_EventScript_NoRoomForScarf",
+          "line": 10
+        }
+      ]
+    },
+    "DewfordTown_House2_EventScript_NoRoomForScarf": {
+      "label": "DewfordTown_House2_EventScript_NoRoomForScarf",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "DewfordTown_House2_Text_NoRoom",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 16,
+          "raw": "msgbox DewfordTown_House2_Text_NoRoom, MSGBOX_DEFAULT",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 17,
+          "raw": "release",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 18,
+          "raw": "end",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DewfordTown_House2_Text_NoRoom",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 16
+        }
+      ],
+      "branch_targets": []
+    },
+    "DewfordTown_House2_EventScript_ExplainSilkScarf": {
+      "label": "DewfordTown_House2_EventScript_ExplainSilkScarf",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "DewfordTown_House2_Text_ExplainSilkScarf",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 21,
+          "raw": "msgbox DewfordTown_House2_Text_ExplainSilkScarf, MSGBOX_DEFAULT",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 22,
+          "raw": "release",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 23,
+          "raw": "end",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DewfordTown_House2_Text_ExplainSilkScarf",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 21
+        }
+      ],
+      "branch_targets": []
+    },
+    "DewfordTown_House2_EventScript_Boy": {
+      "label": "DewfordTown_House2_EventScript_Boy",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "DewfordTown_House2_Text_BrawlySoCool",
+            "MSGBOX_NPC"
+          ],
+          "line": 26,
+          "raw": "msgbox DewfordTown_House2_Text_BrawlySoCool, MSGBOX_NPC",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 27,
+          "raw": "end",
+          "source_file": "data/maps/DewfordTown_House2/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "DewfordTown_House2_Text_BrawlySoCool",
+          "mode": "MSGBOX_NPC",
+          "line": 26
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "DewfordTown_House2_Text_WantYouToHaveSilkScarf": {
+      "label": "DewfordTown_House2_Text_WantYouToHaveSilkScarf",
+      "line": 29,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "raw_text": "来一饱眼福吧！\\p这是丝绸围巾，\\n是正流行的款式！\\p啊，你的眼睛兴奋地发光了！\\n你欣赏我这眩目的款式！\\p啊，真高兴！\\n给你吧，送给你了！$",
+      "display_text": "来一饱眼福吧！\n\n这是丝绸围巾，\n是正流行的款式！\n\n啊，你的眼睛兴奋地发光了！\n你欣赏我这眩目的款式！\n\n啊，真高兴！\n给你吧，送给你了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 119,
+        "bytes": [
+          8,
+          41,
+          15,
+          11,
+          1,
+          98,
+          14,
+          196,
+          4,
+          13,
+          1,
+          40,
+          60,
+          251,
+          16,
+          85,
+          12,
+          12,
+          12,
+          98,
+          2,
+          115,
+          13,
+          109,
+          7,
+          63,
+          59,
+          254,
+          12,
+          12,
+          16,
+          112,
+          8,
+          202,
+          14,
+          91,
+          3,
+          11,
+          8,
+          5,
+          12,
+          2,
+          60,
+          251,
+          1,
+          0,
+          59,
+          9,
+          217,
+          3,
+          11,
+          14,
+          196,
+          7,
+          86,
+          14,
+          86,
+          3,
+          223,
+          3,
+          31,
+          3,
+          165,
+          4,
+          170,
+          8,
+          158,
+          60,
+          254,
+          9,
+          217,
+          14,
+          75,
+          11,
+          171,
+          13,
+          152,
+          16,
+          85,
+          14,
+          140,
+          9,
+          181,
+          3,
+          11,
+          8,
+          5,
+          12,
+          2,
+          60,
+          251,
+          1,
+          0,
+          59,
+          16,
+          89,
+          4,
+          73,
+          14,
+          86,
+          60,
+          254,
+          4,
+          98,
+          9,
+          217,
+          1,
+          40,
+          59,
+          12,
+          112,
+          4,
+          98,
+          9,
+          217,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "08 29 0F 0B 01 62 0E C4 04 0D 01 28 3C FB 10 55 0C 0C 0C 62 02 73 0D 6D 07 3F 3B FE 0C 0C 10 70 08 CA 0E 5B 03 0B 08 05 0C 02 3C FB 01 00 3B 09 D9 03 0B 0E C4 07 56 0E 56 03 DF 03 1F 03 A5 04 AA 08 9E 3C FE 09 D9 0E 4B 0B AB 0D 98 10 55 0E 8C 09 B5 03 0B 08 05 0C 02 3C FB 01 00 3B 10 59 04 49 0E 56 3C FE 04 62 09 D9 01 28 3B 0C 70 04 62 09 D9 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 7,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 16,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 26,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 41,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 54,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 62,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 73,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "DewfordTown_House2_Text_NoRoom": {
+      "label": "DewfordTown_House2_Text_NoRoom",
+      "line": 32,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "raw_text": "呀，你没地方装了？\\p那，听好，这个围巾是\\n你的必备品！哎，我要是你，\\l我会卖掉我的一切来得到它！$",
+      "display_text": "呀，你没地方装了？\n\n那，听好，这个围巾是\n你的必备品！哎，我要是你，\n我会卖掉我的一切来得到它！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 86,
+        "bytes": [
+          14,
+          166,
+          59,
+          9,
+          217,
+          9,
+          83,
+          3,
+          31,
+          3,
+          192,
+          16,
+          223,
+          8,
+          158,
+          61,
+          251,
+          9,
+          189,
+          59,
+          13,
+          7,
+          4,
+          233,
+          59,
+          16,
+          85,
+          4,
+          96,
+          13,
+          109,
+          7,
+          63,
+          12,
+          12,
+          254,
+          9,
+          217,
+          3,
+          11,
+          1,
+          149,
+          1,
+          117,
+          10,
+          114,
+          60,
+          1,
+          4,
+          59,
+          13,
+          152,
+          14,
+          241,
+          12,
+          12,
+          9,
+          217,
+          59,
+          250,
+          13,
+          152,
+          5,
+          110,
+          9,
+          46,
+          3,
+          59,
+          13,
+          152,
+          3,
+          11,
+          15,
+          11,
+          10,
+          233,
+          8,
+          41,
+          3,
+          10,
+          3,
+          4,
+          12,
+          159,
+          60,
+          255
+        ],
+        "hex": "0E A6 3B 09 D9 09 53 03 1F 03 C0 10 DF 08 9E 3D FB 09 BD 3B 0D 07 04 E9 3B 10 55 04 60 0D 6D 07 3F 0C 0C FE 09 D9 03 0B 01 95 01 75 0A 72 3C 01 04 3B 0D 98 0E F1 0C 0C 09 D9 3B FA 0D 98 05 6E 09 2E 03 3B 0D 98 03 0B 0F 0B 0A E9 08 29 03 0A 03 04 0C 9F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 9,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 21,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 36,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 51,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "DewfordTown_House2_Text_ExplainSilkScarf": {
+      "label": "DewfordTown_House2_Text_ExplainSilkScarf",
+      "line": 35,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "raw_text": "丝绸围巾能提升\\n一般属性招式的威力，\\p是对几乎所有宝可梦都有\\n极大用处的头巾！$",
+      "display_text": "丝绸围巾能提升\n一般属性招式的威力，\n\n是对几乎所有宝可梦都有\n极大用处的头巾！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 74,
+        "bytes": [
+          12,
+          98,
+          2,
+          115,
+          13,
+          109,
+          7,
+          63,
+          9,
+          210,
+          12,
+          226,
+          11,
+          219,
+          254,
+          15,
+          11,
+          1,
+          66,
+          12,
+          57,
+          14,
+          95,
+          16,
+          67,
+          12,
+          2,
+          3,
+          11,
+          13,
+          102,
+          8,
+          121,
+          59,
+          251,
+          12,
+          12,
+          3,
+          121,
+          5,
+          163,
+          5,
+          36,
+          12,
+          156,
+          15,
+          126,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          97,
+          15,
+          126,
+          254,
+          5,
+          150,
+          2,
+          211,
+          15,
+          113,
+          2,
+          134,
+          3,
+          11,
+          13,
+          31,
+          7,
+          63,
+          60,
+          255
+        ],
+        "hex": "0C 62 02 73 0D 6D 07 3F 09 D2 0C E2 0B DB FE 0F 0B 01 42 0C 39 0E 5F 10 43 0C 02 03 0B 0D 66 08 79 3B FB 0C 0C 03 79 05 A3 05 24 0C 9C 0F 7E 01 63 07 D7 09 66 03 61 0F 7E FE 05 96 02 D3 0F 71 02 86 03 0B 0D 1F 07 3F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "DewfordTown_House2_Text_BrawlySoCool": {
+      "label": "DewfordTown_House2_Text_BrawlySoCool",
+      "line": 38,
+      "source_file": "data/maps/DewfordTown_House2/scripts.inc",
+      "raw_text": "哇，你是渡海来到\\n武斗镇的吗？\\p是因为听说藤树\\n而来的吗？\\p他真的很棒……\\n大家都很崇敬他。$",
+      "display_text": "哇，你是渡海来到\n武斗镇的吗？\n\n是因为听说藤树\n而来的吗？\n\n他真的很棒……\n大家都很崇敬他。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 82,
+        "bytes": [
+          13,
+          67,
+          59,
+          9,
+          217,
+          12,
+          12,
+          3,
+          110,
+          4,
+          201,
+          8,
+          41,
+          3,
+          4,
+          254,
+          13,
+          170,
+          3,
+          92,
+          16,
+          101,
+          3,
+          11,
+          9,
+          42,
+          61,
+          251,
+          12,
+          12,
+          15,
+          66,
+          13,
+          112,
+          13,
+          7,
+          12,
+          88,
+          12,
+          218,
+          12,
+          60,
+          254,
+          3,
+          157,
+          8,
+          41,
+          3,
+          11,
+          9,
+          42,
+          61,
+          251,
+          12,
+          158,
+          16,
+          89,
+          3,
+          11,
+          5,
+          11,
+          1,
+          83,
+          176,
+          176,
+          254,
+          2,
+          211,
+          5,
+          189,
+          3,
+          97,
+          5,
+          11,
+          2,
+          105,
+          7,
+          100,
+          12,
+          158,
+          55,
+          255
+        ],
+        "hex": "0D 43 3B 09 D9 0C 0C 03 6E 04 C9 08 29 03 04 FE 0D AA 03 5C 10 65 03 0B 09 2A 3D FB 0C 0C 0F 42 0D 70 0D 07 0C 58 0C DA 0C 3C FE 03 9D 08 29 03 0B 09 2A 3D FB 0C 9E 10 59 03 0B 05 0B 01 53 B0 B0 FE 02 D3 05 BD 03 61 05 0B 02 69 07 64 0C 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 41,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 51,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "giveitem": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "setflag": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 5,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 361,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 4,
+      "faceplayer": 1,
+      "giveitem": 1,
+      "goto_if_eq": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "msgbox": 4,
+      "release": 3,
+      "setflag": 1
+    }
+  }
+}

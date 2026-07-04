@@ -1,0 +1,1560 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "ThreeIsland_BerryForest_Frlg",
+    "map_script": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+    "map_json": "data/maps/ThreeIsland_BerryForest_Frlg/map.json",
+    "map_id": "MAP_THREE_ISLAND_BERRY_FOREST",
+    "map_name": "ThreeIsland_BerryForest_Frlg"
+  },
+  "labels": {
+    "ThreeIsland_BerryForest_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ThreeIsland_BerryForest_OnTransition": {
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ThreeIsland_BerryForest_EventScript_Lostelle": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 30
+    },
+    "ThreeIsland_BerryForest_EventScript_NoRoomForBerry": {
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ThreeIsland_BerryForest_Movement_LostelleLookAround": {
+      "kind": "movement",
+      "line": 46,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "ThreeIsland_BerryForest_EventScript_WelcomeSign": {
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ThreeIsland_BerryForest_EventScript_BewareSign": {
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ThreeIsland_BerryForest_Text_HelpScaryPokemon": {
+      "kind": "text",
+      "line": 62,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 8
+    },
+    "ThreeIsland_BerryForest_Text_HereItComesAgain": {
+      "kind": "text",
+      "line": 72,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "ThreeIsland_BerryForest_Text_ThankYouHaveThis": {
+      "kind": "text",
+      "line": 78,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "ThreeIsland_BerryForest_Text_LetsGoHome": {
+      "kind": "text",
+      "line": 85,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 5
+    },
+    "ThreeIsland_BerryForest_Text_BerryPouchIsFull": {
+      "kind": "text",
+      "line": 92,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "ThreeIsland_BerryForest_Text_WelcomeToBerryForest": {
+      "kind": "text",
+      "line": 96,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 3
+    },
+    "ThreeIsland_BerryForest_Text_BewareWildBerryLovingMons": {
+      "kind": "text",
+      "line": 101,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "ThreeIsland_BerryForest_Frlg_MapScripts": {
+      "label": "ThreeIsland_BerryForest_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "ThreeIsland_BerryForest_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, ThreeIsland_BerryForest_OnTransition",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 3,
+          "raw": ".byte 0",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ThreeIsland_BerryForest_OnTransition": {
+      "label": "ThreeIsland_BerryForest_OnTransition",
+      "kind": "script",
+      "line": 5,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "setworldmapflag",
+          "args": [
+            "FLAG_WORLD_MAP_THREE_ISLAND_BERRY_FOREST"
+          ],
+          "line": 6,
+          "raw": "setworldmapflag FLAG_WORLD_MAP_THREE_ISLAND_BERRY_FOREST",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "setescapewarp",
+          "args": [
+            "MAP_THREE_ISLAND_BOND_BRIDGE",
+            "12",
+            "6"
+          ],
+          "line": 7,
+          "raw": "setescapewarp MAP_THREE_ISLAND_BOND_BRIDGE, 12, 6",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "ThreeIsland_BerryForest_EventScript_Lostelle": {
+      "label": "ThreeIsland_BerryForest_EventScript_Lostelle",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 11,
+          "raw": "lock",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 12,
+          "raw": "faceplayer",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ThreeIsland_BerryForest_Text_HelpScaryPokemon"
+          ],
+          "line": 13,
+          "raw": "msgbox ThreeIsland_BerryForest_Text_HelpScaryPokemon",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 14,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_BERRY_FOREST_LOSTELLE",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 15,
+          "raw": "applymovement LOCALID_BERRY_FOREST_LOSTELLE, Common_Movement_ExclamationMark",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 16,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_BERRY_FOREST_LOSTELLE",
+            "ThreeIsland_BerryForest_Movement_LostelleLookAround"
+          ],
+          "line": 17,
+          "raw": "applymovement LOCALID_BERRY_FOREST_LOSTELLE, ThreeIsland_BerryForest_Movement_LostelleLookAround",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 18,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ThreeIsland_BerryForest_Text_HereItComesAgain"
+          ],
+          "line": 19,
+          "raw": "msgbox ThreeIsland_BerryForest_Text_HereItComesAgain",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitse",
+          "args": [],
+          "line": 20,
+          "raw": "waitse",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "playmoncry",
+          "args": [
+            "SPECIES_HYPNO",
+            "CRY_MODE_ENCOUNTER"
+          ],
+          "line": 21,
+          "raw": "playmoncry SPECIES_HYPNO, CRY_MODE_ENCOUNTER",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmoncry",
+          "args": [],
+          "line": 22,
+          "raw": "waitmoncry",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "setwildbattle",
+          "args": [
+            "SPECIES_HYPNO",
+            "30"
+          ],
+          "line": 23,
+          "raw": "setwildbattle SPECIES_HYPNO, 30",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "dowildbattle",
+          "args": [],
+          "line": 24,
+          "raw": "dowildbattle",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_BERRY_FOREST_LOSTELLE",
+            "Common_Movement_FacePlayer"
+          ],
+          "line": 25,
+          "raw": "applymovement LOCALID_BERRY_FOREST_LOSTELLE, Common_Movement_FacePlayer",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 26,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ThreeIsland_BerryForest_Text_ThankYouHaveThis"
+          ],
+          "line": 27,
+          "raw": "msgbox ThreeIsland_BerryForest_Text_ThankYouHaveThis",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_IAPAPA_BERRY"
+          ],
+          "line": 28,
+          "raw": "giveitem ITEM_IAPAPA_BERRY",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FALSE",
+            "ThreeIsland_BerryForest_EventScript_NoRoomForBerry"
+          ],
+          "line": 29,
+          "raw": "call_if_eq VAR_RESULT, FALSE, ThreeIsland_BerryForest_EventScript_NoRoomForBerry",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "GetPlayerBigGuyGirlString"
+          ],
+          "line": 30,
+          "raw": "special GetPlayerBigGuyGirlString",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "ThreeIsland_BerryForest_Text_LetsGoHome"
+          ],
+          "line": 31,
+          "raw": "msgbox ThreeIsland_BerryForest_Text_LetsGoHome",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 32,
+          "raw": "closemessage",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RESCUED_LOSTELLE"
+          ],
+          "line": 33,
+          "raw": "setflag FLAG_RESCUED_LOSTELLE",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LOSTELLE_IN_BERRY_FOREST"
+          ],
+          "line": 34,
+          "raw": "setflag FLAG_HIDE_LOSTELLE_IN_BERRY_FOREST",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_MAP_SCENE_TWO_ISLAND_JOYFUL_GAME_CORNER",
+            "2"
+          ],
+          "line": 35,
+          "raw": "setvar VAR_MAP_SCENE_TWO_ISLAND_JOYFUL_GAME_CORNER, 2",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_TWO_ISLAND_GAME_CORNER_LOSTELLE"
+          ],
+          "line": 36,
+          "raw": "clearflag FLAG_HIDE_TWO_ISLAND_GAME_CORNER_LOSTELLE",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_TWO_ISLAND_JOYFUL_GAME_CORNER",
+            "6",
+            "6"
+          ],
+          "line": 37,
+          "raw": "warp MAP_TWO_ISLAND_JOYFUL_GAME_CORNER, 6, 6",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 38,
+          "raw": "waitstate",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 39,
+          "raw": "release",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 40,
+          "raw": "end",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ThreeIsland_BerryForest_Text_HelpScaryPokemon",
+          "mode": "",
+          "line": 13
+        },
+        {
+          "op": "msgbox",
+          "text_label": "ThreeIsland_BerryForest_Text_HereItComesAgain",
+          "mode": "",
+          "line": 19
+        },
+        {
+          "op": "msgbox",
+          "text_label": "ThreeIsland_BerryForest_Text_ThankYouHaveThis",
+          "mode": "",
+          "line": 27
+        },
+        {
+          "op": "msgbox",
+          "text_label": "ThreeIsland_BerryForest_Text_LetsGoHome",
+          "mode": "",
+          "line": 31
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "ThreeIsland_BerryForest_EventScript_NoRoomForBerry",
+          "line": 29
+        }
+      ]
+    },
+    "ThreeIsland_BerryForest_EventScript_NoRoomForBerry": {
+      "label": "ThreeIsland_BerryForest_EventScript_NoRoomForBerry",
+      "kind": "script",
+      "line": 42,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ThreeIsland_BerryForest_Text_BerryPouchIsFull"
+          ],
+          "line": 43,
+          "raw": "msgbox ThreeIsland_BerryForest_Text_BerryPouchIsFull",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 44,
+          "raw": "return",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ThreeIsland_BerryForest_Text_BerryPouchIsFull",
+          "mode": "",
+          "line": 43
+        }
+      ],
+      "branch_targets": []
+    },
+    "ThreeIsland_BerryForest_EventScript_WelcomeSign": {
+      "label": "ThreeIsland_BerryForest_EventScript_WelcomeSign",
+      "kind": "script",
+      "line": 54,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ThreeIsland_BerryForest_Text_WelcomeToBerryForest",
+            "MSGBOX_SIGN"
+          ],
+          "line": 55,
+          "raw": "msgbox ThreeIsland_BerryForest_Text_WelcomeToBerryForest, MSGBOX_SIGN",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 56,
+          "raw": "end",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ThreeIsland_BerryForest_Text_WelcomeToBerryForest",
+          "mode": "MSGBOX_SIGN",
+          "line": 55
+        }
+      ],
+      "branch_targets": []
+    },
+    "ThreeIsland_BerryForest_EventScript_BewareSign": {
+      "label": "ThreeIsland_BerryForest_EventScript_BewareSign",
+      "kind": "script",
+      "line": 58,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "ThreeIsland_BerryForest_Text_BewareWildBerryLovingMons",
+            "MSGBOX_SIGN"
+          ],
+          "line": 59,
+          "raw": "msgbox ThreeIsland_BerryForest_Text_BewareWildBerryLovingMons, MSGBOX_SIGN",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 60,
+          "raw": "end",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "ThreeIsland_BerryForest_Text_BewareWildBerryLovingMons",
+          "mode": "MSGBOX_SIGN",
+          "line": 59
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "ThreeIsland_BerryForest_Movement_LostelleLookAround": {
+      "label": "ThreeIsland_BerryForest_Movement_LostelleLookAround",
+      "kind": "movement",
+      "line": 46,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 47,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_16",
+          "args": [],
+          "line": 48,
+          "raw": "delay_16",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_right",
+          "args": [],
+          "line": 49,
+          "raw": "walk_in_place_faster_right",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "delay_8",
+          "args": [],
+          "line": 50,
+          "raw": "delay_8",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 51,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 52,
+          "raw": "step_end",
+          "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "ThreeIsland_BerryForest_Text_HelpScaryPokemon": {
+      "label": "ThreeIsland_BerryForest_Text_HelpScaryPokemon",
+      "line": 62,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "raw_text": "小迷：呜……呜呜……\\n哦！请救救我！\\p就在刚才，\\n一只可怕的宝可梦出现了。\\p它一直吓唬人。\\n小迷被它吓坏了了。\\p小迷害怕得动不了了！\\n但是我想回家……$",
+      "display_text": "小迷：呜……呜呜……\n哦！请救救我！\n\n就在刚才，\n一只可怕的宝可梦出现了。\n\n它一直吓唬人。\n小迷被它吓坏了了。\n\n小迷害怕得动不了了！\n但是我想回家……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 130,
+        "bytes": [
+          14,
+          44,
+          9,
+          108,
+          62,
+          13,
+          158,
+          176,
+          176,
+          13,
+          158,
+          13,
+          158,
+          176,
+          176,
+          254,
+          10,
+          19,
+          60,
+          11,
+          13,
+          7,
+          120,
+          7,
+          120,
+          13,
+          152,
+          60,
+          251,
+          7,
+          125,
+          15,
+          230,
+          4,
+          63,
+          1,
+          224,
+          59,
+          254,
+          15,
+          11,
+          16,
+          140,
+          7,
+          215,
+          10,
+          31,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          2,
+          120,
+          14,
+          3,
+          8,
+          158,
+          55,
+          251,
+          12,
+          159,
+          15,
+          11,
+          16,
+          130,
+          13,
+          233,
+          5,
+          48,
+          11,
+          75,
+          55,
+          254,
+          14,
+          44,
+          9,
+          108,
+          1,
+          120,
+          12,
+          159,
+          13,
+          233,
+          5,
+          66,
+          8,
+          158,
+          8,
+          158,
+          55,
+          251,
+          14,
+          44,
+          9,
+          108,
+          4,
+          204,
+          10,
+          31,
+          3,
+          10,
+          3,
+          84,
+          1,
+          214,
+          8,
+          158,
+          8,
+          158,
+          60,
+          254,
+          2,
+          233,
+          12,
+          12,
+          13,
+          152,
+          14,
+          24,
+          5,
+          101,
+          5,
+          189,
+          176,
+          176,
+          255
+        ],
+        "hex": "0E 2C 09 6C 3E 0D 9E B0 B0 0D 9E 0D 9E B0 B0 FE 0A 13 3C 0B 0D 07 78 07 78 0D 98 3C FB 07 7D 0F E6 04 3F 01 E0 3B FE 0F 0B 10 8C 07 D7 0A 1F 03 0B 01 63 07 D7 09 66 02 78 0E 03 08 9E 37 FB 0C 9F 0F 0B 10 82 0D E9 05 30 0B 4B 37 FE 0E 2C 09 6C 01 78 0C 9F 0D E9 05 42 08 9E 08 9E 37 FB 0E 2C 09 6C 04 CC 0A 1F 03 0A 03 54 01 D6 08 9E 08 9E 3C FE 02 E9 0C 0C 0D 98 0E 18 05 65 05 BD B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 40,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 49,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 60,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 72,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 82,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ThreeIsland_BerryForest_Text_HereItComesAgain": {
+      "label": "ThreeIsland_BerryForest_Text_HereItComesAgain",
+      "line": 72,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "raw_text": "哦！它又来了！\\n不！走开！太吓人了！\\p哇！\\n我要爸爸！$",
+      "display_text": "哦！它又来了！\n不！走开！太吓人了！\n\n哇！\n我要爸爸！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 45,
+        "bytes": [
+          10,
+          19,
+          60,
+          12,
+          159,
+          15,
+          132,
+          8,
+          41,
+          8,
+          158,
+          60,
+          254,
+          1,
+          214,
+          60,
+          17,
+          23,
+          7,
+          184,
+          60,
+          12,
+          172,
+          13,
+          233,
+          11,
+          75,
+          8,
+          158,
+          60,
+          251,
+          13,
+          67,
+          60,
+          254,
+          13,
+          152,
+          14,
+          241,
+          1,
+          53,
+          1,
+          53,
+          60,
+          255
+        ],
+        "hex": "0A 13 3C 0C 9F 0F 84 08 29 08 9E 3C FE 01 D6 3C 11 17 07 B8 3C 0C AC 0D E9 0B 4B 08 9E 3C FB 0D 43 3C FE 0D 98 0E F1 01 35 01 35 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 23,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 30,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ThreeIsland_BerryForest_Text_ThankYouHaveThis": {
+      "label": "ThreeIsland_BerryForest_Text_ThankYouHaveThis",
+      "line": 78,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "raw_text": "哦！刚才真是太吓人了！\\n谢谢！\\p小迷捡了一些\\n树果。\\p这些送给你！$",
+      "display_text": "哦！刚才真是太吓人了！\n谢谢！\n\n小迷捡了一些\n树果。\n\n这些送给你！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 58,
+        "bytes": [
+          10,
+          19,
+          60,
+          4,
+          63,
+          1,
+          224,
+          16,
+          89,
+          12,
+          12,
+          12,
+          172,
+          13,
+          233,
+          11,
+          75,
+          8,
+          158,
+          60,
+          254,
+          14,
+          70,
+          14,
+          70,
+          60,
+          251,
+          14,
+          44,
+          9,
+          108,
+          5,
+          220,
+          8,
+          158,
+          15,
+          11,
+          14,
+          52,
+          254,
+          12,
+          60,
+          4,
+          195,
+          55,
+          251,
+          16,
+          85,
+          14,
+          52,
+          12,
+          112,
+          4,
+          98,
+          9,
+          217,
+          60,
+          255
+        ],
+        "hex": "0A 13 3C 04 3F 01 E0 10 59 0C 0C 0C AC 0D E9 0B 4B 08 9E 3C FE 0E 46 0E 46 3C FB 0E 2C 09 6C 05 DC 08 9E 0F 0B 0E 34 FE 0C 3C 04 C3 37 FB 10 55 0E 34 0C 70 04 62 09 D9 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ThreeIsland_BerryForest_Text_LetsGoHome": {
+      "label": "ThreeIsland_BerryForest_Text_LetsGoHome",
+      "line": 85,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "raw_text": "你叫什么名字？\\p小迷很害怕，所以能让你\\n送我回我爸爸的屋里吗？\\p好！\\n我们一起回家吧！$",
+      "display_text": "你叫什么名字？\n\n小迷很害怕，所以能让你\n送我回我爸爸的屋里吗？\n\n好！\n我们一起回家吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 78,
+        "bytes": [
+          9,
+          217,
+          7,
+          34,
+          11,
+          238,
+          9,
+          76,
+          9,
+          147,
+          17,
+          14,
+          61,
+          251,
+          14,
+          44,
+          9,
+          108,
+          5,
+          11,
+          4,
+          204,
+          10,
+          31,
+          59,
+          12,
+          156,
+          15,
+          36,
+          9,
+          210,
+          11,
+          67,
+          9,
+          217,
+          254,
+          12,
+          112,
+          13,
+          152,
+          5,
+          101,
+          13,
+          152,
+          1,
+          53,
+          1,
+          53,
+          3,
+          11,
+          13,
+          163,
+          8,
+          100,
+          9,
+          42,
+          61,
+          251,
+          4,
+          233,
+          60,
+          254,
+          13,
+          152,
+          9,
+          95,
+          15,
+          11,
+          10,
+          171,
+          5,
+          101,
+          5,
+          189,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "09 D9 07 22 0B EE 09 4C 09 93 11 0E 3D FB 0E 2C 09 6C 05 0B 04 CC 0A 1F 3B 0C 9C 0F 24 09 D2 0B 43 09 D9 FE 0C 70 0D 98 05 65 0D 98 01 35 01 35 03 0B 0D A3 08 64 09 2A 3D FB 04 E9 3C FE 0D 98 09 5F 0F 0B 0A AB 05 65 05 BD 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 7,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 20,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 37,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ThreeIsland_BerryForest_Text_BerryPouchIsFull": {
+      "label": "ThreeIsland_BerryForest_Text_BerryPouchIsFull",
+      "line": 92,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "raw_text": "你的树果袋满了。\\n看来你不想要这个了吧。$",
+      "display_text": "你的树果袋满了。\n看来你不想要这个了吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 38,
+        "bytes": [
+          9,
+          217,
+          3,
+          11,
+          12,
+          60,
+          4,
+          195,
+          2,
+          220,
+          9,
+          52,
+          8,
+          158,
+          55,
+          254,
+          7,
+          194,
+          8,
+          41,
+          9,
+          217,
+          1,
+          214,
+          14,
+          24,
+          14,
+          241,
+          16,
+          85,
+          4,
+          96,
+          8,
+          158,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "09 D9 03 0B 0C 3C 04 C3 02 DC 09 34 08 9E 37 FE 07 C2 08 29 09 D9 01 D6 0E 18 0E F1 10 55 04 60 08 9E 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ThreeIsland_BerryForest_Text_WelcomeToBerryForest": {
+      "label": "ThreeIsland_BerryForest_Text_WelcomeToBerryForest",
+      "line": 96,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "raw_text": "欢迎来到树果森林\\p请友好地和其他人与\\n宝可梦分享树果。$",
+      "display_text": "欢迎来到树果森林\n\n请友好地和其他人与\n宝可梦分享树果。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 52,
+        "bytes": [
+          5,
+          67,
+          15,
+          91,
+          8,
+          41,
+          3,
+          4,
+          12,
+          60,
+          4,
+          195,
+          11,
+          139,
+          8,
+          169,
+          251,
+          11,
+          13,
+          15,
+          127,
+          4,
+          233,
+          3,
+          31,
+          4,
+          243,
+          10,
+          159,
+          12,
+          158,
+          11,
+          75,
+          15,
+          153,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          217,
+          14,
+          26,
+          12,
+          60,
+          4,
+          195,
+          55,
+          255
+        ],
+        "hex": "05 43 0F 5B 08 29 03 04 0C 3C 04 C3 0B 8B 08 A9 FB 0B 0D 0F 7F 04 E9 03 1F 04 F3 0A 9F 0C 9E 0B 4B 0F 99 FE 01 63 07 D7 09 66 03 D9 0E 1A 0C 3C 04 C3 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 8,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 19,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 29,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "ThreeIsland_BerryForest_Text_BewareWildBerryLovingMons": {
+      "label": "ThreeIsland_BerryForest_Text_BewareWildBerryLovingMons",
+      "line": 101,
+      "source_file": "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc",
+      "raw_text": "当心野生的，喜爱树果\\n的宝可梦！$",
+      "display_text": "当心野生的，喜爱树果\n的宝可梦！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 30,
+        "bytes": [
+          2,
+          239,
+          14,
+          79,
+          15,
+          0,
+          11,
+          216,
+          3,
+          11,
+          59,
+          13,
+          214,
+          1,
+          13,
+          12,
+          60,
+          4,
+          195,
+          254,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          60,
+          255
+        ],
+        "hex": "02 EF 0E 4F 0F 00 0B D8 03 0B 3B 0D D6 01 0D 0C 3C 04 C3 FE 03 0B 01 63 07 D7 09 66 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 17,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 3,
+      "call_if_eq": 1,
+      "clearflag": 1,
+      "closemessage": 1,
+      "delay_16": 1,
+      "delay_8": 1,
+      "dowildbattle": 1,
+      "faceplayer": 1,
+      "giveitem": 1,
+      "map_script": 1,
+      "playmoncry": 1,
+      "playse": 1,
+      "setescapewarp": 1,
+      "setflag": 2,
+      "setvar": 1,
+      "setwildbattle": 1,
+      "setworldmapflag": 1,
+      "special": 1,
+      "step_end": 1,
+      "waitmoncry": 1,
+      "waitmovement": 3,
+      "waitse": 1,
+      "waitstate": 1,
+      "walk_in_place_faster_left": 2,
+      "walk_in_place_faster_right": 1,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 14,
+    "script_count": 6,
+    "movement_count": 1,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 431,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 3,
+      "call_if_eq": 1,
+      "clearflag": 1,
+      "closemessage": 1,
+      "delay_16": 1,
+      "delay_8": 1,
+      "dowildbattle": 1,
+      "end": 4,
+      "faceplayer": 1,
+      "giveitem": 1,
+      "lock": 1,
+      "map_script": 1,
+      "msgbox": 7,
+      "playmoncry": 1,
+      "playse": 1,
+      "release": 1,
+      "return": 1,
+      "setescapewarp": 1,
+      "setflag": 2,
+      "setvar": 1,
+      "setwildbattle": 1,
+      "setworldmapflag": 1,
+      "special": 1,
+      "step_end": 1,
+      "waitmoncry": 1,
+      "waitmovement": 3,
+      "waitse": 1,
+      "waitstate": 1,
+      "walk_in_place_faster_left": 2,
+      "walk_in_place_faster_right": 1,
+      "warp": 1
+    }
+  }
+}

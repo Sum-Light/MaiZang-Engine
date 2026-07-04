@@ -1,0 +1,3066 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "MossdeepCity_StevensHouse",
+    "map_script": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+    "map_json": "data/maps/MossdeepCity_StevensHouse/map.json",
+    "map_id": "MAP_MOSSDEEP_CITY_STEVENS_HOUSE",
+    "map_name": "MossdeepCity_StevensHouse"
+  },
+  "labels": {
+    "MossdeepCity_StevensHouse_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 4
+    },
+    "MossdeepCity_StevensHouse_OnLoad": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_StevensHouse_EventScript_HideStevensNote": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_StevensHouse_OnTransition": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_StevensHouse_EventScript_SetStevenPos": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "MossdeepCity_StevensHouse_OnFrame": {
+      "kind": "map_script_table",
+      "line": 24,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_StevensHouse_EventScript_StevenGivesDive": {
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 24
+    },
+    "MossdeepCity_StevensHouse_Movement_StevenApproachPlayer": {
+      "kind": "movement",
+      "line": 54,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 8
+    },
+    "MossdeepCity_StevensHouse_Movement_StevenReturn": {
+      "kind": "movement",
+      "line": 64,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 6
+    },
+    "MossdeepCity_StevensHouse_EventScript_BeldumPokeball": {
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 5
+    },
+    "MossdeepCity_StevensHouse_EventScript_LeaveBeldum": {
+      "kind": "script",
+      "line": 79,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "MossdeepCity_StevensHouse_EventScript_GiveBeldum": {
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 6
+    },
+    "MossdeepCity_StevensHouse_EventScript_SendBeldumParty": {
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 7
+    },
+    "MossdeepCity_StevensHouse_EventScript_SendBeldumPC": {
+      "kind": "script",
+      "line": 101,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 6
+    },
+    "MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC": {
+      "kind": "script",
+      "line": 109,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare": {
+      "kind": "script",
+      "line": 114,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 8
+    },
+    "MossdeepCity_StevensHouse_EventScript_ReceivedBeldum": {
+      "kind": "script",
+      "line": 124,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 4
+    },
+    "MossdeepCity_StevensHouse_EventScript_RockDisplay": {
+      "kind": "script",
+      "line": 130,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_StevensHouse_EventScript_Steven": {
+      "kind": "script",
+      "line": 134,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 2
+    },
+    "MossdeepCity_StevensHouse_EventScript_Letter": {
+      "kind": "script",
+      "line": 138,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 4
+    },
+    "MossdeepCity_StevensHouse_EventScript_DiveItemBall": {
+      "kind": "script",
+      "line": 145,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 3
+    },
+    "MossdeepCity_StevensHouse_Text_YouveEarnedHMDive": {
+      "kind": "text",
+      "line": 150,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_StevensHouse_Text_ExplainDive": {
+      "kind": "text",
+      "line": 153,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis": {
+      "kind": "text",
+      "line": 156,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum": {
+      "kind": "text",
+      "line": 159,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_StevensHouse_Text_ObtainedBeldum": {
+      "kind": "text",
+      "line": 162,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_StevensHouse_Text_NoSpaceForAnotherMon": {
+      "kind": "text",
+      "line": 166,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas": {
+      "kind": "text",
+      "line": 169,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_StevensHouse_Text_LetterFromSteven": {
+      "kind": "text",
+      "line": 172,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 1
+    },
+    "MossdeepCity_StevensHouse_Text_CollectionOfRareRocks": {
+      "kind": "text",
+      "line": 175,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "MossdeepCity_StevensHouse_MapScripts": {
+      "label": "MossdeepCity_StevensHouse_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_LOAD",
+            "MossdeepCity_StevensHouse_OnLoad"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_StevensHouse_OnLoad",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "MossdeepCity_StevensHouse_OnTransition"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_StevensHouse_OnTransition",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "MossdeepCity_StevensHouse_OnFrame"
+          ],
+          "line": 4,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_StevensHouse_OnFrame",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 5,
+          "raw": ".byte 0",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_OnLoad": {
+      "label": "MossdeepCity_StevensHouse_OnLoad",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_unset",
+          "args": [
+            "FLAG_SYS_GAME_CLEAR",
+            "MossdeepCity_StevensHouse_EventScript_HideStevensNote"
+          ],
+          "line": 8,
+          "raw": "call_if_unset FLAG_SYS_GAME_CLEAR, MossdeepCity_StevensHouse_EventScript_HideStevensNote",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 9,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_unset",
+          "target": "MossdeepCity_StevensHouse_EventScript_HideStevensNote",
+          "line": 8
+        }
+      ]
+    },
+    "MossdeepCity_StevensHouse_EventScript_HideStevensNote": {
+      "label": "MossdeepCity_StevensHouse_EventScript_HideStevensNote",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "setmetatile",
+          "args": [
+            "6",
+            "4",
+            "METATILE_GenericBuilding_TableEdge",
+            "TRUE"
+          ],
+          "line": 12,
+          "raw": "setmetatile 6, 4, METATILE_GenericBuilding_TableEdge, TRUE",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 13,
+          "raw": "return",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_OnTransition": {
+      "label": "MossdeepCity_StevensHouse_OnTransition",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_STEVENS_HOUSE_STATE",
+            "2",
+            "MossdeepCity_StevensHouse_EventScript_SetStevenPos"
+          ],
+          "line": 16,
+          "raw": "call_if_eq VAR_STEVENS_HOUSE_STATE, 2, MossdeepCity_StevensHouse_EventScript_SetStevenPos",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "MossdeepCity_StevensHouse_EventScript_SetStevenPos",
+          "line": 16
+        }
+      ]
+    },
+    "MossdeepCity_StevensHouse_EventScript_SetStevenPos": {
+      "label": "MossdeepCity_StevensHouse_EventScript_SetStevenPos",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "setobjectxyperm",
+          "args": [
+            "LOCALID_STEVENS_HOUSE_STEVEN",
+            "6",
+            "5"
+          ],
+          "line": 20,
+          "raw": "setobjectxyperm LOCALID_STEVENS_HOUSE_STEVEN, 6, 5",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "setobjectmovementtype",
+          "args": [
+            "LOCALID_STEVENS_HOUSE_STEVEN",
+            "MOVEMENT_TYPE_FACE_UP"
+          ],
+          "line": 21,
+          "raw": "setobjectmovementtype LOCALID_STEVENS_HOUSE_STEVEN, MOVEMENT_TYPE_FACE_UP",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 22,
+          "raw": "return",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_OnFrame": {
+      "label": "MossdeepCity_StevensHouse_OnFrame",
+      "kind": "map_script_table",
+      "line": 24,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_STEVENS_HOUSE_STATE",
+            "1",
+            "MossdeepCity_StevensHouse_EventScript_StevenGivesDive"
+          ],
+          "line": 25,
+          "raw": "map_script_2 VAR_STEVENS_HOUSE_STATE, 1, MossdeepCity_StevensHouse_EventScript_StevenGivesDive",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 26,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_EventScript_StevenGivesDive": {
+      "label": "MossdeepCity_StevensHouse_EventScript_StevenGivesDive",
+      "kind": "script",
+      "line": 28,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 29,
+          "raw": "lockall",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_STEVENS_HOUSE_STEVEN",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 30,
+          "raw": "applymovement LOCALID_STEVENS_HOUSE_STEVEN, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 31,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "playse",
+          "args": [
+            "SE_PIN"
+          ],
+          "line": 32,
+          "raw": "playse SE_PIN",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_STEVENS_HOUSE_STEVEN",
+            "Common_Movement_ExclamationMark"
+          ],
+          "line": 33,
+          "raw": "applymovement LOCALID_STEVENS_HOUSE_STEVEN, Common_Movement_ExclamationMark",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 34,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_STEVENS_HOUSE_STEVEN",
+            "Common_Movement_Delay48"
+          ],
+          "line": 35,
+          "raw": "applymovement LOCALID_STEVENS_HOUSE_STEVEN, Common_Movement_Delay48",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 36,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_STEVENS_HOUSE_STEVEN",
+            "MossdeepCity_StevensHouse_Movement_StevenApproachPlayer"
+          ],
+          "line": 37,
+          "raw": "applymovement LOCALID_STEVENS_HOUSE_STEVEN, MossdeepCity_StevensHouse_Movement_StevenApproachPlayer",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 38,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_StevensHouse_Text_YouveEarnedHMDive",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 39,
+          "raw": "msgbox MossdeepCity_StevensHouse_Text_YouveEarnedHMDive, MSGBOX_DEFAULT",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "giveitem",
+          "args": [
+            "ITEM_HM_DIVE"
+          ],
+          "line": 40,
+          "raw": "giveitem ITEM_HM_DIVE",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_HM_DIVE"
+          ],
+          "line": 41,
+          "raw": "setflag FLAG_RECEIVED_HM_DIVE",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_OMIT_DIVE_FROM_STEVEN_LETTER"
+          ],
+          "line": 42,
+          "raw": "setflag FLAG_OMIT_DIVE_FROM_STEVEN_LETTER",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_StevensHouse_Text_ExplainDive",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 43,
+          "raw": "msgbox MossdeepCity_StevensHouse_Text_ExplainDive, MSGBOX_DEFAULT",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 44,
+          "raw": "closemessage",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "delay",
+          "args": [
+            "20"
+          ],
+          "line": 45,
+          "raw": "delay 20",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_STEVENS_HOUSE_STEVEN",
+            "MossdeepCity_StevensHouse_Movement_StevenReturn"
+          ],
+          "line": 46,
+          "raw": "applymovement LOCALID_STEVENS_HOUSE_STEVEN, MossdeepCity_StevensHouse_Movement_StevenReturn",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 47,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MOSSDEEP_CITY_SCOTT"
+          ],
+          "line": 48,
+          "raw": "setflag FLAG_HIDE_MOSSDEEP_CITY_SCOTT",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT"
+          ],
+          "line": 49,
+          "raw": "setflag FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_STEVENS_HOUSE_STATE",
+            "2"
+          ],
+          "line": 50,
+          "raw": "setvar VAR_STEVENS_HOUSE_STATE, 2",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 51,
+          "raw": "releaseall",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 52,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_StevensHouse_Text_YouveEarnedHMDive",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 39
+        },
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_StevensHouse_Text_ExplainDive",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 43
+        }
+      ],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_EventScript_BeldumPokeball": {
+      "label": "MossdeepCity_StevensHouse_EventScript_BeldumPokeball",
+      "kind": "script",
+      "line": 72,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 73,
+          "raw": "lockall",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum",
+            "MSGBOX_YESNO"
+          ],
+          "line": 74,
+          "raw": "msgbox MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum, MSGBOX_YESNO",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "MossdeepCity_StevensHouse_EventScript_LeaveBeldum"
+          ],
+          "line": 75,
+          "raw": "goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_LeaveBeldum",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "MossdeepCity_StevensHouse_EventScript_GiveBeldum"
+          ],
+          "line": 76,
+          "raw": "goto MossdeepCity_StevensHouse_EventScript_GiveBeldum",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 77,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum",
+          "mode": "MSGBOX_YESNO",
+          "line": 74
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "MossdeepCity_StevensHouse_EventScript_LeaveBeldum",
+          "line": 75
+        },
+        {
+          "op": "goto",
+          "target": "MossdeepCity_StevensHouse_EventScript_GiveBeldum",
+          "line": 76
+        }
+      ]
+    },
+    "MossdeepCity_StevensHouse_EventScript_LeaveBeldum": {
+      "label": "MossdeepCity_StevensHouse_EventScript_LeaveBeldum",
+      "kind": "script",
+      "line": 79,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 80,
+          "raw": "msgbox MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas, MSGBOX_DEFAULT",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 81,
+          "raw": "releaseall",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 82,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 80
+        }
+      ],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_EventScript_GiveBeldum": {
+      "label": "MossdeepCity_StevensHouse_EventScript_GiveBeldum",
+      "kind": "script",
+      "line": 84,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_TEMP_TRANSFERRED_SPECIES",
+            "SPECIES_BELDUM"
+          ],
+          "line": 85,
+          "raw": "setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_BELDUM",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "givemon",
+          "args": [
+            "SPECIES_BELDUM",
+            "5"
+          ],
+          "line": 86,
+          "raw": "givemon SPECIES_BELDUM, 5",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MON_GIVEN_TO_PARTY",
+            "MossdeepCity_StevensHouse_EventScript_SendBeldumParty"
+          ],
+          "line": 87,
+          "raw": "goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, MossdeepCity_StevensHouse_EventScript_SendBeldumParty",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MON_GIVEN_TO_PC",
+            "MossdeepCity_StevensHouse_EventScript_SendBeldumPC"
+          ],
+          "line": 88,
+          "raw": "goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, MossdeepCity_StevensHouse_EventScript_SendBeldumPC",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "Common_EventScript_NoMoreRoomForPokemon"
+          ],
+          "line": 89,
+          "raw": "goto Common_EventScript_NoMoreRoomForPokemon",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 90,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "MossdeepCity_StevensHouse_EventScript_SendBeldumParty",
+          "line": 87
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "MossdeepCity_StevensHouse_EventScript_SendBeldumPC",
+          "line": 88
+        },
+        {
+          "op": "goto",
+          "target": "Common_EventScript_NoMoreRoomForPokemon",
+          "line": 89
+        }
+      ]
+    },
+    "MossdeepCity_StevensHouse_EventScript_SendBeldumParty": {
+      "label": "MossdeepCity_StevensHouse_EventScript_SendBeldumParty",
+      "kind": "script",
+      "line": 92,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare"
+          ],
+          "line": 93,
+          "raw": "call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_NicknameThisPokemon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 94,
+          "raw": "msgbox gText_NicknameThisPokemon, MSGBOX_YESNO",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "MossdeepCity_StevensHouse_EventScript_ReceivedBeldum"
+          ],
+          "line": 95,
+          "raw": "goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_ReceivedBeldum",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_GetGiftMonPartySlot"
+          ],
+          "line": 96,
+          "raw": "call Common_EventScript_GetGiftMonPartySlot",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_NameReceivedPartyMon"
+          ],
+          "line": 97,
+          "raw": "call Common_EventScript_NameReceivedPartyMon",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "MossdeepCity_StevensHouse_EventScript_ReceivedBeldum"
+          ],
+          "line": 98,
+          "raw": "goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 99,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_NicknameThisPokemon",
+          "mode": "MSGBOX_YESNO",
+          "line": 94
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare",
+          "line": 93
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "MossdeepCity_StevensHouse_EventScript_ReceivedBeldum",
+          "line": 95
+        },
+        {
+          "op": "call",
+          "target": "Common_EventScript_GetGiftMonPartySlot",
+          "line": 96
+        },
+        {
+          "op": "call",
+          "target": "Common_EventScript_NameReceivedPartyMon",
+          "line": 97
+        },
+        {
+          "op": "goto",
+          "target": "MossdeepCity_StevensHouse_EventScript_ReceivedBeldum",
+          "line": 98
+        }
+      ]
+    },
+    "MossdeepCity_StevensHouse_EventScript_SendBeldumPC": {
+      "label": "MossdeepCity_StevensHouse_EventScript_SendBeldumPC",
+      "kind": "script",
+      "line": 101,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare"
+          ],
+          "line": 102,
+          "raw": "call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_NicknameThisPokemon",
+            "MSGBOX_YESNO"
+          ],
+          "line": 103,
+          "raw": "msgbox gText_NicknameThisPokemon, MSGBOX_YESNO",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "NO",
+            "MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC"
+          ],
+          "line": 104,
+          "raw": "goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_NameReceivedBoxMon"
+          ],
+          "line": 105,
+          "raw": "call Common_EventScript_NameReceivedBoxMon",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC"
+          ],
+          "line": 106,
+          "raw": "goto MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 107,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_NicknameThisPokemon",
+          "mode": "MSGBOX_YESNO",
+          "line": 103
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare",
+          "line": 102
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC",
+          "line": 104
+        },
+        {
+          "op": "call",
+          "target": "Common_EventScript_NameReceivedBoxMon",
+          "line": 105
+        },
+        {
+          "op": "goto",
+          "target": "MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC",
+          "line": 106
+        }
+      ]
+    },
+    "MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC": {
+      "label": "MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC",
+      "kind": "script",
+      "line": 109,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_TransferredToPC"
+          ],
+          "line": 110,
+          "raw": "call Common_EventScript_TransferredToPC",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "goto",
+          "args": [
+            "MossdeepCity_StevensHouse_EventScript_ReceivedBeldum"
+          ],
+          "line": 111,
+          "raw": "goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 112,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_TransferredToPC",
+          "line": 110
+        },
+        {
+          "op": "goto",
+          "target": "MossdeepCity_StevensHouse_EventScript_ReceivedBeldum",
+          "line": 111
+        }
+      ]
+    },
+    "MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare": {
+      "label": "MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare",
+      "kind": "script",
+      "line": 114,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_2",
+            "SPECIES_BELDUM"
+          ],
+          "line": 115,
+          "raw": "bufferspeciesname STR_VAR_2, SPECIES_BELDUM",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_STEVENS_HOUSE_BALL"
+          ],
+          "line": 116,
+          "raw": "removeobject LOCALID_STEVENS_HOUSE_BALL",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "playfanfare",
+          "args": [
+            "MUS_OBTAIN_ITEM"
+          ],
+          "line": 117,
+          "raw": "playfanfare MUS_OBTAIN_ITEM",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "MossdeepCity_StevensHouse_Text_ObtainedBeldum"
+          ],
+          "line": 118,
+          "raw": "message MossdeepCity_StevensHouse_Text_ObtainedBeldum",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 119,
+          "raw": "waitmessage",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "waitfanfare",
+          "args": [],
+          "line": 120,
+          "raw": "waitfanfare",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "bufferspeciesname",
+          "args": [
+            "STR_VAR_1",
+            "SPECIES_BELDUM"
+          ],
+          "line": 121,
+          "raw": "bufferspeciesname STR_VAR_1, SPECIES_BELDUM",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 122,
+          "raw": "return",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "MossdeepCity_StevensHouse_Text_ObtainedBeldum",
+          "mode": "",
+          "line": 118
+        }
+      ],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_EventScript_ReceivedBeldum": {
+      "label": "MossdeepCity_StevensHouse_EventScript_ReceivedBeldum",
+      "kind": "script",
+      "line": 124,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL"
+          ],
+          "line": 125,
+          "raw": "setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_BELDUM"
+          ],
+          "line": 126,
+          "raw": "setflag FLAG_RECEIVED_BELDUM",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 127,
+          "raw": "releaseall",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 128,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_EventScript_RockDisplay": {
+      "label": "MossdeepCity_StevensHouse_EventScript_RockDisplay",
+      "kind": "script",
+      "line": 130,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_StevensHouse_Text_CollectionOfRareRocks",
+            "MSGBOX_SIGN"
+          ],
+          "line": 131,
+          "raw": "msgbox MossdeepCity_StevensHouse_Text_CollectionOfRareRocks, MSGBOX_SIGN",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 132,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_StevensHouse_Text_CollectionOfRareRocks",
+          "mode": "MSGBOX_SIGN",
+          "line": 131
+        }
+      ],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_EventScript_Steven": {
+      "label": "MossdeepCity_StevensHouse_EventScript_Steven",
+      "kind": "script",
+      "line": 134,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis",
+            "MSGBOX_NPC"
+          ],
+          "line": 135,
+          "raw": "msgbox MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis, MSGBOX_NPC",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 136,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis",
+          "mode": "MSGBOX_NPC",
+          "line": 135
+        }
+      ],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_EventScript_Letter": {
+      "label": "MossdeepCity_StevensHouse_EventScript_Letter",
+      "kind": "script",
+      "line": 138,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 139,
+          "raw": "lockall",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "MossdeepCity_StevensHouse_Text_LetterFromSteven",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 140,
+          "raw": "msgbox MossdeepCity_StevensHouse_Text_LetterFromSteven, MSGBOX_DEFAULT",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 141,
+          "raw": "releaseall",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 142,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MossdeepCity_StevensHouse_Text_LetterFromSteven",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 140
+        }
+      ],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_EventScript_DiveItemBall": {
+      "label": "MossdeepCity_StevensHouse_EventScript_DiveItemBall",
+      "kind": "script",
+      "line": 145,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "finditem",
+          "args": [
+            "ITEM_HM_DIVE"
+          ],
+          "line": 146,
+          "raw": "finditem ITEM_HM_DIVE",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RECEIVED_HM_DIVE"
+          ],
+          "line": 147,
+          "raw": "setflag FLAG_RECEIVED_HM_DIVE",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 148,
+          "raw": "end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "MossdeepCity_StevensHouse_Movement_StevenApproachPlayer": {
+      "label": "MossdeepCity_StevensHouse_Movement_StevenApproachPlayer",
+      "kind": "movement",
+      "line": 54,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 55,
+          "raw": "walk_left",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 56,
+          "raw": "walk_left",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 57,
+          "raw": "walk_left",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 58,
+          "raw": "walk_left",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 59,
+          "raw": "walk_left",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 60,
+          "raw": "walk_left",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_down",
+          "args": [],
+          "line": 61,
+          "raw": "walk_in_place_faster_down",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 62,
+          "raw": "step_end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MossdeepCity_StevensHouse_Movement_StevenReturn": {
+      "label": "MossdeepCity_StevensHouse_Movement_StevenReturn",
+      "kind": "movement",
+      "line": 64,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 65,
+          "raw": "walk_up",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 66,
+          "raw": "walk_right",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 67,
+          "raw": "walk_right",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 68,
+          "raw": "walk_right",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_up",
+          "args": [],
+          "line": 69,
+          "raw": "walk_in_place_faster_up",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 70,
+          "raw": "step_end",
+          "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "MossdeepCity_StevensHouse_Text_YouveEarnedHMDive": {
+      "label": "MossdeepCity_StevensHouse_Text_YouveEarnedHMDive",
+      "line": 150,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "raw_text": "大吾：{PLAYER}{KUN}……\\p如你所见这里没什么东西，\\n但这就是我家。\\p感谢你一直以来的帮助。\\p这是我的谢礼——\\n秘传学习器潜水。\\p不必不好意思——\\n这是你应得的。$",
+      "display_text": "大吾：{PLAYER}{KUN}……\n\n如你所见这里没什么东西，\n但这就是我家。\n\n感谢你一直以来的帮助。\n\n这是我的谢礼——\n秘传学习器潜水。\n\n不必不好意思——\n这是你应得的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 132,
+        "bytes": [
+          2,
+          211,
+          13,
+          167,
+          62,
+          253,
+          1,
+          253,
+          5,
+          176,
+          176,
+          251,
+          11,
+          103,
+          9,
+          217,
+          12,
+          156,
+          5,
+          230,
+          16,
+          85,
+          8,
+          100,
+          9,
+          83,
+          11,
+          238,
+          9,
+          76,
+          3,
+          80,
+          13,
+          189,
+          59,
+          254,
+          2,
+          233,
+          16,
+          85,
+          7,
+          125,
+          12,
+          12,
+          13,
+          152,
+          5,
+          189,
+          55,
+          251,
+          4,
+          58,
+          14,
+          70,
+          9,
+          217,
+          15,
+          11,
+          16,
+          130,
+          15,
+          36,
+          8,
+          41,
+          3,
+          11,
+          1,
+          78,
+          16,
+          203,
+          55,
+          251,
+          16,
+          85,
+          12,
+          12,
+          13,
+          152,
+          3,
+          11,
+          14,
+          70,
+          8,
+          102,
+          63,
+          63,
+          254,
+          9,
+          112,
+          2,
+          139,
+          14,
+          144,
+          13,
+          212,
+          10,
+          178,
+          10,
+          202,
+          12,
+          81,
+          55,
+          251,
+          1,
+          214,
+          1,
+          149,
+          1,
+          214,
+          4,
+          233,
+          15,
+          50,
+          12,
+          95,
+          63,
+          63,
+          254,
+          16,
+          85,
+          12,
+          12,
+          9,
+          217,
+          15,
+          84,
+          3,
+          10,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "02 D3 0D A7 3E FD 01 FD 05 B0 B0 FB 0B 67 09 D9 0C 9C 05 E6 10 55 08 64 09 53 0B EE 09 4C 03 50 0D BD 3B FE 02 E9 10 55 07 7D 0C 0C 0D 98 05 BD 37 FB 04 3A 0E 46 09 D9 0F 0B 10 82 0F 24 08 29 03 0B 01 4E 10 CB 37 FB 10 55 0C 0C 0D 98 03 0B 0E 46 08 66 3F 3F FE 09 70 02 8B 0E 90 0D D4 0A B2 0A CA 0C 51 37 FB 01 D6 01 95 01 D6 04 E9 0F 32 0C 5F 3F 3F FE 10 55 0C 0C 09 D9 0F 54 03 0A 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 11,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 32,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 41,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 54,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 64,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 74,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 84,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 93,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 3,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 11,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_StevensHouse_Text_ExplainDive": {
+      "label": "MossdeepCity_StevensHouse_Text_ExplainDive",
+      "line": 153,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "raw_text": "大吾：使用冲浪的时候，\\n你大概也注意到水中的深色区域了，\\p在那样的区域上使用潜水\\n就能够潜入海底。\\p要是想再浮到海面上的话，\\n再次使用潜水就好。\\p不过，有些区域是\\n无法上浮的。$",
+      "display_text": "大吾：使用冲浪的时候，\n你大概也注意到水中的深色区域了，\n\n在那样的区域上使用潜水\n就能够潜入海底。\n\n要是想再浮到海面上的话，\n再次使用潜水就好。\n\n不过，有些区域是\n无法上浮的。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 162,
+        "bytes": [
+          2,
+          211,
+          13,
+          167,
+          62,
+          11,
+          245,
+          15,
+          113,
+          2,
+          103,
+          8,
+          64,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          59,
+          254,
+          9,
+          217,
+          2,
+          211,
+          4,
+          47,
+          15,
+          2,
+          16,
+          209,
+          15,
+          50,
+          3,
+          4,
+          12,
+          81,
+          16,
+          161,
+          3,
+          11,
+          11,
+          204,
+          11,
+          137,
+          11,
+          26,
+          15,
+          160,
+          8,
+          158,
+          59,
+          251,
+          15,
+          230,
+          9,
+          189,
+          14,
+          226,
+          3,
+          11,
+          11,
+          26,
+          15,
+          160,
+          11,
+          173,
+          11,
+          245,
+          15,
+          113,
+          10,
+          202,
+          12,
+          81,
+          254,
+          7,
+          125,
+          9,
+          210,
+          4,
+          131,
+          10,
+          202,
+          11,
+          107,
+          4,
+          201,
+          3,
+          30,
+          55,
+          251,
+          14,
+          241,
+          12,
+          12,
+          14,
+          24,
+          15,
+          229,
+          4,
+          11,
+          3,
+          4,
+          4,
+          201,
+          9,
+          126,
+          11,
+          173,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          15,
+          229,
+          2,
+          174,
+          11,
+          245,
+          15,
+          113,
+          10,
+          202,
+          12,
+          81,
+          7,
+          125,
+          4,
+          233,
+          55,
+          251,
+          1,
+          214,
+          4,
+          197,
+          59,
+          15,
+          126,
+          14,
+          52,
+          11,
+          26,
+          15,
+          160,
+          12,
+          12,
+          254,
+          13,
+          164,
+          3,
+          171,
+          11,
+          173,
+          4,
+          11,
+          3,
+          11,
+          55,
+          255
+        ],
+        "hex": "02 D3 0D A7 3E 0B F5 0F 71 02 67 08 40 03 0B 0B ED 05 21 3B FE 09 D9 02 D3 04 2F 0F 02 10 D1 0F 32 03 04 0C 51 10 A1 03 0B 0B CC 0B 89 0B 1A 0F A0 08 9E 3B FB 0F E6 09 BD 0E E2 03 0B 0B 1A 0F A0 0B AD 0B F5 0F 71 0A CA 0C 51 FE 07 7D 09 D2 04 83 0A CA 0B 6B 04 C9 03 1E 37 FB 0E F1 0C 0C 0E 18 0F E5 04 0B 03 04 04 C9 09 7E 0B AD 03 0B 05 3D 3B FE 0F E5 02 AE 0B F5 0F 71 0A CA 0C 51 07 7D 04 E9 37 FB 01 D6 04 C5 3B 0F 7E 0E 34 0B 1A 0F A0 0C 0C FE 0D A4 03 AB 0B AD 04 0B 03 0B 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 29,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 42,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 52,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 66,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 77,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 87,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 95,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis": {
+      "label": "MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis",
+      "line": 156,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "raw_text": "大吾：据说在绿岭市和琉璃市\\n之间有个海底洞窟，\\p就是楠木馆长乘潜艇\\n找到的那一个。$",
+      "display_text": "大吾：据说在绿岭市和琉璃市\n之间有个海底洞窟，\n\n就是楠木馆长乘潜艇\n找到的那一个。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 77,
+        "bytes": [
+          2,
+          211,
+          13,
+          167,
+          62,
+          7,
+          141,
+          12,
+          88,
+          15,
+          230,
+          9,
+          6,
+          8,
+          190,
+          12,
+          21,
+          4,
+          243,
+          8,
+          195,
+          8,
+          122,
+          12,
+          21,
+          254,
+          16,
+          127,
+          5,
+          207,
+          15,
+          126,
+          4,
+          96,
+          4,
+          201,
+          3,
+          30,
+          3,
+          89,
+          7,
+          237,
+          59,
+          251,
+          7,
+          125,
+          12,
+          12,
+          23,
+          175,
+          9,
+          180,
+          4,
+          165,
+          2,
+          38,
+          2,
+          77,
+          10,
+          202,
+          13,
+          15,
+          254,
+          16,
+          69,
+          3,
+          4,
+          3,
+          11,
+          9,
+          189,
+          15,
+          11,
+          4,
+          96,
+          55,
+          255
+        ],
+        "hex": "02 D3 0D A7 3E 07 8D 0C 58 0F E6 09 06 08 BE 0C 15 04 F3 08 C3 08 7A 0C 15 FE 10 7F 05 CF 0F 7E 04 60 04 C9 03 1E 03 59 07 ED 3B FB 07 7D 0C 0C 17 AF 09 B4 04 A5 02 26 02 4D 0A CA 0D 0F FE 10 45 03 04 03 0B 09 BD 0F 0B 04 60 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 24,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 35,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum": {
+      "label": "MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum",
+      "line": 159,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "raw_text": "{PLAYER}调查精灵球。\\p里面是宝可梦\\n铁哑铃。\\p要拿走精灵球吗？$",
+      "display_text": "{PLAYER}调查精灵球。\n\n里面是宝可梦\n铁哑铃。\n\n要拿走精灵球吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 51,
+        "bytes": [
+          253,
+          1,
+          3,
+          62,
+          2,
+          13,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          55,
+          251,
+          8,
+          100,
+          9,
+          126,
+          12,
+          12,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          13,
+          4,
+          14,
+          175,
+          8,
+          184,
+          55,
+          251,
+          14,
+          241,
+          9,
+          185,
+          17,
+          23,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "FD 01 03 3E 02 0D 07 5B 08 BC 0B 14 37 FB 08 64 09 7E 0C 0C 01 63 07 D7 09 66 FE 0D 04 0E AF 08 B8 37 FB 0E F1 09 B9 11 17 07 5B 08 BC 0B 14 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 22,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 28,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 38,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_StevensHouse_Text_ObtainedBeldum": {
+      "label": "MossdeepCity_StevensHouse_Text_ObtainedBeldum",
+      "line": 162,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "raw_text": "{PLAYER}得到铁哑铃。$",
+      "display_text": "{PLAYER}得到铁哑铃。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 14,
+        "bytes": [
+          253,
+          1,
+          3,
+          10,
+          3,
+          4,
+          13,
+          4,
+          14,
+          175,
+          8,
+          184,
+          55,
+          255
+        ],
+        "hex": "FD 01 03 0A 03 04 0D 04 0E AF 08 B8 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 14,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_StevensHouse_Text_NoSpaceForAnotherMon": {
+      "label": "MossdeepCity_StevensHouse_Text_NoSpaceForAnotherMon",
+      "line": 166,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "raw_text": "没有地方放这只宝可梦了。$",
+      "display_text": "没有地方放这只宝可梦了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 24,
+        "bytes": [
+          9,
+          83,
+          15,
+          126,
+          3,
+          31,
+          3,
+          192,
+          3,
+          200,
+          16,
+          85,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "09 53 0F 7E 03 1F 03 C0 03 C8 10 55 10 8C 01 63 07 D7 09 66 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 12,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas": {
+      "label": "MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas",
+      "line": 169,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "raw_text": "{PLAYER}把精灵球\\n放回了原处。$",
+      "display_text": "{PLAYER}把精灵球\n放回了原处。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          253,
+          1,
+          1,
+          48,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          254,
+          3,
+          200,
+          5,
+          101,
+          8,
+          158,
+          15,
+          185,
+          2,
+          134,
+          55,
+          255
+        ],
+        "hex": "FD 01 01 30 07 5B 08 BC 0B 14 FE 03 C8 05 65 08 9E 0F B9 02 86 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 20,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 0,
+            "bytes": [
+              253,
+              1
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_StevensHouse_Text_LetterFromSteven": {
+      "label": "MossdeepCity_StevensHouse_Text_LetterFromSteven",
+      "line": 172,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "raw_text": "是一封信。\\p…… …… ……\\p致{PLAYER}{KUN}……\\p已我决定踏上自我\\n探索与修行之旅。\\p短时间内不\\n打算回家，\\p我想拜托你收下\\n桌上的精灵球，\\p里面是我最喜欢的宝可梦——\\n铁哑铃，\\p拜托你照顾好它。\\p愿你我终有相逢之日。\\p大吾·兹伏奇$",
+      "display_text": "是一封信。\n\n…… …… ……\n\n致{PLAYER}{KUN}……\n\n已我决定踏上自我\n探索与修行之旅。\n\n短时间内不\n打算回家，\n\n我想拜托你收下\n桌上的精灵球，\n\n里面是我最喜欢的宝可梦——\n铁哑铃，\n\n拜托你照顾好它。\n\n愿你我终有相逢之日。\n\n大吾·兹伏奇",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 192,
+        "bytes": [
+          12,
+          12,
+          15,
+          11,
+          3,
+          229,
+          14,
+          80,
+          55,
+          251,
+          176,
+          176,
+          0,
+          176,
+          176,
+          0,
+          176,
+          176,
+          251,
+          16,
+          147,
+          253,
+          1,
+          253,
+          5,
+          176,
+          176,
+          251,
+          15,
+          33,
+          13,
+          152,
+          7,
+          166,
+          3,
+          77,
+          12,
+          165,
+          11,
+          173,
+          17,
+          12,
+          13,
+          152,
+          254,
+          12,
+          190,
+          12,
+          154,
+          15,
+          153,
+          14,
+          105,
+          14,
+          91,
+          16,
+          127,
+          8,
+          244,
+          55,
+          251,
+          3,
+          113,
+          11,
+          237,
+          5,
+          207,
+          9,
+          208,
+          1,
+          214,
+          254,
+          2,
+          210,
+          12,
+          134,
+          5,
+          101,
+          5,
+          189,
+          59,
+          251,
+          13,
+          152,
+          14,
+          24,
+          1,
+          60,
+          13,
+          56,
+          9,
+          217,
+          12,
+          26,
+          13,
+          230,
+          254,
+          16,
+          239,
+          11,
+          173,
+          3,
+          11,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          59,
+          251,
+          8,
+          100,
+          9,
+          126,
+          12,
+          12,
+          13,
+          152,
+          17,
+          38,
+          13,
+          214,
+          5,
+          67,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          63,
+          63,
+          254,
+          13,
+          4,
+          14,
+          175,
+          8,
+          184,
+          59,
+          251,
+          1,
+          60,
+          13,
+          56,
+          9,
+          217,
+          16,
+          72,
+          4,
+          147,
+          4,
+          233,
+          12,
+          159,
+          55,
+          251,
+          15,
+          196,
+          9,
+          217,
+          13,
+          152,
+          16,
+          166,
+          15,
+          126,
+          14,
+          13,
+          3,
+          237,
+          16,
+          127,
+          11,
+          85,
+          55,
+          251,
+          2,
+          211,
+          13,
+          167,
+          175,
+          17,
+          0,
+          4,
+          8,
+          10,
+          161,
+          255
+        ],
+        "hex": "0C 0C 0F 0B 03 E5 0E 50 37 FB B0 B0 00 B0 B0 00 B0 B0 FB 10 93 FD 01 FD 05 B0 B0 FB 0F 21 0D 98 07 A6 03 4D 0C A5 0B AD 11 0C 0D 98 FE 0C BE 0C 9A 0F 99 0E 69 0E 5B 10 7F 08 F4 37 FB 03 71 0B ED 05 CF 09 D0 01 D6 FE 02 D2 0C 86 05 65 05 BD 3B FB 0D 98 0E 18 01 3C 0D 38 09 D9 0C 1A 0D E6 FE 10 EF 0B AD 03 0B 07 5B 08 BC 0B 14 3B FB 08 64 09 7E 0C 0C 0D 98 11 26 0D D6 05 43 03 0B 01 63 07 D7 09 66 3F 3F FE 0D 04 0E AF 08 B8 3B FB 01 3C 0D 38 09 D9 10 48 04 93 04 E9 0C 9F 37 FB 0F C4 09 D9 0D 98 10 A6 0F 7E 0E 0D 03 ED 10 7F 0B 55 37 FB 02 D3 0D A7 AF 11 00 04 08 0A A1 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 5,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 15,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 18,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 26,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 33,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 43,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 53,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 60,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 67,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 76,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 85,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 100,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 106,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 116,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 128,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 136,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 18,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 26,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "MossdeepCity_StevensHouse_Text_CollectionOfRareRocks": {
+      "label": "MossdeepCity_StevensHouse_Text_CollectionOfRareRocks",
+      "line": 175,
+      "source_file": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+      "raw_text": "是大吾收集的\\n稀有石头。$",
+      "display_text": "是大吾收集的\n稀有石头。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 23,
+        "bytes": [
+          12,
+          12,
+          2,
+          211,
+          13,
+          167,
+          12,
+          26,
+          5,
+          154,
+          3,
+          11,
+          254,
+          13,
+          197,
+          15,
+          126,
+          11,
+          235,
+          13,
+          31,
+          55,
+          255
+        ],
+        "hex": "0C 0C 02 D3 0D A7 0C 1A 05 9A 03 0B FE 0D C5 0F 7E 0B EB 0D 1F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 5,
+      "bufferspeciesname": 2,
+      "call_if_eq": 1,
+      "call_if_unset": 1,
+      "closemessage": 1,
+      "delay": 1,
+      "finditem": 1,
+      "giveitem": 1,
+      "givemon": 1,
+      "goto_if_eq": 5,
+      "map_script": 3,
+      "map_script_2": 1,
+      "playfanfare": 1,
+      "playse": 1,
+      "removeobject": 1,
+      "setflag": 7,
+      "setmetatile": 1,
+      "setobjectmovementtype": 1,
+      "setobjectxyperm": 1,
+      "setvar": 2,
+      "step_end": 2,
+      "waitfanfare": 1,
+      "waitmessage": 1,
+      "waitmovement": 5,
+      "walk_in_place_faster_down": 1,
+      "walk_in_place_faster_up": 1,
+      "walk_left": 6,
+      "walk_right": 3,
+      "walk_up": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 30,
+    "script_count": 19,
+    "movement_count": 2,
+    "text_count": 9,
+    "encoded_text_count": 9,
+    "text_source_byte_count": 698,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 9
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 5,
+      "bufferspeciesname": 2,
+      "call": 6,
+      "call_if_eq": 1,
+      "call_if_unset": 1,
+      "closemessage": 1,
+      "delay": 1,
+      "end": 14,
+      "finditem": 1,
+      "giveitem": 1,
+      "givemon": 1,
+      "goto": 5,
+      "goto_if_eq": 5,
+      "lockall": 3,
+      "map_script": 3,
+      "map_script_2": 1,
+      "message": 1,
+      "msgbox": 9,
+      "playfanfare": 1,
+      "playse": 1,
+      "releaseall": 4,
+      "removeobject": 1,
+      "return": 3,
+      "setflag": 7,
+      "setmetatile": 1,
+      "setobjectmovementtype": 1,
+      "setobjectxyperm": 1,
+      "setvar": 2,
+      "step_end": 2,
+      "waitfanfare": 1,
+      "waitmessage": 1,
+      "waitmovement": 5,
+      "walk_in_place_faster_down": 1,
+      "walk_in_place_faster_up": 1,
+      "walk_left": 6,
+      "walk_right": 3,
+      "walk_up": 1
+    }
+  }
+}

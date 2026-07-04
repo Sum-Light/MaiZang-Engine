@@ -1,0 +1,1066 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "CeladonCity_DepartmentStore_5F_Frlg",
+    "map_script": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+    "map_json": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/map.json",
+    "map_id": "MAP_CELADON_CITY_DEPARTMENT_STORE_5F",
+    "map_name": "CeladonCity_DepartmentStore_5F_Frlg"
+  },
+  "labels": {
+    "CeladonCity_DepartmentStore_5F_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "CeladonCity_DepartmentStore_5F_EventScript_Gentleman": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_DepartmentStore_5F_EventScript_Sailor": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_DepartmentStore_5F_EventScript_FloorSign": {
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "CeladonCity_DepartmentStore_5F_EventScript_ClerkXItems": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CeladonCity_DepartmentStore_5F_XItems": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 10
+    },
+    "CeladonCity_DepartmentStore_5F_EventScript_ClerkVitamins": {
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CeladonCity_DepartmentStore_5F_Vitamins": {
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 9
+    },
+    "CeladonCity_DepartmentStore_5F_Text_ExplainStatEnhancers": {
+      "kind": "text",
+      "line": 61,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 6
+    },
+    "CeladonCity_DepartmentStore_5F_Text_HereForStatEnhancers": {
+      "kind": "text",
+      "line": 69,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "CeladonCity_DepartmentStore_5F_Text_Drugstore": {
+      "kind": "text",
+      "line": 75,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "CeladonCity_DepartmentStore_5F_Frlg_MapScripts": {
+      "label": "CeladonCity_DepartmentStore_5F_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_5F_EventScript_Gentleman": {
+      "label": "CeladonCity_DepartmentStore_5F_EventScript_Gentleman",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_DepartmentStore_5F_Text_ExplainStatEnhancers",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox CeladonCity_DepartmentStore_5F_Text_ExplainStatEnhancers, MSGBOX_NPC",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_DepartmentStore_5F_Text_ExplainStatEnhancers",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_5F_EventScript_Sailor": {
+      "label": "CeladonCity_DepartmentStore_5F_EventScript_Sailor",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_DepartmentStore_5F_Text_HereForStatEnhancers",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox CeladonCity_DepartmentStore_5F_Text_HereForStatEnhancers, MSGBOX_NPC",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_DepartmentStore_5F_Text_HereForStatEnhancers",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_5F_EventScript_FloorSign": {
+      "label": "CeladonCity_DepartmentStore_5F_EventScript_FloorSign",
+      "kind": "script",
+      "line": 12,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "CeladonCity_DepartmentStore_5F_Text_Drugstore",
+            "MSGBOX_SIGN"
+          ],
+          "line": 13,
+          "raw": "msgbox CeladonCity_DepartmentStore_5F_Text_Drugstore, MSGBOX_SIGN",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 14,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "CeladonCity_DepartmentStore_5F_Text_Drugstore",
+          "mode": "MSGBOX_SIGN",
+          "line": 13
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_5F_EventScript_ClerkXItems": {
+      "label": "CeladonCity_DepartmentStore_5F_EventScript_ClerkXItems",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 17,
+          "raw": "lock",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 18,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_HowMayIServeYou"
+          ],
+          "line": 19,
+          "raw": "message gText_HowMayIServeYou",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 20,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "pokemart",
+          "args": [
+            "CeladonCity_DepartmentStore_5F_XItems"
+          ],
+          "line": 21,
+          "raw": "pokemart CeladonCity_DepartmentStore_5F_XItems",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain"
+          ],
+          "line": 22,
+          "raw": "msgbox gText_PleaseComeAgain",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 23,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 24,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 26,
+          "raw": ".align 2",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_HowMayIServeYou",
+          "mode": "",
+          "line": 19
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "",
+          "line": 22
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_5F_XItems": {
+      "label": "CeladonCity_DepartmentStore_5F_XItems",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_ATTACK"
+          ],
+          "line": 28,
+          "raw": ".2byte ITEM_X_ATTACK",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_DEFEND"
+          ],
+          "line": 29,
+          "raw": ".2byte ITEM_X_DEFEND",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_SPEED"
+          ],
+          "line": 30,
+          "raw": ".2byte ITEM_X_SPEED",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_SPECIAL"
+          ],
+          "line": 31,
+          "raw": ".2byte ITEM_X_SPECIAL",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_ACCURACY"
+          ],
+          "line": 32,
+          "raw": ".2byte ITEM_X_ACCURACY",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_GUARD_SPEC"
+          ],
+          "line": 33,
+          "raw": ".2byte ITEM_GUARD_SPEC",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_DIRE_HIT"
+          ],
+          "line": 34,
+          "raw": ".2byte ITEM_DIRE_HIT",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_NONE"
+          ],
+          "line": 35,
+          "raw": ".2byte ITEM_NONE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 36,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_5F_EventScript_ClerkVitamins": {
+      "label": "CeladonCity_DepartmentStore_5F_EventScript_ClerkVitamins",
+      "kind": "script",
+      "line": 39,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 40,
+          "raw": "lock",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 41,
+          "raw": "faceplayer",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_HowMayIServeYou"
+          ],
+          "line": 42,
+          "raw": "message gText_HowMayIServeYou",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 43,
+          "raw": "waitmessage",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "pokemart",
+          "args": [
+            "CeladonCity_DepartmentStore_5F_Vitamins"
+          ],
+          "line": 44,
+          "raw": "pokemart CeladonCity_DepartmentStore_5F_Vitamins",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain"
+          ],
+          "line": 45,
+          "raw": "msgbox gText_PleaseComeAgain",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 46,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 47,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 49,
+          "raw": ".align 2",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_HowMayIServeYou",
+          "mode": "",
+          "line": 42
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "",
+          "line": 45
+        }
+      ],
+      "branch_targets": []
+    },
+    "CeladonCity_DepartmentStore_5F_Vitamins": {
+      "label": "CeladonCity_DepartmentStore_5F_Vitamins",
+      "kind": "script",
+      "line": 50,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_HP_UP"
+          ],
+          "line": 51,
+          "raw": ".2byte ITEM_HP_UP",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_PROTEIN"
+          ],
+          "line": 52,
+          "raw": ".2byte ITEM_PROTEIN",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_IRON"
+          ],
+          "line": 53,
+          "raw": ".2byte ITEM_IRON",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_CALCIUM"
+          ],
+          "line": 54,
+          "raw": ".2byte ITEM_CALCIUM",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ZINC"
+          ],
+          "line": 55,
+          "raw": ".2byte ITEM_ZINC",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_CARBOS"
+          ],
+          "line": 56,
+          "raw": ".2byte ITEM_CARBOS",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_NONE"
+          ],
+          "line": 57,
+          "raw": ".2byte ITEM_NONE",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 58,
+          "raw": "release",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 59,
+          "raw": "end",
+          "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "CeladonCity_DepartmentStore_5F_Text_ExplainStatEnhancers": {
+      "label": "CeladonCity_DepartmentStore_5F_Text_ExplainStatEnhancers",
+      "line": 61,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "raw_text": "只有这里才能买到\\n宝可梦能力增强剂。\\pHP提升剂增加宝可梦的基础HP。\\p特攻增强剂提升宝可梦的基础特攻。\\p特防增强剂提升宝可梦的基础特防。\\p速度增强剂提升宝可梦的基础速度。$",
+      "display_text": "只有这里才能买到\n宝可梦能力增强剂。\n\nHP提升剂增加宝可梦的基础HP。\n\n特攻增强剂提升宝可梦的基础特攻。\n\n特防增强剂提升宝可梦的基础特防。\n\n速度增强剂提升宝可梦的基础速度。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 159,
+        "bytes": [
+          16,
+          140,
+          15,
+          126,
+          16,
+          85,
+          8,
+          100,
+          1,
+          224,
+          9,
+          210,
+          9,
+          44,
+          3,
+          4,
+          254,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          9,
+          210,
+          8,
+          121,
+          16,
+          11,
+          10,
+          216,
+          5,
+          172,
+          55,
+          251,
+          194,
+          202,
+          12,
+          226,
+          11,
+          219,
+          5,
+          172,
+          16,
+          11,
+          5,
+          190,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          134,
+          2,
+          129,
+          194,
+          202,
+          55,
+          251,
+          12,
+          217,
+          4,
+          109,
+          16,
+          11,
+          10,
+          216,
+          5,
+          172,
+          12,
+          226,
+          11,
+          219,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          134,
+          2,
+          129,
+          12,
+          217,
+          4,
+          109,
+          55,
+          251,
+          12,
+          217,
+          3,
+          195,
+          16,
+          11,
+          10,
+          216,
+          5,
+          172,
+          12,
+          226,
+          11,
+          219,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          134,
+          2,
+          129,
+          12,
+          217,
+          3,
+          195,
+          55,
+          251,
+          12,
+          124,
+          3,
+          109,
+          16,
+          11,
+          10,
+          216,
+          5,
+          172,
+          12,
+          226,
+          11,
+          219,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          134,
+          2,
+          129,
+          12,
+          124,
+          3,
+          109,
+          55,
+          255
+        ],
+        "hex": "10 8C 0F 7E 10 55 08 64 01 E0 09 D2 09 2C 03 04 FE 01 63 07 D7 09 66 09 D2 08 79 10 0B 0A D8 05 AC 37 FB C2 CA 0C E2 0B DB 05 AC 10 0B 05 BE 01 63 07 D7 09 66 03 0B 05 86 02 81 C2 CA 37 FB 0C D9 04 6D 10 0B 0A D8 05 AC 0C E2 0B DB 01 63 07 D7 09 66 03 0B 05 86 02 81 0C D9 04 6D 37 FB 0C D9 03 C3 10 0B 0A D8 05 AC 0C E2 0B DB 01 63 07 D7 09 66 03 0B 05 86 02 81 0C D9 03 C3 37 FB 0C 7C 03 6D 10 0B 0A D8 05 AC 0C E2 0B DB 01 63 07 D7 09 66 03 0B 05 86 02 81 0C 7C 03 6D 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 37,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 55,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 73,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 91,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_DepartmentStore_5F_Text_HereForStatEnhancers": {
+      "label": "CeladonCity_DepartmentStore_5F_Text_HereForStatEnhancers",
+      "line": 69,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "raw_text": "我是来这里\\n买宝可梦能力增强剂的。\\p攻击增强剂增加宝可梦的基础攻击。\\p防御增强剂增加宝可梦的基础防御。$",
+      "display_text": "我是来这里\n买宝可梦能力增强剂的。\n\n攻击增强剂增加宝可梦的基础攻击。\n\n防御增强剂增加宝可梦的基础防御。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 97,
+        "bytes": [
+          13,
+          152,
+          12,
+          12,
+          8,
+          41,
+          16,
+          85,
+          8,
+          100,
+          254,
+          9,
+          44,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          9,
+          210,
+          8,
+          121,
+          16,
+          11,
+          10,
+          216,
+          5,
+          172,
+          3,
+          11,
+          55,
+          251,
+          4,
+          109,
+          5,
+          132,
+          16,
+          11,
+          10,
+          216,
+          5,
+          172,
+          16,
+          11,
+          5,
+          190,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          134,
+          2,
+          129,
+          4,
+          109,
+          5,
+          132,
+          55,
+          251,
+          3,
+          195,
+          15,
+          167,
+          16,
+          11,
+          10,
+          216,
+          5,
+          172,
+          16,
+          11,
+          5,
+          190,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          134,
+          2,
+          129,
+          3,
+          195,
+          15,
+          167,
+          55,
+          255
+        ],
+        "hex": "0D 98 0C 0C 08 29 10 55 08 64 FE 09 2C 01 63 07 D7 09 66 09 D2 08 79 10 0B 0A D8 05 AC 03 0B 37 FB 04 6D 05 84 10 0B 0A D8 05 AC 10 0B 05 BE 01 63 07 D7 09 66 03 0B 05 86 02 81 04 6D 05 84 37 FB 03 C3 0F A7 10 0B 0A D8 05 AC 10 0B 05 BE 01 63 07 D7 09 66 03 0B 05 86 02 81 03 C3 0F A7 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 18,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 36,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 54,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "CeladonCity_DepartmentStore_5F_Text_Drugstore": {
+      "label": "CeladonCity_DepartmentStore_5F_Text_Drugstore",
+      "line": 75,
+      "source_file": "data/maps/CeladonCity_DepartmentStore_5F_Frlg/scripts.inc",
+      "raw_text": "五楼：药店$",
+      "display_text": "五楼：药店",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 10,
+        "bytes": [
+          13,
+          171,
+          8,
+          214,
+          62,
+          14,
+          240,
+          3,
+          49,
+          255
+        ],
+        "hex": "0D AB 08 D6 3E 0E F0 03 31 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 5,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 2,
+      "pokemart": 2,
+      "waitmessage": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 266,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 7,
+      "faceplayer": 2,
+      "lock": 2,
+      "message": 2,
+      "msgbox": 5,
+      "pokemart": 2,
+      "release": 4,
+      "waitmessage": 2
+    }
+  }
+}

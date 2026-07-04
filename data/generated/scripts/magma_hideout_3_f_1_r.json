@@ -1,0 +1,810 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "MagmaHideout_3F_1R",
+    "map_script": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+    "map_json": "data/maps/MagmaHideout_3F_1R/map.json",
+    "map_id": "MAP_MAGMA_HIDEOUT_3F_1R",
+    "map_name": "MagmaHideout_3F_1R"
+  },
+  "labels": {
+    "MagmaHideout_3F_1R_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instruction_count": 1
+    },
+    "MagmaHideout_3F_1R_EventScript_Grunt9": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instruction_count": 3
+    },
+    "MagmaHideout_3F_1R_EventScript_Grunt16": {
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instruction_count": 3
+    },
+    "MagmaHideout_3F_1R_Text_Grunt9Intro": {
+      "kind": "text",
+      "line": 14,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instruction_count": 1
+    },
+    "MagmaHideout_3F_1R_Text_Grunt9Defeat": {
+      "kind": "text",
+      "line": 17,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instruction_count": 1
+    },
+    "MagmaHideout_3F_1R_Text_Grunt9PostBattle": {
+      "kind": "text",
+      "line": 20,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instruction_count": 1
+    },
+    "MagmaHideout_3F_1R_Text_Grunt16Intro": {
+      "kind": "text",
+      "line": 23,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instruction_count": 1
+    },
+    "MagmaHideout_3F_1R_Text_Grunt16Defeat": {
+      "kind": "text",
+      "line": 26,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instruction_count": 1
+    },
+    "MagmaHideout_3F_1R_Text_Grunt16PostBattle": {
+      "kind": "text",
+      "line": 29,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "MagmaHideout_3F_1R_MapScripts": {
+      "label": "MagmaHideout_3F_1R_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "MagmaHideout_3F_1R_EventScript_Grunt9": {
+      "label": "MagmaHideout_3F_1R_EventScript_Grunt9",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_GRUNT_MAGMA_HIDEOUT_9",
+            "MagmaHideout_3F_1R_Text_Grunt9Intro",
+            "MagmaHideout_3F_1R_Text_Grunt9Defeat"
+          ],
+          "line": 5,
+          "raw": "trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_9, MagmaHideout_3F_1R_Text_Grunt9Intro, MagmaHideout_3F_1R_Text_Grunt9Defeat",
+          "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "MagmaHideout_3F_1R_Text_Grunt9PostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 6,
+          "raw": "msgbox MagmaHideout_3F_1R_Text_Grunt9PostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 7,
+          "raw": "end",
+          "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MagmaHideout_3F_1R_Text_Grunt9PostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 6
+        }
+      ],
+      "branch_targets": []
+    },
+    "MagmaHideout_3F_1R_EventScript_Grunt16": {
+      "label": "MagmaHideout_3F_1R_EventScript_Grunt16",
+      "kind": "script",
+      "line": 9,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "instructions": [
+        {
+          "op": "trainerbattle_single",
+          "args": [
+            "TRAINER_GRUNT_MAGMA_HIDEOUT_16",
+            "MagmaHideout_3F_1R_Text_Grunt16Intro",
+            "MagmaHideout_3F_1R_Text_Grunt16Defeat"
+          ],
+          "line": 10,
+          "raw": "trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_16, MagmaHideout_3F_1R_Text_Grunt16Intro, MagmaHideout_3F_1R_Text_Grunt16Defeat",
+          "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "MagmaHideout_3F_1R_Text_Grunt16PostBattle",
+            "MSGBOX_AUTOCLOSE"
+          ],
+          "line": 11,
+          "raw": "msgbox MagmaHideout_3F_1R_Text_Grunt16PostBattle, MSGBOX_AUTOCLOSE",
+          "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 12,
+          "raw": "end",
+          "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "MagmaHideout_3F_1R_Text_Grunt16PostBattle",
+          "mode": "MSGBOX_AUTOCLOSE",
+          "line": 11
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "MagmaHideout_3F_1R_Text_Grunt9Intro": {
+      "label": "MagmaHideout_3F_1R_Text_Grunt9Intro",
+      "line": 14,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "raw_text": "我怎么会被分配到\\n这个岗位上？\\p我的左耳快烤熟了！$",
+      "display_text": "我怎么会被分配到\n这个岗位上？\n\n我的左耳快烤熟了！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 47,
+        "bytes": [
+          13,
+          152,
+          16,
+          10,
+          9,
+          76,
+          5,
+          110,
+          1,
+          120,
+          3,
+          217,
+          10,
+          65,
+          3,
+          4,
+          254,
+          16,
+          85,
+          4,
+          96,
+          4,
+          68,
+          13,
+          129,
+          11,
+          173,
+          61,
+          251,
+          13,
+          152,
+          3,
+          11,
+          17,
+          43,
+          3,
+          159,
+          8,
+          3,
+          7,
+          204,
+          12,
+          49,
+          8,
+          158,
+          60,
+          255
+        ],
+        "hex": "0D 98 10 0A 09 4C 05 6E 01 78 03 D9 0A 41 03 04 FE 10 55 04 60 04 44 0D 81 0B AD 3D FB 0D 98 03 0B 11 2B 03 9F 08 03 07 CC 0C 31 08 9E 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 27,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MagmaHideout_3F_1R_Text_Grunt9Defeat": {
+      "label": "MagmaHideout_3F_1R_Text_Grunt9Defeat",
+      "line": 17,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "raw_text": "快热晕了……$",
+      "display_text": "快热晕了……",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 11,
+        "bytes": [
+          8,
+          3,
+          11,
+          72,
+          15,
+          218,
+          8,
+          158,
+          176,
+          176,
+          255
+        ],
+        "hex": "08 03 0B 48 0F DA 08 9E B0 B0 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 6,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MagmaHideout_3F_1R_Text_Grunt9PostBattle": {
+      "label": "MagmaHideout_3F_1R_Text_Grunt9PostBattle",
+      "line": 20,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "raw_text": "在岩浆火山里戴着兜帽\\n在你不觉得奇怪吗？$",
+      "display_text": "在岩浆火山里戴着兜帽\n在你不觉得奇怪吗？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 39,
+        "bytes": [
+          15,
+          230,
+          14,
+          187,
+          5,
+          245,
+          5,
+          125,
+          11,
+          155,
+          8,
+          100,
+          2,
+          215,
+          16,
+          244,
+          3,
+          90,
+          9,
+          73,
+          254,
+          15,
+          230,
+          9,
+          217,
+          1,
+          214,
+          7,
+          165,
+          3,
+          10,
+          10,
+          161,
+          4,
+          158,
+          9,
+          42,
+          61,
+          255
+        ],
+        "hex": "0F E6 0E BB 05 F5 05 7D 0B 9B 08 64 02 D7 10 F4 03 5A 09 49 FE 0F E6 09 D9 01 D6 07 A5 03 0A 0A A1 04 9E 09 2A 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MagmaHideout_3F_1R_Text_Grunt16Intro": {
+      "label": "MagmaHideout_3F_1R_Text_Grunt16Intro",
+      "line": 23,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "raw_text": "我们加入组织，\\n为的是帮助老大实现他的雄图伟业。\\p我不管你是海洋队的人\\n还是偶尔路过的小鬼头，\\p敢碍事的家伙\\n一个都别想跑！$",
+      "display_text": "我们加入组织，\n为的是帮助老大实现他的雄图伟业。\n\n我不管你是海洋队的人\n还是偶尔路过的小鬼头，\n\n敢碍事的家伙\n一个都别想跑！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 116,
+        "bytes": [
+          13,
+          152,
+          9,
+          95,
+          5,
+          190,
+          11,
+          107,
+          17,
+          33,
+          16,
+          128,
+          59,
+          254,
+          13,
+          112,
+          3,
+          11,
+          12,
+          12,
+          1,
+          78,
+          16,
+          203,
+          8,
+          68,
+          2,
+          211,
+          11,
+          241,
+          14,
+          3,
+          12,
+          158,
+          3,
+          11,
+          14,
+          102,
+          13,
+          36,
+          13,
+          118,
+          15,
+          5,
+          55,
+          251,
+          13,
+          152,
+          1,
+          214,
+          4,
+          164,
+          9,
+          217,
+          12,
+          12,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          3,
+          11,
+          11,
+          75,
+          254,
+          5,
+          70,
+          12,
+          12,
+          10,
+          25,
+          3,
+          160,
+          8,
+          232,
+          4,
+          197,
+          3,
+          11,
+          14,
+          44,
+          4,
+          181,
+          13,
+          31,
+          59,
+          251,
+          4,
+          60,
+          1,
+          12,
+          12,
+          7,
+          3,
+          11,
+          5,
+          189,
+          5,
+          124,
+          254,
+          15,
+          11,
+          4,
+          96,
+          3,
+          97,
+          1,
+          173,
+          14,
+          24,
+          10,
+          57,
+          60,
+          255
+        ],
+        "hex": "0D 98 09 5F 05 BE 0B 6B 11 21 10 80 3B FE 0D 70 03 0B 0C 0C 01 4E 10 CB 08 44 02 D3 0B F1 0E 03 0C 9E 03 0B 0E 66 0D 24 0D 76 0F 05 37 FB 0D 98 01 D6 04 A4 09 D9 0C 0C 04 C9 0E DC 03 78 03 0B 0B 4B FE 05 46 0C 0C 0A 19 03 A0 08 E8 04 C5 03 0B 0E 2C 04 B5 0D 1F 3B FB 04 3C 01 0C 0C 07 03 0B 05 BD 05 7C FE 0F 0B 04 60 03 61 01 AD 0E 18 0A 39 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 25,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 37,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 50,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 58,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 67,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MagmaHideout_3F_1R_Text_Grunt16Defeat": {
+      "label": "MagmaHideout_3F_1R_Text_Grunt16Defeat",
+      "line": 26,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "raw_text": "哦，不！\\n真是不可轻视！$",
+      "display_text": "哦，不！\n真是不可轻视！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 21,
+        "bytes": [
+          10,
+          19,
+          59,
+          1,
+          214,
+          60,
+          254,
+          16,
+          89,
+          12,
+          12,
+          1,
+          214,
+          7,
+          215,
+          11,
+          3,
+          12,
+          24,
+          60,
+          255
+        ],
+        "hex": "0A 13 3B 01 D6 3C FE 10 59 0C 0C 01 D6 07 D7 0B 03 0C 18 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 4,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 13,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "MagmaHideout_3F_1R_Text_Grunt16PostBattle": {
+      "label": "MagmaHideout_3F_1R_Text_Grunt16PostBattle",
+      "line": 29,
+      "source_file": "data/maps/MagmaHideout_3F_1R/scripts.inc",
+      "raw_text": "听好了——\\n熔岩队才是正确的！\\p别听海洋队的，\\n别相信他们说的鬼话！$",
+      "display_text": "听好了——\n熔岩队才是正确的！\n\n别听海洋队的，\n别相信他们说的鬼话！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 61,
+        "bytes": [
+          13,
+          7,
+          4,
+          233,
+          8,
+          158,
+          63,
+          63,
+          254,
+          11,
+          91,
+          14,
+          187,
+          3,
+          120,
+          1,
+          224,
+          12,
+          12,
+          16,
+          112,
+          11,
+          55,
+          3,
+          11,
+          60,
+          251,
+          1,
+          173,
+          13,
+          7,
+          4,
+          201,
+          14,
+          220,
+          3,
+          120,
+          3,
+          11,
+          59,
+          254,
+          1,
+          173,
+          14,
+          13,
+          14,
+          80,
+          12,
+          158,
+          9,
+          95,
+          12,
+          88,
+          3,
+          11,
+          4,
+          181,
+          5,
+          61,
+          60,
+          255
+        ],
+        "hex": "0D 07 04 E9 08 9E 3F 3F FE 0B 5B 0E BB 03 78 01 E0 0C 0C 10 70 0B 37 03 0B 3C FB 01 AD 0D 07 04 C9 0E DC 03 78 03 0B 3B FE 01 AD 0E 0D 0E 50 0C 9E 09 5F 0C 58 03 0B 04 B5 05 3D 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 5,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "trainerbattle_single": 2
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 6,
+    "encoded_text_count": 6,
+    "text_source_byte_count": 295,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 6
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2,
+      "trainerbattle_single": 2
+    }
+  }
+}

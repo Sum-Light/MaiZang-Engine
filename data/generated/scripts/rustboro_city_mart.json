@@ -1,0 +1,1073 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "RustboroCity_Mart",
+    "map_script": "data/maps/RustboroCity_Mart/scripts.inc",
+    "map_json": "data/maps/RustboroCity_Mart/map.json",
+    "map_id": "MAP_RUSTBORO_CITY_MART",
+    "map_name": "RustboroCity_Mart"
+  },
+  "labels": {
+    "RustboroCity_Mart_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_Mart_EventScript_Clerk": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 7
+    },
+    "RustboroCity_Mart_EventScript_PokemartBasic": {
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 5
+    },
+    "RustboroCity_Mart_Pokemart_Basic": {
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 11
+    },
+    "RustboroCity_Mart_EventScript_PokemartExpanded": {
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 5
+    },
+    "RustboroCity_Mart_Pokemart_Expanded": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 13
+    },
+    "RustboroCity_Mart_EventScript_PokefanF": {
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_Mart_EventScript_Boy": {
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_Mart_EventScript_BugCatcher": {
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 2
+    },
+    "RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish": {
+      "kind": "text",
+      "line": 67,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead": {
+      "kind": "text",
+      "line": 70,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 1
+    },
+    "RustboroCity_Mart_Text_GettingEscapeRopeJustInCase": {
+      "kind": "text",
+      "line": 73,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "RustboroCity_Mart_MapScripts": {
+      "label": "RustboroCity_Mart_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_Mart_EventScript_Clerk": {
+      "label": "RustboroCity_Mart_EventScript_Clerk",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_HowMayIServeYou"
+          ],
+          "line": 7,
+          "raw": "message gText_HowMayIServeYou",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 8,
+          "raw": "waitmessage",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_MET_DEVON_EMPLOYEE",
+            "RustboroCity_Mart_EventScript_PokemartBasic"
+          ],
+          "line": 9,
+          "raw": "goto_if_unset FLAG_MET_DEVON_EMPLOYEE, RustboroCity_Mart_EventScript_PokemartBasic",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_MET_DEVON_EMPLOYEE",
+            "RustboroCity_Mart_EventScript_PokemartExpanded"
+          ],
+          "line": 10,
+          "raw": "goto_if_set FLAG_MET_DEVON_EMPLOYEE, RustboroCity_Mart_EventScript_PokemartExpanded",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 11,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_HowMayIServeYou",
+          "mode": "",
+          "line": 7
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_unset",
+          "target": "RustboroCity_Mart_EventScript_PokemartBasic",
+          "line": 9
+        },
+        {
+          "op": "goto_if_set",
+          "target": "RustboroCity_Mart_EventScript_PokemartExpanded",
+          "line": 10
+        }
+      ]
+    },
+    "RustboroCity_Mart_EventScript_PokemartBasic": {
+      "label": "RustboroCity_Mart_EventScript_PokemartBasic",
+      "kind": "script",
+      "line": 13,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "pokemart",
+          "args": [
+            "RustboroCity_Mart_Pokemart_Basic"
+          ],
+          "line": 14,
+          "raw": "pokemart RustboroCity_Mart_Pokemart_Basic",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 15,
+          "raw": "msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 16,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 19,
+          "raw": ".align 2",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 15
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_Mart_Pokemart_Basic": {
+      "label": "RustboroCity_Mart_Pokemart_Basic",
+      "kind": "script",
+      "line": 20,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POKE_BALL"
+          ],
+          "line": 21,
+          "raw": ".2byte ITEM_POKE_BALL",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POTION"
+          ],
+          "line": 22,
+          "raw": ".2byte ITEM_POTION",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_SUPER_POTION"
+          ],
+          "line": 23,
+          "raw": ".2byte ITEM_SUPER_POTION",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ANTIDOTE"
+          ],
+          "line": 24,
+          "raw": ".2byte ITEM_ANTIDOTE",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_PARALYZE_HEAL"
+          ],
+          "line": 25,
+          "raw": ".2byte ITEM_PARALYZE_HEAL",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ESCAPE_ROPE"
+          ],
+          "line": 26,
+          "raw": ".2byte ITEM_ESCAPE_ROPE",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_REPEL"
+          ],
+          "line": 27,
+          "raw": ".2byte ITEM_REPEL",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_SPEED"
+          ],
+          "line": 28,
+          "raw": ".2byte ITEM_X_SPEED",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_ATTACK"
+          ],
+          "line": 29,
+          "raw": ".2byte ITEM_X_ATTACK",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_DEFENSE"
+          ],
+          "line": 30,
+          "raw": ".2byte ITEM_X_DEFENSE",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "pokemartlistend",
+          "args": [],
+          "line": 31,
+          "raw": "pokemartlistend",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_Mart_EventScript_PokemartExpanded": {
+      "label": "RustboroCity_Mart_EventScript_PokemartExpanded",
+      "kind": "script",
+      "line": 33,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "pokemart",
+          "args": [
+            "RustboroCity_Mart_Pokemart_Expanded"
+          ],
+          "line": 34,
+          "raw": "pokemart RustboroCity_Mart_Pokemart_Expanded",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 35,
+          "raw": "msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 36,
+          "raw": "release",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 37,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 39,
+          "raw": ".align 2",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 35
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_Mart_Pokemart_Expanded": {
+      "label": "RustboroCity_Mart_Pokemart_Expanded",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POKE_BALL"
+          ],
+          "line": 41,
+          "raw": ".2byte ITEM_POKE_BALL",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_TIMER_BALL"
+          ],
+          "line": 42,
+          "raw": ".2byte ITEM_TIMER_BALL",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_REPEAT_BALL"
+          ],
+          "line": 43,
+          "raw": ".2byte ITEM_REPEAT_BALL",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POTION"
+          ],
+          "line": 44,
+          "raw": ".2byte ITEM_POTION",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_SUPER_POTION"
+          ],
+          "line": 45,
+          "raw": ".2byte ITEM_SUPER_POTION",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ANTIDOTE"
+          ],
+          "line": 46,
+          "raw": ".2byte ITEM_ANTIDOTE",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_PARALYZE_HEAL"
+          ],
+          "line": 47,
+          "raw": ".2byte ITEM_PARALYZE_HEAL",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ESCAPE_ROPE"
+          ],
+          "line": 48,
+          "raw": ".2byte ITEM_ESCAPE_ROPE",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_REPEL"
+          ],
+          "line": 49,
+          "raw": ".2byte ITEM_REPEL",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_SPEED"
+          ],
+          "line": 50,
+          "raw": ".2byte ITEM_X_SPEED",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_ATTACK"
+          ],
+          "line": 51,
+          "raw": ".2byte ITEM_X_ATTACK",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_DEFENSE"
+          ],
+          "line": 52,
+          "raw": ".2byte ITEM_X_DEFENSE",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "pokemartlistend",
+          "args": [],
+          "line": 53,
+          "raw": "pokemartlistend",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "RustboroCity_Mart_EventScript_PokefanF": {
+      "label": "RustboroCity_Mart_EventScript_PokefanF",
+      "kind": "script",
+      "line": 55,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish",
+            "MSGBOX_NPC"
+          ],
+          "line": 56,
+          "raw": "msgbox RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 57,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish",
+          "mode": "MSGBOX_NPC",
+          "line": 56
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_Mart_EventScript_Boy": {
+      "label": "RustboroCity_Mart_EventScript_Boy",
+      "kind": "script",
+      "line": 59,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead",
+            "MSGBOX_NPC"
+          ],
+          "line": 60,
+          "raw": "msgbox RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 61,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead",
+          "mode": "MSGBOX_NPC",
+          "line": 60
+        }
+      ],
+      "branch_targets": []
+    },
+    "RustboroCity_Mart_EventScript_BugCatcher": {
+      "label": "RustboroCity_Mart_EventScript_BugCatcher",
+      "kind": "script",
+      "line": 63,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "RustboroCity_Mart_Text_GettingEscapeRopeJustInCase",
+            "MSGBOX_NPC"
+          ],
+          "line": 64,
+          "raw": "msgbox RustboroCity_Mart_Text_GettingEscapeRopeJustInCase, MSGBOX_NPC",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 65,
+          "raw": "end",
+          "source_file": "data/maps/RustboroCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "RustboroCity_Mart_Text_GettingEscapeRopeJustInCase",
+          "mode": "MSGBOX_NPC",
+          "line": 64
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish": {
+      "label": "RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish",
+      "line": 67,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "raw_text": "我得买些解麻药和\\n解毒药，\\p以防撞上橙华森林里的\\n蘑蘑菇。$",
+      "display_text": "我得买些解麻药和\n解毒药，\n\n以防撞上橙华森林里的\n蘑蘑菇。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 54,
+        "bytes": [
+          13,
+          152,
+          3,
+          10,
+          9,
+          44,
+          14,
+          52,
+          7,
+          52,
+          9,
+          35,
+          14,
+          240,
+          4,
+          243,
+          254,
+          7,
+          52,
+          3,
+          99,
+          14,
+          240,
+          59,
+          251,
+          15,
+          36,
+          3,
+          195,
+          16,
+          225,
+          11,
+          173,
+          2,
+          74,
+          5,
+          55,
+          11,
+          139,
+          8,
+          169,
+          8,
+          100,
+          3,
+          11,
+          254,
+          9,
+          152,
+          9,
+          152,
+          4,
+          133,
+          55,
+          255
+        ],
+        "hex": "0D 98 03 0A 09 2C 0E 34 07 34 09 23 0E F0 04 F3 FE 07 34 03 63 0E F0 3B FB 0F 24 03 C3 10 E1 0B AD 02 4A 05 37 0B 8B 08 A9 08 64 03 0B FE 09 98 09 98 04 85 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 14,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 26,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 32,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead": {
+      "label": "RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead",
+      "line": 70,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "raw_text": "我的宝可梦进化了，\\n它现在拥有更多体力。\\p我得买些厉害伤药\\n来代替普通伤药。$",
+      "display_text": "我的宝可梦进化了，\n它现在拥有更多体力。\n\n我得买些厉害伤药\n来代替普通伤药。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 71,
+        "bytes": [
+          13,
+          152,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          7,
+          74,
+          5,
+          60,
+          8,
+          158,
+          59,
+          254,
+          12,
+          159,
+          14,
+          3,
+          15,
+          230,
+          15,
+          99,
+          15,
+          126,
+          4,
+          102,
+          3,
+          133,
+          12,
+          230,
+          8,
+          121,
+          55,
+          251,
+          13,
+          152,
+          3,
+          10,
+          9,
+          44,
+          14,
+          52,
+          8,
+          108,
+          4,
+          204,
+          11,
+          169,
+          14,
+          240,
+          254,
+          8,
+          41,
+          2,
+          218,
+          12,
+          231,
+          10,
+          144,
+          13,
+          16,
+          11,
+          169,
+          14,
+          240,
+          55,
+          255
+        ],
+        "hex": "0D 98 03 0B 01 63 07 D7 09 66 07 4A 05 3C 08 9E 3B FE 0C 9F 0E 03 0F E6 0F 63 0F 7E 04 66 03 85 0C E6 08 79 37 FB 0D 98 03 0A 09 2C 0E 34 08 6C 04 CC 0B A9 0E F0 FE 08 29 02 DA 0C E7 0A 90 0D 10 0B A9 0E F0 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 41,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "RustboroCity_Mart_Text_GettingEscapeRopeJustInCase": {
+      "label": "RustboroCity_Mart_Text_GettingEscapeRopeJustInCase",
+      "line": 73,
+      "source_file": "data/maps/RustboroCity_Mart/scripts.inc",
+      "raw_text": "我要买些离洞绳，\\n避免在山洞里迷路。\\p这样只要用它\\n就能回到入口了。$",
+      "display_text": "我要买些离洞绳，\n避免在山洞里迷路。\n\n这样只要用它\n就能回到入口了。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 63,
+        "bytes": [
+          13,
+          152,
+          14,
+          241,
+          9,
+          44,
+          14,
+          52,
+          8,
+          96,
+          3,
+          89,
+          11,
+          220,
+          59,
+          254,
+          1,
+          153,
+          9,
+          122,
+          15,
+          230,
+          11,
+          155,
+          3,
+          89,
+          8,
+          100,
+          9,
+          108,
+          8,
+          232,
+          55,
+          251,
+          16,
+          85,
+          14,
+          226,
+          16,
+          140,
+          14,
+          241,
+          15,
+          113,
+          12,
+          159,
+          254,
+          7,
+          125,
+          9,
+          210,
+          5,
+          101,
+          3,
+          4,
+          11,
+          107,
+          7,
+          232,
+          8,
+          158,
+          55,
+          255
+        ],
+        "hex": "0D 98 0E F1 09 2C 0E 34 08 60 03 59 0B DC 3B FE 01 99 09 7A 0F E6 0B 9B 03 59 08 64 09 6C 08 E8 37 FB 10 55 0E E2 10 8C 0E F1 0F 71 0C 9F FE 07 7D 09 D2 05 65 03 04 0B 6B 07 E8 08 9E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 19,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 27,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "goto_if_unset": 1,
+      "pokemart": 2,
+      "pokemartlistend": 2,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 12,
+    "script_count": 9,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 188,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 6,
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "goto_if_unset": 1,
+      "lock": 1,
+      "message": 1,
+      "msgbox": 5,
+      "pokemart": 2,
+      "pokemartlistend": 2,
+      "release": 2,
+      "waitmessage": 1
+    }
+  }
+}

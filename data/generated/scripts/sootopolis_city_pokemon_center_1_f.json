@@ -1,0 +1,1090 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "SootopolisCity_PokemonCenter_1F",
+    "map_script": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+    "map_json": "data/maps/SootopolisCity_PokemonCenter_1F/map.json",
+    "map_id": "MAP_SOOTOPOLIS_CITY_POKEMON_CENTER_1F",
+    "map_name": "SootopolisCity_PokemonCenter_1F"
+  },
+  "labels": {
+    "SootopolisCity_PokemonCenter_1F_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "SootopolisCity_PokemonCenter_1F_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 2
+    },
+    "SootopolisCity_PokemonCenter_1F_EventScript_Nurse": {
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 6
+    },
+    "SootopolisCity_PokemonCenter_1F_EventScript_Gentleman": {
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 7
+    },
+    "SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries": {
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "SootopolisCity_PokemonCenter_1F_EventScript_Woman": {
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 7
+    },
+    "SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries": {
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 3
+    },
+    "SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn": {
+      "kind": "text",
+      "line": 46,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_PokemonCenter_1F_Text_EveryoneTakenRefuge": {
+      "kind": "text",
+      "line": 49,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_PokemonCenter_1F_Text_AlwaysBeFriendsWithPokemon": {
+      "kind": "text",
+      "line": 52,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    },
+    "SootopolisCity_PokemonCenter_1F_Text_ArentPokemonOurFriends": {
+      "kind": "text",
+      "line": 55,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "SootopolisCity_PokemonCenter_1F_MapScripts": {
+      "label": "SootopolisCity_PokemonCenter_1F_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "SootopolisCity_PokemonCenter_1F_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, SootopolisCity_PokemonCenter_1F_OnTransition",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_RESUME",
+            "CableClub_OnResume"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SootopolisCity_PokemonCenter_1F_OnTransition": {
+      "label": "SootopolisCity_PokemonCenter_1F_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setrespawn",
+          "args": [
+            "HEAL_LOCATION_SOOTOPOLIS_CITY"
+          ],
+          "line": 7,
+          "raw": "setrespawn HEAL_LOCATION_SOOTOPOLIS_CITY",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "SootopolisCity_PokemonCenter_1F_EventScript_Nurse": {
+      "label": "SootopolisCity_PokemonCenter_1F_EventScript_Nurse",
+      "kind": "script",
+      "line": 10,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_0x800B",
+            "LOCALID_SOOTOPOLIS_NURSE"
+          ],
+          "line": 11,
+          "raw": "setvar VAR_0x800B, LOCALID_SOOTOPOLIS_NURSE",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "call",
+          "args": [
+            "Common_EventScript_PkmnCenterNurse"
+          ],
+          "line": 12,
+          "raw": "call Common_EventScript_PkmnCenterNurse",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 13,
+          "raw": "waitmessage",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "waitbuttonpress",
+          "args": [],
+          "line": 14,
+          "raw": "waitbuttonpress",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 15,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 16,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "Common_EventScript_PkmnCenterNurse",
+          "line": 12
+        }
+      ]
+    },
+    "SootopolisCity_PokemonCenter_1F_EventScript_Gentleman": {
+      "label": "SootopolisCity_PokemonCenter_1F_EventScript_Gentleman",
+      "kind": "script",
+      "line": 18,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 19,
+          "raw": "lock",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 20,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_SKY_PILLAR_STATE",
+            "2",
+            "SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries"
+          ],
+          "line": 21,
+          "raw": "goto_if_ge VAR_SKY_PILLAR_STATE, 2, SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN",
+            "SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries"
+          ],
+          "line": 22,
+          "raw": "goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_PokemonCenter_1F_Text_EveryoneTakenRefuge",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 23,
+          "raw": "msgbox SootopolisCity_PokemonCenter_1F_Text_EveryoneTakenRefuge, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 24,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 25,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_PokemonCenter_1F_Text_EveryoneTakenRefuge",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 23
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ge",
+          "target": "SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries",
+          "line": 21
+        },
+        {
+          "op": "goto_if_unset",
+          "target": "SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries",
+          "line": 22
+        }
+      ]
+    },
+    "SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries": {
+      "label": "SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries",
+      "kind": "script",
+      "line": 27,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 28,
+          "raw": "msgbox SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 29,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 30,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 28
+        }
+      ],
+      "branch_targets": []
+    },
+    "SootopolisCity_PokemonCenter_1F_EventScript_Woman": {
+      "label": "SootopolisCity_PokemonCenter_1F_EventScript_Woman",
+      "kind": "script",
+      "line": 32,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 33,
+          "raw": "lock",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 34,
+          "raw": "faceplayer",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_ge",
+          "args": [
+            "VAR_SKY_PILLAR_STATE",
+            "2",
+            "SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries"
+          ],
+          "line": 35,
+          "raw": "goto_if_ge VAR_SKY_PILLAR_STATE, 2, SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "goto_if_unset",
+          "args": [
+            "FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN",
+            "SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries"
+          ],
+          "line": 36,
+          "raw": "goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_PokemonCenter_1F_Text_ArentPokemonOurFriends",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 37,
+          "raw": "msgbox SootopolisCity_PokemonCenter_1F_Text_ArentPokemonOurFriends, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 38,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 39,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_PokemonCenter_1F_Text_ArentPokemonOurFriends",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 37
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_ge",
+          "target": "SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries",
+          "line": 35
+        },
+        {
+          "op": "goto_if_unset",
+          "target": "SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries",
+          "line": 36
+        }
+      ]
+    },
+    "SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries": {
+      "label": "SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries",
+      "kind": "script",
+      "line": 41,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "SootopolisCity_PokemonCenter_1F_Text_AlwaysBeFriendsWithPokemon",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 42,
+          "raw": "msgbox SootopolisCity_PokemonCenter_1F_Text_AlwaysBeFriendsWithPokemon, MSGBOX_DEFAULT",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 43,
+          "raw": "release",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 44,
+          "raw": "end",
+          "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "SootopolisCity_PokemonCenter_1F_Text_AlwaysBeFriendsWithPokemon",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 42
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn": {
+      "label": "SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn",
+      "line": 46,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "传说米可利是整个丰缘地区\\n最强的训练家，\\p而这城镇道馆的训练家\\n是米可利的老师。\\p但四天王……据说比米可利的老师\\n还要强。\\p那么他们会有多强呢？$",
+      "display_text": "传说米可利是整个丰缘地区\n最强的训练家，\n\n而这城镇道馆的训练家\n是米可利的老师。\n\n但四天王……据说比米可利的老师\n还要强。\n\n那么他们会有多强呢？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 133,
+        "bytes": [
+          2,
+          139,
+          12,
+          88,
+          9,
+          111,
+          7,
+          215,
+          8,
+          112,
+          12,
+          12,
+          16,
+          110,
+          4,
+          96,
+          3,
+          228,
+          15,
+          193,
+          3,
+          31,
+          11,
+          26,
+          254,
+          17,
+          38,
+          10,
+          216,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          59,
+          251,
+          3,
+          157,
+          16,
+          85,
+          2,
+          73,
+          16,
+          101,
+          3,
+          7,
+          4,
+          165,
+          3,
+          11,
+          14,
+          158,
+          8,
+          138,
+          5,
+          189,
+          254,
+          12,
+          12,
+          9,
+          111,
+          7,
+          215,
+          8,
+          112,
+          3,
+          11,
+          8,
+          68,
+          11,
+          226,
+          55,
+          251,
+          2,
+          233,
+          12,
+          103,
+          12,
+          237,
+          13,
+          93,
+          176,
+          176,
+          7,
+          141,
+          12,
+          88,
+          1,
+          133,
+          9,
+          111,
+          7,
+          215,
+          8,
+          112,
+          3,
+          11,
+          8,
+          68,
+          11,
+          226,
+          254,
+          5,
+          70,
+          14,
+          241,
+          10,
+          216,
+          55,
+          251,
+          9,
+          189,
+          9,
+          76,
+          12,
+          158,
+          9,
+          95,
+          5,
+          110,
+          15,
+          126,
+          3,
+          133,
+          10,
+          216,
+          9,
+          206,
+          61,
+          255
+        ],
+        "hex": "02 8B 0C 58 09 6F 07 D7 08 70 0C 0C 10 6E 04 60 03 E4 0F C1 03 1F 0B 1A FE 11 26 0A D8 03 0B 0E 9E 08 8A 05 BD 3B FB 03 9D 10 55 02 49 10 65 03 07 04 A5 03 0B 0E 9E 08 8A 05 BD FE 0C 0C 09 6F 07 D7 08 70 03 0B 08 44 0B E2 37 FB 02 E9 0C 67 0C ED 0D 5D B0 B0 07 8D 0C 58 01 85 09 6F 07 D7 08 70 03 0B 08 44 0B E2 FE 05 46 0E F1 0A D8 37 FB 09 BD 09 4C 0C 9E 09 5F 05 6E 0F 7E 03 85 0A D8 09 CE 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 43,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 60,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 66,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 78,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SootopolisCity_PokemonCenter_1F_Text_EveryoneTakenRefuge": {
+      "label": "SootopolisCity_PokemonCenter_1F_Text_EveryoneTakenRefuge",
+      "line": 49,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "城镇里的人都躲在家里\\n不愿出来，\\p就算是我也\\n不想出门冒险。$",
+      "display_text": "城镇里的人都躲在家里\n不愿出来，\n\n就算是我也\n不想出门冒险。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 56,
+        "bytes": [
+          2,
+          73,
+          16,
+          101,
+          8,
+          100,
+          3,
+          11,
+          11,
+          75,
+          3,
+          97,
+          3,
+          136,
+          15,
+          230,
+          5,
+          189,
+          8,
+          100,
+          254,
+          1,
+          214,
+          15,
+          196,
+          2,
+          120,
+          8,
+          41,
+          59,
+          251,
+          7,
+          125,
+          12,
+          134,
+          12,
+          12,
+          13,
+          152,
+          15,
+          2,
+          254,
+          1,
+          214,
+          14,
+          24,
+          2,
+          120,
+          9,
+          93,
+          9,
+          72,
+          14,
+          2,
+          55,
+          255
+        ],
+        "hex": "02 49 10 65 08 64 03 0B 0B 4B 03 61 03 88 0F E6 05 BD 08 64 FE 01 D6 0F C4 02 78 08 29 3B FB 07 7D 0C 86 0C 0C 0D 98 0F 02 FE 01 D6 0E 18 02 78 09 5D 09 48 0E 02 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 17,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 33,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SootopolisCity_PokemonCenter_1F_Text_AlwaysBeFriendsWithPokemon": {
+      "label": "SootopolisCity_PokemonCenter_1F_Text_AlwaysBeFriendsWithPokemon",
+      "line": 52,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "无论何时，无论何地，\\n无论发生什么，\\l我都会和宝可梦在一起。\\p和宝可梦交朋友是我的乐趣！$",
+      "display_text": "无论何时，无论何地，\n无论发生什么，\n我都会和宝可梦在一起。\n\n和宝可梦交朋友是我的乐趣！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 81,
+        "bytes": [
+          13,
+          164,
+          9,
+          21,
+          4,
+          244,
+          11,
+          237,
+          59,
+          13,
+          164,
+          9,
+          21,
+          4,
+          244,
+          3,
+          31,
+          59,
+          254,
+          13,
+          164,
+          9,
+          21,
+          3,
+          165,
+          11,
+          216,
+          11,
+          238,
+          9,
+          76,
+          59,
+          250,
+          13,
+          152,
+          3,
+          97,
+          5,
+          110,
+          4,
+          243,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          230,
+          15,
+          11,
+          10,
+          171,
+          55,
+          251,
+          4,
+          243,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          7,
+          13,
+          10,
+          80,
+          15,
+          127,
+          12,
+          12,
+          13,
+          152,
+          3,
+          11,
+          8,
+          75,
+          11,
+          36,
+          60,
+          255
+        ],
+        "hex": "0D A4 09 15 04 F4 0B ED 3B 0D A4 09 15 04 F4 03 1F 3B FE 0D A4 09 15 03 A5 0B D8 0B EE 09 4C 3B FA 0D 98 03 61 05 6E 04 F3 01 63 07 D7 09 66 0F E6 0F 0B 0A AB 37 FB 04 F3 01 63 07 D7 09 66 07 0D 0A 50 0F 7F 0C 0C 0D 98 03 0B 08 4B 0B 24 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 10,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 19,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 32,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "SootopolisCity_PokemonCenter_1F_Text_ArentPokemonOurFriends": {
+      "label": "SootopolisCity_PokemonCenter_1F_Text_ArentPokemonOurFriends",
+      "line": 55,
+      "source_file": "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc",
+      "raw_text": "宝可梦不是我们的朋友吗？\\p它们为什么会如此疯狂？$",
+      "display_text": "宝可梦不是我们的朋友吗？\n\n它们为什么会如此疯狂？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 46,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          214,
+          12,
+          12,
+          13,
+          152,
+          9,
+          95,
+          3,
+          11,
+          10,
+          80,
+          15,
+          127,
+          9,
+          42,
+          61,
+          251,
+          12,
+          159,
+          9,
+          95,
+          13,
+          112,
+          11,
+          238,
+          9,
+          76,
+          5,
+          110,
+          11,
+          103,
+          2,
+          171,
+          3,
+          235,
+          8,
+          8,
+          61,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 01 D6 0C 0C 0D 98 09 5F 03 0B 0A 50 0F 7F 09 2A 3D FB 0C 9F 09 5F 0D 70 0B EE 09 4C 05 6E 0B 67 02 AB 03 EB 08 08 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 25,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 2,
+      "goto_if_ge": 2,
+      "goto_if_unset": 2,
+      "map_script": 2,
+      "setrespawn": 1,
+      "setvar": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 7,
+    "movement_count": 0,
+    "text_count": 4,
+    "encoded_text_count": 4,
+    "text_source_byte_count": 316,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 4
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "call": 1,
+      "end": 6,
+      "faceplayer": 2,
+      "goto_if_ge": 2,
+      "goto_if_unset": 2,
+      "lock": 2,
+      "map_script": 2,
+      "msgbox": 4,
+      "release": 5,
+      "setrespawn": 1,
+      "setvar": 1,
+      "waitbuttonpress": 1,
+      "waitmessage": 1
+    }
+  }
+}

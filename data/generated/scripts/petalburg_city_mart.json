@@ -1,0 +1,1090 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PetalburgCity_Mart",
+    "map_script": "data/maps/PetalburgCity_Mart/scripts.inc",
+    "map_json": "data/maps/PetalburgCity_Mart/map.json",
+    "map_id": "MAP_PETALBURG_CITY_MART",
+    "map_name": "PetalburgCity_Mart"
+  },
+  "labels": {
+    "PetalburgCity_Mart_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_Mart_EventScript_Clerk": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 10
+    },
+    "PetalburgCity_Mart_Pokemart_Basic": {
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 12
+    },
+    "PetalburgCity_Mart_EventScript_ExpandedItems": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 5
+    },
+    "PetalburgCity_Mart_Pokemart_Expanded": {
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 14
+    },
+    "PetalburgCity_Mart_EventScript_Woman": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgCity_Mart_EventScript_Boy": {
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgCity_Mart_EventScript_Man": {
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 2
+    },
+    "PetalburgCity_Mart_Text_WeakWillGrowStronger": {
+      "kind": "text",
+      "line": 65,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_Mart_Text_RepelIsUseful": {
+      "kind": "text",
+      "line": 68,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 1
+    },
+    "PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou": {
+      "kind": "text",
+      "line": 71,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "PetalburgCity_Mart_MapScripts": {
+      "label": "PetalburgCity_Mart_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgCity_Mart_EventScript_Clerk": {
+      "label": "PetalburgCity_Mart_EventScript_Clerk",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 5,
+          "raw": "lock",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 6,
+          "raw": "faceplayer",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "message",
+          "args": [
+            "gText_HowMayIServeYou"
+          ],
+          "line": 7,
+          "raw": "message gText_HowMayIServeYou",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "waitmessage",
+          "args": [],
+          "line": 8,
+          "raw": "waitmessage",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "goto_if_set",
+          "args": [
+            "FLAG_PETALBURG_MART_EXPANDED_ITEMS",
+            "PetalburgCity_Mart_EventScript_ExpandedItems"
+          ],
+          "line": 9,
+          "raw": "goto_if_set FLAG_PETALBURG_MART_EXPANDED_ITEMS, PetalburgCity_Mart_EventScript_ExpandedItems",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "pokemart",
+          "args": [
+            "PetalburgCity_Mart_Pokemart_Basic"
+          ],
+          "line": 10,
+          "raw": "pokemart PetalburgCity_Mart_Pokemart_Basic",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 11,
+          "raw": "msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 12,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 13,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 15,
+          "raw": ".align 2",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "message",
+          "text_label": "gText_HowMayIServeYou",
+          "mode": "",
+          "line": 7
+        },
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 11
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "goto_if_set",
+          "target": "PetalburgCity_Mart_EventScript_ExpandedItems",
+          "line": 9
+        }
+      ]
+    },
+    "PetalburgCity_Mart_Pokemart_Basic": {
+      "label": "PetalburgCity_Mart_Pokemart_Basic",
+      "kind": "script",
+      "line": 16,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POKE_BALL"
+          ],
+          "line": 17,
+          "raw": ".2byte ITEM_POKE_BALL",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POTION"
+          ],
+          "line": 18,
+          "raw": ".2byte ITEM_POTION",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ANTIDOTE"
+          ],
+          "line": 19,
+          "raw": ".2byte ITEM_ANTIDOTE",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_PARALYZE_HEAL"
+          ],
+          "line": 20,
+          "raw": ".2byte ITEM_PARALYZE_HEAL",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_AWAKENING"
+          ],
+          "line": 21,
+          "raw": ".2byte ITEM_AWAKENING",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ESCAPE_ROPE"
+          ],
+          "line": 22,
+          "raw": ".2byte ITEM_ESCAPE_ROPE",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_REPEL"
+          ],
+          "line": 23,
+          "raw": ".2byte ITEM_REPEL",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_SPEED"
+          ],
+          "line": 24,
+          "raw": ".2byte ITEM_X_SPEED",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_ATTACK"
+          ],
+          "line": 25,
+          "raw": ".2byte ITEM_X_ATTACK",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_DEFENSE"
+          ],
+          "line": 26,
+          "raw": ".2byte ITEM_X_DEFENSE",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ORANGE_MAIL"
+          ],
+          "line": 27,
+          "raw": ".2byte ITEM_ORANGE_MAIL",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "pokemartlistend",
+          "args": [],
+          "line": 28,
+          "raw": "pokemartlistend",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgCity_Mart_EventScript_ExpandedItems": {
+      "label": "PetalburgCity_Mart_EventScript_ExpandedItems",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "pokemart",
+          "args": [
+            "PetalburgCity_Mart_Pokemart_Expanded"
+          ],
+          "line": 31,
+          "raw": "pokemart PetalburgCity_Mart_Pokemart_Expanded",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "gText_PleaseComeAgain",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 32,
+          "raw": "msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 33,
+          "raw": "release",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".align",
+          "args": [
+            "2"
+          ],
+          "line": 36,
+          "raw": ".align 2",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "gText_PleaseComeAgain",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 32
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgCity_Mart_Pokemart_Expanded": {
+      "label": "PetalburgCity_Mart_Pokemart_Expanded",
+      "kind": "script",
+      "line": 37,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POKE_BALL"
+          ],
+          "line": 38,
+          "raw": ".2byte ITEM_POKE_BALL",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_GREAT_BALL"
+          ],
+          "line": 39,
+          "raw": ".2byte ITEM_GREAT_BALL",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_POTION"
+          ],
+          "line": 40,
+          "raw": ".2byte ITEM_POTION",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_SUPER_POTION"
+          ],
+          "line": 41,
+          "raw": ".2byte ITEM_SUPER_POTION",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ANTIDOTE"
+          ],
+          "line": 42,
+          "raw": ".2byte ITEM_ANTIDOTE",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_PARALYZE_HEAL"
+          ],
+          "line": 43,
+          "raw": ".2byte ITEM_PARALYZE_HEAL",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_AWAKENING"
+          ],
+          "line": 44,
+          "raw": ".2byte ITEM_AWAKENING",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ESCAPE_ROPE"
+          ],
+          "line": 45,
+          "raw": ".2byte ITEM_ESCAPE_ROPE",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_REPEL"
+          ],
+          "line": 46,
+          "raw": ".2byte ITEM_REPEL",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_SPEED"
+          ],
+          "line": 47,
+          "raw": ".2byte ITEM_X_SPEED",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_ATTACK"
+          ],
+          "line": 48,
+          "raw": ".2byte ITEM_X_ATTACK",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_X_DEFENSE"
+          ],
+          "line": 49,
+          "raw": ".2byte ITEM_X_DEFENSE",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "ITEM_ORANGE_MAIL"
+          ],
+          "line": 50,
+          "raw": ".2byte ITEM_ORANGE_MAIL",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "pokemartlistend",
+          "args": [],
+          "line": 51,
+          "raw": "pokemartlistend",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PetalburgCity_Mart_EventScript_Woman": {
+      "label": "PetalburgCity_Mart_EventScript_Woman",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_Mart_Text_WeakWillGrowStronger",
+            "MSGBOX_NPC"
+          ],
+          "line": 54,
+          "raw": "msgbox PetalburgCity_Mart_Text_WeakWillGrowStronger, MSGBOX_NPC",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 55,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_Mart_Text_WeakWillGrowStronger",
+          "mode": "MSGBOX_NPC",
+          "line": 54
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgCity_Mart_EventScript_Boy": {
+      "label": "PetalburgCity_Mart_EventScript_Boy",
+      "kind": "script",
+      "line": 57,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_Mart_Text_RepelIsUseful",
+            "MSGBOX_NPC"
+          ],
+          "line": 58,
+          "raw": "msgbox PetalburgCity_Mart_Text_RepelIsUseful, MSGBOX_NPC",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 59,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_Mart_Text_RepelIsUseful",
+          "mode": "MSGBOX_NPC",
+          "line": 58
+        }
+      ],
+      "branch_targets": []
+    },
+    "PetalburgCity_Mart_EventScript_Man": {
+      "label": "PetalburgCity_Mart_EventScript_Man",
+      "kind": "script",
+      "line": 61,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou",
+            "MSGBOX_NPC"
+          ],
+          "line": 62,
+          "raw": "msgbox PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou, MSGBOX_NPC",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 63,
+          "raw": "end",
+          "source_file": "data/maps/PetalburgCity_Mart/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou",
+          "mode": "MSGBOX_NPC",
+          "line": 62
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "PetalburgCity_Mart_Text_WeakWillGrowStronger": {
+      "label": "PetalburgCity_Mart_Text_WeakWillGrowStronger",
+      "line": 65,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "raw_text": "即使宝可梦一时很弱小，\\n但它总会变强的。\\p这之中最重要的就是爱！\\n爱你的宝可梦吧！$",
+      "display_text": "即使宝可梦一时很弱小，\n但它总会变强的。\n\n这之中最重要的就是爱！\n爱你的宝可梦吧！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 76,
+        "bytes": [
+          5,
+          159,
+          11,
+          245,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          11,
+          11,
+          237,
+          5,
+          11,
+          11,
+          117,
+          14,
+          44,
+          59,
+          254,
+          2,
+          233,
+          12,
+          159,
+          17,
+          20,
+          5,
+          110,
+          1,
+          161,
+          10,
+          216,
+          3,
+          11,
+          55,
+          251,
+          16,
+          85,
+          16,
+          127,
+          16,
+          161,
+          17,
+          38,
+          16,
+          169,
+          14,
+          241,
+          3,
+          11,
+          7,
+          125,
+          12,
+          12,
+          1,
+          13,
+          60,
+          254,
+          1,
+          13,
+          9,
+          217,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          1,
+          40,
+          60,
+          255
+        ],
+        "hex": "05 9F 0B F5 01 63 07 D7 09 66 0F 0B 0B ED 05 0B 0B 75 0E 2C 3B FE 02 E9 0C 9F 11 14 05 6E 01 A1 0A D8 03 0B 37 FB 10 55 10 7F 10 A1 11 26 10 A9 0E F1 03 0B 07 7D 0C 0C 01 0D 3C FE 01 0D 09 D9 03 0B 01 63 07 D7 09 66 01 28 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 11,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 21,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 34,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 44,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgCity_Mart_Text_RepelIsUseful": {
+      "label": "PetalburgCity_Mart_Text_RepelIsUseful",
+      "line": 68,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "raw_text": "你用过除虫喷雾吗？\\n它能赶走野生宝可梦，\\l当你急着赶路的时候会很有用。$",
+      "display_text": "你用过除虫喷雾吗？\n它能赶走野生宝可梦，\n当你急着赶路的时候会很有用。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 66,
+        "bytes": [
+          9,
+          217,
+          15,
+          113,
+          4,
+          197,
+          2,
+          127,
+          2,
+          104,
+          10,
+          68,
+          13,
+          179,
+          9,
+          42,
+          61,
+          254,
+          12,
+          159,
+          9,
+          210,
+          4,
+          57,
+          17,
+          23,
+          15,
+          0,
+          11,
+          216,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          59,
+          250,
+          2,
+          239,
+          9,
+          217,
+          5,
+          156,
+          16,
+          244,
+          4,
+          57,
+          8,
+          232,
+          3,
+          11,
+          11,
+          237,
+          5,
+          33,
+          5,
+          110,
+          5,
+          11,
+          15,
+          126,
+          15,
+          113,
+          55,
+          255
+        ],
+        "hex": "09 D9 0F 71 04 C5 02 7F 02 68 0A 44 0D B3 09 2A 3D FE 0C 9F 09 D2 04 39 11 17 0F 00 0B D8 01 63 07 D7 09 66 3B FA 02 EF 09 D9 05 9C 10 F4 04 39 08 E8 03 0B 0B ED 05 21 05 6E 05 0B 0F 7E 0F 71 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 21,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 37,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou": {
+      "label": "PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou",
+      "line": 71,
+      "source_file": "data/maps/PetalburgCity_Mart/scripts.inc",
+      "raw_text": "你带着\\n解毒药吗？\\p如果带着中毒的宝可梦行动，\\n它会不断失去体力，直至昏厥。\\l带上些解毒药吧。$",
+      "display_text": "你带着\n解毒药吗？\n\n如果带着中毒的宝可梦行动，\n它会不断失去体力，直至昏厥。\n带上些解毒药吧。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 86,
+        "bytes": [
+          9,
+          217,
+          2,
+          216,
+          16,
+          244,
+          254,
+          7,
+          52,
+          3,
+          99,
+          14,
+          240,
+          9,
+          42,
+          61,
+          251,
+          11,
+          103,
+          4,
+          195,
+          2,
+          216,
+          16,
+          244,
+          16,
+          161,
+          3,
+          99,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          91,
+          3,
+          84,
+          59,
+          254,
+          12,
+          159,
+          5,
+          110,
+          1,
+          214,
+          3,
+          116,
+          11,
+          227,
+          11,
+          37,
+          12,
+          230,
+          8,
+          121,
+          59,
+          16,
+          130,
+          16,
+          146,
+          5,
+          117,
+          17,
+          91,
+          55,
+          250,
+          2,
+          216,
+          11,
+          173,
+          14,
+          52,
+          7,
+          52,
+          3,
+          99,
+          14,
+          240,
+          1,
+          40,
+          55,
+          255
+        ],
+        "hex": "09 D9 02 D8 10 F4 FE 07 34 03 63 0E F0 09 2A 3D FB 0B 67 04 C3 02 D8 10 F4 10 A1 03 63 03 0B 01 63 07 D7 09 66 0E 5B 03 54 3B FE 0C 9F 05 6E 01 D6 03 74 0B E3 0B 25 0C E6 08 79 3B 10 82 10 92 05 75 11 5B 37 FA 02 D8 0B AD 0E 34 07 34 03 63 0E F0 01 28 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 3,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 10,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\l",
+            "offset": 41,
+            "bytes": [
+              250
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 51,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "pokemart": 2,
+      "pokemartlistend": 2,
+      "waitmessage": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 11,
+    "script_count": 8,
+    "movement_count": 0,
+    "text_count": 3,
+    "encoded_text_count": 3,
+    "text_source_byte_count": 228,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 3
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 5,
+      "faceplayer": 1,
+      "goto_if_set": 1,
+      "lock": 1,
+      "message": 1,
+      "msgbox": 5,
+      "pokemart": 2,
+      "pokemartlistend": 2,
+      "release": 2,
+      "waitmessage": 1
+    }
+  }
+}

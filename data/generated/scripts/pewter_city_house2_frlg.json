@@ -1,0 +1,528 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "PewterCity_House2_Frlg",
+    "map_script": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+    "map_json": "data/maps/PewterCity_House2_Frlg/map.json",
+    "map_id": "MAP_PEWTER_CITY_HOUSE2",
+    "map_name": "PewterCity_House2_Frlg"
+  },
+  "labels": {
+    "PewterCity_House2_Frlg_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+      "instruction_count": 1
+    },
+    "PewterCity_House2_EventScript_OldMan": {
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_House2_EventScript_LittleBoy": {
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+      "instruction_count": 2
+    },
+    "PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow": {
+      "kind": "text",
+      "line": 12,
+      "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+      "instruction_count": 4
+    },
+    "PewterCity_House2_Text_MonsEasierCatchIfStatused": {
+      "kind": "text",
+      "line": 18,
+      "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+      "instruction_count": 6
+    }
+  },
+  "scripts": {
+    "PewterCity_House2_Frlg_MapScripts": {
+      "label": "PewterCity_House2_Frlg_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 2,
+          "raw": ".byte 0",
+          "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "PewterCity_House2_EventScript_OldMan": {
+      "label": "PewterCity_House2_EventScript_OldMan",
+      "kind": "script",
+      "line": 4,
+      "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow",
+            "MSGBOX_NPC"
+          ],
+          "line": 5,
+          "raw": "msgbox PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow, MSGBOX_NPC",
+          "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 6,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow",
+          "mode": "MSGBOX_NPC",
+          "line": 5
+        }
+      ],
+      "branch_targets": []
+    },
+    "PewterCity_House2_EventScript_LittleBoy": {
+      "label": "PewterCity_House2_EventScript_LittleBoy",
+      "kind": "script",
+      "line": 8,
+      "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "PewterCity_House2_Text_MonsEasierCatchIfStatused",
+            "MSGBOX_NPC"
+          ],
+          "line": 9,
+          "raw": "msgbox PewterCity_House2_Text_MonsEasierCatchIfStatused, MSGBOX_NPC",
+          "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 10,
+          "raw": "end",
+          "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "PewterCity_House2_Text_MonsEasierCatchIfStatused",
+          "mode": "MSGBOX_NPC",
+          "line": 9
+        }
+      ],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {
+    "PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow": {
+      "label": "PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow",
+      "line": 12,
+      "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+      "raw_text": "宝可梦在成长过程中\\n可以学到新的技能。\\p但是有一些必须要有人教\\n它们才能学会。$",
+      "display_text": "宝可梦在成长过程中\n可以学到新的技能。\n\n但是有一些必须要有人教\n它们才能学会。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 74,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          15,
+          230,
+          2,
+          75,
+          2,
+          38,
+          4,
+          197,
+          2,
+          78,
+          16,
+          161,
+          254,
+          7,
+          215,
+          15,
+          36,
+          14,
+          144,
+          3,
+          4,
+          14,
+          77,
+          3,
+          11,
+          5,
+          167,
+          9,
+          210,
+          55,
+          251,
+          2,
+          233,
+          12,
+          12,
+          15,
+          126,
+          15,
+          11,
+          14,
+          52,
+          1,
+          149,
+          14,
+          118,
+          14,
+          241,
+          15,
+          126,
+          11,
+          75,
+          7,
+          30,
+          254,
+          12,
+          159,
+          9,
+          95,
+          1,
+          224,
+          9,
+          210,
+          14,
+          144,
+          5,
+          110,
+          55,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 0F E6 02 4B 02 26 04 C5 02 4E 10 A1 FE 07 D7 0F 24 0E 90 03 04 0E 4D 03 0B 05 A7 09 D2 37 FB 02 E9 0C 0C 0F 7E 0F 0B 0E 34 01 95 0E 76 0E F1 0F 7E 0B 4B 07 1E FE 0C 9F 09 5F 01 E0 09 D2 0E 90 05 6E 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 20,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 33,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "PewterCity_House2_Text_MonsEasierCatchIfStatused": {
+      "label": "PewterCity_House2_Text_MonsEasierCatchIfStatused",
+      "line": 18,
+      "source_file": "data/maps/PewterCity_House2_Frlg/scripts.inc",
+      "raw_text": "当一只宝可梦进入异常状态时\\n会容易收服一些。\\p睡眠，中毒，烧伤，或者麻痹……\\n这些都能对其造成影响。\\p但是收服一只宝可梦\\n从来都不是件容易的事！$",
+      "display_text": "当一只宝可梦进入异常状态时\n会容易收服一些。\n\n睡眠，中毒，烧伤，或者麻痹……\n这些都能对其造成影响。\n\n但是收服一只宝可梦\n从来都不是件容易的事！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 132,
+        "bytes": [
+          2,
+          239,
+          15,
+          11,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          7,
+          74,
+          11,
+          107,
+          15,
+          60,
+          2,
+          37,
+          16,
+          227,
+          12,
+          173,
+          11,
+          237,
+          254,
+          5,
+          110,
+          11,
+          93,
+          15,
+          39,
+          12,
+          26,
+          4,
+          10,
+          15,
+          11,
+          14,
+          52,
+          55,
+          251,
+          12,
+          82,
+          9,
+          119,
+          59,
+          16,
+          161,
+          3,
+          99,
+          59,
+          11,
+          179,
+          11,
+          169,
+          59,
+          5,
+          127,
+          16,
+          82,
+          9,
+          35,
+          1,
+          145,
+          176,
+          176,
+          254,
+          16,
+          85,
+          14,
+          52,
+          3,
+          97,
+          9,
+          210,
+          3,
+          121,
+          10,
+          159,
+          16,
+          1,
+          2,
+          75,
+          15,
+          94,
+          14,
+          25,
+          55,
+          251,
+          2,
+          233,
+          12,
+          12,
+          12,
+          26,
+          4,
+          10,
+          15,
+          11,
+          16,
+          140,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          2,
+          179,
+          8,
+          41,
+          3,
+          97,
+          1,
+          214,
+          12,
+          12,
+          5,
+          233,
+          11,
+          93,
+          15,
+          39,
+          3,
+          11,
+          12,
+          7,
+          60,
+          255
+        ],
+        "hex": "02 EF 0F 0B 10 8C 01 63 07 D7 09 66 07 4A 0B 6B 0F 3C 02 25 10 E3 0C AD 0B ED FE 05 6E 0B 5D 0F 27 0C 1A 04 0A 0F 0B 0E 34 37 FB 0C 52 09 77 3B 10 A1 03 63 3B 0B B3 0B A9 3B 05 7F 10 52 09 23 01 91 B0 B0 FE 10 55 0E 34 03 61 09 D2 03 79 0A 9F 10 01 02 4B 0F 5E 0E 19 37 FB 02 E9 0C 0C 0C 1A 04 0A 0F 0B 10 8C 01 63 07 D7 09 66 FE 02 B3 08 29 03 61 01 D6 0C 0C 05 E9 0B 5D 0F 27 03 0B 0C 07 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 13,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 40,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 53,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 64,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 77,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {},
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 5,
+    "script_count": 3,
+    "movement_count": 0,
+    "text_count": 2,
+    "encoded_text_count": 2,
+    "text_source_byte_count": 206,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 2
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "end": 2,
+      "msgbox": 2
+    }
+  }
+}
