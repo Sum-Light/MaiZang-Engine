@@ -1,0 +1,471 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/importer/export_overworld_map_load_trace.py",
+  "source_root": "C:\\Users\\YbbNa\\OneDrive\\Project-Azoth\\pokeemerald-expansion-master\\pokeemerald-expansion-master",
+  "source_files": [
+    {
+      "path": "src/overworld.c",
+      "exists": true
+    },
+    {
+      "path": "src/fieldmap.c",
+      "exists": true
+    },
+    {
+      "path": "src/script.c",
+      "exists": true
+    },
+    {
+      "path": "include/constants/map_scripts.h",
+      "exists": true
+    }
+  ],
+  "required_symbols": {
+    "LoadMapFromCameraTransition": [
+      {
+        "file": "src/overworld.c",
+        "line": 875
+      },
+      {
+        "file": "src/fieldmap.c",
+        "line": 804
+      }
+    ],
+    "LoadMapFromWarp": [
+      {
+        "file": "src/overworld.c",
+        "line": 930
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2182
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2254
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 3931
+      }
+    ],
+    "LoadMapInStepsLocal": [
+      {
+        "file": "src/overworld.c",
+        "line": 123
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 1956
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2248
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2433
+      }
+    ],
+    "DoMapLoadLoop": [
+      {
+        "file": "src/overworld.c",
+        "line": 122
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 1893
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 1922
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 1941
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2431
+      }
+    ],
+    "InitMap": [
+      {
+        "file": "src/overworld.c",
+        "line": 904
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 981
+      },
+      {
+        "file": "src/fieldmap.c",
+        "line": 134
+      }
+    ],
+    "RunOnTransitionMapScript": [
+      {
+        "file": "src/overworld.c",
+        "line": 903
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 972
+      },
+      {
+        "file": "src/script.c",
+        "line": 383
+      }
+    ],
+    "RunOnLoadMapScript": [
+      {
+        "file": "src/fieldmap.c",
+        "line": 138
+      },
+      {
+        "file": "src/fieldmap.c",
+        "line": 147
+      },
+      {
+        "file": "src/script.c",
+        "line": 378
+      }
+    ],
+    "RunOnResumeMapScript": [
+      {
+        "file": "src/overworld.c",
+        "line": 915
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2544
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 3943
+      },
+      {
+        "file": "src/script.c",
+        "line": 388
+      }
+    ],
+    "TryRunOnWarpIntoMapScript": [
+      {
+        "file": "src/overworld.c",
+        "line": 2554
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2573
+      },
+      {
+        "file": "src/script.c",
+        "line": 414
+      }
+    ],
+    "CB2_LoadMap": [
+      {
+        "file": "src/overworld.c",
+        "line": 1929
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2103
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 4039
+      }
+    ],
+    "CB2_LoadMap2": [
+      {
+        "file": "src/overworld.c",
+        "line": 118
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 1936
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 1939
+      }
+    ],
+    "RunFieldCallback": [
+      {
+        "file": "src/overworld.c",
+        "line": 1851
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2238
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2310
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2344
+      },
+      {
+        "file": "src/overworld.c",
+        "line": 2416
+      }
+    ],
+    "FieldCB_DefaultWarpExit": [
+      {
+        "file": "src/overworld.c",
+        "line": 1870
+      }
+    ]
+  },
+  "source_flows": [
+    {
+      "id": "camera_transition_load",
+      "source_entry": "src/overworld.c:LoadMapFromCameraTransition",
+      "status": "first_pass_metadata",
+      "critical_order": [
+        "SetWarpDestination",
+        "TransitionMapMusic unless current section is MAPSEC_BATTLE_FRONTIER",
+        "ApplyCurrentWarp",
+        "LoadCurrentMapData",
+        "LoadObjEventTemplatesFromHeader",
+        "TrySetMapSaveWarpStatus",
+        "ClearTempFieldEventData",
+        "ResetDexNavSearch",
+        "ResetCyclingRoadChallengeData",
+        "RestartWildEncounterImmunitySteps",
+        "DoTimeBasedEvents",
+        "SetSavedWeatherFromCurrMapHeader",
+        "ChooseAmbientCrySpecies",
+        "SetDefaultFlashLevel",
+        "Overworld_ClearSavedMusic",
+        "RunOnTransitionMapScript",
+        "InitMap",
+        "CopySecondaryTilesetToVramUsingHeap",
+        "LoadSecondaryTilesetPalette",
+        "ApplyWeatherColorMapToPals",
+        "InitSecondaryTilesetAnimation",
+        "UpdateLocationHistoryForRoamer",
+        "MoveAllRoamers",
+        "DoCurrentWeather",
+        "ResetFieldTasksArgs",
+        "RunOnResumeMapScript",
+        "ShowMapNamePopup when source conditions pass"
+      ],
+      "godot_current": [
+        "EventManager can run MAP_SCRIPT_ON_TRANSITION and MAP_SCRIPT_ON_LOAD for generated map loads.",
+        "MapRuntime consumes generated map/layout/tileset data instead of source VRAM/palette loads.",
+        "MapRuntime/EventManager debug dump exposes map type, weather, music, and active script hooks."
+      ],
+      "gaps": [
+        "TransitionMapMusic/Overworld_ClearSavedMusic remain metadata-only.",
+        "Weather color maps and palette effects are not implemented.",
+        "RunOnResumeMapScript is not dispatched during Godot map loads.",
+        "Secondary tileset VRAM/palette/tile animation steps are not source-equivalent.",
+        "Roamer/location history side effects are future work."
+      ]
+    },
+    {
+      "id": "warp_load_core",
+      "source_entry": "src/overworld.c:LoadMapFromWarp",
+      "status": "first_pass",
+      "critical_order": [
+        "LoadCurrentMapData",
+        "Load object templates from Battle Pyramid/Trainer Hill/header depending on map",
+        "Check map type indoors/outdoors",
+        "CheckLeftFriendsSecretBase",
+        "TrySetMapSaveWarpStatus",
+        "ClearTempFieldEventData",
+        "ResetDexNavSearch",
+        "Reset hours override",
+        "ResetCyclingRoadChallengeData",
+        "RestartWildEncounterImmunitySteps",
+        "TryUpdateRandomTrainerRematches/MapResetTrainerRematches when enabled",
+        "DoTimeBasedEvents unless returning from link-style load",
+        "SetSavedWeatherFromCurrMapHeader",
+        "ChooseAmbientCrySpecies",
+        "Clear flash flag outdoors",
+        "SetDefaultFlashLevel",
+        "Overworld_ClearSavedMusic",
+        "RunOnTransitionMapScript",
+        "UpdateLocationHistoryForRoamer",
+        "MoveAllRoamersToOtherLocationSets",
+        "Clear chain fishing/DexNav streak",
+        "InitBattlePyramidMap/InitTrainerHillMap/InitMap",
+        "UpdateTVScreensOnMap and InitSecretBaseAppearance for normal indoor warps"
+      ],
+      "godot_current": [
+        "EventManager transition payloads can reconfigure MapRuntime, GameState.current_map_id, ScriptVM script data, and then run first-pass map-load scripts.",
+        "Generated destination warp-id lookup and exit-task metadata are covered for the first generated maps."
+      ],
+      "gaps": [
+        "Battle Pyramid/Trainer Hill special layout paths are not implemented.",
+        "Weather, ambient cries, flash, roamers, TV screens, and Secret Base map-load side effects are not source-equivalent.",
+        "The source distinction between LoadMapFromWarp(TRUE/FALSE) is not fully modeled."
+      ]
+    },
+    {
+      "id": "local_step_loader",
+      "source_entry": "src/overworld.c:LoadMapInStepsLocal",
+      "status": "first_pass_metadata",
+      "critical_order": [
+        "case 0: FieldClearVBlankHBlankCallbacks then LoadMapFromWarp",
+        "case 1: ResetMirageTowerAndSaveBlockPtrs and ResetScreenForMapLoad",
+        "case 2: ResumeMap, including StartWeather/ResumePausedWeather/RunOnResumeMapScript",
+        "case 3: InitObjectEventsLocal and SetCameraToTrackPlayer",
+        "case 4: InitCurrentFlashLevelScanlineEffect, InitOverworldGraphicsRegisters, InitTextBoxGfxAndPrinters",
+        "case 5: ResetFieldCamera",
+        "case 6: CopyPrimaryTilesetToVram",
+        "case 7: CopySecondaryTilesetToVram",
+        "case 8: wait for temp buffers, then LoadMapTilesetPalettes",
+        "case 9: DrawWholeMapView",
+        "case 10: InitTilesetAnimations",
+        "case 11: optional ShowMapNamePopup",
+        "case 12: RunFieldCallback",
+        "case 13: done"
+      ],
+      "godot_current": [
+        "TransitionSequencePlayer has source-ordered first-pass fade/load/reveal sequence data.",
+        "DebugMapPlane draws current generated map data immediately from RGBA atlas/debug tiles."
+      ],
+      "gaps": [
+        "Godot does not currently stage map load over the source case-by-case callback loop.",
+        "VRAM/OAM/palette steps are intentionally not recreated as GBA limits, but their visible effects still need Godot-native equivalents.",
+        "RunFieldCallback and exact map-name popup timing are pending."
+      ]
+    },
+    {
+      "id": "layout_onload_script",
+      "source_entry": "src/fieldmap.c:InitMap",
+      "status": "first_pass",
+      "critical_order": [
+        "InitMapLayoutData",
+        "SetOccupiedSecretBaseEntranceMetatiles",
+        "RunOnLoadMapScript"
+      ],
+      "godot_current": [
+        "MapRuntime.configure_from_data loads generated map/layout grids.",
+        "EventManager.run_map_load_scripts runs MAP_SCRIPT_ON_TRANSITION first, then source-timed template sync, then MAP_SCRIPT_ON_LOAD."
+      ],
+      "gaps": [
+        "Secret Base entrance occupancy and broader map-layout side effects remain future work."
+      ]
+    },
+    {
+      "id": "map_script_dispatch_helpers",
+      "source_entry": "src/script.c:RunOnTransitionMapScript/RunOnLoadMapScript",
+      "status": "first_pass",
+      "critical_order": [
+        "MapHeaderGetScriptTable finds map_script type records",
+        "MapHeaderRunScriptType runs immediate scripts for ON_LOAD/ON_TRANSITION/ON_RESUME/ON_DIVE/ON_RETURN",
+        "MapHeaderCheckScriptTable evaluates map_script_2 tables with VarGet equality",
+        "TryRunOnWarpIntoMapScript runs first matching ON_WARP_INTO_MAP_TABLE script immediately"
+      ],
+      "godot_current": [
+        "EventManager.run_map_script_type runs ON_TRANSITION and ON_LOAD immediate scripts.",
+        "EventManager.try_run_on_frame_map_script evaluates map_script_2 tables using GameState vars.",
+        "EventManager.get_current_map_debug_dump inspects all seven hook labels and table conditions read-only."
+      ],
+      "gaps": [
+        "ON_RESUME, ON_DIVE_WARP, ON_RETURN_TO_FIELD, and ON_WARP_INTO_MAP_TABLE are not all dispatched in their source lifecycle slots.",
+        "True ScriptContext async/wait timing remains pending."
+      ]
+    },
+    {
+      "id": "field_callback_setup",
+      "source_entry": "src/overworld.c:CB2_LoadMap/RunFieldCallback",
+      "status": "first_pass_metadata",
+      "critical_order": [
+        "CB2_LoadMap clears field callbacks, initializes ScriptContext, unlocks controls, clears callback1, sets callback2 to CB2_DoChangeMap, and saves CB2_LoadMap2",
+        "CB2_LoadMap2 runs DoMapLoadLoop then installs VBlankCB_Field, CB1_Overworld, and CB2_Overworld",
+        "DoMapLoadLoop repeatedly runs LoadMapInStepsLocal until complete",
+        "RunFieldCallback prefers gFieldCallback2, otherwise runs gFieldCallback or FieldCB_DefaultWarpExit, then clears callbacks"
+      ],
+      "godot_current": [
+        "Main delegates transition playback to TransitionSequencePlayer and keeps input locked until sequence completion.",
+        "Transition sequences record first-pass callbacks such as exit-task selection and battle scene handoff points."
+      ],
+      "gaps": [
+        "The gFieldCallback/gFieldCallback2 ownership model is not represented as a runtime state machine.",
+        "FieldCB_DefaultWarpExit and fade-from-black paths are only approximated by current transition sequence data."
+      ]
+    }
+  ],
+  "godot_trace_owners": {
+    "runtime": [
+      "scripts/autoload/event_manager.gd",
+      "scripts/autoload/map_runtime.gd",
+      "scripts/autoload/script_vm.gd"
+    ],
+    "presentation": [
+      "scripts/main.gd",
+      "scripts/overworld/transition_sequence_player.gd",
+      "scripts/overworld/debug_map_plane.gd"
+    ],
+    "tests": [
+      "tools/godot_smoke/event_manager_smoke.gd",
+      "tools/godot_smoke/map_runtime_smoke.gd",
+      "tools/godot_smoke/transition_presentation_smoke.gd",
+      "tools/godot_smoke/overworld_runtime_debug_dump_smoke.gd"
+    ]
+  },
+  "unsupported": [
+    {
+      "code": "resume_map_script_pending",
+      "status": "unsupported",
+      "source": "src/overworld.c:ResumeMap -> src/script.c:RunOnResumeMapScript",
+      "detail": "Godot records resume hooks in debug output but does not yet dispatch MAP_SCRIPT_ON_RESUME during generated map loads."
+    },
+    {
+      "code": "warp_into_map_table_pending",
+      "status": "unsupported",
+      "source": "src/overworld.c:InitObjectEventsLocal -> src/script.c:TryRunOnWarpIntoMapScript",
+      "detail": "Godot records OnWarpIntoMap table labels/conditions but does not yet run them after spawning object events."
+    },
+    {
+      "code": "field_callback_pipeline_pending",
+      "status": "unsupported",
+      "source": "src/overworld.c:RunFieldCallback",
+      "detail": "Godot transition playback has first-pass structured sequences, but not the source gFieldCallback/gFieldCallback2 lifecycle."
+    },
+    {
+      "code": "weather_palette_load_pending",
+      "status": "metadata_only",
+      "source": "src/overworld.c:SetSavedWeatherFromCurrMapHeader/DoCurrentWeather/ApplyWeatherColorMapToPals",
+      "detail": "Weather symbols are preserved while palette/color-map effects are intentionally Godot-native future presentation work."
+    },
+    {
+      "code": "tileset_animation_runtime_pending",
+      "status": "unsupported",
+      "source": "src/overworld.c:InitSecondaryTilesetAnimation/InitTilesetAnimations",
+      "detail": "Source tileset animation callbacks and frame copy cadence are not yet exported or played at runtime."
+    },
+    {
+      "code": "audio_playback_pending",
+      "status": "metadata_only",
+      "source": "src/overworld.c:TransitionMapMusic/Overworld_ClearSavedMusic",
+      "detail": "Audio playback remains out of scope; map music ids and timing intent stay metadata-only."
+    },
+    {
+      "code": "camera_backup_streaming_pending",
+      "status": "unsupported",
+      "source": "src/overworld.c:LoadMapInStepsLocal/ResetFieldCamera/DrawWholeMapView",
+      "detail": "The source staged map-view/camera/VRAM load loop is not source-equivalent in Godot yet."
+    }
+  ],
+  "stats": {
+    "flow_count": 6,
+    "source_file_count": 4,
+    "missing_source_file_count": 0,
+    "required_symbol_count": 13,
+    "missing_symbol_count": 0,
+    "missing_symbols": [],
+    "status_counts": {
+      "first_pass_metadata": 3,
+      "first_pass": 3
+    },
+    "unsupported_count": 7
+  }
+}

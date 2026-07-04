@@ -37,11 +37,11 @@ Use these as executable checkboxes. A task is not complete until the source path
 - [x] Add a stable unsupported-code naming scheme such as `layer_split_pending`, `door_overlay_not_source_equivalent`, and `object_movement_task_pending`.
 - [x] Add a generated overworld import summary that counts maps, layouts, tilesets, scripts, door anims, tileset anims, object graphics, movement actions, warnings, and unsupported entries.
 - [x] Add a runtime debug dump for the current map: map id, layout id, tileset pair, map type, weather, music, active scripts, object count, warp count, coord event count, and unsupported runtime features.
-- [ ] Keep `wiki/overworld-parity-todo.md` as the top-level checklist and append session-log entries after each completed slice.
+- [x] Keep `wiki/overworld-parity-todo.md` as the top-level checklist and append session-log entries after each completed slice.
 
 ### 1. Source Audit Baseline
 
-- [ ] Trace `src/overworld.c` map load entry points: `LoadMapFromWarp`, `LoadMapFromCameraTransition`, `InitMap`, `RunOnTransitionMapScript`, `RunOnLoadMapScript`, and field callback setup.
+- [x] Trace `src/overworld.c` map load entry points: `LoadMapFromWarp`, `LoadMapFromCameraTransition`, `InitMap`, `RunOnTransitionMapScript`, `RunOnLoadMapScript`, and field callback setup.
 - [ ] Trace `src/fieldmap.c` map-grid access: backup map layout, `MAP_OFFSET`, borders, connections, `MapGridGet*`, `MapGridSetMetatileIdAt`, save/load map view, and camera movement.
 - [ ] Trace `include/global.fieldmap.h` layer constants and confirm exact layer assignment rules for normal, covered, and split metatiles.
 - [ ] Trace `src/field_control_avatar.c` field-input ordering, interaction ordering, step-script ordering, door warp checks, arrow warps, and metatile-script interactions.
