@@ -17,6 +17,8 @@ The port should be data-driven: preserve source data and assets where practical,
 ## Current Godot Project State
 
 - Godot project now has a minimal runtime scaffold.
+- `wiki/control-panel.md` is the short operational entry point for the port: current focus, low-coupling module tracks, work lanes, definition of done, subagent policy, active backlog, and the rule for regaining order when work feels scattered.
+- Current architecture planning prefers independent module tracks: map/overworld can emit battle-start requests but should not own battle rules; battle consumes plain setup context and should not query map runtime; scripts and save cross domains through narrow APIs or structured effects/results.
 - `project.godot` targets Godot 4.7 features and mobile rendering.
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
 - Autoloads are configured for `GameState`, `DataRegistry`, `PartyRuntime`, `SaveService`, `BattleEngine`, `EvolutionEngine`, `EncounterEngine`, `MapRuntime`, `ScriptVM`, and `EventManager`.

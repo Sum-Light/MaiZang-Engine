@@ -38,11 +38,30 @@ The original project should be treated as authoritative source data and behavior
 - `EventManager`: dispatches map events, warps, signs, object interaction, and coordinate triggers.
 - `ScriptVM`: interprets converted event scripts.
 - `PartyRuntime`: source-backed Pokemon instance and six-slot party runtime shared by battle, evolution, menu, save, and future capture/storage systems.
+- `BagRuntime`: source-backed inventory pocket and item quantity runtime shared by scripts, shops, field item use, battle item use, evolution item consumption, save, and future bag UI.
 - `BattleEngine`: deterministic battle rules separate from battle UI.
 - `EvolutionEngine`: source-backed evolution target, condition, pre-evolution, and split-evolution rules separate from presentation and party mutation.
 - `EncounterEngine`: source-backed wild encounter table, slot, level, and first-pass encounter-rate rules separate from field-step dispatch and battle presentation.
 - `SaveService`: serializes runtime state.
 - `ImportReport`: records missing assets, unsupported opcodes, broken links, and conversion warnings.
+
+## Low-Coupling Module Boundaries
+
+Prefer several independent module tracks over one tangled "whole game" task.
+
+- Map/overworld code owns map data, object events, warps, coordinate events, player-step ordering, and field transitions. It may emit battle-start requests, but it should not implement battle rules.
+- Battle code owns battle Pokemon, move execution, damage, AI, rewards, and battle result summaries. It should not query `MapRuntime`; map-derived facts must be passed in as plain setup context.
+- Script code owns opcode execution and branch state. It should call narrow domain APIs or emit structured effects instead of reaching into module internals.
+- Inventory code owns bag pockets, item quantities, grant/remove/check behavior, and item-use contracts. Scripts, shops, battle, evolution, save, and UI should talk to it through explicit APIs.
+- Presentation code owns scenes, windows, animation, audio, fades, sprites, cameras, and user choices. Runtime modules should provide structured sequences/results rather than manipulating presentation nodes directly.
+- Import/data code owns source parsing and generated assets. Runtime modules should read generated data through `DataRegistry`, not parse source files during gameplay.
+
+Allowed coupling should look like request/result data:
+
+- Map or script emits `battle_start_requested`; `BattleEngine` returns battle state/result data.
+- Script executes `giveitem`; `BagRuntime` returns success/full/error data and the VM writes `VAR_RESULT`.
+- Save reads snapshots through runtime-owned export/apply APIs rather than serializing module internals.
+- Presentation receives transition/dialogue/battle/menu sequence data and returns completion or user-choice data.
 
 ## First Vertical Slice
 

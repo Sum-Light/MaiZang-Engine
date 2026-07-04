@@ -294,3 +294,5 @@
 - Updated `EventManager` so standard wild battle-start steps carry the concrete transition id and transition type; generated map `map_type` is passed into battle setup when available through `DataRegistry`.
 - Expanded `battle_engine_smoke.gd` and `field_wild_encounter_smoke.gd` to cover normal Route101, Route119 water, Flash, underground, and underwater wild transition selection.
 - Added GitHub remote `git@github.com:Sum-Light/MaiZang-Engine.git`, verified SSH authentication for `Sum-Light`, pushed local `master`, and set it to track `origin/master`.
+- Responded to the project feeling scattered by adding `wiki/control-panel.md` as a short operational entry point, updating the wiki read order, recording the current next module as `BagRuntime` plus `ScriptVM.giveitem`, and documenting the definition of done/subagent policy/mess-control rule.
+- Added the user's low-coupling module split to the control panel and architecture notes: map/overworld, battle, script/event flow, inventory/items, import/data, and presentation should move as independent tracks, with cross-module behavior expressed through explicit request/result contracts.

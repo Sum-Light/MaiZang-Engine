@@ -1,5 +1,17 @@
 # Decisions
 
+## 2026-07-04 - Add a short project control panel
+
+Decision: Use `wiki/control-panel.md` as the first planning page for current focus, work lanes, definition of done, subagent policy, active backlog, and mess-control rules.
+
+Reason: The port now has many generated-data, runtime, presentation, verification, wiki, skill, and git threads. A compact operational page gives each session a single starting point and keeps the full wiki from becoming the only way to understand what is currently active.
+
+## 2026-07-04 - Split work into low-coupling module tracks
+
+Decision: Organize ongoing port work into low-coupling module tracks such as map/overworld, battle, script/event flow, inventory/items, import/data, and presentation. Cross-module behavior should use explicit request/result data rather than direct ownership of another module's internals.
+
+Reason: The full game naturally connects maps, scripts, battles, items, saves, menus, and presentation, but implementing them as one blended task makes the port hard to reason about. A map module that can request a battle without owning battle rules, and a battle module that consumes map-derived setup context without querying map state, keeps each slice testable and makes subagent investigation safer.
+
 ## 2026-07-03 - Data-driven Godot rebuild
 
 Decision: Treat `pokeemerald-expansion` as source data and behavioral reference, and rebuild runtime systems in Godot 4.7.
