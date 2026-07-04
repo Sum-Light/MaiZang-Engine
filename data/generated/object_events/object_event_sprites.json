@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "category": "object_events",
+  "source": {
+    "project": "pokeemerald-expansion",
+    "kind": "first_pass_static_object_event_sprites"
+  },
+  "sprites": {
+    "OBJ_EVENT_GFX_BOY_1": {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "source_symbol": "gObjectEventPic_Boy1",
+      "source_pic_table": "sPicTable_Boy1",
+      "source_image": "graphics/object_events/pics/people/boy_1.png",
+      "image": "res://assets/generated/object_events/boy_1.png",
+      "image_project_path": "assets/generated/object_events/boy_1.png",
+      "image_size": {
+        "w": 144,
+        "h": 32
+      },
+      "frame_size": {
+        "w": 16,
+        "h": 32
+      },
+      "columns": 9,
+      "rows": 1,
+      "static_frames": {
+        "down": 0
+      },
+      "source_trace": [
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_Boy1",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_Boy1",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_BOY_1"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_animation_not_ported",
+          "detail": "Only the neutral down-facing frame is consumed by Godot for this slice; walking/facing animation tables remain future overworld sprite work."
+        }
+      ]
+    }
+  },
+  "stats": {
+    "sprite_count": 1
+  }
+}

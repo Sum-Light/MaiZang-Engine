@@ -181,6 +181,91 @@ func _init() -> void:
 	_assert(String(underwater_transition.get("transition_type", "")) == "TRANSITION_TYPE_WATER", "expected underwater map transition type")
 	_assert(String(underwater_transition.get("selected", "")) == "B_TRANSITION_RIPPLE", "expected underwater equal-or-higher wild transition")
 
+	var mudkip := engine.create_battle_mon("SPECIES_MUDKIP", 30, {
+		"moves": ["MOVE_WATER_GUN", "MOVE_TACKLE"],
+	})
+	_assert(String(mudkip.get("status", "")) == "ok", "expected Mudkip battle mon")
+	var sawyer_battle := engine.create_trainer_battle_state("TRAINER_SAWYER_1", [mudkip], {
+		"map_transition_type": "normal",
+	})
+	var sawyer_setup := _dict_field(sawyer_battle, "battle_setup")
+	var sawyer_transition := _dict_field(sawyer_setup, "battle_transition")
+	_assert(String(sawyer_battle.get("status", "")) == "ok", "expected Sawyer trainer battle state")
+	_assert(String(sawyer_battle.get("battle_kind", "")) == "trainer", "expected trainer battle kind")
+	_assert(_array_field(sawyer_battle, "battle_type_flags").has("BATTLE_TYPE_TRAINER"), "expected trainer battle type flag")
+	_assert(String(_dict_field(sawyer_battle, "trainer").get("symbol", "")) == "TRAINER_SAWYER_1", "expected Sawyer trainer metadata")
+	_assert(_array_field(sawyer_battle, "player_party").size() == 1, "expected Sawyer player party")
+	_assert(_array_field(sawyer_battle, "opponent_party").size() == 1, "expected Sawyer opponent party")
+	_assert(int(_dict_field(sawyer_battle, "active").get("player", -1)) == 0, "expected active player battler")
+	_assert(int(_dict_field(sawyer_battle, "active").get("opponent", -1)) == 0, "expected active opponent battler")
+	_assert(String(sawyer_setup.get("battle_setup_function", "")) == "BattleSetup_StartTrainerBattle", "expected trainer setup source")
+	_assert(String(sawyer_transition.get("selected", "")) == "B_TRANSITION_POKEBALLS_TRAIL", "expected normal lower trainer transition")
+	_assert(String(sawyer_transition.get("transition_table", "")) == "sBattleTransitionTable_Trainer", "expected trainer transition table")
+	_assert(int(sawyer_transition.get("enemy_level_sum", 0)) == 21, "expected Sawyer enemy level sum")
+	_assert(int(sawyer_transition.get("player_level_sum", 0)) == 30, "expected player level sum")
+	_assert(String(sawyer_transition.get("transition_type_reason", "")) == "options.map_transition_type", "expected transition hint reason")
+	_assert(_dict_field(sawyer_battle, "stats_metadata").has("on_battle_start"), "expected trainer stats metadata")
+	_assert(String(_dict_field(sawyer_battle, "callback_metadata").get("saved_callback", "")) == "CB2_EndTrainerBattle", "expected trainer callback metadata")
+
+	var cave_trainer := engine.create_trainer_battle_state("TRAINER_SAWYER_1", [mudkip], {
+		"map_transition_type": "cave",
+	})
+	var cave_trainer_transition := _dict_field(_dict_field(cave_trainer, "battle_setup"), "battle_transition")
+	_assert(String(cave_trainer_transition.get("selected", "")) == "B_TRANSITION_SHUFFLE", "expected cave lower trainer transition")
+	_assert(String(cave_trainer_transition.get("transition_type", "")) == "TRANSITION_TYPE_CAVE", "expected cave trainer transition type")
+
+	var flash_trainer := engine.create_trainer_battle_state("TRAINER_SAWYER_1", [mudkip], {
+		"map_transition_type": "flash",
+	})
+	var flash_trainer_transition := _dict_field(_dict_field(flash_trainer, "battle_setup"), "battle_transition")
+	_assert(String(flash_trainer_transition.get("selected", "")) == "B_TRANSITION_BLUR", "expected flash lower trainer transition")
+
+	var water_trainer := engine.create_trainer_battle_state("TRAINER_SAWYER_1", [mudkip], {
+		"map_transition_type": "water",
+	})
+	var water_trainer_transition := _dict_field(_dict_field(water_trainer, "battle_setup"), "battle_transition")
+	_assert(String(water_trainer_transition.get("selected", "")) == "B_TRANSITION_SWIRL", "expected water lower trainer transition")
+
+	var wallace_battle := engine.create_trainer_battle_state("TRAINER_WALLACE", [mudkip])
+	var wallace_transition := _dict_field(_dict_field(wallace_battle, "battle_setup"), "battle_transition")
+	_assert(String(wallace_transition.get("selected", "")) == "B_TRANSITION_MUGSHOT", "expected Wallace mugshot transition")
+	_assert(String(wallace_transition.get("unsupported_reason", "")) == "trainer_transition_mugshot_placeholder", "expected mugshot unsupported reason")
+	_assert(_has_unsupported(wallace_transition, "trainer_transition_mugshot_placeholder"), "expected mugshot unsupported metadata")
+
+	var aqua_battle := engine.create_trainer_battle_state("TRAINER_GRUNT_AQUA_HIDEOUT_1", [mudkip])
+	var aqua_transition := _dict_field(_dict_field(aqua_battle, "battle_setup"), "battle_transition")
+	_assert(String(aqua_transition.get("selected", "")) == "B_TRANSITION_AQUA", "expected Aqua transition placeholder")
+	_assert(String(aqua_transition.get("unsupported_reason", "")) == "trainer_transition_aqua_placeholder", "expected Aqua unsupported reason")
+
+	var fallback_battle := engine.create_trainer_battle_state("TRAINER_SAWYER_1", [], {
+		"allow_empty_player_party_fallback": true,
+	})
+	_assert(String(fallback_battle.get("status", "")) == "ok", "expected empty-party fallback trainer state")
+	_assert(_array_field(fallback_battle, "player_party").size() == 1, "expected fallback player party")
+	_assert(_has_unsupported(fallback_battle, "empty_player_party_debug_fallback"), "expected empty-party fallback unsupported note")
+
+	var trainer_turn := engine.execute_player_move_turn(sawyer_battle, 0, {
+		"damage_roll_percent": 100,
+	})
+	var trainer_state_after_turn := _dict_field(trainer_turn, "battle_state")
+	var trainer_player_after_turn := _array_dict(_array_field(trainer_state_after_turn, "player_party"), 0)
+	var trainer_opponent_after_turn := _array_dict(_array_field(trainer_state_after_turn, "opponent_party"), 0)
+	var used_water_gun := _array_dict(_array_field(trainer_player_after_turn, "moves"), 0)
+	var trainer_result_contract := _dict_field(trainer_turn, "battle_result")
+	var trainer_result_parties := _dict_field(trainer_result_contract, "parties")
+	_assert(String(trainer_turn.get("status", "")) == "ok", "expected trainer turn execution")
+	_assert(int(trainer_turn.get("turn", 0)) == 1, "expected trainer turn increment")
+	_assert(int(used_water_gun.get("current_pp", -1)) == 24, "expected Water Gun PP decrement")
+	_assert(int(trainer_opponent_after_turn.get("hp", -1)) == 0, "expected Sawyer Geodude fainted")
+	_assert(bool(trainer_opponent_after_turn.get("fainted", false)), "expected opponent faint flag")
+	_assert(String(trainer_turn.get("outcome", "")) == "player_won", "expected player win outcome")
+	_assert(String(trainer_result_contract.get("outcome", "")) == "player_won", "expected result contract outcome")
+	_assert(_array_field(trainer_result_parties, "player").size() == 1, "expected result contract player party")
+	_assert(_array_field(trainer_result_parties, "opponent").size() == 1, "expected result contract opponent party")
+	_assert(_dict_field(trainer_result_contract, "stats").has("battle_start"), "expected result contract stats")
+	_assert(_array_field(trainer_result_contract, "unsupported").size() >= 1, "expected result contract unsupported notes")
+	_assert(String(_dict_field(trainer_result_contract, "post_battle").get("post_battle_script_resolver", "")) == "BattleSetup_GetTrainerPostBattleScript", "expected post-battle metadata")
+
 	if _failed:
 		return
 
@@ -192,6 +277,8 @@ func _init() -> void:
 		"wallace_party_size": wallace_party.size(),
 		"wild_opponent": String(wild_opponent.get("species", "")),
 		"wild_water_transition": String(water_transition.get("selected", "")),
+		"trainer_transition": String(sawyer_transition.get("selected", "")),
+		"trainer_outcome": String(trainer_result_contract.get("outcome", "")),
 	}))
 	engine.free()
 	registry.free()

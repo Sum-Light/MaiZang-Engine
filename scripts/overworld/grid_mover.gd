@@ -3,7 +3,7 @@ extends Node2D
 signal moved(grid_position: Vector2i)
 
 @export var tile_size := 16
-@export var move_duration := 0.12
+@export var move_duration := 16.0 / 60.0
 
 var grid_position := Vector2i.ZERO
 var _is_moving := false
@@ -24,8 +24,8 @@ func try_move(direction: Vector2i) -> bool:
 
 	_move_tween = create_tween()
 	_move_tween.tween_property(self, "position", _grid_to_world(grid_position), move_duration) \
-		.set_trans(Tween.TRANS_SINE) \
-		.set_ease(Tween.EASE_OUT)
+		.set_trans(Tween.TRANS_LINEAR) \
+		.set_ease(Tween.EASE_IN_OUT)
 	_move_tween.finished.connect(_on_move_finished)
 	return true
 
@@ -42,8 +42,8 @@ func animate_grid_position(value: Vector2i, duration: float) -> void:
 	grid_position = value
 	_move_tween = create_tween()
 	_move_tween.tween_property(self, "position", _grid_to_world(value), duration) \
-		.set_trans(Tween.TRANS_SINE) \
-		.set_ease(Tween.EASE_OUT)
+		.set_trans(Tween.TRANS_LINEAR) \
+		.set_ease(Tween.EASE_IN_OUT)
 	await _move_tween.finished
 	_is_moving = false
 

@@ -132,6 +132,7 @@ Current export behavior:
 - Reads `data/maps/<Map>/map.json`, `data/maps/<Map>/scripts.inc`, and `data/layouts/layouts.json`.
 - Decodes `data/layouts/<Layout>/map.bin` as little-endian u16 map-grid entries.
 - Uses `include/global.fieldmap.h` masks: bits 0-9 are metatile id, bits 10-11 are collision, and bits 12-15 are elevation.
+- Decodes `data/layouts/<Layout>/border.bin` and writes `border_grid` metadata for the Emerald `src/fieldmap.c:GetBorderBlockAt` rule, including `MAP_OFFSET = 7`, the parity index expression, source runtime coordinate note, and impassable collision fallback.
 - Writes `data/generated/maps/littleroot_town.json` for the current first slice.
 - Updates `data/generated/import_manifest.json` with exported map id, name, path, layout id, and size while preserving existing entries for other maps, tilesets, and scripts.
 - Preserves source event arrays for connections, object events, warps, coordinate events, and background events.
@@ -433,6 +434,15 @@ Latest verified first-slice export for `LittlerootTown`:
 - unique metatile ids: 63
 - metatile id range: 1 to 587
 
+Latest verified Route101 map export:
+
+- generated path: `data/generated/maps/route101.json`
+- manifest path: `data/generated/import_manifest.json`
+- map-grid entries: 400
+- unique metatile ids: 31
+- metatile id range: 1 to 487
+- connections: north to `MAP_OLDALE_TOWN`, south to `MAP_LITTLEROOT_TOWN`
+
 Latest verified first-slice tileset export for `LittlerootTown`:
 
 - generated metadata path: `data/generated/tilesets/littleroot_town.json`
@@ -445,6 +455,15 @@ Latest verified first-slice tileset export for `LittlerootTown`:
 - generated door animations: 2 supported size-1 animated-door metatiles, `METATILE_Petalburg_Door_Littleroot` and `METATILE_Petalburg_Door_BirchsLab`
 - generated door animation atlases: `assets/generated/door_anims/littleroot_town_littleroot.png` and `assets/generated/door_anims/littleroot_town_birchs_lab.png`
 - generated metatile label data: source `METATILE_*` ids from `include/constants/metatile_labels.h`
+
+Latest verified Route101 tileset export:
+
+- generated metadata path: `data/generated/tilesets/route101.json`
+- generated atlas path: `assets/generated/tilesets/route101_metatiles.png`
+- atlas size: 512x336 pixels
+- metatile count: 656 total, 512 primary and 144 secondary
+- used metatile ids: 31
+- visible warnings: 0
 
 Latest verified first-slice event script export for `LittlerootTown`:
 
@@ -466,6 +485,33 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - current field-effect runtime scope: `ScriptVM` records `delay`, `setmetatile`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect results; `setmetatile` resolves source `METATILE_*` labels through generated tileset metadata and `MapRuntime` applies the current-map grid mutation while preserving elevation; transition presentation now consumes generated door animation metadata for first-pass door warp overlays, while standalone script-driven door animation, real audio playback, and true asynchronous timing remain future work
 - current audio/transition/player-effect runtime scope: `ScriptVM` records `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, `waitstate`, and `hideplayer` as structured result data after source tracing; real sound playback, fanfare waiting, map loading/fades, and player presentation visibility remain future runtime work
 - current coordinate-event runtime scope: `MapRuntime` indexes generated coord events and resolves normal `var`/`var_value` step triggers by x/y/elevation plus `GameState`; full weather/immediate-script/wild-encounter/step-count chaining remains future work
+
+Latest verified Route101 event script export:
+
+- generated path: `data/generated/scripts/route101.json`
+- manifest path: `data/generated/import_manifest.json`
+- scripts: 14
+- movement labels: 13
+- local text labels: 7
+- charmap warnings: 0
+
+Godot-only map overlay export:
+
+- source path: `data/overlays/map_debug_fixtures.json`
+- generated path: `data/generated/maps/debug_overlays.json`
+- manifest category: `map_overlays` / `debug_fixtures`
+- current overlay count: 1 map, 1 object event
+- current fixture: `LOCALID_DEBUG_BATTLE_NPC` on `MAP_LITTLEROOT_TOWN` at `(10,12)` with `OBJ_EVENT_GFX_BOY_1`, `trainer_battle` metadata, and trainer id `TRAINER_SAWYER_1`
+- runtime application: source map data remains unchanged by default; tests or `Main` must opt in through `include_debug_overlays`/`set_debug_map_overlays_enabled`
+
+First-pass object-event sprite export:
+
+- generated path: `data/generated/object_events/object_event_sprites.json`
+- generated asset path: `assets/generated/object_events/boy_1.png`
+- manifest category: `object_event_sprites` / `object_events`
+- current sprite: `OBJ_EVENT_GFX_BOY_1`
+- current scope: static source sheet extraction only; full facing/walking animation timing remains unsupported metadata/future work
+- current runtime scope: static down-facing frame only; walking/facing animation tables remain future overworld sprite work
 
 Latest verified additional maps for the first transition slice:
 

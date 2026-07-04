@@ -10,8 +10,11 @@ const ELEVATION_INVALID := -1
 const ELEVATION_TRANSITION := 0
 const LOCALID_PLAYER := "LOCALID_PLAYER"
 const MAPGRID_METATILE_ID_MASK := 0x03FF
+const MAPGRID_COLLISION_MASK := 0x0C00
 const MAPGRID_COLLISION_SHIFT := 10
 const MAPGRID_ELEVATION_SHIFT := 12
+const MAP_OFFSET := 7
+const MAPGRID_IMPASSABLE_COLLISION := MAPGRID_COLLISION_MASK >> MAPGRID_COLLISION_SHIFT
 const OBJECT_SAVE_TRACE := [
 	"src/load_save.c:SaveObjectEvents",
 	"src/load_save.c:LoadObjectEvents",
@@ -21,13 +24,16 @@ const OBJECT_SAVE_TRACE := [
 
 var _map_data: Dictionary = {}
 var _tileset_data: Dictionary = {}
+var _data_registry: Node = null
 var _map_size := Vector2i.ZERO
 var _block_ids: Array = []
 var _raw_grid: Array = []
 var _collision_grid: Array = []
 var _elevation_grid: Array = []
+var _border_grid: Dictionary = {}
 var _metatile_attributes: Dictionary = {}
 var _door_animations_by_metatile_id: Dictionary = {}
+var _connections: Array = []
 var _object_events: Array = []
 var _object_events_by_position: Dictionary = {}
 var _object_events_by_local_id: Dictionary = {}
@@ -43,12 +49,17 @@ func _ready() -> void:
 	var registry = get_node_or_null("/root/DataRegistry")
 	if registry == null:
 		return
+	_data_registry = registry
 
 	configure_from_data(
 		registry.get_start_map_data(),
 		registry.get_start_tileset_data(),
 		registry.get_start_map_size()
 	)
+
+
+func configure_data_registry(data_registry: Node) -> void:
+	_data_registry = data_registry
 
 
 func configure_from_data(
@@ -63,8 +74,10 @@ func configure_from_data(
 	_raw_grid = []
 	_collision_grid = []
 	_elevation_grid = []
+	_border_grid = {}
 	_metatile_attributes = {}
 	_door_animations_by_metatile_id = {}
+	_connections = []
 	_object_events = []
 	_object_events_by_position = {}
 	_object_events_by_local_id = {}
@@ -89,9 +102,13 @@ func configure_from_data(
 			_raw_grid = _array_or_empty(map_grid.get("raw", []))
 			_collision_grid = _array_or_empty(map_grid.get("collision", []))
 			_elevation_grid = _array_or_empty(map_grid.get("elevation", []))
+		var border_grid = _map_data.get("border_grid", {})
+		if typeof(border_grid) == TYPE_DICTIONARY:
+			_border_grid = border_grid
 
 	_index_metatile_attributes()
 	_index_door_animations()
+	_index_connections()
 	_index_object_events()
 	_index_bg_events()
 	_index_warp_events()
@@ -121,19 +138,17 @@ func get_current_map_id() -> String:
 
 
 func get_metatile_id_at(cell: Vector2i) -> int:
-	return _grid_value(_block_ids, cell, -1)
+	return _map_or_edge_grid_value("metatile_ids", _block_ids, cell, -1)
 
 
 func get_collision_at(cell: Vector2i) -> int:
-	if not is_within_bounds(cell):
-		return COLLISION_IMPASSABLE
 	if _collision_grid.is_empty():
 		return COLLISION_NONE
-	return _grid_value(_collision_grid, cell, COLLISION_IMPASSABLE)
+	return _map_or_edge_grid_value("collision", _collision_grid, cell, COLLISION_IMPASSABLE)
 
 
 func get_elevation_at(cell: Vector2i) -> int:
-	return _grid_value(_elevation_grid, cell, ELEVATION_INVALID)
+	return _map_or_edge_grid_value("elevation", _elevation_grid, cell, ELEVATION_INVALID)
 
 
 func get_metatile_attribute(metatile_id: int) -> Dictionary:
@@ -301,6 +316,22 @@ func get_warp_event_target(cell: Vector2i) -> Dictionary:
 			continue
 		return _interaction_target("warp_event", cell, warp_event, "warp")
 	return {}
+
+
+func get_connection_target(cell: Vector2i) -> Dictionary:
+	var connection := _connection_for_cell(cell)
+	if connection.is_empty():
+		return {}
+
+	var event_data := connection.duplicate(true)
+	var destination_map_id := String(event_data.get("map", ""))
+	var destination_position := _connection_destination_position(event_data, cell)
+	event_data["dest_map"] = destination_map_id
+	event_data["dest_position"] = destination_position
+	event_data["source_map"] = _current_map_id()
+	event_data["source_position"] = _edge_source_position(cell)
+	event_data["trigger_position"] = cell
+	return _interaction_target("map_connection", cell, event_data, "map_connection")
 
 
 func get_coord_events() -> Array:
@@ -621,6 +652,29 @@ func _index_door_animations() -> void:
 		if metatile_id < 0:
 			continue
 		_door_animations_by_metatile_id[metatile_id] = animation
+
+
+func _index_connections() -> void:
+	var connections = _map_data.get("connections", [])
+	if typeof(connections) != TYPE_ARRAY:
+		var events = _map_data.get("events", {})
+		if typeof(events) == TYPE_DICTIONARY:
+			connections = events.get("connections", [])
+
+	if typeof(connections) != TYPE_ARRAY:
+		return
+
+	for source_connection in connections:
+		if typeof(source_connection) != TYPE_DICTIONARY:
+			continue
+		var connection = source_connection.duplicate(true)
+		connection["direction"] = _normalize_connection_direction(String(connection.get("direction", "")))
+		connection["offset"] = int(connection.get("offset", 0))
+		if String(connection.get("direction", "")).is_empty():
+			continue
+		if String(connection.get("map", "")).is_empty():
+			continue
+		_connections.append(connection)
 
 
 func _index_object_events() -> void:
@@ -1356,6 +1410,242 @@ func _interaction_target(
 		"event": event,
 		"script": script,
 	}
+
+
+func _map_or_edge_grid_value(grid_name: String, primary_grid: Array, cell: Vector2i, default_value: int) -> int:
+	if is_within_bounds(cell):
+		return _grid_value(primary_grid, cell, default_value)
+
+	var connected := _connected_grid_value(grid_name, cell)
+	if bool(connected.get("found", false)):
+		return int(connected.get("value", default_value))
+
+	var border := _border_grid_value(grid_name, cell)
+	if bool(border.get("found", false)):
+		return int(border.get("value", default_value))
+
+	return default_value
+
+
+func _connected_grid_value(grid_name: String, cell: Vector2i) -> Dictionary:
+	var connection := _connection_for_cell(cell)
+	if connection.is_empty():
+		return {"found": false}
+
+	var destination_map_id := String(connection.get("map", ""))
+	var connected_map_data := _connected_map_data(destination_map_id)
+	if connected_map_data.is_empty():
+		return {"found": false}
+
+	var destination_position := _connection_destination_position(connection, cell)
+	var destination_size := _map_size_from_data(connected_map_data)
+	if not _is_cell_in_size(destination_position, destination_size):
+		return {"found": false}
+
+	var grid := _map_grid_from_data(connected_map_data, grid_name)
+	if grid.is_empty():
+		return {"found": false}
+
+	return _grid_cell_value(grid, destination_position)
+
+
+func _border_grid_value(grid_name: String, cell: Vector2i) -> Dictionary:
+	if _border_grid.is_empty():
+		return {"found": false}
+
+	var values = _border_grid.get(grid_name, [])
+	if typeof(values) != TYPE_ARRAY and grid_name == "metatile_ids":
+		values = _border_grid.get("block_ids", [])
+	if typeof(values) != TYPE_ARRAY or values.is_empty():
+		return {"found": false}
+
+	var dimensions := _border_grid_dimensions(values)
+	if dimensions.x <= 0 or dimensions.y <= 0:
+		return {"found": false}
+
+	var index := _border_grid_index(cell, dimensions.x, dimensions.y)
+	if index < 0 or index >= values.size():
+		return {"found": false}
+	var value := int(values[index])
+	if grid_name == "collision":
+		value = MAPGRID_IMPASSABLE_COLLISION
+	return {
+		"found": true,
+		"value": value,
+	}
+
+
+func _border_grid_dimensions(values: Array) -> Vector2i:
+	var width := int(_border_grid.get("width", 0))
+	var height := int(_border_grid.get("height", 0))
+	if width <= 0:
+		width = 2 if values.size() >= 2 else 1
+	if height <= 0:
+		height = int(values.size() / width)
+		if values.size() % width != 0:
+			height += 1
+	return Vector2i(width, height)
+
+
+func _border_grid_index(cell: Vector2i, width: int, height: int) -> int:
+	var rule := String(_border_grid.get("source_index_rule", ""))
+	var map_offset := int(_border_grid.get("map_offset", MAP_OFFSET))
+	if rule == "emerald_2x2_parity":
+		return (
+			_positive_mod(cell.y + map_offset + 1, height) * width
+			+ _positive_mod(cell.x + map_offset + 1, width)
+		)
+	if rule == "frlg_wrapped_border":
+		return _positive_mod(cell.y, height) * width + _positive_mod(cell.x, width)
+	return _positive_mod(cell.y, height) * width + _positive_mod(cell.x, width)
+
+
+func _connection_for_cell(cell: Vector2i) -> Dictionary:
+	if is_within_bounds(cell):
+		return {}
+
+	for connection in _connections:
+		if typeof(connection) != TYPE_DICTIONARY:
+			continue
+		if _connection_matches_cell(connection, cell):
+			return connection
+	return {}
+
+
+func _connection_matches_cell(connection: Dictionary, cell: Vector2i) -> bool:
+	var direction := String(connection.get("direction", ""))
+	var destination_size := _map_size_for_connection(connection)
+	if destination_size == Vector2i.ZERO:
+		destination_size = _map_size
+	var offset := int(connection.get("offset", 0))
+
+	match direction:
+		"north":
+			return cell.y < 0 and _is_axis_in_destination(cell.x - offset, destination_size.x)
+		"south":
+			return cell.y >= _map_size.y and _is_axis_in_destination(cell.x - offset, destination_size.x)
+		"west":
+			return cell.x < 0 and _is_axis_in_destination(cell.y - offset, destination_size.y)
+		"east":
+			return cell.x >= _map_size.x and _is_axis_in_destination(cell.y - offset, destination_size.y)
+	return false
+
+
+func _connection_destination_position(connection: Dictionary, cell: Vector2i) -> Vector2i:
+	var direction := String(connection.get("direction", ""))
+	var destination_size := _map_size_for_connection(connection)
+	if destination_size == Vector2i.ZERO:
+		destination_size = _map_size
+	var offset := int(connection.get("offset", 0))
+
+	match direction:
+		"north":
+			return Vector2i(cell.x - offset, destination_size.y + cell.y)
+		"south":
+			return Vector2i(cell.x - offset, cell.y - _map_size.y)
+		"west":
+			return Vector2i(destination_size.x + cell.x, cell.y - offset)
+		"east":
+			return Vector2i(cell.x - _map_size.x, cell.y - offset)
+	return Vector2i(-1, -1)
+
+
+func _edge_source_position(cell: Vector2i) -> Vector2i:
+	if _map_size == Vector2i.ZERO:
+		return cell
+
+	var x := cell.x
+	var y := cell.y
+	if x < 0:
+		x = 0
+	elif x >= _map_size.x:
+		x = _map_size.x - 1
+	if y < 0:
+		y = 0
+	elif y >= _map_size.y:
+		y = _map_size.y - 1
+	return Vector2i(x, y)
+
+
+func _map_size_for_connection(connection: Dictionary) -> Vector2i:
+	var map_data := _connected_map_data(String(connection.get("map", "")))
+	if map_data.is_empty():
+		return Vector2i.ZERO
+	return _map_size_from_data(map_data)
+
+
+func _connected_map_data(map_id: String) -> Dictionary:
+	if map_id.is_empty() or _data_registry == null or not _data_registry.has_method("get_map_data"):
+		return {}
+	var map_data = _data_registry.get_map_data(map_id)
+	return map_data if typeof(map_data) == TYPE_DICTIONARY else {}
+
+
+func _map_size_from_data(map_data: Dictionary) -> Vector2i:
+	var layout_info = map_data.get("layout", {})
+	if typeof(layout_info) != TYPE_DICTIONARY:
+		return Vector2i.ZERO
+	return Vector2i(
+		int(layout_info.get("width", 0)),
+		int(layout_info.get("height", 0))
+	)
+
+
+func _map_grid_from_data(map_data: Dictionary, grid_name: String) -> Array:
+	if grid_name == "metatile_ids" or grid_name == "block_ids":
+		return _array_or_empty(map_data.get("block_ids", []))
+
+	var map_grid = map_data.get("map_grid", {})
+	if typeof(map_grid) != TYPE_DICTIONARY:
+		return []
+	return _array_or_empty(map_grid.get(grid_name, []))
+
+
+func _grid_cell_value(grid: Array, cell: Vector2i) -> Dictionary:
+	if cell.y < 0 or cell.y >= grid.size():
+		return {"found": false}
+
+	var row = grid[cell.y]
+	if typeof(row) != TYPE_ARRAY or cell.x < 0 or cell.x >= row.size():
+		return {"found": false}
+
+	return {
+		"found": true,
+		"value": int(row[cell.x]),
+	}
+
+
+func _is_axis_in_destination(axis_value: int, destination_max: int) -> bool:
+	return destination_max > 0 and axis_value >= 0 and axis_value < destination_max
+
+
+func _is_cell_in_size(cell: Vector2i, size: Vector2i) -> bool:
+	return cell.x >= 0 and cell.y >= 0 and cell.x < size.x and cell.y < size.y
+
+
+func _normalize_connection_direction(direction: String) -> String:
+	var normalized := direction.to_lower()
+	if normalized.begins_with("connection_"):
+		normalized = normalized.replace("connection_", "")
+	match normalized:
+		"up", "north":
+			return "north"
+		"down", "south":
+			return "south"
+		"left", "west":
+			return "west"
+		"right", "east":
+			return "east"
+	return normalized
+
+
+func _positive_mod(value: int, modulo: int) -> int:
+	if modulo <= 0:
+		return 0
+	var result := value % modulo
+	if result < 0:
+		result += modulo
+	return result
 
 
 func _grid_value(grid: Array, cell: Vector2i, default_value: int) -> int:

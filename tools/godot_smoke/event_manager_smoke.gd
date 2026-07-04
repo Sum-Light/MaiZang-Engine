@@ -25,6 +25,7 @@ func _init() -> void:
 	var vm = SCRIPT_VM_SCRIPT.new()
 	vm.configure_from_script_data(script_data)
 	var runtime = MAP_RUNTIME_SCRIPT.new()
+	runtime.configure_data_registry(registry)
 	runtime.configure_from_data(map_data, tileset_data, _map_size_from_data(map_data))
 	var game_state = GAME_STATE_SCRIPT.new()
 	var manager = EVENT_MANAGER_SCRIPT.new()
@@ -494,6 +495,53 @@ func _init() -> void:
 	)
 	_assert(not bool(conditional_door_step.get("condition_result", true)), "expected no exit-door step on May house south-arrow warp")
 
+	var connection_vm = SCRIPT_VM_SCRIPT.new()
+	connection_vm.configure_from_script_data(script_data)
+	var connection_runtime = MAP_RUNTIME_SCRIPT.new()
+	connection_runtime.configure_data_registry(registry)
+	connection_runtime.configure_from_data(map_data, tileset_data, _map_size_from_data(map_data))
+	var connection_game_state = GAME_STATE_SCRIPT.new()
+	connection_game_state.current_map_id = START_MAP
+	connection_game_state.player_grid_position = Vector2i(10, 0)
+	var connection_manager = EVENT_MANAGER_SCRIPT.new()
+	connection_manager.configure_from_script_data(script_data)
+	connection_manager.configure_script_vm(connection_vm)
+	connection_manager.configure_map_runtime(connection_runtime)
+	connection_manager.configure_game_state(connection_game_state)
+	connection_manager.configure_data_registry(registry)
+	var connection_captured := {}
+	var connection_sequences := []
+	connection_manager.debug_message_requested.connect(func(lines: PackedStringArray) -> void:
+		connection_captured["lines"] = lines
+	)
+	connection_manager.transition_sequence_requested.connect(func(sequence: Dictionary) -> void:
+		connection_sequences.append(sequence)
+	)
+	var littleroot_north_connection := connection_runtime.get_connection_target(Vector2i(10, -1))
+	connection_manager.dispatch_interaction(littleroot_north_connection)
+	var connection_lines = connection_captured.get("lines", PackedStringArray())
+	var connection_sequence = connection_sequences[0] if connection_sequences.size() > 0 else {}
+	_assert(littleroot_north_connection.get("type", "") == "map_connection", "expected Littleroot north connection target")
+	_assert(connection_game_state.current_map_id == "MAP_ROUTE101", "expected connection to load Route101")
+	_assert(connection_game_state.player_grid_position == Vector2i(10, 19), "expected Route101 south-edge destination")
+	_assert(connection_runtime.get_map_size() == Vector2i(20, 20), "expected Route101 runtime size")
+	_assert(not connection_lines.is_empty(), "expected connection dispatch to emit lines")
+	_assert(_lines_contain(connection_lines, "Map connection"), "expected map connection emitted line")
+	_assert(
+		_lines_contain(connection_lines, "Connection effects: 1 applied, 0 skipped"),
+		"expected map connection transition effect summary"
+	)
+	_assert(connection_sequence.get("presentation", "") == "connection", "expected connection presentation")
+	var connection_step := _first_step(connection_sequence, "player_step")
+	_assert(int(connection_step.get("duration_frames", 0)) == 16, "expected connection edge step to last 16 frames")
+	_assert(_vector_from_value(connection_step.get("from", Vector2i.ZERO)) == Vector2i(10, 0), "expected connection step from north edge source cell")
+	_assert(_vector_from_value(connection_step.get("to", Vector2i.ZERO)) == Vector2i(10, -1), "expected connection step to trigger cell")
+	_assert(_has_unsupported(connection_sequence, "map_connection_camera_backup_not_source_equivalent"), "expected connection camera backup unsupported note")
+	_assert(
+		_step_ops(connection_sequence) == ["lock_controls", "player_step", "load_map", "unlock_controls"],
+		"unexpected connection transition sequence steps"
+	)
+
 	print(JSON.stringify({
 		"event_manager_smoke": "ok",
 		"twin": _preview_summary(twin_preview),
@@ -507,8 +555,13 @@ func _init() -> void:
 		"map_warp_exit_task": map_warp_exit_task,
 		"door_exit_task": door_exit_task,
 		"door_sequence_ops": _step_ops(door_warp_sequence),
+		"connection_sequence_ops": _step_ops(connection_sequence),
 		"rival_position_after_object_dispatch": _vector_to_array(rival_position_after_object_dispatch),
 	}))
+	connection_manager.free()
+	connection_game_state.free()
+	connection_runtime.free()
+	connection_vm.free()
 	manager.free()
 	fallback_manager.free()
 	game_state.free()
@@ -584,6 +637,16 @@ func _exit_task(sequence: Dictionary) -> Dictionary:
 	return exit_task if typeof(exit_task) == TYPE_DICTIONARY else {}
 
 
+func _has_unsupported(record: Dictionary, code: String) -> bool:
+	var unsupported = record.get("unsupported", [])
+	if typeof(unsupported) != TYPE_ARRAY:
+		return false
+	for item in unsupported:
+		if typeof(item) == TYPE_DICTIONARY and String(item.get("code", "")) == code:
+			return true
+	return false
+
+
 func _map_size_from_data(map_data: Dictionary) -> Vector2i:
 	var layout_info = map_data.get("layout", {})
 	if typeof(layout_info) != TYPE_DICTIONARY:
@@ -606,6 +669,16 @@ func _event_position(object_event: Dictionary) -> Vector2i:
 
 func _vector_to_array(value: Vector2i) -> Array:
 	return [value.x, value.y]
+
+
+func _vector_from_value(value) -> Vector2i:
+	if typeof(value) == TYPE_VECTOR2I:
+		return value
+	if typeof(value) == TYPE_ARRAY and value.size() >= 2:
+		return Vector2i(int(value[0]), int(value[1]))
+	if typeof(value) == TYPE_DICTIONARY:
+		return Vector2i(int(value.get("x", 0)), int(value.get("y", 0)))
+	return Vector2i.ZERO
 
 
 func _movement_summary_count(summary: Dictionary, key: String) -> int:

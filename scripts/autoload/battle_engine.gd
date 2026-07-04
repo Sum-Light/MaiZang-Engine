@@ -36,6 +36,22 @@ const WILD_BATTLE_TRANSITION_TABLE := {
 	"TRANSITION_TYPE_FLASH": ["B_TRANSITION_BLUR", "B_TRANSITION_GRID_SQUARES"],
 	"TRANSITION_TYPE_WATER": ["B_TRANSITION_WAVE", "B_TRANSITION_RIPPLE"],
 }
+const TRAINER_BATTLE_TRANSITION_TABLE := {
+	"TRANSITION_TYPE_NORMAL": ["B_TRANSITION_POKEBALLS_TRAIL", "B_TRANSITION_ANGLED_WIPES"],
+	"TRANSITION_TYPE_CAVE": ["B_TRANSITION_SHUFFLE", "B_TRANSITION_BIG_POKEBALL"],
+	"TRANSITION_TYPE_FLASH": ["B_TRANSITION_BLUR", "B_TRANSITION_GRID_SQUARES"],
+	"TRANSITION_TYPE_WATER": ["B_TRANSITION_SWIRL", "B_TRANSITION_RIPPLE"],
+}
+const TRAINER_MAGMA_CLASSES := {
+	"TRAINER_CLASS_TEAM_MAGMA": true,
+	"TRAINER_CLASS_MAGMA_LEADER": true,
+	"TRAINER_CLASS_MAGMA_ADMIN": true,
+}
+const TRAINER_AQUA_CLASSES := {
+	"TRAINER_CLASS_TEAM_AQUA": true,
+	"TRAINER_CLASS_AQUA_LEADER": true,
+	"TRAINER_CLASS_AQUA_ADMIN": true,
+}
 const SURFABLE_WATER_TRANSITION_BEHAVIORS := {
 	"MB_POND_WATER": true,
 	"MB_INTERIOR_DEEP_WATER": true,
@@ -342,6 +358,77 @@ func create_trainer_party(trainer_id_or_symbol, options: Dictionary = {}) -> Dic
 	}
 
 
+func create_trainer_battle_state(trainer_id_or_symbol, player_party: Array, options: Dictionary = {}) -> Dictionary:
+	var trainer_record := _get_trainer_record(trainer_id_or_symbol)
+	if trainer_record.is_empty():
+		return _error_result("unknown_trainer", "Could not resolve trainer %s" % [str(trainer_id_or_symbol)])
+
+	var trainer_party_result := create_trainer_party(trainer_id_or_symbol, options.get("trainer_party_options", {}))
+	if String(trainer_party_result.get("status", "")) != "ok":
+		return trainer_party_result
+
+	var opponent_party = trainer_party_result.get("party", [])
+	if typeof(opponent_party) != TYPE_ARRAY:
+		opponent_party = []
+	if opponent_party.is_empty():
+		return _error_result("empty_trainer_party", "Trainer %s has no generated opponent party." % [_record_symbol(trainer_record)])
+	var normalized_player_party := _player_party_for_battle_state(player_party, options)
+	var fallback_unsupported := _array_value(normalized_player_party.get("unsupported", []))
+	var battle_player_party := _array_value(normalized_player_party.get("party", []))
+
+	var battle_options := options.duplicate(true)
+	if not battle_options.has("player_active"):
+		battle_options["player_active"] = _first_usable_battle_party_index(battle_player_party)
+	if not battle_options.has("opponent_active"):
+		battle_options["opponent_active"] = 0
+
+	var battle_state := create_single_battle_state(battle_player_party, opponent_party, battle_options)
+	var battle_setup := _trainer_battle_setup_metadata(
+		trainer_record,
+		battle_player_party,
+		opponent_party,
+		options
+	)
+	var battle_transition := _dictionary_value(battle_setup.get("battle_transition", {}))
+	battle_state["battle_kind"] = "trainer"
+	battle_state["battle_type"] = "double" if _trainer_min_party_count(trainer_record) == 2 else "single"
+	battle_state["trainer"] = _trainer_summary(trainer_record)
+	battle_state["battle_type_flags"] = _trainer_battle_type_flags(trainer_record, options)
+	battle_state["battle_setup"] = battle_setup
+	battle_state["active_battlers"] = {
+		"player": [int(battle_options.get("player_active", 0))],
+		"opponent": [int(battle_options.get("opponent_active", 0))],
+		"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle -> CB2_InitBattle",
+	}
+	battle_state["stats_metadata"] = _trainer_battle_stats_metadata()
+	battle_state["callback_metadata"] = _trainer_battle_callback_metadata(options)
+	battle_state["warnings"] = trainer_party_result.get("warnings", [])
+	battle_state["unsupported"] = _trainer_battle_unsupported(options)
+	battle_state["unsupported"].append_array(fallback_unsupported)
+	battle_state["unsupported"].append_array(_array_value(battle_transition.get("unsupported", [])))
+	if battle_state["battle_type"] == "double":
+		battle_state["unsupported"].append({
+			"code": "trainer_double_battle_not_supported",
+			"source": "src/battle_setup.c:GetTrainerBattleType; src/battle_main.c:CB2_InitBattle",
+			"detail": "Double trainer battle flags and transition level comparison are recorded, but the current battle state and BattleScene are single-battler only.",
+		})
+	var trainer_unsupported = trainer_party_result.get("unsupported", [])
+	if typeof(trainer_unsupported) == TYPE_ARRAY:
+		battle_state["unsupported"].append_array(trainer_unsupported)
+	battle_state["unsupported_reason"] = String(battle_transition.get("unsupported_reason", ""))
+	battle_state["source_trace"] = _merged_trace(battle_state.get("source_trace", []), [
+		"include/constants/battle.h:BATTLE_TYPE_TRAINER",
+		"src/battle_setup.c:BattleSetup_StartTrainerBattle",
+		"src/battle_setup.c:DoTrainerBattle",
+		"src/battle_setup.c:GetTrainerBattleTransition",
+		"src/battle_setup.c:sBattleTransitionTable_Trainer",
+		"src/battle_main.c:CreateNPCTrainerParty",
+		"src/battle_main.c:CB2_InitBattle",
+		"src/battle_setup.c:CB2_EndTrainerBattle",
+	])
+	return battle_state
+
+
 func create_single_battle_state(player_party: Array, opponent_party: Array, options: Dictionary = {}) -> Dictionary:
 	return {
 		"status": "ok",
@@ -568,6 +655,119 @@ func use_move(attacker: Dictionary, defender: Dictionary, move_slot: int = 0, op
 	}
 
 
+func execute_player_move_turn(battle_state: Dictionary, move_slot: int = 0, options: Dictionary = {}) -> Dictionary:
+	var state := battle_state.duplicate(true)
+	var player_party := _array_value(state.get("player_party", []))
+	var opponent_party := _array_value(state.get("opponent_party", []))
+	var active := _dictionary_value(state.get("active", {}))
+	var player_index := int(active.get("player", 0))
+	var opponent_index := int(active.get("opponent", 0))
+	if player_index < 0 or player_index >= player_party.size():
+		return _error_result("invalid_player_active", "Player active index %d is not available." % [player_index])
+	if opponent_index < 0 or opponent_index >= opponent_party.size():
+		return _error_result("invalid_opponent_active", "Opponent active index %d is not available." % [opponent_index])
+
+	var turn_options := options.duplicate(true)
+	if not turn_options.has("damage_roll_percent"):
+		turn_options["damage_roll_percent"] = DAMAGE_ROLL_PERCENT_HI
+	var move_result := use_move(player_party[player_index], opponent_party[opponent_index], move_slot, turn_options)
+	if String(move_result.get("status", "")) != "ok":
+		state["last_turn"] = {
+			"status": String(move_result.get("status", "error")),
+			"actor": "player",
+			"move_slot": move_slot,
+			"messages": _array_value(move_result.get("messages", [])),
+			"source_trace": move_result.get("source_trace", []),
+		}
+		var blocked_result := build_battle_result(state)
+		return {
+			"status": String(move_result.get("status", "error")),
+			"battle_state": state,
+			"messages": _array_value(move_result.get("messages", [])),
+			"outcome": String(blocked_result.get("outcome", "")),
+			"battle_result": blocked_result,
+			"source_trace": move_result.get("source_trace", []),
+		}
+
+	player_party[player_index] = move_result.get("attacker", player_party[player_index])
+	opponent_party[opponent_index] = move_result.get("defender", opponent_party[opponent_index])
+	state["player_party"] = player_party
+	state["opponent_party"] = opponent_party
+	state["turn"] = int(state.get("turn", 0)) + 1
+	state["last_turn"] = {
+		"status": "ok",
+		"actor": "player",
+		"move_slot": move_slot,
+		"move": move_result.get("move", {}),
+		"damage": move_result.get("damage", {}),
+		"messages": _array_value(move_result.get("messages", [])),
+		"source_trace": move_result.get("source_trace", []),
+	}
+	var outcome := _battle_outcome(state)
+	state["outcome"] = outcome
+	var result_contract := build_battle_result(state, {"outcome": outcome})
+	state["battle_result"] = result_contract
+	return {
+		"status": "ok",
+		"turn": int(state.get("turn", 0)),
+		"battle_state": state,
+		"move_result": move_result,
+		"messages": _array_value(move_result.get("messages", [])),
+		"outcome": outcome,
+		"battle_result": result_contract,
+		"unsupported": _array_value(result_contract.get("unsupported", [])),
+		"source_trace": _merged_trace(move_result.get("source_trace", []), [
+			"src/battle_main.c:HandleTurnActionSelectionState",
+		]),
+	}
+
+
+func build_battle_result(battle_state: Dictionary, options: Dictionary = {}) -> Dictionary:
+	var outcome := String(options.get("outcome", ""))
+	if outcome.is_empty():
+		outcome = _battle_outcome(battle_state)
+	var unsupported := _array_value(battle_state.get("unsupported", [])).duplicate(true)
+	var last_turn := _dictionary_value(battle_state.get("last_turn", {}))
+	var damage := _dictionary_value(last_turn.get("damage", {}))
+	unsupported.append_array(_array_value(damage.get("unsupported", [])))
+	if outcome == "in_progress":
+		unsupported.append({
+			"code": "battle_resolution_in_progress",
+			"source": "src/battle_main.c",
+			"detail": "The result contract can be produced mid-battle, but switching, opponent AI, rewards, and full battle-end cleanup wait for later slices.",
+		})
+	var stats_metadata := _dictionary_value(battle_state.get("stats_metadata", {}))
+	var player_party := _array_value(battle_state.get("player_party", [])).duplicate(true)
+	var opponent_party := _array_value(battle_state.get("opponent_party", [])).duplicate(true)
+	return {
+		"status": "ok",
+		"outcome": outcome,
+		"battle_kind": String(battle_state.get("battle_kind", "")),
+		"battle_type": String(battle_state.get("battle_type", "")),
+		"battle_type_flags": _array_value(battle_state.get("battle_type_flags", [])),
+		"trainer": _dictionary_value(battle_state.get("trainer", {})),
+		"wild_encounter": _dictionary_value(battle_state.get("wild_encounter", {})),
+		"parties": {
+			"player": player_party,
+			"opponent": opponent_party,
+		},
+		"player_party": player_party,
+		"opponent_party": opponent_party,
+		"stats": {
+			"turns": int(battle_state.get("turn", 0)),
+			"battle_start": stats_metadata,
+			"pending_game_state_mutation": true,
+		},
+		"unsupported": unsupported,
+		"unsupported_reason": String(battle_state.get("unsupported_reason", "")),
+		"post_battle": _post_battle_metadata(battle_state, outcome),
+		"source_trace": _merged_trace(battle_state.get("source_trace", []), [
+			"src/battle_setup.c:CB2_EndTrainerBattle",
+			"src/battle_setup.c:BattleSetup_GetTrainerPostBattleScript",
+		]),
+	}
+
+
 func _get_registry() -> Node:
 	if _registry != null:
 		return _registry
@@ -787,6 +987,15 @@ func _wild_battle_transition_type_info(options: Dictionary) -> Dictionary:
 	var flash_level := _wild_transition_flash_level(options)
 	var behavior_name := _source_symbol(options.get("metatile_behavior", options.get("current_metatile_behavior", "")))
 	var map_type := _source_symbol(options.get("map_type", options.get("mapType", options.get("source_map_type", ""))))
+	var hinted_transition_type := _transition_type_hint(options)
+	if not hinted_transition_type.is_empty():
+		return _wild_transition_type_result(
+			hinted_transition_type,
+			"options.map_transition_type",
+			flash_level,
+			behavior_name,
+			map_type
+		)
 	if flash_level != 0:
 		return _wild_transition_type_result(
 			"TRANSITION_TYPE_FLASH",
@@ -862,6 +1071,17 @@ func _wild_transition_flash_level(options: Dictionary) -> int:
 	return 0
 
 
+func _transition_type_hint(options: Dictionary) -> String:
+	var raw_hint := _source_symbol(options.get("map_transition_type", options.get("transition_type_hint", "")))
+	if raw_hint.is_empty():
+		return ""
+	if not raw_hint.begins_with("TRANSITION_TYPE_"):
+		raw_hint = "TRANSITION_TYPE_%s" % [raw_hint]
+	if TRAINER_BATTLE_TRANSITION_TABLE.has(raw_hint) or WILD_BATTLE_TRANSITION_TABLE.has(raw_hint):
+		return raw_hint
+	return ""
+
+
 func _first_battle_party_level(player_party: Array) -> int:
 	var active_index := _first_usable_battle_party_index(player_party)
 	if active_index >= 0 and active_index < player_party.size():
@@ -921,6 +1141,389 @@ func _wild_battle_unsupported(options: Dictionary) -> Array:
 			"detail": "Only gEnemyParty[0]-equivalent single wild enemy creation is implemented in this slice.",
 		})
 	return unsupported
+
+
+func _player_party_for_battle_state(player_party: Array, options: Dictionary) -> Dictionary:
+	if not player_party.is_empty():
+		return {
+			"party": player_party.duplicate(true),
+			"unsupported": [],
+		}
+	if not bool(options.get("allow_empty_player_party_fallback", false)):
+		return {
+			"party": [],
+			"unsupported": [{
+				"code": "empty_player_party",
+				"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle",
+				"detail": "Source trainer battles expect a player party; no fallback was requested.",
+			}],
+		}
+
+	var fallback_options = options.get("player_party_fallback", {})
+	if typeof(fallback_options) != TYPE_DICTIONARY:
+		fallback_options = {}
+	var species := _constant_symbol(fallback_options.get("species", "SPECIES_TORCHIC"))
+	if species.is_empty():
+		species = "SPECIES_TORCHIC"
+	var level := int(fallback_options.get("level", 5))
+	var mon_options := {
+		"moves": fallback_options.get("moves", ["MOVE_SCRATCH", "MOVE_GROWL", "MOVE_EMBER"]),
+		"nature": fallback_options.get("nature", "NATURE_HARDY"),
+	}
+	var fallback_mon := create_battle_mon(species, level, mon_options)
+	var unsupported := [{
+		"code": "empty_player_party_debug_fallback",
+		"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle",
+		"detail": "A deterministic debug Pokemon was created because the caller supplied no player party.",
+	}]
+	if String(fallback_mon.get("status", "")) != "ok":
+		unsupported.append({
+			"code": "empty_player_party_fallback_failed",
+			"source": "BattleEngine.create_trainer_battle_state",
+			"detail": String(fallback_mon.get("detail", "Could not create fallback player Pokemon.")),
+		})
+		return {
+			"party": [],
+			"unsupported": unsupported,
+		}
+	fallback_mon["debug_fallback"] = true
+	return {
+		"party": [fallback_mon],
+		"unsupported": unsupported,
+	}
+
+
+func _trainer_summary(trainer_record: Dictionary) -> Dictionary:
+	return {
+		"symbol": _record_symbol(trainer_record),
+		"id": int(trainer_record.get("id", -1)),
+		"name": _display_text(trainer_record.get("name", {}), _record_symbol(trainer_record)),
+		"trainer_class": trainer_record.get("trainer_class", {}),
+		"battle_type": trainer_record.get("battle_type", {}),
+		"pic": trainer_record.get("pic", {}),
+		"mugshot": trainer_record.get("mugshot", {}),
+	}
+
+
+func _trainer_battle_setup_metadata(
+	trainer_record: Dictionary,
+	player_party: Array,
+	opponent_party: Array,
+	options: Dictionary
+) -> Dictionary:
+	var battle_flags := _trainer_battle_type_flags(trainer_record, options)
+	var transition_info := _trainer_battle_transition_metadata(
+		trainer_record,
+		player_party,
+		opponent_party,
+		options
+	)
+	return {
+		"status": "state_created",
+		"kind": "trainer",
+		"battle_setup_function": "BattleSetup_StartTrainerBattle",
+		"standard_function": "DoTrainerBattle",
+		"saved_callback": "CB2_EndTrainerBattle",
+		"battle_type_flags": battle_flags,
+		"battle_transition": transition_info,
+		"active_player_index": _first_usable_battle_party_index(player_party),
+		"active_opponent_index": _first_usable_battle_party_index(opponent_party),
+		"active_player_source": "src/battle_controllers.c first valid non-egg, non-fainted player mon",
+		"callback_metadata": _trainer_battle_callback_metadata(options),
+		"statistics": [
+			"IncrementGameStat(GAME_STAT_TOTAL_BATTLES)",
+			"IncrementGameStat(GAME_STAT_TRAINER_BATTLES)",
+		],
+		"battle_start_task_sequence": [
+			"LockPlayerFieldControls",
+			"FreezeObjectEvents",
+			"StopPlayerAvatar",
+			"gBattleTypeFlags |= BATTLE_TYPE_TRAINER",
+			"CreateBattleStartTask(GetTrainerBattleTransition(), 0)",
+			"wait until FldEffPoison_IsActive() is false",
+			"BattleTransition_StartOnField",
+			"wait until IsBattleTransitionDone()",
+			"PrepareForFollowerNPCBattle",
+			"CleanupOverworldWindowsAndTilemaps",
+			"SetMainCallback2(CB2_InitBattle)",
+		],
+		"trainer": _trainer_summary(trainer_record),
+		"player_party_count": player_party.size(),
+		"opponent_party_count": opponent_party.size(),
+		"source_trace": [
+			"src/battle_setup.c:BattleSetup_StartTrainerBattle",
+			"src/battle_setup.c:DoTrainerBattle",
+			"src/battle_setup.c:GetTrainerBattleTransition",
+			"src/battle_setup.c:Task_BattleStart",
+		],
+	}
+
+
+func _trainer_battle_transition_metadata(
+	trainer_record: Dictionary,
+	player_party: Array,
+	opponent_party: Array,
+	options: Dictionary
+) -> Dictionary:
+	var trainer_symbol := _record_symbol(trainer_record)
+	var mugshot = trainer_record.get("mugshot", {})
+	if typeof(mugshot) == TYPE_DICTIONARY and int(mugshot.get("value", 0)) != 0:
+		return _trainer_special_transition(
+			"B_TRANSITION_MUGSHOT",
+			trainer_symbol,
+			"src/battle_setup.c:GetTrainerBattleTransition -> DoesTrainerHaveMugshot",
+			options
+		)
+
+	var trainer_class := _constant_symbol(trainer_record.get("trainer_class", {}))
+	if TRAINER_MAGMA_CLASSES.has(trainer_class):
+		return _trainer_special_transition(
+			"B_TRANSITION_MAGMA",
+			trainer_symbol,
+			"src/battle_setup.c:GetTrainerBattleTransition Team Magma trainer class branch",
+			options
+		)
+	if TRAINER_AQUA_CLASSES.has(trainer_class):
+		return _trainer_special_transition(
+			"B_TRANSITION_AQUA",
+			trainer_symbol,
+			"src/battle_setup.c:GetTrainerBattleTransition Team Aqua trainer class branch",
+			options
+		)
+
+	var min_party_count := _trainer_min_party_count(trainer_record)
+	var enemy_level := _sum_party_levels(opponent_party, min_party_count)
+	var player_level := _sum_player_party_levels(player_party, min_party_count)
+	var enemy_lower := enemy_level < player_level
+	var table_column := 0 if enemy_lower else 1
+	var transition_type_info := _wild_battle_transition_type_info(options)
+	var transition_type := String(transition_type_info.get("transition_type", "TRANSITION_TYPE_NORMAL"))
+	return {
+		"status": "selected_metadata",
+		"selected": _trainer_battle_transition_for_type(transition_type, table_column),
+		"trainer": trainer_symbol,
+		"trainer_class": trainer_class,
+		"enemy_level_sum": enemy_level,
+		"player_level_sum": player_level,
+		"min_party_count": min_party_count,
+		"comparison": "enemy_lower" if enemy_lower else "enemy_equal_or_higher",
+		"table_column": table_column,
+		"transition_type": transition_type,
+		"transition_type_reason": String(transition_type_info.get("reason", "")),
+		"transition_table": "sBattleTransitionTable_Trainer",
+		"selection_source": "src/battle_setup.c:sBattleTransitionTable_Trainer[%s][%d]" % [transition_type, table_column],
+		"map": String(options.get("map", "")),
+		"map_type": String(transition_type_info.get("map_type", "")),
+		"metatile_behavior": String(transition_type_info.get("metatile_behavior", "")),
+		"flash_level": int(transition_type_info.get("flash_level", 0)),
+		"source": "src/battle_setup.c:GetTrainerBattleTransition",
+		"source_trace": [
+			"src/battle_setup.c:GetBattleTransitionTypeByMap",
+			"src/battle_setup.c:GetTrainerBattleTransition",
+			"src/battle_setup.c:sBattleTransitionTable_Trainer",
+		],
+	}
+
+
+func _trainer_special_transition(
+	selected: String,
+	trainer_symbol: String,
+	selection_source: String,
+	options: Dictionary
+) -> Dictionary:
+	var branch := selected.trim_prefix("B_TRANSITION_").to_lower()
+	return {
+		"status": "selected_unsupported_placeholder",
+		"selected": selected,
+		"trainer": trainer_symbol,
+		"comparison": "special_case",
+		"table_column": -1,
+		"transition_type": "TRANSITION_TYPE_SPECIAL",
+		"transition_type_reason": "trainer_special_case",
+		"transition_table": "",
+		"selection_source": selection_source,
+		"map": String(options.get("map", "")),
+		"source": "src/battle_setup.c:GetTrainerBattleTransition",
+		"unsupported_reason": "trainer_transition_%s_placeholder" % [branch],
+		"unsupported": [{
+			"code": "trainer_transition_%s_placeholder" % [branch],
+			"source": selection_source,
+			"detail": "The source transition id is selected, but exact mugshot/team transition graphics are not implemented in the first Godot presentation slice.",
+		}],
+	}
+
+
+func _trainer_battle_transition_for_type(transition_type: String, table_column: int) -> String:
+	var transitions = TRAINER_BATTLE_TRANSITION_TABLE.get(transition_type, TRAINER_BATTLE_TRANSITION_TABLE["TRANSITION_TYPE_NORMAL"])
+	if typeof(transitions) != TYPE_ARRAY or transitions.is_empty():
+		transitions = TRAINER_BATTLE_TRANSITION_TABLE["TRANSITION_TYPE_NORMAL"]
+	var column := clampi(table_column, 0, transitions.size() - 1)
+	return String(transitions[column])
+
+
+func _trainer_min_party_count(trainer_record: Dictionary) -> int:
+	var battle_type = trainer_record.get("battle_type", {})
+	if typeof(battle_type) == TYPE_DICTIONARY and bool(battle_type.get("is_double", false)):
+		return 2
+	return 1
+
+
+func _sum_party_levels(party: Array, count: int) -> int:
+	var total := 0
+	var remaining := maxi(1, count)
+	for mon in party:
+		if remaining <= 0:
+			break
+		if typeof(mon) != TYPE_DICTIONARY:
+			continue
+		total += max(1, int(mon.get("level", 1)))
+		remaining -= 1
+	return total
+
+
+func _sum_player_party_levels(party: Array, count: int) -> int:
+	var total := 0
+	var remaining := maxi(1, count)
+	for mon in party:
+		if remaining <= 0:
+			break
+		if typeof(mon) != TYPE_DICTIONARY:
+			continue
+		var species := _constant_symbol(mon.get("species", ""))
+		if species.is_empty() or species == "SPECIES_NONE":
+			continue
+		if bool(mon.get("is_egg", false)):
+			continue
+		if int(mon.get("hp", 0)) <= 0 or bool(mon.get("fainted", false)):
+			continue
+		total += max(1, int(mon.get("level", 1)))
+		remaining -= 1
+	return total
+
+
+func _trainer_battle_type_flags(trainer_record: Dictionary, options: Dictionary) -> Array:
+	var flags: Array = ["BATTLE_TYPE_TRAINER"]
+	var battle_type = trainer_record.get("battle_type", {})
+	if typeof(battle_type) == TYPE_DICTIONARY and bool(battle_type.get("is_double", false)):
+		flags.append("BATTLE_TYPE_DOUBLE")
+	if bool(options.get("partner_battle", false)):
+		flags.append("BATTLE_TYPE_INGAME_PARTNER")
+	if bool(options.get("multi_battle", false)):
+		flags.append("BATTLE_TYPE_MULTI")
+	if bool(options.get("battle_pyramid", options.get("battle_pyramid_layout", false))):
+		flags.append("BATTLE_TYPE_PYRAMID")
+	if bool(options.get("trainer_hill", false)):
+		flags.append("BATTLE_TYPE_TRAINER_HILL")
+	return flags
+
+
+func _trainer_battle_unsupported(options: Dictionary) -> Array:
+	var unsupported: Array = [{
+		"code": "trainer_battle_presentation_first_slice",
+		"source": "src/battle_setup.c:CreateBattleStartTask/Task_BattleStart",
+		"detail": "The state records trainer setup, transition metadata, and callback intent; exact transition graphics, trainer intro text, BGM, AI, rewards, rematches, and post-battle scripts remain future traced work.",
+	}, {
+		"code": "trainer_ai_and_rewards_not_executed",
+		"source": "src/battle_main.c/CB2_EndTrainerBattle",
+		"detail": "The first battle scene runs deterministic player/opponent move execution only and does not award money, EXP, items, or trainer flags.",
+	}]
+	if bool(options.get("partner_battle", false)) or bool(options.get("multi_battle", false)):
+		unsupported.append({
+			"code": "trainer_partner_multi_battle_not_executed",
+			"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle",
+			"detail": "Partner and multi battle flags are recorded, but ally party setup and multi battle turn flow are not implemented in this slice.",
+		})
+	if bool(options.get("battle_pyramid", options.get("battle_pyramid_layout", false))) or bool(options.get("trainer_hill", false)):
+		unsupported.append({
+			"code": "trainer_frontier_party_fill_not_executed",
+			"source": "src/battle_setup.c:DoBattlePyramidTrainerHillBattle",
+			"detail": "Battle Pyramid and Trainer Hill branch metadata is recorded, but their special party fill and random transition tables remain future traced work.",
+		})
+	return unsupported
+
+
+func _trainer_battle_stats_metadata() -> Dictionary:
+	return {
+		"source": "src/battle_setup.c:DoTrainerBattle",
+		"on_battle_start": [
+			"IncrementGameStat(GAME_STAT_TOTAL_BATTLES)",
+			"IncrementGameStat(GAME_STAT_TRAINER_BATTLES)",
+			"TryUpdateGymLeaderRematchFromTrainer",
+		],
+		"mutated_by_battle_engine": false,
+	}
+
+
+func _trainer_battle_callback_metadata(options: Dictionary) -> Dictionary:
+	return {
+		"saved_callback": String(options.get("saved_callback", "CB2_EndTrainerBattle")),
+		"battle_callback": "CB2_InitBattle",
+		"return_to_field_callback": "CB2_ReturnToFieldContinueScriptPlayMapMusic",
+		"whiteout_callback": "CB2_WhiteOut",
+		"post_battle_script_resolver": "BattleSetup_GetTrainerPostBattleScript",
+		"source_trace": [
+			"src/battle_setup.c:BattleSetup_StartTrainerBattle",
+			"src/battle_setup.c:CB2_EndTrainerBattle",
+			"src/battle_setup.c:BattleSetup_GetTrainerPostBattleScript",
+		],
+	}
+
+
+func _battle_outcome(battle_state: Dictionary) -> String:
+	var player_has_usable := _party_has_usable_mon(_array_value(battle_state.get("player_party", [])))
+	var opponent_has_usable := _party_has_usable_mon(_array_value(battle_state.get("opponent_party", [])))
+	if not player_has_usable and not opponent_has_usable:
+		return "draw"
+	if not opponent_has_usable:
+		return "player_won"
+	if not player_has_usable:
+		return "opponent_won"
+	return "in_progress"
+
+
+func _party_has_usable_mon(party: Array) -> bool:
+	for mon in party:
+		if typeof(mon) != TYPE_DICTIONARY:
+			continue
+		var species := _constant_symbol(mon.get("species", ""))
+		if species.is_empty() or species == "SPECIES_NONE":
+			continue
+		if bool(mon.get("is_egg", false)):
+			continue
+		if int(mon.get("hp", 0)) <= 0 or bool(mon.get("fainted", false)):
+			continue
+		return true
+	return false
+
+
+func _post_battle_metadata(battle_state: Dictionary, outcome: String) -> Dictionary:
+	var callback_metadata := _dictionary_value(battle_state.get("callback_metadata", {}))
+	var battle_kind := String(battle_state.get("battle_kind", ""))
+	var post_battle := {
+		"battle_kind": battle_kind,
+		"outcome": outcome,
+		"saved_callback": String(callback_metadata.get("saved_callback", "")),
+		"source_trace": [
+			"src/battle_setup.c:CB2_EndTrainerBattle",
+			"src/battle_setup.c:BattleSetup_GetTrainerPostBattleScript",
+		],
+	}
+	if battle_kind == "trainer":
+		post_battle["post_battle_script_resolver"] = String(callback_metadata.get("post_battle_script_resolver", "BattleSetup_GetTrainerPostBattleScript"))
+		post_battle["return_to_field_callback"] = String(callback_metadata.get("return_to_field_callback", "CB2_ReturnToFieldContinueScriptPlayMapMusic"))
+		post_battle["whiteout_callback"] = String(callback_metadata.get("whiteout_callback", "CB2_WhiteOut"))
+		post_battle["on_player_win"] = [
+			"SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic)",
+			"DowngradeBadPoison",
+			"RegisterTrainerInMatchCall",
+			"SetBattledTrainersFlags",
+		]
+		post_battle["on_player_loss"] = [
+			"SetMainCallback2(CB2_WhiteOut) unless no-whiteout/frontier/no-alive-mon exceptions apply",
+		]
+	else:
+		post_battle["return_to_field_callback"] = "CB2_EndWildBattle"
+	return post_battle
 
 
 func _merged_trace(existing, extra: Array) -> Array:
@@ -1076,6 +1679,14 @@ func _dict_value(value, default_value):
 	if value == null:
 		return default_value
 	return value
+
+
+func _dictionary_value(value) -> Dictionary:
+	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _array_value(value) -> Array:
+	return value if typeof(value) == TYPE_ARRAY else []
 
 
 func _constant_symbol(value) -> String:

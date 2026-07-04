@@ -4,6 +4,7 @@ const MAP_RUNTIME_SCRIPT := preload("res://scripts/autoload/map_runtime.gd")
 const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
 const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
+const DEBUG_MAP_PLANE_SCRIPT := preload("res://scripts/overworld/debug_map_plane.gd")
 const MAP_PATH := "res://data/generated/maps/littleroot_town.json"
 const TILESET_PATH := "res://data/generated/tilesets/littleroot_town.json"
 const SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
@@ -13,18 +14,32 @@ const BRENDANS_HOUSE_SCRIPT_PATH := "res://data/generated/scripts/littleroot_tow
 
 
 func _init() -> void:
-	var map_data := _load_json_object(MAP_PATH)
-	var tileset_data := _load_json_object(TILESET_PATH)
-	var script_data := _load_json_object(SCRIPT_PATH)
+	var raw_map_data := _load_json_object(MAP_PATH)
 	var brendans_house_map_data := _load_json_object(BRENDANS_HOUSE_MAP_PATH)
 	var brendans_house_tileset_data := _load_json_object(BRENDANS_HOUSE_TILESET_PATH)
 	var brendans_house_script_data := _load_json_object(BRENDANS_HOUSE_SCRIPT_PATH)
+	var registry = DATA_REGISTRY_SCRIPT.new()
+	registry._ready()
+	_assert(registry.has_map_data("MAP_LITTLEROOT_TOWN"), "expected LittlerootTown in manifest")
+	_assert(registry.has_map_data("MAP_ROUTE101"), "expected Route101 in manifest")
+	_assert(not registry.get_tileset_data_for_map("MAP_ROUTE101").is_empty(), "expected Route101 generated tileset")
+	_assert(not registry.get_script_data_for_map("MAP_ROUTE101").is_empty(), "expected Route101 generated scripts")
+	var source_map_data := registry.get_map_data("MAP_LITTLEROOT_TOWN")
+	var source_object_events = source_map_data.get("events", {}).get("object_events", [])
+	_assert(typeof(source_object_events) == TYPE_ARRAY and source_object_events.size() == 8, "expected default Littleroot map data to stay source-only")
+	var source_debug_lookup := _find_object_event(source_object_events, "LOCALID_DEBUG_BATTLE_NPC")
+	_assert(source_debug_lookup.is_empty(), "expected debug NPC to require explicit overlay opt-in")
+	var map_data := registry.get_map_data("MAP_LITTLEROOT_TOWN", {
+		"include_debug_overlays": true,
+	})
+	var tileset_data := registry.get_tileset_data_for_map("MAP_LITTLEROOT_TOWN")
+	var script_data := registry.get_script_data_for_map("MAP_LITTLEROOT_TOWN")
+	var route101_map_data := registry.get_map_data("MAP_ROUTE101")
 	var map_size := _map_size_from_data(map_data)
 	var brendans_house_map_size := _map_size_from_data(brendans_house_map_data)
 	var runtime = MAP_RUNTIME_SCRIPT.new()
+	runtime.configure_data_registry(registry)
 	runtime.configure_from_data(map_data, tileset_data, map_size)
-	var registry = DATA_REGISTRY_SCRIPT.new()
-	registry._ready()
 	var vm = SCRIPT_VM_SCRIPT.new()
 	vm.configure_from_script_data(script_data)
 	vm.configure_data_registry(registry)
@@ -41,6 +56,10 @@ func _init() -> void:
 	var need_pokemon_coord_cell := Vector2i(10, 1)
 	var running_shoes_coord_cell := Vector2i(10, 2)
 	var blocked_cell := _first_blocked_cell(map_data)
+	var north_connection_cell := Vector2i(10, -1)
+	var route101_bottom_cell := Vector2i(10, 19)
+	var west_border_cell := Vector2i(-1, 5)
+	var debug_npc_cell := Vector2i(10, 12)
 	game_state.player_grid_position = start_cell
 
 	_assert(runtime.get_map_size() == Vector2i(20, 20), "unexpected map size")
@@ -48,10 +67,74 @@ func _init() -> void:
 	_assert(not runtime.can_enter_cell(Vector2i(-1, start_cell.y)), "expected west out-of-bounds to be blocked")
 	_assert(blocked_cell != Vector2i(-1, -1), "expected at least one blocked source cell")
 	_assert(not runtime.can_enter_cell(blocked_cell), "expected source collision cell to be blocked")
-	_assert(runtime.get_object_events().size() == 8, "expected LittlerootTown object events")
+	_assert(_has_connection(map_data, "MAP_ROUTE101", "up"), "expected Littleroot north connection to Route101")
+	_assert(_has_connection(route101_map_data, "MAP_LITTLEROOT_TOWN", "down"), "expected Route101 south connection to Littleroot")
+	_assert(runtime.get_object_events().size() == 9, "expected LittlerootTown object events including debug overlay")
 	_assert(
 		String(runtime.get_object_event_by_local_id("1", true).get("local_id", "")) == "LOCALID_LITTLEROOT_TWIN",
 		"expected numeric source local-id alias for first object event"
+	)
+	var debug_npc := runtime.get_object_event_by_local_id("LOCALID_DEBUG_BATTLE_NPC", true)
+	var debug_metadata = debug_npc.get("metadata", {})
+	_assert(not debug_npc.is_empty(), "expected debug battle NPC overlay")
+	_assert(_event_position(debug_npc) == debug_npc_cell, "expected debug NPC position")
+	_assert(String(debug_npc.get("graphics_id", "")) == "OBJ_EVENT_GFX_BOY_1", "expected debug NPC graphics")
+	_assert(String(debug_npc.get("movement_type", "")) == "MOVEMENT_TYPE_FACE_DOWN", "expected debug NPC movement")
+	_assert(String(debug_npc.get("facing_direction", "")) == "down", "expected debug NPC facing")
+	_assert(typeof(debug_metadata) == TYPE_DICTIONARY, "expected debug NPC metadata")
+	_assert(String(debug_metadata.get("action", "")) == "trainer_battle", "expected debug NPC trainer-battle action")
+	_assert(String(debug_metadata.get("trainer_id", "")) == "TRAINER_SAWYER_1", "expected debug NPC trainer id")
+	_assert(runtime.is_cell_occupied(debug_npc_cell), "expected debug NPC cell to be occupied")
+	_assert(not runtime.can_enter_cell(debug_npc_cell), "expected debug NPC cell to block movement")
+	var debug_interaction := runtime.get_interaction_target(Vector2i(10, 13), Vector2i.UP)
+	_assert(debug_interaction.get("type", "") == "object_event", "expected debug NPC object interaction")
+	_assert(
+		debug_interaction.get("event", {}).get("local_id", "") == "LOCALID_DEBUG_BATTLE_NPC",
+		"expected debug NPC interaction local id"
+	)
+	var debug_interaction_metadata = debug_interaction.get("event", {}).get("metadata", {})
+	_assert(
+		typeof(debug_interaction_metadata) == TYPE_DICTIONARY
+		and String(debug_interaction_metadata.get("trainer_id", "")) == "TRAINER_SAWYER_1",
+		"expected debug NPC interaction trainer metadata"
+	)
+	var north_connection := runtime.get_connection_target(north_connection_cell)
+	_assert(north_connection.get("type", "") == "map_connection", "expected north edge map connection")
+	_assert(
+		north_connection.get("event", {}).get("dest_map", "") == "MAP_ROUTE101",
+		"expected north connection destination map"
+	)
+	_assert(
+		_vector_from_value(north_connection.get("event", {}).get("dest_position", Vector2i.ZERO)) == route101_bottom_cell,
+		"expected north connection destination position"
+	)
+	_assert(
+		runtime.get_metatile_id_at(north_connection_cell) == _grid_value(route101_map_data.get("block_ids", []), route101_bottom_cell, -1),
+		"expected north edge metatile from Route101"
+	)
+	_assert(
+		runtime.get_collision_at(north_connection_cell) == _grid_value(route101_map_data.get("map_grid", {}).get("collision", []), route101_bottom_cell, -1),
+		"expected north edge collision from Route101"
+	)
+	var border_expected := _border_value(map_data, "metatile_ids", west_border_cell, -1)
+	_assert(border_expected >= 0, "expected west border-grid metatile")
+	_assert(runtime.get_metatile_id_at(west_border_cell) == border_expected, "expected west out-of-bounds border fallback")
+	_assert(runtime.get_collision_at(west_border_cell) == 3, "expected source border fallback collision to be impassable")
+	_assert(runtime.get_cell_info(west_border_cell).get("metatile_id", -1) == border_expected, "expected border fallback in cell info")
+	var boy_sprite := registry.get_object_event_sprite_record("OBJ_EVENT_GFX_BOY_1")
+	_assert(not boy_sprite.is_empty(), "expected Boy1 object-event sprite metadata")
+	_assert(String(boy_sprite.get("image", "")).ends_with("boy_1.png"), "expected Boy1 generated sprite image")
+	_assert(_summary_count({"unsupported": boy_sprite.get("unsupported", [])}, "unsupported") > 0, "expected Boy1 unsupported animation note")
+	var renderer = DEBUG_MAP_PLANE_SCRIPT.new()
+	renderer.configure_data_registry(registry)
+	renderer.configure_from_map_data(map_data, tileset_data)
+	_assert(
+		renderer.get_render_block_id(north_connection_cell) == runtime.get_metatile_id_at(north_connection_cell),
+		"expected renderer north edge to use Route101 metatile"
+	)
+	_assert(
+		renderer.get_render_block_id(west_border_cell) == border_expected,
+		"expected renderer west edge to use border-grid fallback"
 	)
 	_assert(runtime.get_coord_events().size() == 9, "expected LittlerootTown coord events")
 	_assert(runtime.get_collision_at(object_cell) == 0, "expected object test cell to be collision-passable")
@@ -241,6 +324,7 @@ func _init() -> void:
 	}))
 	game_state.free()
 	vm.free()
+	renderer.free()
 	registry.free()
 	brendans_runtime.free()
 	runtime.free()
@@ -293,6 +377,74 @@ func _first_blocked_cell(map_data: Dictionary) -> Vector2i:
 	return Vector2i(-1, -1)
 
 
+func _has_connection(map_data: Dictionary, destination_map: String, direction: String) -> bool:
+	var connections = map_data.get("connections", [])
+	if typeof(connections) != TYPE_ARRAY:
+		var events = map_data.get("events", {})
+		if typeof(events) == TYPE_DICTIONARY:
+			connections = events.get("connections", [])
+	if typeof(connections) != TYPE_ARRAY:
+		return false
+
+	for connection in connections:
+		if typeof(connection) != TYPE_DICTIONARY:
+			continue
+		if (
+			String(connection.get("map", "")) == destination_map
+			and String(connection.get("direction", "")) == direction
+		):
+			return true
+	return false
+
+
+func _grid_value(grid: Array, cell: Vector2i, default_value: int) -> int:
+	if cell.y < 0 or cell.y >= grid.size():
+		return default_value
+	var row = grid[cell.y]
+	if typeof(row) != TYPE_ARRAY or cell.x < 0 or cell.x >= row.size():
+		return default_value
+	return int(row[cell.x])
+
+
+func _border_value(map_data: Dictionary, grid_name: String, cell: Vector2i, default_value: int) -> int:
+	var border_grid = map_data.get("border_grid", {})
+	if typeof(border_grid) != TYPE_DICTIONARY:
+		return default_value
+	var values = border_grid.get(grid_name, [])
+	if typeof(values) != TYPE_ARRAY or values.is_empty():
+		return default_value
+	var width := int(border_grid.get("width", 0))
+	if width <= 0:
+		width = 2 if values.size() >= 2 else 1
+	var height := int(border_grid.get("height", 0))
+	if height <= 0:
+		height = int(values.size() / width)
+	if values.size() % width != 0:
+		height += 1
+	if height <= 0:
+		return default_value
+	var map_offset := int(border_grid.get("map_offset", 7))
+	var rule := String(border_grid.get("source_index_rule", ""))
+	var index := _positive_mod(cell.y, height) * width + _positive_mod(cell.x, width)
+	if rule == "emerald_2x2_parity":
+		index = (
+			_positive_mod(cell.y + map_offset + 1, height) * width
+			+ _positive_mod(cell.x + map_offset + 1, width)
+		)
+	if index < 0 or index >= values.size():
+		return default_value
+	return int(values[index])
+
+
+func _positive_mod(value: int, modulo: int) -> int:
+	if modulo <= 0:
+		return 0
+	var result := value % modulo
+	if result < 0:
+		result += modulo
+	return result
+
+
 func _assert(condition: bool, message: String) -> void:
 	if condition:
 		return
@@ -324,6 +476,13 @@ func _vector_to_array(value: Vector2i) -> Array:
 	return [value.x, value.y]
 
 
+func _find_object_event(object_events: Array, local_id: String) -> Dictionary:
+	for object_event in object_events:
+		if typeof(object_event) == TYPE_DICTIONARY and String(object_event.get("local_id", "")) == local_id:
+			return object_event
+	return {}
+
+
 func _event_position(object_event: Dictionary) -> Vector2i:
 	var position = object_event.get("position", Vector2i.ZERO)
 	if typeof(position) == TYPE_VECTOR2I:
@@ -342,6 +501,16 @@ func _template_position(object_event: Dictionary) -> Vector2i:
 		int(object_event.get("template_x", 0)),
 		int(object_event.get("template_y", 0))
 	)
+
+
+func _vector_from_value(value) -> Vector2i:
+	if typeof(value) == TYPE_VECTOR2I:
+		return value
+	if typeof(value) == TYPE_ARRAY and value.size() >= 2:
+		return Vector2i(int(value[0]), int(value[1]))
+	if typeof(value) == TYPE_DICTIONARY:
+		return Vector2i(int(value.get("x", 0)), int(value.get("y", 0)))
+	return Vector2i.ZERO
 
 
 func _summary_count(summary: Dictionary, key: String) -> int:

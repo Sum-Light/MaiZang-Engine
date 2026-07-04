@@ -6,6 +6,12 @@ Decision: The highest-priority rule for all gameplay-facing work is to trace ori
 
 Reason: The goal is not a loose remake or a visually similar prototype. Guessing from names, approximating timing, or hiding missing effects would make later parity work unreliable. Explicit source traces and explicit unsupported gaps keep vertical slices useful without pretending they are complete.
 
+## 2026-07-04 - Keep audio metadata-only in the current vertical slice
+
+Decision: Audio playback is intentionally out of scope for the current map/battle vertical slice. Source sound and music cues should still be traced and preserved as structured metadata or unsupported notes, but Godot should not play approximated audio yet.
+
+Reason: The user accepted deferring audio, and guessing replacement playback would violate the 1:1 source-parity rule. Metadata keeps the timing/intent visible for later implementation without making the current debug slice look more complete than it is.
+
 ## 2026-07-04 - Add a short project control panel
 
 Decision: Use `wiki/control-panel.md` as the first planning page for current focus, work lanes, definition of done, subagent policy, active backlog, and mess-control rules.

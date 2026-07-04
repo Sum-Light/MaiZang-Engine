@@ -13,6 +13,7 @@ MAPGRID_COLLISION_MASK = 0x0C00
 MAPGRID_ELEVATION_MASK = 0xF000
 MAPGRID_COLLISION_SHIFT = 10
 MAPGRID_ELEVATION_SHIFT = 12
+MAP_OFFSET = 7
 
 
 def camel_to_snake(value):
@@ -78,6 +79,33 @@ def unpack_map_grid_values(values):
     }
 
 
+def add_border_grid_metadata(border_grid, layout):
+    layout_version = layout.get("layout_version", "")
+    source_rule = "frlg_wrapped_border" if layout_version == "frlg" else "emerald_2x2_parity"
+    width = int(layout.get("border_width", 0) or 0)
+    height = int(layout.get("border_height", 0) or 0)
+    if width <= 0:
+        width = 2 if len(border_grid["raw"]) >= 2 else 1
+    if height <= 0:
+        height = max(1, len(border_grid["raw"]) // width)
+        if len(border_grid["raw"]) % width != 0:
+            height += 1
+
+    enriched = dict(border_grid)
+    enriched.update({
+        "width": width,
+        "height": height,
+        "map_offset": MAP_OFFSET,
+        "source_function": "src/fieldmap.c:GetBorderBlockAt",
+        "source_header": "include/fieldmap.h",
+        "source_index_rule": source_rule,
+        "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+        "source_collision_mask": "MAPGRID_COLLISION_MASK" if layout_version == "frlg" else "MAPGRID_IMPASSABLE",
+        "layout_version": layout_version,
+    })
+    return enriched
+
+
 def grid_map_values(unpacked, width, height, label):
     return {
         "raw": grid_from_flat(unpacked["raw"], width, height, label),
@@ -128,7 +156,7 @@ def export_map(root, map_folder):
     border_path = root / layout["border_filepath"]
 
     map_grid = unpack_map_grid_values(read_u16le_file(blockdata_path))
-    border_grid = unpack_map_grid_values(read_u16le_file(border_path))
+    border_grid = add_border_grid_metadata(unpack_map_grid_values(read_u16le_file(border_path)), layout)
 
     return {
         "schema_version": 1,
@@ -167,14 +195,15 @@ def export_map(root, map_folder):
             "primary": tileset_record(root, "primary", layout.get("primary_tileset")),
             "secondary": tileset_record(root, "secondary", layout.get("secondary_tileset")),
         },
-        "map_grid_format": {
-            "source_header": "include/global.fieldmap.h",
-            "metatile_id_mask": MAPGRID_METATILE_ID_MASK,
-            "collision_mask": MAPGRID_COLLISION_MASK,
-            "elevation_mask": MAPGRID_ELEVATION_MASK,
-            "collision_shift": MAPGRID_COLLISION_SHIFT,
-            "elevation_shift": MAPGRID_ELEVATION_SHIFT,
-        },
+		"map_grid_format": {
+			"source_header": "include/fieldmap.h",
+			"metatile_id_mask": MAPGRID_METATILE_ID_MASK,
+			"collision_mask": MAPGRID_COLLISION_MASK,
+			"elevation_mask": MAPGRID_ELEVATION_MASK,
+			"collision_shift": MAPGRID_COLLISION_SHIFT,
+			"elevation_shift": MAPGRID_ELEVATION_SHIFT,
+			"map_offset": MAP_OFFSET,
+		},
         "block_ids": grid_map_values(
             map_grid,
             width,
@@ -189,6 +218,7 @@ def export_map(root, map_folder):
         ),
         "border_block_ids": border_grid["metatile_ids"],
         "border_grid": border_grid,
+        "connections": map_data.get("connections", []),
         "block_id_stats": build_block_stats(map_grid["metatile_ids"]),
         "raw_block_value_stats": build_block_stats(map_grid["raw"]),
         "events": {
@@ -260,6 +290,8 @@ def write_manifest(
     exported_scripts=None,
     exported_texts=None,
     exported_pokemon=None,
+    exported_map_overlays=None,
+    exported_object_event_sprites=None,
     generator=None,
 ):
     existing = {}
@@ -299,6 +331,20 @@ def write_manifest(
         if exported_pokemon is not None
         else existing.get("pokemon", [])
     )
+    map_overlays = (
+        _merge_manifest_entries(existing.get("map_overlays", []), exported_map_overlays, ["category", "path"])
+        if exported_map_overlays is not None
+        else existing.get("map_overlays", [])
+    )
+    object_event_sprites = (
+        _merge_manifest_entries(
+            existing.get("object_event_sprites", []),
+            exported_object_event_sprites,
+            ["category", "path"],
+        )
+        if exported_object_event_sprites is not None
+        else existing.get("object_event_sprites", [])
+    )
     if maps:
         manifest["maps"] = maps
     if tilesets:
@@ -309,6 +355,10 @@ def write_manifest(
         manifest["texts"] = texts
     if pokemon:
         manifest["pokemon"] = pokemon
+    if map_overlays:
+        manifest["map_overlays"] = map_overlays
+    if object_event_sprites:
+        manifest["object_event_sprites"] = object_event_sprites
 
     write_json(path, manifest)
 

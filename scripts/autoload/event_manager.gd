@@ -234,6 +234,8 @@ func dispatch_interaction(interaction: Dictionary) -> void:
 			_emit_bg_event(interaction, event_data)
 		"warp_event":
 			_emit_warp_event(interaction, event_data)
+		"map_connection":
+			_emit_map_connection(interaction, event_data)
 		"coord_event":
 			_emit_coord_event(interaction, event_data)
 		_:
@@ -248,6 +250,135 @@ func try_dispatch_standard_wild_encounter(cell: Vector2i, options: Dictionary = 
 	if bool(summary.get("encounter_requested", false)):
 		_emit_standard_wild_encounter(summary)
 	return summary
+
+
+func request_map_connection_transition(request: Dictionary) -> Dictionary:
+	var destination_position = request.get("dest_position", Vector2i(-1, -1))
+	if typeof(destination_position) != TYPE_VECTOR2I:
+		destination_position = _transition_vector(request, "dest_position", Vector2i(-1, -1))
+	var source_position = request.get("source_position", _current_player_position())
+	if typeof(source_position) != TYPE_VECTOR2I:
+		source_position = _transition_vector(request, "source_position", _current_player_position())
+	var trigger_position = request.get("trigger_position", source_position)
+	if typeof(trigger_position) != TYPE_VECTOR2I:
+		trigger_position = _transition_vector(request, "trigger_position", source_position)
+
+	return _apply_transition_effects([
+		{
+			"op": "map_connection",
+			"line": 0,
+			"map": String(request.get("dest_map", request.get("map", ""))),
+			"position": destination_position,
+			"has_explicit_position": true,
+			"uses_warp_id": false,
+			"style": "connection",
+			"presentation": "connection",
+			"source_position": [source_position.x, source_position.y],
+			"trigger_position": [trigger_position.x, trigger_position.y],
+			"source": "src/fieldmap.c:MapConnection",
+		},
+	])
+
+
+func request_trainer_battle_start(request: Dictionary) -> Dictionary:
+	if _battle_engine == null or not _battle_engine.has_method("create_trainer_battle_state"):
+		return {
+			"status": "missing_battle_engine",
+			"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle",
+		}
+
+	var trainer_id := String(request.get("trainer_id", request.get("trainer", "")))
+	if trainer_id.is_empty():
+		return {
+			"status": "missing_trainer_id",
+			"detail": "Trainer battle requests must provide the source trainer id or symbol; the bridge does not guess a default trainer.",
+			"source": "src/scrcmd.c:ScrCmd_trainerbattle",
+			"unsupported": [{
+				"code": "trainer_battle_request_missing_trainer_id",
+				"source": "src/scrcmd.c:ScrCmd_trainerbattle -> TrainerBattleLoadArgs",
+				"detail": "Source trainerbattle reads the trainer id from script args. Godot debug requests must pass trainer_id explicitly.",
+			}],
+		}
+	var player_party_result := _player_party_for_trainer_battle(request)
+	var player_party_status := String(player_party_result.get("status", ""))
+	if player_party_status == "error" or player_party_status == "unsupported_empty_player_party":
+		return player_party_result
+	var player_party = player_party_result.get("battle_party", [])
+	if typeof(player_party) != TYPE_ARRAY:
+		player_party = []
+
+	var map_id := String(request.get("map", _current_map_id()))
+	var position = request.get("position", _current_player_position())
+	if typeof(position) != TYPE_VECTOR2I:
+		position = _transition_vector(request, "position", _current_player_position())
+	var battle_options := {
+		"battle_origin": String(request.get("battle_origin", "debug_trainer_npc")),
+		"map": map_id,
+		"map_type": _current_map_type(map_id),
+		"metatile_behavior": String(request.get("metatile_behavior", _current_metatile_behavior_name(position))),
+		"player_active": _current_player_active_battle_index(player_party),
+		"debug_player_party": player_party_result,
+	}
+	var battle_state = _battle_engine.create_trainer_battle_state(trainer_id, player_party, battle_options)
+	if typeof(battle_state) != TYPE_DICTIONARY:
+		return {
+			"status": "invalid_battle_state",
+			"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle",
+		}
+	var battle_status := String(battle_state.get("status", ""))
+	if battle_status != "ok":
+		return {
+			"status": battle_status,
+			"battle_state": battle_state,
+			"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle",
+		}
+	battle_state["debug_fixture"] = bool(request.get("debug_fixture", false))
+	battle_state["debug_player_party"] = player_party_result.duplicate(true)
+	var battle_unsupported = battle_state.get("unsupported", [])
+	if typeof(battle_unsupported) != TYPE_ARRAY:
+		battle_unsupported = []
+	battle_unsupported.append_array(_array_value(player_party_result.get("unsupported", [])))
+	battle_state["unsupported"] = battle_unsupported
+	if String(battle_state.get("battle_type", "")) != "single":
+		return {
+			"status": "unsupported_trainer_battle_type",
+			"battle_state": battle_state,
+			"source": "src/battle_setup.c:GetTrainerBattleType",
+			"unsupported": [{
+				"code": "trainer_double_battle_not_supported",
+				"source": "src/battle_setup.c:GetTrainerBattleTransition",
+				"detail": "The debug BattleScene is single-battle only. Double, multi, and partner trainer battles are recorded as metadata but are not handed off to the scene yet.",
+			}],
+		}
+
+	var sequence_id := _next_transition_sequence_id
+	_next_transition_sequence_id += 1
+	var battle_setup := {
+		"status": "state_created",
+		"battle_state": battle_state,
+		"trainer_id": trainer_id,
+		"player_party_count": player_party.size(),
+		"opponent_party_count": _result_array_count(battle_state, "opponent_party"),
+		"debug_player_party": player_party_result,
+		"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle",
+	}
+	var statistics := _increment_trainer_battle_stats()
+	var sequence := _build_trainer_battle_start_sequence(
+		sequence_id,
+		request,
+		battle_setup,
+		battle_state,
+		statistics
+	)
+	battle_start_sequence_requested.emit(sequence)
+	return {
+		"status": "sequence_requested",
+		"id": sequence_id,
+		"sequence": sequence,
+		"battle_setup": battle_setup,
+		"statistics": statistics,
+		"source": "src/battle_setup.c:DoTrainerBattle -> CreateBattleStartTask",
+	}
 
 
 func dispatch_player_step(cell: Vector2i, options: Dictionary = {}) -> Dictionary:
@@ -332,6 +463,11 @@ func dispatch_player_step(cell: Vector2i, options: Dictionary = {}) -> Dictionar
 
 
 func _emit_object_event(interaction: Dictionary, event_data: Dictionary) -> void:
+	var debug_action := _object_event_debug_action(event_data)
+	if debug_action == "trainer_battle":
+		_emit_trainer_battle_object_event(interaction, event_data)
+		return
+
 	var script := String(interaction.get("script", event_data.get("script", "0x0")))
 	var lines := PackedStringArray([
 		"Object event",
@@ -343,6 +479,49 @@ func _emit_object_event(interaction: Dictionary, event_data: Dictionary) -> void
 		"event": event_data,
 	})
 	debug_message_requested.emit(lines)
+
+
+func _emit_trainer_battle_object_event(interaction: Dictionary, event_data: Dictionary) -> void:
+	var metadata = event_data.get("metadata", {})
+	metadata = metadata if typeof(metadata) == TYPE_DICTIONARY else {}
+	var position = interaction.get("position", _current_player_position())
+	if typeof(position) != TYPE_VECTOR2I:
+		position = _current_player_position()
+	var trainer_id := String(metadata.get("trainer_id", event_data.get("trainer_id", "")))
+	var battle_request := {
+		"battle_origin": "debug_trainer_npc",
+		"trainer_id": trainer_id,
+		"debug_fixture": true,
+		"debug_allow_empty_party_fallback": true,
+		"map": _current_map_id(),
+		"position": position,
+		"object_event": event_data,
+		"source": "Godot-only debug fixture overlay",
+	}
+	var result := request_trainer_battle_start(battle_request)
+	var lines := PackedStringArray([
+		"Debug trainer battle",
+		"Trainer: %s" % trainer_id,
+		"Position: %s" % position,
+		"Request: %s" % String(result.get("status", "")),
+	])
+	var sequence = result.get("sequence", {})
+	if typeof(sequence) == TYPE_DICTIONARY and not sequence.is_empty():
+		var transition = sequence.get("battle_transition", {})
+		if typeof(transition) == TYPE_DICTIONARY:
+			lines.append("Transition: %s" % String(transition.get("selected", "")))
+	if result.has("detail"):
+		lines.append(String(result.get("detail", "")))
+	debug_message_requested.emit(lines)
+
+
+func _object_event_debug_action(event_data: Dictionary) -> String:
+	var metadata = event_data.get("metadata", {})
+	if typeof(metadata) == TYPE_DICTIONARY:
+		var action := String(metadata.get("action", ""))
+		if not action.is_empty():
+			return action
+	return String(event_data.get("action", ""))
 
 
 func _emit_bg_event(interaction: Dictionary, event_data: Dictionary) -> void:
@@ -386,6 +565,23 @@ func _emit_warp_event(interaction: Dictionary, event_data: Dictionary) -> void:
 	])
 	var transition_summary := _apply_map_warp_event(interaction, event_data)
 	lines.append("Warp effects: %d applied, %d skipped" % [
+		_movement_summary_count(transition_summary, "applied"),
+		_movement_summary_count(transition_summary, "skipped"),
+	])
+	debug_message_requested.emit(lines)
+
+
+func _emit_map_connection(interaction: Dictionary, event_data: Dictionary) -> void:
+	var lines := PackedStringArray([
+		"Map connection",
+		"Position: %s" % interaction.get("position", Vector2i.ZERO),
+		"Destination: %s @ %s" % [
+			str(event_data.get("dest_map", event_data.get("map", "unknown"))),
+			str(event_data.get("dest_position", Vector2i(-1, -1))),
+		],
+	])
+	var transition_summary := request_map_connection_transition(event_data)
+	lines.append("Connection effects: %d applied, %d skipped" % [
 		_movement_summary_count(transition_summary, "applied"),
 		_movement_summary_count(transition_summary, "skipped"),
 	])
@@ -1134,7 +1330,10 @@ func _build_transition_sequence(
 	var presentation := String(effect.get("presentation", _default_transition_presentation(effect)))
 	var exit_task := _warp_exit_task(destination_map_data, destination_tileset_data, destination_position)
 	var steps := []
-	if presentation == "door":
+	if presentation == "connection":
+		exit_task = {}
+		steps = _connection_transition_steps(source_position, trigger_position, destination_map_id, destination_position)
+	elif presentation == "door":
 		steps = _door_warp_steps(
 			source_position,
 			trigger_position,
@@ -1165,12 +1364,17 @@ func _build_transition_sequence(
 			"src/field_door.c:sDoorOpenAnimFrames/sDoorCloseAnimFrames",
 			"src/event_object_movement.c:MOVE_SPEED_NORMAL",
 			"src/metatile_behavior.c:MetatileBehavior_IsDoor/IsDirectionalStairWarp/IsNonAnimDoor",
+			"src/fieldmap.c:CameraMove/SetPositionFromConnection",
+			"src/overworld.c:LoadMapFromCameraTransition",
 		],
 		"steps": steps,
+		"unsupported": _transition_sequence_unsupported(presentation),
 	}
 
 
 func _default_transition_presentation(effect: Dictionary) -> String:
+	if String(effect.get("style", "")) == "connection":
+		return "connection"
 	if String(effect.get("style", "")) == "silent":
 		return "silent"
 	return "normal"
@@ -1194,6 +1398,7 @@ func _door_warp_steps(
 			"sound_source": "GetDoorSoundEffect",
 			"position": door_position,
 			"source": "Task_DoDoorWarp",
+			"status": "metadata_only",
 		},
 		_door_step("door_open", door_position, "FieldAnimateDoorOpen", door_animation),
 		{
@@ -1247,6 +1452,49 @@ func _normal_warp_steps(
 		},
 		{"op": "unlock_controls", "source": "Task_ExitDoor/Task_ExitNonDoor"},
 	]
+
+
+func _connection_transition_steps(
+	source_position: Vector2i,
+	trigger_position: Vector2i,
+	destination_map_id: String,
+	destination_position: Vector2i
+) -> Array:
+	return [
+		{"op": "lock_controls", "source": "CameraMove"},
+		{
+			"op": "player_step",
+			"movement_action": "MOVEMENT_ACTION_WALK_NORMAL",
+			"from": source_position,
+			"to": trigger_position,
+			"duration_frames": WALK_NORMAL_TILE_FRAMES,
+			"source": "src/event_object_movement.c:MOVE_SPEED_NORMAL; src/fieldmap.c:CameraMove",
+		},
+		{
+			"op": "load_map",
+			"map": destination_map_id,
+			"position": destination_position,
+			"source": "LoadMapFromCameraTransition",
+		},
+		{"op": "unlock_controls", "source": "CameraMove"},
+	]
+
+
+func _transition_sequence_unsupported(presentation: String) -> Array:
+	var unsupported: Array = []
+	if presentation == "connection":
+		unsupported.append({
+			"code": "map_connection_camera_backup_not_source_equivalent",
+			"source": "src/fieldmap.c:CameraMove/MoveMapViewToBackup/LoadMapFromCameraTransition",
+			"detail": "The sequence now preserves the 16-frame edge step before loading the connected map, but exact camera scrolling, backup-map copy timing, object-event carryover, and MAP_OFFSET-sized streaming behavior are still not source-equivalent.",
+		})
+	if presentation == "door":
+		unsupported.append({
+			"code": "door_warp_audio_metadata_only",
+			"source": "src/field_screen_effect.c:Task_DoDoorWarp -> PlaySE(GetDoorSoundEffect(...))",
+			"detail": "The sequence records the source door sound effect but TransitionSequencePlayer does not play audio yet.",
+		})
+	return unsupported
 
 
 func _door_step(op: String, position: Vector2i, source: String, door_animation: Dictionary) -> Dictionary:
@@ -1927,6 +2175,227 @@ func _standard_wild_battle_start_steps(transition: Dictionary, battle_type_flags
 	]
 
 
+func _build_trainer_battle_start_sequence(
+	sequence_id: int,
+	request: Dictionary,
+	battle_setup: Dictionary,
+	battle_state: Dictionary,
+	statistics: Dictionary
+) -> Dictionary:
+	var setup = battle_state.get("battle_setup", {})
+	setup = setup if typeof(setup) == TYPE_DICTIONARY else {}
+	var transition = setup.get("battle_transition", {})
+	transition = transition if typeof(transition) == TYPE_DICTIONARY else {}
+	var battle_type_flags = battle_state.get("battle_type_flags", [])
+	battle_type_flags = battle_type_flags if typeof(battle_type_flags) == TYPE_ARRAY else []
+	var trainer = battle_state.get("trainer", {})
+	trainer = trainer if typeof(trainer) == TYPE_DICTIONARY else {}
+	return {
+		"id": sequence_id,
+		"type": "battle_start",
+		"battle_kind": "trainer",
+		"presentation": "trainer_battle_start",
+		"enable_battle_scene_handoff": true,
+		"source_map": String(request.get("map", _current_map_id())),
+		"source_position": request.get("position", _current_player_position()),
+		"trainer": trainer,
+		"trainer_id": String(request.get("trainer_id", trainer.get("symbol", ""))),
+		"battle_state": battle_state,
+		"debug_fixture": bool(request.get("debug_fixture", false)),
+		"debug_player_party": battle_setup.get("debug_player_party", {}),
+		"battle_setup_status": String(battle_setup.get("status", "")),
+		"battle_transition": transition,
+		"battle_type_flags": battle_type_flags.duplicate(true),
+		"statistics": statistics,
+		"frame_basis": "60fps",
+		"source_order": [
+			"Godot debug fixture dispatches a structured trainer battle request",
+			"Source trainerbattle path normally runs trainer_battle.inc approach/intro scripts before dotrainerbattle",
+			"gBattleTypeFlags |= BATTLE_TYPE_TRAINER",
+			"CreateBattleStartTask(GetTrainerBattleTransition(), 0)",
+			"IncrementGameStat(GAME_STAT_TOTAL_BATTLES)",
+			"IncrementGameStat(GAME_STAT_TRAINER_BATTLES)",
+			"Task_BattleStart: wait until !FldEffPoison_IsActive()",
+			"BattleTransition_StartOnField",
+			"Task_BattleStart: wait until IsBattleTransitionDone()",
+			"PrepareForFollowerNPCBattle",
+			"CleanupOverworldWindowsAndTilemaps",
+			"SetMainCallback2(CB2_InitBattle)",
+		],
+		"source_trace": [
+			"src/battle_setup.c:BattleSetup_StartTrainerBattle",
+			"src/battle_setup.c:DoTrainerBattle",
+			"src/battle_setup.c:GetTrainerBattleTransition",
+			"src/battle_setup.c:CreateBattleStartTask",
+			"src/battle_setup.c:Task_BattleStart",
+			"src/battle_transition.c:BattleTransition_StartOnField",
+			"src/battle_main.c:CB2_InitBattle",
+		],
+		"steps": _trainer_battle_start_steps(transition, battle_type_flags),
+		"unsupported": _trainer_battle_start_unsupported(),
+	}
+
+
+func _trainer_battle_start_steps(transition: Dictionary, battle_type_flags: Array) -> Array:
+	return [
+		{
+			"op": "lock_controls",
+			"source": "data/scripts/trainer_battle.inc:EventScript_TryDoNormalTrainerBattle -> src/scrcmd.c:ScrCmd_lock",
+			"side_effects": ["lock input", "end DexNav search"],
+			"status": "debug_bridge_first_slice",
+		},
+		{
+			"op": "freeze_object_events",
+			"source": "data/scripts/trainer_battle.inc:EventScript_StartTrainerApproach -> src/scrcmd.c:ScrCmd_lockfortrainer",
+			"scope": "active object events except player",
+			"status": "debug_bridge_metadata_only",
+		},
+		{
+			"op": "stop_player_avatar",
+			"source": "data/scripts/trainer_battle.inc:EventScript_TrainerApproach -> special DoTrainerApproach/waitstate",
+			"status": "debug_bridge_metadata_only",
+		},
+		{"op": "set_saved_callback", "callback": "CB2_EndTrainerBattle", "source": "src/battle_setup.c:BattleSetup_StartTrainerBattle"},
+		{"op": "set_battle_type_flags", "flags": battle_type_flags.duplicate(true), "source": "src/battle_setup.c:BattleSetup_StartTrainerBattle"},
+		{
+			"op": "create_battle_start_task",
+			"task": "Task_BattleStart",
+			"priority": 1,
+			"transition": String(transition.get("selected", "")),
+			"transition_type": String(transition.get("transition_type", "")),
+			"transition_comparison": String(transition.get("comparison", "")),
+			"source": "src/battle_setup.c:CreateBattleStartTask",
+		},
+		{
+			"op": "play_bgm",
+			"function": "PlayTrainerEncounterMusic",
+			"song_meaning": "choose trainer battle BGM",
+			"trainer_bgm_candidates": ["MUS_VS_TRAINER", "MUS_VS_AQUA_MAGMA"],
+			"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle",
+			"status": "metadata_only",
+		},
+		{"op": "wait_poison_clear", "condition": "!FldEffPoison_IsActive()", "source": "src/battle_setup.c:Task_BattleStart"},
+		{
+			"op": "battle_transition_start",
+			"transition": String(transition.get("selected", "")),
+			"transition_type": String(transition.get("transition_type", "")),
+			"comparison": String(transition.get("comparison", "")),
+			"duration_frames": BATTLE_TRANSITION_STUB_FRAMES,
+			"presentation_stub": true,
+			"source": "src/battle_setup.c:Task_BattleStart -> BattleTransition_StartOnField",
+		},
+		{"op": "wait_battle_transition_done", "condition": "IsBattleTransitionDone()", "source": "src/battle_setup.c:Task_BattleStart"},
+		{"op": "prepare_follower_npc_battle", "source": "src/battle_setup.c:Task_BattleStart", "status": "metadata_only"},
+		{"op": "cleanup_overworld_windows_tilemaps", "source": "src/battle_setup.c:Task_BattleStart", "status": "metadata_only"},
+		{
+			"op": "set_main_callback",
+			"callback": "CB2_InitBattle",
+			"source": "src/battle_setup.c:Task_BattleStart",
+			"status": "battle_scene_first_slice_not_source_equivalent",
+			"unsupported_reason": "battle_scene_not_source_equivalent",
+		},
+	]
+
+
+func _player_party_for_trainer_battle(request: Dictionary) -> Dictionary:
+	var party := _current_player_party()
+	var battle_party := _current_player_battle_party()
+	if not battle_party.is_empty():
+		return {
+			"status": "existing_party",
+			"party": party,
+			"battle_party": battle_party,
+			"debug_fallback_created": false,
+		}
+	if not bool(request.get("debug_allow_empty_party_fallback", false)):
+		return {
+			"status": "unsupported_empty_player_party",
+			"party": [],
+			"battle_party": [],
+			"debug_fallback_created": false,
+			"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle",
+			"unsupported": [{
+				"code": "empty_player_party_no_debug_fallback",
+				"source": "src/battle_setup.c:BattleSetup_StartTrainerBattle",
+				"detail": "Source trainer battles require a usable player party. Only the Godot debug fixture may request a temporary Torchic fallback.",
+			}],
+		}
+	if _party_runtime == null or not _party_runtime.has_method("create_party_mon"):
+		return {
+			"status": "error",
+			"error": "missing_party_runtime",
+			"detail": "PartyRuntime is required to create the debug Torchic fallback.",
+			"source": "Godot debug trainer battle fixture",
+		}
+
+	var torchic = _party_runtime.create_party_mon("SPECIES_TORCHIC", 5, {
+		"nickname": "Debug Torchic",
+		"moves": ["MOVE_SCRATCH", "MOVE_EMBER"],
+		"debug_only": true,
+		"met_location": String(request.get("map", _current_map_id())),
+	})
+	if typeof(torchic) != TYPE_DICTIONARY or String(torchic.get("status", "")) != "ok":
+		return torchic if typeof(torchic) == TYPE_DICTIONARY else {
+			"status": "error",
+			"error": "debug_torchic_create_failed",
+	}
+	torchic["debug_only"] = true
+	torchic["debug_source"] = "debug trainer battle vertical slice fallback"
+	var resolved_party := [torchic]
+	var resolved_battle_party := resolved_party
+	if _party_runtime.has_method("build_battle_party"):
+		var built = _party_runtime.build_battle_party(resolved_party)
+		if typeof(built) == TYPE_ARRAY and not built.is_empty():
+			resolved_battle_party = built
+	return {
+		"status": "debug_fallback_created",
+		"party": resolved_party,
+		"battle_party": resolved_battle_party,
+		"debug_fallback_created": true,
+		"temporary": true,
+		"species": "SPECIES_TORCHIC",
+		"level": 5,
+		"unsupported": [{
+			"code": "debug_only_temporary_player_party",
+			"source": "Godot-only debug fixture overlay",
+			"detail": "A Lv5 Torchic is created for this battle request only because the starter flow is not implemented. It is not a source trainerbattle behavior.",
+		}],
+	}
+
+
+func _increment_trainer_battle_stats() -> Dictionary:
+	var increments := [
+		_increment_game_stat_from("GAME_STAT_TOTAL_BATTLES", "src/battle_setup.c:DoTrainerBattle"),
+		_increment_game_stat_from("GAME_STAT_TRAINER_BATTLES", "src/battle_setup.c:DoTrainerBattle"),
+	]
+	var all_incremented := true
+	for entry in increments:
+		if String(entry.get("status", "")) != "incremented":
+			all_incremented = false
+			break
+	return {
+		"status": "incremented" if all_incremented else "partial",
+		"increments": increments,
+		"source": "src/battle_setup.c:DoTrainerBattle",
+	}
+
+
+func _trainer_battle_start_unsupported() -> Array:
+	return [{
+		"code": "trainer_script_approach_intro_not_executed",
+		"source": "data/scripts/trainer_battle.inc; src/scrcmd.c:ScrCmd_trainerbattle",
+		"detail": "The debug NPC enters through a Godot-only request and does not execute source trainer approach, reveal movement, intro text, trainer flag checks, or dotrainerbattle script flow yet.",
+	}, {
+		"code": "trainer_battle_transition_visual_stub",
+		"source": "src/battle_transition.c:BattleTransition_StartOnField",
+		"detail": "The sequence records the selected trainer transition and plays the generic first-pass overlay. Exact source graphics, task timing, palette effects, screen effects, BGM, trainer intro text, and mugshot/team variants are not source-equivalent yet.",
+	}, {
+		"code": "battle_scene_not_source_equivalent",
+		"source": "src/battle_main.c:CB2_InitBattle",
+		"detail": "The handoff opens a debug BattleScene, not the source battle scene. Source tilemaps, windows, text printer timing, battler/healthbox sprites, audio, callbacks, controller command queues, trainer AI, rewards, EXP, party switching, and post-battle scripts remain future work.",
+	}]
+
+
 func _increment_standard_wild_battle_stats() -> Dictionary:
 	var increments := [
 		_increment_game_stat_from("GAME_STAT_TOTAL_BATTLES", "src/battle_setup.c:DoStandardWildBattle"),
@@ -2262,6 +2731,10 @@ func _map_load_script_status(transition_summary: Dictionary, load_summary: Dicti
 func _result_array_count(result: Dictionary, key: String) -> int:
 	var value = result.get(key, [])
 	return value.size() if typeof(value) == TYPE_ARRAY else 0
+
+
+func _array_value(value) -> Array:
+	return value if typeof(value) == TYPE_ARRAY else []
 
 
 func _configure_script_vm_dependencies() -> void:

@@ -11,6 +11,8 @@ const GENERATED_MANIFEST_PATH := "res://data/generated/import_manifest.json"
 const GENERATED_START_MAP_PATH := "res://data/generated/maps/littleroot_town.json"
 const GENERATED_START_TILESET_PATH := "res://data/generated/tilesets/littleroot_town.json"
 const GENERATED_START_SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
+const DEFAULT_MAP_OVERLAY_CATEGORY := "debug_fixtures"
+const DEFAULT_OBJECT_EVENT_SPRITE_CATEGORY := "object_events"
 
 var import_report: Dictionary = {}
 var _manifest_data: Dictionary = {}
@@ -21,12 +23,16 @@ var _script_entries: Array = []
 var _script_entries_by_map_name: Dictionary = {}
 var _text_entries_by_category: Dictionary = {}
 var _pokemon_entries_by_category: Dictionary = {}
+var _map_overlay_entries_by_category: Dictionary = {}
+var _object_event_sprite_entries_by_category: Dictionary = {}
 var _map_data_by_id: Dictionary = {}
 var _tileset_data_by_map_id: Dictionary = {}
 var _script_data_by_map_id: Dictionary = {}
 var _script_data_by_path: Dictionary = {}
 var _text_data_by_category: Dictionary = {}
 var _pokemon_data_by_category: Dictionary = {}
+var _map_overlay_data_by_category: Dictionary = {}
+var _object_event_sprite_data_by_category: Dictionary = {}
 var _species_records_by_symbol: Dictionary = {}
 var _species_records_by_id: Dictionary = {}
 var _move_records_by_symbol: Dictionary = {}
@@ -49,6 +55,7 @@ var _pre_evolution_records_by_target_id: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
+var _debug_map_overlays_enabled := false
 
 
 func _ready() -> void:
@@ -63,6 +70,10 @@ func _ready() -> void:
 		_start_tileset_data = _load_json_object(GENERATED_START_TILESET_PATH, "generated tileset")
 	if _start_script_data.is_empty():
 		_start_script_data = _load_json_object(GENERATED_START_SCRIPT_PATH, "generated script")
+
+
+func set_debug_map_overlays_enabled(value: bool) -> void:
+	_debug_map_overlays_enabled = value
 
 
 func get_start_map_id() -> String:
@@ -92,8 +103,8 @@ func get_start_map_size() -> Vector2i:
 	return FIRST_SLICE_MAP_SIZE
 
 
-func get_start_map_data() -> Dictionary:
-	return _start_map_data
+func get_start_map_data(options: Dictionary = {}) -> Dictionary:
+	return _map_data_with_optional_overlays(FIRST_SLICE_MAP_ID, _start_map_data, options)
 
 
 func get_start_tileset_data() -> Dictionary:
@@ -119,13 +130,13 @@ func has_map_data(map_id: String) -> bool:
 	return not get_map_data(map_id).is_empty()
 
 
-func get_map_data(map_id: String) -> Dictionary:
+func get_map_data(map_id: String, options: Dictionary = {}) -> Dictionary:
 	if map_id == FIRST_SLICE_MAP_ID and _map_entries_by_id.is_empty() and not _start_map_data.is_empty():
-		return _start_map_data
+		return _map_data_with_optional_overlays(map_id, _start_map_data, options)
 
 	if _map_data_by_id.has(map_id):
 		var cached = _map_data_by_id[map_id]
-		return cached if typeof(cached) == TYPE_DICTIONARY else {}
+		return _map_data_with_optional_overlays(map_id, cached, options) if typeof(cached) == TYPE_DICTIONARY else {}
 
 	var entry := _map_entry_for_id(map_id)
 	if entry.is_empty():
@@ -133,7 +144,7 @@ func get_map_data(map_id: String) -> Dictionary:
 
 	var map_data := _load_json_object(_resource_path(String(entry.get("path", ""))), "generated map")
 	_map_data_by_id[map_id] = map_data
-	return map_data
+	return _map_data_with_optional_overlays(map_id, map_data, options)
 
 
 func get_tileset_data_for_map(map_id: String) -> Dictionary:
@@ -216,6 +227,63 @@ func get_text_display_text(text_label: String, category: String = "global") -> S
 	if record.is_empty():
 		return ""
 	return String(record.get("display_text", ""))
+
+
+func get_map_overlays_data(category: String = DEFAULT_MAP_OVERLAY_CATEGORY) -> Dictionary:
+	if _map_overlay_data_by_category.has(category):
+		var cached = _map_overlay_data_by_category[category]
+		return cached if typeof(cached) == TYPE_DICTIONARY else {}
+
+	var entry = _map_overlay_entries_by_category.get(category, {})
+	if typeof(entry) != TYPE_DICTIONARY:
+		return {}
+
+	var overlay_data := _load_json_object(_resource_path(String(entry.get("path", ""))), "generated map overlay")
+	_map_overlay_data_by_category[category] = overlay_data
+	return overlay_data
+
+
+func get_map_overlay_records_for_map(map_id: String, category: String = DEFAULT_MAP_OVERLAY_CATEGORY) -> Dictionary:
+	var overlay_data := get_map_overlays_data(category)
+	if overlay_data.is_empty():
+		return {}
+
+	var maps = overlay_data.get("maps", {})
+	if typeof(maps) != TYPE_DICTIONARY:
+		return {}
+
+	var records = maps.get(map_id, {})
+	return records if typeof(records) == TYPE_DICTIONARY else {}
+
+
+func get_object_event_sprite_data(category: String = DEFAULT_OBJECT_EVENT_SPRITE_CATEGORY) -> Dictionary:
+	if _object_event_sprite_data_by_category.has(category):
+		var cached = _object_event_sprite_data_by_category[category]
+		return cached if typeof(cached) == TYPE_DICTIONARY else {}
+
+	var entry = _object_event_sprite_entries_by_category.get(category, {})
+	if typeof(entry) != TYPE_DICTIONARY:
+		return {}
+
+	var sprite_data := _load_json_object(_resource_path(String(entry.get("path", ""))), "generated object event sprite data")
+	_object_event_sprite_data_by_category[category] = sprite_data
+	return sprite_data
+
+
+func get_object_event_sprite_record(
+	graphics_id: String,
+	category: String = DEFAULT_OBJECT_EVENT_SPRITE_CATEGORY
+) -> Dictionary:
+	var sprite_data := get_object_event_sprite_data(category)
+	if sprite_data.is_empty():
+		return {}
+
+	var sprites = sprite_data.get("sprites", {})
+	if typeof(sprites) != TYPE_DICTIONARY:
+		return {}
+
+	var record = sprites.get(graphics_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
 func get_pokemon_data(category: String = "species") -> Dictionary:
@@ -590,6 +658,10 @@ func _index_manifest() -> void:
 	_text_data_by_category = {}
 	_pokemon_entries_by_category = {}
 	_pokemon_data_by_category = {}
+	_map_overlay_entries_by_category = {}
+	_map_overlay_data_by_category = {}
+	_object_event_sprite_entries_by_category = {}
+	_object_event_sprite_data_by_category = {}
 	_species_records_by_symbol = {}
 	_species_records_by_id = {}
 	_move_records_by_symbol = {}
@@ -660,6 +732,24 @@ func _index_manifest() -> void:
 			var category := String(entry.get("category", ""))
 			if not category.is_empty():
 				_pokemon_entries_by_category[category] = entry
+
+	var map_overlays = _manifest_data.get("map_overlays", [])
+	if typeof(map_overlays) == TYPE_ARRAY:
+		for entry in map_overlays:
+			if typeof(entry) != TYPE_DICTIONARY:
+				continue
+			var category := String(entry.get("category", ""))
+			if not category.is_empty():
+				_map_overlay_entries_by_category[category] = entry
+
+	var object_event_sprites = _manifest_data.get("object_event_sprites", [])
+	if typeof(object_event_sprites) == TYPE_ARRAY:
+		for entry in object_event_sprites:
+			if typeof(entry) != TYPE_DICTIONARY:
+				continue
+			var category := String(entry.get("category", ""))
+			if not category.is_empty():
+				_object_event_sprite_entries_by_category[category] = entry
 
 
 func _map_entry_for_id(map_id: String) -> Dictionary:
@@ -946,6 +1036,64 @@ func _normalize_map_symbol(map_symbol: String) -> String:
 	if not normalized.begins_with("MAP_"):
 		normalized = "MAP_%s" % normalized.to_upper()
 	return normalized
+
+
+func _apply_map_overlays(map_id: String, map_data: Dictionary) -> Dictionary:
+	if map_data.is_empty():
+		return map_data
+
+	var overlay_records := get_map_overlay_records_for_map(map_id)
+	if overlay_records.is_empty():
+		return map_data
+
+	var result := map_data.duplicate(true)
+	var events = result.get("events", {})
+	if typeof(events) != TYPE_DICTIONARY:
+		events = {}
+		result["events"] = events
+
+	var object_events = events.get("object_events", [])
+	if typeof(object_events) != TYPE_ARRAY:
+		object_events = []
+	events["object_events"] = object_events
+
+	var existing_local_ids := {}
+	for object_event in object_events:
+		if typeof(object_event) != TYPE_DICTIONARY:
+			continue
+		var local_id := String(object_event.get("local_id", ""))
+		if not local_id.is_empty():
+			existing_local_ids[local_id] = true
+
+	var overlay_object_events = overlay_records.get("object_events", [])
+	if typeof(overlay_object_events) == TYPE_ARRAY:
+		for overlay_object_event in overlay_object_events:
+			if typeof(overlay_object_event) != TYPE_DICTIONARY:
+				continue
+			var overlay_local_id := String(overlay_object_event.get("local_id", ""))
+			if not overlay_local_id.is_empty() and existing_local_ids.has(overlay_local_id):
+				continue
+			var merged_object_event: Dictionary = overlay_object_event.duplicate(true)
+			merged_object_event["overlay"] = {
+				"category": DEFAULT_MAP_OVERLAY_CATEGORY,
+				"source": "data/overlays/map_debug_fixtures.json",
+			}
+			object_events.append(merged_object_event)
+			if not overlay_local_id.is_empty():
+				existing_local_ids[overlay_local_id] = true
+
+	return result
+
+
+func _map_data_with_optional_overlays(map_id: String, map_data: Dictionary, options: Dictionary = {}) -> Dictionary:
+	if map_data.is_empty():
+		return map_data
+	var include_overlays := _debug_map_overlays_enabled
+	if options.has("include_debug_overlays"):
+		include_overlays = bool(options.get("include_debug_overlays", false))
+	if not include_overlays:
+		return map_data
+	return _apply_map_overlays(map_id, map_data)
 
 
 func _resource_path(project_path: String) -> String:

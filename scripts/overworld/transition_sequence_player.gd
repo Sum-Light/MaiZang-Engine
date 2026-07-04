@@ -1,5 +1,7 @@
 extends Node
 
+signal battle_scene_handoff_requested(sequence: Dictionary, step: Dictionary)
+
 const TRANSITION_FRAME_RATE := 60.0
 const TRANSITION_FADE_SECONDS := 0.18
 
@@ -12,6 +14,7 @@ var overlay: ColorRect = null
 var label: Label = null
 var playback_token := 0
 var playback_tween: Tween = null
+var _pending_battle_handoff: Dictionary = {}
 
 
 func configure(
@@ -34,6 +37,7 @@ func configure(
 
 func play(sequence: Dictionary) -> void:
 	playback_token += 1
+	_pending_battle_handoff = {}
 	if playback_tween != null and playback_tween.is_running():
 		playback_tween.kill()
 	if map_renderer != null and map_renderer.has_method("clear_door_animations"):
@@ -65,7 +69,7 @@ func _play_sequence(sequence: Dictionary, token: int) -> void:
 				await _play_step(sequence, step, token)
 
 	if token == playback_token:
-		_finish()
+		_finish(sequence)
 
 
 func _play_step(sequence: Dictionary, step: Dictionary, token: int) -> void:
@@ -73,6 +77,9 @@ func _play_step(sequence: Dictionary, step: Dictionary, token: int) -> void:
 		label.text = _step_label(sequence, step)
 
 	var op := String(step.get("op", ""))
+	if op == "set_main_callback":
+		_handle_main_callback(sequence, step)
+		return
 	if _is_metadata_only_step(op):
 		return
 
@@ -126,7 +133,6 @@ func _is_metadata_only_step(op: String) -> bool:
 		"prepare_follower_npc_battle",
 		"cleanup_overworld_windows_tilemaps",
 		"clear_mirage_tower_pulse_blend",
-		"set_main_callback",
 		"restart_wild_encounter_immunity_steps",
 		"clear_poison_step_counter",
 	]
@@ -231,15 +237,35 @@ func _fade_overlay(target_alpha: float, duration: float, token: int) -> void:
 		return
 
 
-func _finish() -> void:
+func _handle_main_callback(sequence: Dictionary, step: Dictionary) -> void:
+	if String(step.get("callback", "")) != "CB2_InitBattle":
+		return
+	if not bool(sequence.get("enable_battle_scene_handoff", false)):
+		return
+	_pending_battle_handoff = {
+		"sequence": sequence.duplicate(true),
+		"step": step.duplicate(true),
+	}
+
+
+func _finish(sequence: Dictionary = {}) -> void:
 	if map_renderer != null and map_renderer.has_method("clear_door_animations"):
 		map_renderer.clear_door_animations()
 	if overlay != null:
 		overlay.visible = false
 	if label != null:
 		label.text = ""
-	if player != null and player.has_method("set_input_locked"):
+	var handoff := _pending_battle_handoff.duplicate(true)
+	_pending_battle_handoff = {}
+	if handoff.is_empty() and player != null and player.has_method("set_input_locked"):
 		player.set_input_locked(false)
+	elif not handoff.is_empty():
+		if player != null and player.has_method("set_input_locked"):
+			player.set_input_locked(true)
+		battle_scene_handoff_requested.emit(
+			handoff.get("sequence", sequence),
+			handoff.get("step", {})
+		)
 
 
 func _current_player_position() -> Vector2i:
@@ -268,6 +294,15 @@ func _step_vector(step: Dictionary, key: String, default_value: Vector2i) -> Vec
 
 func _sequence_label(sequence: Dictionary) -> String:
 	if String(sequence.get("type", "")) == "battle_start":
+		if String(sequence.get("battle_kind", "")) == "trainer":
+			var trainer = sequence.get("trainer", {})
+			var trainer_name := String(sequence.get("trainer_id", "trainer"))
+			if typeof(trainer) == TYPE_DICTIONARY:
+				trainer_name = String(trainer.get("name", trainer.get("symbol", trainer_name)))
+			return "Trainer battle | %s | %s" % [
+				trainer_name,
+				String(sequence.get("presentation", "battle_start")),
+			]
 		return "Wild battle | %s Lv.%d | %s" % [
 			String(sequence.get("species", "")),
 			int(sequence.get("level", 0)),

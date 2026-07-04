@@ -1,7 +1,9 @@
 extends Node2D
 
 const TRANSITION_SEQUENCE_PLAYER := preload("res://scripts/overworld/transition_sequence_player.gd")
+const BATTLE_SCENE := preload("res://scenes/battle/battle_scene.tscn")
 
+@onready var world = $World
 @onready var debug_map = $World/DebugMap
 @onready var object_events = $World/ObjectEvents
 @onready var player = $World/Player
@@ -13,9 +15,27 @@ var _movement_note := ""
 var _transition_overlay: ColorRect
 var _transition_label: Label
 var _transition_sequence_player: Node
+var _battle_scene: Control = null
 
 
 func _ready() -> void:
+	if MapRuntime.has_method("configure_data_registry"):
+		MapRuntime.configure_data_registry(DataRegistry)
+	if EventManager.has_method("configure_data_registry"):
+		EventManager.configure_data_registry(DataRegistry)
+	if EventManager.has_method("configure_party_runtime"):
+		EventManager.configure_party_runtime(PartyRuntime)
+	if EventManager.has_method("configure_battle_engine"):
+		EventManager.configure_battle_engine(BattleEngine)
+	if BattleEngine.has_method("configure_registry"):
+		BattleEngine.configure_registry(DataRegistry)
+	if DataRegistry.has_method("set_debug_map_overlays_enabled"):
+		DataRegistry.set_debug_map_overlays_enabled(true)
+	var start_map_data := DataRegistry.get_start_map_data({
+		"include_debug_overlays": true,
+	})
+	var start_tileset_data := DataRegistry.get_start_tileset_data()
+
 	_create_transition_overlay()
 	_transition_sequence_player = TRANSITION_SEQUENCE_PLAYER.new()
 	add_child(_transition_sequence_player)
@@ -28,16 +48,18 @@ func _ready() -> void:
 		_transition_label,
 		debug_map
 	)
+	if _transition_sequence_player.has_signal("battle_scene_handoff_requested"):
+		_transition_sequence_player.battle_scene_handoff_requested.connect(_on_battle_scene_handoff_requested)
 	MapRuntime.configure_from_data(
-		DataRegistry.get_start_map_data(),
-		DataRegistry.get_start_tileset_data(),
+		start_map_data,
+		start_tileset_data,
 		DataRegistry.get_start_map_size()
 	)
 
 	if debug_map.has_method("configure_from_map_data"):
 		debug_map.configure_from_map_data(
-			DataRegistry.get_start_map_data(),
-			DataRegistry.get_start_tileset_data()
+			start_map_data,
+			start_tileset_data
 		)
 	else:
 		debug_map.map_size = DataRegistry.get_start_map_size()
@@ -96,6 +118,14 @@ func _on_player_movement_blocked(
 	cell_info: Dictionary,
 	facing_direction: Vector2i
 ) -> void:
+	if MapRuntime.has_method("get_connection_target"):
+		var connection := MapRuntime.get_connection_target(target_position)
+		if not connection.is_empty():
+			_movement_note = "connection %s" % target_position
+			EventManager.dispatch_interaction(connection)
+			_update_status()
+			return
+
 	if facing_direction == Vector2i.UP and MapRuntime.has_method("get_warp_event_target"):
 		var warp_event := MapRuntime.get_warp_event_target(target_position)
 		if not warp_event.is_empty():
@@ -135,6 +165,9 @@ func _on_player_interaction_requested(
 
 
 func _before_player_field_input() -> bool:
+	if _battle_scene != null:
+		return true
+
 	if dialogue_panel.visible:
 		if Input.is_action_just_pressed("ui_accept"):
 			_hide_dialogue()
@@ -178,6 +211,43 @@ func _on_transition_sequence_requested(sequence: Dictionary) -> void:
 func _on_battle_start_sequence_requested(sequence: Dictionary) -> void:
 	if _transition_sequence_player != null and _transition_sequence_player.has_method("play"):
 		_transition_sequence_player.play(sequence)
+
+
+func _on_battle_scene_handoff_requested(sequence: Dictionary, _step: Dictionary) -> void:
+	if _battle_scene != null:
+		return
+	_hide_dialogue()
+	if player.has_method("set_input_locked"):
+		player.set_input_locked(true)
+	world.visible = false
+	_battle_scene = BATTLE_SCENE.instantiate()
+	if _battle_scene.has_signal("battle_finished"):
+		_battle_scene.connect("battle_finished", Callable(self, "_on_battle_finished"))
+	$Hud.add_child(_battle_scene)
+	if _battle_scene.has_method("configure"):
+		_battle_scene.configure(sequence, BattleEngine, GameState)
+
+
+func _on_battle_finished(result: Dictionary) -> void:
+	var post_battle = result.get("post_battle", {})
+	post_battle = post_battle if typeof(post_battle) == TYPE_DICTIONARY else {}
+	var should_write_player_party := bool(post_battle.get("pending_game_state_party_write", true))
+	var player_party = result.get("player_party", [])
+	if typeof(player_party) != TYPE_ARRAY:
+		var parties = result.get("parties", {})
+		if typeof(parties) == TYPE_DICTIONARY:
+			player_party = parties.get("player", [])
+	if should_write_player_party and typeof(player_party) == TYPE_ARRAY and GameState.has_method("set_player_party"):
+		GameState.set_player_party(player_party)
+
+	if _battle_scene != null:
+		_battle_scene.queue_free()
+		_battle_scene = null
+	world.visible = true
+	if player.has_method("set_input_locked"):
+		player.set_input_locked(false)
+	_movement_note = "battle %s" % String(result.get("outcome", "done"))
+	_update_status()
 
 
 func _on_map_changed(map_data: Dictionary, tileset_data: Dictionary, _map_size: Vector2i) -> void:
@@ -268,13 +338,13 @@ func _run_initial_map_scripts() -> void:
 
 func _update_status() -> void:
 	var map_id := GameState.current_map_id
-	var source_label := "generated" if DataRegistry.has_map_data(map_id) else "fallback"
+	var map_label := DataRegistry.get_map_name(map_id)
+	if map_label.is_empty():
+		map_label = map_id.replace("MAP_", "")
 	var parts := PackedStringArray([
-		map_id,
-		DataRegistry.get_map_name(map_id),
-		source_label,
-		"grid %s" % GameState.player_grid_position,
-		"objects %d" % MapRuntime.get_object_events().size(),
+		map_label,
+		"%d,%d" % [GameState.player_grid_position.x, GameState.player_grid_position.y],
+		"obj %d" % MapRuntime.get_object_events().size(),
 	])
 	if not _movement_note.is_empty():
 		parts.append(_movement_note)

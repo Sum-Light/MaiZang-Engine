@@ -6,6 +6,9 @@ var event_data: Dictionary = {}
 var grid_position := Vector2i.ZERO
 var _body_color := Color(0.88, 0.58, 0.32, 1.0)
 var _accent_color := Color(0.18, 0.16, 0.14, 1.0)
+var _sprite_record: Dictionary = {}
+var _sprite_texture: Texture2D = null
+var _sprite_source_rect := Rect2()
 
 const BODY_COLORS := [
 	Color(0.86, 0.42, 0.38, 1.0),
@@ -29,10 +32,22 @@ func configure(new_event_data: Dictionary, new_tile_size: int) -> void:
 	position = Vector2(grid_position.x * tile_size, grid_position.y * tile_size)
 	z_index = grid_position.y
 	_body_color = _color_from_graphics_id(String(event_data.get("graphics_id", "")))
+	_configure_static_sprite()
 	queue_redraw()
 
 
 func _draw() -> void:
+	if _sprite_texture != null:
+		var dest_rect := Rect2(
+			-float(tile_size) * 0.5,
+			-float(tile_size) * 1.5,
+			float(tile_size),
+			float(tile_size) * 2.0
+		)
+		draw_rect(Rect2(-6, 5, 12, 4), Color(0.05, 0.07, 0.06, 0.35), true)
+		draw_texture_rect_region(_sprite_texture, dest_rect, _sprite_source_rect)
+		return
+
 	var body_rect := Rect2(-5, -11, 10, 15)
 	var feet_rect := Rect2(-4, 4, 8, 4)
 	var shadow_rect := Rect2(-6, 5, 12, 4)
@@ -41,6 +56,116 @@ func _draw() -> void:
 	draw_rect(body_rect, _body_color, true)
 	draw_rect(body_rect, _accent_color, false, 1.0)
 	draw_rect(feet_rect, _accent_color, true)
+
+
+func is_using_sprite() -> bool:
+	return _sprite_texture != null
+
+
+func get_sprite_record() -> Dictionary:
+	return _sprite_record.duplicate(true)
+
+
+func _configure_static_sprite() -> void:
+	_sprite_record = {}
+	_sprite_texture = null
+	_sprite_source_rect = Rect2()
+
+	var graphics_id := String(event_data.get("graphics_id", ""))
+	if graphics_id.is_empty():
+		return
+
+	var registry := _registry()
+	if registry == null or not registry.has_method("get_object_event_sprite_record"):
+		return
+
+	var record = registry.get_object_event_sprite_record(graphics_id)
+	if typeof(record) != TYPE_DICTIONARY or record.is_empty():
+		return
+
+	var texture := _load_texture(String(record.get("image", "")))
+	if texture == null:
+		return
+
+	var frame_size := _frame_size(record)
+	if frame_size == Vector2.ZERO:
+		return
+
+	var columns := int(record.get("columns", 0))
+	if columns <= 0:
+		var image_size = record.get("image_size", {})
+		if typeof(image_size) == TYPE_DICTIONARY and frame_size.x > 0:
+			columns = int(float(image_size.get("w", 0)) / frame_size.x)
+	if columns <= 0:
+		columns = 1
+
+	var frame_index := _static_frame_index(record, _facing_direction())
+	_sprite_record = record.duplicate(true)
+	_sprite_texture = texture
+	var frame_row := int(floor(float(frame_index) / float(columns)))
+	_sprite_source_rect = Rect2(
+		float(frame_index % columns) * frame_size.x,
+		float(frame_row) * frame_size.y,
+		frame_size.x,
+		frame_size.y
+	)
+
+
+func _load_texture(image_path: String) -> Texture2D:
+	if image_path.is_empty():
+		return null
+
+	var loaded_resource := load(image_path)
+	if loaded_resource is Texture2D:
+		return loaded_resource
+
+	var image := Image.new()
+	if image.load(image_path) != OK:
+		push_warning("Could not load generated object event sprite: %s" % image_path)
+		return null
+	return ImageTexture.create_from_image(image)
+
+
+func _frame_size(record: Dictionary) -> Vector2:
+	var frame_size_info = record.get("frame_size", {})
+	if typeof(frame_size_info) != TYPE_DICTIONARY:
+		return Vector2.ZERO
+	return Vector2(
+		float(frame_size_info.get("w", 0)),
+		float(frame_size_info.get("h", 0))
+	)
+
+
+func _static_frame_index(record: Dictionary, facing_direction: String) -> int:
+	var static_frames = record.get("static_frames", {})
+	if typeof(static_frames) != TYPE_DICTIONARY:
+		return 0
+	if static_frames.has(facing_direction):
+		return int(static_frames.get(facing_direction, 0))
+	return int(static_frames.get("down", 0))
+
+
+func _facing_direction() -> String:
+	var facing_direction := String(event_data.get("facing_direction", "")).to_lower()
+	if not facing_direction.is_empty():
+		return facing_direction
+
+	var movement_type := String(event_data.get("movement_type", "")).to_lower()
+	if movement_type.ends_with("face_up"):
+		return "up"
+	if movement_type.ends_with("face_down"):
+		return "down"
+	if movement_type.ends_with("face_left"):
+		return "left"
+	if movement_type.ends_with("face_right"):
+		return "right"
+	return "down"
+
+
+func _registry() -> Node:
+	if is_inside_tree():
+		return get_node_or_null("/root/DataRegistry")
+	return null
 
 
 func _color_from_graphics_id(graphics_id: String) -> Color:

@@ -79,7 +79,7 @@ func _init() -> void:
 	_assert(_flow_has_label(_dict_field(snapshot, "save_flow"), "gText_PlayerSavedGame"), "expected success-save flow label")
 	var map_runtime_state := _dict_field(snapshot, "map_runtime")
 	_assert(String(map_runtime_state.get("status", "")) == "ok", "expected object runtime snapshot")
-	_assert(int(map_runtime_state.get("object_events_count", 0)) == 8, "expected saved object event count")
+	_assert(int(map_runtime_state.get("object_events_count", 0)) == 8, "expected saved source object event count")
 	_assert(
 		_event_position(_object_record(map_runtime_state, "LOCALID_LITTLEROOT_RIVAL")) == Vector2i(6, 10),
 		"expected saved Rival position"
@@ -96,6 +96,7 @@ func _init() -> void:
 		bool(_object_record(map_runtime_state, "LOCALID_LITTLEROOT_MOM").get("runtime_hidden", false)),
 		"expected saved Mom hidden state"
 	)
+	_assert(_object_record(map_runtime_state, "LOCALID_DEBUG_BATTLE_NPC").is_empty(), "expected debug battle NPC to stay out of source save snapshot")
 
 	game_state.set_player_name("BROKEN")
 	game_state.set_player_gender("MALE")
@@ -125,7 +126,7 @@ func _init() -> void:
 	_assert(game_state.calculate_player_party_count() == 2, "expected restored party")
 	var map_apply_result := _dict_field(_dict_field(load_result, "apply_result"), "map_runtime_result")
 	_assert(String(map_apply_result.get("status", "")) == "ok", "expected object runtime apply")
-	_assert(_summary_count(map_apply_result, "applied") == 8, "expected all object events restored")
+	_assert(_summary_count(map_apply_result, "applied") == 8, "expected all source object events restored")
 	_assert(
 		_event_position(fresh_runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_RIVAL", true)) == Vector2i(6, 10),
 		"expected restored Rival position"
@@ -139,6 +140,7 @@ func _init() -> void:
 		"expected restored Twin movement type"
 	)
 	_assert(fresh_runtime.get_object_event_by_local_id("LOCALID_LITTLEROOT_MOM").is_empty(), "expected restored hidden Mom to be invisible")
+	_assert(fresh_runtime.get_object_event_by_local_id("LOCALID_DEBUG_BATTLE_NPC", true).is_empty(), "expected restored source map to omit debug battle NPC")
 	_assert(fresh_runtime.is_cell_occupied(Vector2i(6, 10)), "expected restored Rival occupancy")
 
 	var second_save := save_service.save_game(game_state, save_path, {"slot_id": "smoke"})

@@ -1,0 +1,3119 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "map_folder": "Route101",
+    "map_script": "data/maps/Route101/scripts.inc"
+  },
+  "labels": {
+    "Route101_MapScripts": {
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route101_OnTransition": {
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_OnFrame": {
+      "kind": "map_script_table",
+      "line": 10,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_EventScript_HideMapNamePopup": {
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route101_EventScript_StartBirchRescue": {
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 23
+    },
+    "Route101_EventScript_PreventExitSouth": {
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route101_EventScript_PreventExitWest": {
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route101_EventScript_PreventExitNorth": {
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 7
+    },
+    "Route101_Movement_PreventExitSouth": {
+      "kind": "movement",
+      "line": 71,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_Movement_PreventExitWest": {
+      "kind": "movement",
+      "line": 75,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_Movement_PreventExitNorth": {
+      "kind": "movement",
+      "line": 79,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_Movement_ZigzagoonChaseInCircles": {
+      "kind": "movement",
+      "line": 83,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 31
+    },
+    "Route101_Movement_ZigzagoonChase1": {
+      "kind": "movement",
+      "line": 116,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 8
+    },
+    "Route101_Movement_ZigzagoonFaceBirch": {
+      "kind": "movement",
+      "line": 128,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 5
+    },
+    "Route101_Movement_EnterScene": {
+      "kind": "movement",
+      "line": 135,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 6
+    },
+    "Route101_Movement_BirchRunInCircles": {
+      "kind": "movement",
+      "line": 143,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 31
+    },
+    "Route101_Movement_BirchRunAway1": {
+      "kind": "movement",
+      "line": 176,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 8
+    },
+    "Route101_Movement_BirchFaceZigzagoon": {
+      "kind": "movement",
+      "line": 188,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 5
+    },
+    "Route101_Movement_Unused1": {
+      "kind": "movement",
+      "line": 195,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 3
+    },
+    "Route101_Movement_Unused2": {
+      "kind": "movement",
+      "line": 200,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 4
+    },
+    "Route101_EventScript_Youngster": {
+      "kind": "script",
+      "line": 206,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_EventScript_Boy": {
+      "kind": "script",
+      "line": 210,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_EventScript_RouteSign": {
+      "kind": "script",
+      "line": 214,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_EventScript_BirchsBag": {
+      "kind": "script",
+      "line": 218,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 28
+    },
+    "Route101_EventScript_HideMayInBedroom": {
+      "kind": "script",
+      "line": 248,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_EventScript_HideBrendanInBedroom": {
+      "kind": "script",
+      "line": 252,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_Movement_BirchApproachPlayer": {
+      "kind": "movement",
+      "line": 256,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 2
+    },
+    "Route101_Text_HelpMe": {
+      "kind": "text",
+      "line": 260,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route101_Text_PleaseHelp": {
+      "kind": "text",
+      "line": 263,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route101_Text_DontLeaveMe": {
+      "kind": "text",
+      "line": 266,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route101_Text_YouSavedMe": {
+      "kind": "text",
+      "line": 269,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route101_Text_TakeTiredPokemonToPokeCenter": {
+      "kind": "text",
+      "line": 272,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route101_Text_WildPokemonInTallGrass": {
+      "kind": "text",
+      "line": 275,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 1
+    },
+    "Route101_Text_RouteSign": {
+      "kind": "text",
+      "line": 278,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instruction_count": 1
+    }
+  },
+  "scripts": {
+    "Route101_MapScripts": {
+      "label": "Route101_MapScripts",
+      "kind": "map_script_table",
+      "line": 1,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_TRANSITION",
+            "Route101_OnTransition"
+          ],
+          "line": 2,
+          "raw": "map_script MAP_SCRIPT_ON_TRANSITION, Route101_OnTransition",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "map_script",
+          "args": [
+            "MAP_SCRIPT_ON_FRAME_TABLE",
+            "Route101_OnFrame"
+          ],
+          "line": 3,
+          "raw": "map_script MAP_SCRIPT_ON_FRAME_TABLE, Route101_OnFrame",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": ".byte",
+          "args": [
+            "0"
+          ],
+          "line": 4,
+          "raw": ".byte 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_OnTransition": {
+      "label": "Route101_OnTransition",
+      "kind": "script",
+      "line": 6,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "call",
+          "args": [
+            "ProfBirch_EventScript_UpdateLocation"
+          ],
+          "line": 7,
+          "raw": "call ProfBirch_EventScript_UpdateLocation",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 8,
+          "raw": "end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "call",
+          "target": "ProfBirch_EventScript_UpdateLocation",
+          "line": 7
+        }
+      ]
+    },
+    "Route101_OnFrame": {
+      "label": "Route101_OnFrame",
+      "kind": "map_script_table",
+      "line": 10,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "map_script_2",
+          "args": [
+            "VAR_ROUTE101_STATE",
+            "0",
+            "Route101_EventScript_HideMapNamePopup"
+          ],
+          "line": 11,
+          "raw": "map_script_2 VAR_ROUTE101_STATE, 0, Route101_EventScript_HideMapNamePopup",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": ".2byte",
+          "args": [
+            "0"
+          ],
+          "line": 12,
+          "raw": ".2byte 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_EventScript_HideMapNamePopup": {
+      "label": "Route101_EventScript_HideMapNamePopup",
+      "kind": "script",
+      "line": 14,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_MAP_NAME_POPUP"
+          ],
+          "line": 15,
+          "raw": "setflag FLAG_HIDE_MAP_NAME_POPUP",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ROUTE101_STATE",
+            "1"
+          ],
+          "line": 16,
+          "raw": "setvar VAR_ROUTE101_STATE, 1",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 17,
+          "raw": "end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_EventScript_StartBirchRescue": {
+      "label": "Route101_EventScript_StartBirchRescue",
+      "kind": "script",
+      "line": 19,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 20,
+          "raw": "lockall",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "playbgm",
+          "args": [
+            "MUS_HELP",
+            "TRUE"
+          ],
+          "line": 21,
+          "raw": "playbgm MUS_HELP, TRUE",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route101_Text_HelpMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 22,
+          "raw": "msgbox Route101_Text_HelpMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 23,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setobjectxy",
+          "args": [
+            "LOCALID_ROUTE101_BIRCH",
+            "0",
+            "15"
+          ],
+          "line": 24,
+          "raw": "setobjectxy LOCALID_ROUTE101_BIRCH, 0, 15",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setobjectxy",
+          "args": [
+            "LOCALID_ROUTE101_ZIGZAGOON",
+            "0",
+            "16"
+          ],
+          "line": 25,
+          "raw": "setobjectxy LOCALID_ROUTE101_ZIGZAGOON, 0, 16",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Route101_Movement_EnterScene"
+          ],
+          "line": 26,
+          "raw": "applymovement LOCALID_PLAYER, Route101_Movement_EnterScene",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE101_BIRCH",
+            "Route101_Movement_BirchRunAway1"
+          ],
+          "line": 27,
+          "raw": "applymovement LOCALID_ROUTE101_BIRCH, Route101_Movement_BirchRunAway1",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE101_ZIGZAGOON",
+            "Route101_Movement_ZigzagoonChase1"
+          ],
+          "line": 28,
+          "raw": "applymovement LOCALID_ROUTE101_ZIGZAGOON, Route101_Movement_ZigzagoonChase1",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 29,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE101_ZIGZAGOON",
+            "Route101_Movement_ZigzagoonChaseInCircles"
+          ],
+          "line": 30,
+          "raw": "applymovement LOCALID_ROUTE101_ZIGZAGOON, Route101_Movement_ZigzagoonChaseInCircles",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE101_BIRCH",
+            "Route101_Movement_BirchRunInCircles"
+          ],
+          "line": 31,
+          "raw": "applymovement LOCALID_ROUTE101_BIRCH, Route101_Movement_BirchRunInCircles",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 32,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE101_BIRCH",
+            "Common_Movement_WalkInPlaceFasterRight"
+          ],
+          "line": 33,
+          "raw": "applymovement LOCALID_ROUTE101_BIRCH, Common_Movement_WalkInPlaceFasterRight",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 34,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE101_ZIGZAGOON",
+            "Route101_Movement_ZigzagoonFaceBirch"
+          ],
+          "line": 35,
+          "raw": "applymovement LOCALID_ROUTE101_ZIGZAGOON, Route101_Movement_ZigzagoonFaceBirch",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE101_BIRCH",
+            "Route101_Movement_BirchFaceZigzagoon"
+          ],
+          "line": 36,
+          "raw": "applymovement LOCALID_ROUTE101_BIRCH, Route101_Movement_BirchFaceZigzagoon",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 37,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route101_Text_PleaseHelp",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 38,
+          "raw": "msgbox Route101_Text_PleaseHelp, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 39,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ROUTE101_STATE",
+            "2"
+          ],
+          "line": 40,
+          "raw": "setvar VAR_ROUTE101_STATE, 2",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 41,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 42,
+          "raw": "end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route101_Text_HelpMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 22
+        },
+        {
+          "op": "msgbox",
+          "text_label": "Route101_Text_PleaseHelp",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 38
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route101_EventScript_PreventExitSouth": {
+      "label": "Route101_EventScript_PreventExitSouth",
+      "kind": "script",
+      "line": 44,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 45,
+          "raw": "lockall",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route101_Text_DontLeaveMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 46,
+          "raw": "msgbox Route101_Text_DontLeaveMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 47,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Route101_Movement_PreventExitSouth"
+          ],
+          "line": 48,
+          "raw": "applymovement LOCALID_PLAYER, Route101_Movement_PreventExitSouth",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 49,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 50,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 51,
+          "raw": "end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route101_Text_DontLeaveMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 46
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route101_EventScript_PreventExitWest": {
+      "label": "Route101_EventScript_PreventExitWest",
+      "kind": "script",
+      "line": 53,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 54,
+          "raw": "lockall",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route101_Text_DontLeaveMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 55,
+          "raw": "msgbox Route101_Text_DontLeaveMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 56,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Route101_Movement_PreventExitWest"
+          ],
+          "line": 57,
+          "raw": "applymovement LOCALID_PLAYER, Route101_Movement_PreventExitWest",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 58,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 59,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 60,
+          "raw": "end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route101_Text_DontLeaveMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 55
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route101_EventScript_PreventExitNorth": {
+      "label": "Route101_EventScript_PreventExitNorth",
+      "kind": "script",
+      "line": 62,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "lockall",
+          "args": [],
+          "line": 63,
+          "raw": "lockall",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route101_Text_DontLeaveMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 64,
+          "raw": "msgbox Route101_Text_DontLeaveMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "closemessage",
+          "args": [],
+          "line": 65,
+          "raw": "closemessage",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Route101_Movement_PreventExitNorth"
+          ],
+          "line": 66,
+          "raw": "applymovement LOCALID_PLAYER, Route101_Movement_PreventExitNorth",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 67,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "releaseall",
+          "args": [],
+          "line": 68,
+          "raw": "releaseall",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 69,
+          "raw": "end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route101_Text_DontLeaveMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 64
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route101_EventScript_Youngster": {
+      "label": "Route101_EventScript_Youngster",
+      "kind": "script",
+      "line": 206,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route101_Text_TakeTiredPokemonToPokeCenter",
+            "MSGBOX_NPC"
+          ],
+          "line": 207,
+          "raw": "msgbox Route101_Text_TakeTiredPokemonToPokeCenter, MSGBOX_NPC",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 208,
+          "raw": "end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route101_Text_TakeTiredPokemonToPokeCenter",
+          "mode": "MSGBOX_NPC",
+          "line": 207
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route101_EventScript_Boy": {
+      "label": "Route101_EventScript_Boy",
+      "kind": "script",
+      "line": 210,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route101_Text_WildPokemonInTallGrass",
+            "MSGBOX_NPC"
+          ],
+          "line": 211,
+          "raw": "msgbox Route101_Text_WildPokemonInTallGrass, MSGBOX_NPC",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 212,
+          "raw": "end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route101_Text_WildPokemonInTallGrass",
+          "mode": "MSGBOX_NPC",
+          "line": 211
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route101_EventScript_RouteSign": {
+      "label": "Route101_EventScript_RouteSign",
+      "kind": "script",
+      "line": 214,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "msgbox",
+          "args": [
+            "Route101_Text_RouteSign",
+            "MSGBOX_SIGN"
+          ],
+          "line": 215,
+          "raw": "msgbox Route101_Text_RouteSign, MSGBOX_SIGN",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 216,
+          "raw": "end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route101_Text_RouteSign",
+          "mode": "MSGBOX_SIGN",
+          "line": 215
+        }
+      ],
+      "branch_targets": []
+    },
+    "Route101_EventScript_BirchsBag": {
+      "label": "Route101_EventScript_BirchsBag",
+      "kind": "script",
+      "line": 218,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "lock",
+          "args": [],
+          "line": 219,
+          "raw": "lock",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "faceplayer",
+          "args": [],
+          "line": 220,
+          "raw": "faceplayer",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_SYS_POKEMON_GET"
+          ],
+          "line": 221,
+          "raw": "setflag FLAG_SYS_POKEMON_GET",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_RESCUED_BIRCH"
+          ],
+          "line": 222,
+          "raw": "setflag FLAG_RESCUED_BIRCH",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "fadescreen",
+          "args": [
+            "FADE_TO_BLACK"
+          ],
+          "line": 223,
+          "raw": "fadescreen FADE_TO_BLACK",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "removeobject",
+          "args": [
+            "LOCALID_ROUTE101_ZIGZAGOON"
+          ],
+          "line": 224,
+          "raw": "removeobject LOCALID_ROUTE101_ZIGZAGOON",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setobjectxy",
+          "args": [
+            "LOCALID_PLAYER",
+            "6",
+            "13"
+          ],
+          "line": 225,
+          "raw": "setobjectxy LOCALID_PLAYER, 6, 13",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_PLAYER",
+            "Common_Movement_WalkInPlaceFasterLeft"
+          ],
+          "line": 226,
+          "raw": "applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 227,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "ChooseStarter"
+          ],
+          "line": 228,
+          "raw": "special ChooseStarter",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 229,
+          "raw": "waitstate",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "applymovement",
+          "args": [
+            "LOCALID_ROUTE101_BIRCH",
+            "Route101_Movement_BirchApproachPlayer"
+          ],
+          "line": 230,
+          "raw": "applymovement LOCALID_ROUTE101_BIRCH, Route101_Movement_BirchApproachPlayer",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitmovement",
+          "args": [
+            "0"
+          ],
+          "line": 231,
+          "raw": "waitmovement 0",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "msgbox",
+          "args": [
+            "Route101_Text_YouSavedMe",
+            "MSGBOX_DEFAULT"
+          ],
+          "line": 232,
+          "raw": "msgbox Route101_Text_YouSavedMe, MSGBOX_DEFAULT",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "special",
+          "args": [
+            "HealPlayerParty"
+          ],
+          "line": 233,
+          "raw": "special HealPlayerParty",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE"
+          ],
+          "line": 234,
+          "raw": "setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH"
+          ],
+          "line": 235,
+          "raw": "clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG"
+          ],
+          "line": 236,
+          "raw": "setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_BIRCH_LAB_STATE",
+            "2"
+          ],
+          "line": 237,
+          "raw": "setvar VAR_BIRCH_LAB_STATE, 2",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_ROUTE101_STATE",
+            "3"
+          ],
+          "line": 238,
+          "raw": "setvar VAR_ROUTE101_STATE, 3",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "clearflag",
+          "args": [
+            "FLAG_HIDE_MAP_NAME_POPUP"
+          ],
+          "line": 239,
+          "raw": "clearflag FLAG_HIDE_MAP_NAME_POPUP",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 240,
+          "raw": "checkplayergender",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "Route101_EventScript_HideMayInBedroom"
+          ],
+          "line": 241,
+          "raw": "call_if_eq VAR_RESULT, MALE, Route101_EventScript_HideMayInBedroom",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "call_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "Route101_EventScript_HideBrendanInBedroom"
+          ],
+          "line": 242,
+          "raw": "call_if_eq VAR_RESULT, FEMALE, Route101_EventScript_HideBrendanInBedroom",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "warp",
+          "args": [
+            "MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB",
+            "6",
+            "5"
+          ],
+          "line": 243,
+          "raw": "warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 5",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "waitstate",
+          "args": [],
+          "line": 244,
+          "raw": "waitstate",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "release",
+          "args": [],
+          "line": 245,
+          "raw": "release",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 246,
+          "raw": "end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [
+        {
+          "op": "msgbox",
+          "text_label": "Route101_Text_YouSavedMe",
+          "mode": "MSGBOX_DEFAULT",
+          "line": 232
+        }
+      ],
+      "branch_targets": [
+        {
+          "op": "call_if_eq",
+          "target": "Route101_EventScript_HideMayInBedroom",
+          "line": 241
+        },
+        {
+          "op": "call_if_eq",
+          "target": "Route101_EventScript_HideBrendanInBedroom",
+          "line": 242
+        }
+      ]
+    },
+    "Route101_EventScript_HideMayInBedroom": {
+      "label": "Route101_EventScript_HideMayInBedroom",
+      "kind": "script",
+      "line": 248,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM"
+          ],
+          "line": 249,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 250,
+          "raw": "return",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_EventScript_HideBrendanInBedroom": {
+      "label": "Route101_EventScript_HideBrendanInBedroom",
+      "kind": "script",
+      "line": 252,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "setflag",
+          "args": [
+            "FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM"
+          ],
+          "line": 253,
+          "raw": "setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 254,
+          "raw": "return",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {
+    "Route101_Movement_PreventExitSouth": {
+      "label": "Route101_Movement_PreventExitSouth",
+      "kind": "movement",
+      "line": 71,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 72,
+          "raw": "walk_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 73,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_PreventExitWest": {
+      "label": "Route101_Movement_PreventExitWest",
+      "kind": "movement",
+      "line": 75,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 76,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 77,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_PreventExitNorth": {
+      "label": "Route101_Movement_PreventExitNorth",
+      "kind": "movement",
+      "line": 79,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_down",
+          "args": [],
+          "line": 80,
+          "raw": "walk_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 81,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_ZigzagoonChaseInCircles": {
+      "label": "Route101_Movement_ZigzagoonChaseInCircles",
+      "kind": "movement",
+      "line": 83,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 84,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 85,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 86,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 87,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 88,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 89,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 90,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 91,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 92,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 93,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 94,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 95,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 96,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 97,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 98,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 99,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 100,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 101,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 102,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 103,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 104,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 105,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 106,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 107,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 108,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 109,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 110,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 111,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 112,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 113,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 114,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_ZigzagoonChase1": {
+      "label": "Route101_Movement_ZigzagoonChase1",
+      "kind": "movement",
+      "line": 116,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 117,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 118,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 119,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 120,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 121,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 122,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 123,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 126,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_ZigzagoonFaceBirch": {
+      "label": "Route101_Movement_ZigzagoonFaceBirch",
+      "kind": "movement",
+      "line": 128,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_in_place_fast_left",
+          "args": [],
+          "line": 129,
+          "raw": "walk_in_place_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_fast_left",
+          "args": [],
+          "line": 130,
+          "raw": "walk_in_place_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_fast_left",
+          "args": [],
+          "line": 131,
+          "raw": "walk_in_place_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_fast_left",
+          "args": [],
+          "line": 132,
+          "raw": "walk_in_place_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 133,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_EnterScene": {
+      "label": "Route101_Movement_EnterScene",
+      "kind": "movement",
+      "line": 135,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 136,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 137,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 138,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 139,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_faster_left",
+          "args": [],
+          "line": 140,
+          "raw": "walk_in_place_faster_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 141,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_BirchRunInCircles": {
+      "label": "Route101_Movement_BirchRunInCircles",
+      "kind": "movement",
+      "line": 143,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 144,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 145,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 146,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 147,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 148,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 149,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 150,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 151,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 152,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 153,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 154,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 155,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 156,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 157,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 158,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 159,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 160,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 161,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 162,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 163,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 164,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 165,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 166,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 167,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 168,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 169,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_down",
+          "args": [],
+          "line": 170,
+          "raw": "walk_fast_down",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 171,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 172,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_left",
+          "args": [],
+          "line": 173,
+          "raw": "walk_fast_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 174,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_BirchRunAway1": {
+      "label": "Route101_Movement_BirchRunAway1",
+      "kind": "movement",
+      "line": 176,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 177,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 178,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 179,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_right",
+          "args": [],
+          "line": 180,
+          "raw": "walk_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 181,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_fast_up",
+          "args": [],
+          "line": 182,
+          "raw": "walk_fast_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 183,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 186,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_BirchFaceZigzagoon": {
+      "label": "Route101_Movement_BirchFaceZigzagoon",
+      "kind": "movement",
+      "line": 188,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_in_place_fast_right",
+          "args": [],
+          "line": 189,
+          "raw": "walk_in_place_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_fast_right",
+          "args": [],
+          "line": 190,
+          "raw": "walk_in_place_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_fast_right",
+          "args": [],
+          "line": 191,
+          "raw": "walk_in_place_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_in_place_fast_right",
+          "args": [],
+          "line": 192,
+          "raw": "walk_in_place_fast_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 193,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_Unused1": {
+      "label": "Route101_Movement_Unused1",
+      "kind": "movement",
+      "line": 195,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 196,
+          "raw": "walk_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 197,
+          "raw": "walk_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 198,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_Unused2": {
+      "label": "Route101_Movement_Unused2",
+      "kind": "movement",
+      "line": 200,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 201,
+          "raw": "walk_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_left",
+          "args": [],
+          "line": 202,
+          "raw": "walk_left",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "walk_up",
+          "args": [],
+          "line": 203,
+          "raw": "walk_up",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 204,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Route101_Movement_BirchApproachPlayer": {
+      "label": "Route101_Movement_BirchApproachPlayer",
+      "kind": "movement",
+      "line": 256,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "instructions": [
+        {
+          "op": "walk_right",
+          "args": [],
+          "line": 257,
+          "raw": "walk_right",
+          "source_file": "data/maps/Route101/scripts.inc"
+        },
+        {
+          "op": "step_end",
+          "args": [],
+          "line": 258,
+          "raw": "step_end",
+          "source_file": "data/maps/Route101/scripts.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "texts": {
+    "Route101_Text_HelpMe": {
+      "label": "Route101_Text_HelpMe",
+      "line": 260,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "raw_text": "救、救命——！！$",
+      "display_text": "救、救命——！！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 12,
+        "bytes": [
+          7,
+          120,
+          58,
+          7,
+          120,
+          9,
+          148,
+          63,
+          63,
+          60,
+          60,
+          255
+        ],
+        "hex": "07 78 3A 07 78 09 94 3F 3F 3C 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 8,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route101_Text_PleaseHelp": {
+      "label": "Route101_Text_PleaseHelp",
+      "line": 263,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "raw_text": "喂！那边的你！\\n拜托！救救我！\\p在那边的包里面\\n里面有精灵球！$",
+      "display_text": "喂！那边的你！\n拜托！救救我！\n\n在那边的包里面\n里面有精灵球！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 55,
+        "bytes": [
+          13,
+          127,
+          60,
+          9,
+          189,
+          1,
+          156,
+          3,
+          11,
+          9,
+          217,
+          60,
+          254,
+          1,
+          60,
+          13,
+          56,
+          60,
+          7,
+          120,
+          7,
+          120,
+          13,
+          152,
+          60,
+          251,
+          15,
+          230,
+          9,
+          189,
+          1,
+          156,
+          3,
+          11,
+          1,
+          91,
+          8,
+          100,
+          9,
+          126,
+          254,
+          8,
+          100,
+          9,
+          126,
+          15,
+          126,
+          7,
+          91,
+          8,
+          188,
+          11,
+          20,
+          60,
+          255
+        ],
+        "hex": "0D 7F 3C 09 BD 01 9C 03 0B 09 D9 3C FE 01 3C 0D 38 3C 07 78 07 78 0D 98 3C FB 0F E6 09 BD 01 9C 03 0B 01 5B 08 64 09 7E FE 08 64 09 7E 0F 7E 07 5B 08 BC 0B 14 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 7,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 16,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 25,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 34,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route101_Text_DontLeaveMe": {
+      "label": "Route101_Text_DontLeaveMe",
+      "line": 266,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "raw_text": "你、你要去哪儿？！\\n别丢下我啊——！$",
+      "display_text": "你、你要去哪儿？！\n别丢下我啊——！",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 30,
+        "bytes": [
+          9,
+          217,
+          58,
+          9,
+          217,
+          14,
+          241,
+          11,
+          37,
+          9,
+          186,
+          3,
+          158,
+          61,
+          60,
+          254,
+          1,
+          173,
+          3,
+          79,
+          13,
+          230,
+          13,
+          152,
+          1,
+          0,
+          63,
+          63,
+          60,
+          255
+        ],
+        "hex": "09 D9 3A 09 D9 0E F1 0B 25 09 BA 03 9E 3D 3C FE 01 AD 03 4F 0D E6 0D 98 01 00 3F 3F 3C FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 9,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 19,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route101_Text_YouSavedMe": {
+      "label": "Route101_Text_YouSavedMe",
+      "line": 269,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "raw_text": "小田卷博士：哈啊哈啊……\\p我刚想在草丛做调查，\\n就被野生的宝可梦袭击了……\\p总之得救了，\\n谢谢你！\\p咦？\\p你不是{PLAYER}{KUN}吗？\\p这儿不是聊天的地方，\\n跟我来宝可梦研究所吧？$",
+      "display_text": "小田卷博士：哈啊哈啊……\n\n我刚想在草丛做调查，\n就被野生的宝可梦袭击了……\n\n总之得救了，\n谢谢你！\n\n咦？\n\n你不是{PLAYER}{KUN}吗？\n\n这儿不是聊天的地方，\n跟我来宝可梦研究所吧？",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 147,
+        "bytes": [
+          14,
+          44,
+          12,
+          240,
+          7,
+          157,
+          1,
+          196,
+          12,
+          4,
+          62,
+          4,
+          198,
+          1,
+          0,
+          4,
+          198,
+          1,
+          0,
+          176,
+          176,
+          251,
+          13,
+          152,
+          4,
+          63,
+          14,
+          24,
+          15,
+          230,
+          2,
+          1,
+          2,
+          180,
+          17,
+          46,
+          3,
+          62,
+          2,
+          13,
+          59,
+          254,
+          7,
+          125,
+          1,
+          120,
+          15,
+          0,
+          11,
+          216,
+          3,
+          11,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          13,
+          210,
+          5,
+          132,
+          8,
+          158,
+          176,
+          176,
+          251,
+          17,
+          20,
+          16,
+          127,
+          3,
+          10,
+          7,
+          120,
+          8,
+          158,
+          59,
+          254,
+          14,
+          70,
+          14,
+          70,
+          9,
+          217,
+          60,
+          251,
+          20,
+          21,
+          61,
+          251,
+          9,
+          217,
+          1,
+          214,
+          12,
+          12,
+          253,
+          1,
+          253,
+          5,
+          9,
+          42,
+          61,
+          251,
+          16,
+          85,
+          3,
+          158,
+          1,
+          214,
+          12,
+          12,
+          8,
+          151,
+          12,
+          237,
+          3,
+          11,
+          3,
+          31,
+          3,
+          192,
+          59,
+          254,
+          4,
+          100,
+          13,
+          152,
+          8,
+          41,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          14,
+          185,
+          7,
+          111,
+          12,
+          156,
+          1,
+          40,
+          61,
+          255
+        ],
+        "hex": "0E 2C 0C F0 07 9D 01 C4 0C 04 3E 04 C6 01 00 04 C6 01 00 B0 B0 FB 0D 98 04 3F 0E 18 0F E6 02 01 02 B4 11 2E 03 3E 02 0D 3B FE 07 7D 01 78 0F 00 0B D8 03 0B 01 63 07 D7 09 66 0D D2 05 84 08 9E B0 B0 FB 11 14 10 7F 03 0A 07 78 08 9E 3B FE 0E 46 0E 46 09 D9 3C FB 14 15 3D FB 09 D9 01 D6 0C 0C FD 01 FD 05 09 2A 3D FB 10 55 03 9E 01 D6 0C 0C 08 97 0C ED 03 0B 03 1F 03 C0 3B FE 04 64 0D 98 08 29 01 63 07 D7 09 66 0E B9 07 6F 0C 9C 01 28 3D FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 12,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 24,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 39,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 47,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 53,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 57,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "braced",
+            "token": "{PLAYER}",
+            "offset": 62,
+            "bytes": [
+              253,
+              1
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "PLAYER",
+                "bytes": [
+                  253,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "braced",
+            "token": "{KUN}",
+            "offset": 70,
+            "bytes": [
+              253,
+              5
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "KUN",
+                "bytes": [
+                  253,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 77,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 89,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 102,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [
+          {
+            "token": "PLAYER",
+            "offset": 62,
+            "bytes": [
+              253,
+              1
+            ]
+          },
+          {
+            "token": "KUN",
+            "offset": 70,
+            "bytes": [
+              253,
+              5
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "Route101_Text_TakeTiredPokemonToPokeCenter": {
+      "label": "Route101_Text_TakeTiredPokemonToPokeCenter",
+      "line": 272,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "raw_text": "宝可梦累了的话，\\n就要带它们去宝可梦中心。\\p附近的古玫镇里\\n就有个宝可梦中心。$",
+      "display_text": "宝可梦累了的话，\n就要带它们去宝可梦中心。\n\n附近的古玫镇里\n就有个宝可梦中心。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 73,
+        "bytes": [
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          8,
+          80,
+          8,
+          158,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          7,
+          125,
+          14,
+          241,
+          2,
+          216,
+          12,
+          159,
+          9,
+          95,
+          11,
+          37,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          161,
+          14,
+          79,
+          55,
+          251,
+          4,
+          39,
+          7,
+          78,
+          3,
+          11,
+          4,
+          141,
+          9,
+          77,
+          16,
+          101,
+          8,
+          100,
+          254,
+          7,
+          125,
+          15,
+          126,
+          4,
+          96,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          16,
+          161,
+          14,
+          79,
+          55,
+          255
+        ],
+        "hex": "01 63 07 D7 09 66 08 50 08 9E 03 0B 05 3D 3B FE 07 7D 0E F1 02 D8 0C 9F 09 5F 0B 25 01 63 07 D7 09 66 10 A1 0E 4F 37 FB 04 27 07 4E 03 0B 04 8D 09 4D 10 65 08 64 FE 07 7D 0F 7E 04 60 01 63 07 D7 09 66 10 A1 0E 4F 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 8,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 22,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 31,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 42,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route101_Text_WildPokemonInTallGrass": {
+      "label": "Route101_Text_WildPokemonInTallGrass",
+      "line": 275,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "raw_text": "在草丛中行走时野生宝可梦\\n有可能跳出来袭击。\\p如果想捕捉宝可梦的话，\\n就得去草丛里寻找。$",
+      "display_text": "在草丛中行走时野生宝可梦\n有可能跳出来袭击。\n\n如果想捕捉宝可梦的话，\n就得去草丛里寻找。",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 83,
+        "bytes": [
+          15,
+          230,
+          2,
+          1,
+          2,
+          180,
+          16,
+          161,
+          14,
+          91,
+          17,
+          23,
+          11,
+          237,
+          15,
+          0,
+          11,
+          216,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          254,
+          15,
+          126,
+          7,
+          215,
+          9,
+          210,
+          13,
+          2,
+          2,
+          120,
+          8,
+          41,
+          13,
+          210,
+          5,
+          132,
+          55,
+          251,
+          11,
+          103,
+          4,
+          195,
+          14,
+          24,
+          1,
+          209,
+          16,
+          236,
+          1,
+          99,
+          7,
+          215,
+          9,
+          102,
+          3,
+          11,
+          5,
+          61,
+          59,
+          254,
+          7,
+          125,
+          3,
+          10,
+          11,
+          37,
+          2,
+          1,
+          2,
+          180,
+          8,
+          100,
+          14,
+          153,
+          16,
+          69,
+          55,
+          255
+        ],
+        "hex": "0F E6 02 01 02 B4 10 A1 0E 5B 11 17 0B ED 0F 00 0B D8 01 63 07 D7 09 66 FE 0F 7E 07 D7 09 D2 0D 02 02 78 08 29 0D D2 05 84 37 FB 0B 67 04 C3 0E 18 01 D1 10 EC 01 63 07 D7 09 66 03 0B 05 3D 3B FE 07 7D 03 0A 0B 25 02 01 02 B4 08 64 0E 99 10 45 37 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 12,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "escape",
+            "token": "\\p",
+            "offset": 23,
+            "bytes": [
+              251
+            ],
+            "display": "paragraph"
+          },
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 36,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 47,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    },
+    "Route101_Text_RouteSign": {
+      "label": "Route101_Text_RouteSign",
+      "line": 278,
+      "source_file": "data/maps/Route101/scripts.inc",
+      "raw_text": "101号道路\\n{UP_ARROW}古玫镇$",
+      "display_text": "101号道路\n{UP_ARROW}古玫镇",
+      "encoding": {
+        "status": "ok",
+        "byte_count": 18,
+        "bytes": [
+          162,
+          161,
+          162,
+          4,
+          235,
+          3,
+          7,
+          8,
+          232,
+          254,
+          121,
+          4,
+          141,
+          9,
+          77,
+          16,
+          101,
+          255
+        ],
+        "hex": "A2 A1 A2 04 EB 03 07 08 E8 FE 79 04 8D 09 4D 10 65 FF",
+        "terminator_present": true,
+        "control_codes": [
+          {
+            "kind": "escape",
+            "token": "\\n",
+            "offset": 6,
+            "bytes": [
+              254
+            ],
+            "display": "newline"
+          },
+          {
+            "kind": "braced",
+            "token": "{UP_ARROW}",
+            "offset": 8,
+            "bytes": [
+              121
+            ],
+            "items": [
+              {
+                "kind": "constant",
+                "name": "UP_ARROW",
+                "bytes": [
+                  121
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "terminator",
+            "token": "$",
+            "offset": 21,
+            "bytes": [
+              255
+            ]
+          }
+        ],
+        "placeholders": [],
+        "warnings": []
+      }
+    }
+  },
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "applymovement": 13,
+      "call_if_eq": 2,
+      "checkplayergender": 1,
+      "clearflag": 2,
+      "closemessage": 5,
+      "faceplayer": 1,
+      "fadescreen": 1,
+      "map_script": 2,
+      "map_script_2": 1,
+      "playbgm": 1,
+      "removeobject": 1,
+      "setflag": 7,
+      "setobjectxy": 3,
+      "setvar": 4,
+      "special": 2,
+      "step_end": 15,
+      "waitmovement": 9,
+      "waitstate": 2,
+      "walk_down": 1,
+      "walk_fast_down": 12,
+      "walk_fast_left": 17,
+      "walk_fast_right": 26,
+      "walk_fast_up": 21,
+      "walk_in_place_fast_left": 4,
+      "walk_in_place_fast_right": 4,
+      "walk_in_place_faster_left": 1,
+      "walk_left": 1,
+      "walk_right": 2,
+      "walk_up": 5,
+      "warp": 1
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 34,
+    "script_count": 14,
+    "movement_count": 13,
+    "text_count": 7,
+    "encoded_text_count": 7,
+    "text_source_byte_count": 418,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {
+      "ok": 7
+    },
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "applymovement": 13,
+      "call": 1,
+      "call_if_eq": 2,
+      "checkplayergender": 1,
+      "clearflag": 2,
+      "closemessage": 5,
+      "end": 10,
+      "faceplayer": 1,
+      "fadescreen": 1,
+      "lock": 1,
+      "lockall": 4,
+      "map_script": 2,
+      "map_script_2": 1,
+      "msgbox": 9,
+      "playbgm": 1,
+      "release": 1,
+      "releaseall": 4,
+      "removeobject": 1,
+      "return": 2,
+      "setflag": 7,
+      "setobjectxy": 3,
+      "setvar": 4,
+      "special": 2,
+      "step_end": 15,
+      "waitmovement": 9,
+      "waitstate": 2,
+      "walk_down": 1,
+      "walk_fast_down": 12,
+      "walk_fast_left": 17,
+      "walk_fast_right": 26,
+      "walk_fast_up": 21,
+      "walk_in_place_fast_left": 4,
+      "walk_in_place_fast_right": 4,
+      "walk_in_place_faster_left": 1,
+      "walk_left": 1,
+      "walk_right": 2,
+      "walk_up": 5,
+      "warp": 1
+    }
+  }
+}
