@@ -20,6 +20,10 @@ const SOURCE_TRACE := [
 	"src/battle_main.c:CreateNPCTrainerPartyFromTrainer",
 	"src/battle_main.c:CustomTrainerPartyAssignMoves",
 	"src/pokemon.c:GiveBoxMonInitialMoveset",
+	"src/wild_encounter.c:CreateWildMon",
+	"src/battle_setup.c:BattleSetup_StartWildBattle",
+	"src/battle_setup.c:DoStandardWildBattle",
+	"src/battle_setup.c:GetWildBattleTransition",
 	"src/battle_util.c:CalculateBaseDamage",
 	"src/battle_util.c:DoMoveDamageCalcVars",
 	"src/battle_util.c:ApplyModifiersAfterDmgRoll",
@@ -329,6 +333,50 @@ func create_single_battle_state(player_party: Array, opponent_party: Array, opti
 	}
 
 
+func create_wild_battle_state(encounter: Dictionary, player_party: Array, options: Dictionary = {}) -> Dictionary:
+	var species_symbol := _constant_symbol(encounter.get("species", encounter.get("species_symbol", "")))
+	if species_symbol.is_empty():
+		return _error_result("missing_wild_species", "Wild encounter does not include a species.")
+	var level := int(encounter.get("level", 1))
+	var wild_options := {}
+	var option_wild = options.get("wild_mon_options", {})
+	if typeof(option_wild) == TYPE_DICTIONARY:
+		wild_options = option_wild.duplicate(true)
+	wild_options["move_source_behavior"] = {
+		"kind": "level_up_default",
+		"source": "src/wild_encounter.c:CreateWildMon -> GiveMonInitialMoveset",
+	}
+	var wild_mon := create_battle_mon(species_symbol, level, wild_options)
+	if String(wild_mon.get("status", "")) != "ok":
+		return wild_mon
+	wild_mon["wild_encounter"] = _wild_encounter_summary(encounter)
+	wild_mon["enemy_party_index"] = 0
+	wild_mon["source_trace"] = _merged_trace(wild_mon.get("source_trace", []), [
+		"src/wild_encounter.c:CreateWildMon",
+		"src/pokemon.c:CreateMonWithIVs",
+		"src/pokemon.c:GiveMonInitialMoveset",
+	])
+
+	var battle_options := options.duplicate(true)
+	if not battle_options.has("player_active"):
+		battle_options["player_active"] = _first_usable_battle_party_index(player_party)
+	var battle_state := create_single_battle_state(player_party, [wild_mon], battle_options)
+	battle_state["battle_kind"] = "wild"
+	battle_state["battle_type_flags"] = _wild_battle_type_flags(options)
+	battle_state["wild_encounter"] = _wild_encounter_summary(encounter)
+	battle_state["battle_setup"] = _wild_battle_setup_metadata(encounter, player_party, wild_mon, options)
+	battle_state["source_trace"] = _merged_trace(battle_state.get("source_trace", []), [
+		"src/wild_encounter.c:CreateWildMon",
+		"src/wild_encounter.c:StandardWildEncounter",
+		"src/wild_encounter.c:SweetScentWildEncounter",
+		"src/battle_setup.c:BattleSetup_StartWildBattle",
+		"src/battle_setup.c:DoStandardWildBattle",
+		"src/battle_setup.c:GetWildBattleTransition",
+	])
+	battle_state["unsupported"] = _wild_battle_unsupported(options)
+	return battle_state
+
+
 func calculate_type_effectiveness(move_type_symbol: String, defender: Dictionary) -> Dictionary:
 	var move_type := _normalize_type_symbol(move_type_symbol)
 	var defender_types := _type_symbols_from_battle_record(defender)
@@ -607,6 +655,161 @@ func _battle_nature_info(nature_symbol: String, nature_record: Dictionary) -> Di
 		"neutral": bool(nature_record.get("neutral", false)),
 		"source": nature_record.get("source", {}),
 	}
+
+
+func _wild_encounter_summary(encounter: Dictionary) -> Dictionary:
+	return {
+		"species": _constant_symbol(encounter.get("species", encounter.get("species_symbol", ""))),
+		"species_id": int(encounter.get("species_id", -1)),
+		"level": int(encounter.get("level", 1)),
+		"area": String(encounter.get("area", "")),
+		"map": String(encounter.get("map", "")),
+		"record_label": String(encounter.get("record_label", "")),
+		"slot_index": int(encounter.get("slot_index", -1)),
+		"source": "src/wild_encounter.c:TryGenerateWildMon -> CreateWildMon",
+	}
+
+
+func _wild_battle_setup_metadata(encounter: Dictionary, player_party: Array, wild_mon: Dictionary, options: Dictionary) -> Dictionary:
+	var battle_flags := _wild_battle_type_flags(options)
+	var transition_info := _wild_battle_transition_metadata(player_party, wild_mon, options)
+	return {
+		"status": "state_created",
+		"kind": "wild",
+		"battle_setup_function": "BattleSetup_StartWildBattle",
+		"standard_function": "DoStandardWildBattle(FALSE)",
+		"saved_callback": "CB2_EndWildBattle",
+		"battle_type_flags": battle_flags,
+		"battle_transition": transition_info,
+		"active_player_index": _first_usable_battle_party_index(player_party),
+		"active_player_source": "src/battle_controllers.c first valid non-egg, non-fainted player mon",
+		"statistics": [
+			"IncrementGameStat(GAME_STAT_TOTAL_BATTLES)",
+			"IncrementGameStat(GAME_STAT_WILD_BATTLES)",
+			"IncrementDailyWildBattles",
+			"TryUpdateGymLeaderRematchFromWild",
+		],
+		"battle_start_task_sequence": [
+			"LockPlayerFieldControls",
+			"FreezeObjectEvents",
+			"StopPlayerAvatar",
+			"CreateBattleStartTask(GetWildBattleTransition(), 0)",
+			"wait until FldEffPoison_IsActive() is false",
+			"BattleTransition_StartOnField",
+			"wait until IsBattleTransitionDone()",
+			"PrepareForFollowerNPCBattle",
+			"CleanupOverworldWindowsAndTilemaps",
+			"SetMainCallback2(CB2_InitBattle)",
+			"RestartWildEncounterImmunitySteps",
+			"ClearPoisonStepCounter",
+		],
+		"enemy_party_source": "src/wild_encounter.c:CreateWildMon -> gEnemyParty[0]",
+		"player_party_count": player_party.size(),
+		"wild_encounter": _wild_encounter_summary(encounter),
+		"source_trace": [
+			"src/wild_encounter.c:CreateWildMon",
+			"src/battle_setup.c:BattleSetup_StartWildBattle",
+			"src/battle_setup.c:DoStandardWildBattle",
+			"src/battle_setup.c:Task_BattleStart",
+		],
+	}
+
+
+func _wild_battle_transition_metadata(player_party: Array, wild_mon: Dictionary, options: Dictionary) -> Dictionary:
+	var enemy_level := int(wild_mon.get("level", 1))
+	var player_level := _first_battle_party_level(player_party)
+	var pyramid := bool(options.get("battle_pyramid", options.get("battle_pyramid_layout", false)))
+	var comparison := "enemy_lower" if enemy_level < player_level else "enemy_equal_or_higher"
+	var selected := ""
+	if pyramid:
+		selected = "B_TRANSITION_BLUR" if enemy_level < player_level else "B_TRANSITION_GRID_SQUARES"
+	else:
+		selected = "sBattleTransitionTable_Wild[GetBattleTransitionTypeByMap()][0]" if enemy_level < player_level else "sBattleTransitionTable_Wild[GetBattleTransitionTypeByMap()][1]"
+	return {
+		"status": "selected_metadata",
+		"selected": selected,
+		"enemy_level": enemy_level,
+		"player_level": player_level,
+		"comparison": comparison,
+		"battle_pyramid": pyramid,
+		"source": "src/battle_setup.c:GetWildBattleTransition",
+		"notes": "Map-specific transition type is not resolved until generated battle transition presentation is implemented.",
+	}
+
+
+func _first_battle_party_level(player_party: Array) -> int:
+	var active_index := _first_usable_battle_party_index(player_party)
+	if active_index >= 0 and active_index < player_party.size():
+		var active_mon = player_party[active_index]
+		if typeof(active_mon) == TYPE_DICTIONARY:
+			return max(1, int(active_mon.get("level", 1)))
+	return 1
+
+
+func _first_usable_battle_party_index(player_party: Array) -> int:
+	for index in range(player_party.size()):
+		var mon = player_party[index]
+		if typeof(mon) != TYPE_DICTIONARY:
+			continue
+		var species := _constant_symbol(mon.get("species", ""))
+		if species.is_empty() or species == "SPECIES_NONE":
+			continue
+		if bool(mon.get("is_egg", false)):
+			continue
+		if int(mon.get("hp", 0)) <= 0 or bool(mon.get("fainted", false)):
+			continue
+		return index
+	return 0
+
+
+func _wild_battle_type_flags(options: Dictionary) -> Array:
+	var flags: Array = []
+	if bool(options.get("npc_follower_wild_battle", false)):
+		flags.append("BATTLE_TYPE_MULTI")
+		flags.append("BATTLE_TYPE_INGAME_PARTNER")
+		flags.append("BATTLE_TYPE_DOUBLE")
+	elif bool(options.get("double_wild_battle", false)):
+		flags.append("BATTLE_TYPE_DOUBLE")
+	if bool(options.get("battle_pyramid", options.get("battle_pyramid_layout", false))):
+		flags.append("BATTLE_TYPE_PYRAMID")
+	return flags
+
+
+func _wild_battle_unsupported(options: Dictionary) -> Array:
+	var unsupported: Array = [{
+		"code": "wild_battle_presentation_not_played",
+		"source": "src/battle_setup.c:CreateBattleStartTask/Task_BattleStart",
+		"detail": "The battle state and source-order setup metadata are created, but field locking, object freezing, poison wait, battle transition playback, BGM, and battle scene switching still need presentation/runtime integration.",
+	}, {
+		"code": "wild_personality_nature_gender_ivs_partial",
+		"source": "src/wild_encounter.c:CreateWildMon -> GetMonPersonality/CreateMonWithIVs",
+		"detail": "First-pass wild battle creation uses BattleEngine default deterministic nature/IV behavior unless explicit options are supplied; Synchronize/gender forcing/random IV/personality generation remain future traced work.",
+	}, {
+		"code": "wild_held_item_and_form_changes_not_applied",
+		"source": "src/battle_main.c:CB2_InitBattle -> SetWildMonHeldItem/TryFormChange",
+		"detail": "Held-item assignment, begin-battle form changes, friendship adjustments, and enemy-party count side effects are not applied yet.",
+	}]
+	if bool(options.get("double_wild_battle", false)) or bool(options.get("npc_follower_wild_battle", false)):
+		unsupported.append({
+			"code": "wild_double_battle_enemy_slot_one_missing",
+			"source": "src/battle_setup.c:BattleSetup_StartDoubleWildBattle",
+			"detail": "Only gEnemyParty[0]-equivalent single wild enemy creation is implemented in this slice.",
+		})
+	return unsupported
+
+
+func _merged_trace(existing, extra: Array) -> Array:
+	var trace: Array = []
+	if typeof(existing) == TYPE_ARRAY:
+		for item in existing:
+			var value := String(item)
+			if not value.is_empty() and not trace.has(value):
+				trace.append(value)
+	for item in extra:
+		var value := String(item)
+		if not value.is_empty() and not trace.has(value):
+			trace.append(value)
+	return trace
 
 
 func _move_specs_for_initial_learnset(species_record: Dictionary, level: int, unsupported: Array) -> Array:

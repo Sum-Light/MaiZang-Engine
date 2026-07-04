@@ -110,6 +110,8 @@ var _map_runtime: Node = null
 var _game_state: Node = null
 var _data_registry: Node = null
 var _encounter_engine: Node = null
+var _battle_engine: Node = null
+var _party_runtime: Node = null
 var _defer_transition_apply := false
 var _next_transition_sequence_id := 1
 var _pending_transitions := {}
@@ -123,10 +125,13 @@ func _ready() -> void:
 	_game_state = get_node_or_null("/root/GameState")
 	_data_registry = get_node_or_null("/root/DataRegistry")
 	_encounter_engine = get_node_or_null("/root/EncounterEngine")
+	_battle_engine = get_node_or_null("/root/BattleEngine")
+	_party_runtime = get_node_or_null("/root/PartyRuntime")
 	if _data_registry != null and _data_registry.has_method("get_start_script_data"):
 		configure_from_script_data(_data_registry.get_start_script_data())
 	_configure_script_vm_dependencies()
 	_configure_encounter_engine_dependencies()
+	_configure_battle_engine_dependencies()
 
 
 func configure_from_script_data(script_data: Dictionary) -> void:
@@ -156,11 +161,21 @@ func configure_data_registry(data_registry: Node) -> void:
 	_data_registry = data_registry
 	_configure_script_vm_dependencies()
 	_configure_encounter_engine_dependencies()
+	_configure_battle_engine_dependencies()
 
 
 func configure_encounter_engine(encounter_engine: Node) -> void:
 	_encounter_engine = encounter_engine
 	_configure_encounter_engine_dependencies()
+
+
+func configure_battle_engine(battle_engine: Node) -> void:
+	_battle_engine = battle_engine
+	_configure_battle_engine_dependencies()
+
+
+func configure_party_runtime(party_runtime: Node) -> void:
+	_party_runtime = party_runtime
 
 
 func configure_transition_deferred(value: bool) -> void:
@@ -450,6 +465,7 @@ func _check_standard_wild_encounter(cell: Vector2i, options: Dictionary = {}) ->
 	summary["level"] = int(result.get("level", 0))
 	summary["area"] = String(result.get("area", ""))
 	summary["record_label"] = String(result.get("record_label", ""))
+	summary["battle_setup"] = _create_standard_wild_battle_state(summary)
 	summary["immunity_steps_after"] = _wild_encounter_immunity_steps
 	return summary
 
@@ -476,7 +492,22 @@ func _emit_standard_wild_encounter(summary: Dictionary) -> void:
 			int(encounter_check.get("adjusted_rate", 0)),
 			int(encounter_check.get("max_rate", 0)),
 		])
-	lines.append("Battle setup: pending")
+	var battle_setup = summary.get("battle_setup", {})
+	if typeof(battle_setup) == TYPE_DICTIONARY and not battle_setup.is_empty():
+		lines.append("Battle setup: %s" % String(battle_setup.get("status", "")))
+		var battle_state = battle_setup.get("battle_state", {})
+		if typeof(battle_state) == TYPE_DICTIONARY:
+			lines.append("Battle kind: %s" % String(battle_state.get("battle_kind", "")))
+			var opponent_party = battle_state.get("opponent_party", [])
+			if typeof(opponent_party) == TYPE_ARRAY and not opponent_party.is_empty():
+				var opponent = opponent_party[0]
+				if typeof(opponent) == TYPE_DICTIONARY:
+					lines.append("Enemy party[0]: %s Lv.%d" % [
+						String(opponent.get("species", "")),
+						int(opponent.get("level", 0)),
+					])
+	else:
+		lines.append("Battle setup: missing")
 	debug_message_requested.emit(lines)
 
 
@@ -1550,6 +1581,39 @@ func _current_player_position() -> Vector2i:
 	return Vector2i.ZERO
 
 
+func _current_player_party() -> Array:
+	if _game_state != null and _game_state.has_method("get_player_party"):
+		return _game_state.get_player_party()
+	return []
+
+
+func _current_player_battle_party() -> Array:
+	var party := _current_player_party()
+	if _party_runtime != null and _party_runtime.has_method("build_battle_party"):
+		var battle_party = _party_runtime.build_battle_party(party)
+		return battle_party if typeof(battle_party) == TYPE_ARRAY else party
+	return party
+
+
+func _current_player_active_battle_index(battle_party: Array) -> int:
+	if _party_runtime != null and _party_runtime.has_method("first_live_mon_index"):
+		var live_index := int(_party_runtime.first_live_mon_index(battle_party))
+		if live_index >= 0 and live_index < battle_party.size():
+			return live_index
+	for index in range(battle_party.size()):
+		var mon = battle_party[index]
+		if typeof(mon) != TYPE_DICTIONARY:
+			continue
+		var species := String(mon.get("species", ""))
+		if species.is_empty() or species == "SPECIES_NONE":
+			continue
+		if bool(mon.get("is_egg", false)):
+			continue
+		if int(mon.get("hp", 0)) > 0 and not bool(mon.get("fainted", false)):
+			return index
+	return 0
+
+
 func _current_metatile_behavior_name(cell: Vector2i) -> String:
 	if _map_runtime == null:
 		return ""
@@ -1641,6 +1705,40 @@ func _movement_summary_count(summary: Dictionary, key: String) -> int:
 	return entries.size() if typeof(entries) == TYPE_ARRAY else 0
 
 
+func _create_standard_wild_battle_state(summary: Dictionary) -> Dictionary:
+	if _battle_engine == null or not _battle_engine.has_method("create_wild_battle_state"):
+		return {
+			"status": "missing_battle_engine",
+			"source": "src/battle_setup.c:BattleSetup_StartWildBattle",
+		}
+	var encounter = summary.get("encounter_result", {})
+	if typeof(encounter) != TYPE_DICTIONARY or encounter.is_empty():
+		return {
+			"status": "missing_encounter_result",
+			"source": "src/wild_encounter.c:StandardWildEncounter",
+		}
+	var player_party := _current_player_battle_party()
+	var battle_options := {
+		"battle_origin": "standard_wild_encounter",
+		"map": String(summary.get("map", "")),
+		"metatile_behavior": String(summary.get("current_metatile_behavior", "")),
+		"player_active": _current_player_active_battle_index(player_party),
+	}
+	var battle_state = _battle_engine.create_wild_battle_state(encounter, player_party, battle_options)
+	if typeof(battle_state) != TYPE_DICTIONARY:
+		return {
+			"status": "invalid_battle_state",
+			"source": "src/battle_setup.c:BattleSetup_StartWildBattle",
+		}
+	return {
+		"status": "state_created" if String(battle_state.get("status", "")) == "ok" else String(battle_state.get("status", "error")),
+		"battle_state": battle_state,
+		"player_party_count": player_party.size(),
+		"opponent_party_count": _result_array_count(battle_state, "opponent_party"),
+		"source": "src/wild_encounter.c:StandardWildEncounter -> src/battle_setup.c:BattleSetup_StartWildBattle",
+	}
+
+
 func _encounter_result_reason(result: Dictionary) -> String:
 	var reason := String(result.get("reason", ""))
 	if not reason.is_empty():
@@ -1672,7 +1770,7 @@ func _standard_wild_dispatch_unsupported() -> Array:
 	}, {
 		"code": "wild_battle_presentation_not_started",
 		"source": "src/wild_encounter.c:StandardWildEncounter -> src/battle_setup.c",
-		"detail": "This dispatch emits a source-backed encounter request and debug output, but enemy party creation, battle transition, audio, and battle scene presentation remain future traced work.",
+		"detail": "This dispatch now creates a first-pass source-backed wild battle state when BattleEngine is available, but field locking, object freezing, battle transition playback, audio, and battle scene presentation remain future traced work.",
 	}]
 
 
@@ -1953,6 +2051,13 @@ func _configure_encounter_engine_dependencies() -> void:
 		_encounter_engine.configure_game_state(_game_state)
 	if _data_registry != null and _encounter_engine.has_method("configure_registry"):
 		_encounter_engine.configure_registry(_data_registry)
+
+
+func _configure_battle_engine_dependencies() -> void:
+	if _battle_engine == null:
+		return
+	if _data_registry != null and _battle_engine.has_method("configure_registry"):
+		_battle_engine.configure_registry(_data_registry)
 
 
 func _get_text_record(text_label: String) -> Dictionary:

@@ -101,6 +101,32 @@ func _init() -> void:
 	_assert(_array_field(battle_state, "player_party").size() == 1, "expected player party in battle state")
 	_assert(_array_field(battle_state, "opponent_party").size() == 6, "expected opponent party in battle state")
 
+	var fainted_torchic := torchic.duplicate(true)
+	fainted_torchic["hp"] = 0
+	fainted_torchic["fainted"] = true
+	var wild_battle := engine.create_wild_battle_state({
+		"species": "SPECIES_WURMPLE",
+		"species_id": 265,
+		"level": 2,
+		"area": "land_mons",
+		"map": "MAP_ROUTE101",
+		"record_label": "gRoute101",
+		"slot_index": 0,
+	}, [fainted_torchic, torchic])
+	var wild_opponent := _array_dict(_array_field(wild_battle, "opponent_party"), 0)
+	var wild_setup := _dict_field(wild_battle, "battle_setup")
+	var wild_transition := _dict_field(wild_setup, "battle_transition")
+	_assert(String(wild_battle.get("status", "")) == "ok", "expected wild battle state")
+	_assert(String(wild_battle.get("battle_kind", "")) == "wild", "expected wild battle kind")
+	_assert(String(wild_opponent.get("species", "")) == "SPECIES_WURMPLE", "expected Wurmple wild opponent")
+	_assert(int(wild_opponent.get("level", 0)) == 2, "expected Wurmple wild level")
+	_assert(_array_field(wild_battle, "opponent_party").size() == 1, "expected one wild opponent")
+	_assert(int(_dict_field(wild_battle, "active").get("player", -1)) == 1, "expected first live player mon active")
+	_assert(int(wild_setup.get("active_player_index", -1)) == 1, "expected setup active player index")
+	_assert(String(wild_setup.get("battle_setup_function", "")) == "BattleSetup_StartWildBattle", "expected wild battle setup function")
+	_assert(String(wild_transition.get("comparison", "")) == "enemy_lower", "expected lower wild transition branch")
+	_assert(_array_field(wild_battle, "unsupported").size() >= 1, "expected wild battle presentation unsupported metadata")
+
 	if _failed:
 		return
 
@@ -110,6 +136,7 @@ func _init() -> void:
 		"treecko_hp_after_ember": int(treecko_after.get("hp", 0)),
 		"adamant_torchic_attack": int(_dict_field(adamant_torchic, "stats").get("attack", 0)),
 		"wallace_party_size": wallace_party.size(),
+		"wild_opponent": String(wild_opponent.get("species", "")),
 	}))
 	engine.free()
 	registry.free()

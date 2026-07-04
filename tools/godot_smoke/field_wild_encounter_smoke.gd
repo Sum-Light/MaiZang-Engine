@@ -2,6 +2,8 @@ extends SceneTree
 
 const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
+const BATTLE_ENGINE_SCRIPT := preload("res://scripts/autoload/battle_engine.gd")
+const PARTY_RUNTIME_SCRIPT := preload("res://scripts/autoload/party_runtime.gd")
 const ENCOUNTER_ENGINE_SCRIPT := preload("res://scripts/autoload/encounter_engine.gd")
 const EVENT_MANAGER_SCRIPT := preload("res://scripts/autoload/event_manager.gd")
 
@@ -36,6 +38,16 @@ func _init() -> void:
 	var game_state = GAME_STATE_SCRIPT.new()
 	game_state.current_map_id = "MAP_ROUTE101"
 
+	var battle_engine = BATTLE_ENGINE_SCRIPT.new()
+	battle_engine.configure_registry(registry)
+	var party_runtime = PARTY_RUNTIME_SCRIPT.new()
+	party_runtime.configure_registry(registry)
+	party_runtime.configure_battle_engine(battle_engine)
+	var player_mon := battle_engine.create_battle_mon("SPECIES_TORCHIC", 5, {
+		"moves": ["MOVE_SCRATCH"],
+	})
+	game_state.set_player_party([player_mon])
+
 	var runtime = FakeMapRuntime.new()
 	var engine = ENCOUNTER_ENGINE_SCRIPT.new()
 	engine.configure_registry(registry)
@@ -46,6 +58,8 @@ func _init() -> void:
 	manager.configure_game_state(game_state)
 	manager.configure_map_runtime(runtime)
 	manager.configure_encounter_engine(engine)
+	manager.configure_battle_engine(battle_engine)
+	manager.configure_party_runtime(party_runtime)
 
 	var captured := {}
 	manager.debug_message_requested.connect(func(lines: PackedStringArray) -> void:
@@ -91,7 +105,14 @@ func _init() -> void:
 	_assert(int(hit.get("level", 0)) == 2, "expected Route101 Wurmple level 2")
 	_assert(int(after_hit_state.get("immunity_steps", -1)) == 0, "expected hit to reset immunity")
 	_assert(_lines_contain(hit_lines, "Wild encounter"), "expected wild encounter debug output")
-	_assert(_lines_contain(hit_lines, "Battle setup: pending"), "expected pending battle debug output")
+	_assert(_lines_contain(hit_lines, "Battle setup: state_created"), "expected battle setup debug output")
+	var hit_battle_setup := _dict_field(hit, "battle_setup")
+	var hit_battle_state := _dict_field(hit_battle_setup, "battle_state")
+	var hit_opponent := _array_dict(_array_field(hit_battle_state, "opponent_party"), 0)
+	_assert(String(hit_battle_setup.get("status", "")) == "state_created", "expected wild battle setup state")
+	_assert(String(hit_battle_state.get("battle_kind", "")) == "wild", "expected wild battle kind")
+	_assert(String(hit_opponent.get("species", "")) == "SPECIES_WURMPLE", "expected battle opponent Wurmple")
+	_assert(int(hit_battle_setup.get("player_party_count", 0)) == 1, "expected one player party mon in battle setup")
 
 	manager.reset_wild_encounter_immunity_steps()
 	game_state.game_stats = {}
@@ -200,6 +221,8 @@ func _init() -> void:
 	}))
 	manager.free()
 	engine.free()
+	party_runtime.free()
+	battle_engine.free()
 	runtime.free()
 	game_state.free()
 	registry.free()
@@ -223,4 +246,16 @@ func _lines_contain(lines: PackedStringArray, needle: String) -> bool:
 
 func _dict_field(record: Dictionary, field_name: String) -> Dictionary:
 	var value = record.get(field_name, {})
+	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _array_field(record: Dictionary, field_name: String) -> Array:
+	var value = record.get(field_name, [])
+	return value if typeof(value) == TYPE_ARRAY else []
+
+
+func _array_dict(records: Array, index: int) -> Dictionary:
+	if index < 0 or index >= records.size():
+		return {}
+	var value = records[index]
 	return value if typeof(value) == TYPE_DICTIONARY else {}
