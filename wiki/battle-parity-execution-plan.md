@@ -1,6 +1,6 @@
 # Battle Parity Execution Plan
 
-This page turns `battle-parity-todo.md` into an executable backlog for a map-decoupled, source-equivalent battle experience. It covers battle logic, all move/effect mechanics, sprites, HUD, transitions, interaction animation, move animation sprites, and generated assets. Nothing on this page should be checked off as parity-complete unless it can be traced to the original `pokeemerald-expansion` source.
+This page turns `battle-parity-todo.md` into an executable backlog for a map-decoupled, source-equivalent battle experience. It covers battle logic, all move/effect mechanics, all abilities, all trainers, Pokemon battle data, sprites, HUD, transitions, interaction animation, move animation sprites, and generated assets. Nothing on this page should be checked off as parity-complete unless it can be traced to the original `pokeemerald-expansion` source.
 
 ## Completion Rules
 
@@ -10,6 +10,7 @@ This page turns `battle-parity-todo.md` into an executable backlog for a map-dec
 - [ ] Every unsupported branch must appear in generated `unsupported` metadata, a smoke output, or a wiki note.
 - [ ] Audio remains metadata-only until the audio scope opens. Preserve cue symbols and timing intent, but do not substitute approximate sounds.
 - [ ] Battle code remains map-decoupled. Map and event runtime may request battle start and receive battle results, but battle logic/presentation must not query `MapRuntime`.
+- [ ] Debug battle launchers are developer tools only. They must call the same generated-data and battle setup paths as normal wild/trainer battles, and they must not be used as proof that a source battle path is parity-complete.
 
 ## First Vertical Slice Target
 
@@ -20,6 +21,7 @@ Use this slice to prove the full import -> logic -> presentation -> verification
 - Backup fixture: one fixed Route101 wild encounter candidate, because wild battle startup metadata already exists.
 - Required visible path: intro message, send-out state, action menu, move menu, source-backed move type/PP labels, one ordinary damage move, HP bar update, faint check, and battle result or explicit in-progress state.
 - Required move set for the first proof: `MOVE_TACKLE`, `MOVE_EMBER`, `MOVE_WATER_GUN`, one stat move such as `MOVE_GROWL`, and one accuracy-affecting or failure path once the VM exists.
+- Required debug entry: a map-decoupled quick wild battle entry and a trainer battle entry with trainer id/symbol selection, both routed through the same battle state contracts as normal startup.
 - Required proof: ordered event log, 240x160 screenshot or pixel smoke, generated coverage report, and explicit unsupported notes for everything outside the slice.
 
 ## Coverage Gates For All Moves And Mechanics
@@ -27,19 +29,25 @@ Use this slice to prove the full import -> logic -> presentation -> verification
 The answer to "does this include all skills and mechanisms?" is yes at the checklist level: all moves and source battle mechanisms must pass through coverage gates before battle parity can be claimed. Early milestones may implement only a tiny verified set, but the generated reports must track all records from the source.
 
 - [ ] Every generated move record has a coverage row with `move_symbol`, `effect_symbol`, `battle_script_label`, `battle_anim_script`, `target`, `flags`, `additional_effects`, `logic_status`, `animation_status`, `asset_status`, `hud_status`, `audio_status`, `tests`, and `unsupported`.
+- [ ] Every generated ability record has a coverage row with `ability_symbol`, `flags`, `hook_families`, `runtime_status`, `popup_status`, `ai_status`, `tests`, and `unsupported`.
+- [ ] Every generated trainer record has a coverage row with `trainer_symbol`, numeric id, class, party, held items, explicit/default moves, AI flags, trainer battle type, mugshot/special transition metadata, sprite status, reward/post-battle status, tests, and unsupported notes.
+- [ ] Every trainer party Pokemon has a coverage row for species/form rewrite, level, IV/EV macro handling, held item, ability/nature/friendship defaults, explicit/default moves, and source party-construction behavior.
+- [ ] Every generated Pokemon species/form has a battle data and asset row for base stats, typing, abilities, gender/form data, learnset availability, evolution/post-battle references, front sprite, back sprite, palettes, shiny palette, shadow/offset/scale, front animation, icon references where relevant, cry metadata, tests, and unsupported notes.
+- [ ] Every battle-relevant generated item, nature, type, learnset, evolution, and wild encounter record has a battle coverage row or an explicit out-of-battle-only note.
 - [ ] Every `EFFECT_*` in `src/data/battle_move_effects.h` has a runtime support row and links to the battle script label it uses.
 - [ ] Every battle script command implemented in `src/battle_script_commands.c` has a VM support row with argument decoding, side effects, presentation events, and tests.
 - [ ] Every battle animation command and visual task used by any move has an animation support row.
 - [ ] Every animation sprite tag in `src/data/battle_anim.h:gBattleAnimTable` has an asset support row.
 - [ ] Every battle interface asset used by healthboxes, windows, menus, bars, icons, indicators, popups, and party summaries has an import support row.
 - [ ] Every source battle mode has a status row: single, double, trainer, wild, partner, multi, link/recorded, Safari, Wally tutorial, Frontier/Tent/Pike/Pyramid/Dome/Arena/Palace, legendary/special, and expansion gimmick modes.
+- [ ] Every debug launcher path has a coverage row proving it is map-decoupled, developer-only, not persisted as source gameplay state, and routed through normal wild/trainer battle setup contracts.
 
 ## B0 - Workbench And Source Trace Index
 
 - [ ] B0.1 Create `tools/report_battle_parity.py`.
   - Source: read generated Pokemon data plus original battle source files.
   - Output: `data/generated/reports/battle_parity_report.json`.
-  - Validate: JSON includes counts for moves, effects, scripts, animation scripts, asset tags, interface assets, and unsupported records.
+  - Validate: JSON includes counts for species/forms, abilities, trainers, trainer party Pokemon, moves, effects, scripts, animation scripts, asset tags, interface assets, debug launchers, and unsupported records.
 
 - [ ] B0.2 Create a battle source symbol index.
   - Source: `src/battle_setup.c`, `src/battle_main.c`, `src/battle_controller_*.c`, `src/battle_script_commands.c`, `src/battle_anim.c`, `src/battle_interface.c`, `src/battle_bg.c`, `src/battle_message.c`, `data/battle_scripts_*.s`, `data/battle_anim_scripts.s`, `src/data/battle_anim.h`, `src/data/battle_move_effects.h`.
@@ -49,7 +57,7 @@ The answer to "does this include all skills and mechanisms?" is yes at the check
 - [ ] B0.3 Add `tools/godot_smoke/battle_parity_report_smoke.gd`.
   - Source: generated report only.
   - Output: smoke verifies that coverage rows exist for every generated move.
-  - Validate: fails if a generated move lacks effect, animation, or unsupported status metadata.
+  - Validate: fails if a generated move, ability, trainer, trainer party Pokemon, species/form, or debug launcher lacks required coverage metadata.
 
 - [ ] B0.4 Add "unsupported cannot disappear silently" checks.
   - Target files: coverage report and battle smokes.
@@ -59,6 +67,11 @@ The answer to "does this include all skills and mechanisms?" is yes at the check
   - Target file: `data/generated/battle/event_log_schema.json` or wiki-documented schema.
   - Fields: state, battler, action, source symbol, message id, animation id, HP/PP delta, waits, RNG roll metadata, unsupported flags.
   - Validate: current `BattleScene` smoke can emit or compare a minimal log.
+
+- [ ] B0.6 Add Pokemon/trainer/ability coverage dimensions to the report.
+  - Source: generated species, moves, abilities, items, wild encounters, trainers, trainer party Pokemon, learnsets, natures, evolutions, types, Pokemon graphics tables, trainer graphics tables.
+  - Output: report sections for `pokemon_data`, `pokemon_assets`, `abilities`, `trainers`, `trainer_party_mons`, `battle_items`, and `debug_launchers`.
+  - Validate: current exported totals are represented or explicitly marked out-of-scope for battle: 1573 species, 935 moves, 311 abilities, 874 items, 399 wild encounter records, 855 trainers, 1825 trainer party Pokemon, 1104 learnsets, 25 natures, and 647 evolution entries.
 
 ## B1 - Generated Battle Strings And Text Printer Data
 
@@ -161,6 +174,15 @@ The answer to "does this include all skills and mechanisms?" is yes at the check
   - Covers: priority, speed ties, switching, items, run, forced actions, recharge/loafing, Pursuit-like branches.
   - Validate: ordered action smoke for player fast/slow, priority move, switch before attack, item action, and run action.
 
+- [ ] B4.6 Complete Pokemon battle data runtime coverage.
+  - Source: generated species, forms, abilities, learnsets, natures, items, evolutions, and source Pokemon creation/stat functions.
+  - Covers: all species/forms, base stats, typing, ability slots, gender/form variants, level-up/default move assignment, nature/stat effects, held-item defaults, friendship, Pokeball, personality/IV metadata, shiny/form change hooks, and evolution-after-battle handoff metadata.
+  - Validate: no generated species/form used by wild/trainer/party/capture/reward paths is missing a battle data row; macro-partial species remain explicit unsupported records until expanded.
+
+- [ ] B4.7 Add battle data completeness smokes.
+  - Target files: `tools/godot_smoke/battle_pokemon_data_coverage_smoke.gd`, `tools/godot_smoke/battle_trainer_roster_coverage_smoke.gd`.
+  - Validate: every generated trainer party Pokemon can construct or deliberately fail with source-referenced unsupported metadata; every battle-eligible species can resolve stats, typing, default ability metadata, and at least one battle sprite status row.
+
 ## B5 - Damage, Accuracy, Status, And End-Turn Mechanics
 
 - [ ] B5.1 Implement complete damage modifier stack.
@@ -192,8 +214,13 @@ The answer to "does this include all skills and mechanisms?" is yes at the check
 
 - [ ] B5.7 Implement ability behavior in event hooks.
   - Source: generated abilities plus traced source C behavior.
-  - Hooks: switch-in, before-move, accuracy, damage, immunity, contact, after-damage, status, end-turn, weather/terrain, item interaction, suppression/copy/swap/trace.
-  - Validate: popup timing metadata and at least one smoke per hook family.
+  - Hooks: switch-in, before-move, priority, target selection, accuracy, damage, immunity, contact, after-damage, status, end-turn, weather/terrain, item interaction, form change, suppression/copy/swap/trace/overwrite, AI visibility, and popup timing.
+  - Validate: all 311 generated ability records have hook-family coverage; popup timing metadata and at least one smoke per hook family exist before marking a family supported.
+
+- [ ] B5.7a Add ability coverage report and smoke matrix.
+  - Source: `src/data/abilities.h`, battle ability handlers, generated ability flags.
+  - Output: `data/generated/reports/battle_ability_coverage.json`.
+  - Validate: every ability is categorized as `implemented`, `metadata_only`, `not_battle_relevant`, or `unsupported`, with source files and tests listed.
 
 - [ ] B5.8 Implement held item behavior.
   - Source: generated item data plus battle item handlers.
@@ -232,19 +259,28 @@ The answer to "does this include all skills and mechanisms?" is yes at the check
   - Covers: Safari, Wally tutorial, link/recorded, Battle Frontier/Pike/Pyramid/Dome/Arena/Palace/Tent, two-opponent, partner, multi, legendary/special, expansion gimmicks.
   - Validate: each mode has its own setup metadata, unsupported list, and smoke before UI handoff is allowed.
 
+- [ ] B6.8 Complete generated trainer roster runtime coverage.
+  - Source: `src/data/trainers.party`, trainer constants, `tools/trainerproc/main.c`, generated trainer JSON, battle setup, AI, reward, mugshot, music, and trainer class data.
+  - Covers: all 855 trainers, 1825 trainer party Pokemon, 77 double battles, 141 trainers with items, 839 trainers with AI flags, 5 mugshot trainers, explicit moves, source default move assignment, held items, gendered species rewrites, itemed form rewrites, rematch/reward/post-battle metadata.
+  - Validate: every generated trainer id/symbol can be selected by the debug trainer launcher and either creates a valid battle state or returns a source-referenced unsupported record.
+
+- [ ] B6.9 Add trainer roster coverage report and smokes.
+  - Output: `data/generated/reports/battle_trainer_coverage.json`.
+  - Validate: report rows exist for trainer party construction, AI flags, item use, battle type, transition type, sprite asset, reward/post-battle handling, and unsupported status.
+
 ## B7 - Pokemon, Trainer, And Battle Environment Assets
 
 - [ ] B7.1 Export Pokemon battle sprite metadata.
   - Source: `src/data/graphics/pokemon.h`, `graphics/pokemon`, `src/pokemon_animation.c`, species data.
   - Output: `data/generated/pokemon/battle_sprites.json`, textures under `assets/generated/pokemon_battle/`.
-  - Covers: front pic, back pic, normal palette, shiny palette, gender/form variants, shadow/offset/scale, front animation, cry refs.
-  - Validate: Torchic, Mudkip, Treecko, Geodude, and one form/gender variant resolve.
+  - Covers: every generated battle-eligible species/form, front pic, back pic, normal palette, shiny palette, gender/form variants, shadow/offset/scale, front animation, icon refs where battle UI needs them, and cry refs.
+  - Validate: the coverage report lists every missing or unsupported species/form asset; Torchic, Mudkip, Treecko, Geodude, one gender variant, one form variant, one shiny palette, and one macro-partial species are fixture rows.
 
 - [ ] B7.2 Export trainer battle sprite metadata.
   - Source: `src/data/graphics/trainers.h`, `graphics/trainers`, generated trainers.
   - Output: `data/generated/battle/trainer_sprites.json`, textures under `assets/generated/trainers/`.
-  - Covers: trainer front pic, palette, class/pic linkage, mugshot/special refs, slide-in coordinates.
-  - Validate: Sawyer trainer sprite resolves from trainer id to texture and palette.
+  - Covers: every trainer pic referenced by generated trainer records, trainer front pic, palette, class/pic linkage, mugshot/special refs, slide-in coordinates, and unsupported records for trainer ids without a normal battle sprite path.
+  - Validate: every generated trainer id resolves to a trainer sprite row, shared sprite row, or explicit unsupported note; Sawyer and a mugshot trainer resolve from trainer id to texture and palette.
 
 - [ ] B7.3 Export battle backgrounds and environment metadata.
   - Source: `src/data/graphics/battle_environment.h`, `src/data/battle_environment.h`, `graphics/battle_environment`.
@@ -259,6 +295,14 @@ The answer to "does this include all skills and mechanisms?" is yes at the check
 
 - [ ] B7.5 Add asset alpha/palette smoke checks.
   - Validate: index 0 transparency, GBA palette conversion, frame rects, texture dimensions, and missing asset reports.
+
+- [ ] B7.6 Add Pokemon data and asset completeness report.
+  - Output: `data/generated/reports/pokemon_battle_asset_coverage.json`.
+  - Validate: rows cover species data, battle sprites, palettes, form/gender variants, icons needed by battle UI, cries as metadata-only while audio is closed, front animations, shadow/offset/scale, and unsupported reasons.
+
+- [ ] B7.7 Add trainer data and asset completeness report.
+  - Output: `data/generated/reports/trainer_battle_asset_coverage.json`.
+  - Validate: rows cover trainer id, class, pic, palette, mugshot/special transition, party sprite requirements, music metadata, intro/defeat text references, reward metadata, and unsupported reasons.
 
 ## B8 - Battle Interface, HUD, Menus, And Text Windows
 
@@ -392,20 +436,49 @@ The answer to "does this include all skills and mechanisms?" is yes at the check
   - Target: existing smoke conventions under `tools/godot_smoke`.
   - Validate: one command can run the battle parity import/data/domain/presentation checks.
 
+## B13 - Debug Battle Launchers
+
+- [ ] B13.1 Add debug input map actions.
+  - Proposed defaults: `debug_quick_wild_battle` on F6, `debug_trainer_battle_selector` on F7, and optional trainer id increment/decrement/search controls inside the selector.
+  - Target files: `project.godot`, `scripts/main.gd`, and optionally `scripts/debug/battle_debug_launcher.gd`.
+  - Validate: actions are disabled or hidden outside developer/debug builds and do not conflict with existing field input or the `G` grid toggle.
+
+- [ ] B13.2 Implement quick wild battle launch.
+  - Source: grass encounter path concepts from `CheckStandardWildEncounter`, `TryGenerateWildMon`, `CreateWildMon`, `BattleSetup_StartWildBattle`, plus current generated wild encounter data.
+  - Behavior: use a plain debug setup context, default to a source land/tall-grass encounter fixture such as Route101, run the same wild candidate generation and `BattleEngine.create_wild_battle_state` path as grass encounters, and carry source battle-start metadata.
+  - Boundary: do not query `MapRuntime`, do not require player standing in grass, and do not mutate field-step counters except deliberate debug metadata.
+  - Validate: smoke proves the launched wild battle candidate matches the same generated encounter/party/battle-state path as a normal grass encounter fixture.
+
+- [ ] B13.3 Implement trainer battle selector launch.
+  - Source: generated trainer records, `BattleSetup_StartTrainerBattle`, `DoTrainerBattle`, `CreateNPCTrainerPartyFromTrainer`, trainer transition selection, and current `BattleEngine.create_trainer_battle_state`.
+  - Behavior: allow selecting a trainer by numeric id, full `TRAINER_*` symbol, or short symbol; show invalid ids as validation errors; launch only through the normal trainer battle state contract.
+  - Boundary: do not require map object events or trainer sightlines; pass any needed map-derived transition hints as explicit debug context.
+  - Validate: smoke launches Sawyer by id/symbol, launches one double-battle trainer as unsupported until double presentation exists, rejects invalid ids, and confirms temporary debug party fallback is not persisted.
+
+- [ ] B13.4 Add debug launcher UI/presentation handoff.
+  - Target: `scripts/main.gd` or a small debug overlay scene that can open above the current runtime.
+  - Covers: input lock while selecting, current selected trainer id display, search/filter by trainer symbol/name/class, cancel behavior, clear unsupported messages, and transition into `BattleScene`.
+  - Validate: screenshot or scene smoke proves the selector is usable at 240x160 without overlapping text.
+
+- [ ] B13.5 Add debug launcher smoke tests.
+  - Target files: `tools/godot_smoke/debug_battle_launcher_smoke.gd`, possibly a scene smoke for the selector.
+  - Validate: F6/F7 actions exist, quick wild and selected trainer paths produce battle state contracts, no `MapRuntime` lookup is required, invalid trainer ids are safe, and developer-only metadata is attached to results.
+
 ## Suggested Task Order
 
 1. B0.1, B0.2, B0.3 - build the report so all later work is measurable.
-2. B1.1 to B1.4 - battle strings and text ids.
-3. B2.1 to B2.5 - battle scripts, move effects, and move links.
-4. B7.1, B7.2, B7.3, B8.1 - Pokemon/trainer/background/HUD asset imports for the first fixture.
-5. B9.1, B9.2 - source-backed static battle composition.
-6. B3.1 to B3.5 - VM ordinary damage path.
-7. B8.2 to B8.5 - text windows, healthbox, action menu, move menu.
-8. B10.1 to B10.6 - first move animation interpreter slice.
-9. B4 and B5 - expand logic mechanics through source hooks.
-10. B6 - AI, rewards, capture, double battles, and special modes.
-11. B9.3 to B9.6 - exact intro, transitions, interaction animation, and post-battle flow.
-12. B12 - keep adding fixtures as each behavior moves from unsupported to supported.
+2. B13.1 to B13.3 - add developer-only wild/trainer launchers so battle fixtures can be reached without map dependencies.
+3. B1.1 to B1.4 - battle strings and text ids.
+4. B2.1 to B2.5 - battle scripts, move effects, and move links.
+5. B7.1, B7.2, B7.3, B7.6, B7.7, B8.1 - Pokemon/trainer/background/HUD asset imports and coverage reports.
+6. B9.1, B9.2 - source-backed static battle composition.
+7. B3.1 to B3.5 - VM ordinary damage path.
+8. B8.2 to B8.5 - text windows, healthbox, action menu, move menu.
+9. B10.1 to B10.6 - first move animation interpreter slice.
+10. B4, B5, B6.8, B6.9 - expand Pokemon data, abilities, trainer roster, and logic mechanics through source hooks.
+11. B6 - AI, rewards, capture, double battles, and special modes.
+12. B9.3 to B9.6 - exact intro, transitions, interaction animation, and post-battle flow.
+13. B12 and B13.4 to B13.5 - keep adding fixtures, selector UI, and debug launcher tests as each behavior moves from unsupported to supported.
 
 ## Parallel Work Lanes
 
@@ -413,5 +486,6 @@ The answer to "does this include all skills and mechanisms?" is yes at the check
 - Rules lane: B3, B4, B5, B6.
 - Presentation lane: B8.2 to B8.6, B9, B10.4 to B10.7.
 - Verification lane: B0.3 to B0.5, B12.
+- Debug lane: B13, which must stay developer-only and map-decoupled.
 
 Each lane can move independently, but no user-visible battle feature is parity-complete until the import, rules, presentation, and verification rows for that feature are all complete.

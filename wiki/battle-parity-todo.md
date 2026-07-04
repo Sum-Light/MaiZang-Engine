@@ -1,6 +1,6 @@
 # Battle Parity Todo
 
-This page records the first broad audit for a source-equivalent battle experience that is decoupled from map runtime. The target is not a loose battle prototype: battle logic, UI flow, sprites, HUD, effects, move animation scripts, interaction timing, and generated assets must trace the source before being treated as equivalent.
+This page records the first broad audit for a source-equivalent battle experience that is decoupled from map runtime. The target is not a loose battle prototype: battle logic, UI flow, sprites, HUD, effects, move animation scripts, interaction timing, all abilities, all trainers, Pokemon battle data/assets, and generated assets must trace the source before being treated as equivalent.
 
 For the executable work breakdown with task ids, target files, source inputs, validation, and all-move/all-mechanic coverage gates, use `battle-parity-execution-plan.md`.
 
@@ -12,6 +12,7 @@ Godot battle state today:
 - `scripts/battle/battle_scene.gd` is explicitly `first_slice_not_source_equivalent`. It has a source-shaped intro -> action select -> move select -> one deterministic player turn flow, but uses Godot controls and simplified rectangles instead of source battle tilemaps, sprites, windows, text printer, and animation systems.
 - Generated battle-adjacent data already exists for 1573 species, 935 moves, 21 types, 311 abilities, 874 items, 399 wild encounter records, 855 trainers, 1825 trainer party Pokemon, 1104 learnsets, 25 natures, and 647 evolution entries.
 - There is no importer/runtime yet for battle Pokemon sprites, trainer battle sprites, battle backgrounds, battle interface graphics, battle transition graphics, move animation sprite sheets, move animation scripts, battle scripts, battle string tables, or audio playback.
+- The debug battle launcher scope is developer-only and map-decoupled: one shortcut should enter a grass-encounter-equivalent wild battle through the same generated wild candidate and battle setup contracts, and one shortcut should enter a trainer battle through a trainer id/symbol selector. These launchers are test access paths, not source gameplay features.
 
 Source battle topology from the first pass:
 
@@ -52,6 +53,7 @@ Battle must remain map-decoupled.
 - [ ] Add a generated unsupported report listing every source battle subsystem not yet represented in Godot.
 - [ ] Define a stable source-reference schema for battle generated data: file, line, symbol, active preprocessor config, referenced assets, runtime owner, and unsupported notes.
 - [ ] Record active battle config values from `include/config/battle.h` and adjacent config headers that affect visible behavior and rules.
+- [ ] Add coverage rows for all generated abilities, trainers, trainer party Pokemon, Pokemon species/forms, Pokemon battle assets, trainer assets, and developer debug launchers.
 - [ ] Decide the first parity target battle scenario, probably a single wild or simple single trainer battle, and trace only that path end to end before broad coverage.
 
 ### 2. Generated Data And Asset Import
@@ -127,14 +129,16 @@ Battle must remain map-decoupled.
 - [ ] Add presentation smoke tests with screenshot or pixel checks for source-backed battle scene composition at 240x160 and scaled windows.
 - [ ] Add animation smoke tests for sprite creation, delays/waits, blend/fade, BG transitions, battler movement, healthbox visibility during animations, and move-specific visual sequences.
 - [ ] Add parity fixtures for a few source-known battles and compare ordered event logs: input prompts, selected actions, messages, HP/PP changes, animation sequence ids, waits, and battle result.
+- [ ] Add debug launcher smokes for quick wild battle, trainer id/symbol selection, invalid trainer ids, temporary player party handling, and proof that the launcher does not query map runtime.
 - [ ] Ensure every non-equivalent behavior remains visible through `unsupported` metadata and wiki notes.
 
 ## Suggested Implementation Order
 
 1. Build the battle source/generated coverage report first. This prevents the next slices from hiding gaps.
-2. Import battle UI assets and Pokemon/trainer sprites for one verified single battle.
-3. Replace the current battle scene rectangles with source-backed textures and static sprite placement.
-4. Add a battle script VM for the ordinary damaging move path and route `MOVE_TACKLE`, `MOVE_EMBER`, and `MOVE_WATER_GUN` through source scripts.
-5. Add the first animation interpreter slice for those moves and healthbox HP updates.
-6. Extend battle input to full action and move selection before broad move-effect coverage.
-7. Add rewards/post-battle flow only after a full single-battle loop can finish source-equivalently.
+2. Add developer-only debug launchers for quick wild battle and trainer id/symbol battle selection so battle fixtures can be reached without map dependencies.
+3. Import battle UI assets and Pokemon/trainer sprites for one verified single battle.
+4. Replace the current battle scene rectangles with source-backed textures and static sprite placement.
+5. Add a battle script VM for the ordinary damaging move path and route `MOVE_TACKLE`, `MOVE_EMBER`, and `MOVE_WATER_GUN` through source scripts.
+6. Add the first animation interpreter slice for those moves and healthbox HP updates.
+7. Extend battle input to full action and move selection before broad move-effect coverage.
+8. Add rewards/post-battle flow only after a full single-battle loop can finish source-equivalently.

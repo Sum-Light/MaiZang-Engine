@@ -21,7 +21,7 @@ Next active module:
 
 Reason:
 
-- The user redirected the current focus to source-equivalent battle experience, including logic, assets, HUD, interaction animation, sprites, move animation sprites, all moves, and source battle mechanisms.
+- The user redirected the current focus to source-equivalent battle experience, including logic, assets, HUD, interaction animation, sprites, move animation sprites, all moves, all abilities, all trainers, Pokemon battle data/assets, and source battle mechanisms.
 - Current Godot battle is still explicitly first-slice and not source-equivalent: it has `BattleEngine` setup/basic damage plus a source-shaped `BattleScene` controller flow, but lacks source battle scripts, full mechanics, source-backed HUD/windows, sprites, move animations, transitions, post-battle flow, and audio playback.
 - The broad audit lives in `wiki/battle-parity-todo.md`; the executable checklist lives in `wiki/battle-parity-execution-plan.md`.
 
@@ -174,6 +174,7 @@ Main-agent responsibilities:
 Near-term:
 
 - Build the battle source trace index and coverage report from `wiki/battle-parity-execution-plan.md` B0.
+- Add developer-only, map-decoupled debug battle launchers from `wiki/battle-parity-execution-plan.md` B13: quick wild battle equivalent to a grass encounter, plus trainer battle by selectable trainer id/symbol.
 - Import battle strings, battle scripts, move effects, and move-to-script links before expanding runtime mechanics.
 - Import the first source-backed Pokemon, trainer, battle background, and HUD assets needed by the Sawyer/Route101 single-battle fixture.
 - Replace the current placeholder `BattleScene` layout with source-backed static battle composition before broad move animation work.
