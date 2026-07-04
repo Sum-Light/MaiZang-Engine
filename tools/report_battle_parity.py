@@ -536,7 +536,18 @@ def build_battle_transition_rows(transitions_data):
         texture_refs = record.get("texture_refs", []) if isinstance(record.get("texture_refs"), list) else []
         palette_refs = record.get("palette_refs", []) if isinstance(record.get("palette_refs"), list) else []
         binary_refs = record.get("binary_refs", []) if isinstance(record.get("binary_refs"), list) else []
+        tilemap_composite_refs = record.get("tilemap_composite_refs", []) if isinstance(record.get("tilemap_composite_refs"), list) else []
         first_texture = assets.get(texture_refs[0], {}) if texture_refs and isinstance(assets.get(texture_refs[0], {}), dict) else {}
+        first_tilemap_asset = (
+            assets.get(tilemap_composite_refs[0], {})
+            if tilemap_composite_refs and isinstance(assets.get(tilemap_composite_refs[0], {}), dict)
+            else {}
+        )
+        first_tilemap_composite = (
+            first_tilemap_asset.get("tilemap_composite", {})
+            if isinstance(first_tilemap_asset.get("tilemap_composite", {}), dict)
+            else {}
+        )
         rows.append({
             "id": symbol,
             "transition_symbol": symbol,
@@ -547,9 +558,12 @@ def build_battle_transition_rows(transitions_data):
             "texture_count": len(texture_refs),
             "palette_count": len(palette_refs),
             "binary_ref_count": len(binary_refs),
+            "tilemap_composite_count": len(tilemap_composite_refs),
             "first_texture": str(first_texture.get("image_project_path", "")),
+            "first_tilemap_composite": str(first_tilemap_composite.get("image_project_path", "")),
             "asset_status": str(coverage.get("asset_status", "unsupported")),
             "texture_status": str(coverage.get("texture_status", "unsupported")),
+            "tilemap_status": str(coverage.get("tilemap_status", "not_required")),
             "task_metadata_status": str(coverage.get("task_metadata_status", "metadata_only")),
             "selection_status": str(coverage.get("selection_status", "metadata_only")),
             "runtime_status": str(coverage.get("runtime_status", "unsupported")),

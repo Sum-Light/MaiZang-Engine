@@ -19,6 +19,11 @@ func _init() -> void:
 	_assert(int(stats.get("source_palette_asset_count", 0)) == 19, "unexpected transition palette asset count")
 	_assert(int(stats.get("source_binary_asset_count", 0)) == 14, "unexpected transition binary asset count")
 	_assert(int(stats.get("texture_count", 0)) == 23, "unexpected imported transition texture count")
+	_assert(int(stats.get("tilemap_composite_count", 0)) == 14, "unexpected transition tilemap composite count")
+	_assert(int(stats.get("static_tilemap_composite_count", 0)) == 13, "unexpected static transition tilemap composite count")
+	_assert(int(stats.get("dynamic_tilemap_block_preview_count", 0)) == 1, "unexpected dynamic transition tilemap block preview count")
+	_assert(int(stats.get("transition_with_tilemap_composite_count", 0)) == 23, "unexpected transition tilemap composite ref count")
+	_assert(int(stats.get("tilemap_composite_missing_tile_count", -1)) == 0, "expected no missing transition tilemap tiles")
 	_assert(int(stats.get("missing_asset_ref_count", -1)) == 0, "expected no missing transition asset refs")
 	_assert(int(stats.get("wild_transition_table_count", 0)) == 4, "unexpected wild transition table count")
 	_assert(int(stats.get("trainer_transition_table_count", 0)) == 4, "unexpected trainer transition table count")
@@ -41,24 +46,38 @@ func _init() -> void:
 	_assert(_coverage_status(big_pokeball, "asset_status") == "first_pass", "expected big Pokeball first-pass assets")
 	_assert(_has_ref(big_pokeball, "texture_refs", "graphics/battle_transitions/big_pokeball.png"), "expected big Pokeball texture ref")
 	_assert(_has_ref(big_pokeball, "binary_refs", "graphics/battle_transitions/big_pokeball_map.bin"), "expected big Pokeball tilemap ref")
+	_assert(_has_ref(big_pokeball, "tilemap_composite_refs", "graphics/battle_transitions/big_pokeball_map.bin"), "expected big Pokeball tilemap composite ref")
+	_assert(_coverage_status(big_pokeball, "tilemap_status") == "first_pass", "expected big Pokeball first-pass tilemap composite")
 	_assert(_asset_exists(data, "graphics/battle_transitions/big_pokeball.png"), "expected imported big Pokeball PNG")
+	_assert(_tilemap_composite_exists(data, "graphics/battle_transitions/big_pokeball_map.bin", Vector2i(240, 160), "static_tilemap_composite"), "expected big Pokeball composite PNG")
 
 	var aqua := registry.get_battle_transition_record("aqua")
 	_assert(String(aqua.get("main_task", "")) == "Task_Aqua", "expected Aqua transition task")
 	_assert(_has_ref(aqua, "texture_refs", "graphics/battle_transitions/team_aqua.png"), "expected Aqua texture")
 	_assert(_has_ref(aqua, "palette_refs", "graphics/battle_transitions/evil_team.pal"), "expected Aqua evil team palette")
+	_assert(_coverage_status(aqua, "tilemap_status") == "first_pass", "expected Aqua first-pass tilemap composite")
 	_assert(_asset_exists(data, "graphics/battle_transitions/team_aqua.png"), "expected imported Aqua texture")
+	_assert(_tilemap_composite_exists(data, "graphics/battle_transitions/team_aqua.bin", Vector2i(256, 256), "static_tilemap_composite"), "expected Aqua composite PNG")
 
 	var mugshot := registry.get_battle_transition_record("mugshot")
 	_assert(String(mugshot.get("main_task", "")) == "Task_Mugshot", "expected mugshot transition task")
 	_assert(_has_ref(mugshot, "texture_refs", "graphics/battle_transitions/elite_four_bg.png"), "expected mugshot banner texture")
 	_assert(_has_ref(mugshot, "palette_refs", "graphics/battle_transitions/brendan_bg.pal"), "expected Brendan mugshot palette")
 	_assert(_has_ref(mugshot, "palette_refs", "graphics/battle_transitions/may_bg.pal"), "expected May mugshot palette")
+	_assert(_tilemap_composite_exists(data, "graphics/battle_transitions/elite_four_bg_map.bin", Vector2i(256, 160), "static_tilemap_composite"), "expected mugshot composite PNG")
+
+	var rayquaza := registry.get_battle_transition_record("rayquaza")
+	_assert(_tilemap_composite_exists(data, "graphics/battle_transitions/rayquaza.bin", Vector2i(512, 256), "static_tilemap_composite"), "expected Rayquaza wide composite PNG")
 
 	var frontier_circles := registry.get_battle_transition_record("frontier_circles_meet")
 	_assert(String(frontier_circles.get("main_task", "")) == "Task_FrontierCirclesMeet", "expected Frontier circles task")
 	_assert(_has_ref(frontier_circles, "texture_refs", "graphics/battle_transitions/frontier_logo_center.png"), "expected Frontier center texture")
 	_assert(_has_ref(frontier_circles, "texture_refs", "graphics/battle_transitions/frontier_logo_circles.png"), "expected Frontier circles texture")
+	_assert(_tilemap_composite_exists(data, "graphics/battle_transitions/frontier_logo_center.bin", Vector2i(256, 256), "static_tilemap_composite"), "expected Frontier center composite PNG")
+
+	var frontier_squares := registry.get_battle_transition_record("frontier_squares")
+	_assert(_coverage_status(frontier_squares, "tilemap_status") == "dynamic_block_preview", "expected Frontier Squares dynamic block tilemap preview")
+	_assert(_tilemap_composite_exists(data, "graphics/battle_transitions/frontier_squares.bin", Vector2i(32, 32), "dynamic_tilemap_block_preview"), "expected Frontier Squares block preview")
 
 	var selection_tables := _dict(data.get("selection_tables", {}))
 	var wild := _array(selection_tables.get("wild", []))
@@ -84,6 +103,7 @@ func _init() -> void:
 		"data_registry_battle_transitions_smoke": "ok",
 		"transition_count": int(stats.get("transition_count", 0)),
 		"texture_count": int(stats.get("texture_count", 0)),
+		"tilemap_composite_count": int(stats.get("tilemap_composite_count", 0)),
 		"battle_frontier_transition_count": int(stats.get("battle_frontier_transition_count", 0)),
 	}))
 	registry.free()
@@ -122,6 +142,22 @@ func _asset_exists(data: Dictionary, asset_id: String) -> bool:
 	var asset := _dict(_dict(data.get("assets", {})).get(asset_id, {}))
 	var path := String(asset.get("image", ""))
 	return not path.is_empty() and FileAccess.file_exists(path)
+
+
+func _tilemap_composite_exists(data: Dictionary, asset_id: String, expected_size: Vector2i, expected_kind: String) -> bool:
+	var asset := _dict(_dict(data.get("assets", {})).get(asset_id, {}))
+	var composite := _dict(asset.get("tilemap_composite", {}))
+	var path := String(composite.get("image", ""))
+	var size := _dict(composite.get("size", {}))
+	var tilemap := _dict(composite.get("tilemap", {}))
+	return (
+		not path.is_empty()
+		and FileAccess.file_exists(path)
+		and String(composite.get("kind", "")) == expected_kind
+		and int(size.get("w", 0)) == expected_size.x
+		and int(size.get("h", 0)) == expected_size.y
+		and int(tilemap.get("missing_tile_count", -1)) == 0
+	)
 
 
 func _array(value) -> Array:

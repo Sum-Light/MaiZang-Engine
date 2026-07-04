@@ -10,10 +10,10 @@
   ],
   "rendering_notes": {
     "gba_hardware_constraints": "decoded_at_import_time",
-    "godot_runtime_asset_model": "RGBA PNG textures plus source task/table metadata",
+    "godot_runtime_asset_model": "RGBA PNG textures, tilemap composite PNG previews, plus source task/table metadata",
     "runtime_status": "unsupported",
     "audio_status": "metadata_only",
-    "detail": "Palette fades, HBlank/VBlank effects, window masks, scanline offsets, affine transforms, and transition task playback remain future Godot-native presentation work."
+    "detail": "Static source tilemaps are decoded into Godot-friendly composite PNGs where possible. Palette fades, HBlank/VBlank effects, window masks, scanline offsets, affine transforms, dynamic repeated tilemap placement, and transition task playback remain future Godot-native presentation work."
   },
   "transition_order": [
     "B_TRANSITION_BLUR",
@@ -70,10 +70,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -101,10 +103,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -132,10 +136,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -171,10 +177,14 @@
       "binary_refs": [
         "graphics/battle_transitions/big_pokeball_map.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/big_pokeball_map.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -208,10 +218,12 @@
         "graphics/field_effects/palettes/pokeball.pal"
       ],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -244,10 +256,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -275,10 +289,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -307,10 +323,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -339,10 +357,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -373,10 +393,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -405,10 +427,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -439,10 +463,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -490,10 +516,14 @@
       "binary_refs": [
         "graphics/battle_transitions/elite_four_bg_map.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/elite_four_bg_map.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -532,10 +562,14 @@
       "binary_refs": [
         "graphics/battle_transitions/team_aqua.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/team_aqua.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -574,10 +608,14 @@
       "binary_refs": [
         "graphics/battle_transitions/team_magma.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/team_magma.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -615,10 +653,14 @@
       "binary_refs": [
         "graphics/battle_transitions/regice.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/regice.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -656,10 +698,14 @@
       "binary_refs": [
         "graphics/battle_transitions/registeel.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/registeel.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -697,10 +743,14 @@
       "binary_refs": [
         "graphics/battle_transitions/regirock.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/regirock.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -741,10 +791,14 @@
       "binary_refs": [
         "graphics/battle_transitions/kyogre.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/kyogre.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -785,10 +839,14 @@
       "binary_refs": [
         "graphics/battle_transitions/groudon.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/groudon.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -831,10 +889,14 @@
       "binary_refs": [
         "graphics/battle_transitions/rayquaza.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/rayquaza.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -865,10 +927,12 @@
       ],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -897,10 +961,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -928,10 +994,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -960,10 +1028,12 @@
       "texture_refs": [],
       "palette_refs": [],
       "binary_refs": [],
+      "tilemap_composite_refs": [],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "metadata_only",
         "texture_status": "not_required",
+        "tilemap_status": "not_required",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -999,10 +1069,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_logo.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_logo.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1036,10 +1110,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_logo.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_logo.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1077,10 +1155,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_squares.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_squares.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "dynamic_block_preview",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1119,10 +1201,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_squares.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_squares.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "dynamic_block_preview",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1161,10 +1247,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_squares.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_squares.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "dynamic_block_preview",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1200,10 +1290,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_logo_center.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_logo_center.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1239,10 +1333,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_logo_center.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_logo_center.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1278,10 +1376,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_logo_center.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_logo_center.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1317,10 +1419,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_logo_center.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_logo_center.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1356,10 +1462,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_logo_center.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_logo_center.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1395,10 +1505,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_logo_center.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_logo_center.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1434,10 +1548,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_logo_center.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_logo_center.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -1473,10 +1591,14 @@
       "binary_refs": [
         "graphics/battle_transitions/frontier_logo_center.bin"
       ],
+      "tilemap_composite_refs": [
+        "graphics/battle_transitions/frontier_logo_center.bin"
+      ],
       "missing_asset_refs": [],
       "coverage": {
         "asset_status": "first_pass",
         "texture_status": "first_pass",
+        "tilemap_status": "first_pass",
         "task_metadata_status": "metadata_only",
         "selection_status": "metadata_only",
         "runtime_status": "unsupported",
@@ -9419,7 +9541,64 @@
       ],
       "byte_size": 1200,
       "u16_count": 600,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/big_pokeball_map.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/big_pokeball_map.png",
+        "size": {
+          "w": 240,
+          "h": 160
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/big_pokeball_map.bin",
+          "tile_count": 600,
+          "width_tiles": 30,
+          "height_tiles": 20,
+          "expected_entry_count": 600,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0
+          ],
+          "hflip_count": 130,
+          "vflip_count": 0
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/big_pokeball.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/big_pokeball.png",
+              "mode": "P",
+              "size": {
+                "w": 32,
+                "h": 88
+              },
+              "tile_count": 44
+            }
+          ],
+          "combined_tile_count": 44
+        },
+        "palette": {
+          "source_palette_refs": [],
+          "palette_variant_refs": [],
+          "color_count": 16,
+          "palette_bank_color_offsets": {},
+          "source_forces_palette_bank": 15,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "SET_TILE loop ORs BG palette bank 15 over a 30x20 tilemap.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/elite_four_bg_map.bin": {
       "id": "graphics/battle_transitions/elite_four_bg_map.bin",
@@ -9433,7 +9612,74 @@
       ],
       "byte_size": 1280,
       "u16_count": 640,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/elite_four_bg_map.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/elite_four_bg_map.png",
+        "size": {
+          "w": 256,
+          "h": 160
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/elite_four_bg_map.bin",
+          "tile_count": 640,
+          "width_tiles": 32,
+          "height_tiles": 20,
+          "expected_entry_count": 640,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0
+          ],
+          "hflip_count": 0,
+          "vflip_count": 217
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/elite_four_bg.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/elite_four_bg.png",
+              "mode": "L",
+              "size": {
+                "w": 120,
+                "h": 8
+              },
+              "tile_count": 15
+            }
+          ],
+          "combined_tile_count": 15
+        },
+        "palette": {
+          "source_palette_refs": [
+            "graphics/battle_transitions/purple_bg.pal"
+          ],
+          "palette_variant_refs": [
+            "graphics/battle_transitions/purple_bg.pal",
+            "graphics/battle_transitions/green_bg.pal",
+            "graphics/battle_transitions/pink_bg.pal",
+            "graphics/battle_transitions/blue_bg.pal",
+            "graphics/battle_transitions/yellow_bg.pal",
+            "graphics/battle_transitions/brendan_bg.pal",
+            "graphics/battle_transitions/may_bg.pal"
+          ],
+          "color_count": 16,
+          "palette_bank_color_offsets": {},
+          "source_forces_palette_bank": 15,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "Mugshot_SetGfx copies a 32x20 tilemap through SET_TILE; the generated composite uses purple as the default opponent mugshot reference palette.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/frontier_logo.bin": {
       "id": "graphics/battle_transitions/frontier_logo.bin",
@@ -9447,7 +9693,67 @@
       ],
       "byte_size": 2048,
       "u16_count": 1024,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/frontier_logo.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/frontier_logo.png",
+        "size": {
+          "w": 256,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/frontier_logo.bin",
+          "tile_count": 1024,
+          "width_tiles": 32,
+          "height_tiles": 32,
+          "expected_entry_count": 1024,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0,
+            15
+          ],
+          "hflip_count": 10,
+          "vflip_count": 12
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/frontier_logo.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/frontier_logo.png",
+              "mode": "P",
+              "size": {
+                "w": 328,
+                "h": 40
+              },
+              "tile_count": 205
+            }
+          ],
+          "combined_tile_count": 205
+        },
+        "palette": {
+          "source_palette_refs": [],
+          "palette_variant_refs": [],
+          "color_count": 16,
+          "palette_bank_color_offsets": {
+            "15": 0
+          },
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "FrontierLogo* decompresses a full BG0 tilemap after loading the Frontier logo palette into BG palette bank 15.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/frontier_logo_center.bin": {
       "id": "graphics/battle_transitions/frontier_logo_center.bin",
@@ -9461,7 +9767,67 @@
       ],
       "byte_size": 2048,
       "u16_count": 1024,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/frontier_logo_center.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/frontier_logo_center.png",
+        "size": {
+          "w": 256,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/frontier_logo_center.bin",
+          "tile_count": 1024,
+          "width_tiles": 32,
+          "height_tiles": 32,
+          "expected_entry_count": 1024,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0,
+            15
+          ],
+          "hflip_count": 40,
+          "vflip_count": 0
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/frontier_logo_center.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/frontier_logo_center.png",
+              "mode": "P",
+              "size": {
+                "w": 40,
+                "h": 72
+              },
+              "tile_count": 45
+            }
+          ],
+          "combined_tile_count": 45
+        },
+        "palette": {
+          "source_palette_refs": [],
+          "palette_variant_refs": [],
+          "color_count": 16,
+          "palette_bank_color_offsets": {
+            "15": 0
+          },
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "LoadLogoGfx decompresses the logo center tilemap before spawning animated circle sprites.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/frontier_squares.bin": {
       "id": "graphics/battle_transitions/frontier_squares.bin",
@@ -9475,7 +9841,71 @@
       ],
       "byte_size": 32,
       "u16_count": 16,
-      "asset_status": "metadata_only"
+      "asset_status": "dynamic_block_preview",
+      "tilemap_composite": {
+        "kind": "dynamic_tilemap_block_preview",
+        "status": "dynamic_block_preview",
+        "image": "res://assets/generated/battle_transitions/composites/frontier_squares.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/frontier_squares.png",
+        "size": {
+          "w": 32,
+          "h": 32
+        },
+        "visible_viewport": {},
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/frontier_squares.bin",
+          "tile_count": 16,
+          "width_tiles": 4,
+          "height_tiles": 4,
+          "expected_entry_count": 16,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0
+          ],
+          "hflip_count": 0,
+          "vflip_count": 0
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/frontier_squares_blanktiles.png",
+            "graphics/battle_transitions/frontier_squares_1.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/frontier_squares_blanktiles.png",
+              "mode": "P",
+              "size": {
+                "w": 16,
+                "h": 8
+              },
+              "tile_count": 2
+            },
+            {
+              "source_asset_path": "graphics/battle_transitions/frontier_squares_1.png",
+              "mode": "P",
+              "size": {
+                "w": 32,
+                "h": 32
+              },
+              "tile_count": 16
+            }
+          ],
+          "combined_tile_count": 18
+        },
+        "palette": {
+          "source_palette_refs": [],
+          "palette_variant_refs": [],
+          "color_count": 16,
+          "palette_bank_color_offsets": {},
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "Frontier Squares copies this 4x4 block repeatedly into BG0; the generated image is a block preview, not the final full-screen animation.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/groudon.bin": {
       "id": "graphics/battle_transitions/groudon.bin",
@@ -9489,7 +9919,72 @@
       ],
       "byte_size": 2048,
       "u16_count": 1024,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/groudon.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/groudon.png",
+        "size": {
+          "w": 256,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/groudon.bin",
+          "tile_count": 1024,
+          "width_tiles": 32,
+          "height_tiles": 32,
+          "expected_entry_count": 1024,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0,
+            15
+          ],
+          "hflip_count": 300,
+          "vflip_count": 300
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/groudon.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/groudon.png",
+              "mode": "L",
+              "size": {
+                "w": 64,
+                "h": 128
+              },
+              "tile_count": 128
+            }
+          ],
+          "combined_tile_count": 128
+        },
+        "palette": {
+          "source_palette_refs": [
+            "graphics/battle_transitions/groudon_pt1.pal"
+          ],
+          "palette_variant_refs": [
+            "graphics/battle_transitions/groudon_pt1.pal",
+            "graphics/battle_transitions/groudon_pt2.pal"
+          ],
+          "color_count": 256,
+          "palette_bank_color_offsets": {
+            "15": 0
+          },
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": true
+        },
+        "source_operation": "Groudon_Init decompresses a full BG0 tilemap; palette flashing later streams 16-color frames into BG palette bank 15.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/kyogre.bin": {
       "id": "graphics/battle_transitions/kyogre.bin",
@@ -9503,7 +9998,72 @@
       ],
       "byte_size": 2048,
       "u16_count": 1024,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/kyogre.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/kyogre.png",
+        "size": {
+          "w": 256,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/kyogre.bin",
+          "tile_count": 1024,
+          "width_tiles": 32,
+          "height_tiles": 32,
+          "expected_entry_count": 1024,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0,
+            15
+          ],
+          "hflip_count": 257,
+          "vflip_count": 0
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/kyogre.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/kyogre.png",
+              "mode": "L",
+              "size": {
+                "w": 64,
+                "h": 144
+              },
+              "tile_count": 144
+            }
+          ],
+          "combined_tile_count": 144
+        },
+        "palette": {
+          "source_palette_refs": [
+            "graphics/battle_transitions/kyogre_pt1.pal"
+          ],
+          "palette_variant_refs": [
+            "graphics/battle_transitions/kyogre_pt1.pal",
+            "graphics/battle_transitions/kyogre_pt2.pal"
+          ],
+          "color_count": 160,
+          "palette_bank_color_offsets": {
+            "15": 0
+          },
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": true
+        },
+        "source_operation": "Kyogre_Init decompresses a full BG0 tilemap; palette flashing later streams 16-color frames into BG palette bank 15.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/rayquaza.bin": {
       "id": "graphics/battle_transitions/rayquaza.bin",
@@ -9517,7 +10077,71 @@
       ],
       "byte_size": 4096,
       "u16_count": 2048,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/rayquaza.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/rayquaza.png",
+        "size": {
+          "w": 512,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/rayquaza.bin",
+          "tile_count": 2048,
+          "width_tiles": 64,
+          "height_tiles": 32,
+          "expected_entry_count": 2048,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            14,
+            15
+          ],
+          "hflip_count": 286,
+          "vflip_count": 193
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/rayquaza.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/rayquaza.png",
+              "mode": "P",
+              "size": {
+                "w": 128,
+                "h": 472
+              },
+              "tile_count": 944
+            }
+          ],
+          "combined_tile_count": 944
+        },
+        "palette": {
+          "source_palette_refs": [
+            "graphics/battle_transitions/rayquaza.pal"
+          ],
+          "palette_variant_refs": [
+            "graphics/battle_transitions/rayquaza.pal"
+          ],
+          "color_count": 256,
+          "palette_bank_color_offsets": {
+            "15": 80
+          },
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": true
+        },
+        "source_operation": "Rayquaza_SetGfx copies a 64x32 BG0 tilemap; Rayquaza_Init loads palette frame 5 into BG palette bank 15 before the palette flash.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/regice.bin": {
       "id": "graphics/battle_transitions/regice.bin",
@@ -9531,7 +10155,71 @@
       ],
       "byte_size": 2048,
       "u16_count": 1024,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/regice.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/regice.png",
+        "size": {
+          "w": 256,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/regice.bin",
+          "tile_count": 1024,
+          "width_tiles": 32,
+          "height_tiles": 32,
+          "expected_entry_count": 1024,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0,
+            15
+          ],
+          "hflip_count": 0,
+          "vflip_count": 0
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/regis.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/regis.png",
+              "mode": "P",
+              "size": {
+                "w": 128,
+                "h": 32
+              },
+              "tile_count": 64
+            }
+          ],
+          "combined_tile_count": 64
+        },
+        "palette": {
+          "source_palette_refs": [
+            "graphics/battle_transitions/regice.pal"
+          ],
+          "palette_variant_refs": [
+            "graphics/battle_transitions/regice.pal"
+          ],
+          "color_count": 16,
+          "palette_bank_color_offsets": {
+            "15": 0
+          },
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "Regice_SetGfx copies a full BG0 tilemap after loading the Regice palette into BG palette bank 15.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/regirock.bin": {
       "id": "graphics/battle_transitions/regirock.bin",
@@ -9545,7 +10233,71 @@
       ],
       "byte_size": 2048,
       "u16_count": 1024,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/regirock.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/regirock.png",
+        "size": {
+          "w": 256,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/regirock.bin",
+          "tile_count": 1024,
+          "width_tiles": 32,
+          "height_tiles": 32,
+          "expected_entry_count": 1024,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0,
+            15
+          ],
+          "hflip_count": 0,
+          "vflip_count": 0
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/regis.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/regis.png",
+              "mode": "P",
+              "size": {
+                "w": 128,
+                "h": 32
+              },
+              "tile_count": 64
+            }
+          ],
+          "combined_tile_count": 64
+        },
+        "palette": {
+          "source_palette_refs": [
+            "graphics/battle_transitions/regirock.pal"
+          ],
+          "palette_variant_refs": [
+            "graphics/battle_transitions/regirock.pal"
+          ],
+          "color_count": 16,
+          "palette_bank_color_offsets": {
+            "15": 0
+          },
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "Regirock_SetGfx copies a full BG0 tilemap after loading the Regirock palette into BG palette bank 15.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/registeel.bin": {
       "id": "graphics/battle_transitions/registeel.bin",
@@ -9559,7 +10311,71 @@
       ],
       "byte_size": 2048,
       "u16_count": 1024,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/registeel.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/registeel.png",
+        "size": {
+          "w": 256,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/registeel.bin",
+          "tile_count": 1024,
+          "width_tiles": 32,
+          "height_tiles": 32,
+          "expected_entry_count": 1024,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0,
+            15
+          ],
+          "hflip_count": 0,
+          "vflip_count": 0
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/regis.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/regis.png",
+              "mode": "P",
+              "size": {
+                "w": 128,
+                "h": 32
+              },
+              "tile_count": 64
+            }
+          ],
+          "combined_tile_count": 64
+        },
+        "palette": {
+          "source_palette_refs": [
+            "graphics/battle_transitions/registeel.pal"
+          ],
+          "palette_variant_refs": [
+            "graphics/battle_transitions/registeel.pal"
+          ],
+          "color_count": 16,
+          "palette_bank_color_offsets": {
+            "15": 0
+          },
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "Registeel_SetGfx copies a full BG0 tilemap after loading the Registeel palette into BG palette bank 15.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/team_aqua.bin": {
       "id": "graphics/battle_transitions/team_aqua.bin",
@@ -9573,7 +10389,71 @@
       ],
       "byte_size": 2048,
       "u16_count": 1024,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/team_aqua.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/team_aqua.png",
+        "size": {
+          "w": 256,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/team_aqua.bin",
+          "tile_count": 1024,
+          "width_tiles": 32,
+          "height_tiles": 32,
+          "expected_entry_count": 1024,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0,
+            15
+          ],
+          "hflip_count": 200,
+          "vflip_count": 0
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/team_aqua.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/team_aqua.png",
+              "mode": "P",
+              "size": {
+                "w": 64,
+                "h": 96
+              },
+              "tile_count": 96
+            }
+          ],
+          "combined_tile_count": 96
+        },
+        "palette": {
+          "source_palette_refs": [
+            "graphics/battle_transitions/evil_team.pal"
+          ],
+          "palette_variant_refs": [
+            "graphics/battle_transitions/evil_team.pal"
+          ],
+          "color_count": 16,
+          "palette_bank_color_offsets": {
+            "15": 0
+          },
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "Aqua_SetGfx decompresses a full BG0 tilemap after loading the evil-team palette into BG palette bank 15.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/team_magma.bin": {
       "id": "graphics/battle_transitions/team_magma.bin",
@@ -9587,7 +10467,71 @@
       ],
       "byte_size": 2048,
       "u16_count": 1024,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite",
+        "status": "first_pass",
+        "image": "res://assets/generated/battle_transitions/composites/team_magma.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/team_magma.png",
+        "size": {
+          "w": 256,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/team_magma.bin",
+          "tile_count": 1024,
+          "width_tiles": 32,
+          "height_tiles": 32,
+          "expected_entry_count": 1024,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0,
+            15
+          ],
+          "hflip_count": 255,
+          "vflip_count": 0
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/team_magma.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/team_magma.png",
+              "mode": "P",
+              "size": {
+                "w": 64,
+                "h": 128
+              },
+              "tile_count": 128
+            }
+          ],
+          "combined_tile_count": 128
+        },
+        "palette": {
+          "source_palette_refs": [
+            "graphics/battle_transitions/evil_team.pal"
+          ],
+          "palette_variant_refs": [
+            "graphics/battle_transitions/evil_team.pal"
+          ],
+          "color_count": 16,
+          "palette_bank_color_offsets": {
+            "15": 0
+          },
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "Magma_SetGfx decompresses a full BG0 tilemap after loading the evil-team palette into BG palette bank 15.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/battle_transitions/vs_frame.bin": {
       "id": "graphics/battle_transitions/vs_frame.bin",
@@ -9597,7 +10541,65 @@
       "source_symbols": [],
       "byte_size": 2048,
       "u16_count": 1024,
-      "asset_status": "metadata_only"
+      "asset_status": "first_pass",
+      "tilemap_composite": {
+        "kind": "static_tilemap_composite_unreferenced",
+        "status": "first_pass_unreferenced",
+        "image": "res://assets/generated/battle_transitions/composites/vs_frame.png",
+        "image_project_path": "assets/generated/battle_transitions/composites/vs_frame.png",
+        "size": {
+          "w": 256,
+          "h": 256
+        },
+        "visible_viewport": {
+          "w": 240,
+          "h": 160
+        },
+        "tilemap": {
+          "source_asset_path": "graphics/battle_transitions/vs_frame.bin",
+          "tile_count": 1024,
+          "width_tiles": 32,
+          "height_tiles": 32,
+          "expected_entry_count": 1024,
+          "tile_size": 8,
+          "missing_tile_count": 0,
+          "entry_count_mismatch": false,
+          "used_palette_banks": [
+            0,
+            6
+          ],
+          "hflip_count": 0,
+          "vflip_count": 0
+        },
+        "tiles": {
+          "source_texture_refs": [
+            "graphics/battle_transitions/vs_frame.png"
+          ],
+          "source_texture_sheets": [
+            {
+              "source_asset_path": "graphics/battle_transitions/vs_frame.png",
+              "mode": "P",
+              "size": {
+                "w": 24,
+                "h": 48
+              },
+              "tile_count": 18
+            }
+          ],
+          "combined_tile_count": 18
+        },
+        "palette": {
+          "source_palette_refs": [],
+          "palette_variant_refs": [],
+          "color_count": 16,
+          "palette_bank_color_offsets": {},
+          "source_forces_palette_bank": null,
+          "runtime_palette_animation": false
+        },
+        "source_operation": "Unreferenced transition asset in the current source task table; decoded for asset completeness only.",
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": 0
+      }
     },
     "graphics/field_effects/palettes/pokeball.pal": {
       "id": "graphics/field_effects/palettes/pokeball.pal",
@@ -10091,6 +11093,11 @@
     "source_palette_asset_count": 19,
     "source_binary_asset_count": 14,
     "texture_count": 23,
+    "tilemap_composite_count": 14,
+    "static_tilemap_composite_count": 13,
+    "dynamic_tilemap_block_preview_count": 1,
+    "transition_with_tilemap_composite_count": 23,
+    "tilemap_composite_missing_tile_count": 0,
     "transition_with_texture_count": 25,
     "transition_without_static_texture_count": 13,
     "wild_transition_table_count": 4,

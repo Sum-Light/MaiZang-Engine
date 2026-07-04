@@ -3,7 +3,9 @@
 
 import argparse
 import json
+import math
 import re
+import struct
 import sys
 from pathlib import Path
 
@@ -20,6 +22,8 @@ BATTLE_TRANSITION_ASSET_DIR = Path("graphics/battle_transitions")
 FIELD_POKEBALL_PALETTE = Path("graphics/field_effects/palettes/pokeball.pal")
 ASSET_CATEGORY = "transitions"
 ASSET_OUTPUT_DIR = "battle_transitions"
+TILE_SIZE = 8
+VISIBLE_VIEWPORT = {"w": 240, "h": 160}
 
 BINARY_ASSET_EXTENSIONS = [
     (".4bpp.smol", ".png"),
@@ -146,6 +150,151 @@ FRONTIER_CIRCLE_ASSETS = [
     "graphics/battle_transitions/frontier_logo_center.bin",
     "graphics/battle_transitions/frontier_logo_circles.png",
 ]
+
+TILEMAP_COMPOSITE_HINTS = {
+    "graphics/battle_transitions/big_pokeball_map.bin": {
+        "texture_refs": ["graphics/battle_transitions/big_pokeball.png"],
+        "width_tiles": 30,
+        "height_tiles": 20,
+        "source_operation": "SET_TILE loop ORs BG palette bank 15 over a 30x20 tilemap.",
+        "source_forces_palette_bank": 15,
+        "status": "first_pass",
+    },
+    "graphics/battle_transitions/elite_four_bg_map.bin": {
+        "texture_refs": ["graphics/battle_transitions/elite_four_bg.png"],
+        "palette_refs": ["graphics/battle_transitions/purple_bg.pal"],
+        "palette_variant_refs": [
+            "graphics/battle_transitions/purple_bg.pal",
+            "graphics/battle_transitions/green_bg.pal",
+            "graphics/battle_transitions/pink_bg.pal",
+            "graphics/battle_transitions/blue_bg.pal",
+            "graphics/battle_transitions/yellow_bg.pal",
+            "graphics/battle_transitions/brendan_bg.pal",
+            "graphics/battle_transitions/may_bg.pal",
+        ],
+        "width_tiles": 32,
+        "height_tiles": 20,
+        "source_operation": "Mugshot_SetGfx copies a 32x20 tilemap through SET_TILE; the generated composite uses purple as the default opponent mugshot reference palette.",
+        "source_forces_palette_bank": 15,
+        "status": "first_pass",
+    },
+    "graphics/battle_transitions/team_aqua.bin": {
+        "texture_refs": ["graphics/battle_transitions/team_aqua.png"],
+        "palette_refs": ["graphics/battle_transitions/evil_team.pal"],
+        "width_tiles": 32,
+        "height_tiles": 32,
+        "source_operation": "Aqua_SetGfx decompresses a full BG0 tilemap after loading the evil-team palette into BG palette bank 15.",
+        "palette_bank_color_offsets": {"15": 0},
+        "status": "first_pass",
+    },
+    "graphics/battle_transitions/team_magma.bin": {
+        "texture_refs": ["graphics/battle_transitions/team_magma.png"],
+        "palette_refs": ["graphics/battle_transitions/evil_team.pal"],
+        "width_tiles": 32,
+        "height_tiles": 32,
+        "source_operation": "Magma_SetGfx decompresses a full BG0 tilemap after loading the evil-team palette into BG palette bank 15.",
+        "palette_bank_color_offsets": {"15": 0},
+        "status": "first_pass",
+    },
+    "graphics/battle_transitions/regice.bin": {
+        "texture_refs": ["graphics/battle_transitions/regis.png"],
+        "palette_refs": ["graphics/battle_transitions/regice.pal"],
+        "width_tiles": 32,
+        "height_tiles": 32,
+        "source_operation": "Regice_SetGfx copies a full BG0 tilemap after loading the Regice palette into BG palette bank 15.",
+        "palette_bank_color_offsets": {"15": 0},
+        "status": "first_pass",
+    },
+    "graphics/battle_transitions/registeel.bin": {
+        "texture_refs": ["graphics/battle_transitions/regis.png"],
+        "palette_refs": ["graphics/battle_transitions/registeel.pal"],
+        "width_tiles": 32,
+        "height_tiles": 32,
+        "source_operation": "Registeel_SetGfx copies a full BG0 tilemap after loading the Registeel palette into BG palette bank 15.",
+        "palette_bank_color_offsets": {"15": 0},
+        "status": "first_pass",
+    },
+    "graphics/battle_transitions/regirock.bin": {
+        "texture_refs": ["graphics/battle_transitions/regis.png"],
+        "palette_refs": ["graphics/battle_transitions/regirock.pal"],
+        "width_tiles": 32,
+        "height_tiles": 32,
+        "source_operation": "Regirock_SetGfx copies a full BG0 tilemap after loading the Regirock palette into BG palette bank 15.",
+        "palette_bank_color_offsets": {"15": 0},
+        "status": "first_pass",
+    },
+    "graphics/battle_transitions/kyogre.bin": {
+        "texture_refs": ["graphics/battle_transitions/kyogre.png"],
+        "palette_refs": ["graphics/battle_transitions/kyogre_pt1.pal"],
+        "palette_variant_refs": [
+            "graphics/battle_transitions/kyogre_pt1.pal",
+            "graphics/battle_transitions/kyogre_pt2.pal",
+        ],
+        "width_tiles": 32,
+        "height_tiles": 32,
+        "source_operation": "Kyogre_Init decompresses a full BG0 tilemap; palette flashing later streams 16-color frames into BG palette bank 15.",
+        "palette_bank_color_offsets": {"15": 0},
+        "status": "first_pass",
+        "runtime_palette_animation": True,
+    },
+    "graphics/battle_transitions/groudon.bin": {
+        "texture_refs": ["graphics/battle_transitions/groudon.png"],
+        "palette_refs": ["graphics/battle_transitions/groudon_pt1.pal"],
+        "palette_variant_refs": [
+            "graphics/battle_transitions/groudon_pt1.pal",
+            "graphics/battle_transitions/groudon_pt2.pal",
+        ],
+        "width_tiles": 32,
+        "height_tiles": 32,
+        "source_operation": "Groudon_Init decompresses a full BG0 tilemap; palette flashing later streams 16-color frames into BG palette bank 15.",
+        "palette_bank_color_offsets": {"15": 0},
+        "status": "first_pass",
+        "runtime_palette_animation": True,
+    },
+    "graphics/battle_transitions/rayquaza.bin": {
+        "texture_refs": ["graphics/battle_transitions/rayquaza.png"],
+        "palette_refs": ["graphics/battle_transitions/rayquaza.pal"],
+        "width_tiles": 64,
+        "height_tiles": 32,
+        "source_operation": "Rayquaza_SetGfx copies a 64x32 BG0 tilemap; Rayquaza_Init loads palette frame 5 into BG palette bank 15 before the palette flash.",
+        "palette_bank_color_offsets": {"15": 80},
+        "status": "first_pass",
+        "runtime_palette_animation": True,
+    },
+    "graphics/battle_transitions/frontier_logo.bin": {
+        "texture_refs": ["graphics/battle_transitions/frontier_logo.png"],
+        "width_tiles": 32,
+        "height_tiles": 32,
+        "source_operation": "FrontierLogo* decompresses a full BG0 tilemap after loading the Frontier logo palette into BG palette bank 15.",
+        "palette_bank_color_offsets": {"15": 0},
+        "status": "first_pass",
+    },
+    "graphics/battle_transitions/frontier_logo_center.bin": {
+        "texture_refs": ["graphics/battle_transitions/frontier_logo_center.png"],
+        "width_tiles": 32,
+        "height_tiles": 32,
+        "source_operation": "LoadLogoGfx decompresses the logo center tilemap before spawning animated circle sprites.",
+        "palette_bank_color_offsets": {"15": 0},
+        "status": "first_pass",
+    },
+    "graphics/battle_transitions/frontier_squares.bin": {
+        "texture_refs": [
+            "graphics/battle_transitions/frontier_squares_blanktiles.png",
+            "graphics/battle_transitions/frontier_squares_1.png",
+        ],
+        "width_tiles": 4,
+        "height_tiles": 4,
+        "source_operation": "Frontier Squares copies this 4x4 block repeatedly into BG0; the generated image is a block preview, not the final full-screen animation.",
+        "status": "dynamic_block_preview",
+    },
+    "graphics/battle_transitions/vs_frame.bin": {
+        "texture_refs": ["graphics/battle_transitions/vs_frame.png"],
+        "width_tiles": 32,
+        "height_tiles": 32,
+        "source_operation": "Unreferenced transition asset in the current source task table; decoded for asset completeness only.",
+        "status": "first_pass_unreferenced",
+    },
+}
 
 
 def _strip_comment(line):
@@ -280,6 +429,252 @@ def _read_png_palette(image):
     return colors
 
 
+def _palette_dicts_to_rgba(colors):
+    result = []
+    for color in colors:
+        result.append((
+            int(color.get("r", 0)),
+            int(color.get("g", 0)),
+            int(color.get("b", 0)),
+            255,
+        ))
+    return result
+
+
+def _palette_from_asset_ref(source_root, asset_ref):
+    if not asset_ref:
+        return []
+    path = source_root / asset_ref
+    if not path.exists():
+        return []
+    return _palette_dicts_to_rgba(_read_jasc_palette(path))
+
+
+def _png_palette_from_asset_ref(source_root, asset_ref):
+    from PIL import Image
+
+    path = source_root / asset_ref
+    if not path.exists():
+        return []
+    image = Image.open(path)
+    try:
+        return _palette_dicts_to_rgba(_read_png_palette(image))
+    finally:
+        image.close()
+
+
+def _read_transition_tilemap(path):
+    data = path.read_bytes()
+    entry_count = len(data) // 2
+    if entry_count <= 0:
+        return []
+    return list(struct.unpack("<%dH" % entry_count, data[: entry_count * 2]))
+
+
+def _tilemap_dimensions_for_hint(entry_count, hint):
+    width = int(hint.get("width_tiles", 0) or 0)
+    height = int(hint.get("height_tiles", 0) or 0)
+    if width > 0 and height > 0:
+        return width, height
+    if entry_count == 2048:
+        return 64, 32
+    if entry_count == 1024:
+        return 32, 32
+    if entry_count == 640:
+        return 32, 20
+    if entry_count == 600:
+        return 30, 20
+    side = int(math.sqrt(entry_count))
+    if side * side == entry_count:
+        return side, side
+    if entry_count % 32 == 0:
+        return 32, entry_count // 32
+    return entry_count, 1
+
+
+def _indexed_pixel_to_nibble(value):
+    if isinstance(value, tuple):
+        return int(value[0]) & 0x0F
+    return int(value) & 0x0F
+
+
+def _collect_indexed_tiles(source_root, texture_refs):
+    from PIL import Image
+
+    tiles = []
+    sources = []
+    for texture_ref in texture_refs:
+        source_path = source_root / texture_ref
+        if not source_path.exists():
+            continue
+        image = Image.open(source_path)
+        try:
+            if image.width % TILE_SIZE != 0 or image.height % TILE_SIZE != 0:
+                continue
+            pixels = image.load()
+            tiles_wide = image.width // TILE_SIZE
+            tiles_high = image.height // TILE_SIZE
+            for tile_y in range(tiles_high):
+                for tile_x in range(tiles_wide):
+                    tile = []
+                    origin_x = tile_x * TILE_SIZE
+                    origin_y = tile_y * TILE_SIZE
+                    for y in range(TILE_SIZE):
+                        for x in range(TILE_SIZE):
+                            tile.append(pixels[origin_x + x, origin_y + y])
+                    tiles.append(tile)
+            sources.append({
+                "source_asset_path": texture_ref,
+                "mode": image.mode,
+                "size": {"w": int(image.width), "h": int(image.height)},
+                "tile_count": int(tiles_wide * tiles_high),
+            })
+        finally:
+            image.close()
+    return tiles, sources
+
+
+def _color_for_tile_pixel(tile_pixel, palette_bank, palette_colors, hint):
+    if isinstance(tile_pixel, tuple) and len(tile_pixel) >= 3:
+        alpha = int(tile_pixel[3]) if len(tile_pixel) >= 4 else 255
+        return (int(tile_pixel[0]), int(tile_pixel[1]), int(tile_pixel[2]), alpha)
+    local_index = _indexed_pixel_to_nibble(tile_pixel)
+    palette_offsets = hint.get("palette_bank_color_offsets", {})
+    bank_key = str(int(palette_bank))
+    if bank_key in palette_offsets:
+        color_index = int(palette_offsets[bank_key]) + local_index
+    elif int(hint.get("source_forces_palette_bank", -1)) >= 0:
+        color_index = local_index
+    elif len(palette_colors) <= 16:
+        color_index = local_index
+    else:
+        color_index = int(palette_bank) * 16 + local_index
+        if color_index >= len(palette_colors):
+            color_index = local_index
+    if color_index >= len(palette_colors):
+        return (0, 0, 0, 0)
+    return palette_colors[color_index]
+
+
+def _compose_tilemap_asset(source_root, output_asset_root, asset_id, hint):
+    from PIL import Image
+
+    source_tilemap = source_root / asset_id
+    if not source_tilemap.exists():
+        return {}, [asset_id]
+
+    texture_refs = list(hint.get("texture_refs", []))
+    indexed_tiles, tile_sources = _collect_indexed_tiles(source_root, texture_refs)
+    if not indexed_tiles:
+        return {}, texture_refs
+
+    palette_refs = list(hint.get("palette_refs", []))
+    palette_colors = _palette_from_asset_ref(source_root, palette_refs[0]) if palette_refs else []
+    if not palette_colors and texture_refs:
+        palette_colors = _png_palette_from_asset_ref(source_root, texture_refs[0])
+    if not palette_colors:
+        return {}, ["palette:%s" % asset_id]
+
+    entries = _read_transition_tilemap(source_tilemap)
+    width_tiles, height_tiles = _tilemap_dimensions_for_hint(len(entries), hint)
+    expected_entries = width_tiles * height_tiles
+    output_image = Image.new("RGBA", (width_tiles * TILE_SIZE, height_tiles * TILE_SIZE), (0, 0, 0, 0))
+    output_pixels = output_image.load()
+    missing_tiles = 0
+    missing_colors = 0
+    used_palette_banks = set()
+    hflip_count = 0
+    vflip_count = 0
+
+    try:
+        for entry_index in range(min(len(entries), expected_entries)):
+            entry = int(entries[entry_index])
+            tile_id = entry & 0x03FF
+            hflip = bool(entry & 0x0400)
+            vflip = bool(entry & 0x0800)
+            palette_bank = (entry >> 12) & 0x0F
+            used_palette_banks.add(int(palette_bank))
+            hflip_count += 1 if hflip else 0
+            vflip_count += 1 if vflip else 0
+            if tile_id >= len(indexed_tiles):
+                missing_tiles += 1
+                continue
+            source_tile = indexed_tiles[tile_id]
+            dest_tile_x = (entry_index % width_tiles) * TILE_SIZE
+            dest_tile_y = (entry_index // width_tiles) * TILE_SIZE
+            for y in range(TILE_SIZE):
+                source_y = TILE_SIZE - 1 - y if vflip else y
+                for x in range(TILE_SIZE):
+                    source_x = TILE_SIZE - 1 - x if hflip else x
+                    tile_pixel = source_tile[source_y * TILE_SIZE + source_x]
+                    color = _color_for_tile_pixel(tile_pixel, palette_bank, palette_colors, hint)
+                    if color[3] == 0:
+                        missing_colors += 1
+                    output_pixels[dest_tile_x + x, dest_tile_y + y] = color
+
+        output_dir = output_asset_root / ASSET_OUTPUT_DIR / "composites"
+        output_dir.mkdir(parents=True, exist_ok=True)
+        output_path = output_dir / ("%s.png" % Path(asset_id).stem)
+        output_image.save(output_path)
+    finally:
+        output_image.close()
+
+    status = str(hint.get("status", "first_pass"))
+    composite_kind = "dynamic_tilemap_block_preview" if status == "dynamic_block_preview" else "static_tilemap_composite"
+    if status == "first_pass_unreferenced":
+        composite_kind = "static_tilemap_composite_unreferenced"
+    return {
+        "kind": composite_kind,
+        "status": status,
+        "image": "res://%s" % to_project_path(output_path),
+        "image_project_path": to_project_path(output_path),
+        "size": {"w": width_tiles * TILE_SIZE, "h": height_tiles * TILE_SIZE},
+        "visible_viewport": VISIBLE_VIEWPORT if width_tiles * TILE_SIZE >= 240 and height_tiles * TILE_SIZE >= 160 else {},
+        "tilemap": {
+            "source_asset_path": asset_id,
+            "tile_count": len(entries),
+            "width_tiles": width_tiles,
+            "height_tiles": height_tiles,
+            "expected_entry_count": expected_entries,
+            "tile_size": TILE_SIZE,
+            "missing_tile_count": missing_tiles,
+            "entry_count_mismatch": len(entries) != expected_entries,
+            "used_palette_banks": sorted(used_palette_banks),
+            "hflip_count": hflip_count,
+            "vflip_count": vflip_count,
+        },
+        "tiles": {
+            "source_texture_refs": texture_refs,
+            "source_texture_sheets": tile_sources,
+            "combined_tile_count": len(indexed_tiles),
+        },
+        "palette": {
+            "source_palette_refs": palette_refs,
+            "palette_variant_refs": list(hint.get("palette_variant_refs", palette_refs)),
+            "color_count": len(palette_colors),
+            "palette_bank_color_offsets": hint.get("palette_bank_color_offsets", {}),
+            "source_forces_palette_bank": hint.get("source_forces_palette_bank", None),
+            "runtime_palette_animation": bool(hint.get("runtime_palette_animation", False)),
+        },
+        "source_operation": str(hint.get("source_operation", "")),
+        "conversion": "palette_baked_png_from_transition_tilemap",
+        "missing_color_sample_count": missing_colors,
+    }, []
+
+
+def _add_tilemap_composites(source_root, output_asset_root, asset_records):
+    for asset_id, hint in TILEMAP_COMPOSITE_HINTS.items():
+        asset = asset_records.get(asset_id)
+        if not asset:
+            continue
+        composite, warnings = _compose_tilemap_asset(source_root, output_asset_root, asset_id, hint)
+        if composite:
+            asset["tilemap_composite"] = composite
+            asset["asset_status"] = "first_pass" if composite.get("status") != "dynamic_block_preview" else "dynamic_block_preview"
+        if warnings:
+            asset.setdefault("warnings", []).extend(warnings)
+
+
 def _convert_png_asset(source_path, output_path):
     from PIL import Image
 
@@ -375,6 +770,7 @@ def _build_asset_inventory(source_root, output_asset_root, definitions):
         asset_records[relative_path] = record
         asset_order.append(relative_path)
 
+    _add_tilemap_composites(source_root, output_asset_root, asset_records)
     return asset_records, asset_order
 
 
@@ -537,6 +933,7 @@ def _transition_record(symbol, numeric_id, constants, task_mapping, function_arr
     texture_refs = []
     palette_refs = []
     binary_refs = []
+    tilemap_composite_refs = []
     missing_assets = []
     for path in asset_paths:
         asset = assets.get(path, {})
@@ -550,9 +947,24 @@ def _transition_record(symbol, numeric_id, constants, task_mapping, function_arr
             palette_refs.append(path)
         else:
             binary_refs.append(path)
+            if asset.get("tilemap_composite"):
+                tilemap_composite_refs.append(path)
 
     has_static_assets = bool(asset_paths)
     asset_status = "first_pass" if texture_refs else ("metadata_only" if not has_static_assets and not missing_assets else "partial")
+    if binary_refs:
+        if len(tilemap_composite_refs) == len(binary_refs):
+            tilemap_statuses = [
+                assets.get(path, {}).get("tilemap_composite", {}).get("status", "")
+                for path in tilemap_composite_refs
+            ]
+            tilemap_status = "dynamic_block_preview" if "dynamic_block_preview" in tilemap_statuses else "first_pass"
+        elif tilemap_composite_refs:
+            tilemap_status = "partial"
+        else:
+            tilemap_status = "metadata_only"
+    else:
+        tilemap_status = "not_required"
     unsupported = ["battle_transition_runtime_pending", "battle_audio_playback_pending"]
     if missing_assets:
         unsupported.append("battle_transition_asset_pending")
@@ -566,10 +978,12 @@ def _transition_record(symbol, numeric_id, constants, task_mapping, function_arr
         "texture_refs": texture_refs,
         "palette_refs": palette_refs,
         "binary_refs": binary_refs,
+        "tilemap_composite_refs": tilemap_composite_refs,
         "missing_asset_refs": missing_assets,
         "coverage": {
             "asset_status": asset_status,
             "texture_status": "first_pass" if texture_refs else ("not_required" if not has_static_assets else "unsupported"),
+            "tilemap_status": tilemap_status,
             "task_metadata_status": "metadata_only" if main_task else "unsupported",
             "selection_status": "metadata_only",
             "runtime_status": "unsupported",
@@ -619,6 +1033,26 @@ def export_battle_transitions(source_root, output_data_root, output_asset_root):
         "source_palette_asset_count": sum(1 for record in assets.values() if record.get("kind") == "palette"),
         "source_binary_asset_count": sum(1 for record in assets.values() if record.get("kind") == "tilemap_or_binary"),
         "texture_count": sum(1 for record in assets.values() if record.get("kind") == "texture" and record.get("asset_status") == "first_pass"),
+        "tilemap_composite_count": sum(1 for record in assets.values() if record.get("tilemap_composite")),
+        "static_tilemap_composite_count": sum(
+            1 for record in assets.values()
+            if record.get("tilemap_composite", {}).get("kind") in [
+                "static_tilemap_composite",
+                "static_tilemap_composite_unreferenced",
+            ]
+        ),
+        "dynamic_tilemap_block_preview_count": sum(
+            1 for record in assets.values()
+            if record.get("tilemap_composite", {}).get("kind") == "dynamic_tilemap_block_preview"
+        ),
+        "transition_with_tilemap_composite_count": sum(
+            1 for record in transitions.values()
+            if record.get("tilemap_composite_refs")
+        ),
+        "tilemap_composite_missing_tile_count": sum(
+            int(record.get("tilemap_composite", {}).get("tilemap", {}).get("missing_tile_count", 0) or 0)
+            for record in assets.values()
+        ),
         "transition_with_texture_count": sum(1 for record in transitions.values() if record.get("texture_refs")),
         "transition_without_static_texture_count": sum(1 for record in transitions.values() if not record.get("texture_refs")),
         "wild_transition_table_count": len(selection_tables["wild"]),
@@ -640,10 +1074,10 @@ def export_battle_transitions(source_root, output_data_root, output_asset_root):
         ],
         "rendering_notes": {
             "gba_hardware_constraints": "decoded_at_import_time",
-            "godot_runtime_asset_model": "RGBA PNG textures plus source task/table metadata",
+            "godot_runtime_asset_model": "RGBA PNG textures, tilemap composite PNG previews, plus source task/table metadata",
             "runtime_status": "unsupported",
             "audio_status": "metadata_only",
-            "detail": "Palette fades, HBlank/VBlank effects, window masks, scanline offsets, affine transforms, and transition task playback remain future Godot-native presentation work.",
+            "detail": "Static source tilemaps are decoded into Godot-friendly composite PNGs where possible. Palette fades, HBlank/VBlank effects, window masks, scanline offsets, affine transforms, dynamic repeated tilemap placement, and transition task playback remain future Godot-native presentation work.",
         },
         "transition_order": transition_order,
         "transitions": transitions,
@@ -679,6 +1113,7 @@ def main(argv):
         "path": to_project_path(output_path),
         "transition_count": int(data["stats"]["transition_count"]),
         "texture_count": int(data["stats"]["texture_count"]),
+        "tilemap_composite_count": int(data["stats"]["tilemap_composite_count"]),
         "runtime_status": "pending_presentation",
         "audio_status": "metadata_only",
     }
