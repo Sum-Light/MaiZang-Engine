@@ -276,10 +276,12 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
 
 ## B7 - Pokemon, Trainer, And Battle Environment Assets
 
-- [ ] B7.1 Export Pokemon battle sprite metadata.
+- [x] B7.1 Export Pokemon battle sprite metadata.
   - Source: `src/data/graphics/pokemon.h`, `graphics/pokemon`, `src/pokemon_animation.c`, species data.
   - Output: `data/generated/pokemon/battle_sprites.json`, textures under `assets/generated/pokemon_battle/`.
   - Covers: every generated battle-eligible species/form, front pic, back pic, normal palette, shiny palette, gender/form variants, shadow/offset/scale, front animation, icon refs where battle UI needs them, and cry refs.
+  - Current first pass: `tools/importer/export_pokemon_battle_sprites.py` imports 1330 front/back sprite pairs and 1328 icons as Godot-friendly PNG textures, records 1329 normal/shiny palette metadata sets, 1328 front-animation metadata records, 1330 cry refs as `metadata_only`, and preserves 245 explicit unsupported Pokemon asset rows for macro/partial or missing source references.
+  - Boundary: no runtime GBA palette-bank/VRAM/OAM model is introduced; later palette swaps, affine transforms, and sprite animation timing should use Godot materials/animation while matching the source-visible rhythm. Audio remains metadata-only.
   - Validate: the coverage report lists every missing or unsupported species/form asset; Torchic, Mudkip, Treecko, Geodude, one gender variant, one form variant, one shiny palette, and one macro-partial species are fixture rows.
 
 - [ ] B7.2 Export trainer battle sprite metadata.

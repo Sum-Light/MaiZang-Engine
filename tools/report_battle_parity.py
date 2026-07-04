@@ -134,6 +134,12 @@ def load_json(path):
         return json.load(handle)
 
 
+def load_json_optional(path):
+    if not path.exists():
+        return {}
+    return load_json(path)
+
+
 def write_json(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="\n") as handle:
@@ -321,9 +327,13 @@ def build_trainer_party_rows(trainers_data):
     return rows
 
 
-def build_pokemon_rows(species_data):
+def build_pokemon_rows(species_data, battle_sprites_data=None):
     rows = []
     species = species_data.get("species", {})
+    battle_sprites_data = battle_sprites_data or {}
+    battle_sprites = battle_sprites_data.get("sprites", {})
+    if not isinstance(battle_sprites, dict):
+        battle_sprites = {}
     seen = set()
     for symbol in species_data.get("species_order", []):
         if symbol in seen:
@@ -331,6 +341,22 @@ def build_pokemon_rows(species_data):
         seen.add(symbol)
         record = species.get(symbol, {})
         refs = record.get("source_references", {}) if isinstance(record.get("source_references"), dict) else {}
+        sprite_record = battle_sprites.get(symbol, {})
+        if not isinstance(sprite_record, dict):
+            sprite_record = {}
+        front_sprite = sprite_record.get("front", {}) if isinstance(sprite_record.get("front"), dict) else {}
+        back_sprite = sprite_record.get("back", {}) if isinstance(sprite_record.get("back"), dict) else {}
+        icon_sprite = sprite_record.get("icon", {}) if isinstance(sprite_record.get("icon"), dict) else {}
+        palettes = sprite_record.get("palettes", {}) if isinstance(sprite_record.get("palettes"), dict) else {}
+        animation = sprite_record.get("animation", {}) if isinstance(sprite_record.get("animation"), dict) else {}
+        cry = sprite_record.get("cry", {}) if isinstance(sprite_record.get("cry"), dict) else {}
+        coverage = sprite_record.get("coverage", {}) if isinstance(sprite_record.get("coverage"), dict) else {}
+        unsupported = list(sprite_record.get("unsupported", [])) if isinstance(sprite_record.get("unsupported"), list) else []
+        if not sprite_record:
+            unsupported = unsupported_row("pokemon_asset_import_pending")
+        tests = ["tools/godot_smoke/data_registry_species_smoke.gd"]
+        if sprite_record:
+            tests.append("tools/godot_smoke/data_registry_pokemon_battle_sprites_smoke.gd")
         rows.append({
             "id": symbol,
             "species_symbol": symbol,
@@ -343,12 +369,22 @@ def build_pokemon_rows(species_data):
             "learnset_status": "metadata_only" if refs.get("level_up_learnset") else "unsupported",
             "front_sprite_symbol": str(refs.get("front_pic", "")),
             "back_sprite_symbol": str(refs.get("back_pic", "")),
+            "front_sprite_image": str(front_sprite.get("image_project_path", "")),
+            "back_sprite_image": str(back_sprite.get("image_project_path", "")),
+            "icon_sprite_symbol": str(refs.get("icon_sprite", "")),
+            "icon_sprite_image": str(icon_sprite.get("image_project_path", "")),
             "palette_symbol": str(refs.get("palette", "")),
             "shiny_palette_symbol": str(refs.get("shiny_palette", "")),
-            "asset_status": "metadata_only" if refs.get("front_pic") or refs.get("back_pic") else "unsupported",
+            "palette_status": str(coverage.get("palette_status", "metadata_only" if palettes else "unsupported")),
+            "animation_status": str(coverage.get("animation_status", "metadata_only" if animation else "unsupported")),
+            "audio_status": str(coverage.get("audio_status", "metadata_only" if cry.get("source_symbol") else "unsupported")),
+            "asset_status": str(coverage.get(
+                "asset_status",
+                "metadata_only" if refs.get("front_pic") or refs.get("back_pic") else "unsupported",
+            )),
             "runtime_status": "metadata_only" if record.get("evaluation_status") == "ok" else "unsupported",
-            "tests": ["tools/godot_smoke/data_registry_species_smoke.gd"],
-            "unsupported": unsupported_row("pokemon_asset_import_pending"),
+            "tests": tests,
+            "unsupported": unsupported,
             "source": source_ref(record),
         })
     return rows
@@ -445,13 +481,14 @@ def build_report(project_root, source_root):
     natures_data = load_json(pokemon_root / "natures.json")
     evolutions_data = load_json(pokemon_root / "evolutions.json")
     types_data = load_json(pokemon_root / "types.json")
+    battle_sprites_data = load_json_optional(pokemon_root / "battle_sprites.json")
 
     coverage_rows = {
         "moves": build_move_rows(moves_data),
         "abilities": build_ability_rows(abilities_data),
         "trainers": build_trainer_rows(trainers_data),
         "trainer_party_mons": build_trainer_party_rows(trainers_data),
-        "pokemon_data": build_pokemon_rows(species_data),
+        "pokemon_data": build_pokemon_rows(species_data, battle_sprites_data),
         "battle_items": build_item_rows(items_data),
         "wild_encounters": build_wild_encounter_rows(wild_data),
         "learnsets": build_simple_rows(learnsets_data, "learnset_order", "learnsets", "learnset_id", "learnset_symbol", ["tools/godot_smoke/data_registry_learnsets_smoke.gd"]),
@@ -471,6 +508,7 @@ def build_report(project_root, source_root):
         "natures": natures_data.get("stats", {}),
         "evolutions": evolutions_data.get("stats", {}),
         "types": types_data.get("stats", {}),
+        "pokemon_battle_sprites": battle_sprites_data.get("stats", {}),
     })
     return {
         "schema_version": 1,

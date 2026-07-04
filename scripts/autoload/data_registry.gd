@@ -16,6 +16,7 @@ const DEFAULT_OBJECT_EVENT_SPRITE_CATEGORY := "object_events"
 const DEFAULT_BATTLE_STRING_CATEGORY := "battle_strings"
 const DEFAULT_BATTLE_SCRIPT_CATEGORY := "scripts"
 const DEFAULT_BATTLE_MOVE_EFFECT_CATEGORY := "move_effects"
+const DEFAULT_POKEMON_BATTLE_SPRITE_CATEGORY := "battle_sprites"
 
 var import_report: Dictionary = {}
 var _manifest_data: Dictionary = {}
@@ -40,6 +41,8 @@ var _map_overlay_data_by_category: Dictionary = {}
 var _object_event_sprite_data_by_category: Dictionary = {}
 var _species_records_by_symbol: Dictionary = {}
 var _species_records_by_id: Dictionary = {}
+var _pokemon_battle_sprite_records_by_symbol: Dictionary = {}
+var _pokemon_battle_sprite_records_by_id: Dictionary = {}
 var _move_records_by_symbol: Dictionary = {}
 var _move_records_by_id: Dictionary = {}
 var _type_records_by_symbol: Dictionary = {}
@@ -573,6 +576,10 @@ func get_species_data() -> Dictionary:
 	return get_pokemon_data("species")
 
 
+func get_pokemon_battle_sprites_data() -> Dictionary:
+	return get_pokemon_data(DEFAULT_POKEMON_BATTLE_SPRITE_CATEGORY)
+
+
 func get_species_record(species_id_or_symbol) -> Dictionary:
 	if typeof(species_id_or_symbol) == TYPE_INT:
 		return get_species_record_by_id(int(species_id_or_symbol))
@@ -595,6 +602,31 @@ func get_species_record_by_symbol(species_symbol: String) -> Dictionary:
 func get_species_record_by_id(species_id: int) -> Dictionary:
 	_ensure_species_indexes()
 	var record = _species_records_by_id.get(species_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_pokemon_battle_sprite_record(species_id_or_symbol) -> Dictionary:
+	if typeof(species_id_or_symbol) == TYPE_INT:
+		return get_pokemon_battle_sprite_record_by_id(int(species_id_or_symbol))
+	if typeof(species_id_or_symbol) == TYPE_FLOAT:
+		return get_pokemon_battle_sprite_record_by_id(int(species_id_or_symbol))
+
+	var key := String(species_id_or_symbol)
+	if key.is_valid_int():
+		return get_pokemon_battle_sprite_record_by_id(int(key))
+	return get_pokemon_battle_sprite_record_by_symbol(key)
+
+
+func get_pokemon_battle_sprite_record_by_symbol(species_symbol: String) -> Dictionary:
+	_ensure_pokemon_battle_sprite_indexes()
+	var normalized := _normalize_species_symbol(species_symbol)
+	var record = _pokemon_battle_sprite_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_pokemon_battle_sprite_record_by_id(species_id: int) -> Dictionary:
+	_ensure_pokemon_battle_sprite_indexes()
+	var record = _pokemon_battle_sprite_records_by_id.get(species_id, {})
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
@@ -966,6 +998,8 @@ func _index_manifest() -> void:
 	_object_event_sprite_data_by_category = {}
 	_species_records_by_symbol = {}
 	_species_records_by_id = {}
+	_pokemon_battle_sprite_records_by_symbol = {}
+	_pokemon_battle_sprite_records_by_id = {}
 	_move_records_by_symbol = {}
 	_move_records_by_id = {}
 	_type_records_by_symbol = {}
@@ -1245,6 +1279,27 @@ func _ensure_species_indexes() -> void:
 			_species_records_by_symbol[species_symbol] = record
 		if record.has("id") and record.get("id") != null:
 			_species_records_by_id[int(record.get("id"))] = record
+
+
+func _ensure_pokemon_battle_sprite_indexes() -> void:
+	if not _pokemon_battle_sprite_records_by_symbol.is_empty() or not _pokemon_battle_sprite_records_by_id.is_empty():
+		return
+
+	var battle_sprite_data := get_pokemon_battle_sprites_data()
+	var sprite_records = battle_sprite_data.get("sprites", {})
+	if typeof(sprite_records) != TYPE_DICTIONARY:
+		return
+
+	for symbol in sprite_records.keys():
+		var record = sprite_records[symbol]
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var species_symbol := String(record.get("species_symbol", symbol))
+		species_symbol = _normalize_species_symbol(species_symbol)
+		if not species_symbol.is_empty():
+			_pokemon_battle_sprite_records_by_symbol[species_symbol] = record
+		if record.has("numeric_id") and record.get("numeric_id") != null:
+			_pokemon_battle_sprite_records_by_id[int(record.get("numeric_id"))] = record
 
 
 func _ensure_move_indexes() -> void:
