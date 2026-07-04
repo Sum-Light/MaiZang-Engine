@@ -18,6 +18,9 @@ MAP_OFFSET = 7
 GENERATED_BY = "tools/importer/export_map.py"
 BATCH_REPORT_RELATIVE_PATH = Path("overworld/map_batch_report.json")
 LAYOUT_OUTPUT_DIRECTORY = Path("layouts")
+SCRIPT_REFERENCE_EVENT_KINDS = ("object_events", "coord_events", "bg_events")
+DYNAMIC_WARP_DESTINATION_MAPS = {"MAP_DYNAMIC"}
+DYNAMIC_WARP_DESTINATION_IDS = {"WARP_ID_DYNAMIC", "WARP_ID_SECRET_BASE"}
 CONNECTION_DIRECTIONS = {
     "down": {"constant": "CONNECTION_SOUTH", "value": 2},
     "up": {"constant": "CONNECTION_NORTH", "value": 3},
@@ -554,6 +557,493 @@ def _map_report_row(exported, map_folder, map_output, output_slug, base_slug):
     }
 
 
+def _map_context(exported):
+    return {
+        "map_id": exported["map"].get("id"),
+        "map_name": exported["map"].get("name"),
+        "map_folder": exported.get("source", {}).get("map_folder"),
+        "path": exported.get("source", {}).get("map_json"),
+    }
+
+
+def _event_reference_context(exported, event_kind, event):
+    record = _map_context(exported)
+    record["event_kind"] = event_kind
+    for key in (
+        "source_order_index",
+        "x",
+        "y",
+        "elevation",
+        "type",
+        "local_id",
+        "source_numeric_local_id",
+    ):
+        if key in event:
+            record[key] = event.get(key)
+    return record
+
+
+def _parse_source_int(value):
+    if isinstance(value, bool) or value is None:
+        return False, None
+    if isinstance(value, int):
+        return True, value
+    text = str(value).strip()
+    if not text:
+        return False, None
+    try:
+        base = 16 if text.lower().startswith("0x") else 10
+        return True, int(text, base)
+    except ValueError:
+        return False, None
+
+
+def _resolve_generated_path(path_text, output_root):
+    path = Path(path_text)
+    if path.is_absolute():
+        return path
+    resolved_output_root = output_root.resolve()
+    candidates = [
+        Path.cwd() / path,
+        resolved_output_root.parent.parent / path,
+        resolved_output_root / path,
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return candidates[0]
+
+
+def _load_generated_script_label_index(output_root):
+    manifest_path = output_root / "import_manifest.json"
+    labels = {}
+    bundles = []
+    warnings = []
+
+    if not manifest_path.exists():
+        return {
+            "labels": labels,
+            "bundles": bundles,
+            "warnings": [{
+                "code": "missing_import_manifest",
+                "path": to_project_path(manifest_path),
+            }],
+        }
+
+    manifest = load_json(manifest_path)
+    for entry in manifest.get("scripts", []):
+        path_text = entry.get("path")
+        bundle_record = {
+            "map": entry.get("map"),
+            "scope": entry.get("scope"),
+            "name": entry.get("name"),
+            "path": path_text,
+            "script_count": entry.get("script_count"),
+            "movement_count": entry.get("movement_count"),
+            "text_count": entry.get("text_count"),
+        }
+        bundles.append(bundle_record)
+        if not path_text:
+            warnings.append({
+                "code": "script_bundle_missing_path",
+                "bundle": bundle_record,
+            })
+            continue
+        bundle_path = _resolve_generated_path(path_text, output_root)
+        if not bundle_path.exists():
+            warnings.append({
+                "code": "script_bundle_file_missing",
+                "path": path_text,
+                "resolved_path": to_project_path(bundle_path),
+                "bundle": bundle_record,
+            })
+            continue
+        try:
+            bundle_data = load_json(bundle_path)
+        except Exception as error:
+            warnings.append({
+                "code": "script_bundle_load_failed",
+                "path": path_text,
+                "error": str(error),
+            })
+            continue
+        scripts = bundle_data.get("scripts", {})
+        if not isinstance(scripts, dict):
+            warnings.append({
+                "code": "script_bundle_scripts_not_dictionary",
+                "path": path_text,
+            })
+            continue
+        for label in scripts:
+            label_record = labels.setdefault(label, {
+                "label": label,
+                "bundles": [],
+            })
+            label_record["bundles"].append({
+                "map": entry.get("map"),
+                "scope": entry.get("scope"),
+                "name": entry.get("name"),
+                "path": path_text,
+            })
+
+    return {
+        "labels": labels,
+        "bundles": bundles,
+        "warnings": warnings,
+    }
+
+
+def _iter_script_references(exported_maps):
+    for exported in exported_maps:
+        events = exported.get("events", {})
+        for event_kind in SCRIPT_REFERENCE_EVENT_KINDS:
+            for event in events.get(event_kind, []):
+                script_label = event.get("script")
+                if script_label is None:
+                    continue
+                script_label = str(script_label).strip()
+                if script_label in ("", "0", "NULL"):
+                    continue
+                record = _event_reference_context(exported, event_kind, event)
+                record["script_label"] = script_label
+                yield record
+
+
+def _validate_script_label_references(exported_maps, output_root):
+    label_index = _load_generated_script_label_index(output_root)
+    script_labels = label_index["labels"]
+    references = list(_iter_script_references(exported_maps))
+    missing_references = [
+        reference for reference in references
+        if reference["script_label"] not in script_labels
+    ]
+    unique_checked_labels = sorted(set(reference["script_label"] for reference in references))
+    unique_missing_labels = sorted(set(reference["script_label"] for reference in missing_references))
+    resolved_unique_labels = sorted(set(unique_checked_labels) - set(unique_missing_labels))
+
+    return {
+        "stats": {
+            "generated_bundle_count": len(label_index["bundles"]),
+            "generated_script_label_count": len(script_labels),
+            "checked_reference_count": len(references),
+            "unique_checked_label_count": len(unique_checked_labels),
+            "resolved_reference_count": len(references) - len(missing_references),
+            "resolved_unique_label_count": len(resolved_unique_labels),
+            "missing_reference_count": len(missing_references),
+            "missing_unique_label_count": len(unique_missing_labels),
+            "bundle_warning_count": len(label_index["warnings"]),
+        },
+        "bundles": label_index["bundles"],
+        "missing_labels": unique_missing_labels,
+        "missing_references": missing_references,
+        "load_warnings": label_index["warnings"],
+        "notes": [
+            "Only generated script labels from data/generated/import_manifest.json script bundles are treated as resolved.",
+            "Missing labels usually mean the source map's scripts.inc or shared script file has not been exported yet.",
+        ],
+    }
+
+
+def _map_records_by_id(exported_maps):
+    return {
+        exported["map"].get("id"): exported
+        for exported in exported_maps
+        if exported["map"].get("id")
+    }
+
+
+def _is_dynamic_or_special_warp(dest_map, dest_warp_id):
+    return (
+        dest_map in DYNAMIC_WARP_DESTINATION_MAPS
+        or str(dest_warp_id) in DYNAMIC_WARP_DESTINATION_IDS
+    )
+
+
+def _validate_warp_destinations(exported_maps, map_group_index):
+    maps_by_id = _map_records_by_id(exported_maps)
+    source_map_ids = set(map_group_index.get("by_id", {}))
+    valid_static_count = 0
+    missing_targets = []
+    invalid_warp_ids = []
+    dynamic_or_special = []
+    checked_count = 0
+
+    for exported in exported_maps:
+        for event in exported.get("events", {}).get("warp_events", []):
+            checked_count += 1
+            dest_map = event.get("dest_map")
+            dest_warp_id = event.get("dest_warp_id")
+            record = _event_reference_context(exported, "warp_events", event)
+            record["dest_map"] = dest_map
+            record["dest_warp_id"] = dest_warp_id
+
+            if _is_dynamic_or_special_warp(dest_map, dest_warp_id):
+                dynamic_record = dict(record)
+                dynamic_record["status"] = "dynamic_or_special_destination"
+                dynamic_record["reason"] = (
+                    "Source uses dynamic warp state or secret-base warp ids; static map/warp-id validation is not applicable."
+                )
+                dynamic_or_special.append(dynamic_record)
+                continue
+
+            target_map = maps_by_id.get(dest_map)
+            if target_map is None:
+                missing_record = dict(record)
+                missing_record["status"] = (
+                    "not_yet_generated_target_map"
+                    if dest_map in source_map_ids
+                    else "missing_target_map_id"
+                )
+                missing_targets.append(missing_record)
+                continue
+
+            parsed, warp_id = _parse_source_int(dest_warp_id)
+            if not parsed:
+                invalid_record = dict(record)
+                invalid_record["status"] = "invalid_dest_warp_id"
+                invalid_record["reason"] = "non_numeric_dest_warp_id"
+                invalid_warp_ids.append(invalid_record)
+                continue
+
+            target_warp_count = len(target_map.get("events", {}).get("warp_events", []))
+            if warp_id < 0 or warp_id >= target_warp_count:
+                invalid_record = dict(record)
+                invalid_record["status"] = "invalid_dest_warp_id"
+                invalid_record["reason"] = "dest_warp_id_out_of_range"
+                invalid_record["parsed_dest_warp_id"] = warp_id
+                invalid_record["target_warp_count"] = target_warp_count
+                invalid_warp_ids.append(invalid_record)
+                continue
+
+            valid_static_count += 1
+
+    not_yet_generated_count = sum(
+        1 for target in missing_targets
+        if target.get("status") == "not_yet_generated_target_map"
+    )
+    missing_target_count = sum(
+        1 for target in missing_targets
+        if target.get("status") == "missing_target_map_id"
+    )
+
+    return {
+        "stats": {
+            "checked_count": checked_count,
+            "static_checked_count": checked_count - len(dynamic_or_special),
+            "valid_static_count": valid_static_count,
+            "dynamic_or_special_count": len(dynamic_or_special),
+            "not_yet_generated_target_count": not_yet_generated_count,
+            "missing_target_map_count": missing_target_count,
+            "invalid_warp_id_count": len(invalid_warp_ids),
+        },
+        "missing_targets": missing_targets,
+        "invalid_warp_ids": invalid_warp_ids,
+        "dynamic_or_special_warps": dynamic_or_special,
+    }
+
+
+def _connection_overlap_length(offset, source_span, target_span):
+    source_start = max(0, offset)
+    target_start = max(0, -offset)
+    return max(0, min(source_span - source_start, target_span - target_start))
+
+
+def _validate_connections(exported_maps, map_group_index):
+    maps_by_id = _map_records_by_id(exported_maps)
+    source_map_ids = set(map_group_index.get("by_id", {}))
+    checked_count = 0
+    valid_count = 0
+    dive_or_emerge_count = 0
+    missing_targets = []
+    invalid_offsets = []
+    unsupported_directions = []
+
+    for exported in exported_maps:
+        source_width = exported["layout"].get("width")
+        source_height = exported["layout"].get("height")
+        for connection in exported.get("events", {}).get("connections", []):
+            checked_count += 1
+            direction = connection.get("direction")
+            target_map_id = connection.get("target_map_id") or connection.get("map")
+            offset_value = connection.get("offset")
+            record = _event_reference_context(exported, "connections", connection)
+            record["direction"] = direction
+            record["source_direction_constant"] = connection.get("source_direction_constant")
+            record["target_map_id"] = target_map_id
+            record["offset"] = offset_value
+
+            target_map = maps_by_id.get(target_map_id)
+            if target_map is None:
+                missing_record = dict(record)
+                missing_record["status"] = (
+                    "not_yet_generated_target_map"
+                    if target_map_id in source_map_ids
+                    else "missing_target_map_id"
+                )
+                missing_targets.append(missing_record)
+                continue
+
+            parsed, offset = _parse_source_int(offset_value)
+            if not parsed:
+                invalid_record = dict(record)
+                invalid_record["status"] = "invalid_offset"
+                invalid_record["reason"] = "non_numeric_offset"
+                invalid_offsets.append(invalid_record)
+                continue
+
+            if direction in ("dive", "emerge"):
+                dive_or_emerge_count += 1
+                valid_count += 1
+                continue
+
+            if direction not in ("up", "down", "left", "right"):
+                unsupported_record = dict(record)
+                unsupported_record["status"] = "unsupported_connection_direction"
+                unsupported_directions.append(unsupported_record)
+                continue
+
+            if direction in ("up", "down"):
+                source_span = source_width
+                target_span = target_map["layout"].get("width")
+                axis = "x"
+            else:
+                source_span = source_height
+                target_span = target_map["layout"].get("height")
+                axis = "y"
+            overlap_length = _connection_overlap_length(offset, source_span, target_span)
+            if overlap_length <= 0:
+                invalid_record = dict(record)
+                invalid_record["status"] = "invalid_offset"
+                invalid_record["reason"] = "no_edge_overlap"
+                invalid_record["axis"] = axis
+                invalid_record["source_span"] = source_span
+                invalid_record["target_span"] = target_span
+                invalid_record["overlap_length"] = overlap_length
+                invalid_offsets.append(invalid_record)
+                continue
+
+            valid_count += 1
+
+    not_yet_generated_count = sum(
+        1 for target in missing_targets
+        if target.get("status") == "not_yet_generated_target_map"
+    )
+    missing_target_count = sum(
+        1 for target in missing_targets
+        if target.get("status") == "missing_target_map_id"
+    )
+
+    return {
+        "stats": {
+            "checked_count": checked_count,
+            "valid_count": valid_count,
+            "dive_or_emerge_count": dive_or_emerge_count,
+            "cardinal_edge_offset_checked_count": checked_count - dive_or_emerge_count - len(missing_targets),
+            "not_yet_generated_target_count": not_yet_generated_count,
+            "missing_target_count": missing_target_count,
+            "invalid_offset_count": len(invalid_offsets),
+            "unsupported_direction_count": len(unsupported_directions),
+        },
+        "missing_targets": missing_targets,
+        "invalid_offsets": invalid_offsets,
+        "unsupported_directions": unsupported_directions,
+        "notes": [
+            "North/south/east/west connection offsets are validated for numeric value and non-empty edge overlap.",
+            "Dive/emerge connections are target-validated and offset-type validated; they do not use an edge-overlap strip.",
+        ],
+    }
+
+
+def _validate_object_local_ids(exported_maps):
+    checked_count = 0
+    source_symbol_count = 0
+    missing_numeric_aliases = []
+    numeric_alias_mismatches = []
+    duplicate_numeric_local_ids = []
+    duplicate_source_local_id_symbols = []
+
+    for exported in exported_maps:
+        object_events = exported.get("events", {}).get("object_events", [])
+        numeric_counts = Counter()
+        symbol_counts = Counter()
+        context = _map_context(exported)
+        for event_index, event in enumerate(object_events):
+            checked_count += 1
+            parsed_order, source_order_index = _parse_source_int(event.get("source_order_index"))
+            expected_numeric_local_id = (source_order_index + 1) if parsed_order else (event_index + 1)
+            parsed_numeric, numeric_local_id = _parse_source_int(event.get("source_numeric_local_id"))
+
+            if not parsed_numeric:
+                record = dict(context)
+                record["event_kind"] = "object_events"
+                record["source_order_index"] = event.get("source_order_index")
+                record["local_id"] = event.get("local_id")
+                record["status"] = "missing_source_numeric_local_id"
+                missing_numeric_aliases.append(record)
+            else:
+                numeric_counts[numeric_local_id] += 1
+                if numeric_local_id != expected_numeric_local_id:
+                    record = dict(context)
+                    record["event_kind"] = "object_events"
+                    record["source_order_index"] = event.get("source_order_index")
+                    record["local_id"] = event.get("local_id")
+                    record["source_numeric_local_id"] = numeric_local_id
+                    record["expected_source_numeric_local_id"] = expected_numeric_local_id
+                    record["status"] = "source_numeric_local_id_mismatch"
+                    numeric_alias_mismatches.append(record)
+
+            source_local_id = event.get("local_id")
+            if source_local_id:
+                source_symbol_count += 1
+                symbol_counts[source_local_id] += 1
+
+        for local_id, count in sorted(numeric_counts.items()):
+            if count > 1:
+                record = dict(context)
+                record["source_numeric_local_id"] = local_id
+                record["duplicate_count"] = count
+                duplicate_numeric_local_ids.append(record)
+        for local_id, count in sorted(symbol_counts.items()):
+            if count > 1:
+                record = dict(context)
+                record["local_id"] = local_id
+                record["duplicate_count"] = count
+                duplicate_source_local_id_symbols.append(record)
+
+    return {
+        "stats": {
+            "map_count": len(exported_maps),
+            "checked_object_event_count": checked_count,
+            "source_local_id_symbol_count": source_symbol_count,
+            "missing_numeric_alias_count": len(missing_numeric_aliases),
+            "numeric_alias_mismatch_count": len(numeric_alias_mismatches),
+            "duplicate_numeric_local_id_count": len(duplicate_numeric_local_ids),
+            "duplicate_source_local_id_symbol_count": len(duplicate_source_local_id_symbols),
+        },
+        "missing_numeric_aliases": missing_numeric_aliases,
+        "numeric_alias_mismatches": numeric_alias_mismatches,
+        "duplicate_numeric_local_ids": duplicate_numeric_local_ids,
+        "duplicate_source_local_id_symbols": duplicate_source_local_id_symbols,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1",
+    }
+
+
+def build_map_batch_validation(exported_maps, map_group_index, output_root):
+    return {
+        "schema_version": 1,
+        "source_behavior_trace": {
+            "script_labels": "tools/mapjson/mapjson.cpp event records preserve script labels; generated bundles come from tools/importer/export_event_scripts.py",
+            "warps": "tools/mapjson/mapjson.cpp:generate_map_events_text warp_events",
+            "connections": "asm/macros/map.inc:connection direction, offset, map + include/global.fieldmap.h:struct MapConnection",
+            "object_local_ids": "tools/mapjson/mapjson.cpp process_event_constants emits object local ids as source order + 1",
+        },
+        "script_labels": _validate_script_label_references(exported_maps, output_root),
+        "warps": _validate_warp_destinations(exported_maps, map_group_index),
+        "connections": _validate_connections(exported_maps, map_group_index),
+        "object_local_ids": _validate_object_local_ids(exported_maps),
+    }
+
+
 def _layout_report_row(exported_layout, layout_output, output_slug, base_slug, referenced_maps):
     layout = exported_layout["layout"]
     map_grid = exported_layout.get("map_grid", {})
@@ -677,6 +1167,7 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
     map_group_index = load_map_group_index(source_root)
     used_slugs = {}
     exported_entries = []
+    exported_maps = []
     rows = []
     failures = []
     event_totals = {
@@ -699,6 +1190,7 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
             if write_outputs:
                 write_json(map_output, exported)
             exported_entries.append(manifest_entry_for_map(exported, map_output))
+            exported_maps.append(exported)
             row = _map_report_row(exported, map_folder, map_output, output_slug, base_slug)
             rows.append(row)
             for key, value in row["event_counts"].items():
@@ -720,6 +1212,7 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
         row["connection_validation"]["missing_target_count"]
         for row in rows
     )
+    validation = build_map_batch_validation(exported_maps, map_group_index, output_root)
 
     map_references_by_layout = _map_layout_references(rows)
     layout_report, exported_layout_entries = build_layout_batch_export(
@@ -734,6 +1227,10 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
     map_referenced_layout_ids = layout_report["coverage"]["map_referenced_layout_ids"]
     standalone_layout_ids = layout_report["coverage"]["standalone_layout_ids"]
     unexported_layout_ids = layout_report["coverage"]["unexported_source_layout_ids"]
+    script_label_stats = validation["script_labels"]["stats"]
+    warp_validation_stats = validation["warps"]["stats"]
+    connection_validation_stats = validation["connections"]["stats"]
+    object_local_id_stats = validation["object_local_ids"]["stats"]
 
     stats = {
         "source_map_count": len(map_folders),
@@ -755,6 +1252,26 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
         "duplicate_layout_output_path_count": layout_stats["duplicate_output_path_count"],
         "duplicate_layout_base_slug_count": layout_stats["duplicate_base_slug_count"],
         "missing_connection_target_count": missing_connection_target_count,
+        "missing_script_label_reference_count": script_label_stats["missing_reference_count"],
+        "missing_unique_script_label_count": script_label_stats["missing_unique_label_count"],
+        "invalid_warp_target_count": (
+            warp_validation_stats["not_yet_generated_target_count"]
+            + warp_validation_stats["missing_target_map_count"]
+            + warp_validation_stats["invalid_warp_id_count"]
+        ),
+        "dynamic_or_special_warp_count": warp_validation_stats["dynamic_or_special_count"],
+        "invalid_connection_count": (
+            connection_validation_stats["not_yet_generated_target_count"]
+            + connection_validation_stats["missing_target_count"]
+            + connection_validation_stats["invalid_offset_count"]
+            + connection_validation_stats["unsupported_direction_count"]
+        ),
+        "invalid_object_local_id_count": (
+            object_local_id_stats["missing_numeric_alias_count"]
+            + object_local_id_stats["numeric_alias_mismatch_count"]
+            + object_local_id_stats["duplicate_numeric_local_id_count"]
+            + object_local_id_stats["duplicate_source_local_id_symbol_count"]
+        ),
         "event_totals": event_totals,
     }
 
@@ -805,6 +1322,7 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
             "standalone_layout_ids": standalone_layout_ids,
             "unexported_source_layout_ids": unexported_layout_ids,
         },
+        "validation": validation,
         "failures": {
             "maps": failures,
             "layouts": layout_report["failures"],

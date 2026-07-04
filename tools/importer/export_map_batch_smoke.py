@@ -15,6 +15,14 @@ EXPECTED_MAP_REFERENCED_LAYOUT_COUNT = 711
 EXPECTED_STANDALONE_LAYOUT_COUNT = 74
 EXPECTED_UNEXPORTED_LAYOUT_COUNT = 0
 EXPECTED_LAYOUT_WARNING_COUNT = 20
+EXPECTED_GENERATED_SCRIPT_BUNDLE_COUNT = 6
+EXPECTED_GENERATED_SCRIPT_LABEL_COUNT = 207
+EXPECTED_SCRIPT_REFERENCE_COUNT = 5984
+EXPECTED_RESOLVED_SCRIPT_REFERENCE_COUNT = 50
+EXPECTED_MISSING_SCRIPT_REFERENCE_COUNT = 5934
+EXPECTED_MISSING_UNIQUE_SCRIPT_LABEL_COUNT = 3795
+EXPECTED_DYNAMIC_OR_SPECIAL_WARP_COUNT = 64
+EXPECTED_DIVE_OR_EMERGE_CONNECTION_COUNT = 14
 
 
 def require(condition, message):
@@ -137,6 +145,101 @@ def main(argv):
     require(event_totals["warp_events"] > 0, "warp event total missing")
     require(event_totals["coord_events"] > 0, "coord event total missing")
     require(event_totals["bg_events"] > 0, "BG event total missing")
+
+    validation = report.get("validation", {})
+    script_validation = validation.get("script_labels", {})
+    script_stats = script_validation.get("stats", {})
+    require(
+        script_stats["generated_bundle_count"] == EXPECTED_GENERATED_SCRIPT_BUNDLE_COUNT,
+        "generated overworld script bundle count changed",
+    )
+    require(
+        script_stats["generated_script_label_count"] == EXPECTED_GENERATED_SCRIPT_LABEL_COUNT,
+        "generated overworld script label count changed",
+    )
+    require(
+        script_stats["checked_reference_count"] == EXPECTED_SCRIPT_REFERENCE_COUNT,
+        "script reference validation count changed",
+    )
+    require(
+        script_stats["resolved_reference_count"] == EXPECTED_RESOLVED_SCRIPT_REFERENCE_COUNT,
+        "resolved script reference count changed",
+    )
+    require(
+        script_stats["missing_reference_count"] == EXPECTED_MISSING_SCRIPT_REFERENCE_COUNT,
+        "missing script reference count changed",
+    )
+    require(
+        script_stats["missing_unique_label_count"] == EXPECTED_MISSING_UNIQUE_SCRIPT_LABEL_COUNT,
+        "missing unique script label count changed",
+    )
+    require(script_stats["bundle_warning_count"] == 0, "script bundle load warnings changed")
+    require(
+        stats["missing_script_label_reference_count"] == EXPECTED_MISSING_SCRIPT_REFERENCE_COUNT,
+        "top-level missing script reference count mismatch",
+    )
+    require(
+        "Common_EventScript_FindItem" in script_validation.get("missing_labels", []),
+        "known not-yet-exported common script label should be reported missing",
+    )
+    require(
+        "LittlerootTown_EventScript_Twin" not in script_validation.get("missing_labels", []),
+        "generated Littleroot script label should resolve",
+    )
+
+    warp_validation = validation.get("warps", {})
+    warp_stats = warp_validation.get("stats", {})
+    require(warp_stats["checked_count"] == event_totals["warp_events"], "warp validation count mismatch")
+    require(warp_stats["static_checked_count"] == 2543, "static warp validation count changed")
+    require(warp_stats["valid_static_count"] == 2543, "valid static warp count changed")
+    require(
+        warp_stats["dynamic_or_special_count"] == EXPECTED_DYNAMIC_OR_SPECIAL_WARP_COUNT,
+        "dynamic/special warp count changed",
+    )
+    require(warp_stats["missing_target_map_count"] == 0, "static warp target map missing")
+    require(warp_stats["not_yet_generated_target_count"] == 0, "static warp target not generated")
+    require(warp_stats["invalid_warp_id_count"] == 0, "invalid static warp id reported")
+    require(stats["invalid_warp_target_count"] == 0, "top-level invalid warp target count mismatch")
+    require(
+        stats["dynamic_or_special_warp_count"] == EXPECTED_DYNAMIC_OR_SPECIAL_WARP_COUNT,
+        "top-level dynamic/special warp count mismatch",
+    )
+
+    connection_validation = validation.get("connections", {})
+    connection_stats = connection_validation.get("stats", {})
+    require(
+        connection_stats["checked_count"] == event_totals["connections"],
+        "connection validation count mismatch",
+    )
+    require(connection_stats["valid_count"] == event_totals["connections"], "valid connection count changed")
+    require(
+        connection_stats["dive_or_emerge_count"] == EXPECTED_DIVE_OR_EMERGE_CONNECTION_COUNT,
+        "dive/emerge connection count changed",
+    )
+    require(connection_stats["missing_target_count"] == 0, "connection target missing")
+    require(connection_stats["not_yet_generated_target_count"] == 0, "connection target not generated")
+    require(connection_stats["invalid_offset_count"] == 0, "connection offset validation failed")
+    require(connection_stats["unsupported_direction_count"] == 0, "unsupported connection direction reported")
+    require(stats["invalid_connection_count"] == 0, "top-level invalid connection count mismatch")
+
+    object_local_id_validation = validation.get("object_local_ids", {})
+    object_local_id_stats = object_local_id_validation.get("stats", {})
+    require(
+        object_local_id_stats["checked_object_event_count"] == event_totals["object_events"],
+        "object local-id validation count mismatch",
+    )
+    require(object_local_id_stats["source_local_id_symbol_count"] == 741, "source local-id symbol count changed")
+    require(object_local_id_stats["missing_numeric_alias_count"] == 0, "missing numeric local-id alias")
+    require(object_local_id_stats["numeric_alias_mismatch_count"] == 0, "numeric local-id alias mismatch")
+    require(
+        object_local_id_stats["duplicate_numeric_local_id_count"] == 0,
+        "duplicate numeric local ids reported",
+    )
+    require(
+        object_local_id_stats["duplicate_source_local_id_symbol_count"] == 0,
+        "duplicate source local-id symbols reported",
+    )
+    require(stats["invalid_object_local_id_count"] == 0, "top-level invalid object local-id count mismatch")
 
     print(
         "ok: exported {}/{} maps, exported {} layouts ({} map-referenced, {} standalone), {} object events".format(

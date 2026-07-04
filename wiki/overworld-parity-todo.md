@@ -68,13 +68,13 @@ Use these as executable checkboxes. A task is not complete until the source path
 - [x] Export warp events with source x/y/elevation, destination map, destination warp id, and source-order index.
 - [x] Export coord events with trigger var, trigger value, elevation, script label, and source-order index.
 - [x] Export BG/sign events with kind, coordinates, elevation, script/item/hidden-item metadata, and source-order index.
-- [ ] Validate every exported script label against generated script bundles and report missing labels.
-- [ ] Validate every warp destination map and warp id and report invalid or not-yet-generated targets.
-- [ ] Validate every connection target map and offset and report missing targets.
-- [ ] Validate duplicate object local ids per map and source numeric local-id aliases.
+- [x] Validate every exported script label against generated script bundles and report missing labels.
+- [x] Validate every warp destination map and warp id and report invalid or not-yet-generated targets.
+- [x] Validate every connection target map and offset and report missing targets.
+- [x] Validate duplicate object local ids per map and source numeric local-id aliases.
 - [x] Add an import smoke that asserts all source maps either export cleanly or emit deliberate unsupported records.
 
-Snapshot: `tools/importer/export_map.py --all` now exports 939/939 source maps and 785/785 source layouts with 0 map/layout failures, writing map JSON under `data/generated/maps/`, standalone layout JSON under `data/generated/layouts/`, and `data/generated/overworld/map_batch_report.json`. Layout coverage is 711 map-referenced layouts plus 74 standalone layouts; 20 standalone/unused source layouts carry explicit `layout_blockdata_size_mismatch` warnings because their declared width/height is one cell smaller than `map.bin`. Current exported event totals are 266 connections, 4426 object events, 2607 warp events, 603 coord events, and 1422 BG events; connection target map metadata resolves with 0 missing targets.
+Snapshot: `tools/importer/export_map.py --all` now exports 939/939 source maps and 785/785 source layouts with 0 map/layout failures, writing map JSON under `data/generated/maps/`, standalone layout JSON under `data/generated/layouts/`, and `data/generated/overworld/map_batch_report.json`. Layout coverage is 711 map-referenced layouts plus 74 standalone layouts; 20 standalone/unused source layouts carry explicit `layout_blockdata_size_mismatch` warnings because their declared width/height is one cell smaller than `map.bin`. Current exported event totals are 266 connections, 4426 object events, 2607 warp events, 603 coord events, and 1422 BG events. Batch validation currently checks 5984 event script references against 6 generated script bundles/207 script labels, resolves 50 references, and reports 5934 missing references across 3795 unique not-yet-exported labels. Static warp validation reports 2543/2543 valid static destinations plus 64 dynamic/secret-base warp destinations marked as special, with 0 invalid or not-yet-generated static targets. Connection validation reports 266/266 valid targets/offsets, including 14 dive/emerge links, and object local-id validation reports 4426/4426 source numeric aliases with 0 duplicates or alias mismatches.
 
 ### 3. Script And Text Import For Overworld
 
