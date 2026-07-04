@@ -341,3 +341,9 @@ Reason: The port is broad enough that independent source-reading and validation 
 Decision: Introduce `PartyRuntime` as a UI-independent Godot autoload for source-shaped carried Pokemon and six-slot party state before building party menu, summary UI, save serialization, capture, healing, PC storage, or bag mutation.
 
 Reason: Party Pokemon are shared by battle, evolution, scripts, capture, storage, saving, and UI. Keeping the first slice as a domain runtime lets Godot reuse the existing source-backed `BattleEngine` stat/move path and `EvolutionEngine` condition path while preserving Pokemon instance metadata and reporting unsupported source behavior instead of guessing visible systems.
+
+## 2026-07-04 - Save as Godot snapshots before save UI
+
+Decision: Introduce `SaveService` as a UI-independent Godot autoload for source-traced JSON save snapshots before building save menu presentation, GBA-style save failure screens, bag/PC/object-event persistence, or link/Hall-of-Fame save variants.
+
+Reason: Godot needs durable runtime state round-tripping early, but the source save implementation is split between visible start-menu callbacks and low-level flash sector storage. A Godot-native snapshot keeps the target architecture modern while preserving source save status labels, counters, and flow metadata for later UI/audio/timing work. Recreating GBA flash sectors, checksums, and rotating slots would add platform baggage without improving the Godot runtime.
