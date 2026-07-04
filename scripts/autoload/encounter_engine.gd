@@ -7,6 +7,7 @@ const PLAYER_AVATAR_FLAG_ACRO_BIKE := 1 << 2
 const WEATHER_SNOW_VALUE := 4
 const WEATHER_SANDSTORM_VALUE := 8
 const BATTLE_PYRAMID_LAYOUT := "LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR"
+const BATTLE_PIKE_WILD_LAYOUT := "LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS"
 const SOURCE_TRACE := [
 	"src/wild_encounter.c:GetCurrentMapWildMonHeaderId",
 	"src/wild_encounter.c:GetTimeOfDayForEncounters",
@@ -17,12 +18,14 @@ const SOURCE_TRACE := [
 	"src/wild_encounter.c:ChooseWildMonLevel",
 	"src/wild_encounter.c:TryGetAbilityInfluencedWildMonIndex",
 	"src/wild_encounter.c:TryGetRandomWildMonIndexByType",
+	"src/wild_encounter.c:IsAbilityAllowingEncounter",
 	"src/wild_encounter.c:WildEncounterCheck",
 	"src/wild_encounter.c:StandardWildEncounter",
 	"src/wild_encounter.c:FishingWildEncounter",
 	"include/constants/item.h:REPEL_LURE_MASK/LURE_STEP_COUNT/REPEL_STEP_COUNT",
 	"include/constants/items.h:ITEM_CLEANSE_TAG",
 	"include/constants/abilities.h:overworld encounter abilities",
+	"include/constants/abilities.h:ABILITY_KEEN_EYE/ABILITY_INTIMIDATE",
 	"include/constants/pokemon.h:enum Type",
 	"include/constants/flags.h:FLAG_SYS_ENC_UP_ITEM/FLAG_SYS_ENC_DOWN_ITEM",
 	"include/constants/weather.h:WEATHER_SANDSTORM/WEATHER_SNOW",
@@ -587,6 +590,25 @@ func choose_wild_mon(map_symbol: String, area = "land", options: Dictionary = {}
 			"unsupported": _first_pass_unsupported(table_field),
 			"source_trace": SOURCE_TRACE.duplicate(),
 		}
+	var keen_eye_filter := _keen_eye_filter_result(int(level_result.get("level", 1)), table_field, options)
+	if not bool(keen_eye_filter.get("allowed", true)):
+		return {
+			"status": "no_encounter",
+			"reason": "keen_eye_intimidate_filter",
+			"map": _normalize_map_symbol(map_symbol),
+			"area": table_field,
+			"slot_index": slot_index,
+			"slot": slot.duplicate(true),
+			"slot_choice": slot_result,
+			"ability_slot_choice": ability_slot_choice,
+			"level": int(level_result.get("level", 1)),
+			"level_choice": level_result,
+			"repel_filter": repel_filter,
+			"keen_eye_filter": keen_eye_filter,
+			"source": "src/wild_encounter.c:TryGenerateWildMon -> IsAbilityAllowingEncounter",
+			"unsupported": _first_pass_unsupported(table_field),
+			"source_trace": SOURCE_TRACE.duplicate(),
+		}
 	var record := _dict_field(table_result, "record")
 	var species := _dict_field(slot, "species")
 	return {
@@ -612,6 +634,7 @@ func choose_wild_mon(map_symbol: String, area = "land", options: Dictionary = {}
 		"level": int(level_result.get("level", 1)),
 		"level_choice": level_result,
 		"repel_filter": repel_filter,
+		"keen_eye_filter": keen_eye_filter,
 		"source_time": table_result.get("source_time", {}),
 		"runtime_time": table_result.get("runtime_time", {}),
 		"unsupported": _first_pass_unsupported(table_field),
@@ -1158,6 +1181,89 @@ func _repel_filter_result(level: int, table_field: String, options: Dictionary) 
 	}
 
 
+func _keen_eye_filter_result(level: int, table_field: String, options: Dictionary) -> Dictionary:
+	var applies := ["land_mons", "water_mons", "rock_smash_mons"].has(table_field)
+	if bool(options.get("ignore_keen_eye_filter", options.get("ignoreKeenEyeFilter", false))):
+		applies = false
+	if bool(options.get("force_keen_eye_filter", options.get("forceKeenEyeFilter", false))):
+		applies = true
+	if _is_battle_pike_wild_layout(options):
+		return {
+			"status": "not_applicable",
+			"allowed": true,
+			"level": level,
+			"area": table_field,
+			"reason": "battle_pike_layout",
+			"source": "src/wild_encounter.c:TryGenerateWildMon skips IsAbilityAllowingEncounter in Battle Pike wild room",
+			"source_trace": [
+				"src/wild_encounter.c:TryGenerateWildMon",
+				"include/constants/layouts.h:LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS",
+			],
+		}
+	if not applies:
+		return {
+			"status": "not_applicable",
+			"allowed": true,
+			"level": level,
+			"area": table_field,
+			"source": "src/wild_encounter.c:TryGenerateWildMon flags without WILD_CHECK_KEEN_EYE",
+		}
+
+	var lead := _lead_keen_eye_state(options)
+	if bool(lead.get("is_egg", false)):
+		return {
+			"status": "lead_is_egg",
+			"allowed": true,
+			"level": level,
+			"area": table_field,
+			"lead": lead,
+			"source": "src/wild_encounter.c:IsAbilityAllowingEncounter MON_DATA_SANITY_IS_EGG",
+		}
+
+	var ability := String(lead.get("ability", "ABILITY_NONE"))
+	if ability != "ABILITY_KEEN_EYE" and ability != "ABILITY_INTIMIDATE":
+		return {
+			"status": "ability_not_relevant",
+			"allowed": true,
+			"level": level,
+			"area": table_field,
+			"lead": lead,
+			"source": "src/wild_encounter.c:IsAbilityAllowingEncounter ability check",
+		}
+
+	var lead_level := int(lead.get("level", 0))
+	var low_level_range := lead_level > 5 and level <= lead_level - 5
+	if not low_level_range:
+		return {
+			"status": "level_allowed",
+			"allowed": true,
+			"level": level,
+			"lead_level": lead_level,
+			"area": table_field,
+			"lead": lead,
+			"source": "src/wild_encounter.c:IsAbilityAllowingEncounter playerMonLevel > 5 && level <= playerMonLevel - 5",
+		}
+
+	var roll := _option_roll(options, "keen_eye_roll", 2)
+	var allowed := roll != 0
+	return {
+		"status": "allowed" if allowed else "blocked",
+		"allowed": allowed,
+		"level": level,
+		"lead_level": lead_level,
+		"ability": ability,
+		"roll": roll,
+		"modulo": 2,
+		"area": table_field,
+		"lead": lead,
+		"source": "src/wild_encounter.c:IsAbilityAllowingEncounter Random() % 2 low-level filter",
+		"source_trace": [
+			"src/wild_encounter.c:IsAbilityAllowingEncounter",
+			"include/constants/abilities.h:ABILITY_KEEN_EYE/ABILITY_INTIMIDATE",
+		],
+	}
+
+
 func _repel_lead_level(options: Dictionary) -> Dictionary:
 	if options.has("repel_lead_level"):
 		return {
@@ -1227,6 +1333,33 @@ func _first_party_mon(options: Dictionary) -> Dictionary:
 	if party.is_empty() or typeof(party[0]) != TYPE_DICTIONARY:
 		return {"mon": {}, "source": source}
 	return {"mon": party[0], "source": source}
+
+
+func _lead_keen_eye_state(options: Dictionary) -> Dictionary:
+	if options.has("keen_eye_lead_level") or options.has("keen_eye_lead_ability"):
+		var ability := _normalize_ability_symbol(options.get("keen_eye_lead_ability", options.get("lead_ability", "ABILITY_NONE")))
+		return {
+			"found": not ability.is_empty() and ability != "ABILITY_NONE",
+			"ability": ability,
+			"level": int(options.get("keen_eye_lead_level", options.get("lead_level", 0))),
+			"is_egg": bool(options.get("keen_eye_lead_is_egg", options.get("lead_is_egg", false))),
+			"source": "options.keen_eye_lead_*",
+			"source_trace": ["src/wild_encounter.c:IsAbilityAllowingEncounter"],
+		}
+	var lead := _first_party_mon(options)
+	var mon: Dictionary = lead.get("mon", {})
+	var ability := _ability_symbol(mon)
+	return {
+		"found": not mon.is_empty(),
+		"ability": ability,
+		"level": int(mon.get("level", options.get("lead_level", 0))),
+		"is_egg": bool(mon.get("is_egg", options.get("lead_is_egg", false))),
+		"source": String(lead.get("source", "default_no_party")),
+		"source_trace": [
+			"src/wild_encounter.c:IsAbilityAllowingEncounter",
+			"src/pokemon.c:GetMonAbility/GetMonData",
+		],
+	}
 
 
 func _held_item_symbol(mon: Dictionary) -> String:
@@ -1303,10 +1436,20 @@ func _avatar_flag_entry_is_bike(value) -> bool:
 func _is_battle_pyramid_layout(options: Dictionary) -> bool:
 	if bool(options.get("battle_pyramid_layout", false)):
 		return true
+	return _layout_symbol(options) == BATTLE_PYRAMID_LAYOUT
+
+
+func _is_battle_pike_wild_layout(options: Dictionary) -> bool:
+	if bool(options.get("battle_pike_wild_layout", false)):
+		return true
+	return _layout_symbol(options) == BATTLE_PIKE_WILD_LAYOUT
+
+
+func _layout_symbol(options: Dictionary) -> String:
 	var layout = options.get("map_layout_id", options.get("layout_id", options.get("map_layout", "")))
 	if typeof(layout) == TYPE_DICTIONARY:
 		layout = layout.get("symbol", layout.get("id", ""))
-	return String(layout).strip_edges().to_upper() == BATTLE_PYRAMID_LAYOUT
+	return String(layout).strip_edges().to_upper()
 
 
 func _weather_matches(options: Dictionary, expected_weather: String) -> bool:
@@ -1357,7 +1500,7 @@ func _first_pass_unsupported(table_field: String) -> Array:
 	}, {
 		"code": "wild_encounter_modifiers_partially_applied",
 		"source": "src/wild_encounter.c:TryGenerateWildMon",
-		"detail": "First-pass encounter-rate modifiers, ability-influenced land/water species slot selection, Repel/Lure rate/slot/level behavior, and Repel level filtering are applied. Roamer, mass outbreaks, double wild battles, Safari Pokeblocks, Synchronize, gender forcing, random IV/personality, and battle transition selection remain future traced work.",
+		"detail": "First-pass encounter-rate modifiers, ability-influenced land/water species slot selection, Repel/Lure rate/slot/level behavior, Repel level filtering, and Keen Eye/Intimidate low-level filtering are applied. Roamer, mass outbreaks, double wild battles, Safari Pokeblocks, Synchronize, gender forcing, random IV/personality, and battle transition selection remain future traced work.",
 	}]
 	if table_field == "fishing_mons":
 		unsupported.append({

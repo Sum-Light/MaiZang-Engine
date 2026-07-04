@@ -290,6 +290,60 @@ func _init() -> void:
 	game_state.set_var("VAR_REPEL_STEP_COUNT", 0)
 	game_state.clear_player_party()
 
+	var keen_eye_block := engine.try_standard_encounter("MAP_ROUTE101", "land", {
+		"encounter_roll": 0,
+		"slot_roll": 0,
+		"level_roll": 0,
+		"player_party": [{"species": "SPECIES_TAILLOW", "level": 7, "ability": "ABILITY_KEEN_EYE", "is_egg": false}],
+		"keen_eye_roll": 0,
+	})
+	_assert(String(keen_eye_block.get("status", "")) == "no_encounter", "expected Keen Eye low-level filter to block")
+	_assert(String(keen_eye_block.get("reason", "")) == "keen_eye_intimidate_filter", "expected Keen Eye filter reason")
+	_assert(String(_dict_field(keen_eye_block, "keen_eye_filter").get("status", "")) == "blocked", "expected Keen Eye blocked metadata")
+	_assert(int(_dict_field(keen_eye_block, "keen_eye_filter").get("roll", -1)) == 0, "expected Keen Eye block roll 0")
+	_assert(bool(_dict_field(keen_eye_block, "encounter_check").get("encounter", false)), "expected Keen Eye block after rate hit")
+
+	var keen_eye_allow_roll := engine.try_standard_encounter("MAP_ROUTE101", "land", {
+		"encounter_roll": 0,
+		"slot_roll": 0,
+		"level_roll": 0,
+		"player_party": [{"species": "SPECIES_TAILLOW", "level": 7, "ability": "ABILITY_KEEN_EYE", "is_egg": false}],
+		"keen_eye_roll": 1,
+	})
+	_assert(String(keen_eye_allow_roll.get("status", "")) == "ok", "expected Keen Eye roll 1 to allow encounter")
+	_assert(String(_dict_field(keen_eye_allow_roll, "keen_eye_filter").get("status", "")) == "allowed", "expected Keen Eye allowed metadata")
+
+	var keen_eye_egg_allow := engine.try_standard_encounter("MAP_ROUTE101", "land", {
+		"encounter_roll": 0,
+		"slot_roll": 0,
+		"level_roll": 0,
+		"player_party": [{"species": "SPECIES_TAILLOW", "level": 50, "ability": "ABILITY_KEEN_EYE", "is_egg": true}],
+		"keen_eye_roll": 0,
+	})
+	_assert(String(keen_eye_egg_allow.get("status", "")) == "ok", "expected egg lead to skip Keen Eye low-level filter")
+	_assert(String(_dict_field(keen_eye_egg_allow, "keen_eye_filter").get("status", "")) == "lead_is_egg", "expected egg skip metadata")
+
+	var battle_pike_skip := engine.try_standard_encounter("MAP_ROUTE101", "land", {
+		"encounter_roll": 0,
+		"slot_roll": 0,
+		"level_roll": 0,
+		"player_party": [{"species": "SPECIES_TAILLOW", "level": 50, "ability": "ABILITY_KEEN_EYE", "is_egg": false}],
+		"keen_eye_roll": 0,
+		"map_layout_id": "LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS",
+	})
+	_assert(String(battle_pike_skip.get("status", "")) == "ok", "expected Battle Pike wild layout to skip Keen Eye filter")
+	_assert(String(_dict_field(battle_pike_skip, "keen_eye_filter").get("reason", "")) == "battle_pike_layout", "expected Battle Pike skip metadata")
+
+	var rock_smash_intimidate_block := engine.try_standard_encounter("MAP_ROUTE111", "rock_smash", {
+		"encounter_roll": 0,
+		"slot_roll": 0,
+		"level_roll": 0,
+		"player_party": [{"species": "SPECIES_POOCHYENA", "level": 50, "ability": "ABILITY_INTIMIDATE", "is_egg": false}],
+		"keen_eye_roll": 0,
+	})
+	_assert(String(rock_smash_intimidate_block.get("status", "")) == "no_encounter", "expected Rock Smash Intimidate filter to block")
+	_assert(String(rock_smash_intimidate_block.get("reason", "")) == "keen_eye_intimidate_filter", "expected Rock Smash Intimidate reason")
+
 	var route101_skip := engine.try_standard_encounter("MAP_ROUTE101", "land", {
 		"metatile_changed": true,
 		"new_metatile_roll": 60,
@@ -323,6 +377,7 @@ func _init() -> void:
 		"route119_harvest_species": String(route119_harvest.get("species", "")),
 		"new_mauville_magnet_pull_species": String(new_mauville_magnet_pull.get("species", "")),
 		"route119_water_species": String(route119_standard_hit.get("species", "")),
+		"keen_eye_block_reason": String(keen_eye_block.get("reason", "")),
 		"altering_cave_record": String(altering_from_state.get("record_label", "")),
 	}))
 	engine.free()
