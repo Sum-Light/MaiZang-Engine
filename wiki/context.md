@@ -19,7 +19,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
 - Autoloads are configured for `GameState`, `DataRegistry`, `MapRuntime`, `ScriptVM`, and `EventManager`.
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, map script, shared script, and global text JSON while preserving the first-slice start-map API.
+- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, map script, shared script, global text, and Pokemon species JSON while preserving the first-slice start-map API.
 - `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior id, behavior name, and layer-type lookups.
 - `MapRuntime` now indexes first-slice object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events.
 - `MapRuntime` treats visible object-event cells as occupied and can resolve the player's current interaction target from grid position plus facing direction.
@@ -55,18 +55,21 @@ The port should be data-driven: preserve source data and assets where practical,
 - `tools/importer/export_event_scripts.py` exports map script labels, shared script bundles, instruction streams, movement labels, local text labels, first-pass `msgbox` previews, and source behavior trace notes.
 - `tools/importer/export_event_scripts.py` now validates local map-script text labels against source `charmap.txt`, preserving UTF-8 `display_text` plus source bytes, control codes, placeholders, terminator metadata, and warnings.
 - `tools/importer/export_text.py` exports global `data/text/*.inc` labels into `data/generated/text/global_text.json`, preserving normal `.string` charmap metadata, `.braille` byte metadata, `brailleformat` headers, and `IS_FRLG` preprocessor branch decisions for the Emerald target.
+- `tools/importer/export_species.py` exports the active `src/data/pokemon/species_info.h` initializer table into `data/generated/pokemon/species.json`, tracing source config/constants and preserving macro-generated species as explicit partial records when the first-pass importer cannot safely expand the C macro body yet.
 - Generated map data currently exists for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated tileset metadata and palette-baked metatile atlases currently exist for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated tileset metadata now includes a `metatile_behaviors` name table plus per-metatile `attribute.behavior_name` values, and a `metatile_labels` table with source `METATILE_*` names and numeric ids from `include/constants/metatile_labels.h`.
 - Generated `LittlerootTown` tileset metadata now includes door animation metadata for `METATILE_Petalburg_Door_Littleroot` and `METATILE_Petalburg_Door_BirchsLab`, with generated RGBA atlases under `assets/generated/door_anims/`.
 - Generated event script data currently exists for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, `LittlerootTown_MaysHouse_1F`, and the shared `shared_players_house` bundle.
 - Generated global text data currently exists at `data/generated/text/global_text.json` and is indexed by the import manifest `texts` entry.
+- Generated Pokemon species data currently exists at `data/generated/pokemon/species.json` and is indexed by the import manifest `pokemon` entry with category `species`.
 - Generated import manifest lives at `data/generated/import_manifest.json`.
 - Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
 - Latest map export for `LittlerootTown` decoded 400 map-grid entries into 63 unique metatile ids.
 - Latest tileset export for `LittlerootTown` uses `gTileset_General` and `gTileset_Petalburg`, writes a 656-metatile RGBA atlas, reports 63 used metatile ids, records 8 fully covered source tile notes, exports 2 door animation atlases, and has 0 visible warnings.
 - Latest event script export for `LittlerootTown` found 130 labels, 78 scripts, 34 movement labels, 18 local text labels, 0 charmap warnings, and 0 orphan instructions.
 - Latest global text export found 37 source files, 3454 labels/text records, 3393 normal `.string` records, 61 `.braille` records, 0 charmap warnings, 0 braille warnings, 6 `IS_FRLG` preprocessor decisions, 0 preprocessor warnings, and 0 unsupported directives.
+- Latest Pokemon species export found 1573 active species initializers, including 1366 struct initializers and 207 macro-call partial initializers. 1329 records currently expose complete base stat fields, and the 207 warnings are the deliberate macro-partial coverage report.
 - Generated `LittlerootTown_BrendansHouse_1F` is 11x9 and has 26 scripts, 11 movement labels, 29 text labels, 0 charmap warnings, and 0 script orphan instructions.
 - Generated `LittlerootTown_MaysHouse_1F` is 11x9 and has 31 scripts, 11 movement labels, 8 text labels, 0 charmap warnings, and 0 script orphan instructions.
 - Shared `PlayersHouse_1F` scripts from source `data/scripts/players_house.inc` and common movements from `data/scripts/movement.inc` are exported into `data/generated/scripts/shared_players_house.json`; Brendan/May house OnFrame intro scripts now run through `PlayersHouse_1F_EventScript_EnterHouseMovingIn`.

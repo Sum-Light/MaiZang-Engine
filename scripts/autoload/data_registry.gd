@@ -20,11 +20,15 @@ var _tileset_entries_by_map_name: Dictionary = {}
 var _script_entries: Array = []
 var _script_entries_by_map_name: Dictionary = {}
 var _text_entries_by_category: Dictionary = {}
+var _pokemon_entries_by_category: Dictionary = {}
 var _map_data_by_id: Dictionary = {}
 var _tileset_data_by_map_id: Dictionary = {}
 var _script_data_by_map_id: Dictionary = {}
 var _script_data_by_path: Dictionary = {}
 var _text_data_by_category: Dictionary = {}
+var _pokemon_data_by_category: Dictionary = {}
+var _species_records_by_symbol: Dictionary = {}
+var _species_records_by_id: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -197,6 +201,51 @@ func get_text_display_text(text_label: String, category: String = "global") -> S
 	return String(record.get("display_text", ""))
 
 
+func get_pokemon_data(category: String = "species") -> Dictionary:
+	if _pokemon_data_by_category.has(category):
+		var cached = _pokemon_data_by_category[category]
+		return cached if typeof(cached) == TYPE_DICTIONARY else {}
+
+	var entry = _pokemon_entries_by_category.get(category, {})
+	if typeof(entry) != TYPE_DICTIONARY:
+		return {}
+
+	var pokemon_data := _load_json_object(_resource_path(String(entry.get("path", ""))), "generated pokemon")
+	_pokemon_data_by_category[category] = pokemon_data
+	return pokemon_data
+
+
+func get_species_data() -> Dictionary:
+	return get_pokemon_data("species")
+
+
+func get_species_record(species_id_or_symbol) -> Dictionary:
+	if typeof(species_id_or_symbol) == TYPE_INT:
+		return get_species_record_by_id(int(species_id_or_symbol))
+	if typeof(species_id_or_symbol) == TYPE_FLOAT:
+		return get_species_record_by_id(int(species_id_or_symbol))
+
+	var key := String(species_id_or_symbol)
+	if key.is_valid_int():
+		return get_species_record_by_id(int(key))
+	return get_species_record_by_symbol(key)
+
+
+func get_species_record_by_symbol(species_symbol: String) -> Dictionary:
+	_ensure_species_indexes()
+	var normalized := species_symbol
+	if not normalized.begins_with("SPECIES_"):
+		normalized = "SPECIES_%s" % normalized.to_upper()
+	var record = _species_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_species_record_by_id(species_id: int) -> Dictionary:
+	_ensure_species_indexes()
+	var record = _species_records_by_id.get(species_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
 func get_map_name(map_id: String) -> String:
 	var entry := _map_entry_for_id(map_id)
 	if not entry.is_empty():
@@ -258,6 +307,10 @@ func _index_manifest() -> void:
 	_script_data_by_path = {}
 	_text_entries_by_category = {}
 	_text_data_by_category = {}
+	_pokemon_entries_by_category = {}
+	_pokemon_data_by_category = {}
+	_species_records_by_symbol = {}
+	_species_records_by_id = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -301,6 +354,15 @@ func _index_manifest() -> void:
 			if not category.is_empty():
 				_text_entries_by_category[category] = entry
 
+	var pokemon = _manifest_data.get("pokemon", [])
+	if typeof(pokemon) == TYPE_ARRAY:
+		for entry in pokemon:
+			if typeof(entry) != TYPE_DICTIONARY:
+				continue
+			var category := String(entry.get("category", ""))
+			if not category.is_empty():
+				_pokemon_entries_by_category[category] = entry
+
 
 func _map_entry_for_id(map_id: String) -> Dictionary:
 	var entry = _map_entries_by_id.get(map_id, {})
@@ -339,6 +401,26 @@ func _script_data_for_entry(entry: Dictionary) -> Dictionary:
 	var script_data := _load_json_object(_resource_path(path), "generated script")
 	_script_data_by_path[path] = script_data
 	return script_data
+
+
+func _ensure_species_indexes() -> void:
+	if not _species_records_by_symbol.is_empty() or not _species_records_by_id.is_empty():
+		return
+
+	var species_data := get_species_data()
+	var species_records = species_data.get("species", {})
+	if typeof(species_records) != TYPE_DICTIONARY:
+		return
+
+	for symbol in species_records.keys():
+		var record = species_records[symbol]
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var species_symbol := String(record.get("symbol", symbol))
+		if not species_symbol.is_empty():
+			_species_records_by_symbol[species_symbol] = record
+		if record.has("id") and record.get("id") != null:
+			_species_records_by_id[int(record.get("id"))] = record
 
 
 func _resource_path(project_path: String) -> String:

@@ -50,7 +50,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, and global text JSON.
+- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, and Pokemon species JSON.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries, including source metatile behavior names.
 - `MapRuntime` indexes generated door animation metadata by metatile id and can return the animation for a map cell.
 - `MapRuntime` indexes generated object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events; visible object-event cells are occupied for first-pass movement.
@@ -134,6 +134,15 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Coordinate-event execution is currently dispatched after player tile movement in `Main`, followed by first-pass generated map warp-event dispatch when no coordinate event matched. Blocked front-cell door warp dispatch only fires while facing north, matching source `TryDoorWarp`. Weather, wild encounter, step-count, and forced-movement script chaining remain future work.
 - Movement dispatch does not yet run step-by-step animation, source collision checks, movement task timing, or object freeze/unfreeze behavior. Object-effect dispatch does not yet model the full source object lifecycle, object graphics reload, or save persistence beyond `GameState` flags. Audio and player effects are recorded, while transition sequences have only a placeholder overlay consumer. `EventManager.get_script_preview` must remain read-only and must not apply runtime effects.
 - Unsupported opcodes should stay visible through reports and VM results rather than being silently approximated.
+
+## Generated Pokemon Species Contract
+
+- Pokemon species JSON is loaded through `DataRegistry` from the manifest `pokemon` entry with category `species`.
+- `DataRegistry.get_pokemon_data("species")`, `get_species_data`, `get_species_record`, `get_species_record_by_symbol`, and `get_species_record_by_id` are read-only accessors for generated species records.
+- Generated species records preserve source symbols, numeric species ids, source file/line references, raw initializer fields, source references for graphics/learnsets/evolutions/forms, and source-derived constant records for types, abilities, egg groups, growth rates, body colors, items, cries, and national dex ids.
+- Struct initializers expose the first runtime-ready data slice: base stats, EV yields, catch and exp values, gender ratio, egg cycles, friendship, dimensions, display text, types, abilities, egg groups, growth rate, body color, dex number, held items, flags, and graphics/source-resource references where present.
+- Macro-generated species initializers currently remain explicit `initializer_kind = "macro_call"` records with `evaluation_status = "partial"`, raw macro calls, arguments, source locations, and warnings. They must be expanded only after tracing the source macro definitions and referenced resources, not guessed from neighboring forms.
+- Runtime systems should consume generated Godot-friendly species JSON and later generated textures/resources. Source palettes and packed graphics remain import concerns; gameplay and presentation should preserve source-visible Pokemon behavior and data outcomes without recreating GBA storage limits.
 
 ## Generated Global Text Contract
 

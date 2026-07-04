@@ -165,3 +165,9 @@
 - Added a `PlayerController` field-input precheck configured by `Main`, so `MAP_SCRIPT_ON_FRAME_TABLE` runs before `ui_accept` and movement input; visible dialogue/transition playback also consumes input before movement.
 - Expanded `event_manager_smoke.gd` to assert OnFrame dispatch output for Brendan/May moving-in intro paths.
 - Verified `event_manager_smoke.gd`, `script_vm_smoke.gd`, `map_runtime_smoke.gd`, `data_registry_text_smoke.gd`, `transition_presentation_smoke.gd`, and Godot 4.7 headless startup.
+- Confirmed the source-fidelity rule applies to every function, script, code-backed feature, and gameplay system: trace source C plus referenced resources first, preserve source-visible behavior/timing/UI/audio/animation/gameplay outcomes where practical, and ignore GBA hardware/storage constraints such as palettes or packed binary graphics at Godot runtime.
+- Traced the first Pokemon species data slice through `src/data/pokemon/species_info.h`, included `species_info/gen_*_families.h` files, source config headers, and Pokemon/species/type/ability/item/cry/pokedex constants.
+- Added `tools/importer/export_species.py` to export active species data into `data/generated/pokemon/species.json`, with struct initializer records for core stats/resources and explicit partial records for macro-generated species forms.
+- Generated species data with 1573 active initializers, 1366 struct initializers, 207 macro-call partial initializers, 1329 records with complete first-pass base stats, 0 preprocessor warnings, and 207 deliberate macro-partial warnings.
+- Updated `DataRegistry` with manifest-backed Pokemon data loading plus species lookup by symbol, short symbol, or numeric species id.
+- Added `tools/godot_smoke/data_registry_species_smoke.gd` covering generated species stats, Bulbasaur core fields/source references, Unown macro partial status, and Egg species id lookup.

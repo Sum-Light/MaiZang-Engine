@@ -177,6 +177,30 @@ Current global text export behavior:
 - Writes `data/generated/text/global_text.json` with source metadata, per-file counts, label index, text records, reports, and stats.
 - Updates `data/generated/import_manifest.json` with a `texts` entry while preserving existing map, tileset, and script entries.
 
+`tools/importer/export_species.py` exports the active Pokemon species initializer table into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
+
+Current species export behavior:
+
+- Reads `src/data/pokemon/species_info.h` plus included `species_info/gen_*_families.h` files after evaluating source config branches from `include/config/general.h`, `include/config/battle.h`, `include/config/overworld.h`, `include/config/pokemon.h`, and `include/config/species_enabled.h`.
+- Reads species, type, growth-rate, body-color, ability, item, cry, national-dex, egg-group, and gender constants from source headers, then stores source symbols and numeric values together in generated records.
+- Parses explicit struct initializers into source-backed fields for base stats, EV yields, catch rate, exp yield, gender ratio, egg cycles, friendship, dimensions, display text, types, abilities, egg groups, growth rate, body color, dex number, held items, flags, graphics references, learnset references, evolution references, and form-table references.
+- Converts source species/category/description string literals to Godot-facing UTF-8 `display_text` while keeping source-facing raw text fields.
+- Preserves macro-generated initializers as partial `macro_call` records with raw macro text, arguments, source location, and warnings until the relevant C macros and referenced resources are traced deeply enough for safe expansion.
+- Writes `data/generated/pokemon/species.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `species`.
+
+Latest verified species export:
+
+- generated path: `data/generated/pokemon/species.json`
+- manifest category: `pokemon` / `species`
+- active species initializers: 1573
+- struct initializers: 1366
+- macro-call partial initializers: 207
+- species with complete first-pass base stats: 1329
+- preprocessor decisions: 2043
+- preprocessor warnings: 0
+- deliberate macro-partial warnings: 207
+- unsupported field notes: 2879
+
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 
 Latest verified first-slice source facts for `LittlerootTown`:

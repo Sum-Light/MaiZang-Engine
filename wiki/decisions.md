@@ -269,3 +269,9 @@ Reason: Source `data/event_scripts.s` includes many shared script files into one
 Decision: Treat `applymovement` and `waitmovement` target operands as source `VarGet` inputs, preserving raw targets and resolved local ids in VM results.
 
 Reason: Source `ScrCmd_applymovement` and `ScrCmd_waitmovement` read a halfword and pass it through `VarGet`. That means object local-id constants become numeric source ids, `VAR_*` operands can point at a runtime object id, `LOCALID_PLAYER` stays the player target, and `waitmovement 0` waits on the current moving target. Matching this prevents scripts like the shared PlayersHouse intro from moving the wrong object in Godot.
+
+## 2026-07-04 - Export traceable species data before expanding dense macros
+
+Decision: Add a first Pokemon species importer that fully structures explicit species initializers, but preserves dense macro-generated initializers as partial records with warnings until their macro definitions and referenced resources are traced.
+
+Reason: `src/data/pokemon/species_info.h` mixes ordinary struct initializers with C macros that generate many related form records. The Godot data layer should expose all active species ids now, but it should not invent values for macro-expanded forms before the source macro semantics are understood. Partial records keep coverage visible and unblock registry access while preserving a clear next step for source-faithful macro expansion.

@@ -259,6 +259,7 @@ def write_manifest(
     exported_tilesets=None,
     exported_scripts=None,
     exported_texts=None,
+    exported_pokemon=None,
     generator=None,
 ):
     existing = {}
@@ -293,6 +294,11 @@ def write_manifest(
         if exported_texts is not None
         else existing.get("texts", [])
     )
+    pokemon = (
+        _merge_manifest_entries(existing.get("pokemon", []), exported_pokemon, ["category", "path"])
+        if exported_pokemon is not None
+        else existing.get("pokemon", [])
+    )
     if maps:
         manifest["maps"] = maps
     if tilesets:
@@ -301,6 +307,8 @@ def write_manifest(
         manifest["scripts"] = scripts
     if texts:
         manifest["texts"] = texts
+    if pokemon:
+        manifest["pokemon"] = pokemon
 
     write_json(path, manifest)
 
