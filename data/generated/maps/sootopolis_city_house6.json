@@ -1,0 +1,602 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "map_folder": "SootopolisCity_House6",
+    "map_json": "data/maps/SootopolisCity_House6/map.json",
+    "map_script": "data/maps/SootopolisCity_House6/scripts.inc",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/SootopolisCity_House3/map.bin",
+    "border": "data/layouts/SootopolisCity_House3/border.bin"
+  },
+  "map": {
+    "id": "MAP_SOOTOPOLIS_CITY_HOUSE6",
+    "name": "SootopolisCity_House6",
+    "layout_id": "LAYOUT_SOOTOPOLIS_CITY_HOUSE3",
+    "music": "MUS_SOOTOPOLIS",
+    "region_map_section": "MAPSEC_SOOTOPOLIS_CITY",
+    "requires_flash": false,
+    "weather": "WEATHER_NONE",
+    "map_type": "MAP_TYPE_INDOOR",
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "allow_cycling": false,
+    "allow_escaping": false,
+    "allow_running": false,
+    "show_map_name": false,
+    "floor_number": null,
+    "shared_events_map": null,
+    "shared_scripts_map": null,
+    "connections_no_include": null
+  },
+  "layout": {
+    "id": "LAYOUT_SOOTOPOLIS_CITY_HOUSE3",
+    "name": "SootopolisCity_House3_Layout",
+    "width": 8,
+    "height": 7,
+    "layout_version": "emerald",
+    "primary_tileset": "gTileset_Building",
+    "secondary_tileset": "gTileset_GenericBuilding"
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_Building",
+      "kind": "primary",
+      "directory": "building",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/building/tiles.png",
+          "exists": true,
+          "size": 1575
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/building/metatiles.bin",
+          "exists": true,
+          "size": 128
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/building/metatile_attributes.bin",
+          "exists": true,
+          "size": 16
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_GenericBuilding",
+      "kind": "secondary",
+      "directory": "generic_building",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/generic_building/tiles.png",
+          "exists": true,
+          "size": 4990
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/generic_building/metatiles.bin",
+          "exists": true,
+          "size": 8192
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/generic_building/metatile_attributes.bin",
+          "exists": true,
+          "size": 1024
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      1008,
+      1008,
+      1008,
+      1010,
+      1010,
+      1008,
+      1008,
+      1008
+    ],
+    [
+      701,
+      699,
+      700,
+      1018,
+      1018,
+      1016,
+      658,
+      659
+    ],
+    [
+      709,
+      707,
+      708,
+      1023,
+      1023,
+      1023,
+      666,
+      667
+    ],
+    [
+      1023,
+      1022,
+      1022,
+      1022,
+      1022,
+      1022,
+      1022,
+      1022
+    ],
+    [
+      989,
+      990,
+      734,
+      1022,
+      1022,
+      1022,
+      1022,
+      1022
+    ],
+    [
+      997,
+      991,
+      1022,
+      1022,
+      1022,
+      1022,
+      1022,
+      1022
+    ],
+    [
+      1023,
+      1022,
+      1022,
+      520,
+      521,
+      1022,
+      1022,
+      1022
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        2032,
+        2032,
+        2032,
+        2034,
+        2034,
+        2032,
+        2032,
+        2032
+      ],
+      [
+        1725,
+        1723,
+        1724,
+        2042,
+        2042,
+        2040,
+        1682,
+        1683
+      ],
+      [
+        14021,
+        12995,
+        12996,
+        13311,
+        13311,
+        13311,
+        12954,
+        12955
+      ],
+      [
+        13311,
+        13310,
+        13310,
+        13310,
+        13310,
+        13310,
+        13310,
+        13310
+      ],
+      [
+        14301,
+        14302,
+        13022,
+        13310,
+        13310,
+        13310,
+        13310,
+        13310
+      ],
+      [
+        14309,
+        14303,
+        13310,
+        13310,
+        13310,
+        13310,
+        13310,
+        13310
+      ],
+      [
+        13311,
+        13310,
+        13310,
+        520,
+        521,
+        13310,
+        13310,
+        13310
+      ]
+    ],
+    "metatile_ids": [
+      [
+        1008,
+        1008,
+        1008,
+        1010,
+        1010,
+        1008,
+        1008,
+        1008
+      ],
+      [
+        701,
+        699,
+        700,
+        1018,
+        1018,
+        1016,
+        658,
+        659
+      ],
+      [
+        709,
+        707,
+        708,
+        1023,
+        1023,
+        1023,
+        666,
+        667
+      ],
+      [
+        1023,
+        1022,
+        1022,
+        1022,
+        1022,
+        1022,
+        1022,
+        1022
+      ],
+      [
+        989,
+        990,
+        734,
+        1022,
+        1022,
+        1022,
+        1022,
+        1022
+      ],
+      [
+        997,
+        991,
+        1022,
+        1022,
+        1022,
+        1022,
+        1022,
+        1022
+      ],
+      [
+        1023,
+        1022,
+        1022,
+        520,
+        521,
+        1022,
+        1022,
+        1022
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        0,
+        0,
+        3,
+        3,
+        3
+      ]
+    ]
+  },
+  "border_block_ids": [
+    513,
+    513,
+    513,
+    513
+  ],
+  "border_grid": {
+    "raw": [
+      513,
+      513,
+      513,
+      513
+    ],
+    "metatile_ids": [
+      513,
+      513,
+      513,
+      513
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "emerald_2x2_parity",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_IMPASSABLE",
+    "layout_version": "emerald"
+  },
+  "connections": [],
+  "block_id_stats": {
+    "count": 56,
+    "unique_count": 23,
+    "min": 520,
+    "max": 1023,
+    "unique_ids": [
+      520,
+      521,
+      658,
+      659,
+      666,
+      667,
+      699,
+      700,
+      701,
+      707,
+      708,
+      709,
+      734,
+      989,
+      990,
+      991,
+      997,
+      1008,
+      1010,
+      1016,
+      1018,
+      1022,
+      1023
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 56,
+    "unique_count": 23,
+    "min": 520,
+    "max": 14309,
+    "unique_ids": [
+      520,
+      521,
+      1682,
+      1683,
+      1723,
+      1724,
+      1725,
+      2032,
+      2034,
+      2040,
+      2042,
+      12954,
+      12955,
+      12995,
+      12996,
+      13022,
+      13310,
+      13311,
+      14021,
+      14301,
+      14302,
+      14303,
+      14309
+    ]
+  },
+  "events": {
+    "connections": [],
+    "object_events": [
+      {
+        "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+        "x": 4,
+        "y": 3,
+        "elevation": 3,
+        "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "SootopolisCity_House6_EventScript_Woman",
+        "flag": "0",
+        "source_order_index": 0,
+        "source_numeric_local_id": 1,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      }
+    ],
+    "warp_events": [
+      {
+        "x": 3,
+        "y": 6,
+        "elevation": 0,
+        "dest_map": "MAP_SOOTOPOLIS_CITY",
+        "dest_warp_id": "9",
+        "source_order_index": 0
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "elevation": 0,
+        "dest_map": "MAP_SOOTOPOLIS_CITY",
+        "dest_warp_id": "9",
+        "source_order_index": 1
+      }
+    ],
+    "coord_events": [],
+    "bg_events": []
+  }
+}

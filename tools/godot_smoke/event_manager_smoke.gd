@@ -9,7 +9,9 @@ const BATTLE_ENGINE_SCRIPT := preload("res://scripts/autoload/battle_engine.gd")
 const PARTY_RUNTIME_SCRIPT := preload("res://scripts/autoload/party_runtime.gd")
 const START_MAP := "MAP_LITTLEROOT_TOWN"
 const BRENDANS_HOUSE_1F := "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F"
+const BRENDANS_HOUSE_2F := "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F"
 const MAYS_HOUSE_1F := "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F"
+const MAYS_HOUSE_2F := "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F"
 
 
 func _init() -> void:
@@ -324,6 +326,9 @@ func _init() -> void:
 		typeof(brendan_on_frame_clock_script) == TYPE_DICTIONARY and int(brendan_on_frame_clock_script.get("transition_effect_count", 0)) == 1,
 		"expected Brendan clock OnFrame script to record upstairs warp"
 	)
+	_assert(game_state.current_map_id == BRENDANS_HOUSE_2F, "expected Brendan clock OnFrame to load Brendan house 2F")
+	_assert(game_state.player_grid_position == Vector2i(7, 1), "expected Brendan clock warp explicit upstairs position")
+	_configure_map_fixture(registry, runtime, manager, game_state, BRENDANS_HOUSE_1F, Vector2i(8, 8))
 	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 3)
 	_assert(not transition_lines.is_empty(), "expected transition dispatch to emit lines")
 	_assert(
@@ -404,6 +409,9 @@ func _init() -> void:
 	var door_exit_step := _first_step(door_warp_sequence, "exit_task_select")
 	var conditional_door_step := _first_step(door_warp_sequence, "conditional_exit_door_player_step")
 	var door_open_animation = door_open_step.get("animation", {})
+	var current_map_after_may_warp := String(game_state.current_map_id)
+	var may_open_box_metatile_after_warp := runtime.get_metatile_id_at(Vector2i(5, 4))
+	var may_closed_box_metatile_after_warp := runtime.get_metatile_id_at(Vector2i(5, 2))
 	var may_mom_after_door_warp := runtime.get_object_event_by_local_id("LOCALID_PLAYERS_HOUSE_1F_MOM", true)
 	var may_mom_position_after_door_warp := _event_position(may_mom_after_door_warp)
 	var may_mom_movement_after_door_warp := String(may_mom_after_door_warp.get("movement_type", ""))
@@ -428,13 +436,13 @@ func _init() -> void:
 	})
 	var may_on_frame_clock_script = may_on_frame_clock.get("script", {})
 	_assert(may_house_door_warp.get("type", "") == "warp_event", "expected May house door warp")
-	_assert(game_state.current_map_id == MAYS_HOUSE_1F, "expected door warp to load May house")
+	_assert(current_map_after_may_warp == MAYS_HOUSE_1F, "expected door warp to load May house")
 	_assert(
-		runtime.get_metatile_id_at(Vector2i(5, 4)) == 624,
+		may_open_box_metatile_after_warp == 624,
 		"expected May house OnLoad to apply open moving-box metatile"
 	)
 	_assert(
-		runtime.get_metatile_id_at(Vector2i(5, 2)) == 616,
+		may_closed_box_metatile_after_warp == 616,
 		"expected May house OnLoad to apply closed moving-box metatile"
 	)
 	_assert(
@@ -489,6 +497,16 @@ func _init() -> void:
 		typeof(may_on_frame_clock_script) == TYPE_DICTIONARY and int(may_on_frame_clock_script.get("message_count", 0)) == 1,
 		"expected May clock OnFrame script to emit one message"
 	)
+	_assert(
+		typeof(may_on_frame_clock_script) == TYPE_DICTIONARY and int(may_on_frame_clock_script.get("movement_count", 0)) == 2,
+		"expected May clock OnFrame script to move player and Mom"
+	)
+	_assert(
+		typeof(may_on_frame_clock_script) == TYPE_DICTIONARY and int(may_on_frame_clock_script.get("transition_effect_count", 0)) == 1,
+		"expected May clock OnFrame script to record upstairs warp"
+	)
+	_assert(game_state.current_map_id == MAYS_HOUSE_2F, "expected May clock OnFrame to load May house 2F")
+	_assert(game_state.player_grid_position == Vector2i(1, 1), "expected May clock warp explicit upstairs position")
 	_assert(door_warp_sequence.get("presentation", "") == "door", "expected door presentation sequence")
 	_assert(
 		_step_ops(door_warp_sequence) == [
@@ -607,6 +625,16 @@ func _init() -> void:
 	vm.free()
 	registry.free()
 	quit(0)
+
+
+func _configure_map_fixture(registry: Node, runtime: Node, manager: Node, game_state: Node, map_id: String, position: Vector2i) -> void:
+	var map_data: Dictionary = registry.get_map_data(map_id)
+	var tileset_data: Dictionary = registry.get_tileset_data_for_map(map_id)
+	var script_data: Dictionary = registry.get_script_data_for_map(map_id)
+	runtime.configure_from_data(map_data, tileset_data, registry.get_map_size(map_id))
+	manager.configure_from_script_data(script_data)
+	game_state.current_map_id = map_id
+	runtime.set_player_grid_position(position, game_state)
 
 
 func _load_json_object(path: String) -> Dictionary:

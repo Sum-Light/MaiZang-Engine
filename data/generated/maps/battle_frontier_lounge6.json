@@ -1,0 +1,806 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "map_folder": "BattleFrontier_Lounge6",
+    "map_json": "data/maps/BattleFrontier_Lounge6/map.json",
+    "map_script": "data/maps/BattleFrontier_Lounge6/scripts.inc",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/BattleFrontier_Lounge2/map.bin",
+    "border": "data/layouts/BattleFrontier_Lounge2/border.bin"
+  },
+  "map": {
+    "id": "MAP_BATTLE_FRONTIER_LOUNGE6",
+    "name": "BattleFrontier_Lounge6",
+    "layout_id": "LAYOUT_BATTLE_FRONTIER_LOUNGE2",
+    "music": "MUS_B_TOWER_RS",
+    "region_map_section": "MAPSEC_BATTLE_FRONTIER",
+    "requires_flash": false,
+    "weather": "WEATHER_NONE",
+    "map_type": "MAP_TYPE_INDOOR",
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "allow_cycling": false,
+    "allow_escaping": false,
+    "allow_running": false,
+    "show_map_name": false,
+    "floor_number": null,
+    "shared_events_map": null,
+    "shared_scripts_map": null,
+    "connections_no_include": null
+  },
+  "layout": {
+    "id": "LAYOUT_BATTLE_FRONTIER_LOUNGE2",
+    "name": "BattleFrontier_Lounge2_Layout",
+    "width": 9,
+    "height": 10,
+    "layout_version": "emerald",
+    "primary_tileset": "gTileset_Building",
+    "secondary_tileset": "gTileset_BattleFrontier"
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_Building",
+      "kind": "primary",
+      "directory": "building",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/building/tiles.png",
+          "exists": true,
+          "size": 1575
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/building/metatiles.bin",
+          "exists": true,
+          "size": 128
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/building/metatile_attributes.bin",
+          "exists": true,
+          "size": 16
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_BattleFrontier",
+      "kind": "secondary",
+      "directory": "battle_frontier",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/battle_frontier/tiles.png",
+          "exists": true,
+          "size": 2411
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/battle_frontier/metatiles.bin",
+          "exists": true,
+          "size": 8144
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/battle_frontier/metatile_attributes.bin",
+          "exists": true,
+          "size": 1018
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      957,
+      958,
+      959,
+      958,
+      909,
+      958,
+      959,
+      958,
+      959
+    ],
+    [
+      966,
+      966,
+      967,
+      966,
+      917,
+      966,
+      967,
+      966,
+      967
+    ],
+    [
+      983,
+      974,
+      975,
+      974,
+      2,
+      974,
+      975,
+      974,
+      975
+    ],
+    [
+      989,
+      968,
+      969,
+      968,
+      933,
+      968,
+      969,
+      968,
+      986
+    ],
+    [
+      1005,
+      969,
+      1007,
+      969,
+      968,
+      969,
+      991,
+      969,
+      992
+    ],
+    [
+      989,
+      968,
+      1015,
+      968,
+      969,
+      968,
+      999,
+      968,
+      1000
+    ],
+    [
+      997,
+      969,
+      991,
+      969,
+      968,
+      969,
+      1007,
+      969,
+      986
+    ],
+    [
+      1005,
+      968,
+      999,
+      968,
+      969,
+      968,
+      1015,
+      968,
+      1000
+    ],
+    [
+      977,
+      969,
+      968,
+      969,
+      968,
+      969,
+      968,
+      969,
+      968
+    ],
+    [
+      1,
+      977,
+      969,
+      940,
+      941,
+      942,
+      969,
+      968,
+      1
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        1981,
+        1982,
+        1983,
+        1982,
+        1933,
+        1982,
+        1983,
+        1982,
+        1983
+      ],
+      [
+        1990,
+        1990,
+        1991,
+        1990,
+        1941,
+        1990,
+        1991,
+        1990,
+        1991
+      ],
+      [
+        2007,
+        1998,
+        1999,
+        1998,
+        1026,
+        1998,
+        1999,
+        1998,
+        1999
+      ],
+      [
+        989,
+        968,
+        969,
+        968,
+        933,
+        968,
+        969,
+        968,
+        986
+      ],
+      [
+        1005,
+        969,
+        1007,
+        969,
+        968,
+        969,
+        991,
+        969,
+        992
+      ],
+      [
+        989,
+        968,
+        1015,
+        968,
+        969,
+        968,
+        999,
+        968,
+        1000
+      ],
+      [
+        997,
+        969,
+        991,
+        969,
+        968,
+        969,
+        1007,
+        969,
+        986
+      ],
+      [
+        1005,
+        968,
+        999,
+        968,
+        969,
+        968,
+        1015,
+        968,
+        1000
+      ],
+      [
+        977,
+        969,
+        968,
+        969,
+        968,
+        969,
+        968,
+        969,
+        968
+      ],
+      [
+        1025,
+        977,
+        969,
+        940,
+        941,
+        942,
+        969,
+        968,
+        1025
+      ]
+    ],
+    "metatile_ids": [
+      [
+        957,
+        958,
+        959,
+        958,
+        909,
+        958,
+        959,
+        958,
+        959
+      ],
+      [
+        966,
+        966,
+        967,
+        966,
+        917,
+        966,
+        967,
+        966,
+        967
+      ],
+      [
+        983,
+        974,
+        975,
+        974,
+        2,
+        974,
+        975,
+        974,
+        975
+      ],
+      [
+        989,
+        968,
+        969,
+        968,
+        933,
+        968,
+        969,
+        968,
+        986
+      ],
+      [
+        1005,
+        969,
+        1007,
+        969,
+        968,
+        969,
+        991,
+        969,
+        992
+      ],
+      [
+        989,
+        968,
+        1015,
+        968,
+        969,
+        968,
+        999,
+        968,
+        1000
+      ],
+      [
+        997,
+        969,
+        991,
+        969,
+        968,
+        969,
+        1007,
+        969,
+        986
+      ],
+      [
+        1005,
+        968,
+        999,
+        968,
+        969,
+        968,
+        1015,
+        968,
+        1000
+      ],
+      [
+        977,
+        969,
+        968,
+        969,
+        968,
+        969,
+        968,
+        969,
+        968
+      ],
+      [
+        1,
+        977,
+        969,
+        940,
+        941,
+        942,
+        969,
+        968,
+        1
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "border_block_ids": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "border_grid": {
+    "raw": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "metatile_ids": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "emerald_2x2_parity",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_IMPASSABLE",
+    "layout_version": "emerald"
+  },
+  "connections": [],
+  "block_id_stats": {
+    "count": 90,
+    "unique_count": 29,
+    "min": 1,
+    "max": 1015,
+    "unique_ids": [
+      1,
+      2,
+      909,
+      917,
+      933,
+      940,
+      941,
+      942,
+      957,
+      958,
+      959,
+      966,
+      967,
+      968,
+      969,
+      974,
+      975,
+      977,
+      983,
+      986,
+      989,
+      991,
+      992,
+      997,
+      999,
+      1000,
+      1005,
+      1007,
+      1015
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 90,
+    "unique_count": 29,
+    "min": 933,
+    "max": 2007,
+    "unique_ids": [
+      933,
+      940,
+      941,
+      942,
+      968,
+      969,
+      977,
+      986,
+      989,
+      991,
+      992,
+      997,
+      999,
+      1000,
+      1005,
+      1007,
+      1015,
+      1025,
+      1026,
+      1933,
+      1941,
+      1981,
+      1982,
+      1983,
+      1990,
+      1991,
+      1998,
+      1999,
+      2007
+    ]
+  },
+  "events": {
+    "connections": [],
+    "object_events": [
+      {
+        "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+        "x": 2,
+        "y": 4,
+        "elevation": 0,
+        "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "BattleFrontier_Lounge6_EventScript_Trader",
+        "flag": "0",
+        "source_order_index": 0,
+        "source_numeric_local_id": 1,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      }
+    ],
+    "warp_events": [
+      {
+        "x": 4,
+        "y": 9,
+        "elevation": 0,
+        "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
+        "dest_warp_id": "8",
+        "source_order_index": 0
+      }
+    ],
+    "coord_events": [],
+    "bg_events": []
+  }
+}

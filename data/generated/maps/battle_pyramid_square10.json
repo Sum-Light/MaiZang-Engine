@@ -1,0 +1,695 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "map_folder": "BattlePyramidSquare10",
+    "map_json": "data/maps/BattlePyramidSquare10/map.json",
+    "map_script": "data/maps/BattlePyramidSquare10/scripts.inc",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/BattlePyramidSquare10/map.bin",
+    "border": "data/layouts/BattlePyramidSquare10/border.bin"
+  },
+  "map": {
+    "id": "MAP_BATTLE_PYRAMID_SQUARE10",
+    "name": "BattlePyramidSquare10",
+    "layout_id": "LAYOUT_BATTLE_PYRAMID_SQUARE10",
+    "music": "MUS_NONE",
+    "region_map_section": "MAPSEC_DYNAMIC",
+    "requires_flash": false,
+    "weather": "WEATHER_NONE",
+    "map_type": "MAP_TYPE_INDOOR",
+    "battle_scene": "MAP_BATTLE_SCENE_GYM",
+    "allow_cycling": false,
+    "allow_escaping": false,
+    "allow_running": false,
+    "show_map_name": false,
+    "floor_number": null,
+    "shared_events_map": null,
+    "shared_scripts_map": "BattlePyramidSquare01",
+    "connections_no_include": null
+  },
+  "layout": {
+    "id": "LAYOUT_BATTLE_PYRAMID_SQUARE10",
+    "name": "BattlePyramidSquare10_Layout",
+    "width": 8,
+    "height": 8,
+    "layout_version": "emerald",
+    "primary_tileset": "gTileset_Building",
+    "secondary_tileset": "gTileset_BattlePyramid"
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_Building",
+      "kind": "primary",
+      "directory": "building",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/building/tiles.png",
+          "exists": true,
+          "size": 1575
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/building/metatiles.bin",
+          "exists": true,
+          "size": 128
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/building/metatile_attributes.bin",
+          "exists": true,
+          "size": 16
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_BattlePyramid",
+      "kind": "secondary",
+      "directory": "battle_pyramid",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/battle_pyramid/tiles.png",
+          "exists": true,
+          "size": 3256
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/battle_pyramid/metatiles.bin",
+          "exists": true,
+          "size": 3536
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/battle_pyramid/metatile_attributes.bin",
+          "exists": true,
+          "size": 442
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      653,
+      653,
+      653,
+      653,
+      616,
+      628,
+      618,
+      653
+    ],
+    [
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653
+    ],
+    [
+      653,
+      616,
+      618,
+      653,
+      616,
+      628,
+      618,
+      653
+    ],
+    [
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653
+    ],
+    [
+      616,
+      628,
+      618,
+      654,
+      616,
+      628,
+      618,
+      653
+    ],
+    [
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653
+    ],
+    [
+      616,
+      628,
+      618,
+      653,
+      653,
+      653,
+      653,
+      653
+    ],
+    [
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        17037,
+        17037,
+        17037,
+        17037,
+        1640,
+        1652,
+        1642,
+        17037
+      ],
+      [
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037
+      ],
+      [
+        17037,
+        1640,
+        1642,
+        17037,
+        1640,
+        1652,
+        1642,
+        17037
+      ],
+      [
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037
+      ],
+      [
+        1640,
+        1652,
+        1642,
+        17038,
+        1640,
+        1652,
+        1642,
+        17037
+      ],
+      [
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037
+      ],
+      [
+        1640,
+        1652,
+        1642,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037
+      ],
+      [
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037
+      ]
+    ],
+    "metatile_ids": [
+      [
+        653,
+        653,
+        653,
+        653,
+        616,
+        628,
+        618,
+        653
+      ],
+      [
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653
+      ],
+      [
+        653,
+        616,
+        618,
+        653,
+        616,
+        628,
+        618,
+        653
+      ],
+      [
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653
+      ],
+      [
+        616,
+        628,
+        618,
+        654,
+        616,
+        628,
+        618,
+        653
+      ],
+      [
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653
+      ],
+      [
+        616,
+        628,
+        618,
+        653,
+        653,
+        653,
+        653,
+        653
+      ],
+      [
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653
+      ]
+    ],
+    "collision": [
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "elevation": [
+      [
+        4,
+        4,
+        4,
+        4,
+        0,
+        0,
+        0,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        4,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        0,
+        0,
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    ]
+  },
+  "border_block_ids": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "border_grid": {
+    "raw": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "metatile_ids": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "emerald_2x2_parity",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_IMPASSABLE",
+    "layout_version": "emerald"
+  },
+  "connections": [],
+  "block_id_stats": {
+    "count": 64,
+    "unique_count": 5,
+    "min": 616,
+    "max": 654,
+    "unique_ids": [
+      616,
+      618,
+      628,
+      653,
+      654
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 64,
+    "unique_count": 5,
+    "min": 1640,
+    "max": 17038,
+    "unique_ids": [
+      1640,
+      1642,
+      1652,
+      17037,
+      17038
+    ]
+  },
+  "events": {
+    "connections": [],
+    "object_events": [
+      {
+        "graphics_id": "OBJ_EVENT_GFX_GIRL_3",
+        "x": 3,
+        "y": 0,
+        "elevation": 4,
+        "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NORMAL",
+        "trainer_sight_or_berry_tree_id": "3",
+        "script": "BattlePyramid_TrainerBattle",
+        "flag": "0",
+        "source_order_index": 0,
+        "source_numeric_local_id": 1,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "graphics_id": "OBJ_EVENT_GFX_GIRL_3",
+        "x": 0,
+        "y": 3,
+        "elevation": 4,
+        "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NORMAL",
+        "trainer_sight_or_berry_tree_id": "3",
+        "script": "BattlePyramid_TrainerBattle",
+        "flag": "0",
+        "source_order_index": 1,
+        "source_numeric_local_id": 2,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "graphics_id": "OBJ_EVENT_GFX_GIRL_3",
+        "x": 6,
+        "y": 5,
+        "elevation": 4,
+        "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NORMAL",
+        "trainer_sight_or_berry_tree_id": "6",
+        "script": "BattlePyramid_TrainerBattle",
+        "flag": "0",
+        "source_order_index": 2,
+        "source_numeric_local_id": 3,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "graphics_id": "OBJ_EVENT_GFX_GIRL_3",
+        "x": 0,
+        "y": 5,
+        "elevation": 4,
+        "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NORMAL",
+        "trainer_sight_or_berry_tree_id": "7",
+        "script": "BattlePyramid_TrainerBattle",
+        "flag": "0",
+        "source_order_index": 3,
+        "source_numeric_local_id": 4,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+        "x": 3,
+        "y": 6,
+        "elevation": 4,
+        "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "BattlePyramid_FindItemBall",
+        "flag": "0",
+        "source_order_index": 4,
+        "source_numeric_local_id": 5,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+        "x": 5,
+        "y": 3,
+        "elevation": 4,
+        "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "BattlePyramid_FindItemBall",
+        "flag": "0",
+        "source_order_index": 5,
+        "source_numeric_local_id": 6,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+        "x": 1,
+        "y": 1,
+        "elevation": 4,
+        "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "BattlePyramid_FindItemBall",
+        "flag": "0",
+        "source_order_index": 6,
+        "source_numeric_local_id": 7,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      }
+    ],
+    "warp_events": [],
+    "coord_events": [],
+    "bg_events": []
+  }
+}

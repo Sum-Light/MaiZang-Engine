@@ -58,21 +58,23 @@ Use these as executable checkboxes. A task is not complete until the source path
 
 ### 2. Full Map Import
 
-- [ ] Extend the map import entry point to batch over all source `data/maps/*/map.json` records.
+- [x] Extend the map import entry point to batch over all source `data/maps/*/map.json` records.
 - [ ] Export every layout referenced by `data/layouts/layouts.json`.
 - [ ] Export every `map.bin` raw u16 grid, metatile id grid, collision grid, elevation grid, width, height, and source layout symbol.
 - [ ] Export every `border.bin` and preserve `GetBorderBlockAt` fallback metadata.
 - [ ] Export map connections with direction, offset, target map id, target map section, and source map-group/map-num metadata.
-- [ ] Export map header metadata: map type, layout id, music, weather, map section, battle type, allow cycling, allow escaping, allow running, show map name, floor number, and cave/flash flags.
-- [ ] Export object events with local id, graphics id, movement type, movement range, trainer metadata, flag id, script label, coordinate, elevation, and generated source-order index.
-- [ ] Export warp events with source x/y/elevation, destination map, destination warp id, and source-order index.
-- [ ] Export coord events with trigger var, trigger value, elevation, script label, and source-order index.
-- [ ] Export BG/sign events with kind, coordinates, elevation, script/item/hidden-item metadata, and source-order index.
+- [x] Export map header metadata: map type, layout id, music, weather, map section, battle type, allow cycling, allow escaping, allow running, show map name, floor number, and cave/flash flags.
+- [x] Export object events with local id, graphics id, movement type, movement range, trainer metadata, flag id, script label, coordinate, elevation, and generated source-order index.
+- [x] Export warp events with source x/y/elevation, destination map, destination warp id, and source-order index.
+- [x] Export coord events with trigger var, trigger value, elevation, script label, and source-order index.
+- [x] Export BG/sign events with kind, coordinates, elevation, script/item/hidden-item metadata, and source-order index.
 - [ ] Validate every exported script label against generated script bundles and report missing labels.
 - [ ] Validate every warp destination map and warp id and report invalid or not-yet-generated targets.
 - [ ] Validate every connection target map and offset and report missing targets.
 - [ ] Validate duplicate object local ids per map and source numeric local-id aliases.
-- [ ] Add an import smoke that asserts all source maps either export cleanly or emit deliberate unsupported records.
+- [x] Add an import smoke that asserts all source maps either export cleanly or emit deliberate unsupported records.
+
+Snapshot: `tools/importer/export_map.py --all` now exports 939/939 source maps with 0 failures and writes `data/generated/overworld/map_batch_report.json`; this covers 711 map-referenced layouts and reports 74 standalone source layouts still pending for independent layout export. Current exported event totals are 266 connections, 4426 object events, 2607 warp events, 603 coord events, and 1422 BG events.
 
 ### 3. Script And Text Import For Overworld
 

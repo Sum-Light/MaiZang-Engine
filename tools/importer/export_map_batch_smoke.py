@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+"""Smoke-test batch map export coverage without writing generated map files."""
+
+import argparse
+import sys
+from pathlib import Path
+
+from export_map import build_map_batch_export, export_map
+from source_probe import load_config
+
+
+EXPECTED_SOURCE_MAP_COUNT = 939
+EXPECTED_SOURCE_LAYOUT_COUNT = 785
+EXPECTED_MAP_REFERENCED_LAYOUT_COUNT = 711
+EXPECTED_UNEXPORTED_LAYOUT_COUNT = 74
+
+
+def require(condition, message):
+    if not condition:
+        raise AssertionError(message)
+
+
+def find_row(report, map_name):
+    for row in report.get("maps", []):
+        if row.get("name") == map_name:
+            return row
+    return None
+
+
+def main(argv):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--config", type=Path, help="JSON config with source and output roots.")
+    parser.add_argument("--source", type=Path, help="pokeemerald-expansion source root.")
+    parser.add_argument("--output-root", type=Path, help="Generated data output root.")
+    args = parser.parse_args(argv)
+
+    config = load_config(args.config)
+    source_root = args.source or Path(config.get("source_root", ""))
+    output_root = args.output_root or Path(config.get("generated_data_root", "data/generated"))
+
+    report, exported_entries = build_map_batch_export(
+        source_root,
+        output_root,
+        write_outputs=False,
+    )
+    stats = report["stats"]
+
+    require(stats["source_map_count"] == EXPECTED_SOURCE_MAP_COUNT, "unexpected source map count")
+    require(stats["exported_map_count"] == EXPECTED_SOURCE_MAP_COUNT, "not every source map exported")
+    require(stats["failed_map_count"] == 0, "batch map export reported failures")
+    require(stats["source_layout_count"] == EXPECTED_SOURCE_LAYOUT_COUNT, "unexpected source layout count")
+    require(
+        stats["exported_unique_layout_count"] == EXPECTED_MAP_REFERENCED_LAYOUT_COUNT,
+        "unexpected map-referenced layout coverage",
+    )
+    require(
+        stats["unexported_source_layout_count"] == EXPECTED_UNEXPORTED_LAYOUT_COUNT,
+        "unexpected unexported standalone layout count",
+    )
+    require(stats["duplicate_output_path_count"] == 0, "duplicate map output paths")
+    require(stats["duplicate_id_count"] == 0, "duplicate map ids")
+    require(len(exported_entries) == EXPECTED_SOURCE_MAP_COUNT, "manifest entry count mismatch")
+    require(report["godot_policy"]["audio"] == "metadata_only", "audio policy was not preserved")
+
+    littleroot = find_row(report, "LittlerootTown")
+    require(littleroot is not None, "LittlerootTown row missing")
+    require(littleroot["event_counts"]["object_events"] == 8, "LittlerootTown object event count changed")
+    require(littleroot["event_counts"]["warp_events"] == 3, "LittlerootTown warp count changed")
+    require(littleroot["header"]["requires_flash"] is False, "LittlerootTown requires_flash changed")
+    require(littleroot["grid_format"]["raw_rows"] == 20, "LittlerootTown raw grid row count changed")
+
+    littleroot_export = export_map(source_root, "LittlerootTown")
+    first_object = littleroot_export["events"]["object_events"][0]
+    first_warp = littleroot_export["events"]["warp_events"][0]
+    require(first_object["source_order_index"] == 0, "object source_order_index missing")
+    require(first_object["source_numeric_local_id"] == 1, "object numeric local-id alias missing")
+    require(first_warp["source_order_index"] == 0, "warp source_order_index missing")
+
+    celadon_roof = find_row(report, "CeladonCity_DepartmentStore_Roof_Frlg")
+    require(celadon_roof is not None, "Celadon department store roof row missing")
+    require(celadon_roof["header"]["floor_number"] == 127, "FRLG floor_number metadata missing")
+
+    event_totals = stats["event_totals"]
+    require(event_totals["object_events"] > 0, "object event total missing")
+    require(event_totals["warp_events"] > 0, "warp event total missing")
+    require(event_totals["coord_events"] > 0, "coord event total missing")
+    require(event_totals["bg_events"] > 0, "BG event total missing")
+
+    print(
+        "ok: exported {}/{} maps, covered {} layouts, {} object events".format(
+            stats["exported_map_count"],
+            stats["source_map_count"],
+            stats["exported_unique_layout_count"],
+            event_totals["object_events"],
+        )
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))

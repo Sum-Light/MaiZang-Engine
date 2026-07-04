@@ -1,0 +1,743 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "map_folder": "NewMauville_Entrance",
+    "map_json": "data/maps/NewMauville_Entrance/map.json",
+    "map_script": "data/maps/NewMauville_Entrance/scripts.inc",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/NewMauville_Entrance/map.bin",
+    "border": "data/layouts/NewMauville_Entrance/border.bin"
+  },
+  "map": {
+    "id": "MAP_NEW_MAUVILLE_ENTRANCE",
+    "name": "NewMauville_Entrance",
+    "layout_id": "LAYOUT_NEW_MAUVILLE_ENTRANCE",
+    "music": "MUS_MT_PYRE",
+    "region_map_section": "MAPSEC_NEW_MAUVILLE",
+    "requires_flash": false,
+    "weather": "WEATHER_NONE",
+    "map_type": "MAP_TYPE_UNDERGROUND",
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "allow_cycling": true,
+    "allow_escaping": true,
+    "allow_running": true,
+    "show_map_name": true,
+    "floor_number": null,
+    "shared_events_map": null,
+    "shared_scripts_map": null,
+    "connections_no_include": null
+  },
+  "layout": {
+    "id": "LAYOUT_NEW_MAUVILLE_ENTRANCE",
+    "name": "NewMauville_Entrance_Layout",
+    "width": 9,
+    "height": 9,
+    "layout_version": "emerald",
+    "primary_tileset": "gTileset_General",
+    "secondary_tileset": "gTileset_Facility"
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_General",
+      "kind": "primary",
+      "directory": "general",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/general/tiles.png",
+          "exists": true,
+          "size": 7722
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/general/metatiles.bin",
+          "exists": true,
+          "size": 8192
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/general/metatile_attributes.bin",
+          "exists": true,
+          "size": 1024
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_Facility",
+      "kind": "secondary",
+      "directory": "facility",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/facility/tiles.png",
+          "exists": true,
+          "size": 5773
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/facility/metatiles.bin",
+          "exists": true,
+          "size": 8176
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/facility/metatile_attributes.bin",
+          "exists": true,
+          "size": 1022
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      116,
+      124,
+      124,
+      707,
+      708,
+      709,
+      124,
+      124,
+      137
+    ],
+    [
+      117,
+      116,
+      169,
+      715,
+      716,
+      717,
+      169,
+      137,
+      115
+    ],
+    [
+      117,
+      117,
+      976,
+      974,
+      976,
+      975,
+      976,
+      980,
+      115
+    ],
+    [
+      117,
+      117,
+      976,
+      976,
+      976,
+      976,
+      976,
+      980,
+      115
+    ],
+    [
+      117,
+      117,
+      976,
+      976,
+      976,
+      976,
+      976,
+      980,
+      115
+    ],
+    [
+      117,
+      117,
+      976,
+      976,
+      976,
+      976,
+      976,
+      980,
+      115
+    ],
+    [
+      117,
+      117,
+      976,
+      976,
+      967,
+      976,
+      976,
+      980,
+      115
+    ],
+    [
+      117,
+      191,
+      982,
+      977,
+      978,
+      979,
+      982,
+      190,
+      115
+    ],
+    [
+      191,
+      108,
+      108,
+      108,
+      108,
+      108,
+      108,
+      108,
+      190
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        1140,
+        1148,
+        1148,
+        1731,
+        1732,
+        1733,
+        1148,
+        1148,
+        1161
+      ],
+      [
+        1141,
+        1140,
+        1193,
+        1739,
+        13004,
+        1741,
+        1193,
+        1161,
+        1139
+      ],
+      [
+        1141,
+        1141,
+        13264,
+        13262,
+        13264,
+        13263,
+        13264,
+        2004,
+        1139
+      ],
+      [
+        1141,
+        1141,
+        13264,
+        13264,
+        13264,
+        13264,
+        13264,
+        2004,
+        1139
+      ],
+      [
+        1141,
+        1141,
+        13264,
+        13264,
+        13264,
+        13264,
+        13264,
+        2004,
+        1139
+      ],
+      [
+        1141,
+        1141,
+        13264,
+        13264,
+        13264,
+        13264,
+        13264,
+        2004,
+        1139
+      ],
+      [
+        1141,
+        1141,
+        13264,
+        13264,
+        13255,
+        13264,
+        13264,
+        2004,
+        1139
+      ],
+      [
+        1141,
+        1215,
+        2006,
+        2001,
+        2002,
+        2003,
+        2006,
+        1214,
+        1139
+      ],
+      [
+        1215,
+        1132,
+        1132,
+        1132,
+        1132,
+        1132,
+        1132,
+        1132,
+        1214
+      ]
+    ],
+    "metatile_ids": [
+      [
+        116,
+        124,
+        124,
+        707,
+        708,
+        709,
+        124,
+        124,
+        137
+      ],
+      [
+        117,
+        116,
+        169,
+        715,
+        716,
+        717,
+        169,
+        137,
+        115
+      ],
+      [
+        117,
+        117,
+        976,
+        974,
+        976,
+        975,
+        976,
+        980,
+        115
+      ],
+      [
+        117,
+        117,
+        976,
+        976,
+        976,
+        976,
+        976,
+        980,
+        115
+      ],
+      [
+        117,
+        117,
+        976,
+        976,
+        976,
+        976,
+        976,
+        980,
+        115
+      ],
+      [
+        117,
+        117,
+        976,
+        976,
+        976,
+        976,
+        976,
+        980,
+        115
+      ],
+      [
+        117,
+        117,
+        976,
+        976,
+        967,
+        976,
+        976,
+        980,
+        115
+      ],
+      [
+        117,
+        191,
+        982,
+        977,
+        978,
+        979,
+        982,
+        190,
+        115
+      ],
+      [
+        191,
+        108,
+        108,
+        108,
+        108,
+        108,
+        108,
+        108,
+        190
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "border_block_ids": [
+    113,
+    113,
+    113,
+    113
+  ],
+  "border_grid": {
+    "raw": [
+      113,
+      113,
+      113,
+      113
+    ],
+    "metatile_ids": [
+      113,
+      113,
+      113,
+      113
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "emerald_2x2_parity",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_IMPASSABLE",
+    "layout_version": "emerald"
+  },
+  "connections": [],
+  "block_id_stats": {
+    "count": 81,
+    "unique_count": 24,
+    "min": 108,
+    "max": 982,
+    "unique_ids": [
+      108,
+      115,
+      116,
+      117,
+      124,
+      137,
+      169,
+      190,
+      191,
+      707,
+      708,
+      709,
+      715,
+      716,
+      717,
+      967,
+      974,
+      975,
+      976,
+      977,
+      978,
+      979,
+      980,
+      982
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 81,
+    "unique_count": 24,
+    "min": 1132,
+    "max": 13264,
+    "unique_ids": [
+      1132,
+      1139,
+      1140,
+      1141,
+      1148,
+      1161,
+      1193,
+      1214,
+      1215,
+      1731,
+      1732,
+      1733,
+      1739,
+      1741,
+      2001,
+      2002,
+      2003,
+      2004,
+      2006,
+      13004,
+      13255,
+      13262,
+      13263,
+      13264
+    ]
+  },
+  "events": {
+    "connections": [],
+    "object_events": [],
+    "warp_events": [
+      {
+        "x": 4,
+        "y": 6,
+        "elevation": 3,
+        "dest_map": "MAP_ROUTE110",
+        "dest_warp_id": "0",
+        "source_order_index": 0
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "elevation": 3,
+        "dest_map": "MAP_NEW_MAUVILLE_INSIDE",
+        "dest_warp_id": "0",
+        "source_order_index": 1
+      }
+    ],
+    "coord_events": [
+      {
+        "type": "trigger",
+        "x": 4,
+        "y": 2,
+        "elevation": 3,
+        "var": "VAR_NEW_MAUVILLE_STATE",
+        "var_value": "0",
+        "script": "NewMauville_Entrance_EventScript_Door",
+        "source_order_index": 0
+      }
+    ],
+    "bg_events": []
+  }
+}

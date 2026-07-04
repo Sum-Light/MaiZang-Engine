@@ -1,0 +1,760 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "map_folder": "PetalburgCity_House2",
+    "map_json": "data/maps/PetalburgCity_House2/map.json",
+    "map_script": "data/maps/PetalburgCity_House2/scripts.inc",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/HouseWithBed/map.bin",
+    "border": "data/layouts/HouseWithBed/border.bin"
+  },
+  "map": {
+    "id": "MAP_PETALBURG_CITY_HOUSE2",
+    "name": "PetalburgCity_House2",
+    "layout_id": "LAYOUT_HOUSE_WITH_BED",
+    "music": "MUS_PETALBURG",
+    "region_map_section": "MAPSEC_PETALBURG_CITY",
+    "requires_flash": false,
+    "weather": "WEATHER_NONE",
+    "map_type": "MAP_TYPE_INDOOR",
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "allow_cycling": false,
+    "allow_escaping": false,
+    "allow_running": false,
+    "show_map_name": false,
+    "floor_number": null,
+    "shared_events_map": null,
+    "shared_scripts_map": null,
+    "connections_no_include": null
+  },
+  "layout": {
+    "id": "LAYOUT_HOUSE_WITH_BED",
+    "name": "HouseWithBed_Layout",
+    "width": 10,
+    "height": 8,
+    "layout_version": "emerald",
+    "primary_tileset": "gTileset_Building",
+    "secondary_tileset": "gTileset_GenericBuilding"
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_Building",
+      "kind": "primary",
+      "directory": "building",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/building/tiles.png",
+          "exists": true,
+          "size": 1575
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/building/metatiles.bin",
+          "exists": true,
+          "size": 128
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/building/metatile_attributes.bin",
+          "exists": true,
+          "size": 16
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_GenericBuilding",
+      "kind": "secondary",
+      "directory": "generic_building",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/generic_building/tiles.png",
+          "exists": true,
+          "size": 4990
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/generic_building/metatiles.bin",
+          "exists": true,
+          "size": 8192
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/generic_building/metatile_attributes.bin",
+          "exists": true,
+          "size": 1024
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      517,
+      517,
+      517,
+      518,
+      517,
+      517,
+      518,
+      517,
+      622,
+      623
+    ],
+    [
+      616,
+      617,
+      525,
+      526,
+      525,
+      525,
+      526,
+      525,
+      630,
+      631
+    ],
+    [
+      624,
+      625,
+      548,
+      548,
+      548,
+      548,
+      548,
+      548,
+      638,
+      639
+    ],
+    [
+      602,
+      603,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      556
+    ],
+    [
+      610,
+      611,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      588,
+      589
+    ],
+    [
+      569,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      555,
+      596,
+      597
+    ],
+    [
+      569,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547
+    ],
+    [
+      569,
+      547,
+      547,
+      520,
+      521,
+      547,
+      547,
+      547,
+      547,
+      547
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        1541,
+        1541,
+        1541,
+        1542,
+        1541,
+        1541,
+        1542,
+        1541,
+        1646,
+        1647
+      ],
+      [
+        1640,
+        1641,
+        1549,
+        1550,
+        1549,
+        1549,
+        1550,
+        1549,
+        1654,
+        1655
+      ],
+      [
+        12912,
+        12913,
+        12836,
+        12836,
+        12836,
+        12836,
+        12836,
+        12836,
+        12926,
+        12927
+      ],
+      [
+        13914,
+        13915,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12844
+      ],
+      [
+        13922,
+        13923,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        1612,
+        1613
+      ],
+      [
+        12857,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12843,
+        1620,
+        1621
+      ],
+      [
+        12857,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835
+      ],
+      [
+        12857,
+        12835,
+        12835,
+        520,
+        521,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835
+      ]
+    ],
+    "metatile_ids": [
+      [
+        517,
+        517,
+        517,
+        518,
+        517,
+        517,
+        518,
+        517,
+        622,
+        623
+      ],
+      [
+        616,
+        617,
+        525,
+        526,
+        525,
+        525,
+        526,
+        525,
+        630,
+        631
+      ],
+      [
+        624,
+        625,
+        548,
+        548,
+        548,
+        548,
+        548,
+        548,
+        638,
+        639
+      ],
+      [
+        602,
+        603,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        556
+      ],
+      [
+        610,
+        611,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        588,
+        589
+      ],
+      [
+        569,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        555,
+        596,
+        597
+      ],
+      [
+        569,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547
+      ],
+      [
+        569,
+        547,
+        547,
+        520,
+        521,
+        547,
+        547,
+        547,
+        547,
+        547
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    ]
+  },
+  "border_block_ids": [
+    513,
+    513,
+    513,
+    513
+  ],
+  "border_grid": {
+    "raw": [
+      513,
+      513,
+      513,
+      513
+    ],
+    "metatile_ids": [
+      513,
+      513,
+      513,
+      513
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "emerald_2x2_parity",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_IMPASSABLE",
+    "layout_version": "emerald"
+  },
+  "connections": [],
+  "block_id_stats": {
+    "count": 80,
+    "unique_count": 29,
+    "min": 517,
+    "max": 639,
+    "unique_ids": [
+      517,
+      518,
+      520,
+      521,
+      525,
+      526,
+      547,
+      548,
+      555,
+      556,
+      569,
+      588,
+      589,
+      596,
+      597,
+      602,
+      603,
+      610,
+      611,
+      616,
+      617,
+      622,
+      623,
+      624,
+      625,
+      630,
+      631,
+      638,
+      639
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 80,
+    "unique_count": 29,
+    "min": 520,
+    "max": 13923,
+    "unique_ids": [
+      520,
+      521,
+      1541,
+      1542,
+      1549,
+      1550,
+      1612,
+      1613,
+      1620,
+      1621,
+      1640,
+      1641,
+      1646,
+      1647,
+      1654,
+      1655,
+      12835,
+      12836,
+      12843,
+      12844,
+      12857,
+      12912,
+      12913,
+      12926,
+      12927,
+      13914,
+      13915,
+      13922,
+      13923
+    ]
+  },
+  "events": {
+    "connections": [],
+    "object_events": [
+      {
+        "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+        "x": 2,
+        "y": 5,
+        "elevation": 3,
+        "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "PetalburgCity_House2_EventScript_Woman",
+        "flag": "0",
+        "source_order_index": 0,
+        "source_numeric_local_id": 1,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
+        "x": 7,
+        "y": 5,
+        "elevation": 3,
+        "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+        "movement_range_x": 0,
+        "movement_range_y": 0,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "PetalburgCity_House2_EventScript_SchoolKid",
+        "flag": "0",
+        "source_order_index": 1,
+        "source_numeric_local_id": 2,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      }
+    ],
+    "warp_events": [
+      {
+        "x": 3,
+        "y": 7,
+        "elevation": 0,
+        "dest_map": "MAP_PETALBURG_CITY",
+        "dest_warp_id": "4",
+        "source_order_index": 0
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "elevation": 0,
+        "dest_map": "MAP_PETALBURG_CITY",
+        "dest_warp_id": "4",
+        "source_order_index": 1
+      }
+    ],
+    "coord_events": [],
+    "bg_events": []
+  }
+}

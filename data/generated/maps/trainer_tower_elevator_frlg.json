@@ -1,0 +1,478 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "map_folder": "TrainerTower_Elevator_Frlg",
+    "map_json": "data/maps/TrainerTower_Elevator_Frlg/map.json",
+    "map_script": "data/maps/TrainerTower_Elevator_Frlg/scripts.inc",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/TrainerTower_Elevator_Frlg/map.bin",
+    "border": "data/layouts/TrainerTower_Elevator_Frlg/border.bin"
+  },
+  "map": {
+    "id": "MAP_TRAINER_TOWER_ELEVATOR",
+    "name": "TrainerTower_Elevator_Frlg",
+    "layout_id": "LAYOUT_TRAINER_TOWER_ELEVATOR",
+    "music": "MUS_RG_TRAINER_TOWER",
+    "region_map_section": "MAPSEC_TRAINER_TOWER_2",
+    "requires_flash": false,
+    "weather": "WEATHER_NONE",
+    "map_type": "MAP_TYPE_INDOOR",
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "allow_cycling": false,
+    "allow_escaping": false,
+    "allow_running": true,
+    "show_map_name": false,
+    "floor_number": 0,
+    "shared_events_map": null,
+    "shared_scripts_map": null,
+    "connections_no_include": null
+  },
+  "layout": {
+    "id": "LAYOUT_TRAINER_TOWER_ELEVATOR",
+    "name": "TrainerTower_Elevator_Layout",
+    "width": 5,
+    "height": 7,
+    "layout_version": "frlg",
+    "primary_tileset": "gTileset_BuildingFrlg",
+    "secondary_tileset": "gTileset_SilphCo"
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_BuildingFrlg",
+      "kind": "primary",
+      "directory": "building_frlg",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/building_frlg/tiles.png",
+          "exists": true,
+          "size": 7011
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/building_frlg/metatiles.bin",
+          "exists": true,
+          "size": 10240
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/building_frlg/metatile_attributes.bin",
+          "exists": true,
+          "size": 2560
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_SilphCo",
+      "kind": "secondary",
+      "directory": "silph_co",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/silph_co/tiles.png",
+          "exists": false,
+          "size": null
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/silph_co/metatiles.bin",
+          "exists": false,
+          "size": null
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/silph_co/metatile_attributes.bin",
+          "exists": false,
+          "size": null
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      747,
+      744,
+      744,
+      744,
+      748
+    ],
+    [
+      755,
+      752,
+      752,
+      752,
+      756
+    ],
+    [
+      763,
+      760,
+      760,
+      760,
+      764
+    ],
+    [
+      749,
+      750,
+      750,
+      750,
+      750
+    ],
+    [
+      757,
+      758,
+      758,
+      758,
+      751
+    ],
+    [
+      757,
+      765,
+      766,
+      759,
+      751
+    ],
+    [
+      8,
+      26,
+      27,
+      28,
+      8
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        1771,
+        1768,
+        1768,
+        1768,
+        1772
+      ],
+      [
+        1779,
+        1776,
+        1776,
+        1776,
+        1780
+      ],
+      [
+        1787,
+        1784,
+        1784,
+        1784,
+        1788
+      ],
+      [
+        13037,
+        13038,
+        13038,
+        13038,
+        13038
+      ],
+      [
+        13045,
+        13046,
+        13046,
+        13046,
+        13039
+      ],
+      [
+        13045,
+        13053,
+        13054,
+        13047,
+        13039
+      ],
+      [
+        1032,
+        1050,
+        1051,
+        1052,
+        1032
+      ]
+    ],
+    "metatile_ids": [
+      [
+        747,
+        744,
+        744,
+        744,
+        748
+      ],
+      [
+        755,
+        752,
+        752,
+        752,
+        756
+      ],
+      [
+        763,
+        760,
+        760,
+        760,
+        764
+      ],
+      [
+        749,
+        750,
+        750,
+        750,
+        750
+      ],
+      [
+        757,
+        758,
+        758,
+        758,
+        751
+      ],
+      [
+        757,
+        765,
+        766,
+        759,
+        751
+      ],
+      [
+        8,
+        26,
+        27,
+        28,
+        8
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "border_block_ids": [
+    8,
+    8,
+    8,
+    8
+  ],
+  "border_grid": {
+    "raw": [
+      8,
+      8,
+      8,
+      8
+    ],
+    "metatile_ids": [
+      8,
+      8,
+      8,
+      8
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "frlg_wrapped_border",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_COLLISION_MASK",
+    "layout_version": "frlg"
+  },
+  "connections": [],
+  "block_id_stats": {
+    "count": 35,
+    "unique_count": 21,
+    "min": 8,
+    "max": 766,
+    "unique_ids": [
+      8,
+      26,
+      27,
+      28,
+      744,
+      747,
+      748,
+      749,
+      750,
+      751,
+      752,
+      755,
+      756,
+      757,
+      758,
+      759,
+      760,
+      763,
+      764,
+      765,
+      766
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 35,
+    "unique_count": 21,
+    "min": 1032,
+    "max": 13054,
+    "unique_ids": [
+      1032,
+      1050,
+      1051,
+      1052,
+      1768,
+      1771,
+      1772,
+      1776,
+      1779,
+      1780,
+      1784,
+      1787,
+      1788,
+      13037,
+      13038,
+      13039,
+      13045,
+      13046,
+      13047,
+      13053,
+      13054
+    ]
+  },
+  "events": {
+    "connections": [],
+    "object_events": [],
+    "warp_events": [
+      {
+        "x": 2,
+        "y": 5,
+        "elevation": 3,
+        "dest_map": "MAP_DYNAMIC",
+        "dest_warp_id": "WARP_ID_DYNAMIC",
+        "source_order_index": 0
+      }
+    ],
+    "coord_events": [],
+    "bg_events": [
+      {
+        "type": "sign",
+        "x": 0,
+        "y": 2,
+        "elevation": 0,
+        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+        "script": "TrainerTower_Elevator_EventScript_FloorSelect",
+        "source_order_index": 0
+      }
+    ]
+  }
+}

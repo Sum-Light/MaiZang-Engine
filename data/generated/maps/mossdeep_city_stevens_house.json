@@ -1,0 +1,855 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "map_folder": "MossdeepCity_StevensHouse",
+    "map_json": "data/maps/MossdeepCity_StevensHouse/map.json",
+    "map_script": "data/maps/MossdeepCity_StevensHouse/scripts.inc",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/MossdeepCity_StevensHouse/map.bin",
+    "border": "data/layouts/MossdeepCity_StevensHouse/border.bin"
+  },
+  "map": {
+    "id": "MAP_MOSSDEEP_CITY_STEVENS_HOUSE",
+    "name": "MossdeepCity_StevensHouse",
+    "layout_id": "LAYOUT_MOSSDEEP_CITY_STEVENS_HOUSE",
+    "music": "MUS_RUSTBORO",
+    "region_map_section": "MAPSEC_MOSSDEEP_CITY",
+    "requires_flash": false,
+    "weather": "WEATHER_NONE",
+    "map_type": "MAP_TYPE_INDOOR",
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "allow_cycling": false,
+    "allow_escaping": false,
+    "allow_running": false,
+    "show_map_name": false,
+    "floor_number": null,
+    "shared_events_map": null,
+    "shared_scripts_map": null,
+    "connections_no_include": null
+  },
+  "layout": {
+    "id": "LAYOUT_MOSSDEEP_CITY_STEVENS_HOUSE",
+    "name": "MossdeepCity_StevensHouse_Layout",
+    "width": 11,
+    "height": 8,
+    "layout_version": "emerald",
+    "primary_tileset": "gTileset_Building",
+    "secondary_tileset": "gTileset_GenericBuilding"
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_Building",
+      "kind": "primary",
+      "directory": "building",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/building/tiles.png",
+          "exists": true,
+          "size": 1575
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/building/metatiles.bin",
+          "exists": true,
+          "size": 128
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/building/metatile_attributes.bin",
+          "exists": true,
+          "size": 16
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_GenericBuilding",
+      "kind": "secondary",
+      "directory": "generic_building",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/generic_building/tiles.png",
+          "exists": true,
+          "size": 4990
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/generic_building/metatiles.bin",
+          "exists": true,
+          "size": 8192
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/generic_building/metatile_attributes.bin",
+          "exists": true,
+          "size": 1024
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      646,
+      647,
+      517,
+      517,
+      517,
+      518,
+      517,
+      517,
+      517,
+      517,
+      517
+    ],
+    [
+      654,
+      655,
+      616,
+      525,
+      525,
+      526,
+      525,
+      525,
+      525,
+      617,
+      617
+    ],
+    [
+      662,
+      663,
+      624,
+      548,
+      548,
+      548,
+      548,
+      548,
+      548,
+      625,
+      625
+    ],
+    [
+      569,
+      547,
+      547,
+      547,
+      744,
+      745,
+      745,
+      746,
+      547,
+      547,
+      859
+    ],
+    [
+      569,
+      547,
+      547,
+      547,
+      752,
+      753,
+      721,
+      754,
+      547,
+      547,
+      867
+    ],
+    [
+      569,
+      547,
+      547,
+      547,
+      547,
+      547,
+      556,
+      547,
+      547,
+      547,
+      859
+    ],
+    [
+      569,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547,
+      867
+    ],
+    [
+      569,
+      547,
+      547,
+      520,
+      521,
+      547,
+      547,
+      547,
+      547,
+      547,
+      547
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        1670,
+        1671,
+        1541,
+        1541,
+        1541,
+        1542,
+        1541,
+        1541,
+        1541,
+        1541,
+        1541
+      ],
+      [
+        1678,
+        1679,
+        1640,
+        1549,
+        1549,
+        1550,
+        1549,
+        1549,
+        1549,
+        1641,
+        1641
+      ],
+      [
+        12950,
+        12951,
+        12912,
+        12836,
+        12836,
+        12836,
+        12836,
+        12836,
+        12836,
+        12913,
+        12913
+      ],
+      [
+        12857,
+        12835,
+        12835,
+        12835,
+        14056,
+        14057,
+        14057,
+        14058,
+        12835,
+        12835,
+        13147
+      ],
+      [
+        12857,
+        12835,
+        12835,
+        12835,
+        14064,
+        14065,
+        14033,
+        14066,
+        12835,
+        12835,
+        14179
+      ],
+      [
+        12857,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12844,
+        12835,
+        12835,
+        12835,
+        13147
+      ],
+      [
+        12857,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        14179
+      ],
+      [
+        12857,
+        12835,
+        12835,
+        520,
+        521,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835,
+        12835
+      ]
+    ],
+    "metatile_ids": [
+      [
+        646,
+        647,
+        517,
+        517,
+        517,
+        518,
+        517,
+        517,
+        517,
+        517,
+        517
+      ],
+      [
+        654,
+        655,
+        616,
+        525,
+        525,
+        526,
+        525,
+        525,
+        525,
+        617,
+        617
+      ],
+      [
+        662,
+        663,
+        624,
+        548,
+        548,
+        548,
+        548,
+        548,
+        548,
+        625,
+        625
+      ],
+      [
+        569,
+        547,
+        547,
+        547,
+        744,
+        745,
+        745,
+        746,
+        547,
+        547,
+        859
+      ],
+      [
+        569,
+        547,
+        547,
+        547,
+        752,
+        753,
+        721,
+        754,
+        547,
+        547,
+        867
+      ],
+      [
+        569,
+        547,
+        547,
+        547,
+        547,
+        547,
+        556,
+        547,
+        547,
+        547,
+        859
+      ],
+      [
+        569,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547,
+        867
+      ],
+      [
+        569,
+        547,
+        547,
+        520,
+        521,
+        547,
+        547,
+        547,
+        547,
+        547,
+        547
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    ]
+  },
+  "border_block_ids": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "border_grid": {
+    "raw": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "metatile_ids": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "emerald_2x2_parity",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_IMPASSABLE",
+    "layout_version": "emerald"
+  },
+  "connections": [],
+  "block_id_stats": {
+    "count": 88,
+    "unique_count": 29,
+    "min": 517,
+    "max": 867,
+    "unique_ids": [
+      517,
+      518,
+      520,
+      521,
+      525,
+      526,
+      547,
+      548,
+      556,
+      569,
+      616,
+      617,
+      624,
+      625,
+      646,
+      647,
+      654,
+      655,
+      662,
+      663,
+      721,
+      744,
+      745,
+      746,
+      752,
+      753,
+      754,
+      859,
+      867
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 88,
+    "unique_count": 29,
+    "min": 520,
+    "max": 14179,
+    "unique_ids": [
+      520,
+      521,
+      1541,
+      1542,
+      1549,
+      1550,
+      1640,
+      1641,
+      1670,
+      1671,
+      1678,
+      1679,
+      12835,
+      12836,
+      12844,
+      12857,
+      12912,
+      12913,
+      12950,
+      12951,
+      13147,
+      14033,
+      14056,
+      14057,
+      14058,
+      14064,
+      14065,
+      14066,
+      14179
+    ]
+  },
+  "events": {
+    "connections": [],
+    "object_events": [
+      {
+        "local_id": "LOCALID_STEVENS_HOUSE_STEVEN",
+        "graphics_id": "OBJ_EVENT_GFX_STEVEN",
+        "x": 9,
+        "y": 6,
+        "elevation": 3,
+        "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+        "movement_range_x": 0,
+        "movement_range_y": 0,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "MossdeepCity_StevensHouse_EventScript_Steven",
+        "flag": "FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN",
+        "source_order_index": 0,
+        "source_numeric_local_id": 1,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "local_id": "LOCALID_STEVENS_HOUSE_BALL",
+        "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+        "x": 4,
+        "y": 3,
+        "elevation": 3,
+        "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "MossdeepCity_StevensHouse_EventScript_BeldumPokeball",
+        "flag": "FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL",
+        "source_order_index": 1,
+        "source_numeric_local_id": 2,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+        "x": 6,
+        "y": 4,
+        "elevation": 3,
+        "movement_type": "MOVEMENT_TYPE_INVISIBLE",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "MossdeepCity_StevensHouse_EventScript_Letter",
+        "flag": "FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY",
+        "source_order_index": 2,
+        "source_numeric_local_id": 3,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      }
+    ],
+    "warp_events": [
+      {
+        "x": 3,
+        "y": 7,
+        "elevation": 0,
+        "dest_map": "MAP_MOSSDEEP_CITY",
+        "dest_warp_id": "6",
+        "source_order_index": 0
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "elevation": 0,
+        "dest_map": "MAP_MOSSDEEP_CITY",
+        "dest_warp_id": "6",
+        "source_order_index": 1
+      }
+    ],
+    "coord_events": [],
+    "bg_events": [
+      {
+        "type": "sign",
+        "x": 0,
+        "y": 1,
+        "elevation": 0,
+        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+        "script": "MossdeepCity_StevensHouse_EventScript_RockDisplay",
+        "source_order_index": 0
+      },
+      {
+        "type": "sign",
+        "x": 1,
+        "y": 1,
+        "elevation": 0,
+        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+        "script": "MossdeepCity_StevensHouse_EventScript_RockDisplay",
+        "source_order_index": 1
+      },
+      {
+        "type": "sign",
+        "x": 10,
+        "y": 4,
+        "elevation": 3,
+        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+        "script": "MossdeepCity_StevensHouse_EventScript_RockDisplay",
+        "source_order_index": 2
+      },
+      {
+        "type": "sign",
+        "x": 10,
+        "y": 6,
+        "elevation": 3,
+        "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+        "script": "MossdeepCity_StevensHouse_EventScript_RockDisplay",
+        "source_order_index": 3
+      }
+    ]
+  }
+}

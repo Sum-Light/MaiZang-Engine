@@ -1,0 +1,647 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "map_folder": "SSAnne_2F_Room4_Frlg",
+    "map_json": "data/maps/SSAnne_2F_Room4_Frlg/map.json",
+    "map_script": "data/maps/SSAnne_2F_Room4_Frlg/scripts.inc",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/SSAnne_Room2_Frlg/map.bin",
+    "border": "data/layouts/SSAnne_Room2_Frlg/border.bin"
+  },
+  "map": {
+    "id": "MAP_SSANNE_2F_ROOM4",
+    "name": "SSAnne_2F_Room4_Frlg",
+    "layout_id": "LAYOUT_SSANNE_ROOM2",
+    "music": "MUS_RG_SS_ANNE",
+    "region_map_section": "MAPSEC_S_S_ANNE",
+    "requires_flash": false,
+    "weather": "WEATHER_NONE",
+    "map_type": "MAP_TYPE_INDOOR",
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "allow_cycling": false,
+    "allow_escaping": false,
+    "allow_running": true,
+    "show_map_name": true,
+    "floor_number": 0,
+    "shared_events_map": null,
+    "shared_scripts_map": null,
+    "connections_no_include": null
+  },
+  "layout": {
+    "id": "LAYOUT_SSANNE_ROOM2",
+    "name": "SSAnne_Room2_Layout",
+    "width": 6,
+    "height": 9,
+    "layout_version": "frlg",
+    "primary_tileset": "gTileset_General_Frlg",
+    "secondary_tileset": "gTileset_SSAnne"
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_General_Frlg",
+      "kind": "primary",
+      "directory": "general__frlg",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/general__frlg/tiles.png",
+          "exists": false,
+          "size": null
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/general__frlg/metatiles.bin",
+          "exists": false,
+          "size": null
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/general__frlg/metatile_attributes.bin",
+          "exists": false,
+          "size": null
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_SSAnne",
+      "kind": "secondary",
+      "directory": "s_s_anne",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/s_s_anne/tiles.png",
+          "exists": false,
+          "size": null
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/s_s_anne/metatiles.bin",
+          "exists": false,
+          "size": null
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/s_s_anne/metatile_attributes.bin",
+          "exists": false,
+          "size": null
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      652,
+      652,
+      652,
+      652,
+      652,
+      652
+    ],
+    [
+      658,
+      827,
+      658,
+      658,
+      827,
+      658
+    ],
+    [
+      834,
+      835,
+      836,
+      776,
+      777,
+      778
+    ],
+    [
+      842,
+      843,
+      844,
+      784,
+      785,
+      786
+    ],
+    [
+      807,
+      828,
+      804,
+      804,
+      804,
+      804
+    ],
+    [
+      807,
+      804,
+      804,
+      804,
+      804,
+      804
+    ],
+    [
+      779,
+      804,
+      804,
+      804,
+      804,
+      804
+    ],
+    [
+      787,
+      804,
+      804,
+      829,
+      830,
+      831
+    ],
+    [
+      648,
+      648,
+      648,
+      714,
+      715,
+      716
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        1676,
+        1676,
+        1676,
+        1676,
+        1676,
+        1676
+      ],
+      [
+        1682,
+        1851,
+        1682,
+        1682,
+        1851,
+        1682
+      ],
+      [
+        1858,
+        1859,
+        1860,
+        13064,
+        1801,
+        13066
+      ],
+      [
+        1866,
+        1867,
+        1868,
+        13072,
+        1809,
+        13074
+      ],
+      [
+        13095,
+        13116,
+        13092,
+        13092,
+        13092,
+        13092
+      ],
+      [
+        13095,
+        13092,
+        13092,
+        13092,
+        13092,
+        13092
+      ],
+      [
+        13067,
+        13092,
+        13092,
+        13092,
+        13092,
+        13092
+      ],
+      [
+        1811,
+        13092,
+        13092,
+        13117,
+        13118,
+        13119
+      ],
+      [
+        1672,
+        1672,
+        1672,
+        1738,
+        1739,
+        1740
+      ]
+    ],
+    "metatile_ids": [
+      [
+        652,
+        652,
+        652,
+        652,
+        652,
+        652
+      ],
+      [
+        658,
+        827,
+        658,
+        658,
+        827,
+        658
+      ],
+      [
+        834,
+        835,
+        836,
+        776,
+        777,
+        778
+      ],
+      [
+        842,
+        843,
+        844,
+        784,
+        785,
+        786
+      ],
+      [
+        807,
+        828,
+        804,
+        804,
+        804,
+        804
+      ],
+      [
+        807,
+        804,
+        804,
+        804,
+        804,
+        804
+      ],
+      [
+        779,
+        804,
+        804,
+        804,
+        804,
+        804
+      ],
+      [
+        787,
+        804,
+        804,
+        829,
+        830,
+        831
+      ],
+      [
+        648,
+        648,
+        648,
+        714,
+        715,
+        716
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        3,
+        0,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        3,
+        0,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        0,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "border_block_ids": [
+    648,
+    648,
+    648,
+    648
+  ],
+  "border_grid": {
+    "raw": [
+      648,
+      648,
+      648,
+      648
+    ],
+    "metatile_ids": [
+      648,
+      648,
+      648,
+      648
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "frlg_wrapped_border",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_COLLISION_MASK",
+    "layout_version": "frlg"
+  },
+  "connections": [],
+  "block_id_stats": {
+    "count": 54,
+    "unique_count": 27,
+    "min": 648,
+    "max": 844,
+    "unique_ids": [
+      648,
+      652,
+      658,
+      714,
+      715,
+      716,
+      776,
+      777,
+      778,
+      779,
+      784,
+      785,
+      786,
+      787,
+      804,
+      807,
+      827,
+      828,
+      829,
+      830,
+      831,
+      834,
+      835,
+      836,
+      842,
+      843,
+      844
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 54,
+    "unique_count": 27,
+    "min": 1672,
+    "max": 13119,
+    "unique_ids": [
+      1672,
+      1676,
+      1682,
+      1738,
+      1739,
+      1740,
+      1801,
+      1809,
+      1811,
+      1851,
+      1858,
+      1859,
+      1860,
+      1866,
+      1867,
+      1868,
+      13064,
+      13066,
+      13067,
+      13072,
+      13074,
+      13092,
+      13095,
+      13116,
+      13117,
+      13118,
+      13119
+    ]
+  },
+  "events": {
+    "connections": [],
+    "object_events": [
+      {
+        "type": "object",
+        "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN_FRLG",
+        "x": 0,
+        "y": 5,
+        "elevation": 3,
+        "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NORMAL",
+        "trainer_sight_or_berry_tree_id": "3",
+        "script": "SSAnne_2F_Room4_EventScript_Lamar",
+        "flag": "0",
+        "source_order_index": 0,
+        "source_numeric_local_id": 1,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "type": "object",
+        "graphics_id": "OBJ_EVENT_GFX_LASS_FRLG",
+        "x": 3,
+        "y": 3,
+        "elevation": 3,
+        "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NORMAL",
+        "trainer_sight_or_berry_tree_id": "3",
+        "script": "SSAnne_2F_Room4_EventScript_Dawn",
+        "flag": "0",
+        "source_order_index": 1,
+        "source_numeric_local_id": 2,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      },
+      {
+        "type": "object",
+        "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+        "x": 2,
+        "y": 4,
+        "elevation": 3,
+        "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": "SSAnne_2F_Room4_EventScript_ItemXAttack",
+        "flag": "FLAG_HIDE_SSANNE_2F_ROOM4_X_ATTACK",
+        "source_order_index": 2,
+        "source_numeric_local_id": 3,
+        "source_numeric_local_id_rule": "tools/mapjson/mapjson.cpp object_event emits i + 1"
+      }
+    ],
+    "warp_events": [
+      {
+        "x": 4,
+        "y": 7,
+        "elevation": 3,
+        "dest_map": "MAP_SSANNE_2F_CORRIDOR",
+        "dest_warp_id": "6",
+        "source_order_index": 0
+      }
+    ],
+    "coord_events": [],
+    "bg_events": []
+  }
+}
