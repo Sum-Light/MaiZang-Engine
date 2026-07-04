@@ -290,6 +290,7 @@ def write_manifest(
     exported_scripts=None,
     exported_texts=None,
     exported_pokemon=None,
+    exported_battle=None,
     exported_map_overlays=None,
     exported_object_event_sprites=None,
     exported_overworld_reports=None,
@@ -332,6 +333,11 @@ def write_manifest(
         if exported_pokemon is not None
         else existing.get("pokemon", [])
     )
+    battle = (
+        _merge_manifest_entries(existing.get("battle", []), exported_battle, ["category", "path"])
+        if exported_battle is not None
+        else existing.get("battle", [])
+    )
     map_overlays = (
         _merge_manifest_entries(existing.get("map_overlays", []), exported_map_overlays, ["category", "path"])
         if exported_map_overlays is not None
@@ -365,6 +371,8 @@ def write_manifest(
         manifest["texts"] = texts
     if pokemon:
         manifest["pokemon"] = pokemon
+    if battle:
+        manifest["battle"] = battle
     if map_overlays:
         manifest["map_overlays"] = map_overlays
     if object_event_sprites:

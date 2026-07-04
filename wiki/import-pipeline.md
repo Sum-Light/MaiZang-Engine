@@ -34,6 +34,7 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 - `src/data/trainers.party`
 - `src/data/pokemon/species_info.h`
 - `src/data/moves_info.h`
+- `data/battle_scripts_1.s`, `data/battle_scripts_2.s`, `asm/macros/battle_script.inc`, `src/battle_script_commands.c`, and `src/data/battle_move_effects.h`
 - `src/data/types_info.h`
 - `src/data/items.h`
 - `src/data/abilities.h`
@@ -212,10 +213,10 @@ Current moves export behavior:
 
 - Reads `src/data/moves_info.h` after evaluating active source config branches from `include/config/general.h`, `include/config/battle.h`, `include/config/contest.h`, `include/config/overworld.h`, `include/config/pokemon.h`, and `include/config/item.h`.
 - Reads move, battle effect, type, damage category, target, additional move effect, Z move, contest, combo starter, weather/status, hold effect, ability, and species constants from source headers.
-- Parses explicit `struct MoveInfo` initializers from `include/move.h` fields into source-backed core battle fields, flags, ban flags, arguments, additional effects, contest fields, and battle animation script symbols.
+- Parses explicit `struct MoveInfo` initializers from `include/move.h` fields into source-backed core battle fields, flags, ban flags, arguments, additional effects, contest fields, battle effect script links, and battle animation script symbols.
 - Converts source move names and descriptions from `COMPOUND_STRING(...)`/`_("")`-style C string literals into UTF-8 `display_text` while preserving source-facing raw text fields and shared description symbols.
 - Writes `data/generated/pokemon/moves.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `moves`.
-- Treats generated move records as data and source-symbol provenance for later battle/runtime work. Move effect behavior, targeting, animation scripts, contest behavior, and additional-effect execution still require separate source C/resource tracing before Godot implementation.
+- Treats generated move records as data and source-symbol provenance for later battle/runtime work. Move effect behavior, targeting, animation scripts, contest behavior, and additional-effect execution still require separate source C/resource tracing before Godot implementation; `battle_effect_script` is a route to the source battle script, not a completed VM implementation.
 
 `tools/importer/export_types.py` exports the source Pokemon type info table into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
 
@@ -242,6 +243,8 @@ Latest verified moves export:
 - active move initializers: 935
 - moves with complete first-pass core battle fields: 935
 - moves with additional-effect records: 337
+- moves with battle-effect script links: 935
+- missing battle-effect script links: 0
 - shared text records: 24
 - preprocessor decisions: 77
 - preprocessor warnings: 0
@@ -579,3 +582,20 @@ Latest verified battle string export:
 - unsupported table entries: 0
 - unsupported text tokens: 0
 - runtime access: `DataRegistry.get_battle_string_data`, `get_battle_string_record`, `get_battle_string_by_id`, `get_battle_text_record`, and first-pass `format_battle_message`
+
+Latest verified battle script and move-effect export:
+
+- generated paths: `data/generated/battle/scripts.json` and `data/generated/battle/move_effects.json`
+- manifest categories: `battle` / `scripts` and `battle` / `move_effects`
+- source files: `data/battle_scripts_1.s`, `data/battle_scripts_2.s`, `asm/macros/battle_script.inc`, `include/constants/battle_script_commands.h`, `src/battle_script_commands.c`, `include/constants/battle_move_effects.h`, and `src/data/battle_move_effects.h`
+- battle script labels: 1393
+- source instructions: 6309 total, 5217 command instructions, 1092 directive/data instructions
+- explicit fallthrough label links: 479
+- opcode records and command handler links: 256/256
+- script macros: 431, with 10 audio macros marked `metadata_only`
+- move effect records/table entries: 332/332
+- unique battle script labels used by move effects: 217
+- resolved effect script links: 332/332
+- missing table entries/script labels: 0/0
+- runtime access: `DataRegistry.get_battle_scripts_data`, `get_battle_script_record`, `get_battle_script_command_record`, `get_battle_move_effects_data`, and `get_battle_move_effect_record`
+- runtime status: battle script/effect execution remains `pending_vm`; this export only preserves source instruction streams, command metadata, fallthrough, and effect routing

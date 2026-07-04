@@ -33,6 +33,8 @@ from text_codec import display_text_from_source
 
 MOVE_ENTRY_RE = re.compile(r"\[(MOVE_[A-Za-z0-9_]*)\]\s*=")
 IDENTIFIER_RE = re.compile(r"\b[A-Za-z_][A-Za-z0-9_]*\b")
+BATTLE_MOVE_EFFECTS_PATH = Path("src/data/battle_move_effects.h")
+BATTLE_MOVE_EFFECT_ENTRY_RE = re.compile(r"\[(EFFECT_[A-Za-z0-9_]+)\]\s*=")
 
 CORE_INTEGER_FIELDS = {
     "power": "power",
@@ -329,6 +331,50 @@ def _find_top_level_comma(text, start):
     return -1
 
 
+def _source_location(relative_path, line):
+    return {
+        "file": relative_path.as_posix(),
+        "line": int(line),
+    }
+
+
+def _load_battle_effect_script_links(root):
+    path = root / BATTLE_MOVE_EFFECTS_PATH
+    text = _strip_c_comments(path.read_text(encoding="utf-8"))
+    table_match = re.search(r"gBattleMoveEffects\s*\[\s*NUM_BATTLE_MOVE_EFFECTS\s*\]\s*=", text)
+    if not table_match:
+        return {}
+    brace_start = text.find("{", table_match.end())
+    brace_end = _find_matching_brace(text, brace_start)
+    if brace_start == -1 or brace_end == -1:
+        return {}
+
+    body = text[brace_start + 1:brace_end]
+    links = {}
+    matches = list(BATTLE_MOVE_EFFECT_ENTRY_RE.finditer(body))
+    for index, match in enumerate(matches):
+        effect_symbol = match.group(1)
+        initializer_start = match.end()
+        initializer_end = matches[index + 1].start() if index + 1 < len(matches) else len(body)
+        initializer = body[initializer_start:initializer_end].strip().rstrip(",").strip()
+        fields = {}
+        if initializer.startswith("{"):
+            close_index = _find_matching_brace(initializer, 0)
+            if close_index != -1:
+                fields = _parse_designated_field_assignments(initializer[1:close_index])
+        raw_fields = {field: _compact_source(value) for field, value in fields.items()}
+        line = text.count("\n", 0, brace_start + 1 + match.start()) + 1
+        battle_script = str(raw_fields.get("battleScript", ""))
+        links[effect_symbol] = {
+            "effect_symbol": effect_symbol,
+            "battle_script": battle_script,
+            "source": _source_location(BATTLE_MOVE_EFFECTS_PATH, line),
+            "raw_fields": raw_fields,
+            "status": "resolved" if battle_script else "missing_battle_script_field",
+        }
+    return links
+
+
 def _parse_shared_text_entries(root, records, macros):
     symbol_sources = {}
     for record in records:
@@ -404,7 +450,7 @@ def _extract_string_literals(value):
     return "".join(matches)
 
 
-def _parse_move_entries(root, records, constants, shared_text, macros):
+def _parse_move_entries(root, records, constants, shared_text, macros, battle_effect_links):
     moves = {}
     order = []
     index = 0
@@ -451,6 +497,7 @@ def _parse_move_entries(root, records, constants, shared_text, macros):
             constants,
             shared_text,
             macros,
+            battle_effect_links,
         )
         moves[symbol] = record
         order.append(symbol)
@@ -460,7 +507,18 @@ def _parse_move_entries(root, records, constants, shared_text, macros):
     return moves, order
 
 
-def _build_move_record(root, symbol, source_record, initializer_kind, raw_initializer, fields, constants, shared_text, macros):
+def _build_move_record(
+    root,
+    symbol,
+    source_record,
+    initializer_kind,
+    raw_initializer,
+    fields,
+    constants,
+    shared_text,
+    macros,
+    battle_effect_links,
+):
     evaluator = constants["evaluator"]
     warnings = []
     record = {
@@ -486,6 +544,16 @@ def _build_move_record(root, symbol, source_record, initializer_kind, raw_initia
         record["description"] = _parse_move_text_value(fields["description"], shared_text, macros)
     if "effect" in fields:
         record["effect"] = _constant_record(fields["effect"], constants["effects"], "EFFECT_", evaluator, warnings)
+        effect_symbol = str(record["effect"].get("symbol", ""))
+        effect_link = battle_effect_links.get(effect_symbol, {})
+        battle_script = str(effect_link.get("battle_script", ""))
+        record["battle_effect_script"] = battle_script
+        record["battle_effect_source"] = {
+            "effect_symbol": effect_symbol,
+            "effect_id": record["effect"].get("value"),
+            "source": effect_link.get("source", {}),
+            "status": str(effect_link.get("status", "missing_effect_route")),
+        }
     if "type" in fields:
         record["type"] = _constant_record(fields["type"], constants["types"], "TYPE_", evaluator, warnings)
     if "category" in fields:
@@ -720,11 +788,21 @@ def export_moves(root):
     source_records = _read_source_lines(root / "src/data/moves_info.h")
     preprocessed_records, preprocessor_report = _preprocess_records(source_records, macros)
     shared_text = _parse_shared_text_entries(root, preprocessed_records, macros)
-    moves, move_order = _parse_move_entries(root, preprocessed_records, constants, shared_text, macros)
+    battle_effect_links = _load_battle_effect_script_links(root)
+    moves, move_order = _parse_move_entries(
+        root,
+        preprocessed_records,
+        constants,
+        shared_text,
+        macros,
+        battle_effect_links,
+    )
 
     core_fields = {"effect", "type", "category", "power", "accuracy", "pp", "target"}
     core_battle_count = sum(1 for record in moves.values() if core_fields.issubset(record.get("raw_fields", {}).keys()))
     additional_effect_move_count = sum(1 for record in moves.values() if record.get("additional_effects"))
+    battle_effect_script_count = sum(1 for record in moves.values() if record.get("battle_effect_script"))
+    missing_battle_effect_script_count = len(moves) - battle_effect_script_count
     warning_count = len(preprocessor_report["warnings"])
     warning_count += sum(len(record.get("warnings", [])) for record in moves.values())
     unsupported_field_count = sum(len(record.get("unsupported_fields", [])) for record in moves.values())
@@ -773,6 +851,8 @@ def export_moves(root):
             "move_count": len(moves),
             "moves_with_core_battle_fields": core_battle_count,
             "moves_with_additional_effects": additional_effect_move_count,
+            "moves_with_battle_effect_scripts": battle_effect_script_count,
+            "missing_battle_effect_script_count": missing_battle_effect_script_count,
             "shared_text_count": len(shared_text),
             "preprocessor_decision_count": len(preprocessor_report["decisions"]),
             "preprocessor_warning_count": len(preprocessor_report["warnings"]),
@@ -804,6 +884,8 @@ def main(argv):
         "move_count": stats["move_count"],
         "moves_with_core_battle_fields": stats["moves_with_core_battle_fields"],
         "moves_with_additional_effects": stats["moves_with_additional_effects"],
+        "moves_with_battle_effect_scripts": stats["moves_with_battle_effect_scripts"],
+        "missing_battle_effect_script_count": stats["missing_battle_effect_script_count"],
         "warning_count": stats["warning_count"],
     }
     write_manifest(

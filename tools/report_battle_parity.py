@@ -177,13 +177,14 @@ def build_move_rows(moves_data):
     for symbol in moves_data.get("move_order", []):
         record = moves.get(symbol, {})
         effect_symbol = constant_symbol(record.get("effect", {}))
+        battle_script_label = str(record.get("battle_effect_script", ""))
         power = int(record.get("power", 0) or 0)
         ordinary_first_pass = effect_symbol == "EFFECT_HIT" and power > 0
         rows.append({
             "id": symbol,
             "move_symbol": symbol,
             "effect_symbol": effect_symbol,
-            "battle_script_label": None,
+            "battle_script_label": battle_script_label,
             "battle_anim_script": str(record.get("battle_anim_script", "")),
             "target": constant_symbol(record.get("target", {})),
             "flags_present": sorted(record.get("flags", {}).keys()) if isinstance(record.get("flags"), dict) else [],
@@ -193,7 +194,10 @@ def build_move_rows(moves_data):
             "asset_status": "metadata_only" if record.get("battle_anim_script") else "unsupported",
             "hud_status": "metadata_only",
             "audio_status": "metadata_only",
-            "tests": ["tools/godot_smoke/data_registry_moves_smoke.gd"] + (["tools/godot_smoke/battle_engine_smoke.gd"] if ordinary_first_pass else []),
+            "tests": [
+                "tools/godot_smoke/data_registry_moves_smoke.gd",
+                "tools/godot_smoke/data_registry_move_effects_smoke.gd",
+            ] + (["tools/godot_smoke/battle_engine_smoke.gd"] if ordinary_first_pass else []),
             "unsupported": unsupported_row(
                 "battle_script_vm_pending",
                 "battle_animation_runtime_pending",
@@ -544,6 +548,9 @@ def build_source_index(project_root, source_root, report):
             add_symbol(symbols, symbol, "generated_data", ref)
 
     for move_row in report["coverage_rows"]["moves"]:
+        script_symbol = move_row.get("battle_script_label", "")
+        if script_symbol and script_symbol in labels:
+            add_symbol(symbols, script_symbol, "asm_label", labels[script_symbol])
         anim_symbol = move_row.get("battle_anim_script", "")
         if anim_symbol and anim_symbol in labels:
             add_symbol(symbols, anim_symbol, "asm_label", labels[anim_symbol])

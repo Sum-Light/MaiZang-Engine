@@ -16,6 +16,8 @@ func _init() -> void:
 	_assert(int(stats.get("move_count", 0)) == 935, "unexpected active move count")
 	_assert(int(stats.get("moves_with_core_battle_fields", 0)) == 935, "unexpected core battle move count")
 	_assert(int(stats.get("moves_with_additional_effects", 0)) == 337, "unexpected additional-effect move count")
+	_assert(int(stats.get("moves_with_battle_effect_scripts", 0)) == 935, "unexpected battle-effect script move count")
+	_assert(int(stats.get("missing_battle_effect_script_count", -1)) == 0, "expected no missing move battle-effect scripts")
 	_assert(int(stats.get("preprocessor_decision_count", 0)) == 77, "unexpected move preprocessor decision count")
 	_assert(int(stats.get("preprocessor_warning_count", -1)) == 0, "expected no move preprocessor warnings")
 	_assert(int(stats.get("warning_count", -1)) == 0, "expected no move export warnings")
@@ -43,6 +45,7 @@ func _init() -> void:
 	_assert(int(pound.get("accuracy", 0)) == 100, "unexpected Pound accuracy")
 	_assert(int(pound.get("pp", 0)) == 35, "unexpected Pound pp")
 	_assert(_bool_field(pound.get("flags", {}), "makes_contact"), "expected Pound contact flag")
+	_assert(String(pound.get("battle_effect_script", "")) == "BattleScript_EffectHit", "unexpected Pound battle effect script")
 	_assert(String(pound.get("battle_anim_script", "")) == "gBattleAnimMove_Pound", "unexpected Pound anim script")
 	_assert(_constant_symbol(_dict_field(pound.get("contest", {}), "combo_starter")) == "COMBO_STARTER_POUND", "unexpected Pound contest starter")
 
@@ -54,6 +57,7 @@ func _init() -> void:
 	_assert(_constant_symbol(fire_punch.get("type", {})) == "TYPE_FIRE", "unexpected Fire Punch type")
 	_assert(_bool_field(fire_punch.get("flags", {}), "makes_contact"), "expected Fire Punch contact flag")
 	_assert(_bool_field(fire_punch.get("flags", {}), "punching_move"), "expected Fire Punch punching flag")
+	_assert(String(fire_punch.get("battle_effect_script", "")) == "BattleScript_EffectHit", "unexpected Fire Punch battle effect script")
 	_assert(typeof(fire_effects) == TYPE_ARRAY and fire_effects.size() == 1, "expected Fire Punch burn effect")
 	if typeof(fire_effects) == TYPE_ARRAY and fire_effects.size() > 0:
 		var burn_effect = fire_effects[0]

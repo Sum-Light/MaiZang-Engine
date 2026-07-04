@@ -23,6 +23,7 @@
     "tools/importer/export_battle_strings.py",
     "tools/importer/export_overworld_fieldmap_grid_trace.py",
     "tools/importer/export_overworld_layer_rules_trace.py",
+    "tools/importer/export_battle_scripts.py",
     "tools/importer/export_overworld_field_control_trace.py"
   ],
   "maps": [
@@ -190,6 +191,8 @@
       "move_count": 935,
       "moves_with_core_battle_fields": 935,
       "moves_with_additional_effects": 337,
+      "moves_with_battle_effect_scripts": 935,
+      "missing_battle_effect_script_count": 0,
       "warning_count": 0
     },
     {
@@ -263,6 +266,25 @@
       "warning_count": 0,
       "unsupported_field_count": 0,
       "unresolved_name_count": 0
+    }
+  ],
+  "battle": [
+    {
+      "category": "scripts",
+      "path": "data/generated/battle/scripts.json",
+      "script_count": 1393,
+      "opcode_count": 256,
+      "command_macro_count": 431,
+      "pending_vm_opcode_count": 256,
+      "audio_status": "metadata_only"
+    },
+    {
+      "category": "move_effects",
+      "path": "data/generated/battle/move_effects.json",
+      "effect_count": 332,
+      "resolved_battle_script_count": 332,
+      "missing_battle_script_label_count": 0,
+      "runtime_status": "pending_vm"
     }
   ],
   "map_overlays": [

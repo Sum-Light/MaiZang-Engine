@@ -102,29 +102,31 @@ B1 completion metrics: `strings.json` currently has 697 `StringID` enum records,
 
 ## B2 - Battle Scripts And Move Effects
 
-- [ ] B2.1 Export battle script labels and instruction streams.
+- [x] B2.1 Export battle script labels and instruction streams.
   - Source: `data/battle_scripts_1.s`, `data/battle_scripts_2.s`.
   - Output: `data/generated/battle/scripts.json`.
   - Validate: labels used by `gBattleMoveEffects` resolve to instruction arrays.
 
-- [ ] B2.2 Export battle script command metadata.
+- [x] B2.2 Export battle script command metadata.
   - Source: `src/battle_script_commands.c` and command tables/macros.
   - Output: opcode names, argument shapes, branch labels, wait behavior, and VM side-effect notes.
   - Validate: report lists implemented vs unsupported opcodes.
 
-- [ ] B2.3 Export move effect routing.
+- [x] B2.3 Export move effect routing.
   - Source: `src/data/battle_move_effects.h:gBattleMoveEffects`.
   - Output: `data/generated/battle/move_effects.json`.
   - Validate: every generated move effect symbol resolves to an effect record.
 
-- [ ] B2.4 Extend generated move records with script links.
+- [x] B2.4 Extend generated move records with script links.
   - Source: existing `tools/importer/export_moves.py`.
   - Target output: `data/generated/pokemon/moves.json`.
   - Validate: each move has `battle_effect_script`, `battle_anim_script`, `target`, `flags`, `additional_effects`, and unsupported notes.
 
-- [ ] B2.5 Add script import smoke tests.
+- [x] B2.5 Add script import smoke tests.
   - Target files: `tools/godot_smoke/data_registry_battle_scripts_smoke.gd`, `tools/godot_smoke/data_registry_move_effects_smoke.gd`.
   - Validate: ordinary hit effect, status move effect, stat stage effect, and switch/force effect labels are discoverable.
+
+B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6309 source instructions, 5217 command instructions, 1092 directive/data instructions, 479 explicit fallthrough label links, 256 opcode records, 256 command handler links, 431 script macros, 10 audio macros marked `metadata_only`, and 0 unresolved battle script label references. `move_effects.json` has 332 `EFFECT_*` records, 332 `gBattleMoveEffects` table entries, 217 unique battle script labels, 332/332 resolved battle script links, 0 missing table entries, and 0 missing battle script labels. `moves.json` now links all 935 moves to `battle_effect_script` with 0 missing links. Runtime script/effect behavior remains `pending_vm`; this milestone imports and links source data only.
 
 ## B3 - Battle Script VM First Slice
 

@@ -413,3 +413,9 @@ Reason: The source rate pipeline is ordered integer math, and moving any modifie
 Decision: Export `enum StringID`, `gBattleStringsTable`, declared battle UI text, text controls, direct placeholders, `B_BUFF_*` runtime placeholder family metadata, and audio cue symbols into `data/generated/battle/strings.json`, then expose them through `DataRegistry` instead of hand-authoring battle text constants in runtime or presentation code.
 
 Reason: Source battle text is shared by battle scripts, controller messages, HUD prompts, move-learning flow, capture, Safari, item/ability/status messaging, and future event logs. Keeping it generated and source-traced lets Godot preserve string ids, placeholder semantics, text-control timing/display intent, and metadata-only audio cues while leaving full `BattleStringExpandPlaceholders` buffer behavior for the battle VM instead of guessing it in scene code.
+
+## 2026-07-05 - Add a battle manifest category for script/effect data
+
+Decision: Store generated battle script and move-effect routing data under `data/generated/import_manifest.json` section `battle`, with categories `scripts` and `move_effects`, while battle strings remain a `texts/battle_strings` dataset.
+
+Reason: Battle scripts, opcodes, macro metadata, fallthrough labels, and `gBattleMoveEffects` routes are battle VM inputs rather than text datasets or Pokemon records. A dedicated manifest section lets `DataRegistry` expose battle-specific accessors without overloading the Pokemon data path, and keeps the B2 importer as source-data/link metadata only; actual script execution remains `pending_vm`, and audio cues remain `metadata_only` until audio scope opens.

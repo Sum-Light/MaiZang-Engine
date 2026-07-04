@@ -14,6 +14,8 @@ const GENERATED_START_SCRIPT_PATH := "res://data/generated/scripts/littleroot_to
 const DEFAULT_MAP_OVERLAY_CATEGORY := "debug_fixtures"
 const DEFAULT_OBJECT_EVENT_SPRITE_CATEGORY := "object_events"
 const DEFAULT_BATTLE_STRING_CATEGORY := "battle_strings"
+const DEFAULT_BATTLE_SCRIPT_CATEGORY := "scripts"
+const DEFAULT_BATTLE_MOVE_EFFECT_CATEGORY := "move_effects"
 
 var import_report: Dictionary = {}
 var _manifest_data: Dictionary = {}
@@ -24,6 +26,7 @@ var _script_entries: Array = []
 var _script_entries_by_map_name: Dictionary = {}
 var _text_entries_by_category: Dictionary = {}
 var _pokemon_entries_by_category: Dictionary = {}
+var _battle_entries_by_category: Dictionary = {}
 var _map_overlay_entries_by_category: Dictionary = {}
 var _object_event_sprite_entries_by_category: Dictionary = {}
 var _map_data_by_id: Dictionary = {}
@@ -32,6 +35,7 @@ var _script_data_by_map_id: Dictionary = {}
 var _script_data_by_path: Dictionary = {}
 var _text_data_by_category: Dictionary = {}
 var _pokemon_data_by_category: Dictionary = {}
+var _battle_data_by_category: Dictionary = {}
 var _map_overlay_data_by_category: Dictionary = {}
 var _object_event_sprite_data_by_category: Dictionary = {}
 var _species_records_by_symbol: Dictionary = {}
@@ -58,6 +62,11 @@ var _pre_evolution_records_by_target_id: Dictionary = {}
 var _battle_string_records_by_symbol: Dictionary = {}
 var _battle_string_records_by_id: Dictionary = {}
 var _battle_text_records_by_label: Dictionary = {}
+var _battle_script_records_by_label: Dictionary = {}
+var _battle_script_commands_by_opcode: Dictionary = {}
+var _battle_script_commands_by_macro: Dictionary = {}
+var _battle_move_effect_records_by_symbol: Dictionary = {}
+var _battle_move_effect_records_by_id: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -237,6 +246,87 @@ func get_text_display_text(text_label: String, category: String = "global") -> S
 
 func get_battle_string_data() -> Dictionary:
 	return get_text_data(DEFAULT_BATTLE_STRING_CATEGORY)
+
+
+func get_battle_data(category: String) -> Dictionary:
+	if _battle_data_by_category.has(category):
+		var cached = _battle_data_by_category[category]
+		return cached if typeof(cached) == TYPE_DICTIONARY else {}
+
+	var entry = _battle_entries_by_category.get(category, {})
+	if typeof(entry) != TYPE_DICTIONARY:
+		return {}
+
+	var battle_data := _load_json_object(_resource_path(String(entry.get("path", ""))), "generated battle data")
+	_battle_data_by_category[category] = battle_data
+	return battle_data
+
+
+func get_battle_scripts_data() -> Dictionary:
+	return get_battle_data(DEFAULT_BATTLE_SCRIPT_CATEGORY)
+
+
+func get_battle_script_record(script_label: String) -> Dictionary:
+	_ensure_battle_script_indexes()
+	var record = _battle_script_records_by_label.get(script_label, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_battle_script_command_record(opcode_or_macro) -> Dictionary:
+	_ensure_battle_script_indexes()
+	if typeof(opcode_or_macro) == TYPE_INT:
+		var id_record = _battle_script_commands_by_opcode.get(int(opcode_or_macro), {})
+		return id_record if typeof(id_record) == TYPE_DICTIONARY else {}
+	if typeof(opcode_or_macro) == TYPE_FLOAT:
+		var float_record = _battle_script_commands_by_opcode.get(int(opcode_or_macro), {})
+		return float_record if typeof(float_record) == TYPE_DICTIONARY else {}
+
+	var key := String(opcode_or_macro)
+	if key.is_valid_int():
+		var numeric_record = _battle_script_commands_by_opcode.get(int(key), {})
+		return numeric_record if typeof(numeric_record) == TYPE_DICTIONARY else {}
+	if _battle_script_commands_by_opcode.has(key):
+		var opcode_record = _battle_script_commands_by_opcode.get(key, {})
+		return opcode_record if typeof(opcode_record) == TYPE_DICTIONARY else {}
+	if _battle_script_commands_by_macro.has(key):
+		var macro_record = _battle_script_commands_by_macro.get(key, {})
+		return macro_record if typeof(macro_record) == TYPE_DICTIONARY else {}
+	var normalized := key
+	if not normalized.begins_with("B_SCR_OP_"):
+		normalized = "B_SCR_OP_%s" % normalized.to_upper()
+	var normalized_record = _battle_script_commands_by_opcode.get(normalized, {})
+	return normalized_record if typeof(normalized_record) == TYPE_DICTIONARY else {}
+
+
+func get_battle_move_effects_data() -> Dictionary:
+	return get_battle_data(DEFAULT_BATTLE_MOVE_EFFECT_CATEGORY)
+
+
+func get_battle_move_effect_record(effect_id_or_symbol) -> Dictionary:
+	if typeof(effect_id_or_symbol) == TYPE_INT:
+		return get_battle_move_effect_record_by_id(int(effect_id_or_symbol))
+	if typeof(effect_id_or_symbol) == TYPE_FLOAT:
+		return get_battle_move_effect_record_by_id(int(effect_id_or_symbol))
+
+	var key := String(effect_id_or_symbol)
+	if key.is_valid_int():
+		return get_battle_move_effect_record_by_id(int(key))
+	return get_battle_move_effect_record_by_symbol(key)
+
+
+func get_battle_move_effect_record_by_symbol(effect_symbol: String) -> Dictionary:
+	_ensure_battle_move_effect_indexes()
+	var normalized := effect_symbol
+	if not normalized.begins_with("EFFECT_"):
+		normalized = "EFFECT_%s" % normalized.to_upper()
+	var record = _battle_move_effect_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_battle_move_effect_record_by_id(effect_id: int) -> Dictionary:
+	_ensure_battle_move_effect_indexes()
+	var record = _battle_move_effect_records_by_id.get(effect_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
 func get_battle_string_record(battle_string_id_or_symbol) -> Dictionary:
@@ -868,6 +958,8 @@ func _index_manifest() -> void:
 	_text_data_by_category = {}
 	_pokemon_entries_by_category = {}
 	_pokemon_data_by_category = {}
+	_battle_entries_by_category = {}
+	_battle_data_by_category = {}
 	_map_overlay_entries_by_category = {}
 	_map_overlay_data_by_category = {}
 	_object_event_sprite_entries_by_category = {}
@@ -896,6 +988,11 @@ func _index_manifest() -> void:
 	_battle_string_records_by_symbol = {}
 	_battle_string_records_by_id = {}
 	_battle_text_records_by_label = {}
+	_battle_script_records_by_label = {}
+	_battle_script_commands_by_opcode = {}
+	_battle_script_commands_by_macro = {}
+	_battle_move_effect_records_by_symbol = {}
+	_battle_move_effect_records_by_id = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -947,6 +1044,15 @@ func _index_manifest() -> void:
 			var category := String(entry.get("category", ""))
 			if not category.is_empty():
 				_pokemon_entries_by_category[category] = entry
+
+	var battle = _manifest_data.get("battle", [])
+	if typeof(battle) == TYPE_ARRAY:
+		for entry in battle:
+			if typeof(entry) != TYPE_DICTIONARY:
+				continue
+			var category := String(entry.get("category", ""))
+			if not category.is_empty():
+				_battle_entries_by_category[category] = entry
 
 	var map_overlays = _manifest_data.get("map_overlays", [])
 	if typeof(map_overlays) == TYPE_ARRAY:
@@ -1004,6 +1110,74 @@ func _script_data_for_entry(entry: Dictionary) -> Dictionary:
 	var script_data := _load_json_object(_resource_path(path), "generated script")
 	_script_data_by_path[path] = script_data
 	return script_data
+
+
+func _ensure_battle_script_indexes() -> void:
+	if (
+		not _battle_script_records_by_label.is_empty()
+		or not _battle_script_commands_by_opcode.is_empty()
+		or not _battle_script_commands_by_macro.is_empty()
+	):
+		return
+
+	var battle_scripts := get_battle_scripts_data()
+	if battle_scripts.is_empty():
+		return
+
+	var scripts = battle_scripts.get("scripts", {})
+	if typeof(scripts) == TYPE_DICTIONARY:
+		for label in scripts.keys():
+			var record = scripts[label]
+			if typeof(record) != TYPE_DICTIONARY:
+				continue
+			var script_label := String(record.get("label", label))
+			if not script_label.is_empty():
+				_battle_script_records_by_label[script_label] = record
+
+	var commands = battle_scripts.get("commands", {})
+	if typeof(commands) == TYPE_DICTIONARY:
+		for symbol in commands.keys():
+			var command_record = commands[symbol]
+			if typeof(command_record) != TYPE_DICTIONARY:
+				continue
+			var opcode_symbol := String(command_record.get("symbol", symbol))
+			if not opcode_symbol.is_empty():
+				_battle_script_commands_by_opcode[opcode_symbol] = command_record
+			if command_record.has("opcode") and command_record.get("opcode") != null:
+				_battle_script_commands_by_opcode[int(command_record.get("opcode"))] = command_record
+
+	var command_macros = battle_scripts.get("command_macros", {})
+	if typeof(command_macros) == TYPE_DICTIONARY:
+		for macro_name in command_macros.keys():
+			var macro_record = command_macros[macro_name]
+			if typeof(macro_record) != TYPE_DICTIONARY:
+				continue
+			var source_macro := String(macro_record.get("macro", macro_name))
+			if not source_macro.is_empty():
+				_battle_script_commands_by_macro[source_macro] = macro_record
+
+
+func _ensure_battle_move_effect_indexes() -> void:
+	if not _battle_move_effect_records_by_symbol.is_empty() or not _battle_move_effect_records_by_id.is_empty():
+		return
+
+	var move_effects := get_battle_move_effects_data()
+	if move_effects.is_empty():
+		return
+
+	var effects = move_effects.get("effects", {})
+	if typeof(effects) != TYPE_DICTIONARY:
+		return
+
+	for symbol in effects.keys():
+		var record = effects[symbol]
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var effect_symbol := String(record.get("symbol", symbol))
+		if not effect_symbol.is_empty():
+			_battle_move_effect_records_by_symbol[effect_symbol] = record
+		if record.has("id") and record.get("id") != null:
+			_battle_move_effect_records_by_id[int(record.get("id"))] = record
 
 
 func _ensure_battle_string_indexes() -> void:

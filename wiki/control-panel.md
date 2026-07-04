@@ -175,8 +175,8 @@ Near-term:
 
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
-- Next executable task: return to the battle parity mainline by importing battle strings/scripts and source-backed battle assets; B13.4/B13.5 selector polish and scene-level action smoke remain as debug-lane follow-up.
-- Import battle strings, battle scripts, move effects, and move-to-script links before expanding runtime mechanics.
+- Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
+- Next executable task: import the first source-backed Pokemon, trainer, battle background, and HUD assets needed by the Sawyer/Route101 single-battle fixture, or start B3 battle script VM only against the newly generated script/effect data; B13.4/B13.5 selector polish and scene-level action smoke remain as debug-lane follow-up.
 - Import the first source-backed Pokemon, trainer, battle background, and HUD assets needed by the Sawyer/Route101 single-battle fixture.
 - Replace the current placeholder `BattleScene` layout with source-backed static battle composition before broad move animation work.
 

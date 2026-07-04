@@ -40,7 +40,10 @@ func _init() -> void:
 	for section_name in coverage_rows.keys():
 		for row in _array(coverage_rows.get(section_name, [])):
 			_assert(_supported_row_has_tests(_dict(row)), "supported row in %s is missing tests" % section_name)
-	_assert(not _find_row(moves, "MOVE_TACKLE").is_empty(), "expected MOVE_TACKLE coverage row")
+	var tackle := _find_row(moves, "MOVE_TACKLE")
+	_assert(not tackle.is_empty(), "expected MOVE_TACKLE coverage row")
+	_assert(String(tackle.get("battle_script_label", "")) == "BattleScript_EffectHit", "expected Tackle battle script link")
+	_assert(_array(tackle.get("tests", [])).has("tools/godot_smoke/data_registry_move_effects_smoke.gd"), "expected move effect smoke reference")
 	_assert(not _find_row(abilities, "ABILITY_STENCH").is_empty(), "expected ABILITY_STENCH coverage row")
 	_assert(not _find_row(trainers, "TRAINER_SAWYER_1").is_empty(), "expected TRAINER_SAWYER_1 coverage row")
 	_assert(not _find_row(pokemon_data, "SPECIES_GEODUDE").is_empty(), "expected SPECIES_GEODUDE coverage row")
@@ -65,6 +68,7 @@ func _init() -> void:
 	_assert(int(source_index.get("symbol_count", 0)) >= 7000, "expected broad source battle symbol index")
 	var symbols := _dict(source_index.get("symbols", {}))
 	_assert(symbols.has("CB2_InitBattle"), "expected CB2_InitBattle source index entry")
+	_assert(symbols.has("BattleScript_EffectHit"), "expected battle script source index entry")
 	_assert(symbols.has("gBattleAnimMove_Tackle"), "expected Tackle animation source index entry")
 
 	var required_event_fields := _array(event_log_schema.get("required_event_fields", []))
