@@ -317,3 +317,9 @@ Reason: Source trainer party data often omits explicit moves and relies on `Cust
 Decision: Add generated Pokemon nature data from `src/pokemon.c:gNaturesInfo` and make `BattleEngine` consume it for source `ModifyStatByNature` stat modifiers.
 
 Reason: The first battle prototype previously treated non-neutral natures as unsupported because the source `gNaturesInfo` table was not generated yet. Exporting natures keeps the stat formula source-backed, preserves future Pokeblock/Battle Palace/UI fields, and avoids guessing stat modifiers from hardcoded nature names.
+
+## 2026-07-04 - Export evolutions as source-ordered data
+
+Decision: Add generated Pokemon evolution data as its own `pokemon` manifest category, preserving `SpeciesInfo.evolutions` source order, method params, typed additional conditions, reverse pre-evolution lookup data, and runtime references without implementing actual evolution execution yet.
+
+Reason: Evolution behavior spans source data, `GetEvolutionTargetSpecies`, `DoesMonMeetAdditionalConditions`, item/trade/battle/overworld/script-trigger modes, split evolution creation, evolution-scene presentation, item consumption, and move learning. Godot needs stable, inspectable evolution records now, but the runtime must not infer visible behavior from data names alone before tracing and reproducing the source execution and presentation paths.

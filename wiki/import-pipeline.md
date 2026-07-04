@@ -38,6 +38,7 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 - `src/data/abilities.h`
 - `src/data/pokemon/level_up_learnsets/gen_*.h`
 - `src/pokemon.c:gNaturesInfo`
+- `src/data/pokemon/species_info.h` `.evolutions = EVOLUTION(...)` entries
 - `include/constants/*.h`
 
 ### Text
@@ -384,6 +385,30 @@ Latest verified nature export:
 - warnings: 0
 - unsupported fields: 0
 - unresolved stat constants: 0
+
+`tools/importer/export_evolutions.py` exports source Pokemon evolution data into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
+
+Current evolution export behavior:
+
+- Reads `src/data/pokemon/species_info.h` plus included `species_info/gen_*_families.h` files after evaluating the same active source config branches used by the species importer.
+- Traces the source data shapes from `include/pokemon.h:struct Evolution`, `struct EvolutionParam`, `src/data/pokemon/species_info.h` `EVOLUTION(...)`/`CONDITIONS(...)` macros, and `include/constants/pokemon.h` evolution methods, conditions, modes, and spin directions.
+- Resolves source constants for species, items, moves, types, natures, gender, time of day, weather, regions, map sections, maps, and `FRIENDSHIP_EVO_THRESHOLD`.
+- Preserves source order, raw macro text, method params, target species, additional conditions, defaulted condition args, typed condition args, runtime mode metadata, and source runtime references for `GetEvolutionTargetSpecies`, `DoesMonMeetAdditionalConditions`, `GetSpeciesPreEvolution`, and `TryCreateSplitEvoMon`.
+- Writes `data/generated/pokemon/evolutions.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `evolutions`.
+- Treats generated evolution records as source-traceable data for later party/evolution-scene/runtime work. Actual evolution checks, item/held-item consumption, Everstone, trade/item/battle/overworld/script-trigger modes, split-evolution creation, move learning, cries, animation, UI, audio, and timing still require separate source-backed Godot implementation.
+
+Latest verified evolution export:
+
+- generated path: `data/generated/pokemon/evolutions.json`
+- manifest category: `pokemon` / `evolutions`
+- species with evolution records: 486
+- evolution entries: 647
+- condition entries: 291
+- species with conditions: 109
+- split evolution entries: 1
+- preprocessor decisions: 2043
+- warnings: 0
+- unresolved values: 0
 
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 

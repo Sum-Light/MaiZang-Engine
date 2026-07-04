@@ -42,6 +42,10 @@ var _trainer_records_by_id: Dictionary = {}
 var _learnset_records_by_label: Dictionary = {}
 var _nature_records_by_symbol: Dictionary = {}
 var _nature_records_by_id: Dictionary = {}
+var _evolution_records_by_species_symbol: Dictionary = {}
+var _evolution_records_by_species_id: Dictionary = {}
+var _pre_evolution_records_by_target_symbol: Dictionary = {}
+var _pre_evolution_records_by_target_id: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -246,9 +250,7 @@ func get_species_record(species_id_or_symbol) -> Dictionary:
 
 func get_species_record_by_symbol(species_symbol: String) -> Dictionary:
 	_ensure_species_indexes()
-	var normalized := species_symbol
-	if not normalized.begins_with("SPECIES_"):
-		normalized = "SPECIES_%s" % normalized.to_upper()
+	var normalized := _normalize_species_symbol(species_symbol)
 	var record = _species_records_by_symbol.get(normalized, {})
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
@@ -389,6 +391,10 @@ func get_learnsets_data() -> Dictionary:
 	return get_pokemon_data("learnsets")
 
 
+func get_evolutions_data() -> Dictionary:
+	return get_pokemon_data("evolutions")
+
+
 func get_nature_record(nature_id_or_symbol) -> Dictionary:
 	if typeof(nature_id_or_symbol) == TYPE_INT:
 		return get_nature_record_by_id(int(nature_id_or_symbol))
@@ -434,6 +440,64 @@ func get_level_up_learnset_for_species(species_id_or_symbol) -> Dictionary:
 	if learnset_label.is_empty():
 		return {}
 	return get_level_up_learnset_record(learnset_label)
+
+
+func get_evolution_record(species_id_or_symbol) -> Dictionary:
+	if typeof(species_id_or_symbol) == TYPE_INT:
+		return get_evolution_record_by_species_id(int(species_id_or_symbol))
+	if typeof(species_id_or_symbol) == TYPE_FLOAT:
+		return get_evolution_record_by_species_id(int(species_id_or_symbol))
+
+	var key := String(species_id_or_symbol)
+	if key.is_valid_int():
+		return get_evolution_record_by_species_id(int(key))
+	return get_evolution_record_by_species_symbol(key)
+
+
+func get_evolution_record_by_species_symbol(species_symbol: String) -> Dictionary:
+	_ensure_evolution_indexes()
+	var normalized := _normalize_species_symbol(species_symbol)
+	var record = _evolution_records_by_species_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_evolution_record_by_species_id(species_id: int) -> Dictionary:
+	_ensure_evolution_indexes()
+	var record = _evolution_records_by_species_id.get(species_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_evolutions_for_species(species_id_or_symbol) -> Array:
+	var record := get_evolution_record(species_id_or_symbol)
+	if record.is_empty():
+		return []
+	var evolutions = record.get("evolutions", [])
+	return evolutions if typeof(evolutions) == TYPE_ARRAY else []
+
+
+func get_pre_evolution_records_for_species(species_id_or_symbol) -> Array:
+	if typeof(species_id_or_symbol) == TYPE_INT:
+		return get_pre_evolution_records_for_species_id(int(species_id_or_symbol))
+	if typeof(species_id_or_symbol) == TYPE_FLOAT:
+		return get_pre_evolution_records_for_species_id(int(species_id_or_symbol))
+
+	var key := String(species_id_or_symbol)
+	if key.is_valid_int():
+		return get_pre_evolution_records_for_species_id(int(key))
+	return get_pre_evolution_records_for_species_symbol(key)
+
+
+func get_pre_evolution_records_for_species_symbol(species_symbol: String) -> Array:
+	_ensure_evolution_indexes()
+	var normalized := _normalize_species_symbol(species_symbol)
+	var records = _pre_evolution_records_by_target_symbol.get(normalized, [])
+	return records if typeof(records) == TYPE_ARRAY else []
+
+
+func get_pre_evolution_records_for_species_id(species_id: int) -> Array:
+	_ensure_evolution_indexes()
+	var records = _pre_evolution_records_by_target_id.get(species_id, [])
+	return records if typeof(records) == TYPE_ARRAY else []
 
 
 func get_trainer_record(trainer_id_or_symbol) -> Dictionary:
@@ -541,6 +605,10 @@ func _index_manifest() -> void:
 	_learnset_records_by_label = {}
 	_nature_records_by_symbol = {}
 	_nature_records_by_id = {}
+	_evolution_records_by_species_symbol = {}
+	_evolution_records_by_species_id = {}
+	_pre_evolution_records_by_target_symbol = {}
+	_pre_evolution_records_by_target_id = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -805,6 +873,70 @@ func _ensure_nature_indexes() -> void:
 			_nature_records_by_symbol[nature_symbol] = record
 		if record.has("id") and record.get("id") != null:
 			_nature_records_by_id[int(record.get("id"))] = record
+
+
+func _ensure_evolution_indexes() -> void:
+	if not _evolution_records_by_species_symbol.is_empty() or not _evolution_records_by_species_id.is_empty():
+		return
+
+	var evolutions_data := get_evolutions_data()
+	var records = evolutions_data.get("evolutions_by_species", {})
+	if typeof(records) != TYPE_DICTIONARY:
+		return
+
+	for symbol in records.keys():
+		var record = records[symbol]
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+
+		var species_info = record.get("species", {})
+		var species_symbol := String(record.get("species_symbol", symbol))
+		if species_symbol.is_empty() and typeof(species_info) == TYPE_DICTIONARY:
+			species_symbol = String(species_info.get("symbol", ""))
+		species_symbol = _normalize_species_symbol(species_symbol)
+		if not species_symbol.is_empty():
+			_evolution_records_by_species_symbol[species_symbol] = record
+		if typeof(species_info) == TYPE_DICTIONARY and species_info.has("value") and species_info.get("value") != null:
+			_evolution_records_by_species_id[int(species_info.get("value"))] = record
+
+		var evolutions = record.get("evolutions", [])
+		if typeof(evolutions) != TYPE_ARRAY:
+			continue
+		for evolution in evolutions:
+			if typeof(evolution) != TYPE_DICTIONARY:
+				continue
+			var target = evolution.get("target_species", {})
+			if typeof(target) != TYPE_DICTIONARY:
+				continue
+			var target_symbol := _normalize_species_symbol(String(target.get("symbol", "")))
+			var pre_record := {
+				"source_species": species_info,
+				"source_species_symbol": species_symbol,
+				"source_record": record,
+				"evolution": evolution,
+			}
+			if not target_symbol.is_empty():
+				if not _pre_evolution_records_by_target_symbol.has(target_symbol):
+					_pre_evolution_records_by_target_symbol[target_symbol] = []
+				var symbol_records = _pre_evolution_records_by_target_symbol[target_symbol]
+				if typeof(symbol_records) == TYPE_ARRAY:
+					symbol_records.append(pre_record)
+			if target.has("value") and target.get("value") != null:
+				var target_id := int(target.get("value"))
+				if not _pre_evolution_records_by_target_id.has(target_id):
+					_pre_evolution_records_by_target_id[target_id] = []
+				var id_records = _pre_evolution_records_by_target_id[target_id]
+				if typeof(id_records) == TYPE_ARRAY:
+					id_records.append(pre_record)
+
+
+func _normalize_species_symbol(species_symbol: String) -> String:
+	var normalized := species_symbol
+	if normalized.is_empty():
+		return ""
+	if not normalized.begins_with("SPECIES_"):
+		normalized = "SPECIES_%s" % normalized.to_upper()
+	return normalized
 
 
 func _normalize_map_symbol(map_symbol: String) -> String:

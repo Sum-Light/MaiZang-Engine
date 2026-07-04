@@ -220,3 +220,9 @@
 - Updated `DataRegistry` with manifest-backed nature loading plus lookup by symbol, short symbol, or numeric nature id.
 - Updated `BattleEngine` so generated battle Pokemon apply source `ModifyStatByNature` integer stat modifiers from generated nature data; Adamant Torchic at level 5 now has 13 attack and 11 special attack.
 - Added `tools/godot_smoke/data_registry_natures_smoke.gd` and expanded `battle_engine_smoke.gd` to validate generated natures and Adamant/Modest stat modifiers.
+- Traced Pokemon evolution data through `src/data/pokemon/species_info.h`, included family files, `EVOLUTION(...)`/`CONDITIONS(...)` macros, `include/pokemon.h` evolution structs, `include/constants/pokemon.h` evolution constants, `src/pokemon.c:GetEvolutionTargetSpecies`/`DoesMonMeetAdditionalConditions`/`GetSpeciesPreEvolution`, and `src/evolution_scene.c:TryCreateSplitEvoMon`.
+- Added `tools/importer/export_evolutions.py` to export source-ordered evolution records into `data/generated/pokemon/evolutions.json`, preserving methods, params, target species, typed condition args, reverse pre-evolution records, runtime mode metadata, and source runtime references.
+- Generated evolution data with 486 species with evolution records, 647 evolution entries, 291 condition entries, 109 species with conditions, 1 split evolution, 0 warnings, and 0 unresolved values.
+- Updated `DataRegistry` with manifest-backed evolution loading plus lookup by species symbol/id and reverse pre-evolution lookup by target species symbol/id.
+- Added `tools/godot_smoke/data_registry_evolutions_smoke.gd` covering Bulbasaur, Tyrogue, Eevee/Sylveon, Nincada/Shedinja split evolution data, source order, typed conditions, and reverse lookup.
+- Verified `export_evolutions.py` Python compilation, `data_registry_evolutions_smoke.gd`, `data_registry_species_smoke.gd`, `data_registry_learnsets_smoke.gd`, and `data_registry_natures_smoke.gd`.

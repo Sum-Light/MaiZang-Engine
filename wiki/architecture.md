@@ -31,7 +31,7 @@ The original project should be treated as authoritative source data and behavior
 ## Core Modules
 
 - `GameState`: flags, vars, player profile, party, inventory, story state.
-- `DataRegistry`: read-only access to generated Pokemon species, moves, abilities, items, natures, maps, tilesets, scripts, text, trainers, learnsets, and encounters.
+- `DataRegistry`: read-only access to generated Pokemon species, moves, abilities, items, natures, evolutions, maps, tilesets, scripts, text, trainers, learnsets, and encounters.
 - `MapRuntime`: current map query service for bounds, collision, elevation, metatile ids, metatile behavior ids/names, and layer type.
 - `MapLoader`: builds Godot map scenes from generated map data.
 - `GridMover`: shared grid movement for player and NPCs.
@@ -50,7 +50,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, Pokemon wild encounter JSON, Pokemon trainer JSON, Pokemon level-up learnset JSON, and Pokemon nature JSON.
+- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, Pokemon wild encounter JSON, Pokemon trainer JSON, Pokemon level-up learnset JSON, Pokemon nature JSON, and Pokemon evolution JSON.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries, including source metatile behavior names.
 - `MapRuntime` indexes generated door animation metadata by metatile id and can return the animation for a map cell.
 - `MapRuntime` indexes generated object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events; visible object-event cells are occupied for first-pass movement.
@@ -204,6 +204,14 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Generated nature records preserve source symbols, numeric nature ids, source file/line references, UTF-8 display names, `statUp`/`statDown` constants, neutral-nature status, Pokeblock animation constants, Battle Palace cumulative percent data, flavor text ids, smokescreen target preferences, and nature girl message symbols.
 - `BattleEngine` consumes generated `stat_up`/`stat_down` fields for the source `ModifyStatByNature` rule: HP is never modified, neutral natures have no effect because `statUp == statDown`, increased stats use integer `stat * 110 / 100`, and decreased stats use integer `stat * 90 / 100`.
 - Personality-derived nature selection, hidden nature modifiers, mints, Pokeblock feeding animation, Battle Palace move-choice behavior, summary UI colors, and presentation details remain future source-traced systems.
+
+## Generated Pokemon Evolutions Contract
+
+- Pokemon evolution JSON is loaded through `DataRegistry` from the manifest `pokemon` entry with category `evolutions`.
+- `DataRegistry.get_pokemon_data("evolutions")`, `get_evolutions_data`, `get_evolution_record`, `get_evolution_record_by_species_symbol`, `get_evolution_record_by_species_id`, `get_evolutions_for_species`, `get_pre_evolution_records_for_species`, `get_pre_evolution_records_for_species_symbol`, and `get_pre_evolution_records_for_species_id` are read-only accessors for generated evolution records and reverse lookup records.
+- Generated evolution records preserve source species symbols/ids, source file/line references, raw `EVOLUTION(...)`/`CONDITIONS(...)` macro text, source order, evolution methods, method params, target species, additional conditions, defaulted condition args, typed condition args for species/items/moves/types/gender/time/weather/nature/region/map/map-section/counts, runtime modes, and runtime reference notes.
+- Source order matters: `src/pokemon.c:GetEvolutionTargetSpecies` scans each species' evolution records in order and returns the first valid target for the requested evolution mode, while extra condition checks are handled by `DoesMonMeetAdditionalConditions`.
+- Split evolutions such as Shedinja are represented as data but belong to `src/evolution_scene.c:TryCreateSplitEvoMon`; actual evolution execution, held/bag item consumption, Everstone handling, trade/item/battle/overworld/script-trigger modes, evolution-scene timing, cries, particles, UI, and post-evolution move learning remain future source-traced systems.
 
 ## Battle Runtime Contract
 

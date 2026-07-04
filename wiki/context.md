@@ -19,7 +19,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
 - Autoloads are configured for `GameState`, `DataRegistry`, `BattleEngine`, `MapRuntime`, `ScriptVM`, and `EventManager`.
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, Pokemon wild encounter JSON, Pokemon trainer JSON, Pokemon level-up learnset JSON, and Pokemon nature JSON while preserving the first-slice start-map API.
+- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, Pokemon wild encounter JSON, Pokemon trainer JSON, Pokemon level-up learnset JSON, Pokemon nature JSON, and Pokemon evolution JSON while preserving the first-slice start-map API.
 - `BattleEngine` is registered as a UI-independent battle rules autoload. Its first source-traced slice can build battle Pokemon from generated species/move/nature data, build explicit trainer parties from generated trainer data, calculate source-style nature stat modifiers, calculate deterministic ordinary move damage from the source base formula, apply STAB and source type effectiveness, decrement PP, apply HP damage, mark fainting, and return first-pass battle message events.
 - `BattleEngine` deliberately reports unsupported first-pass battle gaps instead of guessing: generated trainer Pokemon with source default moves now use generated level-up learnsets to reproduce the first-pass `GiveBoxMonInitialMoveset` selection window, and non-neutral natures use generated `gNaturesInfo` data for `ModifyStatByNature`; weather, critical hits, burn/frostbite, protection, abilities, held items, screens, multi-target modifiers, accuracy, move-specific effects, and final battle text/presentation remain future traced work.
 - `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior id, behavior name, and layer-type lookups.
@@ -64,6 +64,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `tools/importer/export_trainers.py` exports the active `src/data/trainers.party` trainer DSL into `data/generated/pokemon/trainers.json`, tracing `tools/trainerproc/main.c`, `include/data.h`, trainer constants, AI flags, Pokemon/item/move/ability constants, source defaults, generated-header behavior, party move defaults, and trainer battle/runtime references for later source-backed battle behavior.
 - `tools/importer/export_learnsets.py` exports the active `GEN_9` `src/data/pokemon/level_up_learnsets/gen_9.h` data into `data/generated/pokemon/learnsets.json`, tracing `P_LVL_UP_LEARNSETS`, learnset labels, move constants, level-zero entries, and runtime references for `CustomTrainerPartyAssignMoves`/`GiveBoxMonInitialMoveset`.
 - `tools/importer/export_natures.py` exports `src/pokemon.c:gNaturesInfo` into `data/generated/pokemon/natures.json`, tracing `struct NatureInfo`, nature/stat constants, Pokeblock animation fields, Battle Palace fields, and `CalculateMonStats`/`ModifyStatByNature` behavior for source-backed nature stat modifiers.
+- `tools/importer/export_evolutions.py` exports `SpeciesInfo.evolutions` from `src/data/pokemon/species_info.h` and included family files into `data/generated/pokemon/evolutions.json`, tracing `struct Evolution`, `struct EvolutionParam`, evolution methods/conditions/modes, map/map-section constants, and runtime references such as `GetEvolutionTargetSpecies`, `DoesMonMeetAdditionalConditions`, `GetSpeciesPreEvolution`, and `TryCreateSplitEvoMon`.
 - Generated map data currently exists for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated tileset metadata and palette-baked metatile atlases currently exist for `LittlerootTown`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - Generated tileset metadata now includes a `metatile_behaviors` name table plus per-metatile `attribute.behavior_name` values, and a `metatile_labels` table with source `METATILE_*` names and numeric ids from `include/constants/metatile_labels.h`.
@@ -78,6 +79,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Generated Pokemon trainer data currently exists at `data/generated/pokemon/trainers.json` and is indexed by the import manifest `pokemon` entry with category `trainers`.
 - Generated Pokemon level-up learnset data currently exists at `data/generated/pokemon/learnsets.json` and is indexed by the import manifest `pokemon` entry with category `learnsets`.
 - Generated Pokemon nature data currently exists at `data/generated/pokemon/natures.json` and is indexed by the import manifest `pokemon` entry with category `natures`.
+- Generated Pokemon evolution data currently exists at `data/generated/pokemon/evolutions.json` and is indexed by the import manifest `pokemon` entry with category `evolutions`.
 - Generated import manifest lives at `data/generated/import_manifest.json`.
 - Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
 - Latest map export for `LittlerootTown` decoded 400 map-grid entries into 63 unique metatile ids.
@@ -92,6 +94,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Latest Pokemon trainer export found 855 trainers, `TRAINERS_COUNT` 855, highest trainer id 854, 1825 party Pokemon, 77 double battles, 141 trainers with explicit items, 839 trainers with AI flags, 5 mugshot trainers, 436 Pokemon with explicit move lists, 1389 Pokemon using source level-up default moves, 142 held-item Pokemon, 208 unique trainer species, 210 unique trainer moves, 0 warnings, 0 unsupported fields, and 0 unresolved constants.
 - Latest Pokemon level-up learnset export uses active `GEN_9` data and found 1104 learnsets, 16616 move entries, 294 level-zero moves, 640 preprocessor decisions, 0 warnings, and 0 unresolved moves.
 - Latest Pokemon nature export found 25 natures, 5 neutral natures, 20 non-neutral natures, 0 preprocessor decisions after slicing to `gNaturesInfo`, 0 warnings, 0 unsupported fields, and 0 unresolved stat constants.
+- Latest Pokemon evolution export found 486 species with evolution records, 647 evolution entries, 291 condition entries, 109 species with conditions, 1 split evolution entry, 2043 preprocessor decisions, 0 warnings, and 0 unresolved values.
 - Trainer roster/config data is generated and indexed. The first `BattleEngine` runtime slice can construct generated explicit-move trainer parties, source default level-up trainer moves through generated learnsets, and source-backed nature stat modifiers through generated natures; party pools, dynamic trainer ids/difficulty, AI execution, rewards, rematches, and battle presentation still need source-backed implementation.
 - Generated `LittlerootTown_BrendansHouse_1F` is 11x9 and has 26 scripts, 11 movement labels, 29 text labels, 0 charmap warnings, and 0 script orphan instructions.
 - Generated `LittlerootTown_MaysHouse_1F` is 11x9 and has 31 scripts, 11 movement labels, 8 text labels, 0 charmap warnings, and 0 script orphan instructions.
@@ -149,6 +152,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Trainers: `src/data/trainers.party`
 - Level-up learnsets: `src/data/pokemon/level_up_learnsets/gen_*.h`
 - Natures: `src/pokemon.c:gNaturesInfo`
+- Evolutions: `src/data/pokemon/species_info.h` `.evolutions = EVOLUTION(...)` entries and included `src/data/pokemon/species_info/gen_*_families.h` files
 
 ## Important Risk
 
