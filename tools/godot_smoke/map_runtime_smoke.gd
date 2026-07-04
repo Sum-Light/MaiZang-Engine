@@ -124,6 +124,29 @@ func _init() -> void:
 	var boy_sprite := registry.get_object_event_sprite_record("OBJ_EVENT_GFX_BOY_1")
 	_assert(not boy_sprite.is_empty(), "expected Boy1 object-event sprite metadata")
 	_assert(String(boy_sprite.get("image", "")).ends_with("boy_1.png"), "expected Boy1 generated sprite image")
+	var boy_static_frames = boy_sprite.get("static_frames", {})
+	var boy_static_flips = boy_sprite.get("static_frame_flips", {})
+	var boy_animation_table = boy_sprite.get("animation_table", {})
+	_assert(typeof(boy_static_frames) == TYPE_DICTIONARY, "expected Boy1 static frame table")
+	_assert(int(boy_static_frames.get("down", -1)) == 0, "expected Boy1 source south frame")
+	_assert(int(boy_static_frames.get("up", -1)) == 1, "expected Boy1 source north frame")
+	_assert(int(boy_static_frames.get("left", -1)) == 2, "expected Boy1 source west frame")
+	_assert(int(boy_static_frames.get("right", -1)) == 2, "expected Boy1 source east frame uses west frame")
+	_assert(
+		typeof(boy_static_flips) == TYPE_DICTIONARY
+		and typeof(boy_static_flips.get("right", {})) == TYPE_DICTIONARY
+		and bool(boy_static_flips.get("right", {}).get("h", false)),
+		"expected Boy1 source east frame hFlip"
+	)
+	_assert(typeof(boy_animation_table) == TYPE_DICTIONARY, "expected Boy1 standard animation metadata")
+	var boy_walk_table = boy_animation_table.get("walk", {})
+	_assert(typeof(boy_walk_table) == TYPE_DICTIONARY, "expected Boy1 standard walk metadata")
+	var boy_walk_down = boy_walk_table.get("down", [])
+	var boy_walk_right = boy_walk_table.get("right", [])
+	_assert(typeof(boy_walk_down) == TYPE_ARRAY and boy_walk_down.size() == 4, "expected Boy1 south walk cycle")
+	_assert(typeof(boy_walk_right) == TYPE_ARRAY and boy_walk_right.size() == 4, "expected Boy1 east walk cycle")
+	_assert(int(boy_walk_down[0].get("frame", -1)) == 3 and int(boy_walk_down[2].get("frame", -1)) == 4, "expected Boy1 south walking feet frames")
+	_assert(bool(boy_walk_right[0].get("h_flip", false)) and bool(boy_walk_right[2].get("h_flip", false)), "expected Boy1 east walk hFlip")
 	_assert(_summary_count({"unsupported": boy_sprite.get("unsupported", [])}, "unsupported") > 0, "expected Boy1 unsupported animation note")
 	var renderer = DEBUG_MAP_PLANE_SCRIPT.new()
 	renderer.configure_data_registry(registry)

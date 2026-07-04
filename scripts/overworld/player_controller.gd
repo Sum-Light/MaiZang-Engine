@@ -11,6 +11,7 @@ signal interaction_requested(
 var facing_direction := Vector2i.DOWN
 var input_locked := false
 var field_input_precheck := Callable()
+var last_input_source_trace: Array = []
 
 
 func _ready() -> void:
@@ -31,11 +32,27 @@ func _physics_process(_delta: float) -> void:
 
 	var direction := _read_input_direction()
 	if direction != Vector2i.ZERO:
+		if direction != facing_direction:
+			facing_direction = direction
+			last_input_source_trace = [
+				"src/field_player_avatar.c:CheckMovementInputNotOnBike",
+				"src/field_player_avatar.c:TURN_DIRECTION",
+			]
+			return
 		facing_direction = direction
 		var target_position := grid_position + direction
 		if MapRuntime.can_enter_cell(target_position):
+			last_input_source_trace = [
+				"src/field_player_avatar.c:CheckMovementInputNotOnBike",
+				"src/event_object_movement.c:SetSpriteDataForNormalStep",
+				"src/event_object_movement.c:Step1",
+			]
 			try_move(direction)
 		else:
+			last_input_source_trace = [
+				"src/field_player_avatar.c:CheckMovementInputNotOnBike",
+				"src/field_player_avatar.c:MOVING",
+			]
 			movement_blocked.emit(target_position, MapRuntime.get_cell_info(target_position), facing_direction)
 
 

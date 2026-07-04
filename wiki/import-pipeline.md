@@ -510,8 +510,9 @@ First-pass object-event sprite export:
 - generated asset path: `assets/generated/object_events/boy_1.png`
 - manifest category: `object_event_sprites` / `object_events`
 - current sprite: `OBJ_EVENT_GFX_BOY_1`
-- current scope: static source sheet extraction only; full facing/walking animation timing remains unsupported metadata/future work
-- current runtime scope: static down-facing frame only; walking/facing animation tables remain future overworld sprite work
+- source trace: `gObjectEventGraphicsInfo_Boy1`, `sPicTable_Boy1`, `overworld_ascending_frames(gObjectEventPic_Boy1, 2, 4)`, `sAnimTable_Standard`, `sFaceDirectionAnimNums`, and `sMoveDirectionAnimNums`
+- current scope: generated static facing frames are `down=0`, `up=1`, `left=2`, `right=2+hFlip`; generated standard walk metadata is `down=3/0/4/0`, `up=5/1/6/1`, `left=7/2/8/2`, and `right=7/2/8/2+hFlip`
+- current runtime scope: placeholders consume static facing frames and right-facing hFlip; full object-event animation tasks and walking foot-cycle playback remain unsupported metadata/future work
 
 Latest verified additional maps for the first transition slice:
 

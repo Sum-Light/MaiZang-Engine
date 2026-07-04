@@ -32,7 +32,7 @@
 - Convert one tileset pair used by `LittlerootTown`. First pass done for `gTileset_General` + `gTileset_Petalburg` as a palette-baked RGBA metatile atlas.
 - Render `LittlerootTown` in Godot. Debug rendering now uses generated map ids plus the generated metatile atlas; real TileMapLayer rendering remains.
 - Add collision and movement permissions. First pass done with generated map-grid collision through `MapRuntime`; metatile behavior-specific movement rules remain.
-- Spawn object events from `map.json`. First pass done as visible placeholders with occupied-cell blocking; real overworld sprites and event scripts remain.
+- Spawn object events from `map.json`. First pass done as visible placeholders with occupied-cell blocking; `OBJ_EVENT_GFX_BOY_1` now consumes source static facing frames and right-facing hFlip metadata, while full object-event animation task playback and broader overworld sprite coverage remain.
 
 ## Milestone 4 - Event Script Slice
 
@@ -89,7 +89,7 @@
 - Add type chart, damage formula, move PP, HP, fainting, nature stat modifiers, and battle messages. First pass done for ordinary deterministic damaging moves: source type chart, source base damage formula, generated `gNaturesInfo` stat modifiers, 85-100 damage-roll metadata, STAB, PP decrement, HP/fainting, and structured first-pass battle message events. Accuracy, critical hits, weather, burn/frostbite, protection, abilities, held items, screens, multi-target modifiers, move-specific effects, and final battle text/presentation remain.
 - Keep battle rules separate from UI. First pass done: `BattleEngine` returns dictionaries for rules results and does not depend on battle scenes.
 - Construct generated trainer parties for battle. First pass done for explicit-move trainer Pokemon, source default level-up trainer moves using generated learnsets, source-shaped trainer battle states with `BATTLE_TYPE_TRAINER` setup/callback/stat metadata, `sBattleTransitionTable_Trainer` transition selection, debug-only temporary empty-party fallback, and explicit mugshot/Magma/Aqua/double-battle placeholder metadata; broader party pools, dynamic trainer ids/difficulty, AI, rewards, rematches, exact transition graphics/audio, and polished battle presentation remain future work.
-- Start battle scene presentation. First pass done with `scenes/battle/battle_scene.tscn`: it displays active player/opponent names, HP, move buttons, and messages, runs one deterministic move round against a `BattleEngine` state, and emits a result contract for field return handling. This scene is explicitly marked `first_slice_not_source_equivalent`; source battle windows, controller flow, complete turn loop, post-battle trainer scripts, animations, and audio remain future work.
+- Start battle scene presentation. First pass done with `scenes/battle/battle_scene.tscn`: it displays active player/opponent names, HP, source-shaped intro/action/move phases, source window id/BG0/healthbox metadata, runs one deterministic player move through `BattleEngine.execute_player_move_turn`, and emits a result contract for field return handling only when the battle has a finished outcome. This scene is explicitly marked `first_slice_not_source_equivalent`; imported source tilemaps/window graphics/text printer/healthbox sprites, complete controller flow, complete turn loop, post-battle trainer scripts, animations, and audio remain future work.
 
 ## Milestone 8 - Full Game Systems
 

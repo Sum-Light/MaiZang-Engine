@@ -3,11 +3,80 @@ extends Control
 signal battle_finished(result: Dictionary)
 
 const VIEWPORT_SIZE := Vector2(240, 160)
+const TILE_SIZE := 8
+const DISPLAY_HEIGHT := 160
 const FONT_SIZE := 8
+const HP_BAR_PIXELS := 48
 const HP_GREEN := Color(0.26, 0.74, 0.30, 1.0)
 const HP_YELLOW := Color(0.88, 0.76, 0.24, 1.0)
 const HP_RED := Color(0.88, 0.25, 0.22, 1.0)
 const PRESENTATION_STATUS := "first_slice_not_source_equivalent"
+const SOURCE_FLOW_STATUS := "source_action_move_window_flow_first_pass"
+const BG0_Y_ACTION_CHOOSE := DISPLAY_HEIGHT
+const BG0_Y_MOVE_CHOOSE := DISPLAY_HEIGHT * 2
+const ACTION_FIGHT := "fight"
+const ACTION_PARTY := "party"
+const ACTION_BAG := "bag"
+const ACTION_RUN := "run"
+const PHASE_INTRO := "intro_message"
+const PHASE_ACTION_SELECT := "action_select"
+const PHASE_MOVE_SELECT := "move_select"
+const PHASE_TURN_MESSAGE := "turn_message"
+const PHASE_FINISHED := "finished"
+const STRINGID_INTROMSG := "STRINGID_INTROMSG"
+
+const SOURCE_WINDOW_IDS := {
+	"B_WIN_MSG": 0,
+	"B_WIN_ACTION_PROMPT": 1,
+	"B_WIN_ACTION_MENU": 2,
+	"B_WIN_MOVE_NAME_1": 3,
+	"B_WIN_MOVE_NAME_2": 4,
+	"B_WIN_MOVE_NAME_3": 5,
+	"B_WIN_MOVE_NAME_4": 6,
+	"B_WIN_PP": 7,
+	"B_WIN_PP_REMAINING": 9,
+	"B_WIN_MOVE_TYPE": 10,
+}
+
+const SOURCE_ACTION_IDS := {
+	ACTION_FIGHT: "B_ACTION_USE_MOVE",
+	ACTION_PARTY: "B_ACTION_SWITCH",
+	ACTION_BAG: "B_ACTION_USE_ITEM",
+	ACTION_RUN: "B_ACTION_RUN",
+}
+
+const SOURCE_BATTLE_WINDOWS := {
+	"B_WIN_MSG": {"tilemap_left": 2, "tilemap_top": 15, "width": 26, "height": 4, "palette": 0, "base_block": 0x0090, "text_x": 0, "text_y": 1, "font": "FONT_NORMAL"},
+	"B_WIN_ACTION_PROMPT": {"tilemap_left": 1, "tilemap_top": 35, "width": 14, "height": 4, "palette": 0, "base_block": 0x01c0, "text_x": 1, "text_y": 1, "font": "FONT_NORMAL"},
+	"B_WIN_ACTION_MENU": {"tilemap_left": 17, "tilemap_top": 35, "width": 12, "height": 4, "palette": 5, "base_block": 0x0190, "text_x": 0, "text_y": 1, "font": "FONT_NORMAL"},
+	"B_WIN_MOVE_NAME_1": {"tilemap_left": 2, "tilemap_top": 55, "width": 16, "height": 2, "palette": 5, "base_block": 0x0300, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
+	"B_WIN_MOVE_NAME_2": {"tilemap_left": 11, "tilemap_top": 55, "width": 8, "height": 2, "palette": 5, "base_block": 0x0318, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
+	"B_WIN_MOVE_NAME_3": {"tilemap_left": 2, "tilemap_top": 57, "width": 16, "height": 2, "palette": 5, "base_block": 0x0328, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
+	"B_WIN_MOVE_NAME_4": {"tilemap_left": 11, "tilemap_top": 57, "width": 8, "height": 2, "palette": 5, "base_block": 0x0340, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
+	"B_WIN_PP": {"tilemap_left": 21, "tilemap_top": 55, "width": 4, "height": 2, "palette": 5, "base_block": 0x0290, "text_x": 0, "text_y": 1, "font": "FONT_NARROW"},
+	"B_WIN_PP_REMAINING": {"tilemap_left": 25, "tilemap_top": 55, "width": 4, "height": 2, "palette": 5, "base_block": 0x0298, "text_x": 2, "text_y": 1, "font": "FONT_NORMAL"},
+	"B_WIN_MOVE_TYPE": {"tilemap_left": 21, "tilemap_top": 57, "width": 8, "height": 2, "palette": 5, "base_block": 0x02a0, "text_x": 0, "text_y": 1, "font": "FONT_NARROW"},
+}
+
+const SOURCE_BATTLE_TEXTS := {
+	"gText_WhatWillPkmnDo": "{B_BUFF1}\n要做什么呢？",
+	"gText_BattleMenu": "战斗{CLEAR_TO 56}包包\n宝可梦{CLEAR_TO 56}逃走",
+	"gText_MoveInterfacePP": "PP",
+	"gText_MoveInterfaceType": "属性/",
+}
+
+const SOURCE_HEALTHBOX_COORDS := {
+	"singles": {
+		"player_left": [158, 88],
+		"opponent_left": [44, 30],
+	},
+	"doubles": {
+		"player_left": [159, 76],
+		"player_right": [171, 101],
+		"opponent_left": [44, 19],
+		"opponent_right": [32, 44],
+	},
+}
 
 var _sequence: Dictionary = {}
 var _battle_state: Dictionary = {}
@@ -15,8 +84,12 @@ var _battle_engine: Node = null
 var _game_state: Node = null
 var _built := false
 var _move_buttons: Array = []
+var _action_buttons: Dictionary = {}
 var _message_lines: Array = []
 var _last_result: Dictionary = {}
+var _ui_mode := "action"
+var _ui_phase := PHASE_INTRO
+var _selected_move_slot := 0
 
 var _opponent_name_label: Label
 var _opponent_hp_label: Label
@@ -25,6 +98,10 @@ var _player_name_label: Label
 var _player_hp_label: Label
 var _player_hp_fill: ColorRect
 var _message_label: Label
+var _action_prompt_label: Label
+var _pp_label: Label
+var _pp_remaining_label: Label
+var _move_type_label: Label
 var _finish_button: Button
 
 
@@ -40,6 +117,9 @@ func configure(sequence: Dictionary, battle_engine: Node, game_state: Node = nul
 	_game_state = game_state
 	_last_result = {}
 	_message_lines = [_battle_opening_message()]
+	_ui_mode = "action"
+	_ui_phase = PHASE_INTRO
+	_selected_move_slot = max(0, _first_usable_move_slot(_active_mon("player")))
 	_finish_button.visible = false
 	_refresh()
 
@@ -56,6 +136,10 @@ func load_battle_state(battle_state: Dictionary) -> void:
 
 
 func play_player_move(move_slot: int) -> Dictionary:
+	if _ui_phase == PHASE_INTRO:
+		advance_intro()
+	if _ui_mode == "action":
+		select_action(ACTION_FIGHT)
 	_on_move_pressed(move_slot)
 	return {
 		"status": "ok" if not _last_result.is_empty() else "blocked",
@@ -63,6 +147,42 @@ func play_player_move(move_slot: int) -> Dictionary:
 		"battle_result": _last_result.duplicate(true),
 		"messages": _message_lines.duplicate(true),
 		"outcome": String(_last_result.get("outcome", "")),
+	}
+
+
+func advance_intro() -> Dictionary:
+	if _ui_phase != PHASE_INTRO:
+		return {"status": "blocked", "ui_phase": _ui_phase}
+	_ui_phase = PHASE_ACTION_SELECT
+	_ui_mode = "action"
+	_message_lines = []
+	_refresh()
+	return {"status": "ok", "ui_phase": _ui_phase}
+
+
+func select_action(action_id: String) -> Dictionary:
+	if not _last_result.is_empty():
+		return {"status": "blocked", "reason": "battle_result_ready"}
+	if _ui_phase == PHASE_INTRO:
+		advance_intro()
+	match action_id:
+		ACTION_FIGHT:
+			_ui_mode = "move"
+			_ui_phase = PHASE_MOVE_SELECT
+			_message_lines = []
+			_selected_move_slot = max(0, _first_usable_move_slot(_active_mon("player")))
+			_refresh()
+			return {"status": "ok", "ui_mode": _ui_mode, "ui_phase": _ui_phase}
+		ACTION_PARTY, ACTION_BAG, ACTION_RUN:
+			return {
+				"status": "unsupported",
+				"unsupported_reason": "battle_action_%s_not_implemented" % action_id,
+				"source": "src/battle_controller_player.c:HandleInputChooseAction",
+			}
+	return {
+		"status": "error",
+		"unsupported_reason": "unknown_battle_action",
+		"action": action_id,
 	}
 
 
@@ -79,15 +199,41 @@ func get_ui_snapshot() -> Dictionary:
 	for button in _move_buttons:
 		if button is Button:
 			move_labels.append(button.text)
+	var action_labels := {}
+	for action_id in _action_buttons.keys():
+		var action_button: Button = _action_buttons[action_id]
+		action_labels[action_id] = action_button.text
 	return {
 		"player_name": _player_name_label.text if _player_name_label != null else "",
 		"opponent_name": _opponent_name_label.text if _opponent_name_label != null else "",
 		"player_hp": _player_hp_label.text if _player_hp_label != null else "",
 		"opponent_hp": _opponent_hp_label.text if _opponent_hp_label != null else "",
 		"moves": move_labels,
+		"action_menu": action_labels,
+		"action_prompt": _action_prompt_label.text if _action_prompt_label != null else "",
+		"pp_label": _pp_label.text if _pp_label != null else "",
+		"pp_remaining": _pp_remaining_label.text if _pp_remaining_label != null else "",
+		"move_type": _move_type_label.text if _move_type_label != null else "",
 		"message": _message_label.text if _message_label != null else "",
 		"outcome": String(_last_result.get("outcome", "")),
+		"can_return_to_field": _finish_button.visible if _finish_button != null else false,
+		"ui_mode": _ui_mode,
+		"ui_phase": _ui_phase,
+		"source_string_id": _source_string_id_for_phase(),
+		"visible_source_windows": _visible_source_windows(),
+		"source_action_ids": SOURCE_ACTION_IDS.duplicate(true),
 		"presentation_status": PRESENTATION_STATUS,
+		"source_flow_status": SOURCE_FLOW_STATUS,
+		"viewport_size": [int(VIEWPORT_SIZE.x), int(VIEWPORT_SIZE.y)],
+		"source_window_ids": SOURCE_WINDOW_IDS.duplicate(true),
+		"source_windows": _source_window_snapshot(),
+		"source_text_symbols": SOURCE_BATTLE_TEXTS.duplicate(true),
+		"source_healthbox_coords": SOURCE_HEALTHBOX_COORDS.duplicate(true),
+		"source_hp_bar_pixels": HP_BAR_PIXELS,
+		"source_bg0_y": {
+			"choose_action": BG0_Y_ACTION_CHOOSE,
+			"choose_move": BG0_Y_MOVE_CHOOSE,
+		},
 	}
 
 
@@ -105,30 +251,43 @@ func _ensure_ui() -> void:
 	background.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(background)
 
-	_add_rect(Rect2(0, 92, 240, 68), Color(0.93, 0.91, 0.79, 1.0))
-	_add_rect(Rect2(104, 8, 128, 34), Color(0.98, 0.98, 0.91, 1.0))
-	_add_rect(Rect2(8, 66, 128, 34), Color(0.98, 0.98, 0.91, 1.0))
+	_add_rect(Rect2(0, 112, 240, 48), Color(0.93, 0.91, 0.79, 1.0))
+	_add_rect(Rect2(44, 30, 88, 26), Color(0.98, 0.98, 0.91, 1.0))
+	_add_rect(Rect2(158, 88, 78, 30), Color(0.98, 0.98, 0.91, 1.0))
 	_add_rect(Rect2(12, 28, 48, 28), Color(0.35, 0.46, 0.40, 1.0))
 	_add_rect(Rect2(176, 66, 48, 28), Color(0.35, 0.46, 0.40, 1.0))
 
-	_opponent_name_label = _add_label(Rect2(110, 10, 116, 10), "")
-	_opponent_hp_label = _add_label(Rect2(110, 28, 116, 10), "")
-	_opponent_hp_fill = _add_hp_bar(Rect2(142, 23, 78, 4))
-	_player_name_label = _add_label(Rect2(14, 68, 116, 10), "")
-	_player_hp_label = _add_label(Rect2(14, 86, 116, 10), "")
-	_player_hp_fill = _add_hp_bar(Rect2(46, 81, 78, 4))
-	_message_label = _add_label(Rect2(10, 106, 110, 44), "")
+	_opponent_name_label = _add_label(Rect2(50, 32, 74, 10), "")
+	_opponent_hp_label = _add_label(Rect2(50, 44, 18, 10), "HP")
+	_opponent_hp_fill = _add_hp_bar(Rect2(78, 45, HP_BAR_PIXELS, 4))
+	_player_name_label = _add_label(Rect2(164, 90, 66, 10), "")
+	_player_hp_label = _add_label(Rect2(164, 106, 66, 10), "")
+	_player_hp_fill = _add_hp_bar(Rect2(184, 102, HP_BAR_PIXELS, 4))
+	_message_label = _add_label(_window_text_rect("B_WIN_MSG", 0), "")
 	_message_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+
+	_action_prompt_label = _add_label(_window_text_rect("B_WIN_ACTION_PROMPT", BG0_Y_ACTION_CHOOSE), "")
+	_action_prompt_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_add_action_button(ACTION_FIGHT, "战斗", Vector2(136, 121))
+	_add_action_button(ACTION_BAG, "包包", Vector2(192, 121))
+	_add_action_button(ACTION_PARTY, "宝可梦", Vector2(136, 137))
+	_add_action_button(ACTION_RUN, "逃走", Vector2(192, 137))
 
 	for index in range(4):
 		var button := Button.new()
-		button.position = Vector2(128, 104 + index * 13)
-		button.size = Vector2(104, 12)
+		var move_rect := _move_button_rect(index)
+		button.position = move_rect.position
+		button.size = move_rect.size
 		button.focus_mode = Control.FOCUS_NONE
+		button.flat = true
 		button.add_theme_font_size_override("font_size", FONT_SIZE)
 		button.pressed.connect(_on_move_pressed.bind(index))
 		add_child(button)
 		_move_buttons.append(button)
+
+	_pp_label = _add_label(_window_text_rect("B_WIN_PP", BG0_Y_MOVE_CHOOSE), SOURCE_BATTLE_TEXTS["gText_MoveInterfacePP"])
+	_pp_remaining_label = _add_label(_window_text_rect("B_WIN_PP_REMAINING", BG0_Y_MOVE_CHOOSE), "")
+	_move_type_label = _add_label(_window_text_rect("B_WIN_MOVE_TYPE", BG0_Y_MOVE_CHOOSE), "")
 
 	_finish_button = Button.new()
 	_finish_button.position = Vector2(128, 148)
@@ -141,11 +300,20 @@ func _ensure_ui() -> void:
 
 
 func _on_move_pressed(move_slot: int) -> void:
+	if _ui_phase == PHASE_INTRO:
+		advance_intro()
+	if _ui_mode == "action":
+		select_action(ACTION_FIGHT)
 	if _battle_engine == null or not _battle_engine.has_method("use_move"):
 		_message_lines = ["BattleEngine unavailable."]
 		_refresh()
 		return
 	if not _last_result.is_empty():
+		return
+	_selected_move_slot = move_slot
+
+	if _battle_engine.has_method("execute_player_move_turn"):
+		_execute_engine_player_turn(move_slot)
 		return
 
 	var player_party := _array_value(_battle_state.get("player_party", []))
@@ -210,6 +378,8 @@ func _on_move_pressed(move_slot: int) -> void:
 		_message_lines.append("You lost the battle.")
 	_last_result = _build_result_contract(outcome)
 	_finish_button.visible = true
+	_ui_mode = "result"
+	_ui_phase = PHASE_FINISHED
 	_refresh()
 
 
@@ -227,16 +397,36 @@ func _refresh() -> void:
 	_player_hp_label.text = _hp_text(player_mon)
 	_set_hp_fill(_player_hp_fill, player_mon)
 	_opponent_name_label.text = _mon_title(opponent_mon)
-	_opponent_hp_label.text = _hp_text(opponent_mon)
+	_opponent_hp_label.text = "HP"
 	_set_hp_fill(_opponent_hp_fill, opponent_mon)
 	_message_label.text = "\n".join(_message_lines.slice(max(0, _message_lines.size() - 4), _message_lines.size()))
-	_refresh_move_buttons(player_mon)
+	_refresh_bottom_windows(player_mon)
 
 
-func _refresh_move_buttons(player_mon: Dictionary) -> void:
+func _refresh_bottom_windows(player_mon: Dictionary) -> void:
+	var intro_visible := _ui_phase == PHASE_INTRO
+	var action_visible := _ui_phase == PHASE_ACTION_SELECT and _last_result.is_empty()
+	var move_visible := _ui_phase == PHASE_MOVE_SELECT and _last_result.is_empty()
+	var message_visible := intro_visible or _ui_phase == PHASE_TURN_MESSAGE or _ui_phase == PHASE_FINISHED
+	_message_label.visible = message_visible
+	_action_prompt_label.visible = action_visible
+	_action_prompt_label.text = _action_prompt_text(player_mon)
+	for action_id in _action_buttons.keys():
+		var action_button: Button = _action_buttons[action_id]
+		action_button.visible = action_visible
+		action_button.disabled = action_id != ACTION_FIGHT
+	_refresh_move_buttons(player_mon, move_visible)
+	_pp_label.visible = move_visible
+	_pp_remaining_label.visible = move_visible
+	_move_type_label.visible = move_visible
+	_refresh_move_selection_metadata(player_mon)
+
+
+func _refresh_move_buttons(player_mon: Dictionary, visible: bool) -> void:
 	var moves := _array_value(player_mon.get("moves", []))
 	for index in range(_move_buttons.size()):
 		var button: Button = _move_buttons[index]
+		button.visible = visible
 		if index >= moves.size():
 			button.disabled = true
 			button.text = "-"
@@ -247,11 +437,20 @@ func _refresh_move_buttons(player_mon: Dictionary) -> void:
 			button.text = "-"
 			continue
 		button.disabled = int(move.get("current_pp", 0)) <= 0 or not _last_result.is_empty()
-		button.text = "%s %d/%d" % [
-			_short_text(String(move.get("name", move.get("symbol", "Move"))), 10),
-			int(move.get("current_pp", 0)),
-			int(move.get("max_pp", 0)),
-		]
+		button.text = _short_text(String(move.get("name", move.get("symbol", "Move"))), 10)
+
+
+func _refresh_move_selection_metadata(player_mon: Dictionary) -> void:
+	var moves := _array_value(player_mon.get("moves", []))
+	if _selected_move_slot < 0 or _selected_move_slot >= moves.size():
+		_selected_move_slot = max(0, _first_usable_move_slot(player_mon))
+	if _selected_move_slot < 0 or _selected_move_slot >= moves.size() or typeof(moves[_selected_move_slot]) != TYPE_DICTIONARY:
+		_pp_remaining_label.text = "--/--"
+		_move_type_label.text = "%s?" % SOURCE_BATTLE_TEXTS["gText_MoveInterfaceType"]
+		return
+	var move: Dictionary = moves[_selected_move_slot]
+	_pp_remaining_label.text = "%2d/%2d" % [int(move.get("current_pp", 0)), int(move.get("max_pp", 0))]
+	_move_type_label.text = _move_type_text(move)
 
 
 func _build_result_contract(outcome: String) -> Dictionary:
@@ -270,6 +469,8 @@ func _build_result_contract(outcome: String) -> Dictionary:
 	result["battle_state"] = _battle_state.duplicate(true)
 	result["statistics"] = _sequence.get("statistics", {})
 	result["presentation_status"] = PRESENTATION_STATUS
+	result["source_flow_status"] = SOURCE_FLOW_STATUS
+	result["ui_phase"] = _ui_phase
 	var debug_player_party := _dictionary_value(_sequence.get("debug_player_party", _battle_state.get("debug_player_party", {})))
 	result["debug_player_party"] = debug_player_party.duplicate(true)
 	var source_trace := _array_value(result.get("source_trace", []))
@@ -304,9 +505,14 @@ func _battle_scene_source_trace() -> Array:
 	return [
 		"src/battle_main.c:CB2_InitBattle",
 		"src/battle_main.c:BattleMainCB2",
+		"src/battle_main.c:DoBattleIntro",
+		"src/battle_main.c:HandleTurnActionSelectionState",
+		"src/battle_bg.c:sStandardBattleWindowTemplates",
 		"src/battle_interface.c",
+		"src/battle_interface.c:sBattlerHealthboxCoords",
 		"src/battle_controller_player.c",
 		"src/battle_message.c",
+		"src/battle_message.c:sTextOnWindowsInfo_Normal",
 		"src/battle_setup.c:CB2_EndTrainerBattle",
 	]
 
@@ -317,9 +523,21 @@ func _battle_scene_unsupported() -> Array:
 		"source": "src/battle_main.c:CB2_InitBattle",
 		"detail": "This scene is a debug vertical slice. It does not recreate the source battle tilemaps, palette setup, battler sprites, healthbox sprites, window graphics, audio, or exact callback/task flow.",
 	}, {
-		"code": "battle_ui_windows_not_source_backed",
+		"code": "battle_ui_windows_not_source_equivalent",
 		"source": "src/battle_interface.c; src/battle_controller_player.c; src/battle_message.c",
-		"detail": "The visible panels, move buttons, HP bars, trainer opening text, and message pacing are Godot controls, not imported source windows/tilemaps/text printers.",
+		"detail": "The first pass now follows source action/move window ids, BG0 scroll offsets, text symbols, and HP bar width, but it still uses Godot controls instead of imported source window tilemaps, palettes, text printer glyphs, and healthbox sprites.",
+	}, {
+		"code": "battle_action_menu_partial",
+		"source": "src/battle_controller_player.c:PlayerHandleChooseAction; src/battle_controller_player.c:HandleInputChooseAction",
+		"detail": "The source Fight/Pokémon/Bag/Run action menu is visible, but only Fight is interactive in this slice.",
+	}, {
+		"code": "battle_healthbox_sprites_not_imported",
+		"source": "src/battle_interface.c:CreateBattlerHealthboxSprites",
+		"detail": "Healthbox anchors and 48-pixel HP bar scaling are source-backed, but the OBJ healthbox graphics and slide-in animation are not imported yet.",
+	}, {
+		"code": "battle_audio_unsupported",
+		"source": "src/battle_controller_player.c; src/battle_main.c",
+		"detail": "Battle cries, menu sounds, music, and sound effects are intentionally unsupported for now per project scope.",
 	}, {
 		"code": "debug_battle_scene_single_round",
 		"source": "scripts/battle/battle_scene.gd",
@@ -333,6 +551,41 @@ func _battle_scene_unsupported() -> Array:
 		"source": "src/battle_setup.c:CB2_EndTrainerBattle",
 		"detail": "Trainer defeat text, money/reward flow, post-battle event scripts, object-event trainer flags, and full field callback restoration remain future source-backed work.",
 	}]
+
+
+func _execute_engine_player_turn(move_slot: int) -> void:
+	var turn_result = _battle_engine.execute_player_move_turn(_battle_state, move_slot, {"damage_roll_percent": 100})
+	if typeof(turn_result) != TYPE_DICTIONARY:
+		_message_lines = ["Invalid turn result."]
+		_ui_phase = PHASE_TURN_MESSAGE
+		_refresh()
+		return
+	if String(turn_result.get("status", "")) != "ok":
+		_message_lines = _message_texts(turn_result.get("messages", []))
+		if _message_lines.is_empty():
+			_message_lines = [String(turn_result.get("status", "Battle command failed."))]
+		_ui_phase = PHASE_TURN_MESSAGE
+		_refresh()
+		return
+	_battle_state = _dictionary_value(turn_result.get("battle_state", _battle_state)).duplicate(true)
+	_message_lines = _message_texts(turn_result.get("messages", []))
+	var outcome := String(turn_result.get("outcome", "in_progress"))
+	if outcome == "in_progress":
+		_message_lines.append("Debug player turn complete.")
+		_ui_mode = "result"
+		_ui_phase = PHASE_TURN_MESSAGE
+		_last_result = _build_result_contract(outcome)
+		_finish_button.visible = false
+	else:
+		if outcome == "player_won":
+			_message_lines.append("You won the battle.")
+		elif outcome == "opponent_won":
+			_message_lines.append("You lost the battle.")
+		_last_result = _build_result_contract(outcome)
+		_finish_button.visible = true
+		_ui_mode = "result"
+		_ui_phase = PHASE_FINISHED
+	_refresh()
 
 
 func _active_mon(side: String) -> Dictionary:
@@ -363,6 +616,46 @@ func _battle_opening_message() -> String:
 	return "Battle started!"
 
 
+func _source_string_id_for_phase() -> String:
+	if _ui_phase == PHASE_INTRO:
+		return STRINGID_INTROMSG
+	if _ui_phase == PHASE_ACTION_SELECT:
+		return "gText_WhatWillPkmnDo"
+	if _ui_phase == PHASE_MOVE_SELECT:
+		return "gText_MoveInterfacePP/gText_MoveInterfaceType"
+	return ""
+
+
+func _visible_source_windows() -> Array:
+	if _ui_phase == PHASE_INTRO or _ui_phase == PHASE_TURN_MESSAGE or _ui_phase == PHASE_FINISHED:
+		return ["B_WIN_MSG"]
+	if _ui_phase == PHASE_ACTION_SELECT:
+		return ["B_WIN_ACTION_PROMPT", "B_WIN_ACTION_MENU"]
+	if _ui_phase == PHASE_MOVE_SELECT:
+		return [
+			"B_WIN_MOVE_NAME_1",
+			"B_WIN_MOVE_NAME_2",
+			"B_WIN_MOVE_NAME_3",
+			"B_WIN_MOVE_NAME_4",
+			"B_WIN_PP",
+			"B_WIN_PP_REMAINING",
+			"B_WIN_MOVE_TYPE",
+		]
+	return []
+
+
+func _action_prompt_text(player_mon: Dictionary) -> String:
+	var mon_name := _short_text(String(player_mon.get("name", player_mon.get("species", "Pokemon"))), 12)
+	return String(SOURCE_BATTLE_TEXTS["gText_WhatWillPkmnDo"]).replace("{B_BUFF1}", mon_name)
+
+
+func _move_type_text(move: Dictionary) -> String:
+	var type_symbol := String(move.get("type", ""))
+	if type_symbol.is_empty():
+		return "%s?" % SOURCE_BATTLE_TEXTS["gText_MoveInterfaceType"]
+	return "%s%s" % [SOURCE_BATTLE_TEXTS["gText_MoveInterfaceType"], type_symbol]
+
+
 func _mon_title(mon: Dictionary) -> String:
 	if mon.is_empty():
 		return "-"
@@ -379,7 +672,7 @@ func _set_hp_fill(fill: ColorRect, mon: Dictionary) -> void:
 	var max_hp: int = max(1, int(mon.get("max_hp", 1)))
 	var hp: int = clampi(int(mon.get("hp", 0)), 0, max_hp)
 	var ratio: float = float(hp) / float(max_hp)
-	fill.size.x = roundi(78.0 * ratio)
+	fill.size.x = roundi(float(HP_BAR_PIXELS) * ratio)
 	if ratio <= 0.2:
 		fill.color = HP_RED
 	elif ratio <= 0.5:
@@ -411,6 +704,19 @@ func _add_label(rect: Rect2, text: String) -> Label:
 	return label
 
 
+func _add_action_button(action_id: String, text: String, position: Vector2) -> void:
+	var button := Button.new()
+	button.position = position
+	button.size = Vector2(40, 14)
+	button.text = text
+	button.focus_mode = Control.FOCUS_NONE
+	button.flat = true
+	button.add_theme_font_size_override("font_size", FONT_SIZE)
+	button.pressed.connect(select_action.bind(action_id))
+	add_child(button)
+	_action_buttons[action_id] = button
+
+
 func _add_rect(rect: Rect2, color: Color) -> ColorRect:
 	var color_rect := ColorRect.new()
 	color_rect.position = rect.position
@@ -423,6 +729,52 @@ func _add_rect(rect: Rect2, color: Color) -> ColorRect:
 func _add_hp_bar(rect: Rect2) -> ColorRect:
 	_add_rect(Rect2(rect.position - Vector2(1, 1), rect.size + Vector2(2, 2)), Color(0.16, 0.16, 0.16, 1.0))
 	return _add_rect(rect, HP_GREEN)
+
+
+func _move_button_rect(index: int) -> Rect2:
+	var window_id := "B_WIN_MOVE_NAME_%d" % [index + 1]
+	var rect := _window_screen_rect(window_id, BG0_Y_MOVE_CHOOSE)
+	var fit_width := int(SOURCE_BATTLE_WINDOWS[window_id].get("source_fit_width_px", rect.size.x))
+	return Rect2(rect.position, Vector2(fit_width, rect.size.y))
+
+
+func _window_text_rect(window_id: String, bg0_y: int) -> Rect2:
+	var rect := _window_screen_rect(window_id, bg0_y)
+	var window = SOURCE_BATTLE_WINDOWS.get(window_id, {})
+	return Rect2(
+		rect.position + Vector2(int(window.get("text_x", 0)), int(window.get("text_y", 0))),
+		rect.size
+	)
+
+
+func _window_screen_rect(window_id: String, bg0_y: int) -> Rect2:
+	var window = SOURCE_BATTLE_WINDOWS.get(window_id, {})
+	return Rect2(
+		Vector2(
+			int(window.get("tilemap_left", 0)) * TILE_SIZE,
+			int(window.get("tilemap_top", 0)) * TILE_SIZE - bg0_y
+		),
+		Vector2(
+			int(window.get("width", 0)) * TILE_SIZE,
+			int(window.get("height", 0)) * TILE_SIZE
+		)
+	)
+
+
+func _source_window_snapshot() -> Dictionary:
+	var result := {}
+	for window_id in SOURCE_BATTLE_WINDOWS.keys():
+		var source: Dictionary = SOURCE_BATTLE_WINDOWS[window_id].duplicate(true)
+		var bg0_y := 0
+		if window_id == "B_WIN_ACTION_PROMPT" or window_id == "B_WIN_ACTION_MENU":
+			bg0_y = BG0_Y_ACTION_CHOOSE
+		elif window_id.begins_with("B_WIN_MOVE") or window_id == "B_WIN_PP" or window_id == "B_WIN_PP_REMAINING":
+			bg0_y = BG0_Y_MOVE_CHOOSE
+		var rect := _window_screen_rect(window_id, bg0_y)
+		source["screen_rect"] = [int(rect.position.x), int(rect.position.y), int(rect.size.x), int(rect.size.y)]
+		source["bg0_y"] = bg0_y
+		result[window_id] = source
+	return result
 
 
 func _short_text(value: String, max_length: int) -> String:

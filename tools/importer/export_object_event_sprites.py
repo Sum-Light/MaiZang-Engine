@@ -19,16 +19,67 @@ SPRITES = {
         "source_image": Path("graphics/object_events/pics/people/boy_1.png"),
         "asset_name": "boy_1.png",
         "frame_size": {"w": 16, "h": 32},
-        "static_frames": {"down": 0},
+        "static_frames": {"down": 0, "up": 1, "left": 2, "right": 2},
+        "static_frame_flips": {"right": {"h": True}},
+        "animation_table": {
+            "source_symbol": "sAnimTable_Standard",
+            "source_animation_ids": {
+                "face_down": "ANIM_STD_FACE_SOUTH",
+                "face_up": "ANIM_STD_FACE_NORTH",
+                "face_left": "ANIM_STD_FACE_WEST",
+                "face_right": "ANIM_STD_FACE_EAST",
+                "walk_down": "ANIM_STD_GO_SOUTH",
+                "walk_up": "ANIM_STD_GO_NORTH",
+                "walk_left": "ANIM_STD_GO_WEST",
+                "walk_right": "ANIM_STD_GO_EAST",
+            },
+            "face": {
+                "down": [{"frame": 0, "duration_frames": 16}],
+                "up": [{"frame": 1, "duration_frames": 16}],
+                "left": [{"frame": 2, "duration_frames": 16}],
+                "right": [{"frame": 2, "duration_frames": 16, "h_flip": True}],
+            },
+            "walk": {
+                "down": [
+                    {"frame": 3, "duration_frames": 8},
+                    {"frame": 0, "duration_frames": 8},
+                    {"frame": 4, "duration_frames": 8},
+                    {"frame": 0, "duration_frames": 8},
+                ],
+                "up": [
+                    {"frame": 5, "duration_frames": 8},
+                    {"frame": 1, "duration_frames": 8},
+                    {"frame": 6, "duration_frames": 8},
+                    {"frame": 1, "duration_frames": 8},
+                ],
+                "left": [
+                    {"frame": 7, "duration_frames": 8},
+                    {"frame": 2, "duration_frames": 8},
+                    {"frame": 8, "duration_frames": 8},
+                    {"frame": 2, "duration_frames": 8},
+                ],
+                "right": [
+                    {"frame": 7, "duration_frames": 8, "h_flip": True},
+                    {"frame": 2, "duration_frames": 8, "h_flip": True},
+                    {"frame": 8, "duration_frames": 8, "h_flip": True},
+                    {"frame": 2, "duration_frames": 8, "h_flip": True},
+                ],
+            },
+        },
         "source_trace": [
             "src/data/object_events/object_event_graphics.h:gObjectEventPic_Boy1",
+            "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_Boy1",
             "src/data/object_events/object_event_pic_tables.h:sPicTable_Boy1",
+            "src/data/object_events/object_event_anims.h:sAnimTable_Standard",
+            "src/data/object_events/object_event_anims.h:sAnim_FaceSouth/sAnim_FaceNorth/sAnim_FaceWest/sAnim_FaceEast",
+            "src/data/object_events/object_event_anims.h:sAnim_GoSouth/sAnim_GoNorth/sAnim_GoWest/sAnim_GoEast",
+            "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
             "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_BOY_1",
         ],
         "unsupported": [
             {
-                "code": "object_event_animation_not_ported",
-                "detail": "Only the neutral down-facing frame is consumed by Godot for this slice; walking/facing animation tables remain future overworld sprite work."
+                "code": "object_event_walk_animation_not_runtime_driven",
+                "detail": "Facing frames and source standard walk animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
             }
         ],
     }
@@ -68,6 +119,8 @@ def export_object_event_sprites(source_root, output_data_root, output_asset_root
             "columns": width // frame_width if frame_width > 0 else 0,
             "rows": height // frame_height if frame_height > 0 else 0,
             "static_frames": sprite["static_frames"],
+            "static_frame_flips": sprite.get("static_frame_flips", {}),
+            "animation_table": sprite.get("animation_table", {}),
             "source_trace": sprite["source_trace"],
             "unsupported": sprite["unsupported"],
         }

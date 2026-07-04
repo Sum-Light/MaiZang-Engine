@@ -9,6 +9,7 @@ var _accent_color := Color(0.18, 0.16, 0.14, 1.0)
 var _sprite_record: Dictionary = {}
 var _sprite_texture: Texture2D = null
 var _sprite_source_rect := Rect2()
+var _sprite_flip_h := false
 
 const BODY_COLORS := [
 	Color(0.86, 0.42, 0.38, 1.0),
@@ -45,7 +46,11 @@ func _draw() -> void:
 			float(tile_size) * 2.0
 		)
 		draw_rect(Rect2(-6, 5, 12, 4), Color(0.05, 0.07, 0.06, 0.35), true)
+		if _sprite_flip_h:
+			draw_set_transform(Vector2.ZERO, 0.0, Vector2(-1.0, 1.0))
 		draw_texture_rect_region(_sprite_texture, dest_rect, _sprite_source_rect)
+		if _sprite_flip_h:
+			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 		return
 
 	var body_rect := Rect2(-5, -11, 10, 15)
@@ -66,10 +71,28 @@ func get_sprite_record() -> Dictionary:
 	return _sprite_record.duplicate(true)
 
 
+func get_sprite_snapshot() -> Dictionary:
+	return {
+		"using_sprite": is_using_sprite(),
+		"graphics_id": String(event_data.get("graphics_id", "")),
+		"facing_direction": _facing_direction(),
+		"source_rect": [
+			int(_sprite_source_rect.position.x),
+			int(_sprite_source_rect.position.y),
+			int(_sprite_source_rect.size.x),
+			int(_sprite_source_rect.size.y),
+		],
+		"h_flip": _sprite_flip_h,
+		"source_trace": _sprite_record.get("source_trace", []),
+		"unsupported": _sprite_record.get("unsupported", []),
+	}
+
+
 func _configure_static_sprite() -> void:
 	_sprite_record = {}
 	_sprite_texture = null
 	_sprite_source_rect = Rect2()
+	_sprite_flip_h = false
 
 	var graphics_id := String(event_data.get("graphics_id", ""))
 	if graphics_id.is_empty():
@@ -99,9 +122,11 @@ func _configure_static_sprite() -> void:
 	if columns <= 0:
 		columns = 1
 
-	var frame_index := _static_frame_index(record, _facing_direction())
+	var facing_direction := _facing_direction()
+	var frame_index := _static_frame_index(record, facing_direction)
 	_sprite_record = record.duplicate(true)
 	_sprite_texture = texture
+	_sprite_flip_h = _static_frame_flip_h(record, facing_direction)
 	var frame_row := int(floor(float(frame_index) / float(columns)))
 	_sprite_source_rect = Rect2(
 		float(frame_index % columns) * frame_size.x,
@@ -143,6 +168,16 @@ func _static_frame_index(record: Dictionary, facing_direction: String) -> int:
 	if static_frames.has(facing_direction):
 		return int(static_frames.get(facing_direction, 0))
 	return int(static_frames.get("down", 0))
+
+
+func _static_frame_flip_h(record: Dictionary, facing_direction: String) -> bool:
+	var static_frame_flips = record.get("static_frame_flips", {})
+	if typeof(static_frame_flips) != TYPE_DICTIONARY:
+		return false
+	var flip_info = static_frame_flips.get(facing_direction, {})
+	if typeof(flip_info) != TYPE_DICTIONARY:
+		return false
+	return bool(flip_info.get("h", false))
 
 
 func _facing_direction() -> String:
