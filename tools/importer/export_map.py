@@ -292,6 +292,7 @@ def write_manifest(
     exported_pokemon=None,
     exported_map_overlays=None,
     exported_object_event_sprites=None,
+    exported_overworld_reports=None,
     generator=None,
 ):
     existing = {}
@@ -345,6 +346,15 @@ def write_manifest(
         if exported_object_event_sprites is not None
         else existing.get("object_event_sprites", [])
     )
+    overworld_reports = (
+        _merge_manifest_entries(
+            existing.get("overworld_reports", []),
+            exported_overworld_reports,
+            ["category", "path"],
+        )
+        if exported_overworld_reports is not None
+        else existing.get("overworld_reports", [])
+    )
     if maps:
         manifest["maps"] = maps
     if tilesets:
@@ -359,6 +369,8 @@ def write_manifest(
         manifest["map_overlays"] = map_overlays
     if object_event_sprites:
         manifest["object_event_sprites"] = object_event_sprites
+    if overworld_reports:
+        manifest["overworld_reports"] = overworld_reports
 
     write_json(path, manifest)
 

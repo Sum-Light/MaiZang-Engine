@@ -31,10 +31,10 @@ Use these as executable checkboxes. A task is not complete until the source path
 
 ### 0. Parity Control
 
-- [ ] Create `data/generated/overworld/parity_matrix.json` or an equivalent wiki table mapping source functions/tables to Godot owners.
-- [ ] Add matrix columns for source path, source symbol, Godot importer, Godot runtime owner, Godot presentation owner, status, test/report, and notes.
-- [ ] Use status values only from `ported`, `first_pass`, `metadata_only`, `unsupported`, and `untraced`.
-- [ ] Add a stable unsupported-code naming scheme such as `layer_split_pending`, `door_overlay_not_source_equivalent`, and `object_movement_task_pending`.
+- [x] Create `data/generated/overworld/parity_matrix.json` or an equivalent wiki table mapping source functions/tables to Godot owners.
+- [x] Add matrix columns for source path, source symbol, Godot importer, Godot runtime owner, Godot presentation owner, status, test/report, and notes.
+- [x] Use status values only from `ported`, `first_pass`, `metadata_only`, `unsupported`, and `untraced`.
+- [x] Add a stable unsupported-code naming scheme such as `layer_split_pending`, `door_overlay_not_source_equivalent`, and `object_movement_task_pending`.
 - [ ] Add a generated overworld import summary that counts maps, layouts, tilesets, scripts, door anims, tileset anims, object graphics, movement actions, warnings, and unsupported entries.
 - [ ] Add a runtime debug dump for the current map: map id, layout id, tileset pair, map type, weather, music, active scripts, object count, warp count, coord event count, and unsupported runtime features.
 - [ ] Keep `wiki/overworld-parity-todo.md` as the top-level checklist and append session-log entries after each completed slice.

@@ -1,0 +1,900 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/importer/export_overworld_parity_matrix.py",
+  "source_root": "C:\\Users\\YbbNa\\OneDrive\\Project-Azoth\\pokeemerald-expansion-master\\pokeemerald-expansion-master",
+  "status_values": [
+    "ported",
+    "first_pass",
+    "metadata_only",
+    "unsupported",
+    "untraced"
+  ],
+  "unsupported_code_registry": [
+    {
+      "code": "audio_playback_pending",
+      "description": "Audio symbols are preserved but not played by an audio runtime."
+    },
+    {
+      "code": "camera_backup_streaming_pending",
+      "description": "Connection scrolling does not yet reproduce backup-map streaming and camera timing."
+    },
+    {
+      "code": "debug_toolkit_pending",
+      "description": "Godot-only overworld debug panel and hotkeys are not implemented yet."
+    },
+    {
+      "code": "door_overlay_not_source_equivalent",
+      "description": "Door animation currently draws overlay frames instead of mutating rendered map layers/metatiles."
+    },
+    {
+      "code": "layer_split_pending",
+      "description": "Metatiles are still rendered through a flattened atlas instead of source BG layer rules."
+    },
+    {
+      "code": "object_event_sprite_coverage_pending",
+      "description": "Only the first object-event sprite slice is imported."
+    },
+    {
+      "code": "object_movement_task_pending",
+      "description": "Object-event movements are not yet source task/action queues with per-frame waits."
+    },
+    {
+      "code": "player_avatar_state_coverage_pending",
+      "description": "Only normal on-foot walk and turn-in-place are source-timed."
+    },
+    {
+      "code": "script_async_runtime_pending",
+      "description": "Live script execution is still mostly synchronous effect records."
+    },
+    {
+      "code": "source_collision_rules_pending",
+      "description": "Movement still lacks full source collision/elevation/metatile behavior checks."
+    },
+    {
+      "code": "terrain_field_effects_pending",
+      "description": "Terrain effects such as grass cover, ripples, footprints, and bridge visibility are pending."
+    },
+    {
+      "code": "tileset_animation_runtime_pending",
+      "description": "Source tileset animation callbacks are not yet exported or played."
+    },
+    {
+      "code": "weather_runtime_pending",
+      "description": "Weather and palette effects are metadata/future presentation work."
+    }
+  ],
+  "entries": [
+    {
+      "id": "map_lifecycle",
+      "area": "map_load_and_callbacks",
+      "status": "first_pass",
+      "source": {
+        "files": [
+          "src/overworld.c",
+          "src/script.c"
+        ],
+        "symbols": [
+          "LoadMapFromWarp",
+          "LoadMapFromCameraTransition",
+          "InitMap",
+          "RunOnTransitionMapScript",
+          "RunOnLoadMapScript"
+        ],
+        "file_presence": [
+          {
+            "path": "src/overworld.c",
+            "exists": true
+          },
+          {
+            "path": "src/script.c",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_map.py",
+          "tools/importer/export_event_scripts.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/maps/*.json",
+          "data/generated/scripts/*.json"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/event_manager.gd",
+          "scripts/autoload/map_runtime.gd",
+          "scripts/autoload/script_vm.gd"
+        ],
+        "presentation_owners": [
+          "scripts/overworld/transition_sequence_player.gd",
+          "scripts/main.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/event_manager_smoke.gd",
+          "tools/godot_smoke/transition_presentation_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "script_async_runtime_pending",
+        "camera_backup_streaming_pending",
+        "audio_playback_pending"
+      ],
+      "notes": "OnTransition and OnLoad are first-pass source ordered for generated maps; resume/return/dive callbacks remain future work."
+    },
+    {
+      "id": "map_grid_backup_connections",
+      "area": "map_grid_connections_camera",
+      "status": "first_pass",
+      "source": {
+        "files": [
+          "src/fieldmap.c",
+          "include/fieldmap.h",
+          "include/global.fieldmap.h"
+        ],
+        "symbols": [
+          "InitBackupMapLayoutData",
+          "InitBackupMapLayoutConnections",
+          "GetBorderBlockAt",
+          "SaveMapView",
+          "LoadSavedMapView",
+          "MoveMapViewToBackup",
+          "CanCameraMoveInDirection"
+        ],
+        "file_presence": [
+          {
+            "path": "src/fieldmap.c",
+            "exists": true
+          },
+          {
+            "path": "include/fieldmap.h",
+            "exists": true
+          },
+          {
+            "path": "include/global.fieldmap.h",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_map.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/maps/*.json"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/map_runtime.gd"
+        ],
+        "presentation_owners": [
+          "scripts/overworld/debug_map_plane.gd",
+          "scripts/overworld/transition_sequence_player.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/map_runtime_smoke.gd",
+          "tools/godot_smoke/transition_presentation_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "camera_backup_streaming_pending"
+      ],
+      "notes": "Border fallback and first connection switching exist; backup-map streaming and exact camera update timing remain pending."
+    },
+    {
+      "id": "metatile_layer_rendering",
+      "area": "map_layers",
+      "status": "unsupported",
+      "source": {
+        "files": [
+          "include/global.fieldmap.h",
+          "src/fieldmap.c"
+        ],
+        "symbols": [
+          "METATILE_LAYER_TYPE_NORMAL",
+          "METATILE_LAYER_TYPE_COVERED",
+          "METATILE_LAYER_TYPE_SPLIT"
+        ],
+        "file_presence": [
+          {
+            "path": "include/global.fieldmap.h",
+            "exists": true
+          },
+          {
+            "path": "src/fieldmap.c",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_tilesets.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/tilesets/*.json",
+          "assets/generated/tilesets/*_metatiles.png"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/map_runtime.gd"
+        ],
+        "presentation_owners": [
+          "scripts/overworld/debug_map_plane.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/map_runtime_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "layer_split_pending"
+      ],
+      "notes": "Current renderer uses a flattened metatile atlas and cannot place player/object sprites between source BG layers."
+    },
+    {
+      "id": "metatile_behaviors",
+      "area": "movement_and_interaction_rules",
+      "status": "first_pass",
+      "source": {
+        "files": [
+          "src/metatile_behavior.c",
+          "include/constants/metatile_behaviors.h"
+        ],
+        "symbols": [
+          "MetatileBehavior_Is*",
+          "MB_*"
+        ],
+        "file_presence": [
+          {
+            "path": "src/metatile_behavior.c",
+            "exists": true
+          },
+          {
+            "path": "include/constants/metatile_behaviors.h",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_tilesets.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/tilesets/*.json"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/map_runtime.gd",
+          "scripts/autoload/event_manager.gd",
+          "scripts/autoload/encounter_engine.gd"
+        ],
+        "presentation_owners": [],
+        "verification": [
+          "tools/godot_smoke/map_runtime_smoke.gd",
+          "tools/godot_smoke/encounter_engine_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "source_collision_rules_pending",
+        "terrain_field_effects_pending"
+      ],
+      "notes": "Behavior names are generated and used by encounters/warps, but full movement and terrain side effects are pending."
+    },
+    {
+      "id": "field_input_step_pipeline",
+      "area": "field_input",
+      "status": "first_pass",
+      "source": {
+        "files": [
+          "src/field_control_avatar.c"
+        ],
+        "symbols": [
+          "ProcessPlayerFieldInput",
+          "TryStartStepBasedScript",
+          "TryArrowWarp",
+          "TryStartInteractionScript",
+          "TryDoorWarp"
+        ],
+        "file_presence": [
+          {
+            "path": "src/field_control_avatar.c",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_event_scripts.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/scripts/*.json"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/event_manager.gd",
+          "scripts/overworld/player_controller.gd"
+        ],
+        "presentation_owners": [
+          "scripts/main.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/field_wild_encounter_smoke.gd",
+          "tools/godot_smoke/event_manager_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "script_async_runtime_pending",
+        "source_collision_rules_pending"
+      ],
+      "notes": "OnFrame and completed-step ordering are first-pass; misc walking, DexNav, arrow warp, and full interaction behavior remain pending."
+    },
+    {
+      "id": "player_avatar",
+      "area": "player_avatar_states",
+      "status": "first_pass",
+      "source": {
+        "files": [
+          "src/field_player_avatar.c",
+          "src/event_object_movement.c",
+          "src/data/object_events/object_event_anims.h"
+        ],
+        "symbols": [
+          "PlayerWalkNormal",
+          "PlayerTurnInPlace",
+          "SetStepAnimHandleAlternation",
+          "sPlayerAvatarGfxIds"
+        ],
+        "file_presence": [
+          {
+            "path": "src/field_player_avatar.c",
+            "exists": true
+          },
+          {
+            "path": "src/event_object_movement.c",
+            "exists": true
+          },
+          {
+            "path": "src/data/object_events/object_event_anims.h",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_object_event_sprites.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/object_events/object_event_sprites.json"
+        ],
+        "runtime_owners": [
+          "scripts/overworld/player_controller.gd"
+        ],
+        "presentation_owners": [
+          "scripts/overworld/player_controller.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/player_turn_input_smoke.gd",
+          "tools/godot_smoke/object_event_sprite_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "player_avatar_state_coverage_pending"
+      ],
+      "notes": "Normal Brendan/May walk and turn-in-place are source-timed; run/bike/surf/field-move states are pending."
+    },
+    {
+      "id": "object_event_assets",
+      "area": "object_event_sprite_assets",
+      "status": "first_pass",
+      "source": {
+        "files": [
+          "src/data/object_events/object_event_graphics_info.h",
+          "src/data/object_events/object_event_pic_tables.h",
+          "src/data/object_events/object_event_graphics.h",
+          "src/data/object_events/object_event_anims.h"
+        ],
+        "symbols": [
+          "gObjectEventGraphicsInfo_*",
+          "sPicTable_*",
+          "sAnimTable_*",
+          "sFaceDirectionAnimNums",
+          "sMoveDirectionAnimNums"
+        ],
+        "file_presence": [
+          {
+            "path": "src/data/object_events/object_event_graphics_info.h",
+            "exists": true
+          },
+          {
+            "path": "src/data/object_events/object_event_pic_tables.h",
+            "exists": true
+          },
+          {
+            "path": "src/data/object_events/object_event_graphics.h",
+            "exists": true
+          },
+          {
+            "path": "src/data/object_events/object_event_anims.h",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_object_event_sprites.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/object_events/object_event_sprites.json",
+          "assets/generated/object_events/*.png"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/data_registry.gd"
+        ],
+        "presentation_owners": [
+          "scripts/overworld/object_event_placeholder.gd",
+          "scripts/overworld/object_event_spawner.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/object_event_sprite_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "object_event_sprite_coverage_pending",
+        "object_movement_task_pending"
+      ],
+      "notes": "First 11 Littleroot/debug/player records import; full object-event graphics and animations are pending."
+    },
+    {
+      "id": "object_event_runtime",
+      "area": "object_event_runtime",
+      "status": "first_pass",
+      "source": {
+        "files": [
+          "src/event_object_movement.c",
+          "src/data/object_events/movement_type_func_tables.h",
+          "src/data/object_events/movement_action_func_tables.h"
+        ],
+        "symbols": [
+          "TrySpawnObjectEvents",
+          "UpdateObjectEventsForCameraUpdate",
+          "sMovementTypeCallbacks",
+          "ObjectEventSetHeldMovement",
+          "NpcTakeStep",
+          "sStepTimes"
+        ],
+        "file_presence": [
+          {
+            "path": "src/event_object_movement.c",
+            "exists": true
+          },
+          {
+            "path": "src/data/object_events/movement_type_func_tables.h",
+            "exists": true
+          },
+          {
+            "path": "src/data/object_events/movement_action_func_tables.h",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_map.py",
+          "tools/importer/export_object_event_sprites.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/maps/*.json",
+          "data/generated/object_events/object_event_sprites.json"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/map_runtime.gd"
+        ],
+        "presentation_owners": [
+          "scripts/overworld/object_event_placeholder.gd",
+          "scripts/overworld/object_event_spawner.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/map_runtime_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "object_movement_task_pending",
+        "source_collision_rules_pending"
+      ],
+      "notes": "Object templates, occupancy, and save snapshots exist; movement callbacks/actions are not source-equivalent."
+    },
+    {
+      "id": "script_movement",
+      "area": "scripted_movement",
+      "status": "first_pass",
+      "source": {
+        "files": [
+          "src/script_movement.c",
+          "src/event_object_lock.c",
+          "src/scrcmd.c"
+        ],
+        "symbols": [
+          "ScriptMovement_StartObjectMovementScript",
+          "ScriptMovement_MoveObjects",
+          "ScrCmd_applymovement",
+          "ScrCmd_waitmovement",
+          "FreezeObjectEvents"
+        ],
+        "file_presence": [
+          {
+            "path": "src/script_movement.c",
+            "exists": true
+          },
+          {
+            "path": "src/event_object_lock.c",
+            "exists": true
+          },
+          {
+            "path": "src/scrcmd.c",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_event_scripts.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/scripts/*.json"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/script_vm.gd",
+          "scripts/autoload/map_runtime.gd"
+        ],
+        "presentation_owners": [
+          "scripts/overworld/player_controller.gd",
+          "scripts/overworld/object_event_placeholder.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/script_vm_smoke.gd",
+          "tools/godot_smoke/event_manager_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "object_movement_task_pending",
+        "script_async_runtime_pending"
+      ],
+      "notes": "Movement labels resolve and fast-forward net deltas; visible task queues and waits are pending."
+    },
+    {
+      "id": "door_animation",
+      "area": "doors",
+      "status": "first_pass",
+      "source": {
+        "files": [
+          "src/field_door.c"
+        ],
+        "symbols": [
+          "sDoorAnimGraphicsTable",
+          "sDoorOpenAnimFrames",
+          "sDoorCloseAnimFrames",
+          "Task_AnimateDoor",
+          "FieldAnimateDoorOpen",
+          "FieldAnimateDoorClose"
+        ],
+        "file_presence": [
+          {
+            "path": "src/field_door.c",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_tilesets.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/tilesets/*.json",
+          "assets/generated/door_anims/*.png"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/map_runtime.gd",
+          "scripts/autoload/event_manager.gd",
+          "scripts/autoload/script_vm.gd"
+        ],
+        "presentation_owners": [
+          "scripts/overworld/debug_map_plane.gd",
+          "scripts/overworld/transition_sequence_player.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/transition_presentation_smoke.gd",
+          "tools/godot_smoke/script_vm_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "door_overlay_not_source_equivalent",
+        "audio_playback_pending",
+        "script_async_runtime_pending"
+      ],
+      "notes": "Used Littleroot door atlases and frame order exist; playback is overlay-only and script waits are not real tasks."
+    },
+    {
+      "id": "tileset_animation",
+      "area": "dynamic_tilesets",
+      "status": "unsupported",
+      "source": {
+        "files": [
+          "src/tileset_anims.c",
+          "include/tileset_anims.h",
+          "src/data/tilesets/headers.h"
+        ],
+        "symbols": [
+          "InitTilesetAnimations",
+          "InitSecondaryTilesetAnimation",
+          "UpdateTilesetAnimations",
+          "TransferTilesetAnimsBuffer",
+          ".callback = InitTilesetAnim_*"
+        ],
+        "file_presence": [
+          {
+            "path": "src/tileset_anims.c",
+            "exists": true
+          },
+          {
+            "path": "include/tileset_anims.h",
+            "exists": true
+          },
+          {
+            "path": "src/data/tilesets/headers.h",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_tilesets.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/tilesets/*.json"
+        ],
+        "runtime_owners": [],
+        "presentation_owners": [],
+        "verification": []
+      },
+      "unsupported": [
+        "tileset_animation_runtime_pending"
+      ],
+      "notes": "Tileset callback symbols are not exported as animation runtime data yet."
+    },
+    {
+      "id": "script_opcode_overworld",
+      "area": "overworld_script_opcodes",
+      "status": "first_pass",
+      "source": {
+        "files": [
+          "src/scrcmd.c",
+          "data/scripts/std_msgbox.inc",
+          "data/scripts/movement.inc"
+        ],
+        "symbols": [
+          "ScrCmd_delay",
+          "ScrCmd_setmetatile",
+          "ScrCmd_opendoor",
+          "ScrCmd_closedoor",
+          "ScrCmd_waitdooranim",
+          "ScrCmd_warp",
+          "ScrCmd_warpsilent"
+        ],
+        "file_presence": [
+          {
+            "path": "src/scrcmd.c",
+            "exists": true
+          },
+          {
+            "path": "data/scripts/std_msgbox.inc",
+            "exists": true
+          },
+          {
+            "path": "data/scripts/movement.inc",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_event_scripts.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/scripts/*.json"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/script_vm.gd",
+          "scripts/autoload/event_manager.gd",
+          "scripts/autoload/map_runtime.gd"
+        ],
+        "presentation_owners": [
+          "scripts/main.gd",
+          "scripts/overworld/transition_sequence_player.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/script_vm_smoke.gd",
+          "tools/godot_smoke/event_manager_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "script_async_runtime_pending",
+        "door_overlay_not_source_equivalent",
+        "audio_playback_pending"
+      ],
+      "notes": "Several opcodes emit structured effects; true async waits, fades, weather, and many warp variants are pending."
+    },
+    {
+      "id": "terrain_field_effects",
+      "area": "terrain_and_field_effects",
+      "status": "untraced",
+      "source": {
+        "files": [
+          "src/field_effect.c",
+          "src/field_effect_helpers.c",
+          "src/field_weather_effect.c"
+        ],
+        "symbols": [
+          "FieldEffectStart",
+          "DoTracksGroundEffect",
+          "DoGroundEffects_OnSpawn"
+        ],
+        "file_presence": [
+          {
+            "path": "src/field_effect.c",
+            "exists": true
+          },
+          {
+            "path": "src/field_effect_helpers.c",
+            "exists": true
+          },
+          {
+            "path": "src/field_weather_effect.c",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [],
+        "generated_artifacts": [],
+        "runtime_owners": [],
+        "presentation_owners": [],
+        "verification": []
+      },
+      "unsupported": [
+        "terrain_field_effects_pending"
+      ],
+      "notes": "Terrain effects need a focused source audit before runtime work."
+    },
+    {
+      "id": "weather_lighting_audio",
+      "area": "weather_lighting_audio",
+      "status": "metadata_only",
+      "source": {
+        "files": [
+          "src/field_weather.c",
+          "src/field_weather_effect.c",
+          "src/sound.c"
+        ],
+        "symbols": [
+          "SetSav1Weather",
+          "DoCurrentWeather",
+          "PlaySE",
+          "PlayFanfare"
+        ],
+        "file_presence": [
+          {
+            "path": "src/field_weather.c",
+            "exists": true
+          },
+          {
+            "path": "src/field_weather_effect.c",
+            "exists": true
+          },
+          {
+            "path": "src/sound.c",
+            "exists": true
+          }
+        ]
+      },
+      "godot": {
+        "importers": [
+          "tools/importer/export_map.py",
+          "tools/importer/export_event_scripts.py"
+        ],
+        "generated_artifacts": [
+          "data/generated/maps/*.json",
+          "data/generated/scripts/*.json"
+        ],
+        "runtime_owners": [
+          "scripts/autoload/event_manager.gd",
+          "scripts/autoload/script_vm.gd"
+        ],
+        "presentation_owners": [
+          "scripts/overworld/transition_sequence_player.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/script_vm_smoke.gd",
+          "tools/godot_smoke/transition_presentation_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "weather_runtime_pending",
+        "audio_playback_pending"
+      ],
+      "notes": "Map weather and audio symbols are preserved as metadata but not played/rendered source-equivalently."
+    },
+    {
+      "id": "debug_overworld_toolkit",
+      "area": "debug_tooling",
+      "status": "unsupported",
+      "source": {
+        "files": [],
+        "symbols": [
+          "Godot-only debug panel",
+          "debug_overworld_toggle"
+        ],
+        "file_presence": []
+      },
+      "godot": {
+        "importers": [],
+        "generated_artifacts": [],
+        "runtime_owners": [
+          "scripts/autoload/data_registry.gd",
+          "scripts/autoload/map_runtime.gd"
+        ],
+        "presentation_owners": [
+          "scripts/main.gd"
+        ],
+        "verification": [
+          "tools/godot_smoke/overworld_debug_tools_smoke.gd"
+        ]
+      },
+      "unsupported": [
+        "debug_toolkit_pending"
+      ],
+      "notes": "Requested Godot-only panel for avatar switching, teleport, weather override, and inspection overlays. It must remain outside source-equivalent gameplay."
+    }
+  ],
+  "stats": {
+    "entry_count": 15,
+    "status_counts": {
+      "ported": 0,
+      "first_pass": 10,
+      "metadata_only": 1,
+      "unsupported": 3,
+      "untraced": 1
+    },
+    "unsupported_entry_count": 15,
+    "unsupported_code_count": 13,
+    "unsupported_counts": {
+      "audio_playback_pending": 4,
+      "camera_backup_streaming_pending": 2,
+      "debug_toolkit_pending": 1,
+      "door_overlay_not_source_equivalent": 2,
+      "layer_split_pending": 1,
+      "object_event_sprite_coverage_pending": 1,
+      "object_movement_task_pending": 3,
+      "player_avatar_state_coverage_pending": 1,
+      "script_async_runtime_pending": 5,
+      "source_collision_rules_pending": 3,
+      "terrain_field_effects_pending": 2,
+      "tileset_animation_runtime_pending": 1,
+      "weather_runtime_pending": 1
+    },
+    "missing_registry_codes": [],
+    "source_file_reference_count": 30,
+    "missing_source_file_count": 0,
+    "missing_source_files": [],
+    "areas": [
+      "debug_tooling",
+      "doors",
+      "dynamic_tilesets",
+      "field_input",
+      "map_grid_connections_camera",
+      "map_layers",
+      "map_load_and_callbacks",
+      "movement_and_interaction_rules",
+      "object_event_runtime",
+      "object_event_sprite_assets",
+      "overworld_script_opcodes",
+      "player_avatar_states",
+      "scripted_movement",
+      "terrain_and_field_effects",
+      "weather_lighting_audio"
+    ]
+  }
+}
