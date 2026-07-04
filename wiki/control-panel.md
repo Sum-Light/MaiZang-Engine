@@ -176,9 +176,9 @@ Near-term:
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
-- Current B7.1-B7.3 status: Pokemon battle sprites, trainer battle sprites, and battle environment/background metadata are generated as Godot-friendly PNG assets plus source metadata. Runtime presentation, palette/affine effects, battle background scrolling/entry playback, and audio remain pending.
-- Next executable task: continue B7.4 battle transition assets, start B8 battle interface/HUD assets for the Sawyer/Route101 fixture, or start B3 battle script VM only against the newly generated script/effect data; B13.4/B13.5 selector polish and scene-level action smoke remain as debug-lane follow-up.
-- Import the remaining source-backed battle transition and HUD assets needed by the Sawyer/Route101 single-battle fixture.
+- Current B7.1-B7.4 status: Pokemon battle sprites, trainer battle sprites, battle environment/background metadata, and battle transition metadata are generated as Godot-friendly PNG assets plus source metadata. Runtime presentation, palette/affine effects, battle background scrolling/entry playback, transition playback, and audio remain pending.
+- Next executable task: continue B7.5 asset alpha/palette smoke checks, start B8 battle interface/HUD assets for the Sawyer/Route101 fixture, or start B3 battle script VM only against the newly generated script/effect data; B13.4/B13.5 selector polish and scene-level action smoke remain as debug-lane follow-up.
+- Import the remaining source-backed battle HUD/interface assets needed by the Sawyer/Route101 single-battle fixture.
 - Replace the current placeholder `BattleScene` layout with source-backed static battle composition before broad move animation work.
 
 Mid-term:

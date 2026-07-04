@@ -17,6 +17,7 @@ const DEFAULT_BATTLE_STRING_CATEGORY := "battle_strings"
 const DEFAULT_BATTLE_SCRIPT_CATEGORY := "scripts"
 const DEFAULT_BATTLE_MOVE_EFFECT_CATEGORY := "move_effects"
 const DEFAULT_BATTLE_ENVIRONMENT_CATEGORY := "environments"
+const DEFAULT_BATTLE_TRANSITION_CATEGORY := "transitions"
 const DEFAULT_POKEMON_BATTLE_SPRITE_CATEGORY := "battle_sprites"
 const DEFAULT_TRAINER_BATTLE_SPRITE_CATEGORY := "trainer_sprites"
 
@@ -81,6 +82,8 @@ var _battle_move_effect_records_by_id: Dictionary = {}
 var _battle_environment_records_by_symbol: Dictionary = {}
 var _battle_environment_records_by_id: Dictionary = {}
 var _battle_environment_by_map_scene: Dictionary = {}
+var _battle_transition_records_by_symbol: Dictionary = {}
+var _battle_transition_records_by_id: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -320,6 +323,10 @@ func get_battle_environments_data() -> Dictionary:
 	return get_battle_data(DEFAULT_BATTLE_ENVIRONMENT_CATEGORY)
 
 
+func get_battle_transitions_data() -> Dictionary:
+	return get_battle_data(DEFAULT_BATTLE_TRANSITION_CATEGORY)
+
+
 func get_battle_environment_record(environment_id_or_symbol) -> Dictionary:
 	if typeof(environment_id_or_symbol) == TYPE_INT:
 		return get_battle_environment_record_by_id(int(environment_id_or_symbol))
@@ -354,6 +361,31 @@ func get_battle_environment_record_for_map_scene(map_scene_symbol: String) -> Di
 	if String(symbol).is_empty():
 		return {}
 	return get_battle_environment_record_by_symbol(String(symbol))
+
+
+func get_battle_transition_record(transition_id_or_symbol) -> Dictionary:
+	if typeof(transition_id_or_symbol) == TYPE_INT:
+		return get_battle_transition_record_by_id(int(transition_id_or_symbol))
+	if typeof(transition_id_or_symbol) == TYPE_FLOAT:
+		return get_battle_transition_record_by_id(int(transition_id_or_symbol))
+
+	var key := String(transition_id_or_symbol)
+	if key.is_valid_int():
+		return get_battle_transition_record_by_id(int(key))
+	return get_battle_transition_record_by_symbol(key)
+
+
+func get_battle_transition_record_by_symbol(transition_symbol: String) -> Dictionary:
+	_ensure_battle_transition_indexes()
+	var normalized := _normalize_battle_transition_symbol(transition_symbol)
+	var record = _battle_transition_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_battle_transition_record_by_id(transition_id: int) -> Dictionary:
+	_ensure_battle_transition_indexes()
+	var record = _battle_transition_records_by_id.get(transition_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
 func get_battle_move_effect_record(effect_id_or_symbol) -> Dictionary:
@@ -1166,6 +1198,8 @@ func _index_manifest() -> void:
 	_battle_environment_records_by_symbol = {}
 	_battle_environment_records_by_id = {}
 	_battle_environment_by_map_scene = {}
+	_battle_transition_records_by_symbol = {}
+	_battle_transition_records_by_id = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -1382,6 +1416,29 @@ func _ensure_battle_environment_indexes() -> void:
 			var environment := String(mapping.get("battle_environment", ""))
 			if not map_scene.is_empty() and not environment.is_empty():
 				_battle_environment_by_map_scene[map_scene] = environment
+
+
+func _ensure_battle_transition_indexes() -> void:
+	if not _battle_transition_records_by_symbol.is_empty() or not _battle_transition_records_by_id.is_empty():
+		return
+
+	var transitions_data := get_battle_transitions_data()
+	if transitions_data.is_empty():
+		return
+
+	var transitions = transitions_data.get("transitions", {})
+	if typeof(transitions) != TYPE_DICTIONARY:
+		return
+
+	for symbol in transitions.keys():
+		var record = transitions[symbol]
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var transition_symbol := _normalize_battle_transition_symbol(String(record.get("symbol", symbol)))
+		if not transition_symbol.is_empty():
+			_battle_transition_records_by_symbol[transition_symbol] = record
+		if record.has("numeric_id") and record.get("numeric_id") != null:
+			_battle_transition_records_by_id[int(record.get("numeric_id"))] = record
 
 
 func _ensure_battle_string_indexes() -> void:
@@ -1805,6 +1862,15 @@ func _normalize_battle_environment_symbol(environment_symbol: String) -> String:
 		return ""
 	if not normalized.begins_with("BATTLE_ENVIRONMENT_"):
 		normalized = "BATTLE_ENVIRONMENT_%s" % normalized.to_upper()
+	return normalized
+
+
+func _normalize_battle_transition_symbol(transition_symbol: String) -> String:
+	var normalized := transition_symbol
+	if normalized.is_empty():
+		return ""
+	if not normalized.begins_with("B_TRANSITION_"):
+		normalized = "B_TRANSITION_%s" % normalized.to_upper()
 	return normalized
 
 

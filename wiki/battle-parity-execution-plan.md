@@ -73,7 +73,7 @@ The answer to "does this include all skills and mechanisms?" is yes at the check
   - Output: report sections for `pokemon_data`, `pokemon_assets`, `abilities`, `trainers`, `trainer_party_mons`, `battle_items`, and `debug_launchers`.
   - Validate: current exported totals are represented or explicitly marked out-of-scope for battle: 1573 species, 935 moves, 311 abilities, 874 items, 399 wild encounter records, 855 trainers, 1825 trainer party Pokemon, 1104 learnsets, 25 natures, and 647 evolution entries.
 
-B0 completion metrics: `battle_parity_report.json` currently has 8571 coverage rows with no missing expected coverage: 935 moves, 311 abilities, 855 trainers, 1825 trainer party Pokemon, 1573 Pokemon data rows, 874 battle item rows, 399 wild encounter rows, 1104 learnsets, 25 natures, 647 evolution entries, 21 types, and 2 debug launcher rows. `source_index.json` currently has 7782 indexed symbols and no missing fixed battle symbols.
+B0 completion metrics: `battle_parity_report.json` currently has 8644 coverage rows with no missing expected coverage: 935 moves, 311 abilities, 855 trainers, 1825 trainer party Pokemon, 1573 Pokemon data rows, 874 battle item rows, 399 wild encounter rows, 35 battle environment rows, 38 battle transition rows, 1104 learnsets, 25 natures, 647 evolution entries, 21 types, and 2 debug launcher rows. `source_index.json` currently has 7783 indexed symbols and no missing fixed battle symbols.
 
 ## B1 - Generated Battle Strings And Text Printer Data
 
@@ -300,10 +300,13 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
   - Boundary: the 12 source environments without background assets (`SOARING` through `ULTRA_SPACE`) are retained as logic/terrain metadata with `battle_environment_asset_pending`; runtime background selection, scrolling, entry animation playback, and audio playback remain explicit pending work. Pyramid/Dome do not have standalone battle background records in `gBattleEnvironmentInfo` and stay covered by source mapping/Frontier or later transition/runtime tasks as traced.
   - Validate: `data_registry_battle_environments_smoke.gd` checks Grass, Water, Leader, Gym/Frontier map-scene mapping, Soaring pending metadata, image existence, palette metadata, and viewport/audio notes; `battle_parity_report_smoke.gd` verifies 35 environment coverage rows and no missing expected coverage.
 
-- [ ] B7.4 Export battle transition assets.
-  - Source: `graphics/battle_transitions`, transition tables, `src/battle_transition.c`.
+- [x] B7.4 Export battle transition assets.
+  - Source: `include/battle_transition.h`, `src/battle_setup.c`, `src/battle_transition.c`, `src/battle_transition_frontier.c`, `graphics/battle_transitions`, and `graphics/field_effects/palettes/pokeball.pal`.
   - Output: `data/generated/battle/transitions.json`, textures under `assets/generated/battle_transitions/`.
-  - Validate: current concrete `B_TRANSITION_*` ids from `BattleEngine` can resolve to asset metadata or explicit unsupported.
+  - Current first pass: `tools/importer/export_battle_transitions.py` parses 38 concrete `B_TRANSITION_*` records, 10 transition groups, 55 graphics definitions, 4 wild transition table rows, 4 trainer transition table rows, 12 Battle Frontier entries, 3 Battle Pyramid entries, and 4 Battle Dome entries. It imports 23 transition PNGs as Godot-friendly RGBA textures and preserves 19 palette refs plus 14 binary/tilemap refs as source metadata.
+  - Covers: ordinary wild/trainer lower-level and equal-or-higher branches, cave/Flash/water transition groups, Mugshot, Magma/Aqua, legendary/special transitions, Frontier, Pyramid, Dome, Big Pokeball, Pokeball trail, and concrete transition ids currently emitted by `BattleEngine`.
+  - Boundary: no runtime GBA palette-bank/VRAM/OAM model is introduced; later fades, masks, mosaic-like timing, HBlank/VBlank-inspired effects, palette changes, and affine transforms should use Godot-native shaders/materials/animation while matching the source-visible rhythm. Audio remains metadata-only.
+  - Validate: `data_registry_battle_transitions_smoke.gd` checks transition stats, Big Pokeball/Aqua/Mugshot/Frontier asset refs, source selection tables, concrete `BattleEngine` transition ids, runtime-pending metadata, and audio notes; `battle_parity_report_smoke.gd` verifies 38 transition coverage rows and no missing expected coverage.
 
 - [ ] B7.5 Add asset alpha/palette smoke checks.
   - Validate: index 0 transparency, GBA palette conversion, frame rects, texture dimensions, and missing asset reports.
@@ -484,7 +487,7 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
 2. B13.1 to B13.3 - add developer-only random wild/trainer launchers so battle fixtures can be reached without map dependencies.
 3. B1.1 to B1.4 - battle strings and text ids.
 4. B2.1 to B2.5 - battle scripts, move effects, and move links.
-5. B7.1, B7.2, B7.3, B7.6, B7.7, B8.1 - Pokemon/trainer/background/HUD asset imports and coverage reports.
+5. B7.1, B7.2, B7.3, B7.4, B7.6, B7.7, B8.1 - Pokemon/trainer/background/transition/HUD asset imports and coverage reports.
 6. B9.1, B9.2 - source-backed static battle composition.
 7. B3.1 to B3.5 - VM ordinary damage path.
 8. B8.2 to B8.5 - text windows, healthbox, action menu, move menu.

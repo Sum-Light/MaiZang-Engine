@@ -18,6 +18,8 @@ UNSUPPORTED_CODE_REGISTRY = {
     "battle_assets_pending": "Source battle Pokemon/trainer/interface/environment assets are not yet imported as Godot textures/resources.",
     "battle_environment_asset_pending": "The source environment row has no imported battle background/entry texture in this slice.",
     "battle_environment_runtime_pending": "Battle background selection, scrolling, entry overlay playback, and scene presentation are not source-equivalent yet.",
+    "battle_transition_asset_pending": "A source battle transition asset reference is not imported as a Godot texture/resource.",
+    "battle_transition_runtime_pending": "Battle transition task playback, fades, masks, scanline effects, and affine/palette effects are not source-equivalent yet.",
     "battle_hud_pending": "Source healthboxes, windows, text printer, and menu tilemaps are not yet rendered.",
     "battle_audio_playback_pending": "Battle music, cries, fanfares, and sound effects are metadata-only.",
     "ability_runtime_pending": "Ability flags are generated, but battle hook behavior and popup timing are not implemented.",
@@ -518,6 +520,47 @@ def build_battle_environment_rows(environments_data):
     return rows
 
 
+def build_battle_transition_rows(transitions_data):
+    rows = []
+    transitions = transitions_data.get("transitions", {})
+    assets = transitions_data.get("assets", {})
+    if not isinstance(transitions, dict):
+        transitions = {}
+    if not isinstance(assets, dict):
+        assets = {}
+    for symbol in transitions_data.get("transition_order", []):
+        record = transitions.get(symbol, {})
+        if not isinstance(record, dict):
+            record = {}
+        coverage = record.get("coverage", {}) if isinstance(record.get("coverage"), dict) else {}
+        texture_refs = record.get("texture_refs", []) if isinstance(record.get("texture_refs"), list) else []
+        palette_refs = record.get("palette_refs", []) if isinstance(record.get("palette_refs"), list) else []
+        binary_refs = record.get("binary_refs", []) if isinstance(record.get("binary_refs"), list) else []
+        first_texture = assets.get(texture_refs[0], {}) if texture_refs and isinstance(assets.get(texture_refs[0], {}), dict) else {}
+        rows.append({
+            "id": symbol,
+            "transition_symbol": symbol,
+            "numeric_id": int(record.get("numeric_id", -1)),
+            "main_task": str(record.get("main_task", "")),
+            "function_array": str(record.get("function_array", "")),
+            "function_count": len(record.get("function_sequence", [])) if isinstance(record.get("function_sequence"), list) else 0,
+            "texture_count": len(texture_refs),
+            "palette_count": len(palette_refs),
+            "binary_ref_count": len(binary_refs),
+            "first_texture": str(first_texture.get("image_project_path", "")),
+            "asset_status": str(coverage.get("asset_status", "unsupported")),
+            "texture_status": str(coverage.get("texture_status", "unsupported")),
+            "task_metadata_status": str(coverage.get("task_metadata_status", "metadata_only")),
+            "selection_status": str(coverage.get("selection_status", "metadata_only")),
+            "runtime_status": str(coverage.get("runtime_status", "unsupported")),
+            "audio_status": str(coverage.get("audio_status", "metadata_only")),
+            "tests": ["tools/godot_smoke/data_registry_battle_transitions_smoke.gd"],
+            "unsupported": list(record.get("unsupported", [])) if isinstance(record.get("unsupported"), list) else [],
+            "source": source_ref(record),
+        })
+    return rows
+
+
 def build_evolution_rows(evolutions_data):
     rows = []
     seen_species = set()
@@ -558,6 +601,7 @@ def build_report(project_root, source_root):
     battle_root = project_root / "data" / "generated" / "battle"
     trainer_sprites_data = load_json_optional(battle_root / "trainer_sprites.json")
     battle_environments_data = load_json_optional(battle_root / "environments.json")
+    battle_transitions_data = load_json_optional(battle_root / "transitions.json")
 
     coverage_rows = {
         "moves": build_move_rows(moves_data),
@@ -568,6 +612,7 @@ def build_report(project_root, source_root):
         "battle_items": build_item_rows(items_data),
         "wild_encounters": build_wild_encounter_rows(wild_data),
         "battle_environments": build_battle_environment_rows(battle_environments_data),
+        "battle_transitions": build_battle_transition_rows(battle_transitions_data),
         "learnsets": build_simple_rows(learnsets_data, "learnset_order", "learnsets", "learnset_id", "learnset_symbol", ["tools/godot_smoke/data_registry_learnsets_smoke.gd"]),
         "natures": build_simple_rows(natures_data, "nature_order", "natures", "nature_id", "nature_symbol", ["tools/godot_smoke/data_registry_natures_smoke.gd"]),
         "evolutions": build_evolution_rows(evolutions_data),
@@ -588,6 +633,7 @@ def build_report(project_root, source_root):
         "pokemon_battle_sprites": battle_sprites_data.get("stats", {}),
         "trainer_battle_sprites": trainer_sprites_data.get("stats", {}),
         "battle_environments": battle_environments_data.get("stats", {}),
+        "battle_transitions": battle_transitions_data.get("stats", {}),
     })
     return {
         "schema_version": 1,
@@ -621,6 +667,7 @@ def build_report_stats(coverage_rows, generated_stats):
         "battle_items": int(generated_stats["items"].get("item_count", 0)),
         "wild_encounters": int(generated_stats["wild_encounters"].get("encounter_record_count", 0)),
         "battle_environments": int(generated_stats["battle_environments"].get("environment_count", 0)),
+        "battle_transitions": int(generated_stats["battle_transitions"].get("transition_count", 0)),
         "trainers": int(generated_stats["trainers"].get("trainer_count", 0)),
         "trainer_party_mons": int(generated_stats["trainers"].get("party_mon_count", 0)),
         "learnsets": int(generated_stats["learnsets"].get("learnset_count", 0)),

@@ -21,13 +21,14 @@ func _init() -> void:
 	var expected_counts := _dict(stats.get("expected_counts", {}))
 	var missing_expected := _dict(stats.get("missing_expected_coverage", {}))
 	_assert(missing_expected.is_empty(), "expected no missing battle coverage rows")
-	_assert(int(stats.get("total_coverage_rows", 0)) == 8606, "unexpected total battle coverage row count")
+	_assert(int(stats.get("total_coverage_rows", 0)) == 8644, "unexpected total battle coverage row count")
 	_assert(int(row_counts.get("moves", 0)) == 935, "unexpected move coverage row count")
 	_assert(int(row_counts.get("abilities", 0)) == 311, "unexpected ability coverage row count")
 	_assert(int(row_counts.get("trainers", 0)) == 855, "unexpected trainer coverage row count")
 	_assert(int(row_counts.get("trainer_party_mons", 0)) == 1825, "unexpected trainer party coverage row count")
 	_assert(int(row_counts.get("pokemon_data", 0)) == 1573, "unexpected Pokemon data coverage row count")
 	_assert(int(row_counts.get("battle_environments", 0)) == 35, "unexpected battle environment coverage row count")
+	_assert(int(row_counts.get("battle_transitions", 0)) == 38, "unexpected battle transition coverage row count")
 	_assert(int(row_counts.get("debug_launchers", 0)) == 2, "unexpected debug launcher coverage row count")
 	for key in row_counts.keys():
 		_assert(int(row_counts.get(key, -1)) == int(expected_counts.get(key, -2)), "coverage mismatch for %s" % key)
@@ -38,6 +39,7 @@ func _init() -> void:
 	var trainers := _array(coverage_rows.get("trainers", []))
 	var pokemon_data := _array(coverage_rows.get("pokemon_data", []))
 	var battle_environments := _array(coverage_rows.get("battle_environments", []))
+	var battle_transitions := _array(coverage_rows.get("battle_transitions", []))
 	var debug_launchers := _array(coverage_rows.get("debug_launchers", []))
 	for section_name in coverage_rows.keys():
 		for row in _array(coverage_rows.get(section_name, [])):
@@ -68,6 +70,15 @@ func _init() -> void:
 	_assert(not soaring_environment.is_empty(), "expected soaring battle environment coverage row")
 	_assert(String(soaring_environment.get("asset_status", "")) == "unsupported", "expected soaring environment asset unsupported")
 	_assert(_array(soaring_environment.get("unsupported", [])).has("battle_environment_asset_pending"), "expected soaring environment asset pending")
+	var big_pokeball_transition := _find_row(battle_transitions, "B_TRANSITION_BIG_POKEBALL")
+	_assert(not big_pokeball_transition.is_empty(), "expected Big Pokeball transition coverage row")
+	_assert(String(big_pokeball_transition.get("asset_status", "")) == "first_pass", "expected Big Pokeball transition first-pass asset")
+	_assert(String(big_pokeball_transition.get("first_texture", "")).ends_with("assets/generated/battle_transitions/big_pokeball.png"), "expected Big Pokeball texture path")
+	_assert(_array(big_pokeball_transition.get("tests", [])).has("tools/godot_smoke/data_registry_battle_transitions_smoke.gd"), "expected battle transition smoke reference")
+	var blur_transition := _find_row(battle_transitions, "B_TRANSITION_BLUR")
+	_assert(not blur_transition.is_empty(), "expected Blur transition coverage row")
+	_assert(String(blur_transition.get("asset_status", "")) == "metadata_only", "expected Blur metadata-only asset status")
+	_assert(_array(blur_transition.get("unsupported", [])).has("battle_transition_runtime_pending"), "expected Blur runtime pending")
 	var quick_wild := _find_row(debug_launchers, "debug_quick_wild_battle")
 	var trainer_selector := _find_row(debug_launchers, "debug_trainer_battle_selector")
 	_assert(bool(quick_wild.get("map_decoupled", false)) and bool(quick_wild.get("developer_only", false)), "expected quick wild launcher debug-only map-decoupled row")
@@ -84,6 +95,7 @@ func _init() -> void:
 	_assert(_registry_has_code(unsupported_registry, "battle_audio_playback_pending"), "expected battle audio unsupported registry code")
 	_assert(_registry_has_code(unsupported_registry, "pokemon_asset_import_pending"), "expected Pokemon asset unsupported registry code")
 	_assert(_registry_has_code(unsupported_registry, "battle_environment_runtime_pending"), "expected battle environment runtime unsupported registry code")
+	_assert(_registry_has_code(unsupported_registry, "battle_transition_runtime_pending"), "expected battle transition runtime unsupported registry code")
 
 	var source_stats := _dict(source_index.get("stats", {}))
 	_assert(_array(source_stats.get("missing_fixed_symbols", [])).is_empty(), "expected all fixed source battle symbols indexed")
@@ -109,6 +121,7 @@ func _init() -> void:
 		"trainer_rows": int(row_counts.get("trainers", 0)),
 		"pokemon_rows": int(row_counts.get("pokemon_data", 0)),
 		"battle_environment_rows": int(row_counts.get("battle_environments", 0)),
+		"battle_transition_rows": int(row_counts.get("battle_transitions", 0)),
 	}))
 	quit(0)
 
