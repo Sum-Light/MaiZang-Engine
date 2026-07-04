@@ -48,7 +48,7 @@ Use these as executable checkboxes. A task is not complete until the source path
 - [x] Trace `src/field_player_avatar.c` player avatar state machine, collision checks, bike/surf/underwater states, forced movement, and avatar graphics transitions.
 - [x] Trace `src/event_object_movement.c` object-event initialization, spawn/despawn, movement type callbacks, movement actions, animation timing, collision, elevation, subpriority, shadows, and reflection hooks.
 - [x] Trace `src/script_movement.c` applymovement task behavior, waitmovement behavior, simultaneous movements, and target resolution.
-- [ ] Trace `src/event_object_lock.c` object freezing, selected-object locking, player/object facing, and lock release behavior.
+- [x] Trace `src/event_object_lock.c` object freezing, selected-object locking, player/object facing, and lock release behavior.
 - [ ] Trace `src/field_door.c` door graphics tables, palette tables, frame tables, metatile mutation, sounds, task timing, and multi-door cases.
 - [ ] Trace `src/tileset_anims.c`, `include/tileset_anims.h`, and `src/data/tilesets/headers.h` for callback binding, counters, copy regions, and map-load initialization.
 - [ ] Trace `src/metatile_behavior.c` and `include/constants/metatile_behaviors.h` for every `MetatileBehavior_Is*` group needed by movement, encounters, interaction, terrain effects, and transitions.
