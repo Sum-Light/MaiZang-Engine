@@ -304,6 +304,40 @@ Latest verified wild encounter export:
 - export warnings: 0
 - unsupported fields: 0
 
+`tools/importer/export_trainers.py` exports source trainer party data into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
+
+Current trainer export behavior:
+
+- Reads `src/data/trainers.party` as UTF-8 and parses the same trainer DSL consumed by `tools/trainerproc/main.c`.
+- Traces generated-header behavior from `tools/trainerproc/main.c` and `include/data.h`, including default trainer difficulty, source default Pokemon level 100, default IVs 31/31/31/31/31/31, C-defaulted held item/ability/nature/shiny fields, battle type, AI flags, trainer items, mugshots, starting status, and party-size/pool fields.
+- Resolves trainer ids, trainer classes, trainer pics, encounter music, trainer genders, mugshot colors, AI flags, battle types, difficulties, pool constants, Pokemon species, moves, items, abilities, balls, natures, and types from source headers.
+- Preserves trainer names and nicknames as UTF-8 `display_text` while avoiding shell-encoding based edits to source Chinese text.
+- Preserves per-Pokemon explicit moves; Pokemon without explicit moves are marked with `move_source_behavior.kind = "level_up_default"` from `src/battle_main.c:CustomTrainerPartyAssignMoves`.
+- Preserves source rewrite rules from `trainerproc`, including gendered species such as `Nidoran (M)` -> `Nidoran-M` and itemed forms such as `Arceus-Fire` -> `Arceus @ Flame Plate`, even though the current source trainer file does not use those cases.
+- Writes `data/generated/pokemon/trainers.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `trainers`.
+- Treats generated trainer records as source-traceable data for later battle runtime work. Enemy party construction, AI behavior, pool selection, trainer transition/mugshot presentation, battle music, exact send-out timing, party move fallback, and item/ability behavior still require separate source-backed Godot implementation.
+
+Latest verified trainer export:
+
+- generated path: `data/generated/pokemon/trainers.json`
+- manifest category: `pokemon` / `trainers`
+- trainers: 855
+- `TRAINERS_COUNT`: 855
+- highest trainer id: 854
+- party Pokemon: 1825
+- double battles: 77
+- trainers with explicit items: 141
+- trainers with AI flags: 839
+- mugshot trainers: 5
+- Pokemon with explicit move lists: 436
+- Pokemon using source level-up default moves: 1389
+- held-item Pokemon: 142
+- unique trainer species: 208
+- unique trainer moves: 210
+- warnings: 0
+- unsupported fields: 0
+- unresolved constants: 0
+
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 
 Latest verified first-slice source facts for `LittlerootTown`:

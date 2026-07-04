@@ -50,7 +50,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, and Pokemon wild encounter JSON.
+- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, Pokemon wild encounter JSON, and Pokemon trainer JSON.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries, including source metatile behavior names.
 - `MapRuntime` indexes generated door animation metadata by metatile id and can return the animation for a map cell.
 - `MapRuntime` indexes generated object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events; visible object-event cells are occupied for first-pass movement.
@@ -177,6 +177,15 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Fishing encounter probabilities preserve source rod groups separately from the flat slot list because source selection uses Old/Good/Super Rod subranges.
 - `MAP_ALTERING_CAVE` preserves the source special case where `VAR_ALTERING_CAVE_WILD_SET` offsets into 9 encounter tables when the value is below `NUM_ALTERING_CAVE_TABLES`.
 - Wild encounter runtime behavior is not implemented by the generated data alone. Step timing, encounter-rate rolls, Repel, ability modifiers, surfing/fishing flags, Sweet Scent, DexNav, mass outbreaks, Feebas tiles, roamers, Battle Pike/Pyramid behavior, battle setup, audio, and presentation timing must still be implemented only after tracing the corresponding source C and referenced resources.
+
+## Generated Pokemon Trainers Contract
+
+- Pokemon trainer JSON is loaded through `DataRegistry` from the manifest `pokemon` entry with category `trainers`.
+- `DataRegistry.get_pokemon_data("trainers")`, `get_trainers_data`, `get_trainer_record`, `get_trainer_record_by_symbol`, and `get_trainer_record_by_id` are read-only accessors for generated trainer records.
+- Generated trainer records preserve source trainer symbols, numeric trainer ids, source file/line references, UTF-8 trainer names, trainer class/pic/back-pic/gender/music constants, AI flags and masks, item lists, battle type, difficulty, mugshot color, starting statuses, party size, and pool metadata.
+- Generated party records preserve source Pokemon header data, source rewrite metadata, species, gender, held item, level, IV/EV macro values, ability, ball, friendship, nature, shiny state, Dynamax/Gigantamax/Tera fields, tags, explicit move lists, and whether source runtime will assign default level-up moves.
+- The trainer importer follows `tools/trainerproc/main.c` behavior rather than guessing from the DSL comments: omitted Pokemon levels default to 100, omitted IVs default to all 31, omitted moves rely on `src/battle_main.c:CustomTrainerPartyAssignMoves`, and trainer/pokemon constants are resolved through the same source naming rules where practical.
+- Trainer battle behavior is not implemented by the generated data alone. Enemy party construction, party pool selection, dynamic trainer ids/difficulty, AI decision behavior, item usage, trainer transition/mugshot presentation, battle music, send-out timing, ability/item/move behavior, and battle UI/audio/animation must still be implemented only after tracing the corresponding source C and referenced resources.
 
 ## Generated Global Text Contract
 

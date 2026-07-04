@@ -37,6 +37,8 @@ var _item_records_by_symbol: Dictionary = {}
 var _item_records_by_id: Dictionary = {}
 var _wild_encounter_records_by_label: Dictionary = {}
 var _wild_encounter_records_by_map: Dictionary = {}
+var _trainer_records_by_symbol: Dictionary = {}
+var _trainer_records_by_id: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -372,6 +374,37 @@ func get_wild_encounter_record_for_map(map_symbol: String, index: int = 0) -> Di
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
+func get_trainers_data() -> Dictionary:
+	return get_pokemon_data("trainers")
+
+
+func get_trainer_record(trainer_id_or_symbol) -> Dictionary:
+	if typeof(trainer_id_or_symbol) == TYPE_INT:
+		return get_trainer_record_by_id(int(trainer_id_or_symbol))
+	if typeof(trainer_id_or_symbol) == TYPE_FLOAT:
+		return get_trainer_record_by_id(int(trainer_id_or_symbol))
+
+	var key := String(trainer_id_or_symbol)
+	if key.is_valid_int():
+		return get_trainer_record_by_id(int(key))
+	return get_trainer_record_by_symbol(key)
+
+
+func get_trainer_record_by_symbol(trainer_symbol: String) -> Dictionary:
+	_ensure_trainer_indexes()
+	var normalized := trainer_symbol
+	if not normalized.begins_with("TRAINER_"):
+		normalized = "TRAINER_%s" % normalized.to_upper()
+	var record = _trainer_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_trainer_record_by_id(trainer_id: int) -> Dictionary:
+	_ensure_trainer_indexes()
+	var record = _trainer_records_by_id.get(trainer_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
 func get_map_name(map_id: String) -> String:
 	var entry := _map_entry_for_id(map_id)
 	if not entry.is_empty():
@@ -445,6 +478,8 @@ func _index_manifest() -> void:
 	_item_records_by_id = {}
 	_wild_encounter_records_by_label = {}
 	_wild_encounter_records_by_map = {}
+	_trainer_records_by_symbol = {}
+	_trainer_records_by_id = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -651,6 +686,26 @@ func _ensure_wild_encounter_indexes() -> void:
 		var map_records = _wild_encounter_records_by_map[map_symbol]
 		if typeof(map_records) == TYPE_ARRAY:
 			map_records.append(record)
+
+
+func _ensure_trainer_indexes() -> void:
+	if not _trainer_records_by_symbol.is_empty() or not _trainer_records_by_id.is_empty():
+		return
+
+	var trainers_data := get_trainers_data()
+	var trainer_records = trainers_data.get("trainers", {})
+	if typeof(trainer_records) != TYPE_DICTIONARY:
+		return
+
+	for symbol in trainer_records.keys():
+		var record = trainer_records[symbol]
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var trainer_symbol := String(record.get("symbol", symbol))
+		if not trainer_symbol.is_empty():
+			_trainer_records_by_symbol[trainer_symbol] = record
+		if record.has("id") and record.get("id") != null:
+			_trainer_records_by_id[int(record.get("id"))] = record
 
 
 func _normalize_map_symbol(map_symbol: String) -> String:
