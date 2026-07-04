@@ -12,6 +12,7 @@ Goal: reproduce the source `pokeemerald-expansion` map/overworld experience in G
 - Object events currently spawn as static source-backed sprites for the first small set of imported graphics. Full movement type callbacks, held movement actions, per-frame animation, freezing, collision, subpriority, shadows, reflections, and camera spawn/despawn behavior are pending.
 - `ScriptVM` can emit first-pass movement, field, object, transition, and audio effect records. `applymovement`, `waitmovement`, `delay`, `waitdooranim`, and related waits are not true async source tasks yet.
 - Tileset import bakes palette RGBA output and door atlases for used doors. Source tileset animation callback binding/counters/copy regions are now traced; runtime tileset animation playback, per-layer tiles, and complete door graphics tables are pending.
+- Metatile behavior constants, bit attributes, helper groups, call sites, and the external Seafoam helper are now traced in `data/generated/overworld/metatile_behavior_trace.json`: 240 `MB_*` constants, 129 explicit bit-attribute rows, 15 encounter-flag behaviors, 18 surfable behaviors, 194 `src/metatile_behavior.c` helper definitions, 1 external helper in `src/overworld.c`, and 24 call-site files. Runtime collision, forced movement, bridge/elevation, terrain effects, and interaction helper consumption remain pending.
 
 ## Source Files Audited
 
@@ -51,7 +52,7 @@ Use these as executable checkboxes. A task is not complete until the source path
 - [x] Trace `src/event_object_lock.c` object freezing, selected-object locking, player/object facing, and lock release behavior.
 - [x] Trace `src/field_door.c` door graphics tables, palette tables, frame tables, metatile mutation, sounds, task timing, and multi-door cases.
 - [x] Trace `src/tileset_anims.c`, `include/tileset_anims.h`, and `src/data/tilesets/headers.h` for callback binding, counters, copy regions, and map-load initialization.
-- [ ] Trace `src/metatile_behavior.c` and `include/constants/metatile_behaviors.h` for every `MetatileBehavior_Is*` group needed by movement, encounters, interaction, terrain effects, and transitions.
+- [x] Trace `src/metatile_behavior.c` and `include/constants/metatile_behaviors.h` for every `MetatileBehavior_Is*` group needed by movement, encounters, interaction, terrain effects, and transitions.
 - [ ] Trace `src/scrcmd.c` overworld-affecting commands, especially waits, doors, map mutation, warps, weather, fades, audio, field effects, object commands, and trainer flow.
 
 ### 2. Full Map Import
@@ -174,7 +175,7 @@ Use these as executable checkboxes. A task is not complete until the source path
 - [ ] Implement bike-specific collision and Acro/Mach exceptions.
 - [ ] Implement forced movement tiles: ice, currents, spin tiles, slide tiles, muddy slope, secret-base mats, and arrows.
 - [ ] Implement encounter-area classification from metatile behavior without duplicating EncounterEngine logic.
-- [ ] Generate `MetatileBehavior_Is*` helper groups from source constants or maintain a traced Godot table with source references.
+- [x] Generate `MetatileBehavior_Is*` helper groups from source constants or maintain a traced Godot table with source references.
 - [ ] Add tests for collision, elevation, object occupancy, ledges, surf/water, bridge, no-running, and forced movement.
 
 ### 10. Terrain And Field Effects
