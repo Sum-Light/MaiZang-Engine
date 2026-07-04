@@ -236,19 +236,35 @@ def build_ability_rows(abilities_data):
     return rows
 
 
-def build_trainer_rows(trainers_data):
+def build_trainer_rows(trainers_data, trainer_sprites_data):
     rows = []
     trainers = trainers_data.get("trainers", {})
+    trainer_sprite_records = trainer_sprites_data.get("trainers", {}) if isinstance(trainer_sprites_data.get("trainers", {}), dict) else {}
     for symbol in trainers_data.get("trainer_order", []):
         record = trainers.get(symbol, {})
+        sprite_record = trainer_sprite_records.get(symbol, {})
+        sprite_coverage = sprite_record.get("coverage", {}) if isinstance(sprite_record, dict) else {}
+        sprite_asset_status = str(sprite_coverage.get("asset_status", "unsupported"))
+        front_sprite = sprite_record.get("front", {}) if isinstance(sprite_record.get("front", {}), dict) else {}
+        palette = sprite_record.get("palette", {}) if isinstance(sprite_record.get("palette", {}), dict) else {}
+        mugshot_record = sprite_record.get("mugshot", {}) if isinstance(sprite_record.get("mugshot", {}), dict) else {}
         battle_type = constant_symbol(record.get("battle_type", {}))
         is_double = bool(record.get("battle_type", {}).get("is_double", False)) if isinstance(record.get("battle_type"), dict) else False
+        tests = ["tools/godot_smoke/data_registry_trainers_smoke.gd", "tools/godot_smoke/battle_engine_smoke.gd"]
+        if sprite_asset_status == "first_pass":
+            tests.append("tools/godot_smoke/data_registry_trainer_sprites_smoke.gd")
         rows.append({
             "id": symbol,
             "trainer_symbol": symbol,
             "numeric_id": int(record.get("id", -1)),
             "trainer_class": constant_symbol(record.get("trainer_class", {})),
             "pic": constant_symbol(record.get("pic", {})),
+            "trainer_pic_symbol": constant_symbol(record.get("pic", {})),
+            "trainer_pic_numeric_id": int(record.get("pic", {}).get("value", -1)) if isinstance(record.get("pic"), dict) else -1,
+            "front_sprite_image": str(front_sprite.get("image_project_path", "")),
+            "front_sprite_source_symbol": str(front_sprite.get("source_symbol", "")),
+            "palette_source_symbol": str(palette.get("source_symbol", "")),
+            "palette_color_count": int(palette.get("color_count", 0) or 0),
             "party_size": int_field_value(record.get("party_size", 0)),
             "held_item_count": count_party_held_items(record.get("party", [])),
             "explicit_move_mon_count": count_party_move_source(record.get("party", []), "explicit"),
@@ -256,16 +272,24 @@ def build_trainer_rows(trainers_data):
             "ai_flag_count": len(record.get("ai_flags", [])) if isinstance(record.get("ai_flags"), list) else 0,
             "battle_type": battle_type,
             "mugshot": constant_symbol(record.get("mugshot", {})),
+            "mugshot_transition_status": str(mugshot_record.get("transition_status", "not_used")),
             "party_status": "first_pass",
             "ai_status": "metadata_only",
-            "sprite_status": "unsupported",
+            "sprite_status": sprite_asset_status,
+            "asset_status": sprite_asset_status,
+            "palette_status": str(sprite_coverage.get("palette_status", "unsupported")),
+            "slide_status": str(sprite_coverage.get("slide_status", "unsupported")),
             "reward_status": "metadata_only",
             "post_battle_status": "unsupported",
+            "animation_status": "unsupported",
+            "audio_status": "metadata_only",
             "debug_selectable": True,
-            "tests": ["tools/godot_smoke/data_registry_trainers_smoke.gd", "tools/godot_smoke/battle_engine_smoke.gd"],
+            "tests": tests,
             "unsupported": unsupported_row(
                 "trainer_ai_pending",
-                "trainer_asset_import_pending",
+                "trainer_asset_import_pending" if sprite_asset_status != "first_pass" else "",
+                "battle_animation_runtime_pending",
+                "battle_audio_playback_pending",
                 "trainer_rewards_pending",
                 "battle_hud_pending" if is_double else "",
             ),
@@ -482,11 +506,13 @@ def build_report(project_root, source_root):
     evolutions_data = load_json(pokemon_root / "evolutions.json")
     types_data = load_json(pokemon_root / "types.json")
     battle_sprites_data = load_json_optional(pokemon_root / "battle_sprites.json")
+    battle_root = project_root / "data" / "generated" / "battle"
+    trainer_sprites_data = load_json_optional(battle_root / "trainer_sprites.json")
 
     coverage_rows = {
         "moves": build_move_rows(moves_data),
         "abilities": build_ability_rows(abilities_data),
-        "trainers": build_trainer_rows(trainers_data),
+        "trainers": build_trainer_rows(trainers_data, trainer_sprites_data),
         "trainer_party_mons": build_trainer_party_rows(trainers_data),
         "pokemon_data": build_pokemon_rows(species_data, battle_sprites_data),
         "battle_items": build_item_rows(items_data),
@@ -509,6 +535,7 @@ def build_report(project_root, source_root):
         "evolutions": evolutions_data.get("stats", {}),
         "types": types_data.get("stats", {}),
         "pokemon_battle_sprites": battle_sprites_data.get("stats", {}),
+        "trainer_battle_sprites": trainer_sprites_data.get("stats", {}),
     })
     return {
         "schema_version": 1,

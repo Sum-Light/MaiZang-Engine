@@ -17,6 +17,7 @@ const DEFAULT_BATTLE_STRING_CATEGORY := "battle_strings"
 const DEFAULT_BATTLE_SCRIPT_CATEGORY := "scripts"
 const DEFAULT_BATTLE_MOVE_EFFECT_CATEGORY := "move_effects"
 const DEFAULT_POKEMON_BATTLE_SPRITE_CATEGORY := "battle_sprites"
+const DEFAULT_TRAINER_BATTLE_SPRITE_CATEGORY := "trainer_sprites"
 
 var import_report: Dictionary = {}
 var _manifest_data: Dictionary = {}
@@ -43,6 +44,12 @@ var _species_records_by_symbol: Dictionary = {}
 var _species_records_by_id: Dictionary = {}
 var _pokemon_battle_sprite_records_by_symbol: Dictionary = {}
 var _pokemon_battle_sprite_records_by_id: Dictionary = {}
+var _trainer_battle_sprite_records_by_symbol: Dictionary = {}
+var _trainer_battle_sprite_records_by_id: Dictionary = {}
+var _trainer_front_sprite_records_by_symbol: Dictionary = {}
+var _trainer_front_sprite_records_by_id: Dictionary = {}
+var _trainer_back_sprite_records_by_symbol: Dictionary = {}
+var _trainer_back_sprite_records_by_id: Dictionary = {}
 var _move_records_by_symbol: Dictionary = {}
 var _move_records_by_id: Dictionary = {}
 var _type_records_by_symbol: Dictionary = {}
@@ -329,6 +336,85 @@ func get_battle_move_effect_record_by_symbol(effect_symbol: String) -> Dictionar
 func get_battle_move_effect_record_by_id(effect_id: int) -> Dictionary:
 	_ensure_battle_move_effect_indexes()
 	var record = _battle_move_effect_records_by_id.get(effect_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_trainer_sprites_data() -> Dictionary:
+	return get_battle_data(DEFAULT_TRAINER_BATTLE_SPRITE_CATEGORY)
+
+
+func get_trainer_sprite_record(trainer_id_or_symbol) -> Dictionary:
+	if typeof(trainer_id_or_symbol) == TYPE_INT:
+		return get_trainer_sprite_record_by_id(int(trainer_id_or_symbol))
+	if typeof(trainer_id_or_symbol) == TYPE_FLOAT:
+		return get_trainer_sprite_record_by_id(int(trainer_id_or_symbol))
+
+	var key := String(trainer_id_or_symbol)
+	if key.is_valid_int():
+		return get_trainer_sprite_record_by_id(int(key))
+	return get_trainer_sprite_record_by_symbol(key)
+
+
+func get_trainer_sprite_record_by_symbol(trainer_symbol: String) -> Dictionary:
+	_ensure_trainer_battle_sprite_indexes()
+	var normalized := _normalize_trainer_symbol(trainer_symbol)
+	var record = _trainer_battle_sprite_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_trainer_sprite_record_by_id(trainer_id: int) -> Dictionary:
+	_ensure_trainer_battle_sprite_indexes()
+	var record = _trainer_battle_sprite_records_by_id.get(trainer_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_trainer_front_sprite_record(pic_id_or_symbol) -> Dictionary:
+	if typeof(pic_id_or_symbol) == TYPE_INT:
+		return get_trainer_front_sprite_record_by_id(int(pic_id_or_symbol))
+	if typeof(pic_id_or_symbol) == TYPE_FLOAT:
+		return get_trainer_front_sprite_record_by_id(int(pic_id_or_symbol))
+
+	var key := String(pic_id_or_symbol)
+	if key.is_valid_int():
+		return get_trainer_front_sprite_record_by_id(int(key))
+	return get_trainer_front_sprite_record_by_symbol(key)
+
+
+func get_trainer_front_sprite_record_by_symbol(pic_symbol: String) -> Dictionary:
+	_ensure_trainer_battle_sprite_indexes()
+	var normalized := _normalize_trainer_front_pic_symbol(pic_symbol)
+	var record = _trainer_front_sprite_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_trainer_front_sprite_record_by_id(pic_id: int) -> Dictionary:
+	_ensure_trainer_battle_sprite_indexes()
+	var record = _trainer_front_sprite_records_by_id.get(pic_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_trainer_back_sprite_record(pic_id_or_symbol) -> Dictionary:
+	if typeof(pic_id_or_symbol) == TYPE_INT:
+		return get_trainer_back_sprite_record_by_id(int(pic_id_or_symbol))
+	if typeof(pic_id_or_symbol) == TYPE_FLOAT:
+		return get_trainer_back_sprite_record_by_id(int(pic_id_or_symbol))
+
+	var key := String(pic_id_or_symbol)
+	if key.is_valid_int():
+		return get_trainer_back_sprite_record_by_id(int(key))
+	return get_trainer_back_sprite_record_by_symbol(key)
+
+
+func get_trainer_back_sprite_record_by_symbol(pic_symbol: String) -> Dictionary:
+	_ensure_trainer_battle_sprite_indexes()
+	var normalized := _normalize_trainer_back_pic_symbol(pic_symbol)
+	var record = _trainer_back_sprite_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_trainer_back_sprite_record_by_id(pic_id: int) -> Dictionary:
+	_ensure_trainer_battle_sprite_indexes()
+	var record = _trainer_back_sprite_records_by_id.get(pic_id, {})
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
@@ -1000,6 +1086,12 @@ func _index_manifest() -> void:
 	_species_records_by_id = {}
 	_pokemon_battle_sprite_records_by_symbol = {}
 	_pokemon_battle_sprite_records_by_id = {}
+	_trainer_battle_sprite_records_by_symbol = {}
+	_trainer_battle_sprite_records_by_id = {}
+	_trainer_front_sprite_records_by_symbol = {}
+	_trainer_front_sprite_records_by_id = {}
+	_trainer_back_sprite_records_by_symbol = {}
+	_trainer_back_sprite_records_by_id = {}
 	_move_records_by_symbol = {}
 	_move_records_by_id = {}
 	_type_records_by_symbol = {}
@@ -1302,6 +1394,51 @@ func _ensure_pokemon_battle_sprite_indexes() -> void:
 			_pokemon_battle_sprite_records_by_id[int(record.get("numeric_id"))] = record
 
 
+func _ensure_trainer_battle_sprite_indexes() -> void:
+	if not _trainer_battle_sprite_records_by_symbol.is_empty() or not _trainer_battle_sprite_records_by_id.is_empty():
+		return
+
+	var trainer_sprite_data := get_trainer_sprites_data()
+	if trainer_sprite_data.is_empty():
+		return
+
+	var trainer_records = trainer_sprite_data.get("trainers", {})
+	if typeof(trainer_records) == TYPE_DICTIONARY:
+		for symbol in trainer_records.keys():
+			var record = trainer_records[symbol]
+			if typeof(record) != TYPE_DICTIONARY:
+				continue
+			var trainer_symbol := _normalize_trainer_symbol(String(record.get("trainer_symbol", symbol)))
+			if not trainer_symbol.is_empty():
+				_trainer_battle_sprite_records_by_symbol[trainer_symbol] = record
+			if record.has("numeric_id") and record.get("numeric_id") != null:
+				_trainer_battle_sprite_records_by_id[int(record.get("numeric_id"))] = record
+
+	var front_records = trainer_sprite_data.get("front_sprites", {})
+	if typeof(front_records) == TYPE_DICTIONARY:
+		for symbol in front_records.keys():
+			var record = front_records[symbol]
+			if typeof(record) != TYPE_DICTIONARY:
+				continue
+			var pic_symbol := _normalize_trainer_front_pic_symbol(String(record.get("pic_symbol", symbol)))
+			if not pic_symbol.is_empty():
+				_trainer_front_sprite_records_by_symbol[pic_symbol] = record
+			if record.has("numeric_id") and record.get("numeric_id") != null:
+				_trainer_front_sprite_records_by_id[int(record.get("numeric_id"))] = record
+
+	var back_records = trainer_sprite_data.get("back_sprites", {})
+	if typeof(back_records) == TYPE_DICTIONARY:
+		for symbol in back_records.keys():
+			var record = back_records[symbol]
+			if typeof(record) != TYPE_DICTIONARY:
+				continue
+			var pic_symbol := _normalize_trainer_back_pic_symbol(String(record.get("pic_symbol", symbol)))
+			if not pic_symbol.is_empty():
+				_trainer_back_sprite_records_by_symbol[pic_symbol] = record
+			if record.has("numeric_id") and record.get("numeric_id") != null:
+				_trainer_back_sprite_records_by_id[int(record.get("numeric_id"))] = record
+
+
 func _ensure_move_indexes() -> void:
 	if not _move_records_by_symbol.is_empty() or not _move_records_by_id.is_empty():
 		return
@@ -1538,6 +1675,41 @@ func _normalize_species_symbol(species_symbol: String) -> String:
 	if not normalized.begins_with("SPECIES_"):
 		normalized = "SPECIES_%s" % normalized.to_upper()
 	return normalized
+
+
+func _normalize_trainer_symbol(trainer_symbol: String) -> String:
+	var normalized := trainer_symbol
+	if normalized.is_empty():
+		return ""
+	if not normalized.begins_with("TRAINER_"):
+		normalized = "TRAINER_%s" % normalized.to_upper()
+	return normalized
+
+
+func _normalize_trainer_front_pic_symbol(pic_symbol: String) -> String:
+	var normalized := pic_symbol
+	if normalized.is_empty():
+		return ""
+	if normalized.begins_with("TRAINER_PIC_FRONT_"):
+		return normalized
+	if normalized.begins_with("FRONT_"):
+		return "TRAINER_PIC_%s" % normalized.to_upper()
+	if normalized.begins_with("TRAINER_PIC_"):
+		return normalized
+	return "TRAINER_PIC_FRONT_%s" % normalized.to_upper()
+
+
+func _normalize_trainer_back_pic_symbol(pic_symbol: String) -> String:
+	var normalized := pic_symbol
+	if normalized.is_empty():
+		return ""
+	if normalized.begins_with("TRAINER_PIC_BACK_"):
+		return normalized
+	if normalized.begins_with("BACK_"):
+		return "TRAINER_PIC_%s" % normalized.to_upper()
+	if normalized.begins_with("TRAINER_PIC_"):
+		return normalized
+	return "TRAINER_PIC_BACK_%s" % normalized.to_upper()
 
 
 func _normalize_battle_string_symbol(battle_string_symbol: String) -> String:

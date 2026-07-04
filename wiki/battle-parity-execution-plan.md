@@ -284,11 +284,13 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
   - Boundary: no runtime GBA palette-bank/VRAM/OAM model is introduced; later palette swaps, affine transforms, and sprite animation timing should use Godot materials/animation while matching the source-visible rhythm. Audio remains metadata-only.
   - Validate: the coverage report lists every missing or unsupported species/form asset; Torchic, Mudkip, Treecko, Geodude, one gender variant, one form variant, one shiny palette, and one macro-partial species are fixture rows.
 
-- [ ] B7.2 Export trainer battle sprite metadata.
+- [x] B7.2 Export trainer battle sprite metadata.
   - Source: `src/data/graphics/trainers.h`, `graphics/trainers`, generated trainers.
   - Output: `data/generated/battle/trainer_sprites.json`, textures under `assets/generated/trainers/`.
   - Covers: every trainer pic referenced by generated trainer records, trainer front pic, palette, class/pic linkage, mugshot/special refs, slide-in coordinates, and unsupported records for trainer ids without a normal battle sprite path.
-  - Validate: every generated trainer id resolves to a trainer sprite row, shared sprite row, or explicit unsupported note; Sawyer and a mugshot trainer resolve from trainer id to texture and palette.
+  - Current first pass: `tools/importer/export_trainer_sprites.py` imports 155 front trainer textures, 10 back trainer textures, 155 front palette metadata records, 10 back palette metadata records, 5 mugshot background palette refs, and resolves 855/855 generated trainer ids to first-pass trainer sprite rows. PNG palette fallback is used for source front pics that do not have checked-in `.pal` companions.
+  - Boundary: trainer slide-in and mugshot x/y/rotation metadata are preserved from `BtlController_HandleDrawTrainerPic`, `BtlController_HandleTrainerSlide`, and `battle_transition.c`, but runtime playback remains pending under `battle_animation_runtime_pending`; audio remains metadata-only.
+  - Validate: `data_registry_trainer_sprites_smoke.gd` checks Sawyer, Hiker shared sprite lookup, Sidney mugshot lookup, Wallace mugshot offsets, and Brendan back sprite lookup; `battle_parity_report_smoke.gd` asserts trainer asset rows no longer carry `trainer_asset_import_pending`.
 
 - [ ] B7.3 Export battle backgrounds and environment metadata.
   - Source: `src/data/graphics/battle_environment.h`, `src/data/battle_environment.h`, `graphics/battle_environment`.
