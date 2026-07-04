@@ -1,0 +1,479 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/importer/export_overworld_import_summary.py",
+  "source_root": "C:\\Users\\YbbNa\\OneDrive\\Project-Azoth\\pokeemerald-expansion-master\\pokeemerald-expansion-master",
+  "manifest_path": "C:/Users/YbbNa/OneDrive/Documents/pokeemerald-godot/data/generated/import_manifest.json",
+  "source_counts": {
+    "map_count": 939,
+    "map_script_file_count": 887,
+    "layout_count": 785,
+    "primary_tileset_image_count": 5,
+    "secondary_tileset_image_count": 127,
+    "object_event_graphics_info_count": 393,
+    "tileset_header_count": 139,
+    "tileset_callback_count": 31,
+    "tileset_null_callback_count": 108,
+    "callback_symbols": [
+      "InitTilesetAnim_BattleDome",
+      "InitTilesetAnim_BattleFrontierOutsideEast",
+      "InitTilesetAnim_BattleFrontierOutsideWest",
+      "InitTilesetAnim_BattlePyramid",
+      "InitTilesetAnim_BikeShop",
+      "InitTilesetAnim_Building",
+      "InitTilesetAnim_Cave",
+      "InitTilesetAnim_CeladonCity",
+      "InitTilesetAnim_CeladonGym",
+      "InitTilesetAnim_Dewford",
+      "InitTilesetAnim_EliteFour",
+      "InitTilesetAnim_EverGrande",
+      "InitTilesetAnim_Fallarbor",
+      "InitTilesetAnim_Fortree",
+      "InitTilesetAnim_General",
+      "InitTilesetAnim_General_Frlg",
+      "InitTilesetAnim_Lavaridge",
+      "InitTilesetAnim_Lilycove",
+      "InitTilesetAnim_Mauville",
+      "InitTilesetAnim_MauvilleGym",
+      "InitTilesetAnim_Mossdeep",
+      "InitTilesetAnim_MtEmber",
+      "InitTilesetAnim_Pacifidlog",
+      "InitTilesetAnim_Petalburg",
+      "InitTilesetAnim_Rustboro",
+      "InitTilesetAnim_SilphCo",
+      "InitTilesetAnim_Slateport",
+      "InitTilesetAnim_Sootopolis",
+      "InitTilesetAnim_SootopolisGym",
+      "InitTilesetAnim_Underwater",
+      "InitTilesetAnim_VermilionGym"
+    ],
+    "tileset_anim_init_function_count": 31,
+    "tileset_anim_source_frame_count": 168,
+    "tileset_anim_source_group_count": 218,
+    "door_animation_table_entry_count": 53,
+    "door_animation_source_image_count": 85
+  },
+  "generated_counts": {
+    "map_count": 4,
+    "layout_count": 4,
+    "tileset_record_count": 4,
+    "unique_primary_tileset_count": 2,
+    "unique_secondary_tileset_count": 2,
+    "metatile_record_count": 2728,
+    "script_bundle_count": 6,
+    "map_script_bundle_count": 4,
+    "shared_script_bundle_count": 2,
+    "script_count": 207,
+    "movement_label_count": 142,
+    "movement_action_count": 670,
+    "movement_step_end_count": 143,
+    "movement_action_count_excluding_step_end": 527,
+    "script_text_count": 62,
+    "script_runtime_preview_unsupported_op_count": 1510,
+    "door_animation_count": 2,
+    "door_animation_frame_count": 6,
+    "tileset_animation_count": 0,
+    "object_event_graphic_count": 11,
+    "warning_count": 0,
+    "parity_matrix_unsupported_entry_count": 15,
+    "parity_matrix_unsupported_code_count": 13,
+    "object_event_sprite_unsupported_note_count": 15,
+    "explicit_summary_unsupported_count": 4,
+    "total_reported_unsupported_count": 34,
+    "object_event_count": 28,
+    "warp_event_count": 9,
+    "coord_event_count": 26,
+    "bg_event_count": 5,
+    "connection_count": 3,
+    "missing_map_file_count": 0
+  },
+  "coverage": {
+    "maps": {
+      "generated": 4,
+      "source": 939,
+      "percent": 0.43
+    },
+    "map_script_files": {
+      "generated": 6,
+      "source": 887,
+      "percent": 0.68
+    },
+    "map_scoped_script_files": {
+      "generated": 4,
+      "source": 887,
+      "percent": 0.45
+    },
+    "layouts": {
+      "generated": 4,
+      "source": 785,
+      "percent": 0.51
+    },
+    "primary_tilesets": {
+      "generated": 2,
+      "source": 5,
+      "percent": 40.0
+    },
+    "secondary_tilesets": {
+      "generated": 2,
+      "source": 127,
+      "percent": 1.57
+    },
+    "door_animations": {
+      "generated": 2,
+      "source": 53,
+      "percent": 3.77
+    },
+    "tileset_animation_callbacks": {
+      "generated": 0,
+      "source": 31,
+      "percent": 0.0
+    },
+    "object_event_graphics": {
+      "generated": 11,
+      "source": 393,
+      "percent": 2.8
+    }
+  },
+  "warnings": {
+    "total": 0,
+    "manifest_warning_count_fields": 0,
+    "generated_warning_array_count": 0
+  },
+  "unsupported": [
+    {
+      "code": "tileset_animation_runtime_pending",
+      "status": "unsupported",
+      "source_count": 31,
+      "generated_count": 0,
+      "detail": "Source tileset animation callbacks exist, but no generated tileset animation runtime records are exported yet."
+    },
+    {
+      "code": "door_overlay_not_source_equivalent",
+      "status": "first_pass",
+      "source_count": 53,
+      "generated_count": 2,
+      "detail": "Only used first-slice door animation atlases are generated, and runtime playback is still overlay-based instead of source layer mutation."
+    },
+    {
+      "code": "object_event_sprite_coverage_pending",
+      "status": "first_pass",
+      "source_count": 393,
+      "generated_count": 11,
+      "detail": "Only the first Littleroot/debug/player object-event sprite slice is generated."
+    },
+    {
+      "code": "audio_playback_pending",
+      "status": "metadata_only",
+      "source_count": null,
+      "generated_count": 0,
+      "detail": "Audio symbols and timing intent stay in metadata; real playback remains out of scope."
+    }
+  ],
+  "details": {
+    "maps": [
+      {
+        "id": "MAP_LITTLEROOT_TOWN",
+        "name": "LittlerootTown",
+        "layout_id": "LAYOUT_LITTLEROOT_TOWN",
+        "path": "data/generated/maps/littleroot_town.json",
+        "map_type": "MAP_TYPE_TOWN",
+        "weather": "WEATHER_SUNNY",
+        "music": "MUS_LITTLEROOT",
+        "object_event_count": 8,
+        "warp_event_count": 3,
+        "coord_event_count": 9,
+        "bg_event_count": 4,
+        "connection_count": 1
+      },
+      {
+        "id": "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F",
+        "name": "LittlerootTown_BrendansHouse_1F",
+        "layout_id": "LAYOUT_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F",
+        "path": "data/generated/maps/littleroot_town_brendans_house_1_f.json",
+        "map_type": "MAP_TYPE_INDOOR",
+        "weather": "WEATHER_NONE",
+        "music": "MUS_LITTLEROOT",
+        "object_event_count": 7,
+        "warp_event_count": 3,
+        "coord_event_count": 4,
+        "bg_event_count": 0,
+        "connection_count": 0
+      },
+      {
+        "id": "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F",
+        "name": "LittlerootTown_MaysHouse_1F",
+        "layout_id": "LAYOUT_LITTLEROOT_TOWN_MAYS_HOUSE_1F",
+        "path": "data/generated/maps/littleroot_town_mays_house_1_f.json",
+        "map_type": "MAP_TYPE_INDOOR",
+        "weather": "WEATHER_NONE",
+        "music": "MUS_LITTLEROOT",
+        "object_event_count": 7,
+        "warp_event_count": 3,
+        "coord_event_count": 4,
+        "bg_event_count": 0,
+        "connection_count": 0
+      },
+      {
+        "id": "MAP_ROUTE101",
+        "name": "Route101",
+        "layout_id": "LAYOUT_ROUTE101",
+        "path": "data/generated/maps/route101.json",
+        "map_type": "MAP_TYPE_ROUTE",
+        "weather": "WEATHER_SUNNY",
+        "music": "MUS_ROUTE101",
+        "object_event_count": 6,
+        "warp_event_count": 0,
+        "coord_event_count": 9,
+        "bg_event_count": 1,
+        "connection_count": 2
+      }
+    ],
+    "tilesets": [
+      {
+        "map": "LittlerootTown",
+        "path": "data/generated/tilesets/littleroot_town.json",
+        "primary_tileset": "gTileset_General",
+        "secondary_tileset": "gTileset_Petalburg",
+        "total_metatiles": 656,
+        "door_animation_count": 2,
+        "door_animation_frame_count": 6,
+        "warning_array_count": 0
+      },
+      {
+        "map": "LittlerootTown_BrendansHouse_1F",
+        "path": "data/generated/tilesets/littleroot_town_brendans_house_1_f.json",
+        "primary_tileset": "gTileset_Building",
+        "secondary_tileset": "gTileset_BrendansMaysHouse",
+        "total_metatiles": 708,
+        "door_animation_count": 0,
+        "door_animation_frame_count": 0,
+        "warning_array_count": 0
+      },
+      {
+        "map": "LittlerootTown_MaysHouse_1F",
+        "path": "data/generated/tilesets/littleroot_town_mays_house_1_f.json",
+        "primary_tileset": "gTileset_Building",
+        "secondary_tileset": "gTileset_BrendansMaysHouse",
+        "total_metatiles": 708,
+        "door_animation_count": 0,
+        "door_animation_frame_count": 0,
+        "warning_array_count": 0
+      },
+      {
+        "map": "Route101",
+        "path": "data/generated/tilesets/route101.json",
+        "primary_tileset": "gTileset_General",
+        "secondary_tileset": "gTileset_Petalburg",
+        "total_metatiles": 656,
+        "door_animation_count": 0,
+        "door_animation_frame_count": 0,
+        "warning_array_count": 0
+      }
+    ],
+    "scripts": [
+      {
+        "name": "LittlerootTown",
+        "scope": "map",
+        "path": "data/generated/scripts/littleroot_town.json",
+        "script_count": 78,
+        "movement_label_count": 34,
+        "movement_action_count": 183,
+        "movement_action_count_excluding_step_end": 149,
+        "runtime_preview_unsupported_op_count": 507
+      },
+      {
+        "name": "LittlerootTown_BrendansHouse_1F",
+        "scope": "map",
+        "path": "data/generated/scripts/littleroot_town_brendans_house_1_f.json",
+        "script_count": 26,
+        "movement_label_count": 11,
+        "movement_action_count": 66,
+        "movement_action_count_excluding_step_end": 55,
+        "runtime_preview_unsupported_op_count": 163
+      },
+      {
+        "name": "LittlerootTown_MaysHouse_1F",
+        "scope": "map",
+        "path": "data/generated/scripts/littleroot_town_mays_house_1_f.json",
+        "script_count": 31,
+        "movement_label_count": 11,
+        "movement_action_count": 66,
+        "movement_action_count_excluding_step_end": 55,
+        "runtime_preview_unsupported_op_count": 170
+      },
+      {
+        "name": "shared_players_house",
+        "scope": "shared",
+        "path": "data/generated/scripts/shared_players_house.json",
+        "script_count": 49,
+        "movement_label_count": 73,
+        "movement_action_count": 246,
+        "movement_action_count_excluding_step_end": 174,
+        "runtime_preview_unsupported_op_count": 488
+      },
+      {
+        "name": "Route101",
+        "scope": "map",
+        "path": "data/generated/scripts/route101.json",
+        "script_count": 14,
+        "movement_label_count": 13,
+        "movement_action_count": 109,
+        "movement_action_count_excluding_step_end": 94,
+        "runtime_preview_unsupported_op_count": 167
+      },
+      {
+        "name": "shared_rival_graphics",
+        "scope": "shared",
+        "path": "data/generated/scripts/shared_rival_graphics.json",
+        "script_count": 9,
+        "movement_label_count": 0,
+        "movement_action_count": 0,
+        "movement_action_count_excluding_step_end": 0,
+        "runtime_preview_unsupported_op_count": 15
+      }
+    ],
+    "movement_op_counts": {
+      "delay_16": 38,
+      "delay_8": 21,
+      "disable_jump_landing_ground_effect": 2,
+      "emote_exclamation_mark": 1,
+      "emote_question_mark": 1,
+      "face_away_player": 1,
+      "face_down": 3,
+      "face_left": 2,
+      "face_original_direction": 1,
+      "face_player": 1,
+      "face_right": 4,
+      "face_up": 1,
+      "jump_in_place_right": 2,
+      "jump_right": 1,
+      "lock_facing_direction": 1,
+      "set_invisible": 1,
+      "step_end": 143,
+      "unlock_facing_direction": 1,
+      "walk_down": 41,
+      "walk_fast_down": 13,
+      "walk_fast_left": 19,
+      "walk_fast_right": 35,
+      "walk_fast_up": 26,
+      "walk_faster_down": 1,
+      "walk_faster_left": 1,
+      "walk_faster_right": 1,
+      "walk_faster_up": 1,
+      "walk_in_place_down": 1,
+      "walk_in_place_fast_left": 4,
+      "walk_in_place_fast_right": 4,
+      "walk_in_place_faster_down": 4,
+      "walk_in_place_faster_left": 18,
+      "walk_in_place_faster_right": 18,
+      "walk_in_place_faster_up": 26,
+      "walk_in_place_left": 1,
+      "walk_in_place_right": 1,
+      "walk_left": 71,
+      "walk_right": 66,
+      "walk_slow_down": 1,
+      "walk_slow_left": 1,
+      "walk_slow_right": 1,
+      "walk_slow_up": 1,
+      "walk_up": 89
+    }
+  },
+  "inputs": [
+    {
+      "path": "C:/Users/YbbNa/OneDrive/Project-Azoth/pokeemerald-expansion-master/pokeemerald-expansion-master/data/layouts/layouts.json",
+      "exists": true
+    },
+    {
+      "path": "C:/Users/YbbNa/OneDrive/Project-Azoth/pokeemerald-expansion-master/pokeemerald-expansion-master/src/data/tilesets/headers.h",
+      "exists": true
+    },
+    {
+      "path": "C:/Users/YbbNa/OneDrive/Project-Azoth/pokeemerald-expansion-master/pokeemerald-expansion-master/src/tileset_anims.c",
+      "exists": true
+    },
+    {
+      "path": "C:/Users/YbbNa/OneDrive/Project-Azoth/pokeemerald-expansion-master/pokeemerald-expansion-master/src/field_door.c",
+      "exists": true
+    },
+    {
+      "path": "C:/Users/YbbNa/OneDrive/Project-Azoth/pokeemerald-expansion-master/pokeemerald-expansion-master/src/data/object_events/object_event_graphics_info.h",
+      "exists": true
+    },
+    {
+      "path": "C:/Users/YbbNa/OneDrive/Documents/pokeemerald-godot/data/generated/import_manifest.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/maps/littleroot_town.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/maps/littleroot_town_brendans_house_1_f.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/maps/littleroot_town_mays_house_1_f.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/maps/route101.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/tilesets/littleroot_town.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/tilesets/littleroot_town_brendans_house_1_f.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/tilesets/littleroot_town_mays_house_1_f.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/tilesets/route101.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/scripts/littleroot_town.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/scripts/littleroot_town_brendans_house_1_f.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/scripts/littleroot_town_mays_house_1_f.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/scripts/shared_players_house.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/scripts/route101.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/scripts/shared_rival_graphics.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/object_events/object_event_sprites.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/overworld/parity_matrix.json",
+      "exists": true
+    },
+    {
+      "path": "data/generated/overworld/import_summary.json",
+      "exists": true
+    }
+  ],
+  "notes": [
+    "GBA palette/VRAM/OAM limits are import-time concerns; runtime assets remain Godot-friendly RGBA/data.",
+    "Palette-change, tint, blend, scale, rotation, and affine-style effects should be implemented with Godot-native presentation systems while preserving source timing and visible rhythm.",
+    "Audio remains metadata_only/unsupported; sound and music symbols are counted or preserved elsewhere but playback is not implemented."
+  ]
+}

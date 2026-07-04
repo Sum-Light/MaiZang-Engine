@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+"""Smoke checks for the overworld import summary export."""
+
+import argparse
+import sys
+from pathlib import Path
+
+from export_overworld_import_summary import build_export
+from source_probe import load_config
+
+
+def main(argv):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--config", type=Path, help="JSON config with source and output roots.")
+    parser.add_argument("--source", type=Path, help="pokeemerald-expansion source root.")
+    parser.add_argument("--output-root", type=Path, help="Generated data output root.")
+    args = parser.parse_args(argv)
+
+    config = load_config(args.config)
+    source_root = args.source or Path(config.get("source_root", ""))
+    output_root = args.output_root or Path(config.get("generated_data_root", "data/generated"))
+    exported = build_export(source_root, output_root)
+    source = exported["source_counts"]
+    generated = exported["generated_counts"]
+    coverage = exported["coverage"]
+
+    _assert(exported["schema_version"] == 1, "unexpected schema version")
+    _assert(exported["generated_by"].endswith("export_overworld_import_summary.py"), "unexpected generator")
+
+    _assert(source["map_count"] == 939, "unexpected source map count")
+    _assert(source["map_script_file_count"] == 887, "unexpected source map script count")
+    _assert(source["layout_count"] == 785, "unexpected source layout count")
+    _assert(source["primary_tileset_image_count"] == 5, "unexpected source primary tileset count")
+    _assert(source["secondary_tileset_image_count"] == 127, "unexpected source secondary tileset count")
+    _assert(source["tileset_header_count"] == 139, "unexpected source tileset header count")
+    _assert(source["tileset_callback_count"] == 31, "unexpected source tileset callback count")
+    _assert(source["door_animation_table_entry_count"] == 53, "unexpected active Emerald door table count")
+    _assert(source["object_event_graphics_info_count"] == 393, "unexpected source object-event graphics count")
+
+    _assert(generated["map_count"] == 4, "unexpected generated map count")
+    _assert(generated["layout_count"] == 4, "unexpected generated layout count")
+    _assert(generated["tileset_record_count"] == 4, "unexpected generated tileset record count")
+    _assert(generated["unique_primary_tileset_count"] == 2, "unexpected generated primary tileset count")
+    _assert(generated["unique_secondary_tileset_count"] == 2, "unexpected generated secondary tileset count")
+    _assert(generated["script_bundle_count"] == 6, "unexpected generated script bundle count")
+    _assert(generated["map_script_bundle_count"] == 4, "unexpected generated map script bundle count")
+    _assert(generated["shared_script_bundle_count"] == 2, "unexpected generated shared script bundle count")
+    _assert(generated["script_count"] == 207, "unexpected generated script count")
+    _assert(generated["movement_label_count"] == 142, "unexpected movement label count")
+    _assert(generated["movement_action_count"] == 670, "unexpected movement action count")
+    _assert(generated["movement_action_count_excluding_step_end"] == 527, "unexpected non-terminal movement action count")
+    _assert(generated["script_runtime_preview_unsupported_op_count"] == 1510, "unexpected script preview unsupported op count")
+    _assert(generated["door_animation_count"] == 2, "unexpected generated door animation count")
+    _assert(generated["door_animation_frame_count"] == 6, "unexpected generated door frame count")
+    _assert(generated["tileset_animation_count"] == 0, "tileset animations should remain ungenerated")
+    _assert(generated["object_event_graphic_count"] == 11, "unexpected generated object-event graphics count")
+    _assert(generated["warning_count"] == 0, "expected zero current generated warnings")
+    _assert(generated["parity_matrix_unsupported_entry_count"] == 15, "unexpected parity unsupported entry count")
+    _assert(generated["object_event_sprite_unsupported_note_count"] == 15, "unexpected object sprite unsupported note count")
+    _assert(generated["explicit_summary_unsupported_count"] == 4, "unexpected explicit unsupported summary count")
+
+    _assert(coverage["maps"]["percent"] == 0.43, "unexpected map coverage percent")
+    _assert(coverage["tileset_animation_callbacks"]["generated"] == 0, "expected no generated tileset anims")
+
+    unsupported_codes = {entry["code"] for entry in exported["unsupported"]}
+    _assert("tileset_animation_runtime_pending" in unsupported_codes, "missing tileset animation unsupported code")
+    _assert("audio_playback_pending" in unsupported_codes, "missing audio unsupported code")
+    _assert("object_event_sprite_coverage_pending" in unsupported_codes, "missing object sprite coverage code")
+    _assert("door_overlay_not_source_equivalent" in unsupported_codes, "missing door unsupported code")
+
+    map_names = {entry["name"] for entry in exported["details"]["maps"]}
+    _assert("LittlerootTown" in map_names, "missing Littleroot summary")
+    _assert("Route101" in map_names, "missing Route101 summary")
+    _assert(exported["details"]["movement_op_counts"]["step_end"] == 143, "unexpected step_end count")
+
+    print("export_overworld_import_summary_smoke: ok")
+    return 0
+
+
+def _assert(condition, message):
+    if not condition:
+        raise AssertionError(message)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))
