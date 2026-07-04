@@ -35,7 +35,9 @@
     "height": 40,
     "layout_version": "frlg",
     "primary_tileset": "gTileset_General_Frlg",
-    "secondary_tileset": "gTileset_FuchsiaCity"
+    "secondary_tileset": "gTileset_FuchsiaCity",
+    "border_width": 2,
+    "border_height": 2
   },
   "tilesets": {
     "primary": {
@@ -10102,7 +10104,10 @@
         0,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 1920,
+    "declared_cell_count": 1920,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     28,
@@ -10150,19 +10155,79 @@
       "map": "MAP_ROUTE19",
       "offset": 12,
       "direction": "down",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_SOUTH",
+      "source_direction_value": 2,
+      "target_map_id": "MAP_ROUTE19",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route19_Frlg",
+      "target_map_name": "Route19_Frlg",
+      "target_map_section": "MAPSEC_ROUTE_19",
+      "target_layout_id": "LAYOUT_ROUTE19",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+      "target_map_group_index": 37,
+      "target_map_num": 37,
+      "target_map_constant_value": 9509,
+      "source_struct_fields": {
+        "direction": "CONNECTION_SOUTH",
+        "offset": 12,
+        "mapGroup": 37,
+        "mapNum": 37
+      }
     },
     {
       "map": "MAP_ROUTE18",
       "offset": 10,
       "direction": "left",
-      "source_order_index": 1
+      "source_order_index": 1,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_WEST",
+      "source_direction_value": 4,
+      "target_map_id": "MAP_ROUTE18",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route18_Frlg",
+      "target_map_name": "Route18_Frlg",
+      "target_map_section": "MAPSEC_ROUTE_18",
+      "target_layout_id": "LAYOUT_ROUTE18",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+      "target_map_group_index": 37,
+      "target_map_num": 36,
+      "target_map_constant_value": 9508,
+      "source_struct_fields": {
+        "direction": "CONNECTION_WEST",
+        "offset": 10,
+        "mapGroup": 37,
+        "mapNum": 36
+      }
     },
     {
       "map": "MAP_ROUTE15",
       "offset": 10,
       "direction": "right",
-      "source_order_index": 2
+      "source_order_index": 2,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_EAST",
+      "source_direction_value": 5,
+      "target_map_id": "MAP_ROUTE15",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route15_Frlg",
+      "target_map_name": "Route15_Frlg",
+      "target_map_section": "MAPSEC_ROUTE_15",
+      "target_layout_id": "LAYOUT_ROUTE15",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+      "target_map_group_index": 37,
+      "target_map_num": 33,
+      "target_map_constant_value": 9505,
+      "source_struct_fields": {
+        "direction": "CONNECTION_EAST",
+        "offset": 10,
+        "mapGroup": 37,
+        "mapNum": 33
+      }
     }
   ],
   "block_id_stats": {
@@ -10654,19 +10719,79 @@
         "map": "MAP_ROUTE19",
         "offset": 12,
         "direction": "down",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_SOUTH",
+        "source_direction_value": 2,
+        "target_map_id": "MAP_ROUTE19",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route19_Frlg",
+        "target_map_name": "Route19_Frlg",
+        "target_map_section": "MAPSEC_ROUTE_19",
+        "target_layout_id": "LAYOUT_ROUTE19",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+        "target_map_group_index": 37,
+        "target_map_num": 37,
+        "target_map_constant_value": 9509,
+        "source_struct_fields": {
+          "direction": "CONNECTION_SOUTH",
+          "offset": 12,
+          "mapGroup": 37,
+          "mapNum": 37
+        }
       },
       {
         "map": "MAP_ROUTE18",
         "offset": 10,
         "direction": "left",
-        "source_order_index": 1
+        "source_order_index": 1,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_WEST",
+        "source_direction_value": 4,
+        "target_map_id": "MAP_ROUTE18",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route18_Frlg",
+        "target_map_name": "Route18_Frlg",
+        "target_map_section": "MAPSEC_ROUTE_18",
+        "target_layout_id": "LAYOUT_ROUTE18",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+        "target_map_group_index": 37,
+        "target_map_num": 36,
+        "target_map_constant_value": 9508,
+        "source_struct_fields": {
+          "direction": "CONNECTION_WEST",
+          "offset": 10,
+          "mapGroup": 37,
+          "mapNum": 36
+        }
       },
       {
         "map": "MAP_ROUTE15",
         "offset": 10,
         "direction": "right",
-        "source_order_index": 2
+        "source_order_index": 2,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_EAST",
+        "source_direction_value": 5,
+        "target_map_id": "MAP_ROUTE15",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route15_Frlg",
+        "target_map_name": "Route15_Frlg",
+        "target_map_section": "MAPSEC_ROUTE_15",
+        "target_layout_id": "LAYOUT_ROUTE15",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+        "target_map_group_index": 37,
+        "target_map_num": 33,
+        "target_map_constant_value": 9505,
+        "source_struct_fields": {
+          "direction": "CONNECTION_EAST",
+          "offset": 10,
+          "mapGroup": 37,
+          "mapNum": 33
+        }
       }
     ],
     "object_events": [

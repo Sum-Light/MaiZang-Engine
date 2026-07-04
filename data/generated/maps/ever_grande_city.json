@@ -35,7 +35,9 @@
     "height": 80,
     "layout_version": "emerald",
     "primary_tileset": "gTileset_General",
-    "secondary_tileset": "gTileset_EverGrande"
+    "secondary_tileset": "gTileset_EverGrande",
+    "border_width": null,
+    "border_height": null
   },
   "tilesets": {
     "primary": {
@@ -16902,7 +16904,10 @@
         1,
         1
       ]
-    ]
+    ],
+    "source_entry_count": 3200,
+    "declared_cell_count": 3200,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     368,
@@ -16950,7 +16955,27 @@
       "map": "MAP_ROUTE128",
       "offset": 40,
       "direction": "left",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_WEST",
+      "source_direction_value": 4,
+      "target_map_id": "MAP_ROUTE128",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route128",
+      "target_map_name": "Route128",
+      "target_map_section": "MAPSEC_ROUTE_128",
+      "target_layout_id": "LAYOUT_ROUTE128",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 43,
+      "target_map_constant_value": 43,
+      "source_struct_fields": {
+        "direction": "CONNECTION_WEST",
+        "offset": 40,
+        "mapGroup": 0,
+        "mapNum": 43
+      }
     }
   ],
   "block_id_stats": {
@@ -17436,7 +17461,27 @@
         "map": "MAP_ROUTE128",
         "offset": 40,
         "direction": "left",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_WEST",
+        "source_direction_value": 4,
+        "target_map_id": "MAP_ROUTE128",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route128",
+        "target_map_name": "Route128",
+        "target_map_section": "MAPSEC_ROUTE_128",
+        "target_layout_id": "LAYOUT_ROUTE128",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 43,
+        "target_map_constant_value": 43,
+        "source_struct_fields": {
+          "direction": "CONNECTION_WEST",
+          "offset": 40,
+          "mapGroup": 0,
+          "mapNum": 43
+        }
       }
     ],
     "object_events": [],

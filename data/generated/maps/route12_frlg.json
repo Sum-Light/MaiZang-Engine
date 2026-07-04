@@ -35,7 +35,9 @@
     "height": 120,
     "layout_version": "frlg",
     "primary_tileset": "gTileset_General_Frlg",
-    "secondary_tileset": "gTileset_LavenderTown"
+    "secondary_tileset": "gTileset_LavenderTown",
+    "border_width": 2,
+    "border_height": 2
   },
   "tilesets": {
     "primary": {
@@ -15702,7 +15704,10 @@
         1,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 2880,
+    "declared_cell_count": 2880,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     473,
@@ -15750,19 +15755,79 @@
       "map": "MAP_LAVENDER_TOWN",
       "offset": 0,
       "direction": "up",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_NORTH",
+      "source_direction_value": 3,
+      "target_map_id": "MAP_LAVENDER_TOWN",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "LavenderTown_Frlg",
+      "target_map_name": "LavenderTown_Frlg",
+      "target_map_section": "MAPSEC_LAVENDER_TOWN",
+      "target_layout_id": "LAYOUT_LAVENDER_TOWN",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+      "target_map_group_index": 37,
+      "target_map_num": 4,
+      "target_map_constant_value": 9476,
+      "source_struct_fields": {
+        "direction": "CONNECTION_NORTH",
+        "offset": 0,
+        "mapGroup": 37,
+        "mapNum": 4
+      }
     },
     {
       "map": "MAP_ROUTE13",
       "offset": -48,
       "direction": "down",
-      "source_order_index": 1
+      "source_order_index": 1,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_SOUTH",
+      "source_direction_value": 2,
+      "target_map_id": "MAP_ROUTE13",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route13_Frlg",
+      "target_map_name": "Route13_Frlg",
+      "target_map_section": "MAPSEC_ROUTE_13",
+      "target_layout_id": "LAYOUT_ROUTE13",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+      "target_map_group_index": 37,
+      "target_map_num": 31,
+      "target_map_constant_value": 9503,
+      "source_struct_fields": {
+        "direction": "CONNECTION_SOUTH",
+        "offset": -48,
+        "mapGroup": 37,
+        "mapNum": 31
+      }
     },
     {
       "map": "MAP_ROUTE11",
       "offset": 60,
       "direction": "left",
-      "source_order_index": 2
+      "source_order_index": 2,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_WEST",
+      "source_direction_value": 4,
+      "target_map_id": "MAP_ROUTE11",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route11_Frlg",
+      "target_map_name": "Route11_Frlg",
+      "target_map_section": "MAPSEC_ROUTE_11",
+      "target_layout_id": "LAYOUT_ROUTE11",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+      "target_map_group_index": 37,
+      "target_map_num": 29,
+      "target_map_constant_value": 9501,
+      "source_struct_fields": {
+        "direction": "CONNECTION_WEST",
+        "offset": 60,
+        "mapGroup": 37,
+        "mapNum": 29
+      }
     }
   ],
   "block_id_stats": {
@@ -16077,19 +16142,79 @@
         "map": "MAP_LAVENDER_TOWN",
         "offset": 0,
         "direction": "up",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_NORTH",
+        "source_direction_value": 3,
+        "target_map_id": "MAP_LAVENDER_TOWN",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "LavenderTown_Frlg",
+        "target_map_name": "LavenderTown_Frlg",
+        "target_map_section": "MAPSEC_LAVENDER_TOWN",
+        "target_layout_id": "LAYOUT_LAVENDER_TOWN",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+        "target_map_group_index": 37,
+        "target_map_num": 4,
+        "target_map_constant_value": 9476,
+        "source_struct_fields": {
+          "direction": "CONNECTION_NORTH",
+          "offset": 0,
+          "mapGroup": 37,
+          "mapNum": 4
+        }
       },
       {
         "map": "MAP_ROUTE13",
         "offset": -48,
         "direction": "down",
-        "source_order_index": 1
+        "source_order_index": 1,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_SOUTH",
+        "source_direction_value": 2,
+        "target_map_id": "MAP_ROUTE13",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route13_Frlg",
+        "target_map_name": "Route13_Frlg",
+        "target_map_section": "MAPSEC_ROUTE_13",
+        "target_layout_id": "LAYOUT_ROUTE13",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+        "target_map_group_index": 37,
+        "target_map_num": 31,
+        "target_map_constant_value": 9503,
+        "source_struct_fields": {
+          "direction": "CONNECTION_SOUTH",
+          "offset": -48,
+          "mapGroup": 37,
+          "mapNum": 31
+        }
       },
       {
         "map": "MAP_ROUTE11",
         "offset": 60,
         "direction": "left",
-        "source_order_index": 2
+        "source_order_index": 2,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_WEST",
+        "source_direction_value": 4,
+        "target_map_id": "MAP_ROUTE11",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route11_Frlg",
+        "target_map_name": "Route11_Frlg",
+        "target_map_section": "MAPSEC_ROUTE_11",
+        "target_layout_id": "LAYOUT_ROUTE11",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+        "target_map_group_index": 37,
+        "target_map_num": 29,
+        "target_map_constant_value": 9501,
+        "source_struct_fields": {
+          "direction": "CONNECTION_WEST",
+          "offset": 60,
+          "mapGroup": 37,
+          "mapNum": 29
+        }
       }
     ],
     "object_events": [

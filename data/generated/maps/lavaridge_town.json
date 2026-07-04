@@ -35,7 +35,9 @@
     "height": 20,
     "layout_version": "emerald",
     "primary_tileset": "gTileset_General",
-    "secondary_tileset": "gTileset_Lavaridge"
+    "secondary_tileset": "gTileset_Lavaridge",
+    "border_width": null,
+    "border_height": null
   },
   "tilesets": {
     "primary": {
@@ -2302,7 +2304,10 @@
         0,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 400,
+    "declared_cell_count": 400,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     625,
@@ -2350,7 +2355,27 @@
       "map": "MAP_ROUTE112",
       "offset": -40,
       "direction": "right",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_EAST",
+      "source_direction_value": 5,
+      "target_map_id": "MAP_ROUTE112",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route112",
+      "target_map_name": "Route112",
+      "target_map_section": "MAPSEC_ROUTE_112",
+      "target_layout_id": "LAYOUT_ROUTE112",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 27,
+      "target_map_constant_value": 27,
+      "source_struct_fields": {
+        "direction": "CONNECTION_EAST",
+        "offset": -40,
+        "mapGroup": 0,
+        "mapNum": 27
+      }
     }
   ],
   "block_id_stats": {
@@ -2640,7 +2665,27 @@
         "map": "MAP_ROUTE112",
         "offset": -40,
         "direction": "right",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_EAST",
+        "source_direction_value": 5,
+        "target_map_id": "MAP_ROUTE112",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route112",
+        "target_map_name": "Route112",
+        "target_map_section": "MAPSEC_ROUTE_112",
+        "target_layout_id": "LAYOUT_ROUTE112",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 27,
+        "target_map_constant_value": 27,
+        "source_struct_fields": {
+          "direction": "CONNECTION_EAST",
+          "offset": -40,
+          "mapGroup": 0,
+          "mapNum": 27
+        }
       }
     ],
     "object_events": [

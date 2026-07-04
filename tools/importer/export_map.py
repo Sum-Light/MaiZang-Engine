@@ -17,6 +17,15 @@ MAPGRID_ELEVATION_SHIFT = 12
 MAP_OFFSET = 7
 GENERATED_BY = "tools/importer/export_map.py"
 BATCH_REPORT_RELATIVE_PATH = Path("overworld/map_batch_report.json")
+LAYOUT_OUTPUT_DIRECTORY = Path("layouts")
+CONNECTION_DIRECTIONS = {
+    "down": {"constant": "CONNECTION_SOUTH", "value": 2},
+    "up": {"constant": "CONNECTION_NORTH", "value": 3},
+    "left": {"constant": "CONNECTION_WEST", "value": 4},
+    "right": {"constant": "CONNECTION_EAST", "value": 5},
+    "dive": {"constant": "CONNECTION_DIVE", "value": 6},
+    "emerge": {"constant": "CONNECTION_EMERGE", "value": 7},
+}
 
 
 def camel_to_snake(value):
@@ -44,12 +53,52 @@ def find_layout(layouts, layout_id):
     raise ValueError("layout not found: {}".format(layout_id))
 
 
+def load_source_layouts(root):
+    return load_json(root / "data/layouts/layouts.json").get("layouts", [])
+
+
 def discover_map_folders(root):
     maps_root = root / "data/maps"
     return sorted(
         path.parent.name
         for path in maps_root.glob("*/map.json")
     )
+
+
+def load_map_group_index(root):
+    groups_path = root / "data/maps/map_groups.json"
+    groups_data = load_json(groups_path)
+    by_id = {}
+    by_folder = {}
+    for group_index, group_symbol in enumerate(groups_data.get("group_order", [])):
+        for map_num, map_folder in enumerate(groups_data.get(group_symbol, [])):
+            map_path = root / "data/maps" / map_folder / "map.json"
+            map_data = load_json(map_path)
+            map_id = map_data.get("id")
+            metadata = {
+                "map_id": map_id,
+                "map_folder": map_folder,
+                "map_name": map_data.get("name"),
+                "layout_id": map_data.get("layout"),
+                "region_map_section": map_data.get("region_map_section"),
+                "map_group_symbol": group_symbol,
+                "map_group_index": group_index,
+                "map_num": map_num,
+                "map_constant_value": map_num | (group_index << 8),
+                "source": {
+                    "map_groups_json": "data/maps/map_groups.json",
+                    "map_json": to_project_path(map_path.relative_to(root)),
+                    "mapjson_generator": "tools/mapjson/mapjson.cpp:generate_map_constants_header_text",
+                },
+            }
+            if map_id:
+                by_id[map_id] = metadata
+            by_folder[map_folder] = metadata
+    return {
+        "by_id": by_id,
+        "by_folder": by_folder,
+        "group_order": groups_data.get("group_order", []),
+    }
 
 
 def read_u16le_file(path):
@@ -66,9 +115,13 @@ def grid_from_flat(values, width, height, label):
     expected = width * height
     if len(values) != expected:
         raise ValueError("{} has {} entries, expected {}".format(label, len(values), expected))
+    return grid_from_sized_flat(values, width)
+
+
+def grid_from_sized_flat(values, width):
     return [
         values[row_start:row_start + width]
-        for row_start in range(0, expected, width)
+        for row_start in range(0, len(values), width)
     ]
 
 
@@ -117,13 +170,52 @@ def add_border_grid_metadata(border_grid, layout):
     return enriched
 
 
-def grid_map_values(unpacked, width, height, label):
-    return {
-        "raw": grid_from_flat(unpacked["raw"], width, height, label),
-        "metatile_ids": grid_from_flat(unpacked["metatile_ids"], width, height, label),
-        "collision": grid_from_flat(unpacked["collision"], width, height, label),
-        "elevation": grid_from_flat(unpacked["elevation"], width, height, label),
+def grid_map_values(unpacked, width, height, label, allow_mismatch=False):
+    expected = width * height
+    actual = len(unpacked["raw"])
+    if actual != expected and not allow_mismatch:
+        raise ValueError("{} has {} entries, expected {}".format(label, actual, expected))
+
+    sized = {}
+    overflow = {}
+    missing_count = max(0, expected - actual)
+    for key, values in unpacked.items():
+        clipped = list(values[:expected])
+        if len(clipped) < expected:
+            clipped.extend([None] * (expected - len(clipped)))
+        sized[key] = grid_from_sized_flat(clipped, width)
+        if actual > expected:
+            overflow[key] = values[expected:]
+
+    result = {
+        "raw": sized["raw"],
+        "metatile_ids": sized["metatile_ids"],
+        "collision": sized["collision"],
+        "elevation": sized["elevation"],
+        "source_entry_count": actual,
+        "declared_cell_count": expected,
+        "is_rectangular_exact": actual == expected,
     }
+    if overflow:
+        result["overflow_entries"] = overflow
+        result["overflow_entry_count"] = actual - expected
+    if missing_count:
+        result["missing_entry_count"] = missing_count
+    if actual != expected:
+        result["warnings"] = [
+            {
+                "code": "layout_blockdata_size_mismatch",
+                "status": "source_data_mismatch_preserved",
+                "message": "{} has {} u16 entries but layout declares {}x{} = {} cells".format(
+                    label,
+                    actual,
+                    width,
+                    height,
+                    expected,
+                ),
+            },
+        ]
+    return result
 
 
 def tileset_record(root, kind, symbol):
@@ -152,11 +244,108 @@ def build_block_stats(block_values):
     }
 
 
+def export_layout(root, layout, allow_grid_mismatch=False):
+    width = int(layout["width"])
+    height = int(layout["height"])
+    blockdata_path = root / layout["blockdata_filepath"]
+    border_path = root / layout["border_filepath"]
+
+    map_grid = unpack_map_grid_values(read_u16le_file(blockdata_path))
+    border_grid = add_border_grid_metadata(unpack_map_grid_values(read_u16le_file(border_path)), layout)
+    grid_values = grid_map_values(
+        map_grid,
+        width,
+        height,
+        layout["blockdata_filepath"],
+        allow_mismatch=allow_grid_mismatch,
+    )
+    warnings = grid_values.pop("warnings", [])
+
+    return {
+        "schema_version": 1,
+        "source": {
+            "project": "pokeemerald-expansion",
+            "layouts_json": "data/layouts/layouts.json",
+            "blockdata": to_project_path(layout["blockdata_filepath"]),
+            "border": to_project_path(layout["border_filepath"]),
+        },
+        "layout": {
+            "id": layout.get("id"),
+            "name": layout.get("name"),
+            "width": width,
+            "height": height,
+            "layout_version": layout.get("layout_version"),
+            "primary_tileset": layout.get("primary_tileset"),
+            "secondary_tileset": layout.get("secondary_tileset"),
+            "border_width": layout.get("border_width"),
+            "border_height": layout.get("border_height"),
+        },
+        "tilesets": {
+            "primary": tileset_record(root, "primary", layout.get("primary_tileset")),
+            "secondary": tileset_record(root, "secondary", layout.get("secondary_tileset")),
+        },
+        "map_grid_format": {
+            "source_header": "include/fieldmap.h",
+            "metatile_id_mask": MAPGRID_METATILE_ID_MASK,
+            "collision_mask": MAPGRID_COLLISION_MASK,
+            "elevation_mask": MAPGRID_ELEVATION_MASK,
+            "collision_shift": MAPGRID_COLLISION_SHIFT,
+            "elevation_shift": MAPGRID_ELEVATION_SHIFT,
+            "map_offset": MAP_OFFSET,
+        },
+        "block_ids": grid_values["metatile_ids"],
+        "map_grid": grid_values,
+        "border_block_ids": border_grid["metatile_ids"],
+        "border_grid": border_grid,
+        "block_id_stats": build_block_stats(map_grid["metatile_ids"]),
+        "raw_block_value_stats": build_block_stats(map_grid["raw"]),
+        "warnings": warnings,
+    }
+
+
 def _with_source_order(records):
     ordered = []
     for index, record in enumerate(records or []):
         enriched = dict(record)
         enriched["source_order_index"] = index
+        ordered.append(enriched)
+    return ordered
+
+
+def _connection_events_with_source_order(records, map_group_index):
+    ordered = []
+    by_id = map_group_index.get("by_id", {}) if isinstance(map_group_index, dict) else {}
+    for index, record in enumerate(records or []):
+        enriched = dict(record)
+        enriched["source_order_index"] = index
+        enriched["source_macro"] = "asm/macros/map.inc:connection direction, offset, map"
+        enriched["source_struct"] = "include/global.fieldmap.h:struct MapConnection"
+        direction = record.get("direction")
+        direction_info = CONNECTION_DIRECTIONS.get(direction)
+        if direction_info:
+            enriched["source_direction_constant"] = direction_info["constant"]
+            enriched["source_direction_value"] = direction_info["value"]
+        target_map_id = record.get("map")
+        enriched["target_map_id"] = target_map_id
+        target_metadata = by_id.get(target_map_id)
+        if target_metadata:
+            enriched["target_lookup_status"] = "resolved"
+            enriched["target_map_folder"] = target_metadata["map_folder"]
+            enriched["target_map_name"] = target_metadata["map_name"]
+            enriched["target_map_section"] = target_metadata["region_map_section"]
+            enriched["target_layout_id"] = target_metadata["layout_id"]
+            enriched["target_map_group_symbol"] = target_metadata["map_group_symbol"]
+            enriched["target_map_group_index"] = target_metadata["map_group_index"]
+            enriched["target_map_num"] = target_metadata["map_num"]
+            enriched["target_map_constant_value"] = target_metadata["map_constant_value"]
+            enriched["source_struct_fields"] = {
+                "direction": direction_info["constant"] if direction_info else direction,
+                "offset": record.get("offset"),
+                "mapGroup": target_metadata["map_group_index"],
+                "mapNum": target_metadata["map_num"],
+            }
+        else:
+            enriched["target_lookup_status"] = "missing_target_map_id"
         ordered.append(enriched)
     return ordered
 
@@ -172,9 +361,9 @@ def _object_events_with_source_order(records):
     return ordered
 
 
-def _event_records(map_data):
+def _event_records(map_data, map_group_index):
     return {
-        "connections": _with_source_order(map_data.get("connections", [])),
+        "connections": _connection_events_with_source_order(map_data.get("connections", []), map_group_index),
         "object_events": _object_events_with_source_order(map_data.get("object_events", [])),
         "warp_events": _with_source_order(map_data.get("warp_events", [])),
         "coord_events": _with_source_order(map_data.get("coord_events", [])),
@@ -182,23 +371,18 @@ def _event_records(map_data):
     }
 
 
-def export_map(root, map_folder):
+def export_map(root, map_folder, map_group_index=None):
     layouts_path = root / "data/layouts/layouts.json"
     map_path = root / "data/maps" / map_folder / "map.json"
     script_path = root / "data/maps" / map_folder / "scripts.inc"
 
-    layouts_data = load_json(layouts_path)
+    layouts_data = {"layouts": load_source_layouts(root)}
     map_data = load_json(map_path)
     layout = find_layout(layouts_data.get("layouts", []), map_data.get("layout"))
-
-    width = int(layout["width"])
-    height = int(layout["height"])
-    blockdata_path = root / layout["blockdata_filepath"]
-    border_path = root / layout["border_filepath"]
-
-    map_grid = unpack_map_grid_values(read_u16le_file(blockdata_path))
-    border_grid = add_border_grid_metadata(unpack_map_grid_values(read_u16le_file(border_path)), layout)
-    events = _event_records(map_data)
+    layout_export = export_layout(root, layout)
+    if map_group_index is None:
+        map_group_index = load_map_group_index(root)
+    events = _event_records(map_data, map_group_index)
 
     return {
         "schema_version": 1,
@@ -230,51 +414,27 @@ def export_map(root, map_folder):
             "shared_scripts_map": map_data.get("shared_scripts_map"),
             "connections_no_include": map_data.get("connections_no_include"),
         },
-        "layout": {
-            "id": layout.get("id"),
-            "name": layout.get("name"),
-            "width": width,
-            "height": height,
-            "layout_version": layout.get("layout_version"),
-            "primary_tileset": layout.get("primary_tileset"),
-            "secondary_tileset": layout.get("secondary_tileset"),
-        },
-        "tilesets": {
-            "primary": tileset_record(root, "primary", layout.get("primary_tileset")),
-            "secondary": tileset_record(root, "secondary", layout.get("secondary_tileset")),
-        },
-		"map_grid_format": {
-			"source_header": "include/fieldmap.h",
-			"metatile_id_mask": MAPGRID_METATILE_ID_MASK,
-			"collision_mask": MAPGRID_COLLISION_MASK,
-			"elevation_mask": MAPGRID_ELEVATION_MASK,
-			"collision_shift": MAPGRID_COLLISION_SHIFT,
-			"elevation_shift": MAPGRID_ELEVATION_SHIFT,
-			"map_offset": MAP_OFFSET,
-		},
-        "block_ids": grid_map_values(
-            map_grid,
-            width,
-            height,
-            layout["blockdata_filepath"],
-        )["metatile_ids"],
-        "map_grid": grid_map_values(
-            map_grid,
-            width,
-            height,
-            layout["blockdata_filepath"],
-        ),
-        "border_block_ids": border_grid["metatile_ids"],
-        "border_grid": border_grid,
+        "layout": layout_export["layout"],
+        "tilesets": layout_export["tilesets"],
+        "map_grid_format": layout_export["map_grid_format"],
+        "block_ids": layout_export["block_ids"],
+        "map_grid": layout_export["map_grid"],
+        "border_block_ids": layout_export["border_block_ids"],
+        "border_grid": layout_export["border_grid"],
         "connections": events["connections"],
-        "block_id_stats": build_block_stats(map_grid["metatile_ids"]),
-        "raw_block_value_stats": build_block_stats(map_grid["raw"]),
+        "block_id_stats": layout_export["block_id_stats"],
+        "raw_block_value_stats": layout_export["raw_block_value_stats"],
         "events": events,
     }
 
 
 def map_output_slug(exported, map_folder):
     return camel_to_snake(exported["map"]["name"] or map_folder)
+
+
+def layout_output_slug(exported_layout):
+    layout = exported_layout["layout"]
+    return camel_to_snake(layout.get("name") or layout.get("id") or "layout")
 
 
 def _unique_output_path(output_root, exported, map_folder, used_slugs):
@@ -291,6 +451,20 @@ def _unique_output_path(output_root, exported, map_folder, used_slugs):
     return output_root / "maps" / "{}.json".format(slug), base_slug, slug
 
 
+def _unique_layout_output_path(output_root, exported_layout, used_slugs):
+    base_slug = layout_output_slug(exported_layout)
+    slug = base_slug
+    if slug in used_slugs:
+        layout_id_slug = camel_to_snake(exported_layout["layout"].get("id") or base_slug)
+        slug = layout_id_slug
+        suffix = 2
+        while slug in used_slugs:
+            slug = "{}_{}".format(layout_id_slug, suffix)
+            suffix += 1
+    used_slugs[slug] = used_slugs.get(slug, 0) + 1
+    return output_root / LAYOUT_OUTPUT_DIRECTORY / "{}.json".format(slug), base_slug, slug
+
+
 def manifest_entry_for_map(exported, map_output):
     return {
         "id": exported["map"]["id"],
@@ -302,10 +476,28 @@ def manifest_entry_for_map(exported, map_output):
     }
 
 
+def manifest_entry_for_layout(exported_layout, layout_output, referenced_maps):
+    layout = exported_layout["layout"]
+    referenced_maps = list(referenced_maps or [])
+    return {
+        "id": layout["id"],
+        "name": layout["name"],
+        "path": to_project_path(layout_output),
+        "width": layout["width"],
+        "height": layout["height"],
+        "layout_version": layout.get("layout_version"),
+        "primary_tileset": layout.get("primary_tileset"),
+        "secondary_tileset": layout.get("secondary_tileset"),
+        "referenced_map_count": len(referenced_maps),
+        "referenced_maps": referenced_maps,
+    }
+
+
 def _map_report_row(exported, map_folder, map_output, output_slug, base_slug):
     events = exported.get("events", {})
     map_grid = exported.get("map_grid", {})
     border_grid = exported.get("border_grid", {})
+    connections = events.get("connections", [])
     return {
         "map_folder": map_folder,
         "id": exported["map"]["id"],
@@ -338,11 +530,20 @@ def _map_report_row(exported, map_folder, map_output, output_slug, base_slug):
             "connections_no_include": exported["map"].get("connections_no_include"),
         },
         "event_counts": {
-            "connections": len(events.get("connections", [])),
+            "connections": len(connections),
             "object_events": len(events.get("object_events", [])),
             "warp_events": len(events.get("warp_events", [])),
             "coord_events": len(events.get("coord_events", [])),
             "bg_events": len(events.get("bg_events", [])),
+        },
+        "connection_validation": {
+            "missing_target_count": sum(
+                1 for connection in connections if connection.get("target_lookup_status") != "resolved"
+            ),
+            "directions": sorted(
+                set(connection.get("source_direction_constant") for connection in connections)
+                - {None}
+            ),
         },
         "grid_format": {
             "raw_rows": len(map_grid.get("raw", [])),
@@ -353,8 +554,127 @@ def _map_report_row(exported, map_folder, map_output, output_slug, base_slug):
     }
 
 
+def _layout_report_row(exported_layout, layout_output, output_slug, base_slug, referenced_maps):
+    layout = exported_layout["layout"]
+    map_grid = exported_layout.get("map_grid", {})
+    border_grid = exported_layout.get("border_grid", {})
+    referenced_maps = list(referenced_maps or [])
+    return {
+        "id": layout["id"],
+        "name": layout["name"],
+        "path": to_project_path(layout_output),
+        "output_slug": output_slug,
+        "base_slug": base_slug,
+        "width": layout["width"],
+        "height": layout["height"],
+        "layout_version": layout.get("layout_version"),
+        "primary_tileset": layout.get("primary_tileset"),
+        "secondary_tileset": layout.get("secondary_tileset"),
+        "map_grid_entry_count": exported_layout["block_id_stats"]["count"],
+        "unique_metatile_id_count": exported_layout["block_id_stats"]["unique_count"],
+        "border_entry_count": len(border_grid.get("raw", [])),
+        "warning_count": len(exported_layout.get("warnings", [])),
+        "warnings": exported_layout.get("warnings", []),
+        "referenced_map_count": len(referenced_maps),
+        "referenced_maps": referenced_maps,
+        "source": exported_layout["source"],
+        "grid_format": {
+            "raw_rows": len(map_grid.get("raw", [])),
+            "metatile_id_rows": len(map_grid.get("metatile_ids", [])),
+            "collision_rows": len(map_grid.get("collision", [])),
+            "elevation_rows": len(map_grid.get("elevation", [])),
+        },
+    }
+
+
+def _map_layout_references(rows):
+    references = {}
+    for row in rows:
+        layout_id = row.get("layout_id")
+        map_id = row.get("id")
+        if not layout_id or not map_id:
+            continue
+        references.setdefault(layout_id, []).append(map_id)
+    for layout_id in references:
+        references[layout_id] = sorted(references[layout_id])
+    return references
+
+
+def build_layout_batch_export(source_root, output_root, referenced_maps_by_layout=None, write_outputs=False):
+    source_layouts = load_source_layouts(source_root)
+    referenced_maps_by_layout = referenced_maps_by_layout or {}
+    used_slugs = {}
+    exported_entries = []
+    rows = []
+    failures = []
+
+    for layout in source_layouts:
+        layout_id = layout.get("id")
+        try:
+            exported_layout = export_layout(source_root, layout, allow_grid_mismatch=True)
+            layout_output, base_slug, output_slug = _unique_layout_output_path(
+                output_root,
+                exported_layout,
+                used_slugs,
+            )
+            if write_outputs:
+                write_json(layout_output, exported_layout)
+            referenced_maps = referenced_maps_by_layout.get(layout_id, [])
+            exported_entries.append(manifest_entry_for_layout(exported_layout, layout_output, referenced_maps))
+            rows.append(_layout_report_row(exported_layout, layout_output, output_slug, base_slug, referenced_maps))
+        except Exception as error:
+            failures.append({
+                "layout_id": layout_id,
+                "layout_name": layout.get("name"),
+                "error": str(error),
+            })
+
+    ids = [entry.get("id") for entry in exported_entries if entry.get("id")]
+    paths = [entry.get("path") for entry in exported_entries if entry.get("path")]
+    duplicate_ids = sorted(key for key, value in Counter(ids).items() if value > 1)
+    duplicate_paths = sorted(key for key, value in Counter(paths).items() if value > 1)
+    duplicate_base_slugs = sorted(key for key, value in Counter(row["base_slug"] for row in rows).items() if value > 1)
+    referenced_layout_ids = sorted(set(referenced_maps_by_layout) & set(ids))
+    standalone_layout_ids = sorted(set(ids) - set(referenced_layout_ids))
+    unexported_layout_ids = sorted(
+        set(layout.get("id") for layout in source_layouts if layout.get("id")) - set(ids)
+    )
+
+    stats = {
+        "source_layout_count": len([layout for layout in source_layouts if layout.get("id")]),
+        "exported_layout_count": len(exported_entries),
+        "failed_layout_count": len(failures),
+        "map_referenced_layout_count": len(referenced_layout_ids),
+        "standalone_layout_count": len(standalone_layout_ids),
+        "unexported_source_layout_count": len(unexported_layout_ids),
+        "layout_warning_count": sum(row.get("warning_count", 0) for row in rows),
+        "duplicate_id_count": len(duplicate_ids),
+        "duplicate_output_path_count": len(duplicate_paths),
+        "duplicate_base_slug_count": len(duplicate_base_slugs),
+    }
+
+    return {
+        "stats": stats,
+        "duplicates": {
+            "ids": duplicate_ids,
+            "paths": duplicate_paths,
+            "base_slugs": duplicate_base_slugs,
+        },
+        "coverage": {
+            "source_layout_ids": [layout.get("id") for layout in source_layouts if layout.get("id")],
+            "exported_layout_ids": sorted(ids),
+            "map_referenced_layout_ids": referenced_layout_ids,
+            "standalone_layout_ids": standalone_layout_ids,
+            "unexported_source_layout_ids": unexported_layout_ids,
+        },
+        "failures": failures,
+        "layouts": rows,
+    }, exported_entries
+
+
 def build_map_batch_export(source_root, output_root, write_outputs=False):
     map_folders = discover_map_folders(source_root)
+    map_group_index = load_map_group_index(source_root)
     used_slugs = {}
     exported_entries = []
     rows = []
@@ -369,7 +689,7 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
 
     for map_folder in map_folders:
         try:
-            exported = export_map(source_root, map_folder)
+            exported = export_map(source_root, map_folder, map_group_index=map_group_index)
             map_output, base_slug, output_slug = _unique_output_path(
                 output_root,
                 exported,
@@ -392,31 +712,49 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
     ids = [entry.get("id") for entry in exported_entries if entry.get("id")]
     names = [entry.get("name") for entry in exported_entries if entry.get("name")]
     paths = [entry.get("path") for entry in exported_entries if entry.get("path")]
-    layout_ids = [entry.get("layout_id") for entry in exported_entries if entry.get("layout_id")]
     duplicate_ids = sorted(key for key, value in Counter(ids).items() if value > 1)
     duplicate_names = sorted(key for key, value in Counter(names).items() if value > 1)
     duplicate_paths = sorted(key for key, value in Counter(paths).items() if value > 1)
     duplicate_base_slugs = sorted(key for key, value in Counter(row["base_slug"] for row in rows).items() if value > 1)
+    missing_connection_target_count = sum(
+        row["connection_validation"]["missing_target_count"]
+        for row in rows
+    )
 
-    source_layouts = load_json(source_root / "data/layouts/layouts.json").get("layouts", [])
-    source_layout_ids = [
-        layout.get("id")
-        for layout in source_layouts
-        if layout.get("id")
-    ]
-    exported_layout_ids = sorted(set(layout_ids))
-    unexported_layout_ids = sorted(set(source_layout_ids) - set(exported_layout_ids))
+    map_references_by_layout = _map_layout_references(rows)
+    layout_report, exported_layout_entries = build_layout_batch_export(
+        source_root,
+        output_root,
+        referenced_maps_by_layout=map_references_by_layout,
+        write_outputs=write_outputs,
+    )
+    layout_stats = layout_report["stats"]
+    source_layout_ids = layout_report["coverage"]["source_layout_ids"]
+    exported_layout_ids = layout_report["coverage"]["exported_layout_ids"]
+    map_referenced_layout_ids = layout_report["coverage"]["map_referenced_layout_ids"]
+    standalone_layout_ids = layout_report["coverage"]["standalone_layout_ids"]
+    unexported_layout_ids = layout_report["coverage"]["unexported_source_layout_ids"]
+
     stats = {
         "source_map_count": len(map_folders),
         "exported_map_count": len(exported_entries),
         "failed_map_count": len(failures),
-        "source_layout_count": len(source_layout_ids),
+        "source_layout_count": layout_stats["source_layout_count"],
+        "exported_layout_count": layout_stats["exported_layout_count"],
         "exported_unique_layout_count": len(exported_layout_ids),
+        "failed_layout_count": layout_stats["failed_layout_count"],
+        "map_referenced_layout_count": len(map_referenced_layout_ids),
+        "standalone_layout_count": len(standalone_layout_ids),
         "unexported_source_layout_count": len(unexported_layout_ids),
+        "layout_warning_count": layout_stats["layout_warning_count"],
         "duplicate_id_count": len(duplicate_ids),
         "duplicate_name_count": len(duplicate_names),
         "duplicate_output_path_count": len(duplicate_paths),
         "duplicate_base_slug_count": len(duplicate_base_slugs),
+        "duplicate_layout_id_count": layout_stats["duplicate_id_count"],
+        "duplicate_layout_output_path_count": layout_stats["duplicate_output_path_count"],
+        "duplicate_layout_base_slug_count": layout_stats["duplicate_base_slug_count"],
+        "missing_connection_target_count": missing_connection_target_count,
         "event_totals": event_totals,
     }
 
@@ -433,7 +771,11 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
             "map_header_generation": "tools/mapjson/mapjson.cpp:generate_map_header_text",
             "event_generation": "tools/mapjson/mapjson.cpp:generate_map_events_text",
             "event_constant_generation": "tools/mapjson/mapjson.cpp:process_event_constants",
+            "connection_macro": "asm/macros/map.inc:connection direction, offset, map",
+            "connection_generation": "tools/mapjson/mapjson.cpp:generate_map_connections_text",
+            "map_group_constants": "tools/mapjson/mapjson.cpp:generate_map_constants_header_text",
             "map_header_struct": "include/global.fieldmap.h:struct MapHeader",
+            "map_connection_struct": "include/global.fieldmap.h:struct MapConnection",
             "map_grid_format": "include/fieldmap.h MAPGRID bit masks",
         },
         "godot_policy": {
@@ -443,6 +785,7 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
         },
         "output": {
             "map_directory": to_project_path(output_root / "maps"),
+            "layout_directory": to_project_path(output_root / LAYOUT_OUTPUT_DIRECTORY),
             "report_path": to_project_path(output_root / BATCH_REPORT_RELATIVE_PATH),
             "manifest_path": to_project_path(output_root / "import_manifest.json"),
             "writes_enabled": bool(write_outputs),
@@ -456,11 +799,18 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
         },
         "layout_coverage": {
             "source_layout_ids": source_layout_ids,
+            "exported_layout_ids": exported_layout_ids,
             "exported_unique_layout_ids": exported_layout_ids,
+            "map_referenced_layout_ids": map_referenced_layout_ids,
+            "standalone_layout_ids": standalone_layout_ids,
             "unexported_source_layout_ids": unexported_layout_ids,
         },
-        "failures": failures,
+        "failures": {
+            "maps": failures,
+            "layouts": layout_report["failures"],
+        },
         "maps": rows,
+        "layouts": layout_report["layouts"],
         "unsupported": [
             {
                 "code": "audio_metadata_only",
@@ -472,14 +822,13 @@ def build_map_batch_export(source_root, output_root, write_outputs=False):
                 "status": "unsupported",
                 "note": "This batch map export covers source map JSON/layout grid data only; tileset animation playback remains a separate runtime/presentation task.",
             },
-            {
-                "code": "standalone_layout_export_pending",
-                "status": "unsupported",
-                "note": "Layouts not referenced by any data/maps/*/map.json record are reported but not exported by the map batch entry point.",
-            },
+        ],
+        "notes": [
+            "All source layouts are exported independently under data/generated/layouts; map JSON records keep embedded layout grid data for current runtime compatibility.",
+            "Standalone layouts are exported even when no data/maps/*/map.json header references them.",
         ],
     }
-    return report, exported_entries
+    return report, exported_entries, exported_layout_entries
 
 
 def write_json(path, data):
@@ -537,6 +886,7 @@ def _merge_manifest_entries(existing_entries, exported_entries, preferred_fields
 def write_manifest(
     path,
     exported_maps=None,
+    exported_layouts=None,
     exported_tilesets=None,
     exported_scripts=None,
     exported_texts=None,
@@ -568,6 +918,11 @@ def write_manifest(
         _merge_manifest_entries(existing.get("tilesets", []), exported_tilesets, ["map", "path"])
         if exported_tilesets is not None
         else existing.get("tilesets", [])
+    )
+    layouts = (
+        _merge_manifest_entries(existing.get("layouts", []), exported_layouts, ["id", "name", "path"])
+        if exported_layouts is not None
+        else existing.get("layouts", [])
     )
     scripts = (
         _merge_manifest_entries(existing.get("scripts", []), exported_scripts, ["map", "path"])
@@ -614,6 +969,8 @@ def write_manifest(
     )
     if maps:
         manifest["maps"] = maps
+    if layouts:
+        manifest["layouts"] = layouts
     if tilesets:
         manifest["tilesets"] = tilesets
     if scripts:
@@ -649,7 +1006,7 @@ def main(argv):
     output_root = args.output_root or Path(config.get("generated_data_root", "data/generated"))
 
     if args.all:
-        report, exported_entries = build_map_batch_export(
+        report, exported_entries, exported_layout_entries = build_map_batch_export(
             source_root,
             output_root,
             write_outputs=True,
@@ -659,6 +1016,7 @@ def main(argv):
         write_manifest(
             output_root / "import_manifest.json",
             exported_maps=exported_entries,
+            exported_layouts=exported_layout_entries,
             exported_overworld_reports=[
                 {
                     "category": "overworld_map_batch_report",
@@ -668,6 +1026,10 @@ def main(argv):
                     "failed_map_count": report["stats"]["failed_map_count"],
                     "source_layout_count": report["stats"]["source_layout_count"],
                     "exported_unique_layout_count": report["stats"]["exported_unique_layout_count"],
+                    "exported_layout_count": report["stats"]["exported_layout_count"],
+                    "map_referenced_layout_count": report["stats"]["map_referenced_layout_count"],
+                    "standalone_layout_count": report["stats"]["standalone_layout_count"],
+                    "failed_layout_count": report["stats"]["failed_layout_count"],
                 },
             ],
             generator=GENERATED_BY,

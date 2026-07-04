@@ -35,7 +35,9 @@
     "height": 20,
     "layout_version": "frlg",
     "primary_tileset": "gTileset_General_Frlg",
-    "secondary_tileset": "gTileset_FuchsiaCity"
+    "secondary_tileset": "gTileset_FuchsiaCity",
+    "border_width": 2,
+    "border_height": 2
   },
   "tilesets": {
     "primary": {
@@ -7502,7 +7504,10 @@
         0,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 1440,
+    "declared_cell_count": 1440,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     28,
@@ -7550,13 +7555,53 @@
       "map": "MAP_FUCHSIA_CITY",
       "offset": -10,
       "direction": "left",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_WEST",
+      "source_direction_value": 4,
+      "target_map_id": "MAP_FUCHSIA_CITY",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "FuchsiaCity_Frlg",
+      "target_map_name": "FuchsiaCity_Frlg",
+      "target_map_section": "MAPSEC_FUCHSIA_CITY",
+      "target_layout_id": "LAYOUT_FUCHSIA_CITY",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+      "target_map_group_index": 37,
+      "target_map_num": 7,
+      "target_map_constant_value": 9479,
+      "source_struct_fields": {
+        "direction": "CONNECTION_WEST",
+        "offset": -10,
+        "mapGroup": 37,
+        "mapNum": 7
+      }
     },
     {
       "map": "MAP_ROUTE14",
       "offset": -40,
       "direction": "right",
-      "source_order_index": 1
+      "source_order_index": 1,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_EAST",
+      "source_direction_value": 5,
+      "target_map_id": "MAP_ROUTE14",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route14_Frlg",
+      "target_map_name": "Route14_Frlg",
+      "target_map_section": "MAPSEC_ROUTE_14",
+      "target_layout_id": "LAYOUT_ROUTE14",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+      "target_map_group_index": 37,
+      "target_map_num": 32,
+      "target_map_constant_value": 9504,
+      "source_struct_fields": {
+        "direction": "CONNECTION_EAST",
+        "offset": -40,
+        "mapGroup": 37,
+        "mapNum": 32
+      }
     }
   ],
   "block_id_stats": {
@@ -7709,13 +7754,53 @@
         "map": "MAP_FUCHSIA_CITY",
         "offset": -10,
         "direction": "left",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_WEST",
+        "source_direction_value": 4,
+        "target_map_id": "MAP_FUCHSIA_CITY",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "FuchsiaCity_Frlg",
+        "target_map_name": "FuchsiaCity_Frlg",
+        "target_map_section": "MAPSEC_FUCHSIA_CITY",
+        "target_layout_id": "LAYOUT_FUCHSIA_CITY",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+        "target_map_group_index": 37,
+        "target_map_num": 7,
+        "target_map_constant_value": 9479,
+        "source_struct_fields": {
+          "direction": "CONNECTION_WEST",
+          "offset": -10,
+          "mapGroup": 37,
+          "mapNum": 7
+        }
       },
       {
         "map": "MAP_ROUTE14",
         "offset": -40,
         "direction": "right",
-        "source_order_index": 1
+        "source_order_index": 1,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_EAST",
+        "source_direction_value": 5,
+        "target_map_id": "MAP_ROUTE14",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route14_Frlg",
+        "target_map_name": "Route14_Frlg",
+        "target_map_section": "MAPSEC_ROUTE_14",
+        "target_layout_id": "LAYOUT_ROUTE14",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+        "target_map_group_index": 37,
+        "target_map_num": 32,
+        "target_map_constant_value": 9504,
+        "source_struct_fields": {
+          "direction": "CONNECTION_EAST",
+          "offset": -40,
+          "mapGroup": 37,
+          "mapNum": 32
+        }
       }
     ],
     "object_events": [

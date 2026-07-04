@@ -300,6 +300,45 @@ def count_generated_maps(project_root, map_entries):
     return event_totals, map_summaries
 
 
+def count_generated_layouts(project_root, layout_entries):
+    totals = {
+        "layout_count": len(layout_entries),
+        "missing_layout_file_count": 0,
+        "map_grid_entry_count": 0,
+        "border_entry_count": 0,
+        "warning_array_count": 0,
+    }
+    layout_summaries = []
+    for entry in layout_entries:
+        data = load_generated_json(project_root, entry.get("path", ""))
+        if data is None:
+            totals["missing_layout_file_count"] += 1
+            continue
+        layout = data.get("layout", {})
+        block_stats = data.get("block_id_stats", {})
+        border_grid = data.get("border_grid", {})
+        warning_count = count_recursive_warning_arrays(data)
+        summary = {
+            "id": entry.get("id") or layout.get("id"),
+            "name": entry.get("name") or layout.get("name"),
+            "path": entry.get("path"),
+            "width": layout.get("width"),
+            "height": layout.get("height"),
+            "layout_version": layout.get("layout_version"),
+            "primary_tileset": layout.get("primary_tileset"),
+            "secondary_tileset": layout.get("secondary_tileset"),
+            "map_grid_entry_count": int(block_stats.get("count", 0)),
+            "border_entry_count": len_list(border_grid.get("raw")),
+            "referenced_map_count": int(entry.get("referenced_map_count", 0)),
+            "warning_array_count": warning_count,
+        }
+        layout_summaries.append(summary)
+        totals["map_grid_entry_count"] += summary["map_grid_entry_count"]
+        totals["border_entry_count"] += summary["border_entry_count"]
+        totals["warning_array_count"] += warning_count
+    return totals, layout_summaries
+
+
 def count_generated_tilesets(project_root, tileset_entries):
     totals = {
         "tileset_record_count": len(tileset_entries),
@@ -390,6 +429,7 @@ def build_export(source_root, output_root):
     source_counts = build_source_counts(source_root)
 
     map_entries = manifest.get("maps", [])
+    layout_entries = manifest.get("layouts", [])
     tileset_entries = manifest.get("tilesets", [])
     script_entries = manifest.get("scripts", [])
     object_sprite_entries = manifest.get("object_event_sprites", [])
@@ -397,6 +437,7 @@ def build_export(source_root, output_root):
     shared_script_bundle_count = sum(1 for entry in script_entries if entry.get("scope") == "shared")
 
     map_event_totals, map_summaries = count_generated_maps(project_root, map_entries)
+    layout_totals, layout_summaries = count_generated_layouts(project_root, layout_entries)
     tileset_totals, tileset_summaries = count_generated_tilesets(project_root, tileset_entries)
     script_totals, script_summaries = sum_script_bundles(project_root, script_entries)
 
@@ -405,6 +446,7 @@ def build_export(source_root, output_root):
         for entry in map_entries
         if entry.get("layout_id")
     })
+    generated_layout_count = layout_totals["layout_count"] if layout_entries else len(unique_layouts)
 
     object_sprite_data = None
     object_sprite_count = 0
@@ -423,7 +465,7 @@ def build_export(source_root, output_root):
         + manifest.get("tilesets", [])
         + manifest.get("object_event_sprites", [])
     )
-    generated_warning_array_count = tileset_totals["warning_array_count"]
+    generated_warning_array_count = layout_totals["warning_array_count"] + tileset_totals["warning_array_count"]
     if object_sprite_data:
         generated_warning_array_count += count_recursive_warning_arrays(object_sprite_data)
     warning_count = manifest_warning_count + generated_warning_array_count
@@ -439,7 +481,13 @@ def build_export(source_root, output_root):
 
     generated_counts = {
         "map_count": len(map_entries),
-        "layout_count": len(unique_layouts),
+        "layout_count": generated_layout_count,
+        "map_referenced_layout_count": len(unique_layouts),
+        "standalone_layout_count": max(0, generated_layout_count - len(unique_layouts)),
+        "missing_layout_file_count": layout_totals["missing_layout_file_count"],
+        "layout_map_grid_entry_count": layout_totals["map_grid_entry_count"],
+        "layout_border_entry_count": layout_totals["border_entry_count"],
+        "layout_warning_count": layout_totals["warning_array_count"],
         "tileset_record_count": tileset_totals["tileset_record_count"],
         "unique_primary_tileset_count": tileset_totals["unique_primary_tileset_count"],
         "unique_secondary_tileset_count": tileset_totals["unique_secondary_tileset_count"],
@@ -517,6 +565,7 @@ def build_export(source_root, output_root):
         "unsupported": explicit_unsupported,
         "details": {
             "maps": map_summaries,
+            "layouts": layout_summaries,
             "tilesets": tileset_summaries,
             "scripts": script_summaries,
             "movement_op_counts": script_totals["movement_op_counts"],
@@ -572,7 +621,7 @@ def build_inputs(source_root, project_root, manifest_path, manifest):
         source_root / "src/data/object_events/object_event_graphics_info.h",
         manifest_path,
     ]
-    for section in ["maps", "tilesets", "scripts", "object_event_sprites", "overworld_reports"]:
+    for section in ["maps", "layouts", "tilesets", "scripts", "object_event_sprites", "overworld_reports"]:
         for entry in manifest.get(section, []):
             path_text = entry.get("path")
             if path_text:
@@ -596,6 +645,9 @@ def manifest_entry_for(exported, output_path):
         "source_map_count": source["map_count"],
         "generated_map_count": generated["map_count"],
         "generated_layout_count": generated["layout_count"],
+        "map_referenced_layout_count": generated["map_referenced_layout_count"],
+        "standalone_layout_count": generated["standalone_layout_count"],
+        "missing_layout_file_count": generated["missing_layout_file_count"],
         "generated_tileset_record_count": generated["tileset_record_count"],
         "generated_script_count": generated["script_count"],
         "generated_movement_action_count": generated["movement_action_count"],

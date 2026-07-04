@@ -1,0 +1,565 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/BattlePyramidSquare08/map.bin",
+    "border": "data/layouts/BattlePyramidSquare08/border.bin"
+  },
+  "layout": {
+    "id": "LAYOUT_BATTLE_PYRAMID_SQUARE08",
+    "name": "BattlePyramidSquare08_Layout",
+    "width": 8,
+    "height": 8,
+    "layout_version": "emerald",
+    "primary_tileset": "gTileset_Building",
+    "secondary_tileset": "gTileset_BattlePyramid",
+    "border_width": null,
+    "border_height": null
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_Building",
+      "kind": "primary",
+      "directory": "building",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/building/tiles.png",
+          "exists": true,
+          "size": 1575
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/building/metatiles.bin",
+          "exists": true,
+          "size": 128
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/building/metatile_attributes.bin",
+          "exists": true,
+          "size": 16
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_BattlePyramid",
+      "kind": "secondary",
+      "directory": "battle_pyramid",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/battle_pyramid/tiles.png",
+          "exists": true,
+          "size": 3256
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/battle_pyramid/metatiles.bin",
+          "exists": true,
+          "size": 3536
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/battle_pyramid/metatile_attributes.bin",
+          "exists": true,
+          "size": 442
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      653,
+      653,
+      628,
+      628,
+      628,
+      628,
+      618,
+      653
+    ],
+    [
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653
+    ],
+    [
+      627,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      609
+    ],
+    [
+      627,
+      653,
+      653,
+      654,
+      653,
+      653,
+      653,
+      627
+    ],
+    [
+      627,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      627
+    ],
+    [
+      627,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      627
+    ],
+    [
+      625,
+      653,
+      653,
+      653,
+      653,
+      653,
+      653,
+      625
+    ],
+    [
+      653,
+      653,
+      616,
+      628,
+      628,
+      618,
+      653,
+      653
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        17037,
+        17037,
+        1652,
+        1652,
+        1652,
+        1652,
+        1642,
+        17037
+      ],
+      [
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037
+      ],
+      [
+        1651,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        1633
+      ],
+      [
+        1651,
+        17037,
+        17037,
+        654,
+        17037,
+        17037,
+        17037,
+        1651
+      ],
+      [
+        1651,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        1651
+      ],
+      [
+        1651,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        1651
+      ],
+      [
+        1649,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        17037,
+        1649
+      ],
+      [
+        17037,
+        17037,
+        1640,
+        1652,
+        1652,
+        1642,
+        653,
+        17037
+      ]
+    ],
+    "metatile_ids": [
+      [
+        653,
+        653,
+        628,
+        628,
+        628,
+        628,
+        618,
+        653
+      ],
+      [
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653
+      ],
+      [
+        627,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        609
+      ],
+      [
+        627,
+        653,
+        653,
+        654,
+        653,
+        653,
+        653,
+        627
+      ],
+      [
+        627,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        627
+      ],
+      [
+        627,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        627
+      ],
+      [
+        625,
+        653,
+        653,
+        653,
+        653,
+        653,
+        653,
+        625
+      ],
+      [
+        653,
+        653,
+        616,
+        628,
+        628,
+        618,
+        653,
+        653
+      ]
+    ],
+    "collision": [
+      [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ]
+    ],
+    "elevation": [
+      [
+        4,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        0
+      ],
+      [
+        0,
+        4,
+        4,
+        0,
+        4,
+        4,
+        4,
+        0
+      ],
+      [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        0
+      ],
+      [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        0
+      ],
+      [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        0
+      ],
+      [
+        4,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+      ]
+    ],
+    "source_entry_count": 64,
+    "declared_cell_count": 64,
+    "is_rectangular_exact": true
+  },
+  "border_block_ids": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "border_grid": {
+    "raw": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "metatile_ids": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "emerald_2x2_parity",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_IMPASSABLE",
+    "layout_version": "emerald"
+  },
+  "block_id_stats": {
+    "count": 64,
+    "unique_count": 8,
+    "min": 609,
+    "max": 654,
+    "unique_ids": [
+      609,
+      616,
+      618,
+      625,
+      627,
+      628,
+      653,
+      654
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 64,
+    "unique_count": 9,
+    "min": 653,
+    "max": 17037,
+    "unique_ids": [
+      653,
+      654,
+      1633,
+      1640,
+      1642,
+      1649,
+      1651,
+      1652,
+      17037
+    ]
+  },
+  "warnings": []
+}

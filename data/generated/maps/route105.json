@@ -35,7 +35,9 @@
     "height": 80,
     "layout_version": "emerald",
     "primary_tileset": "gTileset_General",
-    "secondary_tileset": "gTileset_Dewford"
+    "secondary_tileset": "gTileset_Dewford",
+    "border_width": null,
+    "border_height": null
   },
   "tilesets": {
     "primary": {
@@ -16902,7 +16904,10 @@
         1,
         1
       ]
-    ]
+    ],
+    "source_entry_count": 3200,
+    "declared_cell_count": 3200,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     368,
@@ -16950,19 +16955,79 @@
       "map": "MAP_ROUTE104",
       "offset": 0,
       "direction": "up",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_NORTH",
+      "source_direction_value": 3,
+      "target_map_id": "MAP_ROUTE104",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route104",
+      "target_map_name": "Route104",
+      "target_map_section": "MAPSEC_ROUTE_104",
+      "target_layout_id": "LAYOUT_ROUTE104",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 19,
+      "target_map_constant_value": 19,
+      "source_struct_fields": {
+        "direction": "CONNECTION_NORTH",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 19
+      }
     },
     {
       "map": "MAP_ROUTE106",
       "offset": 0,
       "direction": "down",
-      "source_order_index": 1
+      "source_order_index": 1,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_SOUTH",
+      "source_direction_value": 2,
+      "target_map_id": "MAP_ROUTE106",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route106",
+      "target_map_name": "Route106",
+      "target_map_section": "MAPSEC_ROUTE_106",
+      "target_layout_id": "LAYOUT_ROUTE106",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 21,
+      "target_map_constant_value": 21,
+      "source_struct_fields": {
+        "direction": "CONNECTION_SOUTH",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 21
+      }
     },
     {
       "map": "MAP_UNDERWATER_ROUTE105",
       "offset": 0,
       "direction": "dive",
-      "source_order_index": 2
+      "source_order_index": 2,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_DIVE",
+      "source_direction_value": 6,
+      "target_map_id": "MAP_UNDERWATER_ROUTE105",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Underwater_Route105",
+      "target_map_name": "Underwater_Route105",
+      "target_map_section": "MAPSEC_UNDERWATER_105",
+      "target_layout_id": "LAYOUT_UNDERWATER_ROUTE105",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 55,
+      "target_map_constant_value": 55,
+      "source_struct_fields": {
+        "direction": "CONNECTION_DIVE",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 55
+      }
     }
   ],
   "block_id_stats": {
@@ -17127,19 +17192,79 @@
         "map": "MAP_ROUTE104",
         "offset": 0,
         "direction": "up",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_NORTH",
+        "source_direction_value": 3,
+        "target_map_id": "MAP_ROUTE104",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route104",
+        "target_map_name": "Route104",
+        "target_map_section": "MAPSEC_ROUTE_104",
+        "target_layout_id": "LAYOUT_ROUTE104",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 19,
+        "target_map_constant_value": 19,
+        "source_struct_fields": {
+          "direction": "CONNECTION_NORTH",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 19
+        }
       },
       {
         "map": "MAP_ROUTE106",
         "offset": 0,
         "direction": "down",
-        "source_order_index": 1
+        "source_order_index": 1,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_SOUTH",
+        "source_direction_value": 2,
+        "target_map_id": "MAP_ROUTE106",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route106",
+        "target_map_name": "Route106",
+        "target_map_section": "MAPSEC_ROUTE_106",
+        "target_layout_id": "LAYOUT_ROUTE106",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 21,
+        "target_map_constant_value": 21,
+        "source_struct_fields": {
+          "direction": "CONNECTION_SOUTH",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 21
+        }
       },
       {
         "map": "MAP_UNDERWATER_ROUTE105",
         "offset": 0,
         "direction": "dive",
-        "source_order_index": 2
+        "source_order_index": 2,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_DIVE",
+        "source_direction_value": 6,
+        "target_map_id": "MAP_UNDERWATER_ROUTE105",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Underwater_Route105",
+        "target_map_name": "Underwater_Route105",
+        "target_map_section": "MAPSEC_UNDERWATER_105",
+        "target_layout_id": "LAYOUT_UNDERWATER_ROUTE105",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 55,
+        "target_map_constant_value": 55,
+        "source_struct_fields": {
+          "direction": "CONNECTION_DIVE",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 55
+        }
       }
     ],
     "object_events": [

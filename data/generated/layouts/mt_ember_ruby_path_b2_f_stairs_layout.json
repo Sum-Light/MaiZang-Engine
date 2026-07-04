@@ -1,0 +1,486 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/MtEmber_RubyPath_B2F_Stairs_Frlg/map.bin",
+    "border": "data/layouts/MtEmber_RubyPath_B2F_Stairs_Frlg/border.bin"
+  },
+  "layout": {
+    "id": "LAYOUT_MT_EMBER_RUBY_PATH_B2F_STAIRS",
+    "name": "MtEmber_RubyPath_B2F_Stairs_Layout",
+    "width": 8,
+    "height": 6,
+    "layout_version": "frlg",
+    "primary_tileset": "gTileset_General_Frlg",
+    "secondary_tileset": "gTileset_MtEmber",
+    "border_width": 2,
+    "border_height": 2
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_General_Frlg",
+      "kind": "primary",
+      "directory": "general__frlg",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/general__frlg/tiles.png",
+          "exists": false,
+          "size": null
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/general__frlg/metatiles.bin",
+          "exists": false,
+          "size": null
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/general__frlg/metatile_attributes.bin",
+          "exists": false,
+          "size": null
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_MtEmber",
+      "kind": "secondary",
+      "directory": "mt_ember",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/mt_ember/tiles.png",
+          "exists": false,
+          "size": null
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/mt_ember/metatiles.bin",
+          "exists": false,
+          "size": null
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/mt_ember/metatile_attributes.bin",
+          "exists": false,
+          "size": null
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      657,
+      657,
+      657,
+      809,
+      667,
+      665,
+      665,
+      668
+    ],
+    [
+      657,
+      811,
+      657,
+      657,
+      658,
+      641,
+      687,
+      656
+    ],
+    [
+      719,
+      657,
+      657,
+      667,
+      666,
+      641,
+      641,
+      656
+    ],
+    [
+      667,
+      655,
+      665,
+      666,
+      641,
+      641,
+      648,
+      649
+    ],
+    [
+      658,
+      662,
+      641,
+      641,
+      641,
+      641,
+      656,
+      719
+    ],
+    [
+      649,
+      649,
+      808,
+      649,
+      649,
+      810,
+      727,
+      657
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        1681,
+        1681,
+        1681,
+        1833,
+        1691,
+        1689,
+        1689,
+        1692
+      ],
+      [
+        1681,
+        1835,
+        1681,
+        1681,
+        1682,
+        12929,
+        12975,
+        1680
+      ],
+      [
+        1743,
+        1681,
+        1681,
+        1691,
+        1690,
+        12929,
+        12929,
+        1680
+      ],
+      [
+        1691,
+        1679,
+        1689,
+        1690,
+        12929,
+        12929,
+        1672,
+        1673
+      ],
+      [
+        1682,
+        12950,
+        12929,
+        12929,
+        12929,
+        12929,
+        1680,
+        1743
+      ],
+      [
+        1673,
+        1673,
+        1832,
+        1673,
+        1673,
+        1834,
+        1751,
+        1681
+      ]
+    ],
+    "metatile_ids": [
+      [
+        657,
+        657,
+        657,
+        809,
+        667,
+        665,
+        665,
+        668
+      ],
+      [
+        657,
+        811,
+        657,
+        657,
+        658,
+        641,
+        687,
+        656
+      ],
+      [
+        719,
+        657,
+        657,
+        667,
+        666,
+        641,
+        641,
+        656
+      ],
+      [
+        667,
+        655,
+        665,
+        666,
+        641,
+        641,
+        648,
+        649
+      ],
+      [
+        658,
+        662,
+        641,
+        641,
+        641,
+        641,
+        656,
+        719
+      ],
+      [
+        649,
+        649,
+        808,
+        649,
+        649,
+        810,
+        727,
+        657
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        3,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        3,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "source_entry_count": 48,
+    "declared_cell_count": 48,
+    "is_rectangular_exact": true
+  },
+  "border_block_ids": [
+    657,
+    657,
+    657,
+    657
+  ],
+  "border_grid": {
+    "raw": [
+      657,
+      657,
+      657,
+      657
+    ],
+    "metatile_ids": [
+      657,
+      657,
+      657,
+      657
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "frlg_wrapped_border",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_COLLISION_MASK",
+    "layout_version": "frlg"
+  },
+  "block_id_stats": {
+    "count": 48,
+    "unique_count": 19,
+    "min": 641,
+    "max": 811,
+    "unique_ids": [
+      641,
+      648,
+      649,
+      655,
+      656,
+      657,
+      658,
+      662,
+      665,
+      666,
+      667,
+      668,
+      687,
+      719,
+      727,
+      808,
+      809,
+      810,
+      811
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 48,
+    "unique_count": 19,
+    "min": 1672,
+    "max": 12975,
+    "unique_ids": [
+      1672,
+      1673,
+      1679,
+      1680,
+      1681,
+      1682,
+      1689,
+      1690,
+      1691,
+      1692,
+      1743,
+      1751,
+      1832,
+      1833,
+      1834,
+      1835,
+      12929,
+      12950,
+      12975
+    ]
+  },
+  "warnings": []
+}

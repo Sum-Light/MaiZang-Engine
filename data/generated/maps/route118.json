@@ -35,7 +35,9 @@
     "height": 20,
     "layout_version": "emerald",
     "primary_tileset": "gTileset_General",
-    "secondary_tileset": "gTileset_Mauville"
+    "secondary_tileset": "gTileset_Mauville",
+    "border_width": null,
+    "border_height": null
   },
   "tilesets": {
     "primary": {
@@ -8302,7 +8304,10 @@
         0,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 1600,
+    "declared_cell_count": 1600,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     368,
@@ -8350,19 +8355,79 @@
       "map": "MAP_ROUTE119",
       "offset": 40,
       "direction": "up",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_NORTH",
+      "source_direction_value": 3,
+      "target_map_id": "MAP_ROUTE119",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route119",
+      "target_map_name": "Route119",
+      "target_map_section": "MAPSEC_ROUTE_119",
+      "target_layout_id": "LAYOUT_ROUTE119",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 34,
+      "target_map_constant_value": 34,
+      "source_struct_fields": {
+        "direction": "CONNECTION_NORTH",
+        "offset": 40,
+        "mapGroup": 0,
+        "mapNum": 34
+      }
     },
     {
       "map": "MAP_MAUVILLE_CITY",
       "offset": 0,
       "direction": "left",
-      "source_order_index": 1
+      "source_order_index": 1,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_WEST",
+      "source_direction_value": 4,
+      "target_map_id": "MAP_MAUVILLE_CITY",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "MauvilleCity",
+      "target_map_name": "MauvilleCity",
+      "target_map_section": "MAPSEC_MAUVILLE_CITY",
+      "target_layout_id": "LAYOUT_MAUVILLE_CITY",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 2,
+      "target_map_constant_value": 2,
+      "source_struct_fields": {
+        "direction": "CONNECTION_WEST",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 2
+      }
     },
     {
       "map": "MAP_ROUTE123",
       "offset": 0,
       "direction": "right",
-      "source_order_index": 2
+      "source_order_index": 2,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_EAST",
+      "source_direction_value": 5,
+      "target_map_id": "MAP_ROUTE123",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route123",
+      "target_map_name": "Route123",
+      "target_map_section": "MAPSEC_ROUTE_123",
+      "target_layout_id": "LAYOUT_ROUTE123",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 38,
+      "target_map_constant_value": 38,
+      "source_struct_fields": {
+        "direction": "CONNECTION_EAST",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 38
+      }
     }
   ],
   "block_id_stats": {
@@ -8607,19 +8672,79 @@
         "map": "MAP_ROUTE119",
         "offset": 40,
         "direction": "up",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_NORTH",
+        "source_direction_value": 3,
+        "target_map_id": "MAP_ROUTE119",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route119",
+        "target_map_name": "Route119",
+        "target_map_section": "MAPSEC_ROUTE_119",
+        "target_layout_id": "LAYOUT_ROUTE119",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 34,
+        "target_map_constant_value": 34,
+        "source_struct_fields": {
+          "direction": "CONNECTION_NORTH",
+          "offset": 40,
+          "mapGroup": 0,
+          "mapNum": 34
+        }
       },
       {
         "map": "MAP_MAUVILLE_CITY",
         "offset": 0,
         "direction": "left",
-        "source_order_index": 1
+        "source_order_index": 1,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_WEST",
+        "source_direction_value": 4,
+        "target_map_id": "MAP_MAUVILLE_CITY",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "MauvilleCity",
+        "target_map_name": "MauvilleCity",
+        "target_map_section": "MAPSEC_MAUVILLE_CITY",
+        "target_layout_id": "LAYOUT_MAUVILLE_CITY",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 2,
+        "target_map_constant_value": 2,
+        "source_struct_fields": {
+          "direction": "CONNECTION_WEST",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 2
+        }
       },
       {
         "map": "MAP_ROUTE123",
         "offset": 0,
         "direction": "right",
-        "source_order_index": 2
+        "source_order_index": 2,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_EAST",
+        "source_direction_value": 5,
+        "target_map_id": "MAP_ROUTE123",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route123",
+        "target_map_name": "Route123",
+        "target_map_section": "MAPSEC_ROUTE_123",
+        "target_layout_id": "LAYOUT_ROUTE123",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 38,
+        "target_map_constant_value": 38,
+        "source_struct_fields": {
+          "direction": "CONNECTION_EAST",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 38
+        }
       }
     ],
     "object_events": [

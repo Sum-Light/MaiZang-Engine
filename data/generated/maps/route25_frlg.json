@@ -35,7 +35,9 @@
     "height": 20,
     "layout_version": "frlg",
     "primary_tileset": "gTileset_General_Frlg",
-    "secondary_tileset": "gTileset_CeruleanCity"
+    "secondary_tileset": "gTileset_CeruleanCity",
+    "border_width": 2,
+    "border_height": 2
   },
   "tilesets": {
     "primary": {
@@ -7502,7 +7504,10 @@
         0,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 1440,
+    "declared_cell_count": 1440,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     113,
@@ -7550,7 +7555,27 @@
       "map": "MAP_ROUTE24",
       "offset": 0,
       "direction": "left",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_WEST",
+      "source_direction_value": 4,
+      "target_map_id": "MAP_ROUTE24",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route24_Frlg",
+      "target_map_name": "Route24_Frlg",
+      "target_map_section": "MAPSEC_ROUTE_24",
+      "target_layout_id": "LAYOUT_ROUTE24",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+      "target_map_group_index": 37,
+      "target_map_num": 43,
+      "target_map_constant_value": 9515,
+      "source_struct_fields": {
+        "direction": "CONNECTION_WEST",
+        "offset": 0,
+        "mapGroup": 37,
+        "mapNum": 43
+      }
     }
   ],
   "block_id_stats": {
@@ -7801,7 +7826,27 @@
         "map": "MAP_ROUTE24",
         "offset": 0,
         "direction": "left",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_WEST",
+        "source_direction_value": 4,
+        "target_map_id": "MAP_ROUTE24",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route24_Frlg",
+        "target_map_name": "Route24_Frlg",
+        "target_map_section": "MAPSEC_ROUTE_24",
+        "target_layout_id": "LAYOUT_ROUTE24",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+        "target_map_group_index": 37,
+        "target_map_num": 43,
+        "target_map_constant_value": 9515,
+        "source_struct_fields": {
+          "direction": "CONNECTION_WEST",
+          "offset": 0,
+          "mapGroup": 37,
+          "mapNum": 43
+        }
       }
     ],
     "object_events": [

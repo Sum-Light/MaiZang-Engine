@@ -35,7 +35,9 @@
     "height": 140,
     "layout_version": "emerald",
     "primary_tileset": "gTileset_General",
-    "secondary_tileset": "gTileset_Fortree"
+    "secondary_tileset": "gTileset_Fortree",
+    "border_width": null,
+    "border_height": null
   },
   "tilesets": {
     "primary": {
@@ -29502,7 +29504,10 @@
         0,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 5600,
+    "declared_cell_count": 5600,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     198,
@@ -29550,13 +29555,53 @@
       "map": "MAP_ROUTE118",
       "offset": -40,
       "direction": "down",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_SOUTH",
+      "source_direction_value": 2,
+      "target_map_id": "MAP_ROUTE118",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route118",
+      "target_map_name": "Route118",
+      "target_map_section": "MAPSEC_ROUTE_118",
+      "target_layout_id": "LAYOUT_ROUTE118",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 33,
+      "target_map_constant_value": 33,
+      "source_struct_fields": {
+        "direction": "CONNECTION_SOUTH",
+        "offset": -40,
+        "mapGroup": 0,
+        "mapNum": 33
+      }
     },
     {
       "map": "MAP_FORTREE_CITY",
       "offset": 0,
       "direction": "right",
-      "source_order_index": 1
+      "source_order_index": 1,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_EAST",
+      "source_direction_value": 5,
+      "target_map_id": "MAP_FORTREE_CITY",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "FortreeCity",
+      "target_map_name": "FortreeCity",
+      "target_map_section": "MAPSEC_FORTREE_CITY",
+      "target_layout_id": "LAYOUT_FORTREE_CITY",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 4,
+      "target_map_constant_value": 4,
+      "source_struct_fields": {
+        "direction": "CONNECTION_EAST",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 4
+      }
     }
   ],
   "block_id_stats": {
@@ -30133,13 +30178,53 @@
         "map": "MAP_ROUTE118",
         "offset": -40,
         "direction": "down",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_SOUTH",
+        "source_direction_value": 2,
+        "target_map_id": "MAP_ROUTE118",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route118",
+        "target_map_name": "Route118",
+        "target_map_section": "MAPSEC_ROUTE_118",
+        "target_layout_id": "LAYOUT_ROUTE118",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 33,
+        "target_map_constant_value": 33,
+        "source_struct_fields": {
+          "direction": "CONNECTION_SOUTH",
+          "offset": -40,
+          "mapGroup": 0,
+          "mapNum": 33
+        }
       },
       {
         "map": "MAP_FORTREE_CITY",
         "offset": 0,
         "direction": "right",
-        "source_order_index": 1
+        "source_order_index": 1,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_EAST",
+        "source_direction_value": 5,
+        "target_map_id": "MAP_FORTREE_CITY",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "FortreeCity",
+        "target_map_name": "FortreeCity",
+        "target_map_section": "MAPSEC_FORTREE_CITY",
+        "target_layout_id": "LAYOUT_FORTREE_CITY",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 4,
+        "target_map_constant_value": 4,
+        "source_struct_fields": {
+          "direction": "CONNECTION_EAST",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 4
+        }
       }
     ],
     "object_events": [

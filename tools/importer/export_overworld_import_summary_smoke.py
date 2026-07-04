@@ -38,7 +38,13 @@ def main(argv):
     _assert(source["object_event_graphics_info_count"] == 393, "unexpected source object-event graphics count")
 
     _assert(generated["map_count"] == 939, "unexpected generated map count")
-    _assert(generated["layout_count"] == 711, "unexpected generated layout count")
+    _assert(generated["layout_count"] == 785, "unexpected generated layout count")
+    _assert(generated["map_referenced_layout_count"] == 711, "unexpected map-referenced layout count")
+    _assert(generated["standalone_layout_count"] == 74, "unexpected standalone layout count")
+    _assert(generated["missing_layout_file_count"] == 0, "expected zero missing generated layouts")
+    _assert(generated["layout_map_grid_entry_count"] > generated["map_count"], "layout grid totals missing")
+    _assert(generated["layout_border_entry_count"] >= 785, "layout border totals missing")
+    _assert(generated["layout_warning_count"] == 20, "unexpected layout warning count")
     _assert(generated["tileset_record_count"] == 4, "unexpected generated tileset record count")
     _assert(generated["unique_primary_tileset_count"] == 2, "unexpected generated primary tileset count")
     _assert(generated["unique_secondary_tileset_count"] == 2, "unexpected generated secondary tileset count")
@@ -60,13 +66,13 @@ def main(argv):
     _assert(generated["bg_event_count"] == 1422, "unexpected generated BG-event count")
     _assert(generated["connection_count"] == 266, "unexpected generated connection count")
     _assert(generated["missing_map_file_count"] == 0, "expected zero missing generated maps")
-    _assert(generated["warning_count"] == 0, "expected zero current generated warnings")
+    _assert(generated["warning_count"] == 20, "unexpected generated warning count")
     _assert(generated["parity_matrix_unsupported_entry_count"] == 15, "unexpected parity unsupported entry count")
     _assert(generated["object_event_sprite_unsupported_note_count"] == 15, "unexpected object sprite unsupported note count")
     _assert(generated["explicit_summary_unsupported_count"] == 4, "unexpected explicit unsupported summary count")
 
     _assert(coverage["maps"]["percent"] == 100.0, "unexpected map coverage percent")
-    _assert(coverage["layouts"]["percent"] == 90.57, "unexpected layout coverage percent")
+    _assert(coverage["layouts"]["percent"] == 100.0, "unexpected layout coverage percent")
     _assert(coverage["tileset_animation_callbacks"]["generated"] == 0, "expected no generated tileset anims")
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}
@@ -78,6 +84,12 @@ def main(argv):
     map_names = {entry["name"] for entry in exported["details"]["maps"]}
     _assert("LittlerootTown" in map_names, "missing Littleroot summary")
     _assert("Route101" in map_names, "missing Route101 summary")
+    layout_ids = {entry["id"] for entry in exported["details"]["layouts"]}
+    _assert("LAYOUT_LITTLEROOT_TOWN" in layout_ids, "missing Littleroot layout summary")
+    _assert(
+        "LAYOUT_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB_WITH_TABLE" in layout_ids,
+        "missing standalone layout summary",
+    )
     _assert(exported["details"]["movement_op_counts"]["step_end"] == 143, "unexpected step_end count")
 
     print("export_overworld_import_summary_smoke: ok")

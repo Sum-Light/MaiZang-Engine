@@ -136,9 +136,11 @@ Current export behavior:
 - Uses `include/global.fieldmap.h` masks: bits 0-9 are metatile id, bits 10-11 are collision, and bits 12-15 are elevation.
 - Decodes `data/layouts/<Layout>/border.bin` and writes `border_grid` metadata for the Emerald `src/fieldmap.c:GetBorderBlockAt` rule, including `MAP_OFFSET = 7`, the parity index expression, source runtime coordinate note, and impassable collision fallback.
 - Writes `data/generated/maps/littleroot_town.json` for the current first slice in single-map mode, or all 939 source maps in `--all` mode.
-- In `--all` mode, writes `data/generated/overworld/map_batch_report.json` with 939/939 map coverage, 0 failures, 711 map-referenced layouts, 74 standalone source layouts still pending for independent layout export, duplicate id/path checks, and event totals.
-- Updates `data/generated/import_manifest.json` with exported map id, name, path, layout id, and size while preserving existing entries for other maps, tilesets, and scripts.
+- In `--all` mode, writes all 785 source layouts under `data/generated/layouts/` and indexes them in manifest `layouts`, including the 74 standalone layouts that no source map header references.
+- In `--all` mode, writes `data/generated/overworld/map_batch_report.json` with 939/939 map coverage, 785/785 layout coverage, 0 map/layout failures, 711 map-referenced layouts, 74 standalone layouts, 20 preserved source layout-size warnings, duplicate id/path checks, connection target resolution, and event totals.
+- Updates `data/generated/import_manifest.json` with exported map id/name/path/layout id/size and exported layout id/name/path/size/tilesets/referenced maps while preserving existing entries for other maps, tilesets, and scripts.
 - Preserves source event arrays for connections, object events, warps, coordinate events, and background events, adding source-order indexes and source numeric object local-id aliases from `tools/mapjson/mapjson.cpp`.
+- Enriches map connections from `data/maps/map_groups.json` and source map headers with target map section, target map folder/name/layout, source direction constant, target map-group index, map number, and `struct MapConnection` field metadata.
 - Preserves source map header metadata including layout id, music, region map section, `requires_flash`, weather, map type, battle scene, movement flags, show-map-name flag, shared event/script map refs, `connections_no_include`, and FRLG `floor_number`.
 - Preserves existing script manifest entries when updating the shared import manifest.
 

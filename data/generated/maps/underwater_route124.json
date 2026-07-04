@@ -35,7 +35,9 @@
     "height": 80,
     "layout_version": "emerald",
     "primary_tileset": "gTileset_General",
-    "secondary_tileset": "gTileset_Underwater"
+    "secondary_tileset": "gTileset_Underwater",
+    "border_width": null,
+    "border_height": null
   },
   "tilesets": {
     "primary": {
@@ -32902,7 +32904,10 @@
         0,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 6400,
+    "declared_cell_count": 6400,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     531,
@@ -32950,13 +32955,53 @@
       "map": "MAP_UNDERWATER_ROUTE126",
       "offset": 0,
       "direction": "down",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_SOUTH",
+      "source_direction_value": 2,
+      "target_map_id": "MAP_UNDERWATER_ROUTE126",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Underwater_Route126",
+      "target_map_name": "Underwater_Route126",
+      "target_map_section": "MAPSEC_UNDERWATER_126",
+      "target_layout_id": "LAYOUT_UNDERWATER_ROUTE126",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 51,
+      "target_map_constant_value": 51,
+      "source_struct_fields": {
+        "direction": "CONNECTION_SOUTH",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 51
+      }
     },
     {
       "map": "MAP_ROUTE124",
       "offset": 0,
       "direction": "emerge",
-      "source_order_index": 1
+      "source_order_index": 1,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_EMERGE",
+      "source_direction_value": 7,
+      "target_map_id": "MAP_ROUTE124",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route124",
+      "target_map_name": "Route124",
+      "target_map_section": "MAPSEC_ROUTE_124",
+      "target_layout_id": "LAYOUT_ROUTE124",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 39,
+      "target_map_constant_value": 39,
+      "source_struct_fields": {
+        "direction": "CONNECTION_EMERGE",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 39
+      }
     }
   ],
   "block_id_stats": {
@@ -33044,13 +33089,53 @@
         "map": "MAP_UNDERWATER_ROUTE126",
         "offset": 0,
         "direction": "down",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_SOUTH",
+        "source_direction_value": 2,
+        "target_map_id": "MAP_UNDERWATER_ROUTE126",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Underwater_Route126",
+        "target_map_name": "Underwater_Route126",
+        "target_map_section": "MAPSEC_UNDERWATER_126",
+        "target_layout_id": "LAYOUT_UNDERWATER_ROUTE126",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 51,
+        "target_map_constant_value": 51,
+        "source_struct_fields": {
+          "direction": "CONNECTION_SOUTH",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 51
+        }
       },
       {
         "map": "MAP_ROUTE124",
         "offset": 0,
         "direction": "emerge",
-        "source_order_index": 1
+        "source_order_index": 1,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_EMERGE",
+        "source_direction_value": 7,
+        "target_map_id": "MAP_ROUTE124",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route124",
+        "target_map_name": "Route124",
+        "target_map_section": "MAPSEC_ROUTE_124",
+        "target_layout_id": "LAYOUT_ROUTE124",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 39,
+        "target_map_constant_value": 39,
+        "source_struct_fields": {
+          "direction": "CONNECTION_EMERGE",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 39
+        }
       }
     ],
     "object_events": [],

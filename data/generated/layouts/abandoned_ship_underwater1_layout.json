@@ -1,0 +1,588 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/AbandonedShip_Underwater1/map.bin",
+    "border": "data/layouts/AbandonedShip_Underwater1/border.bin"
+  },
+  "layout": {
+    "id": "LAYOUT_ABANDONED_SHIP_UNDERWATER1",
+    "name": "AbandonedShip_Underwater1_Layout",
+    "width": 8,
+    "height": 8,
+    "layout_version": "emerald",
+    "primary_tileset": "gTileset_General",
+    "secondary_tileset": "gTileset_InsideShip",
+    "border_width": null,
+    "border_height": null
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_General",
+      "kind": "primary",
+      "directory": "general",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/general/tiles.png",
+          "exists": true,
+          "size": 7722
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/general/metatiles.bin",
+          "exists": true,
+          "size": 8192
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/general/metatile_attributes.bin",
+          "exists": true,
+          "size": 1024
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_InsideShip",
+      "kind": "secondary",
+      "directory": "inside_ship",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/inside_ship/tiles.png",
+          "exists": true,
+          "size": 2050
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/inside_ship/metatiles.bin",
+          "exists": true,
+          "size": 4032
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/inside_ship/metatile_attributes.bin",
+          "exists": true,
+          "size": 504
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      717,
+      718,
+      716,
+      718,
+      716,
+      718,
+      717,
+      718
+    ],
+    [
+      725,
+      727,
+      724,
+      726,
+      724,
+      726,
+      725,
+      726
+    ],
+    [
+      719,
+      719,
+      719,
+      719,
+      719,
+      719,
+      720,
+      721
+    ],
+    [
+      719,
+      760,
+      722,
+      723,
+      713,
+      713,
+      719,
+      719
+    ],
+    [
+      760,
+      713,
+      713,
+      713,
+      713,
+      713,
+      713,
+      719
+    ],
+    [
+      760,
+      713,
+      713,
+      713,
+      722,
+      723,
+      713,
+      719
+    ],
+    [
+      762,
+      713,
+      713,
+      713,
+      713,
+      713,
+      713,
+      720
+    ],
+    [
+      759,
+      751,
+      713,
+      714,
+      715,
+      713,
+      761,
+      719
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        1741,
+        1742,
+        1740,
+        1742,
+        1740,
+        1742,
+        1741,
+        1742
+      ],
+      [
+        1749,
+        1751,
+        1748,
+        1750,
+        1748,
+        1750,
+        1749,
+        1750
+      ],
+      [
+        13007,
+        13007,
+        13007,
+        13007,
+        13007,
+        13007,
+        13008,
+        13009
+      ],
+      [
+        13007,
+        13048,
+        13010,
+        13011,
+        13001,
+        13001,
+        13007,
+        13007
+      ],
+      [
+        13048,
+        13001,
+        13001,
+        13001,
+        13001,
+        13001,
+        13001,
+        13007
+      ],
+      [
+        13048,
+        13001,
+        13001,
+        13001,
+        13010,
+        13011,
+        13001,
+        13007
+      ],
+      [
+        13050,
+        13001,
+        13001,
+        13001,
+        13001,
+        13001,
+        13001,
+        13008
+      ],
+      [
+        13047,
+        13039,
+        13001,
+        13002,
+        13003,
+        13001,
+        13049,
+        13007
+      ]
+    ],
+    "metatile_ids": [
+      [
+        717,
+        718,
+        716,
+        718,
+        716,
+        718,
+        717,
+        718
+      ],
+      [
+        725,
+        727,
+        724,
+        726,
+        724,
+        726,
+        725,
+        726
+      ],
+      [
+        719,
+        719,
+        719,
+        719,
+        719,
+        719,
+        720,
+        721
+      ],
+      [
+        719,
+        760,
+        722,
+        723,
+        713,
+        713,
+        719,
+        719
+      ],
+      [
+        760,
+        713,
+        713,
+        713,
+        713,
+        713,
+        713,
+        719
+      ],
+      [
+        760,
+        713,
+        713,
+        713,
+        722,
+        723,
+        713,
+        719
+      ],
+      [
+        762,
+        713,
+        713,
+        713,
+        713,
+        713,
+        713,
+        720
+      ],
+      [
+        759,
+        751,
+        713,
+        714,
+        715,
+        713,
+        761,
+        719
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    ],
+    "source_entry_count": 64,
+    "declared_cell_count": 64,
+    "is_rectangular_exact": true
+  },
+  "border_block_ids": [
+    513,
+    513,
+    513,
+    513
+  ],
+  "border_grid": {
+    "raw": [
+      513,
+      513,
+      513,
+      513
+    ],
+    "metatile_ids": [
+      513,
+      513,
+      513,
+      513
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "emerald_2x2_parity",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_IMPASSABLE",
+    "layout_version": "emerald"
+  },
+  "block_id_stats": {
+    "count": 64,
+    "unique_count": 20,
+    "min": 713,
+    "max": 762,
+    "unique_ids": [
+      713,
+      714,
+      715,
+      716,
+      717,
+      718,
+      719,
+      720,
+      721,
+      722,
+      723,
+      724,
+      725,
+      726,
+      727,
+      751,
+      759,
+      760,
+      761,
+      762
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 64,
+    "unique_count": 20,
+    "min": 1740,
+    "max": 13050,
+    "unique_ids": [
+      1740,
+      1741,
+      1742,
+      1748,
+      1749,
+      1750,
+      1751,
+      13001,
+      13002,
+      13003,
+      13007,
+      13008,
+      13009,
+      13010,
+      13011,
+      13039,
+      13047,
+      13048,
+      13049,
+      13050
+    ]
+  },
+  "warnings": []
+}

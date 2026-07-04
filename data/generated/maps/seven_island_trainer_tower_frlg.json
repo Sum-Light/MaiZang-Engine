@@ -35,7 +35,9 @@
     "height": 40,
     "layout_version": "frlg",
     "primary_tileset": "gTileset_General_Frlg",
-    "secondary_tileset": "gTileset_SeviiIslands67"
+    "secondary_tileset": "gTileset_SeviiIslands67",
+    "border_width": 2,
+    "border_height": 2
   },
   "tilesets": {
     "primary": {
@@ -24502,7 +24504,10 @@
         0,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 4800,
+    "declared_cell_count": 4800,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     473,
@@ -24550,7 +24555,27 @@
       "map": "MAP_SEVEN_ISLAND",
       "offset": 48,
       "direction": "down",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_SOUTH",
+      "source_direction_value": 2,
+      "target_map_id": "MAP_SEVEN_ISLAND",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "SevenIsland_Frlg",
+      "target_map_name": "SevenIsland_Frlg",
+      "target_map_section": "MAPSEC_SEVEN_ISLAND",
+      "target_layout_id": "LAYOUT_SEVEN_ISLAND",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+      "target_map_group_index": 37,
+      "target_map_num": 17,
+      "target_map_constant_value": 9489,
+      "source_struct_fields": {
+        "direction": "CONNECTION_SOUTH",
+        "offset": 48,
+        "mapGroup": 37,
+        "mapNum": 17
+      }
     }
   ],
   "block_id_stats": {
@@ -24878,7 +24903,27 @@
         "map": "MAP_SEVEN_ISLAND",
         "offset": 48,
         "direction": "down",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_SOUTH",
+        "source_direction_value": 2,
+        "target_map_id": "MAP_SEVEN_ISLAND",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "SevenIsland_Frlg",
+        "target_map_name": "SevenIsland_Frlg",
+        "target_map_section": "MAPSEC_SEVEN_ISLAND",
+        "target_layout_id": "LAYOUT_SEVEN_ISLAND",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes_Frlg",
+        "target_map_group_index": 37,
+        "target_map_num": 17,
+        "target_map_constant_value": 9489,
+        "source_struct_fields": {
+          "direction": "CONNECTION_SOUTH",
+          "offset": 48,
+          "mapGroup": 37,
+          "mapNum": 17
+        }
       }
     ],
     "object_events": [

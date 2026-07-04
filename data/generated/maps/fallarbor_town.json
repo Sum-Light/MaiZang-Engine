@@ -35,7 +35,9 @@
     "height": 20,
     "layout_version": "emerald",
     "primary_tileset": "gTileset_General",
-    "secondary_tileset": "gTileset_Fallarbor"
+    "secondary_tileset": "gTileset_Fallarbor",
+    "border_width": null,
+    "border_height": null
   },
   "tilesets": {
     "primary": {
@@ -2302,7 +2304,10 @@
         3,
         3
       ]
-    ]
+    ],
+    "source_entry_count": 400,
+    "declared_cell_count": 400,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     619,
@@ -2350,13 +2355,53 @@
       "map": "MAP_ROUTE114",
       "offset": 0,
       "direction": "left",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_WEST",
+      "source_direction_value": 4,
+      "target_map_id": "MAP_ROUTE114",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route114",
+      "target_map_name": "Route114",
+      "target_map_section": "MAPSEC_ROUTE_114",
+      "target_layout_id": "LAYOUT_ROUTE114",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 29,
+      "target_map_constant_value": 29,
+      "source_struct_fields": {
+        "direction": "CONNECTION_WEST",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 29
+      }
     },
     {
       "map": "MAP_ROUTE113",
       "offset": 0,
       "direction": "right",
-      "source_order_index": 1
+      "source_order_index": 1,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_EAST",
+      "source_direction_value": 5,
+      "target_map_id": "MAP_ROUTE113",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route113",
+      "target_map_name": "Route113",
+      "target_map_section": "MAPSEC_ROUTE_113",
+      "target_layout_id": "LAYOUT_ROUTE113",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 28,
+      "target_map_constant_value": 28,
+      "source_struct_fields": {
+        "direction": "CONNECTION_EAST",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 28
+      }
     }
   ],
   "block_id_stats": {
@@ -2617,13 +2662,53 @@
         "map": "MAP_ROUTE114",
         "offset": 0,
         "direction": "left",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_WEST",
+        "source_direction_value": 4,
+        "target_map_id": "MAP_ROUTE114",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route114",
+        "target_map_name": "Route114",
+        "target_map_section": "MAPSEC_ROUTE_114",
+        "target_layout_id": "LAYOUT_ROUTE114",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 29,
+        "target_map_constant_value": 29,
+        "source_struct_fields": {
+          "direction": "CONNECTION_WEST",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 29
+        }
       },
       {
         "map": "MAP_ROUTE113",
         "offset": 0,
         "direction": "right",
-        "source_order_index": 1
+        "source_order_index": 1,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_EAST",
+        "source_direction_value": 5,
+        "target_map_id": "MAP_ROUTE113",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route113",
+        "target_map_name": "Route113",
+        "target_map_section": "MAPSEC_ROUTE_113",
+        "target_layout_id": "LAYOUT_ROUTE113",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 28,
+        "target_map_constant_value": 28,
+        "source_struct_fields": {
+          "direction": "CONNECTION_EAST",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 28
+        }
       }
     ],
     "object_events": [

@@ -1,0 +1,772 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/ViridianCity_School_Frlg/map.bin",
+    "border": "data/layouts/ViridianCity_School_Frlg/border.bin"
+  },
+  "layout": {
+    "id": "LAYOUT_VIRIDIAN_CITY_SCHOOL",
+    "name": "ViridianCity_School_Layout",
+    "width": 10,
+    "height": 9,
+    "layout_version": "frlg",
+    "primary_tileset": "gTileset_BuildingFrlg",
+    "secondary_tileset": "gTileset_School",
+    "border_width": 2,
+    "border_height": 2
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_BuildingFrlg",
+      "kind": "primary",
+      "directory": "building_frlg",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/building_frlg/tiles.png",
+          "exists": true,
+          "size": 7011
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/building_frlg/metatiles.bin",
+          "exists": true,
+          "size": 10240
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/building_frlg/metatile_attributes.bin",
+          "exists": true,
+          "size": 2560
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_School",
+      "kind": "secondary",
+      "directory": "school",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/school/tiles.png",
+          "exists": false,
+          "size": null
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/school/metatiles.bin",
+          "exists": false,
+          "size": null
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/school/metatile_attributes.bin",
+          "exists": false,
+          "size": null
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      645,
+      646,
+      646,
+      647,
+      643,
+      644,
+      672,
+      673,
+      673,
+      673
+    ],
+    [
+      653,
+      654,
+      654,
+      655,
+      651,
+      652,
+      680,
+      681,
+      667,
+      668
+    ],
+    [
+      661,
+      662,
+      662,
+      663,
+      659,
+      660,
+      661,
+      662,
+      675,
+      676
+    ],
+    [
+      669,
+      670,
+      670,
+      670,
+      657,
+      658,
+      670,
+      670,
+      662,
+      662
+    ],
+    [
+      669,
+      670,
+      670,
+      670,
+      665,
+      666,
+      670,
+      670,
+      670,
+      670
+    ],
+    [
+      669,
+      670,
+      670,
+      670,
+      648,
+      648,
+      670,
+      670,
+      670,
+      670
+    ],
+    [
+      641,
+      670,
+      670,
+      670,
+      656,
+      656,
+      670,
+      670,
+      670,
+      642
+    ],
+    [
+      649,
+      670,
+      670,
+      677,
+      678,
+      679,
+      670,
+      670,
+      670,
+      650
+    ],
+    [
+      8,
+      8,
+      8,
+      26,
+      27,
+      28,
+      8,
+      8,
+      8,
+      8
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        1669,
+        1670,
+        1670,
+        1671,
+        1667,
+        1668,
+        1696,
+        1697,
+        1697,
+        1697
+      ],
+      [
+        1677,
+        1678,
+        1678,
+        1679,
+        1675,
+        1676,
+        1704,
+        1705,
+        1691,
+        1692
+      ],
+      [
+        12949,
+        12950,
+        12950,
+        12951,
+        12947,
+        12948,
+        12949,
+        12950,
+        1699,
+        1700
+      ],
+      [
+        12957,
+        12958,
+        12958,
+        12958,
+        12945,
+        12946,
+        12958,
+        12958,
+        12950,
+        12950
+      ],
+      [
+        12957,
+        12958,
+        12958,
+        12958,
+        1689,
+        1690,
+        12958,
+        12958,
+        12958,
+        12958
+      ],
+      [
+        12957,
+        12958,
+        12958,
+        12958,
+        12936,
+        12936,
+        12958,
+        12958,
+        12958,
+        12958
+      ],
+      [
+        12929,
+        12958,
+        12958,
+        12958,
+        12944,
+        12944,
+        12958,
+        12958,
+        12958,
+        12930
+      ],
+      [
+        1673,
+        12958,
+        12958,
+        12965,
+        12966,
+        12967,
+        12958,
+        12958,
+        12958,
+        1674
+      ],
+      [
+        1032,
+        1032,
+        1032,
+        1050,
+        1051,
+        1052,
+        1032,
+        1032,
+        1032,
+        1032
+      ]
+    ],
+    "metatile_ids": [
+      [
+        645,
+        646,
+        646,
+        647,
+        643,
+        644,
+        672,
+        673,
+        673,
+        673
+      ],
+      [
+        653,
+        654,
+        654,
+        655,
+        651,
+        652,
+        680,
+        681,
+        667,
+        668
+      ],
+      [
+        661,
+        662,
+        662,
+        663,
+        659,
+        660,
+        661,
+        662,
+        675,
+        676
+      ],
+      [
+        669,
+        670,
+        670,
+        670,
+        657,
+        658,
+        670,
+        670,
+        662,
+        662
+      ],
+      [
+        669,
+        670,
+        670,
+        670,
+        665,
+        666,
+        670,
+        670,
+        670,
+        670
+      ],
+      [
+        669,
+        670,
+        670,
+        670,
+        648,
+        648,
+        670,
+        670,
+        670,
+        670
+      ],
+      [
+        641,
+        670,
+        670,
+        670,
+        656,
+        656,
+        670,
+        670,
+        670,
+        642
+      ],
+      [
+        649,
+        670,
+        670,
+        677,
+        678,
+        679,
+        670,
+        670,
+        670,
+        650
+      ],
+      [
+        8,
+        8,
+        8,
+        26,
+        27,
+        28,
+        8,
+        8,
+        8,
+        8
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        0,
+        0,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "source_entry_count": 90,
+    "declared_cell_count": 90,
+    "is_rectangular_exact": true
+  },
+  "border_block_ids": [
+    8,
+    8,
+    8,
+    8
+  ],
+  "border_grid": {
+    "raw": [
+      8,
+      8,
+      8,
+      8
+    ],
+    "metatile_ids": [
+      8,
+      8,
+      8,
+      8
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "frlg_wrapped_border",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_COLLISION_MASK",
+    "layout_version": "frlg"
+  },
+  "block_id_stats": {
+    "count": 90,
+    "unique_count": 42,
+    "min": 8,
+    "max": 681,
+    "unique_ids": [
+      8,
+      26,
+      27,
+      28,
+      641,
+      642,
+      643,
+      644,
+      645,
+      646,
+      647,
+      648,
+      649,
+      650,
+      651,
+      652,
+      653,
+      654,
+      655,
+      656,
+      657,
+      658,
+      659,
+      660,
+      661,
+      662,
+      663,
+      665,
+      666,
+      667,
+      668,
+      669,
+      670,
+      672,
+      673,
+      675,
+      676,
+      677,
+      678,
+      679,
+      680,
+      681
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 90,
+    "unique_count": 42,
+    "min": 1032,
+    "max": 12967,
+    "unique_ids": [
+      1032,
+      1050,
+      1051,
+      1052,
+      1667,
+      1668,
+      1669,
+      1670,
+      1671,
+      1673,
+      1674,
+      1675,
+      1676,
+      1677,
+      1678,
+      1679,
+      1689,
+      1690,
+      1691,
+      1692,
+      1696,
+      1697,
+      1699,
+      1700,
+      1704,
+      1705,
+      12929,
+      12930,
+      12936,
+      12944,
+      12945,
+      12946,
+      12947,
+      12948,
+      12949,
+      12950,
+      12951,
+      12957,
+      12958,
+      12965,
+      12966,
+      12967
+    ]
+  },
+  "warnings": []
+}

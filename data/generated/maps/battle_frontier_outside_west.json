@@ -35,7 +35,9 @@
     "height": 72,
     "layout_version": "emerald",
     "primary_tileset": "gTileset_General",
-    "secondary_tileset": "gTileset_BattleFrontierOutsideWest"
+    "secondary_tileset": "gTileset_BattleFrontierOutsideWest",
+    "border_width": null,
+    "border_height": null
   },
   "tilesets": {
     "primary": {
@@ -20982,7 +20984,10 @@
         0,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 4032,
+    "declared_cell_count": 4032,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     368,
@@ -21030,7 +21035,27 @@
       "map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
       "offset": 0,
       "direction": "right",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_EAST",
+      "source_direction_value": 5,
+      "target_map_id": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "BattleFrontier_OutsideEast",
+      "target_map_name": "BattleFrontier_OutsideEast",
+      "target_map_section": "MAPSEC_BATTLE_FRONTIER",
+      "target_layout_id": "LAYOUT_BATTLE_FRONTIER_OUTSIDE_EAST",
+      "target_map_group_symbol": "gMapGroup_SpecialArea",
+      "target_map_group_index": 26,
+      "target_map_num": 14,
+      "target_map_constant_value": 6670,
+      "source_struct_fields": {
+        "direction": "CONNECTION_EAST",
+        "offset": 0,
+        "mapGroup": 26,
+        "mapNum": 14
+      }
     }
   ],
   "block_id_stats": {
@@ -22119,7 +22144,27 @@
         "map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
         "offset": 0,
         "direction": "right",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_EAST",
+        "source_direction_value": 5,
+        "target_map_id": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "BattleFrontier_OutsideEast",
+        "target_map_name": "BattleFrontier_OutsideEast",
+        "target_map_section": "MAPSEC_BATTLE_FRONTIER",
+        "target_layout_id": "LAYOUT_BATTLE_FRONTIER_OUTSIDE_EAST",
+        "target_map_group_symbol": "gMapGroup_SpecialArea",
+        "target_map_group_index": 26,
+        "target_map_num": 14,
+        "target_map_constant_value": 6670,
+        "source_struct_fields": {
+          "direction": "CONNECTION_EAST",
+          "offset": 0,
+          "mapGroup": 26,
+          "mapNum": 14
+        }
       }
     ],
     "object_events": [

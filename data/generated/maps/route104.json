@@ -35,7 +35,9 @@
     "height": 80,
     "layout_version": "emerald",
     "primary_tileset": "gTileset_General",
-    "secondary_tileset": "gTileset_Rustboro"
+    "secondary_tileset": "gTileset_Rustboro",
+    "border_width": null,
+    "border_height": null
   },
   "tilesets": {
     "primary": {
@@ -16902,7 +16904,10 @@
         0,
         0
       ]
-    ]
+    ],
+    "source_entry_count": 3200,
+    "declared_cell_count": 3200,
+    "is_rectangular_exact": true
   },
   "border_block_ids": [
     468,
@@ -16950,19 +16955,79 @@
       "map": "MAP_RUSTBORO_CITY",
       "offset": 0,
       "direction": "up",
-      "source_order_index": 0
+      "source_order_index": 0,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_NORTH",
+      "source_direction_value": 3,
+      "target_map_id": "MAP_RUSTBORO_CITY",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "RustboroCity",
+      "target_map_name": "RustboroCity",
+      "target_map_section": "MAPSEC_RUSTBORO_CITY",
+      "target_layout_id": "LAYOUT_RUSTBORO_CITY",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 3,
+      "target_map_constant_value": 3,
+      "source_struct_fields": {
+        "direction": "CONNECTION_NORTH",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 3
+      }
     },
     {
       "map": "MAP_ROUTE105",
       "offset": 0,
       "direction": "down",
-      "source_order_index": 1
+      "source_order_index": 1,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_SOUTH",
+      "source_direction_value": 2,
+      "target_map_id": "MAP_ROUTE105",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "Route105",
+      "target_map_name": "Route105",
+      "target_map_section": "MAPSEC_ROUTE_105",
+      "target_layout_id": "LAYOUT_ROUTE105",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 20,
+      "target_map_constant_value": 20,
+      "source_struct_fields": {
+        "direction": "CONNECTION_SOUTH",
+        "offset": 0,
+        "mapGroup": 0,
+        "mapNum": 20
+      }
     },
     {
       "map": "MAP_PETALBURG_CITY",
       "offset": 50,
       "direction": "right",
-      "source_order_index": 2
+      "source_order_index": 2,
+      "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+      "source_struct": "include/global.fieldmap.h:struct MapConnection",
+      "source_direction_constant": "CONNECTION_EAST",
+      "source_direction_value": 5,
+      "target_map_id": "MAP_PETALBURG_CITY",
+      "target_lookup_status": "resolved",
+      "target_map_folder": "PetalburgCity",
+      "target_map_name": "PetalburgCity",
+      "target_map_section": "MAPSEC_PETALBURG_CITY",
+      "target_layout_id": "LAYOUT_PETALBURG_CITY",
+      "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+      "target_map_group_index": 0,
+      "target_map_num": 0,
+      "target_map_constant_value": 0,
+      "source_struct_fields": {
+        "direction": "CONNECTION_EAST",
+        "offset": 50,
+        "mapGroup": 0,
+        "mapNum": 0
+      }
     }
   ],
   "block_id_stats": {
@@ -17373,19 +17438,79 @@
         "map": "MAP_RUSTBORO_CITY",
         "offset": 0,
         "direction": "up",
-        "source_order_index": 0
+        "source_order_index": 0,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_NORTH",
+        "source_direction_value": 3,
+        "target_map_id": "MAP_RUSTBORO_CITY",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "RustboroCity",
+        "target_map_name": "RustboroCity",
+        "target_map_section": "MAPSEC_RUSTBORO_CITY",
+        "target_layout_id": "LAYOUT_RUSTBORO_CITY",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 3,
+        "target_map_constant_value": 3,
+        "source_struct_fields": {
+          "direction": "CONNECTION_NORTH",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 3
+        }
       },
       {
         "map": "MAP_ROUTE105",
         "offset": 0,
         "direction": "down",
-        "source_order_index": 1
+        "source_order_index": 1,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_SOUTH",
+        "source_direction_value": 2,
+        "target_map_id": "MAP_ROUTE105",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "Route105",
+        "target_map_name": "Route105",
+        "target_map_section": "MAPSEC_ROUTE_105",
+        "target_layout_id": "LAYOUT_ROUTE105",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 20,
+        "target_map_constant_value": 20,
+        "source_struct_fields": {
+          "direction": "CONNECTION_SOUTH",
+          "offset": 0,
+          "mapGroup": 0,
+          "mapNum": 20
+        }
       },
       {
         "map": "MAP_PETALBURG_CITY",
         "offset": 50,
         "direction": "right",
-        "source_order_index": 2
+        "source_order_index": 2,
+        "source_macro": "asm/macros/map.inc:connection direction, offset, map",
+        "source_struct": "include/global.fieldmap.h:struct MapConnection",
+        "source_direction_constant": "CONNECTION_EAST",
+        "source_direction_value": 5,
+        "target_map_id": "MAP_PETALBURG_CITY",
+        "target_lookup_status": "resolved",
+        "target_map_folder": "PetalburgCity",
+        "target_map_name": "PetalburgCity",
+        "target_map_section": "MAPSEC_PETALBURG_CITY",
+        "target_layout_id": "LAYOUT_PETALBURG_CITY",
+        "target_map_group_symbol": "gMapGroup_TownsAndRoutes",
+        "target_map_group_index": 0,
+        "target_map_num": 0,
+        "target_map_constant_value": 0,
+        "source_struct_fields": {
+          "direction": "CONNECTION_EAST",
+          "offset": 50,
+          "mapGroup": 0,
+          "mapNum": 0
+        }
       }
     ],
     "object_events": [

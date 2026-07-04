@@ -1,0 +1,713 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "layouts_json": "data/layouts/layouts.json",
+    "blockdata": "data/layouts/FuchsiaCity_SafariZone_Entrance_Frlg/map.bin",
+    "border": "data/layouts/FuchsiaCity_SafariZone_Entrance_Frlg/border.bin"
+  },
+  "layout": {
+    "id": "LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE",
+    "name": "FuchsiaCity_SafariZone_Entrance_Layout",
+    "width": 9,
+    "height": 9,
+    "layout_version": "frlg",
+    "primary_tileset": "gTileset_BuildingFrlg",
+    "secondary_tileset": "gTileset_SafariZoneBuilding",
+    "border_width": 2,
+    "border_height": 2
+  },
+  "tilesets": {
+    "primary": {
+      "symbol": "gTileset_BuildingFrlg",
+      "kind": "primary",
+      "directory": "building_frlg",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/primary/building_frlg/tiles.png",
+          "exists": true,
+          "size": 7011
+        },
+        "metatiles": {
+          "path": "data/tilesets/primary/building_frlg/metatiles.bin",
+          "exists": true,
+          "size": 10240
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/primary/building_frlg/metatile_attributes.bin",
+          "exists": true,
+          "size": 2560
+        }
+      }
+    },
+    "secondary": {
+      "symbol": "gTileset_SafariZoneBuilding",
+      "kind": "secondary",
+      "directory": "safari_zone_building",
+      "files": {
+        "tiles": {
+          "path": "data/tilesets/secondary/safari_zone_building/tiles.png",
+          "exists": false,
+          "size": null
+        },
+        "metatiles": {
+          "path": "data/tilesets/secondary/safari_zone_building/metatiles.bin",
+          "exists": false,
+          "size": null
+        },
+        "metatile_attributes": {
+          "path": "data/tilesets/secondary/safari_zone_building/metatile_attributes.bin",
+          "exists": false,
+          "size": null
+        }
+      }
+    }
+  },
+  "map_grid_format": {
+    "source_header": "include/fieldmap.h",
+    "metatile_id_mask": 1023,
+    "collision_mask": 3072,
+    "elevation_mask": 61440,
+    "collision_shift": 10,
+    "elevation_shift": 12,
+    "map_offset": 7
+  },
+  "block_ids": [
+    [
+      642,
+      642,
+      642,
+      643,
+      644,
+      645,
+      642,
+      642,
+      642
+    ],
+    [
+      655,
+      655,
+      660,
+      651,
+      652,
+      653,
+      660,
+      655,
+      655
+    ],
+    [
+      663,
+      663,
+      668,
+      665,
+      667,
+      666,
+      668,
+      663,
+      663
+    ],
+    [
+      675,
+      672,
+      668,
+      673,
+      659,
+      658,
+      668,
+      672,
+      670
+    ],
+    [
+      679,
+      674,
+      668,
+      673,
+      648,
+      658,
+      668,
+      674,
+      678
+    ],
+    [
+      687,
+      674,
+      668,
+      673,
+      659,
+      658,
+      668,
+      674,
+      647
+    ],
+    [
+      671,
+      672,
+      668,
+      673,
+      659,
+      658,
+      668,
+      672,
+      670
+    ],
+    [
+      678,
+      674,
+      676,
+      700,
+      701,
+      702,
+      676,
+      674,
+      678
+    ],
+    [
+      8,
+      8,
+      8,
+      26,
+      27,
+      28,
+      8,
+      8,
+      8
+    ]
+  ],
+  "map_grid": {
+    "raw": [
+      [
+        1666,
+        1666,
+        1666,
+        1667,
+        1668,
+        1669,
+        1666,
+        1666,
+        1666
+      ],
+      [
+        1679,
+        1679,
+        1684,
+        1675,
+        12940,
+        1677,
+        1684,
+        1679,
+        1679
+      ],
+      [
+        1687,
+        1687,
+        1692,
+        12953,
+        12955,
+        12954,
+        1692,
+        1687,
+        1687
+      ],
+      [
+        1699,
+        12960,
+        1692,
+        12961,
+        12947,
+        12946,
+        1692,
+        12960,
+        1694
+      ],
+      [
+        1703,
+        12962,
+        1692,
+        12961,
+        12936,
+        12946,
+        1692,
+        12962,
+        1702
+      ],
+      [
+        1711,
+        12962,
+        1692,
+        12961,
+        12947,
+        12946,
+        1692,
+        12962,
+        12935
+      ],
+      [
+        1695,
+        12960,
+        1692,
+        12961,
+        12947,
+        12946,
+        1692,
+        12960,
+        1694
+      ],
+      [
+        1702,
+        12962,
+        1700,
+        12988,
+        12989,
+        12990,
+        1700,
+        12962,
+        1702
+      ],
+      [
+        1032,
+        1032,
+        1032,
+        1050,
+        1051,
+        1052,
+        1032,
+        1032,
+        1032
+      ]
+    ],
+    "metatile_ids": [
+      [
+        642,
+        642,
+        642,
+        643,
+        644,
+        645,
+        642,
+        642,
+        642
+      ],
+      [
+        655,
+        655,
+        660,
+        651,
+        652,
+        653,
+        660,
+        655,
+        655
+      ],
+      [
+        663,
+        663,
+        668,
+        665,
+        667,
+        666,
+        668,
+        663,
+        663
+      ],
+      [
+        675,
+        672,
+        668,
+        673,
+        659,
+        658,
+        668,
+        672,
+        670
+      ],
+      [
+        679,
+        674,
+        668,
+        673,
+        648,
+        658,
+        668,
+        674,
+        678
+      ],
+      [
+        687,
+        674,
+        668,
+        673,
+        659,
+        658,
+        668,
+        674,
+        647
+      ],
+      [
+        671,
+        672,
+        668,
+        673,
+        659,
+        658,
+        668,
+        672,
+        670
+      ],
+      [
+        678,
+        674,
+        676,
+        700,
+        701,
+        702,
+        676,
+        674,
+        678
+      ],
+      [
+        8,
+        8,
+        8,
+        26,
+        27,
+        28,
+        8,
+        8,
+        8
+      ]
+    ],
+    "collision": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "elevation": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        3,
+        3,
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        0,
+        3,
+        3,
+        3,
+        0,
+        3,
+        0
+      ],
+      [
+        0,
+        3,
+        0,
+        3,
+        3,
+        3,
+        0,
+        3,
+        0
+      ],
+      [
+        0,
+        3,
+        0,
+        3,
+        3,
+        3,
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        3,
+        0,
+        3,
+        3,
+        3,
+        0,
+        3,
+        0
+      ],
+      [
+        0,
+        3,
+        0,
+        3,
+        3,
+        3,
+        0,
+        3,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "source_entry_count": 81,
+    "declared_cell_count": 81,
+    "is_rectangular_exact": true
+  },
+  "border_block_ids": [
+    8,
+    8,
+    8,
+    8
+  ],
+  "border_grid": {
+    "raw": [
+      8,
+      8,
+      8,
+      8
+    ],
+    "metatile_ids": [
+      8,
+      8,
+      8,
+      8
+    ],
+    "collision": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "elevation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 2,
+    "height": 2,
+    "map_offset": 7,
+    "source_function": "src/fieldmap.c:GetBorderBlockAt",
+    "source_header": "include/fieldmap.h",
+    "source_index_rule": "frlg_wrapped_border",
+    "source_runtime_coordinate": "source x/y are Godot local cell coordinates plus MAP_OFFSET",
+    "source_collision_mask": "MAPGRID_COLLISION_MASK",
+    "layout_version": "frlg"
+  },
+  "block_id_stats": {
+    "count": 81,
+    "unique_count": 35,
+    "min": 8,
+    "max": 702,
+    "unique_ids": [
+      8,
+      26,
+      27,
+      28,
+      642,
+      643,
+      644,
+      645,
+      647,
+      648,
+      651,
+      652,
+      653,
+      655,
+      658,
+      659,
+      660,
+      663,
+      665,
+      666,
+      667,
+      668,
+      670,
+      671,
+      672,
+      673,
+      674,
+      675,
+      676,
+      678,
+      679,
+      687,
+      700,
+      701,
+      702
+    ]
+  },
+  "raw_block_value_stats": {
+    "count": 81,
+    "unique_count": 35,
+    "min": 1032,
+    "max": 12990,
+    "unique_ids": [
+      1032,
+      1050,
+      1051,
+      1052,
+      1666,
+      1667,
+      1668,
+      1669,
+      1675,
+      1677,
+      1679,
+      1684,
+      1687,
+      1692,
+      1694,
+      1695,
+      1699,
+      1700,
+      1702,
+      1703,
+      1711,
+      12935,
+      12936,
+      12940,
+      12946,
+      12947,
+      12953,
+      12954,
+      12955,
+      12960,
+      12961,
+      12962,
+      12988,
+      12989,
+      12990
+    ]
+  },
+  "warnings": []
+}
