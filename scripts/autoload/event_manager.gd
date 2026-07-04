@@ -1587,6 +1587,21 @@ func _current_map_id() -> String:
 	return ""
 
 
+func _current_map_type(map_id: String = "") -> String:
+	var resolved_map_id := map_id
+	if resolved_map_id.is_empty():
+		resolved_map_id = _current_map_id()
+	if _data_registry == null or not _data_registry.has_method("get_map_data") or resolved_map_id.is_empty():
+		return ""
+	var map_data = _data_registry.get_map_data(resolved_map_id)
+	if typeof(map_data) != TYPE_DICTIONARY:
+		return ""
+	var map_info = map_data.get("map", {})
+	if typeof(map_info) != TYPE_DICTIONARY:
+		return ""
+	return String(map_info.get("map_type", map_info.get("mapType", "")))
+
+
 func _current_player_position() -> Vector2i:
 	if _game_state != null:
 		return _game_state.player_grid_position
@@ -1733,6 +1748,7 @@ func _create_standard_wild_battle_state(summary: Dictionary) -> Dictionary:
 	var battle_options := {
 		"battle_origin": "standard_wild_encounter",
 		"map": String(summary.get("map", "")),
+		"map_type": _current_map_type(String(summary.get("map", ""))),
 		"metatile_behavior": String(summary.get("current_metatile_behavior", "")),
 		"player_active": _current_player_active_battle_index(player_party),
 	}
@@ -1869,6 +1885,7 @@ func _standard_wild_battle_start_steps(transition: Dictionary, battle_type_flags
 			"task": "Task_BattleStart",
 			"priority": 1,
 			"transition": String(transition.get("selected", "")),
+			"transition_type": String(transition.get("transition_type", "")),
 			"transition_comparison": String(transition.get("comparison", "")),
 			"source": "src/battle_setup.c:CreateBattleStartTask",
 		},
@@ -1885,6 +1902,7 @@ func _standard_wild_battle_start_steps(transition: Dictionary, battle_type_flags
 		{
 			"op": "battle_transition_start",
 			"transition": String(transition.get("selected", "")),
+			"transition_type": String(transition.get("transition_type", "")),
 			"comparison": String(transition.get("comparison", "")),
 			"duration_frames": BATTLE_TRANSITION_STUB_FRAMES,
 			"presentation_stub": true,

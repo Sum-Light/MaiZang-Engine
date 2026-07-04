@@ -125,7 +125,61 @@ func _init() -> void:
 	_assert(int(wild_setup.get("active_player_index", -1)) == 1, "expected setup active player index")
 	_assert(String(wild_setup.get("battle_setup_function", "")) == "BattleSetup_StartWildBattle", "expected wild battle setup function")
 	_assert(String(wild_transition.get("comparison", "")) == "enemy_lower", "expected lower wild transition branch")
+	_assert(String(wild_transition.get("selected", "")) == "B_TRANSITION_SLICE", "expected normal lower wild transition")
+	_assert(String(wild_transition.get("transition_type", "")) == "TRANSITION_TYPE_NORMAL", "expected normal transition type")
+	_assert(int(wild_transition.get("table_column", -1)) == 0, "expected lower transition table column")
 	_assert(_array_field(wild_battle, "unsupported").size() >= 1, "expected wild battle presentation unsupported metadata")
+
+	var water_wild := engine.create_wild_battle_state({
+		"species": "SPECIES_TENTACOOL",
+		"species_id": 72,
+		"level": 6,
+		"area": "water_mons",
+		"map": "MAP_ROUTE119",
+		"record_label": "gRoute119",
+		"slot_index": 0,
+	}, [torchic], {
+		"metatile_behavior": "MB_OCEAN_WATER",
+		"map": "MAP_ROUTE119",
+	})
+	var water_transition := _dict_field(_dict_field(water_wild, "battle_setup"), "battle_transition")
+	_assert(String(water_transition.get("comparison", "")) == "enemy_equal_or_higher", "expected equal-or-higher water branch")
+	_assert(String(water_transition.get("transition_type", "")) == "TRANSITION_TYPE_WATER", "expected water transition type")
+	_assert(String(water_transition.get("transition_type_reason", "")) == "MetatileBehavior_IsSurfableWaterOrUnderwater", "expected water metatile transition reason")
+	_assert(String(water_transition.get("selected", "")) == "B_TRANSITION_RIPPLE", "expected water equal-or-higher wild transition")
+	_assert(int(water_transition.get("table_column", -1)) == 1, "expected equal-or-higher transition table column")
+
+	var flash_wild := engine.create_wild_battle_state({
+		"species": "SPECIES_WURMPLE",
+		"level": 2,
+	}, [torchic], {
+		"flash_level": 1,
+		"metatile_behavior": "MB_TALL_GRASS",
+		"map_type": "MAP_TYPE_UNDERGROUND",
+	})
+	var flash_transition := _dict_field(_dict_field(flash_wild, "battle_setup"), "battle_transition")
+	_assert(String(flash_transition.get("transition_type", "")) == "TRANSITION_TYPE_FLASH", "expected Flash to have transition priority")
+	_assert(String(flash_transition.get("selected", "")) == "B_TRANSITION_BLUR", "expected flash lower wild transition")
+
+	var cave_wild := engine.create_wild_battle_state({
+		"species": "SPECIES_ZUBAT",
+		"level": 2,
+	}, [torchic], {
+		"map_type": "MAP_TYPE_UNDERGROUND",
+	})
+	var cave_transition := _dict_field(_dict_field(cave_wild, "battle_setup"), "battle_transition")
+	_assert(String(cave_transition.get("transition_type", "")) == "TRANSITION_TYPE_CAVE", "expected underground map transition type")
+	_assert(String(cave_transition.get("selected", "")) == "B_TRANSITION_CLOCKWISE_WIPE", "expected cave lower wild transition")
+
+	var underwater_wild := engine.create_wild_battle_state({
+		"species": "SPECIES_CLAMPERL",
+		"level": 6,
+	}, [torchic], {
+		"map_type": "MAP_TYPE_UNDERWATER",
+	})
+	var underwater_transition := _dict_field(_dict_field(underwater_wild, "battle_setup"), "battle_transition")
+	_assert(String(underwater_transition.get("transition_type", "")) == "TRANSITION_TYPE_WATER", "expected underwater map transition type")
+	_assert(String(underwater_transition.get("selected", "")) == "B_TRANSITION_RIPPLE", "expected underwater equal-or-higher wild transition")
 
 	if _failed:
 		return
@@ -137,6 +191,7 @@ func _init() -> void:
 		"adamant_torchic_attack": int(_dict_field(adamant_torchic, "stats").get("attack", 0)),
 		"wallace_party_size": wallace_party.size(),
 		"wild_opponent": String(wild_opponent.get("species", "")),
+		"wild_water_transition": String(water_transition.get("selected", "")),
 	}))
 	engine.free()
 	registry.free()

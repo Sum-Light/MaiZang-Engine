@@ -127,6 +127,8 @@ func _init() -> void:
 	_assert(_has_step_op(hit_battle_sequence, "clear_mirage_tower_pulse_blend"), "expected Mirage Tower blend cleanup metadata")
 	_assert(_has_step_op(hit_battle_sequence, "set_main_callback"), "expected CB2_InitBattle handoff step")
 	_assert(_dict_field(hit_battle_sequence, "battle_transition").get("comparison", "") == "enemy_lower", "expected lower-level wild transition comparison")
+	_assert(_dict_field(hit_battle_sequence, "battle_transition").get("selected", "") == "B_TRANSITION_SLICE", "expected concrete Route101 wild transition")
+	_assert(_dict_field(hit_battle_sequence, "battle_transition").get("transition_type", "") == "TRANSITION_TYPE_NORMAL", "expected Route101 normal transition type")
 	_assert(game_state.get_game_stat("GAME_STAT_TOTAL_BATTLES", 0) == 1, "expected total battle stat increment")
 	_assert(game_state.get_game_stat("GAME_STAT_WILD_BATTLES", 0) == 1, "expected wild battle stat increment")
 	_assert(_dict_field(captured, "battle_start_sequence").get("id", -1) == hit_battle_start.get("id", -2), "expected signal sequence id to match summary")
@@ -230,6 +232,9 @@ func _init() -> void:
 	_assert(bool(water_hit.get("encounter_requested", false)), "expected water encounter request")
 	_assert(String(water_hit.get("species", "")) == "SPECIES_TENTACOOL", "expected Route119 water Tentacool")
 	_assert(String(water_hit.get("area", "")) == "water_mons", "expected water encounter area")
+	var water_transition := _dict_field(_dict_field(_dict_field(water_hit, "battle_start_sequence"), "sequence"), "battle_transition")
+	_assert(String(water_transition.get("transition_type", "")) == "TRANSITION_TYPE_WATER", "expected Route119 water transition type")
+	_assert(String(water_transition.get("selected", "")) == "B_TRANSITION_RIPPLE", "expected Route119 water concrete transition")
 
 	if _failed:
 		return

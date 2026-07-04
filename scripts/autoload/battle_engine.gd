@@ -30,6 +30,33 @@ const SOURCE_TRACE := [
 	"src/data/types_info.h:gTypeEffectivenessTable",
 ]
 
+const WILD_BATTLE_TRANSITION_TABLE := {
+	"TRANSITION_TYPE_NORMAL": ["B_TRANSITION_SLICE", "B_TRANSITION_WHITE_BARS_FADE"],
+	"TRANSITION_TYPE_CAVE": ["B_TRANSITION_CLOCKWISE_WIPE", "B_TRANSITION_GRID_SQUARES"],
+	"TRANSITION_TYPE_FLASH": ["B_TRANSITION_BLUR", "B_TRANSITION_GRID_SQUARES"],
+	"TRANSITION_TYPE_WATER": ["B_TRANSITION_WAVE", "B_TRANSITION_RIPPLE"],
+}
+const SURFABLE_WATER_TRANSITION_BEHAVIORS := {
+	"MB_POND_WATER": true,
+	"MB_INTERIOR_DEEP_WATER": true,
+	"MB_DEEP_WATER": true,
+	"MB_WATERFALL": true,
+	"MB_SOOTOPOLIS_DEEP_WATER": true,
+	"MB_OCEAN_WATER": true,
+	"MB_NO_SURFACING": true,
+	"MB_SEAWEED": true,
+	"MB_SEAWEED_NO_SURFACING": true,
+	"MB_EASTWARD_CURRENT": true,
+	"MB_WESTWARD_CURRENT": true,
+	"MB_NORTHWARD_CURRENT": true,
+	"MB_SOUTHWARD_CURRENT": true,
+	"MB_WATER_DOOR": true,
+	"MB_WATER_SOUTH_ARROW_WARP": true,
+	"MB_UNUSED_6F": true,
+	"MB_FAST_WATER": true,
+	"MB_CYCLING_ROAD_WATER": true,
+}
+
 const TYPE_EFFECTIVENESS := {
 	"TYPE_NORMAL": {
 		"TYPE_ROCK": [1, 2],
@@ -719,22 +746,120 @@ func _wild_battle_transition_metadata(player_party: Array, wild_mon: Dictionary,
 	var enemy_level := int(wild_mon.get("level", 1))
 	var player_level := _first_battle_party_level(player_party)
 	var pyramid := bool(options.get("battle_pyramid", options.get("battle_pyramid_layout", false)))
-	var comparison := "enemy_lower" if enemy_level < player_level else "enemy_equal_or_higher"
-	var selected := ""
+	var enemy_lower := enemy_level < player_level
+	var comparison := "enemy_lower" if enemy_lower else "enemy_equal_or_higher"
+	var table_column := 0 if enemy_lower else 1
+	var transition_type_info := _wild_battle_transition_type_info(options)
+	var transition_type := String(transition_type_info.get("transition_type", "TRANSITION_TYPE_NORMAL"))
+	var selected := _wild_battle_transition_for_type(transition_type, table_column)
+	var selection_source := "src/battle_setup.c:sBattleTransitionTable_Wild[%s][%d]" % [transition_type, table_column]
 	if pyramid:
-		selected = "B_TRANSITION_BLUR" if enemy_level < player_level else "B_TRANSITION_GRID_SQUARES"
-	else:
-		selected = "sBattleTransitionTable_Wild[GetBattleTransitionTypeByMap()][0]" if enemy_level < player_level else "sBattleTransitionTable_Wild[GetBattleTransitionTypeByMap()][1]"
+		selected = "B_TRANSITION_BLUR" if enemy_lower else "B_TRANSITION_GRID_SQUARES"
+		selection_source = "src/battle_setup.c:GetWildBattleTransition Battle Pyramid override"
+
 	return {
 		"status": "selected_metadata",
 		"selected": selected,
 		"enemy_level": enemy_level,
 		"player_level": player_level,
 		"comparison": comparison,
+		"table_column": table_column,
+		"transition_type": transition_type,
+		"transition_type_reason": String(transition_type_info.get("reason", "")),
+		"transition_table": "" if pyramid else "sBattleTransitionTable_Wild",
+		"selection_source": selection_source,
+		"map": String(options.get("map", "")),
+		"map_type": String(transition_type_info.get("map_type", "")),
+		"metatile_behavior": String(transition_type_info.get("metatile_behavior", "")),
+		"flash_level": int(transition_type_info.get("flash_level", 0)),
 		"battle_pyramid": pyramid,
 		"source": "src/battle_setup.c:GetWildBattleTransition",
-		"notes": "Map-specific transition type is not resolved until generated battle transition presentation is implemented.",
+		"source_trace": [
+			"src/battle_setup.c:GetBattleTransitionTypeByMap",
+			"src/metatile_behavior.c:MetatileBehavior_IsSurfableWaterOrUnderwater",
+			"src/battle_setup.c:GetWildBattleTransition",
+			"src/battle_setup.c:sBattleTransitionTable_Wild",
+		],
 	}
+
+
+func _wild_battle_transition_type_info(options: Dictionary) -> Dictionary:
+	var flash_level := _wild_transition_flash_level(options)
+	var behavior_name := _source_symbol(options.get("metatile_behavior", options.get("current_metatile_behavior", "")))
+	var map_type := _source_symbol(options.get("map_type", options.get("mapType", options.get("source_map_type", ""))))
+	if flash_level != 0:
+		return _wild_transition_type_result(
+			"TRANSITION_TYPE_FLASH",
+			"GetFlashLevel",
+			flash_level,
+			behavior_name,
+			map_type
+		)
+	if SURFABLE_WATER_TRANSITION_BEHAVIORS.has(behavior_name):
+		return _wild_transition_type_result(
+			"TRANSITION_TYPE_WATER",
+			"MetatileBehavior_IsSurfableWaterOrUnderwater",
+			flash_level,
+			behavior_name,
+			map_type
+		)
+	if map_type == "MAP_TYPE_UNDERGROUND" or map_type == "UNDERGROUND":
+		return _wild_transition_type_result(
+			"TRANSITION_TYPE_CAVE",
+			"gMapHeader.mapType == MAP_TYPE_UNDERGROUND",
+			flash_level,
+			behavior_name,
+			map_type
+		)
+	if map_type == "MAP_TYPE_UNDERWATER" or map_type == "UNDERWATER":
+		return _wild_transition_type_result(
+			"TRANSITION_TYPE_WATER",
+			"gMapHeader.mapType == MAP_TYPE_UNDERWATER",
+			flash_level,
+			behavior_name,
+			map_type
+		)
+	return _wild_transition_type_result(
+		"TRANSITION_TYPE_NORMAL",
+		"default",
+		flash_level,
+		behavior_name,
+		map_type
+	)
+
+
+func _wild_transition_type_result(
+	transition_type: String,
+	reason: String,
+	flash_level: int,
+	behavior_name: String,
+	map_type: String
+) -> Dictionary:
+	return {
+		"transition_type": transition_type,
+		"reason": reason,
+		"flash_level": flash_level,
+		"metatile_behavior": behavior_name,
+		"map_type": map_type,
+	}
+
+
+func _wild_battle_transition_for_type(transition_type: String, table_column: int) -> String:
+	var transitions = WILD_BATTLE_TRANSITION_TABLE.get(transition_type, WILD_BATTLE_TRANSITION_TABLE["TRANSITION_TYPE_NORMAL"])
+	if typeof(transitions) != TYPE_ARRAY or transitions.is_empty():
+		transitions = WILD_BATTLE_TRANSITION_TABLE["TRANSITION_TYPE_NORMAL"]
+	var column := clampi(table_column, 0, transitions.size() - 1)
+	return String(transitions[column])
+
+
+func _wild_transition_flash_level(options: Dictionary) -> int:
+	if options.has("flash_level"):
+		return int(options.get("flash_level", 0))
+	if options.has("flashLevel"):
+		return int(options.get("flashLevel", 0))
+	if bool(options.get("flash_active", options.get("flashActive", false))):
+		return 1
+	return 0
 
 
 func _first_battle_party_level(player_party: Array) -> int:
@@ -958,6 +1083,10 @@ func _constant_symbol(value) -> String:
 		return String(value.get("symbol", ""))
 	var symbol := String(value)
 	return symbol
+
+
+func _source_symbol(value) -> String:
+	return _constant_symbol(value).strip_edges().to_upper()
 
 
 func _record_symbol(record: Dictionary) -> String:

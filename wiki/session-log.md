@@ -289,3 +289,7 @@
 - Wired `Main` to play wild battle-start sequences through `TransitionSequencePlayer`, and extended the player with a generic first-pass `battle_transition_start` overlay stub while keeping exact transition graphics, BGM, object freezing, cleanup, and real battle scene handoff pending.
 - Expanded `field_wild_encounter_smoke.gd` and `transition_presentation_smoke.gd` to cover battle-start sequence emission, stat increments, transition metadata, and playback cleanup.
 - Verified `field_wild_encounter_smoke.gd`, `transition_presentation_smoke.gd`, `battle_engine_smoke.gd`, and `git diff --check`.
+- Used a subagent for read-only source verification of wild battle transition selection, then locally traced `src/battle_setup.c:GetBattleTransitionTypeByMap`/`GetWildBattleTransition` and `src/metatile_behavior.c:MetatileBehavior_IsSurfableWaterOrUnderwater`.
+- Updated `BattleEngine.create_wild_battle_state` so wild battle setup metadata resolves concrete source `B_TRANSITION_*` ids from `sBattleTransitionTable_Wild`, preserving Flash priority, surfable/underwater metatile behavior, underground/underwater map types, lower/equal-or-higher level columns, and Battle Pyramid overrides.
+- Updated `EventManager` so standard wild battle-start steps carry the concrete transition id and transition type; generated map `map_type` is passed into battle setup when available through `DataRegistry`.
+- Expanded `battle_engine_smoke.gd` and `field_wild_encounter_smoke.gd` to cover normal Route101, Route119 water, Flash, underground, and underwater wild transition selection.
