@@ -316,9 +316,12 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
   - Boundary: this is an asset-quality smoke, not runtime playback. Runtime palette remaps or palette animation are forbidden; source color flashes/fades, affine scaling/rotation, masks/fades, sprite animation timing, and audio playback remain pending and should use Godot-native shaders/materials/animation while matching the source-visible result.
   - Validate: `battle_asset_image_quality_smoke.gd` reports `image_load_count=14`, `metadata_image_ref_count=4428`, `source_color_provenance_count=231`, and `tilemap_composite_count=14`; `battle_parity_report_smoke.gd` asserts the smoke is attached to representative first-pass rows.
 
-- [ ] B7.6 Add Pokemon data and asset completeness report.
+- [x] B7.6 Add Pokemon data and asset completeness report.
   - Output: `data/generated/reports/pokemon_battle_asset_coverage.json`.
-  - Validate: rows cover species data, battle sprites, distinct normal/shiny/gender/form image variants, import-only source color provenance, icons needed by battle UI, cries as metadata-only while audio is closed, front animations, shadow/offset/scale, and unsupported reasons.
+  - Current first pass: `tools/report_pokemon_battle_assets.py` emits 1573 Pokemon/form coverage rows, 1330 normal front/back first-pass sprite pairs, 1328 imported battle UI icons, 100 complete source-required female variant asset sets, 1329 normal/shiny source color provenance rows, 1328 front-animation metadata rows, and 1330 cry refs marked `metadata_only`.
+  - Variant gaps: the report marks 1329 rows with pending distinct source-color image variants and 2664 total pending distinct RGBA image assets, including 1329 shiny front gaps, 1329 shiny back gaps, 3 female shiny front gaps, and 3 female shiny back gaps. These are tracked as asset TODOs, not runtime color remap paths.
+  - Boundary: the report exposes source color provenance only. Source `.pal`/`.gbapal` paths and source color symbols remain import-only trace data; runtime battle presentation must consume distinct RGBA images plus Godot Shader/Material/Animation parameters for tint/fade/flash/affine effects. Audio playback remains closed and all cry refs remain metadata-only.
+  - Validate: `pokemon_battle_asset_coverage_smoke.gd` checks report schema/policy, row shapes, Torchic, Pikachu, Unfezant, Unown, Geodude, Castform, Mega Venusaur, icons needed by battle UI, distinct shiny/female-shiny gaps, front animations, placement/shadow metadata, cry metadata-only status, unsupported reason registry, and absence of a `runtime_palette` API.
 
 - [ ] B7.7 Add trainer data and asset completeness report.
   - Output: `data/generated/reports/trainer_battle_asset_coverage.json`.

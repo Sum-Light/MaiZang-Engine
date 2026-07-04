@@ -590,7 +590,7 @@ func try_sweet_scent_encounter(map_symbol: String, options: Dictionary = {}) -> 
 			"sequence": [
 				"SetWeatherScreenFadeOut",
 				"PlaySE(SE_M_SWEET_SCENT)",
-				"BeginNormalPaletteFade red tint",
+				"Godot shader/material red screen tint",
 				"wait 64 task ticks",
 				"SweetScentWildEncounter",
 				"battle setup or EventScript_FailSweetScent",
