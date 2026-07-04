@@ -36,7 +36,9 @@
     "tools/importer/export_battle_transitions.py",
     "tools/importer/export_overworld_tileset_anim_trace.py",
     "tools/importer/export_overworld_metatile_behavior_trace.py",
-    "tools/importer/export_overworld_scrcmd_trace.py"
+    "tools/importer/export_overworld_scrcmd_trace.py",
+    "tools/importer/export_overworld_script_reference_report.py",
+    "tools/importer/export_battle_interface.py"
   ],
   "maps": [
     {
@@ -31534,6 +31536,13 @@
       "tilemap_composite_count": 14,
       "runtime_status": "pending_presentation",
       "audio_status": "metadata_only"
+    },
+    {
+      "category": "interface",
+      "path": "data/generated/battle/interface.json",
+      "texture_count": 68,
+      "window_template_count": 25,
+      "tilemap_composite_count": 1
     }
   ],
   "map_overlays": [
@@ -31747,6 +31756,19 @@
       "text_count": 787,
       "charmap_warning_count": 0,
       "orphan_instruction_count": 15
+    },
+    {
+      "category": "overworld_script_reference_report",
+      "path": "data/generated/overworld/script_reference_report.json",
+      "script_bundle_count": 971,
+      "map_script_bundle_count": 887,
+      "shared_script_bundle_count": 84,
+      "script_label_count": 13000,
+      "movement_label_count": 1489,
+      "checked_reference_count": 21389,
+      "missing_reference_count": 0,
+      "missing_movement_reference_count": 0,
+      "excluded_reference_count": 28
     }
   ]
 }
