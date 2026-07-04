@@ -18,6 +18,7 @@ const SOURCE_TRACE := [
 	"src/pokemon.c:ModifyStatByNature",
 	"src/battle_main.c:CreateNPCTrainerPartyFromTrainer",
 	"src/battle_main.c:CustomTrainerPartyAssignMoves",
+	"src/pokemon.c:GiveBoxMonInitialMoveset",
 	"src/battle_util.c:CalculateBaseDamage",
 	"src/battle_util.c:DoMoveDamageCalcVars",
 	"src/battle_util.c:ApplyModifiersAfterDmgRoll",
@@ -211,18 +212,14 @@ func create_battle_mon(species_id_or_symbol, level: int, options: Dictionary = {
 	if nature_symbol.is_empty():
 		nature_symbol = "NATURE_HARDY"
 	var stats := _calculate_stats(species_record, clamped_level, ivs, evs, nature_symbol, unsupported)
-	var moves_result := _build_move_slots(options.get("moves", []))
+	var move_specs = options.get("moves", [])
+	var move_source_behavior = options.get("move_source_behavior", {})
+	if (typeof(move_specs) != TYPE_ARRAY or move_specs.is_empty()) and typeof(move_source_behavior) == TYPE_DICTIONARY:
+		if String(move_source_behavior.get("kind", "")) == "level_up_default":
+			move_specs = _move_specs_for_initial_learnset(species_record, clamped_level, unsupported)
+	var moves_result := _build_move_slots(move_specs)
 	warnings.append_array(moves_result.get("warnings", []))
 	unsupported.append_array(moves_result.get("unsupported", []))
-
-	var move_source_behavior = options.get("move_source_behavior", {})
-	if moves_result.get("moves", []).is_empty() and typeof(move_source_behavior) == TYPE_DICTIONARY:
-		if String(move_source_behavior.get("kind", "")) == "level_up_default":
-			unsupported.append({
-				"code": "missing_level_up_learnset_data",
-				"source": "src/battle_main.c:CustomTrainerPartyAssignMoves",
-				"detail": "Source would call GiveMonInitialMoveset, but generated learnset data is not available yet.",
-			})
 
 	var hp := int(options.get("hp", stats.get("hp", 1)))
 	hp = clampi(hp, 0, int(stats.get("hp", 1)))
@@ -525,6 +522,22 @@ func _get_trainer_record(trainer_id_or_symbol) -> Dictionary:
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
+func _get_level_up_learnset_record(species_record: Dictionary) -> Dictionary:
+	var registry := _get_registry()
+	if registry == null:
+		return {}
+	if registry.has_method("get_level_up_learnset_for_species"):
+		var record = registry.get_level_up_learnset_for_species(_record_symbol(species_record))
+		return record if typeof(record) == TYPE_DICTIONARY else {}
+	if not registry.has_method("get_level_up_learnset_record"):
+		return {}
+	var learnset_label := _learnset_label_from_species_record(species_record)
+	if learnset_label.is_empty():
+		return {}
+	var fallback_record = registry.get_level_up_learnset_record(learnset_label)
+	return fallback_record if typeof(fallback_record) == TYPE_DICTIONARY else {}
+
+
 func _calculate_stats(species_record: Dictionary, level: int, ivs: Dictionary, evs: Dictionary, nature_symbol: String, unsupported: Array) -> Dictionary:
 	var base_stats = species_record.get("base_stats", {})
 	var stats := {}
@@ -550,6 +563,58 @@ func _calculate_stats(species_record: Dictionary, level: int, ivs: Dictionary, e
 	return stats
 
 
+func _move_specs_for_initial_learnset(species_record: Dictionary, level: int, unsupported: Array) -> Array:
+	var learnset_label := _learnset_label_from_species_record(species_record)
+	var learnset_record := _get_level_up_learnset_record(species_record)
+	if learnset_record.is_empty():
+		unsupported.append({
+			"code": "missing_level_up_learnset_data",
+			"source": "src/battle_main.c:CustomTrainerPartyAssignMoves -> src/pokemon.c:GiveBoxMonInitialMoveset",
+			"detail": "Could not resolve generated level-up learnset %s for %s." % [learnset_label, _record_symbol(species_record)],
+		})
+		return []
+
+	var selected: Array = []
+	var entries = learnset_record.get("moves", [])
+	if typeof(entries) != TYPE_ARRAY:
+		return selected
+
+	for entry in entries:
+		if typeof(entry) != TYPE_DICTIONARY:
+			continue
+		var learn_level := int(entry.get("level", 0))
+		if learn_level > level:
+			break
+		if learn_level == 0:
+			continue
+		var move_record = entry.get("move", {})
+		if typeof(move_record) != TYPE_DICTIONARY:
+			continue
+		var move_key = _move_lookup_key(move_record)
+		if String(move_key).is_empty() or String(move_key) == "MOVE_NONE":
+			continue
+
+		var already_known := false
+		for selected_move in selected:
+			if String(_move_lookup_key(selected_move)) == String(move_key):
+				already_known = true
+				break
+		if already_known:
+			continue
+
+		var move_spec: Dictionary = move_record.duplicate(true)
+		move_spec["learnset"] = learnset_label
+		move_spec["learnset_level"] = learn_level
+		move_spec["source"] = entry.get("source", {})
+		move_spec["assignment_source"] = "src/pokemon.c:GiveBoxMonInitialMoveset"
+		if selected.size() < MAX_MON_MOVES:
+			selected.append(move_spec)
+		else:
+			selected.remove_at(0)
+			selected.append(move_spec)
+	return selected
+
+
 func _build_move_slots(move_specs) -> Dictionary:
 	var moves: Array = []
 	var warnings: Array = []
@@ -571,6 +636,22 @@ func _build_move_slots(move_specs) -> Dictionary:
 			})
 			continue
 		var symbol := _record_symbol(move_record)
+		var assignment_source := "src/battle_main.c:CustomTrainerPartyAssignMoves"
+		var learnset_source := {}
+		if typeof(move_spec) == TYPE_DICTIONARY:
+			assignment_source = String(move_spec.get("assignment_source", assignment_source))
+			learnset_source = {
+				"label": String(move_spec.get("learnset", "")),
+				"level": int(move_spec.get("learnset_level", 0)),
+				"entry": move_spec.get("source", {}),
+			}
+		var source_info := {
+			"move_data": move_record.get("source", {}),
+			"assignment": assignment_source,
+			"pp": "%s -> GetMovePP" % [assignment_source],
+		}
+		if typeof(learnset_source) == TYPE_DICTIONARY and not String(learnset_source.get("label", "")).is_empty():
+			source_info["learnset"] = learnset_source
 		moves.append({
 			"id": int(move_record.get("id", -1)),
 			"symbol": symbol,
@@ -582,11 +663,7 @@ func _build_move_slots(move_specs) -> Dictionary:
 			"accuracy": int(move_record.get("accuracy", 0)),
 			"max_pp": int(move_record.get("pp", 0)),
 			"current_pp": int(move_record.get("pp", 0)),
-			"source": {
-				"move_data": move_record.get("source", {}),
-				"assignment": "src/battle_main.c:CustomTrainerPartyAssignMoves",
-				"pp": "src/battle_main.c:CustomTrainerPartyAssignMoves -> GetMovePP",
-			},
+			"source": source_info,
 		})
 	return {"moves": moves, "warnings": warnings, "unsupported": unsupported}
 
@@ -636,6 +713,16 @@ func _constant_symbol(value) -> String:
 
 func _record_symbol(record: Dictionary) -> String:
 	return String(record.get("symbol", ""))
+
+
+func _learnset_label_from_species_record(species_record: Dictionary) -> String:
+	var learnset_label := String(species_record.get("level_up_learnset", ""))
+	if not learnset_label.is_empty():
+		return learnset_label
+	var source_references = species_record.get("source_references", {})
+	if typeof(source_references) == TYPE_DICTIONARY:
+		learnset_label = String(source_references.get("level_up_learnset", ""))
+	return learnset_label
 
 
 func _display_text(value, fallback: String) -> String:

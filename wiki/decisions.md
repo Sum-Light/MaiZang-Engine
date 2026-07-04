@@ -305,3 +305,9 @@ Reason: Wild encounter runtime behavior spans field input ordering, metatile beh
 Decision: Introduce `BattleEngine` as a Godot autoload for battle rules before building battle UI, starting with generated Pokemon/trainer party construction, source formula ordinary damage, type effectiveness, PP/HP/fainting, and structured first-pass battle messages.
 
 Reason: Battle behavior will eventually touch UI, animations, sounds, text placeholders, AI, abilities, items, weather, status, trainer rewards, and many move effects. A domain-only rules layer lets those rules be smoke-tested against generated source data without coupling the first implementation to presentation scenes or guessing unsupported source behavior.
+
+## 2026-07-04 - Export level-up learnsets for source default trainer moves
+
+Decision: Add generated Pokemon level-up learnset data and use it in `BattleEngine` to assign omitted trainer Pokemon moves with the source `GiveBoxMonInitialMoveset` four-slot selection rule.
+
+Reason: Source trainer party data often omits explicit moves and relies on `CustomTrainerPartyAssignMoves` calling Pokemon default moveset logic. Reproducing that behavior requires the active generation learnset table, not a guessed fallback. Keeping learnsets as generated data also prepares later move-learning, evolution, relearning, UI, and compatibility systems while preserving source-visible trainer battles.

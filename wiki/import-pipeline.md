@@ -36,6 +36,7 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 - `src/data/moves_info.h`
 - `src/data/items.h`
 - `src/data/abilities.h`
+- `src/data/pokemon/level_up_learnsets/gen_*.h`
 - `include/constants/*.h`
 
 ### Text
@@ -337,6 +338,28 @@ Latest verified trainer export:
 - warnings: 0
 - unsupported fields: 0
 - unresolved constants: 0
+
+`tools/importer/export_learnsets.py` exports the active Pokemon level-up learnset table into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
+
+Current level-up learnset export behavior:
+
+- Reads `include/config/pokemon.h` and related generation config to select the active `src/data/pokemon/level_up_learnsets/gen_*.h` file; the current source target selects `GEN_9`.
+- Parses `LEVEL_UP_MOVE(level, MOVE_*)` entries into ordered per-species learnset records while preserving source labels, source locations, move symbols, numeric move ids, levels, level-zero entries, and unresolved-move reporting.
+- Records runtime behavior references for source default trainer moves, including `src/battle_main.c:CustomTrainerPartyAssignMoves`, `src/pokemon.c:GiveBoxMonInitialMoveset`, `src/pokemon.c:GetSpeciesLevelUpLearnset`, and `src/pokemon.c:GetMovePP`.
+- Writes `data/generated/pokemon/learnsets.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `learnsets`.
+- Treats generated learnset records as source-traceable data for battle, party creation, evolution, relearning, UI, and broader move-learning work. Only the trainer default initial-moves slice is currently implemented in `BattleEngine`.
+
+Latest verified level-up learnset export:
+
+- generated path: `data/generated/pokemon/learnsets.json`
+- manifest category: `pokemon` / `learnsets`
+- active generation: `GEN_9`
+- learnsets: 1104
+- move entries: 16616
+- level-zero move entries: 294
+- preprocessor decisions: 640
+- warnings: 0
+- unresolved moves: 0
 
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 

@@ -19,9 +19,9 @@ The port should be data-driven: preserve source data and assets where practical,
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
 - Autoloads are configured for `GameState`, `DataRegistry`, `BattleEngine`, `MapRuntime`, `ScriptVM`, and `EventManager`.
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, Pokemon wild encounter JSON, and Pokemon trainer JSON while preserving the first-slice start-map API.
+- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, Pokemon wild encounter JSON, Pokemon trainer JSON, and Pokemon level-up learnset JSON while preserving the first-slice start-map API.
 - `BattleEngine` is registered as a UI-independent battle rules autoload. Its first source-traced slice can build battle Pokemon from generated species/move data, build explicit trainer parties from generated trainer data, calculate deterministic ordinary move damage from the source base formula, apply STAB and source type effectiveness, decrement PP, apply HP damage, mark fainting, and return first-pass battle message events.
-- `BattleEngine` deliberately reports unsupported first-pass battle gaps instead of guessing: level-up default trainer moves need generated learnset data before `GiveMonInitialMoveset` can be reproduced, and weather, critical hits, burn/frostbite, protection, abilities, held items, screens, multi-target modifiers, accuracy, move-specific effects, and final battle text/presentation remain future traced work.
+- `BattleEngine` deliberately reports unsupported first-pass battle gaps instead of guessing: generated trainer Pokemon with source default moves now use generated level-up learnsets to reproduce the first-pass `GiveBoxMonInitialMoveset` selection window, while weather, critical hits, burn/frostbite, protection, abilities, held items, screens, multi-target modifiers, accuracy, move-specific effects, and final battle text/presentation remain future traced work.
 - `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior id, behavior name, and layer-type lookups.
 - `MapRuntime` now indexes first-slice object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events.
 - `MapRuntime` treats visible object-event cells as occupied and can resolve the player's current interaction target from grid position plus facing direction.
@@ -74,6 +74,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Generated Pokemon item data currently exists at `data/generated/pokemon/items.json` and is indexed by the import manifest `pokemon` entry with category `items`.
 - Generated Pokemon wild encounter data currently exists at `data/generated/pokemon/wild_encounters.json` and is indexed by the import manifest `pokemon` entry with category `wild_encounters`.
 - Generated Pokemon trainer data currently exists at `data/generated/pokemon/trainers.json` and is indexed by the import manifest `pokemon` entry with category `trainers`.
+- Generated Pokemon level-up learnset data currently exists at `data/generated/pokemon/learnsets.json` and is indexed by the import manifest `pokemon` entry with category `learnsets`.
 - Generated import manifest lives at `data/generated/import_manifest.json`.
 - Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
 - Latest map export for `LittlerootTown` decoded 400 map-grid entries into 63 unique metatile ids.
@@ -86,7 +87,8 @@ The port should be data-driven: preserve source data and assets where practical,
 - Latest Pokemon item export found 874 active item initializers, `ITEMS_COUNT = 874`, highest item id 873, 139 item records with effect references, 72 parsed item effect byte arrays, 254 preprocessor decisions, 0 preprocessor warnings, 0 export warnings, and 0 unsupported fields.
 - Latest Pokemon wild encounter export found 3 header groups, 399 encounter records, 388 map encounter records, 332 land tables, 155 water tables, 34 rock-smash tables, 153 fishing tables, 6459 total wild-mon slots, 222 unique species, 0 export warnings, and 0 unsupported fields.
 - Latest Pokemon trainer export found 855 trainers, `TRAINERS_COUNT` 855, highest trainer id 854, 1825 party Pokemon, 77 double battles, 141 trainers with explicit items, 839 trainers with AI flags, 5 mugshot trainers, 436 Pokemon with explicit move lists, 1389 Pokemon using source level-up default moves, 142 held-item Pokemon, 208 unique trainer species, 210 unique trainer moves, 0 warnings, 0 unsupported fields, and 0 unresolved constants.
-- Trainer roster/config data is generated and indexed. The first `BattleEngine` runtime slice can construct generated explicit-move trainer parties and reports source default level-up move assignment as unsupported until learnsets are generated; party pools, dynamic trainer ids/difficulty, AI execution, rewards, rematches, and battle presentation still need source-backed implementation.
+- Latest Pokemon level-up learnset export uses active `GEN_9` data and found 1104 learnsets, 16616 move entries, 294 level-zero moves, 640 preprocessor decisions, 0 warnings, and 0 unresolved moves.
+- Trainer roster/config data is generated and indexed. The first `BattleEngine` runtime slice can construct generated explicit-move trainer parties and source default level-up trainer moves through generated learnsets; party pools, dynamic trainer ids/difficulty, AI execution, rewards, rematches, and battle presentation still need source-backed implementation.
 - Generated `LittlerootTown_BrendansHouse_1F` is 11x9 and has 26 scripts, 11 movement labels, 29 text labels, 0 charmap warnings, and 0 script orphan instructions.
 - Generated `LittlerootTown_MaysHouse_1F` is 11x9 and has 31 scripts, 11 movement labels, 8 text labels, 0 charmap warnings, and 0 script orphan instructions.
 - Shared `PlayersHouse_1F` scripts from source `data/scripts/players_house.inc` and common movements from `data/scripts/movement.inc` are exported into `data/generated/scripts/shared_players_house.json`; Brendan/May house OnFrame intro scripts now run through `PlayersHouse_1F_EventScript_EnterHouseMovingIn`.
@@ -141,6 +143,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Item data: `src/data/items.h`
 - Wild encounters: `src/data/wild_encounters.json`
 - Trainers: `src/data/trainers.party`
+- Level-up learnsets: `src/data/pokemon/level_up_learnsets/gen_*.h`
 
 ## Important Risk
 

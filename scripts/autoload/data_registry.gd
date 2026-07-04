@@ -39,6 +39,7 @@ var _wild_encounter_records_by_label: Dictionary = {}
 var _wild_encounter_records_by_map: Dictionary = {}
 var _trainer_records_by_symbol: Dictionary = {}
 var _trainer_records_by_id: Dictionary = {}
+var _learnset_records_by_label: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -378,6 +379,30 @@ func get_trainers_data() -> Dictionary:
 	return get_pokemon_data("trainers")
 
 
+func get_learnsets_data() -> Dictionary:
+	return get_pokemon_data("learnsets")
+
+
+func get_level_up_learnset_record(learnset_label: String) -> Dictionary:
+	_ensure_learnset_indexes()
+	var record = _learnset_records_by_label.get(learnset_label, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_level_up_learnset_for_species(species_id_or_symbol) -> Dictionary:
+	var species_record := get_species_record(species_id_or_symbol)
+	if species_record.is_empty():
+		return {}
+	var learnset_label := String(species_record.get("level_up_learnset", ""))
+	if learnset_label.is_empty():
+		var source_references = species_record.get("source_references", {})
+		if typeof(source_references) == TYPE_DICTIONARY:
+			learnset_label = String(source_references.get("level_up_learnset", ""))
+	if learnset_label.is_empty():
+		return {}
+	return get_level_up_learnset_record(learnset_label)
+
+
 func get_trainer_record(trainer_id_or_symbol) -> Dictionary:
 	if typeof(trainer_id_or_symbol) == TYPE_INT:
 		return get_trainer_record_by_id(int(trainer_id_or_symbol))
@@ -480,6 +505,7 @@ func _index_manifest() -> void:
 	_wild_encounter_records_by_map = {}
 	_trainer_records_by_symbol = {}
 	_trainer_records_by_id = {}
+	_learnset_records_by_label = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -706,6 +732,24 @@ func _ensure_trainer_indexes() -> void:
 			_trainer_records_by_symbol[trainer_symbol] = record
 		if record.has("id") and record.get("id") != null:
 			_trainer_records_by_id[int(record.get("id"))] = record
+
+
+func _ensure_learnset_indexes() -> void:
+	if not _learnset_records_by_label.is_empty():
+		return
+
+	var learnsets_data := get_learnsets_data()
+	var learnset_records = learnsets_data.get("learnsets", {})
+	if typeof(learnset_records) != TYPE_DICTIONARY:
+		return
+
+	for label in learnset_records.keys():
+		var record = learnset_records[label]
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var learnset_label := String(record.get("label", label))
+		if not learnset_label.is_empty():
+			_learnset_records_by_label[learnset_label] = record
 
 
 func _normalize_map_symbol(map_symbol: String) -> String:
