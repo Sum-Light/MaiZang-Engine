@@ -37,10 +37,15 @@ const SOURCE_TRACE := [
 ]
 
 var _game_state: Node = null
+var _map_runtime: Node = null
 
 
 func configure_game_state(game_state: Node) -> void:
 	_game_state = game_state
+
+
+func configure_map_runtime(map_runtime: Node) -> void:
+	_map_runtime = map_runtime
 
 
 func get_default_save_path(slot_id: String = DEFAULT_SLOT_ID) -> String:
@@ -106,6 +111,7 @@ func build_snapshot(game_state: Node = null, options: Dictionary = {}) -> Dictio
 	var slot_id := String(options.get("slot_id", DEFAULT_SLOT_ID))
 	var save_type := String(options.get("save_type", SAVE_NORMAL))
 	var state := _snapshot_game_state(resolved_game_state)
+	var map_runtime_state := _snapshot_map_runtime(_get_map_runtime(options.get("map_runtime", null)), resolved_game_state)
 	return {
 		"schema": SCHEMA_NAME,
 		"schema_version": SCHEMA_VERSION,
@@ -116,6 +122,7 @@ func build_snapshot(game_state: Node = null, options: Dictionary = {}) -> Dictio
 		"save_counter": save_counter,
 		"created_unix_time": int(Time.get_unix_time_from_system()),
 		"game_state": state,
+		"map_runtime": map_runtime_state,
 		"source_save_blocks": _source_save_block_summary(state),
 		"save_flow": describe_save_flow(options),
 		"source_trace": SOURCE_TRACE.duplicate(),
@@ -158,7 +165,7 @@ func save_game(game_state: Node = null, save_path: String = "", options: Diction
 	}
 
 
-func load_game(save_path: String = "", game_state: Node = null) -> Dictionary:
+func load_game(save_path: String = "", game_state: Node = null, map_runtime: Node = null) -> Dictionary:
 	var path := save_path if not save_path.is_empty() else get_default_save_path()
 	if not FileAccess.file_exists(path):
 		return {
@@ -198,7 +205,7 @@ func load_game(save_path: String = "", game_state: Node = null) -> Dictionary:
 	if String(validation.get("status", "")) != "ok":
 		validation["path"] = path
 		return validation
-	var apply_result := apply_snapshot(snapshot, game_state)
+	var apply_result := apply_snapshot(snapshot, game_state, map_runtime)
 	return {
 		"status": "ok" if String(apply_result.get("status", "")) == "ok" else "loaded_unapplied",
 		"save_status": "SAVE_STATUS_OK",
@@ -230,7 +237,7 @@ func validate_snapshot(snapshot: Dictionary) -> Dictionary:
 	return {"status": "ok", "source_trace": SOURCE_TRACE.duplicate()}
 
 
-func apply_snapshot(snapshot: Dictionary, game_state: Node = null) -> Dictionary:
+func apply_snapshot(snapshot: Dictionary, game_state: Node = null, map_runtime: Node = null) -> Dictionary:
 	var resolved_game_state := _get_game_state(game_state)
 	if resolved_game_state == null:
 		return _error_result("missing_game_state", "GameState is required to apply a save snapshot.")
@@ -252,11 +259,13 @@ func apply_snapshot(snapshot: Dictionary, game_state: Node = null) -> Dictionary
 		resolved_game_state.set_player_party(party)
 	else:
 		resolved_game_state.player_party = party.duplicate(true)
+	var map_apply_result := _apply_map_runtime_snapshot(snapshot, _get_map_runtime(map_runtime), resolved_game_state)
 	return {
 		"status": "ok",
 		"current_map_id": resolved_game_state.current_map_id,
 		"player_grid_position": _vector2i_to_save(resolved_game_state.player_grid_position),
 		"party_count": _party_count(resolved_game_state),
+		"map_runtime_result": map_apply_result,
 		"source_trace": [
 			"src/save.c:LoadGameSave",
 			"src/load_save.c:CopyPartyAndObjectsFromSave",
@@ -277,6 +286,36 @@ func _snapshot_game_state(game_state: Node) -> Dictionary:
 	}
 
 
+func _snapshot_map_runtime(map_runtime: Node, game_state: Node) -> Dictionary:
+	if map_runtime == null or not map_runtime.has_method("export_object_event_state"):
+		return {
+			"status": "unavailable",
+			"unsupported": [{
+				"code": "missing_map_runtime",
+				"source": "src/load_save.c:SaveObjectEvents",
+				"detail": "MapRuntime was unavailable, so current object-event runtime state was not included.",
+			}],
+		}
+	var state = map_runtime.export_object_event_state(game_state)
+	return state if typeof(state) == TYPE_DICTIONARY else {"status": "error", "error": "invalid_map_runtime_state"}
+
+
+func _apply_map_runtime_snapshot(snapshot: Dictionary, map_runtime: Node, game_state: Node) -> Dictionary:
+	var state = snapshot.get("map_runtime", {})
+	if typeof(state) != TYPE_DICTIONARY or state.is_empty():
+		return {"status": "missing", "source": "src/load_save.c:LoadObjectEvents"}
+	if String(state.get("status", "")) != "ok":
+		return {"status": "skipped", "state_status": String(state.get("status", ""))}
+	if map_runtime == null or not map_runtime.has_method("apply_object_event_state"):
+		return {
+			"status": "skipped",
+			"skip_reason": "missing_map_runtime",
+			"source": "src/load_save.c:LoadObjectEvents",
+		}
+	var result = map_runtime.apply_object_event_state(state, game_state)
+	return result if typeof(result) == TYPE_DICTIONARY else {"status": "error", "error": "invalid_apply_result"}
+
+
 func _source_save_block_summary(state: Dictionary) -> Dictionary:
 	return {
 		"save_block1": {
@@ -284,6 +323,7 @@ func _source_save_block_summary(state: Dictionary) -> Dictionary:
 			"player_grid_position": state.get("player_grid_position", {}),
 			"flags_count": _dict_field(state, "flags").size(),
 			"vars_count": _dict_field(state, "vars").size(),
+			"object_events": "current_map_runtime_state",
 			"source": "struct SaveBlock1 plus src/load_save.c:SaveObjectEvents",
 		},
 		"save_block2": {
@@ -327,6 +367,16 @@ func _get_game_state(game_state: Node) -> Node:
 	return _game_state
 
 
+func _get_map_runtime(map_runtime) -> Node:
+	if map_runtime != null and map_runtime is Node:
+		return map_runtime
+	if _map_runtime != null:
+		return _map_runtime
+	if has_node("/root/MapRuntime"):
+		_map_runtime = get_node("/root/MapRuntime")
+	return _map_runtime
+
+
 func _unsupported_notes() -> Array:
 	return [
 		{
@@ -342,7 +392,7 @@ func _unsupported_notes() -> Array:
 		{
 			"code": "partial_save_blocks",
 			"source": "src/load_save.c:CopyPartyAndObjectsToSave",
-			"detail": "Current snapshot covers GameState profile/location/flags/vars and player party; object event persistence, bag, PC storage, mail, options, stats, time, and special sectors remain future work.",
+			"detail": "Current snapshot covers GameState profile/location/flags/vars, player party, and current-map object-event runtime state; bag, PC storage, mail, options, stats, time, special sectors, and cross-map object caches remain future work.",
 		},
 	]
 

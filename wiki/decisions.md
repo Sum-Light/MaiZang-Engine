@@ -347,3 +347,9 @@ Reason: Party Pokemon are shared by battle, evolution, scripts, capture, storage
 Decision: Introduce `SaveService` as a UI-independent Godot autoload for source-traced JSON save snapshots before building save menu presentation, GBA-style save failure screens, bag/PC/object-event persistence, or link/Hall-of-Fame save variants.
 
 Reason: Godot needs durable runtime state round-tripping early, but the source save implementation is split between visible start-menu callbacks and low-level flash sector storage. A Godot-native snapshot keeps the target architecture modern while preserving source save status labels, counters, and flow metadata for later UI/audio/timing work. Recreating GBA flash sectors, checksums, and rotating slots would add platform baggage without improving the Godot runtime.
+
+## 2026-07-04 - Let MapRuntime own object-event save state
+
+Decision: Persist current-map object-event runtime state through explicit `MapRuntime` export/apply APIs, and let `SaveService` consume those APIs instead of reaching into MapRuntime internals or serializing derived indexes.
+
+Reason: Source save logic copies runtime object events through `SaveObjectEvents`/`LoadObjectEvents`, but Godot object state is already centralized in `MapRuntime`. Keeping export/import there preserves ownership of object positions, template positions, visibility, movement type, source local-id aliases, and occupancy rebuilding while allowing `SaveService` to remain a generic snapshot coordinator.

@@ -12,6 +12,12 @@ const LOCALID_PLAYER := "LOCALID_PLAYER"
 const MAPGRID_METATILE_ID_MASK := 0x03FF
 const MAPGRID_COLLISION_SHIFT := 10
 const MAPGRID_ELEVATION_SHIFT := 12
+const OBJECT_SAVE_TRACE := [
+	"src/load_save.c:SaveObjectEvents",
+	"src/load_save.c:LoadObjectEvents",
+	"src/load_save.c:CopyPartyAndObjectsToSave",
+	"src/load_save.c:CopyPartyAndObjectsFromSave",
+]
 
 var _map_data: Dictionary = {}
 var _tileset_data: Dictionary = {}
@@ -110,6 +116,10 @@ func get_map_size() -> Vector2i:
 	return _map_size
 
 
+func get_current_map_id() -> String:
+	return _current_map_id()
+
+
 func get_metatile_id_at(cell: Vector2i) -> int:
 	return _grid_value(_block_ids, cell, -1)
 
@@ -183,6 +193,87 @@ func get_object_event_by_local_id(local_id: String, include_hidden := false) -> 
 	if not include_hidden and not _is_object_event_visible(object_event):
 		return {}
 	return object_event
+
+
+func export_object_event_state(game_state: Node = null) -> Dictionary:
+	var records: Array = []
+	for object_event in _object_events:
+		if typeof(object_event) != TYPE_DICTIONARY:
+			continue
+		var position := _object_event_position(object_event)
+		var template_position := _object_event_template_position(object_event)
+		var flag := String(object_event.get("flag", "0"))
+		records.append({
+			"index": int(object_event.get("index", records.size())),
+			"local_id": String(object_event.get("local_id", "")),
+			"source_local_id": int(object_event.get("source_local_id", 0)),
+			"position": _vector2i_to_save(position),
+			"x": position.x,
+			"y": position.y,
+			"template_position": _vector2i_to_save(template_position),
+			"template_x": template_position.x,
+			"template_y": template_position.y,
+			"movement_type": String(object_event.get("movement_type", "")),
+			"template_movement_type": String(object_event.get("template_movement_type", "")),
+			"facing_direction": String(object_event.get("facing_direction", "")),
+			"runtime_hidden": bool(object_event.get("runtime_hidden", false)),
+			"flag": flag,
+			"flag_is_set": _object_event_flag_is_set(object_event, game_state),
+			"active": bool(object_event.get("active", true)),
+		})
+	return {
+		"status": "ok",
+		"map_id": _current_map_id(),
+		"object_events_count": records.size(),
+		"object_events": records,
+		"source_trace": OBJECT_SAVE_TRACE.duplicate(),
+	}
+
+
+func apply_object_event_state(state: Dictionary, game_state: Node = null) -> Dictionary:
+	var state_map_id := String(state.get("map_id", ""))
+	var current_map_id := _current_map_id()
+	if not state_map_id.is_empty() and not current_map_id.is_empty() and state_map_id != current_map_id:
+		return {
+			"status": "blocked",
+			"block_reason": "map_mismatch",
+			"state_map_id": state_map_id,
+			"current_map_id": current_map_id,
+			"source_trace": OBJECT_SAVE_TRACE.duplicate(),
+		}
+
+	var summary := {
+		"status": "ok",
+		"applied": [],
+		"skipped": [],
+		"object_events_changed": false,
+		"source_trace": OBJECT_SAVE_TRACE.duplicate(),
+	}
+	for record in _array_or_empty(state.get("object_events", [])):
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var object_event := _resolve_object_event_state_target(record)
+		if object_event.is_empty():
+			summary["skipped"].append({
+				"reason": "missing_object_event",
+				"local_id": String(record.get("local_id", "")),
+				"source_local_id": int(record.get("source_local_id", 0)),
+				"index": int(record.get("index", -1)),
+			})
+			continue
+		_apply_object_event_state_record(object_event, record, game_state)
+		summary["applied"].append({
+			"local_id": String(object_event.get("local_id", "")),
+			"source_local_id": int(object_event.get("source_local_id", 0)),
+			"position": _vector2i_to_save(_object_event_position(object_event)),
+			"runtime_hidden": bool(object_event.get("runtime_hidden", false)),
+		})
+		summary["object_events_changed"] = true
+
+	if bool(summary["object_events_changed"]):
+		_rebuild_object_event_position_index()
+		object_events_changed.emit(get_object_events())
+	return summary
 
 
 func get_bg_events() -> Array:
@@ -966,6 +1057,12 @@ func _set_object_event_position(object_event: Dictionary, position: Vector2i) ->
 	object_event["y"] = position.y
 
 
+func _set_object_event_template_position(object_event: Dictionary, position: Vector2i) -> void:
+	object_event["template_position"] = position
+	object_event["template_x"] = position.x
+	object_event["template_y"] = position.y
+
+
 func _object_event_template_position(object_event: Dictionary) -> Vector2i:
 	var position = object_event.get("template_position", null)
 	if typeof(position) == TYPE_VECTOR2I:
@@ -1008,12 +1105,70 @@ func _set_object_flag(object_event: Dictionary, game_state: Node, enabled: bool)
 		game_state.clear_flag(flag)
 
 
+func _resolve_object_event_state_target(record: Dictionary) -> Dictionary:
+	var local_id := String(record.get("local_id", ""))
+	if not local_id.is_empty():
+		var event_by_local_id := get_object_event_by_local_id(local_id, true)
+		if not event_by_local_id.is_empty():
+			return event_by_local_id
+	var source_local_id := int(record.get("source_local_id", 0))
+	if source_local_id > 0:
+		var event_by_source_id := get_object_event_by_local_id(str(source_local_id), true)
+		if not event_by_source_id.is_empty():
+			return event_by_source_id
+	var index := int(record.get("index", -1))
+	if index >= 0 and index < _object_events.size():
+		var event_by_index = _object_events[index]
+		if typeof(event_by_index) == TYPE_DICTIONARY:
+			return event_by_index
+	return {}
+
+
+func _apply_object_event_state_record(object_event: Dictionary, record: Dictionary, game_state: Node) -> void:
+	var position := _vector2i_from_save(record.get("position", {}), _object_event_position(object_event))
+	if is_within_bounds(position):
+		_set_object_event_position(object_event, position)
+	var template_position := _vector2i_from_save(record.get("template_position", {}), _object_event_template_position(object_event))
+	if is_within_bounds(template_position):
+		_set_object_event_template_position(object_event, template_position)
+	if record.has("movement_type"):
+		object_event["movement_type"] = String(record.get("movement_type", ""))
+	if record.has("template_movement_type"):
+		object_event["template_movement_type"] = String(record.get("template_movement_type", ""))
+	if record.has("facing_direction"):
+		var facing_direction := String(record.get("facing_direction", ""))
+		if facing_direction.is_empty():
+			object_event.erase("facing_direction")
+		else:
+			object_event["facing_direction"] = facing_direction
+	if record.has("runtime_hidden"):
+		object_event["runtime_hidden"] = bool(record.get("runtime_hidden", false))
+	if record.has("active"):
+		object_event["active"] = bool(record.get("active", true))
+	if record.has("flag_is_set"):
+		_set_object_flag(object_event, game_state, bool(record.get("flag_is_set", false)))
+
+
 func _rebuild_object_event_position_index() -> void:
 	_object_events_by_position = {}
 	for object_event in _object_events:
 		if typeof(object_event) != TYPE_DICTIONARY:
 			continue
 		_add_event_at(_object_events_by_position, _object_event_position(object_event), object_event)
+
+
+func _vector2i_to_save(value: Vector2i) -> Dictionary:
+	return {"x": value.x, "y": value.y}
+
+
+func _vector2i_from_save(value, default_value: Vector2i) -> Vector2i:
+	if typeof(value) == TYPE_DICTIONARY:
+		return Vector2i(int(value.get("x", default_value.x)), int(value.get("y", default_value.y)))
+	if typeof(value) == TYPE_ARRAY and value.size() >= 2:
+		return Vector2i(int(value[0]), int(value[1]))
+	if typeof(value) == TYPE_VECTOR2I:
+		return value
+	return default_value
 
 
 func _index_object_event_by_local_id(object_event: Dictionary) -> void:

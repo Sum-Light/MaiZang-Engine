@@ -88,6 +88,6 @@
 
 - Party menu, bag, Pokemon summary, Pokedex, shops, healing, saving, and overworld effects.
 - Start party/Pokemon instance runtime. First pass done for UI-independent `PartyRuntime`: source-shaped party Pokemon creation through `BattleEngine`, six-slot party storage in `GameState`, battle-party projection, and evolution context bridging. Party menu, summary UI, capture/storage/healing/save mutation, EXP, and fuller source creation paths remain.
-- Start saving. First pass done for UI-independent `SaveService`: source-traced Godot JSON snapshots under `user://`, save status/counter metadata, player profile/location/flags/vars/party round-trip, and save-flow labels. Save menu presentation, audio/timing, object events, bag/mail/options, PC storage, special sectors, Hall of Fame, and link save variants remain.
+- Start saving. First pass done for UI-independent `SaveService`: source-traced Godot JSON snapshots under `user://`, save status/counter metadata, player profile/location/flags/vars/party round-trip, current-map object-event runtime state round-trip, and save-flow labels. Save menu presentation, audio/timing, cross-map object caches, bag/mail/options, PC storage, special sectors, Hall of Fame, and link save variants remain.
 - Expand event script support by unsupported-opcode reports.
 - Add advanced expansion mechanics after the base loop is stable.
