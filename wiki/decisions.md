@@ -311,3 +311,9 @@ Reason: Battle behavior will eventually touch UI, animations, sounds, text place
 Decision: Add generated Pokemon level-up learnset data and use it in `BattleEngine` to assign omitted trainer Pokemon moves with the source `GiveBoxMonInitialMoveset` four-slot selection rule.
 
 Reason: Source trainer party data often omits explicit moves and relies on `CustomTrainerPartyAssignMoves` calling Pokemon default moveset logic. Reproducing that behavior requires the active generation learnset table, not a guessed fallback. Keeping learnsets as generated data also prepares later move-learning, evolution, relearning, UI, and compatibility systems while preserving source-visible trainer battles.
+
+## 2026-07-04 - Export natures before expanding battle stats
+
+Decision: Add generated Pokemon nature data from `src/pokemon.c:gNaturesInfo` and make `BattleEngine` consume it for source `ModifyStatByNature` stat modifiers.
+
+Reason: The first battle prototype previously treated non-neutral natures as unsupported because the source `gNaturesInfo` table was not generated yet. Exporting natures keeps the stat formula source-backed, preserves future Pokeblock/Battle Palace/UI fields, and avoids guessing stat modifiers from hardcoded nature names.

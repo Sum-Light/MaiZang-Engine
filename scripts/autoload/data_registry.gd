@@ -40,6 +40,8 @@ var _wild_encounter_records_by_map: Dictionary = {}
 var _trainer_records_by_symbol: Dictionary = {}
 var _trainer_records_by_id: Dictionary = {}
 var _learnset_records_by_label: Dictionary = {}
+var _nature_records_by_symbol: Dictionary = {}
+var _nature_records_by_id: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -379,8 +381,39 @@ func get_trainers_data() -> Dictionary:
 	return get_pokemon_data("trainers")
 
 
+func get_natures_data() -> Dictionary:
+	return get_pokemon_data("natures")
+
+
 func get_learnsets_data() -> Dictionary:
 	return get_pokemon_data("learnsets")
+
+
+func get_nature_record(nature_id_or_symbol) -> Dictionary:
+	if typeof(nature_id_or_symbol) == TYPE_INT:
+		return get_nature_record_by_id(int(nature_id_or_symbol))
+	if typeof(nature_id_or_symbol) == TYPE_FLOAT:
+		return get_nature_record_by_id(int(nature_id_or_symbol))
+
+	var key := String(nature_id_or_symbol)
+	if key.is_valid_int():
+		return get_nature_record_by_id(int(key))
+	return get_nature_record_by_symbol(key)
+
+
+func get_nature_record_by_symbol(nature_symbol: String) -> Dictionary:
+	_ensure_nature_indexes()
+	var normalized := nature_symbol
+	if not normalized.begins_with("NATURE_"):
+		normalized = "NATURE_%s" % normalized.to_upper()
+	var record = _nature_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_nature_record_by_id(nature_id: int) -> Dictionary:
+	_ensure_nature_indexes()
+	var record = _nature_records_by_id.get(nature_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
 func get_level_up_learnset_record(learnset_label: String) -> Dictionary:
@@ -506,6 +539,8 @@ func _index_manifest() -> void:
 	_trainer_records_by_symbol = {}
 	_trainer_records_by_id = {}
 	_learnset_records_by_label = {}
+	_nature_records_by_symbol = {}
+	_nature_records_by_id = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -750,6 +785,26 @@ func _ensure_learnset_indexes() -> void:
 		var learnset_label := String(record.get("label", label))
 		if not learnset_label.is_empty():
 			_learnset_records_by_label[learnset_label] = record
+
+
+func _ensure_nature_indexes() -> void:
+	if not _nature_records_by_symbol.is_empty() or not _nature_records_by_id.is_empty():
+		return
+
+	var natures_data := get_natures_data()
+	var nature_records = natures_data.get("natures", {})
+	if typeof(nature_records) != TYPE_DICTIONARY:
+		return
+
+	for symbol in nature_records.keys():
+		var record = nature_records[symbol]
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var nature_symbol := String(record.get("symbol", symbol))
+		if not nature_symbol.is_empty():
+			_nature_records_by_symbol[nature_symbol] = record
+		if record.has("id") and record.get("id") != null:
+			_nature_records_by_id[int(record.get("id"))] = record
 
 
 func _normalize_map_symbol(map_symbol: String) -> String:

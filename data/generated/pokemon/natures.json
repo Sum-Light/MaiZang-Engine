@@ -1,0 +1,3087 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "natures_info": "src/pokemon.c:gNaturesInfo",
+    "struct_definition": "include/pokemon.h:struct NatureInfo",
+    "constants": [
+      "include/constants/pokemon.h",
+      "include/pokemon.h",
+      "include/constants/battle_string_ids.h"
+    ],
+    "runtime_references": [
+      "src/pokemon.c:CalculateMonStats",
+      "src/pokemon.c:ModifyStatByNature",
+      "src/pokemon.c:GetNature",
+      "src/pokemon.c:GetNatureFromPersonality",
+      "src/pokemon_summary_screen.c",
+      "src/battle_palace.c"
+    ],
+    "stat_modifier": {
+      "source": "src/pokemon.c:ModifyStatByNature",
+      "excludes": [
+        "STAT_HP",
+        "STAT_ACC",
+        "STAT_EVASION"
+      ],
+      "neutral_rule": "statUp == statDown",
+      "up_multiplier": {
+        "numerator": 110,
+        "denominator": 100
+      },
+      "down_multiplier": {
+        "numerator": 90,
+        "denominator": 100
+      },
+      "integer_division": true
+    },
+    "preprocessor": {
+      "decisions": [],
+      "warnings": []
+    }
+  },
+  "constants": {
+    "natures": {
+      "NATURE_HARDY": {
+        "value": 0,
+        "name": "hardy"
+      },
+      "NATURE_LONELY": {
+        "value": 1,
+        "name": "lonely"
+      },
+      "NATURE_BRAVE": {
+        "value": 2,
+        "name": "brave"
+      },
+      "NATURE_ADAMANT": {
+        "value": 3,
+        "name": "adamant"
+      },
+      "NATURE_NAUGHTY": {
+        "value": 4,
+        "name": "naughty"
+      },
+      "NATURE_BOLD": {
+        "value": 5,
+        "name": "bold"
+      },
+      "NATURE_DOCILE": {
+        "value": 6,
+        "name": "docile"
+      },
+      "NATURE_RELAXED": {
+        "value": 7,
+        "name": "relaxed"
+      },
+      "NATURE_IMPISH": {
+        "value": 8,
+        "name": "impish"
+      },
+      "NATURE_LAX": {
+        "value": 9,
+        "name": "lax"
+      },
+      "NATURE_TIMID": {
+        "value": 10,
+        "name": "timid"
+      },
+      "NATURE_HASTY": {
+        "value": 11,
+        "name": "hasty"
+      },
+      "NATURE_SERIOUS": {
+        "value": 12,
+        "name": "serious"
+      },
+      "NATURE_JOLLY": {
+        "value": 13,
+        "name": "jolly"
+      },
+      "NATURE_NAIVE": {
+        "value": 14,
+        "name": "naive"
+      },
+      "NATURE_MODEST": {
+        "value": 15,
+        "name": "modest"
+      },
+      "NATURE_MILD": {
+        "value": 16,
+        "name": "mild"
+      },
+      "NATURE_QUIET": {
+        "value": 17,
+        "name": "quiet"
+      },
+      "NATURE_BASHFUL": {
+        "value": 18,
+        "name": "bashful"
+      },
+      "NATURE_RASH": {
+        "value": 19,
+        "name": "rash"
+      },
+      "NATURE_CALM": {
+        "value": 20,
+        "name": "calm"
+      },
+      "NATURE_GENTLE": {
+        "value": 21,
+        "name": "gentle"
+      },
+      "NATURE_SASSY": {
+        "value": 22,
+        "name": "sassy"
+      },
+      "NATURE_CAREFUL": {
+        "value": 23,
+        "name": "careful"
+      },
+      "NATURE_QUIRKY": {
+        "value": 24,
+        "name": "quirky"
+      },
+      "NATURE_RANDOM": {
+        "value": 25,
+        "name": "random"
+      },
+      "NATURE_MAY_SYNCHRONIZE": {
+        "value": 26,
+        "name": "may_synchronize"
+      }
+    },
+    "stats": {
+      "STAT_HP": {
+        "value": 0,
+        "name": "hp"
+      },
+      "STAT_ATK": {
+        "value": 1,
+        "name": "atk"
+      },
+      "STAT_DEF": {
+        "value": 2,
+        "name": "def"
+      },
+      "STAT_SPEED": {
+        "value": 3,
+        "name": "speed"
+      },
+      "STAT_SPATK": {
+        "value": 4,
+        "name": "spatk"
+      },
+      "STAT_SPDEF": {
+        "value": 5,
+        "name": "spdef"
+      },
+      "NUM_STATS": {
+        "value": 6,
+        "name": "num_stats"
+      },
+      "STAT_ACC": {
+        "value": 6,
+        "name": "acc"
+      },
+      "STAT_EVASION": {
+        "value": 7,
+        "name": "evasion"
+      }
+    },
+    "pokeblock_anims": {
+      "ANIM_HARDY": {
+        "value": 0,
+        "name": "hardy"
+      },
+      "ANIM_LONELY": {
+        "value": 3,
+        "name": "lonely"
+      },
+      "ANIM_BRAVE": {
+        "value": 4,
+        "name": "brave"
+      },
+      "ANIM_ADAMANT": {
+        "value": 5,
+        "name": "adamant"
+      },
+      "ANIM_NAUGHTY": {
+        "value": 10,
+        "name": "naughty"
+      },
+      "ANIM_BOLD": {
+        "value": 13,
+        "name": "bold"
+      },
+      "ANIM_DOCILE": {
+        "value": 15,
+        "name": "docile"
+      },
+      "ANIM_RELAXED": {
+        "value": 16,
+        "name": "relaxed"
+      },
+      "ANIM_IMPISH": {
+        "value": 18,
+        "name": "impish"
+      },
+      "ANIM_LAX": {
+        "value": 19,
+        "name": "lax"
+      },
+      "ANIM_TIMID": {
+        "value": 20,
+        "name": "timid"
+      },
+      "ANIM_HASTY": {
+        "value": 25,
+        "name": "hasty"
+      },
+      "ANIM_SERIOUS": {
+        "value": 27,
+        "name": "serious"
+      },
+      "ANIM_JOLLY": {
+        "value": 28,
+        "name": "jolly"
+      },
+      "ANIM_NAIVE": {
+        "value": 29,
+        "name": "naive"
+      },
+      "ANIM_MODEST": {
+        "value": 33,
+        "name": "modest"
+      },
+      "ANIM_MILD": {
+        "value": 36,
+        "name": "mild"
+      },
+      "ANIM_QUIET": {
+        "value": 37,
+        "name": "quiet"
+      },
+      "ANIM_BASHFUL": {
+        "value": 39,
+        "name": "bashful"
+      },
+      "ANIM_RASH": {
+        "value": 42,
+        "name": "rash"
+      },
+      "ANIM_CALM": {
+        "value": 45,
+        "name": "calm"
+      },
+      "ANIM_GENTLE": {
+        "value": 46,
+        "name": "gentle"
+      },
+      "ANIM_SASSY": {
+        "value": 47,
+        "name": "sassy"
+      },
+      "ANIM_CAREFUL": {
+        "value": 48,
+        "name": "careful"
+      },
+      "ANIM_QUIRKY": {
+        "value": 53,
+        "name": "quirky"
+      }
+    },
+    "affines": {
+      "AFFINE_NONE": {
+        "value": 0,
+        "name": "none"
+      },
+      "AFFINE_TURN_UP": {
+        "value": 1,
+        "name": "turn_up"
+      },
+      "AFFINE_TURN_UP_AND_DOWN": {
+        "value": 2,
+        "name": "turn_up_and_down"
+      },
+      "AFFINE_TURN_DOWN": {
+        "value": 3,
+        "name": "turn_down"
+      },
+      "AFFINE_TURN_DOWN_SLOW": {
+        "value": 4,
+        "name": "turn_down_slow"
+      },
+      "AFFINE_TURN_DOWN_SLIGHT": {
+        "value": 5,
+        "name": "turn_down_slight"
+      },
+      "AFFINE_TURN_UP_HIGH": {
+        "value": 6,
+        "name": "turn_up_high"
+      },
+      "AFFINE_UNUSED_1": {
+        "value": 7,
+        "name": "unused_1"
+      },
+      "AFFINE_UNUSED_2": {
+        "value": 8,
+        "name": "unused_2"
+      },
+      "AFFINE_UNUSED_3": {
+        "value": 9,
+        "name": "unused_3"
+      },
+      "NUM_MON_AFFINES": {
+        "value": 10,
+        "name": "num_mon_affines"
+      }
+    },
+    "battle_palace_flavor_text": {
+      "B_MSG_GLINT_IN_EYE": {
+        "value": 0,
+        "name": "glint_in_eye"
+      },
+      "B_MSG_GETTING_IN_POS": {
+        "value": 1,
+        "name": "getting_in_pos"
+      },
+      "B_MSG_GROWL_DEEPLY": {
+        "value": 2,
+        "name": "growl_deeply"
+      },
+      "B_MSG_EAGER_FOR_MORE": {
+        "value": 3,
+        "name": "eager_for_more"
+      }
+    },
+    "battle_palace_targets": {
+      "PALACE_TARGET_STRONGER": {
+        "value": 0,
+        "name": "stronger"
+      },
+      "PALACE_TARGET_WEAKER": {
+        "value": 1,
+        "name": "weaker"
+      },
+      "PALACE_TARGET_RANDOM": {
+        "value": 2,
+        "name": "random"
+      }
+    }
+  },
+  "nature_order": [
+    "NATURE_HARDY",
+    "NATURE_LONELY",
+    "NATURE_BRAVE",
+    "NATURE_ADAMANT",
+    "NATURE_NAUGHTY",
+    "NATURE_BOLD",
+    "NATURE_DOCILE",
+    "NATURE_RELAXED",
+    "NATURE_IMPISH",
+    "NATURE_LAX",
+    "NATURE_TIMID",
+    "NATURE_HASTY",
+    "NATURE_SERIOUS",
+    "NATURE_JOLLY",
+    "NATURE_NAIVE",
+    "NATURE_MODEST",
+    "NATURE_MILD",
+    "NATURE_QUIET",
+    "NATURE_BASHFUL",
+    "NATURE_RASH",
+    "NATURE_CALM",
+    "NATURE_GENTLE",
+    "NATURE_SASSY",
+    "NATURE_CAREFUL",
+    "NATURE_QUIRKY"
+  ],
+  "natures": {
+    "NATURE_HARDY": {
+      "id": 0,
+      "symbol": "NATURE_HARDY",
+      "name_key": "hardy",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 652
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"勤奋\")",
+        "statUp": "STAT_ATK",
+        "statDown": "STAT_ATK",
+        "backAnim": "0",
+        "pokeBlockAnim": "{ANIM_HARDY, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(61, 7, 61, 7)",
+        "battlePalaceFlavorText": "B_MSG_EAGER_FOR_MORE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "勤奋",
+        "display_text": "勤奋"
+      },
+      "stat_up": {
+        "symbol": "STAT_ATK",
+        "value": 1,
+        "name": "atk",
+        "raw": "STAT_ATK"
+      },
+      "stat_down": {
+        "symbol": "STAT_ATK",
+        "value": 1,
+        "name": "atk",
+        "raw": "STAT_ATK"
+      },
+      "neutral": true,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "0",
+        "value": 0
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_HARDY",
+          "value": 0,
+          "name": "anim_hardy",
+          "raw": "ANIM_HARDY"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(61, 7, 61, 7)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          61,
+          68,
+          61,
+          68
+        ],
+        "high_hp": {
+          "attack": 61,
+          "defense": 7,
+          "support": 32
+        },
+        "low_hp": {
+          "attack": 61,
+          "defense": 7,
+          "support": 32
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_EAGER_FOR_MORE",
+        "value": 3,
+        "name": "eager_for_more",
+        "raw": "B_MSG_EAGER_FOR_MORE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_LONELY": {
+      "id": 1,
+      "symbol": "NATURE_LONELY",
+      "name_key": "lonely",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 664
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"怕寂寞\")",
+        "statUp": "STAT_ATK",
+        "statDown": "STAT_DEF",
+        "backAnim": "2",
+        "pokeBlockAnim": "{ANIM_LONELY, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(20, 25, 84, 8)",
+        "battlePalaceFlavorText": "B_MSG_GLINT_IN_EYE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "怕寂寞",
+        "display_text": "怕寂寞"
+      },
+      "stat_up": {
+        "symbol": "STAT_ATK",
+        "value": 1,
+        "name": "atk",
+        "raw": "STAT_ATK"
+      },
+      "stat_down": {
+        "symbol": "STAT_DEF",
+        "value": 2,
+        "name": "def",
+        "raw": "STAT_DEF"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "2",
+        "value": 2
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_LONELY",
+          "value": 3,
+          "name": "anim_lonely",
+          "raw": "ANIM_LONELY"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(20, 25, 84, 8)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          20,
+          45,
+          84,
+          92
+        ],
+        "high_hp": {
+          "attack": 20,
+          "defense": 25,
+          "support": 55
+        },
+        "low_hp": {
+          "attack": 84,
+          "defense": 8,
+          "support": 8
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GLINT_IN_EYE",
+        "value": 0,
+        "name": "glint_in_eye",
+        "raw": "B_MSG_GLINT_IN_EYE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_BRAVE": {
+      "id": 2,
+      "symbol": "NATURE_BRAVE",
+      "name_key": "brave",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 676
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"勇敢\")",
+        "statUp": "STAT_ATK",
+        "statDown": "STAT_SPEED",
+        "backAnim": "0",
+        "pokeBlockAnim": "{ANIM_BRAVE, AFFINE_TURN_UP}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighDefenseLow",
+        "battlePalacePercents": "PALACE_STYLE(70, 15, 32, 60)",
+        "battlePalaceFlavorText": "B_MSG_GETTING_IN_POS",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "勇敢",
+        "display_text": "勇敢"
+      },
+      "stat_up": {
+        "symbol": "STAT_ATK",
+        "value": 1,
+        "name": "atk",
+        "raw": "STAT_ATK"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPEED",
+        "value": 3,
+        "name": "speed",
+        "raw": "STAT_SPEED"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "0",
+        "value": 0
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_BRAVE",
+          "value": 4,
+          "name": "anim_brave",
+          "raw": "ANIM_BRAVE"
+        },
+        {
+          "symbol": "AFFINE_TURN_UP",
+          "value": 1,
+          "name": "affine_turn_up",
+          "raw": "AFFINE_TURN_UP"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(70, 15, 32, 60)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          70,
+          85,
+          32,
+          92
+        ],
+        "high_hp": {
+          "attack": 70,
+          "defense": 15,
+          "support": 15
+        },
+        "low_hp": {
+          "attack": 32,
+          "defense": 60,
+          "support": 8
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GETTING_IN_POS",
+        "value": 1,
+        "name": "getting_in_pos",
+        "raw": "B_MSG_GETTING_IN_POS"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighDefenseLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_ADAMANT": {
+      "id": 3,
+      "symbol": "NATURE_ADAMANT",
+      "name_key": "adamant",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 688
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"固执\")",
+        "statUp": "STAT_ATK",
+        "statDown": "STAT_SPATK",
+        "backAnim": "0",
+        "pokeBlockAnim": "{ANIM_ADAMANT, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(38, 31, 70, 15)",
+        "battlePalaceFlavorText": "B_MSG_GLINT_IN_EYE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "固执",
+        "display_text": "固执"
+      },
+      "stat_up": {
+        "symbol": "STAT_ATK",
+        "value": 1,
+        "name": "atk",
+        "raw": "STAT_ATK"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPATK",
+        "value": 4,
+        "name": "spatk",
+        "raw": "STAT_SPATK"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "0",
+        "value": 0
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_ADAMANT",
+          "value": 5,
+          "name": "anim_adamant",
+          "raw": "ANIM_ADAMANT"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(38, 31, 70, 15)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          38,
+          69,
+          70,
+          85
+        ],
+        "high_hp": {
+          "attack": 38,
+          "defense": 31,
+          "support": 31
+        },
+        "low_hp": {
+          "attack": 70,
+          "defense": 15,
+          "support": 15
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GLINT_IN_EYE",
+        "value": 0,
+        "name": "glint_in_eye",
+        "raw": "B_MSG_GLINT_IN_EYE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_NAUGHTY": {
+      "id": 4,
+      "symbol": "NATURE_NAUGHTY",
+      "name_key": "naughty",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 700
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"顽皮\")",
+        "statUp": "STAT_ATK",
+        "statDown": "STAT_SPDEF",
+        "backAnim": "0",
+        "pokeBlockAnim": "{ANIM_NAUGHTY, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(20, 70, 70, 22)",
+        "battlePalaceFlavorText": "B_MSG_GLINT_IN_EYE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "顽皮",
+        "display_text": "顽皮"
+      },
+      "stat_up": {
+        "symbol": "STAT_ATK",
+        "value": 1,
+        "name": "atk",
+        "raw": "STAT_ATK"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPDEF",
+        "value": 5,
+        "name": "spdef",
+        "raw": "STAT_SPDEF"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "0",
+        "value": 0
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_NAUGHTY",
+          "value": 10,
+          "name": "anim_naughty",
+          "raw": "ANIM_NAUGHTY"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(20, 70, 70, 22)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          20,
+          90,
+          70,
+          92
+        ],
+        "high_hp": {
+          "attack": 20,
+          "defense": 70,
+          "support": 10
+        },
+        "low_hp": {
+          "attack": 70,
+          "defense": 22,
+          "support": 8
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GLINT_IN_EYE",
+        "value": 0,
+        "name": "glint_in_eye",
+        "raw": "B_MSG_GLINT_IN_EYE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_BOLD": {
+      "id": 5,
+      "symbol": "NATURE_BOLD",
+      "name_key": "bold",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 712
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"大胆\")",
+        "statUp": "STAT_DEF",
+        "statDown": "STAT_ATK",
+        "backAnim": "1",
+        "pokeBlockAnim": "{ANIM_BOLD, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighDefenseLow",
+        "battlePalacePercents": "PALACE_STYLE(30, 20, 32, 58)",
+        "battlePalaceFlavorText": "B_MSG_GETTING_IN_POS",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "大胆",
+        "display_text": "大胆"
+      },
+      "stat_up": {
+        "symbol": "STAT_DEF",
+        "value": 2,
+        "name": "def",
+        "raw": "STAT_DEF"
+      },
+      "stat_down": {
+        "symbol": "STAT_ATK",
+        "value": 1,
+        "name": "atk",
+        "raw": "STAT_ATK"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "1",
+        "value": 1
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_BOLD",
+          "value": 13,
+          "name": "anim_bold",
+          "raw": "ANIM_BOLD"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(30, 20, 32, 58)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          30,
+          50,
+          32,
+          90
+        ],
+        "high_hp": {
+          "attack": 30,
+          "defense": 20,
+          "support": 50
+        },
+        "low_hp": {
+          "attack": 32,
+          "defense": 58,
+          "support": 10
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GETTING_IN_POS",
+        "value": 1,
+        "name": "getting_in_pos",
+        "raw": "B_MSG_GETTING_IN_POS"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighDefenseLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_DOCILE": {
+      "id": 6,
+      "symbol": "NATURE_DOCILE",
+      "name_key": "docile",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 724
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"坦率\")",
+        "statUp": "STAT_DEF",
+        "statDown": "STAT_DEF",
+        "backAnim": "1",
+        "pokeBlockAnim": "{ANIM_DOCILE, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(56, 22, 56, 22)",
+        "battlePalaceFlavorText": "B_MSG_EAGER_FOR_MORE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_RANDOM"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "坦率",
+        "display_text": "坦率"
+      },
+      "stat_up": {
+        "symbol": "STAT_DEF",
+        "value": 2,
+        "name": "def",
+        "raw": "STAT_DEF"
+      },
+      "stat_down": {
+        "symbol": "STAT_DEF",
+        "value": 2,
+        "name": "def",
+        "raw": "STAT_DEF"
+      },
+      "neutral": true,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "1",
+        "value": 1
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_DOCILE",
+          "value": 15,
+          "name": "anim_docile",
+          "raw": "ANIM_DOCILE"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(56, 22, 56, 22)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          56,
+          78,
+          56,
+          78
+        ],
+        "high_hp": {
+          "attack": 56,
+          "defense": 22,
+          "support": 22
+        },
+        "low_hp": {
+          "attack": 56,
+          "defense": 22,
+          "support": 22
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_EAGER_FOR_MORE",
+        "value": 3,
+        "name": "eager_for_more",
+        "raw": "B_MSG_EAGER_FOR_MORE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_RANDOM",
+        "value": 2,
+        "name": "random",
+        "raw": "PALACE_TARGET_RANDOM"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_RELAXED": {
+      "id": 7,
+      "symbol": "NATURE_RELAXED",
+      "name_key": "relaxed",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 736
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"悠闲\")",
+        "statUp": "STAT_DEF",
+        "statDown": "STAT_SPEED",
+        "backAnim": "1",
+        "pokeBlockAnim": "{ANIM_RELAXED, AFFINE_TURN_UP_AND_DOWN}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(25, 15, 75, 15)",
+        "battlePalaceFlavorText": "B_MSG_GLINT_IN_EYE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "悠闲",
+        "display_text": "悠闲"
+      },
+      "stat_up": {
+        "symbol": "STAT_DEF",
+        "value": 2,
+        "name": "def",
+        "raw": "STAT_DEF"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPEED",
+        "value": 3,
+        "name": "speed",
+        "raw": "STAT_SPEED"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "1",
+        "value": 1
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_RELAXED",
+          "value": 16,
+          "name": "anim_relaxed",
+          "raw": "ANIM_RELAXED"
+        },
+        {
+          "symbol": "AFFINE_TURN_UP_AND_DOWN",
+          "value": 2,
+          "name": "affine_turn_up_and_down",
+          "raw": "AFFINE_TURN_UP_AND_DOWN"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(25, 15, 75, 15)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          25,
+          40,
+          75,
+          90
+        ],
+        "high_hp": {
+          "attack": 25,
+          "defense": 15,
+          "support": 60
+        },
+        "low_hp": {
+          "attack": 75,
+          "defense": 15,
+          "support": 10
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GLINT_IN_EYE",
+        "value": 0,
+        "name": "glint_in_eye",
+        "raw": "B_MSG_GLINT_IN_EYE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_IMPISH": {
+      "id": 8,
+      "symbol": "NATURE_IMPISH",
+      "name_key": "impish",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 748
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"淘气\")",
+        "statUp": "STAT_DEF",
+        "statDown": "STAT_SPATK",
+        "backAnim": "0",
+        "pokeBlockAnim": "{ANIM_IMPISH, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighDefenseLow",
+        "battlePalacePercents": "PALACE_STYLE(69, 6, 28, 55)",
+        "battlePalaceFlavorText": "B_MSG_GETTING_IN_POS",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "淘气",
+        "display_text": "淘气"
+      },
+      "stat_up": {
+        "symbol": "STAT_DEF",
+        "value": 2,
+        "name": "def",
+        "raw": "STAT_DEF"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPATK",
+        "value": 4,
+        "name": "spatk",
+        "raw": "STAT_SPATK"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "0",
+        "value": 0
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_IMPISH",
+          "value": 18,
+          "name": "anim_impish",
+          "raw": "ANIM_IMPISH"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(69, 6, 28, 55)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          69,
+          75,
+          28,
+          83
+        ],
+        "high_hp": {
+          "attack": 69,
+          "defense": 6,
+          "support": 25
+        },
+        "low_hp": {
+          "attack": 28,
+          "defense": 55,
+          "support": 17
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GETTING_IN_POS",
+        "value": 1,
+        "name": "getting_in_pos",
+        "raw": "B_MSG_GETTING_IN_POS"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighDefenseLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_LAX": {
+      "id": 9,
+      "symbol": "NATURE_LAX",
+      "name_key": "lax",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 760
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"乐天\")",
+        "statUp": "STAT_DEF",
+        "statDown": "STAT_SPDEF",
+        "backAnim": "1",
+        "pokeBlockAnim": "{ANIM_LAX, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighSupportLow",
+        "battlePalacePercents": "PALACE_STYLE(35, 10, 29, 6)",
+        "battlePalaceFlavorText": "B_MSG_GROWL_DEEPLY",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "乐天",
+        "display_text": "乐天"
+      },
+      "stat_up": {
+        "symbol": "STAT_DEF",
+        "value": 2,
+        "name": "def",
+        "raw": "STAT_DEF"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPDEF",
+        "value": 5,
+        "name": "spdef",
+        "raw": "STAT_SPDEF"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "1",
+        "value": 1
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_LAX",
+          "value": 19,
+          "name": "anim_lax",
+          "raw": "ANIM_LAX"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(35, 10, 29, 6)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          35,
+          45,
+          29,
+          35
+        ],
+        "high_hp": {
+          "attack": 35,
+          "defense": 10,
+          "support": 55
+        },
+        "low_hp": {
+          "attack": 29,
+          "defense": 6,
+          "support": 65
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GROWL_DEEPLY",
+        "value": 2,
+        "name": "growl_deeply",
+        "raw": "B_MSG_GROWL_DEEPLY"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighSupportLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_TIMID": {
+      "id": 10,
+      "symbol": "NATURE_TIMID",
+      "name_key": "timid",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 772
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"胆小\")",
+        "statUp": "STAT_SPEED",
+        "statDown": "STAT_ATK",
+        "backAnim": "2",
+        "pokeBlockAnim": "{ANIM_TIMID, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighSupportLow",
+        "battlePalacePercents": "PALACE_STYLE(62, 10, 30, 20)",
+        "battlePalaceFlavorText": "B_MSG_GROWL_DEEPLY",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "胆小",
+        "display_text": "胆小"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPEED",
+        "value": 3,
+        "name": "speed",
+        "raw": "STAT_SPEED"
+      },
+      "stat_down": {
+        "symbol": "STAT_ATK",
+        "value": 1,
+        "name": "atk",
+        "raw": "STAT_ATK"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "2",
+        "value": 2
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_TIMID",
+          "value": 20,
+          "name": "anim_timid",
+          "raw": "ANIM_TIMID"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(62, 10, 30, 20)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          62,
+          72,
+          30,
+          50
+        ],
+        "high_hp": {
+          "attack": 62,
+          "defense": 10,
+          "support": 28
+        },
+        "low_hp": {
+          "attack": 30,
+          "defense": 20,
+          "support": 50
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GROWL_DEEPLY",
+        "value": 2,
+        "name": "growl_deeply",
+        "raw": "B_MSG_GROWL_DEEPLY"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighSupportLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_HASTY": {
+      "id": 11,
+      "symbol": "NATURE_HASTY",
+      "name_key": "hasty",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 784
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"急躁\")",
+        "statUp": "STAT_SPEED",
+        "statDown": "STAT_DEF",
+        "backAnim": "0",
+        "pokeBlockAnim": "{ANIM_HASTY, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(58, 37, 88, 6)",
+        "battlePalaceFlavorText": "B_MSG_GLINT_IN_EYE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "急躁",
+        "display_text": "急躁"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPEED",
+        "value": 3,
+        "name": "speed",
+        "raw": "STAT_SPEED"
+      },
+      "stat_down": {
+        "symbol": "STAT_DEF",
+        "value": 2,
+        "name": "def",
+        "raw": "STAT_DEF"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "0",
+        "value": 0
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_HASTY",
+          "value": 25,
+          "name": "anim_hasty",
+          "raw": "ANIM_HASTY"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(58, 37, 88, 6)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          58,
+          95,
+          88,
+          94
+        ],
+        "high_hp": {
+          "attack": 58,
+          "defense": 37,
+          "support": 5
+        },
+        "low_hp": {
+          "attack": 88,
+          "defense": 6,
+          "support": 6
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GLINT_IN_EYE",
+        "value": 0,
+        "name": "glint_in_eye",
+        "raw": "B_MSG_GLINT_IN_EYE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_SERIOUS": {
+      "id": 12,
+      "symbol": "NATURE_SERIOUS",
+      "name_key": "serious",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 796
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"认真\")",
+        "statUp": "STAT_SPEED",
+        "statDown": "STAT_SPEED",
+        "backAnim": "1",
+        "pokeBlockAnim": "{ANIM_SERIOUS, AFFINE_TURN_DOWN}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighSupportLow",
+        "battlePalacePercents": "PALACE_STYLE(34, 11, 29, 11)",
+        "battlePalaceFlavorText": "B_MSG_EAGER_FOR_MORE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "认真",
+        "display_text": "认真"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPEED",
+        "value": 3,
+        "name": "speed",
+        "raw": "STAT_SPEED"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPEED",
+        "value": 3,
+        "name": "speed",
+        "raw": "STAT_SPEED"
+      },
+      "neutral": true,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "1",
+        "value": 1
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_SERIOUS",
+          "value": 27,
+          "name": "anim_serious",
+          "raw": "ANIM_SERIOUS"
+        },
+        {
+          "symbol": "AFFINE_TURN_DOWN",
+          "value": 3,
+          "name": "affine_turn_down",
+          "raw": "AFFINE_TURN_DOWN"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(34, 11, 29, 11)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          34,
+          45,
+          29,
+          40
+        ],
+        "high_hp": {
+          "attack": 34,
+          "defense": 11,
+          "support": 55
+        },
+        "low_hp": {
+          "attack": 29,
+          "defense": 11,
+          "support": 60
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_EAGER_FOR_MORE",
+        "value": 3,
+        "name": "eager_for_more",
+        "raw": "B_MSG_EAGER_FOR_MORE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighSupportLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_JOLLY": {
+      "id": 13,
+      "symbol": "NATURE_JOLLY",
+      "name_key": "jolly",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 808
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"爽朗\")",
+        "statUp": "STAT_SPEED",
+        "statDown": "STAT_SPATK",
+        "backAnim": "0",
+        "pokeBlockAnim": "{ANIM_JOLLY, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighDefenseLow",
+        "battlePalacePercents": "PALACE_STYLE(35, 5, 35, 60)",
+        "battlePalaceFlavorText": "B_MSG_GETTING_IN_POS",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "爽朗",
+        "display_text": "爽朗"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPEED",
+        "value": 3,
+        "name": "speed",
+        "raw": "STAT_SPEED"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPATK",
+        "value": 4,
+        "name": "spatk",
+        "raw": "STAT_SPATK"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "0",
+        "value": 0
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_JOLLY",
+          "value": 28,
+          "name": "anim_jolly",
+          "raw": "ANIM_JOLLY"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(35, 5, 35, 60)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          35,
+          40,
+          35,
+          95
+        ],
+        "high_hp": {
+          "attack": 35,
+          "defense": 5,
+          "support": 60
+        },
+        "low_hp": {
+          "attack": 35,
+          "defense": 60,
+          "support": 5
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GETTING_IN_POS",
+        "value": 1,
+        "name": "getting_in_pos",
+        "raw": "B_MSG_GETTING_IN_POS"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighDefenseLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_NAIVE": {
+      "id": 14,
+      "symbol": "NATURE_NAIVE",
+      "name_key": "naive",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 820
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"天真\")",
+        "statUp": "STAT_SPEED",
+        "statDown": "STAT_SPDEF",
+        "backAnim": "0",
+        "pokeBlockAnim": "{ANIM_NAIVE, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(56, 22, 56, 22)",
+        "battlePalaceFlavorText": "B_MSG_EAGER_FOR_MORE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_RANDOM"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "天真",
+        "display_text": "天真"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPEED",
+        "value": 3,
+        "name": "speed",
+        "raw": "STAT_SPEED"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPDEF",
+        "value": 5,
+        "name": "spdef",
+        "raw": "STAT_SPDEF"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "0",
+        "value": 0
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_NAIVE",
+          "value": 29,
+          "name": "anim_naive",
+          "raw": "ANIM_NAIVE"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(56, 22, 56, 22)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          56,
+          78,
+          56,
+          78
+        ],
+        "high_hp": {
+          "attack": 56,
+          "defense": 22,
+          "support": 22
+        },
+        "low_hp": {
+          "attack": 56,
+          "defense": 22,
+          "support": 22
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_EAGER_FOR_MORE",
+        "value": 3,
+        "name": "eager_for_more",
+        "raw": "B_MSG_EAGER_FOR_MORE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_RANDOM",
+        "value": 2,
+        "name": "random",
+        "raw": "PALACE_TARGET_RANDOM"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_MODEST": {
+      "id": 15,
+      "symbol": "NATURE_MODEST",
+      "name_key": "modest",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 832
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"内敛\")",
+        "statUp": "STAT_SPATK",
+        "statDown": "STAT_ATK",
+        "backAnim": "2",
+        "pokeBlockAnim": "{ANIM_MODEST, AFFINE_TURN_DOWN_SLOW}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighDefenseLow",
+        "battlePalacePercents": "PALACE_STYLE(35, 45, 34, 60)",
+        "battlePalaceFlavorText": "B_MSG_GETTING_IN_POS",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "内敛",
+        "display_text": "内敛"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPATK",
+        "value": 4,
+        "name": "spatk",
+        "raw": "STAT_SPATK"
+      },
+      "stat_down": {
+        "symbol": "STAT_ATK",
+        "value": 1,
+        "name": "atk",
+        "raw": "STAT_ATK"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "2",
+        "value": 2
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_MODEST",
+          "value": 33,
+          "name": "anim_modest",
+          "raw": "ANIM_MODEST"
+        },
+        {
+          "symbol": "AFFINE_TURN_DOWN_SLOW",
+          "value": 4,
+          "name": "affine_turn_down_slow",
+          "raw": "AFFINE_TURN_DOWN_SLOW"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(35, 45, 34, 60)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          35,
+          80,
+          34,
+          94
+        ],
+        "high_hp": {
+          "attack": 35,
+          "defense": 45,
+          "support": 20
+        },
+        "low_hp": {
+          "attack": 34,
+          "defense": 60,
+          "support": 6
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GETTING_IN_POS",
+        "value": 1,
+        "name": "getting_in_pos",
+        "raw": "B_MSG_GETTING_IN_POS"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighDefenseLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_MILD": {
+      "id": 16,
+      "symbol": "NATURE_MILD",
+      "name_key": "mild",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 844
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"慢吞吞\")",
+        "statUp": "STAT_SPATK",
+        "statDown": "STAT_DEF",
+        "backAnim": "2",
+        "pokeBlockAnim": "{ANIM_MILD, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighSupportLow",
+        "battlePalacePercents": "PALACE_STYLE(44, 50, 34, 6)",
+        "battlePalaceFlavorText": "B_MSG_GROWL_DEEPLY",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "慢吞吞",
+        "display_text": "慢吞吞"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPATK",
+        "value": 4,
+        "name": "spatk",
+        "raw": "STAT_SPATK"
+      },
+      "stat_down": {
+        "symbol": "STAT_DEF",
+        "value": 2,
+        "name": "def",
+        "raw": "STAT_DEF"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "2",
+        "value": 2
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_MILD",
+          "value": 36,
+          "name": "anim_mild",
+          "raw": "ANIM_MILD"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(44, 50, 34, 6)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          44,
+          94,
+          34,
+          40
+        ],
+        "high_hp": {
+          "attack": 44,
+          "defense": 50,
+          "support": 6
+        },
+        "low_hp": {
+          "attack": 34,
+          "defense": 6,
+          "support": 60
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GROWL_DEEPLY",
+        "value": 2,
+        "name": "growl_deeply",
+        "raw": "B_MSG_GROWL_DEEPLY"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighSupportLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_QUIET": {
+      "id": 17,
+      "symbol": "NATURE_QUIET",
+      "name_key": "quiet",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 856
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"冷静\")",
+        "statUp": "STAT_SPATK",
+        "statDown": "STAT_SPEED",
+        "backAnim": "2",
+        "pokeBlockAnim": "{ANIM_QUIET, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(56, 22, 56, 22)",
+        "battlePalaceFlavorText": "B_MSG_EAGER_FOR_MORE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "冷静",
+        "display_text": "冷静"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPATK",
+        "value": 4,
+        "name": "spatk",
+        "raw": "STAT_SPATK"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPEED",
+        "value": 3,
+        "name": "speed",
+        "raw": "STAT_SPEED"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "2",
+        "value": 2
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_QUIET",
+          "value": 37,
+          "name": "anim_quiet",
+          "raw": "ANIM_QUIET"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(56, 22, 56, 22)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          56,
+          78,
+          56,
+          78
+        ],
+        "high_hp": {
+          "attack": 56,
+          "defense": 22,
+          "support": 22
+        },
+        "low_hp": {
+          "attack": 56,
+          "defense": 22,
+          "support": 22
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_EAGER_FOR_MORE",
+        "value": 3,
+        "name": "eager_for_more",
+        "raw": "B_MSG_EAGER_FOR_MORE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_BASHFUL": {
+      "id": 18,
+      "symbol": "NATURE_BASHFUL",
+      "name_key": "bashful",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 868
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"害羞\")",
+        "statUp": "STAT_SPATK",
+        "statDown": "STAT_SPATK",
+        "backAnim": "2",
+        "pokeBlockAnim": "{ANIM_BASHFUL, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighDefenseLow",
+        "battlePalacePercents": "PALACE_STYLE(30, 58, 30, 58)",
+        "battlePalaceFlavorText": "B_MSG_EAGER_FOR_MORE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "害羞",
+        "display_text": "害羞"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPATK",
+        "value": 4,
+        "name": "spatk",
+        "raw": "STAT_SPATK"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPATK",
+        "value": 4,
+        "name": "spatk",
+        "raw": "STAT_SPATK"
+      },
+      "neutral": true,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "2",
+        "value": 2
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_BASHFUL",
+          "value": 39,
+          "name": "anim_bashful",
+          "raw": "ANIM_BASHFUL"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(30, 58, 30, 58)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          30,
+          88,
+          30,
+          88
+        ],
+        "high_hp": {
+          "attack": 30,
+          "defense": 58,
+          "support": 12
+        },
+        "low_hp": {
+          "attack": 30,
+          "defense": 58,
+          "support": 12
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_EAGER_FOR_MORE",
+        "value": 3,
+        "name": "eager_for_more",
+        "raw": "B_MSG_EAGER_FOR_MORE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighDefenseLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_RASH": {
+      "id": 19,
+      "symbol": "NATURE_RASH",
+      "name_key": "rash",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 880
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"马虎\")",
+        "statUp": "STAT_SPATK",
+        "statDown": "STAT_SPDEF",
+        "backAnim": "1",
+        "pokeBlockAnim": "{ANIM_RASH, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighSupportLow",
+        "battlePalacePercents": "PALACE_STYLE(30, 13, 27, 6)",
+        "battlePalaceFlavorText": "B_MSG_GROWL_DEEPLY",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "马虎",
+        "display_text": "马虎"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPATK",
+        "value": 4,
+        "name": "spatk",
+        "raw": "STAT_SPATK"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPDEF",
+        "value": 5,
+        "name": "spdef",
+        "raw": "STAT_SPDEF"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "1",
+        "value": 1
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_RASH",
+          "value": 42,
+          "name": "anim_rash",
+          "raw": "ANIM_RASH"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(30, 13, 27, 6)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          30,
+          43,
+          27,
+          33
+        ],
+        "high_hp": {
+          "attack": 30,
+          "defense": 13,
+          "support": 57
+        },
+        "low_hp": {
+          "attack": 27,
+          "defense": 6,
+          "support": 67
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GROWL_DEEPLY",
+        "value": 2,
+        "name": "growl_deeply",
+        "raw": "B_MSG_GROWL_DEEPLY"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlSupportHighSupportLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_CALM": {
+      "id": 20,
+      "symbol": "NATURE_CALM",
+      "name_key": "calm",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 892
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"温和\")",
+        "statUp": "STAT_SPDEF",
+        "statDown": "STAT_ATK",
+        "backAnim": "1",
+        "pokeBlockAnim": "{ANIM_CALM, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighDefenseLow",
+        "battlePalacePercents": "PALACE_STYLE(40, 50, 25, 62)",
+        "battlePalaceFlavorText": "B_MSG_GETTING_IN_POS",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "温和",
+        "display_text": "温和"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPDEF",
+        "value": 5,
+        "name": "spdef",
+        "raw": "STAT_SPDEF"
+      },
+      "stat_down": {
+        "symbol": "STAT_ATK",
+        "value": 1,
+        "name": "atk",
+        "raw": "STAT_ATK"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "1",
+        "value": 1
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_CALM",
+          "value": 45,
+          "name": "anim_calm",
+          "raw": "ANIM_CALM"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(40, 50, 25, 62)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          40,
+          90,
+          25,
+          87
+        ],
+        "high_hp": {
+          "attack": 40,
+          "defense": 50,
+          "support": 10
+        },
+        "low_hp": {
+          "attack": 25,
+          "defense": 62,
+          "support": 13
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GETTING_IN_POS",
+        "value": 1,
+        "name": "getting_in_pos",
+        "raw": "B_MSG_GETTING_IN_POS"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighDefenseLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_GENTLE": {
+      "id": 21,
+      "symbol": "NATURE_GENTLE",
+      "name_key": "gentle",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 904
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"温顺\")",
+        "statUp": "STAT_SPDEF",
+        "statDown": "STAT_DEF",
+        "backAnim": "2",
+        "pokeBlockAnim": "{ANIM_GENTLE, AFFINE_TURN_DOWN_SLIGHT}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(18, 70, 90, 5)",
+        "battlePalaceFlavorText": "B_MSG_GLINT_IN_EYE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "温顺",
+        "display_text": "温顺"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPDEF",
+        "value": 5,
+        "name": "spdef",
+        "raw": "STAT_SPDEF"
+      },
+      "stat_down": {
+        "symbol": "STAT_DEF",
+        "value": 2,
+        "name": "def",
+        "raw": "STAT_DEF"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "2",
+        "value": 2
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_GENTLE",
+          "value": 46,
+          "name": "anim_gentle",
+          "raw": "ANIM_GENTLE"
+        },
+        {
+          "symbol": "AFFINE_TURN_DOWN_SLIGHT",
+          "value": 5,
+          "name": "affine_turn_down_slight",
+          "raw": "AFFINE_TURN_DOWN_SLIGHT"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(18, 70, 90, 5)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          18,
+          88,
+          90,
+          95
+        ],
+        "high_hp": {
+          "attack": 18,
+          "defense": 70,
+          "support": 12
+        },
+        "low_hp": {
+          "attack": 90,
+          "defense": 5,
+          "support": 5
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GLINT_IN_EYE",
+        "value": 0,
+        "name": "glint_in_eye",
+        "raw": "B_MSG_GLINT_IN_EYE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_SASSY": {
+      "id": 22,
+      "symbol": "NATURE_SASSY",
+      "name_key": "sassy",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 916
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"自大\")",
+        "statUp": "STAT_SPDEF",
+        "statDown": "STAT_SPEED",
+        "backAnim": "1",
+        "pokeBlockAnim": "{ANIM_SASSY, AFFINE_TURN_UP_HIGH}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighSupportLow",
+        "battlePalacePercents": "PALACE_STYLE(88, 6, 22, 20)",
+        "battlePalaceFlavorText": "B_MSG_GROWL_DEEPLY",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "自大",
+        "display_text": "自大"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPDEF",
+        "value": 5,
+        "name": "spdef",
+        "raw": "STAT_SPDEF"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPEED",
+        "value": 3,
+        "name": "speed",
+        "raw": "STAT_SPEED"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "1",
+        "value": 1
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_SASSY",
+          "value": 47,
+          "name": "anim_sassy",
+          "raw": "ANIM_SASSY"
+        },
+        {
+          "symbol": "AFFINE_TURN_UP_HIGH",
+          "value": 6,
+          "name": "affine_turn_up_high",
+          "raw": "AFFINE_TURN_UP_HIGH"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(88, 6, 22, 20)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          88,
+          94,
+          22,
+          42
+        ],
+        "high_hp": {
+          "attack": 88,
+          "defense": 6,
+          "support": 6
+        },
+        "low_hp": {
+          "attack": 22,
+          "defense": 20,
+          "support": 58
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GROWL_DEEPLY",
+        "value": 2,
+        "name": "growl_deeply",
+        "raw": "B_MSG_GROWL_DEEPLY"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighSupportLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_CAREFUL": {
+      "id": 23,
+      "symbol": "NATURE_CAREFUL",
+      "name_key": "careful",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 928
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"慎重\")",
+        "statUp": "STAT_SPDEF",
+        "statDown": "STAT_SPATK",
+        "backAnim": "2",
+        "pokeBlockAnim": "{ANIM_CAREFUL, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighSupportLow",
+        "battlePalacePercents": "PALACE_STYLE(42, 50, 42, 5)",
+        "battlePalaceFlavorText": "B_MSG_GROWL_DEEPLY",
+        "battlePalaceSmokescreen": "PALACE_TARGET_WEAKER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "慎重",
+        "display_text": "慎重"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPDEF",
+        "value": 5,
+        "name": "spdef",
+        "raw": "STAT_SPDEF"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPATK",
+        "value": 4,
+        "name": "spatk",
+        "raw": "STAT_SPATK"
+      },
+      "neutral": false,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "2",
+        "value": 2
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_CAREFUL",
+          "value": 48,
+          "name": "anim_careful",
+          "raw": "ANIM_CAREFUL"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(42, 50, 42, 5)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          42,
+          92,
+          42,
+          47
+        ],
+        "high_hp": {
+          "attack": 42,
+          "defense": 50,
+          "support": 8
+        },
+        "low_hp": {
+          "attack": 42,
+          "defense": 5,
+          "support": 53
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_GROWL_DEEPLY",
+        "value": 2,
+        "name": "growl_deeply",
+        "raw": "B_MSG_GROWL_DEEPLY"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_WEAKER",
+        "value": 1,
+        "name": "weaker",
+        "raw": "PALACE_TARGET_WEAKER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighSupportLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    },
+    "NATURE_QUIRKY": {
+      "id": 24,
+      "symbol": "NATURE_QUIRKY",
+      "name_key": "quirky",
+      "source": {
+        "file": "src/pokemon.c",
+        "line": 940
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "COMPOUND_STRING(\"浮躁\")",
+        "statUp": "STAT_SPDEF",
+        "statDown": "STAT_SPDEF",
+        "backAnim": "1",
+        "pokeBlockAnim": "{ANIM_QUIRKY, AFFINE_NONE}",
+        "natureGirlMessage": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "battlePalacePercents": "PALACE_STYLE(56, 22, 56, 22)",
+        "battlePalaceFlavorText": "B_MSG_EAGER_FOR_MORE",
+        "battlePalaceSmokescreen": "PALACE_TARGET_STRONGER"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "浮躁",
+        "display_text": "浮躁"
+      },
+      "stat_up": {
+        "symbol": "STAT_SPDEF",
+        "value": 5,
+        "name": "spdef",
+        "raw": "STAT_SPDEF"
+      },
+      "stat_down": {
+        "symbol": "STAT_SPDEF",
+        "value": 5,
+        "name": "spdef",
+        "raw": "STAT_SPDEF"
+      },
+      "neutral": true,
+      "stat_modifier": {
+        "source": "src/pokemon.c:ModifyStatByNature",
+        "up_multiplier": {
+          "numerator": 110,
+          "denominator": 100
+        },
+        "down_multiplier": {
+          "numerator": 90,
+          "denominator": 100
+        },
+        "integer_division": true
+      },
+      "back_anim": {
+        "raw": "1",
+        "value": 1
+      },
+      "poke_block_anim": [
+        {
+          "symbol": "ANIM_QUIRKY",
+          "value": 53,
+          "name": "anim_quirky",
+          "raw": "ANIM_QUIRKY"
+        },
+        {
+          "symbol": "AFFINE_NONE",
+          "value": 0,
+          "name": "affine_none",
+          "raw": "AFFINE_NONE"
+        }
+      ],
+      "battle_palace_percents": {
+        "raw": "PALACE_STYLE(56, 22, 56, 22)",
+        "macro": "PALACE_STYLE",
+        "stored_cumulative": [
+          56,
+          78,
+          56,
+          78
+        ],
+        "high_hp": {
+          "attack": 56,
+          "defense": 22,
+          "support": 22
+        },
+        "low_hp": {
+          "attack": 56,
+          "defense": 22,
+          "support": 22
+        },
+        "source": "src/pokemon.c:PALACE_STYLE"
+      },
+      "battle_palace_flavor_text": {
+        "symbol": "B_MSG_EAGER_FOR_MORE",
+        "value": 3,
+        "name": "eager_for_more",
+        "raw": "B_MSG_EAGER_FOR_MORE"
+      },
+      "battle_palace_smokescreen": {
+        "symbol": "PALACE_TARGET_STRONGER",
+        "value": 0,
+        "name": "stronger",
+        "raw": "PALACE_TARGET_STRONGER"
+      },
+      "nature_girl_message": {
+        "symbol": "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "source": "data/scripts/battle_frontier_lounge.inc"
+      },
+      "evaluation_status": "ok"
+    }
+  },
+  "stats": {
+    "nature_count": 25,
+    "neutral_nature_count": 5,
+    "non_neutral_nature_count": 20,
+    "preprocessor_decision_count": 0,
+    "preprocessor_warning_count": 0,
+    "warning_count": 0,
+    "unsupported_field_count": 0,
+    "unresolved_stat_count": 0
+  }
+}

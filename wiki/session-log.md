@@ -213,3 +213,10 @@
 - Updated `BattleEngine` so generated trainer Pokemon with `move_source_behavior.kind = "level_up_default"` now receive source default moves from generated learnsets; Sawyer's level 21 Geodude resolves to Rollout, Bulldoze, Rock Throw, and Smack Down instead of reporting missing learnset data.
 - Added `tools/godot_smoke/data_registry_learnsets_smoke.gd` and expanded `battle_engine_smoke.gd` to validate generated learnsets and trainer default move assignment.
 - Verified `export_learnsets.py` Python compilation, `data_registry_learnsets_smoke.gd`, `battle_engine_smoke.gd`, `data_registry_species_smoke.gd`, `data_registry_moves_smoke.gd`, `data_registry_trainers_smoke.gd`, Godot 4.7 headless startup, and `git diff --check`.
+- Reported total-plan progress relative to the roadmap: M0-M5 are first-pass vertical slices, M6 now covers most core Pokemon data, M7 is still an early battle rules prototype, and M8 full game systems remain mostly future work.
+- Traced source nature data through `src/pokemon.c:gNaturesInfo`, `include/pokemon.h:struct NatureInfo`, `include/constants/pokemon.h` nature/stat constants, `CalculateMonStats`, `ModifyStatByNature`, and `GetNatureFromPersonality`.
+- Added `tools/importer/export_natures.py` to export nature records into `data/generated/pokemon/natures.json`, preserving source names, ids, stat-up/stat-down constants, neutral status, Pokeblock animation fields, Battle Palace fields, and runtime references.
+- Generated nature data with 25 natures, 5 neutral natures, 20 non-neutral natures, 0 warnings, 0 unsupported fields, and 0 unresolved stat constants.
+- Updated `DataRegistry` with manifest-backed nature loading plus lookup by symbol, short symbol, or numeric nature id.
+- Updated `BattleEngine` so generated battle Pokemon apply source `ModifyStatByNature` integer stat modifiers from generated nature data; Adamant Torchic at level 5 now has 13 attack and 11 special attack.
+- Added `tools/godot_smoke/data_registry_natures_smoke.gd` and expanded `battle_engine_smoke.gd` to validate generated natures and Adamant/Modest stat modifiers.

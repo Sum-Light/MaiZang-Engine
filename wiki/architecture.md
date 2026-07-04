@@ -31,7 +31,7 @@ The original project should be treated as authoritative source data and behavior
 ## Core Modules
 
 - `GameState`: flags, vars, player profile, party, inventory, story state.
-- `DataRegistry`: read-only access to generated Pokemon species, moves, abilities, items, maps, tilesets, scripts, text, trainers, and encounters.
+- `DataRegistry`: read-only access to generated Pokemon species, moves, abilities, items, natures, maps, tilesets, scripts, text, trainers, learnsets, and encounters.
 - `MapRuntime`: current map query service for bounds, collision, elevation, metatile ids, metatile behavior ids/names, and layer type.
 - `MapLoader`: builds Godot map scenes from generated map data.
 - `GridMover`: shared grid movement for player and NPCs.
@@ -50,7 +50,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, Pokemon wild encounter JSON, Pokemon trainer JSON, and Pokemon level-up learnset JSON.
+- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, Pokemon wild encounter JSON, Pokemon trainer JSON, Pokemon level-up learnset JSON, and Pokemon nature JSON.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries, including source metatile behavior names.
 - `MapRuntime` indexes generated door animation metadata by metatile id and can return the animation for a map cell.
 - `MapRuntime` indexes generated object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events; visible object-event cells are occupied for first-pass movement.
@@ -62,7 +62,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - `GridMover` provides tweened tile movement.
 - `PlayerController` runs an optional field-input precheck before accept/movement input, reads directional input, tracks facing direction, moves one tile at a time after checking `MapRuntime.can_enter_cell`, emits interaction requests on `ui_accept`, and can be input-locked by transition presentation.
 - `ScriptVM` executes the first synchronous event-script subset for generated dialogue, movement-effect, object-effect, field-effect, UI-effect, special-effect, audio-effect, transition-effect, and player-effect scripts and returns messages, movements, object effects, field effects, UI effects, special effects, audio effects, transition effects, player effects, effects, unsupported ops, trace entries, runtime string vars, and wait metadata.
-- `BattleEngine` is registered as a domain/rules autoload. Its first slice builds battle Pokemon and trainer parties from generated Pokemon data, including explicit trainer moves and source default level-up move assignment through generated learnsets, calculates ordinary move damage from traced source formulas, applies STAB and type effectiveness, updates PP/HP/fainting, and returns structured first-pass battle message events without depending on presentation scenes.
+- `BattleEngine` is registered as a domain/rules autoload. Its first slice builds battle Pokemon and trainer parties from generated Pokemon data, including explicit trainer moves, source default level-up move assignment through generated learnsets, and source nature stat modifiers through generated natures; it calculates ordinary move damage from traced source formulas, applies STAB and type effectiveness, updates PP/HP/fainting, and returns structured first-pass battle message events without depending on presentation scenes.
 - `ScriptVM` resolves numeric `LOCALID_*` tokens from the current generated map object-event order, matching source `tools/mapjson/mapjson.cpp` where map object local-id constants are object index + 1, while preserving special constants such as `LOCALID_PLAYER`. Movement command targets follow source `VarGet` behavior and preserve both raw and resolved targets in result metadata.
 - `ScriptVM` message results include generated text encoding metadata such as charmap status, source byte count, terminator presence, source file, and text kind when the source text record provides it.
 - `EventManager` dispatches object, BG/sign, coordinate-event, and warp-event interactions through `ScriptVM` or generated event data when available, applies movement and object effects through `MapRuntime`, consumes generated explicit-position and warp-id transition effects, emits source-traced transition sequence data, then emits debug dialogue lines for the HUD.
@@ -197,10 +197,18 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - `BattleEngine` source default move assignment follows `src/pokemon.c:GiveBoxMonInitialMoveset` for the current first pass: iterate learnset entries in order, stop when an entry level exceeds the Pokemon level, skip level 0 entries, skip duplicate moves already selected, append up to four moves, then roll the four-slot window forward for later eligible moves. PP comes from generated move data as the Godot equivalent of `GetMovePP`.
 - Learning new moves after level-up, relearning, evolution/form learnset changes, move tutor/TM/HM compatibility, party UI, and move-learning presentation remain future source-traced systems.
 
+## Generated Pokemon Natures Contract
+
+- Pokemon nature JSON is loaded through `DataRegistry` from the manifest `pokemon` entry with category `natures`.
+- `DataRegistry.get_pokemon_data("natures")`, `get_natures_data`, `get_nature_record`, `get_nature_record_by_symbol`, and `get_nature_record_by_id` are read-only accessors for generated nature records.
+- Generated nature records preserve source symbols, numeric nature ids, source file/line references, UTF-8 display names, `statUp`/`statDown` constants, neutral-nature status, Pokeblock animation constants, Battle Palace cumulative percent data, flavor text ids, smokescreen target preferences, and nature girl message symbols.
+- `BattleEngine` consumes generated `stat_up`/`stat_down` fields for the source `ModifyStatByNature` rule: HP is never modified, neutral natures have no effect because `statUp == statDown`, increased stats use integer `stat * 110 / 100`, and decreased stats use integer `stat * 90 / 100`.
+- Personality-derived nature selection, hidden nature modifiers, mints, Pokeblock feeding animation, Battle Palace move-choice behavior, summary UI colors, and presentation details remain future source-traced systems.
+
 ## Battle Runtime Contract
 
 - `BattleEngine` is the first Godot-native domain boundary for battle rules and should stay independent from battle UI scenes.
-- Battle Pokemon construction reads generated species and move records through `DataRegistry`, applies the source `CalculateMonStats` first-pass stat formula with IV/EV inputs, uses neutral-nature handling only until `gNaturesInfo` is exported, and preserves unsupported notes for missing source-backed behavior.
+- Battle Pokemon construction reads generated species, move, and nature records through `DataRegistry`, applies the source `CalculateMonStats` first-pass stat formula with IV/EV inputs, applies generated `gNaturesInfo` modifiers through the source `ModifyStatByNature` rule, and preserves unsupported notes for missing source-backed behavior.
 - Trainer party construction reads generated trainer records through `DataRegistry` and follows the first-pass source shape of `CreateNPCTrainerPartyFromTrainer`: party order is preserved, explicit moves are assigned with `GetMovePP`-equivalent PP from generated move data, source default level-up moves use generated learnsets with the `GiveBoxMonInitialMoveset` rolling four-slot rule, and held item/ability/nature/friendship metadata is carried forward.
 - Damage calculation currently covers ordinary damaging moves only. It follows the source base formula from `CalculateBaseDamage`, applies a deterministic caller-selected damage roll in the source 85-100 range, applies STAB and `gTypeEffectivenessTable` after the roll, keeps immunities at 0 damage, and clamps nonzero damaging results to at least 1.
 - Battle turn execution currently decrements move PP, applies HP damage, marks fainting, and returns structured first-pass message events. Real source battle strings, text placeholders, animation scripts, sounds, move effects, accuracy, critical hits, abilities, items, status, weather, protection, AI, double battles, switching, rewards, and presentation timing remain future source-traced work.

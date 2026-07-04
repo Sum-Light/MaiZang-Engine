@@ -27,6 +27,22 @@ func _init() -> void:
 	_assert(int(_dict_field(treecko, "stats").get("hp", 0)) == 20, "unexpected Treecko hp")
 	_assert(int(_dict_field(treecko, "stats").get("sp_defense", 0)) == 12, "unexpected Treecko sp defense")
 
+	var adamant_torchic := engine.create_battle_mon("SPECIES_TORCHIC", 5, {
+		"nature": "NATURE_ADAMANT",
+	})
+	var modest_torchic := engine.create_battle_mon("SPECIES_TORCHIC", 5, {
+		"nature": "NATURE_MODEST",
+	})
+	_assert(int(_dict_field(adamant_torchic, "stats").get("hp", 0)) == 21, "expected Adamant Torchic hp unchanged")
+	_assert(int(_dict_field(adamant_torchic, "stats").get("attack", 0)) == 13, "expected Adamant Torchic attack boost")
+	_assert(int(_dict_field(adamant_torchic, "stats").get("sp_attack", 0)) == 11, "expected Adamant Torchic special attack drop")
+	_assert(String(_dict_field(adamant_torchic, "nature_info").get("stat_up", "")) == "STAT_ATK", "expected Adamant nature info attack boost")
+	_assert(String(_dict_field(adamant_torchic, "nature_info").get("stat_down", "")) == "STAT_SPATK", "expected Adamant nature info special attack drop")
+	_assert(not _has_unsupported(adamant_torchic, "non_neutral_nature_modifier_not_applied"), "expected source nature modifier support")
+	_assert(not _has_unsupported(adamant_torchic, "missing_nature_data"), "expected generated nature data")
+	_assert(int(_dict_field(modest_torchic, "stats").get("attack", 0)) == 10, "expected Modest Torchic attack drop")
+	_assert(int(_dict_field(modest_torchic, "stats").get("sp_attack", 0)) == 14, "expected Modest Torchic special attack boost")
+
 	var ember := _array_dict(_array_field(torchic, "moves"), 0)
 	var ember_damage := engine.calculate_basic_damage(torchic, treecko, ember, {"damage_roll_percent": 100})
 	_assert(String(ember_damage.get("status", "")) == "ok", "expected Ember damage result")
@@ -92,6 +108,7 @@ func _init() -> void:
 		"battle_engine_smoke": "ok",
 		"ember_damage": int(ember_damage.get("damage", 0)),
 		"treecko_hp_after_ember": int(treecko_after.get("hp", 0)),
+		"adamant_torchic_attack": int(_dict_field(adamant_torchic, "stats").get("attack", 0)),
 		"wallace_party_size": wallace_party.size(),
 	}))
 	engine.free()

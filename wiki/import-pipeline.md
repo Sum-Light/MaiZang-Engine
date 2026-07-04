@@ -37,6 +37,7 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 - `src/data/items.h`
 - `src/data/abilities.h`
 - `src/data/pokemon/level_up_learnsets/gen_*.h`
+- `src/pokemon.c:gNaturesInfo`
 - `include/constants/*.h`
 
 ### Text
@@ -360,6 +361,29 @@ Latest verified level-up learnset export:
 - preprocessor decisions: 640
 - warnings: 0
 - unresolved moves: 0
+
+`tools/importer/export_natures.py` exports source nature data into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
+
+Current nature export behavior:
+
+- Reads `src/pokemon.c:gNaturesInfo` after tracing `include/pokemon.h:struct NatureInfo` and `include/constants/pokemon.h` nature/stat constants.
+- Preserves source nature ids, names, `statUp`/`statDown`, Pokeblock animation fields, Battle Palace percent data, flavor text ids, smokescreen target preferences, and nature girl message symbols.
+- Expands the source `PALACE_STYLE(atk, def, atkLow, defLow)` macro into stored cumulative values plus high/low HP attack/defense/support percentages.
+- Records `src/pokemon.c:CalculateMonStats`, `ModifyStatByNature`, `GetNature`, and `GetNatureFromPersonality` as runtime references.
+- Writes `data/generated/pokemon/natures.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `natures`.
+- Treats generated nature data as source-backed runtime input for stat modifiers. Summary UI, Pokeblock feeding animation, Battle Palace behavior, personality-derived nature selection, mints, and presentation details remain future source-traced systems.
+
+Latest verified nature export:
+
+- generated path: `data/generated/pokemon/natures.json`
+- manifest category: `pokemon` / `natures`
+- natures: 25
+- neutral natures: 5
+- non-neutral natures: 20
+- preprocessor decisions: 0 after slicing to the `gNaturesInfo` table
+- warnings: 0
+- unsupported fields: 0
+- unresolved stat constants: 0
 
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 

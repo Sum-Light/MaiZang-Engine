@@ -6,15 +6,16 @@ const DEFAULT_EV := 0
 const DAMAGE_ROLL_PERCENT_LO := 85
 const DAMAGE_ROLL_PERCENT_HI := 100
 const STAT_KEYS := ["hp", "attack", "defense", "speed", "sp_attack", "sp_defense"]
-const NEUTRAL_NATURES := {
-	"NATURE_HARDY": true,
-	"NATURE_DOCILE": true,
-	"NATURE_SERIOUS": true,
-	"NATURE_BASHFUL": true,
-	"NATURE_QUIRKY": true,
+const STAT_KEY_TO_SOURCE_STAT := {
+	"attack": "STAT_ATK",
+	"defense": "STAT_DEF",
+	"speed": "STAT_SPEED",
+	"sp_attack": "STAT_SPATK",
+	"sp_defense": "STAT_SPDEF",
 }
 const SOURCE_TRACE := [
 	"src/pokemon.c:CalculateMonStats",
+	"src/pokemon.c:gNaturesInfo",
 	"src/pokemon.c:ModifyStatByNature",
 	"src/battle_main.c:CreateNPCTrainerPartyFromTrainer",
 	"src/battle_main.c:CustomTrainerPartyAssignMoves",
@@ -211,7 +212,8 @@ func create_battle_mon(species_id_or_symbol, level: int, options: Dictionary = {
 	var nature_symbol := _constant_symbol(options.get("nature", "NATURE_HARDY"))
 	if nature_symbol.is_empty():
 		nature_symbol = "NATURE_HARDY"
-	var stats := _calculate_stats(species_record, clamped_level, ivs, evs, nature_symbol, unsupported)
+	var nature_record := _get_nature_record(nature_symbol)
+	var stats := _calculate_stats(species_record, clamped_level, ivs, evs, nature_symbol, nature_record, unsupported)
 	var move_specs = options.get("moves", [])
 	var move_source_behavior = options.get("move_source_behavior", {})
 	if (typeof(move_specs) != TYPE_ARRAY or move_specs.is_empty()) and typeof(move_source_behavior) == TYPE_DICTIONARY:
@@ -235,6 +237,7 @@ func create_battle_mon(species_id_or_symbol, level: int, options: Dictionary = {
 		"ivs": ivs,
 		"evs": evs,
 		"nature": nature_symbol,
+		"nature_info": _battle_nature_info(nature_symbol, nature_record),
 		"stats": stats,
 		"max_hp": int(stats.get("hp", 1)),
 		"hp": hp,
@@ -522,6 +525,14 @@ func _get_trainer_record(trainer_id_or_symbol) -> Dictionary:
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
+func _get_nature_record(nature_id_or_symbol) -> Dictionary:
+	var registry := _get_registry()
+	if registry == null or not registry.has_method("get_nature_record"):
+		return {}
+	var record = registry.get_nature_record(nature_id_or_symbol)
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
 func _get_level_up_learnset_record(species_record: Dictionary) -> Dictionary:
 	var registry := _get_registry()
 	if registry == null:
@@ -538,7 +549,7 @@ func _get_level_up_learnset_record(species_record: Dictionary) -> Dictionary:
 	return fallback_record if typeof(fallback_record) == TYPE_DICTIONARY else {}
 
 
-func _calculate_stats(species_record: Dictionary, level: int, ivs: Dictionary, evs: Dictionary, nature_symbol: String, unsupported: Array) -> Dictionary:
+func _calculate_stats(species_record: Dictionary, level: int, ivs: Dictionary, evs: Dictionary, nature_symbol: String, nature_record: Dictionary, unsupported: Array) -> Dictionary:
 	var base_stats = species_record.get("base_stats", {})
 	var stats := {}
 	var base_hp := int(base_stats.get("hp", 1))
@@ -546,6 +557,12 @@ func _calculate_stats(species_record: Dictionary, level: int, ivs: Dictionary, e
 	var hp_ev := int(evs.get("hp", DEFAULT_EV))
 	var max_hp := 1 if _record_symbol(species_record) == "SPECIES_SHEDINJA" else _idiv((2 * base_hp + hp_iv + _idiv(hp_ev, 4)) * level, 100) + level + 10
 	stats["hp"] = max_hp
+	if nature_record.is_empty():
+		unsupported.append({
+			"code": "missing_nature_data",
+			"source": "src/pokemon.c:gNaturesInfo -> src/pokemon.c:ModifyStatByNature",
+			"detail": "Could not resolve generated nature data for %s." % [nature_symbol],
+		})
 	for stat_key in STAT_KEYS:
 		if String(stat_key) == "hp":
 			continue
@@ -553,14 +570,43 @@ func _calculate_stats(species_record: Dictionary, level: int, ivs: Dictionary, e
 		var iv := int(ivs.get(stat_key, DEFAULT_IV))
 		var ev := int(evs.get(stat_key, DEFAULT_EV))
 		var value := _idiv((2 * base + iv + _idiv(ev, 4)) * level, 100) + 5
-		if not NEUTRAL_NATURES.has(nature_symbol):
-			unsupported.append({
-				"code": "non_neutral_nature_modifier_not_applied",
-				"source": "src/pokemon.c:ModifyStatByNature",
-				"detail": "%s stat modifiers require gNaturesInfo export before source-faithful application." % [nature_symbol],
-			})
-		stats[String(stat_key)] = value
+		stats[String(stat_key)] = _modify_stat_by_nature(value, String(stat_key), nature_record)
 	return stats
+
+
+func _modify_stat_by_nature(value: int, stat_key: String, nature_record: Dictionary) -> int:
+	if nature_record.is_empty():
+		return value
+	var source_stat := String(STAT_KEY_TO_SOURCE_STAT.get(stat_key, ""))
+	if source_stat.is_empty():
+		return value
+	var stat_up := _constant_symbol(nature_record.get("stat_up", {}))
+	var stat_down := _constant_symbol(nature_record.get("stat_down", {}))
+	if stat_up.is_empty() or stat_down.is_empty() or stat_up == stat_down:
+		return value
+	if source_stat == stat_up:
+		return _idiv(value * 110, 100)
+	if source_stat == stat_down:
+		return _idiv(value * 90, 100)
+	return value
+
+
+func _battle_nature_info(nature_symbol: String, nature_record: Dictionary) -> Dictionary:
+	if nature_record.is_empty():
+		return {
+			"symbol": nature_symbol,
+			"status": "missing",
+			"source": "src/pokemon.c:gNaturesInfo",
+		}
+	return {
+		"symbol": _record_symbol(nature_record),
+		"id": int(nature_record.get("id", -1)),
+		"name": _display_text(nature_record.get("name", {}), _record_symbol(nature_record)),
+		"stat_up": _constant_symbol(nature_record.get("stat_up", {})),
+		"stat_down": _constant_symbol(nature_record.get("stat_down", {})),
+		"neutral": bool(nature_record.get("neutral", false)),
+		"source": nature_record.get("source", {}),
+	}
 
 
 func _move_specs_for_initial_learnset(species_record: Dictionary, level: int, unsupported: Array) -> Array:
