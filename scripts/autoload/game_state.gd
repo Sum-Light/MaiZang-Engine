@@ -13,6 +13,7 @@ var player_grid_position := Vector2i(10, 10)
 var player_party: Array = []
 var flags: Dictionary = {}
 var vars: Dictionary = {}
+var game_stats: Dictionary = {}
 
 
 func set_flag(flag_name: String, enabled := true) -> void:
@@ -33,6 +34,24 @@ func set_var(var_name: String, value: int) -> void:
 
 func get_var(var_name: String, default_value := 0) -> int:
 	return int(vars.get(var_name, default_value))
+
+
+func set_game_stat(stat_name: String, value: int) -> void:
+	game_stats[stat_name] = maxi(0, value)
+
+
+func get_game_stat(stat_name: String, default_value := 0) -> int:
+	return int(game_stats.get(stat_name, default_value))
+
+
+func increment_game_stat(stat_name: String, amount := 1) -> int:
+	var value: int = maxi(0, get_game_stat(stat_name, 0) + amount)
+	game_stats[stat_name] = value
+	return value
+
+
+func get_game_stats() -> Dictionary:
+	return game_stats.duplicate(true)
 
 
 func set_player_gender(gender: String) -> void:

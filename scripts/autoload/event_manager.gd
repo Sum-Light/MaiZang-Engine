@@ -44,11 +44,65 @@ const STANDARD_WILD_ENCOUNTER_SOURCE_TRACE := [
 	"src/metatile_behavior.c:MetatileBehavior_IsLandWildEncounter",
 	"src/metatile_behavior.c:MetatileBehavior_IsWaterWildEncounter",
 ]
+const PLAYER_STEP_SOURCE_TRACE := [
+	"src/field_control_avatar.c:ProcessPlayerFieldInput",
+	"src/field_control_avatar.c:TryStartStepBasedScript",
+	"src/field_control_avatar.c:TryStartMiscWalkingScripts",
+	"src/field_control_avatar.c:TryStartStepCountScript",
+	"src/wild_encounter.c:UpdateRepelCounter",
+	"src/dexnav.c:OnStep_DexNavSearch",
+	"src/field_control_avatar.c:CheckStandardWildEncounter",
+]
+const PLAYER_STEP_SOURCE_ORDER := [
+	"IncrementGameStat(GAME_STAT_STEPS)",
+	"IncrementBirthIslandRockStepCount",
+	"TryStartCoordEventScript",
+	"TryStartWarpEventScript",
+	"TryStartMiscWalkingScripts",
+	"TryStartStepCountScript",
+	"UpdateRepelCounter",
+	"OnStep_DexNavSearch",
+	"CheckStandardWildEncounter",
+]
 const WILD_ENCOUNTER_IMMUNITY_STEPS := 4
+const REPEL_LURE_MASK := 1 << 15
 const NO_ENCOUNTER_FLAGS := {
 	"OW_FLAG_NO_ENCOUNTER": true,
 	"FLAG_NO_ENCOUNTER": true,
 }
+const MISC_WALKING_SCRIPT_BEHAVIORS := {
+	"MB_CRACKED_FLOOR_HOLE": {
+		"script": "EventScript_FallDownHole",
+		"source": "src/field_control_avatar.c:TryStartMiscWalkingScripts",
+	},
+	"MB_BATTLE_PYRAMID_WARP": {
+		"script": "BattlePyramid_WarpToNextFloor",
+		"source": "src/field_control_avatar.c:TryStartMiscWalkingScripts",
+	},
+}
+const MISC_WALKING_CONTINUE_BEHAVIORS := {
+	"MB_SECRET_BASE_GLITTER_MAT": "DoSecretBaseGlitterMatSparkle",
+	"MB_SECRET_BASE_SOUND_MAT": "PlaySecretBaseMusicNoteMatSound",
+}
+const STEP_COUNT_SOURCE_ORDER := [
+	"IncrementRematchStepCounter",
+	"UpdateFriendshipStepCounter",
+	"UpdateFarawayIslandStepCounter",
+	"UpdateFollowerStepCounter",
+	"UpdatePoisonStepCounter",
+	"ShouldEggHatch",
+	"AbnormalWeatherHasExpired",
+	"ShouldDoBrailleRegicePuzzle",
+	"ShouldDoWallyCall",
+	"ShouldDoScottFortreeCall",
+	"ShouldDoScottBattleFrontierCall",
+	"ShouldDoRoxanneCall",
+	"ShouldDoRivalRayquazaCall",
+	"UpdateVsSeekerStepCounter",
+	"SafariZoneTakeStep",
+	"CountSSTidalStep",
+	"TryStartMatchCall",
+]
 
 var _script_data: Dictionary = {}
 var _script_vm: Node = null
@@ -179,6 +233,87 @@ func try_dispatch_standard_wild_encounter(cell: Vector2i, options: Dictionary = 
 	return summary
 
 
+func dispatch_player_step(cell: Vector2i, options: Dictionary = {}) -> Dictionary:
+	var behavior_name := _current_metatile_behavior_name(cell)
+	var forced_move := bool(options.get("forced_move", false))
+	var forced_movement_tile := _is_forced_movement_behavior(behavior_name)
+	var summary := {
+		"status": "no_step_event",
+		"consumed": false,
+		"consumed_by": "",
+		"reason": "",
+		"map": _current_map_id(),
+		"position": cell,
+		"current_metatile_behavior": behavior_name,
+		"forced_move": forced_move,
+		"forced_movement_tile": forced_movement_tile,
+		"source_order": PLAYER_STEP_SOURCE_ORDER.duplicate(),
+		"source_trace": PLAYER_STEP_SOURCE_TRACE.duplicate(),
+		"game_stat_steps": _increment_game_stat("GAME_STAT_STEPS"),
+		"birth_island_rock": {
+			"status": "future",
+			"source": "src/field_control_avatar.c:IncrementBirthIslandRockStepCount",
+		},
+		"coord_event": {},
+		"warp_event": {},
+		"misc_walking": {},
+		"step_count": {},
+		"repel": {},
+		"dexnav": {},
+		"wild_encounter": {},
+	}
+
+	var coord_event := _step_coord_event_target(cell)
+	summary["coord_event"] = _interaction_step_summary(coord_event)
+	if not coord_event.is_empty():
+		dispatch_interaction(coord_event)
+		return _finish_player_step(summary, "coord_event", "coord_event")
+
+	var warp_event := _step_warp_event_target(cell)
+	summary["warp_event"] = _interaction_step_summary(warp_event)
+	if not warp_event.is_empty():
+		dispatch_interaction(warp_event)
+		return _finish_player_step(summary, "warp_event", "warp_event")
+
+	var misc_summary := _evaluate_misc_walking_scripts(cell, behavior_name)
+	summary["misc_walking"] = misc_summary
+	if bool(misc_summary.get("consumes_step", false)):
+		_emit_pending_player_step_script("Misc walking script", misc_summary)
+		return _finish_player_step(summary, "misc_walking", String(misc_summary.get("reason", "misc_walking_script")))
+
+	var step_count_summary := _evaluate_step_count_scripts(behavior_name, forced_move, forced_movement_tile, options)
+	summary["step_count"] = step_count_summary
+	if bool(step_count_summary.get("consumes_step", false)):
+		_emit_pending_player_step_script("Step-count script", step_count_summary)
+		return _finish_player_step(summary, "step_count", String(step_count_summary.get("reason", "step_count_script")))
+
+	if not forced_move and not forced_movement_tile:
+		var repel_summary := _update_repel_counter()
+		summary["repel"] = repel_summary
+		if bool(repel_summary.get("consumes_step", false)):
+			_emit_pending_player_step_script("Repel/Lure wore off", repel_summary)
+			return _finish_player_step(summary, "repel", String(repel_summary.get("reason", "repel_counter")))
+	else:
+		summary["repel"] = {
+			"status": "skipped_forced_movement",
+			"source": "src/field_control_avatar.c:TryStartStepBasedScript",
+		}
+
+	var dexnav_summary := _evaluate_dexnav_step()
+	summary["dexnav"] = dexnav_summary
+	if bool(dexnav_summary.get("consumes_step", false)):
+		_emit_pending_player_step_script("DexNav step search", dexnav_summary)
+		return _finish_player_step(summary, "dexnav", String(dexnav_summary.get("reason", "dexnav_step")))
+
+	var wild_summary := try_dispatch_standard_wild_encounter(cell, options)
+	summary["wild_encounter"] = wild_summary
+	if bool(wild_summary.get("encounter_requested", false)):
+		return _finish_player_step(summary, "standard_wild_encounter", "standard_wild_encounter")
+
+	summary["reason"] = String(wild_summary.get("reason", "no_step_event"))
+	return summary
+
+
 func _emit_object_event(interaction: Dictionary, event_data: Dictionary) -> void:
 	var script := String(interaction.get("script", event_data.get("script", "0x0")))
 	var lines := PackedStringArray([
@@ -212,8 +347,8 @@ func _emit_coord_event(interaction: Dictionary, event_data: Dictionary) -> void:
 		"Coord event",
 		"Position: %s" % interaction.get("position", Vector2i.ZERO),
 		"Trigger: %s == %s" % [
-			String(event_data.get("var", event_data.get("trigger", ""))),
-			String(event_data.get("var_value", event_data.get("index", ""))),
+			str(event_data.get("var", event_data.get("trigger", ""))),
+			str(event_data.get("var_value", event_data.get("index", ""))),
 		],
 	])
 	_append_script_output(lines, script, {
@@ -228,8 +363,8 @@ func _emit_warp_event(interaction: Dictionary, event_data: Dictionary) -> void:
 		"Warp event",
 		"Position: %s" % interaction.get("position", Vector2i.ZERO),
 		"Destination: %s / warp %s" % [
-			String(event_data.get("dest_map", "unknown")),
-			String(event_data.get("dest_warp_id", "?")),
+			str(event_data.get("dest_map", "unknown")),
+			str(event_data.get("dest_warp_id", "?")),
 		],
 	])
 	var transition_summary := _apply_map_warp_event(interaction, event_data)
@@ -1165,6 +1300,242 @@ func _metatile_id_from_map_data(map_data: Dictionary, position: Vector2i) -> int
 	return int(row[position.x])
 
 
+func _step_coord_event_target(cell: Vector2i) -> Dictionary:
+	if _map_runtime == null or not _map_runtime.has_method("get_coord_event_target"):
+		return {}
+	var target = _map_runtime.get_coord_event_target(cell, _game_state)
+	return target if typeof(target) == TYPE_DICTIONARY else {}
+
+
+func _step_warp_event_target(cell: Vector2i) -> Dictionary:
+	if _map_runtime == null or not _map_runtime.has_method("get_warp_event_target"):
+		return {}
+	var target = _map_runtime.get_warp_event_target(cell)
+	return target if typeof(target) == TYPE_DICTIONARY else {}
+
+
+func _interaction_step_summary(interaction: Dictionary) -> Dictionary:
+	if interaction.is_empty():
+		return {
+			"status": "none",
+			"matched": false,
+		}
+	return {
+		"status": "matched",
+		"matched": true,
+		"type": String(interaction.get("type", "")),
+		"position": interaction.get("position", Vector2i.ZERO),
+		"script": String(interaction.get("script", "")),
+		"event": interaction.get("event", {}),
+	}
+
+
+func _finish_player_step(summary: Dictionary, consumed_by: String, reason: String) -> Dictionary:
+	summary["status"] = "consumed"
+	summary["consumed"] = true
+	summary["consumed_by"] = consumed_by
+	summary["reason"] = reason
+	return summary
+
+
+func _emit_pending_player_step_script(title: String, detail: Dictionary) -> void:
+	var lines := PackedStringArray([
+		"Player step",
+		title,
+		"Script: %s" % String(detail.get("script", "pending")),
+		"Source: %s" % String(detail.get("source", "")),
+		"Runtime: pending",
+	])
+	debug_message_requested.emit(lines)
+
+
+func _evaluate_misc_walking_scripts(cell: Vector2i, behavior_name: String) -> Dictionary:
+	var summary := {
+		"status": "none",
+		"consumes_step": false,
+		"position": cell,
+		"behavior_name": behavior_name,
+		"source": "src/field_control_avatar.c:TryStartMiscWalkingScripts",
+	}
+	if MISC_WALKING_SCRIPT_BEHAVIORS.has(behavior_name):
+		var record: Dictionary = MISC_WALKING_SCRIPT_BEHAVIORS[behavior_name]
+		summary["status"] = "script_pending"
+		summary["consumes_step"] = true
+		summary["reason"] = "misc_walking_script_pending"
+		summary["script"] = String(record.get("script", ""))
+		summary["source"] = String(record.get("source", summary.get("source", "")))
+		summary["unsupported"] = [{
+			"code": "misc_walking_script_runtime_pending",
+			"detail": "The source consumes this step before step-count, Repel, DexNav, and wild encounter checks. Godot records the request until the field effect/script presentation is implemented.",
+		}]
+		return summary
+	if MISC_WALKING_CONTINUE_BEHAVIORS.has(behavior_name):
+		summary["status"] = "side_effect_pending"
+		summary["side_effect"] = String(MISC_WALKING_CONTINUE_BEHAVIORS[behavior_name])
+		summary["unsupported"] = [{
+			"code": "misc_walking_nonblocking_effect_pending",
+			"detail": "The source plays this secret-base mat effect and continues the step pipeline.",
+		}]
+	return summary
+
+
+func _evaluate_step_count_scripts(
+	behavior_name: String,
+	forced_move: bool,
+	forced_movement_tile: bool,
+	options: Dictionary
+) -> Dictionary:
+	var summary := {
+		"status": "recorded_pending_systems",
+		"consumes_step": false,
+		"behavior_name": behavior_name,
+		"forced_move": forced_move,
+		"forced_movement_tile": forced_movement_tile,
+		"source_order": STEP_COUNT_SOURCE_ORDER.duplicate(),
+		"source": "src/field_control_avatar.c:TryStartStepCountScript",
+		"counter_updates": [
+			{"name": "IncrementRematchStepCounter", "status": "future", "source": "src/battle_setup.c"},
+			{"name": "UpdateFriendshipStepCounter", "status": "future", "source": "src/field_control_avatar.c"},
+			{"name": "UpdateFarawayIslandStepCounter", "status": "future", "source": "src/faraway_island.c"},
+			{"name": "UpdateFollowerStepCounter", "status": "future", "source": "src/field_control_avatar.c"},
+		],
+		"consuming_checks": [],
+		"unsupported": [],
+	}
+	if bool(options.get("in_union_room", false)):
+		summary["status"] = "skipped_union_room"
+		return summary
+
+	if not forced_move and not forced_movement_tile:
+		summary["consuming_checks"] = [
+			"UpdatePoisonStepCounter -> EventScript_FieldPoison",
+			"ShouldEggHatch -> EventScript_EggHatch",
+			"AbnormalWeatherHasExpired -> AbnormalWeather_EventScript_EndEventAndCleanup_1",
+			"ShouldDoBrailleRegicePuzzle -> IslandCave_EventScript_OpenRegiEntrance",
+			"ShouldDoWallyCall -> MauvilleCity_EventScript_RegisterWallyCall",
+			"ShouldDoScottFortreeCall -> Route119_EventScript_ScottWonAtFortreeGymCall",
+			"ShouldDoScottBattleFrontierCall -> LittlerootTown_ProfessorBirchsLab_EventScript_ScottAboardSSTidalCall",
+			"ShouldDoRoxanneCall -> RustboroCity_Gym_EventScript_RegisterRoxanne",
+			"ShouldDoRivalRayquazaCall -> MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall",
+			"UpdateVsSeekerStepCounter -> EventScript_VsSeekerChargingDone",
+		]
+	else:
+		summary["forced_skip_checks"] = [
+			"UpdatePoisonStepCounter",
+			"ShouldEggHatch",
+			"AbnormalWeatherHasExpired",
+			"ShouldDo*Call",
+			"UpdateVsSeekerStepCounter",
+		]
+
+	summary["post_forced_checks"] = [
+		"SafariZoneTakeStep -> SafariZone_EventScript_TimesUp",
+		"CountSSTidalStep -> SSTidalCorridor_EventScript_ReachedStepCount",
+		"TryStartMatchCall -> StartMatchCall",
+	]
+	summary["unsupported"] = [{
+		"code": "step_count_systems_pending",
+		"detail": "The source order is recorded, but party friendship, poison, egg hatch, abnormal weather, story calls, Safari, S.S. Tidal, and Match Call side effects need dedicated source-backed runtime slices.",
+	}]
+	return summary
+
+
+func _update_repel_counter() -> Dictionary:
+	var raw_value := _get_game_var("VAR_REPEL_STEP_COUNT")
+	var steps := raw_value & (REPEL_LURE_MASK - 1)
+	var is_lure := (raw_value & REPEL_LURE_MASK) != 0
+	var summary := {
+		"status": "inactive",
+		"consumes_step": false,
+		"var": "VAR_REPEL_STEP_COUNT",
+		"raw_before": raw_value,
+		"steps_before": steps,
+		"is_lure": is_lure,
+		"source": "src/wild_encounter.c:UpdateRepelCounter",
+		"unsupported": [{
+			"code": "spray_wore_off_presentation_pending",
+			"detail": "When the counter reaches 0, Godot records the source script request; the spray-wore-off message/UI flow is still pending.",
+		}],
+	}
+	if steps <= 0:
+		return summary
+
+	steps -= 1
+	var raw_after := steps | (REPEL_LURE_MASK if is_lure else 0)
+	_set_game_var("VAR_REPEL_STEP_COUNT", raw_after)
+	summary["status"] = "decremented"
+	summary["raw_after"] = raw_after
+	summary["steps_after"] = steps
+	if steps == 0:
+		summary["status"] = "script_pending"
+		summary["consumes_step"] = true
+		summary["reason"] = "repel_lure_wore_off"
+		summary["script"] = "EventScript_SprayWoreOff"
+	return summary
+
+
+func _evaluate_dexnav_step() -> Dictionary:
+	var searching := _game_state != null and _game_state.has_method("is_flag_set") and bool(_game_state.is_flag_set("DN_FLAG_SEARCHING"))
+	return {
+		"status": "searching_pending" if searching else "inactive",
+		"consumes_step": false,
+		"flag": "DN_FLAG_SEARCHING",
+		"source": "src/dexnav.c:OnStep_DexNavSearch",
+		"unsupported": [{
+			"code": "dexnav_step_search_pending",
+			"detail": "Proximity updates, lost-signal/moved-too-fast scripts, hidden search reveal, and DexNav battle setup need a dedicated source-backed runtime slice.",
+		}] if searching else [],
+	}
+
+
+func _increment_game_stat(stat_name: String) -> Dictionary:
+	var before := 0
+	if _game_state != null and _game_state.has_method("get_game_stat"):
+		before = int(_game_state.get_game_stat(stat_name, 0))
+	if _game_state != null and _game_state.has_method("increment_game_stat"):
+		var after := int(_game_state.increment_game_stat(stat_name, 1))
+		return {
+			"status": "incremented",
+			"stat": stat_name,
+			"before": before,
+			"after": after,
+			"source": "src/field_control_avatar.c:ProcessPlayerFieldInput",
+		}
+	return {
+		"status": "missing_game_state",
+		"stat": stat_name,
+		"before": before,
+		"after": before,
+		"source": "src/field_control_avatar.c:ProcessPlayerFieldInput",
+	}
+
+
+func _set_game_var(var_name: String, value: int) -> void:
+	if _game_state != null and _game_state.has_method("set_var"):
+		_game_state.set_var(var_name, value)
+
+
+func _is_forced_movement_behavior(behavior_name: String) -> bool:
+	if behavior_name in [
+		"MB_EASTWARD_CURRENT",
+		"MB_WESTWARD_CURRENT",
+		"MB_NORTHWARD_CURRENT",
+		"MB_SOUTHWARD_CURRENT",
+		"MB_MUDDY_SLOPE",
+		"MB_CRACKED_FLOOR",
+		"MB_WATERFALL",
+		"MB_ICE",
+		"MB_SECRET_BASE_JUMP_MAT",
+		"MB_SECRET_BASE_SPIN_MAT",
+		"MB_SPIN_RIGHT",
+		"MB_SPIN_LEFT",
+		"MB_SPIN_UP",
+		"MB_SPIN_DOWN",
+	]:
+		return true
+	return behavior_name.begins_with("MB_WALK_") or behavior_name.begins_with("MB_SLIDE_")
+
+
 func _current_map_id() -> String:
 	if _game_state != null:
 		return String(_game_state.current_map_id)
@@ -1291,9 +1662,9 @@ func _wild_encounters_disabled_flag() -> String:
 
 func _standard_wild_dispatch_unsupported() -> Array:
 	return [{
-		"code": "step_based_scripts_before_encounter_incomplete",
+		"code": "step_count_scripts_before_encounter_incomplete",
 		"source": "src/field_control_avatar.c:TryStartStepBasedScript",
-		"detail": "Coordinate events and current-cell generated warps are already dispatched before this check; misc walking scripts, step-count scripts, Repel counter presentation, and DexNav step search remain future traced work.",
+		"detail": "Coordinate events, current-cell generated warps, first-pass misc walking script requests, and Repel/Lure counter decrement now live in the player-step dispatcher; fuller step-count scripts, Repel presentation, and DexNav step search remain future traced work.",
 	}, {
 		"code": "walk_into_signpost_and_arrow_warp_order_not_integrated",
 		"source": "src/field_control_avatar.c:ProcessPlayerFieldInput",

@@ -40,6 +40,7 @@ func _init() -> void:
 	game_state.player_grid_position = Vector2i(10, 10)
 	game_state.set_flag("FLAG_RECEIVED_RUNNING_SHOES", true)
 	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 3)
+	game_state.increment_game_stat("GAME_STAT_STEPS", 42)
 
 	var party_result := party_runtime.create_party([
 		{"species": "SPECIES_TORCHIC", "level": 5, "personality": 0},
@@ -73,6 +74,7 @@ func _init() -> void:
 	_assert(int(snapshot.get("save_counter", 0)) == 1, "expected first save counter")
 	var snapshot_state := _dict_field(snapshot, "game_state")
 	_assert(int(snapshot_state.get("player_party_count", 0)) == 2, "expected saved party count")
+	_assert(int(_dict_field(snapshot_state, "game_stats").get("GAME_STAT_STEPS", 0)) == 42, "expected saved step stat")
 	_assert(_flow_has_label(_dict_field(snapshot, "save_flow"), "gText_ConfirmSave"), "expected confirm-save flow label")
 	_assert(_flow_has_label(_dict_field(snapshot, "save_flow"), "gText_PlayerSavedGame"), "expected success-save flow label")
 	var map_runtime_state := _dict_field(snapshot, "map_runtime")
@@ -101,6 +103,7 @@ func _init() -> void:
 	game_state.player_grid_position = Vector2i(1, 2)
 	game_state.clear_flag("FLAG_RECEIVED_RUNNING_SHOES")
 	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 0)
+	game_state.set_game_stat("GAME_STAT_STEPS", 0)
 	game_state.clear_player_party()
 
 	var fresh_runtime = MAP_RUNTIME_SCRIPT.new()
@@ -118,6 +121,7 @@ func _init() -> void:
 	_assert(game_state.player_grid_position == Vector2i(10, 10), "expected restored position")
 	_assert(game_state.is_flag_set("FLAG_RECEIVED_RUNNING_SHOES"), "expected restored flag")
 	_assert(game_state.get_var("VAR_LITTLEROOT_INTRO_STATE", 0) == 3, "expected restored var")
+	_assert(game_state.get_game_stat("GAME_STAT_STEPS", 0) == 42, "expected restored step stat")
 	_assert(game_state.calculate_player_party_count() == 2, "expected restored party")
 	var map_apply_result := _dict_field(_dict_field(load_result, "apply_result"), "map_runtime_result")
 	_assert(String(map_apply_result.get("status", "")) == "ok", "expected object runtime apply")

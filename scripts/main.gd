@@ -78,30 +78,12 @@ func _on_player_moved(grid_position: Vector2i) -> void:
 	_movement_note = ""
 	_hide_dialogue()
 	GameState.player_grid_position = grid_position
-	var coord_event := MapRuntime.get_coord_event_target(grid_position, GameState)
-	if not coord_event.is_empty():
-		_movement_note = "coord %s" % grid_position
-		EventManager.dispatch_interaction(coord_event)
-		_update_status()
-		return
-
-	if MapRuntime.has_method("get_warp_event_target"):
-		var warp_event := MapRuntime.get_warp_event_target(grid_position)
-		if not warp_event.is_empty():
-			_movement_note = "warp %s" % grid_position
-			EventManager.dispatch_interaction(warp_event)
-			_update_status()
-			return
-
-	if EventManager.has_method("try_dispatch_standard_wild_encounter"):
-		var encounter_summary = EventManager.try_dispatch_standard_wild_encounter(grid_position, {
+	if EventManager.has_method("dispatch_player_step"):
+		var step_summary = EventManager.dispatch_player_step(grid_position, {
 			"trigger": "player_step",
 		})
-		if typeof(encounter_summary) == TYPE_DICTIONARY and bool(encounter_summary.get("encounter_requested", false)):
-			_movement_note = "wild %s Lv.%d" % [
-				String(encounter_summary.get("species", "")),
-				int(encounter_summary.get("level", 0)),
-			]
+		if typeof(step_summary) == TYPE_DICTIONARY and bool(step_summary.get("consumed", false)):
+			_movement_note = _movement_note_from_step_summary(step_summary)
 			_update_status()
 			return
 	_update_status()
@@ -217,6 +199,28 @@ func _on_script_player_position_changed(grid_position: Vector2i) -> void:
 func _hide_dialogue() -> void:
 	dialogue_panel.visible = false
 	dialogue_label.text = ""
+
+
+func _movement_note_from_step_summary(step_summary: Dictionary) -> String:
+	match String(step_summary.get("consumed_by", "")):
+		"coord_event":
+			return "coord %s" % step_summary.get("position", Vector2i.ZERO)
+		"warp_event":
+			return "warp %s" % step_summary.get("position", Vector2i.ZERO)
+		"standard_wild_encounter":
+			var encounter = step_summary.get("wild_encounter", {})
+			if typeof(encounter) == TYPE_DICTIONARY:
+				return "wild %s Lv.%d" % [
+					String(encounter.get("species", "")),
+					int(encounter.get("level", 0)),
+				]
+			return "wild"
+		"repel":
+			return "repel %s" % String(step_summary.get("reason", ""))
+		"misc_walking", "step_count", "dexnav":
+			return "step %s" % String(step_summary.get("reason", ""))
+		_:
+			return "step %s" % String(step_summary.get("reason", ""))
 
 
 func _create_transition_overlay() -> void:

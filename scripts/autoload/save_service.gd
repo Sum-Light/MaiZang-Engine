@@ -254,6 +254,7 @@ func apply_snapshot(snapshot: Dictionary, game_state: Node = null, map_runtime: 
 		resolved_game_state.player_name = String(state.get("player_name", resolved_game_state.player_name))
 	resolved_game_state.flags = _bool_dictionary(state.get("flags", {}))
 	resolved_game_state.vars = _int_dictionary(state.get("vars", {}))
+	resolved_game_state.game_stats = _int_dictionary(state.get("game_stats", {}))
 	var party := _array_field(state, "player_party")
 	if resolved_game_state.has_method("set_player_party"):
 		resolved_game_state.set_player_party(party)
@@ -281,6 +282,7 @@ func _snapshot_game_state(game_state: Node) -> Dictionary:
 		"player_gender": game_state.get_player_gender() if game_state.has_method("get_player_gender") else String(game_state.player_gender),
 		"flags": _bool_dictionary(game_state.flags),
 		"vars": _int_dictionary(game_state.vars),
+		"game_stats": _int_dictionary(game_state.game_stats),
 		"player_party": game_state.get_player_party() if game_state.has_method("get_player_party") else game_state.player_party.duplicate(true),
 		"player_party_count": _party_count(game_state),
 	}
@@ -323,6 +325,7 @@ func _source_save_block_summary(state: Dictionary) -> Dictionary:
 			"player_grid_position": state.get("player_grid_position", {}),
 			"flags_count": _dict_field(state, "flags").size(),
 			"vars_count": _dict_field(state, "vars").size(),
+			"game_stats_count": _dict_field(state, "game_stats").size(),
 			"object_events": "current_map_runtime_state",
 			"source": "struct SaveBlock1 plus src/load_save.c:SaveObjectEvents",
 		},
@@ -392,7 +395,7 @@ func _unsupported_notes() -> Array:
 		{
 			"code": "partial_save_blocks",
 			"source": "src/load_save.c:CopyPartyAndObjectsToSave",
-			"detail": "Current snapshot covers GameState profile/location/flags/vars, player party, and current-map object-event runtime state; bag, PC storage, mail, options, stats, time, special sectors, and cross-map object caches remain future work.",
+			"detail": "Current snapshot covers GameState profile/location/flags/vars/first-pass game stats, player party, and current-map object-event runtime state; bag, PC storage, mail, options, full stats, time, special sectors, and cross-map object caches remain future work.",
 		},
 	]
 

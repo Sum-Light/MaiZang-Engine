@@ -365,3 +365,9 @@ Reason: Source wild encounters span map metatile behavior, step timing, time-of-
 Decision: Keep `EncounterEngine` as the source-backed wild encounter table/rules service, and let `EventManager` own first-pass field-step standard wild encounter dispatch after generated coord events and current-cell step warps.
 
 Reason: Source `ProcessPlayerFieldInput` keeps step-order state outside `StandardWildEncounter`: four-step immunity, previous metatile behavior, coord/warp/misc/step-count checks before wild encounters, and later battle setup after a candidate is generated. `EventManager` already owns field event ordering, while `EncounterEngine` owns area/table/slot/level/rate rules. Splitting the responsibilities preserves source-visible ordering without coupling pure encounter selection to unfinished battle presentation.
+
+## 2026-07-04 - Centralize completed-step dispatch in EventManager
+
+Decision: Route completed player tile movement through `EventManager.dispatch_player_step` instead of keeping coord event, step warp, Repel, DexNav, and standard wild encounter sequencing in `Main`.
+
+Reason: Source `TryStartStepBasedScript` is a strict chain where any consuming coord, warp, misc walking, step-count, Repel, or DexNav path prevents the later standard wild encounter check for that step. Keeping the chain in `EventManager` lets Godot preserve source-visible order while `Main` remains presentation glue and future modules can extend one structured summary contract.
