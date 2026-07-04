@@ -13,6 +13,7 @@ Goal: reproduce the source `pokeemerald-expansion` map/overworld experience in G
 - `ScriptVM` can emit first-pass movement, field, object, transition, and audio effect records. `applymovement`, `waitmovement`, `delay`, `waitdooranim`, and related waits are not true async source tasks yet.
 - Tileset import bakes palette RGBA output and door atlases for used doors. Source tileset animation callback binding/counters/copy regions are now traced; runtime tileset animation playback, per-layer tiles, and complete door graphics tables are pending.
 - Metatile behavior constants, bit attributes, helper groups, call sites, and the external Seafoam helper are now traced in `data/generated/overworld/metatile_behavior_trace.json`: 240 `MB_*` constants, 129 explicit bit-attribute rows, 15 encounter-flag behaviors, 18 surfable behaviors, 194 `src/metatile_behavior.c` helper definitions, 1 external helper in `src/overworld.c`, and 24 call-site files. Runtime collision, forced movement, bridge/elevation, terrain effects, and interaction helper consumption remain pending.
+- Overworld script command coverage is now traced in `data/generated/overworld/scrcmd_trace.json`: 231 source table entries through opcode `0xe6`, 225 unique table handlers, 239 `ScrCmd_*` functions, 385 event macros, 20 native wait handlers, 98 hardware-effect handlers, 66 save-effect handlers, and current `ScriptVM` coverage of 63 generated op names / 43 direct source-table commands. Weather, fade/palette presentation, field effects, broad warp variants, script-driven trainer/wild battles, full async waits, and audio playback remain pending or metadata-only.
 
 ## Source Files Audited
 
@@ -53,7 +54,7 @@ Use these as executable checkboxes. A task is not complete until the source path
 - [x] Trace `src/field_door.c` door graphics tables, palette tables, frame tables, metatile mutation, sounds, task timing, and multi-door cases.
 - [x] Trace `src/tileset_anims.c`, `include/tileset_anims.h`, and `src/data/tilesets/headers.h` for callback binding, counters, copy regions, and map-load initialization.
 - [x] Trace `src/metatile_behavior.c` and `include/constants/metatile_behaviors.h` for every `MetatileBehavior_Is*` group needed by movement, encounters, interaction, terrain effects, and transitions.
-- [ ] Trace `src/scrcmd.c` overworld-affecting commands, especially waits, doors, map mutation, warps, weather, fades, audio, field effects, object commands, and trainer flow.
+- [x] Trace `src/scrcmd.c` overworld-affecting commands, especially waits, doors, map mutation, warps, weather, fades, audio, field effects, object commands, and trainer flow.
 
 ### 2. Full Map Import
 
