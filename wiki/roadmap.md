@@ -78,9 +78,10 @@
 
 ## Milestone 7 - Battle Prototype
 
-- Implement simple single battle.
-- Add type chart, damage formula, move PP, HP, fainting, and battle messages.
-- Keep battle rules separate from UI.
+- Implement simple single battle. First pass started with a UI-independent `BattleEngine` autoload and `create_single_battle_state`.
+- Add type chart, damage formula, move PP, HP, fainting, and battle messages. First pass done for ordinary deterministic damaging moves: source type chart, source base damage formula, 85-100 damage-roll metadata, STAB, PP decrement, HP/fainting, and structured first-pass battle message events. Accuracy, critical hits, weather, burn/frostbite, protection, abilities, held items, screens, multi-target modifiers, move-specific effects, and final battle text/presentation remain.
+- Keep battle rules separate from UI. First pass done: `BattleEngine` returns dictionaries for rules results and does not depend on battle scenes.
+- Construct generated trainer parties for battle. First pass done for explicit-move trainer Pokemon; source default level-up move assignment is reported as unsupported until learnset export exists.
 
 ## Milestone 8 - Full Game Systems
 
