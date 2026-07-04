@@ -148,9 +148,50 @@ func _init() -> void:
 	_assert(int(boy_walk_down[0].get("frame", -1)) == 3 and int(boy_walk_down[2].get("frame", -1)) == 4, "expected Boy1 south walking feet frames")
 	_assert(bool(boy_walk_right[0].get("h_flip", false)) and bool(boy_walk_right[2].get("h_flip", false)), "expected Boy1 east walk hFlip")
 	_assert(_summary_count({"unsupported": boy_sprite.get("unsupported", [])}, "unsupported") > 0, "expected Boy1 unsupported animation note")
+	var expected_object_sprites := {
+		"OBJ_EVENT_GFX_BRENDAN_NORMAL": {"asset": "brendan_normal.png", "frame": Vector2i(16, 32), "columns": 18, "tracks": "TRACKS_FOOT", "inanimate": false},
+		"OBJ_EVENT_GFX_TWIN": {"asset": "twin.png", "frame": Vector2i(16, 32), "columns": 9, "tracks": "TRACKS_FOOT", "inanimate": false},
+		"OBJ_EVENT_GFX_BOY_1": {"asset": "boy_1.png", "frame": Vector2i(16, 32), "columns": 9, "tracks": "TRACKS_FOOT", "inanimate": false},
+		"OBJ_EVENT_GFX_BOY_2": {"asset": "boy_2.png", "frame": Vector2i(16, 32), "columns": 9, "tracks": "TRACKS_FOOT", "inanimate": false},
+		"OBJ_EVENT_GFX_FAT_MAN": {"asset": "fat_man.png", "frame": Vector2i(16, 32), "columns": 9, "tracks": "TRACKS_FOOT", "inanimate": false},
+		"OBJ_EVENT_GFX_PROF_BIRCH": {"asset": "prof_birch.png", "frame": Vector2i(16, 32), "columns": 9, "tracks": "TRACKS_FOOT", "inanimate": false},
+		"OBJ_EVENT_GFX_TRUCK": {"asset": "truck.png", "frame": Vector2i(48, 48), "columns": 1, "tracks": "TRACKS_NONE", "inanimate": true},
+		"OBJ_EVENT_GFX_MAY_NORMAL": {"asset": "may_normal.png", "frame": Vector2i(16, 32), "columns": 18, "tracks": "TRACKS_FOOT", "inanimate": false},
+		"OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL": {"asset": "rival_brendan_normal.png", "frame": Vector2i(16, 32), "columns": 18, "tracks": "TRACKS_FOOT", "inanimate": false},
+		"OBJ_EVENT_GFX_RIVAL_MAY_NORMAL": {"asset": "rival_may_normal.png", "frame": Vector2i(16, 32), "columns": 18, "tracks": "TRACKS_FOOT", "inanimate": false},
+		"OBJ_EVENT_GFX_MOM": {"asset": "mom.png", "frame": Vector2i(16, 32), "columns": 9, "tracks": "TRACKS_FOOT", "inanimate": false},
+	}
+	for graphics_id in expected_object_sprites.keys():
+		var expected_sprite: Dictionary = expected_object_sprites[graphics_id]
+		var object_sprite := registry.get_object_event_sprite_record(String(graphics_id))
+		_assert(not object_sprite.is_empty(), "expected %s object-event sprite metadata" % graphics_id)
+		_assert(String(object_sprite.get("image", "")).ends_with(String(expected_sprite.get("asset", ""))), "expected %s generated sprite asset" % graphics_id)
+		_assert(_sprite_frame_size(object_sprite) == expected_sprite.get("frame", Vector2i.ZERO), "expected %s source frame size" % graphics_id)
+		_assert(int(object_sprite.get("columns", 0)) == int(expected_sprite.get("columns", 0)), "expected %s source columns" % graphics_id)
+		_assert(String(object_sprite.get("tracks", "")) == String(expected_sprite.get("tracks", "")), "expected %s source tracks flag" % graphics_id)
+		_assert(bool(object_sprite.get("inanimate", false)) == bool(expected_sprite.get("inanimate", false)), "expected %s source inanimate flag" % graphics_id)
+	var sprite_data := registry.get_object_event_sprite_data()
+	var variable_graphics = sprite_data.get("variable_graphics", {}) if typeof(sprite_data) == TYPE_DICTIONARY else {}
+	_assert(typeof(variable_graphics) == TYPE_DICTIONARY and variable_graphics.has("OBJ_EVENT_GFX_VAR_0"), "expected VAR_0 runtime graphics metadata")
+	game_state.set_player_gender("MALE")
+	var on_transition_result := vm.run_script("LittlerootTown_OnTransition")
+	_assert(String(on_transition_result.get("status", "")) == "ok", "expected Littleroot OnTransition to run")
+	_assert(game_state.get_var("VAR_OBJ_GFX_ID_0", 0) == 105, "expected male player OnTransition rival var to resolve to May")
+	var resolved_rival := registry.resolve_object_event_graphics_id("OBJ_EVENT_GFX_VAR_0", game_state)
+	_assert(bool(resolved_rival.get("resolved", false)), "expected Littleroot VAR_0 graphics to resolve")
+	_assert(String(resolved_rival.get("graphics_id", "")) == "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL", "expected male player Littleroot rival to use May graphics")
 	var renderer = DEBUG_MAP_PLANE_SCRIPT.new()
 	renderer.configure_data_registry(registry)
 	renderer.configure_from_map_data(map_data, tileset_data)
+	var metatile_before_grid_toggle := runtime.get_metatile_id_at(start_cell)
+	var collision_before_grid_toggle := runtime.get_collision_at(start_cell)
+	_assert(not renderer.is_grid_visible(), "expected debug grid to be hidden by default")
+	renderer.set_grid_visible(true)
+	_assert(renderer.is_grid_visible(), "expected debug grid toggle to show grid")
+	renderer.set_grid_visible(false)
+	_assert(not renderer.is_grid_visible(), "expected debug grid toggle to hide grid")
+	_assert(runtime.get_metatile_id_at(start_cell) == metatile_before_grid_toggle, "expected debug grid toggle not to change metatile queries")
+	_assert(runtime.get_collision_at(start_cell) == collision_before_grid_toggle, "expected debug grid toggle not to change collision queries")
 	_assert(
 		renderer.get_render_block_id(north_connection_cell) == runtime.get_metatile_id_at(north_connection_cell),
 		"expected renderer north edge to use Route101 metatile"
@@ -539,6 +580,13 @@ func _vector_from_value(value) -> Vector2i:
 func _summary_count(summary: Dictionary, key: String) -> int:
 	var entries = summary.get(key, [])
 	return entries.size() if typeof(entries) == TYPE_ARRAY else 0
+
+
+func _sprite_frame_size(record: Dictionary) -> Vector2i:
+	var frame_size = record.get("frame_size", {})
+	if typeof(frame_size) != TYPE_DICTIONARY:
+		return Vector2i.ZERO
+	return Vector2i(int(frame_size.get("w", 0)), int(frame_size.get("h", 0)))
 
 
 func _movement_apply_summary(summary: Dictionary) -> Dictionary:

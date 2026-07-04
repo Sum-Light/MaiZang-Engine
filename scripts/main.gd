@@ -16,6 +16,7 @@ var _transition_overlay: ColorRect
 var _transition_label: Label
 var _transition_sequence_player: Node
 var _battle_scene: Control = null
+var _debug_grid_visible := false
 
 
 func _ready() -> void:
@@ -65,6 +66,7 @@ func _ready() -> void:
 		debug_map.map_size = DataRegistry.get_start_map_size()
 		debug_map.tile_size = DataRegistry.TILE_SIZE
 		debug_map.queue_redraw()
+	_set_debug_grid_visible(_debug_grid_visible)
 
 	if object_events.has_method("configure_from_events"):
 		object_events.configure_from_events(
@@ -96,6 +98,12 @@ func _ready() -> void:
 
 	_run_initial_map_scripts()
 	_update_status()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_G:
+		_set_debug_grid_visible(not _debug_grid_visible)
+		_update_status()
 
 
 func _on_player_moved(grid_position: Vector2i) -> void:
@@ -253,6 +261,7 @@ func _on_battle_finished(result: Dictionary) -> void:
 func _on_map_changed(map_data: Dictionary, tileset_data: Dictionary, _map_size: Vector2i) -> void:
 	if debug_map.has_method("configure_from_map_data"):
 		debug_map.configure_from_map_data(map_data, tileset_data)
+		_set_debug_grid_visible(_debug_grid_visible)
 	if object_events.has_method("configure_from_events"):
 		object_events.configure_from_events(
 			MapRuntime.get_object_events(),
@@ -345,7 +354,14 @@ func _update_status() -> void:
 		map_label,
 		"%d,%d" % [GameState.player_grid_position.x, GameState.player_grid_position.y],
 		"obj %d" % MapRuntime.get_object_events().size(),
+		"grid %s" % ("on" if _debug_grid_visible else "off"),
 	])
 	if not _movement_note.is_empty():
 		parts.append(_movement_note)
 	status_label.text = " | ".join(parts)
+
+
+func _set_debug_grid_visible(value: bool) -> void:
+	_debug_grid_visible = value
+	if debug_map != null and debug_map.has_method("set_grid_visible"):
+		debug_map.set_grid_visible(value)

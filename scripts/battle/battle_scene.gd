@@ -78,9 +78,28 @@ const SOURCE_HEALTHBOX_COORDS := {
 	},
 }
 
+const SOURCE_UI_ASSETS := {
+	"textbox_tiles": "graphics/battle_interface/textbox.png",
+	"textbox_palette": "graphics/battle_interface/textbox.gbapal",
+	"textbox_tilemap": "graphics/battle_interface/textbox_map.bin",
+	"healthbox_singles_player": "graphics/battle_interface/healthbox_singles_player.png",
+	"healthbox_singles_opponent": "graphics/battle_interface/healthbox_singles_opponent.png",
+	"healthbar": "graphics/battle_interface/healthbar.png",
+}
+
+const SOURCE_WINDOW_TEXT_INFO := {
+	"B_WIN_MSG": {"fill": "PIXEL_FILL(0xF)", "font": "FONT_NORMAL", "text_color": {"foreground": 1, "shadow": 3}, "speed": 0},
+	"B_WIN_ACTION_PROMPT": {"fill": "PIXEL_FILL(0xF)", "font": "FONT_NORMAL", "text_color": {"foreground": 1, "shadow": 3}, "speed": 0},
+	"B_WIN_ACTION_MENU": {"fill": "PIXEL_FILL(0xE)", "font": "FONT_NORMAL", "text_color": {"foreground": 2, "shadow": 3}, "speed": 0},
+	"B_WIN_MOVE_NAME_1": {"fill": "PIXEL_FILL(0xE)", "font": "FONT_NARROW", "text_color": {"foreground": 2, "shadow": 3}, "speed": 0},
+	"B_WIN_PP_REMAINING": {"fill": "PIXEL_FILL(0xE)", "font": "FONT_NORMAL", "text_color": {"foreground": 12, "shadow": 11}, "speed": 0},
+	"B_WIN_MOVE_TYPE": {"fill": "PIXEL_FILL(0xE)", "font": "FONT_NARROW", "text_color": {"foreground": 2, "shadow": 3}, "speed": 0},
+}
+
 var _sequence: Dictionary = {}
 var _battle_state: Dictionary = {}
 var _battle_engine: Node = null
+var _data_registry: Node = null
 var _game_state: Node = null
 var _built := false
 var _move_buttons: Array = []
@@ -114,6 +133,7 @@ func configure(sequence: Dictionary, battle_engine: Node, game_state: Node = nul
 	_sequence = sequence.duplicate(true)
 	_battle_state = _dictionary_value(_sequence.get("battle_state", {})).duplicate(true)
 	_battle_engine = battle_engine
+	_ensure_data_registry()
 	_game_state = game_state
 	_last_result = {}
 	_message_lines = [_battle_opening_message()]
@@ -126,6 +146,11 @@ func configure(sequence: Dictionary, battle_engine: Node, game_state: Node = nul
 
 func configure_battle_engine(battle_engine: Node) -> void:
 	_battle_engine = battle_engine
+	_ensure_data_registry()
+
+
+func configure_data_registry(data_registry: Node) -> void:
+	_data_registry = data_registry
 
 
 func load_battle_state(battle_state: Dictionary) -> void:
@@ -229,6 +254,9 @@ func get_ui_snapshot() -> Dictionary:
 		"source_windows": _source_window_snapshot(),
 		"source_text_symbols": SOURCE_BATTLE_TEXTS.duplicate(true),
 		"source_healthbox_coords": SOURCE_HEALTHBOX_COORDS.duplicate(true),
+		"source_ui_assets": SOURCE_UI_ASSETS.duplicate(true),
+		"source_window_text_info": SOURCE_WINDOW_TEXT_INFO.duplicate(true),
+		"source_type_display_status": _source_type_display_status(),
 		"source_hp_bar_pixels": HP_BAR_PIXELS,
 		"source_bg0_y": {
 			"choose_action": BG0_Y_ACTION_CHOOSE,
@@ -511,6 +539,8 @@ func _battle_scene_source_trace() -> Array:
 		"src/battle_interface.c",
 		"src/battle_interface.c:sBattlerHealthboxCoords",
 		"src/battle_controller_player.c",
+		"src/battle_controller_player.c:MoveSelectionDisplayMoveType",
+		"src/data/types_info.h:gTypesInfo",
 		"src/battle_message.c",
 		"src/battle_message.c:sTextOnWindowsInfo_Normal",
 		"src/battle_setup.c:CB2_EndTrainerBattle",
@@ -518,7 +548,7 @@ func _battle_scene_source_trace() -> Array:
 
 
 func _battle_scene_unsupported() -> Array:
-	return [{
+	var unsupported := [{
 		"code": "battle_scene_not_source_equivalent",
 		"source": "src/battle_main.c:CB2_InitBattle",
 		"detail": "This scene is a debug vertical slice. It does not recreate the source battle tilemaps, palette setup, battler sprites, healthbox sprites, window graphics, audio, or exact callback/task flow.",
@@ -551,6 +581,13 @@ func _battle_scene_unsupported() -> Array:
 		"source": "src/battle_setup.c:CB2_EndTrainerBattle",
 		"detail": "Trainer defeat text, money/reward flow, post-battle event scripts, object-event trainer flags, and full field callback restoration remain future source-backed work.",
 	}]
+	if String(_source_type_display_status().get("status", "")) != "available":
+		unsupported.append({
+			"code": "battle_type_names_unavailable",
+			"source": "src/data/types_info.h:gTypesInfo",
+			"detail": "Move type labels fall back to TYPE_* symbols when generated type metadata is unavailable.",
+		})
+	return unsupported
 
 
 func _execute_engine_player_turn(move_slot: int) -> void:
@@ -653,7 +690,39 @@ func _move_type_text(move: Dictionary) -> String:
 	var type_symbol := String(move.get("type", ""))
 	if type_symbol.is_empty():
 		return "%s?" % SOURCE_BATTLE_TEXTS["gText_MoveInterfaceType"]
-	return "%s%s" % [SOURCE_BATTLE_TEXTS["gText_MoveInterfaceType"], type_symbol]
+	var type_name := _type_display_name(type_symbol)
+	if type_name.is_empty():
+		type_name = type_symbol
+	return "%s%s" % [SOURCE_BATTLE_TEXTS["gText_MoveInterfaceType"], type_name]
+
+
+func _type_display_name(type_symbol: String) -> String:
+	_ensure_data_registry()
+	if _data_registry == null or not _data_registry.has_method("get_type_record"):
+		return ""
+	var record = _data_registry.get_type_record(type_symbol)
+	if typeof(record) != TYPE_DICTIONARY or record.is_empty():
+		return ""
+	var name = record.get("name", {})
+	if typeof(name) != TYPE_DICTIONARY:
+		return ""
+	return String(name.get("display_text", ""))
+
+
+func _source_type_display_status() -> Dictionary:
+	_ensure_data_registry()
+	var result := {
+		"source": "src/battle_controller_player.c:MoveSelectionDisplayMoveType -> src/data/types_info.h:gTypesInfo",
+		"generated_category": "pokemon/types",
+		"status": "available" if _data_registry != null and _data_registry.has_method("get_type_record") else "unavailable",
+	}
+	if _data_registry != null and _data_registry.has_method("get_type_record"):
+		var water = _data_registry.get_type_record("TYPE_WATER")
+		if typeof(water) == TYPE_DICTIONARY and not water.is_empty():
+			var name = water.get("name", {})
+			if typeof(name) == TYPE_DICTIONARY:
+				result["sample_type_water_name"] = String(name.get("display_text", ""))
+	return result
 
 
 func _mon_title(mon: Dictionary) -> String:
@@ -789,3 +858,15 @@ func _array_value(value) -> Array:
 
 func _dictionary_value(value) -> Dictionary:
 	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _ensure_data_registry() -> void:
+	if _data_registry != null:
+		return
+	if _battle_engine != null and _battle_engine.has_method("_get_registry"):
+		var registry = _battle_engine._get_registry()
+		if registry != null:
+			_data_registry = registry
+			return
+	if has_node("/root/DataRegistry"):
+		_data_registry = get_node("/root/DataRegistry")

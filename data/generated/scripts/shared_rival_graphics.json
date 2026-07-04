@@ -1,0 +1,470 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "charmap": "charmap.txt",
+    "encoding": "utf-8",
+    "text_encoding_trace": {
+      "source": [
+        "tools/preproc/charmap.cpp:CharmapReader",
+        "tools/preproc/string_parser.cpp:StringParser::ParseString",
+        "tools/preproc/c_file.cpp:CFile::TryConvertString"
+      ],
+      "godot_status": "utf8_display_text_with_source_charmap_byte_validation"
+    },
+    "scope": "shared",
+    "name": "shared_rival_graphics",
+    "script_files": [
+      "data/scripts/rival_graphics.inc"
+    ]
+  },
+  "labels": {
+    "Common_EventScript_SetupRivalGfxId": {
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instruction_count": 4
+    },
+    "EventScript_SetupRivalGfxIdFemale": {
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instruction_count": 2
+    },
+    "EventScript_SetupRivalGfxIdMale": {
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instruction_count": 2
+    },
+    "Common_EventScript_SetupRivalOnBikeGfxId": {
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instruction_count": 4
+    },
+    "EventScript_SetupRivalOnBikeGfxIdFemale": {
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instruction_count": 2
+    },
+    "EventScript_SetupRivalOnBikeGfxIdMale": {
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instruction_count": 2
+    },
+    "Common_EventScript_SetupRivalGfxIdSameGender": {
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instruction_count": 4
+    },
+    "EventScript_SetupRivalGfxIdMale2": {
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instruction_count": 2
+    },
+    "EventScript_SetupRivalGfxIdFemale2": {
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instruction_count": 2
+    }
+  },
+  "scripts": {
+    "Common_EventScript_SetupRivalGfxId": {
+      "label": "Common_EventScript_SetupRivalGfxId",
+      "kind": "script",
+      "line": 1,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instructions": [
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 2,
+          "raw": "checkplayergender",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "EventScript_SetupRivalGfxIdFemale"
+          ],
+          "line": 3,
+          "raw": "goto_if_eq VAR_RESULT, MALE, EventScript_SetupRivalGfxIdFemale",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "EventScript_SetupRivalGfxIdMale"
+          ],
+          "line": 4,
+          "raw": "goto_if_eq VAR_RESULT, FEMALE, EventScript_SetupRivalGfxIdMale",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 5,
+          "raw": "end",
+          "source_file": "data/scripts/rival_graphics.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_SetupRivalGfxIdFemale",
+          "line": 3
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_SetupRivalGfxIdMale",
+          "line": 4
+        }
+      ]
+    },
+    "EventScript_SetupRivalGfxIdFemale": {
+      "label": "EventScript_SetupRivalGfxIdFemale",
+      "kind": "script",
+      "line": 7,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_0",
+            "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL"
+          ],
+          "line": 8,
+          "raw": "setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 9,
+          "raw": "return",
+          "source_file": "data/scripts/rival_graphics.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_SetupRivalGfxIdMale": {
+      "label": "EventScript_SetupRivalGfxIdMale",
+      "kind": "script",
+      "line": 11,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_0",
+            "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL"
+          ],
+          "line": 12,
+          "raw": "setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 13,
+          "raw": "return",
+          "source_file": "data/scripts/rival_graphics.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Common_EventScript_SetupRivalOnBikeGfxId": {
+      "label": "Common_EventScript_SetupRivalOnBikeGfxId",
+      "kind": "script",
+      "line": 15,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instructions": [
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 16,
+          "raw": "checkplayergender",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "EventScript_SetupRivalOnBikeGfxIdFemale"
+          ],
+          "line": 17,
+          "raw": "goto_if_eq VAR_RESULT, MALE, EventScript_SetupRivalOnBikeGfxIdFemale",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "EventScript_SetupRivalOnBikeGfxIdMale"
+          ],
+          "line": 18,
+          "raw": "goto_if_eq VAR_RESULT, FEMALE, EventScript_SetupRivalOnBikeGfxIdMale",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 19,
+          "raw": "end",
+          "source_file": "data/scripts/rival_graphics.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_SetupRivalOnBikeGfxIdFemale",
+          "line": 17
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_SetupRivalOnBikeGfxIdMale",
+          "line": 18
+        }
+      ]
+    },
+    "EventScript_SetupRivalOnBikeGfxIdFemale": {
+      "label": "EventScript_SetupRivalOnBikeGfxIdFemale",
+      "kind": "script",
+      "line": 21,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_3",
+            "OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE"
+          ],
+          "line": 22,
+          "raw": "setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 23,
+          "raw": "return",
+          "source_file": "data/scripts/rival_graphics.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_SetupRivalOnBikeGfxIdMale": {
+      "label": "EventScript_SetupRivalOnBikeGfxIdMale",
+      "kind": "script",
+      "line": 25,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_3",
+            "OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE"
+          ],
+          "line": 26,
+          "raw": "setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 27,
+          "raw": "return",
+          "source_file": "data/scripts/rival_graphics.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "Common_EventScript_SetupRivalGfxIdSameGender": {
+      "label": "Common_EventScript_SetupRivalGfxIdSameGender",
+      "kind": "script",
+      "line": 30,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instructions": [
+        {
+          "op": "checkplayergender",
+          "args": [],
+          "line": 31,
+          "raw": "checkplayergender",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "MALE",
+            "EventScript_SetupRivalGfxIdMale2"
+          ],
+          "line": 32,
+          "raw": "goto_if_eq VAR_RESULT, MALE, EventScript_SetupRivalGfxIdMale2",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "goto_if_eq",
+          "args": [
+            "VAR_RESULT",
+            "FEMALE",
+            "EventScript_SetupRivalGfxIdFemale2"
+          ],
+          "line": 33,
+          "raw": "goto_if_eq VAR_RESULT, FEMALE, EventScript_SetupRivalGfxIdFemale2",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "end",
+          "args": [],
+          "line": 34,
+          "raw": "end",
+          "source_file": "data/scripts/rival_graphics.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": [
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_SetupRivalGfxIdMale2",
+          "line": 32
+        },
+        {
+          "op": "goto_if_eq",
+          "target": "EventScript_SetupRivalGfxIdFemale2",
+          "line": 33
+        }
+      ]
+    },
+    "EventScript_SetupRivalGfxIdMale2": {
+      "label": "EventScript_SetupRivalGfxIdMale2",
+      "kind": "script",
+      "line": 36,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_0",
+            "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL"
+          ],
+          "line": 37,
+          "raw": "setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 38,
+          "raw": "return",
+          "source_file": "data/scripts/rival_graphics.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    },
+    "EventScript_SetupRivalGfxIdFemale2": {
+      "label": "EventScript_SetupRivalGfxIdFemale2",
+      "kind": "script",
+      "line": 40,
+      "source_file": "data/scripts/rival_graphics.inc",
+      "instructions": [
+        {
+          "op": "setvar",
+          "args": [
+            "VAR_OBJ_GFX_ID_0",
+            "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL"
+          ],
+          "line": 41,
+          "raw": "setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
+          "source_file": "data/scripts/rival_graphics.inc"
+        },
+        {
+          "op": "return",
+          "args": [],
+          "line": 42,
+          "raw": "return",
+          "source_file": "data/scripts/rival_graphics.inc"
+        }
+      ],
+      "msgboxes": [],
+      "branch_targets": []
+    }
+  },
+  "movements": {},
+  "texts": {},
+  "runtime_preview": {
+    "supported_ops": [
+      "call",
+      "end",
+      "goto",
+      "lock",
+      "lockall",
+      "message",
+      "msgbox",
+      "release",
+      "releaseall",
+      "return"
+    ],
+    "unsupported_op_counts": {
+      "checkplayergender": 3,
+      "goto_if_eq": 6,
+      "setvar": 6
+    },
+    "source_behavior_traces": {
+      "message": {
+        "source": [
+          "src/scrcmd.c:ScrCmd_message",
+          "ShowFieldMessage(msg)"
+        ],
+        "godot_status": "preview_displays_text_only"
+      },
+      "msgbox": {
+        "source": [
+          "data/event_scripts.s:gStdScripts",
+          "data/scripts/std_msgbox.inc:Std_MsgboxNPC",
+          "data/scripts/std_msgbox.inc:Std_MsgboxSign",
+          "data/scripts/std_msgbox.inc:Std_MsgboxDefault",
+          "src/scrcmd.c:ScrCmd_message"
+        ],
+        "godot_status": "preview_resolves_first_msgbox_text_only"
+      }
+    }
+  },
+  "stats": {
+    "label_count": 9,
+    "script_count": 9,
+    "movement_count": 0,
+    "text_count": 0,
+    "encoded_text_count": 0,
+    "text_source_byte_count": 0,
+    "charmap_warning_count": 0,
+    "charmap_status_counts": {},
+    "orphan_instruction_count": 0,
+    "op_counts": {
+      "checkplayergender": 3,
+      "end": 3,
+      "goto_if_eq": 6,
+      "return": 6,
+      "setvar": 6
+    }
+  }
+}

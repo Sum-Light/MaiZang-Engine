@@ -2,6 +2,7 @@ extends Node2D
 
 @export var map_size := Vector2i(20, 20)
 @export var tile_size := 16
+@export var show_grid := false
 
 var block_ids: Array = []
 var tileset_data: Dictionary = {}
@@ -79,11 +80,21 @@ func _draw() -> void:
 			if not _draw_atlas_tile(block_id, rect):
 				var fill := _get_tile_color(block_id, x, y)
 				draw_rect(rect, fill, true)
-			draw_rect(rect, GRID_LINE, false, 1.0)
+			if show_grid:
+				draw_rect(rect, GRID_LINE, false, 1.0)
 
 	var border := Rect2(Vector2.ZERO, Vector2(map_size.x * tile_size, map_size.y * tile_size))
 	_draw_door_animation_overlays()
 	draw_rect(border, BORDER_LINE, false, 2.0)
+
+
+func set_grid_visible(value: bool) -> void:
+	show_grid = value
+	queue_redraw()
+
+
+func is_grid_visible() -> bool:
+	return show_grid
 
 
 func set_door_animation_frame(position: Vector2i, animation: Dictionary, frame_index: int) -> bool:
@@ -455,8 +466,11 @@ func _door_animation_texture(animation: Dictionary) -> Texture2D:
 		var cached = _door_animation_texture_cache[image_path]
 		return cached if cached is Texture2D else null
 
+	var load_path := image_path
+	if load_path.begins_with("res://") or load_path.begins_with("user://"):
+		load_path = ProjectSettings.globalize_path(load_path)
 	var image := Image.new()
-	if image.load(image_path) != OK:
+	if image.load(load_path) != OK:
 		push_warning("Could not load generated door animation atlas: %s" % image_path)
 		return null
 

@@ -28,6 +28,7 @@ func _run() -> void:
 
 	var scene = BATTLE_SCENE.instantiate()
 	scene.configure_battle_engine(engine)
+	scene.configure_data_registry(registry)
 	get_root().add_child(scene)
 	await create_timer(0.05).timeout
 	scene.load_battle_state(battle_state)
@@ -49,6 +50,17 @@ func _run() -> void:
 	)
 	_assert(String(intro.get("source_flow_status", "")) == "source_action_move_window_flow_first_pass", "expected source flow metadata")
 	_assert(intro.get("source_hp_bar_pixels", 0) == 48, "expected source HP bar pixel width")
+	var source_assets := _dict_value(intro.get("source_ui_assets", {}))
+	_assert(String(source_assets.get("textbox_tiles", "")) == "graphics/battle_interface/textbox.png", "expected source textbox asset metadata")
+	_assert(String(source_assets.get("healthbox_singles_player", "")) == "graphics/battle_interface/healthbox_singles_player.png", "expected source healthbox asset metadata")
+	var window_text_info := _dict_value(intro.get("source_window_text_info", {}))
+	var pp_remaining_info := _dict_value(window_text_info.get("B_WIN_PP_REMAINING", {}))
+	var pp_text_color := _dict_value(pp_remaining_info.get("text_color", {}))
+	_assert(int(pp_text_color.get("foreground", -1)) == 12, "expected source PP remaining foreground color")
+	_assert(int(pp_text_color.get("shadow", -1)) == 11, "expected source PP remaining shadow color")
+	var type_display_status := _dict_value(intro.get("source_type_display_status", {}))
+	_assert(String(type_display_status.get("status", "")) == "available", "expected generated source type names available")
+	_assert(String(type_display_status.get("sample_type_water_name", "")) == "水", "expected source TYPE_WATER display name")
 	var healthbox_coords := _dict_value(intro.get("source_healthbox_coords", {}))
 	var singles_coords := _dict_value(healthbox_coords.get("singles", {}))
 	_assert(_array_value(singles_coords.get("player_left", [])) == [158, 88], "expected source player healthbox coord")
@@ -80,7 +92,8 @@ func _run() -> void:
 	_assert(not String(move_labels[0]).is_empty(), "expected first move name")
 	_assert(String(move_select.get("pp_label", "")) == "PP", "expected PP label")
 	_assert(String(move_select.get("pp_remaining", "")).contains("25/25"), "expected first move PP before turn")
-	_assert(String(move_select.get("move_type", "")).contains("TYPE_WATER"), "expected move type symbol until generated type names are wired")
+	_assert(String(move_select.get("move_type", "")).contains("水"), "expected source TYPE_WATER display name")
+	_assert(not String(move_select.get("move_type", "")).contains("TYPE_WATER"), "expected move type label to use generated source type names")
 
 	var turn_result: Dictionary = scene.play_player_move(0)
 	await create_timer(0.05).timeout

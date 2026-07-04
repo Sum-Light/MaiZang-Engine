@@ -1,0 +1,1571 @@
+{
+  "schema_version": 1,
+  "source": {
+    "project": "pokeemerald-expansion",
+    "types_info": "src/data/types_info.h:gTypesInfo",
+    "struct_definition": "include/data.h:struct TypeInfo",
+    "constants": [
+      "include/constants/pokemon.h:enum Type",
+      "include/constants/pokemon.h:enum DamageCategory",
+      "include/constants/moves.h:enum Move"
+    ],
+    "runtime_references": [
+      "src/battle_controller_player.c:MoveSelectionDisplayMoveType",
+      "src/type_icons.c",
+      "src/item_icon.c",
+      "src/battle_main.c:gTypesInfo"
+    ],
+    "preprocessor": {
+      "decisions": [],
+      "warnings": []
+    }
+  },
+  "constants": {
+    "types": {
+      "TYPE_NONE": {
+        "value": 0,
+        "name": "none"
+      },
+      "TYPE_NORMAL": {
+        "value": 1,
+        "name": "normal"
+      },
+      "TYPE_FIGHTING": {
+        "value": 2,
+        "name": "fighting"
+      },
+      "TYPE_FLYING": {
+        "value": 3,
+        "name": "flying"
+      },
+      "TYPE_POISON": {
+        "value": 4,
+        "name": "poison"
+      },
+      "TYPE_GROUND": {
+        "value": 5,
+        "name": "ground"
+      },
+      "TYPE_ROCK": {
+        "value": 6,
+        "name": "rock"
+      },
+      "TYPE_BUG": {
+        "value": 7,
+        "name": "bug"
+      },
+      "TYPE_GHOST": {
+        "value": 8,
+        "name": "ghost"
+      },
+      "TYPE_STEEL": {
+        "value": 9,
+        "name": "steel"
+      },
+      "TYPE_MYSTERY": {
+        "value": 10,
+        "name": "mystery"
+      },
+      "TYPE_FIRE": {
+        "value": 11,
+        "name": "fire"
+      },
+      "TYPE_WATER": {
+        "value": 12,
+        "name": "water"
+      },
+      "TYPE_GRASS": {
+        "value": 13,
+        "name": "grass"
+      },
+      "TYPE_ELECTRIC": {
+        "value": 14,
+        "name": "electric"
+      },
+      "TYPE_PSYCHIC": {
+        "value": 15,
+        "name": "psychic"
+      },
+      "TYPE_ICE": {
+        "value": 16,
+        "name": "ice"
+      },
+      "TYPE_DRAGON": {
+        "value": 17,
+        "name": "dragon"
+      },
+      "TYPE_DARK": {
+        "value": 18,
+        "name": "dark"
+      },
+      "TYPE_FAIRY": {
+        "value": 19,
+        "name": "fairy"
+      },
+      "TYPE_STELLAR": {
+        "value": 20,
+        "name": "stellar"
+      },
+      "NUMBER_OF_MON_TYPES": {
+        "value": 21,
+        "name": "number_of_mon_types"
+      }
+    },
+    "damage_categories": {
+      "DAMAGE_CATEGORY_PHYSICAL": {
+        "value": 0,
+        "name": "physical"
+      },
+      "DAMAGE_CATEGORY_SPECIAL": {
+        "value": 1,
+        "name": "special"
+      },
+      "DAMAGE_CATEGORY_STATUS": {
+        "value": 2,
+        "name": "status"
+      }
+    }
+  },
+  "type_order": [
+    "TYPE_NONE",
+    "TYPE_NORMAL",
+    "TYPE_FIGHTING",
+    "TYPE_FLYING",
+    "TYPE_POISON",
+    "TYPE_GROUND",
+    "TYPE_ROCK",
+    "TYPE_BUG",
+    "TYPE_GHOST",
+    "TYPE_STEEL",
+    "TYPE_MYSTERY",
+    "TYPE_FIRE",
+    "TYPE_WATER",
+    "TYPE_GRASS",
+    "TYPE_ELECTRIC",
+    "TYPE_PSYCHIC",
+    "TYPE_ICE",
+    "TYPE_DRAGON",
+    "TYPE_DARK",
+    "TYPE_FAIRY",
+    "TYPE_STELLAR"
+  ],
+  "types": {
+    "TYPE_NONE": {
+      "id": 0,
+      "symbol": "TYPE_NONE",
+      "name_key": "none",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 51
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"无\")",
+        "generic": "_(\"招式\")",
+        "palette": "15",
+        "teraTypeRGBValue": "RGB_WHITE",
+        "damageCategory": "DAMAGE_CATEGORY_PHYSICAL",
+        "paletteTMHM": "gItemIconPalette_NormalTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "TRUE",
+        "isHiddenPowerType": "FALSE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "无",
+        "display_text": "无"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "招式",
+        "display_text": "招式"
+      },
+      "palette": 15,
+      "tera_type_rgb_value": {
+        "raw": "RGB_WHITE",
+        "components_5bit": [
+          31,
+          31,
+          31
+        ],
+        "source": "include/gba/types.h:RGB_WHITE"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_PHYSICAL",
+        "value": 0,
+        "name": "physical",
+        "raw": "DAMAGE_CATEGORY_PHYSICAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_NormalTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": true,
+      "is_hidden_power_type": false,
+      "evaluation_status": "ok"
+    },
+    "TYPE_NORMAL": {
+      "id": 1,
+      "symbol": "TYPE_NORMAL",
+      "name_key": "normal",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 63
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"一般\")",
+        "generic": "_(\"一般属性招式\")",
+        "palette": "13",
+        "zMove": "MOVE_BREAKNECK_BLITZ",
+        "maxMove": "MOVE_MAX_STRIKE",
+        "teraTypeRGBValue": "RGB_WHITE",
+        "damageCategory": "DAMAGE_CATEGORY_PHYSICAL",
+        "paletteTMHM": "gItemIconPalette_NormalTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "FALSE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "一般",
+        "display_text": "一般"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "一般属性招式",
+        "display_text": "一般属性招式"
+      },
+      "palette": 13,
+      "z_move": {
+        "symbol": "MOVE_BREAKNECK_BLITZ",
+        "value": 848,
+        "name": "breakneck_blitz",
+        "raw": "MOVE_BREAKNECK_BLITZ"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_STRIKE",
+        "value": 884,
+        "name": "max_strike",
+        "raw": "MOVE_MAX_STRIKE"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB_WHITE",
+        "components_5bit": [
+          31,
+          31,
+          31
+        ],
+        "source": "include/gba/types.h:RGB_WHITE"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_PHYSICAL",
+        "value": 0,
+        "name": "physical",
+        "raw": "DAMAGE_CATEGORY_PHYSICAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_NormalTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": false,
+      "is_hidden_power_type": false,
+      "evaluation_status": "ok"
+    },
+    "TYPE_FIGHTING": {
+      "id": 2,
+      "symbol": "TYPE_FIGHTING",
+      "name_key": "fighting",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 83
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"格斗\")",
+        "generic": "_(\"格斗属性招式\")",
+        "palette": "13",
+        "zMove": "MOVE_ALL_OUT_PUMMELING",
+        "maxMove": "MOVE_MAX_KNUCKLE",
+        "teraTypeRGBValue": "RGB(26, 8, 14)",
+        "damageCategory": "DAMAGE_CATEGORY_PHYSICAL",
+        "paletteTMHM": "gItemIconPalette_FightingTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "格斗",
+        "display_text": "格斗"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "格斗属性招式",
+        "display_text": "格斗属性招式"
+      },
+      "palette": 13,
+      "z_move": {
+        "symbol": "MOVE_ALL_OUT_PUMMELING",
+        "value": 849,
+        "name": "all_out_pummeling",
+        "raw": "MOVE_ALL_OUT_PUMMELING"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_KNUCKLE",
+        "value": 885,
+        "name": "max_knuckle",
+        "raw": "MOVE_MAX_KNUCKLE"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(26, 8, 14)",
+        "components_5bit": [
+          26,
+          8,
+          14
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_PHYSICAL",
+        "value": 0,
+        "name": "physical",
+        "raw": "DAMAGE_CATEGORY_PHYSICAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_FightingTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_FLYING": {
+      "id": 3,
+      "symbol": "TYPE_FLYING",
+      "name_key": "flying",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 105
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"飞行\")",
+        "generic": "_(\"飞行属性招式\")",
+        "palette": "14",
+        "zMove": "MOVE_SUPERSONIC_SKYSTRIKE",
+        "maxMove": "MOVE_MAX_AIRSTREAM",
+        "teraTypeRGBValue": "RGB(31, 26, 7)",
+        "damageCategory": "DAMAGE_CATEGORY_PHYSICAL",
+        "paletteTMHM": "gItemIconPalette_FlyingTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "飞行",
+        "display_text": "飞行"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "飞行属性招式",
+        "display_text": "飞行属性招式"
+      },
+      "palette": 14,
+      "z_move": {
+        "symbol": "MOVE_SUPERSONIC_SKYSTRIKE",
+        "value": 850,
+        "name": "supersonic_skystrike",
+        "raw": "MOVE_SUPERSONIC_SKYSTRIKE"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_AIRSTREAM",
+        "value": 886,
+        "name": "max_airstream",
+        "raw": "MOVE_MAX_AIRSTREAM"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(31, 26, 7)",
+        "components_5bit": [
+          31,
+          26,
+          7
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_PHYSICAL",
+        "value": 0,
+        "name": "physical",
+        "raw": "DAMAGE_CATEGORY_PHYSICAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_FlyingTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_POISON": {
+      "id": 4,
+      "symbol": "TYPE_POISON",
+      "name_key": "poison",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 127
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"毒\")",
+        "generic": "_(\"毒属性招式\")",
+        "palette": "14",
+        "zMove": "MOVE_ACID_DOWNPOUR",
+        "maxMove": "MOVE_MAX_OOZE",
+        "teraTypeRGBValue": "RGB(26, 10, 25)",
+        "damageCategory": "DAMAGE_CATEGORY_PHYSICAL",
+        "paletteTMHM": "gItemIconPalette_PoisonTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "毒",
+        "display_text": "毒"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "毒属性招式",
+        "display_text": "毒属性招式"
+      },
+      "palette": 14,
+      "z_move": {
+        "symbol": "MOVE_ACID_DOWNPOUR",
+        "value": 851,
+        "name": "acid_downpour",
+        "raw": "MOVE_ACID_DOWNPOUR"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_OOZE",
+        "value": 887,
+        "name": "max_ooze",
+        "raw": "MOVE_MAX_OOZE"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(26, 10, 25)",
+        "components_5bit": [
+          26,
+          10,
+          25
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_PHYSICAL",
+        "value": 0,
+        "name": "physical",
+        "raw": "DAMAGE_CATEGORY_PHYSICAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_PoisonTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_GROUND": {
+      "id": 5,
+      "symbol": "TYPE_GROUND",
+      "name_key": "ground",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 149
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"地面\")",
+        "generic": "_(\"地面属性招式\")",
+        "palette": "13",
+        "zMove": "MOVE_TECTONIC_RAGE",
+        "maxMove": "MOVE_MAX_QUAKE",
+        "teraTypeRGBValue": "RGB(25, 23, 18)",
+        "damageCategory": "DAMAGE_CATEGORY_PHYSICAL",
+        "paletteTMHM": "gItemIconPalette_GroundTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "地面",
+        "display_text": "地面"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "地面属性招式",
+        "display_text": "地面属性招式"
+      },
+      "palette": 13,
+      "z_move": {
+        "symbol": "MOVE_TECTONIC_RAGE",
+        "value": 852,
+        "name": "tectonic_rage",
+        "raw": "MOVE_TECTONIC_RAGE"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_QUAKE",
+        "value": 888,
+        "name": "max_quake",
+        "raw": "MOVE_MAX_QUAKE"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(25, 23, 18)",
+        "components_5bit": [
+          25,
+          23,
+          18
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_PHYSICAL",
+        "value": 0,
+        "name": "physical",
+        "raw": "DAMAGE_CATEGORY_PHYSICAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_GroundTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_ROCK": {
+      "id": 6,
+      "symbol": "TYPE_ROCK",
+      "name_key": "rock",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 171
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"岩石\")",
+        "generic": "_(\"岩石属性招式\")",
+        "palette": "13",
+        "zMove": "MOVE_CONTINENTAL_CRUSH",
+        "maxMove": "MOVE_MAX_ROCKFALL",
+        "teraTypeRGBValue": "RGB(18, 16, 8)",
+        "damageCategory": "DAMAGE_CATEGORY_PHYSICAL",
+        "paletteTMHM": "gItemIconPalette_RockTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "岩石",
+        "display_text": "岩石"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "岩石属性招式",
+        "display_text": "岩石属性招式"
+      },
+      "palette": 13,
+      "z_move": {
+        "symbol": "MOVE_CONTINENTAL_CRUSH",
+        "value": 853,
+        "name": "continental_crush",
+        "raw": "MOVE_CONTINENTAL_CRUSH"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_ROCKFALL",
+        "value": 889,
+        "name": "max_rockfall",
+        "raw": "MOVE_MAX_ROCKFALL"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(18, 16, 8)",
+        "components_5bit": [
+          18,
+          16,
+          8
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_PHYSICAL",
+        "value": 0,
+        "name": "physical",
+        "raw": "DAMAGE_CATEGORY_PHYSICAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_RockTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_BUG": {
+      "id": 7,
+      "symbol": "TYPE_BUG",
+      "name_key": "bug",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 193
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"虫\")",
+        "generic": "_(\"虫属性招式\")",
+        "palette": "15",
+        "zMove": "MOVE_SAVAGE_SPIN_OUT",
+        "maxMove": "MOVE_MAX_FLUTTERBY",
+        "teraTypeRGBValue": "RGB(18, 24, 6)",
+        "damageCategory": "DAMAGE_CATEGORY_PHYSICAL",
+        "paletteTMHM": "gItemIconPalette_BugTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "虫",
+        "display_text": "虫"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "虫属性招式",
+        "display_text": "虫属性招式"
+      },
+      "palette": 15,
+      "z_move": {
+        "symbol": "MOVE_SAVAGE_SPIN_OUT",
+        "value": 854,
+        "name": "savage_spin_out",
+        "raw": "MOVE_SAVAGE_SPIN_OUT"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_FLUTTERBY",
+        "value": 890,
+        "name": "max_flutterby",
+        "raw": "MOVE_MAX_FLUTTERBY"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(18, 24, 6)",
+        "components_5bit": [
+          18,
+          24,
+          6
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_PHYSICAL",
+        "value": 0,
+        "name": "physical",
+        "raw": "DAMAGE_CATEGORY_PHYSICAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_BugTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_GHOST": {
+      "id": 8,
+      "symbol": "TYPE_GHOST",
+      "name_key": "ghost",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 215
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"幽灵\")",
+        "generic": "_(\"幽灵属性招式\")",
+        "palette": "14",
+        "zMove": "MOVE_NEVER_ENDING_NIGHTMARE",
+        "maxMove": "MOVE_MAX_PHANTASM",
+        "teraTypeRGBValue": "RGB(12, 10, 16)",
+        "damageCategory": "DAMAGE_CATEGORY_PHYSICAL",
+        "paletteTMHM": "gItemIconPalette_GhostTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "幽灵",
+        "display_text": "幽灵"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "幽灵属性招式",
+        "display_text": "幽灵属性招式"
+      },
+      "palette": 14,
+      "z_move": {
+        "symbol": "MOVE_NEVER_ENDING_NIGHTMARE",
+        "value": 855,
+        "name": "never_ending_nightmare",
+        "raw": "MOVE_NEVER_ENDING_NIGHTMARE"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_PHANTASM",
+        "value": 891,
+        "name": "max_phantasm",
+        "raw": "MOVE_MAX_PHANTASM"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(12, 10, 16)",
+        "components_5bit": [
+          12,
+          10,
+          16
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_PHYSICAL",
+        "value": 0,
+        "name": "physical",
+        "raw": "DAMAGE_CATEGORY_PHYSICAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_GhostTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_STEEL": {
+      "id": 9,
+      "symbol": "TYPE_STEEL",
+      "name_key": "steel",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 237
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"钢\")",
+        "generic": "_(\"钢属性招式\")",
+        "palette": "13",
+        "zMove": "MOVE_CORKSCREW_CRASH",
+        "maxMove": "MOVE_MAX_STEELSPIKE",
+        "teraTypeRGBValue": "RGB(19, 19, 20)",
+        "damageCategory": "DAMAGE_CATEGORY_PHYSICAL",
+        "paletteTMHM": "gItemIconPalette_SteelTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "钢",
+        "display_text": "钢"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "钢属性招式",
+        "display_text": "钢属性招式"
+      },
+      "palette": 13,
+      "z_move": {
+        "symbol": "MOVE_CORKSCREW_CRASH",
+        "value": 856,
+        "name": "corkscrew_crash",
+        "raw": "MOVE_CORKSCREW_CRASH"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_STEELSPIKE",
+        "value": 892,
+        "name": "max_steelspike",
+        "raw": "MOVE_MAX_STEELSPIKE"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(19, 19, 20)",
+        "components_5bit": [
+          19,
+          19,
+          20
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_PHYSICAL",
+        "value": 0,
+        "name": "physical",
+        "raw": "DAMAGE_CATEGORY_PHYSICAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_SteelTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_MYSTERY": {
+      "id": 10,
+      "symbol": "TYPE_MYSTERY",
+      "name_key": "mystery",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 259
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"???\")",
+        "generic": "_(\"???属性招式\")",
+        "palette": "15",
+        "teraTypeRGBValue": "RGB_WHITE",
+        "damageCategory": "DAMAGE_CATEGORY_SPECIAL",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "TRUE",
+        "isHiddenPowerType": "FALSE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "???",
+        "display_text": "???"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "???属性招式",
+        "display_text": "???属性招式"
+      },
+      "palette": 15,
+      "tera_type_rgb_value": {
+        "raw": "RGB_WHITE",
+        "components_5bit": [
+          31,
+          31,
+          31
+        ],
+        "source": "include/gba/types.h:RGB_WHITE"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_SPECIAL",
+        "value": 1,
+        "name": "special",
+        "raw": "DAMAGE_CATEGORY_SPECIAL"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": true,
+      "is_hidden_power_type": false,
+      "evaluation_status": "ok"
+    },
+    "TYPE_FIRE": {
+      "id": 11,
+      "symbol": "TYPE_FIRE",
+      "name_key": "fire",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 270
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"火\")",
+        "generic": "_(\"火属性招式\")",
+        "palette": "13",
+        "zMove": "MOVE_INFERNO_OVERDRIVE",
+        "maxMove": "MOVE_MAX_FLARE",
+        "teraTypeRGBValue": "RGB(31, 20, 11)",
+        "damageCategory": "DAMAGE_CATEGORY_SPECIAL",
+        "paletteTMHM": "gItemIconPalette_FireTMHM",
+        "useSecondTypeIconPalette": "TRUE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "火",
+        "display_text": "火"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "火属性招式",
+        "display_text": "火属性招式"
+      },
+      "palette": 13,
+      "z_move": {
+        "symbol": "MOVE_INFERNO_OVERDRIVE",
+        "value": 857,
+        "name": "inferno_overdrive",
+        "raw": "MOVE_INFERNO_OVERDRIVE"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_FLARE",
+        "value": 893,
+        "name": "max_flare",
+        "raw": "MOVE_MAX_FLARE"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(31, 20, 11)",
+        "components_5bit": [
+          31,
+          20,
+          11
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_SPECIAL",
+        "value": 1,
+        "name": "special",
+        "raw": "DAMAGE_CATEGORY_SPECIAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_FireTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": true,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_WATER": {
+      "id": 12,
+      "symbol": "TYPE_WATER",
+      "name_key": "water",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 292
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"水\")",
+        "generic": "_(\"水属性招式\")",
+        "palette": "14",
+        "zMove": "MOVE_HYDRO_VORTEX",
+        "maxMove": "MOVE_MAX_GEYSER",
+        "teraTypeRGBValue": "RGB(10, 18, 27)",
+        "damageCategory": "DAMAGE_CATEGORY_SPECIAL",
+        "paletteTMHM": "gItemIconPalette_WaterTMHM",
+        "useSecondTypeIconPalette": "TRUE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "水",
+        "display_text": "水"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "水属性招式",
+        "display_text": "水属性招式"
+      },
+      "palette": 14,
+      "z_move": {
+        "symbol": "MOVE_HYDRO_VORTEX",
+        "value": 858,
+        "name": "hydro_vortex",
+        "raw": "MOVE_HYDRO_VORTEX"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_GEYSER",
+        "value": 894,
+        "name": "max_geyser",
+        "raw": "MOVE_MAX_GEYSER"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(10, 18, 27)",
+        "components_5bit": [
+          10,
+          18,
+          27
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_SPECIAL",
+        "value": 1,
+        "name": "special",
+        "raw": "DAMAGE_CATEGORY_SPECIAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_WaterTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": true,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_GRASS": {
+      "id": 13,
+      "symbol": "TYPE_GRASS",
+      "name_key": "grass",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 314
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"草\")",
+        "generic": "_(\"草属性招式\")",
+        "palette": "15",
+        "zMove": "MOVE_BLOOM_DOOM",
+        "maxMove": "MOVE_MAX_OVERGROWTH",
+        "teraTypeRGBValue": "RGB(12, 24, 11)",
+        "damageCategory": "DAMAGE_CATEGORY_SPECIAL",
+        "paletteTMHM": "gItemIconPalette_GrassTMHM",
+        "useSecondTypeIconPalette": "TRUE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "草",
+        "display_text": "草"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "草属性招式",
+        "display_text": "草属性招式"
+      },
+      "palette": 15,
+      "z_move": {
+        "symbol": "MOVE_BLOOM_DOOM",
+        "value": 859,
+        "name": "bloom_doom",
+        "raw": "MOVE_BLOOM_DOOM"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_OVERGROWTH",
+        "value": 895,
+        "name": "max_overgrowth",
+        "raw": "MOVE_MAX_OVERGROWTH"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(12, 24, 11)",
+        "components_5bit": [
+          12,
+          24,
+          11
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_SPECIAL",
+        "value": 1,
+        "name": "special",
+        "raw": "DAMAGE_CATEGORY_SPECIAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_GrassTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": true,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_ELECTRIC": {
+      "id": 14,
+      "symbol": "TYPE_ELECTRIC",
+      "name_key": "electric",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 336
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"电\")",
+        "generic": "_(\"电属性招式\")",
+        "palette": "13",
+        "zMove": "MOVE_GIGAVOLT_HAVOC",
+        "maxMove": "MOVE_MAX_LIGHTNING",
+        "teraTypeRGBValue": "RGB(30, 26, 7)",
+        "damageCategory": "DAMAGE_CATEGORY_SPECIAL",
+        "paletteTMHM": "gItemIconPalette_ElectricTMHM",
+        "useSecondTypeIconPalette": "TRUE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "电",
+        "display_text": "电"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "电属性招式",
+        "display_text": "电属性招式"
+      },
+      "palette": 13,
+      "z_move": {
+        "symbol": "MOVE_GIGAVOLT_HAVOC",
+        "value": 860,
+        "name": "gigavolt_havoc",
+        "raw": "MOVE_GIGAVOLT_HAVOC"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_LIGHTNING",
+        "value": 896,
+        "name": "max_lightning",
+        "raw": "MOVE_MAX_LIGHTNING"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(30, 26, 7)",
+        "components_5bit": [
+          30,
+          26,
+          7
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_SPECIAL",
+        "value": 1,
+        "name": "special",
+        "raw": "DAMAGE_CATEGORY_SPECIAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_ElectricTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": true,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_PSYCHIC": {
+      "id": 15,
+      "symbol": "TYPE_PSYCHIC",
+      "name_key": "psychic",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 358
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"超能力\")",
+        "generic": "_(\"超能力属性招式\")",
+        "palette": "14",
+        "zMove": "MOVE_SHATTERED_PSYCHE",
+        "maxMove": "MOVE_MAX_MINDSTORM",
+        "teraTypeRGBValue": "RGB(31, 14, 15)",
+        "damageCategory": "DAMAGE_CATEGORY_SPECIAL",
+        "paletteTMHM": "gItemIconPalette_PsychicTMHM",
+        "useSecondTypeIconPalette": "TRUE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "超能力",
+        "display_text": "超能力"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "超能力属性招式",
+        "display_text": "超能力属性招式"
+      },
+      "palette": 14,
+      "z_move": {
+        "symbol": "MOVE_SHATTERED_PSYCHE",
+        "value": 861,
+        "name": "shattered_psyche",
+        "raw": "MOVE_SHATTERED_PSYCHE"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_MINDSTORM",
+        "value": 897,
+        "name": "max_mindstorm",
+        "raw": "MOVE_MAX_MINDSTORM"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(31, 14, 15)",
+        "components_5bit": [
+          31,
+          14,
+          15
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_SPECIAL",
+        "value": 1,
+        "name": "special",
+        "raw": "DAMAGE_CATEGORY_SPECIAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_PsychicTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": true,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_ICE": {
+      "id": 16,
+      "symbol": "TYPE_ICE",
+      "name_key": "ice",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 380
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"冰\")",
+        "generic": "_(\"冰属性招式\")",
+        "palette": "14",
+        "zMove": "MOVE_SUBZERO_SLAMMER",
+        "maxMove": "MOVE_MAX_HAILSTORM",
+        "teraTypeRGBValue": "RGB(14, 26, 25)",
+        "damageCategory": "DAMAGE_CATEGORY_SPECIAL",
+        "paletteTMHM": "gItemIconPalette_IceTMHM",
+        "useSecondTypeIconPalette": "TRUE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "冰",
+        "display_text": "冰"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "冰属性招式",
+        "display_text": "冰属性招式"
+      },
+      "palette": 14,
+      "z_move": {
+        "symbol": "MOVE_SUBZERO_SLAMMER",
+        "value": 862,
+        "name": "subzero_slammer",
+        "raw": "MOVE_SUBZERO_SLAMMER"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_HAILSTORM",
+        "value": 898,
+        "name": "max_hailstorm",
+        "raw": "MOVE_MAX_HAILSTORM"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(14, 26, 25)",
+        "components_5bit": [
+          14,
+          26,
+          25
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_SPECIAL",
+        "value": 1,
+        "name": "special",
+        "raw": "DAMAGE_CATEGORY_SPECIAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_IceTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": true,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_DRAGON": {
+      "id": 17,
+      "symbol": "TYPE_DRAGON",
+      "name_key": "dragon",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 402
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"龙\")",
+        "generic": "_(\"龙属性招式\")",
+        "palette": "15",
+        "zMove": "MOVE_DEVASTATING_DRAKE",
+        "maxMove": "MOVE_MAX_WYRMWIND",
+        "teraTypeRGBValue": "RGB(10, 18, 27)",
+        "damageCategory": "DAMAGE_CATEGORY_SPECIAL",
+        "paletteTMHM": "gItemIconPalette_DragonTMHM",
+        "useSecondTypeIconPalette": "TRUE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "龙",
+        "display_text": "龙"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "龙属性招式",
+        "display_text": "龙属性招式"
+      },
+      "palette": 15,
+      "z_move": {
+        "symbol": "MOVE_DEVASTATING_DRAKE",
+        "value": 863,
+        "name": "devastating_drake",
+        "raw": "MOVE_DEVASTATING_DRAKE"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_WYRMWIND",
+        "value": 899,
+        "name": "max_wyrmwind",
+        "raw": "MOVE_MAX_WYRMWIND"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(10, 18, 27)",
+        "components_5bit": [
+          10,
+          18,
+          27
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_SPECIAL",
+        "value": 1,
+        "name": "special",
+        "raw": "DAMAGE_CATEGORY_SPECIAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_DragonTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": true,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_DARK": {
+      "id": 18,
+      "symbol": "TYPE_DARK",
+      "name_key": "dark",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 424
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"恶\")",
+        "generic": "_(\"恶属性招式\")",
+        "palette": "13",
+        "zMove": "MOVE_BLACK_HOLE_ECLIPSE",
+        "maxMove": "MOVE_MAX_DARKNESS",
+        "teraTypeRGBValue": "RGB(6, 5, 8)",
+        "damageCategory": "DAMAGE_CATEGORY_SPECIAL",
+        "paletteTMHM": "gItemIconPalette_DarkTMHM",
+        "useSecondTypeIconPalette": "TRUE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "TRUE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "恶",
+        "display_text": "恶"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "恶属性招式",
+        "display_text": "恶属性招式"
+      },
+      "palette": 13,
+      "z_move": {
+        "symbol": "MOVE_BLACK_HOLE_ECLIPSE",
+        "value": 864,
+        "name": "black_hole_eclipse",
+        "raw": "MOVE_BLACK_HOLE_ECLIPSE"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_DARKNESS",
+        "value": 900,
+        "name": "max_darkness",
+        "raw": "MOVE_MAX_DARKNESS"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(6, 5, 8)",
+        "components_5bit": [
+          6,
+          5,
+          8
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_SPECIAL",
+        "value": 1,
+        "name": "special",
+        "raw": "DAMAGE_CATEGORY_SPECIAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_DarkTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": true,
+      "is_special_case_type": false,
+      "is_hidden_power_type": true,
+      "evaluation_status": "ok"
+    },
+    "TYPE_FAIRY": {
+      "id": 19,
+      "symbol": "TYPE_FAIRY",
+      "name_key": "fairy",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 446
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"妖精\")",
+        "generic": "_(\"妖精属性招式\")",
+        "palette": "14",
+        "zMove": "MOVE_TWINKLE_TACKLE",
+        "maxMove": "MOVE_MAX_STARFALL",
+        "teraTypeRGBValue": "RGB(31, 15, 21)",
+        "damageCategory": "DAMAGE_CATEGORY_SPECIAL",
+        "paletteTMHM": "gItemIconPalette_FairyTMHM",
+        "useSecondTypeIconPalette": "TRUE",
+        "isSpecialCaseType": "FALSE",
+        "isHiddenPowerType": "FALSE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "妖精",
+        "display_text": "妖精"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "妖精属性招式",
+        "display_text": "妖精属性招式"
+      },
+      "palette": 14,
+      "z_move": {
+        "symbol": "MOVE_TWINKLE_TACKLE",
+        "value": 865,
+        "name": "twinkle_tackle",
+        "raw": "MOVE_TWINKLE_TACKLE"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_STARFALL",
+        "value": 901,
+        "name": "max_starfall",
+        "raw": "MOVE_MAX_STARFALL"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(31, 15, 21)",
+        "components_5bit": [
+          31,
+          15,
+          21
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "damage_category": {
+        "symbol": "DAMAGE_CATEGORY_SPECIAL",
+        "value": 1,
+        "name": "special",
+        "raw": "DAMAGE_CATEGORY_SPECIAL"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_FairyTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": true,
+      "is_special_case_type": false,
+      "is_hidden_power_type": false,
+      "evaluation_status": "ok"
+    },
+    "TYPE_STELLAR": {
+      "id": 20,
+      "symbol": "TYPE_STELLAR",
+      "name_key": "stellar",
+      "source": {
+        "file": "src/data/types_info.h",
+        "line": 468
+      },
+      "initializer_kind": "struct",
+      "raw_fields": {
+        "name": "_(\"星晶\")",
+        "generic": "_(\"星晶属性招式\")",
+        "palette": "15",
+        "zMove": "MOVE_BREAKNECK_BLITZ",
+        "maxMove": "MOVE_MAX_STRIKE",
+        "teraTypeRGBValue": "RGB(10, 18, 27)",
+        "paletteTMHM": "gItemIconPalette_NormalTMHM",
+        "useSecondTypeIconPalette": "FALSE",
+        "isSpecialCaseType": "TRUE",
+        "isHiddenPowerType": "FALSE"
+      },
+      "name": {
+        "kind": "inline",
+        "source_text": "星晶",
+        "display_text": "星晶"
+      },
+      "generic": {
+        "kind": "inline",
+        "source_text": "星晶属性招式",
+        "display_text": "星晶属性招式"
+      },
+      "palette": 15,
+      "z_move": {
+        "symbol": "MOVE_BREAKNECK_BLITZ",
+        "value": 848,
+        "name": "breakneck_blitz",
+        "raw": "MOVE_BREAKNECK_BLITZ"
+      },
+      "max_move": {
+        "symbol": "MOVE_MAX_STRIKE",
+        "value": 884,
+        "name": "max_strike",
+        "raw": "MOVE_MAX_STRIKE"
+      },
+      "tera_type_rgb_value": {
+        "raw": "RGB(10, 18, 27)",
+        "components_5bit": [
+          10,
+          18,
+          27
+        ],
+        "source": "include/gba/types.h:RGB"
+      },
+      "palette_tmhm": {
+        "symbol": "gItemIconPalette_NormalTMHM",
+        "source": "src/type_icons.c; src/item_icon.c"
+      },
+      "use_second_type_icon_palette": false,
+      "is_special_case_type": true,
+      "is_hidden_power_type": false,
+      "evaluation_status": "ok"
+    }
+  },
+  "stats": {
+    "type_count": 21,
+    "preprocessor_decision_count": 0,
+    "preprocessor_warning_count": 0,
+    "warning_count": 0,
+    "unsupported_field_count": 0,
+    "unresolved_name_count": 0
+  }
+}

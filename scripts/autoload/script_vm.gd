@@ -81,6 +81,12 @@ const YESNO_DEFAULT_MENU_LEFT := 21
 const YESNO_DEFAULT_MENU_TOP := 9
 const YESNO_DEFAULT_MENU_WIDTH := 5
 const YESNO_DEFAULT_MENU_HEIGHT := 4
+const SOURCE_CONSTANT_VALUES := {
+	"OBJ_EVENT_GFX_BRENDAN_NORMAL": 0,
+	"OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL": 100,
+	"OBJ_EVENT_GFX_RIVAL_MAY_NORMAL": 105,
+	"OBJ_EVENT_GFX_MAY_NORMAL": 89,
+}
 
 var _script_data: Dictionary = {}
 var _game_state: Node = null
@@ -1289,6 +1295,8 @@ func _resolve_movement_target(token: String) -> String:
 
 
 func _is_known_constant(value: String) -> bool:
+	if SOURCE_CONSTANT_VALUES.has(value):
+		return true
 	return value in [
 		PLAYER_GENDER_MALE,
 		PLAYER_GENDER_FEMALE,
@@ -1305,6 +1313,8 @@ func _is_known_constant(value: String) -> bool:
 
 
 func _constant_value(value: String) -> int:
+	if SOURCE_CONSTANT_VALUES.has(value):
+		return int(SOURCE_CONSTANT_VALUES[value])
 	match value:
 		PLAYER_GENDER_MALE:
 			return PLAYER_GENDER_MALE_VALUE

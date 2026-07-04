@@ -6,11 +6,633 @@
     "kind": "first_pass_static_object_event_sprites"
   },
   "sprites": {
+    "OBJ_EVENT_GFX_BRENDAN_NORMAL": {
+      "graphics_id": "OBJ_EVENT_GFX_BRENDAN_NORMAL",
+      "source_symbol": "gObjectEventPic_BrendanNormalRunning",
+      "source_pic_table": "sPicTable_BrendanNormal",
+      "source_graphics_info": "gObjectEventGraphicsInfo_BrendanNormal",
+      "source_constant_value": 0,
+      "source_image": "graphics/object_events/pics/people/brendan/walking.png",
+      "source_images": [
+        "graphics/object_events/pics/people/brendan/walking.png",
+        "graphics/object_events/pics/people/brendan/running.png"
+      ],
+      "image": "res://assets/generated/object_events/brendan_normal.png",
+      "image_project_path": "assets/generated/object_events/brendan_normal.png",
+      "image_size": {
+        "w": 288,
+        "h": 32
+      },
+      "frame_size": {
+        "w": 16,
+        "h": 32
+      },
+      "columns": 18,
+      "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_BRENDAN",
+      "reflection_palette_tag": "OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": false,
+      "tracks": "TRACKS_FOOT",
+      "oam": "&gObjectEventBaseOam_16x32",
+      "subsprite_tables": "sOamTables_16x32",
+      "static_frames": {
+        "down": 0,
+        "up": 1,
+        "left": 2,
+        "right": 2
+      },
+      "static_frame_flips": {
+        "right": {
+          "h": true
+        }
+      },
+      "animation_table": {
+        "source_symbol": "sAnimTable_BrendanMayNormal",
+        "source_animation_ids": {
+          "face_down": "ANIM_STD_FACE_SOUTH",
+          "face_up": "ANIM_STD_FACE_NORTH",
+          "face_left": "ANIM_STD_FACE_WEST",
+          "face_right": "ANIM_STD_FACE_EAST",
+          "walk_down": "ANIM_STD_GO_SOUTH",
+          "walk_up": "ANIM_STD_GO_NORTH",
+          "walk_left": "ANIM_STD_GO_WEST",
+          "walk_right": "ANIM_STD_GO_EAST",
+          "fast_walk_down": "ANIM_STD_GO_FAST_SOUTH",
+          "fast_walk_up": "ANIM_STD_GO_FAST_NORTH",
+          "fast_walk_left": "ANIM_STD_GO_FAST_WEST",
+          "fast_walk_right": "ANIM_STD_GO_FAST_EAST",
+          "run_down": "ANIM_RUN_SOUTH",
+          "run_up": "ANIM_RUN_NORTH",
+          "run_left": "ANIM_RUN_WEST",
+          "run_right": "ANIM_RUN_EAST",
+          "spin_down": "ANIM_SPIN_SOUTH",
+          "spin_up": "ANIM_SPIN_NORTH",
+          "spin_left": "ANIM_SPIN_WEST",
+          "spin_right": "ANIM_SPIN_EAST"
+        },
+        "face": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 16
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 16
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 16
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 16,
+              "h_flip": true
+            }
+          ]
+        },
+        "walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            },
+            {
+              "frame": 4,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            },
+            {
+              "frame": 6,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            }
+          ]
+        },
+        "fast_walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 4
+            },
+            {
+              "frame": 0,
+              "duration_frames": 4
+            },
+            {
+              "frame": 4,
+              "duration_frames": 4
+            },
+            {
+              "frame": 0,
+              "duration_frames": 4
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 4
+            },
+            {
+              "frame": 1,
+              "duration_frames": 4
+            },
+            {
+              "frame": 6,
+              "duration_frames": 4
+            },
+            {
+              "frame": 1,
+              "duration_frames": 4
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 4
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4
+            },
+            {
+              "frame": 8,
+              "duration_frames": 4
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4,
+              "h_flip": true
+            }
+          ]
+        },
+        "run": {
+          "down": [
+            {
+              "frame": 12,
+              "duration_frames": 5
+            },
+            {
+              "frame": 9,
+              "duration_frames": 3
+            },
+            {
+              "frame": 13,
+              "duration_frames": 5
+            },
+            {
+              "frame": 9,
+              "duration_frames": 3
+            }
+          ],
+          "up": [
+            {
+              "frame": 14,
+              "duration_frames": 5
+            },
+            {
+              "frame": 10,
+              "duration_frames": 3
+            },
+            {
+              "frame": 15,
+              "duration_frames": 5
+            },
+            {
+              "frame": 10,
+              "duration_frames": 3
+            }
+          ],
+          "left": [
+            {
+              "frame": 16,
+              "duration_frames": 5
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3
+            },
+            {
+              "frame": 17,
+              "duration_frames": 5
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3
+            }
+          ],
+          "right": [
+            {
+              "frame": 16,
+              "duration_frames": 5,
+              "h_flip": true
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3,
+              "h_flip": true
+            },
+            {
+              "frame": 17,
+              "duration_frames": 5,
+              "h_flip": true
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3,
+              "h_flip": true
+            }
+          ]
+        },
+        "spin": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            }
+          ]
+        }
+      },
+      "source_trace": [
+        "include/constants/event_objects.h:OBJ_EVENT_GFX_BRENDAN_NORMAL",
+        "include/constants/event_objects.h:PLAYER_AVATAR_GFX_MALE_NORMAL/PLAYER_AVATAR_GFX_FEMALE_NORMAL",
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_BrendanNormalRunning",
+        "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_BrendanNormal",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_BrendanNormal",
+        "src/data/object_events/object_event_anims.h:sAnimTable_BrendanMayNormal",
+        "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_BRENDAN_NORMAL"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_walk_animation_not_runtime_driven",
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+        },
+        {
+          "code": "player_avatar_walk_animation_not_runtime_driven",
+          "detail": "The normal Brendan/May walking+running source sheet is imported for first-pass player display, but the runtime still renders static facing frames until player object-event animation tasks are ported."
+        }
+      ]
+    },
+    "OBJ_EVENT_GFX_TWIN": {
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
+      "source_symbol": "gObjectEventPic_Twin",
+      "source_pic_table": "sPicTable_Twin",
+      "source_graphics_info": "gObjectEventGraphicsInfo_Twin",
+      "source_constant_value": 6,
+      "source_image": "graphics/object_events/pics/people/twin.png",
+      "source_images": [
+        "graphics/object_events/pics/people/twin.png"
+      ],
+      "image": "res://assets/generated/object_events/twin.png",
+      "image_project_path": "assets/generated/object_events/twin.png",
+      "image_size": {
+        "w": 144,
+        "h": 32
+      },
+      "frame_size": {
+        "w": 16,
+        "h": 32
+      },
+      "columns": 9,
+      "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_NPC_2",
+      "reflection_palette_tag": "",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": false,
+      "tracks": "TRACKS_FOOT",
+      "oam": "&gObjectEventBaseOam_16x32",
+      "subsprite_tables": "sOamTables_16x32",
+      "static_frames": {
+        "down": 0,
+        "up": 1,
+        "left": 2,
+        "right": 2
+      },
+      "static_frame_flips": {
+        "right": {
+          "h": true
+        }
+      },
+      "animation_table": {
+        "source_symbol": "sAnimTable_Standard",
+        "source_animation_ids": {
+          "face_down": "ANIM_STD_FACE_SOUTH",
+          "face_up": "ANIM_STD_FACE_NORTH",
+          "face_left": "ANIM_STD_FACE_WEST",
+          "face_right": "ANIM_STD_FACE_EAST",
+          "walk_down": "ANIM_STD_GO_SOUTH",
+          "walk_up": "ANIM_STD_GO_NORTH",
+          "walk_left": "ANIM_STD_GO_WEST",
+          "walk_right": "ANIM_STD_GO_EAST"
+        },
+        "face": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 16
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 16
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 16
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 16,
+              "h_flip": true
+            }
+          ]
+        },
+        "walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            },
+            {
+              "frame": 4,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            },
+            {
+              "frame": 6,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            }
+          ]
+        }
+      },
+      "source_trace": [
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_Twin",
+        "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_Twin",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_Twin",
+        "src/data/object_events/object_event_anims.h:sAnimTable_Standard",
+        "src/data/object_events/object_event_anims.h:sAnim_FaceSouth/sAnim_FaceNorth/sAnim_FaceWest/sAnim_FaceEast",
+        "src/data/object_events/object_event_anims.h:sAnim_GoSouth/sAnim_GoNorth/sAnim_GoWest/sAnim_GoEast",
+        "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_TWIN"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_walk_animation_not_runtime_driven",
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+        }
+      ]
+    },
     "OBJ_EVENT_GFX_BOY_1": {
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "source_symbol": "gObjectEventPic_Boy1",
       "source_pic_table": "sPicTable_Boy1",
+      "source_graphics_info": "gObjectEventGraphicsInfo_Boy1",
+      "source_constant_value": 7,
       "source_image": "graphics/object_events/pics/people/boy_1.png",
+      "source_images": [
+        "graphics/object_events/pics/people/boy_1.png"
+      ],
       "image": "res://assets/generated/object_events/boy_1.png",
       "image_project_path": "assets/generated/object_events/boy_1.png",
       "image_size": {
@@ -23,6 +645,21 @@
       },
       "columns": 9,
       "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_NPC_3",
+      "reflection_palette_tag": "",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": false,
+      "tracks": "TRACKS_FOOT",
+      "oam": "&gObjectEventBaseOam_16x32",
+      "subsprite_tables": "sOamTables_16x32",
       "static_frames": {
         "down": 0,
         "up": 1,
@@ -165,12 +802,2158 @@
       "unsupported": [
         {
           "code": "object_event_walk_animation_not_runtime_driven",
-          "detail": "Facing frames and source standard walk animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+        }
+      ]
+    },
+    "OBJ_EVENT_GFX_BOY_2": {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
+      "source_symbol": "gObjectEventPic_Boy2",
+      "source_pic_table": "sPicTable_Boy2",
+      "source_graphics_info": "gObjectEventGraphicsInfo_Boy2",
+      "source_constant_value": 9,
+      "source_image": "graphics/object_events/pics/people/boy_2.png",
+      "source_images": [
+        "graphics/object_events/pics/people/boy_2.png"
+      ],
+      "image": "res://assets/generated/object_events/boy_2.png",
+      "image_project_path": "assets/generated/object_events/boy_2.png",
+      "image_size": {
+        "w": 144,
+        "h": 32
+      },
+      "frame_size": {
+        "w": 16,
+        "h": 32
+      },
+      "columns": 9,
+      "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_NPC_1",
+      "reflection_palette_tag": "",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": false,
+      "tracks": "TRACKS_FOOT",
+      "oam": "&gObjectEventBaseOam_16x32",
+      "subsprite_tables": "sOamTables_16x32",
+      "static_frames": {
+        "down": 0,
+        "up": 1,
+        "left": 2,
+        "right": 2
+      },
+      "static_frame_flips": {
+        "right": {
+          "h": true
+        }
+      },
+      "animation_table": {
+        "source_symbol": "sAnimTable_Standard",
+        "source_animation_ids": {
+          "face_down": "ANIM_STD_FACE_SOUTH",
+          "face_up": "ANIM_STD_FACE_NORTH",
+          "face_left": "ANIM_STD_FACE_WEST",
+          "face_right": "ANIM_STD_FACE_EAST",
+          "walk_down": "ANIM_STD_GO_SOUTH",
+          "walk_up": "ANIM_STD_GO_NORTH",
+          "walk_left": "ANIM_STD_GO_WEST",
+          "walk_right": "ANIM_STD_GO_EAST"
+        },
+        "face": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 16
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 16
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 16
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 16,
+              "h_flip": true
+            }
+          ]
+        },
+        "walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            },
+            {
+              "frame": 4,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            },
+            {
+              "frame": 6,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            }
+          ]
+        }
+      },
+      "source_trace": [
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_Boy2",
+        "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_Boy2",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_Boy2",
+        "src/data/object_events/object_event_anims.h:sAnimTable_Standard",
+        "src/data/object_events/object_event_anims.h:sAnim_FaceSouth/sAnim_FaceNorth/sAnim_FaceWest/sAnim_FaceEast",
+        "src/data/object_events/object_event_anims.h:sAnim_GoSouth/sAnim_GoNorth/sAnim_GoWest/sAnim_GoEast",
+        "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_BOY_2"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_walk_animation_not_runtime_driven",
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+        }
+      ]
+    },
+    "OBJ_EVENT_GFX_FAT_MAN": {
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "source_symbol": "gObjectEventPic_FatMan",
+      "source_pic_table": "sPicTable_FatMan",
+      "source_graphics_info": "gObjectEventGraphicsInfo_FatMan",
+      "source_constant_value": 17,
+      "source_image": "graphics/object_events/pics/people/fat_man.png",
+      "source_images": [
+        "graphics/object_events/pics/people/fat_man.png"
+      ],
+      "image": "res://assets/generated/object_events/fat_man.png",
+      "image_project_path": "assets/generated/object_events/fat_man.png",
+      "image_size": {
+        "w": 144,
+        "h": 32
+      },
+      "frame_size": {
+        "w": 16,
+        "h": 32
+      },
+      "columns": 9,
+      "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_NPC_1",
+      "reflection_palette_tag": "",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": false,
+      "tracks": "TRACKS_FOOT",
+      "oam": "&gObjectEventBaseOam_16x32",
+      "subsprite_tables": "sOamTables_16x32",
+      "static_frames": {
+        "down": 0,
+        "up": 1,
+        "left": 2,
+        "right": 2
+      },
+      "static_frame_flips": {
+        "right": {
+          "h": true
+        }
+      },
+      "animation_table": {
+        "source_symbol": "sAnimTable_Standard",
+        "source_animation_ids": {
+          "face_down": "ANIM_STD_FACE_SOUTH",
+          "face_up": "ANIM_STD_FACE_NORTH",
+          "face_left": "ANIM_STD_FACE_WEST",
+          "face_right": "ANIM_STD_FACE_EAST",
+          "walk_down": "ANIM_STD_GO_SOUTH",
+          "walk_up": "ANIM_STD_GO_NORTH",
+          "walk_left": "ANIM_STD_GO_WEST",
+          "walk_right": "ANIM_STD_GO_EAST"
+        },
+        "face": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 16
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 16
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 16
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 16,
+              "h_flip": true
+            }
+          ]
+        },
+        "walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            },
+            {
+              "frame": 4,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            },
+            {
+              "frame": 6,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            }
+          ]
+        }
+      },
+      "source_trace": [
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_FatMan",
+        "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_FatMan",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_FatMan",
+        "src/data/object_events/object_event_anims.h:sAnimTable_Standard",
+        "src/data/object_events/object_event_anims.h:sAnim_FaceSouth/sAnim_FaceNorth/sAnim_FaceWest/sAnim_FaceEast",
+        "src/data/object_events/object_event_anims.h:sAnim_GoSouth/sAnim_GoNorth/sAnim_GoWest/sAnim_GoEast",
+        "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_FAT_MAN"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_walk_animation_not_runtime_driven",
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+        }
+      ]
+    },
+    "OBJ_EVENT_GFX_PROF_BIRCH": {
+      "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
+      "source_symbol": "gObjectEventPic_ProfBirch",
+      "source_pic_table": "sPicTable_ProfBirch",
+      "source_graphics_info": "gObjectEventGraphicsInfo_ProfBirch",
+      "source_constant_value": 64,
+      "source_image": "graphics/object_events/pics/people/prof_birch.png",
+      "source_images": [
+        "graphics/object_events/pics/people/prof_birch.png"
+      ],
+      "image": "res://assets/generated/object_events/prof_birch.png",
+      "image_project_path": "assets/generated/object_events/prof_birch.png",
+      "image_size": {
+        "w": 144,
+        "h": 32
+      },
+      "frame_size": {
+        "w": 16,
+        "h": 32
+      },
+      "columns": 9,
+      "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_NPC_3",
+      "reflection_palette_tag": "",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": false,
+      "tracks": "TRACKS_FOOT",
+      "oam": "&gObjectEventBaseOam_16x32",
+      "subsprite_tables": "sOamTables_16x32",
+      "static_frames": {
+        "down": 0,
+        "up": 1,
+        "left": 2,
+        "right": 2
+      },
+      "static_frame_flips": {
+        "right": {
+          "h": true
+        }
+      },
+      "animation_table": {
+        "source_symbol": "sAnimTable_Standard",
+        "source_animation_ids": {
+          "face_down": "ANIM_STD_FACE_SOUTH",
+          "face_up": "ANIM_STD_FACE_NORTH",
+          "face_left": "ANIM_STD_FACE_WEST",
+          "face_right": "ANIM_STD_FACE_EAST",
+          "walk_down": "ANIM_STD_GO_SOUTH",
+          "walk_up": "ANIM_STD_GO_NORTH",
+          "walk_left": "ANIM_STD_GO_WEST",
+          "walk_right": "ANIM_STD_GO_EAST"
+        },
+        "face": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 16
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 16
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 16
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 16,
+              "h_flip": true
+            }
+          ]
+        },
+        "walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            },
+            {
+              "frame": 4,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            },
+            {
+              "frame": 6,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            }
+          ]
+        }
+      },
+      "source_trace": [
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_ProfBirch",
+        "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_ProfBirch",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_ProfBirch",
+        "src/data/object_events/object_event_anims.h:sAnimTable_Standard",
+        "src/data/object_events/object_event_anims.h:sAnim_FaceSouth/sAnim_FaceNorth/sAnim_FaceWest/sAnim_FaceEast",
+        "src/data/object_events/object_event_anims.h:sAnim_GoSouth/sAnim_GoNorth/sAnim_GoWest/sAnim_GoEast",
+        "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_PROF_BIRCH"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_walk_animation_not_runtime_driven",
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+        }
+      ]
+    },
+    "OBJ_EVENT_GFX_TRUCK": {
+      "graphics_id": "OBJ_EVENT_GFX_TRUCK",
+      "source_symbol": "gObjectEventPic_Truck",
+      "source_pic_table": "sPicTable_Truck",
+      "source_graphics_info": "gObjectEventGraphicsInfo_Truck",
+      "source_constant_value": 94,
+      "source_image": "graphics/object_events/pics/misc/truck.png",
+      "source_images": [
+        "graphics/object_events/pics/misc/truck.png"
+      ],
+      "image": "res://assets/generated/object_events/truck.png",
+      "image_project_path": "assets/generated/object_events/truck.png",
+      "image_size": {
+        "w": 48,
+        "h": 48
+      },
+      "frame_size": {
+        "w": 48,
+        "h": 48
+      },
+      "columns": 1,
+      "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_TRUCK",
+      "reflection_palette_tag": "",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": true,
+      "tracks": "TRACKS_NONE",
+      "oam": "&gObjectEventBaseOam_32x32",
+      "subsprite_tables": "sOamTables_48x48",
+      "static_frames": {
+        "down": 0,
+        "up": 0,
+        "left": 0,
+        "right": 0
+      },
+      "static_frame_flips": {},
+      "animation_table": {
+        "source_symbol": "sAnimTable_Inanimate",
+        "source_animation_ids": {
+          "stay_still": "ANIM_STAY_STILL"
+        },
+        "stay_still": [
+          {
+            "frame": 0,
+            "duration_frames": 8
+          },
+          {
+            "frame": 0,
+            "duration_frames": 8
+          },
+          {
+            "frame": 0,
+            "duration_frames": 8
+          },
+          {
+            "frame": 0,
+            "duration_frames": 8
+          }
+        ]
+      },
+      "source_trace": [
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_Truck",
+        "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_Truck",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_Truck",
+        "src/data/object_events/object_event_anims.h:sAnim_StayStill/sAnimTable_Inanimate",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_TRUCK"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_walk_animation_not_runtime_driven",
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+        }
+      ]
+    },
+    "OBJ_EVENT_GFX_MAY_NORMAL": {
+      "graphics_id": "OBJ_EVENT_GFX_MAY_NORMAL",
+      "source_symbol": "gObjectEventPic_MayNormalRunning",
+      "source_pic_table": "sPicTable_MayNormal",
+      "source_graphics_info": "gObjectEventGraphicsInfo_MayNormal",
+      "source_constant_value": 89,
+      "source_image": "graphics/object_events/pics/people/may/walking.png",
+      "source_images": [
+        "graphics/object_events/pics/people/may/walking.png",
+        "graphics/object_events/pics/people/may/running.png"
+      ],
+      "image": "res://assets/generated/object_events/may_normal.png",
+      "image_project_path": "assets/generated/object_events/may_normal.png",
+      "image_size": {
+        "w": 288,
+        "h": 32
+      },
+      "frame_size": {
+        "w": 16,
+        "h": 32
+      },
+      "columns": 18,
+      "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_MAY",
+      "reflection_palette_tag": "OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": false,
+      "tracks": "TRACKS_FOOT",
+      "oam": "&gObjectEventBaseOam_16x32",
+      "subsprite_tables": "sOamTables_16x32",
+      "static_frames": {
+        "down": 0,
+        "up": 1,
+        "left": 2,
+        "right": 2
+      },
+      "static_frame_flips": {
+        "right": {
+          "h": true
+        }
+      },
+      "animation_table": {
+        "source_symbol": "sAnimTable_BrendanMayNormal",
+        "source_animation_ids": {
+          "face_down": "ANIM_STD_FACE_SOUTH",
+          "face_up": "ANIM_STD_FACE_NORTH",
+          "face_left": "ANIM_STD_FACE_WEST",
+          "face_right": "ANIM_STD_FACE_EAST",
+          "walk_down": "ANIM_STD_GO_SOUTH",
+          "walk_up": "ANIM_STD_GO_NORTH",
+          "walk_left": "ANIM_STD_GO_WEST",
+          "walk_right": "ANIM_STD_GO_EAST",
+          "fast_walk_down": "ANIM_STD_GO_FAST_SOUTH",
+          "fast_walk_up": "ANIM_STD_GO_FAST_NORTH",
+          "fast_walk_left": "ANIM_STD_GO_FAST_WEST",
+          "fast_walk_right": "ANIM_STD_GO_FAST_EAST",
+          "run_down": "ANIM_RUN_SOUTH",
+          "run_up": "ANIM_RUN_NORTH",
+          "run_left": "ANIM_RUN_WEST",
+          "run_right": "ANIM_RUN_EAST",
+          "spin_down": "ANIM_SPIN_SOUTH",
+          "spin_up": "ANIM_SPIN_NORTH",
+          "spin_left": "ANIM_SPIN_WEST",
+          "spin_right": "ANIM_SPIN_EAST"
+        },
+        "face": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 16
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 16
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 16
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 16,
+              "h_flip": true
+            }
+          ]
+        },
+        "walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            },
+            {
+              "frame": 4,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            },
+            {
+              "frame": 6,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            }
+          ]
+        },
+        "fast_walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 4
+            },
+            {
+              "frame": 0,
+              "duration_frames": 4
+            },
+            {
+              "frame": 4,
+              "duration_frames": 4
+            },
+            {
+              "frame": 0,
+              "duration_frames": 4
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 4
+            },
+            {
+              "frame": 1,
+              "duration_frames": 4
+            },
+            {
+              "frame": 6,
+              "duration_frames": 4
+            },
+            {
+              "frame": 1,
+              "duration_frames": 4
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 4
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4
+            },
+            {
+              "frame": 8,
+              "duration_frames": 4
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4,
+              "h_flip": true
+            }
+          ]
+        },
+        "run": {
+          "down": [
+            {
+              "frame": 12,
+              "duration_frames": 5
+            },
+            {
+              "frame": 9,
+              "duration_frames": 3
+            },
+            {
+              "frame": 13,
+              "duration_frames": 5
+            },
+            {
+              "frame": 9,
+              "duration_frames": 3
+            }
+          ],
+          "up": [
+            {
+              "frame": 14,
+              "duration_frames": 5
+            },
+            {
+              "frame": 10,
+              "duration_frames": 3
+            },
+            {
+              "frame": 15,
+              "duration_frames": 5
+            },
+            {
+              "frame": 10,
+              "duration_frames": 3
+            }
+          ],
+          "left": [
+            {
+              "frame": 16,
+              "duration_frames": 5
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3
+            },
+            {
+              "frame": 17,
+              "duration_frames": 5
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3
+            }
+          ],
+          "right": [
+            {
+              "frame": 16,
+              "duration_frames": 5,
+              "h_flip": true
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3,
+              "h_flip": true
+            },
+            {
+              "frame": 17,
+              "duration_frames": 5,
+              "h_flip": true
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3,
+              "h_flip": true
+            }
+          ]
+        },
+        "spin": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            }
+          ]
+        }
+      },
+      "source_trace": [
+        "include/constants/event_objects.h:OBJ_EVENT_GFX_MAY_NORMAL",
+        "include/constants/event_objects.h:PLAYER_AVATAR_GFX_MALE_NORMAL/PLAYER_AVATAR_GFX_FEMALE_NORMAL",
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_MayNormalRunning",
+        "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_MayNormal",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_MayNormal",
+        "src/data/object_events/object_event_anims.h:sAnimTable_BrendanMayNormal",
+        "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_MAY_NORMAL"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_walk_animation_not_runtime_driven",
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+        },
+        {
+          "code": "player_avatar_walk_animation_not_runtime_driven",
+          "detail": "The normal Brendan/May walking+running source sheet is imported for first-pass player display, but the runtime still renders static facing frames until player object-event animation tasks are ported."
+        }
+      ]
+    },
+    "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL": {
+      "graphics_id": "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL",
+      "source_symbol": "gObjectEventPic_BrendanNormalRunning",
+      "source_pic_table": "sPicTable_BrendanNormal",
+      "source_graphics_info": "gObjectEventGraphicsInfo_RivalBrendanNormal",
+      "source_constant_value": 100,
+      "source_image": "graphics/object_events/pics/people/brendan/walking.png",
+      "source_images": [
+        "graphics/object_events/pics/people/brendan/walking.png",
+        "graphics/object_events/pics/people/brendan/running.png"
+      ],
+      "image": "res://assets/generated/object_events/rival_brendan_normal.png",
+      "image_project_path": "assets/generated/object_events/rival_brendan_normal.png",
+      "image_size": {
+        "w": 288,
+        "h": 32
+      },
+      "frame_size": {
+        "w": 16,
+        "h": 32
+      },
+      "columns": 18,
+      "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_BRENDAN",
+      "reflection_palette_tag": "OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": false,
+      "tracks": "TRACKS_FOOT",
+      "oam": "&gObjectEventBaseOam_16x32",
+      "subsprite_tables": "sOamTables_16x32",
+      "static_frames": {
+        "down": 0,
+        "up": 1,
+        "left": 2,
+        "right": 2
+      },
+      "static_frame_flips": {
+        "right": {
+          "h": true
+        }
+      },
+      "animation_table": {
+        "source_symbol": "sAnimTable_BrendanMayNormal",
+        "source_animation_ids": {
+          "face_down": "ANIM_STD_FACE_SOUTH",
+          "face_up": "ANIM_STD_FACE_NORTH",
+          "face_left": "ANIM_STD_FACE_WEST",
+          "face_right": "ANIM_STD_FACE_EAST",
+          "walk_down": "ANIM_STD_GO_SOUTH",
+          "walk_up": "ANIM_STD_GO_NORTH",
+          "walk_left": "ANIM_STD_GO_WEST",
+          "walk_right": "ANIM_STD_GO_EAST",
+          "fast_walk_down": "ANIM_STD_GO_FAST_SOUTH",
+          "fast_walk_up": "ANIM_STD_GO_FAST_NORTH",
+          "fast_walk_left": "ANIM_STD_GO_FAST_WEST",
+          "fast_walk_right": "ANIM_STD_GO_FAST_EAST",
+          "run_down": "ANIM_RUN_SOUTH",
+          "run_up": "ANIM_RUN_NORTH",
+          "run_left": "ANIM_RUN_WEST",
+          "run_right": "ANIM_RUN_EAST",
+          "spin_down": "ANIM_SPIN_SOUTH",
+          "spin_up": "ANIM_SPIN_NORTH",
+          "spin_left": "ANIM_SPIN_WEST",
+          "spin_right": "ANIM_SPIN_EAST"
+        },
+        "face": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 16
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 16
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 16
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 16,
+              "h_flip": true
+            }
+          ]
+        },
+        "walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            },
+            {
+              "frame": 4,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            },
+            {
+              "frame": 6,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            }
+          ]
+        },
+        "fast_walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 4
+            },
+            {
+              "frame": 0,
+              "duration_frames": 4
+            },
+            {
+              "frame": 4,
+              "duration_frames": 4
+            },
+            {
+              "frame": 0,
+              "duration_frames": 4
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 4
+            },
+            {
+              "frame": 1,
+              "duration_frames": 4
+            },
+            {
+              "frame": 6,
+              "duration_frames": 4
+            },
+            {
+              "frame": 1,
+              "duration_frames": 4
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 4
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4
+            },
+            {
+              "frame": 8,
+              "duration_frames": 4
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4,
+              "h_flip": true
+            }
+          ]
+        },
+        "run": {
+          "down": [
+            {
+              "frame": 12,
+              "duration_frames": 5
+            },
+            {
+              "frame": 9,
+              "duration_frames": 3
+            },
+            {
+              "frame": 13,
+              "duration_frames": 5
+            },
+            {
+              "frame": 9,
+              "duration_frames": 3
+            }
+          ],
+          "up": [
+            {
+              "frame": 14,
+              "duration_frames": 5
+            },
+            {
+              "frame": 10,
+              "duration_frames": 3
+            },
+            {
+              "frame": 15,
+              "duration_frames": 5
+            },
+            {
+              "frame": 10,
+              "duration_frames": 3
+            }
+          ],
+          "left": [
+            {
+              "frame": 16,
+              "duration_frames": 5
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3
+            },
+            {
+              "frame": 17,
+              "duration_frames": 5
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3
+            }
+          ],
+          "right": [
+            {
+              "frame": 16,
+              "duration_frames": 5,
+              "h_flip": true
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3,
+              "h_flip": true
+            },
+            {
+              "frame": 17,
+              "duration_frames": 5,
+              "h_flip": true
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3,
+              "h_flip": true
+            }
+          ]
+        },
+        "spin": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            }
+          ]
+        }
+      },
+      "source_trace": [
+        "include/constants/event_objects.h:OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL",
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_BrendanNormalRunning",
+        "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_RivalBrendanNormal",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_BrendanNormal",
+        "src/data/object_events/object_event_anims.h:sAnimTable_BrendanMayNormal",
+        "src/data/object_events/object_event_anims.h:sAnim_RunSouth/sAnim_RunNorth/sAnim_RunWest/sAnim_RunEast",
+        "src/data/object_events/object_event_anims.h:sAnim_SpinSouth/sAnim_SpinNorth/sAnim_SpinWest/sAnim_SpinEast",
+        "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_walk_animation_not_runtime_driven",
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+        },
+        {
+          "code": "rival_running_spin_animation_not_runtime_driven",
+          "detail": "The imported sheet preserves the source walking+running frame data and Brendan/May animation table metadata; this runtime slice does not yet drive run, fast-walk, or spin object-event animation commands."
+        }
+      ]
+    },
+    "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL": {
+      "graphics_id": "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
+      "source_symbol": "gObjectEventPic_MayNormalRunning",
+      "source_pic_table": "sPicTable_MayNormal",
+      "source_graphics_info": "gObjectEventGraphicsInfo_RivalMayNormal",
+      "source_constant_value": 105,
+      "source_image": "graphics/object_events/pics/people/may/walking.png",
+      "source_images": [
+        "graphics/object_events/pics/people/may/walking.png",
+        "graphics/object_events/pics/people/may/running.png"
+      ],
+      "image": "res://assets/generated/object_events/rival_may_normal.png",
+      "image_project_path": "assets/generated/object_events/rival_may_normal.png",
+      "image_size": {
+        "w": 288,
+        "h": 32
+      },
+      "frame_size": {
+        "w": 16,
+        "h": 32
+      },
+      "columns": 18,
+      "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_MAY",
+      "reflection_palette_tag": "OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": false,
+      "tracks": "TRACKS_FOOT",
+      "oam": "&gObjectEventBaseOam_16x32",
+      "subsprite_tables": "sOamTables_16x32",
+      "static_frames": {
+        "down": 0,
+        "up": 1,
+        "left": 2,
+        "right": 2
+      },
+      "static_frame_flips": {
+        "right": {
+          "h": true
+        }
+      },
+      "animation_table": {
+        "source_symbol": "sAnimTable_BrendanMayNormal",
+        "source_animation_ids": {
+          "face_down": "ANIM_STD_FACE_SOUTH",
+          "face_up": "ANIM_STD_FACE_NORTH",
+          "face_left": "ANIM_STD_FACE_WEST",
+          "face_right": "ANIM_STD_FACE_EAST",
+          "walk_down": "ANIM_STD_GO_SOUTH",
+          "walk_up": "ANIM_STD_GO_NORTH",
+          "walk_left": "ANIM_STD_GO_WEST",
+          "walk_right": "ANIM_STD_GO_EAST",
+          "fast_walk_down": "ANIM_STD_GO_FAST_SOUTH",
+          "fast_walk_up": "ANIM_STD_GO_FAST_NORTH",
+          "fast_walk_left": "ANIM_STD_GO_FAST_WEST",
+          "fast_walk_right": "ANIM_STD_GO_FAST_EAST",
+          "run_down": "ANIM_RUN_SOUTH",
+          "run_up": "ANIM_RUN_NORTH",
+          "run_left": "ANIM_RUN_WEST",
+          "run_right": "ANIM_RUN_EAST",
+          "spin_down": "ANIM_SPIN_SOUTH",
+          "spin_up": "ANIM_SPIN_NORTH",
+          "spin_left": "ANIM_SPIN_WEST",
+          "spin_right": "ANIM_SPIN_EAST"
+        },
+        "face": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 16
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 16
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 16
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 16,
+              "h_flip": true
+            }
+          ]
+        },
+        "walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            },
+            {
+              "frame": 4,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            },
+            {
+              "frame": 6,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            }
+          ]
+        },
+        "fast_walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 4
+            },
+            {
+              "frame": 0,
+              "duration_frames": 4
+            },
+            {
+              "frame": 4,
+              "duration_frames": 4
+            },
+            {
+              "frame": 0,
+              "duration_frames": 4
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 4
+            },
+            {
+              "frame": 1,
+              "duration_frames": 4
+            },
+            {
+              "frame": 6,
+              "duration_frames": 4
+            },
+            {
+              "frame": 1,
+              "duration_frames": 4
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 4
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4
+            },
+            {
+              "frame": 8,
+              "duration_frames": 4
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 4,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 4,
+              "h_flip": true
+            }
+          ]
+        },
+        "run": {
+          "down": [
+            {
+              "frame": 12,
+              "duration_frames": 5
+            },
+            {
+              "frame": 9,
+              "duration_frames": 3
+            },
+            {
+              "frame": 13,
+              "duration_frames": 5
+            },
+            {
+              "frame": 9,
+              "duration_frames": 3
+            }
+          ],
+          "up": [
+            {
+              "frame": 14,
+              "duration_frames": 5
+            },
+            {
+              "frame": 10,
+              "duration_frames": 3
+            },
+            {
+              "frame": 15,
+              "duration_frames": 5
+            },
+            {
+              "frame": 10,
+              "duration_frames": 3
+            }
+          ],
+          "left": [
+            {
+              "frame": 16,
+              "duration_frames": 5
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3
+            },
+            {
+              "frame": 17,
+              "duration_frames": 5
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3
+            }
+          ],
+          "right": [
+            {
+              "frame": 16,
+              "duration_frames": 5,
+              "h_flip": true
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3,
+              "h_flip": true
+            },
+            {
+              "frame": 17,
+              "duration_frames": 5,
+              "h_flip": true
+            },
+            {
+              "frame": 11,
+              "duration_frames": 3,
+              "h_flip": true
+            }
+          ]
+        },
+        "spin": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 2
+            },
+            {
+              "frame": 0,
+              "duration_frames": 2
+            },
+            {
+              "frame": 2,
+              "duration_frames": 2,
+              "h_flip": true
+            },
+            {
+              "frame": 1,
+              "duration_frames": 2
+            }
+          ]
+        }
+      },
+      "source_trace": [
+        "include/constants/event_objects.h:OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_MayNormalRunning",
+        "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_RivalMayNormal",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_MayNormal",
+        "src/data/object_events/object_event_anims.h:sAnimTable_BrendanMayNormal",
+        "src/data/object_events/object_event_anims.h:sAnim_RunSouth/sAnim_RunNorth/sAnim_RunWest/sAnim_RunEast",
+        "src/data/object_events/object_event_anims.h:sAnim_SpinSouth/sAnim_SpinNorth/sAnim_SpinWest/sAnim_SpinEast",
+        "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_RIVAL_MAY_NORMAL"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_walk_animation_not_runtime_driven",
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+        },
+        {
+          "code": "rival_running_spin_animation_not_runtime_driven",
+          "detail": "The imported sheet preserves the source walking+running frame data and Brendan/May animation table metadata; this runtime slice does not yet drive run, fast-walk, or spin object-event animation commands."
+        }
+      ]
+    },
+    "OBJ_EVENT_GFX_MOM": {
+      "graphics_id": "OBJ_EVENT_GFX_MOM",
+      "source_symbol": "gObjectEventPic_Mom",
+      "source_pic_table": "sPicTable_Mom",
+      "source_graphics_info": "gObjectEventGraphicsInfo_Mom",
+      "source_constant_value": 215,
+      "source_image": "graphics/object_events/pics/people/mom.png",
+      "source_images": [
+        "graphics/object_events/pics/people/mom.png"
+      ],
+      "image": "res://assets/generated/object_events/mom.png",
+      "image_project_path": "assets/generated/object_events/mom.png",
+      "image_size": {
+        "w": 144,
+        "h": 32
+      },
+      "frame_size": {
+        "w": 16,
+        "h": 32
+      },
+      "columns": 9,
+      "rows": 1,
+      "transparency": {
+        "source_palette_index": 0,
+        "rule": "gba_obj_palette_index_0_alpha_0",
+        "source_trace": [
+          "tools/gbagfx/gfx.c:transparent palette index handling",
+          "GBA OBJ 4bpp palette index 0 is transparent"
+        ]
+      },
+      "palette_tag": "OBJ_EVENT_PAL_TAG_NPC_4",
+      "reflection_palette_tag": "",
+      "shadow_size": "SHADOW_SIZE_M",
+      "inanimate": false,
+      "tracks": "TRACKS_FOOT",
+      "oam": "&gObjectEventBaseOam_16x32",
+      "subsprite_tables": "sOamTables_16x32",
+      "static_frames": {
+        "down": 0,
+        "up": 1,
+        "left": 2,
+        "right": 2
+      },
+      "static_frame_flips": {
+        "right": {
+          "h": true
+        }
+      },
+      "animation_table": {
+        "source_symbol": "sAnimTable_Standard",
+        "source_animation_ids": {
+          "face_down": "ANIM_STD_FACE_SOUTH",
+          "face_up": "ANIM_STD_FACE_NORTH",
+          "face_left": "ANIM_STD_FACE_WEST",
+          "face_right": "ANIM_STD_FACE_EAST",
+          "walk_down": "ANIM_STD_GO_SOUTH",
+          "walk_up": "ANIM_STD_GO_NORTH",
+          "walk_left": "ANIM_STD_GO_WEST",
+          "walk_right": "ANIM_STD_GO_EAST"
+        },
+        "face": {
+          "down": [
+            {
+              "frame": 0,
+              "duration_frames": 16
+            }
+          ],
+          "up": [
+            {
+              "frame": 1,
+              "duration_frames": 16
+            }
+          ],
+          "left": [
+            {
+              "frame": 2,
+              "duration_frames": 16
+            }
+          ],
+          "right": [
+            {
+              "frame": 2,
+              "duration_frames": 16,
+              "h_flip": true
+            }
+          ]
+        },
+        "walk": {
+          "down": [
+            {
+              "frame": 3,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            },
+            {
+              "frame": 4,
+              "duration_frames": 8
+            },
+            {
+              "frame": 0,
+              "duration_frames": 8
+            }
+          ],
+          "up": [
+            {
+              "frame": 5,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            },
+            {
+              "frame": 6,
+              "duration_frames": 8
+            },
+            {
+              "frame": 1,
+              "duration_frames": 8
+            }
+          ],
+          "left": [
+            {
+              "frame": 7,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8
+            }
+          ],
+          "right": [
+            {
+              "frame": 7,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 8,
+              "duration_frames": 8,
+              "h_flip": true
+            },
+            {
+              "frame": 2,
+              "duration_frames": 8,
+              "h_flip": true
+            }
+          ]
+        }
+      },
+      "source_trace": [
+        "src/data/object_events/object_event_graphics.h:gObjectEventPic_Mom",
+        "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_Mom",
+        "src/data/object_events/object_event_pic_tables.h:sPicTable_Mom",
+        "src/data/object_events/object_event_anims.h:sAnimTable_Standard",
+        "src/data/object_events/object_event_anims.h:sAnim_FaceSouth/sAnim_FaceNorth/sAnim_FaceWest/sAnim_FaceEast",
+        "src/data/object_events/object_event_anims.h:sAnim_GoSouth/sAnim_GoNorth/sAnim_GoWest/sAnim_GoEast",
+        "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
+        "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_MOM"
+      ],
+      "unsupported": [
+        {
+          "code": "object_event_walk_animation_not_runtime_driven",
+          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
         }
       ]
     }
   },
+  "variable_graphics": {
+    "OBJ_EVENT_GFX_VAR_0": {
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+      "source_var": "VAR_OBJ_GFX_ID_0",
+      "source_resolution": "src/event_object_movement.c:GetObjectEventGraphicsInfo -> VarGetObjectEventGraphicsId",
+      "known_source_candidates": [
+        "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
+        "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL"
+      ],
+      "source_constant_values": {
+        "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL": 100,
+        "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL": 105
+      },
+      "source_trace": [
+        "include/constants/event_objects.h:OBJ_EVENT_GFX_VAR_0",
+        "include/constants/vars.h:VAR_OBJ_GFX_ID_0",
+        "src/event_object_movement.c:GetObjectEventGraphicsInfo",
+        "data/scripts/rival_graphics.inc:Common_EventScript_SetupRivalGfxId"
+      ],
+      "requirements": [
+        {
+          "code": "object_event_var_graphics_requires_source_var",
+          "detail": "Source resolves OBJ_EVENT_GFX_VAR_0 through VAR_OBJ_GFX_ID_0 at runtime, after Common_EventScript_SetupRivalGfxId runs on LittlerootTown transition."
+        }
+      ],
+      "unsupported": []
+    }
+  },
   "stats": {
-    "sprite_count": 1
+    "sprite_count": 11
   }
 }

@@ -34,6 +34,7 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 - `src/data/trainers.party`
 - `src/data/pokemon/species_info.h`
 - `src/data/moves_info.h`
+- `src/data/types_info.h`
 - `src/data/items.h`
 - `src/data/abilities.h`
 - `src/data/pokemon/level_up_learnsets/gen_*.h`
@@ -215,6 +216,24 @@ Current moves export behavior:
 - Converts source move names and descriptions from `COMPOUND_STRING(...)`/`_("")`-style C string literals into UTF-8 `display_text` while preserving source-facing raw text fields and shared description symbols.
 - Writes `data/generated/pokemon/moves.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `moves`.
 - Treats generated move records as data and source-symbol provenance for later battle/runtime work. Move effect behavior, targeting, animation scripts, contest behavior, and additional-effect execution still require separate source C/resource tracing before Godot implementation.
+
+`tools/importer/export_types.py` exports the source Pokemon type info table into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
+
+Current type export behavior:
+
+- Reads `src/data/types_info.h:gTypesInfo` after tracing `include/data.h:struct TypeInfo` and `include/constants/pokemon.h` type/damage-category constants.
+- Preserves source type symbols, numeric ids, display names, generic display text, palette constants, Z-Move/Max Move references, Tera RGB values, damage categories, TM/HM palette values, and explicit boolean fields.
+- Writes `data/generated/pokemon/types.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `types`.
+- Treats generated type records as display/rule input for battle, party, summary, Pokedex, and menu work. Type-effectiveness, move targeting, UI palettes, Tera behavior, and animation/audio presentation remain separate source-backed implementations.
+
+Latest verified type export:
+
+- generated path: `data/generated/pokemon/types.json`
+- manifest category: `pokemon` / `types`
+- type records: 21
+- warnings: 0
+- unsupported fields: 0
+- unresolved names: 0
 
 Latest verified moves export:
 
@@ -507,12 +526,14 @@ Godot-only map overlay export:
 First-pass object-event sprite export:
 
 - generated path: `data/generated/object_events/object_event_sprites.json`
-- generated asset path: `assets/generated/object_events/boy_1.png`
+- generated asset directory: `assets/generated/object_events/`
 - manifest category: `object_event_sprites` / `object_events`
-- current sprite: `OBJ_EVENT_GFX_BOY_1`
-- source trace: `gObjectEventGraphicsInfo_Boy1`, `sPicTable_Boy1`, `overworld_ascending_frames(gObjectEventPic_Boy1, 2, 4)`, `sAnimTable_Standard`, `sFaceDirectionAnimNums`, and `sMoveDirectionAnimNums`
-- current scope: generated static facing frames are `down=0`, `up=1`, `left=2`, `right=2+hFlip`; generated standard walk metadata is `down=3/0/4/0`, `up=5/1/6/1`, `left=7/2/8/2`, and `right=7/2/8/2+hFlip`
-- current runtime scope: placeholders consume static facing frames and right-facing hFlip; full object-event animation tasks and walking foot-cycle playback remain unsupported metadata/future work
+- current sprite records: `OBJ_EVENT_GFX_BRENDAN_NORMAL`, `OBJ_EVENT_GFX_TWIN`, `OBJ_EVENT_GFX_BOY_1`, `OBJ_EVENT_GFX_BOY_2`, `OBJ_EVENT_GFX_FAT_MAN`, `OBJ_EVENT_GFX_PROF_BIRCH`, `OBJ_EVENT_GFX_TRUCK`, `OBJ_EVENT_GFX_MAY_NORMAL`, `OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL`, `OBJ_EVENT_GFX_RIVAL_MAY_NORMAL`, and `OBJ_EVENT_GFX_MOM`
+- variable graphics metadata: `OBJ_EVENT_GFX_VAR_0` resolves through `VAR_OBJ_GFX_ID_0` to source numeric rival graphics constants from `Common_EventScript_SetupRivalGfxId`
+- source trace: `include/constants/event_objects.h`, `src/data/object_events/object_event_graphics_info*.h`, `src/data/object_events/object_event_pic_tables.h`, `src/data/object_events/object_event_graphics.h`, `src/data/object_events/object_event_anims.h`, `src/event_object_movement.c:GetObjectEventGraphicsInfo`, and `data/scripts/rival_graphics.inc`
+- current scope: standard NPC sheets are 144x32 with source static facing frames `down=0`, `up=1`, `left=2`, `right=2+hFlip` and standard walk metadata `down=3/0/4/0`, `up=5/1/6/1`, `left=7/2/8/2`, `right=7/2/8/2+hFlip`; Truck is 48x48 inanimate; Brendan/May player and rival records stitch walking+running source sheets into 288x32 images while preserving run/spin metadata where the source table has it
+- transparency rule: generated object-event PNGs convert GBA OBJ palette index 0 to alpha 0 (`gba_obj_palette_index_0_alpha_0`), preserving visible indexed-palette source colors for nonzero pixels
+- current runtime scope: player and object placeholders consume source frame sizes, static facing frames, right-facing hFlip, Truck rects, tile-center visual anchoring, and `OBJ_EVENT_GFX_VAR_0` resolution; full object-event/player animation tasks, walking foot-cycle playback, rival run/spin driving, and exact movement-task timing remain unsupported metadata/future work
 
 Latest verified additional maps for the first transition slice:
 

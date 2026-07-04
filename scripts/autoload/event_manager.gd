@@ -2217,10 +2217,13 @@ func _build_trainer_battle_start_sequence(
 			"IncrementGameStat(GAME_STAT_TRAINER_BATTLES)",
 			"Task_BattleStart: wait until !FldEffPoison_IsActive()",
 			"BattleTransition_StartOnField",
+			"ClearMirageTowerPulseBlendEffect",
 			"Task_BattleStart: wait until IsBattleTransitionDone()",
 			"PrepareForFollowerNPCBattle",
 			"CleanupOverworldWindowsAndTilemaps",
 			"SetMainCallback2(CB2_InitBattle)",
+			"RestartWildEncounterImmunitySteps",
+			"ClearPoisonStepCounter",
 		],
 		"source_trace": [
 			"src/battle_setup.c:BattleSetup_StartTrainerBattle",
@@ -2284,6 +2287,11 @@ func _trainer_battle_start_steps(transition: Dictionary, battle_type_flags: Arra
 			"presentation_stub": true,
 			"source": "src/battle_setup.c:Task_BattleStart -> BattleTransition_StartOnField",
 		},
+		{
+			"op": "clear_mirage_tower_pulse_blend",
+			"source": "src/battle_setup.c:Task_BattleStart -> ClearMirageTowerPulseBlendEffect",
+			"status": "metadata_only",
+		},
 		{"op": "wait_battle_transition_done", "condition": "IsBattleTransitionDone()", "source": "src/battle_setup.c:Task_BattleStart"},
 		{"op": "prepare_follower_npc_battle", "source": "src/battle_setup.c:Task_BattleStart", "status": "metadata_only"},
 		{"op": "cleanup_overworld_windows_tilemaps", "source": "src/battle_setup.c:Task_BattleStart", "status": "metadata_only"},
@@ -2294,6 +2302,8 @@ func _trainer_battle_start_steps(transition: Dictionary, battle_type_flags: Arra
 			"status": "battle_scene_first_slice_not_source_equivalent",
 			"unsupported_reason": "battle_scene_not_source_equivalent",
 		},
+		{"op": "restart_wild_encounter_immunity_steps", "source": "src/battle_setup.c:Task_BattleStart"},
+		{"op": "clear_poison_step_counter", "var": "VAR_POISON_STEP_COUNTER", "source": "src/battle_setup.c:Task_BattleStart"},
 	]
 
 

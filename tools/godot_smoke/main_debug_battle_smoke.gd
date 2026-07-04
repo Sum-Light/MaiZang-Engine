@@ -61,6 +61,7 @@ func _run() -> void:
 	var move_snapshot: Dictionary = battle_scene.get_ui_snapshot()
 	_assert(String(move_snapshot.get("ui_phase", "")) == "move_select", "expected move select phase")
 	_assert(_array_value(move_snapshot.get("visible_source_windows", [])).has("B_WIN_MOVE_TYPE"), "expected move type source window")
+	_assert(not String(move_snapshot.get("move_type", "")).contains("TYPE_"), "expected generated source type display name in main debug battle")
 	var turn_result: Dictionary = battle_scene.play_player_move(0)
 	await get_tree().process_frame
 	_assert(String(turn_result.get("status", "")) == "ok", "expected debug move round")

@@ -10,6 +10,8 @@ var _sprite_record: Dictionary = {}
 var _sprite_texture: Texture2D = null
 var _sprite_source_rect := Rect2()
 var _sprite_flip_h := false
+var _resolved_graphics_id := ""
+var _graphics_resolution: Dictionary = {}
 
 const BODY_COLORS := [
 	Color(0.86, 0.42, 0.38, 1.0),
@@ -30,7 +32,7 @@ func configure(new_event_data: Dictionary, new_tile_size: int) -> void:
 		int(event_data.get("x", 0)),
 		int(event_data.get("y", 0))
 	))
-	position = Vector2(grid_position.x * tile_size, grid_position.y * tile_size)
+	position = _grid_to_world(grid_position)
 	z_index = grid_position.y
 	_body_color = _color_from_graphics_id(String(event_data.get("graphics_id", "")))
 	_configure_static_sprite()
@@ -39,12 +41,7 @@ func configure(new_event_data: Dictionary, new_tile_size: int) -> void:
 
 func _draw() -> void:
 	if _sprite_texture != null:
-		var dest_rect := Rect2(
-			-float(tile_size) * 0.5,
-			-float(tile_size) * 1.5,
-			float(tile_size),
-			float(tile_size) * 2.0
-		)
+		var dest_rect := _sprite_dest_rect()
 		draw_rect(Rect2(-6, 5, 12, 4), Color(0.05, 0.07, 0.06, 0.35), true)
 		if _sprite_flip_h:
 			draw_set_transform(Vector2.ZERO, 0.0, Vector2(-1.0, 1.0))
@@ -83,6 +80,15 @@ func get_sprite_snapshot() -> Dictionary:
 			int(_sprite_source_rect.size.y),
 		],
 		"h_flip": _sprite_flip_h,
+		"dest_rect": [
+			int(_sprite_dest_rect().position.x),
+			int(_sprite_dest_rect().position.y),
+			int(_sprite_dest_rect().size.x),
+			int(_sprite_dest_rect().size.y),
+		],
+		"world_position": [int(position.x), int(position.y)],
+		"resolved_graphics_id": _resolved_graphics_id,
+		"graphics_resolution": _graphics_resolution.duplicate(true),
 		"source_trace": _sprite_record.get("source_trace", []),
 		"unsupported": _sprite_record.get("unsupported", []),
 	}
@@ -93,16 +99,25 @@ func _configure_static_sprite() -> void:
 	_sprite_texture = null
 	_sprite_source_rect = Rect2()
 	_sprite_flip_h = false
+	_resolved_graphics_id = ""
+	_graphics_resolution = {}
 
 	var graphics_id := String(event_data.get("graphics_id", ""))
 	if graphics_id.is_empty():
 		return
+	_resolved_graphics_id = graphics_id
 
 	var registry := _registry()
 	if registry == null or not registry.has_method("get_object_event_sprite_record"):
 		return
 
-	var record = registry.get_object_event_sprite_record(graphics_id)
+	if registry.has_method("resolve_object_event_graphics_id"):
+		var resolution = registry.resolve_object_event_graphics_id(graphics_id, _game_state())
+		if typeof(resolution) == TYPE_DICTIONARY:
+			_graphics_resolution = resolution.duplicate(true)
+			_resolved_graphics_id = String(resolution.get("graphics_id", graphics_id))
+
+	var record = registry.get_object_event_sprite_record(_resolved_graphics_id)
 	if typeof(record) != TYPE_DICTIONARY or record.is_empty():
 		return
 
@@ -161,6 +176,25 @@ func _frame_size(record: Dictionary) -> Vector2:
 	)
 
 
+func _sprite_dest_rect() -> Rect2:
+	var frame_size := _sprite_source_rect.size
+	if frame_size == Vector2.ZERO:
+		frame_size = Vector2(float(tile_size), float(tile_size) * 2.0)
+	return Rect2(
+		-frame_size.x * 0.5,
+		-frame_size.y + float(tile_size) * 0.5,
+		frame_size.x,
+		frame_size.y
+	)
+
+
+func _grid_to_world(value: Vector2i) -> Vector2:
+	return Vector2(
+		value.x * tile_size + tile_size * 0.5,
+		value.y * tile_size + tile_size * 0.5
+	)
+
+
 func _static_frame_index(record: Dictionary, facing_direction: String) -> int:
 	var static_frames = record.get("static_frames", {})
 	if typeof(static_frames) != TYPE_DICTIONARY:
@@ -200,6 +234,12 @@ func _facing_direction() -> String:
 func _registry() -> Node:
 	if is_inside_tree():
 		return get_node_or_null("/root/DataRegistry")
+	return null
+
+
+func _game_state() -> Node:
+	if is_inside_tree():
+		return get_node_or_null("/root/GameState")
 	return null
 
 

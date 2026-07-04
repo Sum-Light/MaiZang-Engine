@@ -37,6 +37,8 @@ var _species_records_by_symbol: Dictionary = {}
 var _species_records_by_id: Dictionary = {}
 var _move_records_by_symbol: Dictionary = {}
 var _move_records_by_id: Dictionary = {}
+var _type_records_by_symbol: Dictionary = {}
+var _type_records_by_id: Dictionary = {}
 var _ability_records_by_symbol: Dictionary = {}
 var _ability_records_by_id: Dictionary = {}
 var _item_records_by_symbol: Dictionary = {}
@@ -286,6 +288,80 @@ func get_object_event_sprite_record(
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
+func get_object_event_variable_graphics_record(
+	graphics_id: String,
+	category: String = DEFAULT_OBJECT_EVENT_SPRITE_CATEGORY
+) -> Dictionary:
+	var sprite_data := get_object_event_sprite_data(category)
+	if sprite_data.is_empty():
+		return {}
+
+	var variable_graphics = sprite_data.get("variable_graphics", {})
+	if typeof(variable_graphics) != TYPE_DICTIONARY:
+		return {}
+
+	var record = variable_graphics.get(graphics_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func resolve_object_event_graphics_id(
+	graphics_id: String,
+	game_state: Node = null,
+	category: String = DEFAULT_OBJECT_EVENT_SPRITE_CATEGORY
+) -> Dictionary:
+	var direct_record := get_object_event_sprite_record(graphics_id, category)
+	if not direct_record.is_empty():
+		return {
+			"resolved": true,
+			"graphics_id": graphics_id,
+			"source_graphics_id": graphics_id,
+			"source": "direct_object_event_graphics_id",
+		}
+
+	var variable_record := get_object_event_variable_graphics_record(graphics_id, category)
+	if variable_record.is_empty():
+		return {
+			"resolved": false,
+			"graphics_id": graphics_id,
+			"source_graphics_id": graphics_id,
+			"unsupported_reason": "missing_object_event_sprite_record",
+		}
+
+	var source_var := String(variable_record.get("source_var", ""))
+	var var_value := 0
+	var var_is_set := false
+	if game_state != null and game_state.has_method("get_var") and not source_var.is_empty():
+		var_value = int(game_state.get_var(source_var, 0))
+		var vars = game_state.get("vars")
+		var_is_set = typeof(vars) == TYPE_DICTIONARY and vars.has(source_var)
+
+	var candidate_constants = variable_record.get("source_constant_values", {})
+	var candidates = variable_record.get("known_source_candidates", [])
+	if typeof(candidate_constants) == TYPE_DICTIONARY and typeof(candidates) == TYPE_ARRAY:
+		for candidate in candidates:
+			var candidate_id := String(candidate)
+			if int(candidate_constants.get(candidate_id, -1)) == var_value:
+				return {
+					"resolved": true,
+					"graphics_id": candidate_id,
+					"source_graphics_id": graphics_id,
+					"source_var": source_var,
+					"source_var_value": var_value,
+					"source": String(variable_record.get("source_resolution", "")),
+				}
+
+	return {
+		"resolved": false,
+		"graphics_id": graphics_id,
+		"source_graphics_id": graphics_id,
+		"source_var": source_var,
+		"source_var_value": var_value,
+		"source_var_is_set": var_is_set,
+		"unsupported_reason": "object_event_var_graphics_unresolved",
+		"source_trace": variable_record.get("source_trace", []),
+	}
+
+
 func get_pokemon_data(category: String = "species") -> Dictionary:
 	if _pokemon_data_by_category.has(category):
 		var cached = _pokemon_data_by_category[category]
@@ -333,6 +409,10 @@ func get_moves_data() -> Dictionary:
 	return get_pokemon_data("moves")
 
 
+func get_types_data() -> Dictionary:
+	return get_pokemon_data("types")
+
+
 func get_move_record(move_id_or_symbol) -> Dictionary:
 	if typeof(move_id_or_symbol) == TYPE_INT:
 		return get_move_record_by_id(int(move_id_or_symbol))
@@ -357,6 +437,33 @@ func get_move_record_by_symbol(move_symbol: String) -> Dictionary:
 func get_move_record_by_id(move_id: int) -> Dictionary:
 	_ensure_move_indexes()
 	var record = _move_records_by_id.get(move_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_type_record(type_id_or_symbol) -> Dictionary:
+	if typeof(type_id_or_symbol) == TYPE_INT:
+		return get_type_record_by_id(int(type_id_or_symbol))
+	if typeof(type_id_or_symbol) == TYPE_FLOAT:
+		return get_type_record_by_id(int(type_id_or_symbol))
+
+	var key := String(type_id_or_symbol)
+	if key.is_valid_int():
+		return get_type_record_by_id(int(key))
+	return get_type_record_by_symbol(key)
+
+
+func get_type_record_by_symbol(type_symbol: String) -> Dictionary:
+	_ensure_type_indexes()
+	var normalized := type_symbol
+	if not normalized.begins_with("TYPE_"):
+		normalized = "TYPE_%s" % normalized.to_upper()
+	var record = _type_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_type_record_by_id(type_id: int) -> Dictionary:
+	_ensure_type_indexes()
+	var record = _type_records_by_id.get(type_id, {})
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
@@ -666,6 +773,8 @@ func _index_manifest() -> void:
 	_species_records_by_id = {}
 	_move_records_by_symbol = {}
 	_move_records_by_id = {}
+	_type_records_by_symbol = {}
+	_type_records_by_id = {}
 	_ability_records_by_symbol = {}
 	_ability_records_by_id = {}
 	_item_records_by_symbol = {}
@@ -829,6 +938,26 @@ func _ensure_move_indexes() -> void:
 			_move_records_by_symbol[move_symbol] = record
 		if record.has("id") and record.get("id") != null:
 			_move_records_by_id[int(record.get("id"))] = record
+
+
+func _ensure_type_indexes() -> void:
+	if not _type_records_by_symbol.is_empty() or not _type_records_by_id.is_empty():
+		return
+
+	var types_data := get_types_data()
+	var type_records = types_data.get("types", {})
+	if typeof(type_records) != TYPE_DICTIONARY:
+		return
+
+	for symbol in type_records.keys():
+		var record = type_records[symbol]
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var type_symbol := String(record.get("symbol", symbol))
+		if not type_symbol.is_empty():
+			_type_records_by_symbol[type_symbol] = record
+		if record.has("id") and record.get("id") != null:
+			_type_records_by_id[int(record.get("id"))] = record
 
 
 func _ensure_ability_indexes() -> void:

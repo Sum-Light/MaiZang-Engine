@@ -5,6 +5,8 @@ const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
 const MAP_RUNTIME_SCRIPT := preload("res://scripts/autoload/map_runtime.gd")
 const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
 const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
+const BATTLE_ENGINE_SCRIPT := preload("res://scripts/autoload/battle_engine.gd")
+const PARTY_RUNTIME_SCRIPT := preload("res://scripts/autoload/party_runtime.gd")
 const START_MAP := "MAP_LITTLEROOT_TOWN"
 const BRENDANS_HOUSE_1F := "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F"
 const MAYS_HOUSE_1F := "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F"
@@ -34,6 +36,13 @@ func _init() -> void:
 	manager.configure_map_runtime(runtime)
 	manager.configure_game_state(game_state)
 	manager.configure_data_registry(registry)
+	var battle_engine = BATTLE_ENGINE_SCRIPT.new()
+	battle_engine.configure_registry(registry)
+	var party_runtime = PARTY_RUNTIME_SCRIPT.new()
+	party_runtime.configure_registry(registry)
+	party_runtime.configure_battle_engine(battle_engine)
+	manager.configure_battle_engine(battle_engine)
+	manager.configure_party_runtime(party_runtime)
 
 	var fallback_script_data := script_data.duplicate(true)
 	var fallback_scripts: Dictionary = fallback_script_data.get("scripts", {})
@@ -78,6 +87,16 @@ func _init() -> void:
 	manager.transition_sequence_requested.connect(func(sequence: Dictionary) -> void:
 		captured_sequences.append(sequence)
 	)
+	var trainer_battle_request := manager.request_trainer_battle_start({
+		"trainer_id": "TRAINER_SAWYER_1",
+		"map": START_MAP,
+		"position": Vector2i(10, 12),
+		"debug_fixture": true,
+		"debug_allow_empty_party_fallback": true,
+		"battle_origin": "debug_trainer_npc",
+	})
+	var trainer_battle_sequence := _dict_value(trainer_battle_request.get("sequence", {}))
+	var trainer_battle_ops := _step_ops(trainer_battle_sequence)
 	manager.dispatch_interaction({
 		"type": "object_event",
 		"script": "LittlerootTown_EventScript_Twin",
@@ -169,6 +188,23 @@ func _init() -> void:
 	_assert(int(global_fallback_preview.get("source_byte_count", 0)) == 29, "unexpected global fallback byte count")
 	_assert(bool(global_fallback_preview.get("terminator_present", false)), "expected global fallback terminator")
 	_assert(String(global_fallback_preview.get("text", "")).find("\n") != -1, "expected global fallback display newline")
+	_assert(trainer_battle_request.get("status", "") == "sequence_requested", "expected trainer battle sequence request")
+	_assert(trainer_battle_sequence.get("battle_kind", "") == "trainer", "expected trainer battle sequence kind")
+	_assert(trainer_battle_ops.has("clear_mirage_tower_pulse_blend"), "expected trainer battle Mirage Tower cleanup step")
+	_assert(trainer_battle_ops.has("restart_wild_encounter_immunity_steps"), "expected trainer battle wild immunity reset step")
+	_assert(trainer_battle_ops.has("clear_poison_step_counter"), "expected trainer battle poison step counter clear")
+	_assert(
+		trainer_battle_ops.find("battle_transition_start") < trainer_battle_ops.find("clear_mirage_tower_pulse_blend"),
+		"expected trainer battle cleanup after BattleTransition_StartOnField"
+	)
+	_assert(
+		trainer_battle_ops.find("set_main_callback") < trainer_battle_ops.find("restart_wild_encounter_immunity_steps"),
+		"expected trainer battle immunity reset after CB2_InitBattle callback handoff"
+	)
+	_assert(
+		trainer_battle_ops.find("restart_wild_encounter_immunity_steps") < trainer_battle_ops.find("clear_poison_step_counter"),
+		"expected trainer battle poison counter clear after immunity reset"
+	)
 	_assert(player_position_after_coord_dispatch == Vector2i(10, 2), "expected coord dispatch to apply player movement")
 	_assert(
 		twin_position_after_coord_dispatch == Vector2i(16, 10),
@@ -562,6 +598,8 @@ func _init() -> void:
 	connection_game_state.free()
 	connection_runtime.free()
 	connection_vm.free()
+	party_runtime.free()
+	battle_engine.free()
 	manager.free()
 	fallback_manager.free()
 	game_state.free()
@@ -620,6 +658,10 @@ func _step_ops(sequence: Dictionary) -> Array:
 		if typeof(step) == TYPE_DICTIONARY:
 			ops.append(String(step.get("op", "")))
 	return ops
+
+
+func _dict_value(value) -> Dictionary:
+	return value if typeof(value) == TYPE_DICTIONARY else {}
 
 
 func _first_step(sequence: Dictionary, op: String) -> Dictionary:

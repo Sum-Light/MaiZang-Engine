@@ -54,4 +54,7 @@ func _on_move_finished() -> void:
 
 
 func _grid_to_world(value: Vector2i) -> Vector2:
-	return Vector2(value.x * tile_size, value.y * tile_size)
+	return Vector2(
+		value.x * tile_size + tile_size * 0.5,
+		value.y * tile_size + tile_size * 0.5
+	)

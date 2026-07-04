@@ -15,7 +15,8 @@
     "tools/importer/export_natures.py",
     "tools/importer/export_evolutions.py",
     "tools/importer/export_map_overlays.py",
-    "tools/importer/export_object_event_sprites.py"
+    "tools/importer/export_object_event_sprites.py",
+    "tools/importer/export_types.py"
   ],
   "maps": [
     {
@@ -130,6 +131,18 @@
       "movement_count": 13,
       "text_count": 7,
       "charmap_warning_count": 0
+    },
+    {
+      "scope": "shared",
+      "name": "shared_rival_graphics",
+      "path": "data/generated/scripts/shared_rival_graphics.json",
+      "source_files": [
+        "data/scripts/rival_graphics.inc"
+      ],
+      "script_count": 9,
+      "movement_count": 0,
+      "text_count": 0,
+      "charmap_warning_count": 0
     }
   ],
   "texts": [
@@ -226,6 +239,14 @@
       "condition_entry_count": 291,
       "warning_count": 0,
       "unresolved_value_count": 0
+    },
+    {
+      "category": "types",
+      "path": "data/generated/pokemon/types.json",
+      "type_count": 21,
+      "warning_count": 0,
+      "unsupported_field_count": 0,
+      "unresolved_name_count": 0
     }
   ],
   "map_overlays": [
@@ -241,7 +262,7 @@
     {
       "category": "object_events",
       "path": "data/generated/object_events/object_event_sprites.json",
-      "sprite_count": 1
+      "sprite_count": 11
     }
   ]
 }
