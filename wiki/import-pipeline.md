@@ -561,3 +561,21 @@ Latest verified global text export:
 - preprocessor decisions: 6, all from `data/text/pc_transfer.inc` `IS_FRLG` branches
 - preprocessor warnings: 0
 - unsupported directives: 0
+
+Latest verified battle string export:
+
+- generated path: `data/generated/battle/strings.json`
+- manifest category: `texts` / `battle_strings`
+- source files: `include/constants/battle_string_ids.h`, `src/battle_message.c`, and `charmap.txt`
+- source trace: `enum StringID`, `gBattleStringsTable`, `BattleStringExpandPlaceholders`, `ExpandBattleTextBuffPlaceholders`, and `BattleStringExpandPlaceholdersToDisplayedString`
+- string id records: 697, including 7 controller/runtime special ids, `STRINGID_TABLE_START`, `STRINGID_COUNT`, and 688 table-backed ids
+- battle string table entries: 688
+- declared `gText_`/`sText_` battle text records: 173
+- tracked battle UI labels: 19, including `gText_WhatWillPkmnDo`, `gText_BattleMenu`, `gText_MoveInterfacePP`, `gText_MoveInterfaceType`, and `gText_MoveInterfacePpType`
+- placeholder records: 936 direct text placeholders with semantic tags for attacker, target, move, item, ability, side, trainer, player, and Pokemon nicknames where present
+- runtime placeholder families: 12 traced `B_BUFF_*` families, including move, type, stat, species, ability, item, number, battle string, flavor, and Pokemon nickname buffer expansion
+- text controls: 1682 records preserving line breaks, waits, color/window controls, palette/background/text-color commands, escape/up-arrow tokens, and source offsets
+- audio scope: 17 audio cue records marked `metadata_only`; playback remains unsupported by current scope
+- unsupported table entries: 0
+- unsupported text tokens: 0
+- runtime access: `DataRegistry.get_battle_string_data`, `get_battle_string_record`, `get_battle_string_by_id`, `get_battle_text_record`, and first-pass `format_battle_message`

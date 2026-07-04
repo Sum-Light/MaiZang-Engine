@@ -13,6 +13,7 @@ const GENERATED_START_TILESET_PATH := "res://data/generated/tilesets/littleroot_
 const GENERATED_START_SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
 const DEFAULT_MAP_OVERLAY_CATEGORY := "debug_fixtures"
 const DEFAULT_OBJECT_EVENT_SPRITE_CATEGORY := "object_events"
+const DEFAULT_BATTLE_STRING_CATEGORY := "battle_strings"
 
 var import_report: Dictionary = {}
 var _manifest_data: Dictionary = {}
@@ -54,6 +55,9 @@ var _evolution_records_by_species_symbol: Dictionary = {}
 var _evolution_records_by_species_id: Dictionary = {}
 var _pre_evolution_records_by_target_symbol: Dictionary = {}
 var _pre_evolution_records_by_target_id: Dictionary = {}
+var _battle_string_records_by_symbol: Dictionary = {}
+var _battle_string_records_by_id: Dictionary = {}
+var _battle_text_records_by_label: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -229,6 +233,105 @@ func get_text_display_text(text_label: String, category: String = "global") -> S
 	if record.is_empty():
 		return ""
 	return String(record.get("display_text", ""))
+
+
+func get_battle_string_data() -> Dictionary:
+	return get_text_data(DEFAULT_BATTLE_STRING_CATEGORY)
+
+
+func get_battle_string_record(battle_string_id_or_symbol) -> Dictionary:
+	if typeof(battle_string_id_or_symbol) == TYPE_INT:
+		return get_battle_string_by_id(int(battle_string_id_or_symbol))
+	if typeof(battle_string_id_or_symbol) == TYPE_FLOAT:
+		return get_battle_string_by_id(int(battle_string_id_or_symbol))
+
+	var key := String(battle_string_id_or_symbol)
+	if key.is_valid_int():
+		return get_battle_string_by_id(int(key))
+
+	_ensure_battle_string_indexes()
+	var text_record = _battle_text_records_by_label.get(key, {})
+	if typeof(text_record) == TYPE_DICTIONARY and not text_record.is_empty():
+		return text_record
+
+	var normalized := _normalize_battle_string_symbol(key)
+	var record = _battle_string_records_by_symbol.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_battle_string_by_id(string_id: int) -> Dictionary:
+	_ensure_battle_string_indexes()
+	var record = _battle_string_records_by_id.get(string_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_battle_text_record(text_label: String) -> Dictionary:
+	_ensure_battle_string_indexes()
+	var record = _battle_text_records_by_label.get(text_label, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func format_battle_message(battle_message_id_or_symbol, context: Dictionary = {}) -> Dictionary:
+	var record := get_battle_string_record(battle_message_id_or_symbol)
+	if record.is_empty():
+		return {
+			"status": "missing_record",
+			"text": "",
+			"unexpanded_text": "",
+			"message": battle_message_id_or_symbol,
+			"substitutions": [],
+			"unresolved_placeholders": [],
+			"text_controls": [],
+			"metadata_only": [],
+			"unsupported": [{
+				"reason": "battle_message_record_missing",
+				"message": str(battle_message_id_or_symbol),
+			}],
+		}
+
+	var expanded := String(record.get("display_text", ""))
+	var substitutions := []
+	var unresolved := []
+	var placeholders = record.get("placeholders", [])
+	if typeof(placeholders) == TYPE_ARRAY:
+		for placeholder in placeholders:
+			if typeof(placeholder) != TYPE_DICTIONARY:
+				continue
+			var token_name := String(placeholder.get("token", ""))
+			var raw_token := String(placeholder.get("raw", "{%s}" % token_name))
+			var value = _battle_message_context_value(context, token_name, raw_token)
+			if value == null:
+				unresolved.append(placeholder)
+				continue
+			expanded = expanded.replace(raw_token, String(value))
+			substitutions.append({
+				"token": token_name,
+				"raw": raw_token,
+				"value": String(value),
+				"category": String(placeholder.get("category", "")),
+				"semantic_tags": placeholder.get("semantic_tags", []),
+			})
+
+	var unsupported := []
+	var record_unsupported = record.get("unsupported", [])
+	if typeof(record_unsupported) == TYPE_ARRAY:
+		unsupported.append_array(record_unsupported)
+	var unsupported_tokens = record.get("unsupported_tokens", [])
+	if typeof(unsupported_tokens) == TYPE_ARRAY:
+		unsupported.append_array(unsupported_tokens)
+
+	return {
+		"status": "partial" if not unresolved.is_empty() or not unsupported.is_empty() else "ok",
+		"text": expanded,
+		"unexpanded_text": String(record.get("display_text", "")),
+		"record": record,
+		"substitutions": substitutions,
+		"unresolved_placeholders": unresolved,
+		"text_controls": record.get("text_controls", []),
+		"metadata_only": record.get("metadata_only", []),
+		"audio_cues": record.get("audio_cues", []),
+		"unsupported": unsupported,
+	}
 
 
 func get_map_overlays_data(category: String = DEFAULT_MAP_OVERLAY_CATEGORY) -> Dictionary:
@@ -790,6 +893,9 @@ func _index_manifest() -> void:
 	_evolution_records_by_species_id = {}
 	_pre_evolution_records_by_target_symbol = {}
 	_pre_evolution_records_by_target_id = {}
+	_battle_string_records_by_symbol = {}
+	_battle_string_records_by_id = {}
+	_battle_text_records_by_label = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -898,6 +1004,53 @@ func _script_data_for_entry(entry: Dictionary) -> Dictionary:
 	var script_data := _load_json_object(_resource_path(path), "generated script")
 	_script_data_by_path[path] = script_data
 	return script_data
+
+
+func _ensure_battle_string_indexes() -> void:
+	if (
+		not _battle_string_records_by_symbol.is_empty()
+		or not _battle_string_records_by_id.is_empty()
+		or not _battle_text_records_by_label.is_empty()
+	):
+		return
+
+	var battle_data := get_battle_string_data()
+	if battle_data.is_empty():
+		return
+
+	var string_ids = battle_data.get("string_ids", {})
+	if typeof(string_ids) == TYPE_DICTIONARY:
+		for symbol in string_ids.keys():
+			var enum_record = string_ids[symbol]
+			if typeof(enum_record) != TYPE_DICTIONARY:
+				continue
+			var enum_symbol := String(enum_record.get("symbol", symbol))
+			if not enum_symbol.is_empty():
+				_battle_string_records_by_symbol[enum_symbol] = enum_record
+			if enum_record.has("id") and enum_record.get("id") != null:
+				_battle_string_records_by_id[int(enum_record.get("id"))] = enum_record
+
+	var table_records = battle_data.get("battle_strings_table", {})
+	if typeof(table_records) == TYPE_DICTIONARY:
+		for symbol in table_records.keys():
+			var record = table_records[symbol]
+			if typeof(record) != TYPE_DICTIONARY:
+				continue
+			var battle_symbol := String(record.get("symbol", symbol))
+			if not battle_symbol.is_empty():
+				_battle_string_records_by_symbol[battle_symbol] = record
+			if record.has("id") and record.get("id") != null:
+				_battle_string_records_by_id[int(record.get("id"))] = record
+
+	var text_records = battle_data.get("texts", {})
+	if typeof(text_records) == TYPE_DICTIONARY:
+		for label in text_records.keys():
+			var text_record = text_records[label]
+			if typeof(text_record) != TYPE_DICTIONARY:
+				continue
+			var text_label := String(text_record.get("label", label))
+			if not text_label.is_empty():
+				_battle_text_records_by_label[text_label] = text_record
 
 
 func _ensure_species_indexes() -> void:
@@ -1156,6 +1309,26 @@ func _normalize_species_symbol(species_symbol: String) -> String:
 	if not normalized.begins_with("SPECIES_"):
 		normalized = "SPECIES_%s" % normalized.to_upper()
 	return normalized
+
+
+func _normalize_battle_string_symbol(battle_string_symbol: String) -> String:
+	var normalized := battle_string_symbol
+	if normalized.is_empty():
+		return ""
+	if not normalized.begins_with("STRINGID_"):
+		normalized = "STRINGID_%s" % normalized.to_upper()
+	return normalized
+
+
+func _battle_message_context_value(context: Dictionary, token_name: String, raw_token: String):
+	if context.has(token_name):
+		return context.get(token_name)
+	if context.has(raw_token):
+		return context.get(raw_token)
+	var lowercase := token_name.to_lower()
+	if context.has(lowercase):
+		return context.get(lowercase)
+	return null
 
 
 func _normalize_map_symbol(map_symbol: String) -> String:

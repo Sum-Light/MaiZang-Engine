@@ -407,3 +407,9 @@ Reason: Source step handling updates `VAR_REPEL_STEP_COUNT` before standard wild
 Decision: Keep the source `WildEncounterCheck` encounter-rate pipeline in `EncounterEngine.check_encounter_rate`, with structured modifier metadata for bike, White/Black Flute flags, Cleanse Tag, Lure, lead encounter-rate abilities, and the final `MAX_ENCOUNTER_RATE` cap. Let `try_standard_encounter` call that pipeline only for standard land/water/rock-smash paths, and automatically set the rock-smash `ignoreAbility` behavior.
 
 Reason: The source rate pipeline is ordered integer math, and moving any modifier or cap changes visible encounter odds. Keeping it in one domain function lets field-step code pass runtime state without duplicating probability rules, while preserving the source distinction that fishing, Sweet Scent, and debug paths do not call `WildEncounterCheck`.
+
+## 2026-07-05 - Generate battle strings before battle VM text output
+
+Decision: Export `enum StringID`, `gBattleStringsTable`, declared battle UI text, text controls, direct placeholders, `B_BUFF_*` runtime placeholder family metadata, and audio cue symbols into `data/generated/battle/strings.json`, then expose them through `DataRegistry` instead of hand-authoring battle text constants in runtime or presentation code.
+
+Reason: Source battle text is shared by battle scripts, controller messages, HUD prompts, move-learning flow, capture, Safari, item/ability/status messaging, and future event logs. Keeping it generated and source-traced lets Godot preserve string ids, placeholder semantics, text-control timing/display intent, and metadata-only audio cues while leaving full `BattleStringExpandPlaceholders` buffer behavior for the battle VM instead of guessing it in scene code.

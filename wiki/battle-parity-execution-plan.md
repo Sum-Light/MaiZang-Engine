@@ -77,26 +77,28 @@ B0 completion metrics: `battle_parity_report.json` currently has 8571 coverage r
 
 ## B1 - Generated Battle Strings And Text Printer Data
 
-- [ ] B1.1 Export battle string ids.
+- [x] B1.1 Export battle string ids.
   - Source: `include/constants/battle_string_ids.h`.
   - Target importer: `tools/importer/export_battle_strings.py`.
   - Output: `data/generated/battle/strings.json`.
   - Validate: `STRINGID_*` numeric ids, symbol names, and source locations round trip.
 
-- [ ] B1.2 Export battle message text and placeholders.
+- [x] B1.2 Export battle message text and placeholders.
   - Source: `src/battle_message.c`.
   - Output: placeholder token metadata for attacker, target, move, item, ability, stat, type, side, and Pokemon nicknames.
   - Validate: smoke expands `gText_WhatWillPkmnDo`, `gText_BattleMenu`, `gText_MoveInterfacePP`, and `gText_MoveInterfaceType`.
 
-- [ ] B1.3 Preserve text control codes.
+- [x] B1.3 Preserve text control codes.
   - Source: battle message text macros and existing global text exporter patterns.
   - Output: structured text runs instead of lossy plain strings.
   - Validate: text printer smoke verifies line breaks, waits, color/control tokens, and unsupported tokens.
 
-- [ ] B1.4 Add `DataRegistry` accessors.
+- [x] B1.4 Add `DataRegistry` accessors.
   - Target file: `scripts/autoload/data_registry.gd`.
   - Methods: `get_battle_string_data`, `get_battle_string_record`, `get_battle_string_by_id`, `format_battle_message`.
   - Validate: `tools/godot_smoke/data_registry_battle_strings_smoke.gd`.
+
+B1 completion metrics: `strings.json` currently has 697 `StringID` enum records, 688 `gBattleStringsTable` entries, 173 declared `gText_`/`sText_` battle texts, 19 tracked battle UI text labels, 936 placeholder records, 1682 text-control records, 12 traced `B_BUFF_*` runtime placeholder families, 17 audio cue records marked `metadata_only`, 0 unsupported table entries, and 0 unsupported text tokens. `DataRegistry` exposes id/symbol/text-label lookups and first-pass context substitution while leaving full source `BattleStringExpandPlaceholders`/`ExpandBattleTextBuffPlaceholders` runtime behavior for the battle VM.
 
 ## B2 - Battle Scripts And Move Effects
 
