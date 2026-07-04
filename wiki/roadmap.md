@@ -87,5 +87,6 @@
 ## Milestone 8 - Full Game Systems
 
 - Party menu, bag, Pokemon summary, Pokedex, shops, healing, saving, and overworld effects.
+- Start party/Pokemon instance runtime. First pass done for UI-independent `PartyRuntime`: source-shaped party Pokemon creation through `BattleEngine`, six-slot party storage in `GameState`, battle-party projection, and evolution context bridging. Party menu, summary UI, capture/storage/healing/save mutation, EXP, and fuller source creation paths remain.
 - Expand event script support by unsupported-opcode reports.
 - Add advanced expansion mechanics after the base loop is stable.

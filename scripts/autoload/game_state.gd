@@ -4,11 +4,13 @@ const PLAYER_GENDER_MALE := "MALE"
 const PLAYER_GENDER_FEMALE := "FEMALE"
 const DEFAULT_PLAYER_NAME := "玩家"
 const PLAYER_NAME_LENGTH := 7
+const PARTY_SIZE := 6
 
 var current_map_id := "MAP_LITTLEROOT_TOWN"
 var player_gender := PLAYER_GENDER_MALE
 var player_name := DEFAULT_PLAYER_NAME
 var player_grid_position := Vector2i(10, 10)
+var player_party: Array = []
 var flags: Dictionary = {}
 var vars: Dictionary = {}
 
@@ -52,3 +54,85 @@ func set_player_name(name: String) -> void:
 
 func get_player_name() -> String:
 	return player_name
+
+
+func set_player_party(party: Array) -> void:
+	player_party = party.duplicate(true)
+	if player_party.size() > PARTY_SIZE:
+		player_party.resize(PARTY_SIZE)
+	_refresh_party_indexes()
+
+
+func get_player_party() -> Array:
+	return player_party.duplicate(true)
+
+
+func clear_player_party() -> void:
+	player_party = []
+
+
+func calculate_player_party_count() -> int:
+	var count := 0
+	for mon in player_party:
+		if typeof(mon) != TYPE_DICTIONARY:
+			break
+		if _party_mon_species(mon).is_empty() or _party_mon_species(mon) == "SPECIES_NONE":
+			break
+		count += 1
+		if count >= PARTY_SIZE:
+			break
+	return count
+
+
+func get_player_party_count() -> int:
+	return calculate_player_party_count()
+
+
+func get_party_mon(index: int) -> Dictionary:
+	if index < 0 or index >= player_party.size():
+		return {}
+	var mon = player_party[index]
+	return mon.duplicate(true) if typeof(mon) == TYPE_DICTIONARY else {}
+
+
+func set_party_mon(index: int, mon: Dictionary) -> Dictionary:
+	if index < 0 or index >= PARTY_SIZE:
+		return {"status": "error", "error": "invalid_party_index"}
+	if index > player_party.size():
+		return {"status": "error", "error": "party_gap_not_supported"}
+	var stored := mon.duplicate(true)
+	stored["party_index"] = index
+	if index == player_party.size():
+		player_party.append(stored)
+	else:
+		player_party[index] = stored
+	_refresh_party_indexes()
+	return {"status": "ok", "party_count": calculate_player_party_count()}
+
+
+func add_party_mon(mon: Dictionary) -> Dictionary:
+	if calculate_player_party_count() >= PARTY_SIZE:
+		return {"status": "blocked", "block_reason": "party_full"}
+	var stored := mon.duplicate(true)
+	stored["party_index"] = player_party.size()
+	player_party.append(stored)
+	return {
+		"status": "ok",
+		"added_index": player_party.size() - 1,
+		"party_count": calculate_player_party_count(),
+	}
+
+
+func _refresh_party_indexes() -> void:
+	for index in range(player_party.size()):
+		var mon = player_party[index]
+		if typeof(mon) == TYPE_DICTIONARY:
+			mon["party_index"] = index
+			player_party[index] = mon
+
+
+func _party_mon_species(mon: Dictionary) -> String:
+	var species = mon.get("species", "")
+	if typeof(species) == TYPE_DICTIONARY:
+		return String(species.get("symbol", ""))
+	return String(species)

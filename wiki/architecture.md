@@ -37,6 +37,7 @@ The original project should be treated as authoritative source data and behavior
 - `GridMover`: shared grid movement for player and NPCs.
 - `EventManager`: dispatches map events, warps, signs, object interaction, and coordinate triggers.
 - `ScriptVM`: interprets converted event scripts.
+- `PartyRuntime`: source-backed Pokemon instance and six-slot party runtime shared by battle, evolution, menu, save, and future capture/storage systems.
 - `BattleEngine`: deterministic battle rules separate from battle UI.
 - `EvolutionEngine`: source-backed evolution target, condition, pre-evolution, and split-evolution rules separate from presentation and party mutation.
 - `SaveService`: serializes runtime state.
@@ -50,7 +51,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 
 ## Current Scaffold
 
-- `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
+- `GameState` stores current map id, player gender, player name, player grid position, player party, flags, and vars.
 - `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, Pokemon wild encounter JSON, Pokemon trainer JSON, Pokemon level-up learnset JSON, Pokemon nature JSON, and Pokemon evolution JSON.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries, including source metatile behavior names.
 - `MapRuntime` indexes generated door animation metadata by metatile id and can return the animation for a map cell.
@@ -63,6 +64,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - `GridMover` provides tweened tile movement.
 - `PlayerController` runs an optional field-input precheck before accept/movement input, reads directional input, tracks facing direction, moves one tile at a time after checking `MapRuntime.can_enter_cell`, emits interaction requests on `ui_accept`, and can be input-locked by transition presentation.
 - `ScriptVM` executes the first synchronous event-script subset for generated dialogue, movement-effect, object-effect, field-effect, UI-effect, special-effect, audio-effect, transition-effect, and player-effect scripts and returns messages, movements, object effects, field effects, UI effects, special effects, audio effects, transition effects, player effects, effects, unsupported ops, trace entries, runtime string vars, and wait metadata.
+- `PartyRuntime` is registered as a domain/runtime autoload. Its first slice creates source-shaped party Pokemon through `BattleEngine` stat/move initialization, preserves source-backed instance metadata, caps player parties at six, stores player party data through `GameState`, builds battle-party projections, and can pass party context into `EvolutionEngine` without depending on party UI or save scenes.
 - `BattleEngine` is registered as a domain/rules autoload. Its first slice builds battle Pokemon and trainer parties from generated Pokemon data, including explicit trainer moves, source default level-up move assignment through generated learnsets, and source nature stat modifiers through generated natures; it calculates ordinary move damage from traced source formulas, applies STAB and type effectiveness, updates PP/HP/fainting, and returns structured first-pass battle message events without depending on presentation scenes.
 - `EvolutionEngine` is registered as a domain/rules autoload. Its first slice reads generated evolution/species/item/move data through `DataRegistry`, evaluates source-ordered evolution targets for level/trade/item/battle/overworld/script-trigger modes, applies source additional-condition semantics, handles Everstone and item-check stop behavior, exposes reverse pre-evolution lookup, and reports Shedinja split-evolution candidate metadata without mutating party or bag state.
 - `ScriptVM` resolves numeric `LOCALID_*` tokens from the current generated map object-event order, matching source `tools/mapjson/mapjson.cpp` where map object local-id constants are object index + 1, while preserving special constants such as `LOCALID_PLAYER`. Movement command targets follow source `VarGet` behavior and preserve both raw and resolved targets in result metadata.
@@ -215,6 +217,16 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Source order matters: `src/pokemon.c:GetEvolutionTargetSpecies` scans each species' evolution records in order and returns the first valid target for the requested evolution mode, while extra condition checks are handled by `DoesMonMeetAdditionalConditions`.
 - `EvolutionEngine` is the first Godot runtime consumer for this data. It implements source-order target evaluation, Everstone/item-check behavior, level/trade/item/battle/overworld/script-trigger mode filtering, broad `DoesMonMeetAdditionalConditions` checks, reverse pre-evolution lookup, and first-pass Shedinja split-evolution candidate reporting.
 - Actual evolution execution, party/bag mutation, held/bag item consumption side effects, evolution-scene timing, cries, particles, UI, post-evolution move learning, and full GMax form exceptions remain future source-traced systems.
+
+## Party Runtime Contract
+
+- `PartyRuntime` is the first Godot-native domain boundary for carried Pokemon and should stay independent from party menu, summary UI, bag, save, capture, and storage presentation.
+- Party Pokemon construction traces `src/pokemon.c:CreateMon`, `CreateBoxMon`, `CreateMonWithIVs`, `GiveBoxMonInitialMoveset`, `PokemonToBattleMon`, `GiveCapturedMonToPlayer`, and `CalculatePartyCount`, plus `include/constants/global.h` `PARTY_SIZE = 6` and `MAX_MON_MOVES = 4`.
+- The first slice delegates stat and move initialization to `BattleEngine` so `CalculateMonStats`, generated natures, generated moves, and the rolling four-slot level-up move rule stay in one source-backed rules path.
+- Runtime party records preserve personality, OT, nickname, language, friendship, held item, Pokeball, gender, ability slot, ability symbol, shiny status, met data, contest stats, HP/stat/move data, source trace, warnings, and unsupported notes as ordinary dictionaries until a fuller Godot Resource/save schema is designed.
+- `GameState` currently stores the player party as a capped six-entry array. Party count follows the source contiguous-party rule by stopping at the first non-Pokemon or `SPECIES_NONE` entry.
+- `PartyRuntime.build_battle_party` projects party records into battle-facing dictionaries for `BattleEngine`; `PartyRuntime.check_party_mon_evolution` passes party count, index, first live mon, and party data into `EvolutionEngine`.
+- Random personality/IV generation, EXP growth, Pokerus, ribbons, PC storage, bag mutation, save serialization, party menu, Pokemon summary UI, capture flow, healing flow, and distinct source creation wrappers remain future source-traced work.
 
 ## Battle Runtime Contract
 

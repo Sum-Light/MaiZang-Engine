@@ -335,3 +335,9 @@ Reason: Source evolution behavior is shared by leveling, battle end, item use, t
 Decision: After the current `EvolutionEngine` slice, future work that spans distinct modules or source domains should try subagents for independent investigation or validation when available. The main agent still owns source tracing, final integration, wiki/skill updates, and focused commits.
 
 Reason: The port is broad enough that independent source-reading and validation passes can reduce blind spots, especially when one task touches scripts, runtime rules, generated data, presentation timing, and verification at the same time.
+
+## 2026-07-04 - Start party runtime before party UI
+
+Decision: Introduce `PartyRuntime` as a UI-independent Godot autoload for source-shaped carried Pokemon and six-slot party state before building party menu, summary UI, save serialization, capture, healing, PC storage, or bag mutation.
+
+Reason: Party Pokemon are shared by battle, evolution, scripts, capture, storage, saving, and UI. Keeping the first slice as a domain runtime lets Godot reuse the existing source-backed `BattleEngine` stat/move path and `EvolutionEngine` condition path while preserving Pokemon instance metadata and reporting unsupported source behavior instead of guessing visible systems.
