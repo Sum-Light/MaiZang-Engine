@@ -12,7 +12,7 @@ Godot battle state today:
 - `scripts/battle/battle_scene.gd` is explicitly `first_slice_not_source_equivalent`. It has a source-shaped intro -> action select -> move select -> one deterministic player turn flow, but uses Godot controls and simplified rectangles instead of source battle tilemaps, sprites, windows, text printer, and animation systems.
 - Generated battle-adjacent data already exists for 1573 species, 935 moves, 21 types, 311 abilities, 874 items, 399 wild encounter records, 855 trainers, 1825 trainer party Pokemon, 1104 learnsets, 25 natures, and 647 evolution entries.
 - There is no importer/runtime yet for battle backgrounds, battle interface graphics, battle transition graphics, move animation sprite sheets, move animation scripts, or audio playback. Pokemon and trainer battle sprite assets now have first-pass generated metadata/PNG imports, but their source-timed runtime presentation remains pending.
-- The debug battle launcher scope is developer-only and map-decoupled: one shortcut should enter a grass-encounter-equivalent wild battle through the same generated wild candidate and battle setup contracts, and one shortcut should enter a trainer battle through a trainer id/symbol selector. These launchers are test access paths, not source gameplay features.
+- The debug battle launcher scope is developer-only and map-decoupled: one shortcut should enter a Godot-only random generated species/random level wild battle fixture through the battle setup contracts without using grass/water/fishing encounter tables, and one shortcut should enter a trainer battle through a trainer id/symbol selector. These launchers are test access paths, not source gameplay features.
 
 Source battle topology from the first pass:
 

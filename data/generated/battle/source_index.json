@@ -180,6 +180,14 @@
       "exists": true
     },
     {
+      "path": "src/data/battle_environment.h",
+      "exists": true
+    },
+    {
+      "path": "src/data/graphics/battle_environment.h",
+      "exists": true
+    },
+    {
       "path": "src/battle_message.c",
       "exists": true
     },
@@ -280,7 +288,7 @@
       "exists": true
     }
   ],
-  "symbol_count": 7782,
+  "symbol_count": 7783,
   "symbols": {
     "BattleScript_TryRevertWeatherform": {
       "symbol": "BattleScript_TryRevertWeatherform",
@@ -32639,6 +32647,51 @@
           "kind": "source_search",
           "file": "src/data/battle_anim.h",
           "line": 1437
+        }
+      ]
+    },
+    "gBattleEnvironmentInfo": {
+      "symbol": "gBattleEnvironmentInfo",
+      "references": [
+        {
+          "kind": "source_search",
+          "file": "src/battle_intro.c",
+          "line": 110
+        },
+        {
+          "kind": "source_search",
+          "file": "src/battle_script_commands.c",
+          "line": 3022
+        },
+        {
+          "kind": "source_search",
+          "file": "src/battle_anim.c",
+          "line": 437
+        },
+        {
+          "kind": "source_search",
+          "file": "src/battle_anim_utility_funcs.c",
+          "line": 109
+        },
+        {
+          "kind": "source_search",
+          "file": "src/battle_bg.c",
+          "line": 867
+        },
+        {
+          "kind": "source_search",
+          "file": "src/data/battle_environment.h",
+          "line": 68
+        },
+        {
+          "kind": "source_search",
+          "file": "src/battle_move_resolution.c",
+          "line": 4153
+        },
+        {
+          "kind": "source_search",
+          "file": "include/config/battle.h",
+          "line": 314
         }
       ]
     },
@@ -78224,7 +78277,7 @@
     }
   },
   "stats": {
-    "source_file_count": 69,
+    "source_file_count": 71,
     "asm_label_count": 3210,
     "generated_symbol_ref_count": 4548,
     "missing_fixed_symbols": []

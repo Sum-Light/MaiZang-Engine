@@ -16,6 +16,8 @@ UNSUPPORTED_CODE_REGISTRY = {
     "battle_script_vm_pending": "Battle scripts are not yet decoded/executed by a source-backed VM.",
     "battle_animation_runtime_pending": "Battle animation scripts, sprite tags, and visual tasks are not yet interpreted.",
     "battle_assets_pending": "Source battle Pokemon/trainer/interface/environment assets are not yet imported as Godot textures/resources.",
+    "battle_environment_asset_pending": "The source environment row has no imported battle background/entry texture in this slice.",
+    "battle_environment_runtime_pending": "Battle background selection, scrolling, entry overlay playback, and scene presentation are not source-equivalent yet.",
     "battle_hud_pending": "Source healthboxes, windows, text printer, and menu tilemaps are not yet rendered.",
     "battle_audio_playback_pending": "Battle music, cries, fanfares, and sound effects are metadata-only.",
     "ability_runtime_pending": "Ability flags are generated, but battle hook behavior and popup timing are not implemented.",
@@ -39,6 +41,8 @@ BATTLE_SOURCE_PATTERNS = [
     "src/battle_anim_*.c",
     "src/battle_interface.c",
     "src/battle_bg.c",
+    "src/data/battle_environment.h",
+    "src/data/graphics/battle_environment.h",
     "src/battle_message.c",
     "src/battle_ai_*.c",
     "src/battle_move_resolution.c",
@@ -82,6 +86,7 @@ FIXED_BATTLE_SYMBOLS = [
     "gBattleMoveEffects",
     "gBattleAnimTable",
     "gBattleAnimBackgroundTable",
+    "gBattleEnvironmentInfo",
     "sStandardBattleWindowTemplates",
     "sBattlerHealthboxCoords",
     "gText_WhatWillPkmnDo",
@@ -469,6 +474,50 @@ def build_wild_encounter_rows(wild_data):
     return rows
 
 
+def build_battle_environment_rows(environments_data):
+    rows = []
+    environments = environments_data.get("environments", {})
+    if not isinstance(environments, dict):
+        environments = {}
+    for symbol in environments_data.get("environment_order", []):
+        record = environments.get(symbol, {})
+        if not isinstance(record, dict):
+            record = {}
+        coverage = record.get("coverage", {}) if isinstance(record.get("coverage"), dict) else {}
+        background = record.get("background", {}) if isinstance(record.get("background"), dict) else {}
+        entry = record.get("entry", {}) if isinstance(record.get("entry"), dict) else {}
+        palette = record.get("palette", {}) if isinstance(record.get("palette"), dict) else {}
+        source_assets = record.get("source_assets", {}) if isinstance(record.get("source_assets"), dict) else {}
+        tests = ["tools/godot_smoke/data_registry_battle_environments_smoke.gd"]
+        rows.append({
+            "id": symbol,
+            "environment_symbol": symbol,
+            "numeric_id": int(record.get("numeric_id", -1)),
+            "background_asset": str(source_assets.get("background_asset", "")),
+            "entry_asset": str(source_assets.get("entry_asset", "")),
+            "palette_source_symbol": str(source_assets.get("palette_symbol", "")),
+            "background_image": str(background.get("image_project_path", "")),
+            "entry_image": str(entry.get("image_project_path", "")),
+            "background_size": background.get("size", {}) if isinstance(background.get("size"), dict) else {},
+            "entry_size": entry.get("size", {}) if isinstance(entry.get("size"), dict) else {},
+            "palette_color_count": int(palette.get("color_count", 0) or 0),
+            "nature_power": str(record.get("nature_power", "")),
+            "secret_power_effect": str(record.get("secret_power_effect", "")),
+            "camouflage_type": str(record.get("camouflage_type", "")),
+            "background_status": str(coverage.get("background_status", "unsupported")),
+            "entry_status": str(coverage.get("entry_status", "unsupported")),
+            "palette_status": str(coverage.get("palette_status", "unsupported")),
+            "asset_status": str(coverage.get("asset_status", "unsupported")),
+            "selection_status": str(coverage.get("selection_status", "metadata_only")),
+            "runtime_status": str(coverage.get("runtime_status", "unsupported")),
+            "audio_status": str(coverage.get("audio_status", "metadata_only")),
+            "tests": tests,
+            "unsupported": list(record.get("unsupported", [])) if isinstance(record.get("unsupported"), list) else [],
+            "source": source_ref(record),
+        })
+    return rows
+
+
 def build_evolution_rows(evolutions_data):
     rows = []
     seen_species = set()
@@ -508,6 +557,7 @@ def build_report(project_root, source_root):
     battle_sprites_data = load_json_optional(pokemon_root / "battle_sprites.json")
     battle_root = project_root / "data" / "generated" / "battle"
     trainer_sprites_data = load_json_optional(battle_root / "trainer_sprites.json")
+    battle_environments_data = load_json_optional(battle_root / "environments.json")
 
     coverage_rows = {
         "moves": build_move_rows(moves_data),
@@ -517,6 +567,7 @@ def build_report(project_root, source_root):
         "pokemon_data": build_pokemon_rows(species_data, battle_sprites_data),
         "battle_items": build_item_rows(items_data),
         "wild_encounters": build_wild_encounter_rows(wild_data),
+        "battle_environments": build_battle_environment_rows(battle_environments_data),
         "learnsets": build_simple_rows(learnsets_data, "learnset_order", "learnsets", "learnset_id", "learnset_symbol", ["tools/godot_smoke/data_registry_learnsets_smoke.gd"]),
         "natures": build_simple_rows(natures_data, "nature_order", "natures", "nature_id", "nature_symbol", ["tools/godot_smoke/data_registry_natures_smoke.gd"]),
         "evolutions": build_evolution_rows(evolutions_data),
@@ -536,6 +587,7 @@ def build_report(project_root, source_root):
         "types": types_data.get("stats", {}),
         "pokemon_battle_sprites": battle_sprites_data.get("stats", {}),
         "trainer_battle_sprites": trainer_sprites_data.get("stats", {}),
+        "battle_environments": battle_environments_data.get("stats", {}),
     })
     return {
         "schema_version": 1,
@@ -568,6 +620,7 @@ def build_report_stats(coverage_rows, generated_stats):
         "abilities": int(generated_stats["abilities"].get("ability_count", 0)),
         "battle_items": int(generated_stats["items"].get("item_count", 0)),
         "wild_encounters": int(generated_stats["wild_encounters"].get("encounter_record_count", 0)),
+        "battle_environments": int(generated_stats["battle_environments"].get("environment_count", 0)),
         "trainers": int(generated_stats["trainers"].get("trainer_count", 0)),
         "trainer_party_mons": int(generated_stats["trainers"].get("party_mon_count", 0)),
         "learnsets": int(generated_stats["learnsets"].get("learnset_count", 0)),

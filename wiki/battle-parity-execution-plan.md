@@ -292,11 +292,13 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
   - Boundary: trainer slide-in and mugshot x/y/rotation metadata are preserved from `BtlController_HandleDrawTrainerPic`, `BtlController_HandleTrainerSlide`, and `battle_transition.c`, but runtime playback remains pending under `battle_animation_runtime_pending`; audio remains metadata-only.
   - Validate: `data_registry_trainer_sprites_smoke.gd` checks Sawyer, Hiker shared sprite lookup, Sidney mugshot lookup, Wallace mugshot offsets, and Brendan back sprite lookup; `battle_parity_report_smoke.gd` asserts trainer asset rows no longer carry `trainer_asset_import_pending`.
 
-- [ ] B7.3 Export battle backgrounds and environment metadata.
+- [x] B7.3 Export battle backgrounds and environment metadata.
   - Source: `src/data/graphics/battle_environment.h`, `src/data/battle_environment.h`, `graphics/battle_environment`.
   - Output: `data/generated/battle/environments.json`, textures under `assets/generated/battle_environment/`.
-  - Covers: grass/water/cave/underwater/frontier/pyramid/dome/special backgrounds, tiles, tilemaps, palettes.
-  - Validate: wild Route101, surf/water, and trainer map-hinted backgrounds resolve.
+  - Current first pass: `tools/importer/export_battle_environments.py` parses 35 `BATTLE_ENVIRONMENT_*` records, 65 graphics definitions, 8 `sMapBattleSceneMapping` rows, and bakes 23 full background PNGs plus 23 entry overlay PNGs from source tilemaps/palettes. Generated backgrounds preserve full source tilemap dimensions (`512x256` for BG3 environment maps when present) and mark the `240x160` visible viewport for later presentation cropping/scrolling.
+  - Covers: grass, long grass, sand, underwater, water, pond, mountain/rock, cave, building/plain/frontier/gym/leader, Magma/Aqua, Elite Four/Champion stadium variants, Groudon/Kyogre/Rayquaza special backgrounds, source palette variants, Nature Power, Secret Power, Camouflage, battle intro slide symbols, and map battle scene environment overrides.
+  - Boundary: the 12 source environments without background assets (`SOARING` through `ULTRA_SPACE`) are retained as logic/terrain metadata with `battle_environment_asset_pending`; runtime background selection, scrolling, entry animation playback, and audio playback remain explicit pending work. Pyramid/Dome do not have standalone battle background records in `gBattleEnvironmentInfo` and stay covered by source mapping/Frontier or later transition/runtime tasks as traced.
+  - Validate: `data_registry_battle_environments_smoke.gd` checks Grass, Water, Leader, Gym/Frontier map-scene mapping, Soaring pending metadata, image existence, palette metadata, and viewport/audio notes; `battle_parity_report_smoke.gd` verifies 35 environment coverage rows and no missing expected coverage.
 
 - [ ] B7.4 Export battle transition assets.
   - Source: `graphics/battle_transitions`, transition tables, `src/battle_transition.c`.
