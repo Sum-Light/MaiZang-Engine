@@ -83,6 +83,60 @@ func _init() -> void:
 	_assert(String(_dict_field(route119_super_rod, "slot_choice").get("rod_group", "")) == "super_rod", "expected Super Rod group")
 	_assert(engine.has_fishing_encounters("MAP_ROUTE119"), "expected Route119 fishing table")
 
+	var route119_harvest := engine.choose_wild_mon("MAP_ROUTE119", "land", {
+		"lead_ability": "ABILITY_HARVEST",
+		"ability_slot_roll": 0,
+		"ability_slot_pick_roll": 0,
+		"level_roll": 0,
+	})
+	var route119_harvest_choice := _dict_field(route119_harvest, "ability_slot_choice")
+	_assert(String(route119_harvest.get("status", "")) == "ok", "expected Harvest Route119 land encounter")
+	_assert(int(route119_harvest.get("slot_index", -1)) == 3, "expected Harvest to select first grass slot")
+	_assert(String(route119_harvest.get("species", "")) == "SPECIES_ODDISH", "expected Harvest-selected Oddish")
+	_assert(String(route119_harvest_choice.get("status", "")) == "selected", "expected Harvest ability slot metadata")
+	_assert(String(route119_harvest_choice.get("target_type", "")) == "TYPE_GRASS", "expected Harvest target type")
+	_assert(_array_field(route119_harvest_choice, "valid_indices").has(8), "expected Tropius grass slot to be eligible")
+
+	var new_mauville_magnet_pull := engine.choose_wild_mon("MAP_NEW_MAUVILLE_INSIDE", "land", {
+		"lead_ability": "ABILITY_MAGNET_PULL",
+		"ability_slot_roll": 0,
+		"ability_slot_pick_roll": 0,
+		"level_roll": 0,
+	})
+	var new_mauville_magnet_choice := _dict_field(new_mauville_magnet_pull, "ability_slot_choice")
+	_assert(String(new_mauville_magnet_pull.get("status", "")) == "ok", "expected Magnet Pull New Mauville encounter")
+	_assert(int(new_mauville_magnet_pull.get("slot_index", -1)) == 1, "expected Magnet Pull to select first steel slot")
+	_assert(String(new_mauville_magnet_pull.get("species", "")) == "SPECIES_MAGNEMITE", "expected Magnet Pull-selected Magnemite")
+	_assert(int(new_mauville_magnet_choice.get("target_type_value", -1)) == 9, "expected source TYPE_STEEL value")
+	_assert(int(new_mauville_magnet_choice.get("valid_count", 0)) == 6, "expected six steel slots in New Mauville")
+
+	var route119_harvest_miss := engine.choose_wild_mon("MAP_ROUTE119", "land", {
+		"lead_ability": "ABILITY_HARVEST",
+		"ability_slot_roll": 1,
+		"slot_roll": 0,
+		"level_roll": 0,
+	})
+	_assert(String(route119_harvest_miss.get("species", "")) == "SPECIES_ZIGZAGOON", "expected failed Harvest roll to fall back to normal slot")
+	_assert(String(_dict_field(route119_harvest_miss, "ability_slot_choice").get("status", "")) == "missed_roll", "expected Harvest miss metadata")
+
+	var route101_static_no_match := engine.choose_wild_mon("MAP_ROUTE101", "land", {
+		"lead_ability": "ABILITY_STATIC",
+		"ability_slot_roll": 0,
+		"slot_roll": 0,
+		"level_roll": 0,
+	})
+	_assert(String(route101_static_no_match.get("species", "")) == "SPECIES_WURMPLE", "expected Static no-match to fall back to Route101 normal slot")
+	_assert(String(_dict_field(route101_static_no_match, "ability_slot_choice").get("status", "")) == "no_match", "expected Static no-match metadata")
+
+	var route119_storm_drain_all_match := engine.choose_wild_mon("MAP_ROUTE119", "water", {
+		"lead_ability": "ABILITY_STORM_DRAIN",
+		"ability_slot_roll": 0,
+		"slot_roll": 0,
+		"level_roll": 0,
+	})
+	_assert(String(route119_storm_drain_all_match.get("species", "")) == "SPECIES_TENTACOOL", "expected all-water Storm Drain to fall back to normal slot")
+	_assert(String(_dict_field(route119_storm_drain_all_match, "ability_slot_choice").get("status", "")) == "all_slots_match", "expected all-slots-match metadata")
+
 	var route119_standard_miss := engine.try_standard_encounter("MAP_ROUTE119", "water", {
 		"encounter_roll": 64,
 		"slot_roll": 0,
@@ -266,6 +320,8 @@ func _init() -> void:
 	print(JSON.stringify({
 		"encounter_engine_smoke": "ok",
 		"route101_species": String(route101.get("species", "")),
+		"route119_harvest_species": String(route119_harvest.get("species", "")),
+		"new_mauville_magnet_pull_species": String(new_mauville_magnet_pull.get("species", "")),
 		"route119_water_species": String(route119_standard_hit.get("species", "")),
 		"altering_cave_record": String(altering_from_state.get("record_label", "")),
 	}))

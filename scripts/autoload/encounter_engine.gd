@@ -15,19 +15,83 @@ const SOURCE_TRACE := [
 	"src/wild_encounter.c:ChooseWildMonIndex_Rocks",
 	"src/wild_encounter.c:ChooseWildMonIndex_Fishing",
 	"src/wild_encounter.c:ChooseWildMonLevel",
+	"src/wild_encounter.c:TryGetAbilityInfluencedWildMonIndex",
+	"src/wild_encounter.c:TryGetRandomWildMonIndexByType",
 	"src/wild_encounter.c:WildEncounterCheck",
 	"src/wild_encounter.c:StandardWildEncounter",
 	"src/wild_encounter.c:FishingWildEncounter",
 	"include/constants/item.h:REPEL_LURE_MASK/LURE_STEP_COUNT/REPEL_STEP_COUNT",
 	"include/constants/items.h:ITEM_CLEANSE_TAG",
-	"include/constants/abilities.h:overworld encounter-rate abilities",
+	"include/constants/abilities.h:overworld encounter abilities",
+	"include/constants/pokemon.h:enum Type",
 	"include/constants/flags.h:FLAG_SYS_ENC_UP_ITEM/FLAG_SYS_ENC_DOWN_ITEM",
 	"include/constants/weather.h:WEATHER_SANDSTORM/WEATHER_SNOW",
 	"include/config/item.h:I_REPEL_INCLUDE_FAINTED",
-	"include/config/overworld.h:OW_INFILTRATOR",
+	"include/config/overworld.h:OW_INFILTRATOR/OW_LIGHTNING_ROD/OW_FLASH_FIRE/OW_HARVEST/OW_STORM_DRAIN",
 	"include/global.fieldmap.h:PLAYER_AVATAR_FLAG_MACH_BIKE/PLAYER_AVATAR_FLAG_ACRO_BIKE",
 	"include/wild_encounter.h",
 	"include/constants/wild_encounter.h",
+]
+
+const TYPE_SYMBOL_TO_VALUE := {
+	"TYPE_NONE": 0,
+	"TYPE_NORMAL": 1,
+	"TYPE_FIGHTING": 2,
+	"TYPE_FLYING": 3,
+	"TYPE_POISON": 4,
+	"TYPE_GROUND": 5,
+	"TYPE_ROCK": 6,
+	"TYPE_BUG": 7,
+	"TYPE_GHOST": 8,
+	"TYPE_STEEL": 9,
+	"TYPE_MYSTERY": 10,
+	"TYPE_FIRE": 11,
+	"TYPE_WATER": 12,
+	"TYPE_GRASS": 13,
+	"TYPE_ELECTRIC": 14,
+	"TYPE_PSYCHIC": 15,
+	"TYPE_ICE": 16,
+	"TYPE_DRAGON": 17,
+	"TYPE_DARK": 18,
+	"TYPE_FAIRY": 19,
+	"TYPE_STELLAR": 20,
+}
+
+const ABILITY_SLOT_RULES := [
+	{
+		"ability": "ABILITY_MAGNET_PULL",
+		"type": "TYPE_STEEL",
+		"source": "src/wild_encounter.c:TryGenerateWildMon MAGNET_PULL -> TYPE_STEEL",
+	},
+	{
+		"ability": "ABILITY_STATIC",
+		"type": "TYPE_ELECTRIC",
+		"source": "src/wild_encounter.c:TryGenerateWildMon STATIC -> TYPE_ELECTRIC",
+	},
+	{
+		"ability": "ABILITY_LIGHTNING_ROD",
+		"type": "TYPE_ELECTRIC",
+		"option": "ow_lightning_rod_gen8",
+		"source": "src/wild_encounter.c:TryGenerateWildMon OW_LIGHTNING_ROD >= GEN_8 -> TYPE_ELECTRIC",
+	},
+	{
+		"ability": "ABILITY_FLASH_FIRE",
+		"type": "TYPE_FIRE",
+		"option": "ow_flash_fire_gen8",
+		"source": "src/wild_encounter.c:TryGenerateWildMon OW_FLASH_FIRE >= GEN_8 -> TYPE_FIRE",
+	},
+	{
+		"ability": "ABILITY_HARVEST",
+		"type": "TYPE_GRASS",
+		"option": "ow_harvest_gen8",
+		"source": "src/wild_encounter.c:TryGenerateWildMon OW_HARVEST >= GEN_8 -> TYPE_GRASS",
+	},
+	{
+		"ability": "ABILITY_STORM_DRAIN",
+		"type": "TYPE_WATER",
+		"option": "ow_storm_drain_gen8",
+		"source": "src/wild_encounter.c:TryGenerateWildMon OW_STORM_DRAIN >= GEN_8 -> TYPE_WATER",
+	},
 ]
 
 const AREA_TO_TABLE := {
@@ -486,7 +550,17 @@ func choose_wild_mon(map_symbol: String, area = "land", options: Dictionary = {}
 			"source_trace": SOURCE_TRACE.duplicate(),
 		}
 
-	var slot_result := _choose_slot(slots, field_definition, table_field, options)
+	var ability_slot_choice := _ability_influenced_slot_choice(slots, table_field, options)
+	var slot_result := {}
+	if bool(ability_slot_choice.get("selected", false)):
+		slot_result = {
+			"slot_index": int(ability_slot_choice.get("slot_index", 0)),
+			"ability_slot_choice": ability_slot_choice,
+			"source": "src/wild_encounter.c:TryGenerateWildMon ability-influenced branch",
+		}
+	else:
+		slot_result = _choose_slot(slots, field_definition, table_field, options)
+		slot_result["ability_slot_choice"] = ability_slot_choice
 	var slot_index := int(slot_result.get("slot_index", 0))
 	if slot_index < 0 or slot_index >= slots.size():
 		return _error_result("slot_index_out_of_range", "Selected wild slot %d is outside the generated table." % [slot_index])
@@ -505,6 +579,7 @@ func choose_wild_mon(map_symbol: String, area = "land", options: Dictionary = {}
 			"slot_index": slot_index,
 			"slot": slot.duplicate(true),
 			"slot_choice": slot_result,
+			"ability_slot_choice": ability_slot_choice,
 			"level": int(level_result.get("level", 1)),
 			"level_choice": level_result,
 			"repel_filter": repel_filter,
@@ -529,6 +604,7 @@ func choose_wild_mon(map_symbol: String, area = "land", options: Dictionary = {}
 		"slot_index": slot_index,
 		"slot": slot.duplicate(true),
 		"slot_choice": slot_result,
+		"ability_slot_choice": ability_slot_choice,
 		"species": String(species.get("symbol", "")),
 		"species_id": int(species.get("value", 0)),
 		"min_level": int(slot.get("min_level", 0)),
@@ -562,6 +638,145 @@ func _choose_slot(slots: Array, field_definition: Dictionary, table_field: Strin
 		"total_rate": total_rate,
 		"lure_swap": lure_swap,
 		"source": String(field_definition.get("selector", "")),
+	}
+
+
+func _ability_influenced_slot_choice(slots: Array, table_field: String, options: Dictionary) -> Dictionary:
+	if table_field != "land_mons" and table_field != "water_mons":
+		return {
+			"selected": false,
+			"status": "skipped",
+			"reason": "area_not_supported",
+			"area": table_field,
+			"source": "src/wild_encounter.c:TryGenerateWildMon applies ability slots only to land/water",
+			"source_trace": [
+				"src/wild_encounter.c:TryGenerateWildMon",
+			],
+		}
+
+	var lead_ability := _lead_slot_ability_state(options)
+	if not bool(lead_ability.get("applies", false)):
+		return {
+			"selected": false,
+			"status": "skipped",
+			"reason": "lead_ability_unavailable",
+			"lead_ability": lead_ability,
+			"area": table_field,
+			"source": "src/wild_encounter.c:TryGetAbilityInfluencedWildMonIndex lead egg/ability checks",
+			"source_trace": [
+				"src/wild_encounter.c:TryGetAbilityInfluencedWildMonIndex",
+				"src/pokemon.c:GetMonData/GetMonAbility",
+			],
+		}
+
+	var ability := String(lead_ability.get("ability", "ABILITY_NONE"))
+	var rule := _ability_slot_rule_for_ability(ability, options)
+	if rule.is_empty():
+		return {
+			"selected": false,
+			"status": "skipped",
+			"reason": "ability_has_no_slot_rule",
+			"lead_ability": lead_ability,
+			"ability": ability,
+			"area": table_field,
+			"source": "src/wild_encounter.c:TryGenerateWildMon source-order ability slot rules",
+			"source_trace": [
+				"src/wild_encounter.c:TryGenerateWildMon",
+				"include/constants/abilities.h",
+				"include/config/overworld.h",
+			],
+		}
+
+	var activation_roll := _option_roll(options, "ability_slot_roll", 2)
+	if activation_roll != 0:
+		return {
+			"selected": false,
+			"status": "missed_roll",
+			"reason": "activation_roll_failed",
+			"lead_ability": lead_ability,
+			"ability": ability,
+			"target_type": String(rule.get("type", "")),
+			"target_type_value": _source_type_value(String(rule.get("type", ""))),
+			"activation_roll": activation_roll,
+			"activation_modulo": 2,
+			"area": table_field,
+			"source": "src/wild_encounter.c:TryGetAbilityInfluencedWildMonIndex Random() % 2 != 0",
+			"source_trace": [
+				"src/wild_encounter.c:TryGetAbilityInfluencedWildMonIndex",
+			],
+		}
+
+	var target_type := String(rule.get("type", ""))
+	var valid_indices := _wild_slot_indices_by_type(slots, target_type)
+	if valid_indices.is_empty():
+		return {
+			"selected": false,
+			"status": "no_match",
+			"reason": "no_slots_with_target_type",
+			"lead_ability": lead_ability,
+			"ability": ability,
+			"target_type": target_type,
+			"target_type_value": _source_type_value(target_type),
+			"valid_indices": valid_indices,
+			"valid_count": 0,
+			"table_size": slots.size(),
+			"activation_roll": activation_roll,
+			"activation_modulo": 2,
+			"area": table_field,
+			"source": "src/wild_encounter.c:TryGetRandomWildMonIndexByType validMonCount == 0",
+			"source_trace": [
+				"src/wild_encounter.c:TryGetRandomWildMonIndexByType",
+				"src/pokemon.c:GetSpeciesType",
+			],
+		}
+	if valid_indices.size() == slots.size():
+		return {
+			"selected": false,
+			"status": "all_slots_match",
+			"reason": "valid_count_equals_table_size",
+			"lead_ability": lead_ability,
+			"ability": ability,
+			"target_type": target_type,
+			"target_type_value": _source_type_value(target_type),
+			"valid_indices": valid_indices,
+			"valid_count": valid_indices.size(),
+			"table_size": slots.size(),
+			"activation_roll": activation_roll,
+			"activation_modulo": 2,
+			"area": table_field,
+			"source": "src/wild_encounter.c:TryGetRandomWildMonIndexByType validMonCount == numMon",
+			"source_trace": [
+				"src/wild_encounter.c:TryGetRandomWildMonIndexByType",
+				"src/pokemon.c:GetSpeciesType",
+			],
+		}
+
+	var pick_roll := _option_roll(options, "ability_slot_pick_roll", valid_indices.size())
+	var selected_index := int(valid_indices[pick_roll])
+	return {
+		"selected": true,
+		"status": "selected",
+		"slot_index": selected_index,
+		"pick_roll": pick_roll,
+		"pick_modulo": valid_indices.size(),
+		"lead_ability": lead_ability,
+		"ability": ability,
+		"target_type": target_type,
+		"target_type_value": _source_type_value(target_type),
+		"valid_indices": valid_indices,
+		"valid_count": valid_indices.size(),
+		"table_size": slots.size(),
+		"activation_roll": activation_roll,
+		"activation_modulo": 2,
+		"area": table_field,
+		"rule_source": String(rule.get("source", "")),
+		"source": "src/wild_encounter.c:TryGetAbilityInfluencedWildMonIndex -> TryGetRandomWildMonIndexByType",
+		"source_trace": [
+			"src/wild_encounter.c:TryGenerateWildMon",
+			"src/wild_encounter.c:TryGetAbilityInfluencedWildMonIndex",
+			"src/wild_encounter.c:TryGetRandomWildMonIndexByType",
+			"src/pokemon.c:GetSpeciesType",
+		],
 	}
 
 
@@ -798,6 +1013,28 @@ func _lead_ability_state(options: Dictionary) -> Dictionary:
 			"include/config/overworld.h:OW_INFILTRATOR",
 		],
 	}
+
+
+func _lead_slot_ability_state(options: Dictionary) -> Dictionary:
+	var ignored := bool(options.get("ignore_ability_slot", options.get("ignoreAbilitySlot", false)))
+	if ignored:
+		return {
+			"applies": false,
+			"ignored": true,
+			"ability": "ABILITY_NONE",
+			"source": "options.ignore_ability_slot",
+			"source_trace": ["src/wild_encounter.c:TryGenerateWildMon test override"],
+		}
+	var slot_options := options.duplicate(false)
+	slot_options.erase("ignore_ability")
+	slot_options.erase("ignoreAbility")
+	var state := _lead_ability_state(slot_options)
+	state["source_trace"] = [
+		"src/wild_encounter.c:TryGetAbilityInfluencedWildMonIndex",
+		"src/pokemon.c:GetMonData/GetMonAbility",
+		"include/constants/abilities.h",
+	]
+	return state
 
 
 func _repel_lure_state(options: Dictionary) -> Dictionary:
@@ -1120,7 +1357,7 @@ func _first_pass_unsupported(table_field: String) -> Array:
 	}, {
 		"code": "wild_encounter_modifiers_partially_applied",
 		"source": "src/wild_encounter.c:TryGenerateWildMon",
-		"detail": "First-pass encounter-rate modifiers, Repel/Lure rate/slot/level behavior, and Repel level filtering are applied. Ability-influenced species slots, roamer, mass outbreaks, double wild battles, Safari Pokeblocks, Synchronize, gender forcing, random IV/personality, and battle transition selection remain future traced work.",
+		"detail": "First-pass encounter-rate modifiers, ability-influenced land/water species slot selection, Repel/Lure rate/slot/level behavior, and Repel level filtering are applied. Roamer, mass outbreaks, double wild battles, Safari Pokeblocks, Synchronize, gender forcing, random IV/personality, and battle transition selection remain future traced work.",
 	}]
 	if table_field == "fishing_mons":
 		unsupported.append({
@@ -1194,6 +1431,75 @@ func _species_symbol(slot: Dictionary) -> String:
 	return String(_dict_field(slot, "species").get("symbol", ""))
 
 
+func _wild_slot_indices_by_type(slots: Array, target_type: String) -> Array:
+	var valid_indices: Array = []
+	for index in range(slots.size()):
+		var slot = slots[index]
+		if typeof(slot) != TYPE_DICTIONARY:
+			continue
+		if _slot_species_has_type(slot, target_type):
+			valid_indices.append(index)
+	return valid_indices
+
+
+func _slot_species_has_type(slot: Dictionary, target_type: String) -> bool:
+	var species_symbol := _species_symbol(slot)
+	if species_symbol.is_empty():
+		return false
+	var registry := _get_registry()
+	if registry == null or not registry.has_method("get_species_record"):
+		return false
+	var species_record = registry.get_species_record(species_symbol)
+	if typeof(species_record) != TYPE_DICTIONARY or species_record.is_empty():
+		return false
+	return _species_record_has_type(species_record, target_type)
+
+
+func _species_record_has_type(species_record: Dictionary, target_type: String) -> bool:
+	var raw_types = species_record.get("types", [])
+	if typeof(raw_types) != TYPE_ARRAY:
+		return false
+	var normalized_target := _normalize_type_symbol(target_type)
+	var target_value := _source_type_value(normalized_target)
+	for type_record in raw_types:
+		var type_symbol := _normalize_type_symbol(_constant_symbol(type_record))
+		if not type_symbol.is_empty() and type_symbol == normalized_target:
+			return true
+		if target_value >= 0 and _type_record_value(type_record) == target_value:
+			return true
+	return false
+
+
+func _type_record_value(type_record) -> int:
+	if typeof(type_record) == TYPE_DICTIONARY:
+		if type_record.has("value"):
+			return int(type_record.get("value", -1))
+		var symbol := _normalize_type_symbol(_constant_symbol(type_record))
+		return _source_type_value(symbol)
+	var symbol := _normalize_type_symbol(_constant_symbol(type_record))
+	return _source_type_value(symbol)
+
+
+func _source_type_value(type_symbol: String) -> int:
+	var normalized := _normalize_type_symbol(type_symbol)
+	if TYPE_SYMBOL_TO_VALUE.has(normalized):
+		return int(TYPE_SYMBOL_TO_VALUE.get(normalized, -1))
+	return -1
+
+
+func _ability_slot_rule_for_ability(ability: String, options: Dictionary) -> Dictionary:
+	for rule in ABILITY_SLOT_RULES:
+		if typeof(rule) != TYPE_DICTIONARY:
+			continue
+		if String(rule.get("ability", "")) != ability:
+			continue
+		var option_key := String(rule.get("option", ""))
+		if not option_key.is_empty() and not bool(options.get(option_key, true)):
+			return {}
+		return rule.duplicate(true)
+	return {}
+
+
 func _constant_symbol(value) -> String:
 	if typeof(value) == TYPE_DICTIONARY:
 		if value.has("symbol"):
@@ -1221,6 +1527,15 @@ func _normalize_ability_symbol(value) -> String:
 	if ability_symbol.begins_with("ABILITY_"):
 		return ability_symbol
 	return "ABILITY_%s" % [ability_symbol]
+
+
+func _normalize_type_symbol(value) -> String:
+	var type_symbol := _constant_symbol(value).strip_edges().to_upper()
+	if type_symbol.is_empty():
+		return ""
+	if type_symbol.begins_with("TYPE_"):
+		return type_symbol
+	return "TYPE_%s" % [type_symbol]
 
 
 func _max_level_for_species(slots: Array, species_symbol: String) -> int:
