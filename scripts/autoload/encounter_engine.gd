@@ -55,6 +55,48 @@ const ROD_TO_GROUP := {
 	"2": "super_rod",
 }
 
+const LAND_ENCOUNTER_BEHAVIORS := {
+	"MB_TALL_GRASS": true,
+	"MB_LONG_GRASS": true,
+	"MB_UNUSED_05": true,
+	"MB_DEEP_SAND": true,
+	"MB_CAVE": true,
+	"MB_INDOOR_ENCOUNTER": true,
+	"MB_ASHGRASS": true,
+	"MB_FOOTPRINTS": true,
+	"MB_CYCLING_ROAD_PULL_DOWN_GRASS": true,
+}
+
+const WATER_ENCOUNTER_BEHAVIORS := {
+	"MB_POND_WATER": true,
+	"MB_INTERIOR_DEEP_WATER": true,
+	"MB_DEEP_WATER": true,
+	"MB_OCEAN_WATER": true,
+	"MB_SEAWEED": true,
+	"MB_SEAWEED_NO_SURFACING": true,
+}
+
+const BRIDGE_OVER_WATER_BEHAVIORS := {
+	"MB_BRIDGE_OVER_OCEAN": true,
+	"MB_BRIDGE_OVER_POND_LOW": true,
+	"MB_BRIDGE_OVER_POND_MED": true,
+	"MB_BRIDGE_OVER_POND_HIGH": true,
+	"MB_BRIDGE_OVER_POND_HIGH_EDGE_1": true,
+	"MB_BRIDGE_OVER_POND_HIGH_EDGE_2": true,
+	"MB_UNUSED_BRIDGE": true,
+	"MB_BIKE_BRIDGE_OVER_BARRIER": true,
+}
+
+const METATILE_ROUTING_SOURCE_TRACE := [
+	"src/metatile_behavior.c:sTileBitAttributes",
+	"src/metatile_behavior.c:MetatileBehavior_IsEncounterTile",
+	"src/metatile_behavior.c:MetatileBehavior_IsSurfableWaterOrUnderwater",
+	"src/metatile_behavior.c:MetatileBehavior_IsLandWildEncounter",
+	"src/metatile_behavior.c:MetatileBehavior_IsWaterWildEncounter",
+	"src/metatile_behavior.c:MetatileBehavior_IsBridgeOverWater",
+	"src/wild_encounter.c:StandardWildEncounter",
+]
+
 var _registry: Node = null
 var _game_state: Node = null
 
@@ -126,6 +168,69 @@ func get_table_for_area(map_symbol: String, area, options: Dictionary = {}) -> D
 func has_fishing_encounters(map_symbol: String, options: Dictionary = {}) -> bool:
 	var result := get_table_for_area(map_symbol, "fishing", options)
 	return String(result.get("status", "")) == "ok"
+
+
+func area_for_metatile_behavior(behavior_name: String, options: Dictionary = {}) -> Dictionary:
+	var normalized := _normalize_behavior_name(behavior_name)
+	if LAND_ENCOUNTER_BEHAVIORS.has(normalized):
+		return {
+			"status": "ok",
+			"area": "land",
+			"table_field": "land_mons",
+			"behavior_name": normalized,
+			"source": "src/metatile_behavior.c:MetatileBehavior_IsLandWildEncounter",
+			"source_trace": METATILE_ROUTING_SOURCE_TRACE.duplicate(),
+		}
+	if WATER_ENCOUNTER_BEHAVIORS.has(normalized):
+		return {
+			"status": "ok",
+			"area": "water",
+			"table_field": "water_mons",
+			"behavior_name": normalized,
+			"source": "src/metatile_behavior.c:MetatileBehavior_IsWaterWildEncounter",
+			"source_trace": METATILE_ROUTING_SOURCE_TRACE.duplicate(),
+		}
+	if bool(options.get("surfing", false)) and BRIDGE_OVER_WATER_BEHAVIORS.has(normalized):
+		return {
+			"status": "ok",
+			"area": "water",
+			"table_field": "water_mons",
+			"behavior_name": normalized,
+			"bridge_over_water": true,
+			"source": "src/wild_encounter.c:StandardWildEncounter surfing bridge branch",
+			"source_trace": METATILE_ROUTING_SOURCE_TRACE.duplicate(),
+		}
+	return {
+		"status": "no_encounter",
+		"reason": "non_encounter_metatile",
+		"behavior_name": normalized,
+		"source": "src/wild_encounter.c:StandardWildEncounter",
+		"source_trace": METATILE_ROUTING_SOURCE_TRACE.duplicate(),
+	}
+
+
+func try_standard_encounter_for_behavior(
+	map_symbol: String,
+	current_behavior_name: String,
+	previous_behavior_name = "",
+	options: Dictionary = {}
+) -> Dictionary:
+	var routing := area_for_metatile_behavior(current_behavior_name, options)
+	if String(routing.get("status", "")) != "ok":
+		routing["map"] = _normalize_map_symbol(map_symbol)
+		return routing
+
+	var encounter_options := options.duplicate(true)
+	var previous := _normalize_behavior_name(previous_behavior_name)
+	encounter_options["metatile_changed"] = (
+		not previous.is_empty()
+		and previous != String(routing.get("behavior_name", ""))
+	)
+	var result := try_standard_encounter(map_symbol, String(routing.get("area", "")), encounter_options)
+	result["metatile_routing"] = routing
+	result["current_metatile_behavior"] = String(routing.get("behavior_name", ""))
+	result["previous_metatile_behavior"] = previous
+	return result
 
 
 func check_encounter_rate(encounter_rate: int, options: Dictionary = {}) -> Dictionary:
@@ -484,6 +589,10 @@ func _normalize_map_symbol(map_symbol: String) -> String:
 	if map_symbol.begins_with("MAP_"):
 		return map_symbol
 	return "MAP_%s" % [map_symbol.to_upper()]
+
+
+func _normalize_behavior_name(behavior_name: String) -> String:
+	return behavior_name.strip_edges().to_upper()
 
 
 func _error_result(code: String, detail: String) -> Dictionary:

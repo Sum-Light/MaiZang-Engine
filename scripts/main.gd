@@ -92,6 +92,18 @@ func _on_player_moved(grid_position: Vector2i) -> void:
 			EventManager.dispatch_interaction(warp_event)
 			_update_status()
 			return
+
+	if EventManager.has_method("try_dispatch_standard_wild_encounter"):
+		var encounter_summary = EventManager.try_dispatch_standard_wild_encounter(grid_position, {
+			"trigger": "player_step",
+		})
+		if typeof(encounter_summary) == TYPE_DICTIONARY and bool(encounter_summary.get("encounter_requested", false)):
+			_movement_note = "wild %s Lv.%d" % [
+				String(encounter_summary.get("species", "")),
+				int(encounter_summary.get("level", 0)),
+			]
+			_update_status()
+			return
 	_update_status()
 
 

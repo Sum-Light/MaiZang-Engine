@@ -359,3 +359,9 @@ Reason: Source save logic copies runtime object events through `SaveObjectEvents
 Decision: Introduce `EncounterEngine` as a UI-independent Godot autoload for source-backed wild encounter record lookup, Altering Cave table selection, slot probability selection, rod-group selection, level selection, and first-pass encounter-rate metadata before wiring field-step dispatch or battle presentation.
 
 Reason: Source wild encounters span map metatile behavior, step timing, time-of-day tables, encounter-rate modifiers, special maps, fishing state machines, Pokemon creation, battle setup, and presentation. A domain-only first slice lets Godot verify generated wild encounter data and source probability rules without guessing Repel/ability/fishing/roamer/battle side effects or coupling unfinished field-step and battle UI systems.
+
+## 2026-07-04 - Dispatch standard wild encounters from field step state
+
+Decision: Keep `EncounterEngine` as the source-backed wild encounter table/rules service, and let `EventManager` own first-pass field-step standard wild encounter dispatch after generated coord events and current-cell step warps.
+
+Reason: Source `ProcessPlayerFieldInput` keeps step-order state outside `StandardWildEncounter`: four-step immunity, previous metatile behavior, coord/warp/misc/step-count checks before wild encounters, and later battle setup after a candidate is generated. `EventManager` already owns field event ordering, while `EncounterEngine` owns area/table/slot/level/rate rules. Splitting the responsibilities preserves source-visible ordering without coupling pure encounter selection to unfinished battle presentation.

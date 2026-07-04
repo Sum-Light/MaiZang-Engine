@@ -20,6 +20,23 @@ func _init() -> void:
 		"slot_roll": 0,
 		"level_roll": 0,
 	})
+	var land_routing := engine.area_for_metatile_behavior("MB_TALL_GRASS")
+	var water_routing := engine.area_for_metatile_behavior("MB_OCEAN_WATER")
+	var bridge_no_surf := engine.area_for_metatile_behavior("MB_BRIDGE_OVER_OCEAN")
+	var bridge_surf := engine.area_for_metatile_behavior("MB_BRIDGE_OVER_OCEAN", {
+		"surfing": true,
+	})
+	var routed_route101 := engine.try_standard_encounter_for_behavior(
+		"MAP_ROUTE101",
+		"MB_TALL_GRASS",
+		"MB_NORMAL",
+		{
+			"new_metatile_roll": 0,
+			"encounter_roll": 0,
+			"slot_roll": 0,
+			"level_roll": 0,
+		}
+	)
 	_assert(String(route101.get("status", "")) == "ok", "expected Route101 land encounter")
 	_assert(String(route101.get("record_label", "")) == "gRoute101", "expected Route101 label")
 	_assert(String(route101.get("area", "")) == "land_mons", "expected land area")
@@ -28,6 +45,13 @@ func _init() -> void:
 	_assert(int(route101.get("species_id", 0)) == 265, "expected Wurmple species id")
 	_assert(int(route101.get("level", 0)) == 2, "expected Route101 Wurmple level 2")
 	_assert(String(_dict_field(route101, "runtime_time").get("symbol", "")) == "TIME_OF_DAY_DEFAULT", "expected default encounter time")
+	_assert(String(land_routing.get("area", "")) == "land", "expected tall grass to route to land")
+	_assert(String(water_routing.get("area", "")) == "water", "expected ocean water to route to water")
+	_assert(String(bridge_no_surf.get("status", "")) == "no_encounter", "expected bridge without surfing to skip")
+	_assert(String(bridge_surf.get("area", "")) == "water", "expected surfing bridge to route to water")
+	_assert(String(routed_route101.get("status", "")) == "ok", "expected routed Route101 encounter")
+	_assert(String(routed_route101.get("species", "")) == "SPECIES_WURMPLE", "expected routed Route101 Wurmple")
+	_assert(bool(_dict_field(routed_route101, "metatile_routing").has("source_trace")), "expected routing source trace")
 
 	var route101_late_slot := engine.choose_wild_mon("route101", "WILD_AREA_LAND", {
 		"slot_roll": 99,

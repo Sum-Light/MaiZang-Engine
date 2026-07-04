@@ -35,15 +35,32 @@ const WARP_EXIT_NON_ANIM_DOOR_BEHAVIORS := {
 	"MB_WATER_DOOR": true,
 	"MB_DEEP_SOUTH_WARP": true,
 }
+const STANDARD_WILD_ENCOUNTER_SOURCE_TRACE := [
+	"src/field_control_avatar.c:FieldGetPlayerInput",
+	"src/field_control_avatar.c:ProcessPlayerFieldInput",
+	"src/field_control_avatar.c:TryStartStepBasedScript",
+	"src/field_control_avatar.c:CheckStandardWildEncounter",
+	"src/wild_encounter.c:StandardWildEncounter",
+	"src/metatile_behavior.c:MetatileBehavior_IsLandWildEncounter",
+	"src/metatile_behavior.c:MetatileBehavior_IsWaterWildEncounter",
+]
+const WILD_ENCOUNTER_IMMUNITY_STEPS := 4
+const NO_ENCOUNTER_FLAGS := {
+	"OW_FLAG_NO_ENCOUNTER": true,
+	"FLAG_NO_ENCOUNTER": true,
+}
 
 var _script_data: Dictionary = {}
 var _script_vm: Node = null
 var _map_runtime: Node = null
 var _game_state: Node = null
 var _data_registry: Node = null
+var _encounter_engine: Node = null
 var _defer_transition_apply := false
 var _next_transition_sequence_id := 1
 var _pending_transitions := {}
+var _wild_encounter_immunity_steps := 0
+var _previous_wild_metatile_behavior := ""
 
 
 func _ready() -> void:
@@ -51,9 +68,11 @@ func _ready() -> void:
 	_map_runtime = get_node_or_null("/root/MapRuntime")
 	_game_state = get_node_or_null("/root/GameState")
 	_data_registry = get_node_or_null("/root/DataRegistry")
+	_encounter_engine = get_node_or_null("/root/EncounterEngine")
 	if _data_registry != null and _data_registry.has_method("get_start_script_data"):
 		configure_from_script_data(_data_registry.get_start_script_data())
 	_configure_script_vm_dependencies()
+	_configure_encounter_engine_dependencies()
 
 
 func configure_from_script_data(script_data: Dictionary) -> void:
@@ -76,11 +95,18 @@ func configure_map_runtime(map_runtime: Node) -> void:
 func configure_game_state(game_state: Node) -> void:
 	_game_state = game_state
 	_configure_script_vm_dependencies()
+	_configure_encounter_engine_dependencies()
 
 
 func configure_data_registry(data_registry: Node) -> void:
 	_data_registry = data_registry
 	_configure_script_vm_dependencies()
+	_configure_encounter_engine_dependencies()
+
+
+func configure_encounter_engine(encounter_engine: Node) -> void:
+	_encounter_engine = encounter_engine
+	_configure_encounter_engine_dependencies()
 
 
 func configure_transition_deferred(value: bool) -> void:
@@ -104,6 +130,18 @@ func apply_deferred_transition(sequence_id: int) -> Dictionary:
 
 	_pending_transitions.erase(sequence_id)
 	return _apply_transition_payload(pending)
+
+
+func reset_wild_encounter_immunity_steps() -> void:
+	_wild_encounter_immunity_steps = 0
+
+
+func get_wild_encounter_dispatch_state() -> Dictionary:
+	return {
+		"immunity_steps": _wild_encounter_immunity_steps,
+		"previous_metatile_behavior": _previous_wild_metatile_behavior,
+		"source": "src/field_control_avatar.c:sWildEncounterImmunitySteps/sPrevMetatileBehavior",
+	}
 
 
 func dispatch_interaction(interaction: Dictionary) -> void:
@@ -132,6 +170,13 @@ func dispatch_interaction(interaction: Dictionary) -> void:
 				"Interaction: %s" % interaction_type,
 				"Source event type is not handled yet.",
 			]))
+
+
+func try_dispatch_standard_wild_encounter(cell: Vector2i, options: Dictionary = {}) -> Dictionary:
+	var summary := _check_standard_wild_encounter(cell, options)
+	if bool(summary.get("encounter_requested", false)):
+		_emit_standard_wild_encounter(summary)
+	return summary
 
 
 func _emit_object_event(interaction: Dictionary, event_data: Dictionary) -> void:
@@ -192,6 +237,111 @@ func _emit_warp_event(interaction: Dictionary, event_data: Dictionary) -> void:
 		_movement_summary_count(transition_summary, "applied"),
 		_movement_summary_count(transition_summary, "skipped"),
 	])
+	debug_message_requested.emit(lines)
+
+
+func _check_standard_wild_encounter(cell: Vector2i, options: Dictionary = {}) -> Dictionary:
+	var behavior_name := _current_metatile_behavior_name(cell)
+	var previous_behavior := _previous_wild_metatile_behavior
+	var summary := {
+		"status": "no_encounter",
+		"encounter_requested": false,
+		"reason": "",
+		"map": _current_map_id(),
+		"position": cell,
+		"current_metatile_behavior": behavior_name,
+		"previous_metatile_behavior": previous_behavior,
+		"immunity_steps_before": _wild_encounter_immunity_steps,
+		"immunity_required_steps": WILD_ENCOUNTER_IMMUNITY_STEPS,
+		"source_order": [
+			"ProcessPlayerFieldInput",
+			"TryStartStepBasedScript: coord -> warp -> misc -> step-count -> repel -> DexNav",
+			"CheckStandardWildEncounter",
+			"StandardWildEncounter",
+		],
+		"unsupported": _standard_wild_dispatch_unsupported(),
+		"source_trace": STANDARD_WILD_ENCOUNTER_SOURCE_TRACE.duplicate(),
+	}
+
+	var disabled_flag := _wild_encounters_disabled_flag()
+	if not disabled_flag.is_empty():
+		summary["reason"] = "no_encounter_flag"
+		summary["disabled_flag"] = disabled_flag
+		summary["immunity_steps_after"] = _wild_encounter_immunity_steps
+		return summary
+
+	if _wild_encounter_immunity_steps < WILD_ENCOUNTER_IMMUNITY_STEPS:
+		_wild_encounter_immunity_steps += 1
+		_previous_wild_metatile_behavior = behavior_name
+		summary["reason"] = "immunity_steps"
+		summary["immunity_steps_after"] = _wild_encounter_immunity_steps
+		return summary
+
+	if _encounter_engine == null or not _encounter_engine.has_method("try_standard_encounter_for_behavior"):
+		summary["status"] = "missing_encounter_engine"
+		summary["reason"] = "missing_encounter_engine"
+		summary["immunity_steps_after"] = _wild_encounter_immunity_steps
+		return summary
+
+	var encounter_options := options.duplicate(true)
+	if _game_state != null and not encounter_options.has("game_state"):
+		encounter_options["game_state"] = _game_state
+	var result = _encounter_engine.try_standard_encounter_for_behavior(
+		String(summary.get("map", "")),
+		behavior_name,
+		previous_behavior,
+		encounter_options
+	)
+	if typeof(result) != TYPE_DICTIONARY:
+		result = {
+			"status": "error",
+			"error": "invalid_encounter_result",
+		}
+
+	summary["encounter_result"] = result
+	summary["metatile_routing"] = result.get("metatile_routing", {})
+	_previous_wild_metatile_behavior = behavior_name
+	if String(result.get("status", "")) != "ok":
+		summary["reason"] = _encounter_result_reason(result)
+		summary["immunity_steps_after"] = _wild_encounter_immunity_steps
+		return summary
+
+	_wild_encounter_immunity_steps = 0
+	summary["status"] = "encounter_requested"
+	summary["encounter_requested"] = true
+	summary["reason"] = "standard_wild_encounter"
+	summary["species"] = String(result.get("species", ""))
+	summary["species_id"] = int(result.get("species_id", 0))
+	summary["level"] = int(result.get("level", 0))
+	summary["area"] = String(result.get("area", ""))
+	summary["record_label"] = String(result.get("record_label", ""))
+	summary["immunity_steps_after"] = _wild_encounter_immunity_steps
+	return summary
+
+
+func _emit_standard_wild_encounter(summary: Dictionary) -> void:
+	var result = summary.get("encounter_result", {})
+	var encounter_check := {}
+	if typeof(result) == TYPE_DICTIONARY:
+		var check = result.get("encounter_check", {})
+		encounter_check = check if typeof(check) == TYPE_DICTIONARY else {}
+	var lines := PackedStringArray([
+		"Wild encounter",
+		"Position: %s" % summary.get("position", Vector2i.ZERO),
+		"Metatile: %s" % String(summary.get("current_metatile_behavior", "")),
+		"Area: %s" % String(summary.get("area", "")),
+		"Species: %s Lv.%d" % [
+			String(summary.get("species", "")),
+			int(summary.get("level", 0)),
+		],
+	])
+	if not encounter_check.is_empty():
+		lines.append("Encounter check: %d < %d / %d" % [
+			int(encounter_check.get("roll", 0)),
+			int(encounter_check.get("adjusted_rate", 0)),
+			int(encounter_check.get("max_rate", 0)),
+		])
+	lines.append("Battle setup: pending")
 	debug_message_requested.emit(lines)
 
 
@@ -1018,6 +1168,8 @@ func _metatile_id_from_map_data(map_data: Dictionary, position: Vector2i) -> int
 func _current_map_id() -> String:
 	if _game_state != null:
 		return String(_game_state.current_map_id)
+	if _map_runtime != null and _map_runtime.has_method("get_current_map_id"):
+		return String(_map_runtime.get_current_map_id())
 	return ""
 
 
@@ -1025,6 +1177,18 @@ func _current_player_position() -> Vector2i:
 	if _game_state != null:
 		return _game_state.player_grid_position
 	return Vector2i.ZERO
+
+
+func _current_metatile_behavior_name(cell: Vector2i) -> String:
+	if _map_runtime == null:
+		return ""
+	if _map_runtime.has_method("get_metatile_behavior_name_at"):
+		return String(_map_runtime.get_metatile_behavior_name_at(cell))
+	if _map_runtime.has_method("get_cell_info"):
+		var cell_info = _map_runtime.get_cell_info(cell)
+		if typeof(cell_info) == TYPE_DICTIONARY:
+			return String(cell_info.get("behavior_name", ""))
+	return ""
 
 
 func _apply_transition_payload(payload: Dictionary) -> Dictionary:
@@ -1045,6 +1209,7 @@ func _apply_transition_payload(payload: Dictionary) -> Dictionary:
 	if _game_state != null:
 		_game_state.current_map_id = map_id
 
+	reset_wild_encounter_immunity_steps()
 	var position_applied := false
 	if position != Vector2i(-1, -1):
 		position_applied = (
@@ -1103,6 +1268,41 @@ func _record_skipped_transition(
 func _movement_summary_count(summary: Dictionary, key: String) -> int:
 	var entries = summary.get(key, [])
 	return entries.size() if typeof(entries) == TYPE_ARRAY else 0
+
+
+func _encounter_result_reason(result: Dictionary) -> String:
+	var reason := String(result.get("reason", ""))
+	if not reason.is_empty():
+		return reason
+	var error := String(result.get("error", ""))
+	if not error.is_empty():
+		return error
+	return String(result.get("status", "no_encounter"))
+
+
+func _wild_encounters_disabled_flag() -> String:
+	if _game_state == null or not _game_state.has_method("is_flag_set"):
+		return ""
+	for flag_name in NO_ENCOUNTER_FLAGS.keys():
+		if bool(_game_state.is_flag_set(String(flag_name))):
+			return String(flag_name)
+	return ""
+
+
+func _standard_wild_dispatch_unsupported() -> Array:
+	return [{
+		"code": "step_based_scripts_before_encounter_incomplete",
+		"source": "src/field_control_avatar.c:TryStartStepBasedScript",
+		"detail": "Coordinate events and current-cell generated warps are already dispatched before this check; misc walking scripts, step-count scripts, Repel counter presentation, and DexNav step search remain future traced work.",
+	}, {
+		"code": "walk_into_signpost_and_arrow_warp_order_not_integrated",
+		"source": "src/field_control_avatar.c:ProcessPlayerFieldInput",
+		"detail": "Walk-into-signpost checks, arrow warps, and front-cell door warp ordering need a fuller field-input loop; blocked front-cell door warp remains handled by the current Godot movement-blocked path.",
+	}, {
+		"code": "wild_battle_presentation_not_started",
+		"source": "src/wild_encounter.c:StandardWildEncounter -> src/battle_setup.c",
+		"detail": "This dispatch emits a source-backed encounter request and debug output, but enemy party creation, battle transition, audio, and battle scene presentation remain future traced work.",
+	}]
 
 
 func _append_direct_preview_output(lines: PackedStringArray, script: String) -> void:
@@ -1373,6 +1573,15 @@ func _configure_script_vm_dependencies() -> void:
 		_script_vm.configure_game_state(_game_state)
 	if _data_registry != null and _script_vm.has_method("configure_data_registry"):
 		_script_vm.configure_data_registry(_data_registry)
+
+
+func _configure_encounter_engine_dependencies() -> void:
+	if _encounter_engine == null:
+		return
+	if _game_state != null and _encounter_engine.has_method("configure_game_state"):
+		_encounter_engine.configure_game_state(_game_state)
+	if _data_registry != null and _encounter_engine.has_method("configure_registry"):
+		_encounter_engine.configure_registry(_data_registry)
 
 
 func _get_text_record(text_label: String) -> Dictionary:
