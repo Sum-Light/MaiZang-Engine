@@ -17,13 +17,13 @@ Current focus:
 
 Next active module:
 
-- `BagRuntime` plus `ScriptVM.giveitem`.
+- Overworld 1:1 parity planning and the first map-rendering/runtime slice.
 
 Reason:
 
-- Shared PlayersHouse scripts already use `giveitem ITEM_AMULET_COIN` and `giveitem ITEM_SS_TICKET`.
-- `giveitem` affects script branching through `VAR_RESULT`, so it needs runtime behavior rather than a passive effect record.
-- Bag state is also needed by save snapshots, item-use flows, shops, evolution item consumption, and future menus.
+- The user redirected the current focus to source-equivalent map/overworld behavior before more item/runtime expansion.
+- Current Godot overworld is still first-pass in several player-visible areas: flattened metatile rendering, overlay-only door animation, static object events, partial player avatar states, and simplified collision.
+- The durable checklist for this focus lives in `wiki/overworld-parity-todo.md`.
 
 ## Module Tracks
 
@@ -173,13 +173,16 @@ Main-agent responsibilities:
 
 Near-term:
 
-- Bag runtime and `giveitem` script support.
-- Broader item script commands such as `takeitem`, `checkitem`, and item-space checks after source tracing.
-- Real bag/menu presentation after the domain runtime is stable.
+- Build the overworld source trace matrix and unsupported coverage report.
+- Replace flattened debug metatile rendering with source layer-aware map rendering for the existing Littleroot/Route101/house slice.
+- Port the first dynamic tileset animations and replace door overlay playback with real map-layer/metatile door frame application.
+- Start real object-event movement/action queues for NPC animation and `applymovement`/`waitmovement`.
 
 Mid-term:
 
-- Overworld sprite import and movement animation queues.
+- Bag runtime and `giveitem` script support after the current overworld slice is stabilized.
+- Broader item script commands such as `takeitem`, `checkitem`, and item-space checks after source tracing.
+- Overworld sprite import expansion and movement animation queues.
 - Real dialogue/window presentation with source text-control metadata.
 - Battle scene presentation and broader move/ability/item effects.
 - Party menu, summary, capture, healing, PC storage, and shops.

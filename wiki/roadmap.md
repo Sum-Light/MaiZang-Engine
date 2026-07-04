@@ -4,7 +4,7 @@
 
 - Use `wiki/control-panel.md` as the short current-focus page before expanding the full roadmap.
 - Keep only one active implementation module at a time unless the user explicitly asks for parallel work.
-- Current active next module: `BagRuntime` plus `ScriptVM.giveitem`, because generated PlayersHouse scripts already need source-backed item grant behavior and `VAR_RESULT` branching.
+- Current active next module: overworld 1:1 parity planning and first map-rendering/runtime slice. Detailed checklist: `wiki/overworld-parity-todo.md`.
 
 ## Milestone 0 - Knowledge Base and Skill
 
