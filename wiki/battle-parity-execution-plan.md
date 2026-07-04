@@ -308,8 +308,12 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
   - Boundary: no runtime GBA palette-bank/VRAM/OAM model is introduced; Big Pokeball, Mugshot, Aqua/Magma, Regi, Weather Trio, Frontier Logo, Frontier Circles, and VS-frame tilemaps have static composite assets, while Frontier Squares is only a 4x4 dynamic block preview because the source repeatedly places that tilemap during task playback. Later fades, masks, mosaic-like timing, HBlank/VBlank-inspired effects, palette changes, and affine transforms should use Godot-native shaders/materials/animation while matching the source-visible rhythm. Audio remains metadata-only.
   - Validate: `data_registry_battle_transitions_smoke.gd` checks transition stats, Big Pokeball/Aqua/Mugshot/Rayquaza/Frontier asset refs, source selection tables, all 14 tilemap composites/previews, concrete `BattleEngine` transition ids, runtime-pending metadata, and audio notes; `battle_parity_report_smoke.gd` verifies 38 transition coverage rows and no missing expected coverage.
 
-- [ ] B7.5 Add asset alpha/palette smoke checks.
-  - Validate: index 0 transparency, GBA palette conversion, frame rects, texture dimensions, and missing asset reports.
+- [x] B7.5 Add asset alpha/palette smoke checks.
+  - Output: `tools/godot_smoke/battle_asset_alpha_palette_smoke.gd`, plus battle parity report test references for first-pass Pokemon, trainer, environment, and transition asset rows.
+  - Current first pass: the smoke validates generated Godot-friendly asset metadata across 4,428 image references, 231 palette metadata records, and 14 transition tilemap composites/previews; it opens 14 representative PNGs to verify actual alpha behavior, metadata dimensions, and nonblank/opaque/transparent expectations.
+  - Covers: Pokemon palette-index-0 transparency metadata, Pokemon frame-size metadata inside generated sprite sheets, trainer front/back sprite transparency metadata, battle background opaque conversion, entry overlay alpha conversion, transition texture alpha where palette metadata exists, transition tilemap composite dimensions, transition missing-asset refs, and known missing-image report counts.
+  - Boundary: this is an asset-quality smoke, not runtime playback. Palette remaps, palette animation, affine scaling/rotation, masks/fades, sprite animation timing, and audio playback remain pending and should use Godot-native materials/animation while matching the source-visible result.
+  - Validate: `battle_asset_alpha_palette_smoke.gd` reports `image_load_count=14`, `metadata_image_ref_count=4428`, `palette_metadata_count=231`, and `tilemap_composite_count=14`; `battle_parity_report_smoke.gd` asserts the new smoke is attached to representative first-pass rows.
 
 - [ ] B7.6 Add Pokemon data and asset completeness report.
   - Output: `data/generated/reports/pokemon_battle_asset_coverage.json`.

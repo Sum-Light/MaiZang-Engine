@@ -260,6 +260,7 @@ def build_trainer_rows(trainers_data, trainer_sprites_data):
         tests = ["tools/godot_smoke/data_registry_trainers_smoke.gd", "tools/godot_smoke/battle_engine_smoke.gd"]
         if sprite_asset_status == "first_pass":
             tests.append("tools/godot_smoke/data_registry_trainer_sprites_smoke.gd")
+            tests.append("tools/godot_smoke/battle_asset_alpha_palette_smoke.gd")
         rows.append({
             "id": symbol,
             "trainer_symbol": symbol,
@@ -388,6 +389,8 @@ def build_pokemon_rows(species_data, battle_sprites_data=None):
         tests = ["tools/godot_smoke/data_registry_species_smoke.gd"]
         if sprite_record:
             tests.append("tools/godot_smoke/data_registry_pokemon_battle_sprites_smoke.gd")
+        if str(coverage.get("asset_status", "")) == "first_pass":
+            tests.append("tools/godot_smoke/battle_asset_alpha_palette_smoke.gd")
         rows.append({
             "id": symbol,
             "species_symbol": symbol,
@@ -491,6 +494,8 @@ def build_battle_environment_rows(environments_data):
         palette = record.get("palette", {}) if isinstance(record.get("palette"), dict) else {}
         source_assets = record.get("source_assets", {}) if isinstance(record.get("source_assets"), dict) else {}
         tests = ["tools/godot_smoke/data_registry_battle_environments_smoke.gd"]
+        if str(coverage.get("asset_status", "")) == "first_pass":
+            tests.append("tools/godot_smoke/battle_asset_alpha_palette_smoke.gd")
         rows.append({
             "id": symbol,
             "environment_symbol": symbol,
@@ -548,6 +553,9 @@ def build_battle_transition_rows(transitions_data):
             if isinstance(first_tilemap_asset.get("tilemap_composite", {}), dict)
             else {}
         )
+        tests = ["tools/godot_smoke/data_registry_battle_transitions_smoke.gd"]
+        if str(coverage.get("asset_status", "")) == "first_pass" or str(coverage.get("tilemap_status", "")) in ("first_pass", "dynamic_block_preview"):
+            tests.append("tools/godot_smoke/battle_asset_alpha_palette_smoke.gd")
         rows.append({
             "id": symbol,
             "transition_symbol": symbol,
@@ -568,7 +576,7 @@ def build_battle_transition_rows(transitions_data):
             "selection_status": str(coverage.get("selection_status", "metadata_only")),
             "runtime_status": str(coverage.get("runtime_status", "unsupported")),
             "audio_status": str(coverage.get("audio_status", "metadata_only")),
-            "tests": ["tools/godot_smoke/data_registry_battle_transitions_smoke.gd"],
+            "tests": tests,
             "unsupported": list(record.get("unsupported", [])) if isinstance(record.get("unsupported"), list) else [],
             "source": source_ref(record),
         })
