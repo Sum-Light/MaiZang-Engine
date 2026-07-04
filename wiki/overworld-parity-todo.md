@@ -11,7 +11,7 @@ Goal: reproduce the source `pokeemerald-expansion` map/overworld experience in G
 - Player Brendan/May normal walk and turn-in-place now use source-traced frame timing. Running, fast walk, bike, surf, underwater, fishing, watering, field move, spin, slide, current, and other avatar states are pending.
 - Object events currently spawn as static source-backed sprites for the first small set of imported graphics. Full movement type callbacks, held movement actions, per-frame animation, freezing, collision, subpriority, shadows, reflections, and camera spawn/despawn behavior are pending.
 - `ScriptVM` can emit first-pass movement, field, object, transition, and audio effect records. `applymovement`, `waitmovement`, `delay`, `waitdooranim`, and related waits are not true async source tasks yet.
-- Tileset import bakes palette RGBA output and door atlases for used doors. Source tileset animation callbacks, per-layer tiles, and complete door graphics tables are pending.
+- Tileset import bakes palette RGBA output and door atlases for used doors. Source tileset animation callback binding/counters/copy regions are now traced; runtime tileset animation playback, per-layer tiles, and complete door graphics tables are pending.
 
 ## Source Files Audited
 
@@ -50,7 +50,7 @@ Use these as executable checkboxes. A task is not complete until the source path
 - [x] Trace `src/script_movement.c` applymovement task behavior, waitmovement behavior, simultaneous movements, and target resolution.
 - [x] Trace `src/event_object_lock.c` object freezing, selected-object locking, player/object facing, and lock release behavior.
 - [x] Trace `src/field_door.c` door graphics tables, palette tables, frame tables, metatile mutation, sounds, task timing, and multi-door cases.
-- [ ] Trace `src/tileset_anims.c`, `include/tileset_anims.h`, and `src/data/tilesets/headers.h` for callback binding, counters, copy regions, and map-load initialization.
+- [x] Trace `src/tileset_anims.c`, `include/tileset_anims.h`, and `src/data/tilesets/headers.h` for callback binding, counters, copy regions, and map-load initialization.
 - [ ] Trace `src/metatile_behavior.c` and `include/constants/metatile_behaviors.h` for every `MetatileBehavior_Is*` group needed by movement, encounters, interaction, terrain effects, and transitions.
 - [ ] Trace `src/scrcmd.c` overworld-affecting commands, especially waits, doors, map mutation, warps, weather, fades, audio, field effects, object commands, and trainer flow.
 
@@ -111,12 +111,12 @@ Use these as executable checkboxes. A task is not complete until the source path
 
 ### 6. Dynamic Metatile And Tileset Animations
 
-- [ ] Parse each tileset callback symbol from the source tileset headers.
+- [x] Parse each tileset callback symbol from the source tileset headers.
 - [ ] Export callback-to-map metadata for primary and secondary tilesets.
-- [ ] Trace General callback frames and copy regions.
-- [ ] Trace Petalburg callback frames and copy regions.
-- [ ] Trace remaining primary tileset callbacks.
-- [ ] Trace remaining secondary tileset callbacks.
+- [x] Trace General callback frames and copy regions.
+- [x] Trace Petalburg callback frames and copy regions.
+- [x] Trace remaining primary tileset callbacks.
+- [x] Trace remaining secondary tileset callbacks.
 - [ ] Export animation image sources and generated RGBA frame strips.
 - [ ] Export source frame durations, frame counters, wrap behavior, DMA/copy target tile ranges, and affected metatile/tile ids.
 - [ ] Implement a runtime `TilesetAnimationPlayer` that initializes on map load.
