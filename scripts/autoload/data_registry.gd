@@ -35,6 +35,8 @@ var _ability_records_by_symbol: Dictionary = {}
 var _ability_records_by_id: Dictionary = {}
 var _item_records_by_symbol: Dictionary = {}
 var _item_records_by_id: Dictionary = {}
+var _wild_encounter_records_by_label: Dictionary = {}
+var _wild_encounter_records_by_map: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -345,6 +347,31 @@ func get_item_record_by_id(item_id: int) -> Dictionary:
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
+func get_wild_encounters_data() -> Dictionary:
+	return get_pokemon_data("wild_encounters")
+
+
+func get_wild_encounter_record(label_or_id: String) -> Dictionary:
+	_ensure_wild_encounter_indexes()
+	var record = _wild_encounter_records_by_label.get(label_or_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_wild_encounter_records_for_map(map_symbol: String) -> Array:
+	_ensure_wild_encounter_indexes()
+	var normalized := _normalize_map_symbol(map_symbol)
+	var records = _wild_encounter_records_by_map.get(normalized, [])
+	return records if typeof(records) == TYPE_ARRAY else []
+
+
+func get_wild_encounter_record_for_map(map_symbol: String, index: int = 0) -> Dictionary:
+	var records := get_wild_encounter_records_for_map(map_symbol)
+	if index < 0 or index >= records.size():
+		return {}
+	var record = records[index]
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
 func get_map_name(map_id: String) -> String:
 	var entry := _map_entry_for_id(map_id)
 	if not entry.is_empty():
@@ -416,6 +443,8 @@ func _index_manifest() -> void:
 	_ability_records_by_id = {}
 	_item_records_by_symbol = {}
 	_item_records_by_id = {}
+	_wild_encounter_records_by_label = {}
+	_wild_encounter_records_by_map = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -586,6 +615,51 @@ func _ensure_item_indexes() -> void:
 			_item_records_by_symbol[item_symbol] = record
 		if record.has("id") and record.get("id") != null:
 			_item_records_by_id[int(record.get("id"))] = record
+
+
+func _ensure_wild_encounter_indexes() -> void:
+	if not _wild_encounter_records_by_label.is_empty() or not _wild_encounter_records_by_map.is_empty():
+		return
+
+	var wild_data := get_wild_encounters_data()
+	var records = wild_data.get("encounters", [])
+	if typeof(records) != TYPE_ARRAY:
+		return
+
+	for record in records:
+		if typeof(record) != TYPE_DICTIONARY:
+			continue
+		var record_id := String(record.get("id", ""))
+		var label := String(record.get("label", ""))
+		var shared_label := String(record.get("shared_label", ""))
+		for key in [record_id, label, shared_label]:
+			var lookup_key := str(key)
+			if not lookup_key.is_empty() and not _wild_encounter_records_by_label.has(lookup_key):
+				_wild_encounter_records_by_label[lookup_key] = record
+
+		var map_info = record.get("map", {})
+		if typeof(map_info) != TYPE_DICTIONARY:
+			continue
+		var map_symbol_value = map_info.get("symbol", "")
+		if map_symbol_value == null:
+			continue
+		var map_symbol := str(map_symbol_value)
+		if map_symbol.is_empty():
+			continue
+		if not _wild_encounter_records_by_map.has(map_symbol):
+			_wild_encounter_records_by_map[map_symbol] = []
+		var map_records = _wild_encounter_records_by_map[map_symbol]
+		if typeof(map_records) == TYPE_ARRAY:
+			map_records.append(record)
+
+
+func _normalize_map_symbol(map_symbol: String) -> String:
+	var normalized := map_symbol
+	if normalized.is_empty():
+		return ""
+	if not normalized.begins_with("MAP_"):
+		normalized = "MAP_%s" % normalized.to_upper()
+	return normalized
 
 
 func _resource_path(project_path: String) -> String:

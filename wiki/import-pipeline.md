@@ -276,6 +276,34 @@ Latest verified items export:
 - export warnings: 0
 - unsupported fields: 0
 
+`tools/importer/export_wild_encounters.py` exports source wild encounter tables into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
+
+Current wild encounter export behavior:
+
+- Reads `src/data/wild_encounters.json`.
+- Traces the source generated-header semantics from `tools/wild_encounters/wild_encounters_to_header.py`, `include/wild_encounter.h`, `include/constants/wild_encounter.h`, `include/constants/rtc.h`, `include/config/overworld.h`, and `include/config/dexnav.h`.
+- Reconstructs map group/number constants from `data/maps/map_groups.json`, using `tools/mapjson/required_map_defines.json` only for required-map fallback symbols.
+- Reads species constants from `include/constants/species.h` so each slot stores source species symbol and numeric id.
+- Exports land, water, rock smash, and fishing tables with encounter rates, slot levels, source slot probabilities, cumulative thresholds, and fishing rod probability groups.
+- Records the current time-of-day encounter config: `OW_TIME_OF_DAY_ENCOUNTERS = FALSE`, generated fallback `TIME_MORNING`, and runtime `TIME_OF_DAY_DEFAULT`.
+- Records source runtime references such as `src/wild_encounter.c`, `src/field_control_avatar.c`, `src/metatile_behavior.c`, DexNav/Pokedex/Match Call references, fishing, Sweet Scent, roamer, Battle Pike, and Battle Pyramid files for later behavior work.
+- Records `MAP_ALTERING_CAVE` as a special case selected by `VAR_ALTERING_CAVE_WILD_SET` and `NUM_ALTERING_CAVE_TABLES`.
+- Writes `data/generated/pokemon/wild_encounters.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `wild_encounters`.
+- Treats generated encounter records as source-traceable data for later overworld encounter runtime work. Step encounter checks, Repel, abilities, surfing/fishing state, DexNav, mass outbreaks, Feebas, roamers, and battle setup remain separate source-backed implementations.
+
+Latest verified wild encounter export:
+
+- generated path: `data/generated/pokemon/wild_encounters.json`
+- manifest category: `pokemon` / `wild_encounters`
+- header groups: 3
+- encounter records: 399
+- map encounter records: 388
+- land/water/rock-smash/fishing table counts: 332 / 155 / 34 / 153
+- total wild-mon slots: 6459
+- unique species: 222
+- export warnings: 0
+- unsupported fields: 0
+
 Porymap can be used as a reference for how pokeemerald projects interpret primary/secondary tilesets, palettes, metatile attributes, and editor context. The Godot importer should use those semantics to generate Godot-friendly outputs instead of reproducing Porymap's Qt editor architecture.
 
 Latest verified first-slice source facts for `LittlerootTown`:

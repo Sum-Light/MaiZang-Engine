@@ -50,7 +50,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, and Pokemon item JSON.
+- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, and Pokemon wild encounter JSON.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries, including source metatile behavior names.
 - `MapRuntime` indexes generated door animation metadata by metatile id and can return the animation for a map cell.
 - `MapRuntime` indexes generated object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events; visible object-event cells are occupied for first-pass movement.
@@ -168,6 +168,15 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - Generated item effect records preserve `src/data/pokemon/item_effects.h` byte-array symbols, source locations, lengths, explicit designated entries, evaluated values, u8 byte values, and expanded friendship helper macros such as `VITAMIN_FRIENDSHIP_CHANGE`, `FEATHER_FRIENDSHIP_CHANGE`, and `EV_BERRY_FRIENDSHIP_CHANGE`.
 - The item importer evaluates active item/source configuration from `src/data/items.h`, `src/data/pokemon/item_effects.h`, `include/item.h`, item/constants headers, `include/constants/tms_hms.h`, and relevant `include/config/*` headers. TM/HM item aliases such as `ITEM_TM_THUNDER` are resolved from the source `FOREACH_TM`/`FOREACH_HM` lists.
 - Item behavior is not inferred from names or data alone. Bag UI, shops, field-use functions, berries, mail, Pokeballs, held-item effects, battle item execution, Enigma Berry save-data special cases, icons, audio, animations, and menu timing must still be implemented only after tracing the corresponding source C and referenced resources.
+
+## Generated Wild Encounters Contract
+
+- Pokemon wild encounter JSON is loaded through `DataRegistry` from the manifest `pokemon` entry with category `wild_encounters`.
+- `DataRegistry.get_pokemon_data("wild_encounters")`, `get_wild_encounters_data`, `get_wild_encounter_record`, `get_wild_encounter_records_for_map`, and `get_wild_encounter_record_for_map` are read-only accessors for generated encounter records.
+- Generated encounter records preserve source header labels, base labels, map symbols, reconstructed map group/number values, current time-of-day generation config, encounter rates, slot levels, source species symbols and ids, slot probability tables, and runtime reference files.
+- Fishing encounter probabilities preserve source rod groups separately from the flat slot list because source selection uses Old/Good/Super Rod subranges.
+- `MAP_ALTERING_CAVE` preserves the source special case where `VAR_ALTERING_CAVE_WILD_SET` offsets into 9 encounter tables when the value is below `NUM_ALTERING_CAVE_TABLES`.
+- Wild encounter runtime behavior is not implemented by the generated data alone. Step timing, encounter-rate rolls, Repel, ability modifiers, surfing/fishing flags, Sweet Scent, DexNav, mass outbreaks, Feebas tiles, roamers, Battle Pike/Pyramid behavior, battle setup, audio, and presentation timing must still be implemented only after tracing the corresponding source C and referenced resources.
 
 ## Generated Global Text Contract
 

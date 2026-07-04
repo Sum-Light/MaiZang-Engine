@@ -19,7 +19,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `project.godot` sets `res://scenes/main.tscn` as the main scene.
 - Autoloads are configured for `GameState`, `DataRegistry`, `MapRuntime`, `ScriptVM`, and `EventManager`.
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, and Pokemon item JSON while preserving the first-slice start-map API.
+- `DataRegistry` now loads `data/generated/import_manifest.json` and can resolve generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, Pokemon ability JSON, Pokemon item JSON, and Pokemon wild encounter JSON while preserving the first-slice start-map API.
 - `MapRuntime` now configures the first generated map and exposes bounds, collision, elevation, metatile id, behavior id, behavior name, and layer-type lookups.
 - `MapRuntime` now indexes first-slice object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events.
 - `MapRuntime` treats visible object-event cells as occupied and can resolve the player's current interaction target from grid position plus facing direction.
@@ -69,6 +69,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Generated Pokemon move data currently exists at `data/generated/pokemon/moves.json` and is indexed by the import manifest `pokemon` entry with category `moves`.
 - Generated Pokemon ability data currently exists at `data/generated/pokemon/abilities.json` and is indexed by the import manifest `pokemon` entry with category `abilities`.
 - Generated Pokemon item data currently exists at `data/generated/pokemon/items.json` and is indexed by the import manifest `pokemon` entry with category `items`.
+- Generated Pokemon wild encounter data currently exists at `data/generated/pokemon/wild_encounters.json` and is indexed by the import manifest `pokemon` entry with category `wild_encounters`.
 - Generated import manifest lives at `data/generated/import_manifest.json`.
 - Latest source probe for `LittlerootTown` found 939 map JSON files, 887 map script files, 5 primary tilesets, 127 secondary tilesets, and no missing first-slice files.
 - Latest map export for `LittlerootTown` decoded 400 map-grid entries into 63 unique metatile ids.
@@ -79,6 +80,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Latest Pokemon move export found 935 active move initializers, 935 records with complete first-pass core battle fields, 337 moves with additional-effect records, 77 preprocessor decisions, 0 preprocessor warnings, 0 export warnings, and 0 unsupported fields.
 - Latest Pokemon ability export found 311 active ability initializers, 310 records with explicit `aiRating`, 122 records with at least one present flag field, 120 records with at least one true flag after active config evaluation, 0 preprocessor warnings, 0 export warnings, and 0 unsupported fields.
 - Latest Pokemon item export found 874 active item initializers, `ITEMS_COUNT = 874`, highest item id 873, 139 item records with effect references, 72 parsed item effect byte arrays, 254 preprocessor decisions, 0 preprocessor warnings, 0 export warnings, and 0 unsupported fields.
+- Latest Pokemon wild encounter export found 3 header groups, 399 encounter records, 388 map encounter records, 332 land tables, 155 water tables, 34 rock-smash tables, 153 fishing tables, 6459 total wild-mon slots, 222 unique species, 0 export warnings, and 0 unsupported fields.
 - Generated `LittlerootTown_BrendansHouse_1F` is 11x9 and has 26 scripts, 11 movement labels, 29 text labels, 0 charmap warnings, and 0 script orphan instructions.
 - Generated `LittlerootTown_MaysHouse_1F` is 11x9 and has 31 scripts, 11 movement labels, 8 text labels, 0 charmap warnings, and 0 script orphan instructions.
 - Shared `PlayersHouse_1F` scripts from source `data/scripts/players_house.inc` and common movements from `data/scripts/movement.inc` are exported into `data/generated/scripts/shared_players_house.json`; Brendan/May house OnFrame intro scripts now run through `PlayersHouse_1F_EventScript_EnterHouseMovingIn`.
@@ -95,6 +97,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - `DataRegistry` can load generated Pokemon move data through `get_pokemon_data("moves")`, `get_moves_data`, `get_move_record`, `get_move_record_by_symbol`, and `get_move_record_by_id`.
 - `DataRegistry` can load generated Pokemon ability data through `get_pokemon_data("abilities")`, `get_abilities_data`, `get_ability_record`, `get_ability_record_by_symbol`, and `get_ability_record_by_id`.
 - `DataRegistry` can load generated Pokemon item data through `get_pokemon_data("items")`, `get_items_data`, `get_item_record`, `get_item_record_by_symbol`, and `get_item_record_by_id`.
+- `DataRegistry` can load generated Pokemon wild encounter data through `get_pokemon_data("wild_encounters")`, `get_wild_encounters_data`, `get_wild_encounter_record`, `get_wild_encounter_records_for_map`, and `get_wild_encounter_record_for_map`.
 - `ScriptVM` expands generated movement labels into result `movements` entries with target local id, structured steps, net tile delta, final facing, and unsupported-step reporting. Real dispatch now fast-forwards those net deltas into runtime map/player state; scene-node animation, object task queues, source collision timing, and real wait blocking remain future work.
 - `ScriptVM` records `delay`, `setmetatile`, `opendoor`, `closedoor`, and `waitdooranim` as `field_effects` after source tracing. `setmetatile` resolves source `METATILE_*` tokens through generated tileset label metadata and records source `ScrCmd_setmetatile` coordinate/collision semantics; transition presentation now consumes generated door animation metadata for the first door-warp overlay slice, while standalone script-driven door animation, real audio playback, and asynchronous wait timing remain future presentation/runtime work.
 - `MapRuntime` can apply `setmetatile` field effects to the current in-memory map grid, updating metatile id, collision, raw map-grid value, generated map data, and preserving source elevation bits before emitting `map_changed`.

@@ -293,3 +293,9 @@ Reason: Ability behavior is shared by battle AI, copying/swapping/suppressing/ov
 Decision: Add a first item importer that structures `src/data/items.h` and `src/data/pokemon/item_effects.h` into generated item records and item effect byte-array records while preserving `struct ItemInfo` fields, source text, active config expressions, TM/HM aliases, source constants, defaulted fields, and behavior reference files.
 
 Reason: Item behavior spans bag menus, shops, field-use functions, berries, mail, Pokeballs, held-item effects, battle items, icons, audio, and source special cases such as Enigma Berry save data. The Godot runtime needs stable item ids and inspectable data now, but it should not infer behavior from item names or categories. Generated item JSON gives later systems a source-backed contract while keeping actual item behavior responsible for tracing the matching source C and referenced resources first.
+
+## 2026-07-04 - Export wild encounters as source-traceable data
+
+Decision: Add a first wild encounter importer that structures `src/data/wild_encounters.json` into generated encounter records while preserving generated-header semantics, active time-of-day config, reconstructed map group/number values, source species ids, slot probability tables, fishing rod groups, and the Altering Cave table-selection special case.
+
+Reason: Wild encounter runtime behavior spans field input ordering, metatile behavior, encounter-rate rolls, Repel, abilities, surfing/fishing state, Sweet Scent, DexNav, outbreaks, Feebas, roamers, Battle Pike/Pyramid, and battle setup. The Godot runtime needs stable encounter tables now, but it should not infer overworld encounter behavior from data alone. Generated encounter JSON gives later systems a source-backed contract while keeping actual encounter execution responsible for tracing the matching source C and referenced resources first.

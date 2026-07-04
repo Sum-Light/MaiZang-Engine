@@ -72,9 +72,9 @@
 
 ## Milestone 6 - Pokemon Data Slice
 
-- Export species, moves, abilities, items, wild encounters, and trainers. First pass done for species data from `src/data/pokemon/species_info.h`, move data from `src/data/moves_info.h`, ability data from `src/data/abilities.h`, and item data from `src/data/items.h` plus `src/data/pokemon/item_effects.h`; encounters and trainers remain.
-- Build `DataRegistry` accessors. First pass done for generated species, move, ability, and item data by category, symbol, short symbol, and numeric id.
-- Add validation for cross-references. First pass done for generated species stats, Bulbasaur/Egg/Unown registry lookup, generated move stats, Pound/Fire Punch/Thunder move lookup, additional-effect field coverage, generated ability stats, C default field handling, active-config ability flag evaluation, generated item stats, item effect byte arrays, TM/HM item aliases, Pokeball secondary ids, berry held effects, and item lookup by id/symbol; broader graphics, learnset, evolution, form, move-learnset, item behavior, ability behavior, encounter, trainer, and battle-data cross-reference validation remains.
+- Export species, moves, abilities, items, wild encounters, and trainers. First pass done for species data from `src/data/pokemon/species_info.h`, move data from `src/data/moves_info.h`, ability data from `src/data/abilities.h`, item data from `src/data/items.h` plus `src/data/pokemon/item_effects.h`, and wild encounter data from `src/data/wild_encounters.json`; trainers remain.
+- Build `DataRegistry` accessors. First pass done for generated species, move, ability, and item data by category, symbol, short symbol, and numeric id; wild encounters now have category, label, and map-symbol lookup accessors.
+- Add validation for cross-references. First pass done for generated species stats, Bulbasaur/Egg/Unown registry lookup, generated move stats, Pound/Fire Punch/Thunder move lookup, additional-effect field coverage, generated ability stats, C default field handling, active-config ability flag evaluation, generated item stats, item effect byte arrays, TM/HM item aliases, Pokeball secondary ids, berry held effects, item lookup by id/symbol, wild encounter stats, Route101/Route119 sample slots, Altering Cave special tables, and encounter slot probability tables; broader graphics, learnset, evolution, form, move-learnset, item behavior, ability behavior, encounter runtime behavior, trainer, and battle-data cross-reference validation remains.
 
 ## Milestone 7 - Battle Prototype
 
