@@ -293,3 +293,4 @@
 - Updated `BattleEngine.create_wild_battle_state` so wild battle setup metadata resolves concrete source `B_TRANSITION_*` ids from `sBattleTransitionTable_Wild`, preserving Flash priority, surfable/underwater metatile behavior, underground/underwater map types, lower/equal-or-higher level columns, and Battle Pyramid overrides.
 - Updated `EventManager` so standard wild battle-start steps carry the concrete transition id and transition type; generated map `map_type` is passed into battle setup when available through `DataRegistry`.
 - Expanded `battle_engine_smoke.gd` and `field_wild_encounter_smoke.gd` to cover normal Route101, Route119 water, Flash, underground, and underwater wild transition selection.
+- Added GitHub remote `git@github.com:Sum-Light/MaiZang-Engine.git`, verified SSH authentication for `Sum-Light`, pushed local `master`, and set it to track `origin/master`.

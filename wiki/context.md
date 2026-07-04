@@ -11,6 +11,8 @@ The port should be data-driven: preserve source data and assets where practical,
 - Godot target project: `C:\Users\YbbNa\OneDrive\Documents\pokeemerald-godot`
 - Source project: `C:\Users\YbbNa\OneDrive\Project-Azoth\pokeemerald-expansion-master\pokeemerald-expansion-master`
 - Project skill: `C:\Users\YbbNa\.codex\skills\pokeemerald-godot-port`
+- GitHub remote: `git@github.com:Sum-Light/MaiZang-Engine.git`
+- Primary branch: `master`, tracking `origin/master`
 
 ## Current Godot Project State
 
@@ -49,6 +51,7 @@ The port should be data-driven: preserve source data and assets where practical,
 - Validated Godot version: `4.7.stable.official.5b4e0cb0f`.
 - The project directory was not a git repository during the initial inspection.
 - The project directory is now a standalone git repository initialized on 2026-07-03.
+- On 2026-07-04, the local `master` history was pushed to GitHub at `git@github.com:Sum-Light/MaiZang-Engine.git` and set to track `origin/master`.
 - Local git line-ending config was set to `core.autocrlf=false` and `core.eol=lf`, matching the existing `.gitattributes` LF policy.
 - The project should be maintained with focused commits after completed file changes.
 
