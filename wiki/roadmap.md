@@ -32,7 +32,7 @@
 
 - Index object, BG/sign, warp, and coordinate events for interaction lookup. First pass done in `MapRuntime`.
 - Add an interaction dispatcher path from player facing direction to debug dialogue. First pass done with `EventManager`; real script execution remains.
-- Trigger coordinate events after player movement. First pass done for normal `var`/`var_value` coord triggers through `MapRuntime` and `EventManager`; full weather, wild encounter, step-count, and forced-movement chain remains future work.
+- Trigger coordinate events after player movement. First pass done for normal `var`/`var_value` coord triggers through `MapRuntime` and `EventManager`; full weather, field-step wild encounter dispatch, step-count, and forced-movement chain remains future work.
 - Trigger generated map warp events. First pass done for source-style x/y/elevation matching, step warps after coordinate checks, and blocked front-cell door warps; generated destination maps are loaded through warp-id coordinates when available.
 - Add source-visible transition presentation. First structured sequence slice done: `EventManager` emits normal/silent and door transition sequences with traced source step order, 16-frame door/player timings, source-derived door sound intent, generated door animation metadata, and source-derived destination exit-task selection from metatile behavior names. `TransitionSequencePlayer` now consumes that contract for first-pass black fades, input lock, player hide/show, generated door animation overlays, scripted player step-in/out movement, deferred map-load timing, and `Task_ExitDoor` final step-down position. First-pass destination map-load scripts now run in source order (`MAP_SCRIPT_ON_TRANSITION`, affected object-template sync, then `MAP_SCRIPT_ON_LOAD`); future work must add real audio cues, exact fade color selection/timing, non-animated door and stair exit playback, remaining lifecycle hooks, and final sprite presentation.
 - Parse `.inc` event scripts into labels and instructions. First pass done for `LittlerootTown` and the first indoor maps, including script labels, movement labels, local text labels, shared script bundles, and direct `msgbox`/`message` references.
@@ -86,8 +86,9 @@
 
 ## Milestone 8 - Full Game Systems
 
-- Party menu, bag, Pokemon summary, Pokedex, shops, healing, saving, and overworld effects.
+- Party menu, bag, Pokemon summary, Pokedex, shops, healing, saving, wild encounters, and overworld effects.
 - Start party/Pokemon instance runtime. First pass done for UI-independent `PartyRuntime`: source-shaped party Pokemon creation through `BattleEngine`, six-slot party storage in `GameState`, battle-party projection, and evolution context bridging. Party menu, summary UI, capture/storage/healing/save mutation, EXP, and fuller source creation paths remain.
 - Start saving. First pass done for UI-independent `SaveService`: source-traced Godot JSON snapshots under `user://`, save status/counter metadata, player profile/location/flags/vars/party round-trip, current-map object-event runtime state round-trip, and save-flow labels. Save menu presentation, audio/timing, cross-map object caches, bag/mail/options, PC storage, special sectors, Hall of Fame, and link save variants remain.
+- Start wild encounter runtime. First pass done for UI-independent `EncounterEngine`: generated map encounter record selection, Altering Cave `VAR_ALTERING_CAVE_WILD_SET` table offset, land/water/rock-smash/fishing table lookup, source slot probability and rod-group selection, first-pass level selection, and `encounterRate * 16` check metadata. Field-step dispatch, metatile routing, Repel/lure/ability modifiers, fishing bite flow, Feebas, roamer/mass-outbreak/double-battle branches, enemy party creation, and battle presentation remain.
 - Expand event script support by unsupported-opcode reports.
 - Add advanced expansion mechanics after the base loop is stable.

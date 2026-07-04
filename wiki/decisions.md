@@ -353,3 +353,9 @@ Reason: Godot needs durable runtime state round-tripping early, but the source s
 Decision: Persist current-map object-event runtime state through explicit `MapRuntime` export/apply APIs, and let `SaveService` consume those APIs instead of reaching into MapRuntime internals or serializing derived indexes.
 
 Reason: Source save logic copies runtime object events through `SaveObjectEvents`/`LoadObjectEvents`, but Godot object state is already centralized in `MapRuntime`. Keeping export/import there preserves ownership of object positions, template positions, visibility, movement type, source local-id aliases, and occupancy rebuilding while allowing `SaveService` to remain a generic snapshot coordinator.
+
+## 2026-07-04 - Start wild encounters as domain rules
+
+Decision: Introduce `EncounterEngine` as a UI-independent Godot autoload for source-backed wild encounter record lookup, Altering Cave table selection, slot probability selection, rod-group selection, level selection, and first-pass encounter-rate metadata before wiring field-step dispatch or battle presentation.
+
+Reason: Source wild encounters span map metatile behavior, step timing, time-of-day tables, encounter-rate modifiers, special maps, fishing state machines, Pokemon creation, battle setup, and presentation. A domain-only first slice lets Godot verify generated wild encounter data and source probability rules without guessing Repel/ability/fishing/roamer/battle side effects or coupling unfinished field-step and battle UI systems.
