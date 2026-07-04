@@ -12,6 +12,19 @@ const LOCALID_PLAYER_VALUE := 255
 const MAP_SCRIPT_ON_LOAD := "MAP_SCRIPT_ON_LOAD"
 const MAP_SCRIPT_ON_TRANSITION := "MAP_SCRIPT_ON_TRANSITION"
 const MAP_SCRIPT_ON_FRAME_TABLE := "MAP_SCRIPT_ON_FRAME_TABLE"
+const MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE := "MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE"
+const MAP_SCRIPT_ON_RESUME := "MAP_SCRIPT_ON_RESUME"
+const MAP_SCRIPT_ON_DIVE_WARP := "MAP_SCRIPT_ON_DIVE_WARP"
+const MAP_SCRIPT_ON_RETURN_TO_FIELD := "MAP_SCRIPT_ON_RETURN_TO_FIELD"
+const MAP_SCRIPT_TYPES_SOURCE_ORDER := [
+	MAP_SCRIPT_ON_LOAD,
+	MAP_SCRIPT_ON_FRAME_TABLE,
+	MAP_SCRIPT_ON_TRANSITION,
+	MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE,
+	MAP_SCRIPT_ON_RESUME,
+	MAP_SCRIPT_ON_DIVE_WARP,
+	MAP_SCRIPT_ON_RETURN_TO_FIELD,
+]
 const DOOR_ANIM_FRAME_TIME := 4
 const DOOR_ANIM_FRAME_COUNT := 4
 const DOOR_ANIM_TOTAL_FRAMES := DOOR_ANIM_FRAME_TIME * DOOR_ANIM_FRAME_COUNT
@@ -213,6 +226,41 @@ func get_wild_encounter_dispatch_state() -> Dictionary:
 		"previous_metatile_behavior": _previous_wild_metatile_behavior,
 		"source": "src/field_control_avatar.c:sWildEncounterImmunitySteps/sPrevMetatileBehavior",
 	}
+
+
+func get_current_map_debug_dump() -> Dictionary:
+	var snapshot := {
+		"schema_version": 1,
+		"dump_kind": "overworld_current_map_runtime_debug",
+		"status": "missing_map_runtime",
+		"debug_only": true,
+		"map_id": _current_map_id(),
+		"source_trace": MAP_SCRIPT_SOURCE_TRACE.duplicate(),
+	}
+	if _map_runtime != null and _map_runtime.has_method("get_current_map_runtime_debug_snapshot"):
+		var runtime_snapshot = _map_runtime.get_current_map_runtime_debug_snapshot(_game_state)
+		if typeof(runtime_snapshot) == TYPE_DICTIONARY:
+			snapshot = runtime_snapshot.duplicate(true)
+
+	snapshot["schema_version"] = 1
+	snapshot["dump_kind"] = "overworld_current_map_runtime_debug"
+	snapshot["debug_only"] = true
+	if String(snapshot.get("status", "")) == "ok" and _script_data.is_empty():
+		snapshot["status"] = "missing_script_data"
+	snapshot["active_scripts"] = _current_map_active_script_debug_summary()
+	snapshot["unsupported_runtime_features"] = _current_map_runtime_debug_unsupported()
+	snapshot["wild_encounter_dispatch"] = get_wild_encounter_dispatch_state()
+	var source_trace := _array_value(snapshot.get("source_trace", []))
+	for source_ref in [
+		"include/constants/map_scripts.h",
+		"src/script.c:MapHeaderRunScriptType",
+		"src/script.c:MapHeaderCheckScriptTable",
+		"src/script.c:TryRunOnWarpIntoMapScript",
+	]:
+		if not source_trace.has(source_ref):
+			source_trace.append(source_ref)
+	snapshot["source_trace"] = source_trace
+	return snapshot
 
 
 func dispatch_interaction(interaction: Dictionary) -> void:
@@ -2511,6 +2559,176 @@ func _get_script_record(script: String) -> Dictionary:
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
+func _current_map_active_script_debug_summary() -> Dictionary:
+	var labels_by_type := {}
+	var entries := []
+	for script_type in MAP_SCRIPT_TYPES_SOURCE_ORDER:
+		var labels := _map_script_labels_for_type(script_type)
+		labels_by_type[script_type] = labels.duplicate()
+		for label in labels:
+			entries.append(_map_script_debug_entry(script_type, String(label)))
+	return {
+		"count": entries.size(),
+		"script_types": MAP_SCRIPT_TYPES_SOURCE_ORDER.duplicate(),
+		"labels_by_type": labels_by_type,
+		"entries": entries,
+		"source_trace": MAP_SCRIPT_SOURCE_TRACE.duplicate(),
+	}
+
+
+func _map_script_debug_entry(script_type: String, label: String) -> Dictionary:
+	var record := _get_script_record(label)
+	var source_trace := _map_script_source_trace(script_type)
+	var entry := {
+		"script_type": script_type,
+		"label": label,
+		"kind": "",
+		"line": 0,
+		"instruction_count": 0,
+		"source_function": _map_script_source_function(script_type),
+		"source_trace": source_trace,
+		"status": "missing_script_record",
+	}
+	if record.is_empty():
+		return entry
+
+	var instructions := _array_value(record.get("instructions", []))
+	entry["kind"] = String(record.get("kind", ""))
+	entry["line"] = int(record.get("line", 0))
+	entry["instruction_count"] = instructions.size()
+	entry["status"] = "ok"
+	if String(entry["kind"]) == "map_script_table":
+		entry["table"] = _map_script_table_debug_summary(label)
+	return entry
+
+
+func _map_script_table_debug_summary(table_label: String) -> Dictionary:
+	var record := _get_script_record(table_label)
+	var entries := []
+	var summary := {
+		"status": "missing_table_script",
+		"entry_count": 0,
+		"terminal_found": false,
+		"entries": entries,
+	}
+	if record.is_empty():
+		return summary
+	if String(record.get("kind", "")) != "map_script_table":
+		summary["status"] = "invalid_map_script_table"
+		return summary
+
+	var instructions := _array_value(record.get("instructions", []))
+	summary["status"] = "ok"
+	for instruction in instructions:
+		if typeof(instruction) != TYPE_DICTIONARY:
+			continue
+
+		var op := String(instruction.get("op", ""))
+		var args := _array_value(instruction.get("args", []))
+		if op == ".2byte" or op == ".byte":
+			if args.size() >= 1 and int(_map_script_table_value(String(args[0])).get("value", 0)) == 0:
+				summary["terminal_found"] = true
+				break
+			continue
+		if op != "map_script_2":
+			continue
+		if args.size() < 3:
+			entries.append({
+				"status": "invalid_map_script_2",
+				"line": int(instruction.get("line", 0)),
+				"raw": String(instruction.get("raw", "")),
+			})
+			summary["entry_count"] = entries.size()
+			continue
+
+		var var_token := String(args[0])
+		var compare_token := String(args[1])
+		var script_label := String(args[2])
+		var var_value := _map_script_table_value(var_token)
+		var compare_value := _map_script_table_value(compare_token)
+		entries.append({
+			"status": "ok",
+			"line": int(instruction.get("line", 0)),
+			"raw": String(instruction.get("raw", "")),
+			"var_token": var_token,
+			"compare_token": compare_token,
+			"script_label": script_label,
+			"var_value": int(var_value.get("value", 0)),
+			"compare_value": int(compare_value.get("value", 0)),
+			"var_source": String(var_value.get("source", "")),
+			"compare_source": String(compare_value.get("source", "")),
+			"condition_matched": int(var_value.get("value", 0)) == int(compare_value.get("value", 0)),
+			"no_effect": _script_label_has_no_effect(script_label),
+		})
+		summary["entry_count"] = entries.size()
+	return summary
+
+
+func _current_map_runtime_debug_unsupported() -> Array:
+	return [
+		{
+			"code": "layer_split_pending",
+			"status": "unsupported",
+			"source": "src/fieldmap.c:DrawWholeMapView",
+			"detail": "Full source-equivalent metatile layer split, priority, and covered-tile behavior are not yet presented 1:1.",
+		},
+		{
+			"code": "tileset_animation_runtime_pending",
+			"status": "unsupported",
+			"source": "src/tileset_anim.c",
+			"detail": "Tileset and metatile animation tasks are not yet running with source frame cadence.",
+		},
+		{
+			"code": "door_overlay_not_source_equivalent",
+			"status": "first_slice",
+			"source": "src/field_door.c",
+			"detail": "Generated door animation metadata is available, but only the first transition overlay slice is presented.",
+		},
+		{
+			"code": "object_movement_task_pending",
+			"status": "unsupported",
+			"source": "src/event_object_movement.c",
+			"detail": "Object-event movement effects can mutate runtime positions, but source task queues, collision timing, and animation playback remain future work.",
+		},
+		{
+			"code": "object_event_sprite_animation_pending",
+			"status": "unsupported",
+			"source": "src/event_object_movement.c:UpdateObjectEventCurrentMovement",
+			"detail": "Object-event sprites use the first source-backed graphics slice; full frame animation and movement-type tasks are still metadata/future work.",
+		},
+		{
+			"code": "script_async_runtime_pending",
+			"status": "unsupported",
+			"source": "src/script.c:ScriptContext2_RunScript",
+			"detail": "Synchronous script effects are applied in first-pass paths; true async ScriptContext timing and wait ownership are not source-equivalent yet.",
+		},
+		{
+			"code": "weather_runtime_pending",
+			"status": "metadata_only",
+			"source": "src/field_weather.c",
+			"detail": "Current map weather symbols are preserved in metadata; real weather visuals and palette/color-map effects are not implemented.",
+		},
+		{
+			"code": "audio_playback_pending",
+			"status": "metadata_only",
+			"source": "src/sound.c",
+			"detail": "Music, sound-effect, cry, and fanfare symbols remain metadata only by current project scope.",
+		},
+		{
+			"code": "source_collision_rules_pending",
+			"status": "first_slice",
+			"source": "src/field_player_avatar.c",
+			"detail": "Generated collision and object occupancy block movement, but complete source movement permissions, forced movement, surfing, bike, and avatar-state rules remain future work.",
+		},
+		{
+			"code": "camera_backup_streaming_pending",
+			"status": "unsupported",
+			"source": "src/field_camera.c",
+			"detail": "Camera panning, backup map streaming, and connection redraw timing are not source-equivalent yet.",
+		},
+	]
+
+
 func _map_script_labels_for_type(script_type: String) -> Array:
 	var labels := []
 	var scripts = _script_data.get("scripts", {})
@@ -2550,6 +2768,14 @@ func _map_script_source_function(script_type: String) -> String:
 		return "RunOnTransitionMapScript"
 	if script_type == MAP_SCRIPT_ON_FRAME_TABLE:
 		return "TryRunOnFrameMapScript"
+	if script_type == MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
+		return "TryRunOnWarpIntoMapScript"
+	if script_type == MAP_SCRIPT_ON_RESUME:
+		return "RunOnResumeMapScript"
+	if script_type == MAP_SCRIPT_ON_DIVE_WARP:
+		return "RunOnDiveWarpMapScript"
+	if script_type == MAP_SCRIPT_ON_RETURN_TO_FIELD:
+		return "RunOnReturnToFieldMapScript"
 	return "MapHeaderRunScriptType"
 
 
@@ -2566,6 +2792,20 @@ func _map_script_source_trace(script_type: String) -> Array:
 		trace.append("src/script.c:TryRunOnFrameMapScript/MapHeaderCheckScriptTable")
 		trace.append("src/event_data.c:VarGet")
 		trace.append("asm/macros/map.inc:map_script_2")
+	elif script_type == MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
+		trace.append("src/overworld.c:InitObjectEventsLocal/InitObjectEventsLink")
+		trace.append("src/script.c:TryRunOnWarpIntoMapScript/MapHeaderCheckScriptTable")
+		trace.append("src/event_data.c:VarGet")
+		trace.append("asm/macros/map.inc:map_script_2")
+	elif script_type == MAP_SCRIPT_ON_RESUME:
+		trace.append("src/overworld.c:InitOverworldBgs/CB2_ReturnToField")
+		trace.append("src/script.c:RunOnResumeMapScript")
+	elif script_type == MAP_SCRIPT_ON_DIVE_WARP:
+		trace.append("src/overworld.c:SetDiveWarp")
+		trace.append("src/script.c:RunOnDiveWarpMapScript")
+	elif script_type == MAP_SCRIPT_ON_RETURN_TO_FIELD:
+		trace.append("src/overworld.c:InitObjectEventsReturnToField")
+		trace.append("src/script.c:RunOnReturnToFieldMapScript")
 	return trace
 
 

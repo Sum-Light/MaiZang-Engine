@@ -21,6 +21,14 @@ const OBJECT_SAVE_TRACE := [
 	"src/load_save.c:CopyPartyAndObjectsToSave",
 	"src/load_save.c:CopyPartyAndObjectsFromSave",
 ]
+const CURRENT_MAP_DEBUG_SOURCE_TRACE := [
+	"data/maps/*/map.json",
+	"data/layouts/layouts.json",
+	"src/data/tilesets/headers.h",
+	"include/constants/metatile_behaviors.h",
+	"src/fieldmap.c:InitMap",
+	"src/event_object_movement.c:TrySpawnObjectEvents",
+]
 
 var _map_data: Dictionary = {}
 var _tileset_data: Dictionary = {}
@@ -431,6 +439,85 @@ func get_cell_info(cell: Vector2i) -> Dictionary:
 	}
 
 
+func get_current_map_runtime_debug_snapshot(game_state: Node = null) -> Dictionary:
+	var source_trace := CURRENT_MAP_DEBUG_SOURCE_TRACE.duplicate()
+	if _map_data.is_empty():
+		return {
+			"schema_version": 1,
+			"dump_kind": "overworld_current_map_runtime_debug_snapshot",
+			"status": "missing_map_data",
+			"debug_only": true,
+			"source_trace": source_trace,
+		}
+
+	var map_info = _map_data.get("map", {})
+	map_info = map_info if typeof(map_info) == TYPE_DICTIONARY else {}
+	var layout_info = _map_data.get("layout", {})
+	layout_info = layout_info if typeof(layout_info) == TYPE_DICTIONARY else {}
+	var source_info = _map_data.get("source", {})
+	source_info = source_info if typeof(source_info) == TYPE_DICTIONARY else {}
+	var map_tilesets = _map_data.get("tilesets", {})
+	map_tilesets = map_tilesets if typeof(map_tilesets) == TYPE_DICTIONARY else {}
+	var generated_tilesets = _tileset_data.get("tilesets", {})
+	generated_tilesets = generated_tilesets if typeof(generated_tilesets) == TYPE_DICTIONARY else {}
+	var atlas_info = _tileset_data.get("atlas", {})
+	atlas_info = atlas_info if typeof(atlas_info) == TYPE_DICTIONARY else {}
+	for source_key in ["map_json", "map_script", "layouts_json", "blockdata", "border"]:
+		var source_path := String(source_info.get(source_key, ""))
+		if not source_path.is_empty() and not source_trace.has(source_path):
+			source_trace.append(source_path)
+
+	var visible_object_count := _visible_object_event_count_for_debug(game_state)
+	var object_count := _object_events.size()
+	var counts := {
+		"object": object_count,
+		"visible_object": visible_object_count,
+		"hidden_object": max(0, object_count - visible_object_count),
+		"warp": _warp_events.size(),
+		"coord_event": _coord_events.size(),
+		"bg_event": _bg_events.size(),
+		"connection": _connections.size(),
+		"door_animation": _door_animations_by_metatile_id.size(),
+		"metatile_attribute": _metatile_attributes.size(),
+	}
+	return {
+		"schema_version": 1,
+		"dump_kind": "overworld_current_map_runtime_debug_snapshot",
+		"status": "ok",
+		"debug_only": true,
+		"map_id": _current_map_id(),
+		"map_name": String(map_info.get("name", "")),
+		"layout_id": String(layout_info.get("id", "")),
+		"layout_name": String(layout_info.get("name", "")),
+		"map_size": {"x": _map_size.x, "y": _map_size.y},
+		"tileset_pair": {
+			"primary": String(layout_info.get("primary_tileset", "")),
+			"secondary": String(layout_info.get("secondary_tileset", "")),
+		},
+		"tilesets": {
+			"map": map_tilesets.duplicate(true),
+			"generated": generated_tilesets.duplicate(true),
+		},
+		"atlas_image": String(atlas_info.get("image", atlas_info.get("image_project_path", ""))),
+		"map_type": String(map_info.get("map_type", "")),
+		"weather": String(map_info.get("weather", "")),
+		"music": String(map_info.get("music", "")),
+		"region_map_section": String(map_info.get("region_map_section", "")),
+		"battle_scene": String(map_info.get("battle_scene", "")),
+		"object_count": counts["object"],
+		"visible_object_count": counts["visible_object"],
+		"hidden_object_count": counts["hidden_object"],
+		"warp_count": counts["warp"],
+		"coord_event_count": counts["coord_event"],
+		"bg_event_count": counts["bg_event"],
+		"connection_count": counts["connection"],
+		"door_animation_count": counts["door_animation"],
+		"counts": counts,
+		"source": source_info.duplicate(true),
+		"source_trace": source_trace,
+	}
+
+
 func apply_script_movements(movements: Array, game_state: Node = null) -> Dictionary:
 	var summary := {
 		"applied": [],
@@ -799,6 +886,28 @@ func _is_object_event_visible(object_event: Dictionary) -> bool:
 		return not game_state.is_flag_set(flag)
 
 	return true
+
+
+func _visible_object_event_count_for_debug(game_state: Node) -> int:
+	var count := 0
+	for object_event in _object_events:
+		if _is_object_event_visible_for_debug(object_event, game_state):
+			count += 1
+	return count
+
+
+func _is_object_event_visible_for_debug(object_event: Dictionary, game_state: Node) -> bool:
+	if bool(object_event.get("runtime_hidden", false)):
+		return false
+
+	var flag := String(object_event.get("flag", "0"))
+	if flag.is_empty() or flag == "0":
+		return true
+
+	if game_state != null and game_state.has_method("is_flag_set"):
+		return not bool(game_state.is_flag_set(flag))
+
+	return _is_object_event_visible(object_event)
 
 
 func _coord_event_matches_elevation(coord_event: Dictionary, elevation: int) -> bool:
