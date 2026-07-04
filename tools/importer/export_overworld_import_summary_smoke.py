@@ -48,6 +48,12 @@ def main(argv):
     _assert(generated["tileset_record_count"] == 4, "unexpected generated tileset record count")
     _assert(generated["unique_primary_tileset_count"] == 2, "unexpected generated primary tileset count")
     _assert(generated["unique_secondary_tileset_count"] == 2, "unexpected generated secondary tileset count")
+    _assert(generated["tileset_header_report_count"] == 1, "missing tileset header report")
+    _assert(generated["tileset_header_record_count"] == 139, "unexpected generated tileset header count")
+    _assert(
+        generated["active_emerald_tileset_header_record_count"] == 75,
+        "unexpected active Emerald tileset header count",
+    )
     _assert(generated["script_bundle_count"] == 971, "unexpected generated script bundle count")
     _assert(generated["map_script_bundle_count"] == 887, "unexpected generated map script bundle count")
     _assert(generated["shared_script_bundle_count"] == 84, "unexpected generated shared script bundle count")
@@ -73,6 +79,7 @@ def main(argv):
 
     _assert(coverage["maps"]["percent"] == 100.0, "unexpected map coverage percent")
     _assert(coverage["layouts"]["percent"] == 100.0, "unexpected layout coverage percent")
+    _assert(coverage["tileset_headers"]["percent"] == 100.0, "unexpected tileset header coverage percent")
     _assert(coverage["tileset_animation_callbacks"]["generated"] == 0, "expected no generated tileset anims")
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}

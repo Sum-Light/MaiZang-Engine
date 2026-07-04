@@ -139,6 +139,14 @@ def load_generated_json(project_root, path_text):
     return read_json(path)
 
 
+def load_overworld_report(project_root, manifest, category):
+    for entry in manifest.get("overworld_reports", []):
+        if entry.get("category") != category:
+            continue
+        return load_generated_json(project_root, entry.get("path", ""))
+    return None
+
+
 def count_recursive_warning_arrays(value):
     if isinstance(value, dict):
         total = 0
@@ -457,6 +465,20 @@ def build_export(source_root, output_root):
         object_sprite_count = int(object_sprite_data.get("stats", {}).get("sprite_count", 0))
         object_sprite_unsupported_count = count_object_sprite_unsupported(object_sprite_data)
 
+    tileset_header_report = load_overworld_report(
+        project_root,
+        manifest,
+        "overworld_tileset_header_report",
+    )
+    tileset_header_stats = (
+        tileset_header_report.get("stats", {})
+        if isinstance(tileset_header_report, dict)
+        else {}
+    )
+    tileset_header_report_count = 1 if isinstance(tileset_header_report, dict) else 0
+    tileset_header_record_count = int(tileset_header_stats.get("total_header_count", 0))
+    active_tileset_header_record_count = int(tileset_header_stats.get("active_emerald_header_count", 0))
+
     parity_matrix = load_generated_json(project_root, "data/generated/overworld/parity_matrix.json") or {}
     parity_stats = parity_matrix.get("stats", {})
 
@@ -491,6 +513,9 @@ def build_export(source_root, output_root):
         "tileset_record_count": tileset_totals["tileset_record_count"],
         "unique_primary_tileset_count": tileset_totals["unique_primary_tileset_count"],
         "unique_secondary_tileset_count": tileset_totals["unique_secondary_tileset_count"],
+        "tileset_header_report_count": tileset_header_report_count,
+        "tileset_header_record_count": tileset_header_record_count,
+        "active_emerald_tileset_header_record_count": active_tileset_header_record_count,
         "metatile_record_count": tileset_totals["metatile_record_count"],
         "script_bundle_count": script_totals["script_bundle_count"],
         "map_script_bundle_count": map_script_bundle_count,
@@ -534,6 +559,10 @@ def build_export(source_root, output_root):
         "secondary_tilesets": ratio(
             generated_counts["unique_secondary_tileset_count"],
             source_counts["secondary_tileset_image_count"],
+        ),
+        "tileset_headers": ratio(
+            generated_counts["tileset_header_record_count"],
+            source_counts["tileset_header_count"],
         ),
         "door_animations": ratio(
             generated_counts["door_animation_count"],
@@ -649,6 +678,7 @@ def manifest_entry_for(exported, output_path):
         "standalone_layout_count": generated["standalone_layout_count"],
         "missing_layout_file_count": generated["missing_layout_file_count"],
         "generated_tileset_record_count": generated["tileset_record_count"],
+        "generated_tileset_header_record_count": generated["tileset_header_record_count"],
         "generated_script_count": generated["script_count"],
         "generated_movement_action_count": generated["movement_action_count"],
         "generated_door_animation_count": generated["door_animation_count"],

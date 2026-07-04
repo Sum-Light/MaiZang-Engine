@@ -96,7 +96,7 @@ Snapshot: `tools/importer/export_event_scripts.py --all-maps` exports 887/887 so
 
 ### 4. Tileset And Metatile Asset Import
 
-- [ ] Export every primary and secondary tileset header from `src/data/tilesets/headers.h`.
+- [x] Export every primary and secondary tileset header from `src/data/tilesets/headers.h`.
 - [ ] Export tileset image provenance for `tiles.png`, `metatiles.bin`, `metatile_attributes.bin`, palettes, animation images, and callback symbols.
 - [ ] Preserve global palette-slot mapping as import metadata while baking runtime RGBA assets.
 - [ ] Decode every 8x8 tile entry inside each metatile: tile id, palette, hflip, vflip, source tileset, and source layer slot.
@@ -105,6 +105,8 @@ Snapshot: `tools/importer/export_event_scripts.py --all-maps` exports 887/887 so
 - [ ] Detect and report metatile ids referenced by maps but absent from the tileset pair.
 - [ ] Detect and report tile ids referenced by metatiles but absent from source tileset images.
 - [ ] Keep the current flattened atlas as a temporary debug artifact only, with metadata marking it non-equivalent for runtime layering.
+
+Snapshot: `tools/importer/export_overworld_tileset_headers.py` exports all 139 `struct Tileset` rows from `src/data/tilesets/headers.h` into `data/generated/overworld/tileset_header_report.json`, indexes the report in the manifest as `overworld_tileset_header_report`, and preserves the active Emerald split: 75 active headers, including 3 active primary and 72 active secondary headers, plus 64 FRLG metadata-only headers. The report records `isCompressed`, `isSecondary`, tiles/palettes/metatiles/metatile-attribute symbols, callback symbols, source declaration lines, source `INCBIN` paths, editable source candidates such as `tiles.png` and `palettes/*.pal`, and keeps runtime palette/audio policy explicit: palette/color effects are import metadata plus Godot-native presentation work, and audio remains `metadata_only`/`unsupported`. `data/generated/overworld/import_summary.json` now reports 139/139 tileset header coverage.
 
 ### 5. Layer-Aware Map Rendering
 
