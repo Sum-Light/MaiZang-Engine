@@ -21,7 +21,9 @@ const SOURCE_TRACE := [
 	"src/wild_encounter.c:IsAbilityAllowingEncounter",
 	"src/wild_encounter.c:WildEncounterCheck",
 	"src/wild_encounter.c:StandardWildEncounter",
+	"src/wild_encounter.c:SweetScentWildEncounter",
 	"src/wild_encounter.c:FishingWildEncounter",
+	"src/fldeff_sweetscent.c:StartSweetScentFieldEffect/TrySweetScentEncounter",
 	"include/constants/item.h:REPEL_LURE_MASK/LURE_STEP_COUNT/REPEL_STEP_COUNT",
 	"include/constants/items.h:ITEM_CLEANSE_TAG",
 	"include/constants/abilities.h:overworld encounter abilities",
@@ -534,6 +536,70 @@ func try_standard_encounter(map_symbol: String, area = "land", options: Dictiona
 	return wild_mon
 
 
+func try_sweet_scent_encounter(map_symbol: String, options: Dictionary = {}) -> Dictionary:
+	var area_result := _sweet_scent_area_result(options)
+	if String(area_result.get("status", "")) != "ok":
+		return {
+			"status": "no_encounter",
+			"reason": String(area_result.get("reason", "no_sweet_scent_area")),
+			"map": _normalize_map_symbol(map_symbol),
+			"sweet_scent_area": area_result,
+			"source": "src/wild_encounter.c:SweetScentWildEncounter",
+			"source_trace": SOURCE_TRACE.duplicate(),
+		}
+
+	var table_field := String(area_result.get("table_field", ""))
+	if table_field == "water_mons" and bool(options.get("sootopolis_legendaries_block", options.get("legendaries_in_sootopolis", false))):
+		return {
+			"status": "no_encounter",
+			"reason": "sootopolis_legendaries_block",
+			"map": _normalize_map_symbol(map_symbol),
+			"sweet_scent_area": area_result,
+			"source": "src/wild_encounter.c:SweetScentWildEncounter -> AreLegendariesInSootopolisPreventingEncounters",
+			"source_trace": SOURCE_TRACE.duplicate(),
+		}
+
+	var generation_options := options.duplicate(true)
+	generation_options["ignore_repel"] = true
+	generation_options["ignore_keen_eye_filter"] = true
+	generation_options.erase("force_repel_filter")
+	generation_options.erase("force_keen_eye_filter")
+	generation_options.erase("forceKeenEyeFilter")
+	var wild_mon := choose_wild_mon(map_symbol, table_field, generation_options)
+	if String(wild_mon.get("status", "")) != "ok":
+		wild_mon["sweet_scent_area"] = area_result
+		wild_mon["sweet_scent_encounter"] = {
+			"status": "failed",
+			"flags": 0,
+			"source": "src/wild_encounter.c:SweetScentWildEncounter -> TryGenerateWildMon(..., 0)",
+		}
+		return wild_mon
+
+	wild_mon["sweet_scent_area"] = area_result
+	wild_mon["sweet_scent_encounter"] = {
+		"status": "started",
+		"flags": 0,
+		"rate_check": "bypassed",
+		"repel_filter": "bypassed_by_flags",
+		"keen_eye_filter": "bypassed_by_flags",
+		"battle_setup": "BattleSetup_StartWildBattle",
+		"source": "src/wild_encounter.c:SweetScentWildEncounter -> TryGenerateWildMon(..., 0)",
+		"presentation": {
+			"status": "not_executed",
+			"source": "src/fldeff_sweetscent.c:StartSweetScentFieldEffect/TrySweetScentEncounter",
+			"sequence": [
+				"SetWeatherScreenFadeOut",
+				"PlaySE(SE_M_SWEET_SCENT)",
+				"BeginNormalPaletteFade red tint",
+				"wait 64 task ticks",
+				"SweetScentWildEncounter",
+				"battle setup or EventScript_FailSweetScent",
+			],
+		},
+	}
+	return wild_mon
+
+
 func choose_wild_mon(map_symbol: String, area = "land", options: Dictionary = {}) -> Dictionary:
 	var table_result := get_table_for_area(map_symbol, area, options)
 	if String(table_result.get("status", "")) != "ok":
@@ -838,6 +904,92 @@ func _choose_fishing_slot(field_definition: Dictionary, options: Dictionary) -> 
 		"lure_swap": lure_swap,
 		"source": "src/wild_encounter.c:ChooseWildMonIndex_Fishing",
 	}
+
+
+func _sweet_scent_area_result(options: Dictionary) -> Dictionary:
+	if options.has("area"):
+		var table_field := _area_table_field(options.get("area"))
+		if table_field == "land_mons" or table_field == "water_mons":
+			return {
+				"status": "ok",
+				"area": "land" if table_field == "land_mons" else "water",
+				"table_field": table_field,
+				"source": "test_override:options.area for src/wild_encounter.c:SweetScentWildEncounter",
+			}
+		return {
+			"status": "no_encounter",
+			"reason": "unsupported_area",
+			"area": table_field,
+			"source": "src/wild_encounter.c:SweetScentWildEncounter supports land/water branches",
+		}
+
+	var behavior_name := _sweet_scent_behavior_name(options)
+	if behavior_name.is_empty():
+		return {
+			"status": "no_encounter",
+			"reason": "missing_metatile_behavior",
+			"source": "src/wild_encounter.c:SweetScentWildEncounter uses PlayerGetDestCoords/MapGridGetMetatileBehaviorAt",
+		}
+
+	if LAND_ENCOUNTER_BEHAVIORS.has(behavior_name):
+		return {
+			"status": "ok",
+			"area": "land",
+			"table_field": "land_mons",
+			"behavior_name": behavior_name,
+			"source": "src/wild_encounter.c:SweetScentWildEncounter -> MetatileBehavior_IsLandWildEncounter",
+			"source_trace": [
+				"src/wild_encounter.c:SweetScentWildEncounter",
+				"src/metatile_behavior.c:MetatileBehavior_IsLandWildEncounter",
+			],
+		}
+	if WATER_ENCOUNTER_BEHAVIORS.has(behavior_name):
+		return {
+			"status": "ok",
+			"area": "water",
+			"table_field": "water_mons",
+			"behavior_name": behavior_name,
+			"source": "src/wild_encounter.c:SweetScentWildEncounter -> MetatileBehavior_IsWaterWildEncounter",
+			"source_trace": [
+				"src/wild_encounter.c:SweetScentWildEncounter",
+				"src/metatile_behavior.c:MetatileBehavior_IsWaterWildEncounter",
+			],
+		}
+	if BRIDGE_OVER_WATER_BEHAVIORS.has(behavior_name):
+		return {
+			"status": "no_encounter",
+			"reason": "bridge_over_water_not_water_encounter",
+			"behavior_name": behavior_name,
+			"source": "src/wild_encounter.c:SweetScentWildEncounter checks water encounter behavior directly, unlike StandardWildEncounter surfing bridge path",
+		}
+	return {
+		"status": "no_encounter",
+		"reason": "metatile_not_sweet_scent_encounter",
+		"behavior_name": behavior_name,
+		"source": "src/wild_encounter.c:SweetScentWildEncounter land/water behavior checks",
+	}
+
+
+func _sweet_scent_behavior_name(options: Dictionary) -> String:
+	if options.has("metatile_behavior"):
+		return _normalize_behavior_name(String(options.get("metatile_behavior", "")))
+	if options.has("behavior_name"):
+		return _normalize_behavior_name(String(options.get("behavior_name", "")))
+	if options.has("current_metatile_behavior"):
+		return _normalize_behavior_name(String(options.get("current_metatile_behavior", "")))
+
+	var map_runtime = options.get("map_runtime", null)
+	if map_runtime == null and has_node("/root/MapRuntime"):
+		map_runtime = get_node("/root/MapRuntime")
+	if map_runtime != null and map_runtime is Node and map_runtime.has_method("get_metatile_behavior_name_at"):
+		var game_state := _get_game_state(options.get("game_state", null))
+		var cell := Vector2i.ZERO
+		if options.has("cell") and options.get("cell") is Vector2i:
+			cell = options.get("cell")
+		elif game_state != null:
+			cell = game_state.player_grid_position
+		return _normalize_behavior_name(String(map_runtime.get_metatile_behavior_name_at(cell)))
+	return ""
 
 
 func _choose_level(slot: Dictionary, slots: Array, table_field: String, options: Dictionary) -> Dictionary:
@@ -1500,7 +1652,7 @@ func _first_pass_unsupported(table_field: String) -> Array:
 	}, {
 		"code": "wild_encounter_modifiers_partially_applied",
 		"source": "src/wild_encounter.c:TryGenerateWildMon",
-		"detail": "First-pass encounter-rate modifiers, ability-influenced land/water species slot selection, Repel/Lure rate/slot/level behavior, Repel level filtering, and Keen Eye/Intimidate low-level filtering are applied. Roamer, mass outbreaks, double wild battles, Safari Pokeblocks, Synchronize, gender forcing, random IV/personality, and battle transition selection remain future traced work.",
+		"detail": "First-pass encounter-rate modifiers, ability-influenced land/water species slot selection, Repel/Lure rate/slot/level behavior, Repel level filtering, Keen Eye/Intimidate low-level filtering, and Sweet Scent flags=0 generation are applied. Roamer, mass outbreaks, double wild battles, Safari Pokeblocks, Synchronize, gender forcing, random IV/personality, and battle transition selection remain future traced work.",
 	}]
 	if table_field == "fishing_mons":
 		unsupported.append({

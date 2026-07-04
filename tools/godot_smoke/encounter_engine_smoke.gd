@@ -153,6 +153,55 @@ func _init() -> void:
 	_assert(String(route119_standard_hit.get("species", "")) == "SPECIES_TENTACOOL", "expected Route119 water Tentacool")
 	_assert(bool(_dict_field(route119_standard_hit, "encounter_check").get("encounter", false)), "expected encounter hit metadata")
 
+	game_state.set_var("VAR_REPEL_STEP_COUNT", 10)
+	var sweet_route101 := engine.try_sweet_scent_encounter("MAP_ROUTE101", {
+		"metatile_behavior": "MB_TALL_GRASS",
+		"slot_roll": 0,
+		"level_roll": 0,
+		"player_party": [{"species": "SPECIES_TAILLOW", "level": 50, "ability": "ABILITY_KEEN_EYE", "is_egg": false}],
+		"keen_eye_roll": 0,
+	})
+	_assert(String(sweet_route101.get("status", "")) == "ok", "expected Sweet Scent Route101 encounter")
+	_assert(String(sweet_route101.get("species", "")) == "SPECIES_WURMPLE", "expected Sweet Scent Route101 Wurmple")
+	_assert(not sweet_route101.has("encounter_check"), "expected Sweet Scent to bypass encounter rate")
+	_assert(String(_dict_field(sweet_route101, "sweet_scent_encounter").get("status", "")) == "started", "expected Sweet Scent metadata")
+	_assert(String(_dict_field(sweet_route101, "repel_filter").get("status", "")) == "not_applicable", "expected Sweet Scent to bypass Repel flag")
+	_assert(String(_dict_field(sweet_route101, "keen_eye_filter").get("status", "")) == "not_applicable", "expected Sweet Scent to bypass Keen Eye flag")
+	game_state.set_var("VAR_REPEL_STEP_COUNT", 0)
+
+	var sweet_route119_harvest := engine.try_sweet_scent_encounter("MAP_ROUTE119", {
+		"metatile_behavior": "MB_TALL_GRASS",
+		"lead_ability": "ABILITY_HARVEST",
+		"ability_slot_roll": 0,
+		"ability_slot_pick_roll": 0,
+		"level_roll": 0,
+	})
+	_assert(String(sweet_route119_harvest.get("status", "")) == "ok", "expected Sweet Scent Harvest encounter")
+	_assert(String(sweet_route119_harvest.get("species", "")) == "SPECIES_ODDISH", "expected Sweet Scent to keep ability slot targeting")
+	_assert(String(_dict_field(sweet_route119_harvest, "ability_slot_choice").get("status", "")) == "selected", "expected Sweet Scent ability slot metadata")
+
+	var sweet_route119_water := engine.try_sweet_scent_encounter("MAP_ROUTE119", {
+		"metatile_behavior": "MB_OCEAN_WATER",
+		"slot_roll": 0,
+		"level_roll": 0,
+	})
+	_assert(String(sweet_route119_water.get("status", "")) == "ok", "expected Sweet Scent water encounter")
+	_assert(String(sweet_route119_water.get("species", "")) == "SPECIES_TENTACOOL", "expected Sweet Scent Route119 water Tentacool")
+	_assert(String(_dict_field(sweet_route119_water, "sweet_scent_area").get("area", "")) == "water", "expected Sweet Scent water area metadata")
+
+	var sweet_bridge_skip := engine.try_sweet_scent_encounter("MAP_ROUTE119", {
+		"metatile_behavior": "MB_BRIDGE_OVER_OCEAN",
+	})
+	_assert(String(sweet_bridge_skip.get("status", "")) == "no_encounter", "expected Sweet Scent bridge to skip")
+	_assert(String(sweet_bridge_skip.get("reason", "")) == "bridge_over_water_not_water_encounter", "expected Sweet Scent bridge reason")
+
+	var sweet_sootopolis_block := engine.try_sweet_scent_encounter("MAP_ROUTE119", {
+		"metatile_behavior": "MB_OCEAN_WATER",
+		"sootopolis_legendaries_block": true,
+	})
+	_assert(String(sweet_sootopolis_block.get("status", "")) == "no_encounter", "expected Sweet Scent water legendary block")
+	_assert(String(sweet_sootopolis_block.get("reason", "")) == "sootopolis_legendaries_block", "expected Sweet Scent Sootopolis reason")
+
 	var fishing_standard := engine.try_standard_encounter("MAP_ROUTE119", "fishing", {
 		"encounter_roll": 0,
 	})
@@ -377,6 +426,7 @@ func _init() -> void:
 		"route119_harvest_species": String(route119_harvest.get("species", "")),
 		"new_mauville_magnet_pull_species": String(new_mauville_magnet_pull.get("species", "")),
 		"route119_water_species": String(route119_standard_hit.get("species", "")),
+		"sweet_scent_species": String(sweet_route101.get("species", "")),
 		"keen_eye_block_reason": String(keen_eye_block.get("reason", "")),
 		"altering_cave_record": String(altering_from_state.get("record_label", "")),
 	}))
