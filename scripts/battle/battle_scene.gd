@@ -58,11 +58,18 @@ const SOURCE_BATTLE_WINDOWS := {
 	"B_WIN_MOVE_TYPE": {"tilemap_left": 21, "tilemap_top": 57, "width": 8, "height": 2, "style_id": "battle_menu_window", "base_block": 0x02a0, "text_x": 0, "text_y": 1, "font": "FONT_NARROW"},
 }
 
-const SOURCE_BATTLE_TEXTS := {
-	"gText_WhatWillPkmnDo": "{B_BUFF1}\n要做什么呢？",
-	"gText_BattleMenu": "战斗{CLEAR_TO 56}包包\n宝可梦{CLEAR_TO 56}逃走",
+const SOURCE_BATTLE_TEXT_LABELS := {
+	"action_prompt": "gText_WhatWillPkmnDo",
+	"battle_menu": "gText_BattleMenu",
+	"move_pp": "gText_MoveInterfacePP",
+	"move_type": "gText_MoveInterfaceType",
+}
+
+const FALLBACK_BATTLE_TEXTS := {
+	"gText_WhatWillPkmnDo": "{B_BUFF1}",
+	"gText_BattleMenu": "Fight{CLEAR_TO 56}Bag\nPokemon{CLEAR_TO 56}Run",
 	"gText_MoveInterfacePP": "PP",
-	"gText_MoveInterfaceType": "属性/",
+	"gText_MoveInterfaceType": "TYPE/",
 }
 
 const SOURCE_HEALTHBOX_COORDS := {
@@ -252,7 +259,7 @@ func get_ui_snapshot() -> Dictionary:
 		"viewport_size": [int(VIEWPORT_SIZE.x), int(VIEWPORT_SIZE.y)],
 		"source_window_ids": SOURCE_WINDOW_IDS.duplicate(true),
 		"source_windows": _source_window_snapshot(),
-		"source_text_symbols": SOURCE_BATTLE_TEXTS.duplicate(true),
+		"source_text_symbols": _source_text_snapshot(),
 		"source_healthbox_coords": SOURCE_HEALTHBOX_COORDS.duplicate(true),
 		"source_ui_assets": SOURCE_UI_ASSETS.duplicate(true),
 		"source_window_text_info": SOURCE_WINDOW_TEXT_INFO.duplicate(true),
@@ -296,10 +303,10 @@ func _ensure_ui() -> void:
 
 	_action_prompt_label = _add_label(_window_text_rect("B_WIN_ACTION_PROMPT", BG0_Y_ACTION_CHOOSE), "")
 	_action_prompt_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_add_action_button(ACTION_FIGHT, "战斗", Vector2(136, 121))
-	_add_action_button(ACTION_BAG, "包包", Vector2(192, 121))
-	_add_action_button(ACTION_PARTY, "宝可梦", Vector2(136, 137))
-	_add_action_button(ACTION_RUN, "逃走", Vector2(192, 137))
+	_add_action_button(ACTION_FIGHT, "Fight", Vector2(136, 121))
+	_add_action_button(ACTION_BAG, "Bag", Vector2(192, 121))
+	_add_action_button(ACTION_PARTY, "Pokemon", Vector2(136, 137))
+	_add_action_button(ACTION_RUN, "Run", Vector2(192, 137))
 
 	for index in range(4):
 		var button := Button.new()
@@ -313,7 +320,7 @@ func _ensure_ui() -> void:
 		add_child(button)
 		_move_buttons.append(button)
 
-	_pp_label = _add_label(_window_text_rect("B_WIN_PP", BG0_Y_MOVE_CHOOSE), SOURCE_BATTLE_TEXTS["gText_MoveInterfacePP"])
+	_pp_label = _add_label(_window_text_rect("B_WIN_PP", BG0_Y_MOVE_CHOOSE), _source_battle_text("gText_MoveInterfacePP"))
 	_pp_remaining_label = _add_label(_window_text_rect("B_WIN_PP_REMAINING", BG0_Y_MOVE_CHOOSE), "")
 	_move_type_label = _add_label(_window_text_rect("B_WIN_MOVE_TYPE", BG0_Y_MOVE_CHOOSE), "")
 
@@ -443,6 +450,7 @@ func _refresh_bottom_windows(player_mon: Dictionary) -> void:
 		var action_button: Button = _action_buttons[action_id]
 		action_button.visible = action_visible
 		action_button.disabled = action_id != ACTION_FIGHT
+	_refresh_action_button_labels()
 	_refresh_move_buttons(player_mon, move_visible)
 	_pp_label.visible = move_visible
 	_pp_remaining_label.visible = move_visible
@@ -474,9 +482,10 @@ func _refresh_move_selection_metadata(player_mon: Dictionary) -> void:
 		_selected_move_slot = max(0, _first_usable_move_slot(player_mon))
 	if _selected_move_slot < 0 or _selected_move_slot >= moves.size() or typeof(moves[_selected_move_slot]) != TYPE_DICTIONARY:
 		_pp_remaining_label.text = "--/--"
-		_move_type_label.text = "%s?" % SOURCE_BATTLE_TEXTS["gText_MoveInterfaceType"]
+		_move_type_label.text = "%s?" % _source_battle_text("gText_MoveInterfaceType")
 		return
 	var move: Dictionary = moves[_selected_move_slot]
+	_pp_label.text = _source_battle_text("gText_MoveInterfacePP")
 	_pp_remaining_label.text = "%2d/%2d" % [int(move.get("current_pp", 0)), int(move.get("max_pp", 0))]
 	_move_type_label.text = _move_type_text(move)
 
@@ -685,19 +694,90 @@ func _visible_source_windows() -> Array:
 	return []
 
 
+func _refresh_action_button_labels() -> void:
+	var labels := _battle_menu_labels()
+	for action_id in labels.keys():
+		if _action_buttons.has(action_id):
+			var button: Button = _action_buttons[action_id]
+			button.text = String(labels[action_id])
+
+
+func _battle_menu_labels() -> Dictionary:
+	var text := _replace_text_control_with_tab(_source_battle_text("gText_BattleMenu"))
+	var tokens: Array = []
+	for line in text.split("\n"):
+		for part in String(line).split("\t"):
+			var token := String(part).strip_edges()
+			if not token.is_empty():
+				tokens.append(token)
+	return {
+		ACTION_FIGHT: String(tokens[0]) if tokens.size() > 0 else "Fight",
+		ACTION_BAG: String(tokens[1]) if tokens.size() > 1 else "Bag",
+		ACTION_PARTY: String(tokens[2]) if tokens.size() > 2 else "Pokemon",
+		ACTION_RUN: String(tokens[3]) if tokens.size() > 3 else "Run",
+	}
+
+
+func _replace_text_control_with_tab(text: String) -> String:
+	var result := text
+	while true:
+		var start := result.find("{CLEAR_TO")
+		if start < 0:
+			return result
+		var end := result.find("}", start)
+		if end < 0:
+			return result
+		result = result.substr(0, start) + "\t" + result.substr(end + 1)
+	return result
+
+
+func _source_battle_text(label: String) -> String:
+	var record := _source_battle_text_record(label)
+	var text := String(record.get("display_text", ""))
+	if text.is_empty():
+		text = String(FALLBACK_BATTLE_TEXTS.get(label, ""))
+	return text
+
+
+func _source_battle_text_record(label: String) -> Dictionary:
+	_ensure_data_registry()
+	if _data_registry != null and _data_registry.has_method("get_battle_text_record"):
+		var record = _data_registry.get_battle_text_record(label)
+		if typeof(record) == TYPE_DICTIONARY and not record.is_empty():
+			return record
+	if _data_registry != null and _data_registry.has_method("get_battle_string_record"):
+		var string_record = _data_registry.get_battle_string_record(label)
+		if typeof(string_record) == TYPE_DICTIONARY and not string_record.is_empty():
+			return string_record
+	return {}
+
+
+func _source_text_snapshot() -> Dictionary:
+	var result := {}
+	for text_label in SOURCE_BATTLE_TEXT_LABELS.values():
+		var label := String(text_label)
+		var record := _source_battle_text_record(label)
+		result[label] = {
+			"display_text": _source_battle_text(label),
+			"status": "generated" if not record.is_empty() else "fallback",
+			"source": record.get("source", {}) if not record.is_empty() else {},
+		}
+	return result
+
+
 func _action_prompt_text(player_mon: Dictionary) -> String:
 	var mon_name := _short_text(String(player_mon.get("name", player_mon.get("species", "Pokemon"))), 12)
-	return String(SOURCE_BATTLE_TEXTS["gText_WhatWillPkmnDo"]).replace("{B_BUFF1}", mon_name)
+	return _source_battle_text("gText_WhatWillPkmnDo").replace("{B_BUFF1}", mon_name)
 
 
 func _move_type_text(move: Dictionary) -> String:
 	var type_symbol := String(move.get("type", ""))
 	if type_symbol.is_empty():
-		return "%s?" % SOURCE_BATTLE_TEXTS["gText_MoveInterfaceType"]
+		return "%s?" % _source_battle_text("gText_MoveInterfaceType")
 	var type_name := _type_display_name(type_symbol)
 	if type_name.is_empty():
 		type_name = type_symbol
-	return "%s%s" % [SOURCE_BATTLE_TEXTS["gText_MoveInterfaceType"], type_name]
+	return "%s%s" % [_source_battle_text("gText_MoveInterfaceType"), type_name]
 
 
 func _type_display_name(type_symbol: String) -> String:
