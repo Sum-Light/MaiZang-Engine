@@ -9,8 +9,9 @@ This wiki is the durable project memory for porting `pokeemerald-expansion` to G
 3. `architecture.md` - target architecture and module boundaries.
 4. `roadmap.md` - staged implementation plan.
 5. `import-pipeline.md` - source formats and conversion strategy.
-6. `decisions.md` - accepted technical decisions.
-7. `session-log.md` - chronological Q&A and work log.
+6. `battle-parity-todo.md` - source audit and checklist for 1:1 battle experience.
+7. `decisions.md` - accepted technical decisions.
+8. `session-log.md` - chronological Q&A and work log.
 
 ## Update Rule
 
