@@ -323,9 +323,13 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
   - Boundary: the report exposes source color provenance only. Source `.pal`/`.gbapal` paths and source color symbols remain import-only trace data; runtime battle presentation must consume distinct RGBA images plus Godot Shader/Material/Animation parameters for tint/fade/flash/affine effects. Audio playback remains closed and all cry refs remain metadata-only.
   - Validate: `pokemon_battle_asset_coverage_smoke.gd` checks report schema/policy, row shapes, Torchic, Pikachu, Unfezant, Unown, Geodude, Castform, Mega Venusaur, icons needed by battle UI, distinct shiny/female-shiny gaps, front animations, placement/shadow metadata, cry metadata-only status, unsupported reason registry, and absence of a `runtime_palette` API.
 
-- [ ] B7.7 Add trainer data and asset completeness report.
+- [x] B7.7 Add trainer data and asset completeness report.
   - Output: `data/generated/reports/trainer_battle_asset_coverage.json`.
-  - Validate: rows cover trainer id, class, pic, baked source color provenance, mugshot/special transition, party sprite requirements, music metadata, intro/defeat text references, reward metadata, and unsupported reasons.
+  - Current first pass: `tools/report_trainer_battle_assets.py` emits 855 trainer coverage rows, 855 first-pass trainer front-sprite asset rows, 155 imported front trainer texture definitions, 10 imported player back-sprite definitions, 93 unique front sprites used by trainers, 855 front source color provenance rows, 5 mugshot source color provenance rows, and 855 encounter music refs marked `metadata_only`.
+  - Party coverage: the report checks all 1825 trainer party Pokemon against the Pokemon battle asset coverage report. Current first pass has 852 trainer rows with complete party Pokemon sprite requirements, 1 no-party row, and 2 rows with explicit `SPECIES_CASTFORM` alias gaps (`TRAINER_ANGELICA` and `TRAINER_KAYLEY`) marked `trainer_party_species_asset_pending`.
+  - Transition gaps: the report records 787 normal trainer-transition-table rows, 5 mugshot special transition rows, 33 Team Magma special transition rows, and 30 Team Aqua special transition rows. Runtime playback for trainer slides, mugshots, Magma/Aqua transitions, double battles, AI, intro/defeat/post-battle text, rewards, and audio remains explicit unsupported metadata.
+  - Boundary: source color records stay import-only provenance. Runtime trainer presentation must consume RGBA images plus Godot Shader/Material/Animation parameters for tint/fade/flash/affine effects; audio playback remains metadata-only.
+  - Validate: `trainer_battle_asset_coverage_smoke.gd` checks report schema/policy, stats, row shapes, `TRAINER_NONE`, Sawyer, Sidney, Wallace, Aqua/Magma grunts, Angelica Castform alias gap, Gabby & Ty double-battle metadata, unsupported reason registry, and absence of a `runtime_palette` API.
 
 ## B8 - Battle Interface, HUD, Menus, And Text Windows
 
@@ -337,7 +341,7 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
 
 - [ ] B8.2 Implement source window layer renderer.
   - Target: `scripts/battle/battle_window_renderer.gd`.
-  - Covers: BG0/BG1-style tilemap windows, font layout, borders, palette/text colors, text speed/waits.
+  - Covers: BG0/BG1-style tilemap windows, font layout, borders, RGBA/text material styles, text speed/waits.
   - Validate: screenshot smoke for action menu and move menu at 240x160.
 
 - [ ] B8.3 Implement healthbox runtime.
@@ -399,13 +403,13 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
 - [ ] B10.2 Export animation sprite tag metadata.
   - Source: `src/data/battle_anim.h:gBattleAnimTable`.
   - Output: `data/generated/battle/anim_assets.json`.
-  - Covers: tag symbol, image table, palette table, frame table, affine anim table, OAM shape/size.
+  - Covers: tag symbol, image table, import-only source color table references, frame table, affine anim table, OAM shape/size.
   - Validate: tags required by Tackle/Ember/Water Gun resolve.
 
 - [ ] B10.3 Convert battle animation sprites.
   - Source: `graphics/battle_anims`.
   - Output: textures under `assets/generated/battle_anims/`.
-  - Validate: frame rects, palette alpha, atlas coordinates, and tag-to-texture lookup.
+  - Validate: frame rects, transparency handling, atlas coordinates, and tag-to-texture lookup.
 
 - [ ] B10.4 Build battle animation interpreter.
   - Target: `scripts/battle/battle_animation_player.gd`.

@@ -50,14 +50,15 @@ func _run() -> void:
 	)
 	_assert(String(intro.get("source_flow_status", "")) == "source_action_move_window_flow_first_pass", "expected source flow metadata")
 	_assert(intro.get("source_hp_bar_pixels", 0) == 48, "expected source HP bar pixel width")
+	_assert(not _contains_forbidden_runtime_color_key(intro), "battle scene runtime snapshot must not expose palette/source-color keys")
 	var source_assets := _dict_value(intro.get("source_ui_assets", {}))
-	_assert(String(source_assets.get("textbox_tiles", "")) == "graphics/battle_interface/textbox.png", "expected source textbox asset metadata")
+	_assert(String(source_assets.get("textbox_texture_source", "")) == "graphics/battle_interface/textbox.png", "expected source textbox asset metadata")
+	_assert(String(source_assets.get("render_style_policy", "")) == "godot_theme_material_shader", "expected Godot-native render style policy")
 	_assert(String(source_assets.get("healthbox_singles_player", "")) == "graphics/battle_interface/healthbox_singles_player.png", "expected source healthbox asset metadata")
 	var window_text_info := _dict_value(intro.get("source_window_text_info", {}))
 	var pp_remaining_info := _dict_value(window_text_info.get("B_WIN_PP_REMAINING", {}))
-	var pp_text_color := _dict_value(pp_remaining_info.get("text_color", {}))
-	_assert(int(pp_text_color.get("foreground", -1)) == 12, "expected source PP remaining foreground color")
-	_assert(int(pp_text_color.get("shadow", -1)) == 11, "expected source PP remaining shadow color")
+	_assert(String(pp_remaining_info.get("text_material_id", "")) == "battle_pp_numeric", "expected semantic PP text material")
+	_assert(String(pp_remaining_info.get("fill_style", "")) == "menu_panel", "expected semantic PP fill style")
 	var type_display_status := _dict_value(intro.get("source_type_display_status", {}))
 	_assert(String(type_display_status.get("status", "")) == "available", "expected generated source type names available")
 	_assert(String(type_display_status.get("sample_type_water_name", "")) == "水", "expected source TYPE_WATER display name")
@@ -161,3 +162,18 @@ func _has_unsupported(record: Dictionary, code: String) -> bool:
 func _has_source_trace(record: Dictionary, trace: String) -> bool:
 	var source_trace = record.get("source_trace", [])
 	return typeof(source_trace) == TYPE_ARRAY and source_trace.has(trace)
+
+
+func _contains_forbidden_runtime_color_key(value) -> bool:
+	if typeof(value) == TYPE_DICTIONARY:
+		for key in value.keys():
+			var key_text := String(key).to_lower()
+			if key_text.contains("palette") or key_text.contains("source_color") or key_text.contains("source_palette"):
+				return true
+			if _contains_forbidden_runtime_color_key(value[key]):
+				return true
+	elif typeof(value) == TYPE_ARRAY:
+		for item in value:
+			if _contains_forbidden_runtime_color_key(item):
+				return true
+	return false

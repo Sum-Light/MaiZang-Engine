@@ -46,16 +46,16 @@ const SOURCE_ACTION_IDS := {
 }
 
 const SOURCE_BATTLE_WINDOWS := {
-	"B_WIN_MSG": {"tilemap_left": 2, "tilemap_top": 15, "width": 26, "height": 4, "source_color_slot": 0, "base_block": 0x0090, "text_x": 0, "text_y": 1, "font": "FONT_NORMAL"},
-	"B_WIN_ACTION_PROMPT": {"tilemap_left": 1, "tilemap_top": 35, "width": 14, "height": 4, "source_color_slot": 0, "base_block": 0x01c0, "text_x": 1, "text_y": 1, "font": "FONT_NORMAL"},
-	"B_WIN_ACTION_MENU": {"tilemap_left": 17, "tilemap_top": 35, "width": 12, "height": 4, "source_color_slot": 5, "base_block": 0x0190, "text_x": 0, "text_y": 1, "font": "FONT_NORMAL"},
-	"B_WIN_MOVE_NAME_1": {"tilemap_left": 2, "tilemap_top": 55, "width": 16, "height": 2, "source_color_slot": 5, "base_block": 0x0300, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
-	"B_WIN_MOVE_NAME_2": {"tilemap_left": 11, "tilemap_top": 55, "width": 8, "height": 2, "source_color_slot": 5, "base_block": 0x0318, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
-	"B_WIN_MOVE_NAME_3": {"tilemap_left": 2, "tilemap_top": 57, "width": 16, "height": 2, "source_color_slot": 5, "base_block": 0x0328, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
-	"B_WIN_MOVE_NAME_4": {"tilemap_left": 11, "tilemap_top": 57, "width": 8, "height": 2, "source_color_slot": 5, "base_block": 0x0340, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
-	"B_WIN_PP": {"tilemap_left": 21, "tilemap_top": 55, "width": 4, "height": 2, "source_color_slot": 5, "base_block": 0x0290, "text_x": 0, "text_y": 1, "font": "FONT_NARROW"},
-	"B_WIN_PP_REMAINING": {"tilemap_left": 25, "tilemap_top": 55, "width": 4, "height": 2, "source_color_slot": 5, "base_block": 0x0298, "text_x": 2, "text_y": 1, "font": "FONT_NORMAL"},
-	"B_WIN_MOVE_TYPE": {"tilemap_left": 21, "tilemap_top": 57, "width": 8, "height": 2, "source_color_slot": 5, "base_block": 0x02a0, "text_x": 0, "text_y": 1, "font": "FONT_NARROW"},
+	"B_WIN_MSG": {"tilemap_left": 2, "tilemap_top": 15, "width": 26, "height": 4, "style_id": "message_window", "base_block": 0x0090, "text_x": 0, "text_y": 1, "font": "FONT_NORMAL"},
+	"B_WIN_ACTION_PROMPT": {"tilemap_left": 1, "tilemap_top": 35, "width": 14, "height": 4, "style_id": "message_window", "base_block": 0x01c0, "text_x": 1, "text_y": 1, "font": "FONT_NORMAL"},
+	"B_WIN_ACTION_MENU": {"tilemap_left": 17, "tilemap_top": 35, "width": 12, "height": 4, "style_id": "battle_menu_window", "base_block": 0x0190, "text_x": 0, "text_y": 1, "font": "FONT_NORMAL"},
+	"B_WIN_MOVE_NAME_1": {"tilemap_left": 2, "tilemap_top": 55, "width": 16, "height": 2, "style_id": "battle_menu_window", "base_block": 0x0300, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
+	"B_WIN_MOVE_NAME_2": {"tilemap_left": 11, "tilemap_top": 55, "width": 8, "height": 2, "style_id": "battle_menu_window", "base_block": 0x0318, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
+	"B_WIN_MOVE_NAME_3": {"tilemap_left": 2, "tilemap_top": 57, "width": 16, "height": 2, "style_id": "battle_menu_window", "base_block": 0x0328, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
+	"B_WIN_MOVE_NAME_4": {"tilemap_left": 11, "tilemap_top": 57, "width": 8, "height": 2, "style_id": "battle_menu_window", "base_block": 0x0340, "text_x": 0, "text_y": 1, "font": "FONT_NARROW", "source_fit_width_px": 64},
+	"B_WIN_PP": {"tilemap_left": 21, "tilemap_top": 55, "width": 4, "height": 2, "style_id": "battle_menu_window", "base_block": 0x0290, "text_x": 0, "text_y": 1, "font": "FONT_NARROW"},
+	"B_WIN_PP_REMAINING": {"tilemap_left": 25, "tilemap_top": 55, "width": 4, "height": 2, "style_id": "battle_menu_window", "base_block": 0x0298, "text_x": 2, "text_y": 1, "font": "FONT_NORMAL"},
+	"B_WIN_MOVE_TYPE": {"tilemap_left": 21, "tilemap_top": 57, "width": 8, "height": 2, "style_id": "battle_menu_window", "base_block": 0x02a0, "text_x": 0, "text_y": 1, "font": "FONT_NARROW"},
 }
 
 const SOURCE_BATTLE_TEXTS := {
@@ -79,21 +79,21 @@ const SOURCE_HEALTHBOX_COORDS := {
 }
 
 const SOURCE_UI_ASSETS := {
-	"textbox_tiles": "graphics/battle_interface/textbox.png",
-	"textbox_source_color_asset": "graphics/battle_interface/textbox.gbapal",
+	"textbox_texture_source": "graphics/battle_interface/textbox.png",
 	"textbox_tilemap": "graphics/battle_interface/textbox_map.bin",
 	"healthbox_singles_player": "graphics/battle_interface/healthbox_singles_player.png",
 	"healthbox_singles_opponent": "graphics/battle_interface/healthbox_singles_opponent.png",
 	"healthbar": "graphics/battle_interface/healthbar.png",
+	"render_style_policy": "godot_theme_material_shader",
 }
 
 const SOURCE_WINDOW_TEXT_INFO := {
-	"B_WIN_MSG": {"fill": "PIXEL_FILL(0xF)", "font": "FONT_NORMAL", "text_color": {"foreground": 1, "shadow": 3}, "speed": 0},
-	"B_WIN_ACTION_PROMPT": {"fill": "PIXEL_FILL(0xF)", "font": "FONT_NORMAL", "text_color": {"foreground": 1, "shadow": 3}, "speed": 0},
-	"B_WIN_ACTION_MENU": {"fill": "PIXEL_FILL(0xE)", "font": "FONT_NORMAL", "text_color": {"foreground": 2, "shadow": 3}, "speed": 0},
-	"B_WIN_MOVE_NAME_1": {"fill": "PIXEL_FILL(0xE)", "font": "FONT_NARROW", "text_color": {"foreground": 2, "shadow": 3}, "speed": 0},
-	"B_WIN_PP_REMAINING": {"fill": "PIXEL_FILL(0xE)", "font": "FONT_NORMAL", "text_color": {"foreground": 12, "shadow": 11}, "speed": 0},
-	"B_WIN_MOVE_TYPE": {"fill": "PIXEL_FILL(0xE)", "font": "FONT_NARROW", "text_color": {"foreground": 2, "shadow": 3}, "speed": 0},
+	"B_WIN_MSG": {"fill_style": "message_panel", "font": "FONT_NORMAL", "text_material_id": "battle_text_primary", "speed": 0},
+	"B_WIN_ACTION_PROMPT": {"fill_style": "message_panel", "font": "FONT_NORMAL", "text_material_id": "battle_text_primary", "speed": 0},
+	"B_WIN_ACTION_MENU": {"fill_style": "menu_panel", "font": "FONT_NORMAL", "text_material_id": "battle_text_menu", "speed": 0},
+	"B_WIN_MOVE_NAME_1": {"fill_style": "menu_panel", "font": "FONT_NARROW", "text_material_id": "battle_text_menu", "speed": 0},
+	"B_WIN_PP_REMAINING": {"fill_style": "menu_panel", "font": "FONT_NORMAL", "text_material_id": "battle_pp_numeric", "speed": 0},
+	"B_WIN_MOVE_TYPE": {"fill_style": "menu_panel", "font": "FONT_NARROW", "text_material_id": "battle_text_menu", "speed": 0},
 }
 
 var _sequence: Dictionary = {}
@@ -555,11 +555,11 @@ func _battle_scene_unsupported() -> Array:
 	var unsupported := [{
 		"code": "battle_scene_not_source_equivalent",
 		"source": "src/battle_main.c:CB2_InitBattle",
-		"detail": "This scene is a debug vertical slice. It does not recreate the source battle tilemaps, indexed-color setup, battler sprites, healthbox sprites, window graphics, audio, or exact callback/task flow.",
+		"detail": "This scene is a debug vertical slice. It does not recreate the source battle tilemaps, battler sprites, healthbox sprites, window graphics, audio, or exact callback/task flow.",
 	}, {
 		"code": "battle_ui_windows_not_source_equivalent",
 		"source": "src/battle_interface.c; src/battle_controller_player.c; src/battle_message.c",
-		"detail": "The first pass now follows source action/move window ids, BG0 scroll offsets, text symbols, and HP bar width, but it still uses Godot controls instead of imported source window tilemaps, source color assets, text printer glyphs, and healthbox sprites.",
+		"detail": "The first pass now follows source action/move window ids, BG0 scroll offsets, text symbols, and HP bar width, but it still uses Godot controls instead of imported source window tilemaps, RGBA window textures, text printer glyphs, and healthbox sprites.",
 	}, {
 		"code": "battle_action_menu_partial",
 		"source": "src/battle_controller_player.c:PlayerHandleChooseAction; src/battle_controller_player.c:HandleInputChooseAction",
