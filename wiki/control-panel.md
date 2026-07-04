@@ -14,6 +14,7 @@ Current focus:
 - Split work into low-coupling module tracks; cross-module behavior should flow through explicit request/result contracts.
 - Preserve source-visible timing, sequence, audio intent, UI flow, and state changes where practical.
 - Ignore GBA hardware/storage constraints at runtime; importers should bake or normalize assets into Godot-friendly data.
+- Do not expose GBA palette systems to gameplay or presentation runtime. Source color files/slots are import-only provenance; shiny, alternate, gender/form, and multi-color-source variants must be distinct RGBA assets, while color flashes/fades/tints use Godot Shader/Material/Animation parameters.
 
 Next active module:
 
@@ -176,7 +177,7 @@ Near-term:
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
-- Current B7.1-B7.5 status: Pokemon battle sprites, trainer battle sprites, battle environment/background metadata, and battle transition textures/tilemap composites are generated as Godot-friendly PNG assets plus source metadata, and `battle_asset_alpha_palette_smoke.gd` now checks alpha/palette/dimension/missing-ref quality across the generated battle asset layer. Runtime presentation, palette/affine effects, battle background scrolling/entry playback, transition playback, and audio remain pending.
+- Current B7.1-B7.5 status: Pokemon battle sprites, trainer battle sprites, battle environment/background metadata, and battle transition textures/tilemap composites are generated as Godot-friendly PNG assets plus source metadata, and `battle_asset_image_quality_smoke.gd` now checks alpha/source-color-provenance/dimension/missing-ref quality across the generated battle asset layer. Runtime presentation, shader/material color effects, affine effects, battle background scrolling/entry playback, transition playback, and audio remain pending.
 - Next executable task: continue B7.6 Pokemon battle asset completeness reporting, B7.7 trainer battle asset completeness reporting, start B8 battle interface/HUD assets for the Sawyer/Route101 fixture, or start B3 battle script VM only against the newly generated script/effect data; B13.4/B13.5 selector polish and scene-level action smoke remain as debug-lane follow-up.
 - Import the remaining source-backed battle HUD/interface assets needed by the Sawyer/Route101 single-battle fixture.
 - Replace the current placeholder `BattleScene` layout with source-backed static battle composition before broad move animation work.

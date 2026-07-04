@@ -19,14 +19,14 @@ UNSUPPORTED_CODE_REGISTRY = {
     "battle_environment_asset_pending": "The source environment row has no imported battle background/entry texture in this slice.",
     "battle_environment_runtime_pending": "Battle background selection, scrolling, entry overlay playback, and scene presentation are not source-equivalent yet.",
     "battle_transition_asset_pending": "A source battle transition asset reference is not imported as a Godot texture/resource.",
-    "battle_transition_runtime_pending": "Battle transition task playback, fades, masks, scanline effects, and affine/palette effects are not source-equivalent yet.",
+    "battle_transition_runtime_pending": "Battle transition task playback, fades, masks, scanline effects, affine transforms, and shader/color effects are not source-equivalent yet.",
     "battle_hud_pending": "Source healthboxes, windows, text printer, and menu tilemaps are not yet rendered.",
     "battle_audio_playback_pending": "Battle music, cries, fanfares, and sound effects are metadata-only.",
     "ability_runtime_pending": "Ability flags are generated, but battle hook behavior and popup timing are not implemented.",
     "trainer_ai_pending": "Trainer AI flags are generated, but source AI scoring/action choice is not implemented.",
     "trainer_rewards_pending": "Trainer reward, rematch, and post-battle mutation flow are metadata/future work.",
-    "pokemon_asset_import_pending": "Pokemon front/back sprites, palettes, offsets, shadows, and animations are not imported.",
-    "trainer_asset_import_pending": "Trainer battle sprites, palettes, mugshots, and slide metadata are not imported.",
+    "pokemon_asset_import_pending": "Pokemon front/back sprites, distinct color-variant images, offsets, shadows, and animations are not imported.",
+    "trainer_asset_import_pending": "Trainer battle sprites, distinct source-color images, mugshots, and slide metadata are not imported.",
     "debug_launcher_pending": "Developer quick battle launchers are not implemented yet.",
     "debug_random_wild_not_source_encounter": "F6 is a Godot-only random species/random level battle fixture, not a source grass/water/fishing encounter path.",
     "map_decoupled_debug_only": "The row describes a Godot-only developer access path, not source gameplay.",
@@ -253,14 +253,14 @@ def build_trainer_rows(trainers_data, trainer_sprites_data):
         sprite_coverage = sprite_record.get("coverage", {}) if isinstance(sprite_record, dict) else {}
         sprite_asset_status = str(sprite_coverage.get("asset_status", "unsupported"))
         front_sprite = sprite_record.get("front", {}) if isinstance(sprite_record.get("front", {}), dict) else {}
-        palette = sprite_record.get("palette", {}) if isinstance(sprite_record.get("palette", {}), dict) else {}
+        source_color = sprite_record.get("palette", {}) if isinstance(sprite_record.get("palette", {}), dict) else {}
         mugshot_record = sprite_record.get("mugshot", {}) if isinstance(sprite_record.get("mugshot", {}), dict) else {}
         battle_type = constant_symbol(record.get("battle_type", {}))
         is_double = bool(record.get("battle_type", {}).get("is_double", False)) if isinstance(record.get("battle_type"), dict) else False
         tests = ["tools/godot_smoke/data_registry_trainers_smoke.gd", "tools/godot_smoke/battle_engine_smoke.gd"]
         if sprite_asset_status == "first_pass":
             tests.append("tools/godot_smoke/data_registry_trainer_sprites_smoke.gd")
-            tests.append("tools/godot_smoke/battle_asset_alpha_palette_smoke.gd")
+            tests.append("tools/godot_smoke/battle_asset_image_quality_smoke.gd")
         rows.append({
             "id": symbol,
             "trainer_symbol": symbol,
@@ -271,8 +271,8 @@ def build_trainer_rows(trainers_data, trainer_sprites_data):
             "trainer_pic_numeric_id": int(record.get("pic", {}).get("value", -1)) if isinstance(record.get("pic"), dict) else -1,
             "front_sprite_image": str(front_sprite.get("image_project_path", "")),
             "front_sprite_source_symbol": str(front_sprite.get("source_symbol", "")),
-            "palette_source_symbol": str(palette.get("source_symbol", "")),
-            "palette_color_count": int(palette.get("color_count", 0) or 0),
+            "source_color_source_symbol": str(source_color.get("source_symbol", "")),
+            "source_color_count": int(source_color.get("color_count", 0) or 0),
             "party_size": int_field_value(record.get("party_size", 0)),
             "held_item_count": count_party_held_items(record.get("party", [])),
             "explicit_move_mon_count": count_party_move_source(record.get("party", []), "explicit"),
@@ -285,7 +285,7 @@ def build_trainer_rows(trainers_data, trainer_sprites_data):
             "ai_status": "metadata_only",
             "sprite_status": sprite_asset_status,
             "asset_status": sprite_asset_status,
-            "palette_status": str(sprite_coverage.get("palette_status", "unsupported")),
+            "source_color_status": str(sprite_coverage.get("palette_status", "unsupported")),
             "slide_status": str(sprite_coverage.get("slide_status", "unsupported")),
             "reward_status": "metadata_only",
             "post_battle_status": "unsupported",
@@ -390,7 +390,7 @@ def build_pokemon_rows(species_data, battle_sprites_data=None):
         if sprite_record:
             tests.append("tools/godot_smoke/data_registry_pokemon_battle_sprites_smoke.gd")
         if str(coverage.get("asset_status", "")) == "first_pass":
-            tests.append("tools/godot_smoke/battle_asset_alpha_palette_smoke.gd")
+            tests.append("tools/godot_smoke/battle_asset_image_quality_smoke.gd")
         rows.append({
             "id": symbol,
             "species_symbol": symbol,
@@ -407,9 +407,9 @@ def build_pokemon_rows(species_data, battle_sprites_data=None):
             "back_sprite_image": str(back_sprite.get("image_project_path", "")),
             "icon_sprite_symbol": str(refs.get("icon_sprite", "")),
             "icon_sprite_image": str(icon_sprite.get("image_project_path", "")),
-            "palette_symbol": str(refs.get("palette", "")),
-            "shiny_palette_symbol": str(refs.get("shiny_palette", "")),
-            "palette_status": str(coverage.get("palette_status", "metadata_only" if palettes else "unsupported")),
+            "normal_source_color_symbol": str(refs.get("palette", "")),
+            "shiny_source_color_symbol": str(refs.get("shiny_palette", "")),
+            "source_color_status": str(coverage.get("palette_status", "metadata_only" if palettes else "unsupported")),
             "animation_status": str(coverage.get("animation_status", "metadata_only" if animation else "unsupported")),
             "audio_status": str(coverage.get("audio_status", "metadata_only" if cry.get("source_symbol") else "unsupported")),
             "asset_status": str(coverage.get(
@@ -491,29 +491,29 @@ def build_battle_environment_rows(environments_data):
         coverage = record.get("coverage", {}) if isinstance(record.get("coverage"), dict) else {}
         background = record.get("background", {}) if isinstance(record.get("background"), dict) else {}
         entry = record.get("entry", {}) if isinstance(record.get("entry"), dict) else {}
-        palette = record.get("palette", {}) if isinstance(record.get("palette"), dict) else {}
+        source_color = record.get("palette", {}) if isinstance(record.get("palette"), dict) else {}
         source_assets = record.get("source_assets", {}) if isinstance(record.get("source_assets"), dict) else {}
         tests = ["tools/godot_smoke/data_registry_battle_environments_smoke.gd"]
         if str(coverage.get("asset_status", "")) == "first_pass":
-            tests.append("tools/godot_smoke/battle_asset_alpha_palette_smoke.gd")
+            tests.append("tools/godot_smoke/battle_asset_image_quality_smoke.gd")
         rows.append({
             "id": symbol,
             "environment_symbol": symbol,
             "numeric_id": int(record.get("numeric_id", -1)),
             "background_asset": str(source_assets.get("background_asset", "")),
             "entry_asset": str(source_assets.get("entry_asset", "")),
-            "palette_source_symbol": str(source_assets.get("palette_symbol", "")),
+            "source_color_source_symbol": str(source_assets.get("palette_symbol", "")),
             "background_image": str(background.get("image_project_path", "")),
             "entry_image": str(entry.get("image_project_path", "")),
             "background_size": background.get("size", {}) if isinstance(background.get("size"), dict) else {},
             "entry_size": entry.get("size", {}) if isinstance(entry.get("size"), dict) else {},
-            "palette_color_count": int(palette.get("color_count", 0) or 0),
+            "source_color_count": int(source_color.get("color_count", 0) or 0),
             "nature_power": str(record.get("nature_power", "")),
             "secret_power_effect": str(record.get("secret_power_effect", "")),
             "camouflage_type": str(record.get("camouflage_type", "")),
             "background_status": str(coverage.get("background_status", "unsupported")),
             "entry_status": str(coverage.get("entry_status", "unsupported")),
-            "palette_status": str(coverage.get("palette_status", "unsupported")),
+            "source_color_status": str(coverage.get("palette_status", "unsupported")),
             "asset_status": str(coverage.get("asset_status", "unsupported")),
             "selection_status": str(coverage.get("selection_status", "metadata_only")),
             "runtime_status": str(coverage.get("runtime_status", "unsupported")),
@@ -539,7 +539,7 @@ def build_battle_transition_rows(transitions_data):
             record = {}
         coverage = record.get("coverage", {}) if isinstance(record.get("coverage"), dict) else {}
         texture_refs = record.get("texture_refs", []) if isinstance(record.get("texture_refs"), list) else []
-        palette_refs = record.get("palette_refs", []) if isinstance(record.get("palette_refs"), list) else []
+        source_color_refs = record.get("palette_refs", []) if isinstance(record.get("palette_refs"), list) else []
         binary_refs = record.get("binary_refs", []) if isinstance(record.get("binary_refs"), list) else []
         tilemap_composite_refs = record.get("tilemap_composite_refs", []) if isinstance(record.get("tilemap_composite_refs"), list) else []
         first_texture = assets.get(texture_refs[0], {}) if texture_refs and isinstance(assets.get(texture_refs[0], {}), dict) else {}
@@ -555,7 +555,7 @@ def build_battle_transition_rows(transitions_data):
         )
         tests = ["tools/godot_smoke/data_registry_battle_transitions_smoke.gd"]
         if str(coverage.get("asset_status", "")) == "first_pass" or str(coverage.get("tilemap_status", "")) in ("first_pass", "dynamic_block_preview"):
-            tests.append("tools/godot_smoke/battle_asset_alpha_palette_smoke.gd")
+            tests.append("tools/godot_smoke/battle_asset_image_quality_smoke.gd")
         rows.append({
             "id": symbol,
             "transition_symbol": symbol,
@@ -564,7 +564,7 @@ def build_battle_transition_rows(transitions_data):
             "function_array": str(record.get("function_array", "")),
             "function_count": len(record.get("function_sequence", [])) if isinstance(record.get("function_sequence"), list) else 0,
             "texture_count": len(texture_refs),
-            "palette_count": len(palette_refs),
+            "source_color_ref_count": len(source_color_refs),
             "binary_ref_count": len(binary_refs),
             "tilemap_composite_count": len(tilemap_composite_refs),
             "first_texture": str(first_texture.get("image_project_path", "")),

@@ -13,7 +13,7 @@
     "godot_runtime_asset_model": "RGBA PNG textures, tilemap composite PNG previews, plus source task/table metadata",
     "runtime_status": "unsupported",
     "audio_status": "metadata_only",
-    "detail": "Static source tilemaps are decoded into Godot-friendly composite PNGs where possible. Palette fades, HBlank/VBlank effects, window masks, scanline offsets, affine transforms, dynamic repeated tilemap placement, and transition task playback remain future Godot-native presentation work."
+    "detail": "Static source tilemaps are decoded into Godot-friendly composite PNGs where possible. Source color fades, HBlank/VBlank effects, window masks, scanline offsets, affine transforms, dynamic repeated tilemap placement, and transition task playback remain future Godot-native Shader/Material/Animation presentation work."
   },
   "transition_order": [
     "B_TRANSITION_BLUR",
@@ -9593,7 +9593,7 @@
           "color_count": 16,
           "palette_bank_color_offsets": {},
           "source_forces_palette_bank": 15,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "SET_TILE loop ORs BG palette bank 15 over a 30x20 tilemap.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -9674,7 +9674,7 @@
           "color_count": 16,
           "palette_bank_color_offsets": {},
           "source_forces_palette_bank": 15,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "Mugshot_SetGfx copies a 32x20 tilemap through SET_TILE; the generated composite uses purple as the default opponent mugshot reference palette.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -9748,7 +9748,7 @@
             "15": 0
           },
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "FrontierLogo* decompresses a full BG0 tilemap after loading the Frontier logo palette into BG palette bank 15.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -9822,7 +9822,7 @@
             "15": 0
           },
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "LoadLogoGfx decompresses the logo center tilemap before spawning animated circle sprites.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -9900,7 +9900,7 @@
           "color_count": 16,
           "palette_bank_color_offsets": {},
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "Frontier Squares copies this 4x4 block repeatedly into BG0; the generated image is a block preview, not the final full-screen animation.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -9979,7 +9979,7 @@
             "15": 0
           },
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": true
+          "source_color_animation": true
         },
         "source_operation": "Groudon_Init decompresses a full BG0 tilemap; palette flashing later streams 16-color frames into BG palette bank 15.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -10058,7 +10058,7 @@
             "15": 0
           },
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": true
+          "source_color_animation": true
         },
         "source_operation": "Kyogre_Init decompresses a full BG0 tilemap; palette flashing later streams 16-color frames into BG palette bank 15.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -10136,7 +10136,7 @@
             "15": 80
           },
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": true
+          "source_color_animation": true
         },
         "source_operation": "Rayquaza_SetGfx copies a 64x32 BG0 tilemap; Rayquaza_Init loads palette frame 5 into BG palette bank 15 before the palette flash.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -10214,7 +10214,7 @@
             "15": 0
           },
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "Regice_SetGfx copies a full BG0 tilemap after loading the Regice palette into BG palette bank 15.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -10292,7 +10292,7 @@
             "15": 0
           },
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "Regirock_SetGfx copies a full BG0 tilemap after loading the Regirock palette into BG palette bank 15.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -10370,7 +10370,7 @@
             "15": 0
           },
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "Registeel_SetGfx copies a full BG0 tilemap after loading the Registeel palette into BG palette bank 15.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -10448,7 +10448,7 @@
             "15": 0
           },
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "Aqua_SetGfx decompresses a full BG0 tilemap after loading the evil-team palette into BG palette bank 15.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -10526,7 +10526,7 @@
             "15": 0
           },
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "Magma_SetGfx decompresses a full BG0 tilemap after loading the evil-team palette into BG palette bank 15.",
         "conversion": "palette_baked_png_from_transition_tilemap",
@@ -10594,7 +10594,7 @@
           "color_count": 16,
           "palette_bank_color_offsets": {},
           "source_forces_palette_bank": null,
-          "runtime_palette_animation": false
+          "source_color_animation": false
         },
         "source_operation": "Unreferenced transition asset in the current source task table; decoded for asset completeness only.",
         "conversion": "palette_baked_png_from_transition_tilemap",

@@ -322,7 +322,7 @@ def _build_palette(kind, source_symbol, definitions, source_root):
             "colors_rgb": colors,
             "source_palette_fallback_image_path": to_project_path(fallback_image_rel),
             "fallback_rule": "source .gbapal has no checked-in .pal companion; extracted first 16 PNG palette entries for Godot metadata",
-            "runtime_note": "Stored as Godot-side palette metadata; palette swaps/blends are later Godot-native material tasks.",
+            "runtime_note": "Import-only source color provenance. Runtime must use RGBA image assets or Godot Shader/Material parameters, not indexed-color swaps.",
         })
         return entry
     colors = _read_jasc_palette(source_palette_path)
@@ -330,7 +330,7 @@ def _build_palette(kind, source_symbol, definitions, source_root):
         "status": "metadata_only",
         "color_count": len(colors),
         "colors_rgb": colors,
-        "runtime_note": "Stored as Godot-side palette metadata; palette swaps/blends are later Godot-native material tasks.",
+            "runtime_note": "Import-only source color provenance. Runtime must use RGBA image assets or Godot Shader/Material parameters, not indexed-color swaps.",
     })
     return entry
 

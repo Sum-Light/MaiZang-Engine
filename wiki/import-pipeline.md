@@ -109,7 +109,7 @@ Generated JSON is an index and interchange format, not proof that an opcode or g
 
 Before implementing a script instruction, gameplay feature, source function, or code-backed system in Godot, inspect the matching source C logic and the resources it references. Use that source behavior to design the Godot implementation, aiming for visible behavior and rules consistent with the original project while keeping the runtime Godot-native. If exact behavior is deferred, the generated data or runtime should report the approximation.
 
-GBA hardware graphics and resource formats are an exception to runtime fidelity: palettes, 4bpp tiles, binary metatiles, packed map blocks, and similar platform/storage constraints should be decoded during import into ordinary Godot images/data. The importer should preserve enough source metadata for debugging and special cases, but the Godot runtime should not reproduce GBA palette, tile-memory, or binary packing constraints just because the source format used them. Gameplay systems should follow the same principle by matching visible rules and outcomes while using Godot-native data and runtime structures.
+GBA hardware graphics and resource formats are an exception to runtime fidelity: source color files/slots, 4bpp tiles, binary metatiles, packed map blocks, and similar platform/storage constraints should be decoded during import into ordinary Godot images/data. The importer may preserve source color provenance for debugging and audit, but Godot runtime and gameplay/presentation code must not consume GBA palette systems or palette metadata for rendering. Shiny, alternate, gender/form, and multi-color-source variants should be exported as distinct RGBA image assets; source color fades/flashes/tints should be represented as Godot Shader/Material/Animation parameters with source-visible timing.
 
 Importers should prefer partial success plus a clear report over all-or-nothing failure.
 
@@ -142,7 +142,7 @@ Current export behavior:
 - Preserves source map header metadata including layout id, music, region map section, `requires_flash`, weather, map type, battle scene, movement flags, show-map-name flag, shared event/script map refs, `connections_no_include`, and FRLG `floor_number`.
 - Preserves existing script manifest entries when updating the shared import manifest.
 
-`tools/importer/export_tilesets.py` exports one map's primary/secondary tileset pair into a palette-baked metatile atlas. It accepts `--config`, `--source`, `--map`, `--output-data-root`, and `--output-asset-root`.
+`tools/importer/export_tilesets.py` exports one map's primary/secondary tileset pair into a source-color-baked RGBA metatile atlas. It accepts `--config`, `--source`, `--map`, `--output-data-root`, and `--output-asset-root`.
 
 Current tileset export behavior:
 
@@ -152,7 +152,7 @@ Current tileset export behavior:
 - Parses `include/constants/metatile_behaviors.h` so generated metatile attributes carry source behavior names as well as numeric ids.
 - Parses `include/constants/metatile_labels.h` and `src/field_door.c` so used animated-door metatiles can resolve their source animation image, palette slots, frame order, and sound intent.
 - Writes a generated `metatile_labels` table from `include/constants/metatile_labels.h` so runtime script commands such as `setmetatile` can resolve source `METATILE_*` symbols without hardcoded Godot ids.
-- Builds source palette slots with primary palettes 0-5 and secondary palettes 6-12, then bakes colors into a normal RGBA PNG.
+- Resolves source color slots with primary slots 0-5 and secondary slots 6-12 during import, then bakes colors into a normal RGBA PNG.
 - Flattens each 16x16 metatile by compositing bottom entries 0-3 and top entries 4-7.
 - Bakes supported source door animation tile strips into normal RGBA frame atlases under `assets/generated/door_anims/`; palette numbers are used only at import time.
 - Writes `assets/generated/tilesets/littleroot_town_metatiles.png`.
@@ -225,9 +225,9 @@ Current moves export behavior:
 Current type export behavior:
 
 - Reads `src/data/types_info.h:gTypesInfo` after tracing `include/data.h:struct TypeInfo` and `include/constants/pokemon.h` type/damage-category constants.
-- Preserves source type symbols, numeric ids, display names, generic display text, palette constants, Z-Move/Max Move references, Tera RGB values, damage categories, TM/HM palette values, and explicit boolean fields.
+- Preserves source type symbols, numeric ids, display names, generic display text, source color constants, Z-Move/Max Move references, Tera RGB values, damage categories, TM/HM color values, and explicit boolean fields.
 - Writes `data/generated/pokemon/types.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `types`.
-- Treats generated type records as display/rule input for battle, party, summary, Pokedex, and menu work. Type-effectiveness, move targeting, UI palettes, Tera behavior, and animation/audio presentation remain separate source-backed implementations.
+- Treats generated type records as display/rule input for battle, party, summary, Pokedex, and menu work. Type-effectiveness, move targeting, UI colors, Tera behavior, and animation/audio presentation remain separate source-backed implementations.
 
 Latest verified type export:
 
@@ -537,7 +537,7 @@ First-pass object-event sprite export:
 - variable graphics metadata: `OBJ_EVENT_GFX_VAR_0` resolves through `VAR_OBJ_GFX_ID_0` to source numeric rival graphics constants from `Common_EventScript_SetupRivalGfxId`
 - source trace: `include/constants/event_objects.h`, `src/data/object_events/object_event_graphics_info*.h`, `src/data/object_events/object_event_pic_tables.h`, `src/data/object_events/object_event_graphics.h`, `src/data/object_events/object_event_anims.h`, `src/event_object_movement.c:GetObjectEventGraphicsInfo`, and `data/scripts/rival_graphics.inc`
 - current scope: standard NPC sheets are 144x32 with source static facing frames `down=0`, `up=1`, `left=2`, `right=2+hFlip` and standard walk metadata `down=3/0/4/0`, `up=5/1/6/1`, `left=7/2/8/2`, `right=7/2/8/2+hFlip`; Truck is 48x48 inanimate; Brendan/May player and rival records stitch walking+running source sheets into 288x32 images while preserving run/spin metadata where the source table has it
-- transparency rule: generated object-event PNGs convert GBA OBJ palette index 0 to alpha 0 (`gba_obj_palette_index_0_alpha_0`), preserving visible indexed-palette source colors for nonzero pixels
+- transparency rule: generated object-event PNGs convert source indexed color 0 to alpha 0 (`gba_obj_palette_index_0_alpha_0`), preserving visible source colors for nonzero pixels
 - current runtime scope: player and object placeholders consume source frame sizes, static facing frames, right-facing hFlip, Truck rects, tile-center visual anchoring, and `OBJ_EVENT_GFX_VAR_0` resolution; `PlayerController` drives normal Brendan/May on-foot walk frames at 16 frames/tile and turn-in-place at 8 frames using generated `sAnimTable_BrendanMayNormal` metadata plus `SetStepAnimHandleAlternation` gait phase semantics; NPC/object-event animation tasks, running/continuous-fast-walk/spin player movement states, rival run/spin driving, and exact movement-task timing remain unsupported metadata/future work
 
 Latest verified additional maps for the first transition slice:

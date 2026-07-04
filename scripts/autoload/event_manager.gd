@@ -2662,7 +2662,7 @@ func _trainer_battle_start_unsupported() -> Array:
 	}, {
 		"code": "trainer_battle_transition_visual_stub",
 		"source": "src/battle_transition.c:BattleTransition_StartOnField",
-		"detail": "The sequence records the selected trainer transition and plays the generic first-pass overlay. Exact source graphics, task timing, palette effects, screen effects, BGM, trainer intro text, and mugshot/team variants are not source-equivalent yet.",
+		"detail": "The sequence records the selected trainer transition and plays the generic first-pass overlay. Exact source graphics, task timing, color effects, screen effects, BGM, trainer intro text, and mugshot/team variants are not source-equivalent yet.",
 	}, {
 		"code": "battle_scene_not_source_equivalent",
 		"source": "src/battle_main.c:CB2_InitBattle",
@@ -2708,7 +2708,7 @@ func _standard_wild_battle_start_unsupported() -> Array:
 	return [{
 		"code": "battle_transition_visual_stub",
 		"source": "src/battle_transition.c:BattleTransition_StartOnField",
-		"detail": "The sequence records the selected transition and plays only a generic first-pass overlay stub; exact transition graphics, task timing, Mirage Tower blend cleanup, and palette/screen effects remain future presentation work.",
+		"detail": "The sequence records the selected transition and plays only a generic first-pass overlay stub; exact transition graphics, task timing, Mirage Tower blend cleanup, and shader/screen effects remain future presentation work.",
 	}, {
 		"code": "battle_scene_handoff_pending",
 		"source": "src/battle_setup.c:Task_BattleStart -> CB2_InitBattle",
@@ -2728,7 +2728,7 @@ func _debug_wild_battle_start_unsupported() -> Array:
 	}, {
 		"code": "battle_transition_visual_stub",
 		"source": "src/battle_transition.c:BattleTransition_StartOnField",
-		"detail": "The debug sequence records the selected transition and plays only the generic first-pass overlay. Exact transition graphics, task timing, palette effects, screen effects, and BGM playback remain future work.",
+		"detail": "The debug sequence records the selected transition and plays only the generic first-pass overlay. Exact transition graphics, task timing, shader effects, screen effects, and BGM playback remain future work.",
 	}, {
 		"code": "battle_scene_not_source_equivalent",
 		"source": "src/battle_main.c:CB2_InitBattle",
@@ -2947,7 +2947,7 @@ func _current_map_runtime_debug_unsupported() -> Array:
 			"code": "weather_runtime_pending",
 			"status": "metadata_only",
 			"source": "src/field_weather.c",
-			"detail": "Current map weather symbols are preserved in metadata; real weather visuals and palette/color-map effects are not implemented.",
+			"detail": "Current map weather symbols are preserved in metadata; real weather visuals and shader/color-map effects are not implemented.",
 		},
 		{
 			"code": "audio_playback_pending",

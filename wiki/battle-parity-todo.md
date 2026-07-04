@@ -65,13 +65,13 @@ Battle must remain map-decoupled.
 - [ ] Export battle animation script labels and instruction streams from `data/battle_anim_scripts.s`.
 - [ ] Export battle animation sprite tag metadata from `src/data/battle_anim.h:gBattleAnimTable`.
 - [ ] Export battle animation background metadata from `src/data/battle_anim.h:gBattleAnimBackgroundTable` and `graphics/battle_environment`.
-- [ ] Convert `graphics/battle_anims` sprite sheets/palettes into normal RGBA atlases while preserving frame sizes, OAM shape metadata, palette tags, and source tag symbols.
+- [ ] Convert `graphics/battle_anims` sprite sheets and import-only source color data into normal RGBA atlases while preserving frame sizes, OAM shape metadata, source color provenance, and source tag symbols.
 - [ ] Convert `graphics/battle_interface` into Godot-friendly textures: textbox, healthboxes, HP/EXP bars, numbers, status icons, type/gimmick indicators, ability popups, party summary balls, last-used-ball, and move-info windows.
 - [ ] Convert `graphics/battle_transitions` assets for trainer/wild/frontier/team transitions.
-- [ ] Export Pokemon battle sprite asset metadata from `src/data/graphics/pokemon.h`, `graphics/pokemon`, `src/pokemon_animation.c`, and species records: front pic, back pic, normal palette, shiny palette, icon where relevant, gender/form variants, shadow/offset/scale metadata, front animation data, and cry refs.
-- [x] Export trainer battle sprite asset metadata from `src/data/graphics/trainers.h`, generated trainer data, and `graphics/trainers`: front pic, back pic, palette, mugshot/special transition refs, slide-in coordinates.
+- [ ] Export Pokemon battle sprite asset metadata from `src/data/graphics/pokemon.h`, `graphics/pokemon`, `src/pokemon_animation.c`, and species records: front pic, back pic, distinct normal/shiny/gender/form image variants, icon where relevant, shadow/offset/scale metadata, front animation data, import-only source color provenance, and cry refs.
+- [x] Export trainer battle sprite asset metadata from `src/data/graphics/trainers.h`, generated trainer data, and `graphics/trainers`: front pic, back pic, baked source color provenance, mugshot/special transition refs, slide-in coordinates.
 - [ ] Export battle background/environment metadata from `src/data/graphics/battle_environment.h`, `src/data/battle_environment.h`, and `graphics/battle_environment`.
-- [ ] Add import smoke tests for asset existence, alpha handling, palette baking, atlas frame coordinates, and symbol-to-texture lookup.
+- [ ] Add import smoke tests for asset existence, alpha handling, distinct color-variant image output, atlas frame coordinates, and symbol-to-texture lookup.
 
 ### 3. Battle Domain Runtime
 

@@ -12,6 +12,12 @@ Decision: Audio playback is intentionally out of scope for the current map/battl
 
 Reason: The user accepted deferring audio, and guessing replacement playback would violate the 1:1 source-parity rule. Metadata keeps the timing/intent visible for later implementation without making the current debug slice look more complete than it is.
 
+## 2026-07-05 - Do not expose palettes to Godot runtime code
+
+Decision: Godot runtime and gameplay/presentation code must not consume GBA palette systems, palette slots, or palette metadata for rendering. Source `.pal` files, `.gbapal` references, and source color-slot numbers are import-only provenance. Shiny, alternate, gender/form, and multi-color-source variants must be exported as distinct RGBA image assets. Source-visible color fades, flashes, tinting, and cycling should be implemented with Godot Shader/Material/Animation parameters and source timing, not runtime palette swaps.
+
+Reason: Recreating the source palette model would drag GBA hardware constraints into a modern Godot runtime and would make later battle presentation code depend on the wrong abstraction. Baked image variants and shader/material effects preserve the visible result while keeping the target architecture Godot-native.
+
 ## 2026-07-04 - Add a short project control panel
 
 Decision: Use `wiki/control-panel.md` as the first planning page for current focus, work lanes, definition of done, subagent policy, active backlog, and mess-control rules.

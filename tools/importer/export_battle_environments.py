@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export battle environment metadata and palette-baked PNG assets."""
+"""Export battle environment metadata and source-color-baked PNG assets."""
 
 import argparse
 import json
@@ -639,7 +639,7 @@ def export_battle_environments(source_root, output_data_root, output_asset_root)
         ],
         "rendering_notes": {
             "gba_hardware_constraints": "decoded_at_import_time",
-            "godot_runtime_asset_model": "palette-baked PNG textures plus source metadata",
+            "godot_runtime_asset_model": "source-color-baked PNG textures plus source metadata",
             "visible_viewport": VISIBLE_VIEWPORT,
             "background_full_tilemap_note": "Source BG3 environment maps are exported at their full 64x32 tilemap size when present; presentation should crop/scroll to the 240x160 battle viewport.",
             "entry_overlay_note": "Entry overlays use palette index 0 transparency in the generated PNG.",

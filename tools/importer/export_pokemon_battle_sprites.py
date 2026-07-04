@@ -339,7 +339,7 @@ def _build_palette(kind, ref_key, refs, definitions, source_root):
         "status": "metadata_only",
         "color_count": len(colors),
         "colors_rgb": colors,
-        "runtime_note": "Stored as Godot-side palette metadata; shiny remap/material behavior is a later runtime task.",
+        "runtime_note": "Import-only source color provenance. Runtime must use distinct RGBA image variants or Godot Shader/Material parameters, not indexed-color remaps.",
     })
     return entry
 
