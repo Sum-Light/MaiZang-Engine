@@ -18,6 +18,7 @@ const DEFAULT_BATTLE_SCRIPT_CATEGORY := "scripts"
 const DEFAULT_BATTLE_MOVE_EFFECT_CATEGORY := "move_effects"
 const DEFAULT_BATTLE_ENVIRONMENT_CATEGORY := "environments"
 const DEFAULT_BATTLE_TRANSITION_CATEGORY := "transitions"
+const DEFAULT_BATTLE_INTERFACE_CATEGORY := "interface"
 const DEFAULT_POKEMON_BATTLE_SPRITE_CATEGORY := "battle_sprites"
 const DEFAULT_TRAINER_BATTLE_SPRITE_CATEGORY := "trainer_sprites"
 
@@ -84,6 +85,8 @@ var _battle_environment_records_by_id: Dictionary = {}
 var _battle_environment_by_map_scene: Dictionary = {}
 var _battle_transition_records_by_symbol: Dictionary = {}
 var _battle_transition_records_by_id: Dictionary = {}
+var _battle_interface_texture_records_by_id: Dictionary = {}
+var _battle_window_template_records_by_symbol: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
 var _start_script_data: Dictionary = {}
@@ -327,6 +330,10 @@ func get_battle_transitions_data() -> Dictionary:
 	return get_battle_data(DEFAULT_BATTLE_TRANSITION_CATEGORY)
 
 
+func get_battle_interface_data() -> Dictionary:
+	return get_battle_data(DEFAULT_BATTLE_INTERFACE_CATEGORY)
+
+
 func get_battle_environment_record(environment_id_or_symbol) -> Dictionary:
 	if typeof(environment_id_or_symbol) == TYPE_INT:
 		return get_battle_environment_record_by_id(int(environment_id_or_symbol))
@@ -385,6 +392,20 @@ func get_battle_transition_record_by_symbol(transition_symbol: String) -> Dictio
 func get_battle_transition_record_by_id(transition_id: int) -> Dictionary:
 	_ensure_battle_transition_indexes()
 	var record = _battle_transition_records_by_id.get(transition_id, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_battle_interface_texture_record(asset_id: String) -> Dictionary:
+	_ensure_battle_interface_indexes()
+	var normalized := _normalize_battle_interface_texture_id(asset_id)
+	var record = _battle_interface_texture_records_by_id.get(normalized, {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func get_battle_window_template_record(window_symbol: String) -> Dictionary:
+	_ensure_battle_interface_indexes()
+	var normalized := _normalize_battle_window_symbol(window_symbol)
+	var record = _battle_window_template_records_by_symbol.get(normalized, {})
 	return record if typeof(record) == TYPE_DICTIONARY else {}
 
 
@@ -1200,6 +1221,8 @@ func _index_manifest() -> void:
 	_battle_environment_by_map_scene = {}
 	_battle_transition_records_by_symbol = {}
 	_battle_transition_records_by_id = {}
+	_battle_interface_texture_records_by_id = {}
+	_battle_window_template_records_by_symbol = {}
 	if _manifest_data.is_empty():
 		return
 
@@ -1439,6 +1462,38 @@ func _ensure_battle_transition_indexes() -> void:
 			_battle_transition_records_by_symbol[transition_symbol] = record
 		if record.has("numeric_id") and record.get("numeric_id") != null:
 			_battle_transition_records_by_id[int(record.get("numeric_id"))] = record
+
+
+func _ensure_battle_interface_indexes() -> void:
+	if not _battle_interface_texture_records_by_id.is_empty() or not _battle_window_template_records_by_symbol.is_empty():
+		return
+
+	var interface_data := get_battle_interface_data()
+	if interface_data.is_empty():
+		return
+
+	var textures = interface_data.get("textures", {})
+	if typeof(textures) == TYPE_DICTIONARY:
+		for asset_id in textures.keys():
+			var record = textures[asset_id]
+			if typeof(record) != TYPE_DICTIONARY:
+				continue
+			var normalized := _normalize_battle_interface_texture_id(String(record.get("id", asset_id)))
+			if not normalized.is_empty():
+				_battle_interface_texture_records_by_id[normalized] = record
+			var source_path := String(record.get("source_png_path", ""))
+			if not source_path.is_empty():
+				_battle_interface_texture_records_by_id[_normalize_battle_interface_texture_id(source_path)] = record
+
+	var window_templates = interface_data.get("window_templates", {})
+	if typeof(window_templates) == TYPE_DICTIONARY:
+		for symbol in window_templates.keys():
+			var record = window_templates[symbol]
+			if typeof(record) != TYPE_DICTIONARY:
+				continue
+			var normalized := _normalize_battle_window_symbol(String(record.get("symbol", symbol)))
+			if not normalized.is_empty():
+				_battle_window_template_records_by_symbol[normalized] = record
 
 
 func _ensure_battle_string_indexes() -> void:
@@ -1871,6 +1926,27 @@ func _normalize_battle_transition_symbol(transition_symbol: String) -> String:
 		return ""
 	if not normalized.begins_with("B_TRANSITION_"):
 		normalized = "B_TRANSITION_%s" % normalized.to_upper()
+	return normalized
+
+
+func _normalize_battle_interface_texture_id(asset_id: String) -> String:
+	var normalized := asset_id.replace("\\", "/")
+	if normalized.is_empty():
+		return ""
+	var slash_index := normalized.rfind("/")
+	if slash_index >= 0:
+		normalized = normalized.substr(slash_index + 1)
+	if normalized.ends_with(".png"):
+		normalized = normalized.substr(0, normalized.length() - 4)
+	return normalized.to_lower()
+
+
+func _normalize_battle_window_symbol(window_symbol: String) -> String:
+	var normalized := window_symbol
+	if normalized.is_empty():
+		return ""
+	if not normalized.begins_with("B_WIN_"):
+		normalized = "B_WIN_%s" % normalized.to_upper()
 	return normalized
 
 

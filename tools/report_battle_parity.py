@@ -20,6 +20,8 @@ UNSUPPORTED_CODE_REGISTRY = {
     "battle_environment_runtime_pending": "Battle background selection, scrolling, entry overlay playback, and scene presentation are not source-equivalent yet.",
     "battle_transition_asset_pending": "A source battle transition asset reference is not imported as a Godot texture/resource.",
     "battle_transition_runtime_pending": "Battle transition task playback, fades, masks, scanline effects, affine transforms, and shader/color effects are not source-equivalent yet.",
+    "battle_interface_runtime_pending": "Battle interface textbox/window tilemaps and text-printer rendering are imported as metadata/assets but not source-equivalent at runtime.",
+    "battle_hud_runtime_pending": "Battle healthboxes, party summary balls, ability popups, move-info windows, last-used-ball UI, and gimmick indicators are not source-equivalent at runtime.",
     "battle_hud_pending": "Source healthboxes, windows, text printer, and menu tilemaps are not yet rendered.",
     "battle_audio_playback_pending": "Battle music, cries, fanfares, and sound effects are metadata-only.",
     "ability_runtime_pending": "Ability flags are generated, but battle hook behavior and popup timing are not implemented.",
@@ -583,6 +585,54 @@ def build_battle_transition_rows(transitions_data):
     return rows
 
 
+def build_battle_interface_rows(interface_data):
+    rows = []
+    textures = interface_data.get("textures", {})
+    tilemaps = interface_data.get("tilemaps", {})
+    if not isinstance(textures, dict):
+        textures = {}
+    if not isinstance(tilemaps, dict):
+        tilemaps = {}
+    textbox_composite = {}
+    textbox_map = tilemaps.get("textbox_map", {})
+    if isinstance(textbox_map, dict) and isinstance(textbox_map.get("tilemap_composite", {}), dict):
+        textbox_composite = textbox_map.get("tilemap_composite", {})
+
+    for asset_id in interface_data.get("texture_order", []):
+        record = textures.get(asset_id, {})
+        if not isinstance(record, dict):
+            record = {}
+        group = str(record.get("group", ""))
+        tests = ["tools/godot_smoke/data_registry_battle_interface_smoke.gd"]
+        if str(record.get("asset_status", "")) == "first_pass" or str(record.get("status", "")) == "imported":
+            tests.append("tools/godot_smoke/battle_asset_image_quality_smoke.gd")
+        unsupported = ["battle_interface_runtime_pending"] if group in ("textbox", "window") else ["battle_hud_runtime_pending"]
+        if asset_id == "ability_pop_up":
+            unsupported.append("battle_audio_playback_pending")
+        first_tilemap_composite = str(textbox_composite.get("image_project_path", "")) if asset_id == "textbox" else ""
+        rows.append({
+            "id": str(asset_id),
+            "asset_id": str(asset_id),
+            "group": group,
+            "role": str(record.get("role", "")),
+            "source_png_path": str(record.get("source_png_path", "")),
+            "image": str(record.get("image_project_path", "")),
+            "size": record.get("size", {}) if isinstance(record.get("size"), dict) else {},
+            "source_symbol_count": len(record.get("source_symbols", [])) if isinstance(record.get("source_symbols"), list) else 0,
+            "source_png_color_count": int(record.get("source_png_color_count", 0) or 0),
+            "asset_status": str(record.get("asset_status", "unsupported")),
+            "texture_status": str(record.get("status", "unsupported")),
+            "tilemap_status": "first_pass" if asset_id == "textbox" and first_tilemap_composite else "not_required",
+            "first_tilemap_composite": first_tilemap_composite,
+            "runtime_status": "unsupported",
+            "audio_status": "metadata_only",
+            "tests": tests,
+            "unsupported": unsupported,
+            "source": {"file": str(record.get("source_png_path", ""))},
+        })
+    return rows
+
+
 def build_evolution_rows(evolutions_data):
     rows = []
     seen_species = set()
@@ -624,6 +674,7 @@ def build_report(project_root, source_root):
     trainer_sprites_data = load_json_optional(battle_root / "trainer_sprites.json")
     battle_environments_data = load_json_optional(battle_root / "environments.json")
     battle_transitions_data = load_json_optional(battle_root / "transitions.json")
+    battle_interface_data = load_json_optional(battle_root / "interface.json")
 
     coverage_rows = {
         "moves": build_move_rows(moves_data),
@@ -635,6 +686,7 @@ def build_report(project_root, source_root):
         "wild_encounters": build_wild_encounter_rows(wild_data),
         "battle_environments": build_battle_environment_rows(battle_environments_data),
         "battle_transitions": build_battle_transition_rows(battle_transitions_data),
+        "battle_interface": build_battle_interface_rows(battle_interface_data),
         "learnsets": build_simple_rows(learnsets_data, "learnset_order", "learnsets", "learnset_id", "learnset_symbol", ["tools/godot_smoke/data_registry_learnsets_smoke.gd"]),
         "natures": build_simple_rows(natures_data, "nature_order", "natures", "nature_id", "nature_symbol", ["tools/godot_smoke/data_registry_natures_smoke.gd"]),
         "evolutions": build_evolution_rows(evolutions_data),
@@ -656,6 +708,7 @@ def build_report(project_root, source_root):
         "trainer_battle_sprites": trainer_sprites_data.get("stats", {}),
         "battle_environments": battle_environments_data.get("stats", {}),
         "battle_transitions": battle_transitions_data.get("stats", {}),
+        "battle_interface": battle_interface_data.get("stats", {}),
     })
     return {
         "schema_version": 1,
@@ -690,6 +743,7 @@ def build_report_stats(coverage_rows, generated_stats):
         "wild_encounters": int(generated_stats["wild_encounters"].get("encounter_record_count", 0)),
         "battle_environments": int(generated_stats["battle_environments"].get("environment_count", 0)),
         "battle_transitions": int(generated_stats["battle_transitions"].get("transition_count", 0)),
+        "battle_interface": int(generated_stats["battle_interface"].get("texture_count", 0)),
         "trainers": int(generated_stats["trainers"].get("trainer_count", 0)),
         "trainer_party_mons": int(generated_stats["trainers"].get("party_mon_count", 0)),
         "learnsets": int(generated_stats["learnsets"].get("learnset_count", 0)),

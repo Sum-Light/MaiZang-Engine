@@ -21,11 +21,13 @@ func _init() -> void:
 	var trainer_data := registry.get_trainer_sprites_data()
 	var environment_data := registry.get_battle_environments_data()
 	var transition_data := registry.get_battle_transitions_data()
+	var interface_data := registry.get_battle_interface_data()
 
 	_check_pokemon_assets(pokemon_data)
 	_check_trainer_assets(trainer_data)
 	_check_environment_assets(environment_data)
 	_check_transition_assets(transition_data)
+	_check_interface_assets(interface_data)
 
 	if _failed:
 		return
@@ -195,6 +197,51 @@ func _check_transition_assets(data: Dictionary) -> void:
 	_assert(int(_dict(assets.get("graphics/battle_transitions/team_aqua.png", {})).get("source_palette_color_count", 0)) == 16, "expected Aqua transition source color conversion metadata")
 	_check_image_asset(_dict(_dict(assets.get("graphics/battle_transitions/big_pokeball_map.bin", {})).get("tilemap_composite", {})), "Big Pokeball transition composite", ALPHA_OPAQUE)
 	_check_image_asset(_dict(_dict(assets.get("graphics/battle_transitions/frontier_squares.bin", {})).get("tilemap_composite", {})), "Frontier Squares dynamic block preview", ALPHA_NONBLANK)
+
+
+func _check_interface_assets(data: Dictionary) -> void:
+	var stats := _dict(data.get("stats", {}))
+	_assert(int(stats.get("texture_count", 0)) == 68, "unexpected battle interface texture count")
+	_assert(int(stats.get("source_png_asset_count", 0)) == 68, "unexpected battle interface source PNG count")
+	_assert(int(stats.get("source_color_file_count", 0)) == 8, "unexpected battle interface source color count")
+	_assert(int(stats.get("tilemap_composite_count", 0)) == 1, "unexpected battle interface composite count")
+	_assert(int(stats.get("missing_texture_count", -1)) == 0, "expected no battle interface missing textures")
+	_assert(int(stats.get("tilemap_warning_count", -1)) == 0, "expected no battle interface tilemap warnings")
+
+	var interface_image_refs := 0
+	var textures := _dict(data.get("textures", {}))
+	for asset_id in _array(data.get("texture_order", [])):
+		var asset := _dict(textures.get(asset_id, {}))
+		_assert(String(asset.get("status", "")) == "imported", "expected imported battle interface asset %s" % asset_id)
+		_check_asset_metadata(asset, "battle_interface.%s" % asset_id)
+		var transparency := _dict(asset.get("transparency", {}))
+		if String(asset.get("source_mode", "")) == "P":
+			_assert(int(transparency.get("source_transparent_index", -1)) == 0, "expected source index 0 alpha metadata for interface %s" % asset_id)
+		interface_image_refs += 1
+
+	var tilemaps := _dict(data.get("tilemaps", {}))
+	var textbox_composite := _dict(_dict(tilemaps.get("textbox_map", {})).get("tilemap_composite", {}))
+	_check_asset_metadata(textbox_composite, "battle_interface.textbox_map")
+	_assert(int(textbox_composite.get("missing_tile_count", -1)) == 0, "expected no missing textbox composite tiles")
+	interface_image_refs += 1
+	_tilemap_composite_count += 1
+
+	_assert(interface_image_refs == 69, "unexpected battle interface imported image metadata count")
+	_metadata_image_ref_count += interface_image_refs
+
+	var source_colors := _dict(data.get("source_color_provenance", {}))
+	for color_id in source_colors.keys():
+		var record := _dict(source_colors.get(color_id, {}))
+		_assert(bool(record.get("import_only", false)), "expected battle interface source color import-only metadata for %s" % color_id)
+		_assert(_source_color_count(record) > 0, "expected battle interface source colors for %s" % color_id)
+		_source_color_provenance_count += 1
+
+	_check_image_asset(_dict(textures.get("textbox", {})), "battle interface textbox", ALPHA_TRANSPARENT)
+	_check_image_asset(_dict(textures.get("healthbox_singles_player", {})), "battle interface singles player healthbox", ALPHA_TRANSPARENT)
+	_check_image_asset(_dict(textures.get("hpbar", {})), "battle interface HP bar", ALPHA_TRANSPARENT)
+	_check_image_asset(_dict(textures.get("ability_pop_up", {})), "battle interface ability popup", ALPHA_TRANSPARENT)
+	_check_image_asset(_dict(textures.get("tera_trigger", {})), "battle interface Tera trigger", ALPHA_TRANSPARENT)
+	_check_image_asset(textbox_composite, "battle interface textbox tilemap composite", ALPHA_TRANSPARENT)
 
 
 func _check_sprite_metadata(asset: Dictionary, label: String, has_frame_size: bool) -> bool:

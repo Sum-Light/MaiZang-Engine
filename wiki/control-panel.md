@@ -19,13 +19,13 @@ Current focus:
 
 Next active module:
 
-- Map/Overworld script import parity and the next source-backed overworld runtime slice.
+- Battle parity execution plan, currently moving from B8.1 imported battle interface assets into B8.2 source window layer rendering.
 
 Reason:
 
-- The user asked to continue executing `wiki/overworld-parity-todo.md` step by step and report quantified progress after each turn.
-- Current generated map/event script validation now resolves all real map event script references; remaining overworld work should move from import completeness toward the next runtime/presentation checklist items.
-- The broad audit and executable checklist live in `wiki/overworld-parity-todo.md`.
+- The user asked to execute `wiki/battle-parity-execution-plan.md` step by step, covering the map-decoupled 1:1 battle experience and reporting quantified progress after each turn.
+- Current B8.1 work imports the battle interface/HUD asset layer and keeps source color data import-only; the next battle-facing gap is source-equivalent window/textbox rendering rather than more map work.
+- The broad audit and executable checklist live in `wiki/battle-parity-execution-plan.md`.
 
 ## Module Tracks
 
@@ -180,7 +180,7 @@ Near-term:
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
 - Current B7.1-B7.7 status: Pokemon battle sprites, trainer battle sprites, battle environment/background metadata, battle transition textures/tilemap composites, battle asset image-quality smoke checks, Pokemon battle asset coverage, and trainer battle asset coverage are generated as Godot-friendly PNG assets plus source metadata. The B7 checklist is now 7/7 complete. Current asset reports still expose runtime and asset gaps: 2664 pending distinct Pokemon color-variant RGBA images, 2 trainer-party `SPECIES_CASTFORM` alias gaps, trainer slide/mugshot/Magma/Aqua playback pending, double battle runtime pending, text/reward flow pending, shader/material color effects pending, affine effects pending, transition/background playback pending, and audio metadata-only.
 - Latest audit note: `scripts/` and `scenes/` still have 0 runtime `palette`/`source_color`/`source_palette` references. `BattleScene` now reads its first-pass action prompt/menu/PP/type labels from generated B1 battle text records instead of hardcoded text, while generated asset JSON still has legacy import-only `palette` field names that should be normalized to source-color terminology in a future importer cleanup.
-- Next executable task: start B8 battle interface/HUD assets for the Sawyer/Route101 fixture, or start B3 battle script VM only against the newly generated script/effect data; B13.4/B13.5 selector polish and scene-level action smoke remain as debug-lane follow-up.
+- Next executable task: start B8.2 source battle window layer rendering against `data/generated/battle/interface.json`; B3 battle script VM and B13.4/B13.5 selector polish remain follow-up lanes.
 - Import the remaining source-backed battle HUD/interface assets needed by the Sawyer/Route101 single-battle fixture.
 - Replace the current placeholder `BattleScene` layout with source-backed static battle composition before broad move animation work.
 

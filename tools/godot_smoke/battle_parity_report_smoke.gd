@@ -21,7 +21,7 @@ func _init() -> void:
 	var expected_counts := _dict(stats.get("expected_counts", {}))
 	var missing_expected := _dict(stats.get("missing_expected_coverage", {}))
 	_assert(missing_expected.is_empty(), "expected no missing battle coverage rows")
-	_assert(int(stats.get("total_coverage_rows", 0)) == 8644, "unexpected total battle coverage row count")
+	_assert(int(stats.get("total_coverage_rows", 0)) == 8712, "unexpected total battle coverage row count")
 	_assert(int(row_counts.get("moves", 0)) == 935, "unexpected move coverage row count")
 	_assert(int(row_counts.get("abilities", 0)) == 311, "unexpected ability coverage row count")
 	_assert(int(row_counts.get("trainers", 0)) == 855, "unexpected trainer coverage row count")
@@ -29,6 +29,7 @@ func _init() -> void:
 	_assert(int(row_counts.get("pokemon_data", 0)) == 1573, "unexpected Pokemon data coverage row count")
 	_assert(int(row_counts.get("battle_environments", 0)) == 35, "unexpected battle environment coverage row count")
 	_assert(int(row_counts.get("battle_transitions", 0)) == 38, "unexpected battle transition coverage row count")
+	_assert(int(row_counts.get("battle_interface", 0)) == 68, "unexpected battle interface coverage row count")
 	_assert(int(row_counts.get("debug_launchers", 0)) == 2, "unexpected debug launcher coverage row count")
 	for key in row_counts.keys():
 		_assert(int(row_counts.get(key, -1)) == int(expected_counts.get(key, -2)), "coverage mismatch for %s" % key)
@@ -40,6 +41,7 @@ func _init() -> void:
 	var pokemon_data := _array(coverage_rows.get("pokemon_data", []))
 	var battle_environments := _array(coverage_rows.get("battle_environments", []))
 	var battle_transitions := _array(coverage_rows.get("battle_transitions", []))
+	var battle_interface := _array(coverage_rows.get("battle_interface", []))
 	var debug_launchers := _array(coverage_rows.get("debug_launchers", []))
 	for section_name in coverage_rows.keys():
 		for row in _array(coverage_rows.get(section_name, [])):
@@ -86,6 +88,20 @@ func _init() -> void:
 	_assert(not blur_transition.is_empty(), "expected Blur transition coverage row")
 	_assert(String(blur_transition.get("asset_status", "")) == "metadata_only", "expected Blur metadata-only asset status")
 	_assert(_array(blur_transition.get("unsupported", [])).has("battle_transition_runtime_pending"), "expected Blur runtime pending")
+	var textbox_interface := _find_row(battle_interface, "textbox")
+	_assert(not textbox_interface.is_empty(), "expected battle textbox interface coverage row")
+	_assert(String(textbox_interface.get("asset_status", "")) == "first_pass", "expected textbox interface first-pass asset")
+	_assert(String(textbox_interface.get("image", "")).ends_with("assets/generated/battle_interface/textbox.png"), "expected textbox interface image path")
+	_assert(String(textbox_interface.get("tilemap_status", "")) == "first_pass", "expected textbox tilemap composite")
+	_assert(String(textbox_interface.get("first_tilemap_composite", "")).ends_with("assets/generated/battle_interface/composites/textbox_map.png"), "expected textbox composite image path")
+	_assert(_array(textbox_interface.get("tests", [])).has("tools/godot_smoke/data_registry_battle_interface_smoke.gd"), "expected battle interface smoke reference")
+	_assert(_array(textbox_interface.get("tests", [])).has("tools/godot_smoke/battle_asset_image_quality_smoke.gd"), "expected interface asset image quality smoke reference")
+	_assert(_array(textbox_interface.get("unsupported", [])).has("battle_interface_runtime_pending"), "expected textbox interface runtime pending")
+	var ability_popup := _find_row(battle_interface, "ability_pop_up")
+	_assert(not ability_popup.is_empty(), "expected ability popup interface coverage row")
+	_assert(String(ability_popup.get("asset_status", "")) == "first_pass", "expected ability popup first-pass asset")
+	_assert(_array(ability_popup.get("unsupported", [])).has("battle_hud_runtime_pending"), "expected ability popup HUD runtime pending")
+	_assert(_array(ability_popup.get("unsupported", [])).has("battle_audio_playback_pending"), "expected ability popup audio metadata-only")
 	var quick_wild := _find_row(debug_launchers, "debug_quick_wild_battle")
 	var trainer_selector := _find_row(debug_launchers, "debug_trainer_battle_selector")
 	_assert(bool(quick_wild.get("map_decoupled", false)) and bool(quick_wild.get("developer_only", false)), "expected quick wild launcher debug-only map-decoupled row")
@@ -103,6 +119,8 @@ func _init() -> void:
 	_assert(_registry_has_code(unsupported_registry, "pokemon_asset_import_pending"), "expected Pokemon asset unsupported registry code")
 	_assert(_registry_has_code(unsupported_registry, "battle_environment_runtime_pending"), "expected battle environment runtime unsupported registry code")
 	_assert(_registry_has_code(unsupported_registry, "battle_transition_runtime_pending"), "expected battle transition runtime unsupported registry code")
+	_assert(_registry_has_code(unsupported_registry, "battle_interface_runtime_pending"), "expected battle interface runtime unsupported registry code")
+	_assert(_registry_has_code(unsupported_registry, "battle_hud_runtime_pending"), "expected battle HUD runtime unsupported registry code")
 
 	var source_stats := _dict(source_index.get("stats", {}))
 	_assert(_array(source_stats.get("missing_fixed_symbols", [])).is_empty(), "expected all fixed source battle symbols indexed")
@@ -129,6 +147,7 @@ func _init() -> void:
 		"pokemon_rows": int(row_counts.get("pokemon_data", 0)),
 		"battle_environment_rows": int(row_counts.get("battle_environments", 0)),
 		"battle_transition_rows": int(row_counts.get("battle_transitions", 0)),
+		"battle_interface_rows": int(row_counts.get("battle_interface", 0)),
 	}))
 	quit(0)
 

@@ -333,11 +333,13 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
 
 ## B8 - Battle Interface, HUD, Menus, And Text Windows
 
-- [ ] B8.1 Export battle interface graphics.
+- [x] B8.1 Export battle interface graphics.
   - Source: `graphics/battle_interface`, `src/battle_interface.c`, `src/battle_bg.c`.
   - Output: `data/generated/battle/interface.json`, textures under `assets/generated/battle_interface/`.
   - Covers: textboxes, healthboxes, HP/EXP bars, numbers, status icons, party summary balls, ability popups, type/gimmick indicators, last-used-ball, move-info windows.
-  - Validate: all `sBattlerHealthboxCoords` and window template ids resolve.
+  - Current metrics: 68/68 source PNG textures exported as ordinary RGBA images, 8 source color files recorded as import-only provenance, 1/1 `textbox_map.bin` tilemap composite generated under `assets/generated/battle_interface/composites/`, 25 `sStandardBattleWindowTemplates` records parsed with Godot semantic style ids, 2 `sBattlerHealthboxCoords` groups parsed, 5 healthbox frame textures, 13 healthbox element textures, 5 gimmick trigger textures, 23 gimmick indicator textures, 0 missing textures, and 0 tilemap warnings.
+  - Validate: `tools/godot_smoke/data_registry_battle_interface_smoke.gd`, `tools/godot_smoke/battle_asset_image_quality_smoke.gd`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
+  - Boundary: this is an asset/metadata slice only. Source-equivalent textbox/window rendering, healthbox animation, menus, ability popup playback, gimmick indicator playback, shader/material visual effects, and audio playback remain later B8/B9 tasks.
 
 - [ ] B8.2 Implement source window layer renderer.
   - Target: `scripts/battle/battle_window_renderer.gd`.
