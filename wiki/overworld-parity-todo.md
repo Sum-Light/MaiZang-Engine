@@ -352,7 +352,32 @@ Use these as executable checkboxes. A task is not complete until the source path
 - [ ] Keep debug overlays opt-in and never mutate source map data.
 - [ ] Add Playwright or Godot screenshot checks for first viewport, player/object alignment, no grid by default, door playback, and layer ordering.
 
-### 23. Verification And Regression
+### 23. Debug Overworld Toolkit
+
+- [ ] Add a Godot-only debug input action such as `debug_overworld_toggle`, with a documented default key like `F10`.
+- [ ] Make the debug key open/close a compact overworld debug panel instead of scattering one-off hidden hotkeys.
+- [ ] Keep the debug panel disabled in release/export builds unless an explicit debug flag enables it.
+- [ ] Mark all debug-triggered state changes as `debug_only` in runtime summaries so they are never mistaken for source-equivalent behavior.
+- [ ] Ensure debug actions do not mutate generated source map data, source overlays, or import artifacts.
+- [ ] Add a quick player avatar state selector/cycler for normal, running, Mach Bike, Acro Bike, surf, underwater, fishing, watering, field-move, and forced-movement preview states.
+- [ ] Route avatar switching through the same future player-avatar runtime APIs used by source gameplay, not by directly swapping textures in presentation nodes.
+- [ ] Show unsupported avatar states explicitly when the source-backed runtime for that state is not implemented yet.
+- [ ] Add a quick teleport/map picker sourced from `DataRegistry` and the generated manifest.
+- [ ] Support teleport by map id plus warp id.
+- [ ] Support teleport by map id plus explicit x/y/elevation coordinates.
+- [ ] Support a toggle for debug instant-load versus source lifecycle load, where source lifecycle still runs OnTransition/OnLoad hooks.
+- [ ] Preserve a clear distinction between debug teleport and source warp/connection/door transitions in logs and smoke tests.
+- [ ] Add a current-map weather selector using source weather ids from generated map/header metadata.
+- [ ] Add a reset-weather-to-map-default command.
+- [ ] Ensure debug weather overrides do not persist into saves unless a future explicit test mode asks for that.
+- [ ] Add optional debug toggles for collision, elevation, metatile id, metatile behavior name, layer type, connection target, object local id, door state, and tileset animation state overlays.
+- [ ] Add optional debug controls to pause/resume tileset animations and step one animation frame for visual verification.
+- [ ] Add optional debug controls to open/close the current door cell through the real door runtime once door state exists.
+- [ ] Add optional debug controls to freeze/unfreeze object events and inspect active movement tasks once object-event runtime exists.
+- [ ] Add `overworld_debug_tools_smoke` covering key binding registration, panel toggle, avatar state request, teleport request, weather override/reset, and non-persistence of debug-only changes.
+- [ ] Add a screenshot check that the debug panel can be shown without hiding the player/map state needed for visual inspection.
+
+### 24. Verification And Regression
 
 - [ ] Add `overworld_import_coverage_smoke` for map/layout/tileset/script/object-event/door/animation import counts.
 - [ ] Add `layer_renderer_smoke` for layer assignment and draw ordering.
@@ -366,7 +391,7 @@ Use these as executable checkboxes. A task is not complete until the source path
 - [ ] Add a CI-friendly command list or script that runs the targeted overworld regression set.
 - [ ] Keep `git diff --check` clean for every implementation slice.
 
-### 24. First Vertical Slice Definition
+### 25. First Vertical Slice Definition
 
 - [ ] Complete the parity matrix rows for the existing maps: `LittlerootTown`, `Route101`, `LittlerootTown_BrendansHouse_1F`, and `LittlerootTown_MaysHouse_1F`.
 - [ ] Implement layer-aware rendering for those maps.
@@ -381,8 +406,9 @@ Use these as executable checkboxes. A task is not complete until the source path
 ## Suggested Implementation Order
 
 1. Build the source trace matrix and unsupported coverage report for overworld.
-2. Replace flattened `DebugMapPlane` rendering with layer-aware metatile import/rendering for the existing Littleroot/Route101/house slice.
-3. Port General and Petalburg tileset animations for the first maps.
-4. Replace door overlay playback with real layer/metatile door frame application for the current door slice.
-5. Implement object-event movement/action queues for static-facing NPCs, `applymovement`, and `waitmovement`.
-6. Expand player/object collision and metatile behavior rules, then add richer player avatar states.
+2. Add the Godot-only overworld debug toolkit early enough to inspect avatar state, map teleport, weather overrides, metatile/layer data, and door/tile animation work without polluting source-equivalent paths.
+3. Replace flattened `DebugMapPlane` rendering with layer-aware metatile import/rendering for the existing Littleroot/Route101/house slice.
+4. Port General and Petalburg tileset animations for the first maps.
+5. Replace door overlay playback with real layer/metatile door frame application for the current door slice.
+6. Implement object-event movement/action queues for static-facing NPCs, `applymovement`, and `waitmovement`.
+7. Expand player/object collision and metatile behavior rules, then add richer player avatar states.
