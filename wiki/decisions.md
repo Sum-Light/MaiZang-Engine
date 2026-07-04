@@ -146,9 +146,9 @@ Reason: The goal is to match the source game's in-game feel and interaction deta
 
 ## 2026-07-04 - Preserve visible behavior for all features
 
-Decision: Apply the same fidelity rule to every script command, gameplay feature, and code-backed system: trace source code and referenced resources, then reproduce source-visible behavior, ordering, waits, animation/audio/screen effects, UI flow, and gameplay results in Godot-native systems.
+Decision: Apply the same fidelity rule to every script command, gameplay feature, source function, and code-backed system: trace source code and referenced resources, then reproduce source-visible behavior, ordering, waits, animation/audio/screen effects, UI flow, and gameplay results in Godot-native systems.
 
-Reason: The port should not become a loose logical approximation. Modern Godot architecture is for implementation clarity and better asset/runtime representation, not permission to drop the original interaction details players can see or feel.
+Reason: The port should not become a loose logical approximation. Modern Godot architecture is for implementation clarity and better asset/runtime representation, not permission to drop original script behavior, source code behavior, or interaction details players can see or feel.
 
 ## 2026-07-04 - Represent transition presentation as structured sequences first
 
@@ -281,3 +281,9 @@ Reason: `src/data/pokemon/species_info.h` mixes ordinary struct initializers wit
 Decision: Add a first move importer that structures `src/data/moves_info.h` into generated move records while preserving source symbols for effects, arguments, additional effects, contest data, and battle animation scripts.
 
 Reason: Battle move behavior is spread across data tables, constants, battle scripts, animation resources, and C command/effect implementations. The Godot runtime needs move ids and core data now, but it should not guess effect semantics from names. Generated move JSON gives later battle, contest, UI, and animation systems a source-backed contract while keeping those systems responsible for tracing and reproducing source-visible behavior before implementation.
+
+## 2026-07-04 - Export ability definitions as source-traceable data
+
+Decision: Add a first ability importer that structures `src/data/abilities.h` into generated ability records while preserving `struct AbilityInfo` fields, active config expressions, source text, AI ratings, and ability flags.
+
+Reason: Ability behavior is shared by battle AI, copying/swapping/suppressing/overwriting rules, summary/Pokedex UI, ability popups, overworld effects, and future battle systems. The Godot runtime needs stable ability ids and data now, but it should not infer behavior from names. Generated ability JSON gives later systems a source-backed contract while keeping actual ability behavior responsible for tracing the matching source C and referenced resources first.

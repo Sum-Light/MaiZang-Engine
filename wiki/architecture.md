@@ -31,7 +31,7 @@ The original project should be treated as authoritative source data and behavior
 ## Core Modules
 
 - `GameState`: flags, vars, player profile, party, inventory, story state.
-- `DataRegistry`: read-only access to generated Pokemon, moves, items, maps, tilesets, scripts, text, trainers, and encounters.
+- `DataRegistry`: read-only access to generated Pokemon species, moves, abilities, items, maps, tilesets, scripts, text, trainers, and encounters.
 - `MapRuntime`: current map query service for bounds, collision, elevation, metatile ids, metatile behavior ids/names, and layer type.
 - `MapLoader`: builds Godot map scenes from generated map data.
 - `GridMover`: shared grid movement for player and NPCs.
@@ -50,7 +50,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 ## Current Scaffold
 
 - `GameState` stores current map id, player gender, player name, player grid position, flags, and vars.
-- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, and Pokemon move JSON.
+- `DataRegistry` stores first-slice constants for LittlerootTown, loads the generated import manifest, and resolves generated map, tileset, map script, shared script, global text, Pokemon species JSON, Pokemon move JSON, and Pokemon ability JSON.
 - `MapRuntime` configures the current generated map and exposes simple passability and metatile queries, including source metatile behavior names.
 - `MapRuntime` indexes generated door animation metadata by metatile id and can return the animation for a map cell.
 - `MapRuntime` indexes generated object events, source numeric local-id aliases, BG/sign events, warp events, and coordinate events; visible object-event cells are occupied for first-pass movement.
@@ -152,6 +152,14 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 - The move importer evaluates the active source configuration and constants from `src/data/moves_info.h`, `include/move.h`, move/battle/Pokemon/contest headers, and relevant `include/config/*` headers; generated JSON is the current source branch, not a union of inactive preprocessor branches.
 - Battle move effects, additional effect semantics, animation scripts, targeting behavior, and contest behavior must still be implemented only after tracing the corresponding source C and referenced resources. The generated data records the source symbols needed for that later work; it does not by itself define Godot battle behavior.
 
+## Generated Pokemon Abilities Contract
+
+- Pokemon ability JSON is loaded through `DataRegistry` from the manifest `pokemon` entry with category `abilities`.
+- `DataRegistry.get_pokemon_data("abilities")`, `get_abilities_data`, `get_ability_record`, `get_ability_record_by_symbol`, and `get_ability_record_by_id` are read-only accessors for generated ability records.
+- Generated ability records preserve source symbols, numeric ability ids, source file/line references, raw initializer fields, source-facing ability names/descriptions plus UTF-8 display text, `ai_rating`, all `struct AbilityInfo` flags, raw flag expressions where present, and explicit C default markers for omitted zero/false fields.
+- The ability importer evaluates the active source configuration from `src/data/abilities.h`, `include/pokemon.h`, `include/constants/abilities.h`, `include/config/general.h`, and `include/config/battle.h`, including `B_UPDATED_ABILITY_DATA` expressions that affect flags.
+- Ability behavior is not inferred from names or data alone. Battle behavior, overworld ability effects, ability popups, summary/Pokedex UI, copying/swapping/suppressing/overwriting rules, AI use of `aiRating`, and any animation/audio/text presentation must still be implemented only after tracing the corresponding source C and referenced resources.
+
 ## Generated Global Text Contract
 
 - Global text JSON is loaded through `DataRegistry` from the manifest `texts` entry. The current generated category is `global`.
@@ -166,7 +174,7 @@ This proves the import pipeline, map runtime, event dispatch, and basic presenta
 
 Event script, gameplay-system, and code-backed feature support should preserve the source game's visible behavior and rules as closely as practical while using Godot-native architecture.
 
-For each script instruction/opcode or gameplay feature implemented in Godot:
+For each script instruction/opcode, gameplay feature, source function, or code-backed system implemented in Godot:
 
 - Trace the corresponding source implementation in the original repository, usually under `src/scrcmd.c`, `src/event_object_movement.c`, `src/field_control_avatar.c`, `src/fieldmap.c`, or adjacent field/event modules.
 - Identify referenced resources and data tables before writing Godot behavior: text labels, movement labels, object graphics, flags, vars, sounds, fanfares, map layouts, metatile behaviors, door animations, warp targets, battle data, Pokemon data, item data, encounter data, and trainer data.

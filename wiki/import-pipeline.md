@@ -102,7 +102,7 @@ Each import run should report:
 
 Generated JSON is an index and interchange format, not proof that an opcode or gameplay feature has been correctly implemented.
 
-Before implementing a script instruction or gameplay feature in Godot, inspect the matching source C logic and the resources it references. Use that source behavior to design the Godot implementation, aiming for visible behavior and rules consistent with the original project while keeping the runtime Godot-native. If exact behavior is deferred, the generated data or runtime should report the approximation.
+Before implementing a script instruction, gameplay feature, source function, or code-backed system in Godot, inspect the matching source C logic and the resources it references. Use that source behavior to design the Godot implementation, aiming for visible behavior and rules consistent with the original project while keeping the runtime Godot-native. If exact behavior is deferred, the generated data or runtime should report the approximation.
 
 GBA hardware graphics and resource formats are an exception to runtime fidelity: palettes, 4bpp tiles, binary metatiles, packed map blocks, and similar platform/storage constraints should be decoded during import into ordinary Godot images/data. The importer should preserve enough source metadata for debugging and special cases, but the Godot runtime should not reproduce GBA palette, tile-memory, or binary packing constraints just because the source format used them. Gameplay systems should follow the same principle by matching visible rules and outcomes while using Godot-native data and runtime structures.
 
@@ -221,6 +221,30 @@ Latest verified moves export:
 - moves with additional-effect records: 337
 - shared text records: 24
 - preprocessor decisions: 77
+- preprocessor warnings: 0
+- export warnings: 0
+- unsupported fields: 0
+
+`tools/importer/export_abilities.py` exports the active ability initializer table into generated Godot-friendly JSON. It accepts `--config`, `--source`, and `--output-root`.
+
+Current ability export behavior:
+
+- Reads `src/data/abilities.h` after evaluating active source config values from `include/config/general.h` and `include/config/battle.h`.
+- Reads ability constants from `include/constants/abilities.h` and traces the `struct AbilityInfo` shape from `include/pokemon.h`.
+- Parses explicit `struct AbilityInfo` initializers into source-backed ability records with ids, names, descriptions, `ai_rating`, copy/swap/trace/suppress/overwrite/breakable/Imposter flags, raw fields, raw flag expressions, source locations, and explicit C default markers for omitted zero/false fields.
+- Converts source ability names and descriptions from `COMPOUND_STRING(...)`/`_("")`-style C string literals into UTF-8 `display_text` while preserving source-facing raw text fields.
+- Writes `data/generated/pokemon/abilities.json` and updates `data/generated/import_manifest.json` with a `pokemon` entry for category `abilities`.
+- Treats generated ability records as source-traceable data for later battle, overworld, UI, and AI work. Ability behavior, popups, summary/Pokedex display, overworld effects, and copy/swap/suppress/overwrite semantics still require separate source C/resource tracing before Godot implementation.
+
+Latest verified abilities export:
+
+- generated path: `data/generated/pokemon/abilities.json`
+- manifest category: `pokemon` / `abilities`
+- active ability initializers: 311
+- records with explicit `aiRating`: 310
+- records with at least one present flag field: 122
+- records with at least one true flag after active config evaluation: 120
+- preprocessor decisions: 0
 - preprocessor warnings: 0
 - export warnings: 0
 - unsupported fields: 0
