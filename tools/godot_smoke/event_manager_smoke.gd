@@ -127,10 +127,11 @@ func _init() -> void:
 	var brendan_mom_after_transition := runtime.get_object_event_by_local_id("LOCALID_PLAYERS_HOUSE_1F_MOM", true)
 	var brendan_mom_position_after_transition := _event_position(brendan_mom_after_transition)
 	var brendan_mom_movement_after_transition := String(brendan_mom_after_transition.get("movement_type", ""))
-	var brendan_on_frame_intro := manager.try_run_on_frame_map_script({
+	var brendan_on_frame_intro := manager.dispatch_on_frame_map_script({
 		"trigger": "smoke_on_frame_intro",
 		"map": game_state.current_map_id,
 	})
+	var brendan_on_frame_intro_lines = captured.get("lines", PackedStringArray())
 	var brendan_on_frame_intro_script = brendan_on_frame_intro.get("script", {})
 	var brendan_on_frame_intro_runtime = brendan_on_frame_intro.get("runtime", {})
 	var brendan_on_frame_intro_movements = brendan_on_frame_intro_runtime.get("movements", {}) if typeof(brendan_on_frame_intro_runtime) == TYPE_DICTIONARY else {}
@@ -223,6 +224,13 @@ func _init() -> void:
 	_assert(
 		brendan_mom_movement_after_transition == "MOVEMENT_TYPE_FACE_UP",
 		"expected Brendan OnTransition to face Mom upward"
+	)
+	_assert(not brendan_on_frame_intro_lines.is_empty(), "expected Brendan OnFrame dispatch to emit lines")
+	_assert(_lines_contain(brendan_on_frame_intro_lines, "OnFrame map script"), "expected OnFrame dispatch label")
+	_assert(_lines_contain(brendan_on_frame_intro_lines, "ScriptVM: ok"), "expected OnFrame VM status line")
+	_assert(
+		_lines_contain(brendan_on_frame_intro_lines, "Text label: PlayersHouse_1F_Text_IsntItNiceInHere"),
+		"expected Brendan OnFrame intro text label in emitted lines"
 	)
 	_assert(bool(brendan_on_frame_intro.get("matched", false)), "expected Brendan OnFrame intro table match")
 	_assert(
@@ -364,10 +372,11 @@ func _init() -> void:
 	var may_mom_movement_after_door_warp := String(may_mom_after_door_warp.get("movement_type", ""))
 	var player_position_after_may_warp: Vector2i = game_state.player_grid_position
 	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 3)
-	var may_on_frame_intro := manager.try_run_on_frame_map_script({
+	var may_on_frame_intro := manager.dispatch_on_frame_map_script({
 		"trigger": "smoke_on_frame_intro",
 		"map": game_state.current_map_id,
 	})
+	var may_on_frame_intro_lines = captured.get("lines", PackedStringArray())
 	var may_on_frame_intro_script = may_on_frame_intro.get("script", {})
 	var may_on_frame_intro_runtime = may_on_frame_intro.get("runtime", {})
 	var may_on_frame_intro_movements = may_on_frame_intro_runtime.get("movements", {}) if typeof(may_on_frame_intro_runtime) == TYPE_DICTIONARY else {}
@@ -400,6 +409,13 @@ func _init() -> void:
 		"expected May OnTransition to face Mom upward"
 	)
 	_assert(player_position_after_may_warp == Vector2i(2, 8), "expected May house door warp destination position")
+	_assert(not may_on_frame_intro_lines.is_empty(), "expected May OnFrame dispatch to emit lines")
+	_assert(_lines_contain(may_on_frame_intro_lines, "OnFrame map script"), "expected May OnFrame dispatch label")
+	_assert(_lines_contain(may_on_frame_intro_lines, "ScriptVM: ok"), "expected May OnFrame VM status line")
+	_assert(
+		_lines_contain(may_on_frame_intro_lines, "Text label: PlayersHouse_1F_Text_IsntItNiceInHere"),
+		"expected May OnFrame intro text label in emitted lines"
+	)
 	_assert(bool(may_on_frame_intro.get("matched", false)), "expected May OnFrame intro table match")
 	_assert(
 		may_on_frame_intro.get("selected_script", "") == "LittlerootTown_MaysHouse_1F_EventScript_EnterHouseMovingIn",

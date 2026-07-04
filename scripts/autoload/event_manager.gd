@@ -299,6 +299,32 @@ func run_map_script_type(script_type: String, context: Dictionary = {}) -> Dicti
 	return summary
 
 
+func dispatch_on_frame_map_script(context: Dictionary = {}) -> Dictionary:
+	var summary := try_run_on_frame_map_script(context)
+	if not bool(summary.get("matched", false)):
+		return summary
+
+	var lines := PackedStringArray([
+		"OnFrame map script",
+		"Table: %s" % String(summary.get("table_label", "")),
+		"Script: %s" % String(summary.get("selected_script", "")),
+	])
+	var result = summary.get("result", {})
+	if typeof(result) == TYPE_DICTIONARY and not result.is_empty():
+		lines.append("ScriptVM: %s" % String(result.get("status", "")))
+	else:
+		lines.append("ScriptVM: unavailable")
+
+	var runtime_summary = summary.get("runtime", {})
+	if typeof(runtime_summary) == TYPE_DICTIONARY:
+		_append_runtime_summary_lines(lines, runtime_summary)
+	if typeof(result) == TYPE_DICTIONARY:
+		_append_result_content_lines(lines, result)
+
+	debug_message_requested.emit(lines)
+	return summary
+
+
 func try_run_on_frame_map_script(context: Dictionary = {}) -> Dictionary:
 	var labels := _map_script_labels_for_type(MAP_SCRIPT_ON_FRAME_TABLE)
 	var entries := []
@@ -313,6 +339,7 @@ func try_run_on_frame_map_script(context: Dictionary = {}) -> Dictionary:
 		"entries": entries,
 		"script": {},
 		"runtime": {},
+		"result": {},
 		"source_trace": _map_script_source_trace(MAP_SCRIPT_ON_FRAME_TABLE),
 	}
 	if labels.is_empty():
@@ -390,6 +417,7 @@ func try_run_on_frame_map_script(context: Dictionary = {}) -> Dictionary:
 		script_context["map_script_table_label"] = table_label
 		script_context["source_function"] = _map_script_source_function(MAP_SCRIPT_ON_FRAME_TABLE)
 		var result := run_script(target_label, script_context)
+		summary["result"] = result
 		var runtime_summary := {}
 		if not result.is_empty() and String(result.get("status", "")) != "vm_unavailable":
 			runtime_summary = _apply_runtime_result(result)
@@ -489,6 +517,11 @@ func _append_script_output(lines: PackedStringArray, script: String, context: Di
 
 	lines.append("ScriptVM: %s" % vm_status)
 	var runtime_summary := _apply_runtime_result(result)
+	_append_runtime_summary_lines(lines, runtime_summary)
+	_append_result_content_lines(lines, result)
+
+
+func _append_runtime_summary_lines(lines: PackedStringArray, runtime_summary: Dictionary) -> void:
 	var movement_summary = runtime_summary.get("movements", {})
 	if typeof(movement_summary) == TYPE_DICTIONARY and not movement_summary.is_empty():
 		lines.append("Movement effects: %d applied, %d skipped" % [
@@ -517,6 +550,8 @@ func _append_script_output(lines: PackedStringArray, script: String, context: Di
 			_movement_summary_count(transition_summary, "skipped"),
 		])
 
+
+func _append_result_content_lines(lines: PackedStringArray, result: Dictionary) -> void:
 	var messages = result.get("messages", [])
 	if typeof(messages) == TYPE_ARRAY and not messages.is_empty():
 		for message in messages:

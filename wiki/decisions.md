@@ -252,6 +252,12 @@ Decision: Model `MAP_SCRIPT_ON_FRAME_TABLE` as a separate `EventManager.try_run_
 
 Reason: Source `MAP_SCRIPT_ON_FRAME_TABLE` points to a `map_script_2` table scanned by `MapHeaderCheckScriptTable`: each row compares two `VarGet` values and starts the first non-no-effect script through the global script context. Direct lifecycle scripts use `MapHeaderRunScriptType` and run immediately. Keeping OnFrame as a table evaluator preserves the source behavior while leaving automatic field-input-loop dispatch, async waits, resume scripts, and dive/step/warp ordering for a later traced runtime pass.
 
+## 2026-07-04 - Dispatch OnFrame before player input
+
+Decision: Wire `MAP_SCRIPT_ON_FRAME_TABLE` dispatch into the Godot field-input path through a `PlayerController` precheck installed by `Main`, and consume that frame when a table entry starts a script.
+
+Reason: Source `ProcessPlayerFieldInput` calls `TryRunOnFrameMapScript()` before later field-input actions such as dive checks, step-based scripts, wild encounters, and player stepping. Returning true locks field controls for that frame. Godot should preserve that visible ordering for scripts like the Brendan/May moving-in intro instead of waiting for explicit interaction or running OnFrame after movement.
+
 ## 2026-07-04 - Export shared script bundles by label namespace
 
 Decision: Export common include files such as `data/scripts/movement.inc` and `data/scripts/players_house.inc` as named shared script bundles, and let `ScriptVM` resolve script, movement, and script-local text labels from the current map first, then from the global generated script namespace.

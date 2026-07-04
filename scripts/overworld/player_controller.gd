@@ -10,6 +10,7 @@ signal interaction_requested(
 
 var facing_direction := Vector2i.DOWN
 var input_locked := false
+var field_input_precheck := Callable()
 
 
 func _ready() -> void:
@@ -19,6 +20,9 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if input_locked or _is_moving:
+		return
+
+	if field_input_precheck.is_valid() and bool(field_input_precheck.call()):
 		return
 
 	if Input.is_action_just_pressed("ui_accept"):
@@ -37,6 +41,10 @@ func _physics_process(_delta: float) -> void:
 
 func set_input_locked(value: bool) -> void:
 	input_locked = value
+
+
+func configure_field_input_precheck(callback: Callable) -> void:
+	field_input_precheck = callback
 
 
 func _read_input_direction() -> Vector2i:

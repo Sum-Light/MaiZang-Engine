@@ -160,3 +160,8 @@
 - Brendan/May house OnFrame intro scripts now run through shared `PlayersHouse_1F_EventScript_EnterHouseMovingIn`, emit the expected two moving-in messages and four movement effects, move the player one tile into the room in the current fast-forward slice, and set `VAR_LITTLEROOT_INTRO_STATE` to 4.
 - Expanded `script_vm_smoke.gd`, `event_manager_smoke.gd`, and `map_runtime_smoke.gd` for the shared PlayersHouse path, numeric local-id lookup, and raw/resolved movement targets.
 - Verified `export_event_scripts.py` Python compilation, `script_vm_smoke.gd`, `event_manager_smoke.gd`, `map_runtime_smoke.gd`, `data_registry_text_smoke.gd`, `transition_presentation_smoke.gd`, and Godot 4.7 headless startup.
+- Traced first-pass field-input OnFrame ordering through `src/field_control_avatar.c:ProcessPlayerFieldInput`, `src/script.c:TryRunOnFrameMapScript`, and `src/overworld.c:DoCB1_Overworld`, confirming OnFrame runs before player accept/movement-style field input and consumes the frame if a script starts.
+- Added `EventManager.dispatch_on_frame_map_script` for real OnFrame dispatch with debug output, while keeping `try_run_on_frame_map_script` as the table-evaluation summary path.
+- Added a `PlayerController` field-input precheck configured by `Main`, so `MAP_SCRIPT_ON_FRAME_TABLE` runs before `ui_accept` and movement input; visible dialogue/transition playback also consumes input before movement.
+- Expanded `event_manager_smoke.gd` to assert OnFrame dispatch output for Brendan/May moving-in intro paths.
+- Verified `event_manager_smoke.gd`, `script_vm_smoke.gd`, `map_runtime_smoke.gd`, `data_registry_text_smoke.gd`, `transition_presentation_smoke.gd`, and Godot 4.7 headless startup.

@@ -56,6 +56,8 @@ func _ready() -> void:
 		player.movement_blocked.connect(_on_player_movement_blocked)
 	if player.has_signal("interaction_requested"):
 		player.interaction_requested.connect(_on_player_interaction_requested)
+	if player.has_method("configure_field_input_precheck"):
+		player.configure_field_input_precheck(Callable(self, "_before_player_field_input"))
 	if MapRuntime.has_signal("map_changed"):
 		MapRuntime.map_changed.connect(_on_map_changed)
 	if MapRuntime.has_signal("object_events_changed"):
@@ -134,6 +136,37 @@ func _on_player_interaction_requested(
 	_movement_note = "interact %s" % target_position
 	EventManager.dispatch_interaction(interaction)
 	_update_status()
+
+
+func _before_player_field_input() -> bool:
+	if dialogue_panel.visible:
+		if Input.is_action_just_pressed("ui_accept"):
+			_hide_dialogue()
+			_movement_note = ""
+			_update_status()
+		return true
+
+	if (
+		_transition_sequence_player != null
+		and _transition_sequence_player.has_method("is_playing")
+		and bool(_transition_sequence_player.is_playing())
+	):
+		return true
+
+	if not EventManager.has_method("dispatch_on_frame_map_script"):
+		return false
+
+	var summary = EventManager.dispatch_on_frame_map_script({
+		"trigger": "field_input",
+		"map": GameState.current_map_id,
+		"position": [GameState.player_grid_position.x, GameState.player_grid_position.y],
+	})
+	if typeof(summary) != TYPE_DICTIONARY or not bool(summary.get("matched", false)):
+		return false
+
+	_movement_note = "on_frame %s" % String(summary.get("selected_script", ""))
+	_update_status()
+	return true
 
 
 func _on_debug_message_requested(lines: PackedStringArray) -> void:
