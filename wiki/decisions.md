@@ -371,3 +371,9 @@ Reason: Source `ProcessPlayerFieldInput` keeps step-order state outside `Standar
 Decision: Route completed player tile movement through `EventManager.dispatch_player_step` instead of keeping coord event, step warp, Repel, DexNav, and standard wild encounter sequencing in `Main`.
 
 Reason: Source `TryStartStepBasedScript` is a strict chain where any consuming coord, warp, misc walking, step-count, Repel, or DexNav path prevents the later standard wild encounter check for that step. Keeping the chain in `EventManager` lets Godot preserve source-visible order while `Main` remains presentation glue and future modules can extend one structured summary contract.
+
+## 2026-07-04 - Keep Repel and Lure generation rules in EncounterEngine
+
+Decision: Keep Repel/Lure counter decrement and expiry consumption in `EventManager.dispatch_player_step`, but apply active Repel/Lure encounter-rate, slot, level, and level-filter rules in `EncounterEngine` when generating a standard wild candidate.
+
+Reason: Source step handling updates `VAR_REPEL_STEP_COUNT` before standard wild encounters, while `wild_encounter.c` applies Lure's encounter-rate/slot/level behavior and Repel's post-level filter during wild-mon generation. Splitting those responsibilities preserves the source order while keeping pure encounter generation rules out of field presentation code.

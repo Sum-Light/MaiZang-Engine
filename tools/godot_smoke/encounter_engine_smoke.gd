@@ -99,6 +99,49 @@ func _init() -> void:
 	_assert(String(route119_standard_hit.get("species", "")) == "SPECIES_TENTACOOL", "expected Route119 water Tentacool")
 	_assert(bool(_dict_field(route119_standard_hit, "encounter_check").get("encounter", false)), "expected encounter hit metadata")
 
+	var lure_rate := engine.check_encounter_rate(4, {
+		"repel_lure_var": 32768 + 5,
+		"encounter_roll": 100,
+	})
+	_assert(bool(lure_rate.get("encounter", false)), "expected lure to double Route119-style water rate")
+	_assert(int(lure_rate.get("adjusted_rate", 0)) == 128, "expected lure adjusted rate 128")
+	_assert(_array_field(lure_rate, "modifiers").size() == 1, "expected lure rate modifier metadata")
+
+	game_state.set_var("VAR_REPEL_STEP_COUNT", 32768 + 5)
+	var route101_lure := engine.choose_wild_mon("MAP_ROUTE101", "land", {
+		"slot_roll": 0,
+		"lure_swap_roll": 0,
+	})
+	_assert(int(route101_lure.get("slot_index", -1)) == 11, "expected lure swap to reverse Route101 slot")
+	_assert(String(route101_lure.get("species", "")) == "SPECIES_ZIGZAGOON", "expected lure-swapped Route101 Zigzagoon")
+	_assert(int(route101_lure.get("level", 0)) == 4, "expected lure level to be max same-species level plus one")
+	_assert(bool(_dict_field(_dict_field(route101_lure, "slot_choice"), "lure_swap").get("swapped", false)), "expected lure swap metadata")
+	_assert(bool(_dict_field(route101_lure, "level_choice").get("lure_active", false)), "expected lure level metadata")
+
+	game_state.set_var("VAR_REPEL_STEP_COUNT", 10)
+	game_state.set_player_party([{"species": "SPECIES_TORCHIC", "level": 5, "is_egg": false, "hp": 0}])
+	var repel_block := engine.try_standard_encounter("MAP_ROUTE101", "land", {
+		"encounter_roll": 0,
+		"slot_roll": 0,
+		"level_roll": 0,
+	})
+	_assert(String(repel_block.get("status", "")) == "no_encounter", "expected repel to block low-level Route101 mon")
+	_assert(String(repel_block.get("reason", "")) == "repel_level_filter", "expected repel filter reason")
+	_assert(bool(_dict_field(repel_block, "encounter_check").get("encounter", false)), "expected repel block after rate hit")
+	_assert(bool(_dict_field(_dict_field(repel_block, "repel_filter"), "lead").get("include_fainted", false)), "expected current config to include fainted lead")
+
+	game_state.set_player_party([{"species": "SPECIES_TORCHIC", "level": 2, "is_egg": false, "hp": 0}])
+	var repel_allow := engine.try_standard_encounter("MAP_ROUTE101", "land", {
+		"encounter_roll": 0,
+		"slot_roll": 0,
+		"level_roll": 0,
+	})
+	_assert(String(repel_allow.get("status", "")) == "ok", "expected equal-level repel lead to allow encounter")
+	_assert(String(repel_allow.get("species", "")) == "SPECIES_WURMPLE", "expected repel-allowed Route101 Wurmple")
+	_assert(String(_dict_field(repel_allow, "repel_filter").get("status", "")) == "allowed", "expected repel allowed metadata")
+	game_state.set_var("VAR_REPEL_STEP_COUNT", 0)
+	game_state.clear_player_party()
+
 	var route101_skip := engine.try_standard_encounter("MAP_ROUTE101", "land", {
 		"metatile_changed": true,
 		"new_metatile_roll": 60,
@@ -151,3 +194,8 @@ func _dict_field(record, field_name: String) -> Dictionary:
 		return {}
 	var value = record.get(field_name, {})
 	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _array_field(record: Dictionary, field_name: String) -> Array:
+	var value = record.get(field_name, [])
+	return value if typeof(value) == TYPE_ARRAY else []

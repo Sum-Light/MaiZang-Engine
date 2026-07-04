@@ -1,6 +1,7 @@
 extends Node
 
 const MAX_ENCOUNTER_RATE := 2880
+const REPEL_LURE_MASK := 1 << 15
 const SOURCE_TRACE := [
 	"src/wild_encounter.c:GetCurrentMapWildMonHeaderId",
 	"src/wild_encounter.c:GetTimeOfDayForEncounters",
@@ -12,6 +13,8 @@ const SOURCE_TRACE := [
 	"src/wild_encounter.c:WildEncounterCheck",
 	"src/wild_encounter.c:StandardWildEncounter",
 	"src/wild_encounter.c:FishingWildEncounter",
+	"include/constants/item.h:REPEL_LURE_MASK/LURE_STEP_COUNT/REPEL_STEP_COUNT",
+	"include/config/item.h:I_REPEL_INCLUDE_FAINTED",
 	"include/wild_encounter.h",
 	"include/constants/wild_encounter.h",
 ]
@@ -235,6 +238,15 @@ func try_standard_encounter_for_behavior(
 
 func check_encounter_rate(encounter_rate: int, options: Dictionary = {}) -> Dictionary:
 	var adjusted_rate := clampi(encounter_rate * 16, 0, MAX_ENCOUNTER_RATE)
+	var repel_lure := _repel_lure_state(options)
+	var modifiers := []
+	if bool(repel_lure.get("lure_active", false)):
+		adjusted_rate = clampi(adjusted_rate * 2, 0, MAX_ENCOUNTER_RATE)
+		modifiers.append({
+			"code": "lure_encounter_rate",
+			"operation": "multiply_by_2",
+			"source": "src/wild_encounter.c:WildEncounterCheck LURE_STEP_COUNT path",
+		})
 	var roll := _option_roll(options, "encounter_roll", MAX_ENCOUNTER_RATE)
 	var hit := roll < adjusted_rate
 	return {
@@ -244,11 +256,13 @@ func check_encounter_rate(encounter_rate: int, options: Dictionary = {}) -> Dict
 		"adjusted_rate": adjusted_rate,
 		"max_rate": MAX_ENCOUNTER_RATE,
 		"roll": roll,
+		"repel_lure": repel_lure,
+		"modifiers": modifiers,
 		"source": "src/wild_encounter.c:WildEncounterCheck -> EncounterOddsCheck",
 		"unsupported": [{
 			"code": "encounter_rate_modifiers_not_applied",
 			"source": "src/wild_encounter.c:WildEncounterCheck",
-			"detail": "Bike, flute, Cleanse Tag, lure, lead ability, weather, Repel, and map-specific encounter-rate modifiers are future traced work.",
+			"detail": "Bike, flute, Cleanse Tag, lead ability, weather, and map-specific encounter-rate modifiers are future traced work. Lure rate doubling is applied; Repel filtering is applied after level selection.",
 		}],
 		"source_trace": SOURCE_TRACE.duplicate(),
 	}
@@ -288,6 +302,12 @@ func try_standard_encounter(map_symbol: String, area = "land", options: Dictiona
 			"status": "started",
 			"source": "src/wild_encounter.c:StandardWildEncounter",
 		}
+	elif String(wild_mon.get("status", "")) == "no_encounter":
+		wild_mon["encounter_check"] = rate_check
+		wild_mon["standard_encounter"] = {
+			"status": "blocked_after_rate_check",
+			"source": "src/wild_encounter.c:StandardWildEncounter -> TryGenerateWildMon",
+		}
 	return wild_mon
 
 
@@ -319,6 +339,23 @@ func choose_wild_mon(map_symbol: String, area = "land", options: Dictionary = {}
 		return _error_result("invalid_slot_record", "Selected wild slot %d is not a dictionary." % [slot_index])
 
 	var level_result := _choose_level(slot, slots, table_field, options)
+	var repel_filter := _repel_filter_result(int(level_result.get("level", 1)), table_field, options)
+	if not bool(repel_filter.get("allowed", true)):
+		return {
+			"status": "no_encounter",
+			"reason": "repel_level_filter",
+			"map": _normalize_map_symbol(map_symbol),
+			"area": table_field,
+			"slot_index": slot_index,
+			"slot": slot.duplicate(true),
+			"slot_choice": slot_result,
+			"level": int(level_result.get("level", 1)),
+			"level_choice": level_result,
+			"repel_filter": repel_filter,
+			"source": "src/wild_encounter.c:TryGenerateWildMon -> IsWildLevelAllowedByRepel",
+			"unsupported": _first_pass_unsupported(table_field),
+			"source_trace": SOURCE_TRACE.duplicate(),
+		}
 	var record := _dict_field(table_result, "record")
 	var species := _dict_field(slot, "species")
 	return {
@@ -342,6 +379,7 @@ func choose_wild_mon(map_symbol: String, area = "land", options: Dictionary = {}
 		"max_level": int(slot.get("max_level", 0)),
 		"level": int(level_result.get("level", 1)),
 		"level_choice": level_result,
+		"repel_filter": repel_filter,
 		"source_time": table_result.get("source_time", {}),
 		"runtime_time": table_result.get("runtime_time", {}),
 		"unsupported": _first_pass_unsupported(table_field),
@@ -359,13 +397,14 @@ func _choose_slot(slots: Array, field_definition: Dictionary, table_field: Strin
 	var roll := _option_roll(options, "slot_roll", total_rate)
 	var slot_rates := _array_field(field_definition, "slot_rates")
 	var selected := _slot_from_thresholds(slot_rates, roll, slots.size())
-	if bool(options.get("lure_swap", false)):
+	var lure_swap := _lure_swap_result(options)
+	if bool(lure_swap.get("swapped", false)):
 		selected = slots.size() - 1 - selected
 	return {
 		"slot_index": selected,
 		"roll": roll,
 		"total_rate": total_rate,
-		"lure_swap": bool(options.get("lure_swap", false)),
+		"lure_swap": lure_swap,
 		"source": String(field_definition.get("selector", "")),
 	}
 
@@ -391,7 +430,8 @@ func _choose_fishing_slot(field_definition: Dictionary, options: Dictionary) -> 
 	var selected := 0
 	if typeof(indices) == TYPE_ARRAY and selected_offset >= 0 and selected_offset < indices.size():
 		selected = int(indices[selected_offset])
-	if bool(options.get("lure_swap", false)) and typeof(indices) == TYPE_ARRAY and not indices.is_empty():
+	var lure_swap := _lure_swap_result(options)
+	if bool(lure_swap.get("swapped", false)) and typeof(indices) == TYPE_ARRAY and not indices.is_empty():
 		var first := int(indices[0])
 		var last := int(indices[indices.size() - 1])
 		selected = first + last - selected
@@ -401,7 +441,7 @@ func _choose_fishing_slot(field_definition: Dictionary, options: Dictionary) -> 
 		"total_rate": total_rate,
 		"rod_group": group_name,
 		"rod": _rod_symbol(group_name),
-		"lure_swap": bool(options.get("lure_swap", false)),
+		"lure_swap": lure_swap,
 		"source": "src/wild_encounter.c:ChooseWildMonIndex_Fishing",
 	}
 
@@ -414,7 +454,8 @@ func _choose_level(slot: Dictionary, slots: Array, table_field: String, options:
 		min_level = max_level
 		max_level = swap
 
-	if bool(options.get("lure_active", false)):
+	var repel_lure := _repel_lure_state(options)
+	if bool(repel_lure.get("lure_active", false)):
 		var lure_level := max_level + 1
 		if table_field != "fishing_mons":
 			var max_same_species := _max_level_for_species(slots, _species_symbol(slot))
@@ -424,6 +465,7 @@ func _choose_level(slot: Dictionary, slots: Array, table_field: String, options:
 			"level": lure_level,
 			"min_level": min_level,
 			"max_level": max_level,
+			"repel_lure": repel_lure,
 			"lure_active": true,
 			"source": "src/wild_encounter.c:ChooseWildMonLevel LURE_STEP_COUNT path",
 		}
@@ -469,6 +511,175 @@ func _field_definition(table_field: String) -> Dictionary:
 	return _dict_field(_dict_field(wild_data, "field_definitions"), table_field)
 
 
+func _repel_lure_state(options: Dictionary) -> Dictionary:
+	var raw_value := 0
+	var source := "default_inactive"
+	if options.has("repel_lure_var"):
+		raw_value = int(options.get("repel_lure_var", 0))
+		source = "options.repel_lure_var"
+	else:
+		var game_state := _get_game_state(options.get("game_state", null))
+		if game_state != null and game_state.has_method("get_var"):
+			raw_value = int(game_state.get_var("VAR_REPEL_STEP_COUNT", 0))
+			source = "GameState.VAR_REPEL_STEP_COUNT"
+
+	var steps := raw_value & (REPEL_LURE_MASK - 1)
+	var is_lure := (raw_value & REPEL_LURE_MASK) != 0
+	var explicit_lure := options.has("lure_active") and bool(options.get("lure_active", false))
+	var explicit_repel_steps := int(options.get("repel_steps", -1))
+	var explicit_lure_steps := int(options.get("lure_steps", -1))
+	var repel_steps := 0 if is_lure else steps
+	var lure_steps := steps if is_lure else 0
+	if explicit_repel_steps >= 0:
+		repel_steps = explicit_repel_steps
+		source = "options.repel_steps"
+	if explicit_lure_steps >= 0:
+		lure_steps = explicit_lure_steps
+		source = "options.lure_steps"
+	if explicit_lure and lure_steps <= 0:
+		lure_steps = 1
+		source = "options.lure_active"
+
+	return {
+		"raw_value": raw_value,
+		"steps": steps,
+		"is_lure": is_lure or lure_steps > 0,
+		"repel_steps": repel_steps,
+		"lure_steps": lure_steps,
+		"repel_active": repel_steps > 0,
+		"lure_active": lure_steps > 0,
+		"source": source,
+		"source_trace": [
+			"include/constants/item.h:REPEL_LURE_MASK/LURE_STEP_COUNT/REPEL_STEP_COUNT",
+			"src/wild_encounter.c:WildEncounterCheck/IsWildLevelAllowedByRepel",
+		],
+	}
+
+
+func _lure_swap_result(options: Dictionary) -> Dictionary:
+	var repel_lure := _repel_lure_state(options)
+	if options.has("lure_swap"):
+		return {
+			"active": true,
+			"swapped": bool(options.get("lure_swap", false)),
+			"roll": -1,
+			"threshold": 2,
+			"modulo": 10,
+			"repel_lure": repel_lure,
+			"source": "test_override:lure_swap",
+		}
+	if not bool(repel_lure.get("lure_active", false)):
+		return {
+			"active": false,
+			"swapped": false,
+			"roll": -1,
+			"threshold": 2,
+			"modulo": 10,
+			"repel_lure": repel_lure,
+			"source": "src/wild_encounter.c:ChooseWildMonIndex_* LURE_STEP_COUNT inactive",
+		}
+
+	var roll := _option_roll(options, "lure_swap_roll", 10)
+	return {
+		"active": true,
+		"swapped": roll < 2,
+		"roll": roll,
+		"threshold": 2,
+		"modulo": 10,
+		"repel_lure": repel_lure,
+		"source": "src/wild_encounter.c:ChooseWildMonIndex_* LURE_STEP_COUNT swap roll",
+	}
+
+
+func _repel_filter_result(level: int, table_field: String, options: Dictionary) -> Dictionary:
+	var repel_lure := _repel_lure_state(options)
+	var applies := ["land_mons", "water_mons", "rock_smash_mons"].has(table_field)
+	if bool(options.get("ignore_repel", false)):
+		applies = false
+	if bool(options.get("force_repel_filter", false)):
+		applies = true
+	if not applies:
+		return {
+			"status": "not_applicable",
+			"allowed": true,
+			"level": level,
+			"area": table_field,
+			"repel_lure": repel_lure,
+			"source": "src/wild_encounter.c:TryGenerateWildMon flags without WILD_CHECK_REPEL",
+		}
+	if not bool(repel_lure.get("repel_active", false)):
+		return {
+			"status": "inactive",
+			"allowed": true,
+			"level": level,
+			"area": table_field,
+			"repel_lure": repel_lure,
+			"source": "src/wild_encounter.c:IsWildLevelAllowedByRepel",
+		}
+
+	var lead := _repel_lead_level(options)
+	var lead_level := int(lead.get("level", 0))
+	var allowed := bool(lead.get("found", false)) and level >= lead_level
+	return {
+		"status": "allowed" if allowed else "blocked",
+		"allowed": allowed,
+		"level": level,
+		"lead_level": lead_level,
+		"lead": lead,
+		"area": table_field,
+		"repel_lure": repel_lure,
+		"source": "src/wild_encounter.c:IsWildLevelAllowedByRepel",
+	}
+
+
+func _repel_lead_level(options: Dictionary) -> Dictionary:
+	if options.has("repel_lead_level"):
+		return {
+			"found": true,
+			"level": int(options.get("repel_lead_level", 0)),
+			"source": "options.repel_lead_level",
+		}
+
+	var party: Array = []
+	if options.has("player_party"):
+		var option_party = options.get("player_party", [])
+		party = option_party if typeof(option_party) == TYPE_ARRAY else []
+	else:
+		var game_state := _get_game_state(options.get("game_state", null))
+		if game_state != null and game_state.has_method("get_player_party"):
+			party = game_state.get_player_party()
+
+	for index in range(min(party.size(), 6)):
+		var mon = party[index]
+		if typeof(mon) != TYPE_DICTIONARY:
+			continue
+		if bool(mon.get("is_egg", false)):
+			continue
+		if _party_species_is_none(mon):
+			continue
+		return {
+			"found": true,
+			"level": int(mon.get("level", 0)),
+			"party_index": index,
+			"include_fainted": true,
+			"source": "src/wild_encounter.c:IsWildLevelAllowedByRepel + include/config/item.h:I_REPEL_INCLUDE_FAINTED = GEN_LATEST",
+		}
+
+	return {
+		"found": false,
+		"level": 0,
+		"include_fainted": true,
+		"source": "src/wild_encounter.c:IsWildLevelAllowedByRepel no non-egg party mon",
+	}
+
+
+func _party_species_is_none(mon: Dictionary) -> bool:
+	var species = mon.get("species", "")
+	if typeof(species) == TYPE_DICTIONARY:
+		return String(species.get("symbol", "")) == "SPECIES_NONE"
+	return String(species) == "SPECIES_NONE" or String(species).is_empty()
+
+
 func _altering_cave_index(options: Dictionary, record_count: int) -> int:
 	var index := int(options.get("altering_cave_set", -1))
 	if index < 0:
@@ -490,9 +701,9 @@ func _first_pass_unsupported(table_field: String) -> Array:
 		"source": "src/wild_encounter.c:CreateWildMon -> src/battle_setup.c:BattleSetup_StartWildBattle",
 		"detail": "This runtime slice selects source-backed species/level metadata but does not create enemy party Pokemon or start battle presentation.",
 	}, {
-		"code": "wild_encounter_modifiers_not_applied",
+		"code": "wild_encounter_modifiers_partially_applied",
 		"source": "src/wild_encounter.c:TryGenerateWildMon",
-		"detail": "Repel, lead abilities, roamer, mass outbreaks, double wild battles, Safari Pokeblocks, Synchronize, gender forcing, random IV/personality, and battle transition selection remain future traced work.",
+		"detail": "Repel/Lure first-pass rate, slot, level, and Repel level filtering are applied. Lead abilities, roamer, mass outbreaks, double wild battles, Safari Pokeblocks, Synchronize, gender forcing, random IV/personality, and battle transition selection remain future traced work.",
 	}]
 	if table_field == "fishing_mons":
 		unsupported.append({
