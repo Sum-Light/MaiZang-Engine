@@ -12,12 +12,27 @@ var facing_direction := Vector2i.DOWN
 var input_locked := false
 var field_input_precheck := Callable()
 var last_input_source_trace: Array = []
+const SOURCE_FRAMES_PER_SECOND := 60.0
+const NORMAL_STEP_SOURCE_FRAMES := 16
+const TURN_IN_PLACE_SOURCE_FRAMES := 8
+
 var _sprite_record: Dictionary = {}
 var _sprite_texture: Texture2D = null
 var _sprite_source_rect := Rect2()
 var _sprite_flip_h := false
 var _graphics_id := ""
 var _sprite_unsupported: Array = []
+var _sprite_frame_size := Vector2.ZERO
+var _sprite_columns := 1
+var _sprite_frame_index := 0
+var _sprite_animation_state := "static"
+var _sprite_animation_active := false
+var _sprite_animation_elapsed_seconds := 0.0
+var _sprite_animation_elapsed_frames := 0
+var _sprite_animation_total_frames := 0
+var _sprite_animation_table_key := ""
+var _sprite_animation_phase_start_index := 0
+var _step_anim_cmd_index := 0
 
 
 func _ready() -> void:
@@ -28,7 +43,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if input_locked or _is_moving:
+	if input_locked or _is_moving or _sprite_animation_active:
 		return
 
 	if field_input_precheck.is_valid() and bool(field_input_precheck.call()):
@@ -46,24 +61,48 @@ func _physics_process(_delta: float) -> void:
 			last_input_source_trace = [
 				"src/field_player_avatar.c:CheckMovementInputNotOnBike",
 				"src/field_player_avatar.c:TURN_DIRECTION",
+				"src/field_player_avatar.c:PlayerTurnInPlace",
+				"src/event_object_movement.c:GetWalkInPlaceFastMovementAction",
+				"src/event_object_movement.c:InitMoveInPlace",
+				"src/event_object_movement.c:SetStepAnimHandleAlternation",
+				"src/data/object_events/object_event_anims.h:sAnimTable_BrendanMayNormal",
 			]
+			_start_turn_in_place_animation()
 			return
 		facing_direction = direction
 		var target_position := grid_position + direction
 		if MapRuntime.can_enter_cell(target_position):
 			last_input_source_trace = [
 				"src/field_player_avatar.c:CheckMovementInputNotOnBike",
+				"src/field_player_avatar.c:PlayerWalkNormal",
+				"src/event_object_movement.c:GetWalkNormalMovementAction",
+				"src/event_object_movement.c:MovementAction_WalkNormal*_Step0",
+				"src/event_object_movement.c:SetStepAnimHandleAlternation",
 				"src/event_object_movement.c:SetSpriteDataForNormalStep",
 				"src/event_object_movement.c:Step1",
+				"src/event_object_movement.c:NpcTakeStep",
+				"src/data/object_events/object_event_anims.h:sAnimTable_BrendanMayNormal",
 			]
 			_configure_player_sprite()
-			try_move(direction)
+			if try_move(direction):
+				_start_normal_walk_animation()
 		else:
 			last_input_source_trace = [
 				"src/field_player_avatar.c:CheckMovementInputNotOnBike",
 				"src/field_player_avatar.c:MOVING",
 			]
 			movement_blocked.emit(target_position, MapRuntime.get_cell_info(target_position), facing_direction)
+
+
+func _process(delta: float) -> void:
+	if not _sprite_animation_active:
+		return
+	_sprite_animation_elapsed_seconds += delta
+	var elapsed_frames := int(floor(_sprite_animation_elapsed_seconds * SOURCE_FRAMES_PER_SECOND))
+	if _sprite_animation_state == "turning" and elapsed_frames >= _sprite_animation_total_frames:
+		_finish_active_sprite_animation()
+		return
+	_apply_active_sprite_animation_frame(mini(elapsed_frames, _sprite_animation_total_frames - 1))
 
 
 func _draw() -> void:
@@ -91,6 +130,12 @@ func get_sprite_snapshot() -> Dictionary:
 		"using_sprite": _sprite_texture != null,
 		"graphics_id": _graphics_id,
 		"facing_direction": _facing_direction_name(),
+		"animation_state": _sprite_animation_state,
+		"animation_frame_index": _sprite_frame_index,
+		"animation_elapsed_frames": _sprite_animation_elapsed_frames,
+		"animation_total_frames": _sprite_animation_total_frames if _sprite_animation_active else 0,
+		"animation_phase_start_index": _sprite_animation_phase_start_index,
+		"step_anim_cmd_index": _step_anim_cmd_index,
 		"source_rect": [
 			int(_sprite_source_rect.position.x),
 			int(_sprite_source_rect.position.y),
@@ -173,17 +218,18 @@ func _configure_player_sprite() -> void:
 		columns = 1
 
 	var facing_name := _facing_direction_name()
-	var frame_index := _static_frame_index(record, facing_name)
-	var frame_row := int(floor(float(frame_index) / float(columns)))
 	_sprite_record = record.duplicate(true)
 	_sprite_texture = texture
-	_sprite_flip_h = _static_frame_flip_h(record, facing_name)
-	_sprite_source_rect = Rect2(
-		float(frame_index % columns) * frame_size.x,
-		float(frame_row) * frame_size.y,
-		frame_size.x,
-		frame_size.y
-	)
+	_sprite_frame_size = frame_size
+	_sprite_columns = columns
+	_set_sprite_frame(_static_frame_index(record, facing_name), _static_frame_flip_h(record, facing_name))
+	_sprite_animation_state = "static"
+	_sprite_animation_active = false
+	_sprite_animation_elapsed_seconds = 0.0
+	_sprite_animation_elapsed_frames = 0
+	_sprite_animation_total_frames = 0
+	_sprite_animation_table_key = ""
+	_sprite_animation_phase_start_index = 0
 	var unsupported = record.get("unsupported", [])
 	_sprite_unsupported = unsupported.duplicate(true) if typeof(unsupported) == TYPE_ARRAY else []
 	queue_redraw()
@@ -264,3 +310,140 @@ func _static_frame_flip_h(record: Dictionary, facing_name: String) -> bool:
 	if typeof(flip_info) != TYPE_DICTIONARY:
 		return false
 	return bool(flip_info.get("h", false))
+
+
+func _set_sprite_frame(frame_index: int, h_flip: bool) -> void:
+	_sprite_frame_index = frame_index
+	_sprite_flip_h = h_flip
+	var columns: int = maxi(_sprite_columns, 1)
+	var frame_row := int(floor(float(frame_index) / float(columns)))
+	_sprite_source_rect = Rect2(
+		float(frame_index % columns) * _sprite_frame_size.x,
+		float(frame_row) * _sprite_frame_size.y,
+		_sprite_frame_size.x,
+		_sprite_frame_size.y
+	)
+	queue_redraw()
+
+
+func _start_normal_walk_animation() -> void:
+	_start_step_animation("walking", "walk", NORMAL_STEP_SOURCE_FRAMES)
+
+
+func _finish_normal_walk_animation() -> void:
+	if not _sprite_animation_active or _sprite_animation_state != "walking":
+		return
+	_finish_active_sprite_animation()
+
+
+func _start_turn_in_place_animation() -> void:
+	_start_step_animation("turning", "fast_walk", TURN_IN_PLACE_SOURCE_FRAMES)
+
+
+func _start_step_animation(state_name: String, table_key: String, total_frames: int) -> void:
+	if _sprite_record.is_empty():
+		return
+	_sprite_animation_active = true
+	_sprite_animation_elapsed_seconds = 0.0
+	_sprite_animation_elapsed_frames = 0
+	_sprite_animation_total_frames = total_frames
+	_sprite_animation_table_key = table_key
+	_sprite_animation_phase_start_index = _source_step_anim_phase_start_index()
+	_sprite_animation_state = state_name
+	_apply_active_sprite_animation_frame(0)
+
+
+func _finish_active_sprite_animation() -> void:
+	if not _sprite_animation_active:
+		return
+	_step_anim_cmd_index = _finished_step_anim_cmd_index()
+	_sprite_animation_active = false
+	_sprite_animation_elapsed_seconds = 0.0
+	_sprite_animation_elapsed_frames = _sprite_animation_total_frames
+	_sprite_animation_total_frames = 0
+	_sprite_animation_table_key = ""
+	_sprite_animation_state = "static"
+	var facing_name := _facing_direction_name()
+	_set_sprite_frame(_static_frame_index(_sprite_record, facing_name), _static_frame_flip_h(_sprite_record, facing_name))
+
+
+func _apply_active_sprite_animation_frame(elapsed_frames: int) -> void:
+	if _sprite_record.is_empty():
+		return
+	var animation_table = _sprite_record.get("animation_table", {})
+	if typeof(animation_table) != TYPE_DICTIONARY:
+		return
+	var keyed_table = animation_table.get(_sprite_animation_table_key, {})
+	if typeof(keyed_table) != TYPE_DICTIONARY:
+		return
+	var sequence = keyed_table.get(_facing_direction_name(), [])
+	if typeof(sequence) != TYPE_ARRAY or sequence.is_empty():
+		return
+
+	_sprite_animation_elapsed_frames = clampi(elapsed_frames, 0, maxi(_sprite_animation_total_frames - 1, 0))
+	var entry := _animation_entry_for_elapsed_frame(
+		sequence,
+		_sprite_animation_elapsed_frames,
+		_sprite_animation_phase_start_index,
+		2
+	)
+	if entry.is_empty():
+		return
+	_set_sprite_frame(int(entry.get("frame", 0)), bool(entry.get("h_flip", false)))
+
+
+func _animation_entry_for_elapsed_frame(
+	sequence: Array,
+	elapsed_frames: int,
+	start_index: int,
+	entry_count: int
+) -> Dictionary:
+	var remaining := elapsed_frames
+	var end_index: int = mini(start_index + entry_count, sequence.size())
+	for index in range(start_index, end_index):
+		var entry = sequence[index]
+		if typeof(entry) != TYPE_DICTIONARY:
+			continue
+		var duration: int = maxi(int(entry.get("duration_frames", 1)), 1)
+		if remaining < duration:
+			return entry
+		remaining -= duration
+	for i in range(end_index - 1, start_index - 1, -1):
+		var fallback = sequence[i]
+		if typeof(fallback) == TYPE_DICTIONARY:
+			return fallback
+	return {}
+
+
+func _source_step_anim_phase_start_index() -> int:
+	if _step_anim_cmd_index == 1:
+		return 2
+	if _step_anim_cmd_index == 3:
+		return 0
+	return clampi(_step_anim_cmd_index, 0, 3)
+
+
+func _finished_step_anim_cmd_index() -> int:
+	var sequence := _active_animation_sequence()
+	if sequence.is_empty():
+		return _step_anim_cmd_index
+	var end_index: int = mini(_sprite_animation_phase_start_index + 1, sequence.size() - 1)
+	return end_index
+
+
+func _active_animation_sequence() -> Array:
+	if _sprite_record.is_empty() or _sprite_animation_table_key.is_empty():
+		return []
+	var animation_table = _sprite_record.get("animation_table", {})
+	if typeof(animation_table) != TYPE_DICTIONARY:
+		return []
+	var keyed_table = animation_table.get(_sprite_animation_table_key, {})
+	if typeof(keyed_table) != TYPE_DICTIONARY:
+		return []
+	var sequence = keyed_table.get(_facing_direction_name(), [])
+	return sequence if typeof(sequence) == TYPE_ARRAY else []
+
+
+func _on_move_finished() -> void:
+	_finish_normal_walk_animation()
+	super._on_move_finished()

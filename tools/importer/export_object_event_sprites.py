@@ -82,10 +82,24 @@ RIVAL_RENDER_UNSUPPORTED = STATIC_RENDER_UNSUPPORTED + [
         "detail": "The imported sheet preserves the source walking+running frame data and Brendan/May animation table metadata; this runtime slice does not yet drive run, fast-walk, or spin object-event animation commands.",
     }
 ]
-PLAYER_RENDER_UNSUPPORTED = STATIC_RENDER_UNSUPPORTED + [
+PLAYER_RUNTIME_SUPPORTED = [
     {
-        "code": "player_avatar_walk_animation_not_runtime_driven",
-        "detail": "The normal Brendan/May walking+running source sheet is imported for first-pass player display, but the runtime still renders static facing frames until player object-event animation tasks are ported.",
+        "code": "player_avatar_normal_walk_source_timed",
+        "detail": "PlayerController drives normal on-foot walking from sAnimTable_BrendanMayNormal walk commands with SetStepAnimHandleAlternation gait phase handling while the 16-frame tile step follows SetSpriteDataForNormalStep/NpcTakeStep MOVE_SPEED_NORMAL timing.",
+    },
+    {
+        "code": "player_avatar_turn_in_place_source_timed",
+        "detail": "PlayerController drives on-foot turn-in-place through the source WalkInPlaceFast path: sAnimTable_BrendanMayNormal fast-walk commands, SetStepAnimHandleAlternation gait phase handling, and an 8-frame duration.",
+    }
+]
+PLAYER_RENDER_UNSUPPORTED = [
+    {
+        "code": "player_avatar_run_continuous_fast_walk_spin_animation_not_runtime_driven",
+        "detail": "The Brendan/May running, continuous fast-walk movement, and spin animation metadata is exported but those non-turn player movement states are not yet runtime-driven.",
+    },
+    {
+        "code": "player_avatar_non_normal_state_graphics_not_runtime_driven",
+        "detail": "Surfing, biking, underwater, acro-bike, field-effect, and other player avatar graphics states are outside the current normal on-foot runtime slice.",
     }
 ]
 
@@ -336,8 +350,17 @@ def _player_normal_sprite(
         "src/data/object_events/object_event_graphics_info.h:{}".format(source_graphics_info),
         "src/data/object_events/object_event_pic_tables.h:{}".format(source_pic_table),
         "src/data/object_events/object_event_anims.h:sAnimTable_BrendanMayNormal",
+        "src/field_player_avatar.c:PlayerWalkNormal",
+        "src/field_player_avatar.c:PlayerTurnInPlace",
+        "src/event_object_movement.c:GetWalkNormalMovementAction",
+        "src/event_object_movement.c:GetWalkInPlaceFastMovementAction",
+        "src/event_object_movement.c:MovementAction_WalkNormal*_Step0/Step1",
+        "src/event_object_movement.c:MovementAction_WalkInPlaceFast*_Step0/Step1",
+        "src/event_object_movement.c:SetStepAnimHandleAlternation",
+        "src/event_object_movement.c:SetSpriteDataForNormalStep/NpcTakeStep",
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
     ]
+    record["runtime_supported"] = PLAYER_RUNTIME_SUPPORTED
     record["unsupported"] = PLAYER_RENDER_UNSUPPORTED
     return record
 
@@ -598,6 +621,7 @@ def export_object_event_sprites(source_root, output_data_root, output_asset_root
             "static_frame_flips": sprite.get("static_frame_flips", {}),
             "animation_table": sprite.get("animation_table", {}),
             "source_trace": source_trace,
+            "runtime_supported": sprite.get("runtime_supported", []),
             "unsupported": sprite["unsupported"],
         }
 
@@ -606,7 +630,7 @@ def export_object_event_sprites(source_root, output_data_root, output_asset_root
         "category": "object_events",
         "source": {
             "project": "pokeemerald-expansion",
-            "kind": "first_pass_static_object_event_sprites",
+            "kind": "first_pass_object_event_sprites",
         },
         "sprites": records,
         "variable_graphics": VARIABLE_GRAPHICS,

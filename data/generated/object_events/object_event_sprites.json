@@ -3,7 +3,7 @@
   "category": "object_events",
   "source": {
     "project": "pokeemerald-expansion",
-    "kind": "first_pass_static_object_event_sprites"
+    "kind": "first_pass_object_event_sprites"
   },
   "sprites": {
     "OBJ_EVENT_GFX_BRENDAN_NORMAL": {
@@ -426,17 +426,35 @@
         "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_BrendanNormal",
         "src/data/object_events/object_event_pic_tables.h:sPicTable_BrendanNormal",
         "src/data/object_events/object_event_anims.h:sAnimTable_BrendanMayNormal",
+        "src/field_player_avatar.c:PlayerWalkNormal",
+        "src/field_player_avatar.c:PlayerTurnInPlace",
+        "src/event_object_movement.c:GetWalkNormalMovementAction",
+        "src/event_object_movement.c:GetWalkInPlaceFastMovementAction",
+        "src/event_object_movement.c:MovementAction_WalkNormal*_Step0/Step1",
+        "src/event_object_movement.c:MovementAction_WalkInPlaceFast*_Step0/Step1",
+        "src/event_object_movement.c:SetStepAnimHandleAlternation",
+        "src/event_object_movement.c:SetSpriteDataForNormalStep/NpcTakeStep",
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_BRENDAN_NORMAL"
       ],
-      "unsupported": [
+      "runtime_supported": [
         {
-          "code": "object_event_walk_animation_not_runtime_driven",
-          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+          "code": "player_avatar_normal_walk_source_timed",
+          "detail": "PlayerController drives normal on-foot walking from sAnimTable_BrendanMayNormal walk commands with SetStepAnimHandleAlternation gait phase handling while the 16-frame tile step follows SetSpriteDataForNormalStep/NpcTakeStep MOVE_SPEED_NORMAL timing."
         },
         {
-          "code": "player_avatar_walk_animation_not_runtime_driven",
-          "detail": "The normal Brendan/May walking+running source sheet is imported for first-pass player display, but the runtime still renders static facing frames until player object-event animation tasks are ported."
+          "code": "player_avatar_turn_in_place_source_timed",
+          "detail": "PlayerController drives on-foot turn-in-place through the source WalkInPlaceFast path: sAnimTable_BrendanMayNormal fast-walk commands, SetStepAnimHandleAlternation gait phase handling, and an 8-frame duration."
+        }
+      ],
+      "unsupported": [
+        {
+          "code": "player_avatar_run_continuous_fast_walk_spin_animation_not_runtime_driven",
+          "detail": "The Brendan/May running, continuous fast-walk movement, and spin animation metadata is exported but those non-turn player movement states are not yet runtime-driven."
+        },
+        {
+          "code": "player_avatar_non_normal_state_graphics_not_runtime_driven",
+          "detail": "Surfing, biking, underwater, acro-bike, field-effect, and other player avatar graphics states are outside the current normal on-foot runtime slice."
         }
       ]
     },
@@ -616,6 +634,7 @@
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_TWIN"
       ],
+      "runtime_supported": [],
       "unsupported": [
         {
           "code": "object_event_walk_animation_not_runtime_driven",
@@ -799,6 +818,7 @@
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_BOY_1"
       ],
+      "runtime_supported": [],
       "unsupported": [
         {
           "code": "object_event_walk_animation_not_runtime_driven",
@@ -982,6 +1002,7 @@
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_BOY_2"
       ],
+      "runtime_supported": [],
       "unsupported": [
         {
           "code": "object_event_walk_animation_not_runtime_driven",
@@ -1165,6 +1186,7 @@
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_FAT_MAN"
       ],
+      "runtime_supported": [],
       "unsupported": [
         {
           "code": "object_event_walk_animation_not_runtime_driven",
@@ -1348,6 +1370,7 @@
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_PROF_BIRCH"
       ],
+      "runtime_supported": [],
       "unsupported": [
         {
           "code": "object_event_walk_animation_not_runtime_driven",
@@ -1430,6 +1453,7 @@
         "src/data/object_events/object_event_anims.h:sAnim_StayStill/sAnimTable_Inanimate",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_TRUCK"
       ],
+      "runtime_supported": [],
       "unsupported": [
         {
           "code": "object_event_walk_animation_not_runtime_driven",
@@ -1857,17 +1881,35 @@
         "src/data/object_events/object_event_graphics_info.h:gObjectEventGraphicsInfo_MayNormal",
         "src/data/object_events/object_event_pic_tables.h:sPicTable_MayNormal",
         "src/data/object_events/object_event_anims.h:sAnimTable_BrendanMayNormal",
+        "src/field_player_avatar.c:PlayerWalkNormal",
+        "src/field_player_avatar.c:PlayerTurnInPlace",
+        "src/event_object_movement.c:GetWalkNormalMovementAction",
+        "src/event_object_movement.c:GetWalkInPlaceFastMovementAction",
+        "src/event_object_movement.c:MovementAction_WalkNormal*_Step0/Step1",
+        "src/event_object_movement.c:MovementAction_WalkInPlaceFast*_Step0/Step1",
+        "src/event_object_movement.c:SetStepAnimHandleAlternation",
+        "src/event_object_movement.c:SetSpriteDataForNormalStep/NpcTakeStep",
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_MAY_NORMAL"
       ],
-      "unsupported": [
+      "runtime_supported": [
         {
-          "code": "object_event_walk_animation_not_runtime_driven",
-          "detail": "Facing frames and source animation metadata are exported; this runtime slice still renders object events as static facing frames until object-event animation tasks are ported."
+          "code": "player_avatar_normal_walk_source_timed",
+          "detail": "PlayerController drives normal on-foot walking from sAnimTable_BrendanMayNormal walk commands with SetStepAnimHandleAlternation gait phase handling while the 16-frame tile step follows SetSpriteDataForNormalStep/NpcTakeStep MOVE_SPEED_NORMAL timing."
         },
         {
-          "code": "player_avatar_walk_animation_not_runtime_driven",
-          "detail": "The normal Brendan/May walking+running source sheet is imported for first-pass player display, but the runtime still renders static facing frames until player object-event animation tasks are ported."
+          "code": "player_avatar_turn_in_place_source_timed",
+          "detail": "PlayerController drives on-foot turn-in-place through the source WalkInPlaceFast path: sAnimTable_BrendanMayNormal fast-walk commands, SetStepAnimHandleAlternation gait phase handling, and an 8-frame duration."
+        }
+      ],
+      "unsupported": [
+        {
+          "code": "player_avatar_run_continuous_fast_walk_spin_animation_not_runtime_driven",
+          "detail": "The Brendan/May running, continuous fast-walk movement, and spin animation metadata is exported but those non-turn player movement states are not yet runtime-driven."
+        },
+        {
+          "code": "player_avatar_non_normal_state_graphics_not_runtime_driven",
+          "detail": "Surfing, biking, underwater, acro-bike, field-effect, and other player avatar graphics states are outside the current normal on-foot runtime slice."
         }
       ]
     },
@@ -2295,6 +2337,7 @@
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL"
       ],
+      "runtime_supported": [],
       "unsupported": [
         {
           "code": "object_event_walk_animation_not_runtime_driven",
@@ -2730,6 +2773,7 @@
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_RIVAL_MAY_NORMAL"
       ],
+      "runtime_supported": [],
       "unsupported": [
         {
           "code": "object_event_walk_animation_not_runtime_driven",
@@ -2917,6 +2961,7 @@
         "src/event_object_movement.c:sFaceDirectionAnimNums/sMoveDirectionAnimNums",
         "src/data/object_events/object_event_graphics_info_pointers.h:OBJ_EVENT_GFX_MOM"
       ],
+      "runtime_supported": [],
       "unsupported": [
         {
           "code": "object_event_walk_animation_not_runtime_driven",

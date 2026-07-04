@@ -68,7 +68,10 @@ func _run() -> void:
 		_assert(_image_alpha_at(player_record, Vector2i.ZERO) == 0, "expected %s palette index 0 to be transparent" % graphics_id)
 		_assert(_transparency_rule(player_record) == "gba_obj_palette_index_0_alpha_0", "expected %s source transparency metadata" % graphics_id)
 		_assert(_source_images_end_with(player_record, ["walking.png", "running.png"]), "expected %s walking+running source images" % graphics_id)
-		_assert(_unsupported_has(player_record, "player_avatar_walk_animation_not_runtime_driven"), "expected %s runtime player walk animation unsupported note" % graphics_id)
+		_assert(_runtime_supported_has(player_record, "player_avatar_normal_walk_source_timed"), "expected %s source-timed normal player walk support note" % graphics_id)
+		_assert(not _unsupported_has(player_record, "player_avatar_walk_animation_not_runtime_driven"), "expected %s normal player walk unsupported note to be retired" % graphics_id)
+		_assert(_runtime_supported_has(player_record, "player_avatar_turn_in_place_source_timed"), "expected %s source-timed turn-in-place support note" % graphics_id)
+		_assert(_unsupported_has(player_record, "player_avatar_run_continuous_fast_walk_spin_animation_not_runtime_driven"), "expected %s runtime run/continuous-fast/spin unsupported note" % graphics_id)
 
 	var expected_rival_sprites := {
 		"OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL": {
@@ -301,6 +304,16 @@ func _unsupported_has(record: Dictionary, code: String) -> bool:
 	if typeof(unsupported) != TYPE_ARRAY:
 		return false
 	for entry in unsupported:
+		if typeof(entry) == TYPE_DICTIONARY and String(entry.get("code", "")) == code:
+			return true
+	return false
+
+
+func _runtime_supported_has(record: Dictionary, code: String) -> bool:
+	var runtime_supported = record.get("runtime_supported", [])
+	if typeof(runtime_supported) != TYPE_ARRAY:
+		return false
+	for entry in runtime_supported:
 		if typeof(entry) == TYPE_DICTIONARY and String(entry.get("code", "")) == code:
 			return true
 	return false
