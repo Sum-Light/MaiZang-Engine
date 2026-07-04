@@ -2,6 +2,11 @@ extends Node
 
 const MAX_ENCOUNTER_RATE := 2880
 const REPEL_LURE_MASK := 1 << 15
+const PLAYER_AVATAR_FLAG_MACH_BIKE := 1 << 1
+const PLAYER_AVATAR_FLAG_ACRO_BIKE := 1 << 2
+const WEATHER_SNOW_VALUE := 4
+const WEATHER_SANDSTORM_VALUE := 8
+const BATTLE_PYRAMID_LAYOUT := "LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR"
 const SOURCE_TRACE := [
 	"src/wild_encounter.c:GetCurrentMapWildMonHeaderId",
 	"src/wild_encounter.c:GetTimeOfDayForEncounters",
@@ -14,7 +19,13 @@ const SOURCE_TRACE := [
 	"src/wild_encounter.c:StandardWildEncounter",
 	"src/wild_encounter.c:FishingWildEncounter",
 	"include/constants/item.h:REPEL_LURE_MASK/LURE_STEP_COUNT/REPEL_STEP_COUNT",
+	"include/constants/items.h:ITEM_CLEANSE_TAG",
+	"include/constants/abilities.h:overworld encounter-rate abilities",
+	"include/constants/flags.h:FLAG_SYS_ENC_UP_ITEM/FLAG_SYS_ENC_DOWN_ITEM",
+	"include/constants/weather.h:WEATHER_SANDSTORM/WEATHER_SNOW",
 	"include/config/item.h:I_REPEL_INCLUDE_FAINTED",
+	"include/config/overworld.h:OW_INFILTRATOR",
+	"include/global.fieldmap.h:PLAYER_AVATAR_FLAG_MACH_BIKE/PLAYER_AVATAR_FLAG_ACRO_BIKE",
 	"include/wild_encounter.h",
 	"include/constants/wild_encounter.h",
 ]
@@ -237,16 +248,145 @@ func try_standard_encounter_for_behavior(
 
 
 func check_encounter_rate(encounter_rate: int, options: Dictionary = {}) -> Dictionary:
-	var adjusted_rate := clampi(encounter_rate * 16, 0, MAX_ENCOUNTER_RATE)
-	var repel_lure := _repel_lure_state(options)
+	var adjusted_rate: int = maxi(0, encounter_rate * 16)
 	var modifiers := []
+
+	var bike := _bike_state(options)
+	if bool(bike.get("active", false)):
+		var before_bike := adjusted_rate
+		adjusted_rate = _mul_div_floor(adjusted_rate, 80, 100)
+		modifiers.append(_rate_modifier(
+			"bike_encounter_rate",
+			"multiply_by_80_percent",
+			before_bike,
+			adjusted_rate,
+			"src/wild_encounter.c:WildEncounterCheck TestPlayerAvatarFlags bike path",
+			{"state": bike}
+		))
+
+	var flute := _flute_state(options)
+	if bool(flute.get("white_flute_active", false)):
+		var before_white_flute := adjusted_rate
+		adjusted_rate += _div_floor(adjusted_rate, 2)
+		modifiers.append(_rate_modifier(
+			"white_flute_encounter_rate",
+			"add_half",
+			before_white_flute,
+			adjusted_rate,
+			"src/wild_encounter.c:ApplyFluteEncounterRateMod FLAG_SYS_ENC_UP_ITEM",
+			{"state": flute}
+		))
+	elif bool(flute.get("black_flute_active", false)):
+		var before_black_flute := adjusted_rate
+		adjusted_rate = _div_floor(adjusted_rate, 2)
+		modifiers.append(_rate_modifier(
+			"black_flute_encounter_rate",
+			"divide_by_2",
+			before_black_flute,
+			adjusted_rate,
+			"src/wild_encounter.c:ApplyFluteEncounterRateMod FLAG_SYS_ENC_DOWN_ITEM",
+			{"state": flute}
+		))
+
+	var cleanse_tag := _cleanse_tag_state(options)
+	if bool(cleanse_tag.get("active", false)):
+		var before_cleanse_tag := adjusted_rate
+		adjusted_rate = _mul_div_floor(adjusted_rate, 2, 3)
+		modifiers.append(_rate_modifier(
+			"cleanse_tag_encounter_rate",
+			"multiply_by_2_over_3",
+			before_cleanse_tag,
+			adjusted_rate,
+			"src/wild_encounter.c:ApplyCleanseTagEncounterRateMod",
+			{"state": cleanse_tag}
+		))
+
+	var repel_lure := _repel_lure_state(options)
 	if bool(repel_lure.get("lure_active", false)):
-		adjusted_rate = clampi(adjusted_rate * 2, 0, MAX_ENCOUNTER_RATE)
-		modifiers.append({
-			"code": "lure_encounter_rate",
-			"operation": "multiply_by_2",
-			"source": "src/wild_encounter.c:WildEncounterCheck LURE_STEP_COUNT path",
-		})
+		var before_lure := adjusted_rate
+		adjusted_rate *= 2
+		modifiers.append(_rate_modifier(
+			"lure_encounter_rate",
+			"multiply_by_2",
+			before_lure,
+			adjusted_rate,
+			"src/wild_encounter.c:WildEncounterCheck LURE_STEP_COUNT path",
+			{"state": repel_lure}
+		))
+
+	var lead_ability := _lead_ability_state(options)
+	if bool(lead_ability.get("applies", false)):
+		var ability := String(lead_ability.get("ability", ""))
+		var before_ability := adjusted_rate
+		var source := "src/wild_encounter.c:WildEncounterCheck lead ability path"
+		var operation := ""
+		match ability:
+			"ABILITY_STENCH":
+				if _is_battle_pyramid_layout(options):
+					adjusted_rate = _mul_div_floor(adjusted_rate, 3, 4)
+					operation = "multiply_by_3_over_4"
+					source = "src/wild_encounter.c:WildEncounterCheck STENCH Battle Pyramid path"
+				else:
+					adjusted_rate = _div_floor(adjusted_rate, 2)
+					operation = "divide_by_2"
+					source = "src/wild_encounter.c:WildEncounterCheck STENCH path"
+			"ABILITY_ILLUMINATE":
+				adjusted_rate *= 2
+				operation = "multiply_by_2"
+				source = "src/wild_encounter.c:WildEncounterCheck ILLUMINATE path"
+			"ABILITY_WHITE_SMOKE":
+				adjusted_rate = _div_floor(adjusted_rate, 2)
+				operation = "divide_by_2"
+				source = "src/wild_encounter.c:WildEncounterCheck WHITE_SMOKE path"
+			"ABILITY_ARENA_TRAP":
+				adjusted_rate *= 2
+				operation = "multiply_by_2"
+				source = "src/wild_encounter.c:WildEncounterCheck ARENA_TRAP path"
+			"ABILITY_SAND_VEIL":
+				if _weather_matches(options, "WEATHER_SANDSTORM"):
+					adjusted_rate = _div_floor(adjusted_rate, 2)
+					operation = "divide_by_2"
+					source = "src/wild_encounter.c:WildEncounterCheck SAND_VEIL sandstorm path"
+			"ABILITY_SNOW_CLOAK":
+				if _weather_matches(options, "WEATHER_SNOW"):
+					adjusted_rate = _div_floor(adjusted_rate, 2)
+					operation = "divide_by_2"
+					source = "src/wild_encounter.c:WildEncounterCheck SNOW_CLOAK snow path"
+			"ABILITY_QUICK_FEET":
+				adjusted_rate = _div_floor(adjusted_rate, 2)
+				operation = "divide_by_2"
+				source = "src/wild_encounter.c:WildEncounterCheck QUICK_FEET path"
+			"ABILITY_INFILTRATOR":
+				if bool(lead_ability.get("ow_infiltrator_gen8", true)):
+					adjusted_rate = _div_floor(adjusted_rate, 2)
+					operation = "divide_by_2"
+					source = "src/wild_encounter.c:WildEncounterCheck INFILTRATOR OW_INFILTRATOR >= GEN_8 path"
+			"ABILITY_NO_GUARD":
+				adjusted_rate *= 2
+				operation = "multiply_by_2"
+				source = "src/wild_encounter.c:WildEncounterCheck NO_GUARD path"
+		if not operation.is_empty():
+			modifiers.append(_rate_modifier(
+				"lead_ability_encounter_rate",
+				operation,
+				before_ability,
+				adjusted_rate,
+				source,
+				{"state": lead_ability}
+			))
+
+	if adjusted_rate > MAX_ENCOUNTER_RATE:
+		var before_cap := adjusted_rate
+		adjusted_rate = MAX_ENCOUNTER_RATE
+		modifiers.append(_rate_modifier(
+			"max_encounter_rate_cap",
+			"clamp_to_max",
+			before_cap,
+			adjusted_rate,
+			"src/wild_encounter.c:WildEncounterCheck MAX_ENCOUNTER_RATE cap",
+			{}
+		))
+
 	var roll := _option_roll(options, "encounter_roll", MAX_ENCOUNTER_RATE)
 	var hit := roll < adjusted_rate
 	return {
@@ -256,13 +396,17 @@ func check_encounter_rate(encounter_rate: int, options: Dictionary = {}) -> Dict
 		"adjusted_rate": adjusted_rate,
 		"max_rate": MAX_ENCOUNTER_RATE,
 		"roll": roll,
+		"bike": bike,
+		"flute": flute,
+		"cleanse_tag": cleanse_tag,
 		"repel_lure": repel_lure,
+		"lead_ability": lead_ability,
 		"modifiers": modifiers,
 		"source": "src/wild_encounter.c:WildEncounterCheck -> EncounterOddsCheck",
 		"unsupported": [{
-			"code": "encounter_rate_modifiers_not_applied",
+			"code": "encounter_rate_modifiers_partially_integrated",
 			"source": "src/wild_encounter.c:WildEncounterCheck",
-			"detail": "Bike, flute, Cleanse Tag, lead ability, weather, and map-specific encounter-rate modifiers are future traced work. Lure rate doubling is applied; Repel filtering is applied after level selection.",
+			"detail": "Source-order bike, flute, Cleanse Tag, Lure, and lead ability encounter-rate math is applied when the needed field/party state is provided. Full avatar, weather, flute item-use UI, and Battle Frontier state integration remain future traced work.",
 		}],
 		"source_trace": SOURCE_TRACE.duplicate(),
 	}
@@ -272,6 +416,15 @@ func try_standard_encounter(map_symbol: String, area = "land", options: Dictiona
 	var table_result := get_table_for_area(map_symbol, area, options)
 	if String(table_result.get("status", "")) != "ok":
 		return table_result
+	var table_field := String(table_result.get("area", ""))
+	if table_field == "fishing_mons" or table_field == "hidden_mons":
+		return {
+			"status": "no_encounter",
+			"reason": "non_standard_area",
+			"area": table_field,
+			"source": "src/wild_encounter.c:StandardWildEncounter excludes fishing/hidden encounters",
+			"source_trace": SOURCE_TRACE.duplicate(),
+		}
 
 	if bool(options.get("metatile_changed", false)):
 		var metatile_roll := _option_roll(options, "new_metatile_roll", 100)
@@ -285,7 +438,10 @@ func try_standard_encounter(map_symbol: String, area = "land", options: Dictiona
 			}
 
 	var table := _dict_field(table_result, "table")
-	var rate_check := check_encounter_rate(int(table.get("encounter_rate", 0)), options)
+	var rate_options := options.duplicate(true)
+	if table_field == "rock_smash_mons" and not rate_options.has("ignore_ability") and not rate_options.has("ignoreAbility"):
+		rate_options["ignore_ability"] = true
+	var rate_check := check_encounter_rate(int(table.get("encounter_rate", 0)), rate_options)
 	if not bool(rate_check.get("encounter", false)):
 		return {
 			"status": "no_encounter",
@@ -511,6 +667,139 @@ func _field_definition(table_field: String) -> Dictionary:
 	return _dict_field(_dict_field(wild_data, "field_definitions"), table_field)
 
 
+func _bike_state(options: Dictionary) -> Dictionary:
+	if options.has("bike_active"):
+		return {
+			"active": bool(options.get("bike_active", false)),
+			"source": "options.bike_active",
+			"source_trace": ["src/wild_encounter.c:WildEncounterCheck", "include/global.fieldmap.h:PLAYER_AVATAR_FLAG_BIKE"],
+		}
+	if options.has("avatar_flags"):
+		return {
+			"active": _avatar_flags_include_bike(options.get("avatar_flags")),
+			"source": "options.avatar_flags",
+			"source_trace": ["src/wild_encounter.c:WildEncounterCheck", "include/global.fieldmap.h:PLAYER_AVATAR_FLAG_BIKE"],
+		}
+	return {
+		"active": false,
+		"source": "default_inactive",
+		"source_trace": ["src/wild_encounter.c:WildEncounterCheck"],
+	}
+
+
+func _flute_state(options: Dictionary) -> Dictionary:
+	var white_active := false
+	var black_active := false
+	var source := "default_inactive"
+	if options.has("flute"):
+		var flute := _normalize_item_symbol(options.get("flute"))
+		white_active = flute == "ITEM_WHITE_FLUTE" or flute == "WHITE_FLUTE"
+		black_active = flute == "ITEM_BLACK_FLUTE" or flute == "BLACK_FLUTE"
+		source = "options.flute"
+	if options.has("white_flute_active"):
+		white_active = bool(options.get("white_flute_active", false))
+		source = "options.white_flute_active"
+	if options.has("black_flute_active"):
+		black_active = bool(options.get("black_flute_active", false))
+		source = "options.black_flute_active"
+	if source == "default_inactive":
+		var game_state := _get_game_state(options.get("game_state", null))
+		if game_state != null and game_state.has_method("is_flag_set"):
+			white_active = bool(game_state.is_flag_set("FLAG_SYS_ENC_UP_ITEM"))
+			black_active = bool(game_state.is_flag_set("FLAG_SYS_ENC_DOWN_ITEM"))
+			source = "GameState.FLAG_SYS_ENC_UP_ITEM/FLAG_SYS_ENC_DOWN_ITEM"
+	if white_active:
+		black_active = false
+	return {
+		"active": white_active or black_active,
+		"white_flute_active": white_active,
+		"black_flute_active": black_active,
+		"source": source,
+		"source_trace": [
+			"src/item_use.c:ItemUseOutOfBattle_BlackWhiteFlute",
+			"src/wild_encounter.c:ApplyFluteEncounterRateMod",
+			"include/constants/flags.h:FLAG_SYS_ENC_UP_ITEM/FLAG_SYS_ENC_DOWN_ITEM",
+		],
+	}
+
+
+func _cleanse_tag_state(options: Dictionary) -> Dictionary:
+	if options.has("cleanse_tag_active"):
+		return {
+			"active": bool(options.get("cleanse_tag_active", false)),
+			"held_item": "ITEM_CLEANSE_TAG" if bool(options.get("cleanse_tag_active", false)) else "ITEM_NONE",
+			"source": "options.cleanse_tag_active",
+			"source_trace": ["src/wild_encounter.c:ApplyCleanseTagEncounterRateMod"],
+		}
+
+	var held_item := ""
+	var source := "default_no_party"
+	if options.has("lead_held_item"):
+		held_item = _normalize_item_symbol(options.get("lead_held_item"))
+		source = "options.lead_held_item"
+	elif options.has("held_item"):
+		held_item = _normalize_item_symbol(options.get("held_item"))
+		source = "options.held_item"
+	else:
+		var lead := _first_party_mon(options)
+		held_item = _held_item_symbol(lead.get("mon", {}))
+		source = String(lead.get("source", "default_no_party"))
+	return {
+		"active": held_item == "ITEM_CLEANSE_TAG",
+		"held_item": held_item,
+		"source": source,
+		"source_trace": [
+			"src/wild_encounter.c:ApplyCleanseTagEncounterRateMod",
+			"include/constants/items.h:ITEM_CLEANSE_TAG",
+		],
+	}
+
+
+func _lead_ability_state(options: Dictionary) -> Dictionary:
+	var ignored := bool(options.get("ignore_ability", options.get("ignoreAbility", false)))
+	if ignored:
+		return {
+			"applies": false,
+			"ignored": true,
+			"ability": "ABILITY_NONE",
+			"source": "options.ignore_ability",
+			"source_trace": ["src/wild_encounter.c:WildEncounterCheck ignoreAbility parameter"],
+		}
+
+	var ability := ""
+	var is_egg := false
+	var source := "default_no_party"
+	if options.has("lead_ability"):
+		ability = _normalize_ability_symbol(options.get("lead_ability"))
+		is_egg = bool(options.get("lead_is_egg", false))
+		source = "options.lead_ability"
+	elif options.has("ability"):
+		ability = _normalize_ability_symbol(options.get("ability"))
+		is_egg = bool(options.get("lead_is_egg", false))
+		source = "options.ability"
+	else:
+		var lead := _first_party_mon(options)
+		var mon: Dictionary = lead.get("mon", {})
+		ability = _ability_symbol(mon)
+		is_egg = bool(mon.get("is_egg", false))
+		source = String(lead.get("source", "default_no_party"))
+
+	var can_apply := not is_egg and not ability.is_empty() and ability != "ABILITY_NONE"
+	return {
+		"applies": can_apply,
+		"ignored": false,
+		"ability": ability if not ability.is_empty() else "ABILITY_NONE",
+		"is_egg": is_egg,
+		"ow_infiltrator_gen8": bool(options.get("ow_infiltrator_gen8", true)),
+		"source": source,
+		"source_trace": [
+			"src/wild_encounter.c:WildEncounterCheck lead ability branch",
+			"include/constants/abilities.h",
+			"include/config/overworld.h:OW_INFILTRATOR",
+		],
+	}
+
+
 func _repel_lure_state(options: Dictionary) -> Dictionary:
 	var raw_value := 0
 	var source := "default_inactive"
@@ -680,6 +969,134 @@ func _party_species_is_none(mon: Dictionary) -> bool:
 	return String(species) == "SPECIES_NONE" or String(species).is_empty()
 
 
+func _first_party_mon(options: Dictionary) -> Dictionary:
+	if options.has("lead_mon"):
+		var lead_mon = options.get("lead_mon", {})
+		return {
+			"mon": lead_mon if typeof(lead_mon) == TYPE_DICTIONARY else {},
+			"source": "options.lead_mon",
+		}
+	var party: Array = []
+	var source := "default_no_party"
+	if options.has("player_party"):
+		var option_party = options.get("player_party", [])
+		party = option_party if typeof(option_party) == TYPE_ARRAY else []
+		source = "options.player_party"
+	else:
+		var game_state := _get_game_state(options.get("game_state", null))
+		if game_state != null and game_state.has_method("get_player_party"):
+			party = game_state.get_player_party()
+			source = "GameState.player_party"
+	if party.is_empty() or typeof(party[0]) != TYPE_DICTIONARY:
+		return {"mon": {}, "source": source}
+	return {"mon": party[0], "source": source}
+
+
+func _held_item_symbol(mon: Dictionary) -> String:
+	var held_item = mon.get("held_item", mon.get("item", "ITEM_NONE"))
+	return _normalize_item_symbol(held_item)
+
+
+func _ability_symbol(mon: Dictionary) -> String:
+	var ability = mon.get("ability", mon.get("ability_symbol", "ABILITY_NONE"))
+	return _normalize_ability_symbol(ability)
+
+
+func _rate_modifier(
+	code: String,
+	operation: String,
+	before: int,
+	after: int,
+	source: String,
+	extra: Dictionary
+) -> Dictionary:
+	var result := {
+		"code": code,
+		"operation": operation,
+		"before": before,
+		"after": after,
+		"source": source,
+	}
+	for key in extra.keys():
+		result[key] = extra[key]
+	return result
+
+
+func _div_floor(value: int, denominator: int) -> int:
+	if denominator <= 0:
+		return value
+	return int(floor(float(value) / float(denominator)))
+
+
+func _mul_div_floor(value: int, numerator: int, denominator: int) -> int:
+	if denominator <= 0:
+		return value
+	return int(floor(float(value) * float(numerator) / float(denominator)))
+
+
+func _avatar_flags_include_bike(value) -> bool:
+	if typeof(value) == TYPE_INT or typeof(value) == TYPE_FLOAT:
+		var flags := int(value)
+		return (flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE)) != 0
+	if typeof(value) == TYPE_ARRAY:
+		for entry in value:
+			if _avatar_flag_entry_is_bike(entry):
+				return true
+		return false
+	if typeof(value) == TYPE_DICTIONARY:
+		for key in value.keys():
+			if bool(value.get(key, false)) and _avatar_flag_entry_is_bike(key):
+				return true
+		return false
+	return _avatar_flag_entry_is_bike(value)
+
+
+func _avatar_flag_entry_is_bike(value) -> bool:
+	var normalized := String(value).strip_edges().to_upper()
+	return normalized in [
+		"PLAYER_AVATAR_FLAG_MACH_BIKE",
+		"PLAYER_AVATAR_FLAG_ACRO_BIKE",
+		"PLAYER_AVATAR_FLAG_BIKE",
+		"MACH_BIKE",
+		"ACRO_BIKE",
+		"BIKE",
+	]
+
+
+func _is_battle_pyramid_layout(options: Dictionary) -> bool:
+	if bool(options.get("battle_pyramid_layout", false)):
+		return true
+	var layout = options.get("map_layout_id", options.get("layout_id", options.get("map_layout", "")))
+	if typeof(layout) == TYPE_DICTIONARY:
+		layout = layout.get("symbol", layout.get("id", ""))
+	return String(layout).strip_edges().to_upper() == BATTLE_PYRAMID_LAYOUT
+
+
+func _weather_matches(options: Dictionary, expected_weather: String) -> bool:
+	return _normalize_weather_symbol(options.get("weather", "")) == expected_weather
+
+
+func _normalize_weather_symbol(value) -> String:
+	if typeof(value) == TYPE_DICTIONARY:
+		if value.has("symbol"):
+			return _normalize_weather_symbol(value.get("symbol", ""))
+		if value.has("value"):
+			return _normalize_weather_symbol(value.get("value", ""))
+	if typeof(value) == TYPE_INT or typeof(value) == TYPE_FLOAT:
+		var weather_value := int(value)
+		if weather_value == WEATHER_SANDSTORM_VALUE:
+			return "WEATHER_SANDSTORM"
+		if weather_value == WEATHER_SNOW_VALUE:
+			return "WEATHER_SNOW"
+		return "WEATHER_%d" % [weather_value]
+	var text := String(value).strip_edges().to_upper()
+	if text.is_empty():
+		return ""
+	if text.begins_with("WEATHER_"):
+		return text
+	return "WEATHER_%s" % [text]
+
+
 func _altering_cave_index(options: Dictionary, record_count: int) -> int:
 	var index := int(options.get("altering_cave_set", -1))
 	if index < 0:
@@ -703,7 +1120,7 @@ func _first_pass_unsupported(table_field: String) -> Array:
 	}, {
 		"code": "wild_encounter_modifiers_partially_applied",
 		"source": "src/wild_encounter.c:TryGenerateWildMon",
-		"detail": "Repel/Lure first-pass rate, slot, level, and Repel level filtering are applied. Lead abilities, roamer, mass outbreaks, double wild battles, Safari Pokeblocks, Synchronize, gender forcing, random IV/personality, and battle transition selection remain future traced work.",
+		"detail": "First-pass encounter-rate modifiers, Repel/Lure rate/slot/level behavior, and Repel level filtering are applied. Ability-influenced species slots, roamer, mass outbreaks, double wild battles, Safari Pokeblocks, Synchronize, gender forcing, random IV/personality, and battle transition selection remain future traced work.",
 	}]
 	if table_field == "fishing_mons":
 		unsupported.append({
@@ -775,6 +1192,35 @@ func _array_field(record, field_name: String) -> Array:
 
 func _species_symbol(slot: Dictionary) -> String:
 	return String(_dict_field(slot, "species").get("symbol", ""))
+
+
+func _constant_symbol(value) -> String:
+	if typeof(value) == TYPE_DICTIONARY:
+		if value.has("symbol"):
+			return String(value.get("symbol", ""))
+		if value.has("id"):
+			return String(value.get("id", ""))
+	if value == null:
+		return ""
+	return String(value)
+
+
+func _normalize_item_symbol(value) -> String:
+	var item_symbol := _constant_symbol(value).strip_edges().to_upper()
+	if item_symbol.is_empty():
+		return "ITEM_NONE"
+	if item_symbol.begins_with("ITEM_"):
+		return item_symbol
+	return "ITEM_%s" % [item_symbol]
+
+
+func _normalize_ability_symbol(value) -> String:
+	var ability_symbol := _constant_symbol(value).strip_edges().to_upper()
+	if ability_symbol.is_empty():
+		return "ABILITY_NONE"
+	if ability_symbol.begins_with("ABILITY_"):
+		return ability_symbol
+	return "ABILITY_%s" % [ability_symbol]
 
 
 func _max_level_for_species(slots: Array, species_symbol: String) -> int:

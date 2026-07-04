@@ -99,6 +99,100 @@ func _init() -> void:
 	_assert(String(route119_standard_hit.get("species", "")) == "SPECIES_TENTACOOL", "expected Route119 water Tentacool")
 	_assert(bool(_dict_field(route119_standard_hit, "encounter_check").get("encounter", false)), "expected encounter hit metadata")
 
+	var fishing_standard := engine.try_standard_encounter("MAP_ROUTE119", "fishing", {
+		"encounter_roll": 0,
+	})
+	_assert(String(fishing_standard.get("status", "")) == "no_encounter", "expected fishing to bypass standard encounter rate path")
+	_assert(String(fishing_standard.get("reason", "")) == "non_standard_area", "expected fishing non-standard reason")
+
+	var route111_rocks_ignore_ability := engine.try_standard_encounter("MAP_ROUTE111", "rock_smash", {
+		"lead_ability": "ABILITY_ILLUMINATE",
+		"encounter_roll": 320,
+		"slot_roll": 0,
+		"level_roll": 0,
+	})
+	_assert(String(route111_rocks_ignore_ability.get("status", "")) == "no_encounter", "expected Rock Smash to ignore lead encounter-rate ability")
+	_assert(String(route111_rocks_ignore_ability.get("reason", "")) == "encounter_rate_miss", "expected Rock Smash miss at unmodified rate")
+	_assert(int(_dict_field(route111_rocks_ignore_ability, "encounter_check").get("adjusted_rate", 0)) == 320, "expected Rock Smash base rate 320")
+	_assert(not _modifier_codes(_dict_field(route111_rocks_ignore_ability, "encounter_check")).has("lead_ability_encounter_rate"), "expected no lead ability rate modifier for Rock Smash")
+
+	var bike_rate := engine.check_encounter_rate(4, {
+		"bike_active": true,
+		"encounter_roll": 51,
+	})
+	_assert(not bool(bike_rate.get("encounter", true)), "expected bike-reduced rate to miss at roll 51")
+	_assert(int(bike_rate.get("adjusted_rate", 0)) == 51, "expected bike 80 percent integer rate 51")
+	_assert(_modifier_codes(bike_rate).has("bike_encounter_rate"), "expected bike modifier metadata")
+
+	game_state.set_flag("FLAG_SYS_ENC_UP_ITEM", true)
+	game_state.clear_flag("FLAG_SYS_ENC_DOWN_ITEM")
+	var white_flute_rate := engine.check_encounter_rate(4, {
+		"encounter_roll": 95,
+	})
+	_assert(bool(white_flute_rate.get("encounter", false)), "expected white flute to increase encounter rate")
+	_assert(int(white_flute_rate.get("adjusted_rate", 0)) == 96, "expected white flute adjusted rate 96")
+	_assert(_modifier_codes(white_flute_rate).has("white_flute_encounter_rate"), "expected white flute modifier metadata")
+
+	game_state.clear_flag("FLAG_SYS_ENC_UP_ITEM")
+	game_state.set_flag("FLAG_SYS_ENC_DOWN_ITEM", true)
+	var black_flute_rate := engine.check_encounter_rate(4, {
+		"encounter_roll": 32,
+	})
+	_assert(not bool(black_flute_rate.get("encounter", true)), "expected black flute to miss at roll 32")
+	_assert(int(black_flute_rate.get("adjusted_rate", 0)) == 32, "expected black flute adjusted rate 32")
+	_assert(_modifier_codes(black_flute_rate).has("black_flute_encounter_rate"), "expected black flute modifier metadata")
+	game_state.clear_flag("FLAG_SYS_ENC_DOWN_ITEM")
+
+	var cleanse_rate := engine.check_encounter_rate(4, {
+		"player_party": [{"species": "SPECIES_TORCHIC", "level": 5, "held_item": "ITEM_CLEANSE_TAG", "is_egg": true}],
+		"encounter_roll": 42,
+	})
+	_assert(not bool(cleanse_rate.get("encounter", true)), "expected Cleanse Tag to miss at roll 42")
+	_assert(int(cleanse_rate.get("adjusted_rate", 0)) == 42, "expected Cleanse Tag adjusted rate 42")
+	_assert(_modifier_codes(cleanse_rate).has("cleanse_tag_encounter_rate"), "expected Cleanse Tag modifier metadata")
+
+	var illuminate_rate := engine.check_encounter_rate(4, {
+		"lead_ability": "ABILITY_ILLUMINATE",
+		"encounter_roll": 127,
+	})
+	_assert(bool(illuminate_rate.get("encounter", false)), "expected Illuminate to double encounter rate")
+	_assert(int(illuminate_rate.get("adjusted_rate", 0)) == 128, "expected Illuminate adjusted rate 128")
+	_assert(_modifier_codes(illuminate_rate).has("lead_ability_encounter_rate"), "expected lead ability modifier metadata")
+
+	var ignored_ability_rate := engine.check_encounter_rate(4, {
+		"lead_ability": "ABILITY_ILLUMINATE",
+		"ignore_ability": true,
+		"encounter_roll": 64,
+	})
+	_assert(not bool(ignored_ability_rate.get("encounter", true)), "expected ignored ability to preserve base miss")
+	_assert(int(ignored_ability_rate.get("adjusted_rate", 0)) == 64, "expected ignored ability adjusted rate 64")
+	_assert(not _modifier_codes(ignored_ability_rate).has("lead_ability_encounter_rate"), "expected no ability modifier when ignored")
+
+	var sand_veil_rate := engine.check_encounter_rate(4, {
+		"lead_ability": "ABILITY_SAND_VEIL",
+		"weather": "WEATHER_SANDSTORM",
+		"encounter_roll": 32,
+	})
+	_assert(not bool(sand_veil_rate.get("encounter", true)), "expected Sand Veil sandstorm to miss at roll 32")
+	_assert(int(sand_veil_rate.get("adjusted_rate", 0)) == 32, "expected Sand Veil adjusted rate 32")
+
+	var pyramid_stench_rate := engine.check_encounter_rate(4, {
+		"lead_ability": "ABILITY_STENCH",
+		"map_layout_id": "LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR",
+		"encounter_roll": 48,
+	})
+	_assert(not bool(pyramid_stench_rate.get("encounter", true)), "expected Battle Pyramid Stench to miss at roll 48")
+	_assert(int(pyramid_stench_rate.get("adjusted_rate", 0)) == 48, "expected Battle Pyramid Stench 3/4 rate")
+
+	var capped_rate := engine.check_encounter_rate(180, {
+		"lead_ability": "ABILITY_NO_GUARD",
+		"repel_lure_var": 32768 + 5,
+		"encounter_roll": 2879,
+	})
+	_assert(bool(capped_rate.get("encounter", false)), "expected capped rate to hit max roll")
+	_assert(int(capped_rate.get("adjusted_rate", 0)) == 2880, "expected source max encounter rate cap")
+	_assert(_modifier_codes(capped_rate).has("max_encounter_rate_cap"), "expected cap metadata")
+
 	var lure_rate := engine.check_encounter_rate(4, {
 		"repel_lure_var": 32768 + 5,
 		"encounter_roll": 100,
@@ -199,3 +293,11 @@ func _dict_field(record, field_name: String) -> Dictionary:
 func _array_field(record: Dictionary, field_name: String) -> Array:
 	var value = record.get(field_name, [])
 	return value if typeof(value) == TYPE_ARRAY else []
+
+
+func _modifier_codes(record: Dictionary) -> Array:
+	var codes := []
+	for modifier in _array_field(record, "modifiers"):
+		if typeof(modifier) == TYPE_DICTIONARY:
+			codes.append(String(modifier.get("code", "")))
+	return codes
