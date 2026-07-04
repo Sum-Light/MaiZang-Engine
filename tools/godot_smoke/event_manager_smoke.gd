@@ -119,6 +119,7 @@ func _init() -> void:
 	var truck_exit_task := _exit_task(truck_transition_sequence)
 	var truck_exit_step := _first_step(truck_transition_sequence, "exit_task_select")
 	var truck_conditional_step := _first_step(truck_transition_sequence, "conditional_exit_door_player_step")
+	var player_position_after_step_off: Vector2i = game_state.player_grid_position
 	var house_script_result := manager.run_script("LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor")
 	var old_map_script_result := manager.run_script("LittlerootTown_EventScript_Twin")
 	var brendan_map_data: Dictionary = registry.get_map_data(BRENDANS_HOUSE_1F)
@@ -130,8 +131,14 @@ func _init() -> void:
 		"trigger": "smoke_on_frame_intro",
 		"map": game_state.current_map_id,
 	})
+	var brendan_on_frame_intro_script = brendan_on_frame_intro.get("script", {})
+	var brendan_on_frame_intro_runtime = brendan_on_frame_intro.get("runtime", {})
+	var brendan_on_frame_intro_movements = brendan_on_frame_intro_runtime.get("movements", {}) if typeof(brendan_on_frame_intro_runtime) == TYPE_DICTIONARY else {}
+	var player_position_after_brendan_intro: Vector2i = game_state.player_grid_position
+	var brendan_mom_by_numeric_local_id := runtime.get_object_event_by_local_id("1", true)
 	var brendan_intro_mom_local_id := game_state.get_var("VAR_0x8004", -1)
 	var brendan_intro_gender_value := game_state.get_var("VAR_0x8005", -1)
+	var brendan_intro_state_value := game_state.get_var("VAR_LITTLEROOT_INTRO_STATE", -1)
 
 	_assert(twin_preview.get("status", "") == "ok", "expected Twin script preview")
 	_assert(twin_preview.get("vm_status", "") == "ok", "expected Twin VM status")
@@ -187,7 +194,7 @@ func _init() -> void:
 		"expected object effect summary in emitted lines"
 	)
 	_assert(game_state.current_map_id == BRENDANS_HOUSE_1F, "expected step-off-truck transition to Brendan house")
-	_assert(game_state.player_grid_position == Vector2i(8, 8), "expected step-off-truck destination position")
+	_assert(player_position_after_step_off == Vector2i(8, 8), "expected step-off-truck destination position")
 	_assert(runtime.get_map_size() == Vector2i(11, 9), "expected runtime to load Brendan house size")
 	_assert(
 		typeof(brendan_object_events) == TYPE_ARRAY and runtime.get_object_events(true).size() == brendan_object_events.size(),
@@ -223,12 +230,31 @@ func _init() -> void:
 		"unexpected Brendan OnFrame intro script"
 	)
 	_assert(
-		brendan_on_frame_intro.get("status", "") == "missing_branch_target",
-		"expected Brendan intro to stop at missing shared PlayersHouse script"
+		brendan_on_frame_intro.get("status", "") == "ok",
+		"expected Brendan intro to run through shared PlayersHouse script"
+	)
+	_assert(
+		typeof(brendan_on_frame_intro_script) == TYPE_DICTIONARY and int(brendan_on_frame_intro_script.get("message_count", 0)) == 2,
+		"expected Brendan intro to emit two source messages"
+	)
+	_assert(
+		typeof(brendan_on_frame_intro_script) == TYPE_DICTIONARY and int(brendan_on_frame_intro_script.get("movement_count", 0)) == 4,
+		"expected Brendan intro to emit four source movements"
+	)
+	_assert(
+		_movement_summary_count(brendan_on_frame_intro_movements, "applied") == 4,
+		"expected Brendan intro runtime to apply four movement effects"
+	)
+	_assert(
+		_movement_summary_count(brendan_on_frame_intro_movements, "skipped") == 0,
+		"expected Brendan intro runtime to skip no movement effects"
 	)
 	_assert(int(brendan_on_frame_intro.get("entry_count", 0)) == 1, "expected first OnFrame entry to match")
+	_assert(player_position_after_brendan_intro == Vector2i(8, 7), "expected Brendan intro player walk-in movement")
+	_assert(not brendan_mom_by_numeric_local_id.is_empty(), "expected numeric source local-id lookup for Brendan Mom")
 	_assert(brendan_intro_mom_local_id == 1, "expected local-id constant to resolve to Mom object id")
 	_assert(brendan_intro_gender_value == 0, "expected Brendan intro gender var to be MALE")
+	_assert(brendan_intro_state_value == 4, "expected Brendan intro state to advance")
 	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 5)
 	var brendan_on_frame_clock := manager.try_run_on_frame_map_script({
 		"trigger": "smoke_on_frame_clock",
@@ -280,7 +306,7 @@ func _init() -> void:
 	)
 	_assert(not bool(truck_conditional_step.get("condition_result", true)), "expected no truck exit-door player step")
 	_assert(house_script_result.get("status", "") == "ok", "expected transitioned script data to run Brendan house script")
-	_assert(old_map_script_result.get("status", "") == "missing_script", "expected old map script to be unavailable after transition")
+	_assert(old_map_script_result.get("status", "") == "ok", "expected generated script labels to remain globally available")
 
 	captured.clear()
 	captured_sequences.clear()
@@ -336,6 +362,19 @@ func _init() -> void:
 	var may_mom_after_door_warp := runtime.get_object_event_by_local_id("LOCALID_PLAYERS_HOUSE_1F_MOM", true)
 	var may_mom_position_after_door_warp := _event_position(may_mom_after_door_warp)
 	var may_mom_movement_after_door_warp := String(may_mom_after_door_warp.get("movement_type", ""))
+	var player_position_after_may_warp: Vector2i = game_state.player_grid_position
+	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 3)
+	var may_on_frame_intro := manager.try_run_on_frame_map_script({
+		"trigger": "smoke_on_frame_intro",
+		"map": game_state.current_map_id,
+	})
+	var may_on_frame_intro_script = may_on_frame_intro.get("script", {})
+	var may_on_frame_intro_runtime = may_on_frame_intro.get("runtime", {})
+	var may_on_frame_intro_movements = may_on_frame_intro_runtime.get("movements", {}) if typeof(may_on_frame_intro_runtime) == TYPE_DICTIONARY else {}
+	var player_position_after_may_intro: Vector2i = game_state.player_grid_position
+	var may_intro_mom_local_id := game_state.get_var("VAR_0x8004", -1)
+	var may_intro_gender_value := game_state.get_var("VAR_0x8005", -1)
+	var may_intro_state_value := game_state.get_var("VAR_LITTLEROOT_INTRO_STATE", -1)
 	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 5)
 	var may_on_frame_clock := manager.try_run_on_frame_map_script({
 		"trigger": "smoke_on_frame_clock",
@@ -360,6 +399,33 @@ func _init() -> void:
 		may_mom_movement_after_door_warp == "MOVEMENT_TYPE_FACE_UP",
 		"expected May OnTransition to face Mom upward"
 	)
+	_assert(player_position_after_may_warp == Vector2i(2, 8), "expected May house door warp destination position")
+	_assert(bool(may_on_frame_intro.get("matched", false)), "expected May OnFrame intro table match")
+	_assert(
+		may_on_frame_intro.get("selected_script", "") == "LittlerootTown_MaysHouse_1F_EventScript_EnterHouseMovingIn",
+		"unexpected May OnFrame intro script"
+	)
+	_assert(may_on_frame_intro.get("status", "") == "ok", "expected May intro OnFrame script to run")
+	_assert(
+		typeof(may_on_frame_intro_script) == TYPE_DICTIONARY and int(may_on_frame_intro_script.get("message_count", 0)) == 2,
+		"expected May intro OnFrame script to emit two messages"
+	)
+	_assert(
+		typeof(may_on_frame_intro_script) == TYPE_DICTIONARY and int(may_on_frame_intro_script.get("movement_count", 0)) == 4,
+		"expected May intro OnFrame script to move player and Mom"
+	)
+	_assert(
+		_movement_summary_count(may_on_frame_intro_movements, "applied") == 4,
+		"expected May intro runtime to apply four movement effects"
+	)
+	_assert(
+		_movement_summary_count(may_on_frame_intro_movements, "skipped") == 0,
+		"expected May intro runtime to skip no movement effects"
+	)
+	_assert(player_position_after_may_intro == Vector2i(2, 7), "expected May intro player walk-in movement")
+	_assert(may_intro_mom_local_id == 1, "expected May local-id constant to resolve to Mom object id")
+	_assert(may_intro_gender_value == 1, "expected May intro gender var to be FEMALE")
+	_assert(may_intro_state_value == 4, "expected May intro state to advance")
 	_assert(bool(may_on_frame_clock.get("matched", false)), "expected May OnFrame clock table match")
 	_assert(
 		may_on_frame_clock.get("selected_script", "") == "LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock",
@@ -524,3 +590,8 @@ func _event_position(object_event: Dictionary) -> Vector2i:
 
 func _vector_to_array(value: Vector2i) -> Array:
 	return [value.x, value.y]
+
+
+func _movement_summary_count(summary: Dictionary, key: String) -> int:
+	var items = summary.get(key, [])
+	return items.size() if typeof(items) == TYPE_ARRAY else 0

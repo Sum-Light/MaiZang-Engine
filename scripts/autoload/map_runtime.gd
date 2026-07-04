@@ -552,6 +552,7 @@ func _index_object_events() -> void:
 			int(object_event.get("y", 0))
 		)
 		object_event["index"] = index
+		object_event["source_local_id"] = index + 1
 		object_event["position"] = cell
 		object_event["template_position"] = cell
 		object_event["template_x"] = cell.x
@@ -1017,9 +1018,12 @@ func _rebuild_object_event_position_index() -> void:
 
 func _index_object_event_by_local_id(object_event: Dictionary) -> void:
 	var local_id := String(object_event.get("local_id", ""))
-	if local_id.is_empty():
-		return
-	_object_events_by_local_id[local_id] = object_event
+	if not local_id.is_empty():
+		_object_events_by_local_id[local_id] = object_event
+
+	var source_local_id := int(object_event.get("source_local_id", 0))
+	if source_local_id > 0:
+		_object_events_by_local_id[str(source_local_id)] = object_event
 
 
 func _record_applied_movement(

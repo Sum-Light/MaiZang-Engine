@@ -49,6 +49,10 @@ func _init() -> void:
 	_assert(blocked_cell != Vector2i(-1, -1), "expected at least one blocked source cell")
 	_assert(not runtime.can_enter_cell(blocked_cell), "expected source collision cell to be blocked")
 	_assert(runtime.get_object_events().size() == 8, "expected LittlerootTown object events")
+	_assert(
+		String(runtime.get_object_event_by_local_id("1", true).get("local_id", "")) == "LOCALID_LITTLEROOT_TWIN",
+		"expected numeric source local-id alias for first object event"
+	)
 	_assert(runtime.get_coord_events().size() == 9, "expected LittlerootTown coord events")
 	_assert(runtime.get_collision_at(object_cell) == 0, "expected object test cell to be collision-passable")
 	_assert(runtime.is_cell_occupied(object_cell), "expected object test cell to be occupied")

@@ -537,12 +537,14 @@ func _execute_applymovement(
 		_record_unsupported(state, "applymovement", line, raw)
 		return
 
-	var target := String(args[0])
+	var raw_target := String(args[0])
+	var target := _resolve_movement_target(raw_target)
 	var movement_label := String(args[1])
 	var movement_record := _get_movement_record(movement_label)
 	if movement_record.is_empty():
 		var missing_movement := {
 			"target": target,
+			"raw_target": raw_target,
 			"movement_label": movement_label,
 			"line": line,
 			"status": "missing_movement",
@@ -561,6 +563,7 @@ func _execute_applymovement(
 		return
 
 	var movement := _build_movement_effect(target, movement_label, movement_record, line)
+	movement["raw_target"] = raw_target
 	if has_explicit_map and args.size() >= 4:
 		movement["map_group"] = String(args[2])
 		movement["map_num"] = String(args[3])
@@ -569,6 +572,7 @@ func _execute_applymovement(
 	state["last_movement_target"] = target
 	_record_effect(state, "applymovement", line, {
 		"target": target,
+		"raw_target": raw_target,
 		"movement_label": movement_label,
 		"status": String(movement.get("status", "")),
 		"step_count": int(movement.get("step_count", 0)),
@@ -587,17 +591,19 @@ func _execute_waitmovement(
 	line: int,
 	has_explicit_map: bool = false
 ) -> void:
-	var target := "0"
+	var raw_target := "0"
 	if args.size() >= 1:
-		target = String(args[0])
+		raw_target = String(args[0])
+	var target := _resolve_movement_target(raw_target)
 
 	var resolved_target := String(state["last_movement_target"])
-	if target != "0" and target != "LOCALID_NONE":
+	if target != "0":
 		resolved_target = target
 		state["last_movement_target"] = target
 
 	var detail := {
 		"target": target,
+		"raw_target": raw_target,
 		"resolved_target": resolved_target,
 	}
 	if has_explicit_map and args.size() >= 3:
@@ -1268,6 +1274,20 @@ func _read_value(token: String) -> int:
 	return int(value)
 
 
+func _resolve_movement_target(token: String) -> String:
+	var value := token.strip_edges()
+	if value == LOCALID_PLAYER:
+		return LOCALID_PLAYER
+	if value == LOCALID_NONE:
+		return "0"
+	if value.begins_with("VAR_") or value.begins_with("LOCALID_") or value.is_valid_int():
+		var resolved_value := _read_value(value)
+		if resolved_value == LOCALID_PLAYER_VALUE:
+			return LOCALID_PLAYER
+		return str(resolved_value)
+	return value
+
+
 func _is_known_constant(value: String) -> bool:
 	return value in [
 		PLAYER_GENDER_MALE,
@@ -1740,10 +1760,17 @@ func _empty_result(script_label: String, status: String, finished: bool) -> Dict
 
 func _get_script_record(script_label: String) -> Dictionary:
 	var scripts = _script_data.get("scripts", {})
-	if typeof(scripts) != TYPE_DICTIONARY:
-		return {}
-	var record = scripts.get(script_label, {})
-	return record if typeof(record) == TYPE_DICTIONARY else {}
+	if typeof(scripts) == TYPE_DICTIONARY:
+		var record = scripts.get(script_label, {})
+		if typeof(record) == TYPE_DICTIONARY and not record.is_empty():
+			return record
+
+	var registry := _get_data_registry()
+	if registry != null and registry.has_method("get_script_record"):
+		var global_record = registry.get_script_record(script_label)
+		if typeof(global_record) == TYPE_DICTIONARY:
+			return global_record
+	return {}
 
 
 func _get_text_record(text_label: String) -> Dictionary:
@@ -1754,6 +1781,10 @@ func _get_text_record(text_label: String) -> Dictionary:
 			return record
 
 	var registry := _get_data_registry()
+	if registry != null and registry.has_method("get_script_text_record"):
+		var script_record = registry.get_script_text_record(text_label)
+		if typeof(script_record) == TYPE_DICTIONARY and not script_record.is_empty():
+			return script_record
 	if registry != null and registry.has_method("get_text_record"):
 		var global_record = registry.get_text_record(text_label, "global")
 		if typeof(global_record) == TYPE_DICTIONARY:
@@ -1763,10 +1794,17 @@ func _get_text_record(text_label: String) -> Dictionary:
 
 func _get_movement_record(movement_label: String) -> Dictionary:
 	var movements = _script_data.get("movements", {})
-	if typeof(movements) != TYPE_DICTIONARY:
-		return {}
-	var record = movements.get(movement_label, {})
-	return record if typeof(record) == TYPE_DICTIONARY else {}
+	if typeof(movements) == TYPE_DICTIONARY:
+		var record = movements.get(movement_label, {})
+		if typeof(record) == TYPE_DICTIONARY and not record.is_empty():
+			return record
+
+	var registry := _get_data_registry()
+	if registry != null and registry.has_method("get_movement_record"):
+		var global_record = registry.get_movement_record(movement_label)
+		if typeof(global_record) == TYPE_DICTIONARY:
+			return global_record
+	return {}
 
 
 func _get_game_state() -> Node:

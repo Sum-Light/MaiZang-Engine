@@ -154,7 +154,7 @@ def parse_string_literal(value):
     return "".join(chars)
 
 
-def read_script_file(path):
+def read_script_file(path, source_file=None):
     labels = {}
     order = []
     current_label = None
@@ -172,6 +172,7 @@ def read_script_file(path):
                 labels[current_label] = {
                     "label": current_label,
                     "line": line_number,
+                    "source_file": source_file if source_file is not None else str(path),
                     "instructions": [],
                 }
                 order.append(current_label)
@@ -180,6 +181,8 @@ def read_script_file(path):
         instruction = parse_instruction(code, line_number)
         if instruction is None:
             continue
+        if source_file is not None:
+            instruction["source_file"] = source_file
         if current_label is None:
             orphan_instructions.append(instruction)
             continue
@@ -237,14 +240,25 @@ def branch_targets(instructions):
     return targets
 
 
-def build_export(root, map_folder):
-    script_path = root / "data/maps" / map_folder / "scripts.inc"
-    if not script_path.exists():
-        raise FileNotFoundError(script_path)
+def build_export_from_files(root, script_paths, source):
     charmap_path = root / "charmap.txt"
     charmap = load_charmap(charmap_path)
 
-    labels, order, orphan_instructions = read_script_file(script_path)
+    labels = {}
+    order = []
+    orphan_instructions = []
+    for script_path in script_paths:
+        if not script_path.exists():
+            raise FileNotFoundError(script_path)
+        source_file = to_project_path(script_path.relative_to(root))
+        file_labels, file_order, file_orphans = read_script_file(script_path, source_file)
+        for label in file_order:
+            if label in labels:
+                raise ValueError("Duplicate event script label: {}".format(label))
+            labels[label] = file_labels[label]
+            order.append(label)
+        orphan_instructions.extend(file_orphans)
+
     op_counts = Counter()
     unsupported_preview_ops = Counter()
     text_encoding_status_counts = Counter()
@@ -270,6 +284,7 @@ def build_export(root, map_folder):
         label_index[label] = {
             "kind": kind,
             "line": record["line"],
+            "source_file": record.get("source_file", ""),
             "instruction_count": len(instructions),
         }
 
@@ -287,6 +302,7 @@ def build_export(root, map_folder):
             texts[label] = {
                 "label": label,
                 "line": record["line"],
+                "source_file": record.get("source_file", ""),
                 "raw_text": raw_text,
                 "display_text": display_text_from_source(raw_text),
                 "encoding": encoding,
@@ -297,6 +313,7 @@ def build_export(root, map_folder):
             "label": label,
             "kind": kind,
             "line": record["line"],
+            "source_file": record.get("source_file", ""),
             "instructions": instructions,
             "msgboxes": first_msgboxes(instructions),
             "branch_targets": branch_targets(instructions),
@@ -306,16 +323,16 @@ def build_export(root, map_folder):
         else:
             scripts[label] = script_record
 
+    source_record = {
+        "project": "pokeemerald-expansion",
+        "charmap": to_project_path(charmap_path.relative_to(root)),
+        "encoding": "utf-8",
+        "text_encoding_trace": TEXT_ENCODING_TRACE,
+    }
+    source_record.update(source)
     return {
         "schema_version": 1,
-        "source": {
-            "project": "pokeemerald-expansion",
-            "map_folder": map_folder,
-            "map_script": to_project_path(script_path.relative_to(root)),
-            "charmap": to_project_path(charmap_path.relative_to(root)),
-            "encoding": "utf-8",
-            "text_encoding_trace": TEXT_ENCODING_TRACE,
-        },
+        "source": source_record,
         "labels": label_index,
         "scripts": scripts,
         "movements": movements,
@@ -340,6 +357,28 @@ def build_export(root, map_folder):
     }
 
 
+def build_export(root, map_folder):
+    script_path = root / "data/maps" / map_folder / "scripts.inc"
+    source = {
+        "map_folder": map_folder,
+        "map_script": to_project_path(script_path.relative_to(root)),
+    }
+    return build_export_from_files(root, [script_path], source)
+
+
+def build_shared_export(root, shared_name, include_scripts):
+    script_paths = [root / include_script for include_script in include_scripts]
+    source = {
+        "scope": "shared",
+        "name": shared_name,
+        "script_files": [
+            to_project_path(script_path.relative_to(root))
+            for script_path in script_paths
+        ],
+    }
+    return build_export_from_files(root, script_paths, source)
+
+
 def _is_preview_supported_op(op):
     return op in PREVIEW_SUPPORTED_OPS
 
@@ -349,6 +388,13 @@ def main(argv):
     parser.add_argument("--config", type=Path, help="JSON config with source and output roots.")
     parser.add_argument("--source", type=Path, help="pokeemerald-expansion source root.")
     parser.add_argument("--map", default=None, help="Map folder name to export.")
+    parser.add_argument("--shared-name", help="Shared script bundle name to export.")
+    parser.add_argument(
+        "--include-script",
+        action="append",
+        default=[],
+        help="Source-relative .inc file to include in a shared script bundle.",
+    )
     parser.add_argument("--output-root", type=Path, help="Generated data output root.")
     args = parser.parse_args(argv)
 
@@ -357,19 +403,36 @@ def main(argv):
     map_folder = args.map or config.get("first_slice_map", "LittlerootTown")
     output_root = args.output_root or Path(config.get("generated_data_root", "data/generated"))
 
-    exported = build_export(source_root, map_folder)
-    map_slug = camel_to_snake(map_folder)
-    script_output = output_root / "scripts" / "{}.json".format(map_slug)
+    if args.shared_name:
+        if not args.include_script:
+            parser.error("--shared-name requires at least one --include-script")
+        exported = build_shared_export(source_root, args.shared_name, [Path(path) for path in args.include_script])
+        script_slug = camel_to_snake(args.shared_name)
+        script_output = output_root / "scripts" / "{}.json".format(script_slug)
+        manifest_entry = {
+            "scope": "shared",
+            "name": args.shared_name,
+            "path": to_project_path(script_output),
+            "source_files": exported["source"]["script_files"],
+            "script_count": exported["stats"]["script_count"],
+            "movement_count": exported["stats"]["movement_count"],
+            "text_count": exported["stats"]["text_count"],
+            "charmap_warning_count": exported["stats"]["charmap_warning_count"],
+        }
+    else:
+        exported = build_export(source_root, map_folder)
+        script_slug = camel_to_snake(map_folder)
+        script_output = output_root / "scripts" / "{}.json".format(script_slug)
+        manifest_entry = {
+            "map": map_folder,
+            "path": to_project_path(script_output),
+            "script_count": exported["stats"]["script_count"],
+            "movement_count": exported["stats"]["movement_count"],
+            "text_count": exported["stats"]["text_count"],
+            "charmap_warning_count": exported["stats"]["charmap_warning_count"],
+        }
     write_json(script_output, exported)
 
-    manifest_entry = {
-        "map": map_folder,
-        "path": to_project_path(script_output),
-        "script_count": exported["stats"]["script_count"],
-        "movement_count": exported["stats"]["movement_count"],
-        "text_count": exported["stats"]["text_count"],
-        "charmap_warning_count": exported["stats"]["charmap_warning_count"],
-    }
     write_manifest(
         output_root / "import_manifest.json",
         exported_scripts=[manifest_entry],

@@ -5,11 +5,13 @@ const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
 const SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
 const BRENDANS_HOUSE_SCRIPT_PATH := "res://data/generated/scripts/littleroot_town_brendans_house_1_f.json"
+const MAYS_HOUSE_SCRIPT_PATH := "res://data/generated/scripts/littleroot_town_mays_house_1_f.json"
 
 
 func _init() -> void:
 	var script_data := _load_json_object(SCRIPT_PATH)
 	var brendans_house_script_data := _load_json_object(BRENDANS_HOUSE_SCRIPT_PATH)
+	var mays_house_script_data := _load_json_object(MAYS_HOUSE_SCRIPT_PATH)
 	var registry = DATA_REGISTRY_SCRIPT.new()
 	registry._ready()
 	var vm = SCRIPT_VM_SCRIPT.new()
@@ -45,6 +47,18 @@ func _init() -> void:
 	game_state.set_player_gender("MALE")
 	game_state.set_flag("FLAG_RECEIVED_RUNNING_SHOES", true)
 	var brendans_house_running_shoes_manual_result := vm.run_script("LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual")
+	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 3)
+	var brendans_house_enter_moving_in_result := vm.run_script("LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn")
+	var brendans_house_enter_moving_in_state := game_state.get_var("VAR_LITTLEROOT_INTRO_STATE", -1)
+	var brendans_house_enter_moving_in_mom := game_state.get_var("VAR_0x8004", -1)
+	var brendans_house_enter_moving_in_gender := game_state.get_var("VAR_0x8005", -1)
+	game_state.current_map_id = "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F"
+	vm.configure_from_script_data(mays_house_script_data)
+	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 3)
+	var mays_house_enter_moving_in_result := vm.run_script("LittlerootTown_MaysHouse_1F_EventScript_EnterHouseMovingIn")
+	var mays_house_enter_moving_in_state := game_state.get_var("VAR_LITTLEROOT_INTRO_STATE", -1)
+	var mays_house_enter_moving_in_mom := game_state.get_var("VAR_0x8004", -1)
+	var mays_house_enter_moving_in_gender := game_state.get_var("VAR_0x8005", -1)
 	game_state.set_var("VAR_LITTLEROOT_INTRO_STATE", 3)
 	game_state.current_map_id = "MAP_LITTLEROOT_TOWN"
 	vm.configure_from_script_data(script_data)
@@ -222,7 +236,8 @@ func _init() -> void:
 		_movement_label(need_pokemon_result, 0) == "LittlerootTown_Movement_TwinApproachPlayerLeft",
 		"unexpected first need-pokemon movement"
 	)
-	_assert(_movement_target(need_pokemon_result, 0) == "LOCALID_LITTLEROOT_TWIN", "unexpected first movement target")
+	_assert(_movement_target(need_pokemon_result, 0) == "1", "unexpected first movement target")
+	_assert(_movement_raw_target(need_pokemon_result, 0) == "LOCALID_LITTLEROOT_TWIN", "unexpected first raw movement target")
 	_assert(_movement_net_delta(need_pokemon_result, 0) == Vector2i(3, -2), "unexpected first movement delta")
 	_assert(_movement_step_count(need_pokemon_result, 0) == 13, "unexpected first movement step count")
 	_assert(_movement_final_facing(need_pokemon_result, 0) == "down", "unexpected first movement facing")
@@ -348,6 +363,32 @@ func _init() -> void:
 	_assert(_field_effect_metatile_id(brendans_house_running_shoes_manual_result, 0) == 659, "unexpected running-shoes manual metatile id")
 	_assert(_field_effect_collision(brendans_house_running_shoes_manual_result, 0) == 3, "expected running-shoes manual book to be impassable")
 	_assert(_unsupported_count(brendans_house_running_shoes_manual_result) == 0, "expected no unsupported running-shoes manual ops")
+
+	_assert(brendans_house_enter_moving_in_result.get("status", "") == "ok", "expected Brendan moving-in shared script to execute")
+	_assert(_message_count(brendans_house_enter_moving_in_result) == 2, "expected Brendan moving-in intro to emit two messages")
+	_assert(_first_text_label(brendans_house_enter_moving_in_result) == "PlayersHouse_1F_Text_IsntItNiceInHere", "unexpected Brendan moving-in first text")
+	_assert(_movement_count(brendans_house_enter_moving_in_result) == 4, "expected Brendan moving-in intro to emit four movements")
+	_assert(_movement_target(brendans_house_enter_moving_in_result, 0) == "1", "expected Brendan Mom movement to resolve through VAR_0x8004")
+	_assert(_movement_raw_target(brendans_house_enter_moving_in_result, 0) == "VAR_0x8004", "expected Brendan raw Mom movement target")
+	_assert(_movement_target(brendans_house_enter_moving_in_result, 2) == "LOCALID_PLAYER", "expected Brendan player walk-in movement target")
+	_assert(_movement_net_delta(brendans_house_enter_moving_in_result, 2) == Vector2i(0, -1), "expected Brendan player walk-in delta")
+	_assert(brendans_house_enter_moving_in_state == 4, "expected Brendan moving-in intro state to advance")
+	_assert(brendans_house_enter_moving_in_mom == 1, "expected Brendan moving-in Mom source local id")
+	_assert(brendans_house_enter_moving_in_gender == 0, "expected Brendan moving-in gender value")
+	_assert(_unsupported_count(brendans_house_enter_moving_in_result) == 0, "expected no unsupported Brendan moving-in ops")
+
+	_assert(mays_house_enter_moving_in_result.get("status", "") == "ok", "expected May moving-in shared script to execute")
+	_assert(_message_count(mays_house_enter_moving_in_result) == 2, "expected May moving-in intro to emit two messages")
+	_assert(_first_text_label(mays_house_enter_moving_in_result) == "PlayersHouse_1F_Text_IsntItNiceInHere", "unexpected May moving-in first text")
+	_assert(_movement_count(mays_house_enter_moving_in_result) == 4, "expected May moving-in intro to emit four movements")
+	_assert(_movement_target(mays_house_enter_moving_in_result, 0) == "1", "expected May Mom movement to resolve through VAR_0x8004")
+	_assert(_movement_raw_target(mays_house_enter_moving_in_result, 0) == "VAR_0x8004", "expected May raw Mom movement target")
+	_assert(_movement_target(mays_house_enter_moving_in_result, 2) == "LOCALID_PLAYER", "expected May player walk-in movement target")
+	_assert(_movement_net_delta(mays_house_enter_moving_in_result, 2) == Vector2i(0, -1), "expected May player walk-in delta")
+	_assert(mays_house_enter_moving_in_state == 4, "expected May moving-in intro state to advance")
+	_assert(mays_house_enter_moving_in_mom == 1, "expected May moving-in Mom source local id")
+	_assert(mays_house_enter_moving_in_gender == 1, "expected May moving-in gender value")
+	_assert(_unsupported_count(mays_house_enter_moving_in_result) == 0, "expected no unsupported May moving-in ops")
 
 	_assert(delay_result.get("status", "") == "ok", "expected delay-only script to execute")
 	_assert(_field_effect_count(delay_result) == 1, "expected one delay field effect")
@@ -530,6 +571,8 @@ func _init() -> void:
 		"brendans_house_onload_boxes": _result_summary(brendans_house_onload_boxes_result),
 		"brendans_house_onload_skip_boxes": _result_summary(brendans_house_onload_skip_boxes_result),
 		"brendans_house_running_shoes_manual": _result_summary(brendans_house_running_shoes_manual_result),
+		"brendans_house_enter_moving_in": _result_summary(brendans_house_enter_moving_in_result),
+		"mays_house_enter_moving_in": _result_summary(mays_house_enter_moving_in_result),
 		"delay": _result_summary(delay_result),
 		"warp": _result_summary(warp_result),
 		"global_text": _result_summary(global_text_result),
@@ -857,6 +900,10 @@ func _effect_count(result: Dictionary) -> int:
 func _movement_count(result: Dictionary) -> int:
 	var movements = result.get("movements", [])
 	return movements.size() if typeof(movements) == TYPE_ARRAY else 0
+
+
+func _movement_raw_target(result: Dictionary, index: int) -> String:
+	return String(_movement_at(result, index).get("raw_target", ""))
 
 
 func _object_effect_count(result: Dictionary) -> int:

@@ -55,7 +55,8 @@ Godot should consume generated data, not raw GBA build files at runtime. This ke
 
 ### Event Script Semantics
 
-- `data/maps/*/scripts.inc` for labels, command streams, movement labels, and local text labels
+- `data/maps/*/scripts.inc` for map-local labels, command streams, movement labels, and local text labels
+- `data/scripts/*.inc` shared script includes for labels, common movement scripts, and shared text labels referenced by map scripts
 - `src/scrcmd.c` for script command implementations
 - Field/event modules referenced by commands, including object movement, map transitions, field effects, doors, sounds, flags, vars, and message handling
 - Referenced resources such as movement labels, text labels, object graphics, fanfares/sound effects, map layouts, metatile behaviors, and warp destinations
@@ -151,18 +152,18 @@ Current tileset export behavior:
 - Writes generated `door_animations` metadata into the tileset JSON for supported used door metatiles, including source labels, metatile ids, frame size, frame rectangles, 60fps frame timing, open/close frame indices, and source sound-effect symbol.
 - Updates `data/generated/import_manifest.json` with exported tileset metadata while preserving existing entries for other maps, tilesets, and scripts.
 
-`tools/importer/export_event_scripts.py` exports one map's `scripts.inc` into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--map`, and `--output-root`.
+`tools/importer/export_event_scripts.py` exports one map's `scripts.inc`, or a named shared script bundle, into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--map`, `--output-root`, `--shared-name`, and repeatable `--include-script`.
 
 Current event script export behavior:
 
-- Reads `data/maps/<Map>/scripts.inc` as UTF-8 and writes generated JSON with LF endings through the shared importer JSON writer.
+- Reads `data/maps/<Map>/scripts.inc` or the requested shared include files as UTF-8 and writes generated JSON with LF endings through the shared importer JSON writer.
 - Loads `charmap.txt` and follows the source preprocessor model from `tools/preproc/charmap.cpp`, `tools/preproc/string_parser.cpp`, and `tools/preproc/c_file.cpp` for text-byte validation.
-- Parses labels, map script tables, script instruction streams, movement labels, and local `.string` text labels.
+- Parses labels, map script tables, script instruction streams, movement labels, and local `.string` text labels. Shared bundles preserve each label/instruction `source_file` so runtime/debug output can trace records back to the include that defined them.
 - Records per-script raw operations, direct `msgbox`/`message` references, call/goto references, and simple runtime preview summaries.
 - Keeps Godot display text as UTF-8 while preserving source charmap encoding metadata for each local text label: status, source bytes, source hex, byte count, `$` terminator presence, control codes, placeholders, and warnings.
 - Converts display escapes for preview/runtime text: `\n` and `\l` become newlines, `\p` becomes a blank line, and trailing `$` terminators are removed from `display_text`.
 - Records source behavior traces for supported preview behavior from `src/scrcmd.c`, `data/event_scripts.s`, and `data/scripts/std_msgbox.inc`.
-- Updates `data/generated/import_manifest.json` with exported script metadata while preserving existing entries for other maps, tilesets, and scripts.
+- Updates `data/generated/import_manifest.json` with exported map-script or shared-script metadata while preserving existing entries for other maps, tilesets, scripts, and text datasets. Shared bundle manifest entries use `scope = "shared"` and store their included source files.
 
 `tools/importer/export_text.py` exports global `data/text/*.inc` labels into generated Godot-friendly JSON. It accepts `--config`, `--source`, `--output-root`, and repeatable `--file`.
 
@@ -226,9 +227,9 @@ Latest verified first-slice event script export for `LittlerootTown`:
 - current generated-data preview fields: first direct `msgbox`/`message` text references for debug inspection
 - current text pipeline scope: local map-script text labels and global `data/text/*.inc` labels have UTF-8 `display_text` plus source encoding metadata; global `.braille` labels preserve source braille bytes and `brailleformat`; C text macros remain future import work
 - current runtime execution scope: `ScriptVM` executes the first synchronous dialogue subset and expands `MSGBOX_NPC`, `MSGBOX_SIGN`, and `MSGBOX_DEFAULT` from source standard script behavior
-- current local-id runtime scope: generated object events preserve source local-id names, while numeric script operands and OnFrame table comparisons resolve `LOCALID_*` through current-map object-event order (`tools/mapjson/mapjson.cpp` emits index + 1 constants) plus source special ids
+- current local-id runtime scope: generated object events preserve source local-id names and runtime numeric aliases, while numeric script operands, OnFrame table comparisons, and movement command targets resolve `LOCALID_*` through current-map object-event order (`tools/mapjson/mapjson.cpp` emits index + 1 constants) plus source special ids
 - current map-script runtime scope: direct map-load lifecycles run `MAP_SCRIPT_ON_TRANSITION`, affected object-template sync, then `MAP_SCRIPT_ON_LOAD`; `MAP_SCRIPT_ON_FRAME_TABLE`/`map_script_2` has a callable source-traced table evaluator, but true field-input-loop dispatch and async script-context timing remain future work
-- current movement runtime scope: `ScriptVM` resolves generated movement labels for `applymovement`/`waitmovement` and emits structured movement-effect results; real dispatch fast-forwards map/player positions through `MapRuntime`, while animation queues and object movement tasks are still future runtime work
+- current movement runtime scope: `ScriptVM` resolves generated movement labels for `applymovement`/`waitmovement`, follows source `VarGet` target semantics, preserves raw/resolved movement targets, and emits structured movement-effect results; real dispatch fast-forwards map/player positions through `MapRuntime`, while animation queues and object movement tasks are still future runtime work
 - current field-effect runtime scope: `ScriptVM` records `delay`, `setmetatile`, `opendoor`, `closedoor`, and `waitdooranim` as structured field-effect results; `setmetatile` resolves source `METATILE_*` labels through generated tileset metadata and `MapRuntime` applies the current-map grid mutation while preserving elevation; transition presentation now consumes generated door animation metadata for first-pass door warp overlays, while standalone script-driven door animation, real audio playback, and true asynchronous timing remain future work
 - current audio/transition/player-effect runtime scope: `ScriptVM` records `playse`, `playfanfare`, `waitfanfare`, `warp`, `warpsilent`, `waitstate`, and `hideplayer` as structured result data after source tracing; real sound playback, fanfare waiting, map loading/fades, and player presentation visibility remain future runtime work
 - current coordinate-event runtime scope: `MapRuntime` indexes generated coord events and resolves normal `var`/`var_value` step triggers by x/y/elevation plus `GameState`; full weather/immediate-script/wild-encounter/step-count chaining remains future work
@@ -237,6 +238,13 @@ Latest verified additional maps for the first transition slice:
 
 - `LittlerootTown_BrendansHouse_1F`: generated map `data/generated/maps/littleroot_town_brendans_house_1_f.json`, tileset `data/generated/tilesets/littleroot_town_brendans_house_1_f.json`, atlas `assets/generated/tilesets/littleroot_town_brendans_house_1_f_metatiles.png`, scripts `data/generated/scripts/littleroot_town_brendans_house_1_f.json`, size 11x9, 26 scripts, 11 movement labels, 29 text labels, 0 charmap warnings
 - `LittlerootTown_MaysHouse_1F`: generated map `data/generated/maps/littleroot_town_mays_house_1_f.json`, tileset `data/generated/tilesets/littleroot_town_mays_house_1_f.json`, atlas `assets/generated/tilesets/littleroot_town_mays_house_1_f_metatiles.png`, scripts `data/generated/scripts/littleroot_town_mays_house_1_f.json`, size 11x9, 31 scripts, 11 movement labels, 8 text labels, 0 charmap warnings
+
+Latest verified shared script export:
+
+- `shared_players_house`: generated script bundle `data/generated/scripts/shared_players_house.json`
+- source files: `data/scripts/movement.inc` and `data/scripts/players_house.inc`
+- export counts: 122 labels, 49 scripts, 73 movement labels, 0 local text labels, 0 charmap warnings, 0 orphan instructions
+- runtime use: Brendan/May house OnFrame intro scripts branch into `PlayersHouse_1F_EventScript_EnterHouseMovingIn`, with text and movement labels resolved through the local-first then global generated script namespace
 
 Latest verified global text export:
 

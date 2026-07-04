@@ -251,3 +251,15 @@ Reason: Source `LoadMapFromWarp` and `LoadMapFromCameraTransition` load map data
 Decision: Model `MAP_SCRIPT_ON_FRAME_TABLE` as a separate `EventManager.try_run_on_frame_map_script` table evaluator instead of treating it like a direct map-header script entry.
 
 Reason: Source `MAP_SCRIPT_ON_FRAME_TABLE` points to a `map_script_2` table scanned by `MapHeaderCheckScriptTable`: each row compares two `VarGet` values and starts the first non-no-effect script through the global script context. Direct lifecycle scripts use `MapHeaderRunScriptType` and run immediately. Keeping OnFrame as a table evaluator preserves the source behavior while leaving automatic field-input-loop dispatch, async waits, resume scripts, and dive/step/warp ordering for a later traced runtime pass.
+
+## 2026-07-04 - Export shared script bundles by label namespace
+
+Decision: Export common include files such as `data/scripts/movement.inc` and `data/scripts/players_house.inc` as named shared script bundles, and let `ScriptVM` resolve script, movement, and script-local text labels from the current map first, then from the global generated script namespace.
+
+Reason: Source `data/event_scripts.s` includes many shared script files into one assembler-visible label space, so map-local script JSON alone cannot execute branches such as Brendan/May house intro into `PlayersHouse_1F_EventScript_EnterHouseMovingIn`. A shared bundle keeps generated data reproducible and avoids duplicating common labels into every map while preserving source-style label visibility.
+
+## 2026-07-04 - Resolve movement targets through source VarGet semantics
+
+Decision: Treat `applymovement` and `waitmovement` target operands as source `VarGet` inputs, preserving raw targets and resolved local ids in VM results.
+
+Reason: Source `ScrCmd_applymovement` and `ScrCmd_waitmovement` read a halfword and pass it through `VarGet`. That means object local-id constants become numeric source ids, `VAR_*` operands can point at a runtime object id, `LOCALID_PLAYER` stays the player target, and `waitmovement 0` waits on the current moving target. Matching this prevents scripts like the shared PlayersHouse intro from moving the wrong object in Godot.

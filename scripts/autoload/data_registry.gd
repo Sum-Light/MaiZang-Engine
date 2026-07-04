@@ -17,11 +17,13 @@ var _manifest_data: Dictionary = {}
 var _map_entries_by_id: Dictionary = {}
 var _map_entries_by_name: Dictionary = {}
 var _tileset_entries_by_map_name: Dictionary = {}
+var _script_entries: Array = []
 var _script_entries_by_map_name: Dictionary = {}
 var _text_entries_by_category: Dictionary = {}
 var _map_data_by_id: Dictionary = {}
 var _tileset_data_by_map_id: Dictionary = {}
 var _script_data_by_map_id: Dictionary = {}
+var _script_data_by_path: Dictionary = {}
 var _text_data_by_category: Dictionary = {}
 var _start_map_data: Dictionary = {}
 var _start_tileset_data: Dictionary = {}
@@ -144,9 +146,21 @@ func get_script_data_for_map(map_id: String) -> Dictionary:
 	if typeof(entry) != TYPE_DICTIONARY:
 		return {}
 
-	var script_data := _load_json_object(_resource_path(String(entry.get("path", ""))), "generated script")
+	var script_data := _script_data_for_entry(entry)
 	_script_data_by_map_id[map_id] = script_data
 	return script_data
+
+
+func get_script_record(script_label: String) -> Dictionary:
+	return _get_record_from_script_entries(script_label, "scripts")
+
+
+func get_movement_record(movement_label: String) -> Dictionary:
+	return _get_record_from_script_entries(movement_label, "movements")
+
+
+func get_script_text_record(text_label: String) -> Dictionary:
+	return _get_record_from_script_entries(text_label, "texts")
 
 
 func get_text_data(category: String = "global") -> Dictionary:
@@ -239,7 +253,9 @@ func _index_manifest() -> void:
 	_map_entries_by_id = {}
 	_map_entries_by_name = {}
 	_tileset_entries_by_map_name = {}
+	_script_entries = []
 	_script_entries_by_map_name = {}
+	_script_data_by_path = {}
 	_text_entries_by_category = {}
 	_text_data_by_category = {}
 	if _manifest_data.is_empty():
@@ -271,6 +287,7 @@ func _index_manifest() -> void:
 		for entry in scripts:
 			if typeof(entry) != TYPE_DICTIONARY:
 				continue
+			_script_entries.append(entry)
 			var map_name := String(entry.get("map", ""))
 			if not map_name.is_empty():
 				_script_entries_by_map_name[map_name] = entry
@@ -288,6 +305,40 @@ func _index_manifest() -> void:
 func _map_entry_for_id(map_id: String) -> Dictionary:
 	var entry = _map_entries_by_id.get(map_id, {})
 	return entry if typeof(entry) == TYPE_DICTIONARY else {}
+
+
+func _get_record_from_script_entries(label: String, category: String) -> Dictionary:
+	for entry in _script_entries:
+		if typeof(entry) != TYPE_DICTIONARY:
+			continue
+		var script_data := _script_data_for_entry(entry)
+		var records = script_data.get(category, {})
+		if typeof(records) != TYPE_DICTIONARY:
+			continue
+		var record = records.get(label, {})
+		if typeof(record) == TYPE_DICTIONARY and not record.is_empty():
+			return record
+
+	if _script_entries.is_empty() and not _start_script_data.is_empty():
+		var start_records = _start_script_data.get(category, {})
+		if typeof(start_records) == TYPE_DICTIONARY:
+			var start_record = start_records.get(label, {})
+			if typeof(start_record) == TYPE_DICTIONARY:
+				return start_record
+	return {}
+
+
+func _script_data_for_entry(entry: Dictionary) -> Dictionary:
+	var path := String(entry.get("path", ""))
+	if path.is_empty():
+		return {}
+	if _script_data_by_path.has(path):
+		var cached = _script_data_by_path[path]
+		return cached if typeof(cached) == TYPE_DICTIONARY else {}
+
+	var script_data := _load_json_object(_resource_path(path), "generated script")
+	_script_data_by_path[path] = script_data
+	return script_data
 
 
 func _resource_path(project_path: String) -> String:
