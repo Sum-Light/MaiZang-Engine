@@ -18,6 +18,12 @@ Decision: Godot runtime and gameplay/presentation code must not consume GBA pale
 
 Reason: Recreating the source palette model would drag GBA hardware constraints into a modern Godot runtime and would make later battle presentation code depend on the wrong abstraction. Baked image variants and shader/material effects preserve the visible result while keeping the target architecture Godot-native.
 
+## 2026-07-05 - Introduce a layer-aware map renderer owner
+
+Decision: Use `LayerAwareMapRenderer` as the presentation owner contract for source layer parity. It will replace or wrap `DebugMapPlane`, keep the existing `Main`/`TransitionSequencePlayer` renderer API stable during migration, and expose bottom/middle/top/object-depth roles plus the source-traced normal/covered/split layer-rule contract before implementing real layer drawing.
+
+Reason: Section 5 needs a stable owner boundary before per-layer render data and sprite interleave are added. Wrapping the debug renderer keeps the current vertical slice and door-transition smoke tests working while making the non-equivalent fallback explicit.
+
 ## 2026-07-04 - Add a short project control panel
 
 Decision: Use `wiki/control-panel.md` as the first planning page for current focus, work lanes, definition of done, subagent policy, active backlog, and mess-control rules.

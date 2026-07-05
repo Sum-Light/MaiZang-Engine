@@ -114,7 +114,7 @@ Flattened atlas debug-artifact update: `tools/importer/export_tilesets.py` now w
 
 ### 5. Layer-Aware Map Rendering
 
-- [ ] Design a Godot map-rendering owner to replace or wrap `DebugMapPlane` for source layer parity.
+- [x] Design a Godot map-rendering owner to replace or wrap `DebugMapPlane` for source layer parity.
 - [ ] Export or build separate render data for bottom, middle, and top layer tiles.
 - [ ] Implement `METATILE_LAYER_TYPE_NORMAL`: source bottom/middle/top placement according to `global.fieldmap.h` comments and source tile slots.
 - [ ] Implement `METATILE_LAYER_TYPE_COVERED`.
@@ -126,6 +126,8 @@ Flattened atlas debug-artifact update: `tools/importer/export_tilesets.py` now w
 - [ ] Make map connection and border rendering use the same layer-aware path as in-bounds cells.
 - [ ] Keep source collision/elevation queries independent from presentation-only layer toggles.
 - [ ] Add screenshot or pixel checks for roofs, signs, grass cover, bridge-like metatiles, and indoor objects drawn under top layer.
+
+Layer-aware renderer owner design update: `scripts/overworld/layer_aware_map_renderer.gd` now defines the presentation owner contract for replacing or wrapping `DebugMapPlane`. The owner keeps the existing `Main`/`TransitionSequencePlayer` renderer API stable, delegates to `DebugMapPlane` as a debug fallback, and exposes the required source-traced inputs, bottom/middle/top/object-depth roles, normal/covered/split layer-rule contract, and explicit unsupported codes. It remains `owner_contract_only` and `source_equivalent_for_runtime_layering = false` until the next Section 5 items build separate render data and consume it for real layer drawing. `tools/godot_smoke/layer_aware_map_renderer_smoke.gd` verifies the contract, fallback delegation, door overlay compatibility, and absence of runtime palette/source-color keys.
 
 ### 6. Dynamic Metatile And Tileset Animations
 
