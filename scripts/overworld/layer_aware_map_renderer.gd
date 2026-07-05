@@ -2,14 +2,16 @@ extends Node2D
 
 const OWNER_NAME := "LayerAwareMapRenderer"
 const LEGACY_RENDERER_NAME := "DebugMapPlane"
-const RUNTIME_STATUS := "normal_covered_layer_rendering_first_pass"
+const RUNTIME_STATUS := "normal_covered_split_layer_rendering_first_pass"
 const DEFAULT_TILE_SIZE := 16
 const NORMAL_LAYER_TYPE := 0
 const COVERED_LAYER_TYPE := 1
-const IMPLEMENTED_LAYER_TYPES := [NORMAL_LAYER_TYPE, COVERED_LAYER_TYPE]
+const SPLIT_LAYER_TYPE := 2
+const IMPLEMENTED_LAYER_TYPES := [NORMAL_LAYER_TYPE, COVERED_LAYER_TYPE, SPLIT_LAYER_TYPE]
 const IMPLEMENTED_LAYER_TYPE_NAMES := [
 	"METATILE_LAYER_TYPE_NORMAL",
 	"METATILE_LAYER_TYPE_COVERED",
+	"METATILE_LAYER_TYPE_SPLIT",
 ]
 const LAYER_ROLE_IDS := ["bottom", "middle", "top"]
 
@@ -31,6 +33,7 @@ var _layer_atlas_info: Dictionary = {}
 var _metatile_layer_types: Dictionary = {}
 var _normal_layer_metatile_count := 0
 var _covered_layer_metatile_count := 0
+var _split_layer_metatile_count := 0
 var _flattened_atlas_texture: Texture2D = null
 var _flattened_atlas_tile_size := DEFAULT_TILE_SIZE
 var _flattened_atlas_columns := 0
@@ -274,13 +277,13 @@ func get_unsupported() -> Array:
 			"code": UNSUPPORTED_SOURCE_EQUIVALENT,
 			"status": "partially_implemented",
 			"source": "src/field_camera.c:DrawMetatile",
-			"detail": "Normal and covered metatiles consume exported bottom/middle/top render data; split metatiles and source-equivalent object-depth interleave are still pending.",
+			"detail": "Normal, covered, and split metatiles consume exported bottom/middle/top render data; source-equivalent object-depth interleave is still pending.",
 		},
 		{
 			"code": UNSUPPORTED_FLATTENED_ATLAS,
 			"status": "partial_fallback",
 			"source": "tools/importer/export_tilesets.py",
-			"detail": "Split and no-layer-data fallback drawing still uses flattened debug atlas tiles when DebugMapPlane is not active.",
+			"detail": "No-layer-data fallback drawing still uses flattened debug atlas tiles when DebugMapPlane is not active.",
 		},
 		{
 			"code": UNSUPPORTED_OBJECT_DEPTH,
@@ -330,7 +333,7 @@ func _layer_rule_contract() -> Dictionary:
 			"bottom_source_slot_to_runtime_layer": "bottom",
 			"top_source_slot_to_runtime_layer": "top",
 			"object_depth_effect": "top half covers object-event/player presentation",
-			"implementation_status": "pending_render_implementation",
+			"implementation_status": "implemented_first_pass_runtime_rendering",
 		},
 		"door_animation": {
 			"source_rule": "DrawDoorMetatileAt draws frames as METATILE_LAYER_TYPE_COVERED",
@@ -388,6 +391,7 @@ func _configure_layer_rendering(source_tileset_data: Dictionary) -> void:
 	_metatile_layer_types.clear()
 	_normal_layer_metatile_count = 0
 	_covered_layer_metatile_count = 0
+	_split_layer_metatile_count = 0
 
 	var layer_rendering = source_tileset_data.get("layer_rendering", {})
 	if typeof(layer_rendering) != TYPE_DICTIONARY:
@@ -428,6 +432,8 @@ func _configure_layer_rendering(source_tileset_data: Dictionary) -> void:
 			_normal_layer_metatile_count += 1
 		elif layer_type == COVERED_LAYER_TYPE:
 			_covered_layer_metatile_count += 1
+		elif layer_type == SPLIT_LAYER_TYPE:
+			_split_layer_metatile_count += 1
 
 
 func _configure_flattened_atlas(source_tileset_data: Dictionary) -> void:
@@ -454,16 +460,25 @@ func _metatile_layer_rendering_status() -> Dictionary:
 		"required_roles": LAYER_ROLE_IDS.duplicate(),
 		"normal_metatile_count": _normal_layer_metatile_count,
 		"covered_metatile_count": _covered_layer_metatile_count,
-		"implemented_metatile_count": _normal_layer_metatile_count + _covered_layer_metatile_count,
+		"split_metatile_count": _split_layer_metatile_count,
+		"implemented_metatile_count": (
+			_normal_layer_metatile_count
+			+ _covered_layer_metatile_count
+			+ _split_layer_metatile_count
+		),
 		"normal_runtime_path_active": _runtime_layer_rendering_available(),
 		"covered_runtime_path_active": _runtime_layer_rendering_available(),
-		"split_runtime_path": "flattened_fallback_or_pending",
+		"split_runtime_path_active": _runtime_layer_rendering_available(),
 		"object_depth_interleave": "pending",
 	}
 
 
 func _runtime_layer_rendering_available() -> bool:
-	if _normal_layer_metatile_count <= 0 and _covered_layer_metatile_count <= 0:
+	if (
+		_normal_layer_metatile_count <= 0
+		and _covered_layer_metatile_count <= 0
+		and _split_layer_metatile_count <= 0
+	):
 		return false
 	for role in LAYER_ROLE_IDS:
 		if not _layer_textures.has(role):

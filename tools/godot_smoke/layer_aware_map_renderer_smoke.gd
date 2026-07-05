@@ -39,27 +39,30 @@ func _run() -> void:
 	_assert(String(contract.get("owner", "")) == "LayerAwareMapRenderer", "expected layer-aware owner name")
 	_assert(String(contract.get("replaces_or_wraps", "")) == "DebugMapPlane", "expected DebugMapPlane wrapper contract")
 	_assert(
-		String(contract.get("runtime_status", "")) == "normal_covered_layer_rendering_first_pass",
-		"expected normal+covered layer runtime status"
+		String(contract.get("runtime_status", "")) == "normal_covered_split_layer_rendering_first_pass",
+		"expected normal+covered+split layer runtime status"
 	)
 	_assert(not bool(contract.get("source_equivalent_for_runtime_layering", true)), "expected layer rendering to stay non-equivalent")
 	_assert(bool(contract.get("debug_fallback_active", false)), "expected debug fallback to be active")
 	_assert(
-		String(status.get("status", "")) == "normal_covered_layer_rendering_first_pass",
-		"expected runtime normal+covered layer status"
+		String(status.get("status", "")) == "normal_covered_split_layer_rendering_first_pass",
+		"expected runtime normal+covered+split layer status"
 	)
 	_assert(not bool(status.get("source_equivalent_for_runtime_layering", true)), "expected runtime status to stay non-equivalent")
 	_assert(bool(status.get("debug_fallback_active", false)), "expected runtime status to expose active fallback")
 	_assert(_array_has_string(contract.get("implemented_layer_types", []), "METATILE_LAYER_TYPE_NORMAL"), "expected normal layer implementation marker")
 	_assert(_array_has_string(contract.get("implemented_layer_types", []), "METATILE_LAYER_TYPE_COVERED"), "expected covered layer implementation marker")
+	_assert(_array_has_string(contract.get("implemented_layer_types", []), "METATILE_LAYER_TYPE_SPLIT"), "expected split layer implementation marker")
 
 	var layer_status: Dictionary = renderer.get_metatile_layer_rendering_status()
 	_assert(String(layer_status.get("status", "")) == "implemented_first_pass", "expected metatile layer status")
 	_assert(bool(layer_status.get("normal_runtime_path_active", false)), "expected active normal layer path")
 	_assert(bool(layer_status.get("covered_runtime_path_active", false)), "expected active covered layer path")
+	_assert(bool(layer_status.get("split_runtime_path_active", false)), "expected active split layer path")
 	_assert(int(layer_status.get("normal_metatile_count", 0)) == 369, "expected Littleroot normal metatile count")
 	_assert(int(layer_status.get("covered_metatile_count", 0)) == 277, "expected Littleroot covered metatile count")
-	_assert(int(layer_status.get("implemented_metatile_count", 0)) == 646, "expected implemented metatile count")
+	_assert(int(layer_status.get("split_metatile_count", 0)) == 10, "expected Littleroot split metatile count")
+	_assert(int(layer_status.get("implemented_metatile_count", 0)) == 656, "expected implemented metatile count")
 	_assert(_array_has_string(layer_status.get("drawn_roles", []), "bottom"), "expected bottom role loaded")
 	_assert(_array_has_string(layer_status.get("drawn_roles", []), "middle"), "expected middle role loaded")
 	_assert(_array_has_string(layer_status.get("drawn_roles", []), "top"), "expected top role loaded")
@@ -92,6 +95,10 @@ func _run() -> void:
 		"expected covered rule to be implemented"
 	)
 	_assert(String(layer_contract.get("split", {}).get("bottom_source_slot_to_runtime_layer", "")) == "bottom", "expected split bottom layer rule")
+	_assert(
+		String(layer_contract.get("split", {}).get("implementation_status", "")) == "implemented_first_pass_runtime_rendering",
+		"expected split rule to be implemented"
+	)
 
 	var unsupported_codes := _unsupported_codes(contract.get("unsupported", []))
 	_assert(unsupported_codes.has("source_equivalent_layer_renderer_pending"), "expected source-equivalent renderer gap")
@@ -113,6 +120,7 @@ func _run() -> void:
 	)
 	_assert_layer_draw_records(renderer, tileset_data, 0, "METATILE_LAYER_TYPE_NORMAL", "normal_layer_atlases")
 	_assert_layer_draw_records(renderer, tileset_data, 1, "METATILE_LAYER_TYPE_COVERED", "covered_layer_atlases")
+	_assert_layer_draw_records(renderer, tileset_data, 2, "METATILE_LAYER_TYPE_SPLIT", "split_layer_atlases")
 
 	var animation := _first_door_animation(tileset_data)
 	_assert(not animation.is_empty(), "expected generated door animation")
