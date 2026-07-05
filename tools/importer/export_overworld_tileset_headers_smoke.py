@@ -27,7 +27,7 @@ def main(argv):
     _assert(exported["runtime_policy"]["runtime_palette_required"] is False, "runtime palette must stay disabled")
     _assert(exported["runtime_policy"]["audio"]["status"] == "metadata_only", "audio policy changed")
 
-    _assert(stats["source_file_count"] == 7, "unexpected source file count")
+    _assert(stats["source_file_count"] == 9, "unexpected source file count")
     _assert(stats["missing_source_file_count"] == 0, "missing source files")
     _assert(stats["total_header_count"] == 139, "unexpected total tileset header count")
     _assert(stats["active_emerald_header_count"] == 75, "unexpected active Emerald header count")
@@ -72,6 +72,26 @@ def main(argv):
     _assert(stats["palette_slot_count_by_source_profile"]["frlg"] == 1024, "unexpected FRLG palette slots")
     _assert(stats["palette_loaded_slot_count_by_source_profile"]["emerald"] == 522, "unexpected Emerald loaded slots")
     _assert(stats["palette_loaded_slot_count_by_source_profile"]["frlg"] == 386, "unexpected FRLG loaded slots")
+    _assert(stats["metatile_decode_header_count"] == 139, "unexpected metatile decode header count")
+    _assert(stats["active_metatile_decode_header_count"] == 75, "unexpected active metatile decode count")
+    _assert(stats["missing_metatile_decode_header_count"] == 0, "missing metatile decodes")
+    _assert(stats["metatile_record_count"] == 29213, "unexpected header-expanded metatile count")
+    _assert(stats["active_metatile_record_count"] == 18318, "unexpected active header-expanded metatile count")
+    _assert(stats["metatile_tile_entry_count"] == 233704, "unexpected header-expanded tile entry count")
+    _assert(stats["active_metatile_tile_entry_count"] == 146544, "unexpected active tile entry count")
+    _assert(stats["unique_metatile_source_binary_count"] == 134, "unexpected unique metatile binary count")
+    _assert(stats["active_unique_metatile_source_binary_count"] == 70, "unexpected active unique metatile binary count")
+    _assert(stats["unique_metatile_record_count"] == 27593, "unexpected unique metatile count")
+    _assert(stats["active_unique_metatile_record_count"] == 16698, "unexpected active unique metatile count")
+    _assert(stats["unique_metatile_tile_entry_count"] == 220744, "unexpected unique tile entry count")
+    _assert(stats["active_unique_metatile_tile_entry_count"] == 133584, "unexpected active unique tile entry count")
+    _assert(stats["metatile_out_of_range_tile_entry_count"] == 0, "unexpected out-of-range tile refs")
+    _assert(stats["metatile_tile_source_kind_counts"]["primary"] == 119350, "unexpected primary tile ref count")
+    _assert(stats["metatile_tile_source_kind_counts"]["secondary"] == 114354, "unexpected secondary tile ref count")
+    _assert(stats["metatile_source_layer_slot_counts"]["bottom"] == 116852, "unexpected bottom layer slot count")
+    _assert(stats["metatile_source_layer_slot_counts"]["top"] == 116852, "unexpected top layer slot count")
+    _assert(stats["metatile_record_count_by_source_profile"]["emerald"] == 18318, "unexpected Emerald metatile count")
+    _assert(stats["metatile_record_count_by_source_profile"]["frlg"] == 10895, "unexpected FRLG metatile count")
     _assert(stats["init_function_count"] == 31, "unexpected init function count")
     _assert(stats["animation_frame_declaration_count"] == 174, "unexpected animation frame declaration count")
     _assert(stats["animation_source_bin_count"] == 182, "unexpected animation source binary count")
@@ -115,6 +135,34 @@ def main(argv):
     _assert(_source_function_found(rules, "LoadTilesetPalette"), "LoadTilesetPalette trace missing")
     _assert(_source_function_found(rules, "LoadSecondaryTilesetPalette"), "LoadSecondaryTilesetPalette trace missing")
 
+    metatile_rules = exported["metatile_decode_rules"]
+    _assert(metatile_rules["status"] == "decoded_import_metadata", "metatile rules status mismatch")
+    _assert(
+        metatile_rules["runtime_binary_metatile_required"] is False,
+        "runtime binary metatiles should stay disabled",
+    )
+    _assert(
+        metatile_rules["constants"]["NUM_TILES_PER_METATILE"]["value"] == 8,
+        "unexpected source tile entries per metatile",
+    )
+    _assert(
+        metatile_rules["tile_entry_format"]["tile_id_bits"] == "0-9",
+        "unexpected tile id bit range",
+    )
+    _assert(
+        metatile_rules["tile_entry_format"]["palette_slot_bits"] == "12-15",
+        "unexpected palette slot bit range",
+    )
+    _assert(
+        metatile_rules["source_layer_slots"][0]["tile_entry_indices"] == [0, 1, 2, 3],
+        "bottom source layer slot mismatch",
+    )
+    _assert(
+        metatile_rules["source_layer_slots"][1]["tile_entry_indices"] == [4, 5, 6, 7],
+        "top source layer slot mismatch",
+    )
+    _assert(_source_function_found(metatile_rules, "DrawMetatile"), "DrawMetatile trace missing")
+
     general = rows["gTileset_General"]
     _assert(general["active_in_emerald"], "General should be active")
     _assert(general["kind"] == "primary", "General should be primary")
@@ -145,6 +193,23 @@ def main(argv):
     _assert(general_slot_6["global_bg_palette_slot"] is None, "General slot 6 should not map to a global slot")
     _assert(general_slot_6["source_role"] == "declared_global_slot_owned_by_secondary", "General slot 6 role mismatch")
     _assert(_palette_slot(general, 13)["source_role"] == "declared_beyond_bg_palette_total_not_loaded", "General slot 13 role mismatch")
+    _assert(general["metatile_binary_decode"]["status"] == "decoded", "General metatile decode missing")
+    _assert(general["metatile_binary_decode"]["source_rules_profile"] == "emerald", "General metatile profile mismatch")
+    _assert(general["metatile_binary_decode"]["source_binary"]["path"] == "data/tilesets/primary/general/metatiles.bin", "General metatile source mismatch")
+    _assert(general["metatile_binary_decode"]["metatile_count"] == 512, "General metatile count mismatch")
+    _assert(general["metatile_binary_decode"]["tile_entry_count"] == 4096, "General tile entry count mismatch")
+    _assert(general["metatile_binary_decode"]["tile_source_kind_counts"] == {"primary": 4096}, "General tile source count mismatch")
+    _assert(general["metatile_binary_decode"]["source_layer_slot_counts"] == {"bottom": 2048, "top": 2048}, "General layer count mismatch")
+    _assert(general["metatile_binary_decode"]["out_of_range_tile_entry_count"] == 0, "General out-of-range tile ref")
+    general_first_tile = _metatile_tile_entry(general, 0, 0)
+    _assert(general_first_tile["raw"] == 0, "General first tile raw mismatch")
+    _assert(general_first_tile["tile_id"] == 0, "General first tile id mismatch")
+    _assert(general_first_tile["palette_slot"] == 0, "General first palette mismatch")
+    _assert(general_first_tile["hflip"] is False and general_first_tile["vflip"] is False, "General first flip mismatch")
+    _assert(general_first_tile["source_layer_slot"] == "bottom", "General first layer mismatch")
+    _assert(general_first_tile["source_tileset_kind"] == "primary", "General first source kind mismatch")
+    _assert(general_first_tile["local_tile_id"] == 0, "General first local tile mismatch")
+    _assert(_metatile_tile_entry(general, 0, 4)["source_layer_slot"] == "top", "General top layer slot mismatch")
     _assert(general["animation_image_provenance"]["frame_declaration_count"] == 26, "General anim count mismatch")
     _assert(
         general["animation_image_provenance"]["existing_editable_source_candidate_count"] == 26,
@@ -173,6 +238,19 @@ def main(argv):
     _assert(_slot_has_candidate(petalburg_slot_6, "data/tilesets/secondary/petalburg/palettes/06.pal"), "Petalburg slot 6 source candidate missing")
     _assert(_palette_slot(petalburg, 12)["global_bg_palette_slot"] == 12, "Petalburg slot 12 global slot mismatch")
     _assert(_palette_slot(petalburg, 13)["source_role"] == "declared_beyond_bg_palette_total_not_loaded", "Petalburg slot 13 role mismatch")
+    _assert(petalburg["metatile_binary_decode"]["source_binary"]["path"] == "data/tilesets/secondary/petalburg/metatiles.bin", "Petalburg metatile source mismatch")
+    _assert(petalburg["metatile_binary_decode"]["metatile_count"] == 144, "Petalburg metatile count mismatch")
+    _assert(petalburg["metatile_binary_decode"]["tile_entry_count"] == 1152, "Petalburg tile entry count mismatch")
+    _assert(
+        petalburg["metatile_binary_decode"]["tile_source_kind_counts"] == {"primary": 738, "secondary": 414},
+        "Petalburg tile source counts mismatch",
+    )
+    _assert(_metatile_record(petalburg, 0)["global_metatile_id"] == 512, "Petalburg global metatile offset mismatch")
+    _assert(_metatile_tile_entry(petalburg, 0, 0)["source_tileset_kind"] == "primary", "Petalburg primary tile ref missing")
+    _assert(
+        _metatile_tile_entry(petalburg, 0, 0)["source_tileset_kind_matches_metatile"] is False,
+        "Petalburg cross-tileset tile ref should be preserved",
+    )
     _assert(
         _has_existing_candidate(petalburg["asset_provenance"]["tiles"], "data/tilesets/secondary/petalburg/tiles.png"),
         "Petalburg tiles.png candidate missing",
@@ -221,6 +299,10 @@ def main(argv):
     _assert(frlg_general["palette_slot_mapping"]["loaded_palette_slot_count"] == 7, "FRLG General loaded palette count mismatch")
     _assert(_palette_slot(frlg_general, 6)["global_bg_palette_slot"] == 6, "FRLG General slot 6 global mismatch")
     _assert(_palette_slot(frlg_general, 7)["source_role"] == "declared_global_slot_owned_by_secondary", "FRLG General slot 7 role mismatch")
+    _assert(frlg_general["metatile_binary_decode"]["source_rules_profile"] == "frlg", "FRLG metatile profile mismatch")
+    _assert(frlg_general["metatile_binary_decode"]["metatile_count"] == 640, "FRLG General metatile count mismatch")
+    _assert(frlg_general["metatile_binary_decode"]["tile_entry_count"] == 5120, "FRLG General tile entry count mismatch")
+    _assert(_metatile_record(frlg_general, -1)["global_metatile_id"] == 639, "FRLG General global metatile end mismatch")
     _assert(
         frlg_general["animation_image_provenance"]["frame_declaration_count"] == 21,
         "FRLG General anim count mismatch",
@@ -244,7 +326,8 @@ def main(argv):
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}
     _assert("tileset_animation_runtime_pending" in unsupported_codes, "missing animation pending code")
-    _assert("metatile_layer_decode_pending" in unsupported_codes, "missing metatile decode pending code")
+    _assert("metatile_attribute_detail_pending" in unsupported_codes, "missing metatile attribute pending code")
+    _assert("source_equivalent_layer_renderer_pending" in unsupported_codes, "missing layer renderer pending code")
     _assert("audio_playback_pending" in unsupported_codes, "missing audio pending code")
 
     print("export_overworld_tileset_headers_smoke: ok")
@@ -268,6 +351,48 @@ def _has_existing_animation_candidate(header, path):
 
 def _palette_slot(header, local_slot):
     return header["palette_slot_mapping"]["slots"][local_slot]
+
+
+def _metatile_record(header, local_metatile_id):
+    record = header["metatile_binary_decode"]["metatiles"][local_metatile_id]
+    if isinstance(record, dict):
+        return record
+    return {
+        "local_metatile_id": record[0],
+        "global_metatile_id": record[1],
+        "tile_entries": record[2],
+    }
+
+
+def _metatile_tile_entry(header, local_metatile_id, tile_entry_index):
+    record = _metatile_record(header, local_metatile_id)
+    entry = record["tile_entries"][tile_entry_index]
+    if isinstance(entry, dict):
+        return entry
+    encoding = header["metatile_binary_decode"].get("metatile_entry_encoding", {})
+    kind_codes = encoding.get("source_tileset_kind_codes", {})
+    source_kind_by_code = {
+        int(value): key
+        for key, value in kind_codes.items()
+    }
+    flip_flags = int(entry[3])
+    source_kind = source_kind_by_code.get(int(entry[4]), "unknown")
+    layer_slots = encoding.get("source_layer_slot_by_tile_entry_index", [])
+    positions = encoding.get("source_layer_position_by_tile_entry_index", [])
+    return {
+        "raw": entry[0],
+        "tile_id": entry[1],
+        "palette_slot": entry[2],
+        "hflip": bool(flip_flags & 1),
+        "vflip": bool(flip_flags & 2),
+        "source_tileset_kind": source_kind,
+        "local_tile_id": entry[5],
+        "out_of_range": bool(entry[6]),
+        "tile_entry_index": tile_entry_index,
+        "source_layer_slot": layer_slots[tile_entry_index],
+        "source_layer_position": positions[tile_entry_index],
+        "source_tileset_kind_matches_metatile": source_kind == header["metatile_binary_decode"]["source_kind"],
+    }
 
 
 def _slot_has_candidate(slot, path):

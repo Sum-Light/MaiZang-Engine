@@ -7,7 +7,7 @@ import re
 import sys
 from pathlib import Path
 
-from export_map import write_json, write_manifest
+from export_map import read_u16le_file, write_json, write_manifest
 from source_probe import load_config, path_status, symbol_to_tileset_dir, to_project_path
 
 
@@ -20,8 +20,10 @@ SOURCE_FILES = [
     "src/data/tilesets/metatiles.h",
     "src/graphics.c",
     "src/fieldmap.c",
+    "src/field_camera.c",
     "src/tileset_anims.c",
     "include/fieldmap.h",
+    "include/global.fieldmap.h",
 ]
 
 HEADER_RE = re.compile(
@@ -55,6 +57,39 @@ PALETTE_RULE_FUNCTIONS = [
     "LoadPrimaryTilesetPalette",
     "LoadSecondaryTilesetPalette",
     "LoadMapTilesetPalettes",
+]
+
+METATILE_RULE_FUNCTIONS = [
+    "DrawMetatileAt",
+    "DrawDoorMetatileAt",
+    "DrawMetatile",
+]
+
+NUM_TILES_IN_PRIMARY = 512
+NUM_TILES_IN_PRIMARY_FRLG = 640
+NUM_METATILES_IN_PRIMARY = 512
+NUM_METATILES_IN_PRIMARY_FRLG = 640
+NUM_METATILES_TOTAL = 1024
+NUM_TILES_TOTAL = 1024
+NUM_TILES_PER_METATILE = 8
+TILE_ENTRY_INDEX_MASK = 0x03FF
+TILE_ENTRY_HFLIP_MASK = 0x0400
+TILE_ENTRY_VFLIP_MASK = 0x0800
+TILE_ENTRY_PALETTE_SHIFT = 12
+TILE_SOURCE_KIND_CODES = {
+    "primary": 0,
+    "secondary": 1,
+}
+
+METATILE_ENTRY_POSITIONS = [
+    {"x": 0, "y": 0},
+    {"x": 1, "y": 0},
+    {"x": 0, "y": 1},
+    {"x": 1, "y": 1},
+    {"x": 0, "y": 0},
+    {"x": 1, "y": 0},
+    {"x": 0, "y": 1},
+    {"x": 1, "y": 1},
 ]
 
 
@@ -469,6 +504,304 @@ def palette_slot_load_state(kind, local_slot, profile):
     return False, None, "unknown_tileset_kind_not_loaded"
 
 
+def parse_metatile_decode_rules(source_root):
+    fieldmap_h_path = source_root / "include/fieldmap.h"
+    field_camera_path = source_root / "src/field_camera.c"
+    fieldmap_h = read_text(fieldmap_h_path) if fieldmap_h_path.exists() else ""
+    field_camera = read_text(field_camera_path) if field_camera_path.exists() else ""
+
+    constants = {}
+    for name in [
+        "NUM_TILES_IN_PRIMARY_FRLG",
+        "NUM_TILES_IN_PRIMARY",
+        "NUM_METATILES_IN_PRIMARY_FRLG",
+        "NUM_METATILES_IN_PRIMARY",
+        "NUM_METATILES_TOTAL",
+        "NUM_TILES_TOTAL",
+        "NUM_TILES_PER_METATILE",
+    ]:
+        match = re.search(r"#define\s+%s\s+(\d+)" % re.escape(name), fieldmap_h)
+        constants[name] = {
+            "value": int(match.group(1)) if match else None,
+            "source": {
+                "path": "include/fieldmap.h",
+                "line": line_number(fieldmap_h, match.start()) if match else None,
+            },
+            "found": match is not None,
+        }
+
+    return {
+        "status": "decoded_import_metadata",
+        "runtime_binary_metatile_required": False,
+        "source_files": [
+            path_status(source_root, Path("include/fieldmap.h")),
+            path_status(source_root, Path("src/field_camera.c")),
+        ],
+        "constants": constants,
+        "tile_entry_format": {
+            "raw_type": "u16 little-endian",
+            "tile_id_bits": "0-9",
+            "hflip_bit": 10,
+            "vflip_bit": 11,
+            "palette_slot_bits": "12-15",
+            "source": {
+                "path": "include/fieldmap.h",
+                "symbol": "NUM_TILES_PER_METATILE",
+            },
+        },
+        "compact_metatile_entry_encoding": metatile_compact_entry_encoding(),
+        "source_layer_slots": [
+            {
+                "source_layer_slot": "bottom",
+                "tile_entry_indices": [0, 1, 2, 3],
+                "positions": METATILE_ENTRY_POSITIONS[:4],
+            },
+            {
+                "source_layer_slot": "top",
+                "tile_entry_indices": [4, 5, 6, 7],
+                "positions": METATILE_ENTRY_POSITIONS[4:],
+            },
+        ],
+        "draw_layer_rules": [
+            {
+                "layer_type": "METATILE_LAYER_TYPE_NORMAL",
+                "value": 0,
+                "bottom_source_slot_to_bg": "Bg2",
+                "top_source_slot_to_bg": "Bg1",
+                "bg3_fill": "0x3014 source garbage/filler tile",
+            },
+            {
+                "layer_type": "METATILE_LAYER_TYPE_COVERED",
+                "value": 1,
+                "bottom_source_slot_to_bg": "Bg3",
+                "top_source_slot_to_bg": "Bg2",
+                "bg1_fill": "transparent tile 0",
+            },
+            {
+                "layer_type": "METATILE_LAYER_TYPE_SPLIT",
+                "value": 2,
+                "bottom_source_slot_to_bg": "Bg3",
+                "top_source_slot_to_bg": "Bg1",
+                "bg2_fill": "transparent tile 0",
+            },
+        ],
+        "source_functions": source_function_refs(field_camera, "src/field_camera.c", METATILE_RULE_FUNCTIONS),
+        "runtime_policy": {
+            "status": "decoded_import_metadata",
+            "detail": "Source metatile binary entries are decoded into Godot-friendly metadata. Godot runtime should consume generated layer/tile data, not raw GBA metatile binaries or palette banks.",
+        },
+    }
+
+
+def metatile_source_profile_for_branch(branch):
+    return "frlg" if branch == "frlg_metadata" else "emerald"
+
+
+def metatile_source_profile(profile_name):
+    if profile_name == "frlg":
+        return {
+            "name": "frlg",
+            "primary_tile_count": NUM_TILES_IN_PRIMARY_FRLG,
+            "primary_metatile_count": NUM_METATILES_IN_PRIMARY_FRLG,
+            "total_tile_count": NUM_TILES_TOTAL,
+            "total_metatile_count": NUM_METATILES_TOTAL,
+        }
+    return {
+        "name": "emerald",
+        "primary_tile_count": NUM_TILES_IN_PRIMARY,
+        "primary_metatile_count": NUM_METATILES_IN_PRIMARY,
+        "total_tile_count": NUM_TILES_TOTAL,
+        "total_metatile_count": NUM_METATILES_TOTAL,
+    }
+
+
+def metatile_compact_entry_encoding():
+    return {
+        "version": "compact_tile_entry_v1",
+        "detail": (
+            "Each metatile row stores [local_metatile_id, global_metatile_id, tile_entries]. "
+            "Each tile entry row stores decoded fields without repeated JSON keys; "
+            "tile_entry_index, source layer slot, and source layer position are derived from array index 0-7."
+        ),
+        "metatile_fields": [
+            "local_metatile_id",
+            "global_metatile_id",
+            "tile_entries",
+        ],
+        "tile_entry_fields": [
+            "raw",
+            "tile_id",
+            "palette_slot",
+            "flip_flags",
+            "source_tileset_kind_code",
+            "local_tile_id",
+            "out_of_range",
+        ],
+        "raw_hex_format": "0x{:04X}",
+        "flip_flags": {
+            "hflip": 1,
+            "vflip": 2,
+        },
+        "source_tileset_kind_codes": TILE_SOURCE_KIND_CODES,
+        "source_layer_slot_by_tile_entry_index": [
+            "bottom" if index < 4 else "top"
+            for index in range(NUM_TILES_PER_METATILE)
+        ],
+        "source_layer_position_by_tile_entry_index": METATILE_ENTRY_POSITIONS,
+        "derived_fields": {
+            "tile_entry_index": "implicit tile entry array index 0-7",
+            "raw_hex": "format raw using raw_hex_format",
+            "hflip": "bool(flip_flags & 1)",
+            "vflip": "bool(flip_flags & 2)",
+            "source_layer_slot": "lookup by tile_entry_index",
+            "source_layer_position": "lookup by tile_entry_index",
+            "source_tileset_kind": "lookup source_tileset_kind_code",
+            "source_tileset_kind_matches_metatile": "source_tileset_kind == metatile_binary_decode.source_kind",
+        },
+    }
+
+
+def metatile_binary_decode_for_header(source_root, kind, branch, metatile_group, metatile_rules):
+    profile_name = metatile_source_profile_for_branch(branch)
+    profile = metatile_source_profile(profile_name)
+    source_row = first_matching_status(
+        metatile_group.get("editable_source_candidates", []) + metatile_group.get("incbin_paths", []),
+        lambda path: path.endswith("/metatiles.bin"),
+    )
+
+    if source_row is None:
+        return {
+            "status": "missing_source_binary",
+            "runtime_binary_metatile_required": False,
+            "source_rules_profile": profile_name,
+            "source_kind": kind,
+            "source_metatiles_symbol": metatile_group.get("symbol"),
+            "source_metatiles_declaration_found": metatile_group.get("declaration_found", False),
+            "source_metatiles_declaration": metatile_group.get("declaration_source"),
+            "source_binary": None,
+            "metatile_count": 0,
+            "tile_entry_count": 0,
+            "source_layer_slot_counts": {},
+            "tile_source_kind_counts": {},
+            "out_of_range_tile_entry_count": 0,
+            "out_of_range_tile_entries": [],
+            "metatile_entry_encoding_ref": "metatile_decode_rules.compact_metatile_entry_encoding",
+            "metatiles": [],
+        }
+
+    source_path = source_root / source_row["path"]
+    raw_values = read_u16le_file(source_path)
+    if len(raw_values) % NUM_TILES_PER_METATILE != 0:
+        raise ValueError("{} has {} u16 entries, not divisible by {}".format(
+            source_path,
+            len(raw_values),
+            NUM_TILES_PER_METATILE,
+        ))
+
+    metatiles = []
+    out_of_range = []
+    tile_source_counts = {}
+    layer_counts = {}
+    source_global_offset = 0 if kind == "primary" else profile["primary_metatile_count"]
+    for local_metatile_id, start in enumerate(range(0, len(raw_values), NUM_TILES_PER_METATILE)):
+        entries = [
+            decode_metatile_tile_entry(
+                raw_value,
+                entry_index,
+                kind,
+                profile,
+            )
+            for entry_index, raw_value in enumerate(raw_values[start:start + NUM_TILES_PER_METATILE])
+        ]
+        for entry in entries:
+            tile_source_counts[entry["source_tileset_kind"]] = tile_source_counts.get(entry["source_tileset_kind"], 0) + 1
+            layer_counts[entry["source_layer_slot"]] = layer_counts.get(entry["source_layer_slot"], 0) + 1
+            if entry["out_of_range"]:
+                out_of_range.append({
+                    "local_metatile_id": local_metatile_id,
+                    "global_metatile_id": source_global_offset + local_metatile_id,
+                    "tile_entry_index": entry["tile_entry_index"],
+                    "tile_id": entry["tile_id"],
+                    "source_tileset_kind": entry["source_tileset_kind"],
+                    "local_tile_id": entry["local_tile_id"],
+                })
+        metatiles.append([
+            local_metatile_id,
+            source_global_offset + local_metatile_id,
+            [compact_metatile_tile_entry(entry) for entry in entries],
+        ])
+
+    return {
+        "status": "decoded",
+        "runtime_binary_metatile_required": False,
+        "source_rules_profile": profile_name,
+        "source_kind": kind,
+        "source_metatiles_symbol": metatile_group.get("symbol"),
+        "source_metatiles_declaration_found": metatile_group.get("declaration_found", False),
+        "source_metatiles_declaration": metatile_group.get("declaration_source"),
+        "source_binary": source_row,
+        "source_profile": profile,
+        "tile_entry_format": metatile_rules.get("tile_entry_format", {}),
+        "draw_layer_rules_ref": "metatile_decode_rules.draw_layer_rules",
+        "metatile_count": len(metatiles),
+        "tile_entry_count": len(raw_values),
+        "source_layer_slot_counts": dict(sorted(layer_counts.items())),
+        "tile_source_kind_counts": dict(sorted(tile_source_counts.items())),
+        "out_of_range_tile_entry_count": len(out_of_range),
+        "out_of_range_tile_entries": out_of_range,
+        "metatile_entry_encoding_ref": "metatile_decode_rules.compact_metatile_entry_encoding",
+        "metatile_entry_encoding": metatile_compact_entry_encoding(),
+        "metatiles": metatiles,
+    }
+
+
+def compact_metatile_tile_entry(entry):
+    flip_flags = 0
+    if entry["hflip"]:
+        flip_flags |= 1
+    if entry["vflip"]:
+        flip_flags |= 2
+    return [
+        entry["raw"],
+        entry["tile_id"],
+        entry["palette_slot"],
+        flip_flags,
+        TILE_SOURCE_KIND_CODES[entry["source_tileset_kind"]],
+        entry["local_tile_id"],
+        1 if entry["out_of_range"] else 0,
+    ]
+
+
+def decode_metatile_tile_entry(raw, entry_index, source_kind, profile):
+    tile_id = raw & TILE_ENTRY_INDEX_MASK
+    source_tileset_kind, local_tile_id = tile_source_for_tile_id(tile_id, profile)
+    position = METATILE_ENTRY_POSITIONS[entry_index]
+    return {
+        "tile_entry_index": entry_index,
+        "raw": raw,
+        "raw_hex": "0x{:04X}".format(raw),
+        "tile_id": tile_id,
+        "palette_slot": (raw >> TILE_ENTRY_PALETTE_SHIFT) & 0x0F,
+        "hflip": bool(raw & TILE_ENTRY_HFLIP_MASK),
+        "vflip": bool(raw & TILE_ENTRY_VFLIP_MASK),
+        "source_layer_slot": "bottom" if entry_index < 4 else "top",
+        "source_layer_position": {
+            "x": position["x"],
+            "y": position["y"],
+        },
+        "source_tileset_kind": source_tileset_kind,
+        "local_tile_id": local_tile_id,
+        "source_tileset_kind_matches_metatile": source_tileset_kind == source_kind,
+        "out_of_range": tile_id >= profile["total_tile_count"],
+    }
+
+
+def tile_source_for_tile_id(tile_id, profile):
+    if tile_id < profile["primary_tile_count"]:
+        return "primary", tile_id
+    return "secondary", tile_id - profile["primary_tile_count"]
+
+
 def frames_for_tileset_base(animation_frames, base_path):
     if not base_path:
         return []
@@ -479,12 +812,19 @@ def frames_for_tileset_base(animation_frames, base_path):
     ]
 
 
-def parse_tileset_headers(source_root, animation_frames=None, init_functions=None, palette_rules=None):
+def parse_tileset_headers(
+    source_root,
+    animation_frames=None,
+    init_functions=None,
+    palette_rules=None,
+    metatile_rules=None,
+):
     headers_path = source_root / "src/data/tilesets/headers.h"
     text = read_text(headers_path)
     declarations = parse_asset_declarations(source_root)
     animation_frames = animation_frames or []
     palette_rules = palette_rules or parse_palette_slot_rules(source_root)
+    metatile_rules = metatile_rules or parse_metatile_decode_rules(source_root)
     init_function_symbols = {
         row["function"]: row
         for row in (init_functions or [])
@@ -523,6 +863,13 @@ def parse_tileset_headers(source_root, animation_frames=None, init_functions=Non
                 branch,
                 assets["palettes"],
                 palette_rules,
+            )
+            metatile_binary_decode = metatile_binary_decode_for_header(
+                source_root,
+                kind,
+                branch,
+                assets["metatiles"],
+                metatile_rules,
             )
 
             rows.append({
@@ -586,6 +933,7 @@ def parse_tileset_headers(source_root, animation_frames=None, init_functions=Non
                 },
                 "asset_provenance": assets,
                 "palette_slot_mapping": palette_slot_mapping,
+                "metatile_binary_decode": metatile_binary_decode,
                 "asset_source_directories": asset_source_directories(assets),
                 "animation_image_provenance": {
                     "frame_declaration_count": len(animation_frame_rows),
@@ -619,6 +967,27 @@ def count_by(rows, field):
         key = str(row.get(field))
         result[key] = result.get(key, 0) + 1
     return result
+
+
+def merge_count_dicts(dicts):
+    result = {}
+    for values in dicts:
+        for key, value in values.items():
+            result[key] = result.get(key, 0) + int(value)
+    return dict(sorted(result.items()))
+
+
+def unique_metatile_decodes_by_source_binary(decodes):
+    unique = {}
+    for decode in decodes:
+        source_path = decode.get("source_binary", {}).get("path")
+        if not source_path or source_path in unique:
+            continue
+        unique[source_path] = decode
+    return [
+        unique[path]
+        for path in sorted(unique)
+    ]
 
 
 def build_stats(source_files, records, animation_frames=None, init_functions=None):
@@ -711,6 +1080,30 @@ def build_stats(source_files, records, animation_frames=None, init_functions=Non
         for candidate in slot.get("editable_source_candidates", [])
         if not candidate.get("exists")
     ]
+    metatile_decodes = [
+        row.get("metatile_binary_decode", {})
+        for row in records
+    ]
+    active_metatile_decodes = [
+        row.get("metatile_binary_decode", {})
+        for row in active
+    ]
+    unique_metatile_decodes = unique_metatile_decodes_by_source_binary(metatile_decodes)
+    active_unique_metatile_decodes = unique_metatile_decodes_by_source_binary(active_metatile_decodes)
+    missing_metatile_decodes = [
+        {
+            "tileset": row["symbol"],
+            "metatiles_symbol": row.get("metatile_binary_decode", {}).get("source_metatiles_symbol"),
+            "status": row.get("metatile_binary_decode", {}).get("status"),
+        }
+        for row in records
+        if row.get("metatile_binary_decode", {}).get("status") != "decoded"
+    ]
+    out_of_range_tile_entries = [
+        dict({"tileset": row["symbol"]}, **entry)
+        for row in records
+        for entry in row.get("metatile_binary_decode", {}).get("out_of_range_tile_entries", [])
+    ]
     return {
         "source_file_count": len(source_files),
         "missing_source_file_count": sum(1 for row in source_files if not row["exists"]),
@@ -780,6 +1173,66 @@ def build_stats(source_files, records, animation_frames=None, init_functions=Non
             ],
             "source_profile",
         ),
+        "metatile_decode_header_count": sum(
+            1 for decode in metatile_decodes if decode.get("status") == "decoded"
+        ),
+        "active_metatile_decode_header_count": sum(
+            1 for decode in active_metatile_decodes if decode.get("status") == "decoded"
+        ),
+        "missing_metatile_decode_header_count": len(missing_metatile_decodes),
+        "missing_metatile_decodes": missing_metatile_decodes,
+        "metatile_record_count": sum(int(decode.get("metatile_count", 0)) for decode in metatile_decodes),
+        "active_metatile_record_count": sum(
+            int(decode.get("metatile_count", 0))
+            for decode in active_metatile_decodes
+        ),
+        "metatile_tile_entry_count": sum(int(decode.get("tile_entry_count", 0)) for decode in metatile_decodes),
+        "active_metatile_tile_entry_count": sum(
+            int(decode.get("tile_entry_count", 0))
+            for decode in active_metatile_decodes
+        ),
+        "unique_metatile_source_binary_count": len(unique_metatile_decodes),
+        "active_unique_metatile_source_binary_count": len(active_unique_metatile_decodes),
+        "unique_metatile_record_count": sum(
+            int(decode.get("metatile_count", 0))
+            for decode in unique_metatile_decodes
+        ),
+        "active_unique_metatile_record_count": sum(
+            int(decode.get("metatile_count", 0))
+            for decode in active_unique_metatile_decodes
+        ),
+        "unique_metatile_tile_entry_count": sum(
+            int(decode.get("tile_entry_count", 0))
+            for decode in unique_metatile_decodes
+        ),
+        "active_unique_metatile_tile_entry_count": sum(
+            int(decode.get("tile_entry_count", 0))
+            for decode in active_unique_metatile_decodes
+        ),
+        "metatile_out_of_range_tile_entry_count": len(out_of_range_tile_entries),
+        "metatile_out_of_range_tile_entries": out_of_range_tile_entries,
+        "metatile_tile_source_kind_counts": merge_count_dicts(
+            decode.get("tile_source_kind_counts", {})
+            for decode in metatile_decodes
+        ),
+        "active_metatile_tile_source_kind_counts": merge_count_dicts(
+            decode.get("tile_source_kind_counts", {})
+            for decode in active_metatile_decodes
+        ),
+        "metatile_source_layer_slot_counts": merge_count_dicts(
+            decode.get("source_layer_slot_counts", {})
+            for decode in metatile_decodes
+        ),
+        "active_metatile_source_layer_slot_counts": merge_count_dicts(
+            decode.get("source_layer_slot_counts", {})
+            for decode in active_metatile_decodes
+        ),
+        "metatile_record_count_by_source_profile": merge_count_dicts(
+            {
+                decode.get("source_rules_profile"): int(decode.get("metatile_count", 0))
+            }
+            for decode in metatile_decodes
+        ),
         "init_function_count": len(init_functions),
         "animation_frame_declaration_count": len(animation_frames),
         "animation_source_bin_count": sum(frame["source_bin_count"] for frame in animation_frames),
@@ -828,6 +1281,12 @@ def manifest_entry_for(exported, output_path):
         "palette_slot_mapping_count": stats["palette_slot_mapping_count"],
         "palette_existing_editable_source_candidate_count": stats["palette_existing_editable_source_candidate_count"],
         "palette_missing_editable_source_candidate_count": stats["palette_missing_editable_source_candidate_count"],
+        "metatile_record_count": stats["metatile_record_count"],
+        "metatile_tile_entry_count": stats["metatile_tile_entry_count"],
+        "unique_metatile_source_binary_count": stats["unique_metatile_source_binary_count"],
+        "unique_metatile_record_count": stats["unique_metatile_record_count"],
+        "unique_metatile_tile_entry_count": stats["unique_metatile_tile_entry_count"],
+        "metatile_out_of_range_tile_entry_count": stats["metatile_out_of_range_tile_entry_count"],
         "animation_frame_declaration_count": stats["animation_frame_declaration_count"],
         "animation_existing_editable_source_candidate_count": stats["animation_existing_editable_source_candidate_count"],
         "missing_callback_source_count": stats["missing_callback_source_count"],
@@ -841,7 +1300,8 @@ def build_export(source_root):
     animation_frames = parse_animation_frame_declarations(source_root)
     init_functions = parse_init_function_symbols(source_root)
     palette_rules = parse_palette_slot_rules(source_root)
-    records = parse_tileset_headers(source_root, animation_frames, init_functions, palette_rules)
+    metatile_rules = parse_metatile_decode_rules(source_root)
+    records = parse_tileset_headers(source_root, animation_frames, init_functions, palette_rules, metatile_rules)
     stats = build_stats(source_files, records, animation_frames, init_functions)
     return {
         "schema_version": 1,
@@ -849,6 +1309,7 @@ def build_export(source_root):
         "source_root": str(source_root),
         "source_files": source_files,
         "palette_slot_rules": palette_rules,
+        "metatile_decode_rules": metatile_rules,
         "tileset_headers": records,
         "tileset_animation_frames": animation_frames,
         "tileset_animation_init_functions": init_functions,
@@ -868,9 +1329,14 @@ def build_export(source_root):
                 "detail": "Header callback symbols, callback source bindings, and animation frame image provenance are exported, but no source-equivalent Godot tileset animation scheduler is implemented yet.",
             },
             {
-                "code": "metatile_layer_decode_pending",
+                "code": "metatile_attribute_detail_pending",
                 "status": "unsupported",
-                "detail": "This report indexes header asset symbols; full per-8x8 metatile layer decode remains a later Section 4 task.",
+                "detail": "Per-8x8 metatile tile entries are decoded, but the next Section 4 task still needs richer attribute/terrain/encounter metadata beyond the existing behavior/layer provenance.",
+            },
+            {
+                "code": "source_equivalent_layer_renderer_pending",
+                "status": "unsupported",
+                "detail": "Decoded source layer slots and DrawMetatile placement rules are exported, but Godot still needs a source-equivalent layer renderer to consume them.",
             },
             {
                 "code": "audio_playback_pending",

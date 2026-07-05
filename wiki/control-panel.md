@@ -19,13 +19,13 @@ Current focus:
 
 Next active module:
 
-- Battle parity execution plan, currently moving from B8.1 imported battle interface assets into B8.2 source window layer rendering.
+- Map and overworld parity TODO, currently executing `wiki/overworld-parity-todo.md` section 4 before layer-aware rendering.
 
 Reason:
 
-- The user asked to execute `wiki/battle-parity-execution-plan.md` step by step, covering the map-decoupled 1:1 battle experience and reporting quantified progress after each turn.
-- Current B8.1 work imports the battle interface/HUD asset layer and keeps source color data import-only; the next battle-facing gap is source-equivalent window/textbox rendering rather than more map work.
-- The broad audit and executable checklist live in `wiki/battle-parity-execution-plan.md`.
+- The user asked to execute the map recreation TODO list step by step until complete and report quantified progress after each answer.
+- The current executable map checklist lives in `wiki/overworld-parity-todo.md`; section 4 is moving from tileset/metatile asset import toward richer metatile attributes and layer-aware rendering inputs.
+- Battle parity work remains durable backlog context, but it is not the active lane for the current goal.
 
 ## Module Tracks
 
@@ -175,6 +175,7 @@ Main-agent responsibilities:
 
 Near-term:
 
+- Continue `wiki/overworld-parity-todo.md` section 4: after completing compact per-8x8 metatile tile-entry decode, export richer metatile attributes for behavior/collision/elevation/terrain/encounter/layer metadata, then proceed toward layer-aware rendering inputs.
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.

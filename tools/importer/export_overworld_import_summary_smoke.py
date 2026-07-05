@@ -40,6 +40,10 @@ def main(argv):
     _assert(source["tileset_palette_reference_count"] == 2224, "unexpected source tileset palette ref count")
     _assert(source["tileset_unique_palette_reference_count"] == 2208, "unexpected unique palette ref count")
     _assert(source["tileset_palette_array_symbol_count"] == 139, "unexpected palette array symbol count")
+    _assert(source["tileset_metatile_binary_count"] == 134, "unexpected source metatile binary count")
+    _assert(source["tileset_metatile_record_count"] == 27593, "unexpected source metatile record count")
+    _assert(source["tileset_metatile_tile_entry_count"] == 220744, "unexpected source metatile tile entry count")
+    _assert(source["tileset_invalid_metatile_binary_count"] == 0, "unexpected invalid metatile binary count")
     _assert(source["door_animation_table_entry_count"] == 53, "unexpected active Emerald door table count")
     _assert(source["object_event_graphics_info_count"] == 393, "unexpected source object-event graphics count")
 
@@ -91,6 +95,34 @@ def main(argv):
         generated["tileset_header_missing_callback_source_count"] == 0,
         "unexpected missing tileset callback source count",
     )
+    _assert(generated["tileset_header_metatile_decode_count"] == 139, "unexpected header metatile decode count")
+    _assert(
+        generated["active_emerald_tileset_header_metatile_decode_count"] == 75,
+        "unexpected active header metatile decode count",
+    )
+    _assert(generated["tileset_header_metatile_record_count"] == 29213, "unexpected header-expanded metatile count")
+    _assert(
+        generated["active_emerald_tileset_header_metatile_record_count"] == 18318,
+        "unexpected active header-expanded metatile count",
+    )
+    _assert(generated["tileset_header_metatile_tile_entry_count"] == 233704, "unexpected header-expanded tile entry count")
+    _assert(
+        generated["active_emerald_tileset_header_metatile_tile_entry_count"] == 146544,
+        "unexpected active header-expanded tile entry count",
+    )
+    _assert(
+        generated["tileset_header_unique_metatile_source_binary_count"] == 134,
+        "unexpected unique generated metatile binary count",
+    )
+    _assert(generated["tileset_header_unique_metatile_record_count"] == 27593, "unexpected unique generated metatile count")
+    _assert(
+        generated["tileset_header_unique_metatile_tile_entry_count"] == 220744,
+        "unexpected unique generated tile entry count",
+    )
+    _assert(
+        generated["tileset_header_metatile_out_of_range_tile_entry_count"] == 0,
+        "unexpected out-of-range metatile tile refs",
+    )
     _assert(generated["script_bundle_count"] == 971, "unexpected generated script bundle count")
     _assert(generated["map_script_bundle_count"] == 887, "unexpected generated map script bundle count")
     _assert(generated["shared_script_bundle_count"] == 84, "unexpected generated shared script bundle count")
@@ -125,6 +157,15 @@ def main(argv):
     _assert(coverage["tileset_palette_sources"]["generated"] == 2224, "unexpected palette coverage generated count")
     _assert(coverage["tileset_palette_sources"]["source"] == 2224, "unexpected palette coverage source count")
     _assert(coverage["tileset_palette_sources"]["percent"] == 100.0, "unexpected palette coverage percent")
+    _assert(coverage["tileset_metatile_binaries"]["generated"] == 134, "unexpected metatile binary coverage count")
+    _assert(coverage["tileset_metatile_binaries"]["source"] == 134, "unexpected metatile binary source count")
+    _assert(coverage["tileset_metatile_binaries"]["percent"] == 100.0, "unexpected metatile binary coverage percent")
+    _assert(coverage["tileset_metatile_records"]["generated"] == 27593, "unexpected metatile record coverage count")
+    _assert(coverage["tileset_metatile_records"]["source"] == 27593, "unexpected metatile record source count")
+    _assert(coverage["tileset_metatile_records"]["percent"] == 100.0, "unexpected metatile record coverage percent")
+    _assert(coverage["tileset_metatile_tile_entries"]["generated"] == 220744, "unexpected tile entry coverage count")
+    _assert(coverage["tileset_metatile_tile_entries"]["source"] == 220744, "unexpected tile entry source count")
+    _assert(coverage["tileset_metatile_tile_entries"]["percent"] == 100.0, "unexpected tile entry coverage percent")
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}
     _assert("tileset_animation_runtime_pending" in unsupported_codes, "missing tileset animation unsupported code")
