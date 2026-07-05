@@ -96,9 +96,12 @@ func _init() -> void:
 		"debug_fixture": true,
 		"debug_allow_empty_party_fallback": true,
 		"battle_origin": "debug_trainer_npc",
+		"recorded_link_battle": true,
+		"recorded_text_speed_index": 2,
 	})
 	var trainer_battle_sequence := _dict_value(trainer_battle_request.get("sequence", {}))
 	var trainer_battle_ops := _step_ops(trainer_battle_sequence)
+	var trainer_battle_text_context := _dict_value(trainer_battle_sequence.get("battle_text_context", {}))
 	manager.dispatch_interaction({
 		"type": "object_event",
 		"script": "LittlerootTown_EventScript_Twin",
@@ -192,6 +195,9 @@ func _init() -> void:
 	_assert(String(global_fallback_preview.get("text", "")).find("\n") != -1, "expected global fallback display newline")
 	_assert(trainer_battle_request.get("status", "") == "sequence_requested", "expected trainer battle sequence request")
 	_assert(trainer_battle_sequence.get("battle_kind", "") == "trainer", "expected trainer battle sequence kind")
+	_assert(_array_value(trainer_battle_sequence.get("battle_type_flags", [])).has("BATTLE_TYPE_RECORDED_LINK"), "expected recorded-link flag on trainer battle sequence")
+	_assert(String(trainer_battle_text_context.get("battle_text_mode", "")) == "recorded_link", "expected recorded-link battle text context on sequence")
+	_assert(int(trainer_battle_text_context.get("recorded_text_speed_index", -1)) == 2, "expected recorded text speed index on sequence")
 	_assert(trainer_battle_ops.has("clear_mirage_tower_pulse_blend"), "expected trainer battle Mirage Tower cleanup step")
 	_assert(trainer_battle_ops.has("restart_wild_encounter_immunity_steps"), "expected trainer battle wild immunity reset step")
 	_assert(trainer_battle_ops.has("clear_poison_step_counter"), "expected trainer battle poison step counter clear")
@@ -610,6 +616,7 @@ func _init() -> void:
 		"door_exit_task": door_exit_task,
 		"door_sequence_ops": _step_ops(door_warp_sequence),
 		"connection_sequence_ops": _step_ops(connection_sequence),
+		"trainer_battle_text_mode": String(trainer_battle_text_context.get("battle_text_mode", "")),
 		"rival_position_after_object_dispatch": _vector_to_array(rival_position_after_object_dispatch),
 	}))
 	connection_manager.free()
@@ -690,6 +697,10 @@ func _step_ops(sequence: Dictionary) -> Array:
 
 func _dict_value(value) -> Dictionary:
 	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _array_value(value) -> Array:
+	return value if typeof(value) == TYPE_ARRAY else []
 
 
 func _first_step(sequence: Dictionary, op: String) -> Dictionary:

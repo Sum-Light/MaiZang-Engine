@@ -383,6 +383,7 @@ func create_trainer_battle_state(trainer_id_or_symbol, player_party: Array, opti
 		battle_options["opponent_active"] = 0
 
 	var battle_state := create_single_battle_state(battle_player_party, opponent_party, battle_options)
+	var battle_type_flags := _trainer_battle_type_flags(trainer_record, options)
 	var battle_setup := _trainer_battle_setup_metadata(
 		trainer_record,
 		battle_player_party,
@@ -393,7 +394,8 @@ func create_trainer_battle_state(trainer_id_or_symbol, player_party: Array, opti
 	battle_state["battle_kind"] = "trainer"
 	battle_state["battle_type"] = "double" if _trainer_min_party_count(trainer_record) == 2 else "single"
 	battle_state["trainer"] = _trainer_summary(trainer_record)
-	battle_state["battle_type_flags"] = _trainer_battle_type_flags(trainer_record, options)
+	battle_state["battle_type_flags"] = battle_type_flags
+	battle_state["battle_text_context"] = _battle_text_context_metadata(battle_type_flags, options)
 	battle_state["battle_setup"] = battle_setup
 	battle_state["active_battlers"] = {
 		"player": [int(battle_options.get("player_active", 0))],
@@ -404,6 +406,7 @@ func create_trainer_battle_state(trainer_id_or_symbol, player_party: Array, opti
 	battle_state["callback_metadata"] = _trainer_battle_callback_metadata(options)
 	battle_state["warnings"] = trainer_party_result.get("warnings", [])
 	battle_state["unsupported"] = _trainer_battle_unsupported(options)
+	battle_state["unsupported"].append_array(_battle_text_setup_unsupported(battle_type_flags))
 	battle_state["unsupported"].append_array(fallback_unsupported)
 	battle_state["unsupported"].append_array(_array_value(battle_transition.get("unsupported", [])))
 	if battle_state["battle_type"] == "double":
@@ -475,8 +478,10 @@ func create_wild_battle_state(encounter: Dictionary, player_party: Array, option
 	if not battle_options.has("player_active"):
 		battle_options["player_active"] = _first_usable_battle_party_index(player_party)
 	var battle_state := create_single_battle_state(player_party, [wild_mon], battle_options)
+	var battle_type_flags := _wild_battle_type_flags(options)
 	battle_state["battle_kind"] = "wild"
-	battle_state["battle_type_flags"] = _wild_battle_type_flags(options)
+	battle_state["battle_type_flags"] = battle_type_flags
+	battle_state["battle_text_context"] = _battle_text_context_metadata(battle_type_flags, options)
 	battle_state["wild_encounter"] = _wild_encounter_summary(encounter)
 	battle_state["battle_setup"] = _wild_battle_setup_metadata(encounter, player_party, wild_mon, options)
 	battle_state["source_trace"] = _merged_trace(battle_state.get("source_trace", []), [
@@ -488,6 +493,7 @@ func create_wild_battle_state(encounter: Dictionary, player_party: Array, option
 		"src/battle_setup.c:GetWildBattleTransition",
 	])
 	battle_state["unsupported"] = _wild_battle_unsupported(options)
+	battle_state["unsupported"].append_array(_battle_text_setup_unsupported(battle_type_flags))
 	return battle_state
 
 
@@ -899,6 +905,7 @@ func _wild_encounter_summary(encounter: Dictionary) -> Dictionary:
 
 func _wild_battle_setup_metadata(encounter: Dictionary, player_party: Array, wild_mon: Dictionary, options: Dictionary) -> Dictionary:
 	var battle_flags := _wild_battle_type_flags(options)
+	var battle_text_context := _battle_text_context_metadata(battle_flags, options)
 	var transition_info := _wild_battle_transition_metadata(player_party, wild_mon, options)
 	return {
 		"status": "state_created",
@@ -907,6 +914,7 @@ func _wild_battle_setup_metadata(encounter: Dictionary, player_party: Array, wil
 		"standard_function": "DoStandardWildBattle(FALSE)",
 		"saved_callback": "CB2_EndWildBattle",
 		"battle_type_flags": battle_flags,
+		"battle_text_context": battle_text_context,
 		"battle_transition": transition_info,
 		"active_player_index": _first_usable_battle_party_index(player_party),
 		"active_player_source": "src/battle_controllers.c first valid non-egg, non-fainted player mon",
@@ -1117,7 +1125,7 @@ func _wild_battle_type_flags(options: Dictionary) -> Array:
 		flags.append("BATTLE_TYPE_DOUBLE")
 	if bool(options.get("battle_pyramid", options.get("battle_pyramid_layout", false))):
 		flags.append("BATTLE_TYPE_PYRAMID")
-	return flags
+	return _battle_type_flags_with_options(flags, options)
 
 
 func _wild_battle_unsupported(options: Dictionary) -> Array:
@@ -1212,6 +1220,7 @@ func _trainer_battle_setup_metadata(
 	options: Dictionary
 ) -> Dictionary:
 	var battle_flags := _trainer_battle_type_flags(trainer_record, options)
+	var battle_text_context := _battle_text_context_metadata(battle_flags, options)
 	var transition_info := _trainer_battle_transition_metadata(
 		trainer_record,
 		player_party,
@@ -1225,6 +1234,7 @@ func _trainer_battle_setup_metadata(
 		"standard_function": "DoTrainerBattle",
 		"saved_callback": "CB2_EndTrainerBattle",
 		"battle_type_flags": battle_flags,
+		"battle_text_context": battle_text_context,
 		"battle_transition": transition_info,
 		"active_player_index": _first_usable_battle_party_index(player_party),
 		"active_opponent_index": _first_usable_battle_party_index(opponent_party),
@@ -1414,7 +1424,103 @@ func _trainer_battle_type_flags(trainer_record: Dictionary, options: Dictionary)
 		flags.append("BATTLE_TYPE_PYRAMID")
 	if bool(options.get("trainer_hill", false)):
 		flags.append("BATTLE_TYPE_TRAINER_HILL")
+	return _battle_type_flags_with_options(flags, options)
+
+
+func _battle_type_flags_with_options(base_flags: Array, options: Dictionary) -> Array:
+	var flags: Array = []
+	for flag in base_flags:
+		_append_unique_string(flags, String(flag))
+	for flag in _battle_type_flags_from_option_value(options.get("battle_type_flags", [])):
+		_append_unique_string(flags, flag)
+	if bool(options.get("link_battle", options.get("battle_type_link", false))):
+		_append_unique_string(flags, "BATTLE_TYPE_LINK")
+	if bool(options.get("link_in_battle", false)):
+		_append_unique_string(flags, "BATTLE_TYPE_LINK_IN_BATTLE")
+	if bool(options.get("recorded_battle", options.get("battle_type_recorded", false))):
+		_append_unique_string(flags, "BATTLE_TYPE_RECORDED")
+	if bool(options.get("recorded_link_battle", options.get("battle_type_recorded_link", false))):
+		_append_unique_string(flags, "BATTLE_TYPE_RECORDED")
+		_append_unique_string(flags, "BATTLE_TYPE_RECORDED_LINK")
+	if bool(options.get("recorded_is_master", options.get("battle_type_recorded_is_master", false))):
+		_append_unique_string(flags, "BATTLE_TYPE_RECORDED_IS_MASTER")
+	if bool(options.get("pokedude_battle", options.get("battle_type_pokedude", false))):
+		_append_unique_string(flags, "BATTLE_TYPE_POKEDUDE")
 	return flags
+
+
+func _battle_type_flags_from_option_value(value) -> Array:
+	var flags: Array = []
+	if typeof(value) == TYPE_ARRAY:
+		for item in value:
+			_append_unique_string(flags, String(item))
+	elif typeof(value) == TYPE_DICTIONARY:
+		for key in value.keys():
+			if bool(value[key]):
+				_append_unique_string(flags, String(key))
+	elif typeof(value) == TYPE_STRING:
+		for item in String(value).replace("|", ",").split(",", false):
+			_append_unique_string(flags, String(item).strip_edges())
+	return flags
+
+
+func _append_unique_string(values: Array, value: String) -> void:
+	if value.is_empty() or values.has(value):
+		return
+	values.append(value)
+
+
+func _battle_text_context_metadata(battle_type_flags: Array, options: Dictionary) -> Dictionary:
+	var mode := String(options.get("battle_text_mode", "")).to_lower()
+	if mode.is_empty():
+		mode = _battle_text_mode_from_flags(battle_type_flags)
+	var context := {
+		"status": "battle_text_setup_context_first_pass",
+		"source": "src/battle_message.c:BattlePutTextOnWindow",
+		"setup_source": [
+			"include/constants/battle.h:BATTLE_TYPE_LINK/BATTLE_TYPE_RECORDED/BATTLE_TYPE_RECORDED_LINK",
+			"src/union_room_battle.c:StartUnionRoomBattle",
+			"src/recorded_battle.c:SetVariablesForRecordedBattle",
+		],
+		"battle_type_flags": battle_type_flags.duplicate(true),
+		"battle_text_mode": mode,
+		"battle_type_link": battle_type_flags.has("BATTLE_TYPE_LINK"),
+		"battle_type_recorded": battle_type_flags.has("BATTLE_TYPE_RECORDED"),
+		"battle_type_recorded_link": battle_type_flags.has("BATTLE_TYPE_RECORDED_LINK"),
+		"battle_type_pokedude": battle_type_flags.has("BATTLE_TYPE_POKEDUDE"),
+		"test_runner_enabled": bool(options.get("test_runner_enabled", false)),
+		"recorded_text_speed_index": int(options.get("recorded_text_speed_index", options.get("text_speed_in_recorded_battle", 0))) if _battle_text_context_has_recorded_speed(battle_type_flags, options) else -1,
+		"message_window_source": "src/battle_message.c:BattlePutTextOnWindow",
+		"recorded_speed_source": "src/recorded_battle.c:GetTextSpeedInRecordedBattle",
+		"metadata_only": true,
+	}
+	return context
+
+
+func _battle_text_context_has_recorded_speed(battle_type_flags: Array, options: Dictionary) -> bool:
+	return battle_type_flags.has("BATTLE_TYPE_RECORDED") or options.has("recorded_text_speed_index") or options.has("text_speed_in_recorded_battle")
+
+
+func _battle_text_mode_from_flags(flags: Array) -> String:
+	if flags.has("BATTLE_TYPE_LINK"):
+		return "link"
+	if flags.has("BATTLE_TYPE_RECORDED_LINK"):
+		return "recorded_link"
+	if flags.has("BATTLE_TYPE_RECORDED"):
+		return "recorded"
+	if flags.has("BATTLE_TYPE_POKEDUDE"):
+		return "pokedude"
+	return ""
+
+
+func _battle_text_setup_unsupported(battle_type_flags: Array) -> Array:
+	if not (battle_type_flags.has("BATTLE_TYPE_LINK") or battle_type_flags.has("BATTLE_TYPE_RECORDED") or battle_type_flags.has("BATTLE_TYPE_RECORDED_LINK")):
+		return []
+	return [{
+		"code": "link_recorded_battle_setup_flow_metadata_only",
+		"source": "src/union_room_battle.c:StartUnionRoomBattle; src/recorded_battle.c:SetVariablesForRecordedBattle",
+		"detail": "Link and recorded battle type flags now propagate into BattleScene text context metadata, but wireless/link synchronization, recorded action playback, saved recorded battle data, and full battle controller flow are not implemented in this slice.",
+	}]
 
 
 func _trainer_battle_unsupported(options: Dictionary) -> Array:

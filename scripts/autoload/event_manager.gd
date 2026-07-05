@@ -369,6 +369,7 @@ func request_trainer_battle_start(request: Dictionary) -> Dictionary:
 	}
 	if request.has("map_transition_type"):
 		battle_options["map_transition_type"] = String(request.get("map_transition_type", "normal"))
+	_copy_battle_text_setup_options(request, battle_options)
 	var battle_state = _battle_engine.create_trainer_battle_state(trainer_id, player_party, battle_options)
 	if typeof(battle_state) != TYPE_DICTIONARY:
 		return {
@@ -460,6 +461,7 @@ func request_debug_wild_battle_start(request: Dictionary) -> Dictionary:
 		"player_active": _current_player_active_battle_index(player_party),
 		"debug_player_party": request.get("debug_player_party", {}),
 	}
+	_copy_battle_text_setup_options(request, battle_options)
 	var battle_state = _battle_engine.create_wild_battle_state(encounter, player_party, battle_options)
 	if typeof(battle_state) != TYPE_DICTIONARY:
 		return {
@@ -2142,6 +2144,7 @@ func _create_standard_wild_battle_state(summary: Dictionary) -> Dictionary:
 		"metatile_behavior": String(summary.get("current_metatile_behavior", "")),
 		"player_active": _current_player_active_battle_index(player_party),
 	}
+	_copy_battle_text_setup_options(summary, battle_options)
 	var battle_state = _battle_engine.create_wild_battle_state(encounter, player_party, battle_options)
 	if typeof(battle_state) != TYPE_DICTIONARY:
 		return {
@@ -2198,6 +2201,8 @@ func _build_debug_wild_battle_start_sequence(
 	transition = transition if typeof(transition) == TYPE_DICTIONARY else {}
 	var battle_type_flags = battle_state.get("battle_type_flags", [])
 	battle_type_flags = battle_type_flags if typeof(battle_type_flags) == TYPE_ARRAY else []
+	var battle_text_context = battle_state.get("battle_text_context", {})
+	battle_text_context = battle_text_context if typeof(battle_text_context) == TYPE_DICTIONARY else {}
 	return {
 		"id": sequence_id,
 		"type": "battle_start",
@@ -2214,6 +2219,7 @@ func _build_debug_wild_battle_start_sequence(
 		"battle_setup_status": String(battle_setup.get("status", "")),
 		"battle_transition": transition,
 		"battle_type_flags": battle_type_flags.duplicate(true),
+		"battle_text_context": battle_text_context.duplicate(true),
 		"statistics": statistics,
 		"frame_basis": "60fps",
 		"source_order": [
@@ -2320,6 +2326,8 @@ func _build_standard_wild_battle_start_sequence(
 	transition = transition if typeof(transition) == TYPE_DICTIONARY else {}
 	var battle_type_flags = battle_state.get("battle_type_flags", [])
 	battle_type_flags = battle_type_flags if typeof(battle_type_flags) == TYPE_ARRAY else []
+	var battle_text_context = battle_state.get("battle_text_context", {})
+	battle_text_context = battle_text_context if typeof(battle_text_context) == TYPE_DICTIONARY else {}
 	return {
 		"id": sequence_id,
 		"type": "battle_start",
@@ -2333,6 +2341,7 @@ func _build_standard_wild_battle_start_sequence(
 		"battle_setup_status": String(battle_setup.get("status", "")),
 		"battle_transition": transition,
 		"battle_type_flags": battle_type_flags.duplicate(true),
+		"battle_text_context": battle_text_context.duplicate(true),
 		"statistics": statistics,
 		"frame_basis": "60fps",
 		"source_order": [
@@ -2454,6 +2463,8 @@ func _build_trainer_battle_start_sequence(
 	battle_type_flags = battle_type_flags if typeof(battle_type_flags) == TYPE_ARRAY else []
 	var trainer = battle_state.get("trainer", {})
 	trainer = trainer if typeof(trainer) == TYPE_DICTIONARY else {}
+	var battle_text_context = battle_state.get("battle_text_context", {})
+	battle_text_context = battle_text_context if typeof(battle_text_context) == TYPE_DICTIONARY else {}
 	return {
 		"id": sequence_id,
 		"type": "battle_start",
@@ -2470,6 +2481,7 @@ func _build_trainer_battle_start_sequence(
 		"battle_setup_status": String(battle_setup.get("status", "")),
 		"battle_transition": transition,
 		"battle_type_flags": battle_type_flags.duplicate(true),
+		"battle_text_context": battle_text_context.duplicate(true),
 		"statistics": statistics,
 		"frame_basis": "60fps",
 		"source_order": [
@@ -3226,6 +3238,28 @@ func _result_array_count(result: Dictionary, key: String) -> int:
 
 func _array_value(value) -> Array:
 	return value if typeof(value) == TYPE_ARRAY else []
+
+
+func _copy_battle_text_setup_options(source: Dictionary, target: Dictionary) -> void:
+	for key in [
+		"battle_type_flags",
+		"battle_text_mode",
+		"battle_type_link",
+		"battle_type_recorded",
+		"battle_type_recorded_link",
+		"battle_type_pokedude",
+		"link_battle",
+		"link_in_battle",
+		"recorded_battle",
+		"recorded_link_battle",
+		"recorded_is_master",
+		"pokedude_battle",
+		"test_runner_enabled",
+		"recorded_text_speed_index",
+		"text_speed_in_recorded_battle",
+	]:
+		if source.has(key):
+			target[key] = source[key]
 
 
 func _configure_script_vm_dependencies() -> void:

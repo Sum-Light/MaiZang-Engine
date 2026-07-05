@@ -231,8 +231,12 @@ func _run_battle_text_controller_scene_checks(registry, engine, base_battle_stat
 	get_root().add_child(context_scene)
 	await create_timer(0.05).timeout
 
-	var recorded_state := _battle_state_with_flags(base_battle_state, ["BATTLE_TYPE_RECORDED"])
-	recorded_state["recorded_text_speed_index"] = 1
+	var recorded_state: Dictionary = engine.create_trainer_battle_state("TRAINER_SAWYER_1", _array_value(base_battle_state.get("player_party", [])), {
+		"recorded_battle": true,
+		"recorded_text_speed_index": 1,
+		"map_transition_type": "normal",
+	})
+	_assert(String(recorded_state.get("status", "")) == "ok", "expected recorded trainer state from BattleEngine")
 	context_scene.load_battle_state(recorded_state)
 	await create_timer(0.05).timeout
 	var recorded_intro: Dictionary = context_scene.get_ui_snapshot()
@@ -253,9 +257,12 @@ func _run_battle_text_controller_scene_checks(registry, engine, base_battle_stat
 	metrics["contexts"] = int(metrics.get("contexts", 0)) + 1
 	metrics["recorded_intro_delay"] = int(recorded_printer.get("resolved_frame_delay", -1))
 
-	var recorded_link_state := _battle_state_with_flags(base_battle_state, ["BATTLE_TYPE_RECORDED", "BATTLE_TYPE_RECORDED_LINK"])
-	recorded_link_state["battle_text_mode"] = "recorded_link"
-	recorded_link_state["recorded_text_speed_index"] = 2
+	var recorded_link_state: Dictionary = engine.create_trainer_battle_state("TRAINER_SAWYER_1", _array_value(base_battle_state.get("player_party", [])), {
+		"recorded_link_battle": true,
+		"recorded_text_speed_index": 2,
+		"map_transition_type": "normal",
+	})
+	_assert(String(recorded_link_state.get("status", "")) == "ok", "expected recorded-link trainer state from BattleEngine")
 	context_scene.load_battle_state(recorded_link_state)
 	await create_timer(0.05).timeout
 	var recorded_link_intro: Dictionary = context_scene.get_ui_snapshot()
@@ -274,17 +281,6 @@ func _run_battle_text_controller_scene_checks(registry, engine, base_battle_stat
 
 	context_scene.queue_free()
 	return metrics
-
-
-func _battle_state_with_flags(base_battle_state: Dictionary, extra_flags: Array) -> Dictionary:
-	var state := base_battle_state.duplicate(true)
-	var flags := _array_value(state.get("battle_type_flags", [])).duplicate()
-	for flag_value in extra_flags:
-		var flag := String(flag_value)
-		if not flags.has(flag):
-			flags.append(flag)
-	state["battle_type_flags"] = flags
-	return state
 
 
 func _window_text_printer(snapshot: Dictionary, window_id: String) -> Dictionary:

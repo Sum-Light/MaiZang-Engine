@@ -190,9 +190,12 @@ func _init() -> void:
 	})
 	var sawyer_setup := _dict_field(sawyer_battle, "battle_setup")
 	var sawyer_transition := _dict_field(sawyer_setup, "battle_transition")
+	var sawyer_text_context := _dict_field(sawyer_battle, "battle_text_context")
 	_assert(String(sawyer_battle.get("status", "")) == "ok", "expected Sawyer trainer battle state")
 	_assert(String(sawyer_battle.get("battle_kind", "")) == "trainer", "expected trainer battle kind")
 	_assert(_array_field(sawyer_battle, "battle_type_flags").has("BATTLE_TYPE_TRAINER"), "expected trainer battle type flag")
+	_assert(String(sawyer_text_context.get("status", "")) == "battle_text_setup_context_first_pass", "expected trainer battle text setup context")
+	_assert(_array_field(sawyer_text_context, "battle_type_flags").has("BATTLE_TYPE_TRAINER"), "expected trainer text context flags")
 	_assert(String(_dict_field(sawyer_battle, "trainer").get("symbol", "")) == "TRAINER_SAWYER_1", "expected Sawyer trainer metadata")
 	_assert(_array_field(sawyer_battle, "player_party").size() == 1, "expected Sawyer player party")
 	_assert(_array_field(sawyer_battle, "opponent_party").size() == 1, "expected Sawyer opponent party")
@@ -225,6 +228,34 @@ func _init() -> void:
 	})
 	var water_trainer_transition := _dict_field(_dict_field(water_trainer, "battle_setup"), "battle_transition")
 	_assert(String(water_trainer_transition.get("selected", "")) == "B_TRANSITION_SWIRL", "expected water lower trainer transition")
+
+	var link_trainer := engine.create_trainer_battle_state("TRAINER_SAWYER_1", [mudkip], {
+		"link_battle": true,
+		"map_transition_type": "normal",
+	})
+	var link_flags := _array_field(link_trainer, "battle_type_flags")
+	var link_context := _dict_field(link_trainer, "battle_text_context")
+	_assert(link_flags.has("BATTLE_TYPE_LINK"), "expected link battle flag from setup options")
+	_assert(String(link_context.get("battle_text_mode", "")) == "link", "expected link battle text mode from setup options")
+	_assert(bool(link_context.get("battle_type_link", false)), "expected link text context flag")
+	_assert(_has_unsupported(link_trainer, "link_recorded_battle_setup_flow_metadata_only"), "expected link setup unsupported metadata")
+
+	var recorded_link_trainer := engine.create_trainer_battle_state("TRAINER_SAWYER_1", [mudkip], {
+		"recorded_link_battle": true,
+		"recorded_text_speed_index": 2,
+		"map_transition_type": "normal",
+	})
+	var recorded_link_flags := _array_field(recorded_link_trainer, "battle_type_flags")
+	var recorded_link_context := _dict_field(recorded_link_trainer, "battle_text_context")
+	var recorded_link_setup_context := _dict_field(_dict_field(recorded_link_trainer, "battle_setup"), "battle_text_context")
+	_assert(recorded_link_flags.has("BATTLE_TYPE_RECORDED"), "expected recorded flag from recorded-link setup")
+	_assert(recorded_link_flags.has("BATTLE_TYPE_RECORDED_LINK"), "expected recorded-link flag from setup options")
+	_assert(String(recorded_link_context.get("battle_text_mode", "")) == "recorded_link", "expected recorded-link battle text mode")
+	_assert(bool(recorded_link_context.get("battle_type_recorded", false)), "expected recorded text context flag")
+	_assert(bool(recorded_link_context.get("battle_type_recorded_link", false)), "expected recorded-link text context flag")
+	_assert(int(recorded_link_context.get("recorded_text_speed_index", -1)) == 2, "expected recorded text speed index in context")
+	_assert(String(recorded_link_setup_context.get("status", "")) == "battle_text_setup_context_first_pass", "expected setup nested text context")
+	_assert(_has_unsupported(recorded_link_trainer, "link_recorded_battle_setup_flow_metadata_only"), "expected recorded-link setup unsupported metadata")
 
 	var wallace_battle := engine.create_trainer_battle_state("TRAINER_WALLACE", [mudkip])
 	var wallace_transition := _dict_field(_dict_field(wallace_battle, "battle_setup"), "battle_transition")
@@ -279,6 +310,8 @@ func _init() -> void:
 		"wild_water_transition": String(water_transition.get("selected", "")),
 		"trainer_transition": String(sawyer_transition.get("selected", "")),
 		"trainer_outcome": String(trainer_result_contract.get("outcome", "")),
+		"battle_text_setup_contexts": 3,
+		"recorded_link_setup_speed_index": int(recorded_link_context.get("recorded_text_speed_index", -1)),
 	}))
 	engine.free()
 	registry.free()
