@@ -58,12 +58,77 @@ func _run() -> void:
 	_assert(bool(instant_snapshot.get("player_text_speed_is_instant", false)), "expected instant speed metadata")
 	_assert(int(instant_snapshot.get("player_text_speed_modifier", 0)) == 12, "expected source instant text modifier")
 
+	var speedup_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	speedup_printer.start("B_WIN_MSG", "ABC", message_info, text_printer_metadata, {
+		"player_text_speed": "OPTIONS_TEXT_SPEED_SLOW",
+	})
+	speedup_printer.advance_frames(1)
+	speedup_printer.advance_frames(1, {"a_pressed": true})
+	var speedup_pressed := _dict(speedup_printer.snapshot())
+	_assert(String(speedup_printer.get_visible_text()) == "A", "expected A/B press to clear delay before next glyph")
+	_assert(bool(speedup_pressed.get("has_print_been_sped_up", false)), "expected source A/B speed-up flag")
+	_assert(int(speedup_pressed.get("ab_speedup_count", 0)) == 1, "expected one A/B speed-up event")
+	speedup_printer.advance_frames(1, {"a_held": true})
+	_assert(String(speedup_printer.get_visible_text()) == "AB", "expected held A/B to render next glyph on following frame")
+
+	var pause_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	pause_printer.start("B_WIN_MSG", "{PAUSE 2}AB", message_info, text_printer_metadata)
+	pause_printer.advance_frames(1)
+	var pause_start := _dict(pause_printer.snapshot())
+	_assert(String(pause_printer.get_visible_text()) == "", "expected pause control to stay hidden")
+	_assert(String(pause_start.get("wait_state", "")) == "pause", "expected pause render state")
+	_assert(int(pause_start.get("pause_counter", 0)) == 2, "expected pause frame count")
+	pause_printer.advance_frames(3)
+	_assert(String(pause_printer.get_visible_text()) == "", "expected pause to clear before printing next glyph")
+	pause_printer.advance_frames(1)
+	_assert(String(pause_printer.get_visible_text()) == "A", "expected text after pause clears")
+	var pause_after := _dict(pause_printer.snapshot())
+	_assert(int(pause_after.get("pause_event_count", 0)) == 1, "expected one pause control event")
+
+	var page_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	page_printer.start("B_WIN_MSG", "A\n\nB", message_info, text_printer_metadata)
+	page_printer.advance_frames(1)
+	page_printer.advance_frames(1)
+	var page_wait := _dict(page_printer.snapshot())
+	_assert(String(page_printer.get_visible_text()) == "A\n\n", "expected paragraph marker visible as display-text page break")
+	_assert(String(page_wait.get("wait_state", "")) == "wait_with_down_arrow", "expected prompt-scroll wait state")
+	_assert(bool(page_wait.get("down_arrow_visible", false)), "expected down-arrow metadata while waiting")
+	_assert(int(page_wait.get("page_wait_count", 0)) == 1, "expected one page wait event")
+	page_printer.advance_frames(2)
+	_assert(String(page_printer.get_visible_text()) == "A\n\n", "expected page wait to block without input")
+	page_printer.advance_frames(1, {"b_pressed": true})
+	page_printer.advance_frames(1)
+	_assert(String(page_printer.get_visible_text()) == "A\n\nB", "expected B press to release page wait")
+
+	var audio_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	audio_printer.start("B_WIN_MSG", "A{PLAY_SE SE_SELECT}{WAIT_SE}B", message_info, text_printer_metadata)
+	audio_printer.advance_frames(1)
+	audio_printer.advance_frames(1)
+	var audio_snapshot := _dict(audio_printer.snapshot())
+	_assert(int(audio_snapshot.get("audio_cue_count", 0)) == 2, "expected PLAY_SE and WAIT_SE metadata events")
+	_assert(int(audio_snapshot.get("wait_se_count", 0)) == 1, "expected one WAIT_SE event")
+	_assert(String(audio_printer.get_visible_text()) == "A", "expected audio metadata frame before next glyph")
+	audio_printer.advance_frames(1)
+	_assert(String(audio_printer.get_visible_text()) == "AB", "expected metadata-only audio wait to continue")
+
+	var link_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	link_printer.start("B_WIN_MSG", "AB", message_info, text_printer_metadata, {
+		"battle_text_mode": "link",
+		"player_text_speed": "OPTIONS_TEXT_SPEED_SLOW",
+	})
+	var link_snapshot := _dict(link_printer.snapshot())
+	_assert(int(link_snapshot.get("resolved_frame_delay", 0)) == 1, "expected link battle text speed override")
+	_assert(bool(link_snapshot.get("auto_scroll", false)), "expected link battle auto-scroll metadata")
+
 	if _failed:
 		return
 	print(JSON.stringify({
 		"battle_text_printer_smoke": "ok",
 		"slow_delay": int(initial.get("resolved_frame_delay", 0)),
 		"instant_modifier": int(instant_snapshot.get("player_text_speed_modifier", 0)),
+		"control_events": int(audio_snapshot.get("control_event_count", 0)) + int(pause_after.get("control_event_count", 0)),
+		"page_waits": int(page_wait.get("page_wait_count", 0)),
+		"ab_speedups": int(speedup_pressed.get("ab_speedup_count", 0)),
 	}))
 	registry.free()
 	quit(0)

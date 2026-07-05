@@ -63,6 +63,20 @@ func _run() -> void:
 	renderer.skip_text_printers_to_end()
 	_assert(String(renderer.get_window_visible_text("B_WIN_MSG")) == "ABC", "expected message skip to reveal all")
 
+	renderer.show_message_window("A\n\nB", false)
+	renderer.advance_text_printers(1)
+	renderer.advance_text_printers(1)
+	var page_snapshot := _dict(renderer.get_renderer_snapshot())
+	var page_windows := _dict(page_snapshot.get("windows", {}))
+	var page_message := _dict(page_windows.get("B_WIN_MSG", {}))
+	var page_printer := _dict(page_message.get("text_printer", {}))
+	_assert(String(page_message.get("visible_text", "")) == "A\n\n", "expected renderer message page break before B")
+	_assert(String(page_printer.get("wait_state", "")) == "wait_with_down_arrow", "expected renderer page wait state")
+	_assert(bool(page_printer.get("down_arrow_visible", false)), "expected renderer down-arrow metadata")
+	renderer.advance_text_printers(1, {"a_pressed": true})
+	renderer.advance_text_printers(1)
+	_assert(String(renderer.get_window_visible_text("B_WIN_MSG")) == "A\n\nB", "expected renderer page wait release")
+
 	renderer.show_move_windows(["Water Gun", "Tackle", "-", "-"], "PP", "25/25", "TYPE/Water")
 	var move_snapshot := _dict(renderer.get_renderer_snapshot())
 	_assert(String(move_snapshot.get("source_composite_mapping_status", "")) == "generated_window_template_rects", "expected generated move composite rect mapping")
@@ -93,6 +107,7 @@ func _run() -> void:
 		"action_menu_opaque_pixels": action_opaque,
 		"move_name_opaque_pixels": move_opaque,
 		"move_type_opaque_pixels": type_opaque,
+		"message_page_waits": int(page_printer.get("page_wait_count", 0)),
 	}))
 	renderer.queue_free()
 	registry.free()

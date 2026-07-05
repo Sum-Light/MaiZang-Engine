@@ -39,8 +39,8 @@ func configure_data_registry(data_registry: Node) -> void:
 	_load_interface_data()
 
 
-func show_message_window(text: String, reveal_immediately: bool = true) -> void:
-	show_windows(["B_WIN_MSG"], 0, {"B_WIN_MSG": text}, reveal_immediately)
+func show_message_window(text: String, reveal_immediately: bool = true, text_printer_options: Dictionary = {}) -> void:
+	show_windows(["B_WIN_MSG"], 0, {"B_WIN_MSG": text}, reveal_immediately, text_printer_options)
 
 
 func show_action_windows(prompt_text: String, menu_text: String) -> void:
@@ -87,7 +87,7 @@ func clear_windows() -> void:
 			node.visible = false
 
 
-func show_windows(window_ids: Array, bg0_y: int, text_by_window: Dictionary = {}, reveal_immediately: bool = true) -> void:
+func show_windows(window_ids: Array, bg0_y: int, text_by_window: Dictionary = {}, reveal_immediately: bool = true, text_printer_options: Dictionary = {}) -> void:
 	_load_interface_data()
 	_bg0_y = bg0_y
 	_visible_windows = []
@@ -99,7 +99,7 @@ func show_windows(window_ids: Array, bg0_y: int, text_by_window: Dictionary = {}
 		_visible_windows.append(window_id)
 		_window_texts[window_id] = String(text_by_window.get(window_id, _window_texts.get(window_id, "")))
 		_ensure_window_nodes(window_id)
-		_ensure_text_printer(window_id, String(_window_texts.get(window_id, "")), reveal_immediately)
+		_ensure_text_printer(window_id, String(_window_texts.get(window_id, "")), reveal_immediately, text_printer_options)
 		_apply_window_node_layout(window_id)
 	_set_node_visibility()
 
@@ -239,10 +239,10 @@ func get_renderer_snapshot() -> Dictionary:
 		"runtime_color_policy": "rgba_textures_and_godot_materials",
 		"unsupported": [
 			"battle_text_glyph_renderer_pending",
-			"battle_text_source_byte_stream_pending",
-			"battle_text_control_codes_pending",
-			"battle_text_wait_page_down_arrow_pending",
-			"battle_text_ab_speedup_input_pending",
+			"battle_text_full_source_byte_stream_renderer_pending",
+			"battle_text_full_control_code_renderer_pending",
+			"battle_text_link_recorded_speed_overrides_pending",
+			"battle_text_screenshot_comparison_pending",
 		],
 	}
 
@@ -350,7 +350,7 @@ func _text_printer_snapshot() -> Dictionary:
 	}
 
 
-func _ensure_text_printer(window_id: String, text: String, reveal_immediately: bool) -> void:
+func _ensure_text_printer(window_id: String, text: String, reveal_immediately: bool, text_printer_options: Dictionary = {}) -> void:
 	var display_text := _display_text(text)
 	var printer = _active_text_printers.get(window_id, null)
 	var should_restart := true
@@ -360,9 +360,11 @@ func _ensure_text_printer(window_id: String, text: String, reveal_immediately: b
 		should_restart = not same_text or (not reveal_immediately and complete)
 	if should_restart:
 		printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
-		printer.start(window_id, display_text, _source_text_info(window_id), _text_printer, {
+		var options := {
 			"player_text_speed": "OPTIONS_TEXT_SPEED_FAST",
-		})
+		}
+		options.merge(text_printer_options, true)
+		printer.start(window_id, display_text, _source_text_info(window_id), _text_printer, options)
 		_active_text_printers[window_id] = printer
 	if reveal_immediately and printer != null and printer.has_method("skip_to_end"):
 		printer.skip_to_end()
