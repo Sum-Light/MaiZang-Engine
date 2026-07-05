@@ -34,6 +34,9 @@ def main(argv):
     _assert(source["secondary_tileset_image_count"] == 127, "unexpected source secondary tileset count")
     _assert(source["tileset_header_count"] == 139, "unexpected source tileset header count")
     _assert(source["tileset_callback_count"] == 31, "unexpected source tileset callback count")
+    _assert(source["tileset_anim_init_function_count"] == 31, "unexpected source tileset anim init count")
+    _assert(source["tileset_anim_source_frame_count"] == 182, "unexpected source tileset anim frame source count")
+    _assert(source["tileset_anim_source_group_count"] == 174, "unexpected source tileset anim group count")
     _assert(source["door_animation_table_entry_count"] == 53, "unexpected active Emerald door table count")
     _assert(source["object_event_graphics_info_count"] == 393, "unexpected source object-event graphics count")
 
@@ -53,6 +56,15 @@ def main(argv):
     _assert(
         generated["active_emerald_tileset_header_record_count"] == 75,
         "unexpected active Emerald tileset header count",
+    )
+    _assert(
+        generated["tileset_animation_frame_declaration_count"] == 174,
+        "unexpected generated animation frame declaration count",
+    )
+    _assert(generated["tileset_animation_source_image_count"] == 182, "unexpected animation source image count")
+    _assert(
+        generated["tileset_header_missing_callback_source_count"] == 0,
+        "unexpected missing tileset callback source count",
     )
     _assert(generated["script_bundle_count"] == 971, "unexpected generated script bundle count")
     _assert(generated["map_script_bundle_count"] == 887, "unexpected generated map script bundle count")
@@ -81,6 +93,10 @@ def main(argv):
     _assert(coverage["layouts"]["percent"] == 100.0, "unexpected layout coverage percent")
     _assert(coverage["tileset_headers"]["percent"] == 100.0, "unexpected tileset header coverage percent")
     _assert(coverage["tileset_animation_callbacks"]["generated"] == 0, "expected no generated tileset anims")
+    _assert(
+        coverage["tileset_animation_source_images"]["percent"] == 100.0,
+        "unexpected tileset animation source image coverage percent",
+    )
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}
     _assert("tileset_animation_runtime_pending" in unsupported_codes, "missing tileset animation unsupported code")
