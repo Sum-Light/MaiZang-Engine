@@ -77,6 +77,9 @@ func _run() -> void:
 	var singles_coords := _dict_value(healthbox_coords.get("singles", {}))
 	_assert(_array_value(singles_coords.get("player_left", [])) == [158, 88], "expected source player healthbox coord")
 	_assert(_array_value(singles_coords.get("opponent_left", [])) == [44, 30], "expected source opponent healthbox coord")
+	var controller_metrics: Dictionary = await _run_battle_text_controller_scene_checks(registry, engine, battle_state)
+	if _failed:
+		return
 
 	var intro_advance: Dictionary = scene.advance_intro()
 	_assert(String(intro_advance.get("status", "")) == "ok", "expected intro advance")
@@ -175,6 +178,9 @@ func _run() -> void:
 		"battle_scene_smoke": "ok",
 		"outcome": String(result_contract.get("outcome", "")),
 		"opponent_hp": String(after.get("opponent_hp", "")),
+		"battle_text_controller_contexts": int(controller_metrics.get("contexts", 0)),
+		"recorded_intro_delay": int(controller_metrics.get("recorded_intro_delay", -1)),
+		"recorded_link_intro_delay": int(controller_metrics.get("recorded_link_intro_delay", -1)),
 	}))
 	scene.queue_free()
 	engine.free()
@@ -211,6 +217,81 @@ func _has_unsupported(record: Dictionary, code: String) -> bool:
 func _has_source_trace(record: Dictionary, trace: String) -> bool:
 	var source_trace = record.get("source_trace", [])
 	return typeof(source_trace) == TYPE_ARRAY and source_trace.has(trace)
+
+
+func _run_battle_text_controller_scene_checks(registry, engine, base_battle_state: Dictionary) -> Dictionary:
+	var metrics := {
+		"contexts": 0,
+		"recorded_intro_delay": -1,
+		"recorded_link_intro_delay": -1,
+	}
+	var context_scene = BATTLE_SCENE.instantiate()
+	context_scene.configure_battle_engine(engine)
+	context_scene.configure_data_registry(registry)
+	get_root().add_child(context_scene)
+	await create_timer(0.05).timeout
+
+	var recorded_state := _battle_state_with_flags(base_battle_state, ["BATTLE_TYPE_RECORDED"])
+	recorded_state["recorded_text_speed_index"] = 1
+	context_scene.load_battle_state(recorded_state)
+	await create_timer(0.05).timeout
+	var recorded_intro: Dictionary = context_scene.get_ui_snapshot()
+	var recorded_controller := _dict_value(recorded_intro.get("source_battle_text_controller_context", {}))
+	_assert(String(recorded_controller.get("status", "")) == "source_battle_text_controller_context_first_pass", "expected recorded controller context status")
+	_assert(String(recorded_controller.get("source", "")).contains("BattlePutTextOnWindow"), "expected recorded controller source trace")
+	_assert(_array_value(recorded_controller.get("battle_type_flags", [])).has("BATTLE_TYPE_RECORDED"), "expected recorded controller battle flag")
+	_assert(String(recorded_controller.get("battle_text_mode", "")) == "recorded", "expected recorded controller mode")
+	var recorded_printer := _window_text_printer(recorded_intro, "B_WIN_MSG")
+	var recorded_context := _dict_value(recorded_printer.get("battle_text_context", {}))
+	_assert(String(recorded_printer.get("battle_text_context_status", "")) == "source_battle_text_context_first_pass", "expected recorded printer context status")
+	_assert(int(recorded_printer.get("resolved_frame_delay", -1)) == 4, "expected recorded intro text delay index 1")
+	_assert(int(recorded_printer.get("recorded_text_speed_index", -1)) == 1, "expected recorded text speed index propagated")
+	_assert(int(recorded_printer.get("recorded_text_speed_value", -1)) == 4, "expected recorded text speed value propagated")
+	_assert(bool(recorded_printer.get("auto_scroll", false)), "expected recorded scene text auto-scroll")
+	_assert(_array_value(recorded_printer.get("auto_scroll_reasons", [])).has("BATTLE_TYPE_RECORDED"), "expected recorded scene auto-scroll reason")
+	_assert(bool(recorded_context.get("battle_type_recorded", false)), "expected recorded scene printer context flag")
+	metrics["contexts"] = int(metrics.get("contexts", 0)) + 1
+	metrics["recorded_intro_delay"] = int(recorded_printer.get("resolved_frame_delay", -1))
+
+	var recorded_link_state := _battle_state_with_flags(base_battle_state, ["BATTLE_TYPE_RECORDED", "BATTLE_TYPE_RECORDED_LINK"])
+	recorded_link_state["battle_text_mode"] = "recorded_link"
+	recorded_link_state["recorded_text_speed_index"] = 2
+	context_scene.load_battle_state(recorded_link_state)
+	await create_timer(0.05).timeout
+	var recorded_link_intro: Dictionary = context_scene.get_ui_snapshot()
+	var recorded_link_controller := _dict_value(recorded_link_intro.get("source_battle_text_controller_context", {}))
+	_assert(String(recorded_link_controller.get("battle_text_mode", "")) == "recorded_link", "expected recorded-link controller mode")
+	_assert(_array_value(recorded_link_controller.get("battle_type_flags", [])).has("BATTLE_TYPE_RECORDED_LINK"), "expected recorded-link controller battle flag")
+	var recorded_link_printer := _window_text_printer(recorded_link_intro, "B_WIN_MSG")
+	var recorded_link_context := _dict_value(recorded_link_printer.get("battle_text_context", {}))
+	_assert(int(recorded_link_printer.get("resolved_frame_delay", -1)) == 1, "expected recorded-link intro text delay")
+	_assert(String(recorded_link_printer.get("effective_speed_source", "")).contains("recorded_link_battle_speed"), "expected recorded-link speed source")
+	_assert(bool(recorded_link_printer.get("auto_scroll", false)), "expected recorded-link scene text auto-scroll")
+	_assert(bool(recorded_link_context.get("battle_type_recorded_link", false)), "expected recorded-link printer context flag")
+	_assert(bool(recorded_link_context.get("battle_type_recorded", false)), "expected recorded-link printer recorded context")
+	metrics["contexts"] = int(metrics.get("contexts", 0)) + 1
+	metrics["recorded_link_intro_delay"] = int(recorded_link_printer.get("resolved_frame_delay", -1))
+
+	context_scene.queue_free()
+	return metrics
+
+
+func _battle_state_with_flags(base_battle_state: Dictionary, extra_flags: Array) -> Dictionary:
+	var state := base_battle_state.duplicate(true)
+	var flags := _array_value(state.get("battle_type_flags", [])).duplicate()
+	for flag_value in extra_flags:
+		var flag := String(flag_value)
+		if not flags.has(flag):
+			flags.append(flag)
+	state["battle_type_flags"] = flags
+	return state
+
+
+func _window_text_printer(snapshot: Dictionary, window_id: String) -> Dictionary:
+	var renderer := _dict_value(snapshot.get("source_window_renderer", {}))
+	var windows := _dict_value(renderer.get("windows", {}))
+	var window := _dict_value(windows.get(window_id, {}))
+	return _dict_value(window.get("text_printer", {}))
 
 
 func _contains_forbidden_runtime_color_key(value) -> bool:

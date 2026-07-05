@@ -25,6 +25,7 @@ var _text_texture_nodes: Dictionary = {}
 var _label_nodes: Dictionary = {}
 var _window_texts: Dictionary = {}
 var _active_text_printers: Dictionary = {}
+var _window_text_printer_option_signatures: Dictionary = {}
 var _source_text_bitmap_summaries: Dictionary = {}
 var _visible_windows: Array = []
 var _bg0_y := 0
@@ -397,6 +398,7 @@ func _text_printer_snapshot() -> Dictionary:
 
 func _ensure_text_printer(window_id: String, text: String, reveal_immediately: bool, text_printer_options: Dictionary = {}) -> void:
 	var display_text := _display_text(text)
+	var option_signature := JSON.stringify(text_printer_options, "", true)
 	var printer = _active_text_printers.get(window_id, null)
 	var should_restart := true
 	if printer != null and printer.has_method("get_full_text"):
@@ -406,8 +408,9 @@ func _ensure_text_printer(window_id: String, text: String, reveal_immediately: b
 			var printer_snapshot = printer.snapshot()
 			if typeof(printer_snapshot) == TYPE_DICTIONARY:
 				same_source_text = String(printer_snapshot.get("source_text", "")) == String(text_printer_options.get("source_text", ""))
+		var same_options := String(_window_text_printer_option_signatures.get(window_id, "")) == option_signature
 		var complete := bool(printer.is_complete()) if printer.has_method("is_complete") else true
-		should_restart = not same_text or not same_source_text or (not reveal_immediately and complete)
+		should_restart = not same_text or not same_source_text or not same_options or (not reveal_immediately and complete)
 	if should_restart:
 		printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 		var options := {
@@ -416,6 +419,7 @@ func _ensure_text_printer(window_id: String, text: String, reveal_immediately: b
 		options.merge(text_printer_options, true)
 		printer.start(window_id, display_text, _source_text_info(window_id), _text_printer, options)
 		_active_text_printers[window_id] = printer
+		_window_text_printer_option_signatures[window_id] = option_signature
 	if reveal_immediately and printer != null and printer.has_method("skip_to_end"):
 		printer.skip_to_end()
 

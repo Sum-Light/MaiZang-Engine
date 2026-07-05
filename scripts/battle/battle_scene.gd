@@ -13,6 +13,7 @@ const HP_YELLOW := Color(0.88, 0.76, 0.24, 1.0)
 const HP_RED := Color(0.88, 0.25, 0.22, 1.0)
 const PRESENTATION_STATUS := "first_slice_not_source_equivalent"
 const SOURCE_FLOW_STATUS := "source_action_move_window_flow_first_pass"
+const SOURCE_BATTLE_TEXT_CONTROLLER_CONTEXT_STATUS := "source_battle_text_controller_context_first_pass"
 const BG0_Y_ACTION_CHOOSE := DISPLAY_HEIGHT
 const BG0_Y_MOVE_CHOOSE := DISPLAY_HEIGHT * 2
 const ACTION_FIGHT := "fight"
@@ -254,6 +255,7 @@ func get_ui_snapshot() -> Dictionary:
 		"source_healthbox_coords": SOURCE_HEALTHBOX_COORDS.duplicate(true),
 		"source_ui_assets": SOURCE_UI_ASSETS.duplicate(true),
 		"source_window_text_info": _source_window_text_info_snapshot(),
+		"source_battle_text_controller_context": _source_battle_text_controller_context_snapshot(),
 		"source_type_display_status": _source_type_display_status(),
 		"source_hp_bar_pixels": HP_BAR_PIXELS,
 		"source_window_renderer_status": _source_window_renderer_status(),
@@ -497,14 +499,14 @@ func _refresh_window_renderer(player_mon: Dictionary, message_visible: bool, act
 	if _window_renderer == null:
 		return
 	if message_visible:
-		_window_renderer.show_message_window(_message_label.text)
+		_window_renderer.show_message_window(_message_label.text, true, _battle_text_controller_options())
 	elif action_visible:
 		var prompt_mon_name := _action_prompt_mon_name(player_mon)
 		_window_renderer.show_action_windows(
 			_action_prompt_text(player_mon),
 			_battle_menu_text_for_renderer(),
-			_source_battle_text_printer_options("gText_WhatWillPkmnDo", {"{B_BUFF1}": prompt_mon_name}),
-			_source_battle_text_printer_options("gText_BattleMenu")
+			_battle_text_options_with_controller(_source_battle_text_printer_options("gText_WhatWillPkmnDo", {"{B_BUFF1}": prompt_mon_name})),
+			_battle_text_options_with_controller(_source_battle_text_printer_options("gText_BattleMenu"))
 		)
 	elif move_visible:
 		var move_type_suffix := _move_type_suffix_for_selected(player_mon)
@@ -513,10 +515,7 @@ func _refresh_window_renderer(player_mon: Dictionary, message_visible: bool, act
 			_source_battle_text("gText_MoveInterfacePP"),
 			_pp_remaining_text(player_mon),
 			_move_type_text_for_selected(player_mon),
-			{
-				"B_WIN_PP": _source_battle_text_printer_options("gText_MoveInterfacePP"),
-				"B_WIN_MOVE_TYPE": _source_battle_text_printer_options("gText_MoveInterfaceType", {}, move_type_suffix),
-			}
+			_move_text_printer_options_by_window(move_type_suffix)
 		)
 	else:
 		_window_renderer.clear_windows()
@@ -836,6 +835,140 @@ func _source_text_snapshot() -> Dictionary:
 			"source": record.get("source", {}) if not record.is_empty() else {},
 		}
 	return result
+
+
+func _battle_text_controller_context_data() -> Dictionary:
+	var result := {}
+	result.merge(_dictionary_value(_sequence.get("battle_text_context", {})), true)
+	result.merge(_dictionary_value(_sequence.get("battle_text_options", {})), true)
+	result.merge(_dictionary_value(_battle_state.get("battle_text_context", {})), true)
+	result.merge(_dictionary_value(_battle_state.get("battle_text_options", {})), true)
+	for key in [
+		"battle_type_flags",
+		"battle_text_mode",
+		"battle_type_link",
+		"battle_type_recorded",
+		"battle_type_recorded_link",
+		"battle_type_pokedude",
+		"test_runner_enabled",
+		"recorded_text_speed_index",
+		"battle_text_speed_override",
+		"player_text_speed",
+		"auto_scroll",
+	]:
+		if _sequence.has(key):
+			result[key] = _sequence[key]
+		if _battle_state.has(key):
+			result[key] = _battle_state[key]
+	return result
+
+
+func _battle_text_controller_options() -> Dictionary:
+	var context := _battle_text_controller_context_data()
+	var flags := _battle_type_flags_from_context(context)
+	var mode := String(context.get("battle_text_mode", context.get("mode", ""))).to_lower()
+	if mode.is_empty():
+		mode = _battle_text_mode_from_flags(flags)
+	var options := {}
+	if not mode.is_empty():
+		options["battle_text_mode"] = mode
+	if bool(context.get("battle_type_link", false)) or flags.has("BATTLE_TYPE_LINK"):
+		options["battle_type_link"] = true
+	if bool(context.get("battle_type_recorded", false)) or flags.has("BATTLE_TYPE_RECORDED"):
+		options["battle_type_recorded"] = true
+	if bool(context.get("battle_type_recorded_link", false)) or flags.has("BATTLE_TYPE_RECORDED_LINK"):
+		options["battle_type_recorded_link"] = true
+	if bool(context.get("battle_type_pokedude", false)) or flags.has("BATTLE_TYPE_POKEDUDE"):
+		options["battle_type_pokedude"] = true
+	if context.has("test_runner_enabled"):
+		options["test_runner_enabled"] = bool(context.get("test_runner_enabled", false))
+	if context.has("recorded_text_speed_index"):
+		options["recorded_text_speed_index"] = int(context.get("recorded_text_speed_index", 0))
+	if context.has("battle_text_speed_override"):
+		options["battle_text_speed_override"] = int(context.get("battle_text_speed_override", 0))
+	if context.has("player_text_speed"):
+		options["player_text_speed"] = String(context.get("player_text_speed", ""))
+	if context.has("auto_scroll"):
+		options["auto_scroll"] = bool(context.get("auto_scroll", false))
+	return options
+
+
+func _battle_text_options_with_controller(options: Dictionary = {}) -> Dictionary:
+	var merged := _battle_text_controller_options()
+	merged.merge(options, true)
+	return merged
+
+
+func _move_text_printer_options_by_window(move_type_suffix: String) -> Dictionary:
+	var result := {}
+	for window_id in [
+		"B_WIN_MOVE_NAME_1",
+		"B_WIN_MOVE_NAME_2",
+		"B_WIN_MOVE_NAME_3",
+		"B_WIN_MOVE_NAME_4",
+		"B_WIN_PP",
+		"B_WIN_PP_REMAINING",
+		"B_WIN_MOVE_TYPE",
+	]:
+		result[window_id] = _battle_text_options_with_controller()
+	result["B_WIN_PP"] = _battle_text_options_with_controller(_source_battle_text_printer_options("gText_MoveInterfacePP"))
+	result["B_WIN_MOVE_TYPE"] = _battle_text_options_with_controller(_source_battle_text_printer_options("gText_MoveInterfaceType", {}, move_type_suffix))
+	return result
+
+
+func _battle_type_flags_from_context(context: Dictionary) -> Array:
+	var flags: Array = []
+	var raw_flags = context.get("battle_type_flags", _battle_state.get("battle_type_flags", []))
+	if typeof(raw_flags) == TYPE_ARRAY:
+		for flag in raw_flags:
+			flags.append(String(flag))
+	elif typeof(raw_flags) == TYPE_DICTIONARY:
+		for flag in raw_flags.keys():
+			if bool(raw_flags[flag]):
+				flags.append(String(flag))
+	elif typeof(raw_flags) == TYPE_STRING:
+		for flag_text in String(raw_flags).replace("|", ",").split(",", false):
+			var flag := String(flag_text).strip_edges()
+			if not flag.is_empty():
+				flags.append(flag)
+	return flags
+
+
+func _battle_text_mode_from_flags(flags: Array) -> String:
+	if flags.has("BATTLE_TYPE_LINK"):
+		return "link"
+	if flags.has("BATTLE_TYPE_RECORDED_LINK"):
+		return "recorded_link"
+	if flags.has("BATTLE_TYPE_RECORDED"):
+		return "recorded"
+	if flags.has("BATTLE_TYPE_POKEDUDE"):
+		return "pokedude"
+	return ""
+
+
+func _source_battle_text_controller_context_snapshot() -> Dictionary:
+	var context := _battle_text_controller_context_data()
+	var options := _battle_text_controller_options()
+	var flags := _battle_type_flags_from_context(context)
+	return {
+		"status": SOURCE_BATTLE_TEXT_CONTROLLER_CONTEXT_STATUS,
+		"source": "src/battle_message.c:BattlePutTextOnWindow",
+		"wait_source": "src/text.c:TextPrinterWaitWithDownArrow",
+		"battle_type_flags": flags,
+		"battle_text_mode": String(options.get("battle_text_mode", "")),
+		"battle_type_link": bool(options.get("battle_type_link", false)),
+		"battle_type_recorded": bool(options.get("battle_type_recorded", false)),
+		"battle_type_recorded_link": bool(options.get("battle_type_recorded_link", false)),
+		"battle_type_pokedude": bool(options.get("battle_type_pokedude", false)),
+		"test_runner_enabled": bool(options.get("test_runner_enabled", false)),
+		"recorded_text_speed_index": int(options.get("recorded_text_speed_index", -1)),
+		"auto_scroll_option": bool(options.get("auto_scroll", false)),
+		"message_window_speed_source": "src/battle_message.c:BattlePutTextOnWindow:message_window_speed_branch",
+		"auto_scroll_source": "src/battle_message.c:BattlePutTextOnWindow:gTextFlags.autoScroll",
+		"unsupported": [
+			"battle_text_full_link_recorded_controller_flow_pending",
+		],
+	}
 
 
 func _action_prompt_mon_name(player_mon: Dictionary) -> String:
