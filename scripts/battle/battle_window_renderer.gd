@@ -11,6 +11,9 @@ const SOURCE_TRACE := [
 	"src/battle_bg.c:sStandardBattleWindowTemplates",
 	"src/battle_message.c:sTextOnWindowsInfo_Normal",
 	"src/battle_message.c:BattlePutTextOnWindow",
+	"src/text.c:sFontInfos",
+	"src/fonts.c:gFont*LatinGlyphWidths",
+	"src/chinese_text.c:GetChineseFontWidthFunc",
 ]
 
 var _data_registry: Node = null
@@ -252,8 +255,7 @@ func get_renderer_snapshot() -> Dictionary:
 		"text_printers": _text_printers_snapshot(),
 		"runtime_color_policy": "rgba_textures_and_godot_materials",
 		"unsupported": [
-			"battle_text_glyph_renderer_pending",
-			"battle_text_full_source_byte_stream_renderer_pending",
+			"battle_text_glyph_bitmap_renderer_pending",
 			"battle_text_full_control_code_renderer_pending",
 			"battle_text_link_recorded_speed_overrides_pending",
 			"battle_text_screenshot_comparison_pending",
@@ -353,13 +355,17 @@ func _source_text_info_status() -> String:
 func _text_printer_snapshot() -> Dictionary:
 	if _text_printer.is_empty():
 		return {}
+	var font_metrics := _dictionary_value(_text_printer.get("font_metrics", {}))
+	var fonts := _dictionary_value(font_metrics.get("fonts", {}))
 	return {
-		"status": "first_pass_plain_text_cadence",
+		"status": "first_pass_source_glyph_layout",
 		"metadata_status": String(_text_printer.get("status", "")),
 		"normal_window_text_info_count": int(_text_printer.get("normal_window_text_info_count", 0)),
 		"normal_windows_type": String(_text_printer.get("normal_windows_type", "")),
 		"message_effective_speed_source": String(_text_printer.get("message_effective_speed_source", "")),
-		"runtime_status": "first_pass_plain_text_cadence",
+		"runtime_status": "first_pass_source_glyph_layout",
+		"source_font_metric_status": String(font_metrics.get("status", "")),
+		"source_font_metric_count": int(font_metrics.get("font_count", fonts.size())),
 		"visible_window_printer_count": _visible_windows.size(),
 	}
 

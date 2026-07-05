@@ -24,6 +24,9 @@ GRAPHICS_SOURCE = Path("src/graphics.c")
 BATTLE_BG_SOURCE = Path("src/battle_bg.c")
 BATTLE_MESSAGE_SOURCE = Path("src/battle_message.c")
 TEXT_SOURCE = Path("src/text.c")
+CHINESE_TEXT_SOURCE = Path("src/chinese_text.c")
+FONTS_SOURCE = Path("src/fonts.c")
+TEXT_HEADER_SOURCE = Path("include/text.h")
 BATTLE_INTERFACE_SOURCE = Path("src/battle_interface.c")
 BATTLE_SCRIPT_COMMANDS_SOURCE = Path("src/battle_script_commands.c")
 GIMMICKS_SOURCE = Path("src/data/graphics/gimmicks.h")
@@ -159,6 +162,56 @@ TEXTBOX_COMPOSITE_WINDOW_SOURCE_TRACE = [
     "src/battle_bg.c:LoadBattleTextboxAndBackground",
     "src/battle_bg.c:sStandardBattleWindowTemplates",
 ]
+
+FONT_WIDTH_SYMBOLS = {
+    "FONT_SMALL": "gFontSmallLatinGlyphWidths",
+    "FONT_NORMAL": "gFontNormalLatinGlyphWidths",
+    "FONT_SHORT": "gFontShortLatinGlyphWidths",
+    "FONT_SHORT_COPY_1": "gFontShortLatinGlyphWidths",
+    "FONT_SHORT_COPY_2": "gFontShortLatinGlyphWidths",
+    "FONT_SHORT_COPY_3": "gFontShortLatinGlyphWidths",
+    "FONT_NARROW": "gFontNarrowLatinGlyphWidths",
+    "FONT_SMALL_NARROW": "gFontSmallNarrowLatinGlyphWidths",
+    "FONT_NARROWER": "gFontNarrowerLatinGlyphWidths",
+    "FONT_SMALL_NARROWER": "gFontSmallNarrowerLatinGlyphWidths",
+    "FONT_SHORT_NARROW": "gFontShortNarrowLatinGlyphWidths",
+    "FONT_SHORT_NARROWER": "gFontShortNarrowerLatinGlyphWidths",
+}
+
+CHINESE_ENCODING_RULE = {
+    "double_byte_high_min": 0x01,
+    "double_byte_high_max": 0x1E,
+    "excluded_high_bytes": [0x06, 0x1B],
+    "low_byte_max": 0xF6,
+    "single_byte_punctuation": [0x30] + [value for value in range(0x36, 0x40) if value != 0x38],
+    "glyph_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
+    "source_trace": [
+        "src/chinese_text.c:IsChineseChar",
+        "src/chinese_text.c:IsChinesePunctuation",
+        "src/chinese_text.c:DecompressGlyph_Chinese",
+        "src/chinese_text.c:GetChineseFontWidthFunc",
+    ],
+}
+
+CHINESE_WIDTH_RULE = {
+    "small_font_ids": ["FONT_SMALL", "FONT_SMALL_NARROW", "FONT_SMALL_NARROWER"],
+    "small_default_width": 10,
+    "small_punctuation_widths": {
+        "0x30": 5,
+        "0x37": 6,
+        "0x39": 7,
+        "0x3A": 5,
+        "0x3B": 5,
+        "0x3C": 5,
+        "0x3D": 5,
+        "0x3E": 5,
+        "0x3F": 7,
+    },
+    "small_height": 13,
+    "large_default_width": 12,
+    "large_punctuation_widths": {"0x30": 7},
+    "large_height": 15,
+}
 
 
 def _strip_comment(line):
@@ -499,6 +552,7 @@ def _parse_battle_window_text_info(source_root):
         TEXT_CONFIG_SOURCE,
         GLOBAL_CONSTANTS_SOURCE,
     ])
+    font_metrics = _parse_source_font_metrics(source_root)
     records = {}
     for match in re.finditer(r"\[(B_WIN_[A-Z0-9_]+|ARENA_WIN_[A-Z0-9_]+)\]\s*=\s*\{(?P<body>.*?)\n\s*\}", block, re.S):
         symbol = match.group(1)
@@ -537,6 +591,7 @@ def _parse_battle_window_text_info(source_root):
             "panel_style": _text_fill_style(fill_index),
             "font_id": font_id,
             "font_size": _font_size_for_source_font(font_id),
+            "font_metrics": _font_metrics_summary(font_metrics, font_id),
             "text_x": int(fields.get("x", 0) or 0),
             "text_y": int(fields.get("y", 0) or 0),
             "letter_spacing": int(fields.get("letterSpacing", 0) or 0),
@@ -580,9 +635,10 @@ def _parse_battle_window_text_info(source_root):
         "message_effective_speed_source": "GetPlayerTextSpeedDelay unless link/recorded battle overrides apply",
         "recorded_battle_text_speeds": _parse_recorded_battle_text_speeds(text),
         "player_text_speed": _parse_player_text_speed_metadata(source_root),
+        "font_metrics": font_metrics,
         "copy_to_vram_rule": "B_WIN_COPYTOVRAM skips FillWindowPixelBuffer and final PutWindowTilemap/CopyWindowToVram; normal calls fill then copy full window",
         "runtime_status": "metadata_only",
-        "unsupported": ["battle_text_printer_timing_pending", "battle_text_glyph_renderer_pending"],
+        "unsupported": ["battle_text_glyph_bitmap_renderer_pending"],
     }
     return records, printer
 
@@ -609,6 +665,150 @@ def _text_fill_style(fill_index):
 
 def _font_size_for_source_font(font_id):
     return 8
+
+
+def _parse_source_font_metrics(source_root):
+    font_infos = _parse_source_font_infos(source_root)
+    latin_widths = _parse_source_latin_font_widths(source_root)
+    fonts = {}
+    for font_id, info in font_infos.items():
+        widths_symbol = FONT_WIDTH_SYMBOLS.get(font_id, "")
+        widths = latin_widths.get(widths_symbol, []) if widths_symbol else []
+        font_record = {
+            "font_id": font_id,
+            "source_font_function": info.get("font_function", ""),
+            "max_letter_width": int(info.get("max_letter_width", 0)),
+            "max_letter_height": int(info.get("max_letter_height", 0)),
+            "letter_spacing": int(info.get("letter_spacing", 0)),
+            "line_spacing": int(info.get("line_spacing", 0)),
+            "line_advance": int(info.get("max_letter_height", 0)) + int(info.get("line_spacing", 0)),
+            "latin_glyph_height": _latin_glyph_height_for_font(font_id),
+            "latin_width_table": widths_symbol,
+            "latin_width_count": len(widths),
+            "latin_widths": widths,
+            "source": info.get("source", {}),
+        }
+        if font_id in FONT_WIDTH_SYMBOLS:
+            font_record["chinese_width_rule"] = _font_chinese_width_rule(font_id)
+        fonts[font_id] = font_record
+    return {
+        "status": "generated_from_text_c_font_tables",
+        "font_count": len(fonts),
+        "fonts": fonts,
+        "chinese_encoding": CHINESE_ENCODING_RULE,
+        "source_trace": [
+            "src/text.c:sFontInfos",
+            "src/text.c:PrintGlyph",
+            "src/text.c:GetStringWidth",
+            "src/fonts.c:gFont*LatinGlyphWidths",
+            "src/chinese_text.c:IsChineseChar",
+            "src/chinese_text.c:GetChineseFontWidthFunc",
+        ],
+    }
+
+
+def _font_metrics_summary(font_metrics, font_id):
+    fonts = font_metrics.get("fonts", {}) if isinstance(font_metrics, dict) else {}
+    record = fonts.get(font_id, {}) if isinstance(fonts, dict) else {}
+    if not isinstance(record, dict) or not record:
+        return {}
+    return {
+        "status": font_metrics.get("status", ""),
+        "font_id": font_id,
+        "max_letter_width": record.get("max_letter_width", 0),
+        "max_letter_height": record.get("max_letter_height", 0),
+        "letter_spacing": record.get("letter_spacing", 0),
+        "line_spacing": record.get("line_spacing", 0),
+        "line_advance": record.get("line_advance", 0),
+        "latin_glyph_height": record.get("latin_glyph_height", 0),
+        "latin_width_table": record.get("latin_width_table", ""),
+        "latin_width_count": record.get("latin_width_count", 0),
+        "chinese_width_rule": record.get("chinese_width_rule", {}),
+    }
+
+
+def _parse_source_font_infos(source_root):
+    source_path = source_root / TEXT_SOURCE
+    if not source_path.exists():
+        return {}
+    text = source_path.read_text(encoding="utf-8", errors="replace")
+    start = text.find("static const struct FontInfo sFontInfos[]")
+    if start < 0:
+        return {}
+    block, block_start, _block_end = _extract_initializer_block(text, start)
+    result = {}
+    for match in re.finditer(r"\[(FONT_[A-Z0-9_]+)\]\s*=\s*\{(?P<body>.*?)\n\s*\}", block, re.S):
+        font_id = match.group(1)
+        body = match.group("body")
+        function_match = re.search(r"\.fontFunction\s*=\s*([^,\n]+)", body)
+        record = {
+            "font_function": _strip_comment(function_match.group(1)) if function_match is not None else "",
+            "source": {
+                "file": to_project_path(TEXT_SOURCE),
+                "line": text[: block_start + match.start()].count("\n") + 1,
+            },
+        }
+        for field_name, key in [
+            ("maxLetterWidth", "max_letter_width"),
+            ("maxLetterHeight", "max_letter_height"),
+            ("letterSpacing", "letter_spacing"),
+            ("lineSpacing", "line_spacing"),
+        ]:
+            field_match = re.search(r"\.%s\s*=\s*([^,\n]+)" % field_name, body)
+            parsed = _parse_int_expr(_strip_comment(field_match.group(1))) if field_match is not None else None
+            record[key] = parsed if parsed is not None else 0
+        result[font_id] = record
+    return result
+
+
+def _parse_source_latin_font_widths(source_root):
+    source_path = source_root / FONTS_SOURCE
+    if not source_path.exists():
+        return {}
+    text = source_path.read_text(encoding="utf-8", errors="replace")
+    result = {}
+    for symbol in sorted(set(FONT_WIDTH_SYMBOLS.values())):
+        match = re.search(r"const u8 %s\[\]\s*=\s*\{" % re.escape(symbol), text)
+        if match is None:
+            continue
+        block, _block_start, _block_end = _extract_initializer_block(text, match.start())
+        widths = []
+        for value in re.findall(r"\b(?:0x[0-9A-Fa-f]+|\d+)\b", block):
+            parsed = _parse_int_expr(value)
+            if parsed is not None:
+                widths.append(parsed)
+        result[symbol] = widths
+    return result
+
+
+def _font_chinese_width_rule(font_id):
+    if font_id in CHINESE_WIDTH_RULE["small_font_ids"]:
+        return {
+            "default_width": CHINESE_WIDTH_RULE["small_default_width"],
+            "height": CHINESE_WIDTH_RULE["small_height"],
+            "punctuation_widths": CHINESE_WIDTH_RULE["small_punctuation_widths"],
+        }
+    return {
+        "default_width": CHINESE_WIDTH_RULE["large_default_width"],
+        "height": CHINESE_WIDTH_RULE["large_height"],
+        "punctuation_widths": CHINESE_WIDTH_RULE["large_punctuation_widths"],
+    }
+
+
+def _latin_glyph_height_for_font(font_id):
+    if font_id in ["FONT_SMALL", "FONT_SMALL_NARROWER"]:
+        return 13 if font_id == "FONT_SMALL" else 15
+    if font_id == "FONT_SMALL_NARROW":
+        return 12
+    if font_id in ["FONT_SHORT", "FONT_SHORT_COPY_1", "FONT_SHORT_COPY_2", "FONT_SHORT_COPY_3", "FONT_SHORT_NARROW", "FONT_SHORT_NARROWER"]:
+        return 14
+    if font_id in ["FONT_NORMAL", "FONT_NARROW", "FONT_NARROWER"]:
+        return 15
+    if font_id == "FONT_BRAILLE":
+        return 16
+    if font_id == "FONT_BOLD":
+        return 12
+    return 0
 
 
 def _text_material_id(symbol, fill_index, color_indices):
@@ -1016,6 +1216,11 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
         "window_template_count": len(window_templates),
         "window_template_composite_rect_count": window_template_composite_rect_count,
         "battle_window_text_info_count": battle_window_text_info_count,
+        "source_font_metric_count": int(text_printer.get("font_metrics", {}).get("font_count", 0)),
+        "latin_width_table_count": len([
+            record for record in text_printer.get("font_metrics", {}).get("fonts", {}).values()
+            if isinstance(record, dict) and record.get("latin_width_count", 0)
+        ]),
         "healthbox_coord_group_count": len(sections["healthbox"].get("coords", {})),
         "healthbox_frame_texture_count": len(sections["healthbox"].get("frame_textures", [])),
         "healthbox_element_texture_count": len(sections["healthbox"].get("element_textures", [])),
@@ -1037,6 +1242,9 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
             to_project_path(BATTLE_BG_SOURCE),
             to_project_path(BATTLE_MESSAGE_SOURCE),
             to_project_path(TEXT_SOURCE),
+            to_project_path(CHINESE_TEXT_SOURCE),
+            to_project_path(FONTS_SOURCE),
+            to_project_path(TEXT_HEADER_SOURCE),
             to_project_path(BATTLE_INTERFACE_SOURCE),
             to_project_path(BATTLE_SCRIPT_COMMANDS_SOURCE),
             to_project_path(GIMMICKS_SOURCE),

@@ -24,7 +24,7 @@ func _run() -> void:
 		"player_text_speed": "OPTIONS_TEXT_SPEED_SLOW",
 	})
 	var initial := _dict(slow_printer.snapshot())
-	_assert(String(initial.get("status", "")) == "first_pass_plain_text_cadence", "expected first-pass printer status")
+	_assert(String(initial.get("status", "")) == "first_pass_source_glyph_layout", "expected first-pass printer status")
 	_assert(String(slow_printer.get_visible_text()) == "", "expected async message to start hidden")
 	_assert(int(initial.get("resolved_frame_delay", 0)) == 8, "expected slow player text delay")
 	_assert(int(initial.get("source_add_text_printer_text_speed", -1)) == 7, "expected AddTextPrinter speed minus one")
@@ -46,6 +46,9 @@ func _run() -> void:
 	_assert(String(instant_menu_printer.get_visible_text()) == "Fight    Bag", "expected speed-zero menu text immediately visible")
 	_assert(bool(menu_snapshot.get("synchronous_render", false)), "expected speed-zero source path to render synchronously")
 	_assert(int(menu_snapshot.get("resolved_frame_delay", -1)) == 0, "expected action menu source speed zero")
+	var menu_layout := _dict(menu_snapshot.get("source_glyph_layout", {}))
+	_assert(String(menu_snapshot.get("source_glyph_layout_status", "")) == "source_metrics_layout", "expected generated source font metrics")
+	_assert(int(menu_layout.get("glyph_count", 0)) == String(instant_menu_printer.get_visible_text()).length(), "expected synchronous menu layout glyph count")
 
 	var instant_player_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	instant_player_printer.start("B_WIN_MSG", "XYZ", message_info, text_printer_metadata, {
@@ -161,10 +164,20 @@ func _run() -> void:
 	})
 	byte_glyph_printer.advance_frames(1)
 	var byte_glyph := _dict(byte_glyph_printer.snapshot())
+	var byte_glyph_layout := _dict(byte_glyph.get("source_glyph_layout", {}))
+	var byte_glyph_layout_glyphs := _array(byte_glyph_layout.get("glyphs", []))
+	var byte_glyph_layout_first := _dict(byte_glyph_layout_glyphs[0]) if not byte_glyph_layout_glyphs.is_empty() else {}
 	_assert(String(byte_glyph_printer.get_visible_text()) == "G", "expected one glyph from a two-byte source span")
 	_assert(int(byte_glyph.get("source_glyph_count", 0)) == 1, "expected one source glyph span")
 	_assert(int(byte_glyph.get("source_byte_event_count", 0)) == 1, "expected two source bytes to map to one glyph event")
 	_assert(int(byte_glyph.get("event_count", 0)) == 1, "expected one event for grouped source glyph bytes")
+	_assert(String(byte_glyph.get("source_glyph_layout_status", "")) == "source_metrics_layout", "expected source metrics layout for grouped glyph")
+	_assert(int(byte_glyph_layout.get("glyph_count", 0)) == 1, "expected one source glyph layout record")
+	_assert(int(byte_glyph_layout_first.get("width", 0)) == 12, "expected source Chinese glyph width")
+	_assert(int(byte_glyph_layout_first.get("height", 0)) == 15, "expected source Chinese glyph height")
+	_assert(int(byte_glyph_layout_first.get("advance", 0)) == 12, "expected source Chinese glyph advance")
+	_assert(int(byte_glyph_layout_first.get("source_byte_count", 0)) == 2, "expected two bytes on grouped glyph layout")
+	_assert(_array(byte_glyph_layout_first.get("source_byte_span", [])) == [0x0F, 0x0B], "expected layout source byte span")
 
 	var byte_clear_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	byte_clear_printer.start("B_WIN_MSG", "AB", message_info, text_printer_metadata, {
@@ -252,6 +265,7 @@ func _run() -> void:
 		"byte_glyph_events": int(byte_glyph.get("source_byte_event_count", 0)),
 		"byte_prompt_clears": int(byte_clear_wait.get("prompt_clear_count", 0)),
 		"byte_prompt_scrolls": int(byte_scroll_wait.get("prompt_scroll_count", 0)),
+		"source_glyph_width": int(byte_glyph_layout_first.get("width", 0)),
 		"ab_speedups": int(speedup_pressed.get("ab_speedup_count", 0)),
 	}))
 	registry.free()

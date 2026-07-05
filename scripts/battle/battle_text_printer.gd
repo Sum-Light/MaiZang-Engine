@@ -1,6 +1,6 @@
 extends RefCounted
 
-const STATUS := "first_pass_plain_text_cadence"
+const STATUS := "first_pass_source_glyph_layout"
 const DEFAULT_PLAYER_TEXT_SPEED := "OPTIONS_TEXT_SPEED_FAST"
 const SOURCE_SPEED_PLAYER_TEXT_DELAY := "player_text_speed_delay"
 const NUM_FRAMES_AUTO_SCROLL_DELAY := 49
@@ -47,11 +47,14 @@ const SOURCE_TRACE := [
 	"src/text.c:AddTextPrinter",
 	"src/text.c:RunTextPrinters",
 	"src/text.c:RenderText",
+	"src/text.c:PrintGlyph",
+	"src/text.c:GetStringWidth",
 	"src/text.c:TextPrinterWaitWithDownArrow",
+	"src/chinese_text.c:IsChineseChar",
+	"src/chinese_text.c:GetChineseFontWidthFunc",
 ]
 const FIRST_PASS_UNSUPPORTED := [
-	"battle_text_glyph_renderer_pending",
-	"battle_text_full_source_byte_stream_renderer_pending",
+	"battle_text_glyph_bitmap_renderer_pending",
 	"battle_text_full_control_code_renderer_pending",
 	"battle_text_link_recorded_speed_overrides_pending",
 	"battle_text_screenshot_comparison_pending",
@@ -128,6 +131,19 @@ var _source_byte_event_count := 0
 var _source_text_control_metadata_count := 0
 var _source_audio_cue_metadata_count := 0
 var _source_metadata_only_count := 0
+var _font_metrics: Dictionary = {}
+var _layout_font_id := "FONT_NORMAL"
+var _layout_initial_font_id := "FONT_NORMAL"
+var _layout_origin := Vector2i.ZERO
+var _layout_cursor := Vector2i.ZERO
+var _layout_min_letter_spacing := 0
+var _layout_japanese := false
+var _layout_glyphs: Array = []
+var _layout_control_events: Array = []
+var _layout_glyph_count := 0
+var _layout_total_advance_px := 0
+var _layout_line_count := 1
+var _layout_max_line_width_px := 0
 var _event_log: Array = []
 var _control_event_count := 0
 var _style_event_count := 0
@@ -169,6 +185,10 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	_source_text_control_metadata_count = _array_value(options.get("text_controls", [])).size()
 	_source_audio_cue_metadata_count = _array_value(options.get("audio_cues", [])).size()
 	_source_metadata_only_count = _array_value(options.get("metadata_only", [])).size()
+	_font_metrics = _resolve_font_metrics(text_info, text_printer_metadata, options)
+	_layout_origin = Vector2i(int(text_info.get("text_x", 0)), int(text_info.get("text_y", 0)))
+	_layout_initial_font_id = String(text_info.get("font_id", "FONT_NORMAL"))
+	_reset_layout_state(_layout_initial_font_id)
 	_event_stream_source = "source_bytes" if not _source_bytes.is_empty() else ("source_text" if not _source_text.is_empty() else "display_text")
 	var event_text := _strip_source_text_terminator(_source_text) if _event_stream_source == "source_text" else _full_text
 	if _event_stream_source == "source_bytes":
@@ -281,6 +301,21 @@ func snapshot() -> Dictionary:
 		"source_text_control_metadata_count": _source_text_control_metadata_count,
 		"source_audio_cue_metadata_count": _source_audio_cue_metadata_count,
 		"source_metadata_only_count": _source_metadata_only_count,
+		"source_glyph_layout_status": "source_metrics_layout" if _has_font_metrics() else "fallback_constant_width_layout",
+		"source_glyph_layout": {
+			"font_id": _layout_font_id,
+			"origin": [_layout_origin.x, _layout_origin.y],
+			"cursor": [_layout_cursor.x, _layout_cursor.y],
+			"glyph_count": _layout_glyph_count,
+			"line_count": _layout_line_count,
+			"max_line_width_px": _layout_max_line_width_px,
+			"total_advance_px": _layout_total_advance_px,
+			"min_letter_spacing": _layout_min_letter_spacing,
+			"japanese_mode": _layout_japanese,
+			"font_metrics_status": String(_font_metrics.get("status", "")),
+			"glyphs": _layout_glyphs.duplicate(true),
+			"control_events": _layout_control_events.duplicate(true),
+		},
 		"event_count": _events.size(),
 		"event_index": _event_index,
 		"control_event_count": _control_event_count,
@@ -320,15 +355,71 @@ func _render_step(input: Dictionary) -> void:
 
 
 func _render_all_remaining() -> void:
-	_visible_text = _visible_text_from_events()
+	_wait_state = ""
+	_pause_counter = 0
+	_down_arrow_visible = false
+	_visible_text = ""
+	_visible_char_count = 0
+	_reset_layout_state(_layout_initial_font_id)
+	for event_value in _events:
+		var event := _dictionary_value(event_value)
+		_apply_final_event_to_text_and_layout(event)
 	_visible_char_count = _visible_text.length()
 	_event_index = _events.size()
 	_active = false
 	_complete = true
 	_delay_counter = 0
-	_wait_state = ""
-	_pause_counter = 0
-	_down_arrow_visible = false
+
+
+func _apply_final_event_to_text_and_layout(event: Dictionary) -> void:
+	match String(event.get("kind", "")):
+		"visible":
+			_visible_text += String(event.get("text", ""))
+			_record_visible_layout(event)
+		"newline":
+			_visible_text += "\n"
+			_record_newline_layout(event)
+		"page_break":
+			_visible_text += String(event.get("text", "\n"))
+			_record_page_break_layout(event)
+		"page_clear":
+			_clear_visible_text()
+		"style":
+			_apply_layout_style_event(event)
+		"pause":
+			_record_layout_control_event(event, {
+				"kind": "pause",
+				"frames": int(event.get("frames", 0)),
+				"source": String(event.get("source", "PAUSE")),
+			})
+		"wait_input":
+			_record_layout_control_event(event, {
+				"kind": "wait",
+				"source": String(event.get("source", "EXT_CTRL_CODE_PAUSE_UNTIL_PRESS")),
+			})
+		"wait_se":
+			_record_layout_control_event(event, {
+				"kind": "wait_se",
+				"source": String(event.get("source", "EXT_CTRL_CODE_WAIT_SE")),
+				"status": "metadata_only",
+			})
+		"audio":
+			_record_layout_control_event(event, {
+				"kind": "audio",
+				"command": String(event.get("command", "")),
+				"status": "metadata_only",
+			})
+		"placeholder":
+			_record_layout_control_event(event, {
+				"kind": "placeholder",
+				"placeholder_id": int(event.get("placeholder_id", -1)),
+				"status": "metadata_only",
+			})
+		_:
+			var text := String(event.get("text", ""))
+			if not text.is_empty():
+				_visible_text += text
+				_record_visible_layout(event)
 
 
 func _resolve_player_text_speed(text_printer_metadata: Dictionary, options: Dictionary) -> void:
@@ -383,15 +474,18 @@ func _render_events_until_visible_or_blocked(input: Dictionary = {}) -> void:
 			"visible":
 				_visible_text += String(event.get("text", ""))
 				_visible_char_count = _visible_text.length()
+				_record_visible_layout(event)
 				_mark_complete_if_done()
 				return
 			"newline":
 				_visible_text += "\n"
 				_visible_char_count = _visible_text.length()
+				_record_newline_layout(event)
 				_event_log.append({"kind": "newline", "source": "CHAR_NEWLINE"})
 			"page_break":
 				_visible_text += String(event.get("text", "\n"))
 				_visible_char_count = _visible_text.length()
+				_record_page_break_layout(event)
 				_wait_state = "wait_with_down_arrow"
 				_down_arrow_visible = not _auto_scroll
 				_page_wait_count += 1
@@ -401,6 +495,7 @@ func _render_events_until_visible_or_blocked(input: Dictionary = {}) -> void:
 			"page_clear":
 				_wait_state = "wait_clear"
 				_down_arrow_visible = not _auto_scroll
+				_record_layout_control_event(event, {"kind": "page_clear", "source": "CHAR_PROMPT_CLEAR"})
 				_page_wait_count += 1
 				_prompt_clear_count += 1
 				_event_log.append(_event_log_entry(event, {"kind": "page_clear", "source": "CHAR_PROMPT_CLEAR", "auto_scroll": _auto_scroll}))
@@ -438,6 +533,7 @@ func _render_events_until_visible_or_blocked(input: Dictionary = {}) -> void:
 					"status": "metadata_only",
 				}))
 			"style":
+				_apply_layout_style_event(event)
 				_style_event_count += 1
 				_control_event_count += 1
 				_event_log.append(_event_log_entry(event, {
@@ -455,6 +551,7 @@ func _render_events_until_visible_or_blocked(input: Dictionary = {}) -> void:
 			_:
 				_visible_text += String(event.get("text", ""))
 				_visible_char_count = _visible_text.length()
+				_record_visible_layout(event)
 				_mark_complete_if_done()
 				return
 	_mark_complete_if_done()
@@ -891,6 +988,18 @@ func _event_stream_status() -> String:
 func _clear_visible_text() -> void:
 	_visible_text = ""
 	_visible_char_count = 0
+	_layout_cursor = _layout_origin
+	_layout_glyphs = []
+	_layout_glyph_count = 0
+	_layout_total_advance_px = 0
+	_layout_line_count = 1
+	_layout_max_line_width_px = 0
+	_layout_control_events.append({
+		"kind": "clear_visible_text",
+		"x": _layout_cursor.x,
+		"y": _layout_cursor.y,
+		"source": "CHAR_PROMPT_CLEAR",
+	})
 
 
 func _display_text(text: String) -> String:
@@ -954,6 +1063,317 @@ func _source_byte_control_summary_from_bytes(bytes: Array) -> Dictionary:
 			_:
 				index += 1
 	return summary
+
+
+func _resolve_font_metrics(text_info: Dictionary, text_printer_metadata: Dictionary, options: Dictionary) -> Dictionary:
+	var explicit_metrics := _dictionary_value(options.get("font_metrics", {}))
+	if not explicit_metrics.is_empty():
+		return explicit_metrics
+	var text_info_metrics := _dictionary_value(text_info.get("font_metrics", {}))
+	var printer_metrics := _dictionary_value(text_printer_metadata.get("font_metrics", {}))
+	if printer_metrics.is_empty():
+		return text_info_metrics
+	if text_info_metrics.is_empty():
+		return printer_metrics
+	var result := printer_metrics.duplicate(true)
+	result["active_font_metrics"] = text_info_metrics
+	return result
+
+
+func _reset_layout_state(font_id: String) -> void:
+	_layout_font_id = font_id if not font_id.is_empty() else "FONT_NORMAL"
+	_layout_cursor = _layout_origin
+	_layout_min_letter_spacing = 0
+	_layout_japanese = false
+	_layout_glyphs = []
+	_layout_control_events = []
+	_layout_glyph_count = 0
+	_layout_total_advance_px = 0
+	_layout_line_count = 1
+	_layout_max_line_width_px = 0
+
+
+func _record_visible_layout(event: Dictionary) -> void:
+	var text := String(event.get("text", ""))
+	var glyph_bytes := _int_array_value(event.get("source_byte_span", []))
+	var glyph_width := _glyph_width_for_event(event, text, glyph_bytes)
+	var glyph_height := _glyph_height_for_event(event, glyph_bytes)
+	var x := _layout_cursor.x
+	var y := _layout_cursor.y
+	var advance := _glyph_advance_px(glyph_width)
+	_layout_glyph_count += 1
+	_layout_total_advance_px += advance
+	_layout_max_line_width_px = max(_layout_max_line_width_px, x - _layout_origin.x + advance)
+	var record := {
+		"index": _layout_glyph_count - 1,
+		"text": text,
+		"font_id": _layout_font_id,
+		"x": x,
+		"y": y,
+		"width": glyph_width,
+		"height": glyph_height,
+		"advance": advance,
+		"line": _layout_line_count - 1,
+		"kind": "glyph",
+		"source": event.get("source", "visible"),
+	}
+	_copy_event_source_fields(event, record)
+	if not glyph_bytes.is_empty():
+		record["source_byte_span"] = glyph_bytes
+		record["source_byte_count"] = glyph_bytes.size()
+		record["glyph_kind"] = "source_bytes"
+	else:
+		record["glyph_kind"] = _glyph_kind_for_event(event, text)
+	_layout_glyphs.append(record)
+	_layout_cursor.x += advance
+
+
+func _record_newline_layout(event: Dictionary) -> void:
+	_layout_max_line_width_px = max(_layout_max_line_width_px, _layout_cursor.x - _layout_origin.x)
+	_layout_cursor.x = _layout_origin.x
+	_layout_cursor.y += _font_line_advance(_layout_font_id)
+	_layout_line_count += 1
+	_record_layout_control_event(event, {
+		"kind": "newline",
+		"source": "CHAR_NEWLINE",
+		"x": _layout_cursor.x,
+		"y": _layout_cursor.y,
+		"line": _layout_line_count - 1,
+	})
+
+
+func _record_page_break_layout(event: Dictionary) -> void:
+	var page_text := String(event.get("text", "\n"))
+	if page_text.find("\n") >= 0:
+		_record_newline_layout(event)
+	_record_layout_control_event(event, {
+		"kind": "page_break",
+		"source": "CHAR_PROMPT_SCROLL",
+		"x": _layout_cursor.x,
+		"y": _layout_cursor.y,
+		"line": _layout_line_count - 1,
+	})
+
+
+func _record_layout_control_event(event: Dictionary, base: Dictionary) -> void:
+	var record := base.duplicate(true)
+	_copy_event_source_fields(event, record)
+	_layout_control_events.append(record)
+
+
+func _apply_layout_style_event(event: Dictionary) -> void:
+	var command := String(event.get("command", event.get("source", "")))
+	var args := _array_value(event.get("args", []))
+	match command:
+		"FONT", "EXT_CTRL_CODE_FONT":
+			var font_id := _font_id_from_arg(args[0]) if not args.is_empty() else ""
+			if not font_id.is_empty():
+				_layout_font_id = font_id
+				_record_layout_control_event(event, {"kind": "font", "font_id": _layout_font_id})
+		"FONT_NORMAL":
+			_layout_font_id = "FONT_NORMAL"
+			_record_layout_control_event(event, {"kind": "font", "font_id": _layout_font_id})
+		"FONT_MALE", "FONT_FEMALE":
+			_layout_font_id = "FONT_NORMAL"
+			_record_layout_control_event(event, {"kind": "font", "font_id": _layout_font_id, "alias": command})
+		"EXT_CTRL_CODE_SHIFT_RIGHT", "SHIFT_RIGHT":
+			var offset := int(args[0]) if not args.is_empty() else 0
+			_layout_cursor.x = _layout_origin.x + offset
+			_record_layout_control_event(event, {"kind": "shift_right", "x": _layout_cursor.x})
+		"EXT_CTRL_CODE_SHIFT_DOWN", "SHIFT_DOWN":
+			var offset := int(args[0]) if not args.is_empty() else 0
+			_layout_cursor.y = _layout_origin.y + offset
+			_record_layout_control_event(event, {"kind": "shift_down", "y": _layout_cursor.y})
+		"EXT_CTRL_CODE_CLEAR", "CLEAR":
+			var width := int(args[0]) if not args.is_empty() else 0
+			_layout_cursor.x += max(0, width)
+			_record_layout_control_event(event, {"kind": "clear_span", "width": width, "x": _layout_cursor.x})
+		"EXT_CTRL_CODE_SKIP", "SKIP":
+			var offset := int(args[0]) if not args.is_empty() else 0
+			_layout_cursor.x = _layout_origin.x + offset
+			_record_layout_control_event(event, {"kind": "skip", "x": _layout_cursor.x})
+		"EXT_CTRL_CODE_CLEAR_TO", "CLEAR_TO":
+			var target := _layout_origin.x + (int(args[0]) if not args.is_empty() else 0)
+			if target > _layout_cursor.x:
+				_layout_cursor.x = target
+			_record_layout_control_event(event, {"kind": "clear_to", "x": _layout_cursor.x})
+		"EXT_CTRL_CODE_MIN_LETTER_SPACING", "MIN_LETTER_SPACING":
+			_layout_min_letter_spacing = int(args[0]) if not args.is_empty() else 0
+			_record_layout_control_event(event, {"kind": "min_letter_spacing", "value": _layout_min_letter_spacing})
+		"EXT_CTRL_CODE_JPN", "JPN":
+			_layout_japanese = true
+			_record_layout_control_event(event, {"kind": "japanese_mode", "value": true})
+		"EXT_CTRL_CODE_ENG", "ENG":
+			_layout_japanese = false
+			_record_layout_control_event(event, {"kind": "japanese_mode", "value": false})
+		"EXT_CTRL_CODE_FILL_WINDOW", "FILL_WINDOW":
+			_layout_cursor = _layout_origin
+			_layout_glyphs = []
+			_layout_glyph_count = 0
+			_layout_line_count = 1
+			_layout_max_line_width_px = 0
+			_layout_total_advance_px = 0
+			_record_layout_control_event(event, {"kind": "fill_window", "x": _layout_cursor.x, "y": _layout_cursor.y})
+		_:
+			_record_layout_control_event(event, {"kind": "style", "command": command})
+
+
+func _glyph_width_for_event(event: Dictionary, text: String, glyph_bytes: Array) -> int:
+	if int(event.get("source_byte", -1)) == CHAR_KEYPAD_ICON:
+		return 8
+	var byte_value := _glyph_first_byte(event, text, glyph_bytes)
+	if _is_chinese_glyph_bytes(glyph_bytes) or _is_chinese_punctuation_byte(byte_value):
+		return _chinese_glyph_width(byte_value, glyph_bytes)
+	var widths := _latin_widths_for_font(_layout_font_id)
+	if byte_value >= 0 and byte_value < widths.size():
+		return int(widths[byte_value])
+	var font_record := _font_record(_layout_font_id)
+	var fallback_width := int(font_record.get("max_letter_width", 8))
+	return fallback_width if fallback_width > 0 else 8
+
+
+func _glyph_height_for_event(_event: Dictionary, glyph_bytes: Array) -> int:
+	var byte_value := int(glyph_bytes[0]) if not glyph_bytes.is_empty() else -1
+	if _is_chinese_glyph_bytes(glyph_bytes) or _is_chinese_punctuation_byte(byte_value):
+		var rule := _dictionary_value(_font_record(_layout_font_id).get("chinese_width_rule", {}))
+		return int(rule.get("height", 15))
+	var font_record := _font_record(_layout_font_id)
+	var height := int(font_record.get("latin_glyph_height", font_record.get("max_letter_height", 0)))
+	return height if height > 0 else 8
+
+
+func _glyph_advance_px(width: int) -> int:
+	if _layout_min_letter_spacing > 0:
+		return max(width, _layout_min_letter_spacing)
+	if _layout_japanese:
+		return width + _font_letter_spacing(_layout_font_id)
+	return width
+
+
+func _glyph_first_byte(event: Dictionary, text: String, glyph_bytes: Array) -> int:
+	if not glyph_bytes.is_empty():
+		return int(glyph_bytes[0]) & 0xFF
+	if event.has("source_sub_code"):
+		return int(event.get("source_sub_code", -1)) & 0x1FF
+	if event.has("source_byte"):
+		var source_byte := int(event.get("source_byte", -1))
+		if source_byte >= 0 and source_byte < 0xF7:
+			return source_byte & 0xFF
+	if not text.is_empty():
+		return text.unicode_at(0) & 0xFF
+	return -1
+
+
+func _is_chinese_glyph_bytes(glyph_bytes: Array) -> bool:
+	if glyph_bytes.size() < 2 or _layout_japanese or _layout_font_id == "FONT_BRAILLE":
+		return false
+	var high := int(glyph_bytes[0]) & 0xFF
+	var low := int(glyph_bytes[1]) & 0xFF
+	return high >= 0x01 and high <= 0x1E and high != 0x06 and high != 0x1B and low <= 0xF6
+
+
+func _is_chinese_punctuation_byte(byte_value: int) -> bool:
+	if byte_value < 0 or _layout_japanese or _layout_font_id == "FONT_BRAILLE":
+		return false
+	if byte_value == 0x30:
+		return true
+	return byte_value >= 0x36 and byte_value <= 0x3F and byte_value != 0x38
+
+
+func _chinese_glyph_width(byte_value: int, glyph_bytes: Array) -> int:
+	var rule := _dictionary_value(_font_record(_layout_font_id).get("chinese_width_rule", {}))
+	var default_width := int(rule.get("default_width", 12))
+	var punctuation_widths := _dictionary_value(rule.get("punctuation_widths", {}))
+	if glyph_bytes.size() == 1 or _is_chinese_punctuation_byte(byte_value):
+		var key := "0x%02X" % (byte_value & 0xFF)
+		return int(punctuation_widths.get(key, default_width))
+	return default_width
+
+
+func _glyph_kind_for_event(event: Dictionary, text: String) -> String:
+	if event.has("source_event_source"):
+		return String(event.get("source_event_source", ""))
+	if text.length() == 1 and text.unicode_at(0) > 0xFF:
+		return "unicode_fallback"
+	return "display_text"
+
+
+func _font_record(font_id: String) -> Dictionary:
+	var fonts := _dictionary_value(_font_metrics.get("fonts", {}))
+	var record := _dictionary_value(fonts.get(font_id, {}))
+	if record.is_empty():
+		record = _dictionary_value(_font_metrics.get("active_font_metrics", {}))
+	return record
+
+
+func _latin_widths_for_font(font_id: String) -> Array:
+	return _array_value(_font_record(font_id).get("latin_widths", []))
+
+
+func _font_line_advance(font_id: String) -> int:
+	var record := _font_record(font_id)
+	var advance := int(record.get("line_advance", 0))
+	if advance > 0:
+		return advance
+	return int(record.get("max_letter_height", 16)) + int(record.get("line_spacing", 0))
+
+
+func _font_letter_spacing(font_id: String) -> int:
+	return int(_font_record(font_id).get("letter_spacing", 0))
+
+
+func _font_id_from_arg(value) -> String:
+	var index := int(value)
+	match index:
+		0:
+			return "FONT_SMALL"
+		1:
+			return "FONT_NORMAL"
+		2:
+			return "FONT_SHORT"
+		3:
+			return "FONT_SHORT_COPY_1"
+		4:
+			return "FONT_SHORT_COPY_2"
+		5:
+			return "FONT_SHORT_COPY_3"
+		6:
+			return "FONT_BRAILLE"
+		7:
+			return "FONT_NARROW"
+		8:
+			return "FONT_SMALL_NARROW"
+		9:
+			return "FONT_BOLD"
+		10:
+			return "FONT_NARROWER"
+		11:
+			return "FONT_SMALL_NARROWER"
+		12:
+			return "FONT_SHORT_NARROW"
+		13:
+			return "FONT_SHORT_NARROWER"
+	return ""
+
+
+func _has_font_metrics() -> bool:
+	return not _dictionary_value(_font_metrics.get("fonts", {})).is_empty() or not _dictionary_value(_font_metrics.get("active_font_metrics", {})).is_empty()
+
+
+func _copy_event_source_fields(event: Dictionary, target: Dictionary) -> void:
+	for key in [
+		"source_event_source",
+		"source_offset",
+		"source_byte",
+		"source_sub_code",
+		"source_control_code",
+		"source_byte_count",
+		"source_text_offset",
+		"source_glyph_index",
+		"source_glyph_hex",
+	]:
+		if event.has(key):
+			target[key] = event.get(key)
 
 
 func _ext_control_arg_count(control_code: int) -> int:
