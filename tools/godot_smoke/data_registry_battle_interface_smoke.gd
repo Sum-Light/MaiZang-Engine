@@ -18,6 +18,7 @@ func _init() -> void:
 	_assert(int(stats.get("source_binary_tilemap_count", 0)) == 1, "unexpected battle interface tilemap count")
 	_assert(int(stats.get("tilemap_composite_count", 0)) == 1, "unexpected battle interface composite count")
 	_assert(int(stats.get("window_template_count", 0)) == 25, "unexpected battle window template count")
+	_assert(int(stats.get("window_template_composite_rect_count", 0)) == 10, "unexpected battle window composite rect count")
 	_assert(int(stats.get("healthbox_coord_group_count", 0)) == 2, "unexpected healthbox coord group count")
 	_assert(int(stats.get("healthbox_frame_texture_count", 0)) == 5, "unexpected healthbox frame texture count")
 	_assert(int(stats.get("healthbox_element_texture_count", 0)) == 13, "unexpected healthbox element texture count")
@@ -56,6 +57,9 @@ func _init() -> void:
 	_assert(String(action_menu.get("style_id", "")) == "battle_menu_text", "expected action menu style")
 	_assert(not action_menu.has("paletteNum"), "window template must not expose source paletteNum")
 	_assert(not action_menu.has("source_palette"), "window template must not expose source palette data")
+	var action_menu_composite_rect := _dict(action_menu.get("tilemap_composite_rect", {}))
+	_assert(_rect_record_is(action_menu_composite_rect, 136, 216, 96, 32), "expected action menu composite rect")
+	_assert(String(action_menu_composite_rect.get("status", "")) == "first_pass_generated_textbox_map_preview_rows", "expected generated action menu composite status")
 
 	var move_desc := registry.get_battle_window_template_record("B_WIN_MOVE_DESCRIPTION")
 	_assert(String(move_desc.get("symbol", "")) == "B_WIN_MOVE_DESCRIPTION", "expected move description template")
@@ -77,6 +81,8 @@ func _init() -> void:
 	var composite := _dict(textbox_map.get("tilemap_composite", {}))
 	_assert(int(textbox_map.get("entry_count_16bit", 0)) == 2048, "expected textbox tilemap entries")
 	_assert(int(composite.get("missing_tile_count", -1)) == 0, "expected no missing textbox composite tiles")
+	_assert(int(composite.get("window_rect_count", 0)) == 10, "expected textbox composite window rect count")
+	_assert(String(composite.get("window_rect_status", "")) == "first_pass_generated_textbox_map_preview_rows", "expected textbox composite window rect status")
 	_assert(_asset_exists(composite), "expected textbox tilemap composite PNG")
 	_assert(_size_is(_dict(composite.get("size", {})), 512, 256), "expected textbox composite size")
 
@@ -118,6 +124,15 @@ func _coord_is(coord: Dictionary, x: int, y: int) -> bool:
 
 func _size_is(size: Dictionary, w: int, h: int) -> bool:
 	return int(size.get("w", 0)) == w and int(size.get("h", 0)) == h
+
+
+func _rect_record_is(rect: Dictionary, x: int, y: int, w: int, h: int) -> bool:
+	return (
+		int(rect.get("x", -1)) == x
+		and int(rect.get("y", -1)) == y
+		and int(rect.get("w", -1)) == w
+		and int(rect.get("h", -1)) == h
+	)
 
 
 func _dict(value) -> Dictionary:

@@ -136,6 +136,25 @@ ROLE_OVERRIDES = {
     "unused_window4": ("window", "unused_window_4"),
 }
 
+TEXTBOX_COMPOSITE_WINDOW_Y = {
+    "B_WIN_MSG": 120,
+    "B_WIN_ACTION_PROMPT": 216,
+    "B_WIN_ACTION_MENU": 216,
+    "B_WIN_MOVE_NAME_1": 56,
+    "B_WIN_MOVE_NAME_2": 56,
+    "B_WIN_PP": 56,
+    "B_WIN_PP_REMAINING": 56,
+    "B_WIN_MOVE_NAME_3": 72,
+    "B_WIN_MOVE_NAME_4": 72,
+    "B_WIN_MOVE_TYPE": 72,
+}
+
+TEXTBOX_COMPOSITE_WINDOW_STATUS = "first_pass_generated_textbox_map_preview_rows"
+TEXTBOX_COMPOSITE_WINDOW_SOURCE_TRACE = [
+    "src/battle_bg.c:LoadBattleTextboxAndBackground",
+    "src/battle_bg.c:sStandardBattleWindowTemplates",
+]
+
 
 def _strip_comment(line):
     return line.split("//", 1)[0].strip()
@@ -346,6 +365,37 @@ def _parse_window_templates(source_root):
             "runtime_status": "metadata_only",
         }
     return templates
+
+
+def _attach_textbox_composite_window_rects(window_templates, tilemaps):
+    textbox_map = tilemaps.get("textbox_map", {})
+    composite = textbox_map.get("tilemap_composite", {}) if isinstance(textbox_map, dict) else {}
+    if not isinstance(composite, dict) or not composite:
+        return 0
+
+    count = 0
+    for symbol, source_y in TEXTBOX_COMPOSITE_WINDOW_Y.items():
+        record = window_templates.get(symbol, {})
+        if not isinstance(record, dict) or not record:
+            continue
+        rect = {
+            "tilemap": "textbox_map",
+            "composite_id": "textbox_map",
+            "x": int(record.get("tilemap_left", 0)) * TILE_SIZE,
+            "y": int(source_y),
+            "w": int(record.get("width", 0)) * TILE_SIZE,
+            "h": int(record.get("height", 0)) * TILE_SIZE,
+            "status": TEXTBOX_COMPOSITE_WINDOW_STATUS,
+            "source_texture": "graphics/battle_interface/textbox.png",
+            "source_tilemap_path": "graphics/battle_interface/textbox_map.bin",
+            "source_trace": TEXTBOX_COMPOSITE_WINDOW_SOURCE_TRACE,
+        }
+        record["tilemap_composite_rect"] = rect
+        count += 1
+
+    composite["window_rect_status"] = TEXTBOX_COMPOSITE_WINDOW_STATUS
+    composite["window_rect_count"] = count
+    return count
 
 
 def _window_style_id(style_slot):
@@ -683,6 +733,7 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
     source_colors, source_color_order = _build_source_color_provenance(source_root)
     tilemaps, tilemap_order, tilemap_warnings = _build_tilemaps(source_root, output_asset_root)
     window_templates = _parse_window_templates(source_root)
+    window_template_composite_rect_count = _attach_textbox_composite_window_rects(window_templates, tilemaps)
     sections = _build_interface_sections(source_root, textures)
 
     stats = {
@@ -695,6 +746,7 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
             if isinstance(record, dict) and isinstance(record.get("tilemap_composite"), dict)
         ),
         "window_template_count": len(window_templates),
+        "window_template_composite_rect_count": window_template_composite_rect_count,
         "healthbox_coord_group_count": len(sections["healthbox"].get("coords", {})),
         "healthbox_frame_texture_count": len(sections["healthbox"].get("frame_textures", [])),
         "healthbox_element_texture_count": len(sections["healthbox"].get("element_textures", [])),

@@ -25,19 +25,6 @@ const SOURCE_TRACE := [
 	"src/battle_message.c:BattlePutTextOnWindow",
 ]
 
-const COMPOSITE_TILEMAP_ROW_OVERRIDES := {
-	"B_WIN_MSG": 120,
-	"B_WIN_ACTION_PROMPT": 216,
-	"B_WIN_ACTION_MENU": 216,
-	"B_WIN_MOVE_NAME_1": 56,
-	"B_WIN_MOVE_NAME_2": 56,
-	"B_WIN_PP": 56,
-	"B_WIN_PP_REMAINING": 56,
-	"B_WIN_MOVE_NAME_3": 72,
-	"B_WIN_MOVE_NAME_4": 72,
-	"B_WIN_MOVE_TYPE": 72,
-}
-
 var _data_registry: Node = null
 var _interface_data: Dictionary = {}
 var _window_templates: Dictionary = {}
@@ -154,10 +141,18 @@ func get_window_tilemap_rect(window_id: String) -> Rect2i:
 	var template := _window_template(window_id)
 	if template.is_empty():
 		return Rect2i()
+	var composite_rect := _window_composite_rect(template)
+	if not composite_rect.is_empty():
+		return Rect2i(
+			int(composite_rect.get("x", 0)),
+			int(composite_rect.get("y", 0)),
+			int(composite_rect.get("w", int(template.get("width", 0)) * TILE_SIZE)),
+			int(composite_rect.get("h", int(template.get("height", 0)) * TILE_SIZE))
+		)
 	var composite_size := _composite_size()
 	return Rect2i(
 		int(template.get("tilemap_left", 0)) * TILE_SIZE,
-		int(COMPOSITE_TILEMAP_ROW_OVERRIDES.get(window_id, _posmodi(int(template.get("tilemap_top", 0)) * TILE_SIZE, composite_size.y))),
+		_posmodi(int(template.get("tilemap_top", 0)) * TILE_SIZE, composite_size.y),
 		int(template.get("width", 0)) * TILE_SIZE,
 		int(template.get("height", 0)) * TILE_SIZE
 	)
@@ -190,10 +185,12 @@ func get_renderer_snapshot() -> Dictionary:
 		var text_info := _source_text_info(window_id)
 		var screen_rect := get_window_screen_rect(window_id)
 		var tilemap_rect := get_window_tilemap_rect(window_id)
+		var composite_rect := _window_composite_rect(template)
 		windows[window_id] = {
 			"symbol": window_id,
 			"screen_rect": _rect_to_array(screen_rect),
 			"tilemap_rect": _rect_to_array(tilemap_rect),
+			"tilemap_composite_rect_status": String(composite_rect.get("status", "fallback_virtual_tilemap_top")),
 			"bg0_y": _bg0_y,
 			"style_id": String(template.get("style_id", "")),
 			"base_block": int(template.get("base_block", 0)),
@@ -212,7 +209,7 @@ func get_renderer_snapshot() -> Dictionary:
 		"textbox_composite": _textbox_composite_path,
 		"windows": windows,
 		"source_trace": SOURCE_TRACE.duplicate(true),
-		"source_composite_mapping_status": "first_pass_generated_textbox_map_preview_rows",
+		"source_composite_mapping_status": _source_composite_mapping_status(),
 		"runtime_color_policy": "rgba_textures_and_godot_materials",
 		"unsupported": [
 			"battle_text_glyph_renderer_pending",
@@ -279,6 +276,20 @@ func _window_template(window_id: String) -> Dictionary:
 	_load_interface_data()
 	var record: Variant = _window_templates.get(window_id, {})
 	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func _window_composite_rect(template: Dictionary) -> Dictionary:
+	var record: Variant = template.get("tilemap_composite_rect", {})
+	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func _source_composite_mapping_status() -> String:
+	if _visible_windows.is_empty():
+		return "no_visible_windows"
+	for window_id in _visible_windows:
+		if _window_composite_rect(_window_template(window_id)).is_empty():
+			return "fallback_virtual_tilemap_top"
+	return "generated_window_template_rects"
 
 
 func _source_text_info(window_id: String) -> Dictionary:
