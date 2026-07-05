@@ -145,6 +145,11 @@ BATTLE_WINDOW_SOURCE_CAPTURE_PATHS = [
     "assets/source/battle_window_captures/move.png",
 ]
 
+BATTLE_SCENE_SOURCE_CAPTURE_PROFILE_PATHS = [
+    f"assets/source/battle_scene_captures/emerald_2011_zh/capture_{index:02d}.png"
+    for index in range(24)
+]
+
 
 def load_json(path):
     with path.open("r", encoding="utf-8") as handle:
@@ -616,11 +621,14 @@ def build_battle_interface_rows(interface_data, project_root):
             tests.append("tools/godot_smoke/battle_asset_image_quality_smoke.gd")
         if group in ("textbox", "window"):
             tests.append("tools/godot_smoke/battle_window_screenshot_smoke.gd")
+            tests.append("tools/godot_smoke/battle_scene_source_profile_smoke.gd")
         source_capture_status = ""
         source_capture_missing_count = 0
+        scene_profile_missing_count = 0
         if group in ("textbox", "window"):
             source_capture_missing_count = sum(1 for path in BATTLE_WINDOW_SOURCE_CAPTURE_PATHS if not (project_root / path).exists())
             source_capture_status = "missing_source_captures" if source_capture_missing_count else "source_captures_available"
+            scene_profile_missing_count = sum(1 for path in BATTLE_SCENE_SOURCE_CAPTURE_PROFILE_PATHS if not (project_root / path).exists())
         unsupported = ["battle_interface_runtime_pending", "battle_window_source_capture_pending"] if group in ("textbox", "window") else ["battle_hud_runtime_pending"]
         if asset_id == "ability_pop_up":
             unsupported.append("battle_audio_playback_pending")
@@ -651,6 +659,9 @@ def build_battle_interface_rows(interface_data, project_root):
                 "source_capture_paths": BATTLE_WINDOW_SOURCE_CAPTURE_PATHS,
                 "expected_source_capture_count": len(BATTLE_WINDOW_SOURCE_CAPTURE_PATHS),
                 "missing_source_capture_count": source_capture_missing_count,
+                "source_scene_capture_profile": "assets/source/battle_scene_captures/emerald_2011_zh",
+                "expected_source_scene_capture_count": len(BATTLE_SCENE_SOURCE_CAPTURE_PROFILE_PATHS),
+                "missing_source_scene_capture_count": scene_profile_missing_count,
             })
         rows.append(row)
     return rows

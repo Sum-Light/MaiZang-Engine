@@ -154,6 +154,25 @@ const SOURCE_UI_ASSETS := {
 	"render_style_policy": "godot_theme_material_shader",
 }
 
+const SOURCE_SCENE_CAPTURE_PROFILE := {
+	"status": "full_scene_source_profile",
+	"profile": "emerald_2011_zh",
+	"root": "assets/source/battle_scene_captures/emerald_2011_zh",
+	"capture_count": 24,
+	"viewport_size": [240, 160],
+	"purpose": "full_battle_scene_layout_profile",
+	"window_exact_capture_root": "assets/source/battle_window_captures",
+	"window_exact_capture_policy": "separate_action_message_move_window_layer_pngs",
+	"key_frames": {
+		"action_menu": "capture_00.png",
+		"move_menu": "capture_01.png",
+		"move_message": "capture_02.png",
+		"grass_intro": "capture_12.png",
+		"send_out_ball": "capture_16.png",
+		"send_out_complete": "capture_23.png",
+	},
+}
+
 var _sequence: Dictionary = {}
 var _battle_state: Dictionary = {}
 var _battle_engine: Node = null
@@ -370,6 +389,7 @@ func get_ui_snapshot() -> Dictionary:
 		"source_text_symbols": _source_text_snapshot(),
 		"source_healthbox_coords": SOURCE_HEALTHBOX_COORDS.duplicate(true),
 		"source_ui_assets": SOURCE_UI_ASSETS.duplicate(true),
+		"source_scene_capture_profile": SOURCE_SCENE_CAPTURE_PROFILE.duplicate(true),
 		"source_window_text_info": _source_window_text_info_snapshot(),
 		"source_battle_text_controller_context": _source_battle_text_controller_context_snapshot(),
 		"source_type_display_status": _source_type_display_status(),
