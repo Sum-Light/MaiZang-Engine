@@ -461,3 +461,9 @@ Reason: Source `ScrCmd_setmetatile`/`MapGridSetMetatileIdAt` updates the backup 
 Decision: Let `LayerAwareMapRenderer` resolve presentation cells across the source-shaped `MAP_OFFSET` backup margin before drawing layer atlas records. Local cells read current map `block_ids`, connection cells read generated connected-map strips, and remaining edge cells read the generated border grid; this is presentation-only and does not move local map coordinates or mutate map, collision, elevation, or generated data.
 
 Reason: Source `InitBackupMapLayoutData`, `InitBackupMapLayoutConnections`, `GetBorderBlockAt`, and `DrawMetatileAt` draw connected strips and border cells from the same metatile/layer rules as local cells. Keeping this as a renderer lookup step advances Section 5 layer parity while leaving full camera backup-map streaming and connection transition lifecycle to the later camera/transition TODOs.
+
+## 2026-07-05 - Keep source map-grid queries outside presentation layer toggles
+
+Decision: Keep metatile id, collision, elevation, behavior, layer type, and passability queries owned by `MapRuntime`, and expose `get_map_grid_query_contract` to document that those queries read duplicated current-map grid data plus generated connection/border data, not `LayerAwareMapRenderer` layer debug state or layer atlases. Border fallback elevation is `0`, matching the source packed border block from `GetBorderBlockAt`.
+
+Reason: Source `MapGridGet*` functions read packed map-grid blocks and metatile attributes independently from the camera draw filter. The Godot layer debug view is a presentation inspection tool, so it must not become an input to gameplay collision, elevation, scripts, warps, coord events, or passability checks.

@@ -15,6 +15,7 @@ const MAPGRID_COLLISION_SHIFT := 10
 const MAPGRID_ELEVATION_SHIFT := 12
 const MAP_OFFSET := 7
 const MAPGRID_IMPASSABLE_COLLISION := MAPGRID_COLLISION_MASK >> MAPGRID_COLLISION_SHIFT
+const MAPGRID_BORDER_ELEVATION := 0
 const OBJECT_SAVE_TRACE := [
 	"src/load_save.c:SaveObjectEvents",
 	"src/load_save.c:LoadObjectEvents",
@@ -166,6 +167,34 @@ func get_collision_at(cell: Vector2i) -> int:
 
 func get_elevation_at(cell: Vector2i) -> int:
 	return _map_or_edge_grid_value("elevation", _elevation_grid, cell, ELEVATION_INVALID)
+
+
+func get_map_grid_query_contract() -> Dictionary:
+	return {
+		"schema_version": 1,
+		"status": "source_map_grid_queries_independent_from_layer_debug",
+		"owner": "MapRuntime",
+		"query_source": "duplicated current-map grid plus generated connection/border data",
+		"metatile_id_source": "map_grid metatile bits / connection block_ids / border_grid metatile_ids",
+		"collision_source": "map_grid collision bits / connection collision grid / GetBorderBlockAt impassable border mask",
+		"elevation_source": "map_grid elevation bits / connection elevation grid / GetBorderBlockAt border elevation 0",
+		"layer_type_source": "metatile attribute lookup after metatile id query",
+		"presentation_layer_debug_owner": "LayerAwareMapRenderer",
+		"presentation_layer_debug_affects_queries": false,
+		"uses_renderer_layer_state": false,
+		"uses_layer_atlas_data": false,
+		"mutates_map_data": false,
+		"mutates_generated_files": false,
+		"source_trace": [
+			"include/global.fieldmap.h:MAPGRID_* masks and shifts",
+			"src/fieldmap.c:GetMapGridBlockAt",
+			"src/fieldmap.c:GetBorderBlockAt",
+			"src/fieldmap.c:MapGridGetMetatileIdAt",
+			"src/fieldmap.c:MapGridGetCollisionAt",
+			"src/fieldmap.c:MapGridGetElevationAt",
+			"src/fieldmap.c:MapGridGetMetatileLayerTypeAt",
+		],
+	}
 
 
 func get_metatile_attribute(metatile_id: int) -> Dictionary:
@@ -1677,6 +1706,8 @@ func _border_grid_value(grid_name: String, cell: Vector2i) -> Dictionary:
 	var value := int(values[index])
 	if grid_name == "collision":
 		value = MAPGRID_IMPASSABLE_COLLISION
+	elif grid_name == "elevation":
+		value = MAPGRID_BORDER_ELEVATION
 	return {
 		"found": true,
 		"value": value,

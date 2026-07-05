@@ -5,6 +5,7 @@ const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
 const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
 const DEBUG_MAP_PLANE_SCRIPT := preload("res://scripts/overworld/debug_map_plane.gd")
+const LAYER_RENDERER_SCRIPT := preload("res://scripts/overworld/layer_aware_map_renderer.gd")
 const MAP_PATH := "res://data/generated/maps/littleroot_town.json"
 const TILESET_PATH := "res://data/generated/tilesets/littleroot_town.json"
 const SCRIPT_PATH := "res://data/generated/scripts/littleroot_town.json"
@@ -63,6 +64,16 @@ func _init() -> void:
 	game_state.player_grid_position = start_cell
 
 	_assert(runtime.get_map_size() == Vector2i(20, 20), "unexpected map size")
+	var query_contract: Dictionary = runtime.get_map_grid_query_contract()
+	_assert(
+		String(query_contract.get("status", "")) == "source_map_grid_queries_independent_from_layer_debug",
+		"expected map-grid query independence contract"
+	)
+	_assert(not bool(query_contract.get("presentation_layer_debug_affects_queries", true)), "expected layer debug not to affect map-grid queries")
+	_assert(not bool(query_contract.get("uses_renderer_layer_state", true)), "expected map-grid queries not to use renderer layer state")
+	_assert(not bool(query_contract.get("uses_layer_atlas_data", true)), "expected map-grid queries not to use layer atlas data")
+	_assert(not bool(query_contract.get("mutates_map_data", true)), "expected query contract not to mutate map data")
+	_assert(not bool(query_contract.get("mutates_generated_files", true)), "expected query contract not to mutate generated files")
 	_assert(runtime.can_enter_cell(start_cell), "expected start cell to be passable")
 	_assert(not runtime.can_enter_cell(Vector2i(-1, start_cell.y)), "expected west out-of-bounds to be blocked")
 	_assert(blocked_cell != Vector2i(-1, -1), "expected at least one blocked source cell")
@@ -120,6 +131,7 @@ func _init() -> void:
 	_assert(border_expected >= 0, "expected west border-grid metatile")
 	_assert(runtime.get_metatile_id_at(west_border_cell) == border_expected, "expected west out-of-bounds border fallback")
 	_assert(runtime.get_collision_at(west_border_cell) == 3, "expected source border fallback collision to be impassable")
+	_assert(runtime.get_elevation_at(west_border_cell) == 0, "expected source border fallback elevation to be 0")
 	_assert(runtime.get_cell_info(west_border_cell).get("metatile_id", -1) == border_expected, "expected border fallback in cell info")
 	var boy_sprite := registry.get_object_event_sprite_record("OBJ_EVENT_GFX_BOY_1")
 	_assert(not boy_sprite.is_empty(), "expected Boy1 object-event sprite metadata")
@@ -192,6 +204,14 @@ func _init() -> void:
 	_assert(not renderer.is_grid_visible(), "expected debug grid toggle to hide grid")
 	_assert(runtime.get_metatile_id_at(start_cell) == metatile_before_grid_toggle, "expected debug grid toggle not to change metatile queries")
 	_assert(runtime.get_collision_at(start_cell) == collision_before_grid_toggle, "expected debug grid toggle not to change collision queries")
+	var layer_renderer = LAYER_RENDERER_SCRIPT.new()
+	get_root().add_child(layer_renderer)
+	layer_renderer.configure_data_registry(registry)
+	layer_renderer.configure_debug_fallback(renderer)
+	layer_renderer.configure_from_map_data(map_data, tileset_data)
+	_assert_layer_toggle_query_independence(layer_renderer, runtime, start_cell)
+	_assert_layer_toggle_query_independence(layer_renderer, runtime, north_connection_cell)
+	_assert_layer_toggle_query_independence(layer_renderer, runtime, west_border_cell)
 	_assert(
 		renderer.get_render_block_id(north_connection_cell) == runtime.get_metatile_id_at(north_connection_cell),
 		"expected renderer north edge to use Route101 metatile"
@@ -397,6 +417,7 @@ func _init() -> void:
 	}))
 	game_state.free()
 	vm.free()
+	layer_renderer.free()
 	renderer.free()
 	registry.free()
 	brendans_runtime.free()
@@ -622,6 +643,29 @@ func _field_apply_summary(summary: Dictionary) -> Dictionary:
 		"map_changed": bool(summary.get("map_changed", false)),
 		"layer_updates": _summary_count(summary, "layer_updates"),
 		"renderer_cache_invalidated": bool(summary.get("renderer_cache_invalidated", false)),
+	}
+
+
+func _assert_layer_toggle_query_independence(renderer: Node, runtime: Node, cell: Vector2i) -> void:
+	var baseline := _runtime_query_snapshot(runtime, cell)
+	for mode in ["bottom", "middle", "top", "all"]:
+		renderer.set_layer_debug_view(mode)
+		var status: Dictionary = renderer.get_layer_debug_view_status()
+		_assert(String(status.get("mode", "")) == mode, "expected layer debug mode %s" % mode)
+		_assert(not bool(status.get("mutates_collision_or_elevation", true)), "expected layer debug status not to mutate collision/elevation")
+		_assert(_runtime_query_snapshot(runtime, cell) == baseline, "expected layer debug mode %s not to affect map-grid queries at %s" % [mode, str(cell)])
+
+
+func _runtime_query_snapshot(runtime: Node, cell: Vector2i) -> Dictionary:
+	return {
+		"metatile_id": int(runtime.get_metatile_id_at(cell)),
+		"collision": int(runtime.get_collision_at(cell)),
+		"elevation": int(runtime.get_elevation_at(cell)),
+		"behavior": int(runtime.get_metatile_behavior_at(cell)),
+		"behavior_name": String(runtime.get_metatile_behavior_name_at(cell)),
+		"layer_type": int(runtime.get_metatile_layer_type_at(cell)),
+		"can_enter": bool(runtime.can_enter_cell(cell)),
+		"cell_info": _cell_info_summary(runtime.get_cell_info(cell)),
 	}
 
 
