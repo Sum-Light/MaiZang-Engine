@@ -593,11 +593,11 @@ Latest verified battle interface export:
 
 - generated path: `data/generated/battle/interface.json`
 - manifest category: `battle` / `interface`
-- source files now include `src/battle_message.c`, `src/text.c`, `src/chinese_text.c`, `src/fonts.c`, `include/text.h`, `src/battle_bg.c`, `src/battle_interface.c`, `graphics/fonts/*.png`, and related battle graphics/config files
+- source files now include `src/battle_message.c`, `src/text.c`, `src/chinese_text.c`, `src/fonts.c`, `include/text.h`, `include/constants/characters.h`, `charmap.txt`, `src/battle_bg.c`, `src/battle_interface.c`, `graphics/fonts/*.png`, and related battle graphics/config files
 - interface asset metrics: 68 source battle interface PNG textures, 1 source binary textbox tilemap, 1 generated textbox tilemap composite, 25 standard battle window templates, 10 source-window composite rects, 25 generated `sTextOnWindowsInfo_Normal` text-info records, and 0 missing textures/tilemap warnings
-- text/font metrics: 14 source font metric records from `sFontInfos`, 12 Latin glyph width table bindings, 11 source font atlas RGBA images under `assets/generated/battle_fonts/`, 12 font-to-atlas bindings, per-window font metric summaries, Chinese double-byte/punctuation rules from `src/chinese_text.c`, recorded battle speeds `[8,4,1,0]`, and player text speed delay/modifier/scroll tables
+- text/font metrics: 14 source font metric records from `sFontInfos`, 12 Latin glyph width table bindings, 11 source font atlas RGBA images under `assets/generated/battle_fonts/`, 11 source font role-mask PNGs under `assets/generated/battle_fonts/roles/`, 12 font-to-atlas/role-mask bindings, 16 RenderText material color entries from `graphics/battle_interface/textbox.png`, 317 single-byte charmap entries, per-window font metric summaries, Chinese double-byte/punctuation rules from `src/chinese_text.c`, recorded battle speeds `[8,4,1,0]`, and player text speed delay/modifier/scroll tables
 - runtime access: `DataRegistry.get_battle_interface_data`, `get_battle_interface_texture_record`, and `get_battle_window_template_record`
-- runtime status: `BattleWindowRenderer` and `BattleTextPrinter` consume this data for first-pass source window/text-printer layout snapshots and `source_font_atlas_preview` bitmap text layers; exact `RenderText` color/control-code pixels, exact scroll/clear pixels, and screenshot comparison remain pending
+- runtime status: `BattleWindowRenderer` and `BattleTextPrinter` consume this data for first-pass source window/text-printer layout snapshots, source charmap fallback glyph indices, first-pass RenderText color controls, and `render_text_role_colored_preview` bitmap text layers; full control-code pixel side effects, exact scroll/clear pixels, link/recorded battle context, and screenshot comparison remain pending
 
 Latest verified battle script and move-effect export:
 

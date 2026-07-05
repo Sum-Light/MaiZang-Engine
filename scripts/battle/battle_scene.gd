@@ -503,7 +503,8 @@ func _refresh_window_renderer(player_mon: Dictionary, message_visible: bool, act
 		_window_renderer.show_action_windows(
 			_action_prompt_text(player_mon),
 			_battle_menu_text_for_renderer(),
-			_source_battle_text_printer_options("gText_WhatWillPkmnDo", {"{B_BUFF1}": prompt_mon_name})
+			_source_battle_text_printer_options("gText_WhatWillPkmnDo", {"{B_BUFF1}": prompt_mon_name}),
+			_source_battle_text_printer_options("gText_BattleMenu")
 		)
 	elif move_visible:
 		var move_type_suffix := _move_type_suffix_for_selected(player_mon)

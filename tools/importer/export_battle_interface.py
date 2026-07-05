@@ -11,12 +11,14 @@ from pathlib import Path
 
 from export_map import to_project_path, write_json, write_manifest
 from source_probe import load_config
+from text_codec import load_charmap
 
 
 ASSET_CATEGORY = "interface"
 ASSET_OUTPUT_DIR = "battle_interface"
 COMPOSITE_OUTPUT_DIR = "battle_interface/composites"
 FONT_ATLAS_OUTPUT_DIR = "battle_fonts"
+FONT_ROLE_ATLAS_OUTPUT_DIR = "battle_fonts/roles"
 VISIBLE_VIEWPORT = {"w": 240, "h": 160}
 TILE_SIZE = 8
 FONT_GLYPH_CELL_SIZE = 16
@@ -36,6 +38,8 @@ GIMMICKS_SOURCE = Path("src/data/graphics/gimmicks.h")
 BATTLE_CONFIG_SOURCE = Path("include/config/battle.h")
 TEXT_CONFIG_SOURCE = Path("include/config/text.h")
 GLOBAL_CONSTANTS_SOURCE = Path("include/constants/global.h")
+CHARACTERS_CONSTANTS_SOURCE = Path("include/constants/characters.h")
+CHARMAP_SOURCE = Path("charmap.txt")
 
 BINARY_ASSET_EXTENSIONS = [
     (".4bpp.smol", ".png"),
@@ -441,6 +445,131 @@ def _convert_png_asset(source_path, output_path):
         image.close()
 
 
+def _build_font_role_mask_asset(source_path, output_path):
+    from PIL import Image
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    image = Image.open(source_path)
+    try:
+        role_counts = {str(index): 0 for index in range(4)}
+        non_role_pixel_count = 0
+        if image.mode == "P":
+            indexed = image.copy()
+        else:
+            indexed = image.convert("P")
+        try:
+            role_pixels = []
+            for pixel in indexed.getdata():
+                role = int(pixel)
+                if role < 0 or role > 3:
+                    non_role_pixel_count += 1
+                    role = 0
+                role_counts[str(role)] += 1
+                role_pixels.append((role * 85, 0, 0, 255))
+            output = Image.new("RGBA", indexed.size)
+            output.putdata(role_pixels)
+            try:
+                output.save(output_path)
+            finally:
+                output.close()
+        finally:
+            indexed.close()
+    finally:
+        image.close()
+    return {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://%s" % to_project_path(output_path),
+        "role_mask_image_project_path": to_project_path(output_path),
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": role_counts,
+        "role_mask_non_role_pixel_count": non_role_pixel_count,
+        "role_slots": {
+            "0": "background",
+            "1": "foreground",
+            "2": "shadow",
+            "3": "accent",
+        },
+    }
+
+
+def _build_render_text_materials(source_root):
+    from PIL import Image
+
+    source_path = source_root / BATTLE_INTERFACE_DIR / "textbox.png"
+    record = {
+        "status": "missing_render_text_material_source",
+        "source": to_project_path(BATTLE_INTERFACE_DIR / "textbox.png"),
+        "source_trace": [
+            "graphics/battle_interface/textbox.png",
+            "src/text.c:GenerateFontHalfRowLookupTable",
+            "src/text.c:RenderText",
+            "src/battle_message.c:sTextOnWindowsInfo_Normal",
+        ],
+        "role_slots": {
+            "0": "background",
+            "1": "foreground",
+            "2": "shadow",
+            "3": "accent",
+        },
+        "colors": {},
+        "material_count": 0,
+    }
+    if not source_path.exists():
+        return record
+    image = Image.open(source_path)
+    try:
+        table = _read_png_color_table(image)
+    finally:
+        image.close()
+    colors = {}
+    for index in range(16):
+        rgb = table[index] if index < len(table) else {"r": 0, "g": 0, "b": 0}
+        colors[str(index)] = {
+            "index": index,
+            "r": int(rgb.get("r", 0)),
+            "g": int(rgb.get("g", 0)),
+            "b": int(rgb.get("b", 0)),
+            "a": 0 if index == 0 else 255,
+        }
+    record.update({
+        "status": "generated_from_textbox_indexed_colors",
+        "material_count": len(colors),
+        "colors": colors,
+        "transparent_material_index": 0,
+        "runtime_asset_model": "godot_rgba_material_values",
+    })
+    return record
+
+
+def _build_glyph_encoding_metadata(source_root):
+    source_path = source_root / CHARMAP_SOURCE
+    record = {
+        "status": "missing_charmap",
+        "source": to_project_path(CHARMAP_SOURCE),
+        "single_byte_chars": {},
+        "single_byte_char_count": 0,
+        "source_trace": [
+            "charmap.txt",
+            "tools/preproc/charmap.cpp",
+            "tools/importer/text_codec.py:load_charmap",
+        ],
+    }
+    if not source_path.exists():
+        return record
+    charmap = load_charmap(source_path)
+    single_byte_chars = {
+        char: int(sequence[0])
+        for char, sequence in charmap.chars.items()
+        if len(sequence) == 1
+    }
+    record.update({
+        "status": "generated_from_charmap",
+        "single_byte_chars": single_byte_chars,
+        "single_byte_char_count": len(single_byte_chars),
+    })
+    return record
+
+
 def _texture_role(asset_id):
     if asset_id in ROLE_OVERRIDES:
         group, role = ROLE_OVERRIDES[asset_id]
@@ -583,6 +712,7 @@ def _parse_battle_window_text_info(source_root):
         BATTLE_CONFIG_SOURCE,
         TEXT_CONFIG_SOURCE,
         GLOBAL_CONSTANTS_SOURCE,
+        CHARACTERS_CONSTANTS_SOURCE,
     ])
     font_metrics = _parse_source_font_metrics(source_root)
     records = {}
@@ -669,8 +799,12 @@ def _parse_battle_window_text_info(source_root):
         "player_text_speed": _parse_player_text_speed_metadata(source_root),
         "font_metrics": font_metrics,
         "copy_to_vram_rule": "B_WIN_COPYTOVRAM skips FillWindowPixelBuffer and final PutWindowTilemap/CopyWindowToVram; normal calls fill then copy full window",
-        "runtime_status": "metadata_only",
-        "unsupported": ["battle_text_glyph_bitmap_renderer_pending"],
+        "runtime_status": "source_role_mask_material_metadata",
+        "unsupported": [
+            "battle_text_full_control_code_renderer_pending",
+            "battle_text_exact_scroll_clear_pixels_pending",
+            "battle_text_screenshot_comparison_pending",
+        ],
     }
     return records, printer
 
@@ -746,6 +880,7 @@ def _build_source_font_atlases(source_root, output_asset_root):
         source_path = source_root / FONT_GRAPHICS_DIR / filename
         atlas_id = Path(filename).stem
         output_path = output_asset_root / FONT_ATLAS_OUTPUT_DIR / filename
+        role_output_path = output_asset_root / FONT_ROLE_ATLAS_OUTPUT_DIR / ("%s_roles.png" % Path(filename).stem)
         record = {
             "id": atlas_id,
             "source": to_project_path(FONT_GRAPHICS_DIR / filename),
@@ -759,14 +894,20 @@ def _build_source_font_atlases(source_root, output_asset_root):
             continue
         asset = _convert_png_asset(source_path, output_path)
         record.update(asset)
+        role_mask = _build_font_role_mask_asset(source_path, role_output_path)
         record.update({
             "status": "generated_rgba_from_source_png",
             "glyph_cell": {"w": FONT_GLYPH_CELL_SIZE, "h": FONT_GLYPH_CELL_SIZE},
             "columns": int(asset["size"]["w"] // FONT_GLYPH_CELL_SIZE),
             "rows": int(asset["size"]["h"] // FONT_GLYPH_CELL_SIZE),
             "glyph_capacity": int(asset["size"]["w"] // FONT_GLYPH_CELL_SIZE) * int(asset["size"]["h"] // FONT_GLYPH_CELL_SIZE),
-            "text_color_status": "source_png_preview_colors",
-            "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work.",
+            "text_color_status": "glyph_role_mask_plus_render_text_materials",
+            "role_mask": role_mask,
+            "role_mask_status": role_mask.get("role_mask_status", ""),
+            "role_mask_image": role_mask.get("role_mask_image", ""),
+            "role_mask_image_project_path": role_mask.get("role_mask_image_project_path", ""),
+            "role_mask_role_counts": role_mask.get("role_mask_role_counts", {}),
+            "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors.",
         })
         records[atlas_id] = record
     return records
@@ -785,9 +926,12 @@ def _glyph_atlas_binding_for_font(font_id, font_record, font_atlases):
     binding = {
         "status": "source_font_atlas_preview",
         "runtime_asset_model": "ordinary_rgba_texture",
+        "render_text_color_status": "source_render_text_role_mask_bound",
         "glyph_cell": {"w": FONT_GLYPH_CELL_SIZE, "h": FONT_GLYPH_CELL_SIZE},
         "latin_atlas_id": latin_atlas_id,
         "latin_image": latin_atlas.get("image", ""),
+        "latin_role_mask_image": latin_atlas.get("role_mask_image", ""),
+        "latin_role_mask_status": latin_atlas.get("role_mask_status", ""),
         "latin_columns": int(latin_atlas.get("columns", 0)),
         "latin_rows": int(latin_atlas.get("rows", 0)),
         "latin_glyph_capacity": int(latin_atlas.get("glyph_capacity", 0)),
@@ -795,15 +939,25 @@ def _glyph_atlas_binding_for_font(font_id, font_record, font_atlases):
         "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
         "chinese_atlas_id": chinese_atlas_id,
         "chinese_image": chinese_atlas.get("image", ""),
+        "chinese_role_mask_image": chinese_atlas.get("role_mask_image", ""),
+        "chinese_role_mask_status": chinese_atlas.get("role_mask_status", ""),
         "chinese_columns": int(chinese_atlas.get("columns", 0)),
         "chinese_rows": int(chinese_atlas.get("rows", 0)),
         "chinese_glyph_capacity": int(chinese_atlas.get("glyph_capacity", 0)),
         "chinese_index_rule": CHINESE_ENCODING_RULE["glyph_index_rule"],
         "chinese_punctuation_source": "latin_atlas",
+        "role_mask_status": "source_font_role_mask",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_slots": {
+            "0": "background",
+            "1": "foreground",
+            "2": "shadow",
+            "3": "accent",
+        },
         "source_trace": FONT_ATLAS_SOURCE_TRACE,
         "unsupported": [
-            "exact_render_text_color_controls_pending",
             "exact_control_code_pixel_side_effects_pending",
+            "screenshot_material_match_pending",
         ],
     }
     if not latin_atlas_id:
@@ -1322,10 +1476,14 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
     source_colors, source_color_order = _build_source_color_provenance(source_root)
     tilemaps, tilemap_order, tilemap_warnings = _build_tilemaps(source_root, output_asset_root)
     font_atlases = _build_source_font_atlases(source_root, output_asset_root)
+    render_text_materials = _build_render_text_materials(source_root)
+    glyph_encoding = _build_glyph_encoding_metadata(source_root)
     window_templates = _parse_window_templates(source_root)
     window_template_composite_rect_count = _attach_textbox_composite_window_rects(window_templates, tilemaps)
     window_text_info, text_printer = _parse_battle_window_text_info(source_root)
     source_font_atlas_binding_count = _attach_font_atlas_bindings(text_printer.get("font_metrics", {}), font_atlases)
+    text_printer["render_text_materials_status"] = render_text_materials.get("status", "")
+    text_printer["glyph_encoding"] = glyph_encoding
     battle_window_text_info_count = _attach_battle_window_text_info(window_templates, window_text_info)
     sections = _build_interface_sections(source_root, textures)
 
@@ -1343,7 +1501,13 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
         "battle_window_text_info_count": battle_window_text_info_count,
         "source_font_metric_count": int(text_printer.get("font_metrics", {}).get("font_count", 0)),
         "source_font_atlas_count": len(font_atlases),
+        "source_font_role_atlas_count": len([
+            record for record in font_atlases.values()
+            if isinstance(record, dict) and record.get("role_mask_status") == "generated_source_font_role_mask"
+        ]),
         "source_font_atlas_binding_count": source_font_atlas_binding_count,
+        "render_text_material_count": int(render_text_materials.get("material_count", 0)),
+        "glyph_encoding_single_byte_count": int(glyph_encoding.get("single_byte_char_count", 0)),
         "latin_width_table_count": len([
             record for record in text_printer.get("font_metrics", {}).get("fonts", {}).values()
             if isinstance(record, dict) and record.get("latin_width_count", 0)
@@ -1378,6 +1542,8 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
             to_project_path(BATTLE_CONFIG_SOURCE),
             to_project_path(TEXT_CONFIG_SOURCE),
             to_project_path(GLOBAL_CONSTANTS_SOURCE),
+            to_project_path(CHARACTERS_CONSTANTS_SOURCE),
+            to_project_path(CHARMAP_SOURCE),
         ],
         "runtime_color_policy": {
             "status": "no_runtime_palette",
@@ -1396,6 +1562,7 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
         "texture_order": texture_order,
         "textures": textures,
         "source_font_atlases": font_atlases,
+        "render_text_materials": render_text_materials,
         "source_graphics_definitions": definitions,
         "source_color_order": source_color_order,
         "source_color_provenance": source_colors,

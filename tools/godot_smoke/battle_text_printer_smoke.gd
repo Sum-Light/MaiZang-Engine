@@ -55,8 +55,9 @@ func _run() -> void:
 	var first_menu_glyph := _dict(menu_layout_glyphs[0])
 	_assert(String(first_menu_glyph.get("source_font_atlas_status", "")) == "source_font_atlas_preview", "expected first menu glyph atlas status")
 	_assert(String(first_menu_glyph.get("source_font_atlas_id", "")) == "latin_normal", "expected first menu glyph Latin normal atlas")
-	_assert(int(first_menu_glyph.get("source_font_atlas_glyph_index", 0)) == 70, "expected F glyph source atlas index")
-	_assert(_array(first_menu_glyph.get("source_glyph_rect", [])) == [96, 64, 16, 16], "expected F glyph atlas rect")
+	_assert(String(first_menu_glyph.get("source_font_role_mask_status", "")) == "generated_source_font_role_mask", "expected first menu glyph source role mask")
+	_assert(int(first_menu_glyph.get("source_font_atlas_glyph_index", 0)) == 0xC0, "expected F glyph source charmap atlas index")
+	_assert(_array(first_menu_glyph.get("source_glyph_rect", [])) == [0, 192, 16, 16], "expected F glyph charmap atlas rect")
 
 	var instant_player_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	instant_player_printer.start("B_WIN_MSG", "XYZ", message_info, text_printer_metadata, {
@@ -240,6 +241,24 @@ func _run() -> void:
 	_assert(String(byte_pause_control.get("name", "")) == "EXT_CTRL_CODE_PAUSE", "expected source byte EXT_CTRL_CODE_PAUSE summary")
 	_assert(_array(byte_pause_control.get("args", [])) == [2], "expected source byte pause arg")
 
+	var byte_color_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	byte_color_printer.start("B_WIN_MSG", "AB", message_info, text_printer_metadata, {
+		"source_text": "AB",
+		"source_bytes": [0xBB, 0xFC, 0x01, 0x04, 0xBC],
+	})
+	byte_color_printer.skip_to_end()
+	var byte_color := _dict(byte_color_printer.snapshot())
+	var byte_color_layout := _dict(byte_color.get("source_glyph_layout", {}))
+	var byte_color_glyphs := _array(byte_color_layout.get("glyphs", []))
+	var byte_color_first := _dict(byte_color_glyphs[0]) if byte_color_glyphs.size() > 0 else {}
+	var byte_color_second := _dict(byte_color_glyphs[1]) if byte_color_glyphs.size() > 1 else {}
+	var byte_color_first_indices := _dict(byte_color_first.get("render_text_color_indices", {}))
+	var byte_color_second_indices := _dict(byte_color_second.get("render_text_color_indices", {}))
+	_assert(String(byte_color_printer.get_visible_text()) == "AB", "expected source byte color fixture visible text")
+	_assert(int(byte_color.get("render_text_color_control_count", 0)) == 1, "expected one RenderText color control")
+	_assert(int(byte_color_first_indices.get("foreground", 0)) == 1, "expected initial message foreground before color control")
+	_assert(int(byte_color_second_indices.get("foreground", 0)) == 4, "expected red foreground after EXT_CTRL_CODE_COLOR")
+
 	var audio_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	audio_printer.start("B_WIN_MSG", "A{PLAY_SE SE_SELECT}{WAIT_SE}B", message_info, text_printer_metadata)
 	audio_printer.advance_frames(1)
@@ -273,6 +292,7 @@ func _run() -> void:
 		"byte_glyph_events": int(byte_glyph.get("source_byte_event_count", 0)),
 		"byte_prompt_clears": int(byte_clear_wait.get("prompt_clear_count", 0)),
 		"byte_prompt_scrolls": int(byte_scroll_wait.get("prompt_scroll_count", 0)),
+		"render_text_color_controls": int(byte_color.get("render_text_color_control_count", 0)),
 		"source_glyph_width": int(byte_glyph_layout_first.get("width", 0)),
 		"ab_speedups": int(speedup_pressed.get("ab_speedup_count", 0)),
 	}))

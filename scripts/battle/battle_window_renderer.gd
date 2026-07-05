@@ -32,6 +32,7 @@ var _textbox_composite_path := ""
 var _textbox_composite_texture: Texture2D = null
 var _textbox_composite_image: Image = null
 var _source_font_atlas_images: Dictionary = {}
+var _font_role_mask_images: Dictionary = {}
 
 
 func _ready() -> void:
@@ -262,7 +263,6 @@ func get_renderer_snapshot() -> Dictionary:
 		"text_printers": _text_printers_snapshot(),
 		"runtime_color_policy": "rgba_textures_and_godot_materials",
 		"unsupported": [
-			"battle_text_glyph_bitmap_renderer_pending",
 			"battle_text_full_control_code_renderer_pending",
 			"battle_text_link_recorded_speed_overrides_pending",
 			"battle_text_screenshot_comparison_pending",
@@ -388,7 +388,9 @@ func _text_printer_snapshot() -> Dictionary:
 		"source_font_metric_status": String(font_metrics.get("status", "")),
 		"source_font_metric_count": int(font_metrics.get("font_count", fonts.size())),
 		"source_font_atlas_binding_count": _source_font_atlas_binding_count(font_metrics),
+		"source_font_role_mask_binding_count": _source_font_role_mask_binding_count(font_metrics),
 		"source_font_atlas_status": "source_font_atlas_preview" if _source_font_atlas_binding_count(font_metrics) > 0 else "missing_source_font_atlas",
+		"render_text_material_status": _render_text_material_status(),
 		"visible_window_printer_count": _visible_windows.size(),
 	}
 
@@ -443,15 +445,16 @@ func _compose_text_bitmap_for_window(window_id: String) -> Image:
 	var snapshot := _text_printer_window_snapshot(window_id)
 	var layout := _dictionary_value(snapshot.get("source_glyph_layout", {}))
 	var glyphs := _array_value(layout.get("glyphs", []))
+	var materials := _render_text_material_colors()
 	var rendered_count := 0
+	var role_colored_count := 0
+	var atlas_preview_count := 0
 	var missing_count := 0
+	var colored_pixel_count := 0
+	var transparent_role_pixel_count := 0
 	for glyph_value in glyphs:
 		var glyph := _dictionary_value(glyph_value)
 		if String(glyph.get("source_font_atlas_status", "")) != "source_font_atlas_preview":
-			missing_count += 1
-			continue
-		var atlas := _load_source_font_atlas_image(String(glyph.get("source_font_atlas_image", "")))
-		if atlas == null:
 			missing_count += 1
 			continue
 		var source_rect := _rect_from_array(_array_value(glyph.get("source_glyph_rect", [])))
@@ -469,13 +472,50 @@ func _compose_text_bitmap_for_window(window_id: String) -> Image:
 			missing_count += 1
 			continue
 		var dst := Vector2i(int(glyph.get("x", 0)), int(glyph.get("y", 0)))
+		var role_mask := _load_font_role_mask_image(String(glyph.get("source_font_role_mask_image", "")))
+		if role_mask != null and not materials.is_empty():
+			var glyph_colored_pixels := 0
+			var glyph_transparent_pixels := 0
+			var color_indices := _dictionary_value(glyph.get("render_text_color_indices", {}))
+			for y in range(blit_rect.size.y):
+				for x in range(blit_rect.size.x):
+					var target_x := dst.x + x
+					var target_y := dst.y + y
+					if target_x < 0 or target_y < 0 or target_x >= output.get_width() or target_y >= output.get_height():
+						continue
+					var role_pixel := role_mask.get_pixel(blit_rect.position.x + x, blit_rect.position.y + y)
+					var role := int(round(role_pixel.r * 3.0))
+					role = clamp(role, 0, 3)
+					var slot := _render_text_slot_for_role(role)
+					var material_index := int(color_indices.get(slot, 0))
+					var color := _render_text_material_color(material_index, materials)
+					if color.a <= 0.0:
+						glyph_transparent_pixels += 1
+						continue
+					output.set_pixel(target_x, target_y, color)
+					glyph_colored_pixels += 1
+			role_colored_count += 1
+			rendered_count += 1
+			colored_pixel_count += glyph_colored_pixels
+			transparent_role_pixel_count += glyph_transparent_pixels
+			continue
+		var atlas := _load_source_font_atlas_image(String(glyph.get("source_font_atlas_image", "")))
+		if atlas == null:
+			missing_count += 1
+			continue
 		output.blend_rect(atlas, blit_rect, dst)
+		atlas_preview_count += 1
 		rendered_count += 1
-	var status := "source_font_atlas_preview" if rendered_count > 0 else "no_source_font_atlas_glyphs"
+	var status := "render_text_role_colored_preview" if role_colored_count > 0 else ("source_font_atlas_preview" if rendered_count > 0 else "no_source_font_atlas_glyphs")
 	_source_text_bitmap_summaries[window_id] = {
 		"status": status,
 		"rendered_glyph_count": rendered_count,
+		"role_colored_glyph_count": role_colored_count,
+		"atlas_preview_glyph_count": atlas_preview_count,
 		"missing_glyph_count": missing_count,
+		"colored_pixel_count": colored_pixel_count,
+		"transparent_role_pixel_count": transparent_role_pixel_count,
+		"render_text_material_status": _render_text_material_status(),
 		"window_size": [screen_rect.size.x, screen_rect.size.y],
 		"source": "BattleTextPrinter.source_glyph_layout",
 	}
@@ -520,6 +560,59 @@ func _load_source_font_atlas_image(path: String) -> Image:
 		return null
 	_source_font_atlas_images[path] = image
 	return image
+
+
+func _load_font_role_mask_image(path: String) -> Image:
+	if path.is_empty():
+		return null
+	if _font_role_mask_images.has(path):
+		return _font_role_mask_images[path]
+	var image := Image.new()
+	var image_path := ProjectSettings.globalize_path(path) if path.begins_with("res://") else path
+	var error := image.load(image_path)
+	if error != OK:
+		return null
+	_font_role_mask_images[path] = image
+	return image
+
+
+func _render_text_material_colors() -> Dictionary:
+	var result := {}
+	var materials := _dictionary_value(_interface_data.get("render_text_materials", {}))
+	var colors := _dictionary_value(materials.get("colors", {}))
+	for key in colors.keys():
+		var record := _dictionary_value(colors[key])
+		var index := int(record.get("index", key))
+		result[index] = Color(
+			float(record.get("r", 0)) / 255.0,
+			float(record.get("g", 0)) / 255.0,
+			float(record.get("b", 0)) / 255.0,
+			float(record.get("a", 0)) / 255.0
+		)
+	return result
+
+
+func _render_text_material_status() -> String:
+	var materials := _dictionary_value(_interface_data.get("render_text_materials", {}))
+	return String(materials.get("status", "missing_render_text_materials"))
+
+
+func _render_text_material_color(index_value: int, materials: Dictionary) -> Color:
+	var index := index_value & 0xF
+	if materials.has(index):
+		return materials[index]
+	return Color(0, 0, 0, 0)
+
+
+func _render_text_slot_for_role(role: int) -> String:
+	match role:
+		1:
+			return "foreground"
+		2:
+			return "shadow"
+		3:
+			return "accent"
+	return "background"
 
 
 func _visible_text_for_window(window_id: String) -> String:
@@ -698,6 +791,17 @@ func _source_font_atlas_binding_count(font_metrics: Dictionary) -> int:
 	for font_id in fonts.keys():
 		var record := _dictionary_value(fonts.get(font_id, {}))
 		if String(_dictionary_value(record.get("glyph_atlas", {})).get("status", "")) == "source_font_atlas_preview":
+			count += 1
+	return count
+
+
+func _source_font_role_mask_binding_count(font_metrics: Dictionary) -> int:
+	var count := 0
+	var fonts := _dictionary_value(font_metrics.get("fonts", {}))
+	for font_id in fonts.keys():
+		var record := _dictionary_value(fonts.get(font_id, {}))
+		var binding := _dictionary_value(record.get("glyph_atlas", {}))
+		if String(binding.get("role_mask_status", "")) == "source_font_role_mask":
 			count += 1
 	return count
 

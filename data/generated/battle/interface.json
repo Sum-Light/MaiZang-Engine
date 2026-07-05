@@ -15,7 +15,9 @@
     "src/data/graphics/gimmicks.h",
     "include/config/battle.h",
     "include/config/text.h",
-    "include/constants/global.h"
+    "include/constants/global.h",
+    "include/constants/characters.h",
+    "charmap.txt"
   ],
   "runtime_color_policy": {
     "status": "no_runtime_palette",
@@ -2598,8 +2600,36 @@
       "columns": 16,
       "rows": 443,
       "glyph_capacity": 7088,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 1064441,
+          "1": 365917,
+          "2": 384170,
+          "3": 0
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+      "role_mask_role_counts": {
+        "0": 1064441,
+        "1": 365917,
+        "2": 384170,
+        "3": 0
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     },
     "chinese_small": {
       "id": "chinese_small",
@@ -2640,8 +2670,36 @@
       "columns": 16,
       "rows": 443,
       "glyph_capacity": 7088,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_small_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/chinese_small_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 1255824,
+          "1": 281469,
+          "2": 277235,
+          "3": 0
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_small_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/chinese_small_roles.png",
+      "role_mask_role_counts": {
+        "0": 1255824,
+        "1": 281469,
+        "2": 277235,
+        "3": 0
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     },
     "latin_narrow": {
       "id": "latin_narrow",
@@ -2682,8 +2740,36 @@
       "columns": 16,
       "rows": 32,
       "glyph_capacity": 512,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_narrow_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_narrow_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 113499,
+          "1": 4063,
+          "2": 4496,
+          "3": 9014
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_narrow_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_narrow_roles.png",
+      "role_mask_role_counts": {
+        "0": 113499,
+        "1": 4063,
+        "2": 4496,
+        "3": 9014
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     },
     "latin_narrower": {
       "id": "latin_narrower",
@@ -2724,8 +2810,36 @@
       "columns": 16,
       "rows": 32,
       "glyph_capacity": 512,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_narrower_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_narrower_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 115432,
+          "1": 3806,
+          "2": 4231,
+          "3": 7603
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_narrower_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_narrower_roles.png",
+      "role_mask_role_counts": {
+        "0": 115432,
+        "1": 3806,
+        "2": 4231,
+        "3": 7603
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     },
     "latin_normal": {
       "id": "latin_normal",
@@ -2766,8 +2880,36 @@
       "columns": 16,
       "rows": 32,
       "glyph_capacity": 512,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_normal_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_normal_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 108828,
+          "1": 4352,
+          "2": 4825,
+          "3": 13067
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_normal_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_normal_roles.png",
+      "role_mask_role_counts": {
+        "0": 108828,
+        "1": 4352,
+        "2": 4825,
+        "3": 13067
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     },
     "latin_short": {
       "id": "latin_short",
@@ -2808,8 +2950,36 @@
       "columns": 16,
       "rows": 32,
       "glyph_capacity": 512,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_short_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 112436,
+          "1": 4214,
+          "2": 4593,
+          "3": 9829
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_short_roles.png",
+      "role_mask_role_counts": {
+        "0": 112436,
+        "1": 4214,
+        "2": 4593,
+        "3": 9829
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     },
     "latin_short_narrow": {
       "id": "latin_short_narrow",
@@ -2850,8 +3020,36 @@
       "columns": 16,
       "rows": 32,
       "glyph_capacity": 512,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_narrow_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_short_narrow_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 114069,
+          "1": 4010,
+          "2": 4368,
+          "3": 8625
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_narrow_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_short_narrow_roles.png",
+      "role_mask_role_counts": {
+        "0": 114069,
+        "1": 4010,
+        "2": 4368,
+        "3": 8625
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     },
     "latin_short_narrower": {
       "id": "latin_short_narrower",
@@ -2892,8 +3090,36 @@
       "columns": 16,
       "rows": 32,
       "glyph_capacity": 512,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_narrower_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_short_narrower_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 115554,
+          "1": 3824,
+          "2": 4179,
+          "3": 7515
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_narrower_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_short_narrower_roles.png",
+      "role_mask_role_counts": {
+        "0": 115554,
+        "1": 3824,
+        "2": 4179,
+        "3": 7515
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     },
     "latin_small": {
       "id": "latin_small",
@@ -2934,8 +3160,36 @@
       "columns": 16,
       "rows": 32,
       "glyph_capacity": 512,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_small_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_small_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 101594,
+          "1": 3504,
+          "2": 3964,
+          "3": 22010
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_small_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_small_roles.png",
+      "role_mask_role_counts": {
+        "0": 101594,
+        "1": 3504,
+        "2": 3964,
+        "3": 22010
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     },
     "latin_small_narrow": {
       "id": "latin_small_narrow",
@@ -2976,8 +3230,36 @@
       "columns": 16,
       "rows": 32,
       "glyph_capacity": 512,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_small_narrow_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_small_narrow_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 101738,
+          "1": 3434,
+          "2": 3874,
+          "3": 22026
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_small_narrow_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_small_narrow_roles.png",
+      "role_mask_role_counts": {
+        "0": 101738,
+        "1": 3434,
+        "2": 3874,
+        "3": 22026
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     },
     "latin_small_narrower": {
       "id": "latin_small_narrower",
@@ -3018,9 +3300,170 @@
       "columns": 16,
       "rows": 32,
       "glyph_capacity": 512,
-      "text_color_status": "source_png_preview_colors",
-      "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work."
+      "text_color_status": "glyph_role_mask_plus_render_text_materials",
+      "role_mask": {
+        "role_mask_status": "generated_source_font_role_mask",
+        "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_small_narrower_roles.png",
+        "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_small_narrower_roles.png",
+        "role_mask_encoding": "red_channel_role_times_85",
+        "role_mask_role_counts": {
+          "0": 103564,
+          "1": 3207,
+          "2": 3668,
+          "3": 20633
+        },
+        "role_mask_non_role_pixel_count": 0,
+        "role_slots": {
+          "0": "background",
+          "1": "foreground",
+          "2": "shadow",
+          "3": "accent"
+        }
+      },
+      "role_mask_status": "generated_source_font_role_mask",
+      "role_mask_image": "res://assets/generated/battle_fonts/roles/latin_small_narrower_roles.png",
+      "role_mask_image_project_path": "assets/generated/battle_fonts/roles/latin_small_narrower_roles.png",
+      "role_mask_role_counts": {
+        "0": 103564,
+        "1": 3207,
+        "2": 3668,
+        "3": 20633
+      },
+      "note": "The source PNG glyph indices are exported as role masks; runtime rendering maps role slots through RenderText material colors."
     }
+  },
+  "render_text_materials": {
+    "status": "generated_from_textbox_indexed_colors",
+    "source": "graphics/battle_interface/textbox.png",
+    "source_trace": [
+      "graphics/battle_interface/textbox.png",
+      "src/text.c:GenerateFontHalfRowLookupTable",
+      "src/text.c:RenderText",
+      "src/battle_message.c:sTextOnWindowsInfo_Normal"
+    ],
+    "role_slots": {
+      "0": "background",
+      "1": "foreground",
+      "2": "shadow",
+      "3": "accent"
+    },
+    "colors": {
+      "0": {
+        "index": 0,
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      },
+      "1": {
+        "index": 1,
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 255
+      },
+      "2": {
+        "index": 2,
+        "r": 255,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      },
+      "3": {
+        "index": 3,
+        "r": 82,
+        "g": 98,
+        "b": 156,
+        "a": 255
+      },
+      "4": {
+        "index": 4,
+        "r": 106,
+        "g": 139,
+        "b": 189,
+        "a": 255
+      },
+      "5": {
+        "index": 5,
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 255
+      },
+      "6": {
+        "index": 6,
+        "r": 106,
+        "g": 90,
+        "b": 115,
+        "a": 255
+      },
+      "7": {
+        "index": 7,
+        "r": 213,
+        "g": 205,
+        "b": 213,
+        "a": 255
+      },
+      "8": {
+        "index": 8,
+        "r": 65,
+        "g": 74,
+        "b": 123,
+        "a": 255
+      },
+      "9": {
+        "index": 9,
+        "r": 74,
+        "g": 65,
+        "b": 82,
+        "a": 255
+      },
+      "10": {
+        "index": 10,
+        "r": 131,
+        "g": 139,
+        "b": 139,
+        "a": 255
+      },
+      "11": {
+        "index": 11,
+        "r": 106,
+        "g": 65,
+        "b": 90,
+        "a": 255
+      },
+      "12": {
+        "index": 12,
+        "r": 172,
+        "g": 106,
+        "b": 98,
+        "a": 255
+      },
+      "13": {
+        "index": 13,
+        "r": 213,
+        "g": 74,
+        "b": 57,
+        "a": 255
+      },
+      "14": {
+        "index": 14,
+        "r": 156,
+        "g": 74,
+        "b": 98,
+        "a": 255
+      },
+      "15": {
+        "index": 15,
+        "r": 106,
+        "g": 164,
+        "b": 164,
+        "a": 255
+      }
+    },
+    "material_count": 16,
+    "transparent_material_index": 0,
+    "runtime_asset_model": "godot_rgba_material_values"
   },
   "source_graphics_definitions": {
     "gBattleTextboxTiles": {
@@ -6028,10 +6471,10 @@
         "can_ab_speed_up_print": false,
         "text_material_id": "battle_text_menu",
         "text_color_indices": {
-          "foreground": "TEXT_DYNAMIC_COLOR_4",
-          "background": "TEXT_DYNAMIC_COLOR_5",
-          "accent": "TEXT_DYNAMIC_COLOR_5",
-          "shadow": "TEXT_DYNAMIC_COLOR_6"
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
         },
         "raw_fields": {
           "fillValue": "PIXEL_FILL(0xE)",
@@ -7578,10 +8021,10 @@
       "can_ab_speed_up_print": false,
       "text_material_id": "battle_text_menu",
       "text_color_indices": {
-        "foreground": "TEXT_DYNAMIC_COLOR_4",
-        "background": "TEXT_DYNAMIC_COLOR_5",
-        "accent": "TEXT_DYNAMIC_COLOR_5",
-        "shadow": "TEXT_DYNAMIC_COLOR_6"
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
       },
       "raw_fields": {
         "fillValue": "PIXEL_FILL(0xE)",
@@ -8201,12 +8644,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_small",
             "latin_image": "res://assets/generated/battle_fonts/latin_small.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_small_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -8214,11 +8660,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_small",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_small.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_small_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -8228,8 +8684,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -8772,12 +9228,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_normal",
             "latin_image": "res://assets/generated/battle_fonts/latin_normal.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_normal_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -8785,11 +9244,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_normal",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_normal.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -8799,8 +9268,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -9343,12 +9812,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_short",
             "latin_image": "res://assets/generated/battle_fonts/latin_short.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -9356,11 +9828,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_normal",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_normal.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -9370,8 +9852,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -9914,12 +10396,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_short",
             "latin_image": "res://assets/generated/battle_fonts/latin_short.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -9927,11 +10412,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_normal",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_normal.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -9941,8 +10436,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -10485,12 +10980,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_short",
             "latin_image": "res://assets/generated/battle_fonts/latin_short.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -10498,11 +10996,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_normal",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_normal.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -10512,8 +11020,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -11056,12 +11564,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_short",
             "latin_image": "res://assets/generated/battle_fonts/latin_short.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -11069,11 +11580,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_normal",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_normal.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -11083,8 +11604,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -11644,12 +12165,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_narrow",
             "latin_image": "res://assets/generated/battle_fonts/latin_narrow.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_narrow_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -11657,11 +12181,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_normal",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_normal.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -11671,8 +12205,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -12223,12 +12757,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_small_narrow",
             "latin_image": "res://assets/generated/battle_fonts/latin_small_narrow.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_small_narrow_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -12236,11 +12773,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_small",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_small.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_small_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -12250,8 +12797,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -12811,12 +13358,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_narrower",
             "latin_image": "res://assets/generated/battle_fonts/latin_narrower.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_narrower_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -12824,11 +13374,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_normal",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_normal.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -12838,8 +13398,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -13390,12 +13950,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_small_narrower",
             "latin_image": "res://assets/generated/battle_fonts/latin_small_narrower.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_small_narrower_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -13403,11 +13966,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_small",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_small.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_small_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -13417,8 +13990,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -13961,12 +14534,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_short_narrow",
             "latin_image": "res://assets/generated/battle_fonts/latin_short_narrow.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_narrow_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -13974,11 +14550,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_normal",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_normal.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -13988,8 +14574,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         },
@@ -14532,12 +15118,15 @@
           "glyph_atlas": {
             "status": "source_font_atlas_preview",
             "runtime_asset_model": "ordinary_rgba_texture",
+            "render_text_color_status": "source_render_text_role_mask_bound",
             "glyph_cell": {
               "w": 16,
               "h": 16
             },
             "latin_atlas_id": "latin_short_narrower",
             "latin_image": "res://assets/generated/battle_fonts/latin_short_narrower.png",
+            "latin_role_mask_image": "res://assets/generated/battle_fonts/roles/latin_short_narrower_roles.png",
+            "latin_role_mask_status": "generated_source_font_role_mask",
             "latin_columns": 16,
             "latin_rows": 32,
             "latin_glyph_capacity": 512,
@@ -14545,11 +15134,21 @@
             "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
             "chinese_atlas_id": "chinese_normal",
             "chinese_image": "res://assets/generated/battle_fonts/chinese_normal.png",
+            "chinese_role_mask_image": "res://assets/generated/battle_fonts/roles/chinese_normal_roles.png",
+            "chinese_role_mask_status": "generated_source_font_role_mask",
             "chinese_columns": 16,
             "chinese_rows": 443,
             "chinese_glyph_capacity": 7088,
             "chinese_index_rule": "adjust high byte down after skipped 0x06/0x1B, then (hi - 1) << 8 | low",
             "chinese_punctuation_source": "latin_atlas",
+            "role_mask_status": "source_font_role_mask",
+            "role_mask_encoding": "red_channel_role_times_85",
+            "role_slots": {
+              "0": "background",
+              "1": "foreground",
+              "2": "shadow",
+              "3": "accent"
+            },
             "source_trace": [
               "src/fonts.c:gFont*LatinGlyphs",
               "src/chinese_text.c:gFontSmallChineseGlyphs",
@@ -14559,8 +15158,8 @@
               "graphics/fonts/*.png"
             ],
             "unsupported": [
-              "exact_render_text_color_controls_pending",
-              "exact_control_code_pixel_side_effects_pending"
+              "exact_control_code_pixel_side_effects_pending",
+              "screenshot_material_match_pending"
             ]
           }
         }
@@ -14603,10 +15202,342 @@
       ]
     },
     "copy_to_vram_rule": "B_WIN_COPYTOVRAM skips FillWindowPixelBuffer and final PutWindowTilemap/CopyWindowToVram; normal calls fill then copy full window",
-    "runtime_status": "metadata_only",
+    "runtime_status": "source_role_mask_material_metadata",
     "unsupported": [
-      "battle_text_glyph_bitmap_renderer_pending"
-    ]
+      "battle_text_full_control_code_renderer_pending",
+      "battle_text_exact_scroll_clear_pixels_pending",
+      "battle_text_screenshot_comparison_pending"
+    ],
+    "render_text_materials_status": "generated_from_textbox_indexed_colors",
+    "glyph_encoding": {
+      "status": "generated_from_charmap",
+      "source": "charmap.txt",
+      "single_byte_chars": {
+        " ": 0,
+        "À": 1,
+        "Á": 2,
+        "Â": 3,
+        "Ç": 4,
+        "È": 5,
+        "É": 6,
+        "Ê": 7,
+        "Ë": 8,
+        "Ì": 9,
+        "Î": 11,
+        "Ï": 12,
+        "Ò": 13,
+        "Ó": 14,
+        "Ô": 15,
+        "Œ": 16,
+        "Ù": 17,
+        "Ú": 18,
+        "Û": 19,
+        "Ñ": 20,
+        "ß": 21,
+        "à": 22,
+        "á": 23,
+        "ç": 25,
+        "è": 26,
+        "é": 27,
+        "ê": 28,
+        "ë": 29,
+        "ì": 30,
+        "î": 32,
+        "ï": 33,
+        "ò": 34,
+        "ó": 35,
+        "ô": 36,
+        "œ": 37,
+        "ù": 38,
+        "ú": 39,
+        "û": 40,
+        "ñ": 41,
+        "º": 42,
+        "ª": 43,
+        "&": 45,
+        "+": 46,
+        "=": 53,
+        ";": 54,
+        "~": 57,
+        "¿": 81,
+        "¡": 82,
+        "Í": 90,
+        "%": 91,
+        "(": 92,
+        ")": 93,
+        "â": 104,
+        "í": 111,
+        "<": 133,
+        ">": 134,
+        "0": 161,
+        "1": 162,
+        "2": 163,
+        "3": 164,
+        "4": 165,
+        "5": 166,
+        "6": 167,
+        "7": 168,
+        "8": 169,
+        "9": 170,
+        "!": 171,
+        "?": 172,
+        ".": 173,
+        "-": 174,
+        "_": 174,
+        "·": 175,
+        "…": 176,
+        "“": 177,
+        "”": 178,
+        "‘": 179,
+        "’": 180,
+        "'": 180,
+        "♂": 181,
+        "♀": 182,
+        "¥": 183,
+        ",": 184,
+        "×": 185,
+        "/": 186,
+        "A": 187,
+        "B": 188,
+        "C": 189,
+        "D": 190,
+        "E": 191,
+        "F": 192,
+        "G": 193,
+        "H": 194,
+        "I": 195,
+        "J": 196,
+        "K": 197,
+        "L": 198,
+        "M": 199,
+        "N": 200,
+        "O": 201,
+        "P": 202,
+        "Q": 203,
+        "R": 204,
+        "S": 205,
+        "T": 206,
+        "U": 207,
+        "V": 208,
+        "W": 209,
+        "X": 210,
+        "Y": 211,
+        "Z": 212,
+        "a": 213,
+        "b": 214,
+        "c": 215,
+        "d": 216,
+        "e": 217,
+        "f": 218,
+        "g": 219,
+        "h": 220,
+        "i": 221,
+        "j": 222,
+        "k": 223,
+        "l": 224,
+        "m": 225,
+        "n": 226,
+        "o": 227,
+        "p": 228,
+        "q": 229,
+        "r": 230,
+        "s": 231,
+        "t": 232,
+        "u": 233,
+        "v": 234,
+        "w": 235,
+        "x": 236,
+        "y": 237,
+        "z": 238,
+        "▶": 239,
+        ":": 240,
+        "Ä": 241,
+        "Ö": 242,
+        "Ü": 243,
+        "ä": 244,
+        "ö": 245,
+        "ü": 246,
+        "$": 255,
+        "あ": 1,
+        "い": 2,
+        "う": 3,
+        "え": 4,
+        "お": 5,
+        "か": 6,
+        "き": 7,
+        "く": 8,
+        "け": 9,
+        "こ": 10,
+        "さ": 11,
+        "し": 12,
+        "す": 13,
+        "せ": 14,
+        "そ": 15,
+        "た": 16,
+        "ち": 17,
+        "つ": 18,
+        "て": 19,
+        "と": 20,
+        "な": 21,
+        "に": 22,
+        "ぬ": 23,
+        "ね": 24,
+        "の": 25,
+        "は": 26,
+        "ひ": 27,
+        "ふ": 28,
+        "へ": 29,
+        "ほ": 30,
+        "ま": 31,
+        "み": 32,
+        "む": 33,
+        "め": 34,
+        "も": 35,
+        "や": 36,
+        "ゆ": 37,
+        "よ": 38,
+        "ら": 39,
+        "り": 40,
+        "る": 41,
+        "れ": 42,
+        "ろ": 43,
+        "わ": 44,
+        "を": 45,
+        "ん": 46,
+        "ぁ": 47,
+        "ぃ": 48,
+        "ぅ": 49,
+        "ぇ": 50,
+        "ぉ": 51,
+        "ゃ": 52,
+        "ゅ": 53,
+        "ょ": 54,
+        "が": 55,
+        "ぎ": 56,
+        "ぐ": 57,
+        "げ": 58,
+        "ご": 59,
+        "ざ": 60,
+        "じ": 61,
+        "ず": 62,
+        "ぜ": 63,
+        "ぞ": 64,
+        "だ": 65,
+        "ぢ": 66,
+        "づ": 67,
+        "で": 68,
+        "ど": 69,
+        "ば": 70,
+        "び": 71,
+        "ぶ": 72,
+        "べ": 73,
+        "ぼ": 74,
+        "ぱ": 75,
+        "ぴ": 76,
+        "ぷ": 77,
+        "ぺ": 78,
+        "ぽ": 79,
+        "っ": 80,
+        "ア": 81,
+        "イ": 82,
+        "ウ": 83,
+        "エ": 84,
+        "オ": 85,
+        "カ": 86,
+        "キ": 87,
+        "ク": 88,
+        "ケ": 89,
+        "コ": 90,
+        "サ": 91,
+        "シ": 92,
+        "ス": 93,
+        "セ": 94,
+        "ソ": 95,
+        "タ": 96,
+        "チ": 97,
+        "ツ": 98,
+        "テ": 99,
+        "ト": 100,
+        "ナ": 101,
+        "ニ": 102,
+        "ヌ": 103,
+        "ネ": 104,
+        "ノ": 105,
+        "ハ": 106,
+        "ヒ": 107,
+        "フ": 108,
+        "ヘ": 109,
+        "ホ": 110,
+        "マ": 111,
+        "ミ": 112,
+        "ム": 113,
+        "メ": 114,
+        "モ": 115,
+        "ヤ": 116,
+        "ユ": 117,
+        "ヨ": 118,
+        "ラ": 119,
+        "リ": 120,
+        "ル": 121,
+        "レ": 122,
+        "ロ": 123,
+        "ワ": 124,
+        "ヲ": 125,
+        "ン": 126,
+        "ァ": 127,
+        "ィ": 128,
+        "ゥ": 129,
+        "ェ": 130,
+        "ォ": 131,
+        "ャ": 132,
+        "ュ": 133,
+        "ョ": 134,
+        "ガ": 135,
+        "ギ": 136,
+        "グ": 137,
+        "ゲ": 138,
+        "ゴ": 139,
+        "ザ": 140,
+        "ジ": 141,
+        "ズ": 142,
+        "ゼ": 143,
+        "ゾ": 144,
+        "ダ": 145,
+        "ヂ": 146,
+        "ヅ": 147,
+        "デ": 148,
+        "ド": 149,
+        "バ": 150,
+        "ビ": 151,
+        "ブ": 152,
+        "ベ": 153,
+        "ボ": 154,
+        "パ": 155,
+        "ピ": 156,
+        "プ": 157,
+        "ペ": 158,
+        "ポ": 159,
+        "ッ": 160,
+        "　": 0,
+        "ー": 174,
+        "⋯": 176,
+        "・": 48,
+        "。": 55,
+        "～": 57,
+        "、": 58,
+        "，": 59,
+        "！": 60,
+        "？": 61,
+        "：": 62,
+        "—": 63
+      },
+      "single_byte_char_count": 317,
+      "source_trace": [
+        "charmap.txt",
+        "tools/preproc/charmap.cpp",
+        "tools/importer/text_codec.py:load_charmap"
+      ]
+    }
   },
   "sections": {
     "textbox": {
@@ -14896,7 +15827,10 @@
     "battle_window_text_info_count": 25,
     "source_font_metric_count": 14,
     "source_font_atlas_count": 11,
+    "source_font_role_atlas_count": 11,
     "source_font_atlas_binding_count": 12,
+    "render_text_material_count": 16,
+    "glyph_encoding_single_byte_count": 317,
     "latin_width_table_count": 12,
     "healthbox_coord_group_count": 2,
     "healthbox_frame_texture_count": 5,

@@ -2,6 +2,7 @@ extends RefCounted
 
 const STATUS := "first_pass_source_glyph_layout"
 const FONT_ATLAS_PREVIEW_STATUS := "source_font_atlas_preview"
+const RENDER_TEXT_COLOR_STATUS := "source_render_text_color_controls"
 const DEFAULT_PLAYER_TEXT_SPEED := "OPTIONS_TEXT_SPEED_FAST"
 const SOURCE_SPEED_PLAYER_TEXT_DELAY := "player_text_speed_delay"
 const NUM_FRAMES_AUTO_SCROLL_DELAY := 49
@@ -55,7 +56,6 @@ const SOURCE_TRACE := [
 	"src/chinese_text.c:GetChineseFontWidthFunc",
 ]
 const FIRST_PASS_UNSUPPORTED := [
-	"battle_text_exact_color_controls_pending",
 	"battle_text_full_control_code_renderer_pending",
 	"battle_text_link_recorded_speed_overrides_pending",
 	"battle_text_screenshot_comparison_pending",
@@ -92,6 +92,46 @@ const STYLE_CONTROL_COMMANDS := {
 	"JPN": true,
 	"ENG": true,
 	"SPEAKER": true,
+}
+const TEXT_COLOR_NAME_TO_INDEX := {
+	"TRANSPARENT": 0,
+	"WHITE": 1,
+	"DARK_GRAY": 2,
+	"LIGHT_GRAY": 3,
+	"RED": 4,
+	"LIGHT_RED": 5,
+	"GREEN": 6,
+	"LIGHT_GREEN": 7,
+	"BLUE": 8,
+	"LIGHT_BLUE": 9,
+	"TEXT_COLOR_TRANSPARENT": 0,
+	"TEXT_COLOR_WHITE": 1,
+	"TEXT_COLOR_DARK_GRAY": 2,
+	"TEXT_COLOR_LIGHT_GRAY": 3,
+	"TEXT_COLOR_RED": 4,
+	"TEXT_COLOR_LIGHT_RED": 5,
+	"TEXT_COLOR_GREEN": 6,
+	"TEXT_COLOR_LIGHT_GREEN": 7,
+	"TEXT_COLOR_BLUE": 8,
+	"TEXT_COLOR_LIGHT_BLUE": 9,
+	"TEXT_DYNAMIC_COLOR_1": 10,
+	"TEXT_DYNAMIC_COLOR_2": 11,
+	"TEXT_DYNAMIC_COLOR_3": 12,
+	"TEXT_DYNAMIC_COLOR_4": 13,
+	"TEXT_DYNAMIC_COLOR_5": 14,
+	"TEXT_DYNAMIC_COLOR_6": 15,
+	"DYNAMIC_COLOR_1": 10,
+	"DYNAMIC_COLOR_2": 11,
+	"DYNAMIC_COLOR_3": 12,
+	"DYNAMIC_COLOR_4": 13,
+	"DYNAMIC_COLOR_5": 14,
+	"DYNAMIC_COLOR_6": 15,
+	"DYNAMIC_COLOR1": 10,
+	"DYNAMIC_COLOR2": 11,
+	"DYNAMIC_COLOR3": 12,
+	"DYNAMIC_COLOR4": 13,
+	"DYNAMIC_COLOR5": 14,
+	"DYNAMIC_COLOR6": 15,
 }
 
 var _window_id := ""
@@ -132,10 +172,15 @@ var _source_byte_event_count := 0
 var _source_text_control_metadata_count := 0
 var _source_audio_cue_metadata_count := 0
 var _source_metadata_only_count := 0
+var _glyph_encoding: Dictionary = {}
+var _single_byte_char_map: Dictionary = {}
 var _font_metrics: Dictionary = {}
 var _font_atlas_binding_count := 0
 var _layout_font_id := "FONT_NORMAL"
 var _layout_initial_font_id := "FONT_NORMAL"
+var _render_text_initial_color_indices: Dictionary = {}
+var _render_text_color_indices: Dictionary = {}
+var _render_text_color_control_count := 0
 var _layout_origin := Vector2i.ZERO
 var _layout_cursor := Vector2i.ZERO
 var _layout_min_letter_spacing := 0
@@ -187,9 +232,13 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	_source_text_control_metadata_count = _array_value(options.get("text_controls", [])).size()
 	_source_audio_cue_metadata_count = _array_value(options.get("audio_cues", [])).size()
 	_source_metadata_only_count = _array_value(options.get("metadata_only", [])).size()
+	_glyph_encoding = _dictionary_value(text_printer_metadata.get("glyph_encoding", {}))
+	_single_byte_char_map = _single_byte_char_map_from_glyph_encoding(_glyph_encoding)
 	_font_metrics = _resolve_font_metrics(text_info, text_printer_metadata, options)
 	_layout_origin = Vector2i(int(text_info.get("text_x", 0)), int(text_info.get("text_y", 0)))
 	_layout_initial_font_id = String(text_info.get("font_id", "FONT_NORMAL"))
+	_render_text_initial_color_indices = _render_text_color_indices_from_text_info(text_info)
+	_render_text_color_control_count = 0
 	_reset_layout_state(_layout_initial_font_id)
 	_event_stream_source = "source_bytes" if not _source_bytes.is_empty() else ("source_text" if not _source_text.is_empty() else "display_text")
 	var event_text := _strip_source_text_terminator(_source_text) if _event_stream_source == "source_text" else _full_text
@@ -303,6 +352,12 @@ func snapshot() -> Dictionary:
 		"source_text_control_metadata_count": _source_text_control_metadata_count,
 		"source_audio_cue_metadata_count": _source_audio_cue_metadata_count,
 		"source_metadata_only_count": _source_metadata_only_count,
+		"glyph_encoding_status": String(_glyph_encoding.get("status", "")),
+		"glyph_encoding_single_byte_count": _single_byte_char_map.size(),
+		"render_text_color_status": RENDER_TEXT_COLOR_STATUS,
+		"render_text_initial_color_indices": _render_text_initial_color_indices.duplicate(true),
+		"render_text_current_color_indices": _render_text_color_indices.duplicate(true),
+		"render_text_color_control_count": _render_text_color_control_count,
 		"source_glyph_layout_status": "source_metrics_layout" if _has_font_metrics() else "fallback_constant_width_layout",
 		"source_font_atlas_status": _source_font_atlas_status(),
 		"source_font_atlas_binding_count": _font_atlas_binding_count,
@@ -998,6 +1053,7 @@ func _clear_visible_text() -> void:
 	_layout_total_advance_px = 0
 	_layout_line_count = 1
 	_layout_max_line_width_px = 0
+	_render_text_color_indices = _render_text_initial_color_indices.duplicate(true)
 	_layout_control_events.append({
 		"kind": "clear_visible_text",
 		"x": _layout_cursor.x,
@@ -1088,11 +1144,31 @@ func _resolve_font_metrics(text_info: Dictionary, text_printer_metadata: Diction
 	return result
 
 
+func _single_byte_char_map_from_glyph_encoding(glyph_encoding: Dictionary) -> Dictionary:
+	var source_chars := _dictionary_value(glyph_encoding.get("single_byte_chars", {}))
+	var result := {}
+	for key in source_chars.keys():
+		var character := String(key)
+		if character.length() == 1:
+			result[character] = int(source_chars[key]) & 0xFF
+	return result
+
+
+func _render_text_color_indices_from_text_info(text_info: Dictionary) -> Dictionary:
+	var source_indices := _dictionary_value(text_info.get("text_color_indices", {}))
+	var result := {}
+	for slot in ["background", "foreground", "shadow", "accent"]:
+		var index := _render_text_color_index_from_arg(source_indices.get(slot, 0))
+		result[slot] = index if index >= 0 else 0
+	return result
+
+
 func _reset_layout_state(font_id: String) -> void:
 	_layout_font_id = font_id if not font_id.is_empty() else "FONT_NORMAL"
 	_layout_cursor = _layout_origin
 	_layout_min_letter_spacing = 0
 	_layout_japanese = false
+	_render_text_color_indices = _render_text_initial_color_indices.duplicate(true)
 	_layout_glyphs = []
 	_layout_control_events = []
 	_layout_glyph_count = 0
@@ -1124,6 +1200,8 @@ func _record_visible_layout(event: Dictionary) -> void:
 		"line": _layout_line_count - 1,
 		"kind": "glyph",
 		"source": event.get("source", "visible"),
+		"render_text_color_status": RENDER_TEXT_COLOR_STATUS,
+		"render_text_color_indices": _render_text_color_indices.duplicate(true),
 	}
 	_copy_event_source_fields(event, record)
 	if not glyph_bytes.is_empty():
@@ -1173,6 +1251,8 @@ func _record_layout_control_event(event: Dictionary, base: Dictionary) -> void:
 func _apply_layout_style_event(event: Dictionary) -> void:
 	var command := String(event.get("command", event.get("source", "")))
 	var args := _array_value(event.get("args", []))
+	if _apply_render_text_color_event(command, args, event):
+		return
 	match command:
 		"FONT", "EXT_CTRL_CODE_FONT":
 			var font_id := _font_id_from_arg(args[0]) if not args.is_empty() else ""
@@ -1225,6 +1305,82 @@ func _apply_layout_style_event(event: Dictionary) -> void:
 			_record_layout_control_event(event, {"kind": "fill_window", "x": _layout_cursor.x, "y": _layout_cursor.y})
 		_:
 			_record_layout_control_event(event, {"kind": "style", "command": command})
+
+
+func _apply_render_text_color_event(command: String, args: Array, event: Dictionary) -> bool:
+	var changes := []
+	match command:
+		"EXT_CTRL_CODE_BACKGROUND", "BACKGROUND":
+			_set_render_text_color_slot("background", args[0] if not args.is_empty() else null, changes)
+		"EXT_CTRL_CODE_COLOR", "COLOR":
+			_set_render_text_color_slot("foreground", args[0] if not args.is_empty() else null, changes)
+		"EXT_CTRL_CODE_SHADOW", "SHADOW":
+			_set_render_text_color_slot("shadow", args[0] if not args.is_empty() else null, changes)
+		"EXT_CTRL_CODE_ACCENT", "ACCENT":
+			_set_render_text_color_slot("accent", args[0] if not args.is_empty() else null, changes)
+		"EXT_CTRL_CODE_HIGHLIGHT", "HIGHLIGHT":
+			var highlight_value = args[0] if not args.is_empty() else null
+			_set_render_text_color_slot("background", highlight_value, changes)
+			_set_render_text_color_slot("accent", highlight_value, changes)
+		"EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW", "COLOR_HIGHLIGHT_SHADOW":
+			_set_render_text_color_slot("foreground", args[0] if args.size() > 0 else null, changes)
+			_set_render_text_color_slot("background", args[1] if args.size() > 1 else null, changes)
+			_set_render_text_color_slot("accent", args[1] if args.size() > 1 else null, changes)
+			_set_render_text_color_slot("shadow", args[2] if args.size() > 2 else null, changes)
+		"EXT_CTRL_CODE_TEXT_COLORS", "TEXT_COLORS":
+			_set_render_text_color_slot("foreground", args[0] if args.size() > 0 else null, changes)
+			_set_render_text_color_slot("shadow", args[1] if args.size() > 1 else null, changes)
+			_set_render_text_color_slot("accent", args[2] if args.size() > 2 else null, changes)
+		"EXT_CTRL_CODE_PALETTE", "PALETTE":
+			_record_layout_control_event(event, {
+				"kind": "render_text_material_bank_argument_skipped",
+				"command": command,
+				"arg": args[0] if not args.is_empty() else null,
+				"source_rule": "src/text.c:RenderText skips EXT_CTRL_CODE_PALETTE argument in this path",
+				"color_indices": _render_text_color_indices.duplicate(true),
+			})
+			return true
+		_:
+			return false
+	if changes.is_empty():
+		_add_unsupported("battle_text_unknown_color_control_argument")
+	_record_layout_control_event(event, {
+		"kind": "render_text_color",
+		"command": command,
+		"changes": changes,
+		"color_indices": _render_text_color_indices.duplicate(true),
+		"source_rule": "src/text.c:RenderText color control",
+	})
+	_render_text_color_control_count += 1
+	return true
+
+
+func _set_render_text_color_slot(slot: String, value, changes: Array) -> void:
+	var color_index := _render_text_color_index_from_arg(value)
+	if color_index < 0:
+		return
+	_render_text_color_indices[slot] = color_index
+	changes.append({
+		"slot": slot,
+		"index": color_index,
+	})
+
+
+func _render_text_color_index_from_arg(value) -> int:
+	if value == null:
+		return -1
+	if typeof(value) == TYPE_INT or typeof(value) == TYPE_FLOAT:
+		return int(value) & 0xF
+	var raw := String(value).strip_edges().to_upper()
+	if raw.is_empty():
+		return -1
+	if TEXT_COLOR_NAME_TO_INDEX.has(raw):
+		return int(TEXT_COLOR_NAME_TO_INDEX[raw])
+	if raw.is_valid_int():
+		return int(raw) & 0xF
+	if raw.begins_with("0X") and raw.length() > 2:
+		return int(raw.substr(2).hex_to_int()) & 0xF
+	return -1
 
 
 func _glyph_width_for_event(event: Dictionary, text: String, glyph_bytes: Array) -> int:
@@ -1283,6 +1439,10 @@ func _attach_glyph_atlas_record(record: Dictionary, glyph_bytes: Array, event: D
 	record["source_font_atlas_kind"] = atlas_kind
 	record["source_font_atlas_id"] = String(binding.get("%s_atlas_id" % atlas_kind, ""))
 	record["source_font_atlas_image"] = image
+	record["source_font_role_mask_status"] = String(binding.get("%s_role_mask_status" % atlas_kind, binding.get("role_mask_status", "")))
+	record["source_font_role_mask_image"] = String(binding.get("%s_role_mask_image" % atlas_kind, ""))
+	record["source_font_role_mask_encoding"] = String(binding.get("role_mask_encoding", ""))
+	record["source_font_role_slots"] = _dictionary_value(binding.get("role_slots", {})).duplicate(true)
 	record["source_font_atlas_glyph_index"] = glyph_index
 	record["source_glyph_rect"] = [
 		int(glyph_index % columns) * cell_w,
@@ -1325,6 +1485,9 @@ func _glyph_first_byte(event: Dictionary, text: String, glyph_bytes: Array) -> i
 		if source_byte >= 0 and source_byte < 0xF7:
 			return source_byte & 0xFF
 	if not text.is_empty():
+		var first_char := text.substr(0, 1)
+		if _single_byte_char_map.has(first_char):
+			return int(_single_byte_char_map[first_char]) & 0xFF
 		var codepoint := text.unicode_at(0)
 		if codepoint >= 0 and codepoint < 0x100:
 			return codepoint
